@@ -18,44 +18,15 @@
  ********************************************************************************/
 
 .not-found {
-  margin-top: 80px !important;
   width: 100%;
   text-align: center;
   margin-bottom: 50px !important;
 }
 
-.search-result-section .MuiPaper-root {
-  border-radius: 0px !important;
-  min-width: 80vw !important;
-  left: 0px !important;
-  right: 0px !important;
-  position: relative !important;
-  margin-left: 200px !important;
-  margin-right: 200px !important;
-}
-
-//mobile layout
-@media (max-width: 480px) {
-  .search-result-section {
-    background-color: #ffffff;
-    margin: 40px 0px 0px 0px !important;
-    overflow: auto;
-  }
-}
-
-//tab layout
-@media (max-width: 1024px) {
-  .search-result-section {
-    background-color: #ffffff;
-    margin: 80px 0px 0px 0px;
-    overflow: auto;
-  }
-}
-
 .search-result-section {
   background-color: #ffffff;
-  margin: 0px 200px;
   margin-top: 80px;
+  width: 50vw;
 
   .MuiListItem-gutters {
     width: 100%;
@@ -77,5 +48,39 @@
   }
   .MuiListItem-gutters:hover {
     background-color: #eaf1fe;
+  }
+}
+
+.search-result-section .MuiPaper-root {
+  border-radius: 0px !important;
+  min-width: 80vw !important;
+  left: 0px !important;
+  right: 0px !important;
+  position: relative !important;
+  margin-left: 200px !important;
+  margin-right: 200px !important;
+}
+
+//tab layout
+@media (max-width: 1024px) {
+  .search-result-section {
+    background-color: #ffffff;
+    margin: 40px 0px 0px 0px;
+    overflow: auto;
+    width: 65vw;
+  }
+}
+
+//mobile layout
+@media (max-width: 480px) {
+  .search-result-section {
+    background-color: #ffffff;
+    margin: 20px 0px 0px 0px !important;
+    overflow: auto;
+    width: 100vw;
+  }
+
+  .MuiDialog-paper {
+    min-width: 100%;
   }
 }

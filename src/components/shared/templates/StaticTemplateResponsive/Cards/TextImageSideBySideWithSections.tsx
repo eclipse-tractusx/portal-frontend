@@ -109,7 +109,7 @@ export default function TextImageSideBySideWithSections({
             additionalStyles={{
               textAlign: 'center',
             }}
-            width="490px"
+            width="50%"
           />
         )}
       </div>

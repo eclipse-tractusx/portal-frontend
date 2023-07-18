@@ -45,6 +45,9 @@
   .imageVideoTextSideBySideWithSections {
     padding-bottom: 90px;
   }
+  .imageVideoTextSideBySide img {
+    width: 490px !important;
+  }
   .video {
     border-radius: 16px;
     border: 0px;
@@ -291,6 +294,10 @@
   .rightAligned .title {
     margin-bottom: 20px;
   }
+
+  .titleWithIcon button {
+    display: none;
+  }
 }
 
 //mobile layout
@@ -316,7 +323,7 @@
   }
   .imageVideoTextSideBySide div {
     padding-top: 20px;
-    width: 100%;
+    width: 100% !important;
   }
   .imageVideoTextSideBySideWithSections {
     padding-bottom: 20px;
@@ -428,6 +435,10 @@
     height: auto;
     border-radius: 16px;
     margin-top: 20px;
+  }
+
+  .titleWithIcon button {
+    display: block;
   }
 }
 
