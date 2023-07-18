@@ -24,7 +24,7 @@ name: release candidate (RC)
 on:
   push:
     branches:
-      - 'release/*.*.*-RC*'
+      - 'release/v*.*.*-RC*'
   workflow_dispatch:
 
 env:
