@@ -85,10 +85,8 @@ export const apiSlice = createApi({
   tagTypes: ['certificate'],
   endpoints: (builder) => ({
     fetchCertificates: builder.query<CertificateResponse[], void>({
-      query: () => ({
-        url: 'api/administration/companydata/certificates',
-        providesTags: ['certificate'],
-      }),
+      query: () => 'api/administration/companydata/certificates',
+      providesTags: ['certificate'],
     }),
     addCertificate: builder.mutation<void, CertificateRequest>({
       query: (body) => {
