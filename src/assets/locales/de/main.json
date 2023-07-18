@@ -62,7 +62,7 @@
     "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space",
-    "admin-credential": "de: Certification Mgmt"
+    "admin-credential": "Certification Mgmt"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -1124,59 +1124,59 @@
       }
     },
     "appSubscription": {
-      "headline": "de: App Subscription",
-      "subHeading": "de: Manage customer subscriptons",
-      "description": "de: Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
-      "readMore": "de: Read More",
-      "registerURL": "de: RegisterURL",
-      "search": "de: ...search by entering the app name here.",
-      "noDataMessage": "de: No data available",
-      "subscriptionHeading": "de: >> there are already active subscriptions for the service {serviceName}",
-      "subscribeSuccessMsg": "de: Subscribed Successfully",
-      "newServices": "de: New Services",
-      "recommendations": "de: Recommendations",
-      "allServices": "de: All Services",
-      "viewDetails": "de: Display more details",
-      "activateBtn": "de: Activate",
-      "pleaseEnterValidURL": "de: Please enter a valid URL",
+      "headline": "App Subscription",
+      "subHeading": "Manage customer subscriptons",
+      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "readMore": "Read More",
+      "registerURL": "RegisterURL",
+      "search": "...search by entering the app name here.",
+      "noDataMessage": "No data available",
+      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscribeSuccessMsg": "Subscribed Successfully",
+      "newServices": "New Services",
+      "recommendations": "Recommendations",
+      "allServices": "All Services",
+      "viewDetails": "Display more details",
+      "activateBtn": "Activate",
+      "pleaseEnterValidURL": "Please enter a valid URL",
       "tabs": {
-        "request": "de: Request",
-        "active": "de: Active",
-        "showAll": "de: Show All"
+        "request": "Request",
+        "active": "Active",
+        "showAll": "Show All"
       },
       "sortOptions": {
-        "customer": "de: By Customer A-Z",
-        "offer": "de: By Offer"
+        "customer": "By Customer A-Z",
+        "offer": "By Offer"
       },
       "document": {
-        "heading": "de: Relevant Documents",
-        "message": "de: The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+        "heading": "Relevant Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "register": {
-        "heading": "de: Autosetup URL",
-        "message": "de: This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "endpointConfigured": "de: Endpoint Configured",
-        "autosetupURL": "de: AutoSetup URL",
-        "providerErrorMessage": "de: Something went wrong!",
-        "providerSuccessMessage": "de: Service Provider Details added successfully."
+        "heading": "Autosetup URL",
+        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
+        "endpointConfigured": "Endpoint Configured",
+        "autosetupURL": "AutoSetup URL",
+        "providerErrorMessage": "Something went wrong!",
+        "providerSuccessMessage": "Service Provider Details added successfully."
       },
       "activation": {
-        "heading": "de: Activate App Subscription",
-        "intro": "de: for {{companyName}}",
-        "description": "de: Activate the app subscription request of the customer by adding your customer specific app endpoint/url in the input field below. We will use the url to register/activate the app authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the app tenant/connector to the centryl CX components/services (where needed).",
-        "stepDescription": "de: In order to activate the subscription of {{companyName}}, follow the steps below.",
-        "step1": "de: Activate the app subscription request",
-        "step2": "de: System - technical user will get automatically generated and credentials getting shared",
-        "step3": "de: Configure your app with the specific technical user to ensure that the app is fully usable.",
-        "addTentalURLHeading": "de: Add Tentant URL",
-        "addTentalURLDescription": "de: The tenant url of the app is the customer specific url which the customer has to access to receive access to the application. Please note: only https:// addresses are allowed.",
-        "enterURL": "de: Enter URL",
-        "technicalUserDetailsHeading": "de: Technical User Details",
-        "technicalUserDetailsDescription": "de: Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
-        "technicalUserProfileHeading": "de: Technical User Profile",
-        "successDescription": "de: The app subscription got successfully activated, the customer got informed via email. Please find the technical user details below:",
-        "clientId": "de: Client Id",
-        "clientSecret": "de: Client Secret"
+        "heading": "Activate App Subscription",
+        "intro": "for {{companyName}}",
+        "description": "Activate the app subscription request of the customer by adding your customer specific app endpoint/url in the input field below. We will use the url to register/activate the app authentication with the CX idp. Additionally you will receive a technical user which can get used to connect the app tenant/connector to the centryl CX components/services (where needed).",
+        "stepDescription": "In order to activate the subscription of {{companyName}}, follow the steps below.",
+        "step1": "Activate the app subscription request",
+        "step2": "System - technical user will get automatically generated and credentials getting shared",
+        "step3": "Configure your app with the specific technical user to ensure that the app is fully usable.",
+        "addTentalURLHeading": "Add Tentant URL",
+        "addTentalURLDescription": "The tenant url of the app is the customer specific url which the customer has to access to receive access to the application. Please note: only https:// addresses are allowed.",
+        "enterURL": "Enter URL",
+        "technicalUserDetailsHeading": "Technical User Details",
+        "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
+        "technicalUserProfileHeading": "Technical User Profile",
+        "successDescription": "The app subscription got successfully activated, the customer got informed via email. Please find the technical user details below:",
+        "clientId": "Client Id",
+        "clientSecret": "Client Secret"
       },
       "detailOverlay": {
         "title": "Provider View",
@@ -1203,59 +1203,59 @@
       }
     },
     "adminBoard": {
-      "headerTitle": "de: App request management",
-      "search": "de: search company name/app title",
-      "noDataMessage": "de: No data available",
+      "headerTitle": "App request management",
+      "search": "search company name/app title",
+      "noDataMessage": "No data available",
       "tabs": {
-        "open": "de: Open",
-        "all": "de: All"
+        "open": "Open",
+        "all": "All"
       },
       "sortOptions": {
-        "newFirst": "de: Newest First",
-        "AppTitle": "de: App Title (A-Z)"
+        "newFirst": "Newest First",
+        "AppTitle": "App Title (A-Z)"
       },
-      "errorMsg": "de: Error! Something went wrong",
-      "successMsg": "de: Successfully completed",
+      "errorMsg": "Error! Something went wrong",
+      "successMsg": "Successfully completed",
       "declineModal": {
-        "title": "de: Reject App Release Request {appName}",
-        "subheading": "de: Are you sure you want to reject the app release request ?",
-        "declineReason": "de: The rejection will",
-        "declineReason1Label": "de: Create a notification & email message to inform the app provider/manager about the rejection",
-        "declineReason2Label": "de: An individual message with additional details can get shared by adding the details into the input field below",
-        "declineReason3Label": "de: The app will get set back to the status “in progress“",
-        "inputLabel": "de: Cancellation Message",
-        "confirm": "de: Confirm",
-        "close": "de: Close"
+        "title": "Reject App Release Request {appName}",
+        "subheading": "Are you sure you want to reject the app release request ?",
+        "declineReason": "The rejection will",
+        "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
+        "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+        "declineReason3Label": "The app will get set back to the status “in progress“",
+        "inputLabel": "Cancellation Message",
+        "confirm": "Confirm",
+        "close": "Close"
       }
     },
     "adminboardDetail": {
-      "usecase": "de: Use Case",
-      "language": "de: Language",
-      "price": "de: Price",
-      "longDescriptionTitleEN": "de: [Long Description - EN] ",
-      "longDescriptionTitleDE": "de: [Long Description - DE] ",
-      "backToBoard": "de: Back to Admin Board",
+      "usecase": "Use Case",
+      "language": "Language",
+      "price": "Price",
+      "longDescriptionTitleEN": "[Long Description - EN] ",
+      "longDescriptionTitleDE": "[Long Description - DE] ",
+      "backToBoard": "Back to Admin Board",
       "connectedData": {
-        "heading": "de: Connected Data",
-        "message": "de: Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
-        "message2": "de: When using the app, the following data may be collected but NOT linked to your identity:",
-        "linked": "de: Linked to your Identity",
-        "notLinked": "de: Linked NOT to your Identity"
+        "heading": "Connected Data",
+        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
+        "message2": "When using the app, the following data may be collected but NOT linked to your identity:",
+        "linked": "Linked to your Identity",
+        "notLinked": "Linked NOT to your Identity"
       },
       "securityInfo": {
-        "heading": "de: Data Security Information",
-        "message": "de: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
+        "heading": "Data Security Information",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
       },
       "ConformityDocument": {
-        "heading": "de: Conformity Document",
-        "message": "de: [copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "heading": "Conformity Document",
+        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
       },
       "Documents": {
-        "heading": "de: Documents",
-        "message": "de: [copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "heading": "Documents",
+        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
       },
       "roles": {
-        "heading": "de: App Roles",
+        "heading": "App Roles",
         "message": "Geschäftsanwendungsrollen und -beschreibung für die jeweilige App. Die Rollen werden verwendet, um App-Kunden benutzerspezifischen Zugriff zu gewähren und Berechtigungen zwischen verschiedenen Benutzergruppen einzuschränken.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
@@ -1265,12 +1265,12 @@
         "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {
-        "heading": "de: Provider Information",
-        "message": "de: If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
-        "appProvider": "de: App Provider",
-        "website": "de: Website",
-        "email": "de: Email",
-        "phone": "de: Phone"
+        "heading": "Provider Information",
+        "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+        "appProvider": "App Provider",
+        "website": "Website",
+        "email": "Email",
+        "phone": "Phone"
       }
     },
     "checklistOverlay": {
@@ -1488,48 +1488,48 @@
       "errorMessage": "de: Something went wrong!"
     },
     "certificates": {
-      "heading": "de: Company Certificates",
-      "description": "de: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "search": "de: Search",
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "search": "Search",
       "tabs": {
-        "uploadedCertificates": "de: Uploaded Certificates",
-        "pending": "de: Pending",
-        "active": "de: Active",
-        "declined": "de: Declined",
-        "expired": "de: Expired"
+        "uploadedCertificates": "Uploaded Certificates",
+        "pending": "Pending",
+        "active": " Active",
+        "declined": "Declined",
+        "expired": "Expired"
       },
       "sort": {
-        "name": "de: Name",
-        "date": "de: Date"
+        "name": "Name",
+        "date": "Date"
       },
-      "uploadCertificate": "de: Upload Certificate",
+      "uploadCertificate": "Upload Certificate",
       "updateCertificate": {
-        "title": "de: Upload new certificate for {company name}",
-        "description": "de: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        "selectLabel": "de: Type of certificate",
-        "placeholder": "de: Please select",
-        "uploadDocumentTitle": "de: Please upload your certificate proof:",
-        "note": "de: Please upload only pdf files with maximum 1 MB.",
-        "descriptionLabel": "de: Description for verification",
-        "error": "de: Something went wrong!",
-        "success": "de: Certificate uploaded successfully."
+        "title": "Upload new certificate for {company name}",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "selectLabel": "Type of certificate",
+        "placeholder": "Please select",
+        "uploadDocumentTitle": "Please upload your certificate proof:",
+        "note": "Please upload only pdf files with maximum 1 MB.",
+        "descriptionLabel": "Description for verification",
+        "error": "Something went wrong!",
+        "success": "Certificate uploaded successfully."
       },
       "successCertificate": {
-        "title": "de: Certificate successfully uploaded.",
-        "fileUpload": "de: File Upload",
-        "completed": "de: Completed",
-        "nextSteps": "de: Next Steps",
-        "verification": "de: Verification",
-        "pending": "de: Pending",
-        "queryDescription": "de: For any queries regarding these change(s), please contact the Catena-X helpdesk:",
-        "email": "de: email_address@catena_support.com"
+        "title": "Certificate successfully uploaded.",
+        "fileUpload": "File Upload",
+        "completed": "Completed",
+        "nextSteps": "Next Steps",
+        "verification": "Verification",
+        "pending": "Pending",
+        "queryDescription": "For any queries regarding these change(s), please contact the Catena-X helpdesk:",
+        "email": "email_address@catena_support.com"
       },
       "certificateCard": {
-        "type": "de: Type: [ISO 9001]",
-        "valid": "de: Valid until: ",
-        "status": "de: Status: "
+        "type": "Type: [ISO 9001]",
+        "valid": "Valid until: ",
+        "status": "Status: "
       },
-      "noData": "de: Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+      "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
     }
   },
   "navigation": {
