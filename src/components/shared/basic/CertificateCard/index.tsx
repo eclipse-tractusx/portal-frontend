@@ -100,7 +100,7 @@ export const CertificateCard = ({
           {ssiDetailData && (
             <Typography variant="body3" className="expiryDate">
               {t('content.certificates.certificateCard.valid')}
-              { dayjs(ssiDetailData?.expiryDate).format('YYYY-MM-DD') }
+              {dayjs(ssiDetailData?.expiryDate).format('YYYY-MM-DD')}
             </Typography>
           )}
           <Typography variant="body3" className="status">
