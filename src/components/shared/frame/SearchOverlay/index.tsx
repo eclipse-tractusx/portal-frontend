@@ -31,19 +31,6 @@ export default function MainSearchOverlay() {
   return (
     <Dialog
       onClose={() => dispatch(setAppear({ SEARCH: !visible }))}
-      sx={{
-        '.MuiPaper-root': {
-          borderRadius: '0px',
-          minWidth: '100vw',
-          position: 'fixed',
-          top: '0px',
-          left: '0px',
-          right: '0px',
-          margin: '0px',
-          backgroundColor: 'transparent',
-          boxShadow: 'none',
-        },
-      }}
       open={visible}
     >
       <NewSearchSection />
