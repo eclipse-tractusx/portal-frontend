@@ -354,8 +354,8 @@ const ConnectorInsertForm = ({
                         'content.edcconnector.modal.insertform.subscription.tooltipMsg'
                       ),
                       items: subscriptions,
-                      defaultSelectValue: subscriptions[0],
-                      keyTitle: 'offerName',
+                      defaultSelectValue: {},
+                      keyTitle: 'name',
                     }}
                   />
                 </div>
