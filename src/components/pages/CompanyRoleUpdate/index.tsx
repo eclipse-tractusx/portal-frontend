@@ -53,6 +53,9 @@ export default function CompanyRoles() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [companyRoles, setCompanyRoles] = useState<CompanyRolesResponse[]>([])
+  const [preSelectedRoles, setPreSelectedRoles] = useState<
+    CompanyRolesResponse[]
+  >([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
   const [showActiveDescRole, setShowActiveDescRole] = useState<string>()
 
@@ -62,13 +65,24 @@ export default function CompanyRoles() {
 
   const { data, refetch } = useFetchRolesQuery()
   useEffect(() => {
-    data && setCompanyRoles(_.cloneDeep(data))
+    if (data) {
+      setCompanyRoles(_.cloneDeep(data))
+      setPreSelectedRoles(
+        data.filter((role: CompanyRolesResponse) => role.companyRolesActive)
+      )
+      const rolesArr: string[] = []
+      data.map(
+        (role: CompanyRolesResponse) =>
+          role.companyRolesActive && rolesArr.push(role.companyRoles)
+      )
+      setSelectedRoles(rolesArr)
+    }
     refetch()
   }, [data, refetch, updatedSuccess, updatedError, cancelOverlay])
 
   const handleAgreementCheck = (isChecked: boolean, roleName: string) => {
     const roles = _.cloneDeep(companyRoles)
-    roles.map(
+    roles.filter(
       (role: CompanyRolesResponse) =>
         role.companyRoles === roleName && (role.companyRolesActive = isChecked)
     )
@@ -210,7 +224,7 @@ export default function CompanyRoles() {
               <Button
                 size="small"
                 variant="contained"
-                disabled={selectedRoles && selectedRoles.length === 0}
+                disabled={selectedRoles.length === preSelectedRoles.length}
                 onClick={() =>
                   dispatch(
                     show(

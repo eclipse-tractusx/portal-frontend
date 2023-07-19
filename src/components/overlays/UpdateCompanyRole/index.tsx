@@ -56,6 +56,7 @@ import {
 
 enum AgreementStatus {
   ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
@@ -88,12 +89,12 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
 
   useEffect(() => {
-    dispatch(setOverlayCancel(false))
     newSelectedRoles?.map((role: CompanyRolesResponse) =>
       role.agreements.map((agreement: AgreementsData) =>
         setAgreements((oldArray: AgreementsData[]) => [...oldArray, agreement])
       )
     )
+    dispatch(setOverlayCancel(false))
   }, [])
 
   const [dataArray, setDataArray] = useState<RolesData>()
@@ -156,10 +157,13 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const handleSubmit = async () => {
     setLoading(true)
-    const fetchAgreements = (agreements: AgreementsData[]) =>
+    const fetchAgreements = (
+      agreements: AgreementsData[],
+      status: AgreementStatus
+    ) =>
       agreements.map((agreement: AgreementsData) => ({
         agreementId: agreement.agreementId,
-        consentStatus: AgreementStatus.ACTIVE,
+        consentStatus: status,
       }))
 
     const filterRoles: CompanyRoleRequest[] = []
@@ -167,9 +171,31 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
     newSelectedRoles?.map((role: CompanyRolesResponse) => {
       return filterRoles.push({
         companyRoles: role.companyRoles,
-        agreements: fetchAgreements(role.agreements),
+        agreements: fetchAgreements(role.agreements, AgreementStatus.ACTIVE),
       })
     })
+    newDeselectedRoles?.map((role: CompanyRolesResponse) => {
+      return filterRoles.push({
+        companyRoles: role.companyRoles,
+        agreements: fetchAgreements(role.agreements, AgreementStatus.INACTIVE),
+      })
+    })
+
+    data?.map((roleData) => {
+      return (
+        roles.indexOf(roleData.companyRoles) &&
+        filterRoles.push({
+          companyRoles: roleData.companyRoles,
+          agreements: fetchAgreements(
+            roleData.agreements,
+            roleData.companyRolesActive
+              ? AgreementStatus.ACTIVE
+              : AgreementStatus.INACTIVE
+          ),
+        })
+      )
+    })
+
     try {
       await updateCompanyRoles(filterRoles).unwrap()
       dispatch(setCompanyRoleSuccess(true))

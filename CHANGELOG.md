@@ -9,6 +9,8 @@
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
+- Company Roles Update
+  - Added deselect feature
 
 ### Feature
 
