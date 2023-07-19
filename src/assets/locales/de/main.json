@@ -1465,30 +1465,30 @@
       }
     },
     "adminCertificate": {
-      "headline": "de: Credential Request Overview",
-      "search": "de: ...search for certificate type",
+      "headline": "Credential Request Overview",
+      "search": "Suchen via Zertifikatstyp",
       "tabs": {
-        "all": "de: All",
-        "open": "de: Open",
-        "confirmed": "de: Confirmed",
-        "declined": "de: Declined"
+        "all": "Alle",
+        "open": "Offen",
+        "confirmed": "Bestätigt",
+        "declined": "Abgelehnt"
       },
       "sortOptions": {
-        "name": "de: By Name",
-        "date": "de: By Date"
+        "name": "Company Name",
+        "date": "Date"
       },
       "table": {
-        "crendentialType": "de: Type",
-        "companyInfo": "de: Company Info",
-        "certificate": "de: Certificate",
-        "document": "de: Document"
+        "crendentialType": "Type",
+        "companyInfo": "Company Info",
+        "certificate": "Zertifikat",
+        "document": "Dokumente"
       },
-      "approvedMessage": "de: Credential Request Accepted successfully.",
-      "declinedMessage": "de: Credential Request Declined successfully.",
-      "errorMessage": "de: Something went wrong!"
+      "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
+      "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator."
     },
     "certificates": {
-      "heading": "Company Certificates",
+      "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
       "tabs": {
