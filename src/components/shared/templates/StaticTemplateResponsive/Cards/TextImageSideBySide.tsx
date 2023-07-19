@@ -45,7 +45,7 @@ export default function TextImageSideBySide({
           additionalStyles={{
             textAlign: 'center',
           }}
-          width="490px"
+          width="50%"
         />
       }
     />

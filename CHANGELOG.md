@@ -59,6 +59,7 @@
     - fetch offer subscription in managed connectors
     - create managed api end point update
     - update created managed api body with subscriptionId
+  - Update api urls
 - Certificates
   - Created New page under User profile
   - Fetch Certificates and connected to UI
@@ -67,6 +68,7 @@
 - Static Pages
   - Data Space
   - Catena-X Participant
+  - Subnavigation header style fix
 - Search
   - Enable search in all the pages
   - Search input UI updates
