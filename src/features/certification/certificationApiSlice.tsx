@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
@@ -47,14 +48,45 @@ export type CertificateRequest = {
   document: File
 }
 
+export type PaginationData = {
+  totalElements: number
+  page: number
+}
+
+export type CredentialData = {
+  credentialDetailId: string
+  companyId: string
+  credentialType: string
+  useCase: string
+  participantStatus: string
+  expiryDate: string
+  document: {
+    documentId: string
+    documentName: string
+  }
+  externalTypeDetail: {
+    id: string
+    verifiedCredentialExternalTypeId: string
+    version: string
+    template: string
+    validFrom: string
+    expiry: string
+  }
+}
+
+export type CredentialResponse = {
+  content: Array<CredentialData>
+  meta: PaginationData
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/certification',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: ['certificate'],
   endpoints: (builder) => ({
     fetchCertificates: builder.query<CertificateResponse[], void>({
-      query: () => ({
-        url: 'api/administration/companydata/certificates',
-      }),
+      query: () => 'api/administration/companydata/certificates',
+      providesTags: ['certificate'],
     }),
     addCertificate: builder.mutation<void, CertificateRequest>({
       query: (body) => {
@@ -67,8 +99,32 @@ export const apiSlice = createApi({
           body: formData,
         }
       },
+      invalidatesTags: ['certificate'],
+    }),
+    fetchCredentials: builder.query<CredentialResponse[], PaginFetchArgs>({
+      query: (fetchArgs) => ({
+        url: `api/administration/companydata/credentials?page=${fetchArgs.page}`,
+      }),
+    }),
+    approveCredential: builder.mutation<boolean, string>({
+      query: (credentialId) => ({
+        url: `api/administration/companydata/credentials/${credentialId}/approval`,
+        method: 'PUT',
+      }),
+    }),
+    declineCredential: builder.mutation<boolean, string>({
+      query: (credentialDetailId) => ({
+        url: `api/administration/companydata/credentials/${credentialDetailId}/reject`,
+        method: 'PUT',
+      }),
     }),
   }),
 })
 
-export const { useFetchCertificatesQuery, useAddCertificateMutation } = apiSlice
+export const {
+  useFetchCertificatesQuery,
+  useAddCertificateMutation,
+  useFetchCredentialsQuery,
+  useApproveCredentialMutation,
+  useDeclineCredentialMutation,
+} = apiSlice
