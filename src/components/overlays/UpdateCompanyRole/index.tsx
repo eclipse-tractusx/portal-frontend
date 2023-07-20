@@ -208,7 +208,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   }
 
   return (
-    <Dialog open={true}>
+    <Dialog
+      open={true}
+      additionalModalRootStyles={{
+        '.MuiPaper-root': {
+          maxWidth: '60% !important',
+        },
+      }}
+    >
       <DialogHeader
         {...{
           title: t('content.companyRolesUpdate.overlay.title'),

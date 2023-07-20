@@ -11,6 +11,10 @@
   - Skip technical integration for serviceTypeIds(consultancy)
 - Company Roles Update
   - Added deselect feature
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
+  - Add Backend Logic to fetch certificates
+  - Add Confirm/Decline business logic
 
 ### Feature
 

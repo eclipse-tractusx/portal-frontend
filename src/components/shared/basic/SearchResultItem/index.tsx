@@ -166,12 +166,12 @@ export const SearchResultItem = ({
         primaryTypographyProps={{
           color: '#606060',
           fontWeight: 800,
-          fontSize: 22,
+          fontSize: 16,
         }}
         secondaryTypographyProps={{
           color: '#606060',
           fontWeight: 400,
-          fontSize: 16,
+          fontSize: 12,
         }}
       />
     </ListItem>
