@@ -9,6 +9,8 @@
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
+- Provider View
+  - Tech user connection to details
 
 ### Feature
 
