@@ -17,14 +17,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
+import { CardDetailsProps, ProviderProps } from '../StaticTypes'
 import RenderImage from './RenderImage'
 import '../StaticTemplate.scss'
 import AlignedText from './AlignedText'
 import { Typography } from '@catena-x/portal-shared-components'
 import { Trans } from 'react-i18next'
 import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
-import { useMediaQuery, useTheme } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
+import CardWithoutImage from './CardWithoutImage'
 
 export default function TextImageSideBySideWithSections({
   provider,
@@ -101,6 +102,28 @@ export default function TextImageSideBySideWithSections({
                 )
               )}
             </>
+          )}
+          {provider.detailsWithoutImageRow1 && (
+            <Box
+              className={'gridStyle'}
+              sx={{
+                marginBottom:
+                  provider.detailsWithoutImageRow2 &&
+                  provider.detailsWithoutImageRow2.length > 0
+                    ? '0px'
+                    : '180px',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                width: '100% !important',
+              }}
+            >
+              {provider.detailsWithoutImageRow1.map(
+                (card: CardDetailsProps) => {
+                  return (
+                    <CardWithoutImage key={card.title} detail={card} grid={3} />
+                  )
+                }
+              )}
+            </Box>
           )}
         </div>
         {provider.imagePath !== '' && (

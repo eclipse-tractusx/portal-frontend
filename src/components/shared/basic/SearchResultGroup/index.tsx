@@ -53,7 +53,7 @@ export const SearchResultGroup = ({
       {!isFirst && <Divider style={{ marginTop: 12, marginBottom: 12 }} />}
       <Typography
         variant="h3"
-        className={!isFirst ? 'title' : 'title margin-top-20'}
+        className={!isFirst ? 'searchTitle' : 'searchTitle margin-top-20'}
       >
         {t(`category.${category}`)}
       </Typography>
