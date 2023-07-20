@@ -209,6 +209,7 @@
     "longDescriptionTitleEN": "Description - English",
     "longDescriptionTitleDE": "Description - German",
     "backToBoard": "Back to Admin Board",
+    "noDocumentsAvailable": "No documents available",
     "documents": {
       "heading": "Documents",
       "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "

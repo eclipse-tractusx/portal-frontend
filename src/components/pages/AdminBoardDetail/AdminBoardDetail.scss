@@ -17,6 +17,48 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+.service-admin-board-detail {
+  width: 1440px;
+  .service-back {
+    height: 140px;
+    padding: 48px 256px 48px 160px;
+  }
+  .service-content {
+    height: 1352px;
+    padding: 0px 256px 0px 256px;
+    .divider-height {
+      height: 39px;
+    }
+    .service-board-header {
+      width: 928px;
+      height: 288px;
+      display: flex;
+      flex-wrap: wrap;
+      .lead-image > img {
+        border-radius: 16px;
+        width: '412px';
+        height: '288px';
+      }
+      .service-app-content {
+        padding: 68px 0 68px 56px;
+      }
+    }
+    .service-documents {
+      padding: 10px 18px;
+      color: #0f71cb !important;
+      display: flex;
+    }
+    .document-button-link {
+      background-color: transparent;
+      border: none;
+      text-decoration: underline;
+      cursor: pointer;
+      line-height: 20px;
+      padding: 0;
+      color: #0f71cb !important;
+    }
+  }
+}
 
 .adminboard-main {
   width: 100%;
@@ -51,8 +93,5 @@
       color: #0d61ae;
       text-decoration: none;
     }
-  }
-  .tech-user-data {
-    padding: 0px 20px 5px 20px !important;
   }
 }
