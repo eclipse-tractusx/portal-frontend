@@ -49,7 +49,7 @@ export const SearchResultGroup = ({
   const { t } = useTranslation('', { keyPrefix: 'global.search' })
   const [all, setAll] = useState(false)
   return (
-    <>
+    <div className="searchGroupMain">
       {!isFirst && <Divider style={{ marginTop: 12, marginBottom: 12 }} />}
       <Typography
         variant="h3"
@@ -76,6 +76,6 @@ export const SearchResultGroup = ({
           </Typography>
         )}
       </SearchResultList>
-    </>
+    </div>
   )
 }

@@ -38,7 +38,7 @@ import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
 import { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
-import { error, success } from 'services/NotifyService'
+import { error } from 'services/NotifyService'
 import { useAddCertificateMutation } from 'features/certification/certificationApiSlice'
 import './style.scss'
 
@@ -65,9 +65,6 @@ export default function UpdateCertificate({ id }: { id: string }) {
         }
         await addCertificate(data).unwrap()
         setSubmitClicked(true)
-        setLoading(false)
-        dispatch(closeOverlay())
-        success(t('content.certificates.updateCertificate.success'))
       }
     } catch (err) {
       setLoading(false)

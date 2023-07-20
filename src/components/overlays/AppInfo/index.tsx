@@ -40,7 +40,7 @@ export default function AppInfo({ id, title }: { id: string; title?: string }) {
       />
 
       <DialogContent>
-        {data && <AppDetailContentDetails item={data} />}
+        {data && <AppDetailContentDetails item={data} showBack={false} />}
       </DialogContent>
     </>
   )
