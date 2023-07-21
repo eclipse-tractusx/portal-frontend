@@ -1443,7 +1443,7 @@
       },
       "uploadCertificate": "Upload Certificate",
       "updateCertificate": {
-        "title": "Upload new certificate for {company name}",
+        "title": "Upload new certificate",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
