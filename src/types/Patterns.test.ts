@@ -72,7 +72,7 @@ const TESTDATA = {
       'www.bmw.de',
       'BMW.COM',
       '4chan.org',
-      'portal.dev.demo.catena-x.net',
+      'subdomain.domain.catena-x.net',
       'www.5555.site', //valid?
       '1.2.3', //valid?
     ],
@@ -97,8 +97,8 @@ const TESTDATA = {
       'https://www.bmw.com/index.html',
       'https://hostname.domain:12345',
       'https://hostname.domain:12345/endwith/slash/',
-      'https://portal.dev.demo.catena-x.net/assets/swagger/index.html',
-      'https://portal.dev.demo.catena-x.net/assets/swagger/index.html?param=13&arg=value',
+      'https://subdomain.domain.catena-x.net/assets/swagger/index.html',
+      'https://subdomain.domain.catena-x.net/assets/swagger/index.html?param=13&arg=value',
     ],
     invalid: [
       '',

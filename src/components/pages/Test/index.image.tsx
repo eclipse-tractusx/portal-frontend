@@ -33,9 +33,7 @@ export default function ImageTest() {
   const [data, setData] = useState<string>(TransparentPixel)
 
   useEffect(() => {
-    fetchImageWithToken(
-      'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.png'
-    )
+    fetchImageWithToken('/assets/images/frame/Home.png')
       .then((buffer) =>
         setData(URL.createObjectURL(new Blob([buffer], { type: 'image/png' })))
       )
@@ -63,18 +61,8 @@ export default function ImageTest() {
           }
           style={style}
         />
-        <Image
-          src={
-            'https://portal.dev.demo.catena-x.net/assets/images/icons/book.svg'
-          }
-          style={style}
-        />
-        <Image
-          src={
-            'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.jpg'
-          }
-          style={style}
-        />
+        <Image src={'/assets/images/icons/book.svg'} style={style} />
+        <Image src={'/assets/images/frame/Home.jpg'} style={style} />
         <Image src={data} style={style} />
         <Image
           src={`${getApiBase()}/api/Apps/5cf74ef8-e0b7-4984-a872-474828beb5d7/appDocuments/35ca3d61-b05b-4a66-9a6b-d02600d2fe45`}
@@ -94,9 +82,7 @@ export default function ImageTest() {
           />
           <Image src={'data:image/svg+xml;base64,ertiouiertui'} style={style} />
           <Image
-            src={
-              'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appDocuments/id_not_existing'
-            }
+            src={`${getApiBase()}/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appDocuments/id_not_existing`}
             style={style}
           />
           <Image

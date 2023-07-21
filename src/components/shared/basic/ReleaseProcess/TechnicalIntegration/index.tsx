@@ -352,7 +352,7 @@ export default function TechnicalIntegration() {
             color="secondary"
             onClick={() =>
               window.open(
-                'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
+                '/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
                 '_blank',
                 'noopener'
               )
