@@ -25,7 +25,21 @@
 .document-main {
   margin-bottom: 50px;
 }
+.document-button-link {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 0;
+  color: #0f71cb !important;
+}
 
+.service-documents {
+  padding: 10px 18px;
+  color: #0f71cb !important;
+  display: flex;
+}
 .document-list {
   display: flex;
   margin: 0px auto 10px;
