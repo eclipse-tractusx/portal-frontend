@@ -133,6 +133,12 @@ export default function CommonContractAndConsent({
 
   useEffect(() => {
     deleteResponse.isSuccess && setDeleteSuccess(true)
+    if (deleteResponse.isError) {
+      resetField('uploadImageConformity', {
+        defaultValue:
+          fetchStatusData?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS ?? null,
+      })
+    }
   }, [deleteResponse])
 
   const deleteDocument = async (documentId: string) => {
@@ -171,6 +177,7 @@ export default function CommonContractAndConsent({
     reset,
     getValues,
     setValue,
+    resetField,
   } = useForm({
     defaultValues: defaultValues,
     mode: 'onChange',

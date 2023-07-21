@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -25,14 +24,34 @@ import {
 } from 'features/info/search/slice'
 import { SearchResult } from 'components/shared/basic/SearchResult'
 import './search-result-section.scss'
+import { Typography } from '@catena-x/portal-shared-components'
+import { useEffect, useState } from 'react'
 
 export default function SearchResultSection() {
   const searchExpr = useSelector(searchExprSelector)
   const searchItems = useSelector(searchItemSelector)
+  const [canShowNow, setCanShowNow] = useState<boolean>(false)
+  useEffect(() => {
+    searchExpr.length === 0
+      ? setCanShowNow(false)
+      : setTimeout(() => {
+          setCanShowNow(true)
+        }, 1000)
+  }, [searchExpr])
 
   return searchItems.length > 0 ? (
     <div className="search-result-section">
       <SearchResult expr={searchExpr} items={searchItems} />
     </div>
-  ) : null
+  ) : (
+    <>
+      {canShowNow && (
+        <div className="search-result-section">
+          <Typography variant="body1" className="not-found">
+            No search results found
+          </Typography>
+        </div>
+      )}
+    </>
+  )
 }

@@ -205,7 +205,6 @@ export enum ROLES {
   DECLINE_SERVICE_RELEASE = 'decline_service_release',
   VIEW_SERVICE_RELEASE = 'add_service_offering',
   UPDATE_COMPANY_ROLE = 'update_company_role',
-  USECASE_PARTICIPATION = 'add_use_case_participation',
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   ADMIN_CREDENTIAL_DECISION = 'admin_credential_decision',

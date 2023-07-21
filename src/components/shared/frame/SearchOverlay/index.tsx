@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,30 +17,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import AppDetailContentDetails from 'components/pages/AppDetail/AppDetailContentDetails'
-import { DialogContent, DialogHeader } from '@catena-x/portal-shared-components'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import { show } from 'features/control/overlay'
-import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
+import NewSearchSection from './NewSearchSection'
+import { appearSearchSelector, setAppear } from 'features/control/appear'
+import { useSelector, useDispatch } from 'react-redux'
+import SearchResultSection from './SearchResultSection'
+import './Search.scss'
+import { Dialog } from '@mui/material'
 
-export default function AppInfo({ id, title }: { id: string; title?: string }) {
+export default function MainSearchOverlay() {
+  const visible = useSelector(appearSearchSelector)
   const dispatch = useDispatch()
-  const { data } = useFetchAppDetailsQuery(id)
 
   return (
-    <>
-      <DialogHeader
-        {...{
-          title: title ?? ' ',
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-        }}
-      />
-
-      <DialogContent>
-        {data && <AppDetailContentDetails item={data} showBack={false} />}
-      </DialogContent>
-    </>
+    <Dialog
+      onClose={() => dispatch(setAppear({ SEARCH: !visible }))}
+      open={visible}
+      sx={{
+        '.MuiPaper-root': {
+          borderRadius: '0px',
+          position: 'fixed',
+          top: '10px',
+          left: '8%',
+          right: '0px',
+          maxWidth: '80vw',
+          margin: '0px',
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+        },
+      }}
+      className="mainDailog"
+    >
+      <NewSearchSection />
+      <SearchResultSection />
+    </Dialog>
   )
 }

@@ -59,20 +59,28 @@ export type ConnectorResponseBody = {
   DapsRegistrationSuccessful?: boolean
 }
 
+export interface EdcSubscriptionsType {
+  connectorIds: string[]
+  customerName: string
+  offerName: string
+  subscriptionId: string
+  name?: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     createConnector: builder.mutation({
       query: (body) => ({
-        url: '/api/administration/connectors/daps',
+        url: '/api/administration/connectors',
         method: 'POST',
         body,
       }),
     }),
     createManagedConnector: builder.mutation({
       query: (body) => ({
-        url: '/api/administration/connectors/managed-daps',
+        url: '/api/administration/connectors/managed',
         method: 'POST',
         body,
       }),
@@ -108,6 +116,20 @@ export const apiSlice = createApi({
       query: (filters) =>
         `/api/administration/connectors/managed?page=${filters.page}&size=10`,
     }),
+    fetchOfferSubscriptions: builder.query<EdcSubscriptionsType[], void>({
+      query: () => ({
+        url: '/api/administration/Connectors/offerSubscriptions?connectorIdSet=false',
+      }),
+      transformResponse: (response: EdcSubscriptionsType[]) => {
+        const obj = response.map((res: EdcSubscriptionsType) => {
+          return {
+            ...res,
+            name: res.customerName + ' - ' + res.offerName,
+          }
+        })
+        return obj
+      },
+    }),
   }),
 })
 
@@ -118,4 +140,5 @@ export const {
   useFetchConnectorsQuery,
   useTriggerDapsMutation,
   useFetchManagedConnectorsQuery,
+  useFetchOfferSubscriptionsQuery,
 } = apiSlice

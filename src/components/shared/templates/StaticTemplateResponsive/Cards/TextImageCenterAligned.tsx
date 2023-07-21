@@ -48,6 +48,7 @@ export default function TextImageCenterAligned({
           marginTop: '84px',
           marginBottom: '84px',
         }}
+        width="100%"
       />
     </div>
   )
