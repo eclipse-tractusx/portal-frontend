@@ -36,6 +36,10 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
+import { setAppear } from 'features/control/appear'
+import { Image } from '@catena-x/portal-shared-components'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {
@@ -106,6 +110,7 @@ export const SearchResultItem = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   return (
     <ListItem
       component="div"
@@ -124,14 +129,17 @@ export const SearchResultItem = ({
         },
       }}
       onClick={() => {
+        console.log(item.category)
         switch (item.category) {
           case SearchCategory.PAGE:
+            dispatch(setAppear({ SEARCH: false }))
             navigate(`/${item.id}`)
             break
           case SearchCategory.OVERLAY:
             dispatch(show(item.id as OVERLAYS, ''))
             break
           case SearchCategory.ACTION:
+            dispatch(setAppear({ SEARCH: false }))
             dispatch(exec(item.id))
             break
           default:
@@ -139,19 +147,31 @@ export const SearchResultItem = ({
         }
       }}
     >
-      <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
+      {item.leadPictureId ? (
+        <ListItemIcon>
+          <Image
+            src={`${getApiBase()}/api/apps/${item.id}/appDocuments/${
+              item.leadPictureId
+            }`}
+            loader={fetchImageWithToken}
+          />
+        </ListItemIcon>
+      ) : (
+        <ListItemIcon>{getIcon(item.category)}</ListItemIcon>
+      )}
+
       <ListItemText
         primary={getHighlightedText(t(item.title), expr)}
         secondary={getHighlightedText(t(item.description!), expr)}
         primaryTypographyProps={{
           color: '#606060',
           fontWeight: 800,
-          fontSize: 12,
+          fontSize: 16,
         }}
         secondaryTypographyProps={{
           color: '#606060',
           fontWeight: 400,
-          fontSize: 11,
+          fontSize: 12,
         }}
       />
     </ListItem>

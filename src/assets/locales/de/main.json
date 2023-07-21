@@ -519,6 +519,11 @@
             "label": "Öffentlicher Authentifizierungsschlüssel/Zertifikat*",
             "error": "Please use a valid type. e.g. .pem; .cert",
             "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
+          },
+          "subscription": {
+            "label": "Customer Link",
+            "placeholder": "Select the related subscription",
+            "tooltipMsg": "Select the related subscription"
           }
         },
         "create": {
@@ -967,7 +972,8 @@
         "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
-        "privacyInfoError": "Error - values couldn't get fetched. Please try it later again"
+        "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",
+        "privacyInformationMandatory": "Privacy Information is mandatory"
       },
       "contractAndConsent": {
         "headerTitle": "Consent & Contract",
@@ -1458,8 +1464,31 @@
         "success": "Usecase document upload has been done successfully."
       }
     },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "Suchen via Zertifikatstyp",
+      "tabs": {
+        "all": "Alle",
+        "open": "Offen",
+        "confirmed": "Bestätigt",
+        "declined": "Abgelehnt"
+      },
+      "sortOptions": {
+        "name": "Company Name",
+        "date": "Date"
+      },
+      "table": {
+        "crendentialType": "Type",
+        "companyInfo": "Company Info",
+        "certificate": "Zertifikat",
+        "document": "Dokumente"
+      },
+      "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
+      "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator."
+    },
     "certificates": {
-      "heading": "Company Certificates",
+      "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
       "tabs": {
@@ -1501,26 +1530,6 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
-    },
-    "adminCertificate": {
-      "headline": "Credential Request Overview",
-      "search": "...search for certificate type",
-      "tabs": {
-        "all": "All",
-        "open": "Open",
-        "confirmed": "Confirmed",
-        "declined": "Declined"
-      },
-      "sortOptions": {
-        "name": "By Name",
-        "date": "By Date"
-      },
-      "table": {
-        "date": "Date",
-        "companyInfo": "Company Info",
-        "certificate": "Certificate",
-        "details": "Details"
-      }
     }
   },
   "navigation": {

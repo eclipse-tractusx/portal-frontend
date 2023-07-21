@@ -24,6 +24,7 @@ import { Controller } from 'react-hook-form'
 import {
   DropArea,
   Input,
+  SelectList,
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -45,10 +46,13 @@ const ConnectorFormInput = ({
   type,
   dropzoneProps,
   patternError,
+  defaultSelectValue,
+  items,
+  keyTitle,
 }: any) => {
   return (
     <>
-      {type === 'dropzone' ? (
+      {type === 'dropzone' && (
         <>
           <div
             style={{
@@ -105,7 +109,8 @@ const ConnectorFormInput = ({
             )}
           />
         </>
-      ) : (
+      )}
+      {type === 'input' && (
         <>
           <Controller
             render={({ field: { onChange, value } }) => {
@@ -144,6 +149,65 @@ const ConnectorFormInput = ({
           />
         </>
       )}
+      {type === 'select' && (
+        <>
+          <div
+            style={{
+              display: 'flex',
+              marginBottom: '-15px',
+              marginTop: '25px',
+            }}
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: '14px',
+                color: '#111111',
+                fontWeight: '400',
+                paddingRight: '10px',
+              }}
+            >
+              {label}
+            </Typography>
+
+            <Tooltips
+              additionalStyles={{
+                cursor: 'pointer',
+                marginTop: '30px !important',
+              }}
+              tooltipPlacement="top-start"
+              tooltipText={tooltipMsg}
+              children={
+                <span>
+                  <HelpOutlineIcon
+                    sx={{ color: '#B6B6B6', marginTop: '-2px' }}
+                    fontSize={'small'}
+                  />
+                </span>
+              }
+            />
+          </div>
+          <Controller
+            render={({ field: { onChange, value } }) => {
+              return (
+                <SelectList
+                  defaultValue={defaultSelectValue}
+                  items={items}
+                  label={''}
+                  placeholder={placeholder}
+                  onChangeItem={(e) => {
+                    onChange(e)
+                  }}
+                  keyTitle={keyTitle}
+                />
+              )
+            }}
+            name={name}
+            control={control}
+            rules={rules}
+          />
+        </>
+      )}
     </>
   )
 }
@@ -156,6 +220,7 @@ const ConnectorInsertForm = ({
   control,
   trigger,
   selectedService,
+  subscriptions,
 }: any) => {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -190,6 +255,7 @@ const ConnectorInsertForm = ({
                   control,
                   trigger,
                   errors,
+                  type: 'input',
                   name: 'ConnectorName',
                   rules: {
                     required: true,
@@ -222,6 +288,7 @@ const ConnectorInsertForm = ({
                   control,
                   trigger,
                   errors,
+                  type: 'input',
                   name: 'ConnectorURL',
                   rules: {
                     required: true,
@@ -246,6 +313,7 @@ const ConnectorInsertForm = ({
                   control,
                   trigger,
                   errors,
+                  type: 'input',
                   name: 'ConnectorLocation',
                   rules: {
                     required: true,
@@ -274,23 +342,20 @@ const ConnectorInsertForm = ({
                       control,
                       trigger,
                       errors,
-                      name: 'ConnectorBPN',
-                      rules: {
-                        required: true,
-                        pattern: Patterns.BPN,
-                      },
-                      helperText: t(
-                        'content.edcconnector.modal.insertform.bpn.error'
-                      ),
+                      type: 'select',
+                      name: 'ConnectorSubscription',
                       label: t(
-                        'content.edcconnector.modal.insertform.bpn.label'
+                        'content.edcconnector.modal.insertform.subscription.label'
                       ),
                       placeholder: t(
-                        'content.edcconnector.modal.insertform.bpn.placeholder'
+                        'content.edcconnector.modal.insertform.subscription.placeholder'
                       ),
                       tooltipMsg: t(
-                        'content.edcconnector.modal.insertform.bpn.tooltipMsg'
+                        'content.edcconnector.modal.insertform.subscription.tooltipMsg'
                       ),
+                      items: subscriptions,
+                      defaultSelectValue: {},
+                      keyTitle: 'name',
                     }}
                   />
                 </div>

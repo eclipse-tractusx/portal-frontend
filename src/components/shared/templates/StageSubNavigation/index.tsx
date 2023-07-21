@@ -31,9 +31,9 @@ export const StageSubNavigation = ({
 }) => {
   const scrollToId = (id: string) => {
     const element = document.getElementById(id)
-    const top = element?.offsetTop
+    const top = element && element.offsetTop - 100
     window.scrollTo({
-      top: top,
+      top: top ?? 0,
       behavior: 'smooth',
     })
   }

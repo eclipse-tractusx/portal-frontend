@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.6.0-RC2
+
+### Change
+
+- App Release Process
+  - changed 'Privacy Policy' selection to mandatory
+
+### Feature
+
+- Connector Registration - Managed
+  - added subscriptionID linkage inside the registration page as well as the business logic to submit the connector connected subscriptionID
+- Search
+  - enabled in all portal pages
+  - new design update for result area
+  - added functionality to close the search whenever the user clicks on the hidden background area
+- Company Role
+  - enable company role deselection
+
+### Technical Support
+
+- exclude locales from duplication sonar checks
+
+### Bugfix
+
+- App Release Process - consent conformity check upon upload of the conformity certificate, previous selected consents got deleted
+- Data Space Information page - style fix stage sub navigation header and fixed responsive issues
+
 ## 1.6.0-RC1
 
 ### Change
@@ -9,6 +36,12 @@
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
+- Company Roles Update
+  - Added deselect feature
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
+  - Add Backend Logic to fetch certificates
+  - Add Confirm/Decline business logic
 
 ### Feature
 
@@ -45,8 +78,6 @@
   - Catena-X Participant
 - SSI Certificat Credential Adminboard
   - Add new page and created UI
-- Portal
-  - Add max width
 
 ### Technical Support
 

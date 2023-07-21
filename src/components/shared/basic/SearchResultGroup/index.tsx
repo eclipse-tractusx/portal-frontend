@@ -26,6 +26,7 @@ import { SearchResultItem } from '../SearchResultItem'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { useState } from 'react'
+import './SearchResultGroup.scss'
 
 const SearchResultList = styled(List)<{ component?: React.ElementType }>({
   '& .MuiListItemButton-root': {
@@ -48,18 +49,14 @@ export const SearchResultGroup = ({
   const { t } = useTranslation('', { keyPrefix: 'global.search' })
   const [all, setAll] = useState(false)
   return (
-    <>
+    <div>
       {!isFirst && <Divider style={{ marginTop: 12, marginBottom: 12 }} />}
-      <span
-        style={{
-          marginLeft: 14,
-          fontSize: 11,
-          fontWeight: 800,
-          color: '#a0a0a0',
-        }}
+      <Typography
+        variant="h3"
+        className={!isFirst ? 'searchTitle' : 'searchTitle margin-top-20'}
       >
         {t(`category.${category}`)}
-      </span>
+      </Typography>
       <SearchResultList component="nav" disablePadding>
         {(all ? items : items.slice(0, 5)).map((item) => (
           <SearchResultItem key={item.id} item={item} expr={expr} />
@@ -67,10 +64,11 @@ export const SearchResultGroup = ({
         {items.length > 5 && (
           <Typography
             sx={{
+              marginTop: '20px',
               cursor: 'pointer',
               color: '#0f71cb',
-              marginLeft: 8,
-              fontSize: 11,
+              marginLeft: 4,
+              fontSize: 14,
             }}
             onClick={() => setAll(!all)}
           >
@@ -78,6 +76,6 @@ export const SearchResultGroup = ({
           </Typography>
         )}
       </SearchResultList>
-    </>
+    </div>
   )
 }

@@ -475,7 +475,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USECASE_PARTICIPATION,
-    role: ROLES.USECASE_PARTICIPATION,
+    role: ROLES.REQUEST_SSICREDENTIAL,
     element: <UsecaseParticipation />,
   },
   {
@@ -486,7 +486,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
   {
     name: PAGES.ADMIN_CREDENTIAL,
-    role: ROLES.ADMIN_CREDENTIAL_DECISION,
+    //role: ROLES.ADMIN_CREDENTIAL_DECISION,
     element: <AdminCredential />,
   },
 ]
