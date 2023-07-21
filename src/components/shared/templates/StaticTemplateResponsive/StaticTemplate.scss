@@ -576,3 +576,20 @@ strong:hover .tooltiptext {
 .padding-bottom-20 {
   padding-bottom: 20px;
 }
+
+.imageVideoTextSideBySideWithSections .gridStyle {
+  width: 100%;
+  padding: 0px;
+}
+
+.imageVideoTextSideBySideWithSections .gridStyle div {
+  width: 100%;
+}
+
+.imageVideoTextSideBySideWithSections .cardWithTextContainer div,
+.imageVideoTextSideBySideWithSections .cardWithTextContainer h4,
+.imageVideoTextSideBySideWithSections .cardWithTextContainer {
+  padding: 0px;
+  margin-left: 0px !important;
+  margin-top: 0px !important;
+}
