@@ -79,6 +79,11 @@ export type AdminData = {
   email: string
 }
 
+export enum CompanyRoleEnum {
+  APP_PROVIDER = 'APP_PROVIDER',
+  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+}
+
 export interface CompanyDetails {
   bpn: string
   city: string
@@ -93,6 +98,7 @@ export interface CompanyDetails {
   streetNumber: string
   taxId: string
   zipCode: string
+  companyRole: CompanyRoleEnum
 }
 
 export const apiSlice = createApi({

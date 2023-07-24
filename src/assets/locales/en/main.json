@@ -472,11 +472,13 @@
       "modal": {
         "company": {
           "title": "Connect company connector",
-          "intro": "Registration of a company connector which is implemented in your own company network."
+          "intro": "Registration of a company connector which is implemented in your own company network.",
+          "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /company-role"
         },
         "managed": {
           "title": "Register Managed Connector",
-          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
+          "disableDescription": "This option is only available if your company is App Provider or Service Provider. Company roles can get changed by the company admin /company-role"
         },
         "daps": {
           "title": "Create DAPS Registration",
