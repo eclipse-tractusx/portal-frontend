@@ -1194,6 +1194,7 @@
         "contact": "Contact",
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
+        "appId": "App ID (clientID)",
         "technicalName": "Technical User Name",
         "technicalPermission": "Technical User Permission",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",

@@ -42,6 +42,7 @@ export type TechnicalUserData = {
 
 export type SubscriptionDetailResponse = {
   id: string
+  appInstanceId: string
   offerSubscriptionStatus: string
   name: string
   customer: string
