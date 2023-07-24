@@ -148,6 +148,25 @@ const AppSubscriptionDetailOverlay = ({
           errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
         },
       ],
+      [
+        {
+          editIcon: false,
+        },
+        {
+          editIcon: false,
+        },
+      ],
+      [
+        {
+          editIcon: false,
+        },
+        {
+          editIcon: false,
+          clickableLink: data?.technicalUserData[0]?.id
+            ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
+            : undefined,
+        },
+      ],
     ],
   }
 

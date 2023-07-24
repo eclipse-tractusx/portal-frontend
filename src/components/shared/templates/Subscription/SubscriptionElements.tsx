@@ -58,12 +58,16 @@ type SubscriptionDataType = {
   appId: string
   subscriptionId: string
   title: string
+  companyName: string
+  bpnNumber: string
 }
 
 const SubscriptionInitialData = {
   appId: '',
   subscriptionId: '',
   title: '',
+  companyName: '',
+  bpnNumber: '',
 }
 
 enum ActionKind {
@@ -228,6 +232,8 @@ export default function SubscriptionElements({
                                 appId: subscriptionData.offerId,
                                 subscriptionId: subscription.subscriptionId,
                                 title: subscriptionData.offerName,
+                                companyName: subscription.companyName,
+                                bpnNumber: subscription.bpnNumber,
                               })
                             : showOverlay(
                                 subscription,
@@ -292,6 +298,8 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
+          companyName={subscriptionDetail.companyName}
+          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() =>
             setSubscriptionDetail(SubscriptionInitialData)
           }
