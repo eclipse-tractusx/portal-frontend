@@ -6,6 +6,8 @@
 
 - App Release Process
   - changed 'Privacy Policy' selection to mandatory
+- App Subscription
+  - App Activation Approval Overlay (refactor enhance details)
 
 ### Feature
 
@@ -42,8 +44,6 @@
   - Add new page and created UI
   - Add Backend Logic to fetch certificates
   - Add Confirm/Decline business logic
-- App Subscription
-  - App Activation Approval Overlay (refactor enhance details)
 
 ### Feature
 
