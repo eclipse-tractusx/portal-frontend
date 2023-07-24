@@ -137,7 +137,13 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.ADD_BPN:
       return <AddBPN id={overlay.id} />
     case OVERLAYS.ADD_SUBSCRIPTION:
-      return <ActivateSubscription id={overlay.id} />
+      return (
+        <ActivateSubscription
+          id={overlay.id}
+          title={overlay.title ?? ''}
+          subTitle={overlay.subTitle ?? ''}
+        />
+      )
     case OVERLAYS.PARTNER:
       return <BusinessPartnerInfo id={overlay.id} />
     case OVERLAYS.APP:

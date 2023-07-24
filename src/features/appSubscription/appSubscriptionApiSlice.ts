@@ -42,6 +42,7 @@ export type TechnicalUserData = {
 
 export type SubscriptionDetailResponse = {
   id: string
+  appInstanceId: string
   offerSubscriptionStatus: string
   name: string
   customer: string
@@ -69,6 +70,7 @@ export type MetaBody = {
 }
 
 export type CompanySubscriptionData = {
+  bpnNumber: string
   companyId: string
   companyName: string
   subscriptionId: string
@@ -97,9 +99,11 @@ export type SubscriptionActivationResponse = {
     technicalUserId: string
     technicalUserSecret: string
     technicalClientId: string
+    technicalUserPermissions: string[]
   }
   clientInfo: {
     clientId: string
+    clientUrl: string
   }
 }
 

@@ -15,6 +15,8 @@
   - Add new page and created UI
   - Add Backend Logic to fetch certificates
   - Add Confirm/Decline business logic
+- App Subscription
+  - App Activation Approval Overlay (refactor enhance details)
 
 ### Feature
 

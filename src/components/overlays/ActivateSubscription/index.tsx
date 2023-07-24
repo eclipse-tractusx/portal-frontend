@@ -25,7 +25,8 @@ import {
   DialogHeader,
   Input,
   LoadingButton,
-  Typography,
+  StaticTable,
+  TableType,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
@@ -41,7 +42,15 @@ import './style.scss'
 import { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 
-export default function ActivateSubscription({ id }: { id: string }) {
+export default function ActivateSubscription({
+  id,
+  title: companyName,
+  subTitle: bpnNumber,
+}: {
+  id: string
+  title: string
+  subTitle: string
+}) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [inputURL, setInputURL] = useState('')
@@ -79,6 +88,36 @@ export default function ActivateSubscription({ id }: { id: string }) {
     dispatch(closeOverlay())
   }
 
+  const tableData1: TableType = {
+    head: [t('content.appSubscription.activation.clientDetails'), ''],
+    body: [
+      [t('content.appSubscription.activation.customer'), `${companyName}`],
+      [t('content.appSubscription.activation.bpn'), `${bpnNumber}`],
+    ],
+  }
+
+  const tableData2: TableType = {
+    head: [t('content.appSubscription.activation.technicalDetails'), ''],
+    body: [
+      [
+        t('content.appSubscription.activation.appClientId'),
+        `${activationResponse?.clientInfo?.clientId}`,
+      ],
+      [
+        t('content.appSubscription.activation.technicalClientId'),
+        `${activationResponse?.technicalUserInfo?.technicalClientId}`,
+      ],
+      [
+        t('content.appSubscription.activation.technicalSecret'),
+        `${activationResponse?.technicalUserInfo?.technicalUserSecret}`,
+      ],
+      [
+        t('content.appSubscription.activation.technicalPermission'),
+        `${activationResponse?.technicalUserInfo?.technicalUserPermissions.toString()}`,
+      ],
+    ],
+  }
+
   return (
     <>
       {activationResponse ? (
@@ -94,37 +133,8 @@ export default function ActivateSubscription({ id }: { id: string }) {
             onCloseWithIcon={() => dispatch(closeOverlay())}
           />
           <DialogContent>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <Typography variant="label3">
-                      {t('content.appSubscription.activation.clientId')}
-                    </Typography>
-                  </td>
-                  <td>
-                    <Typography variant="label3">
-                      {activationResponse &&
-                        activationResponse.technicalUserInfo.technicalClientId}
-                    </Typography>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Typography variant="label3">
-                      {t('content.appSubscription.activation.clientSecret')}
-                    </Typography>
-                  </td>
-                  <td>
-                    <Typography variant="label3">
-                      {activationResponse &&
-                        activationResponse.technicalUserInfo
-                          .technicalUserSecret}
-                    </Typography>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <StaticTable data={tableData1} horizontal={false} />
+            <StaticTable data={tableData2} horizontal={false} />
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={closeActivationOverlay}>

@@ -149,7 +149,15 @@ export default function SubscriptionElements({
     offerId: string
   ) => {
     if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
-      dispatch(show(OVERLAYS.ADD_SUBSCRIPTION, subscription.subscriptionId))
+      dispatch(
+        show(
+          OVERLAYS.ADD_SUBSCRIPTION,
+          subscription.subscriptionId,
+          subscription.companyName,
+          false,
+          subscription.bpnNumber
+        )
+      )
     } else {
       setState({
         type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
