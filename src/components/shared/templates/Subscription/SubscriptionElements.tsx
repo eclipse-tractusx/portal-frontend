@@ -148,34 +148,6 @@ export default function SubscriptionElements({
     return <NoItems />
   }
 
-  const showOverlay = (
-    subscription: CompanySubscriptionData,
-    offerId: string
-  ) => {
-    if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
-      dispatch(
-        show(
-          OVERLAYS.ADD_SUBSCRIPTION,
-          subscription.subscriptionId,
-          subscription.companyName,
-          false,
-          subscription.bpnNumber
-        )
-      )
-    } else {
-      setState({
-        type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
-        payload: {
-          id: subscription.subscriptionId,
-          offerId: offerId,
-          isTechUser: subscription.technicalUser,
-          overlay: true,
-          companyName: subscription.companyName,
-        },
-      })
-    }
-  }
-
   return (
     <div className="recommended-main">
       {subscriptions && subscriptions.length ? (
@@ -235,10 +207,16 @@ export default function SubscriptionElements({
                                 companyName: subscription.companyName,
                                 bpnNumber: subscription.bpnNumber,
                               })
-                            : showOverlay(
-                                subscription,
-                                subscriptionData.offerId
-                              )
+                            : setState({
+                                type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
+                                payload: {
+                                  id: subscription.subscriptionId,
+                                  offerId: subscriptionData.offerId,
+                                  isTechUser: subscription.technicalUser,
+                                  overlay: true,
+                                  companyName: subscription.companyName,
+                                },
+                              })
                         }
                       />
                     </div>
