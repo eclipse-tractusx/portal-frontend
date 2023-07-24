@@ -1566,7 +1566,10 @@
       "permission": "Permission",
       "userId": "User Id",
       "redirectURI": "Redirect URI",
-      "toBeUpdated": "To be updated"
+      "toBeUpdated": "To be updated",
+      "type": "Type",
+      "owner": "Owner",
+      "offerLink": "Offer Link"
     },
     "actions": {
       "cancel": "Cancel",

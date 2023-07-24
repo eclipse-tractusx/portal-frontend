@@ -50,12 +50,31 @@ export const TechnicalUserTable = () => {
           {
             field: 'name',
             headerName: t('global.field.userName'),
-            flex: 3,
+            flex: 2,
           },
           {
             field: 'clientId',
             headerName: t('global.field.clientId'),
-            flex: 2,
+            flex: 1,
+          },
+          {
+            field: 'serviceAccountType',
+            headerName: t('global.field.type'),
+            flex: 1,
+          },
+          {
+            field: 'offer',
+            headerName: t('global.field.offerLink'),
+            flex: 1.5,
+            valueGetter: ({ row }: { row: any }) =>
+              row.offer ? row.offer?.name : '',
+          },
+          {
+            field: 'isOwner',
+            headerName: t('global.field.owner'),
+            flex: 1,
+            valueGetter: ({ row }: { row: any }) =>
+              row.isOwner ? 'Yes' : 'No',
           },
           {
             field: 'details',

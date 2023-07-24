@@ -1602,7 +1602,10 @@
       "permission": "Berechtigung",
       "userId": "Benutzeridentifikation",
       "redirectURI": "Redirect-URI",
-      "toBeUpdated": "To be updated"
+      "toBeUpdated": "To be updated",
+      "type": "Type",
+      "owner": "Owner",
+      "offerLink": "Offer Link"
     },
     "actions": {
       "cancel": "Abbrechen",
