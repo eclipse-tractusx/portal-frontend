@@ -1137,8 +1137,14 @@
         "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
         "technicalUserProfileHeading": "Technical User Profile",
         "successDescription": "The app subscription got successfully activated, the customer got informed via email about the app activation. Please find the technical user details below:",
-        "clientId": "Client Id",
-        "clientSecret": "Client Secret"
+        "clientDetails": "Client Details",
+        "customer": "Customer",
+        "bpn": "BPN",
+        "technicalDetails": "Technical Details",
+        "appClientId": "App Id (Client ID)",
+        "technicalClientId": "Technical User Client ID",
+        "technicalSecret": "Technical User Secret",
+        "technicalPermission": "Technical User Permission"
       },
       "detailOverlay": {
         "title": "Provider View",
@@ -1156,6 +1162,7 @@
         "contact": "Contact",
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
+        "appId": "App ID (clientID)",
         "technicalName": "Technical User Name",
         "technicalPermission": "Technical User Permission",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
@@ -1443,7 +1450,7 @@
       },
       "uploadCertificate": "Upload Certificate",
       "updateCertificate": {
-        "title": "Upload new certificate for {company name}",
+        "title": "Upload new certificate",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",

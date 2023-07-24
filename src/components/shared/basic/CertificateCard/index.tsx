@@ -91,9 +91,6 @@ export const CertificateCard = ({
                 <DeleteOutlineIcon className="deleteIcon" />
               )}
           </Box>
-          <Typography variant="caption3" className="type">
-            {t('content.certificates.certificateCard.type')}
-          </Typography>
           <Typography variant="h4" className="title">
             {credentialType}
           </Typography>
