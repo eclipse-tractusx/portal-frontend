@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -28,11 +27,8 @@ import {
   Tooltips,
   Chip,
 } from '@catena-x/portal-shared-components'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
 import {
   SubscriptionContent,
-  CompanySubscriptionData,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'
@@ -40,7 +36,6 @@ import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSu
 import ActivateSubscriptionOverlay from 'components/pages/AppSubscription/ActivateSubscriptionOverlay'
 import { useState } from 'react'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
-import { SubscriptionTypes } from '.'
 import { useReducer } from 'react'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
 
@@ -136,7 +131,6 @@ export default function SubscriptionElements({
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const [{ id, isTechUser, overlay, offerId, companyName }, setState] =
     useReducer(reducer, initialState)
 
