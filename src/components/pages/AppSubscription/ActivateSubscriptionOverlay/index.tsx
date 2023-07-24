@@ -44,6 +44,7 @@ import { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
 import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
+import { closeOverlay } from 'features/control/overlay'
 
 const TentantHelpURL =
   '/documentation/?path=docs%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
@@ -107,69 +108,55 @@ const ActivateSubscriptionOverlay = ({
     <>
       {activationResponse ? (
         <div className="activationOverlay">
-          <Dialog
-            open={true}
-            sx={{
-              '.MuiDialog-paper': {
-                maxWidth: '45%',
-              },
-            }}
-          >
-            <DialogHeader
-              title=" "
-              intro={t('content.appSubscription.activation.successDescription')}
-              closeWithIcon={true}
-              icon={true}
-              iconComponent={
-                <CheckCircleOutlinedIcon
-                  sx={{ fontSize: 60 }}
-                  color="success"
-                />
-              }
-              onCloseWithIcon={() => handleOverlayClose()}
-            />
-            <DialogContent>
-              <table className="activationResponse">
-                <tbody>
-                  <tr>
-                    <td>
-                      <Typography variant="label3">
-                        {t('content.appSubscription.activation.clientId')}
-                      </Typography>
-                    </td>
-                    <td>
-                      <Typography variant="label3">
-                        {
-                          activationResponse?.technicalUserInfo
-                            .technicalClientId
-                        }
-                      </Typography>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Typography variant="label3">
-                        {t('content.appSubscription.activation.clientSecret')}
-                      </Typography>
-                    </td>
-                    <td>
-                      <Typography variant="label3">
-                        {
-                          activationResponse?.technicalUserInfo
-                            .technicalUserSecret
-                        }
-                      </Typography>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="outlined" onClick={closeActivationOverlay}>
-                {t('global.actions.close')}
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <DialogHeader
+            title=" "
+            intro={t('content.appSubscription.activation.successDescription')}
+            closeWithIcon={true}
+            icon={true}
+            iconComponent={
+              <CheckCircleOutlinedIcon sx={{ fontSize: 60 }} color="success" />
+            }
+            onCloseWithIcon={() => dispatch(closeOverlay())}
+          />
+          <DialogContent>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <Typography variant="label3">
+                      {t('content.appSubscription.activation.clientId')}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="label3">
+                      {activationResponse &&
+                        activationResponse?.technicalUserInfo
+                          ?.technicalClientId}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Typography variant="label3">
+                      {t('content.appSubscription.activation.clientSecret')}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="label3">
+                      {activationResponse &&
+                        activationResponse?.technicalUserInfo
+                          ?.technicalUserSecret}
+                    </Typography>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={closeActivationOverlay}>
+              {t('global.actions.close')}
+            </Button>
+          </DialogActions>
         </div>
       ) : (
         <Dialog
