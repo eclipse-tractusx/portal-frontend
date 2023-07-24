@@ -6,8 +6,6 @@
 
 - App Release Process
   - changed 'Privacy Policy' selection to mandatory
-- App Subscription
-  - App Activation Approval Overlay (refactor enhance details)
 
 ### Feature
 
