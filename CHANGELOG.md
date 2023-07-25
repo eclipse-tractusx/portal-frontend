@@ -7,7 +7,7 @@
 - App Subscription Management
   - Activation Approval Overlay (enhanced by customer name, bpn, technical user permission, appId)
 - Technical User Management
-  - support managed tech user with app infromation
+  - support managed tech user with app information
 - Connector Registration
   - managed connector option only available for app/service provider
   - info message added for inactive select scenario
