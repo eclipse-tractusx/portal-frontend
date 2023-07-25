@@ -28,7 +28,7 @@ export default function BoardRoles({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
   return (
     <>
-      <Typography variant="h4">
+      <Typography variant="h3">
         {t('content.adminboardDetail.roles.heading')}
       </Typography>
       <Typography variant="body2" sx={{ mb: 2 }}>

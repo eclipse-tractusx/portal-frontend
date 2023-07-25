@@ -69,15 +69,17 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
         <img src={image} alt={item.title} />
       </div>
       <div className="content">
-        <Typography variant="caption2">{item.provider}</Typography>
-        <Typography variant="h4" sx={{ mb: 1.5, mt: 1.5 }}>
+        <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
+          {item.provider}
+        </Typography>
+        <Typography variant="h2" sx={{ mb: 1.5, mt: 1.5 }}>
           {item.title}
         </Typography>
         <Grid md={8}>
           {['language', 'useCase', 'price'].map((field) => (
             <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>
               <Typography variant="body2">
-                <b>{t(`content.apprelease.validateAndPublish.${field}`)}</b>
+                {t(`content.apprelease.validateAndPublish.${field}`)}
                 {getAppData(field)}
               </Typography>
             </div>

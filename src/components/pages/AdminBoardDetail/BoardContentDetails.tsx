@@ -62,10 +62,11 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
         <div className="product-description">
           {['longDescriptionTitleEN', 'longDescriptionTitleDE'].map((desc) => (
             <div key={desc}>
+              <Typography variant="h3" style={{ whiteSpace: 'pre-line' }}>
+                {t(`content.adminboardDetail.${desc}`)}
+              </Typography>
               <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-                <span style={{ fontWeight: 'bold' }}>
-                  {t(`content.adminboardDetail.${desc}`)}
-                </span>
+                {' '}
                 {
                   item?.description?.filter(
                     (lang: { languageCode: string }) =>
@@ -74,10 +75,10 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
                   )[0]?.longDescription
                 }
               </Typography>
+              <div className="divider-height" />
             </div>
           ))}
         </div>
-        <div className="divider-height" />
         {images && <ImageGallery gallery={images} modalWidth="900" />}
         <div className="divider-height" />
         <BoardPrivacy item={item} />

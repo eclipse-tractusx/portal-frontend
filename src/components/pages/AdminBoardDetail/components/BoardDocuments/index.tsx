@@ -115,7 +115,7 @@ export default function BoardDocuments({
 
   return (
     <>
-      <Typography variant="h4">
+      <Typography variant="h3">
         {t(`content.adminboardDetail.${type}.heading`)}
       </Typography>
       <Typography variant="body2" sx={{ mb: 4 }}>

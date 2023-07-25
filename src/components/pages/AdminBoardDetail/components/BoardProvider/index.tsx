@@ -46,7 +46,7 @@ export default function BoardProvider({ item }: { item: AppDetails }) {
   return (
     <div className="adminboard-provider">
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h4">{t('heading')}</Typography>
+        <Typography variant="h3">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
       </Box>
       <StaticTable data={tableData} horizontal={true} />

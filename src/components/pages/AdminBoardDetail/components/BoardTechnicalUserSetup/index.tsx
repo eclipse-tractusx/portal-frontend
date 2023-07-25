@@ -50,7 +50,7 @@ export default function BoardTechnicalUserSetup({
 
   return (
     <>
-      <Typography variant="h4">
+      <Typography variant="h3">
         {t('content.adminboardDetail.technicalUserSetup.heading')}
       </Typography>
       <Typography variant="body2" sx={{ mb: 4 }}>
