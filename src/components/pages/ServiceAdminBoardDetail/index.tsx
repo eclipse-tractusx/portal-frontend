@@ -88,14 +88,14 @@ export default function ServiceAdminBoardDetail() {
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
+        <Grid container spacing={2} key={role} sx={{ margin: '0px' }}>
           <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
             <Typography variant="label3">* {role}</Typography>
           </Grid>
         </Grid>
       ))
     ) : (
-      <Grid spacing={2} margin={'0px'} container>
+      <Grid spacing={2} container margin={'0px'}>
         <Typography
           sx={{ textAlign: 'center', width: '100%' }}
           variant="label3"

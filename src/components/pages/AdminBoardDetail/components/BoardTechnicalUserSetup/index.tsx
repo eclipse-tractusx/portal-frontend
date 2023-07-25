@@ -30,7 +30,7 @@ export default function BoardTechnicalUserSetup({
 }) {
   const { t } = useTranslation()
 
-  const getTechUserData = (data: string[] | null) => {
+  const getTechnicalUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
         <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
@@ -57,7 +57,7 @@ export default function BoardTechnicalUserSetup({
         {t('content.adminboardDetail.technicalUserSetup.message')}
       </Typography>
       {item.technicalUserProfile &&
-        getTechUserData(Object.values(item?.technicalUserProfile)[0])}
+        getTechnicalUserData(Object.values(item?.technicalUserProfile)[0])}
     </>
   )
 }

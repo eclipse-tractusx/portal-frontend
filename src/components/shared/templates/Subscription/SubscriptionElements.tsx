@@ -27,9 +27,7 @@ import {
   Tooltips,
   Chip,
 } from '@catena-x/portal-shared-components'
-import {
-  SubscriptionContent,
-} from 'features/appSubscription/appSubscriptionApiSlice'
+import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'
 import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'

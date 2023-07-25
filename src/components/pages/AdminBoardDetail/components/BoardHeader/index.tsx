@@ -74,8 +74,8 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
           {item.title}
         </Typography>
         <Grid md={8}>
-          {['language', 'useCase', 'price'].map((field, index) => (
-            <div style={{ display: 'flex', marginBottom: '5px' }} key={index}>
+          {['language', 'useCase', 'price'].map((field) => (
+            <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>
               <Typography variant="body2">
                 <b>{t(`content.apprelease.validateAndPublish.${field}`)}</b>
                 {getAppData(field)}

@@ -265,8 +265,8 @@ export default function CommonValidateAndPublish({
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
-          <Grid item xs={12} className="tech-user-data">
+        <Grid spacing={2} container sx={{ margin: '0px' }} key={role}>
+          <Grid xs={12} className="tech-user-data" item>
             <Typography variant="body2">* {role}</Typography>
           </Grid>
         </Grid>

@@ -89,13 +89,19 @@ export default function AppDetailContentDetails({
   return (
     item && (
       <>
-          <div className="app-marketplace-main">
-          {showBack && ( <Box className="app-back">
-            <Button color="secondary" size="small" onClick={() => navigate(-1)}>
-              {t('global.actions.back')}
-            </Button>
-               )}
-          </Box>
+        <div className="app-marketplace-main">
+          {showBack && (
+            <Box className="app-back">
+              <Button
+                color="secondary"
+                size="small"
+                onClick={() => navigate(-1)}
+              >
+                {t('global.actions.back')}
+              </Button>
+            </Box>
+          )}
+
           <AppDetailHeader item={item} />
           <div className="divider-height" />
         </div>
