@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.6.0-RC3
+
+### Change
+
+- App Subscription Management
+  - Activation Approval Overlay (enhanced by customer name, bpn, technical user permission, appId)
+- Technical User Management
+  - support managed tech user with app infromation
+- Connector Registration
+  - managed connector option only available for app/service provider
+  - info message added for inactive select scenario
+
+### Bugfix
+
+- Managed connector registration api call - technicalUserID string empty instead of submitting the subscriptionID
+
 ## 1.6.0-RC2
 
 ### Change
