@@ -33,6 +33,7 @@ import {
 import { download } from 'utils/downloadUtils'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
+import { uniqueId } from 'lodash'
 
 export interface DummyData {
   date: string
@@ -130,7 +131,7 @@ export default function AdminCredentialElements() {
       flex: 2.5,
     },
     {
-      field: 'companyId',
+      field: 'companyName',
       headerName: t('content.adminCertificate.table.companyInfo'),
       flex: 2,
     },
@@ -145,22 +146,17 @@ export default function AdminCredentialElements() {
     {
       field: 'document',
       headerName: t('content.adminCertificate.table.document'),
-      flex: 2,
+      flex: 1.5,
       renderCell: ({ row }: { row: CredentialData }) => (
-        <>
-          <ArticleOutlinedIcon className="document-icon" />
-          <button
-            className="document-button-link"
-            onClick={() =>
-              handleDownloadClick(
-                row.document.documentId,
-                row.document.documentName
-              )
-            }
-          >
-            {row.document.documentName}
-          </button>
-        </>
+        <ArticleOutlinedIcon
+          className="document-icon"
+          onClick={() =>
+            handleDownloadClick(
+              row.document.documentId,
+              row.document.documentName
+            )
+          }
+        />
       ),
     },
     {
@@ -216,7 +212,7 @@ export default function AdminCredentialElements() {
         fetchHook={useFetchCredentialsQuery}
         fetchHookArgs={{ expr }}
         fetchHookRefresh={refresh}
-        getRowId={(row: { [key: string]: string }) => row.companyId}
+        getRowId={(row: { [key: string]: string }) => uniqueId(row.companyId)}
         columns={columns}
         defaultFilter={group}
         filterViews={filterButtons}

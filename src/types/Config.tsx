@@ -497,10 +497,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.MODIFY_USER_ACCOUNT,
   },
   {
-    name: OVERLAYS.ADD_SUBSCRIPTION,
-    role: ROLES.ACTIVATE_SUBSCRIPTION,
-  },
-  {
     name: OVERLAYS.ADD_USER,
     role: ROLES.USERMANAGEMENT_ADD,
   },

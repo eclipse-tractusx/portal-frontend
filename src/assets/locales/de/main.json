@@ -473,11 +473,13 @@
       "modal": {
         "company": {
           "title": "Connect company connector",
-          "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist."
+          "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
+          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen aktiver Teilnehmer ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
         "managed": {
           "title": "Register Managed Connector",
-          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
+          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
         "daps": {
           "title": "Create DAPS Registration",
@@ -1175,8 +1177,14 @@
         "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
         "technicalUserProfileHeading": "Technical User Profile",
         "successDescription": "The app subscription got successfully activated, the customer got informed via email. Please find the technical user details below:",
-        "clientId": "Client Id",
-        "clientSecret": "Client Secret"
+        "clientDetails": "Client Details",
+        "customer": "Customer",
+        "bpn": "BPN",
+        "technicalDetails": "Technical Details",
+        "appClientId": "App Id (Client ID)",
+        "technicalClientId": "Technical User Client ID",
+        "technicalSecret": "Technical User Secret",
+        "technicalPermission": "Technical User Permission"
       },
       "detailOverlay": {
         "title": "Provider View",
@@ -1194,6 +1202,7 @@
         "contact": "Contact",
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
+        "appId": "App ID (clientID)",
         "technicalName": "Technical User Name",
         "technicalPermission": "Technical User Permission",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
@@ -1504,7 +1513,7 @@
       },
       "uploadCertificate": "Upload Certificate",
       "updateCertificate": {
-        "title": "Upload new certificate for {company name}",
+        "title": "Upload new certificate",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
@@ -1595,7 +1604,10 @@
       "permission": "Berechtigung",
       "userId": "Benutzeridentifikation",
       "redirectURI": "Redirect-URI",
-      "toBeUpdated": "To be updated"
+      "toBeUpdated": "To be updated",
+      "type": "Type",
+      "owner": "Owner",
+      "offerLink": "Offer Link"
     },
     "actions": {
       "cancel": "Abbrechen",
