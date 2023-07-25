@@ -19,20 +19,21 @@
  ********************************************************************************/
 
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import dayjs from 'dayjs'
 import { Box, Chip } from '@mui/material'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
-import { LogoGrayData, Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import {
   CertificateResponse,
   SSIDetailData,
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
 import './style.scss'
-import { useTranslation } from 'react-i18next'
 
 export enum StatusVariants {
   release = 'release',
@@ -76,7 +77,7 @@ export const CertificateCard = ({
         <Box
           className="itemBg"
           sx={{
-            backgroundImage: `url(${LogoGrayData})`,
+            backgroundImage: 'url(/certificate-sample.png)',
             backgroundColor: '#F2F3FB',
           }}
         />
@@ -90,16 +91,13 @@ export const CertificateCard = ({
                 <DeleteOutlineIcon className="deleteIcon" />
               )}
           </Box>
-          <Typography variant="caption3" className="type">
-            {t('content.certificates.certificateCard.type')}
-          </Typography>
           <Typography variant="h4" className="title">
             {credentialType}
           </Typography>
           {ssiDetailData && (
             <Typography variant="body3" className="expiryDate">
               {t('content.certificates.certificateCard.valid')}
-              {ssiDetailData.expiryDate.split('T')[0]}
+              {dayjs(ssiDetailData?.expiryDate).format('YYYY-MM-DD')}
             </Typography>
           )}
           <Typography variant="body3" className="status">

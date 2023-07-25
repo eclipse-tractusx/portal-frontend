@@ -21,11 +21,10 @@
 import { useEffect, useState } from 'react'
 import {
   Typography,
-  Button,
   Navigation,
   ImageGallery,
+  Button,
 } from '@catena-x/portal-shared-components'
-import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
@@ -37,14 +36,17 @@ import './AppDetail.scss'
 import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
 import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 export default function AppDetailContentDetails({
   item,
+  showBack = true,
 }: {
   item: AppDetails
+  showBack?: boolean
 }) {
-  const { t } = useTranslation()
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [images, setImages] = useState<any>()
   const [selectedItem, setSelectedItem] = useState<string>('#description')
 
@@ -87,11 +89,12 @@ export default function AppDetailContentDetails({
   return (
     item && (
       <>
-        <div className="app-marketplace-main">
-          <Box className="app-back">
+          <div className="app-marketplace-main">
+          {showBack && ( <Box className="app-back">
             <Button color="secondary" size="small" onClick={() => navigate(-1)}>
               {t('global.actions.back')}
             </Button>
+               )}
           </Box>
           <AppDetailHeader item={item} />
           <div className="divider-height" />

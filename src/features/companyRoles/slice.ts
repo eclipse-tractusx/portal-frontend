@@ -26,11 +26,13 @@ const name = 'apps/updateCompanyRoles'
 export interface UpdateCompanyRoleState {
   isSuccess: boolean
   isError: boolean
+  isCancel: boolean
 }
 
 export const initialState: UpdateCompanyRoleState = {
   isSuccess: false,
   isError: false,
+  isCancel: false,
 }
 
 const slice = createSlice({
@@ -43,6 +45,9 @@ const slice = createSlice({
     setCompanyRoleError: (state, action) => {
       state.isError = action.payload
     },
+    setOverlayCancel: (state, action) => {
+      state.isCancel = action.payload
+    },
   },
 })
 
@@ -52,5 +57,9 @@ export const updateRoleSuccessType = (state: RootState): any =>
 export const updateRoleErrorType = (state: RootState): any =>
   state.companyRoles.isError
 
-export const { setCompanyRoleSuccess, setCompanyRoleError } = slice.actions
+export const cancelOverlayType = (state: RootState): any =>
+  state.companyRoles.isCancel
+
+export const { setCompanyRoleSuccess, setCompanyRoleError, setOverlayCancel } =
+  slice.actions
 export default slice

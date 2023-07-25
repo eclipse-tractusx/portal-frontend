@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.6.0-RC2
+
+### Change
+
+- App Release Process
+  - changed 'Privacy Policy' selection to mandatory
+
+### Feature
+
+- Connector Registration - Managed
+  - added subscriptionID linkage inside the registration page as well as the business logic to submit the connector connected subscriptionID
+- Search
+  - enabled in all portal pages
+  - new design update for result area
+  - added functionality to close the search whenever the user clicks on the hidden background area
+- Company Role
+  - enable company role deselection
+
+### Technical Support
+
+- exclude locales from duplication sonar checks
+
+### Bugfix
+
+- App Release Process - consent conformity check upon upload of the conformity certificate, previous selected consents got deleted
+- Data Space Information page - style fix stage sub navigation header and fixed responsive issues
+
 ## 1.6.0-RC1
 
 ### Change
@@ -9,6 +36,12 @@
   - updated language endpoint changed structure
 - Service Release Process
   - Skip technical integration for serviceTypeIds(consultancy)
+- Company Roles Update
+  - Added deselect feature
+- SSI Certificat Credential Adminboard
+  - Add new page and created UI
+  - Add Backend Logic to fetch certificates
+  - Add Confirm/Decline business logic
 
 ### Feature
 
@@ -36,45 +69,15 @@
   - Show done state
   - Provide icon for marking a notification as read/unread
   - New Header and Filter UI
-- App Release Process
-  - App lead image load issue fix
-  - Validation added for privacy policy
-  - Fixed issue-upon upload of the conformity certificate, previous selected consents are gone
-  - Service Marketplace
-    - Subscription Button cross service highlighted
-- BugFix
-  - Home - Carousel
-    - Responsiveness - when switching the portal width screens get rendering issues
-  - Notification
-    - isRead action issue fix
-- Company Role Update
-  - Change the payload data as per backend logic
-- App Subscription
-  - Add and Edit Tenant URL functionality in detail overlay
 - Connectors
   - Disable DAPS related sections
-  - Create Connectors
-    - fetch offer subscription in managed connectors
-    - create managed api end point update
-    - update created managed api body with subscriptionId
-  - Update api urls
-- Certificates
-  - Created New page under User profile
-  - Fetch Certificates and connected to UI
 - App Subscription
   - Add and Edit Tenant URL functionality in detail overlay
 - Static Pages
   - Data Space
   - Catena-X Participant
-  - Subnavigation header style fix
-- Search
-  - Enable search in all the pages
-  - Search input UI updates
-  - Search Result UI updates
 - SSI Certificat Credential Adminboard
   - Add new page and created UI
-- Portal
-  - Add max width
 
 ### Technical Support
 

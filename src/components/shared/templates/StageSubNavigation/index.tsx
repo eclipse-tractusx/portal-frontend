@@ -31,9 +31,9 @@ export const StageSubNavigation = ({
 }) => {
   const scrollToId = (id: string) => {
     const element = document.getElementById(id)
-    const top = element?.offsetTop
+    const top = element && element.offsetTop - 100
     window.scrollTo({
-      top: top,
+      top: top ?? 0,
       behavior: 'smooth',
     })
   }
@@ -41,7 +41,7 @@ export const StageSubNavigation = ({
   const customStyles = fixHeader && {
     position: 'fixed',
     top: 0,
-    width: 'auto',
+    width: '100%',
     zIndex: 9,
     backgroundColor: '#F5F9FD',
     boxShadow: '0px 5px 10px rgb(80 80 80 / 30%)',

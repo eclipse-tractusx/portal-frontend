@@ -26,6 +26,8 @@ import {
   DialogHeader,
   Input,
   LoadingButton,
+  StaticTable,
+  TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -44,6 +46,7 @@ import { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
 import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
+import { closeOverlay } from 'features/control/overlay'
 
 const TentantHelpURL =
   '/documentation/?path=docs%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
@@ -55,6 +58,8 @@ interface ActivateSubscriptionProps {
   appId: string
   subscriptionId: string
   title: string
+  companyName: string
+  bpnNumber: string
   handleOverlayClose: () => void
 }
 
@@ -63,6 +68,8 @@ const ActivateSubscriptionOverlay = ({
   appId,
   subscriptionId,
   title,
+  companyName,
+  bpnNumber,
   handleOverlayClose,
 }: ActivateSubscriptionProps) => {
   const { t } = useTranslation()
@@ -103,73 +110,59 @@ const ActivateSubscriptionOverlay = ({
     handleOverlayClose()
   }
 
+  const tableData1: TableType = {
+    head: [t('content.appSubscription.activation.clientDetails'), ''],
+    body: [
+      [t('content.appSubscription.activation.customer'), `${companyName}`],
+      [t('content.appSubscription.activation.bpn'), `${bpnNumber}`],
+    ],
+  }
+
+  const tableData2: TableType = {
+    head: [t('content.appSubscription.activation.technicalDetails'), ''],
+    body: [
+      [
+        t('content.appSubscription.activation.appClientId'),
+        `${activationResponse?.clientInfo?.clientId}`,
+      ],
+      [
+        t('content.appSubscription.activation.technicalClientId'),
+        `${activationResponse?.technicalUserInfo?.technicalClientId}`,
+      ],
+      [
+        t('content.appSubscription.activation.technicalSecret'),
+        `${activationResponse?.technicalUserInfo?.technicalUserSecret}`,
+      ],
+      [
+        t('content.appSubscription.activation.technicalPermission'),
+        `${activationResponse?.technicalUserInfo?.technicalUserPermissions.toString()}`,
+      ],
+    ],
+  }
+
   return (
     <>
       {activationResponse ? (
         <div className="activationOverlay">
-          <Dialog
-            open={true}
-            sx={{
-              '.MuiDialog-paper': {
-                maxWidth: '45%',
-              },
-            }}
-          >
-            <DialogHeader
-              title=" "
-              intro={t('content.appSubscription.activation.successDescription')}
-              closeWithIcon={true}
-              icon={true}
-              iconComponent={
-                <CheckCircleOutlinedIcon
-                  sx={{ fontSize: 60 }}
-                  color="success"
-                />
-              }
-              onCloseWithIcon={() => handleOverlayClose()}
-            />
-            <DialogContent>
-              <table className="activationResponse">
-                <tbody>
-                  <tr>
-                    <td>
-                      <Typography variant="label3">
-                        {t('content.appSubscription.activation.clientId')}
-                      </Typography>
-                    </td>
-                    <td>
-                      <Typography variant="label3">
-                        {
-                          activationResponse?.technicalUserInfo
-                            .technicalClientId
-                        }
-                      </Typography>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Typography variant="label3">
-                        {t('content.appSubscription.activation.clientSecret')}
-                      </Typography>
-                    </td>
-                    <td>
-                      <Typography variant="label3">
-                        {
-                          activationResponse?.technicalUserInfo
-                            .technicalUserSecret
-                        }
-                      </Typography>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="outlined" onClick={closeActivationOverlay}>
-                {t('global.actions.close')}
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <DialogHeader
+            title=" "
+            intro={t('content.appSubscription.activation.successDescription')}
+            closeWithIcon={true}
+            icon={true}
+            iconComponent={
+              <CheckCircleOutlinedIcon sx={{ fontSize: 60 }} color="success" />
+            }
+            onCloseWithIcon={() => dispatch(closeOverlay())}
+          />
+          <DialogContent>
+            <StaticTable data={tableData1} horizontal={false} />
+            <StaticTable data={tableData2} horizontal={false} />
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={closeActivationOverlay}>
+              {t('global.actions.close')}
+            </Button>
+          </DialogActions>
         </div>
       ) : (
         <Dialog

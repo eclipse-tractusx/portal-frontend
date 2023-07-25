@@ -88,6 +88,7 @@ export const UserDetailCard = ({
         style={{
           marginLeft: variant === 'wide' ? 'auto' : '',
           display: 'inline-grid',
+          fontSize: '14px',
         }}
       >
         {Array.isArray(value?.value)
@@ -122,7 +123,9 @@ export const UserDetailCard = ({
   ) =>
     param === 'status' ? (
       <>
-        <span style={{ marginRight: '10px' }}>{value?.label} :</span>
+        <span style={{ marginRight: '10px', fontSize: '14px' }}>
+          {value?.label} :
+        </span>
         <Chip
           color="secondary"
           label={value?.value}
@@ -141,7 +144,7 @@ export const UserDetailCard = ({
         <Box
           sx={{
             alignItems: 'center',
-            backgroundColor: 'background.background09',
+            backgroundColor: 'rgb(237, 240, 244)',
             display: 'flex',
             height: '55px',
             paddingLeft: '20px',
@@ -167,12 +170,13 @@ export const UserDetailCard = ({
             disableGutters
             sx={{
               borderBottom: '1px solid',
-              borderColor: 'border.border01',
-              color: 'text.tertiary',
+              borderColor: 'rgb(220, 220, 220)',
+              color: 'rgb(136, 136, 136)',
               fontFamily: 'LibreFranklin-Light',
               padding: k === 'status' ? '14.5px 20px' : '20px',
               justifyContent: k === 'bpn' ? 'space-between' : '',
               display: variant === 'wide' ? 'flex' : 'block',
+              fontSize: '14px',
             }}
           >
             {renderContentSwitch(k, v)}

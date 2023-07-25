@@ -20,14 +20,20 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
-import dayjs from 'dayjs'
-import {
-  IconButton,
-  PageLoadingTable,
-} from '@catena-x/portal-shared-components'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
+import { PageLoadingTable } from '@catena-x/portal-shared-components'
 import './AdminCredential.scss'
-import { useFetchCompanySearchQuery } from 'features/admin/applicationRequestApiSlice'
+import {
+  CredentialData,
+  CredentialResponse,
+  useApproveCredentialMutation,
+  useDeclineCredentialMutation,
+  useFetchCredentialsQuery,
+} from 'features/certification/certificationApiSlice'
+import { download } from 'utils/downloadUtils'
+import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { error, success } from 'services/NotifyService'
+import { uniqueId } from 'lodash'
 
 export interface DummyData {
   date: string
@@ -42,14 +48,57 @@ enum FilterType {
   DECLINED = 'declined',
 }
 
+enum StatusType {
+  APPROVE = 'approve',
+  DECLINE = 'decline',
+}
+
 export default function AdminCredentialElements() {
   const { t } = useTranslation()
 
   const [group, setGroup] = useState<string>(FilterType.ALL)
+  const [expr, setExpr] = useState<string>('')
+  const [refresh, setRefresh] = useState<number>(0)
+
+  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [approveCredential] = useApproveCredentialMutation()
+  const [declineCredential] = useDeclineCredentialMutation()
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
+  }
+
+  const handleDownloadClick = async (
+    documentId: string,
+    documentName: string
+  ) => {
+    try {
+      const response = await getDocumentById(documentId).unwrap()
+      const fileType = response.headers.get('content-type')
+      const file = response.data
+      return download(file, fileType, documentName)
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
+
+  const handleApproveDecline = async (
+    credentialId: string,
+    status: StatusType
+  ) => {
+    const APIRequest =
+      status === StatusType.APPROVE ? approveCredential : declineCredential
+    await APIRequest(credentialId)
+      .unwrap()
+      .then(() => {
+        status === StatusType.APPROVE
+          ? success(t('content.adminCertificate.approvedMessage'))
+          : error(t('content.adminCertificate.declinedMessage'))
+      })
+      .catch(() => {
+        error(t('content.adminCertificate.errorMessage'))
+      })
   }
 
   const filterButtons = [
@@ -76,13 +125,10 @@ export default function AdminCredentialElements() {
   ]
 
   const columns = [
-    { field: 'id', hide: true },
     {
-      field: 'dateCreated',
-      headerName: t('content.adminCertificate.table.date'),
-      flex: 1.5,
-      valueGetter: ({ row }: { row: any }) =>
-        dayjs(row.dateCreated).format('YYYY-MM-DD'),
+      field: 'credentialType',
+      headerName: t('content.adminCertificate.table.crendentialType'),
+      flex: 2.5,
     },
     {
       field: 'companyName',
@@ -90,37 +136,43 @@ export default function AdminCredentialElements() {
       flex: 2,
     },
     {
-      field: 'applicationId',
+      field: 'useCase',
       headerName: t('content.adminCertificate.table.certificate'),
       flex: 1.5,
-    },
-    {
-      field: 'details',
-      headerName: t('content.adminCertificate.table.details'),
-      flex: 1,
-      renderCell: ({ row }: { row: any }) => (
-        <IconButton
-          color="secondary"
-          size="small"
-          onClick={() =>
-            console.log('on details click: Company Name', row.companyName)
-          }
-        >
-          <ArrowForwardIcon />
-        </IconButton>
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <>{row.useCase ?? 'N/A'}</>
       ),
     },
     {
-      field: 'status',
+      field: 'document',
+      headerName: t('content.adminCertificate.table.document'),
+      flex: 1.5,
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <ArticleOutlinedIcon
+          className="document-icon"
+          onClick={() =>
+            handleDownloadClick(
+              row.document.documentId,
+              row.document.documentName
+            )
+          }
+        />
+      ),
+    },
+    {
+      field: 'credentialDetailId',
       headerName: '',
-      flex: 2,
-      renderCell: ({ row }: { row: any }) => (
+      flex: 2.5,
+      renderCell: ({ row }: { row: CredentialData }) => (
         <>
           <Button
             size="small"
             color="error"
             variant="contained"
             className="statusBtn"
+            onClick={() =>
+              handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
+            }
           >
             {t('global.actions.decline')}
           </Button>
@@ -129,6 +181,9 @@ export default function AdminCredentialElements() {
             color="success"
             variant="contained"
             className="statusBtn ml-10"
+            onClick={() =>
+              handleApproveDecline(row.credentialDetailId, StatusType.APPROVE)
+            }
           >
             {t('global.actions.confirm')}
           </Button>
@@ -139,17 +194,25 @@ export default function AdminCredentialElements() {
 
   return (
     <div className="recommended-main">
-      <PageLoadingTable<DummyData>
+      <PageLoadingTable<CredentialResponse[]>
         alignCell="start"
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
+        searchExpr={expr}
         searchPlaceholder={t('content.adminCertificate.search')}
+        onSearch={(expr: string) => {
+          if (expr !== '') return
+          setRefresh(Date.now())
+          setExpr(expr)
+        }}
         searchDebounce={1000}
         title=""
         loadLabel={t('global.actions.more')}
-        fetchHook={useFetchCompanySearchQuery}
-        getRowId={(row: { [key: string]: string }) => row.applicationId}
+        fetchHook={useFetchCredentialsQuery}
+        fetchHookArgs={{ expr }}
+        fetchHookRefresh={refresh}
+        getRowId={(row: { [key: string]: string }) => uniqueId(row.companyId)}
         columns={columns}
         defaultFilter={group}
         filterViews={filterButtons}

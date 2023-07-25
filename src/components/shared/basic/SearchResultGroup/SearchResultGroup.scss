@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.title {
+.searchTitle {
   margin-top: 40px !important;
   margin-left: 10px !important;
   font-size: 18px !important;
@@ -25,7 +25,7 @@
   color: #a0a0a0 !important;
 }
 
-.title.margin-top-20 {
+.searchTitle.margin-top-20 {
   margin-top: 20px !important;
 }
 
@@ -46,6 +46,6 @@
 }
 
 .search-group {
-  width: 80%;
+  width: 100%;
   padding: 30px 10%;
 }

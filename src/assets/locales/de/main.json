@@ -473,11 +473,13 @@
       "modal": {
         "company": {
           "title": "Connect company connector",
-          "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist."
+          "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
+          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen aktiver Teilnehmer ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
         "managed": {
           "title": "Register Managed Connector",
-          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above."
+          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
+          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
         "daps": {
           "title": "Create DAPS Registration",
@@ -1175,8 +1177,14 @@
         "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
         "technicalUserProfileHeading": "Technical User Profile",
         "successDescription": "The app subscription got successfully activated, the customer got informed via email. Please find the technical user details below:",
-        "clientId": "Client Id",
-        "clientSecret": "Client Secret"
+        "clientDetails": "Client Details",
+        "customer": "Customer",
+        "bpn": "BPN",
+        "technicalDetails": "Technical Details",
+        "appClientId": "App Id (Client ID)",
+        "technicalClientId": "Technical User Client ID",
+        "technicalSecret": "Technical User Secret",
+        "technicalPermission": "Technical User Permission"
       },
       "detailOverlay": {
         "title": "Provider View",
@@ -1194,6 +1202,7 @@
         "contact": "Contact",
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
+        "appId": "App ID (clientID)",
         "technicalName": "Technical User Name",
         "technicalPermission": "Technical User Permission",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
@@ -1464,8 +1473,31 @@
         "success": "Usecase document upload has been done successfully."
       }
     },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "Suchen via Zertifikatstyp",
+      "tabs": {
+        "all": "Alle",
+        "open": "Offen",
+        "confirmed": "Bestätigt",
+        "declined": "Abgelehnt"
+      },
+      "sortOptions": {
+        "name": "Company Name",
+        "date": "Date"
+      },
+      "table": {
+        "crendentialType": "Type",
+        "companyInfo": "Company Info",
+        "certificate": "Zertifikat",
+        "document": "Dokumente"
+      },
+      "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
+      "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator."
+    },
     "certificates": {
-      "heading": "Company Certificates",
+      "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
       "tabs": {
@@ -1481,7 +1513,7 @@
       },
       "uploadCertificate": "Upload Certificate",
       "updateCertificate": {
-        "title": "Upload new certificate for {company name}",
+        "title": "Upload new certificate",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
@@ -1507,26 +1539,6 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
-    },
-    "adminCertificate": {
-      "headline": "Credential Request Overview",
-      "search": "...search for certificate type",
-      "tabs": {
-        "all": "All",
-        "open": "Open",
-        "confirmed": "Confirmed",
-        "declined": "Declined"
-      },
-      "sortOptions": {
-        "name": "By Name",
-        "date": "By Date"
-      },
-      "table": {
-        "date": "Date",
-        "companyInfo": "Company Info",
-        "certificate": "Certificate",
-        "details": "Details"
-      }
     }
   },
   "navigation": {
@@ -1592,7 +1604,10 @@
       "permission": "Berechtigung",
       "userId": "Benutzeridentifikation",
       "redirectURI": "Redirect-URI",
-      "toBeUpdated": "To be updated"
+      "toBeUpdated": "To be updated",
+      "type": "Type",
+      "owner": "Owner",
+      "offerLink": "Offer Link"
     },
     "actions": {
       "cancel": "Abbrechen",

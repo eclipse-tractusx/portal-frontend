@@ -475,7 +475,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USECASE_PARTICIPATION,
-    role: ROLES.USECASE_PARTICIPATION,
+    role: ROLES.REQUEST_SSICREDENTIAL,
     element: <UsecaseParticipation />,
   },
   {
@@ -486,7 +486,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
   {
     name: PAGES.ADMIN_CREDENTIAL,
-    role: ROLES.ADMIN_CREDENTIAL_DECISION,
+    //role: ROLES.ADMIN_CREDENTIAL_DECISION,
     element: <AdminCredential />,
   },
 ]
@@ -495,10 +495,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.ADD_BPN,
     role: ROLES.MODIFY_USER_ACCOUNT,
-  },
-  {
-    name: OVERLAYS.ADD_SUBSCRIPTION,
-    role: ROLES.ACTIVATE_SUBSCRIPTION,
   },
   {
     name: OVERLAYS.ADD_USER,
