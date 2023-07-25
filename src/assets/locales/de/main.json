@@ -454,7 +454,7 @@
         "owned": "Owned",
         "managed": "Managed"
       },
-      "helpText": "Get some help",
+      "helpText": "Details Connector Configuration",
       "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
       "tabletitle": "Onboarded Connectors",
