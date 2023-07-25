@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -28,19 +27,13 @@ import {
   Tooltips,
   Chip,
 } from '@catena-x/portal-shared-components'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
-import {
-  SubscriptionContent,
-  CompanySubscriptionData,
-} from 'features/appSubscription/appSubscriptionApiSlice'
+import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'
 import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'
 import ActivateSubscriptionOverlay from 'components/pages/AppSubscription/ActivateSubscriptionOverlay'
 import { useState } from 'react'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
-import { SubscriptionTypes } from '.'
 import { useReducer } from 'react'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
 
@@ -58,12 +51,16 @@ type SubscriptionDataType = {
   appId: string
   subscriptionId: string
   title: string
+  companyName: string
+  bpnNumber: string
 }
 
 const SubscriptionInitialData = {
   appId: '',
   subscriptionId: '',
   title: '',
+  companyName: '',
+  bpnNumber: '',
 }
 
 enum ActionKind {
@@ -132,7 +129,6 @@ export default function SubscriptionElements({
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const [{ id, isTechUser, overlay, offerId, companyName }, setState] =
     useReducer(reducer, initialState)
 
@@ -142,26 +138,6 @@ export default function SubscriptionElements({
 
   if (subscriptions && subscriptions.length === 0) {
     return <NoItems />
-  }
-
-  const showOverlay = (
-    subscription: CompanySubscriptionData,
-    offerId: string
-  ) => {
-    if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
-      dispatch(show(OVERLAYS.ADD_SUBSCRIPTION, subscription.subscriptionId))
-    } else {
-      setState({
-        type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
-        payload: {
-          id: subscription.subscriptionId,
-          offerId: offerId,
-          isTechUser: subscription.technicalUser,
-          overlay: true,
-          companyName: subscription.companyName,
-        },
-      })
-    }
   }
 
   return (
@@ -220,11 +196,19 @@ export default function SubscriptionElements({
                                 appId: subscriptionData.offerId,
                                 subscriptionId: subscription.subscriptionId,
                                 title: subscriptionData.offerName,
+                                companyName: subscription.companyName,
+                                bpnNumber: subscription.bpnNumber,
                               })
-                            : showOverlay(
-                                subscription,
-                                subscriptionData.offerId
-                              )
+                            : setState({
+                                type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
+                                payload: {
+                                  id: subscription.subscriptionId,
+                                  offerId: subscriptionData.offerId,
+                                  isTechUser: subscription.technicalUser,
+                                  overlay: true,
+                                  companyName: subscription.companyName,
+                                },
+                              })
                         }
                       />
                     </div>
@@ -284,6 +268,8 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
+          companyName={subscriptionDetail.companyName}
+          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() =>
             setSubscriptionDetail(SubscriptionInitialData)
           }

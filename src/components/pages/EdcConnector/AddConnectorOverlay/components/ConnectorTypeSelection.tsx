@@ -22,28 +22,47 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Checkbox } from '@catena-x/portal-shared-components'
 import { Box, Grid } from '@mui/material'
-
+import { CompanyDetails, CompanyRoleEnum } from 'features/admin/userApiSlice'
 // Static content
 // Add Connector Button action modal first step content
 const ConnectorTypeSelection = ({
   selectedServiceCallback,
+  ownCompanyDetails,
 }: {
   selectedServiceCallback: (selected: any) => any
+  ownCompanyDetails?: CompanyDetails
 }) => {
   const { t } = useTranslation()
-
   const checkBoxSelector = [
     {
       title: t('content.edcconnector.modal.companyconnectorlabel'),
       type: 'COMPANY_CONNECTOR',
       descritpion: t('content.edcconnector.modal.company.intro'),
       id: 1,
+      disable:
+        !ownCompanyDetails?.companyRole ||
+        ownCompanyDetails?.companyRole?.length === 0,
+      disableDescription: t(
+        'content.edcconnector.modal.company.disableDescription'
+      ),
     },
     {
       title: t('content.edcconnector.modal.connectorasaservice'),
       type: 'MANAGED_CONNECTOR',
       descritpion: t('content.edcconnector.modal.managed.intro'),
       id: 2,
+      disable:
+        !ownCompanyDetails?.companyRole ||
+        ownCompanyDetails?.companyRole?.length === 0 ||
+        (!ownCompanyDetails?.companyRole.includes(
+          CompanyRoleEnum.SERVICE_PROVIDER
+        ) &&
+          !ownCompanyDetails?.companyRole.includes(
+            CompanyRoleEnum.APP_PROVIDER
+          )),
+      disableDescription: t(
+        'content.edcconnector.modal.managed.disableDescription'
+      ),
     },
   ]
 
@@ -55,8 +74,14 @@ const ConnectorTypeSelection = ({
         <Grid container spacing={1.5} style={{ marginTop: 0 }}>
           {checkBoxSelector.map((checkBox: any) => {
             return (
-              <Grid xs={12} item className={'dotted-gradient'}>
+              <Grid
+                key={checkBox.id}
+                xs={12}
+                item
+                className={'dotted-gradient'}
+              >
                 <Checkbox
+                  disabled={checkBox.disable}
                   label={checkBox.title}
                   checked={checkBox.id === selectedCheckBox.id}
                   onChange={(e) => {
@@ -64,10 +89,19 @@ const ConnectorTypeSelection = ({
                     selectedServiceCallback(checkBox)
                   }}
                 />
-
-                <Typography variant="body2" style={{ marginLeft: '30px' }}>
-                  {checkBox.descritpion}
-                </Typography>
+                {checkBox.disable ? (
+                  <Typography
+                    variant="body2"
+                    color={'#F2BA00'}
+                    style={{ marginLeft: '30px' }}
+                  >
+                    {checkBox.disableDescription}
+                  </Typography>
+                ) : (
+                  <Typography variant="body2" style={{ marginLeft: '30px' }}>
+                    {checkBox.descritpion}
+                  </Typography>
+                )}
               </Grid>
             )
           })}

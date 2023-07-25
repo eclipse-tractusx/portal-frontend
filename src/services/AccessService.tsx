@@ -23,7 +23,6 @@ import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
-import ActivateSubscription from 'components/overlays/ActivateSubscription'
 import { AddUser } from 'components/overlays/AddUser'
 import NewsDetail from 'components/overlays/NewsDetail'
 import UserInfo from 'components/overlays/UserInfo'
@@ -136,8 +135,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <NewsDetail id={overlay.id} />
     case OVERLAYS.ADD_BPN:
       return <AddBPN id={overlay.id} />
-    case OVERLAYS.ADD_SUBSCRIPTION:
-      return <ActivateSubscription id={overlay.id} />
     case OVERLAYS.PARTNER:
       return <BusinessPartnerInfo id={overlay.id} />
     case OVERLAYS.APP:
