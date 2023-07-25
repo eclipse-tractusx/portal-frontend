@@ -107,7 +107,7 @@ export default function BoardDocuments({
           )
       )
     ) : (
-      <Typography variant="body2" className="not-available">
+      <Typography variant="label3" className="not-available">
         {t('global.errors.noDocumentsAvailable')}
       </Typography>
     )

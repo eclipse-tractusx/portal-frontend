@@ -274,7 +274,7 @@ export default function CommonValidateAndPublish({
     ) : (
       <Grid container spacing={2} margin={'0px'}>
         <Typography
-          variant="caption2"
+          variant="label3"
           className="not-available"
           style={{ width: '100%' }}
         >
