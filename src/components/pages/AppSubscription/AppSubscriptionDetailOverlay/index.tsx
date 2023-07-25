@@ -119,6 +119,10 @@ const AppSubscriptionDetailOverlay = ({
         data?.tenantUrl ?? '',
       ],
       [
+        `${t('content.appSubscription.detailOverlay.appId')}`,
+        data?.appInstanceId ?? 'N/A',
+      ],
+      [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
         data?.technicalUserData && data.technicalUserData.length > 0
           ? data.technicalUserData[0].name
@@ -142,6 +146,25 @@ const AppSubscriptionDetailOverlay = ({
           inputValue: data?.tenantUrl ?? '',
           isValid: (value: string) => isURL(value),
           errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
+        },
+      ],
+      [
+        {
+          editIcon: false,
+        },
+        {
+          editIcon: false,
+        },
+      ],
+      [
+        {
+          editIcon: false,
+        },
+        {
+          editIcon: false,
+          clickableLink: data?.technicalUserData[0]?.id
+            ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
+            : undefined,
         },
       ],
     ],

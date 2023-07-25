@@ -37,6 +37,7 @@ import {
   useFetchOfferSubscriptionsQuery,
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -74,6 +75,7 @@ const AddConnectorOverlay = ({
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
   const { data } = useFetchOfferSubscriptionsQuery()
+  const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery()
   const {
     handleSubmit,
     getValues,
@@ -140,7 +142,10 @@ const AddConnectorOverlay = ({
         >
           {connectorStep === 0 ? (
             <>
-              <ConnectorTypeSelection selectedServiceCallback={onSelect} />
+              <ConnectorTypeSelection
+                ownCompanyDetails={ownCompanyDetails}
+                selectedServiceCallback={onSelect}
+              />
             </>
           ) : (
             <>
