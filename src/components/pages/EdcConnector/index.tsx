@@ -53,6 +53,7 @@ import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsR
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { ManagedConnectorTableColumns } from './edcManagedConnectorTableColumns'
 import { OwnConnectorTableColumns } from './edcOwnConnectorTableColumns'
+import ConfigurationDetailsOverlay from './ConfigurationDetailsOverlay'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -88,6 +89,10 @@ const EdcConnector = () => {
   const [createDapsModalOpen, setCreateDapsModalOpen] = useState<boolean>(false)
   useState<boolean>(false)
   const [triggerDaps] = useTriggerDapsMutation()
+  const [
+    viewConfigurationDetailsOverlayOpen,
+    setViewConfigurationDetailsOverlayOpen,
+  ] = useState<boolean>(false)
 
   const onStepChange = () => {
     setAddConnectorOverlayCurrentStep(0)
@@ -287,6 +292,10 @@ const EdcConnector = () => {
         loading={loading}
         onStepChange={onStepChange}
       />
+      <ConfigurationDetailsOverlay
+        openDialog={viewConfigurationDetailsOverlayOpen}
+        handleOverlayClose={() => setViewConfigurationDetailsOverlayOpen(false)}
+      />
       <PageHeader
         title={t('content.edcconnector.headertitle')}
         topPage={false}
@@ -297,6 +306,9 @@ const EdcConnector = () => {
           text={'content.edcconnector.imagetext'}
           onHelpButtonClicked={() => onHelpButtonClicked()}
           onButtonClicked={() => setAddConnectorOverlayOpen(true)}
+          onNewHelpButtonClicked={() =>
+            setViewConfigurationDetailsOverlayOpen(true)
+          }
         />
       </section>
       <div className="connector-table-container">
