@@ -34,6 +34,7 @@ import { download } from 'utils/downloadUtils'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
 import { uniqueId } from 'lodash'
+import { SubscriptionStatus } from 'features/apps/apiSlice'
 
 export interface DummyData {
   date: string
@@ -95,6 +96,7 @@ export default function AdminCredentialElements() {
         status === StatusType.APPROVE
           ? success(t('content.adminCertificate.approvedMessage'))
           : error(t('content.adminCertificate.declinedMessage'))
+        setRefresh(Date.now())
       })
       .catch(() => {
         error(t('content.adminCertificate.errorMessage'))
@@ -165,28 +167,38 @@ export default function AdminCredentialElements() {
       flex: 2.5,
       renderCell: ({ row }: { row: CredentialData }) => (
         <>
-          <Button
-            size="small"
-            color="error"
-            variant="contained"
-            className="statusBtn"
-            onClick={() =>
-              handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
-            }
-          >
-            {t('global.actions.decline')}
-          </Button>
-          <Button
-            size="small"
-            color="success"
-            variant="contained"
-            className="statusBtn ml-10"
-            onClick={() =>
-              handleApproveDecline(row.credentialDetailId, StatusType.APPROVE)
-            }
-          >
-            {t('global.actions.confirm')}
-          </Button>
+          {row.participantStatus === SubscriptionStatus.PENDING && (
+            <>
+              <Button
+                size="small"
+                color="error"
+                variant="contained"
+                className="statusBtn"
+                onClick={() =>
+                  handleApproveDecline(
+                    row.credentialDetailId,
+                    StatusType.DECLINE
+                  )
+                }
+              >
+                {t('global.actions.decline')}
+              </Button>
+              <Button
+                size="small"
+                color="success"
+                variant="contained"
+                className="statusBtn ml-10"
+                onClick={() =>
+                  handleApproveDecline(
+                    row.credentialDetailId,
+                    StatusType.APPROVE
+                  )
+                }
+              >
+                {t('global.actions.confirm')}
+              </Button>
+            </>
+          )}
         </>
       ),
     },
