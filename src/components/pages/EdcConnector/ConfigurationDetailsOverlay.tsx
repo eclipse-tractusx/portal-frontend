@@ -123,17 +123,19 @@ const ConfigurationDetailsOverlay = ({
               )}
             </span>
           </Typography>
-          <Trans
-            values={{
-              bpn: data && data[0].bpn,
-            }}
-          >
-            <Typography variant="body2" className="detailsBodyText">
-              {t(
-                'content.edcconnector.configurationDetails.orderList.authorityBpn'
-              )}
-            </Typography>
-          </Trans>
+          {data && (
+            <Trans
+              values={{
+                bpn: data[0]?.bpn,
+              }}
+            >
+              <Typography variant="body2" className="detailsBodyText">
+                {t(
+                  'content.edcconnector.configurationDetails.orderList.authorityBpn'
+                )}
+              </Typography>
+            </Trans>
+          )}
           <Trans
             values={{
               managedIdentityWalletApiBase: t(
