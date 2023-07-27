@@ -99,7 +99,7 @@ const ConfigurationDetailsOverlay = ({
               }
             >
               {t(
-                'content.edcconnector.configurationDetails.orderList.clientSecretLink'
+                'content.edcconnector.configurationDetails.orderList.clickhere'
               )}
             </span>
           </Typography>
@@ -119,7 +119,7 @@ const ConfigurationDetailsOverlay = ({
               }
             >
               {t(
-                'content.edcconnector.configurationDetails.orderList.clientSecretLink'
+                'content.edcconnector.configurationDetails.orderList.clickhere'
               )}
             </span>
           </Typography>
