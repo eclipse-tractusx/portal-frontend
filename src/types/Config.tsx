@@ -202,7 +202,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    role: ROLES.SERVICEMANAGEMENT_VIEW,
+    role: ROLES.APPMANAGEMENT_VIEW,
     element: <AppOverview />,
   },
   {
