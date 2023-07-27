@@ -68,7 +68,12 @@ export default function UpdateCertificate({ id }: { id: string }) {
       }
     } catch (err: any) {
       setLoading(false)
-      error(t('content.certificates.updateCertificate.error')+ err.data.errors.unknown[0], '', '')
+      error(
+        t('content.certificates.updateCertificate.error') +
+          err.data.errors.unknown[0],
+        '',
+        ''
+      )
     }
   }
 
