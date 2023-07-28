@@ -87,6 +87,14 @@
     "title": "Assigned User Roles Updated - {{app}}",
     "content": "Hallo {{username}}, \n\nIhre App-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Rollenänderungen finden sie anbei. \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
   },
+  "CREDENTIAL_APPROVAL": {
+    "title": "Verified Credential {{credentialType}} angelegt",
+    "content": "Verified Credential {{credentialType}} wurde ihrem Company Wallet hinzugefügt."
+  },
+  "CREDENTIAL_REJECTED": {
+    "title": "Verified Credential {{credentialType}} abgelehnt",
+    "content": "Verified Credential {{credentialType}} wurde abgelehnt. Sie können jederzeit die Anfrage wiederholen."
+  },
   "link": {
     "appmarketplace": "Zum App Marketplace",
     "technicalsetup": "Zur Connector Registrierung",

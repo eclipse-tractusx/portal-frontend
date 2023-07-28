@@ -88,6 +88,7 @@ const NotificationContent = ({
   const coreOfferName = item.contentParsed?.coreOfferName
   const removedRoles = item.contentParsed?.removedRoles
   const addedRoles = item.contentParsed?.addedRoles
+  const credentialType = item.contentParsed?.type
 
   return (
     <>
@@ -104,6 +105,7 @@ const NotificationContent = ({
             coreOfferName: coreOfferName,
             removedRoles: removedRoles ? removedRoles : '-',
             addedRoles: addedRoles ? addedRoles : '-',
+            credentialType: credentialType,
           }}
         >
           <NameLink
@@ -197,6 +199,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return <NotificationContent item={item} />
     case NotificationType.ROLE_UPDATE_CORE_OFFER:
       return <NotificationContent item={item} navlinks={[PAGES.ROLE_DETAILS]} />
+    case NotificationType.CREDENTIAL_APPROVAL:
+      return <NotificationContent item={item} />
+    case NotificationType.CREDENTIAL_REJECTED:
+      return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -317,6 +323,7 @@ export default function NotificationItem({
               {t(`${item.typeId}.title`, {
                 app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
                 offer: item.contentParsed?.OfferName,
+                credentialType: item.contentParsed?.type,
               })}
             </Typography>
             {open && (
