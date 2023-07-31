@@ -93,7 +93,7 @@
   },
   "SUBSCRIPTION_URL_UPDATE": {
     "title": "App URL {{appName}} updated",
-    "content": "The app provider has changed the stored App Instance URL for your subscribed app {{appName}}. New URL: {{newUrl}}"
+    "content": "The app provider has changed the stored App Instance URL for your subscribed app {{appName}}.\n\nNew URL: {{newUrl}}"
   },
   "link": {
     "appmarketplace": "Go to app marketplace",

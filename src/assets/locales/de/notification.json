@@ -97,7 +97,7 @@
   },
   "SUBSCRIPTION_URL_UPDATE": {
     "title": "App URL {{appName}} updated",
-    "content": "Der App Provider hat die hinterlegte App Instance URL für ihre abonnierte App {{appName}} geändert. Neue URL: {{newUrl}}"
+    "content": "Der App Provider hat die hinterlegte App Instance URL für ihre abonnierte App {{appName}} geändert.\n\nNeue URL: {{newUrl}}"
   },
   "link": {
     "appmarketplace": "Zum App Marketplace",
