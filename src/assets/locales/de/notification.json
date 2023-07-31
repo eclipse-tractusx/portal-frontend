@@ -95,6 +95,10 @@
     "title": "Verified Credential {{credentialType}} abgelehnt",
     "content": "Verified Credential {{credentialType}} wurde abgelehnt. Sie können jederzeit die Anfrage wiederholen."
   },
+  "SUBSCRIPTION_URL_UPDATE": {
+    "title": "App URL {{appName}} updated",
+    "content": "Der App Provider hat die hinterlegte App Instance URL für ihre abonnierte App {{appName}} geändert. Neue URL: {{newUrl}}"
+  },
   "link": {
     "appmarketplace": "Zum App Marketplace",
     "technicalsetup": "Zur Connector Registrierung",

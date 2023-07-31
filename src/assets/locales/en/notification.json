@@ -91,6 +91,10 @@
     "title": "Verified Credential {{credentialType}} declined",
     "content": "Verified Credential {{credentialType}} got declined. You can start a new request immediately."
   },
+  "SUBSCRIPTION_URL_UPDATE": {
+    "title": "App URL {{appName}} updated",
+    "content": "The app provider has changed the stored App Instance URL for your subscribed app {{appName}}. New URL: {{newUrl}}"
+  },
   "link": {
     "appmarketplace": "Go to app marketplace",
     "technicalsetup": "Go to connector configuration",
