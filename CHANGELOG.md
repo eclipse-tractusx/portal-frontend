@@ -10,6 +10,7 @@
 
 - App Management page access permission changed to add_apps
 - Certificate Management page - approval/decline button only available for "pending" credential requests
+- Permission validation 'Credential Mgmt' page activated
 
 ## 1.6.0-RC3
 
