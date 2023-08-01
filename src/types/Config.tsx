@@ -202,7 +202,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    role: ROLES.SERVICEMANAGEMENT_VIEW,
+    role: ROLES.APPMANAGEMENT_VIEW,
     element: <AppOverview />,
   },
   {
@@ -486,7 +486,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
   {
     name: PAGES.ADMIN_CREDENTIAL,
-    //role: ROLES.ADMIN_CREDENTIAL_DECISION,
+    role: ROLES.ADMIN_CREDENTIAL_DECISION,
     element: <AdminCredential />,
   },
 ]

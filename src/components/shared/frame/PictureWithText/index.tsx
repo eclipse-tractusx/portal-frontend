@@ -30,6 +30,7 @@ type PictureWithTextProps = {
   text: string
   onButtonClicked?: () => void
   onHelpButtonClicked?: () => void
+  onNewHelpButtonClicked?: () => void
 }
 
 export default function PictureWithText({
@@ -37,6 +38,7 @@ export default function PictureWithText({
   text,
   onButtonClicked,
   onHelpButtonClicked,
+  onNewHelpButtonClicked,
 }: PictureWithTextProps) {
   const { t } = useTranslation()
 
@@ -65,6 +67,26 @@ export default function PictureWithText({
         >
           {t('content.edcconnector.helpText')}
         </Button>
+        {onNewHelpButtonClicked && (
+          <Button
+            sx={{
+              marginLeft: '-20px',
+              ':hover': {
+                background: 'transparent',
+                boxShadow: 'none',
+              },
+              ':focus': {
+                boxShadow: 'none',
+              },
+            }}
+            variant="text"
+            size="small"
+            startIcon={<ArrowForwardIcon />}
+            onClick={onNewHelpButtonClicked}
+          >
+            {t('content.edcconnector.helpTextNew')}
+          </Button>
+        )}
         <Button
           sx={{
             marginTop: '40px',
