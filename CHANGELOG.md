@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.6.0-RC4
+
+### Change
+
+- Connector Technical Integration page - connector configuration details added
+
+### Bugfix
+
+- App Management page access permission changed to add_apps
+- Certificate Management page - approval/decline button only available for "pending" credential requests
+- Permission validation 'Credential Mgmt' page activated
+
 ## 1.6.0-RC3
 
 ### Change
