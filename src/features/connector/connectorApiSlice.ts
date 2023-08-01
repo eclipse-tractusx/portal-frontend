@@ -67,6 +67,11 @@ export interface EdcSubscriptionsType {
   name?: string
 }
 
+export interface OperatorBpnType {
+  operatorName: string
+  bpn: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -130,6 +135,9 @@ export const apiSlice = createApi({
         return obj
       },
     }),
+    fetchOperatorBpn: builder.query<OperatorBpnType[], void>({
+      query: () => '/api/administration/staticdata/operator-bpn',
+    }),
   }),
 })
 
@@ -141,4 +149,5 @@ export const {
   useTriggerDapsMutation,
   useFetchManagedConnectorsQuery,
   useFetchOfferSubscriptionsQuery,
+  useFetchOperatorBpnQuery,
 } = apiSlice
