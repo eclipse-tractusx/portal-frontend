@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -28,13 +28,15 @@ import {
   CredentialResponse,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
-  useFetchCredentialsQuery,
+  useFetchCredentialsSearchQuery,
 } from 'features/certification/certificationApiSlice'
 import { download } from 'utils/downloadUtils'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
 import { uniqueId } from 'lodash'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { setSearchInput } from 'features/appManagement/actions'
+import { useDispatch } from 'react-redux'
 
 export interface DummyData {
   date: string
@@ -56,10 +58,14 @@ enum StatusType {
 
 export default function AdminCredentialElements() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
-  const [group, setGroup] = useState<string>(FilterType.ALL)
-  const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
+  const [group, setGroup] = useState<string>(FilterType.ALL)
+  const [searchExpr, setSearchExpr] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState<string>()
+  const [filterValueAPI, setFilterValueAPI] = useState<string>('')
+  const [fetchHookArgs, setFetchHookArgs] = useState({})
 
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
@@ -67,7 +73,28 @@ export default function AdminCredentialElements() {
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
+    if (viewValue === FilterType.OPEN) setFilterValueAPI('PENDING')
+    if (viewValue === FilterType.CONFIRMED) setFilterValueAPI('ACTIVE')
+    if (viewValue === FilterType.DECLINED) setFilterValueAPI('INACTIVE')
+    setFilterStatus(viewValue)
     setGroup(viewValue)
+    setRefresh(Date.now())
+  }
+
+  useEffect(() => {
+    if (onValidate(searchExpr)) {
+      setFetchHookArgs({
+        filterType: filterValueAPI,
+        expr: searchExpr,
+      })
+    }
+    // eslint-disable-next-line
+  }, [filterStatus, searchExpr])
+
+  const onValidate = (expr: string) => {
+    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
+    if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
+    return validateExpr
   }
 
   const handleDownloadClick = async (
@@ -207,22 +234,23 @@ export default function AdminCredentialElements() {
   return (
     <div className="recommended-main">
       <PageLoadingTable<CredentialResponse[]>
+        searchExpr={searchExpr}
         alignCell="start"
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
-        searchExpr={expr}
         searchPlaceholder={t('content.adminCertificate.search')}
+        //searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (expr !== '') return
+          if (!onValidate(expr)) return
           setRefresh(Date.now())
-          setExpr(expr)
+          setSearchExpr(expr)
         }}
         searchDebounce={1000}
         title=""
         loadLabel={t('global.actions.more')}
-        fetchHook={useFetchCredentialsQuery}
-        fetchHookArgs={{ expr }}
+        fetchHook={useFetchCredentialsSearchQuery}
+        fetchHookArgs={fetchHookArgs}
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => uniqueId(row.companyId)}
         columns={columns}
