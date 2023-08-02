@@ -162,7 +162,7 @@ const ConnectorFormInput = ({
               variant="h2"
               sx={{
                 fontSize: '14px',
-                color: !!errors[name] ? '#d32f2f' : '#111111',
+                color: errors[name] ? '#d32f2f' : '#111111',
                 fontWeight: '400',
                 paddingRight: '10px',
               }}
