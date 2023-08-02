@@ -155,7 +155,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
       return <NotificationContent item={item} navlinks={['technicalsetup']} />
     case NotificationType.WELCOME_USE_CASES:
-      return <NotificationContent item={item} navlinks={['usecases']} />
+      return <NotificationContent item={item} navlinks={['usecase']} />
     case NotificationType.WELCOME_SERVICE_PROVIDER:
       return (
         <NotificationContent
