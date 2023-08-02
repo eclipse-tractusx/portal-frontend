@@ -82,6 +82,7 @@ export const Patterns = {
   connectors: {
     NAME: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{1,19}$/,
     COUNTRY: /^[A-Z]{2}$/,
+    CUSTOMER_LINK: /^.*$/,
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
 }
