@@ -46,6 +46,7 @@ import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 export default function ServiceListOverview() {
   const { t } = useTranslation('servicerelease')
   const [items, setItems] = useState<any>([])
@@ -60,8 +61,10 @@ export default function ServiceListOverview() {
       statusFilter: '',
     },
   })
-  const { data } = useFetchProvidedServicesQuery(argsData)
+  const { data, isFetching, isLoading } =
+    useFetchProvidedServicesQuery(argsData)
   const dispatch = useDispatch()
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
@@ -181,39 +184,50 @@ export default function ServiceListOverview() {
         </Box>
       </div>
       <section>
-        {items && items.length > 0 ? (
-          <div className="desc-card">
-            <Cards
-              items={items}
-              columns={4}
-              buttonText="Details"
-              variant="minimal"
-              filledBackground={false}
-              imageSize={'small'}
-              imageLoader={fetchImageWithToken}
-              showAddNewCard={false}
-              newButtonText={t('serviceoverview.addbtn')}
-              onNewCardButton={() =>
-                navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-              }
-              onCardClick={(item: CardItems) => {
-                // TODO: workaround - fix CardItems type
-                const cardItem: any = item
-                if (
-                  cardItem.status === ProvidedServiceStatusEnum.PENDING ||
-                  cardItem.status === ProvidedServiceStatusEnum.CREATED
-                ) {
-                  dispatch(setServiceId(item.id ?? ''))
-                  navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-                } else {
-                  navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
-                }
-              }}
-              subMenu={false}
-            />
-          </div>
+        {isProgress ? (
+          <LinearProgressWithValueLabel
+            isFetching={isFetching}
+            isLoading={isLoading}
+            callback={() => setIsProgress(false)}
+            progressText={'Loading list of services...'}
+          />
         ) : (
-          <NoItems />
+          <>
+            {items && items.length > 0 ? (
+              <div className="desc-card">
+                <Cards
+                  items={items}
+                  columns={4}
+                  buttonText="Details"
+                  variant="minimal"
+                  filledBackground={false}
+                  imageSize={'small'}
+                  imageLoader={fetchImageWithToken}
+                  showAddNewCard={false}
+                  newButtonText={t('serviceoverview.addbtn')}
+                  onNewCardButton={() =>
+                    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                  }
+                  onCardClick={(item: CardItems) => {
+                    // TODO: workaround - fix CardItems type
+                    const cardItem: any = item
+                    if (
+                      cardItem.status === ProvidedServiceStatusEnum.PENDING ||
+                      cardItem.status === ProvidedServiceStatusEnum.CREATED
+                    ) {
+                      dispatch(setServiceId(item.id ?? ''))
+                      navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                    } else {
+                      navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
+                    }
+                  }}
+                  subMenu={false}
+                />
+              </div>
+            ) : (
+              <NoItems />
+            )}
+          </>
         )}
       </section>
       <div
@@ -221,7 +235,7 @@ export default function ServiceListOverview() {
           textAlign: 'center',
         }}
       >
-        {data?.meta && data?.meta?.totalPages > page + 1 && (
+        {data?.meta && data?.meta?.totalPages > page + 1 && !isProgress && (
           <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
         )}
       </div>

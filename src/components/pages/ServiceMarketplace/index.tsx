@@ -20,7 +20,6 @@
 
 import { useEffect, useState, useCallback, useMemo, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
 import ServicesElements from './ServicesElements'
 import RecommendedServices from './RecommendedServices'
@@ -40,6 +39,7 @@ import {
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -47,7 +47,6 @@ dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
-  const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>('All Services')
@@ -69,12 +68,13 @@ export default function ServiceMarketplace() {
 
   const indexToSplit = 2 //show only 2 services in recommended
 
-  const { data } = useFetchServicesQuery({
+  const { data, isLoading, isFetching } = useFetchServicesQuery({
     page: 0,
     serviceType: serviceTypeId,
     sortingType: sortingType,
   })
   const services = data && data.content
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   useEffect(() => {
     services && setCardServices(services)
@@ -202,16 +202,7 @@ export default function ServiceMarketplace() {
                 />
               </div>
             </div>
-            {!services ? (
-              <div className="loading-progress">
-                <CircularProgress
-                  size={50}
-                  sx={{
-                    color: theme.palette.primary.main,
-                  }}
-                />
-              </div>
-            ) : (
+            {!isProgress && (
               <RecommendedServices
                 services={cardServices && cardServices.slice(0, indexToSplit)}
                 getServices={getServices}
@@ -220,7 +211,19 @@ export default function ServiceMarketplace() {
           </div>
         </div>
       </div>
-      {cardServices && cardServices.length > 2 && (
+      {isProgress && (
+        <div className="mainContainer">
+          <div className="mainRow">
+            <LinearProgressWithValueLabel
+              isFetching={isFetching}
+              isLoading={isLoading}
+              progressText={'Loading list of services...'}
+              callback={() => setIsProgress(false)}
+            />
+          </div>
+        </div>
+      )}
+      {cardServices && cardServices.length > 2 && !isProgress && (
         <ServicesElements
           services={cardServices.slice(indexToSplit)}
           getServices={getServices}

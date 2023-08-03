@@ -20,7 +20,6 @@
 
 import { CardDecision, PageSnackbar } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
 import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
@@ -60,7 +59,6 @@ export default function AdminBoardElements({
   errorDeclineMsg?: string
 }) {
   const dispatch = useDispatch()
-  const theme = useTheme()
   const [approveRequest] = useApproveRequestMutation()
   const [approveServiceRequest] = useApproveServiceRequestMutation()
   const isDecisionSuccess = useSelector(currentSuccessType)
@@ -130,14 +128,7 @@ export default function AdminBoardElements({
           onClick={onClick}
         />
       ) : (
-        <div className="loading-progress">
-          <CircularProgress
-            size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-          />
-        </div>
+        <NoItems />
       )}
     </div>
   )

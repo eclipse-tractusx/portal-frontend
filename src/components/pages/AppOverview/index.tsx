@@ -30,7 +30,6 @@ import {
   Cards,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
 import {
   appCardStatus,
   appCardRecentlyApps,
@@ -50,13 +49,13 @@ import { initialState } from 'features/appManagement/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 export default function AppOverview() {
   const { t } = useTranslation()
-  const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data, refetch } = useFetchProvidedAppsQuery()
+  const { data, refetch, isFetching, isLoading } = useFetchProvidedAppsQuery()
   const [itemCards, setItemCards] = useState<any>([])
   const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
   const [cards, setCards] = useState<any>([])
@@ -64,6 +63,7 @@ export default function AppOverview() {
   const [group, setGroup] = useState<string>('')
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   const valueMap: any = {
     wip: ['in_review', 'created'],
@@ -199,16 +199,17 @@ export default function AppOverview() {
       >
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
-      {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
-        <div className="desc-recently">
-          <div className="container">
-            <Typography variant="h4" className="desc-heading">
-              {t('content.appoverview.recently.header')}
-            </Typography>
-            <Typography variant="body2" className="desc-message">
-              {t('content.appoverview.recently.subheader')}
-            </Typography>
-            <div className="desc-card">
+
+      <div className="desc-recently">
+        <div className="container">
+          <Typography variant="h4" className="desc-heading">
+            {t('content.appoverview.recently.header')}
+          </Typography>
+          <Typography variant="body2" className="desc-message">
+            {t('content.appoverview.recently.subheader')}
+          </Typography>
+          <div className="desc-card">
+            {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
               <Cards
                 items={recentlyChangedApps}
                 columns={4}
@@ -221,10 +222,17 @@ export default function AppOverview() {
                   showOverlay(item as AppInfo)
                 }}
               />
-            </div>
+            ) : (
+              <LinearProgressWithValueLabel
+                isFetching={isFetching}
+                isLoading={isLoading}
+                callback={() => setIsProgress(false)}
+                progressText={'Loading list of recently changes apps...'}
+              />
+            )}
           </div>
         </div>
-      ) : null}
+      </div>
       <div className="app-main">
         <Box sx={{ marginTop: '20px' }} className="overview-section">
           <section className="overview-section-content">
@@ -252,20 +260,22 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          {!filterItem ? (
-            <div style={{ textAlign: 'center' }}>
-              <CircularProgress
-                size={50}
-                sx={{
-                  color: theme.palette.primary.main,
-                }}
-              />
-            </div>
-          ) : (
-            <AppOverviewList
-              filterItem={filterItem}
-              showOverlay={showOverlay}
+          {isProgress ? (
+            <LinearProgressWithValueLabel
+              isFetching={isFetching}
+              isLoading={isLoading}
+              callback={() => setIsProgress(false)}
+              progressText={'Loading list of apps...'}
             />
+          ) : (
+            <>
+              {filterItem && (
+                <AppOverviewList
+                  filterItem={filterItem}
+                  showOverlay={showOverlay}
+                />
+              )}
+            </>
           )}
         </div>
       </div>

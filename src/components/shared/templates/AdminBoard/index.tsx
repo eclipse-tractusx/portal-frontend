@@ -18,9 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useReducer, useCallback, useMemo } from 'react'
+import { useEffect, useReducer, useCallback, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
 import {
   SearchInput,
@@ -40,6 +39,7 @@ import {
 import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 enum FilterType {
   INREVIEW = 'InReview',
@@ -231,7 +231,6 @@ export default function CommonAdminBoard({
   successDeclineMsg,
   errorDeclineMsg,
 }: CommonAdminBoardType) {
-  const theme = useTheme()
   const navigate = useNavigate()
   const [
     {
@@ -251,7 +250,9 @@ export default function CommonAdminBoard({
 
   const isDecisionSuccess = useSelector(currentSuccessType)
 
-  const { data, refetch, isFetching } = fetchQuery(fetchArgs)
+  const { data, refetch, isFetching, isLoading } = fetchQuery(fetchArgs)
+
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   useEffect(() => {
     if (data && data?.content)
@@ -427,15 +428,13 @@ export default function CommonAdminBoard({
       <div className="admin-board-main">
         <div style={{ height: '60px' }}></div>
         <div className="mainContainer">
-          {!apps || apps?.length === 0 ? (
-            <div className="loading-progress">
-              <CircularProgress
-                size={50}
-                sx={{
-                  color: theme.palette.primary.main,
-                }}
-              />
-            </div>
+          {isProgress ? (
+            <LinearProgressWithValueLabel
+              isFetching={isFetching}
+              isLoading={isLoading}
+              callback={() => setIsProgress(false)}
+              progressText={'Loading admin board elements...'}
+            />
           ) : (
             <AdminBoardElements
               apps={appCards}
@@ -448,9 +447,11 @@ export default function CommonAdminBoard({
             />
           )}
           {!isFetching &&
+            !isLoading &&
             apps?.length &&
             data?.meta &&
-            data?.meta?.totalPages > page + 1 && (
+            data?.meta?.totalPages > page + 1 &&
+            !isProgress && (
               <div
                 style={{
                   textAlign: 'center',

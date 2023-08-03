@@ -26,7 +26,6 @@ import {
   Typography,
   ViewSelector,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
@@ -42,19 +41,19 @@ import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import debounce from 'lodash.debounce'
 import CommonService from 'services/CommonService'
 import { AppDispatch } from 'features/store'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 export const label = 'AppList'
 
 export default function AppListSection() {
   const { t } = useTranslation()
-  const theme = useTheme()
   const [group, setGroup] = useState<string>('')
   const [filterExpr, setFilterExpr] = useState<string>('')
   const [cardsData, setCardsData] = useState<CardItems[]>([])
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { data } = useFetchActiveAppsQuery()
+  const { data, isFetching, isLoading } = useFetchActiveAppsQuery()
   const [cards, setCards] = useState<any>([])
   const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
@@ -149,14 +148,11 @@ export default function AppListSection() {
       )
     } else {
       return (
-        <div style={{ textAlign: 'center' }}>
-          <CircularProgress
-            size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-          />
-        </div>
+        <LinearProgressWithValueLabel
+          isFetching={isFetching}
+          isLoading={isLoading}
+          progressText={'Loading list of apps...'}
+        />
       )
     }
   }

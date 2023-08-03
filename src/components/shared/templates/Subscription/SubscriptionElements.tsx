@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useTheme, CircularProgress } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   Typography,
@@ -127,7 +126,6 @@ export default function SubscriptionElements({
   type: string
   refetch: () => void
 }) {
-  const theme = useTheme()
   const { t } = useTranslation()
   const [{ id, isTechUser, overlay, offerId, companyName }, setState] =
     useReducer(reducer, initialState)
@@ -230,14 +228,7 @@ export default function SubscriptionElements({
           })}
         </ul>
       ) : (
-        <div className="loading-progress">
-          <CircularProgress
-            size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-          />
-        </div>
+        <NoItems />
       )}
       {overlay && (
         <ActivateServiceSubscription

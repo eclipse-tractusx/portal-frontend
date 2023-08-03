@@ -29,14 +29,21 @@ import {
   useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
+import { useState } from 'react'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 export const AppArea = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const subscriptionStatus = useFetchSubscriptionStatusQuery().data
+  const {
+    data: subscriptionStatus,
+    isFetching,
+    isLoading,
+  } = useFetchSubscriptionStatusQuery()
   const cards = subscriptionStatus?.content.filter(
     (app) => app.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
   )
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   return (
     <section id="access-management-id">
@@ -46,57 +53,66 @@ export const AppArea = () => {
           variant="h3"
         />
       </div>
-      <Carousel
-        gapToDots={5}
-        position={cards && cards.length > 0 ? 'relative' : ''}
-      >
-        {cards && cards.length > 0
-          ? cards?.map((item: SubscriptionStatusItem) => {
-              return (
-                <Card
-                  {...item}
-                  title={item.name ?? ''}
-                  subtitle={item.provider}
-                  key={item.appId}
-                  buttonText="Details"
-                  imageSize="small"
-                  imageShape="round"
-                  imageLoader={fetchImageWithToken}
-                  variant="minimal"
-                  expandOnHover={false}
-                  filledBackground={true}
-                  onClick={() => {
-                    navigate(`/appusermanagement/${item.appId}`)
-                  }}
-                />
-              )
-            })
-          : Array.from(Array(2), (_item, i) => (
-              <Box
-                key={i}
-                sx={{
-                  height: '240px',
-                  border: '3px dashed #7f7f7f',
-                  borderRadius: '15px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  padding: '15px',
-                }}
-              >
-                <Typography
+      {isProgress ? (
+        <LinearProgressWithValueLabel
+          isFetching={isFetching}
+          isLoading={isLoading}
+          callback={() => setIsProgress(false)}
+          progressText={'Loading list of active apps...'}
+        />
+      ) : (
+        <Carousel
+          gapToDots={5}
+          position={cards && cards.length > 0 ? 'relative' : ''}
+        >
+          {cards && cards.length > 0
+            ? cards?.map((item: SubscriptionStatusItem) => {
+                return (
+                  <Card
+                    {...item}
+                    title={item.name ?? ''}
+                    subtitle={item.provider}
+                    key={item.appId}
+                    buttonText="Details"
+                    imageSize="small"
+                    imageShape="round"
+                    imageLoader={fetchImageWithToken}
+                    variant="minimal"
+                    expandOnHover={false}
+                    filledBackground={true}
+                    onClick={() => {
+                      navigate(`/appusermanagement/${item.appId}`)
+                    }}
+                  />
+                )
+              })
+            : Array.from(Array(2), (_item, i) => (
+                <Box
+                  key={i}
                   sx={{
-                    color: '#7f7f7f',
+                    height: '240px',
+                    border: '3px dashed #7f7f7f',
+                    borderRadius: '15px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    padding: '15px',
                   }}
-                  variant="body2"
                 >
-                  {t('content.usermanagement.apparea.appsNotAvailable')}
-                </Typography>
-              </Box>
-            ))}
-      </Carousel>
+                  <Typography
+                    sx={{
+                      color: '#7f7f7f',
+                    }}
+                    variant="body2"
+                  >
+                    {t('content.usermanagement.apparea.appsNotAvailable')}
+                  </Typography>
+                </Box>
+              ))}
+        </Carousel>
+      )}
     </section>
   )
 }

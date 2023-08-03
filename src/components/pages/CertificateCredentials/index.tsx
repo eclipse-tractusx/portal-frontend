@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useReducer, useCallback } from 'react'
+import { useReducer, useCallback, useState } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
@@ -33,6 +33,7 @@ import './CertificateCredentials.scss'
 import { OVERLAYS } from 'types/Constants'
 import { useFetchCertificatesQuery } from 'features/certification/certificationApiSlice'
 import CertificateElements from './CertificateElements'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 enum FilterType {
   UPLOADED = 'Uploaded',
@@ -104,7 +105,7 @@ export default function CertificateCredentials() {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const { data } = useFetchCertificatesQuery()
+  const { data, isFetching, isLoading } = useFetchCertificatesQuery()
 
   const [{ searchExpr, showModal, selected, sortOption }, setState] =
     useReducer(reducer, initialState)
@@ -116,6 +117,8 @@ export default function CertificateCredentials() {
     })
     setState({ type: ActionKind.SET_SELECTED, payload: e.currentTarget.value })
   }
+
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   const sortOptions = [
     {
@@ -230,7 +233,16 @@ export default function CertificateCredentials() {
                 {t('content.certificates.uploadCertificate')}
               </Button>
             </div>
-            <CertificateElements data={data} />
+            {isProgress ? (
+              <LinearProgressWithValueLabel
+                isFetching={isFetching}
+                isLoading={isLoading}
+                callback={() => setIsProgress(false)}
+                progressText={'Loading certificates...'}
+              />
+            ) : (
+              <CertificateElements data={data} />
+            )}
           </div>
 
           <div style={{ height: '66px' }}></div>

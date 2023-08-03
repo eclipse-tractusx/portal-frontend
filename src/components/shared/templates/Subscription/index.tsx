@@ -18,9 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useCallback, useMemo, useReducer } from 'react'
+import { useEffect, useCallback, useMemo, useReducer, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
 import {
@@ -43,6 +42,7 @@ import { SubscriptionRequestType } from 'features/serviceSubscription/serviceSub
 import { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
 import SortImage from 'components/shared/frame/SortImage'
+import LinearProgressWithValueLabel from 'components/shared/basic/Progress/LinearProgressWithValueLabel'
 
 export enum SubscriptionTypes {
   APP_SUBSCRIPTION = 'app',
@@ -265,7 +265,6 @@ export default function Subscription({
   type = SubscriptionTypes.APP_SUBSCRIPTION,
 }: SubscriptionType) {
   const dispatch = useDispatch()
-  const theme = useTheme()
   const [
     {
       searchExpr,
@@ -299,9 +298,10 @@ export default function Subscription({
     }
   }, [appFiltersData, type])
 
-  const { data, refetch, isFetching } = fetchQuery(fetchArgs)
+  const { data, refetch, isFetching, isLoading } = fetchQuery(fetchArgs)
   const isSuccess = useSelector(currentProviderSuccessType)
   const success: boolean = useSelector(currentSuccessType)
+  const [isProgress, setIsProgress] = useState<boolean>(true)
 
   useEffect(() => {
     if (data && data?.content) {
@@ -512,7 +512,7 @@ export default function Subscription({
                 />
               </div>
             </div>
-            {appFilters && appFilters.length > 0 && (
+            {appFilters && appFilters.length > 0 && !isProgress && (
               <div className="appFilterSection">
                 {appFilters.map((app: AppFiltersResponse) => {
                   return (
@@ -530,15 +530,13 @@ export default function Subscription({
                 })}
               </div>
             )}
-            {!subscriptions ? (
-              <div className="loading-progress">
-                <CircularProgress
-                  size={50}
-                  sx={{
-                    color: theme.palette.primary.main,
-                  }}
-                />
-              </div>
+            {isProgress ? (
+              <LinearProgressWithValueLabel
+                isFetching={isFetching}
+                isLoading={isLoading}
+                callback={() => setIsProgress(false)}
+                progressText={'Loading list of subscriptions...'}
+              />
             ) : (
               <SubscriptionElements
                 subscriptions={cardSubscriptions}
@@ -551,7 +549,8 @@ export default function Subscription({
           {!isFetching &&
             subscriptions?.length > 0 &&
             data?.meta &&
-            data?.meta?.totalPages > page + 1 && (
+            data?.meta?.totalPages > page + 1 &&
+            !isProgress && (
               <div
                 style={{
                   textAlign: 'center',
