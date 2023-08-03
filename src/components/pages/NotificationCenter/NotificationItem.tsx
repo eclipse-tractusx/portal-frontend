@@ -81,13 +81,15 @@ const NotificationContent = ({
   const userId = item.contentParsed?.userId
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
-  const appName = item.contentParsed?.AppName
+  const appName = item.contentParsed?.AppName ?? item.contentParsed?.appName
   const companyName = item.contentParsed?.RequestorCompanyName
   const offerName = item.contentParsed?.OfferName
   const userName = item.contentParsed?.username
   const coreOfferName = item.contentParsed?.coreOfferName
   const removedRoles = item.contentParsed?.removedRoles
   const addedRoles = item.contentParsed?.addedRoles
+  const credentialType = item.contentParsed?.type
+  const newUrl = item.contentParsed?.newUrl
 
   return (
     <>
@@ -104,6 +106,8 @@ const NotificationContent = ({
             coreOfferName: coreOfferName,
             removedRoles: removedRoles ? removedRoles : '-',
             addedRoles: addedRoles ? addedRoles : '-',
+            credentialType: credentialType,
+            newUrl: newUrl,
           }}
         >
           <NameLink
@@ -197,6 +201,12 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return <NotificationContent item={item} />
     case NotificationType.ROLE_UPDATE_CORE_OFFER:
       return <NotificationContent item={item} navlinks={[PAGES.ROLE_DETAILS]} />
+    case NotificationType.CREDENTIAL_APPROVAL:
+      return <NotificationContent item={item} />
+    case NotificationType.CREDENTIAL_REJECTED:
+      return <NotificationContent item={item} />
+    case NotificationType.SUBSCRIPTION_URL_UPDATE:
+      return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -317,6 +327,7 @@ export default function NotificationItem({
               {t(`${item.typeId}.title`, {
                 app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
                 offer: item.contentParsed?.OfferName,
+                credentialType: item.contentParsed?.type,
               })}
             </Typography>
             {open && (
