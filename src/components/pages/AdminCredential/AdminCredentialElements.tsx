@@ -88,7 +88,7 @@ export default function AdminCredentialElements() {
   }, [filterStatus, searchExpr])
 
   const onValidate = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
+    const validateExpr = /^[ A-Za-z0-9]{1,1000}$/.test(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
