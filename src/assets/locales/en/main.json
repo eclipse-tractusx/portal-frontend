@@ -930,7 +930,7 @@
         "salesManager": "Sales Manager",
         "salesManagerPlaceholder": "Please select a Sales Manager",
         "salesManagerDescription": "Please select the app sales manager via the dropdown below. The sales manager can only get set if a user of your company has the respective portal role. The sales manager will get informed as soon as a app subscribtion request is triggered by the customer.",
-        "pricingInformation": "Pricing Information (e.g. free / charged ( to be defined)",
+        "pricingInformation": "Pricing Information (e.g. free / charged (to be defined))",
         "appLeadImageUpload": "App Lead Image Upload"
       },
       "appPage": {
@@ -967,14 +967,14 @@
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "step1Header": "1. User Role Upload *",
+        "step1Header": "1. User Role Upload",
         "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Technical User Setup *",
+        "step2Header": "2. Technical User Setup",
         "step2HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of Roles uploaded",
@@ -1477,7 +1477,7 @@
         "uploadDocumentTitle": "Please upload your certificate proof:",
         "note": "Please upload only pdf files with maximum 1 MB.",
         "descriptionLabel": "Description for verification",
-        "error": "Something went wrong!",
+        "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
       },
       "successCertificate": {

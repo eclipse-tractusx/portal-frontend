@@ -324,7 +324,10 @@ export default function TechnicalIntegration() {
 
       <form className="header-description">
         <Typography variant="h5" mb={2}>
-          {t('content.apprelease.technicalIntegration.step1Header')}
+          <>
+            {t('content.apprelease.technicalIntegration.step1Header')}
+            <span style={{ color: 'red' }}> *</span>
+          </>
         </Typography>
         <Typography variant="body2" mb={4}>
           {t('content.apprelease.technicalIntegration.step1HeaderDescription')}
@@ -552,7 +555,10 @@ export default function TechnicalIntegration() {
         )}
         <Divider className="form-divider" />
         <Typography variant="h5" mb={2}>
-          {t('content.apprelease.technicalIntegration.step2Header')}
+          <>
+            {t('content.apprelease.technicalIntegration.step2Header')}
+            <span style={{ color: 'red' }}> *</span>
+          </>
         </Typography>
         <Typography variant="body2" mb={4}>
           {t('content.apprelease.technicalIntegration.step2HeaderDescription')}
