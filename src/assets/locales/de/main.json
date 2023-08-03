@@ -1536,7 +1536,7 @@
         "uploadDocumentTitle": "Please upload your certificate proof:",
         "note": "Please upload only pdf files with maximum 1 MB.",
         "descriptionLabel": "Description for verification",
-        "error": "Something went wrong!",
+        "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
       },
       "successCertificate": {
