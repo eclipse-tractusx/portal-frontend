@@ -27,6 +27,7 @@ import {
   CircleProgress,
   Typography,
 } from '@catena-x/portal-shared-components'
+import { Link } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -44,6 +45,8 @@ import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetai
 import { ServerResponseOverlay } from '../ServerResponse'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import './TechnicalUserAddForm.scss'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -186,15 +189,18 @@ export const AddTechnicalUser = () => {
             onCloseWithIcon={handleDispatch}
           />
           <DialogContent>
+            <Link
+              to="/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User"
+              target="_blank"
+            >
+              <Typography variant="caption2" className="helpText">
+                <HelpOutlineIcon />
+                {t('content.addUser.help')}
+              </Typography>
+            </Link>
             <TechnicalUserAddForm
               {...{ handleSubmit, control, errors, trigger }}
             />
-            <Box sx={{ paddingTop: '25px' }}>
-              <UserDetailCard
-                cardContentItems={userDetailsData.cardContentItems}
-                variant="wide"
-              />
-            </Box>
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={handleDispatch}>

@@ -83,13 +83,25 @@
     "title": "Assigned User Roles Updated - {{app}}",
     "content": "Hallo {{username}}, \n\nyour app user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find all details regarding the role change below. \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
   },
+  "CREDENTIAL_APPROVAL": {
+    "title": "Verified Credential {{credentialType}} assigned",
+    "content": "Verified Credential {{credentialType}} got assigned to your company wallet."
+  },
+  "CREDENTIAL_REJECTED": {
+    "title": "Verified Credential {{credentialType}} declined",
+    "content": "Verified Credential {{credentialType}} got declined. You can start a new request immediately."
+  },
+  "SUBSCRIPTION_URL_UPDATE": {
+    "title": "App URL {{app}} updated",
+    "content": "The app provider has changed the stored App Instance URL for your subscribed app {{app}}.\n\nNew URL: {{newUrl}}"
+  },
   "link": {
     "appmarketplace": "Go to app marketplace",
     "technicalsetup": "Go to connector configuration",
     "home": "Go to home page",
     "app": "Go to app",
     "user": "Go to user",
-    "usecases": "Go to use cases",
+    "usecase": "Go to Use Case",
     "serviceprovider": "Go to service provider",
     "appmanagementboard": "Get there",
     "servicemanagementboard": "Get there",

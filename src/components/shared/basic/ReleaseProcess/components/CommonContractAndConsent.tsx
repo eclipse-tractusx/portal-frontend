@@ -20,7 +20,7 @@
 
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 import {
@@ -68,7 +68,7 @@ type CommonConsentType = {
   stepperTitle: string
   stepperDescription: string
   checkBoxMandatoryText: string
-  imageFieldLabel?: string
+  imageFieldLabel?: ReactElement
   pageSnackbarDescription: string
   pageNotificationObject: {
     title: string
