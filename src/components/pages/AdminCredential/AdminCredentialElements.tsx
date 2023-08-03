@@ -38,12 +38,6 @@ import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
 
-export interface DummyData {
-  date: string
-  companyInfo: string
-  certificate: string
-}
-
 enum FilterType {
   ALL = 'all',
   OPEN = 'open',
@@ -73,9 +67,12 @@ export default function AdminCredentialElements() {
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
-    if (viewValue === FilterType.OPEN) setFilterValueAPI('PENDING')
-    if (viewValue === FilterType.CONFIRMED) setFilterValueAPI('ACTIVE')
-    if (viewValue === FilterType.DECLINED) setFilterValueAPI('INACTIVE')
+    if (viewValue === FilterType.OPEN)
+      setFilterValueAPI(SubscriptionStatus.PENDING)
+    if (viewValue === FilterType.CONFIRMED)
+      setFilterValueAPI(SubscriptionStatus.ACTIVE)
+    if (viewValue === FilterType.DECLINED)
+      setFilterValueAPI(SubscriptionStatus.INACTIVE)
     setFilterStatus(viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
@@ -88,7 +85,6 @@ export default function AdminCredentialElements() {
         expr: searchExpr,
       })
     }
-    // eslint-disable-next-line
   }, [filterStatus, searchExpr])
 
   const onValidate = (expr: string) => {

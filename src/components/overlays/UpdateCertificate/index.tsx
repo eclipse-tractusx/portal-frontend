@@ -66,7 +66,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
         await addCertificate(data).unwrap()
         setSubmitClicked(true)
       }
-    } catch (err: unknown) {
+    } catch (err: any) {
       setLoading(false)
       error(
         t('content.certificates.updateCertificate.error') +

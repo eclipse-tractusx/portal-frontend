@@ -60,6 +60,7 @@ export const AppListGroup = ({
         items={itemsToShow}
         variant={'compact'}
         expandOnHover={true}
+        boxClickable={true}
       />
     </>
   )
