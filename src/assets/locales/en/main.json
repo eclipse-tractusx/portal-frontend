@@ -780,11 +780,13 @@
       "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Select CX Portal User Role",
+      "help": "Help",
       "helperText": "Please enter all required information before proceeding.",
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Service",
+          "serviceSubHeading": "Select one service roles:",
           "username": "Username",
           "description": "Description",
           "spocHeadline": "Single Point of Contact (SPoC)",
