@@ -28,7 +28,6 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Link } from 'react-router-dom'
-import { Box } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useForm } from 'react-hook-form'
@@ -43,7 +42,6 @@ import { useState } from 'react'
 import { updateData, UPDATES } from 'features/control/updates'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'
-import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import './TechnicalUserAddForm.scss'
@@ -56,7 +54,6 @@ export const AddTechnicalUser = () => {
 
   const [addServiceAccount] = useAddServiceAccountMutation()
   const [loading, setLoading] = useState<boolean>(false)
-  const { data } = useFetchOwnUserDetailsQuery()
 
   const handleConfirm = async (formValues: DefaultFormFieldValuesType) => {
     setLoading(true)
@@ -78,24 +75,6 @@ export const AddTechnicalUser = () => {
       setError(true)
     }
     //openAddTechnicalUserResponseOverlay()
-  }
-
-  const userDetailsData = {
-    cardCategory: t('content.addUser.technicalUser.addOverlay.spocHeadline'),
-    cardContentItems: {
-      organizsationName: {
-        label: t('content.addUser.technicalUser.addOverlay.org'),
-        value: data ? data.company : '',
-      },
-      username: {
-        label: t('content.addUser.technicalUser.addOverlay.name'),
-        value: data ? `${data.firstName} ${data.lastName}` : '',
-      },
-      eMailAddress: {
-        label: t('content.addUser.technicalUser.addOverlay.email'),
-        value: data ? data.email : '',
-      },
-    },
   }
 
   const defaultFormFieldValues = {

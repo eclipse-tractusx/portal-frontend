@@ -785,7 +785,7 @@
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
-          "service": "Service",
+          "service": "Technical User Role",
           "serviceSubHeading": "Select one service roles:",
           "username": "Username",
           "description": "Description",
