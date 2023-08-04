@@ -348,7 +348,6 @@ const ConnectorInsertForm = ({
                       name: 'ConnectorSubscriptionId',
                       rules: {
                         required: true,
-                        pattern: Patterns.connectors.CUSTOMER_LINK,
                       },
                       label: t(
                         'content.edcconnector.modal.insertform.subscription.label'
