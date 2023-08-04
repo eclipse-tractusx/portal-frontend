@@ -81,11 +81,9 @@ const TechnicalUserAddFormSelect = ({
                   display: 'flex',
                 }}
               />
-              {role.roleDescription && (
-                <Typography variant="caption3" className="roleDescription">
-                  {role.roleDescription}
-                </Typography>
-              )}
+              <Typography variant="caption3" className="roleDescription">
+                {role.roleDescription ?? '-'}
+              </Typography>
             </>
           ))}
           {!!errors[name] && (
