@@ -209,13 +209,16 @@
     "longDescriptionTitleEN": "Description - English",
     "longDescriptionTitleDE": "Description - German",
     "backToBoard": "Back to Admin Board",
+    "noDocumentsAvailable": "No documents available",
     "documents": {
       "heading": "Documents",
       "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
     },
     "provider": {
       "heading": "Provider Information",
-      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+      "homepage": "Homepage",
+      "email": "E-Mail"
     },
     "technicalUserSetup": {
       "heading": "Technical User Setup",

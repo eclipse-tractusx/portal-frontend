@@ -34,28 +34,33 @@ export default function MarketplaceTechnicalUserSetup({
     return data && data?.length > 0 ? (
       data?.map((item: string) => (
         <Grid container spacing={2} sx={{ margin: '0px' }} key={item}>
-          <Grid item xs={12}>
-            <Typography variant="subtitle2">* {item}</Typography>
+          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+            <Typography variant="label3">* {item}</Typography>
           </Grid>
         </Grid>
       ))
     ) : (
-      <Typography variant="caption2" className="not-available" mt={2}>
-        {t('global.errors.noTechnicalUserProfilesAvailable')}
-      </Typography>
+      <Grid spacing={2} margin={'0px'} container>
+        <Typography
+          sx={{ textAlign: 'center', width: '100%' }}
+          variant="label3"
+        >
+          {t('global.errors.noTechnicalUserProfilesAvailable')}
+        </Typography>
+      </Grid>
     )
   }
 
   return (
-    <div style={{ marginBottom: '50px' }}>
-      <Typography variant="h4">
+    <>
+      <Typography variant="h3">
         {t('content.appdetail.technicalUserSetup.heading')}
       </Typography>
-      <Typography variant="body2">
+      <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.appdetail.technicalUserSetup.message')}
       </Typography>
       {item.technicalUserProfile &&
         getTechUserInfo(Object.values(item?.technicalUserProfile)[0])}
-    </div>
+    </>
   )
 }

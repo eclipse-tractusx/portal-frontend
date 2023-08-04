@@ -51,11 +51,11 @@ export default function BoardPrivacy({ item }: { item: AppDetails }) {
   return (
     <div className="board-privacy">
       <div className="privacy-content">
-        <Typography variant="h4">{t('heading')}</Typography>
+        <Typography variant="h3">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
       </div>
       {item.privacyPolicies && item.privacyPolicies.length ? (
-        <div className="policies-list">
+        <div className="policies-list app-policies">
           {item.privacyPolicies.map((policy: PrivacyPolicyType) => (
             <Typography
               variant="body2"
@@ -68,7 +68,7 @@ export default function BoardPrivacy({ item }: { item: AppDetails }) {
           ))}
         </div>
       ) : (
-        <Typography variant="body2" className="table-text">
+        <Typography variant="body2" sx={{ textAlign: 'center' }}>
           {t('notSupportedMessage')}
         </Typography>
       )}
