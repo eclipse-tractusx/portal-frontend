@@ -242,10 +242,13 @@
           "none": "Nicht kategorisiert",
           "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
-          "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
+          "qualitymanagement": "Bedarfs- & Qualitätsmanagement",
           "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
           "traceability": "Rückverfolgbarkeit",
-          "manufacturingasaservice": "Produzieren als Dienst"
+          "manufacturingasaservice": "Produzieren als Dienst",
+          "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
+          "real-timecontrol": "Real Time Control",
+          "modularproduction ": "Modular Production"
         },
         "noMatch": "Keine Treffer",
         "for": "für"
