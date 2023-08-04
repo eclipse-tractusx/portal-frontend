@@ -20,6 +20,7 @@
 
 import { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum StatusEnum {
@@ -101,11 +102,17 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ['certificate'],
     }),
-    fetchCredentials: builder.query<CredentialResponse[], PaginFetchArgs>({
-      query: (fetchArgs) => ({
-        url: `api/administration/companydata/credentials?page=${fetchArgs.page}`,
-      }),
-    }),
+    fetchCredentialsSearch: builder.query<CredentialResponse[], PaginFetchArgs>(
+      {
+        query: (fetchArgs) => ({
+          url: `api/administration/companydata/credentials?page=${
+            fetchArgs.page
+          }&size=${PAGE_SIZE}&companyName=${
+            fetchArgs.args.expr ?? ''
+          }&companySsiDetailStatusId=${fetchArgs.args.filterType ?? ''}`,
+        }),
+      }
+    ),
     approveCredential: builder.mutation<boolean, string>({
       query: (credentialId) => ({
         url: `api/administration/companydata/credentials/${credentialId}/approval`,
@@ -124,7 +131,7 @@ export const apiSlice = createApi({
 export const {
   useFetchCertificatesQuery,
   useAddCertificateMutation,
-  useFetchCredentialsQuery,
+  useFetchCredentialsSearchQuery,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
 } = apiSlice

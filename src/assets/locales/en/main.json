@@ -541,9 +541,10 @@
             "tooltipMsg": "Upload the certificate that contains your connector's public key information."
           },
           "subscription": {
-            "label": "Customer Link",
+            "label": "Customer Link*",
             "placeholder": "Select the related subscription",
-            "tooltipMsg": "Select the related subscription"
+            "tooltipMsg": "Select the related subscription",
+            "error": "Customer link is mandatory"
           }
         },
         "create": {
@@ -788,7 +789,7 @@
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
-          "service": "Service",
+          "service": "Technical User Role",
           "serviceSubHeading": "Select one service roles:",
           "username": "Username",
           "description": "Description",
@@ -1502,7 +1503,7 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "...search for certificate type",
+      "search": "...search for Company Name",
       "tabs": {
         "all": "All",
         "open": "Open",

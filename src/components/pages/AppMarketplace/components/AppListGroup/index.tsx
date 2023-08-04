@@ -62,6 +62,7 @@ export const AppListGroup = ({
         variant={'compact'}
         expandOnHover={true}
         imageLoader={fetchImageWithToken}
+        boxClickable={true}
       />
     </>
   )

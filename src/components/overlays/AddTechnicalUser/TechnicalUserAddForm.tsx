@@ -54,7 +54,10 @@ const TechnicalUserAddFormSelect = ({
     <Controller
       render={({ field: { onChange, value } }) => (
         <Box className="technicalUserForm">
-          <InputLabel error={!!errors[name]} sx={{ marginBottom: '7px' }}>
+          <InputLabel
+            error={!!errors[name]}
+            sx={{ marginBottom: '7px', color: '#000' }}
+          >
             {t('content.addUser.technicalUser.addOverlay.service')}
           </InputLabel>
           <Typography variant="caption3">
@@ -116,7 +119,10 @@ const TechnicalUserAddFormTextfield = ({
     <Controller
       render={({ field: { onChange, value } }) => (
         <>
-          <InputLabel error={!!errors[name]} sx={{ marginBottom: '7px' }}>
+          <InputLabel
+            error={!!errors[name]}
+            sx={{ marginBottom: '7px', color: '#000' }}
+          >
             {label}
           </InputLabel>
           <TextField

@@ -542,9 +542,10 @@
             "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           },
           "subscription": {
-            "label": "Customer Link",
+            "label": "Customer Link*",
             "placeholder": "Select the related subscription",
-            "tooltipMsg": "Select the related subscription"
+            "tooltipMsg": "Select the related subscription",
+            "error": "Customer link is mandatory"
           }
         },
         "create": {
@@ -790,7 +791,7 @@
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst",
+          "service": "Technical User Role",
           "serviceSubHeading": "Select one service roles:",
           "username": "Username",
           "description": "Beschreibung",
@@ -1496,7 +1497,7 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "Suchen via Zertifikatstyp",
+      "search": "Suchen via Name der Firma",
       "tabs": {
         "all": "Alle",
         "open": "Offen",

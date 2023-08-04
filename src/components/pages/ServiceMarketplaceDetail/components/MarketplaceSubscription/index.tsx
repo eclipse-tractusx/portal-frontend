@@ -32,11 +32,13 @@ export default function MarketplaceSubscription({
 
   return (
     <div className="marketplace-subscriptions">
-      <Typography variant="body2" className="subscription-main-heading">
-        {t('content.serviceMarketplace.subscriptionHeading').replace(
-          '{serviceName}',
-          item.title
-        )}
+      <Typography variant="body2" sx={{ color: '#0d55af' }}>
+        <b>
+          {t('content.serviceMarketplace.subscriptionHeading').replace(
+            '{serviceName}',
+            item.title
+          )}
+        </b>
       </Typography>
       <div className="subscriptions-content">
         {item.offerSubscriptionDetailData.map((data) => (

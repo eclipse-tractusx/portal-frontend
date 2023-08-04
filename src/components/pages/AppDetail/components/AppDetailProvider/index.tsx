@@ -25,7 +25,6 @@ import {
   TableType,
 } from '@catena-x/portal-shared-components'
 import { AppDetails } from 'features/apps/apiSlice'
-import './AppDetailProvider.scss'
 
 export default function AppDetailProvider({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
@@ -43,11 +42,11 @@ export default function AppDetailProvider({ item }: { item: AppDetails }) {
   }
 
   return (
-    <div className="appdetail-provider" id="provider-info">
-      <div className="provider-content">
-        <Typography variant="h4">{t('heading')}</Typography>
-        <Typography variant="body2">{t('message')}</Typography>
-      </div>
+    <div id="provider-info">
+      <Typography variant="h3">{t('heading')}</Typography>
+      <Typography variant="body2" sx={{ mb: 3 }}>
+        {t('message')}
+      </Typography>
       <StaticTable data={tableData} horizontal={true} />
     </div>
   )
