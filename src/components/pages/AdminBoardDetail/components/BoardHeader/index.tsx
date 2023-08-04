@@ -27,6 +27,11 @@ import CommonService from 'services/CommonService'
 import './BoardHeader.scss'
 import { Grid } from '@mui/material'
 
+enum CardDetails {
+  LANGUAGE = 'language',
+  USECASE = 'useCase',
+  PRICE = 'price',
+}
 export interface AppDetailHeaderProps {
   item: AppDetails
 }
@@ -58,9 +63,9 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
   }
 
   const getAppData = (field: string) => {
-    if (field === 'language') return item?.languages.join(', ')
-    else if (field === 'useCase') return item?.useCases.join(', ')
-    else if (field === 'price') return item?.price
+    if (field === CardDetails.LANGUAGE) return item?.languages.join(', ')
+    else if (field === CardDetails.USECASE) return item?.useCases.join(', ')
+    else if (field === CardDetails.PRICE) return item?.price
   }
 
   return (
@@ -76,14 +81,16 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
           {item.title}
         </Typography>
         <Grid md={8}>
-          {['language', 'useCase', 'price'].map((field) => (
-            <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>
-              <Typography variant="body2">
-                {t(`content.apprelease.validateAndPublish.${field}`)}
-                {getAppData(field)}
-              </Typography>
-            </div>
-          ))}
+          {[CardDetails.LANGUAGE, CardDetails.USECASE, CardDetails.PRICE].map(
+            (field) => (
+              <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>
+                <Typography variant="body2">
+                  {t(`content.apprelease.validateAndPublish.${field}`)}
+                  {getAppData(field)}
+                </Typography>
+              </div>
+            )
+          )}
         </Grid>
       </div>
     </div>

@@ -41,6 +41,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
 
+enum TableData {
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+}
+
 export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
@@ -207,10 +212,13 @@ export default function ServiceAdminBoardDetail() {
           </Typography>
           <StaticTable
             data={{
-              head: ['Homepage', 'E-Mail'],
+              head: [
+                t('adminboardDetail.provider.homepage'),
+                t('adminboardDetail.provider.email'),
+              ],
               body: [
                 [
-                  serviceData.providerUri === 'ERROR'
+                  serviceData.providerUri === TableData.ERROR
                     ? ''
                     : serviceData.providerUri,
                 ],
