@@ -539,9 +539,10 @@
             "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           },
           "subscription": {
-            "label": "Customer Link",
+            "label": "Customer Link*",
             "placeholder": "Select the related subscription",
-            "tooltipMsg": "Select the related subscription"
+            "tooltipMsg": "Select the related subscription",
+            "error": "Customer link is mandatory"
           }
         },
         "create": {
