@@ -18,9 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Cards, CategoryDivider } from '@catena-x/portal-shared-components'
-import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Cards, CategoryDivider } from '@catena-x/portal-shared-components'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const AppListGroup = ({
   category,
@@ -60,6 +61,7 @@ export const AppListGroup = ({
         items={itemsToShow}
         variant={'compact'}
         expandOnHover={true}
+        imageLoader={fetchImageWithToken}
       />
     </>
   )
