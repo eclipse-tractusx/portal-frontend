@@ -64,7 +64,7 @@ export default function MarketplaceDocuments({
       <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.serviceMarketplace.document.message')}
       </Typography>
-      {item.documents && item.documents[DocumentTypeId.ADDITIONAL_DETAILS] ? (
+      {item?.documents[DocumentTypeId.ADDITIONAL_DETAILS] ? (
         item.documents[DocumentTypeId.ADDITIONAL_DETAILS].map(
           (document: DocumentData) => (
             <li className="service-documents" key={document.documentId}>
