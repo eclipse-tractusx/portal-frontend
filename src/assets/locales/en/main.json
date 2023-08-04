@@ -1499,7 +1499,7 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "...search for certificate type",
+      "search": "...search for Company Name",
       "tabs": {
         "all": "All",
         "open": "Open",

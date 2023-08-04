@@ -1493,7 +1493,7 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "Suchen via Zertifikatstyp",
+      "search": "Suchen via Name der Firma",
       "tabs": {
         "all": "Alle",
         "open": "Offen",
