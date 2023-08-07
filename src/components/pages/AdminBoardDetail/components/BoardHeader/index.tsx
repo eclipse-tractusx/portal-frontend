@@ -80,7 +80,7 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
         <Typography variant="h2" sx={{ mb: 1.5, mt: 1.5 }}>
           {item.title}
         </Typography>
-        <Grid md={8}>
+        <Grid md={8} item>
           {[CardDetails.LANGUAGE, CardDetails.USECASE, CardDetails.PRICE].map(
             (field) => (
               <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>

@@ -35,22 +35,42 @@ import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
 import './AdminBoardDetail.scss'
 import BoardTechnicalUserSetup from './components/BoardTechnicalUserSetup'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [images, setImages] = useState<any>()
+  const [images, setImages] = useState<any>([])
+  console.log('images', images)
 
   useEffect(() => {
     if (item) {
-      const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
-      Promise.all(newPromies)
-        .then((result) => {
-          setImages(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      item.images?.map((image: any) => {
+        console.log('image', image)
+        let url = CommonService.getImageURL(image, item.id)
+        return fetchImageWithToken(url)
+          .then((buffer) => {
+            const urlObj = {
+              url: URL.createObjectURL(
+                new Blob([buffer], { type: 'image/png' })
+              ),
+              text: '',
+            }
+            console.log('urlObj', urlObj)
+            setImages((oldArray: any) => [...oldArray, urlObj])
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      })
+      // const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
+      // Promise.all(newPromies)
+      //   .then((result) => {
+      //     setImages(result.flat())
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
     }
   }, [item])
 

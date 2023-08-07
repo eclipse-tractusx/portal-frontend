@@ -91,6 +91,20 @@ const fetchLeadPictures = (images: string[], appId: string) => {
   return newPromies
 }
 
+const getImageURL = (image: any, appId: string) => {
+  let url = ''
+  if (!image.documentId) {
+    url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
+      image
+    )}`
+  } else {
+    url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
+      image.documentId
+    )}`
+  }
+  return url
+}
+
 const isValidPictureId = (id: string) => {
   return id === '00000000-0000-0000-0000-000000000000'
     ? '00000000-0000-0000-0000-000000000001'
@@ -156,6 +170,7 @@ const CommonService = {
   fetchLeadPictures,
   getRoleDescription,
   getCompanyRoleUpdateData,
+  getImageURL,
 }
 
 export default CommonService
