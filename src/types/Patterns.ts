@@ -113,5 +113,6 @@ export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
 export const isValidCancelInput = (expr: string) =>
   Patterns.CANCEL_INPUT.test(expr)
+export const isPhone = (expr: string) => Patterns.appPage.phone.test(expr)
 
 export default Patterns

@@ -29,6 +29,7 @@ import {
   isCountryCode,
   isFirstName,
   isLastName,
+  isPhone,
 } from './Patterns'
 
 const TESTDATA = {
@@ -183,6 +184,17 @@ const TESTDATA = {
       ' Julia Sophie ',
     ],
   },
+  PHONE: {
+    valid: ['+99 (999) 9999999999', '+99 9999999999', '+999999999999'],
+    invalid: [
+      '+99 (999) 9999999999 ',
+      '+99 9999999999 ',
+      '+999999999999 ',
+      '+490000000000000000',
+      '+999999999',
+      '+4900000000000000000000000',
+    ],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -250,5 +262,9 @@ describe('Input Pattern Tests', () => {
     TESTDATA.LASTNAME.invalid.forEach((expr) =>
       expect(isLastName(expr)).toBe(false)
     )
+  })
+  it('validates phone number', () => {
+    TESTDATA.PHONE.valid.forEach((expr) => expect(isPhone(expr)).toBe(true))
+    TESTDATA.PHONE.invalid.forEach((expr) => expect(isPhone(expr)).toBe(false))
   })
 })
