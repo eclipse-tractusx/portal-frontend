@@ -207,7 +207,7 @@ export enum ROLES {
   UPDATE_COMPANY_ROLE = 'update_company_role',
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
-  ADMIN_CREDENTIAL_DECISION = 'admin_credential_decision',
+  DECISION_SSICREDENTIAL = 'decision_ssicredential',
 }
 
 export enum HINTS {

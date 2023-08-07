@@ -55,10 +55,10 @@ export default function ChangeDescription() {
 
   const defaultValues = useMemo(() => {
     return {
-      longDescriptionEN: description?.[0].longDescription ?? '',
-      longDescriptionDE: description?.[1].longDescription ?? '',
-      shortDescriptionEN: description?.[0].shortDescription ?? '',
-      shortDescriptionDE: description?.[1].shortDescription ?? '',
+      longDescriptionEN: description?.[0]?.longDescription ?? '',
+      longDescriptionDE: description?.[1]?.longDescription ?? '',
+      shortDescriptionEN: description?.[0]?.shortDescription ?? '',
+      shortDescriptionDE: description?.[1]?.shortDescription ?? '',
     }
   }, [description])
 
@@ -247,7 +247,7 @@ export default function ChangeDescription() {
           <TabPanel value={activeTab} index={1}>
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string, i) => (
+                (item: string) => (
                   <div key={item}>
                     <ConnectorFormInputFieldShortAndLongDescription
                       {...{

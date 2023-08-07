@@ -52,49 +52,44 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
     }
   }
 
+  const renderNoDocs = () => {
+    return (
+      <Typography variant="label3" className="not-available">
+        {t('global.errors.noDocumentsAvailable')}
+      </Typography>
+    )
+  }
   return (
-    <div className="appdetail-documents" id="documents">
-      <div className="howtouse-content">
-        <Typography variant="h4">
-          {t('content.appdetail.howtouse.heading')}
-        </Typography>
-        <Typography variant="body2">
-          {t('content.appdetail.howtouse.message')}
-        </Typography>
-      </div>
-      <ul>
-        {item.documents && Object.keys(item.documents)?.length ? (
-          Object.keys(item.documents).map(
-            (document) =>
-              document !==
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS && (
-                <li className="document-list" key={document}>
-                  <ArticleOutlinedIcon className="document-icon" />
-                  <button
-                    className="document-button-link"
-                    onClick={() =>
-                      handleDownloadClick(
-                        item.documents[document as keyof Documents][0]
-                          .documentId,
-                        item.documents[document as keyof Documents][0]
-                          .documentName
-                      )
-                    }
-                  >
-                    {
+    <div id="documents">
+      <Typography variant="h3">
+        {t('content.appdetail.howtouse.heading')}
+      </Typography>
+      <Typography variant="body2" sx={{ mb: 3 }}>
+        {t('content.appdetail.howtouse.message')}
+      </Typography>
+      {item.documents && Object.keys(item.documents)?.length
+        ? Object.keys(item.documents).map((document) =>
+            document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS ? (
+              <li className="document-list" key={document}>
+                <ArticleOutlinedIcon className="document-icon" />
+                <button
+                  className="document-button-link"
+                  onClick={() =>
+                    handleDownloadClick(
+                      item.documents[document as keyof Documents][0].documentId,
                       item.documents[document as keyof Documents][0]
                         .documentName
-                    }
-                  </button>
-                </li>
-              )
+                    )
+                  }
+                >
+                  {item.documents[document as keyof Documents][0].documentName}
+                </button>
+              </li>
+            ) : (
+              renderNoDocs()
+            )
           )
-        ) : (
-          <Typography variant="caption2" className="not-available wd-70">
-            {t('global.errors.noDocumentsAvailable')}
-          </Typography>
-        )}
-      </ul>
+        : renderNoDocs()}
     </div>
   )
 }

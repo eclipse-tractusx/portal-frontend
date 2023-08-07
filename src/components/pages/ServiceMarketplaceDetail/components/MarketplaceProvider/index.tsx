@@ -42,12 +42,12 @@ export default function MarketplaceProvider({
   }
 
   return (
-    <div className="marketplace-provider">
-      <div className="marketplace-content">
-        <Typography variant="h4">{t('heading')}</Typography>
-        <Typography variant="body2">{t('message')}</Typography>
-      </div>
+    <>
+      <Typography variant="h3">{t('heading')}</Typography>
+      <Typography variant="body2" sx={{ mb: 3 }}>
+        {t('message')}
+      </Typography>
       <StaticTable data={tableData} horizontal={true} />
-    </div>
+    </>
   )
 }

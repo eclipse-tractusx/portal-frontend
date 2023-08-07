@@ -19,14 +19,16 @@
  ********************************************************************************/
 
 .appdetail-privacy {
-  padding-top: 85px;
   .privacy-content {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
+  }
+  .app-policies {
+    padding: 0 20px;
   }
   .policies-list {
     display: flex;
     flex-wrap: wrap;
-    max-width: 800px;
+    max-width: none;
     margin: 0 auto;
     .policy-name {
       width: 50%;
@@ -38,14 +40,5 @@
       font-size: 20;
       margin-right: 5px;
     }
-  }
-  .table-text {
-    max-width: 850px;
-    font-weight: 600;
-    text-align: center;
-    background-color: #ecf0f4;
-    padding: 2px;
-    border-radius: 5px;
-    margin: 0 auto;
   }
 }

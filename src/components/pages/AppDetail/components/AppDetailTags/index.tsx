@@ -26,7 +26,7 @@ export default function AppDetailTags({ item }: { item: AppDetails }) {
   const tags = item.tags
   return (
     <div className="appdetail-tags">
-      <Typography>Tags:</Typography>
+      <Typography variant="h3">Tags:</Typography>
       {tags.map((tag, i) => (
         <Chip key={i} label={tag} withIcon={false} type="plain" />
       ))}

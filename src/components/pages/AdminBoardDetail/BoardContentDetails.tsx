@@ -21,9 +21,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  ImageGallery,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import BoardHeader from './components/BoardHeader'
-import BoardImageGallery from './components/BoardImageGallery'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'
 import { AppDetails, DocumentTypeText } from 'features/apps/apiSlice'
@@ -55,13 +58,15 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
     item && (
       <>
         <BoardHeader item={item} />
+        <div className="divider-height" />
         <div className="product-description">
           {['longDescriptionTitleEN', 'longDescriptionTitleDE'].map((desc) => (
             <div key={desc}>
+              <Typography variant="h3" style={{ whiteSpace: 'pre-line' }}>
+                {t(`content.adminboardDetail.${desc}`)}
+              </Typography>
               <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-                <span style={{ fontWeight: 'bold' }}>
-                  {t(`content.adminboardDetail.${desc}`)}
-                </span>
+                {' '}
                 {
                   item?.description?.filter(
                     (lang: { languageCode: string }) =>
@@ -70,23 +75,30 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
                   )[0]?.longDescription
                 }
               </Typography>
+              <div className="divider-height" />
             </div>
           ))}
         </div>
-        {images && <BoardImageGallery images={images} />}
+        {images && <ImageGallery gallery={images} modalWidth="900" />}
+        <div className="divider-height" />
         <BoardPrivacy item={item} />
+        <div className="divider-height" />
         <BoardDocuments
           type={DocumentTypeText.CONFORMITY_DOCUMENT}
           appId={item.id}
           documents={item.documents}
         />
+        <div className="divider-height" />
         <BoardDocuments
           type={DocumentTypeText.DOCUMENTS}
           appId={item.id}
           documents={item.documents}
         />
+        <div className="divider-height" />
         <BoardRoles item={item} />
+        <div className="divider-height" />
         <BoardTechnicalUserSetup item={item} />
+        <div className="divider-height" />
         <BoardProvider item={item} />
         <Button
           color="secondary"

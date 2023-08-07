@@ -22,11 +22,11 @@ import { useEffect, useState } from 'react'
 import {
   Typography,
   Navigation,
+  ImageGallery,
   Button,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
-import AppDetailImageGallery from './components/AppDetailImageGallery'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailDocuments from './components/AppDetailDocuments'
 import AppDetailProvider from './components/AppDetailProvider'
@@ -35,6 +35,7 @@ import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
 import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
+import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 export default function AppDetailContentDetails({
@@ -88,9 +89,9 @@ export default function AppDetailContentDetails({
   return (
     item && (
       <>
-        <div className="appdetail-main-bg">
-          <div className="appdetail-back">
-            {showBack && (
+        <div className="app-marketplace-main">
+          {showBack && (
+            <Box className="app-back">
               <Button
                 color="secondary"
                 size="small"
@@ -98,9 +99,11 @@ export default function AppDetailContentDetails({
               >
                 {t('global.actions.back')}
               </Button>
-            )}
-          </div>
+            </Box>
+          )}
+
           <AppDetailHeader item={item} />
+          <div className="divider-height" />
         </div>
         <div className="navigation-main">
           <div className="navigation-list">
@@ -111,18 +114,30 @@ export default function AppDetailContentDetails({
             />
           </div>
         </div>
+        <div className="divider-height" />
         <div className="appdetail-main">
-          <div className="product-description" id="description">
-            <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+          <div id="description">
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
               {item.longDescription}
             </Typography>
           </div>
-          {images && <AppDetailImageGallery images={images} />}
+          <div className="divider-height" />
+          {images && (
+            <div id="image-gallery">
+              <ImageGallery gallery={images} modalWidth="900" />
+            </div>
+          )}
+          <div className="divider-height" />
           <AppDetailPrivacy item={item} />
+          <div className="divider-height" />
           <AppDetailDocuments item={item} />
+          <div className="divider-height" />
           <AppDetailTechUserSetup item={item} />
+          <div className="divider-height" />
           <AppDetailProvider item={item} />
+          <div className="divider-height" />
           <AppDetailTags item={item} />
+          <div className="divider-height" />
         </div>
       </>
     )

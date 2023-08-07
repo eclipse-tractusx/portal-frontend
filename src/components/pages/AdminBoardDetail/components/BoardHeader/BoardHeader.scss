@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 .adminboard-header {
-  margin: 30px -15px 94px -15px;
+  margin: 30px -15px 0px -15px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -46,33 +46,6 @@
       font-size: 16px;
       line-height: 24px;
       color: #888888;
-    }
-    .heading {
-      margin: 0 0 10px 0;
-      color: #111111;
-    }
-    ul {
-      display: flex;
-      align-items: center;
-      margin: 0 0 10px 0;
-      padding: 0;
-    }
-    .usecase,
-    .language,
-    .price {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      flex-wrap: wrap;
-      margin: 0 0 10px 0;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      color: #888888;
-      .head {
-        margin-right: 5px;
-        font-size: 16px;
-      }
     }
     .subscribed-success-btn {
       pointer-events: none;

@@ -17,40 +17,17 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.marketplace-header {
-  margin: 30px -15px 60px -15px;
-  display: -ms-flexbox;
+.service-marketplace-header {
+  width: 928px;
+  height: 288px;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  .lead-image img {
-    border-radius: 10px;
+  .lead-image > img {
+    border-radius: 16px;
+    width: '288px';
+    height: '288px';
   }
-  .content {
-    padding: 0 30px;
-    flex: 1;
-    .provider {
-      margin: 0 0 10px 0;
-      padding: 0;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      color: #888888;
-    }
-    .heading {
-      margin: 0 0 10px 0;
-      color: #111111;
-    }
-    .price {
-      padding: 0;
-      margin: 0 0 10px 0;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 28px;
-      color: #888888;
-    }
-    .subscribe-btn {
-      margin-top: 40px;
-    }
+  .marketplace-app-content {
+    padding: 0px 0px 0px 56px;
   }
 }

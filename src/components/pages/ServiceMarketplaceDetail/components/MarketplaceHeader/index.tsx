@@ -29,6 +29,7 @@ import UserService from 'services/UserService'
 import './MarketplaceHeader.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { getAssetBase } from 'services/EnvironmentService'
+import { Box } from '@mui/material'
 
 export default function MarketplaceHeader({
   item,
@@ -85,28 +86,28 @@ export default function MarketplaceHeader({
   }
 
   return (
-    <div className="marketplace-header">
+    <div className="service-marketplace-header">
       <div className="lead-image">
         <img
           src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
           alt={item.title}
         />
       </div>
-      <div className="content">
-        <Typography variant="body2" className="provider">
+      <Box className="marketplace-app-content">
+        <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
           {item.provider}
         </Typography>
-        <Typography variant="h4" className="heading">
+        <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
           {item.title}
         </Typography>
-        <Typography variant="body2" className="provider">
+        <Typography variant="body2" sx={{ pb: '2px' }}>
           {getAllServices(item.serviceTypes)}
         </Typography>
-        <Typography variant="body2" className="price">
+        <Typography variant="body2" sx={{ pb: '18px' }}>
           {item.price}
         </Typography>
         {getSubscribeBtn()}
-      </div>
+      </Box>
     </div>
   )
 }

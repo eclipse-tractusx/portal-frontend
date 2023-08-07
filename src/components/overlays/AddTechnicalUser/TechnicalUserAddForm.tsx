@@ -18,16 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import InputLabel from '@mui/material/InputLabel'
 import { Controller } from 'react-hook-form'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
 import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
+import { Radio, Typography } from '@catena-x/portal-shared-components'
 import {
   ServiceAccountRole,
   useFetchServiceAccountRolesQuery,
@@ -48,36 +48,44 @@ const TechnicalUserAddFormSelect = ({
 }: any) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
+  const [selectedValue, setSelectedValue] = useState<string>()
 
   return (
     <Controller
       render={({ field: { onChange, value } }) => (
-        <>
-          <InputLabel error={!!errors[name]} sx={{ marginBottom: '7px' }}>
+        <Box className="technicalUserForm">
+          <InputLabel
+            error={!!errors[name]}
+            sx={{ marginBottom: '7px', color: '#000' }}
+          >
             {t('content.addUser.technicalUser.addOverlay.service')}
           </InputLabel>
-          <Select
-            error={!!errors[name]}
-            onChange={(event) => {
-              trigger(name)
-              onChange(event)
-            }}
-            value={value}
-            variant="filled"
-            fullWidth
-            sx={{
-              color: value === 'none' ? 'gray' : '',
-            }}
-          >
-            <MenuItem disabled value="none">
-              {t('global.actions.pleaseSelect')}
-            </MenuItem>
-            {roles?.map((role: ServiceAccountRole) => (
-              <MenuItem key={role.roleId} value={role.roleId}>
-                {role.roleName}
-              </MenuItem>
-            ))}
-          </Select>
+          <Typography variant="caption3">
+            {t('content.addUser.technicalUser.addOverlay.serviceSubHeading')}
+          </Typography>
+          {roles?.map((role: ServiceAccountRole) => (
+            <>
+              <Radio
+                key={role.roleId}
+                name="radio-buttons"
+                label={role.roleName}
+                checked={selectedValue === role.roleId}
+                value={role.roleId}
+                onChange={(event) => {
+                  setSelectedValue(event.target.value)
+                  trigger(name)
+                  onChange(event)
+                }}
+                size="small"
+                sx={{
+                  display: 'flex',
+                }}
+              />
+              <Typography variant="caption3" className="roleDescription">
+                {role.roleDescription ?? '-'}
+              </Typography>
+            </>
+          ))}
           {!!errors[name] && (
             <FormHelperText
               sx={{ marginBottom: '23px', color: 'danger.danger' }}
@@ -85,7 +93,7 @@ const TechnicalUserAddFormSelect = ({
               {t('content.addUser.technicalUser.addOverlay.error.select')}
             </FormHelperText>
           )}
-        </>
+        </Box>
       )}
       name={name}
       control={control}
@@ -109,7 +117,10 @@ const TechnicalUserAddFormTextfield = ({
     <Controller
       render={({ field: { onChange, value } }) => (
         <>
-          <InputLabel error={!!errors[name]} sx={{ marginBottom: '7px' }}>
+          <InputLabel
+            error={!!errors[name]}
+            sx={{ marginBottom: '7px', color: '#000' }}
+          >
             {label}
           </InputLabel>
           <TextField

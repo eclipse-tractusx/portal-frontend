@@ -120,7 +120,7 @@ export const reducers = {
 export const store = configureStore({
   reducer: combineReducers(reducers),
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({ serializableCheck: false })
       .concat(idpSlice.middleware)
       .concat(userSlice.middleware)
       .concat(serviceSlice.middleware)
