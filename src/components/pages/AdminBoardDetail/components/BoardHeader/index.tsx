@@ -25,7 +25,13 @@ import { AppDetails } from 'features/apps/details/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import './BoardHeader.scss'
+import { Grid } from '@mui/material'
 
+enum CardDetails {
+  LANGUAGE = 'language',
+  USECASE = 'useCase',
+  PRICE = 'price',
+}
 export interface AppDetailHeaderProps {
   item: AppDetails
 }
@@ -56,38 +62,36 @@ export default function BoardHeader({ item }: AppDetailHeaderProps) {
     }
   }
 
+  const getAppData = (field: string) => {
+    if (field === CardDetails.LANGUAGE) return item?.languages.join(', ')
+    else if (field === CardDetails.USECASE) return item?.useCases.join(', ')
+    else if (field === CardDetails.PRICE) return item?.price
+  }
+
   return (
     <div className="adminboard-header">
       <div className="lead-image">
         <img src={image} alt={item.title} />
       </div>
       <div className="content">
-        <Typography variant="body2" className="provider">
+        <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
           {item.provider}
         </Typography>
-        <Typography variant="h3" className="heading">
+        <Typography variant="h2" sx={{ mb: 1.5, mt: 1.5 }}>
           {item.title}
         </Typography>
-        <div className="language">
-          <Typography variant="caption2" className="head">
-            {t('content.adminboardDetail.language')}:{' '}
-          </Typography>
-          {item.languages?.map((lang, index) => (
-            <span key={lang}>{(index ? ', ' : '') + lang}</span>
-          ))}
-        </div>
-        <div className="usecase">
-          <Typography variant="caption2" className="head">
-            {t('content.adminboardDetail.usecase')}:{' '}
-          </Typography>
-          {item.useCases?.map((useCase) => useCase).join(', ')}
-        </div>
-        <div className="price">
-          <Typography variant="caption2" className="head">
-            {t('content.adminboardDetail.price')}:{' '}
-          </Typography>
-          {item.price}
-        </div>
+        <Grid md={8}>
+          {[CardDetails.LANGUAGE, CardDetails.USECASE, CardDetails.PRICE].map(
+            (field) => (
+              <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>
+                <Typography variant="body2">
+                  {t(`content.apprelease.validateAndPublish.${field}`)}
+                  {getAppData(field)}
+                </Typography>
+              </div>
+            )
+          )}
+        </Grid>
       </div>
     </div>
   )

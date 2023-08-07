@@ -29,6 +29,7 @@ import {
   currentSuccessType,
   setSuccessType,
 } from 'features/serviceMarketplace/slice'
+import { Box } from '@mui/material'
 
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()
@@ -45,17 +46,23 @@ export default function ServiceMarketplaceDetail() {
 
   return (
     <main className="marketplace-main">
-      <Button
-        color="secondary"
-        size="small"
-        onClick={() => {
-          dispatch(setSuccessType(false))
-          navigate('/servicemarketplace')
-        }}
-      >
-        {t('global.actions.back')}
-      </Button>
-      {data && <MarketplaceContentDetails item={data} success={success} />}
+      <Box className="service-back">
+        <Button
+          color="secondary"
+          size="small"
+          onClick={() => {
+            dispatch(setSuccessType(false))
+            navigate('/servicemarketplace')
+          }}
+        >
+          {t('global.actions.back')}
+        </Button>
+      </Box>
+      {data && (
+        <Box className="service-marketplace-content">
+          <MarketplaceContentDetails item={data} success={success} />
+        </Box>
+      )}
     </main>
   )
 }

@@ -283,6 +283,7 @@ export default function OfferPage({
                   label={
                     <>
                       {t(`step2.${longDesc}`)}
+                      <span style={{ color: 'red' }}> *</span>
                       <IconButton sx={{ color: '#939393' }} size="small">
                         <HelpOutlineIcon />
                       </IconButton>

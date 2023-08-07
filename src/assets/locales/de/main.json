@@ -242,10 +242,13 @@
           "none": "Nicht kategorisiert",
           "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
-          "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
+          "qualitymanagement": "Bedarfs- & Qualitätsmanagement",
           "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
           "traceability": "Rückverfolgbarkeit",
-          "manufacturingasaservice": "Produzieren als Dienst"
+          "manufacturingasaservice": "Produzieren als Dienst",
+          "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
+          "real-timecontrol": "Real Time Control",
+          "modularproduction ": "Modular Production"
         },
         "noMatch": "Keine Treffer",
         "for": "für"
@@ -539,9 +542,10 @@
             "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           },
           "subscription": {
-            "label": "Customer Link",
+            "label": "Customer Link*",
             "placeholder": "Select the related subscription",
-            "tooltipMsg": "Select the related subscription"
+            "tooltipMsg": "Select the related subscription",
+            "error": "Customer link is mandatory"
           }
         },
         "create": {
@@ -782,11 +786,13 @@
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
+      "help": "Help",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst",
+          "service": "Technical User Role",
+          "serviceSubHeading": "Select one service roles:",
           "username": "Username",
           "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -1003,14 +1009,14 @@
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "step1Header": "1. User Role Upload *",
+        "step1Header": "1. User Role Upload",
         "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Technical User Setup *",
+        "step2Header": "2. Technical User Setup",
         "step2HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of Roles uploaded",
@@ -1491,7 +1497,7 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "Suchen via Zertifikatstyp",
+      "search": "Suchen via Name der Firma",
       "tabs": {
         "all": "Alle",
         "open": "Offen",
@@ -1536,7 +1542,7 @@
         "uploadDocumentTitle": "Please upload your certificate proof:",
         "note": "Please upload only pdf files with maximum 1 MB.",
         "descriptionLabel": "Description for verification",
-        "error": "Something went wrong!",
+        "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
       },
       "successCertificate": {

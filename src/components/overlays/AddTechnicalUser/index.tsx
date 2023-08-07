@@ -27,7 +27,7 @@ import {
   CircleProgress,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { Box } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useForm } from 'react-hook-form'
@@ -42,8 +42,9 @@ import { useState } from 'react'
 import { updateData, UPDATES } from 'features/control/updates'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'
-import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import './TechnicalUserAddForm.scss'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -53,7 +54,6 @@ export const AddTechnicalUser = () => {
 
   const [addServiceAccount] = useAddServiceAccountMutation()
   const [loading, setLoading] = useState<boolean>(false)
-  const { data } = useFetchOwnUserDetailsQuery()
 
   const handleConfirm = async (formValues: DefaultFormFieldValuesType) => {
     setLoading(true)
@@ -75,24 +75,6 @@ export const AddTechnicalUser = () => {
       setError(true)
     }
     //openAddTechnicalUserResponseOverlay()
-  }
-
-  const userDetailsData = {
-    cardCategory: t('content.addUser.technicalUser.addOverlay.spocHeadline'),
-    cardContentItems: {
-      organizsationName: {
-        label: t('content.addUser.technicalUser.addOverlay.org'),
-        value: data ? data.company : '',
-      },
-      username: {
-        label: t('content.addUser.technicalUser.addOverlay.name'),
-        value: data ? `${data.firstName} ${data.lastName}` : '',
-      },
-      eMailAddress: {
-        label: t('content.addUser.technicalUser.addOverlay.email'),
-        value: data ? data.email : '',
-      },
-    },
   }
 
   const defaultFormFieldValues = {
@@ -186,15 +168,18 @@ export const AddTechnicalUser = () => {
             onCloseWithIcon={handleDispatch}
           />
           <DialogContent>
+            <Link
+              to="/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User"
+              target="_blank"
+            >
+              <Typography variant="caption2" className="helpText">
+                <HelpOutlineIcon />
+                {t('content.addUser.help')}
+              </Typography>
+            </Link>
             <TechnicalUserAddForm
               {...{ handleSubmit, control, errors, trigger }}
             />
-            <Box sx={{ paddingTop: '25px' }}>
-              <UserDetailCard
-                cardContentItems={userDetailsData.cardContentItems}
-                variant="wide"
-              />
-            </Box>
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={handleDispatch}>
