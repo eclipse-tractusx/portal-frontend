@@ -4,8 +4,8 @@
 
 ### Change
 
-- Certificate Request Board - changed toynamic error message as per API response
-- Updated asterik color to red in app release and service release forms
+- Certificate Request Board - changed to dynamic error message as per API response
+- Updated asterisk color to red in app release and service release forms
 - Credential management board enhanced by filters
 
 ### Features
