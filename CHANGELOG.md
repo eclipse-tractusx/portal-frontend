@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.6.0-RC5
+
+### Change
+
+- Certificate Request Board - changed to dynamic error message as per API response
+- Updated asterisk color to red in app release and service release forms
+- Credential management board enhanced by filters
+
+### Features
+
+- Notifications added
+  - credential approval
+  - credential reject and
+  - subscription url msgs
+- Technical user create overlay enhanced by role description as well as direct help link
+
+### Bugfix
+
+- Permission validation 'Credential Mgmt' page updated to 'decision_ssicredential'
+- App description change - fixed page break issue in case of api response without language tag for each FE supported language
+- Notification message link - 'UseCases' welcome message fixed
+- handle empty customer link section in managed connectors
+- Overlay fix of activation response
+
 ## 1.6.0-RC4
 
 ### Change

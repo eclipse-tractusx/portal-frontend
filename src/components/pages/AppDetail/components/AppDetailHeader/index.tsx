@@ -180,10 +180,10 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         <img src={image} alt={item.title} />
       </div>
       <div className="content">
-        <Typography variant="body2" className="provider">
+        <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
           {item.provider}
         </Typography>
-        <Typography variant="h4" className="heading">
+        <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
           {item.title}
         </Typography>
         <div className="rating">
@@ -192,25 +192,21 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           <span className="rating-number">{item.rating}</span>
           */}
         </div>
-        <Typography variant="body2" className="price">
+        <Typography variant="body2" sx={{ pb: 1 }}>
           {item.price}
         </Typography>
-        <div className="usecase">
-          <Typography variant="caption2" className="head">
-            {t('content.appdetail.usecase')}:{' '}
-          </Typography>
+        <Typography variant="body2" sx={{ pb: 1 }}>
+          {t('content.appdetail.usecase')}:
           {item.useCases.map((useCase: UseCaseType) => (
             <span key={useCase.id}> {useCase.label} </span>
           ))}
-        </div>
-        <div className="language mb-30">
-          <Typography variant="caption2" className="head">
-            {t('content.appdetail.language')}:{' '}
-          </Typography>
+        </Typography>
+        <Typography variant="body2" sx={{ pb: '18px' }}>
+          {t('content.appdetail.language')}:
           {item.languages?.map((lang, index) => (
-            <span key={lang}>{(index ? ', ' : '') + lang}</span>
+            <span key={lang}> {(index ? ', ' : '') + lang} </span>
           ))}
-        </div>
+        </Typography>
         {getSubscribeBtn()}
       </div>
     </div>

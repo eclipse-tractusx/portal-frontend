@@ -29,7 +29,7 @@ export enum ServiceAccountType {
 
 export interface ServiceAccountRole {
   roleId: string
-  clientId: string
+  roleDescription: string
   roleName: string
 }
 

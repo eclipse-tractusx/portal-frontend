@@ -52,6 +52,7 @@ export const AppListGroupView = ({
           variant={'compact'}
           expandOnHover={true}
           imageLoader={fetchImageWithToken}
+          boxClickable={true}
         />
       </Box>
     )

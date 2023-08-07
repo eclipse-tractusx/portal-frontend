@@ -67,8 +67,10 @@ export default function ContractAndConsent() {
           'content.apprelease.appReleaseForm.isMandatory'
         )}
         imageFieldLabel={
-          t('content.apprelease.contractAndConsent.uploadImageConformity') +
-          ' *'
+          <>
+            {t('content.apprelease.contractAndConsent.uploadImageConformity')}
+            <span style={{ color: 'red' }}> *</span>
+          </>
         }
         pageSnackbarDescription={t(
           'content.apprelease.appReleaseForm.dataSavedSuccessMessage'

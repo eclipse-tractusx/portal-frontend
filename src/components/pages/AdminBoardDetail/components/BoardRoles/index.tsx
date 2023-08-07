@@ -25,27 +25,36 @@ import { uniqueId } from 'lodash'
 import { AppDetails } from 'features/apps/apiSlice'
 
 export default function BoardRoles({ item }: { item: AppDetails }) {
-  const { t } = useTranslation('', {
-    keyPrefix: 'content.adminboardDetail.roles',
-  })
-
+  const { t } = useTranslation()
   return (
-    <div style={{ marginBottom: '60px' }}>
-      <Typography variant="h4">{t('heading')}</Typography>
-      <Typography variant="body2">{t('message')}</Typography>
-      <Grid container spacing={2} sx={{ margin: '30px 0 40px' }}>
-        <>
-          {item.roles &&
-            item.roles.map((role: string) => (
-              <Grid item xs={6} key={uniqueId(role)}>
-                <Typography variant="h5">{role}</Typography>
-                <Typography variant="caption3">
-                  {t('roleDescription')}
-                </Typography>
-              </Grid>
-            ))}
-        </>
-      </Grid>
-    </div>
+    <>
+      <Typography variant="h3">
+        {t('content.adminboardDetail.roles.heading')}
+      </Typography>
+      <Typography variant="body2" sx={{ mb: 2 }}>
+        {t('content.adminboardDetail.roles.message')}
+      </Typography>
+      {item.roles && item.roles.length > 0 ? (
+        <Grid container spacing={2} sx={{ margin: '0px' }}>
+          {item.roles?.map((role) => (
+            <Grid
+              item
+              xs={6}
+              key={uniqueId(role)}
+              sx={{ p: '20px !important', pb: '0 !important' }}
+            >
+              <Typography variant="label2">{role}</Typography>
+              <Typography variant="body3">
+                {t('content.adminboardDetail.roles.roleDescription')}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Typography variant="body2" sx={{ textAlign: 'center', mt: 4 }}>
+          {t('global.errors.noRolesAvailable')}
+        </Typography>
+      )}
+    </>
   )
 }

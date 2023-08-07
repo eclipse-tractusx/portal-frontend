@@ -26,32 +26,37 @@ import { Grid } from '@mui/material'
 export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
   const { t } = useTranslation('')
 
-  const getTechUserData = (data: string[] | null) => {
+  const getAppDetailTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
-          <Grid item xs={12}>
-            <Typography variant="subtitle2">* {role}</Typography>
+        <Grid spacing={2} sx={{ margin: '0px' }} key={role} container>
+          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+            <Typography variant="label3">* {role}</Typography>
           </Grid>
         </Grid>
       ))
     ) : (
-      <Typography variant="caption2" className="not-available" mt={2}>
-        {t('global.errors.noTechnicalUserProfilesAvailable')}
-      </Typography>
+      <Grid margin={'0px'} container spacing={2}>
+        <Typography
+          sx={{ textAlign: 'center', width: '100%' }}
+          variant="label3"
+        >
+          {t('global.errors.noTechnicalUserProfilesAvailable')}
+        </Typography>
+      </Grid>
     )
   }
 
   return (
-    <div style={{ marginTop: '95px' }}>
-      <Typography variant="h4">
+    <>
+      <Typography variant="h3">
         {t('content.appdetail.technicalUserSetup.heading')}
       </Typography>
-      <Typography variant="body2">
+      <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.appdetail.technicalUserSetup.message')}
       </Typography>
       {item.technicalUserProfile &&
-        getTechUserData(Object.values(item?.technicalUserProfile)[0])}
-    </div>
+        getAppDetailTechUserData(Object.values(item?.technicalUserProfile)[0])}
+    </>
   )
 }

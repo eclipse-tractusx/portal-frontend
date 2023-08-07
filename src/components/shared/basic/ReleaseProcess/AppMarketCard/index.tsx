@@ -508,7 +508,12 @@ export default function AppMarketCard() {
               }}
               name="title"
               pattern={Patterns.appMarketCard.appTitle}
-              label={t('content.apprelease.appMarketCard.appTitle') + ' *'}
+              label={
+                <>
+                  {t('content.apprelease.appMarketCard.appTitle')}
+                  <span style={{ color: 'red' }}> *</span>
+                </>
+              }
               rules={{
                 required: `${t(
                   'content.apprelease.appMarketCard.appTitle'
@@ -538,7 +543,12 @@ export default function AppMarketCard() {
               maxLength={30}
               minLength={3}
               pattern={Patterns.appMarketCard.appProvider}
-              label={t('content.apprelease.appMarketCard.appProvider') + ' *'}
+              label={
+                <>
+                  {t('content.apprelease.appMarketCard.appProvider')}
+                  <span style={{ color: 'red' }}> *</span>
+                </>
+              }
               rules={{
                 required: `${t(
                   'content.apprelease.appMarketCard.appProvider'
@@ -572,7 +582,8 @@ export default function AppMarketCard() {
                       }}
                       label={
                         <>
-                          {t(`content.apprelease.appMarketCard.${item}`) + ' *'}
+                          {t(`content.apprelease.appMarketCard.${item}`)}
+                          <span style={{ color: 'red' }}> *</span>
                           <IconButton sx={{ color: '#939393' }} size="small">
                             <HelpOutlineIcon />
                           </IconButton>
@@ -623,9 +634,12 @@ export default function AppMarketCard() {
                   trigger,
                   errors,
                   name: 'useCaseCategory',
-                  label:
-                    t('content.apprelease.appMarketCard.useCaseCategory') +
-                    ' *',
+                  label: (
+                    <>
+                      {t('content.apprelease.appMarketCard.useCaseCategory')}
+                      <span style={{ color: 'red' }}> *</span>
+                    </>
+                  ),
                   placeholder: t(
                     'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
                   ),
@@ -663,8 +677,12 @@ export default function AppMarketCard() {
                   trigger,
                   errors,
                   name: 'appLanguage',
-                  label:
-                    t('content.apprelease.appMarketCard.appLanguage') + ' *',
+                  label: (
+                    <>
+                      {t('content.apprelease.appMarketCard.appLanguage')}
+                      <span style={{ color: 'red' }}> *</span>
+                    </>
+                  ),
                   placeholder: t(
                     'content.apprelease.appMarketCard.appLanguagePlaceholder'
                   ),
@@ -735,7 +753,10 @@ export default function AppMarketCard() {
               maxLength={15}
               minLength={1}
               label={
-                t('content.apprelease.appMarketCard.pricingInformation') + ' *'
+                <>
+                  {t('content.apprelease.appMarketCard.pricingInformation')}
+                  <span style={{ color: 'red' }}> *</span>
+                </>
               }
               rules={{
                 required: `${t(
@@ -764,7 +785,10 @@ export default function AppMarketCard() {
                 errors,
               }}
               label={
-                t('content.apprelease.appMarketCard.appLeadImageUpload') + ' *'
+                <>
+                  {t('content.apprelease.appMarketCard.appLeadImageUpload')}
+                  <span style={{ color: 'red' }}> *</span>
+                </>
               }
               noteDescription={t(
                 'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
