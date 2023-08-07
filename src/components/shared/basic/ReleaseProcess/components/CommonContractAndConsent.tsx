@@ -132,7 +132,7 @@ export default function CommonContractAndConsent({
     useDeleteAppReleaseDocumentMutation()
 
   useEffect(() => {
-    deleteResponse.isSuccess && setDeleteSuccess(true)
+    if (deleteResponse.isSuccess) setDeleteSuccess(true)
     if (deleteResponse.isError) {
       resetField('uploadImageConformity', {
         defaultValue:
@@ -414,7 +414,7 @@ export default function CommonContractAndConsent({
         {agreementData?.map((item) => (
           <div className="form-field" key={item.agreementId}>
             <Grid container spacing={1.5}>
-              <Grid md={1}>
+              <Grid item md={1}>
                 <ConnectorFormInputField
                   {...{
                     control,
@@ -434,7 +434,7 @@ export default function CommonContractAndConsent({
                   }}
                 />
               </Grid>
-              <Grid md={11} sx={{ marginTop: '8px' }}>
+              <Grid item md={11} sx={{ marginTop: '8px' }}>
                 {item.documentId ? (
                   <span
                     className={item.documentId ? 'agreement-span' : ''}
