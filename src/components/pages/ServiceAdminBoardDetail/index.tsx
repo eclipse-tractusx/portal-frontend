@@ -38,8 +38,13 @@ import {
 import { useTranslation } from 'react-i18next'
 import { PAGES } from 'types/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { InputLabel, Grid } from '@mui/material'
+import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
+
+enum TableData {
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+}
 
 export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
@@ -88,156 +93,150 @@ export default function ServiceAdminBoardDetail() {
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Typography variant="subtitle2" key={role}>
-          * {role}
-        </Typography>
+        <Grid container spacing={2} key={role} sx={{ margin: '0px' }}>
+          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+            <Typography variant="label3">* {role}</Typography>
+          </Grid>
+        </Grid>
       ))
     ) : (
-      <Typography variant="caption2" className="not-available">
-        {t(
-          'adminboardDetail.technicalUserSetup.noTechnicalUserProfilesAvailable'
-        )}
-      </Typography>
+      <Grid spacing={2} container margin={'0px'}>
+        <Typography
+          sx={{ textAlign: 'center', width: '100%' }}
+          variant="label3"
+        >
+          {t(
+            'adminboardDetail.technicalUserSetup.noTechnicalUserProfilesAvailable'
+          )}
+        </Typography>
+      </Grid>
     )
   }
 
   return (
-    <main className="adminboard-main">
-      <Button
-        color="secondary"
-        size="small"
-        onClick={() => navigate(`/${PAGES.SERVICEADMINBOARD}`)}
-      >
-        {t('adminboardDetail.action.back')}
-      </Button>
+    <main className="service-admin-board-detail">
+      <Box className="service-back">
+        <Button
+          color="secondary"
+          size="small"
+          onClick={() => navigate(`/${PAGES.SERVICEADMINBOARD}`)}
+        >
+          {t('adminboardDetail.action.back')}
+        </Button>
+      </Box>
       {serviceData && (
-        <>
-          <div className="adminboard-header">
+        <Box className="service-content">
+          <div className="service-board-header">
             <div className="lead-image">
               <img
                 src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                 alt={serviceData.title}
               />
             </div>
-            <div className="content">
-              <Typography variant="body2" className="provider">
+            <Box className="service-app-content">
+              <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
                 {serviceData.provider}
               </Typography>
-              <Typography variant="h3" className="heading">
+              <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
                 {serviceData.title}
               </Typography>
-              <div className="usecase">{getTypes()}</div>
+              <Typography variant="body2" sx={{ pb: '2px' }}>
+                {getTypes()}
+              </Typography>
+            </Box>
+          </div>
+          <div className="divider-height" />
+          {['longDescriptionTitleEN', 'longDescriptionTitleDE'].map((desc) => (
+            <div key={desc}>
+              <Typography variant="h3" sx={{ lineHeight: '36px' }}>
+                {t(`adminboardDetail.${desc}`)}
+              </Typography>
+              <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                {
+                  serviceData?.descriptions?.filter(
+                    (lang: { languageCode: string }) =>
+                      lang.languageCode ===
+                      (desc === 'longDescriptionTitleEN' ? 'en' : 'de')
+                  )[0]?.longDescription
+                }
+              </Typography>
+              <div className="divider-height" />
             </div>
-          </div>
-          <div className="product-description">
-            {['longDescriptionTitleEN', 'longDescriptionTitleDE'].map(
-              (desc) => (
-                <div key={desc}>
-                  <Typography variant="h4">
-                    {t(`adminboardDetail.${desc}`)}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    style={{
-                      whiteSpace: 'pre-line',
-                      margin: '20px 0px 30px 0px',
-                    }}
-                  >
-                    {
-                      serviceData?.descriptions?.filter(
-                        (lang: { languageCode: string }) =>
-                          lang.languageCode ===
-                          (desc === 'longDescriptionTitleEN' ? 'en' : 'de')
-                      )[0]?.longDescription
-                    }
-                  </Typography>
-                </div>
-              )
-            )}
-          </div>
-          <div className="adminboard-documents">
-            <Typography variant="h4">
-              {t('adminboardDetail.documents.heading')}
-            </Typography>
-            <Typography
-              variant="body2"
-              style={{
-                marginTop: '20px',
-              }}
-            >
-              {t('adminboardDetail.documents.message')}
-            </Typography>
-            {serviceData?.documents &&
-              Object.keys(serviceData.documents).map((item) => (
-                <InputLabel sx={{ mb: 0, mt: 3 }} key={item}>
-                  <span
-                    style={{
-                      display: 'flex',
-                      cursor: 'pointer',
-                      color: '#0f71cb',
-                    }}
-                    onClick={() => onDownload(serviceData.documents[item][0])}
-                  >
-                    <ArrowForwardIcon fontSize="small" />
+          ))}
+          <Typography variant="h3">
+            {t('adminboardDetail.documents.heading')}
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 3 }}>
+            {t('adminboardDetail.documents.message')}
+          </Typography>
+          {serviceData?.documents &&
+          Object.keys(serviceData.documents).length > 0 ? (
+            Object.keys(serviceData.documents).map((item) => (
+              <li key={item} className="service-documents">
+                <ArrowForwardIcon fontSize="small" sx={{ mr: '12px' }} />
+                <button
+                  onClick={() => onDownload(serviceData.documents[item][0])}
+                  className="document-button-link"
+                >
+                  <Typography variant="label3">
                     {serviceData.documents[item][0]?.documentName}
-                  </span>
-                </InputLabel>
-              ))}
-          </div>
-
-          <div style={{ marginBottom: '60px' }}>
-            <Typography variant="h4">
-              {t('adminboardDetail.technicalUserSetup.heading')}
+                  </Typography>
+                </button>
+              </li>
+            ))
+          ) : (
+            <Typography variant="label3" className="not-available">
+              {t('adminboardDetail.noDocumentsAvailable')}
             </Typography>
-            <Typography
-              variant="body2"
-              style={{
-                marginTop: '20px',
-              }}
-            >
-              {t('adminboardDetail.technicalUserSetup.message')}
-            </Typography>
-            <Grid container spacing={2} sx={{ margin: '30px 0' }}>
-              <Grid item xs={12} style={{ padding: '0px' }}>
-                {serviceData.technicalUserProfile &&
-                  getTechUserData(
-                    Object.values(serviceData?.technicalUserProfile)[0]
-                  )}
-              </Grid>
-            </Grid>
-          </div>
+          )}
 
-          <div className="adminboard-provider">
-            <div className="provider-content">
-              <Typography variant="h4">
-                {t('adminboardDetail.provider.heading')}
-              </Typography>
-              <Typography
-                variant="body2"
-                style={{
-                  marginTop: '20px',
-                }}
-              >
-                {t('adminboardDetail.provider.message')}
-              </Typography>
-            </div>
+          <div className="divider-height" />
+          <Typography variant="h3">
+            {t('adminboardDetail.technicalUserSetup.heading')}
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 3 }}>
+            {t('adminboardDetail.technicalUserSetup.message')}
+          </Typography>
 
-            <StaticTable
-              data={{
-                head: ['Homepage', 'E-Mail'],
-                body: [
-                  [
-                    serviceData.providerUri === 'ERROR'
-                      ? ''
-                      : serviceData.providerUri,
-                  ],
-                  [serviceData?.contactEmail],
+          {serviceData.technicalUserProfile &&
+            getTechUserData(
+              Object.values(serviceData?.technicalUserProfile)[0]
+            )}
+
+          <div className="divider-height" />
+          <Typography variant="h3">
+            {t('adminboardDetail.provider.heading')}
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 3 }}>
+            {t('adminboardDetail.provider.message')}
+          </Typography>
+          <StaticTable
+            data={{
+              head: [
+                t('adminboardDetail.provider.homepage'),
+                t('adminboardDetail.provider.email'),
+              ],
+              body: [
+                [
+                  serviceData.providerUri === TableData.ERROR
+                    ? ''
+                    : serviceData.providerUri,
                 ],
-              }}
-              horizontal={true}
-            />
-          </div>
-        </>
+                [serviceData?.contactEmail],
+              ],
+            }}
+            horizontal={true}
+          />
+          <div className="divider-height" />
+          <Divider sx={{ m: '32px 0px' }} />
+          <Button
+            color="secondary"
+            size="small"
+            onClick={() => navigate('/serviceadminboard')}
+          >
+            {t('adminboardDetail.backToBoard')}
+          </Button>
+        </Box>
       )}
     </main>
   )

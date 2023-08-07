@@ -363,7 +363,12 @@ export default function OfferCard() {
               }}
               name="title"
               pattern={Patterns.offerCard.serviceName}
-              label={t('step1.serviceName')}
+              label={
+                <>
+                  {t('step1.serviceName')}
+                  <span style={{ color: 'red' }}> *</span>
+                </>
+              }
               rules={{
                 required: `${t('step1.serviceName')} ${t(
                   'serviceReleaseForm.isMandatory'
@@ -389,7 +394,12 @@ export default function OfferCard() {
                   trigger,
                   errors,
                   name: 'serviceTypeIds',
-                  label: t('step1.serviceType'),
+                  label: (
+                    <>
+                      {t('step1.serviceType')}
+                      <span style={{ color: 'red' }}> *</span>
+                    </>
+                  ),
                   placeholder: t('step1.serviceTypePlaceholder'),
                   type: 'multiSelectList',
                   rules: {
@@ -430,6 +440,7 @@ export default function OfferCard() {
                       label={
                         <>
                           {t(`step1.${desc}`)}
+                          <span style={{ color: 'red' }}> *</span>
                           <IconButton sx={{ color: '#939393' }} size="small">
                             <HelpOutlineIcon />
                           </IconButton>

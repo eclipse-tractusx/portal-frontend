@@ -26,18 +26,18 @@
   "step1": {
     "headerTitle": "Service Card Erstellen",
     "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden.",
-    "serviceName": "Service Name*",
-    "serviceType": "Service Type*",
+    "serviceName": "Service Name",
+    "serviceType": "Service Type",
     "serviceTypePlaceholder": "Wählen Sie den Servicetyp aus",
-    "shortDescriptionEN": "Kurzbeschreibung (en)*",
-    "shortDescriptionDE": "Kurzbeschreibung (de)*",
+    "shortDescriptionEN": "Kurzbeschreibung (en)",
+    "shortDescriptionDE": "Kurzbeschreibung (de)",
     "serviceLeadImageUpload": "Service Card Bild"
   },
   "step2": {
     "headerTitle": "Service Details",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "longDescriptionEN": "Service Beschreibung (en)*",
-    "longDescriptionDE": "Service Beschreibung (de)*",
+    "longDescriptionEN": "Service Beschreibung (en)",
+    "longDescriptionDE": "Service Beschreibung (de)",
     "doc": "Supporting Material",
     "note": "Info:",
     "providerDetails": "Provider Details",
@@ -209,13 +209,16 @@
     "longDescriptionTitleEN": "Description - English",
     "longDescriptionTitleDE": "Description - German",
     "backToBoard": "Back to Admin Board",
+    "noDocumentsAvailable": "No documents available",
     "documents": {
       "heading": "Documents",
       "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
     },
     "provider": {
       "heading": "Provider Information",
-      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+      "homepage": "Homepage",
+      "email": "E-Mail"
     },
     "technicalUserSetup": {
       "heading": "Technical User Setup",

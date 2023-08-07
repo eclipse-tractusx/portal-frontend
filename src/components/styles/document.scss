@@ -18,21 +18,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.appdetail-documents {
-  padding-top: 85px;
-}
-
 .document-main {
   margin-bottom: 50px;
 }
-
-.adminboard-documents {
-  margin-bottom: 60px;
+.document-button-link {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 0;
+  color: #0f71cb !important;
 }
 
+.service-documents {
+  padding: 10px 18px;
+  color: #0f71cb !important;
+  display: flex;
+}
 .document-list {
   display: flex;
-  margin: 10px auto;
+  margin: 0px auto 10px;
   .document-icon {
     color: #9c9c9c;
   }
@@ -41,7 +47,7 @@
     border: none;
     text-decoration: underline;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     color: #1977cc;
     margin-left: 10px;
   }

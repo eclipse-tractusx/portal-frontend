@@ -144,25 +144,37 @@ const ActivateSubscriptionOverlay = ({
     <>
       {activationResponse ? (
         <div className="activationOverlay">
-          <DialogHeader
-            title=" "
-            intro={t('content.appSubscription.activation.successDescription')}
-            closeWithIcon={true}
-            icon={true}
-            iconComponent={
-              <CheckCircleOutlinedIcon sx={{ fontSize: 60 }} color="success" />
-            }
-            onCloseWithIcon={() => dispatch(closeOverlay())}
-          />
-          <DialogContent>
-            <StaticTable data={tableData1} horizontal={false} />
-            <StaticTable data={tableData2} horizontal={false} />
-          </DialogContent>
-          <DialogActions>
-            <Button variant="outlined" onClick={closeActivationOverlay}>
-              {t('global.actions.close')}
-            </Button>
-          </DialogActions>
+          <Dialog
+            open={true}
+            sx={{
+              '.MuiDialog-paper': {
+                maxWidth: '45%',
+              },
+            }}
+          >
+            <DialogHeader
+              title=" "
+              intro={t('content.appSubscription.activation.successDescription')}
+              closeWithIcon={true}
+              icon={true}
+              iconComponent={
+                <CheckCircleOutlinedIcon
+                  sx={{ fontSize: 60 }}
+                  color="success"
+                />
+              }
+              onCloseWithIcon={() => dispatch(closeOverlay())}
+            />
+            <DialogContent>
+              <StaticTable data={tableData1} horizontal={false} />
+              <StaticTable data={tableData2} horizontal={false} />
+            </DialogContent>
+            <DialogActions>
+              <Button variant="outlined" onClick={closeActivationOverlay}>
+                {t('global.actions.close')}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       ) : (
         <Dialog

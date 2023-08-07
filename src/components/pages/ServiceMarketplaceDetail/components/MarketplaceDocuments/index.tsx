@@ -28,6 +28,7 @@ import {
   ServiceRequest,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import { useFetchDocumentMutation } from 'features/serviceManagement/apiSlice'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 export default function MarketplaceDocuments({
   item,
@@ -56,20 +57,18 @@ export default function MarketplaceDocuments({
   }
 
   return (
-    <div className="document-main">
-      <div className="document-content">
-        <Typography variant="h3">
-          {t('content.serviceMarketplace.document.heading')}
-        </Typography>
-        <Typography variant="body2">
-          {t('content.serviceMarketplace.document.message')}
-        </Typography>
-      </div>
-      <ul>
-        {item.documents && item.documents['ADDITIONAL_DETAILS'] ? (
-          item.documents['ADDITIONAL_DETAILS'].map((document: DocumentData) => (
-            <li className="document-list" key={document.documentId}>
-              <ArticleOutlinedIcon className="document-icon" />
+    <>
+      <Typography variant="h3">
+        {t('content.serviceMarketplace.document.heading')}
+      </Typography>
+      <Typography variant="body2" sx={{ mb: 3 }}>
+        {t('content.serviceMarketplace.document.message')}
+      </Typography>
+      {item?.documents[DocumentTypeId.ADDITIONAL_DETAILS] ? (
+        item.documents[DocumentTypeId.ADDITIONAL_DETAILS].map(
+          (document: DocumentData) => (
+            <li className="service-documents" key={document.documentId}>
+              <ArticleOutlinedIcon fontSize="small" sx={{ mr: '12px' }} />
               <button
                 className="document-button-link"
                 onClick={() =>
@@ -79,16 +78,18 @@ export default function MarketplaceDocuments({
                   )
                 }
               >
-                {document.documentName}
+                <Typography variant="label3">
+                  {document.documentName}
+                </Typography>
               </button>
             </li>
-          ))
-        ) : (
-          <Typography variant="caption2" className="not-available wd-70">
-            {t('global.errors.noDocumentsAvailable')}
-          </Typography>
-        )}
-      </ul>
-    </div>
+          )
+        )
+      ) : (
+        <Typography variant="label3" className="not-available">
+          {t('global.errors.noDocumentsAvailable')}
+        </Typography>
+      )}
+    </>
   )
 }
