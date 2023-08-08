@@ -301,7 +301,7 @@ export default function OfferCard() {
       serviceTypeIds: data.serviceTypeIds,
       title: data.title,
       leadPictureUri:
-        data.uploadImage && data.uploadImage.leadPictureUri
+        data.uploadImage?.leadPictureUri
           ? data.uploadImage.leadPictureUri !== null &&
             Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
             Object.values(data.uploadImage.leadPictureUri)[0]
