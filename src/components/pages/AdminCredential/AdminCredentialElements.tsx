@@ -57,7 +57,6 @@ export default function AdminCredentialElements() {
   const [refresh, setRefresh] = useState<number>(0)
   const [group, setGroup] = useState<string>(FilterType.ALL)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterStatus, setFilterStatus] = useState<string>()
   const [filterValueAPI, setFilterValueAPI] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState({})
 
@@ -74,7 +73,6 @@ export default function AdminCredentialElements() {
     else if (viewValue === FilterType.DECLINED)
       setFilterValueAPI(SubscriptionStatus.INACTIVE)
     else setFilterValueAPI('')
-    setFilterStatus(viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
   }
@@ -84,7 +82,7 @@ export default function AdminCredentialElements() {
       filterType: filterValueAPI,
       expr: searchExpr,
     })
-  }, [filterStatus, searchExpr])
+  }, [filterValueAPI, searchExpr])
 
   const onValidate = (expr: string) => {
     const validateExpr = /^[ A-Za-z0-9]{1,1000}$/.test(expr)
