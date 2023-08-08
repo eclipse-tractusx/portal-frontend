@@ -69,22 +69,21 @@ export default function AdminCredentialElements() {
     const viewValue = e.currentTarget.value
     if (viewValue === FilterType.OPEN)
       setFilterValueAPI(SubscriptionStatus.PENDING)
-    if (viewValue === FilterType.CONFIRMED)
+    else if (viewValue === FilterType.CONFIRMED)
       setFilterValueAPI(SubscriptionStatus.ACTIVE)
-    if (viewValue === FilterType.DECLINED)
+    else if (viewValue === FilterType.DECLINED)
       setFilterValueAPI(SubscriptionStatus.INACTIVE)
+    else setFilterValueAPI('')
     setFilterStatus(viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
   }
 
   useEffect(() => {
-    if (onValidate(searchExpr)) {
-      setFetchHookArgs({
-        filterType: filterValueAPI,
-        expr: searchExpr,
-      })
-    }
+    setFetchHookArgs({
+      filterType: filterValueAPI,
+      expr: searchExpr,
+    })
   }, [filterStatus, searchExpr])
 
   const onValidate = (expr: string) => {
