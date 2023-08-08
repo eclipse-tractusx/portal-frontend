@@ -300,12 +300,11 @@ export default function OfferCard() {
     const apiBody = {
       serviceTypeIds: data.serviceTypeIds,
       title: data.title,
-      leadPictureUri:
-        data.uploadImage?.leadPictureUri
-          ? data.uploadImage.leadPictureUri !== null &&
-            Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
-            Object.values(data.uploadImage.leadPictureUri)[0]
-          : '',
+      leadPictureUri: data.uploadImage?.leadPictureUri
+        ? data.uploadImage.leadPictureUri !== null &&
+          Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
+          Object.values(data.uploadImage.leadPictureUri)[0]
+        : '',
       descriptions: [
         {
           languageCode: 'de',
