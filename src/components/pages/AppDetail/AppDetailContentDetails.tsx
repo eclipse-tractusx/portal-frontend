@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Typography,
   Navigation,
@@ -47,7 +47,6 @@ export default function AppDetailContentDetails({
 }) {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const [images, setImages] = useState<any>()
   const [selectedItem, setSelectedItem] = useState<string>('#description')
 
   const navigationItems = [
@@ -72,19 +71,6 @@ export default function AppDetailContentDetails({
       title: t('content.appdetail.providerInformation.heading'),
     },
   ]
-
-  useEffect(() => {
-    if (item) {
-      const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
-      Promise.all(newPromies)
-        .then((result) => {
-          setImages(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }, [item])
 
   return (
     item && (
@@ -122,11 +108,11 @@ export default function AppDetailContentDetails({
             </Typography>
           </div>
           <div className="divider-height" />
-          {images && (
-            <div id="image-gallery">
-              <ImageGallery gallery={images} modalWidth="900" />
-            </div>
-          )}
+          <div id="image-gallery">
+            <ImageGallery gallery={CommonService
+              .imagesAndAppidToImageType(item.images, item.id)
+              } modalWidth="900" />
+          </div>
           <div className="divider-height" />
           <AppDetailPrivacy item={item} />
           <div className="divider-height" />
