@@ -64,7 +64,13 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
             </div>
           ))}
         </div>
-        <ImageGallery gallery={CommonService.imagesAndAppidToImageType(item.images, item.id)} modalWidth="900" />
+        <ImageGallery
+          gallery={CommonService.imagesAndAppidToImageType(
+            item.images,
+            item.id
+          )}
+          modalWidth="900"
+        />
         <div className="divider-height" />
         <BoardPrivacy item={item} />
         <div className="divider-height" />

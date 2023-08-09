@@ -49,7 +49,10 @@ const appToCard = (app: AppMarketplaceApp) => ({
   },
 })
 
-const imagesAndAppidToImageType = (images: string[], appId: string): ImageType[] =>
+const imagesAndAppidToImageType = (
+  images: string[],
+  appId: string
+): ImageType[] =>
   images?.map((image: any) => ({
     url: `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
       image.documentId ?? image

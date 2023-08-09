@@ -109,9 +109,13 @@ export default function AppDetailContentDetails({
           </div>
           <div className="divider-height" />
           <div id="image-gallery">
-            <ImageGallery gallery={CommonService
-              .imagesAndAppidToImageType(item.images, item.id)
-              } modalWidth="900" />
+            <ImageGallery
+              gallery={CommonService.imagesAndAppidToImageType(
+                item.images,
+                item.id
+              )}
+              modalWidth="900"
+            />
           </div>
           <div className="divider-height" />
           <AppDetailPrivacy item={item} />

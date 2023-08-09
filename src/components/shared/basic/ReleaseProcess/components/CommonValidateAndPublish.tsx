@@ -183,10 +183,12 @@ export default function CommonValidateAndPublish({
       statusData?.documents?.APP_IMAGE &&
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
-      setMultipleImages(CommonService.imagesAndAppidToImageType(
-        statusData?.documents?.APP_IMAGE,
-        id
-      ))
+      setMultipleImages(
+        CommonService.imagesAndAppidToImageType(
+          statusData?.documents?.APP_IMAGE,
+          id
+        )
+      )
     }
     setDefaultValues(values)
     reset(values)
