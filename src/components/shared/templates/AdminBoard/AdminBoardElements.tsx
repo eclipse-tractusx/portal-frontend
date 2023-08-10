@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDecision, PageSnackbar } from '@catena-x/portal-shared-components'
+import {
+  CardDecision,
+  PageSnackbar,
+} from '@nidhi.garg/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme, CircularProgress } from '@mui/material'
 import { show } from 'features/control/overlay'

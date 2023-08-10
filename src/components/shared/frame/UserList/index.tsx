@@ -26,7 +26,7 @@ import {
   StatusTag,
   PageLoadingTable,
   PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { TenantUser } from 'features/admin/userApiSlice'
@@ -38,6 +38,8 @@ export const UserList = ({
   sectionTitle,
   addButtonLabel,
   addButtonClick,
+  addMultipleButtonLabel,
+  onMultipleButtonClick,
   tableLabel,
   onDetailsClick,
   fetchHook,
@@ -49,6 +51,8 @@ export const UserList = ({
   sectionTitle: string
   addButtonLabel: string
   addButtonClick: () => void
+  addMultipleButtonLabel?: string
+  onMultipleButtonClick?: () => void
   tableLabel: string
   onDetailsClick: (row: TenantUser) => void
   fetchHook: (paginArgs: PaginFetchArgs) => any
@@ -78,6 +82,8 @@ export const UserList = ({
       <PageLoadingTable<TenantUser>
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
+        secondButtonLabel={addMultipleButtonLabel && t(addMultipleButtonLabel)}
+        onSecondButtonClick={onMultipleButtonClick}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.search')}
         columnHeadersBackgroundColor={'#FFFFFF'}

@@ -22,7 +22,7 @@ import {
   PageHeader,
   StaticTable,
   TableType,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppSubscriptions from './AppSubscriptions'
 import { useDispatch } from 'react-redux'

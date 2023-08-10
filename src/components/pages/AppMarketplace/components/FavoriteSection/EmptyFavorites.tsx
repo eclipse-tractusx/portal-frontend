@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function EmptyFavorites() {

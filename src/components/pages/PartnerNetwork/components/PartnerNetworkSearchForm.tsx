@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import React from 'react'
-import { SearchInput } from '@catena-x/portal-shared-components'
+import { SearchInput } from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 type SearchFormProps = {

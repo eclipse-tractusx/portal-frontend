@@ -1175,21 +1175,6 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@catena-x/portal-shared-components@^2.0.14":
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.14.tgz#4892f23afedd03984e77a0e79312ceb1aed8fd8c"
-  integrity sha512-hjN1qx/N6I0P5UKzW5fTzgXGzjxJjfGJcBoltxq1FoB2jcN8ud4HlKPvVjYKNeRpEsA0WfQf9swFt6k3n4ldRg==
-  dependencies:
-    "@mui/base" "^5.0.0-beta.3"
-    "@mui/system" "^5.13.2"
-    "@mui/x-data-grid" "^5.17.26"
-    "@mui/x-date-pickers" "^5.0.20"
-    autosuggest-highlight "^3.3.4"
-    date-fns "^2.30.0"
-    jquery "^3.7.0"
-    react-slick "^0.29.0"
-    slick-carousel "^1.8.1"
-
 "@csstools/normalize.css@*":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"
@@ -1932,6 +1917,21 @@
   integrity sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==
   dependencies:
     eslint-scope "5.1.1"
+
+"@nidhi.garg/portal-shared-components@^2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@nidhi.garg/portal-shared-components/-/portal-shared-components-2.0.17.tgz#c20feabd36b5fd59c2e60faa48841504614681ba"
+  integrity sha512-kp5EZQBNaPFaN2C4pjGmgo2M9sb0YRWppJFFDLxlDvB8WN/J7+0BsNyMTqvM5U0c0WUsP0Z6TOiRPw2Bf3K1HA==
+  dependencies:
+    "@mui/base" "^5.0.0-beta.3"
+    "@mui/system" "^5.13.2"
+    "@mui/x-data-grid" "^5.17.26"
+    "@mui/x-date-pickers" "^5.0.20"
+    autosuggest-highlight "^3.3.4"
+    date-fns "^2.30.0"
+    jquery "^3.7.0"
+    react-slick "^0.29.0"
+    slick-carousel "^1.8.1"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

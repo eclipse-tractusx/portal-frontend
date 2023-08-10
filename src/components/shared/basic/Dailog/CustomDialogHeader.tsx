@@ -20,7 +20,7 @@
 import { Box, useTheme } from '@mui/material'
 import MuiDialogTitle from '@mui/material/DialogTitle'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 
 export interface DialogHeaderProps {
   title?: string

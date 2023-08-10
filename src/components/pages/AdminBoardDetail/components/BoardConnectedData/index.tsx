@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   TableType,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { AppDetails } from 'features/apps/apiSlice'
 import './BoardConnectedData.scss'
 

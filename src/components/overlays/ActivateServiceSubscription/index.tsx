@@ -24,7 +24,7 @@ import {
   DialogContent,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import './style.scss'

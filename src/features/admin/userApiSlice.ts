@@ -23,7 +23,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
+import {
+  PaginResult,
+  PaginFetchArgs,
+} from '@nidhi.garg/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 
 export interface UserAppRoles {

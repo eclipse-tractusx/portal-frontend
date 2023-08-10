@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CarouselBox } from '@catena-x/portal-shared-components'
+import { CarouselBox } from '@nidhi.garg/portal-shared-components'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import FavoriteItem from './FavoriteItem'

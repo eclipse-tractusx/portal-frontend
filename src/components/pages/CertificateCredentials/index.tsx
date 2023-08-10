@@ -27,7 +27,7 @@ import {
   ViewSelector,
   SortOption,
   Button,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './CertificateCredentials.scss'
 import { OVERLAYS } from 'types/Constants'

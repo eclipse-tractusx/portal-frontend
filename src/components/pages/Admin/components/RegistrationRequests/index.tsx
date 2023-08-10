@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
+import { Typography, PageSnackbar } from '@nidhi.garg/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './RegistrationRequests.scss'

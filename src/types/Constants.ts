@@ -103,6 +103,7 @@ export enum OVERLAYS {
   NOT_FOUND = 'notfound',
   NONE = 'none',
   ADD_USER = 'add_user',
+  ADD_MULTIPLE_USER = 'add_multiple_user',
   ADD_APP_USER_ROLES = 'add_app_user_roles',
   EDIT_APP_USER_ROLES = 'edit_app_user_roles',
   USER = 'user',

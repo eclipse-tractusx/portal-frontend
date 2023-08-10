@@ -28,7 +28,7 @@ import {
   SortOption,
   PageHeader,
   LoadMoreButton,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'

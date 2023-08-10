@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Breadcrumb, PageHeader } from '@catena-x/portal-shared-components'
+import { Breadcrumb, PageHeader } from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 

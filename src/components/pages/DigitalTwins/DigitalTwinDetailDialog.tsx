@@ -22,7 +22,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useSelector } from 'react-redux'
 import { twinsSelector } from 'features/digitalTwins/slice'
 import { TwinDetails } from './TwinDetails'

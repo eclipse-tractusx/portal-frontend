@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from '@catena-x/portal-shared-components'
+import { IconButton } from '@nidhi.garg/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'

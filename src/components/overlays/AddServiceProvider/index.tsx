@@ -26,7 +26,7 @@ import {
   Input,
   LoadingButton,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'

@@ -28,7 +28,7 @@ import {
   Cards,
   LoadMoreButton,
   CardItems,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { Box } from '@mui/material'
 import { fetchImageWithToken } from 'services/ImageService'

@@ -22,7 +22,7 @@ import {
   IconButton,
   UploadFileStatus,
   UploadStatus,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback, useMemo } from 'react'

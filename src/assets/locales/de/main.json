@@ -641,6 +641,7 @@
         "title": "User Liste",
         "details": "Details",
         "add": "User hinzufügen",
+        "addMultiple": "Add Multiple users",
         "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {

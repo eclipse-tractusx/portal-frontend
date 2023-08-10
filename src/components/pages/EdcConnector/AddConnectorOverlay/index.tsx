@@ -27,7 +27,7 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'

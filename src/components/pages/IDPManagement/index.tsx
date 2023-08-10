@@ -21,7 +21,7 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import { OVERLAYS, PAGES } from 'types/Constants'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography } from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'

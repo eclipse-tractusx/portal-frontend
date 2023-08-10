@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { Navigation, IconButton } from '@catena-x/portal-shared-components'
+import { Navigation, IconButton } from '@nidhi.garg/portal-shared-components'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'

@@ -18,32 +18,42 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Cards } from '@nidhi.garg/portal-shared-components'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from 'features/info/news/actions'
-import { itemsSelector } from 'features/info/news/slice'
-import './news-section.scss'
-import { AppDispatch } from 'features/store'
+import { useDispatch } from 'react-redux'
+import { store } from 'features/store'
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
+} from '@nidhi.garg/portal-shared-components'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay'
 
-export default function NewsSection() {
-  const dispatch = useDispatch<AppDispatch>()
-  const items = useSelector(itemsSelector)
-
-  useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
+export default function AddMultipleUser() {
+  const dispatch = useDispatch<typeof store.dispatch>()
 
   return (
-    <section className="news-section">
-      <Cards
-        items={items}
-        columns={3}
-        buttonText="Details"
-        imageSize="medium"
-        imageShape="round"
-        variant="text-only"
+    <>
+      <DialogHeader
+        {...{
+          title: 'Manage BPNs',
+          closeWithIcon: true,
+          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+        }}
       />
-    </section>
+
+      <DialogContent>
+        <div className="manageBPN">TEST</div>
+      </DialogContent>
+
+      <DialogActions>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(show(OVERLAYS.NONE, ''))}
+        >
+          Close
+        </Button>
+      </DialogActions>
+    </>
   )
 }

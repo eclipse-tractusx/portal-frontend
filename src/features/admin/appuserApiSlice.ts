@@ -21,7 +21,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'features/store'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
+import {
+  PaginResult,
+  PaginFetchArgs,
+} from '@nidhi.garg/portal-shared-components'
 import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'

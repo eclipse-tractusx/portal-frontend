@@ -20,7 +20,10 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { PAGE_SIZE } from 'types/Constants'
-import { PaginFetchArgs, PaginResult } from '@catena-x/portal-shared-components'
+import {
+  PaginFetchArgs,
+  PaginResult,
+} from '@nidhi.garg/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum ServiceAccountType {

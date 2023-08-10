@@ -27,7 +27,7 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import Box from '@mui/material/Box'
 
 interface DeleteConfirmationOverlayProps {

@@ -501,6 +501,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.USERMANAGEMENT_ADD,
   },
   {
+    name: OVERLAYS.ADD_MULTIPLE_USER,
+    role: ROLES.USERMANAGEMENT_ADD,
+  },
+  {
     name: OVERLAYS.ADD_TECHUSER,
     role: ROLES.TECHUSER_ADD,
   },

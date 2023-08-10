@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
+import { IconButton, Typography } from '@nidhi.garg/portal-shared-components'
 import '../StaticTemplate.scss'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { Trans } from 'react-i18next'

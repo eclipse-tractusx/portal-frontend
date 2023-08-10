@@ -25,7 +25,7 @@ import { getHeaders } from 'services/RequestService'
 import { PAGE_SIZE } from 'types/Constants'
 import { SearchParams } from '../../connector/types'
 import qs from 'qs'
-import { PaginResult } from '@catena-x/portal-shared-components'
+import { PaginResult } from '@nidhi.garg/portal-shared-components'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

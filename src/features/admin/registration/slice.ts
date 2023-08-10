@@ -38,7 +38,7 @@ import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
 import { RootState } from 'features/store'
 import { PaginationData } from '../../connector/types'
 import uniq from 'lodash.uniq'
-import { PaginResult } from '@catena-x/portal-shared-components'
+import { PaginResult } from '@nidhi.garg/portal-shared-components'
 
 export const slice = createSlice({
   name,
