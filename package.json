@@ -87,6 +87,9 @@
     "react-scripts": "5.0.1",
     "typescript": "5.0.4"
   },
+  "resolutions": {
+    "**/nth-check": "^2.1.1"
+  },
   "scripts": {
     "prepare": "husky install",
     "build:sources": "zip -r portal-frontend.zip src package.json yarn.lock -x '*.stories.*' -x '*.test.*' -x '*.css' -x '*.scss' -x '*.svg' -x '*.jpg' -x '*.png' -x '*.webp' -x '*.ttf'",
