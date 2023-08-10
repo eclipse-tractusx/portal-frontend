@@ -57,7 +57,6 @@ export default function AdminCredentialElements() {
   const [refresh, setRefresh] = useState<number>(0)
   const [group, setGroup] = useState<string>(FilterType.ALL)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterStatus, setFilterStatus] = useState<string>()
   const [filterValueAPI, setFilterValueAPI] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState({})
 
@@ -69,23 +68,21 @@ export default function AdminCredentialElements() {
     const viewValue = e.currentTarget.value
     if (viewValue === FilterType.OPEN)
       setFilterValueAPI(SubscriptionStatus.PENDING)
-    if (viewValue === FilterType.CONFIRMED)
+    else if (viewValue === FilterType.CONFIRMED)
       setFilterValueAPI(SubscriptionStatus.ACTIVE)
-    if (viewValue === FilterType.DECLINED)
+    else if (viewValue === FilterType.DECLINED)
       setFilterValueAPI(SubscriptionStatus.INACTIVE)
-    setFilterStatus(viewValue)
+    else setFilterValueAPI('')
     setGroup(viewValue)
     setRefresh(Date.now())
   }
 
   useEffect(() => {
-    if (onValidate(searchExpr)) {
-      setFetchHookArgs({
-        filterType: filterValueAPI,
-        expr: searchExpr,
-      })
-    }
-  }, [filterStatus, searchExpr])
+    setFetchHookArgs({
+      filterType: filterValueAPI,
+      expr: searchExpr,
+    })
+  }, [filterValueAPI, searchExpr])
 
   const onValidate = (expr: string) => {
     const validateExpr = /^[ A-Za-z0-9]{1,1000}$/.test(expr)

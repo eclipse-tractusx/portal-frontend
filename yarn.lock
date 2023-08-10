@@ -1175,6 +1175,21 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@catena-x/portal-shared-components@^2.0.14":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.14.tgz#4892f23afedd03984e77a0e79312ceb1aed8fd8c"
+  integrity sha512-hjN1qx/N6I0P5UKzW5fTzgXGzjxJjfGJcBoltxq1FoB2jcN8ud4HlKPvVjYKNeRpEsA0WfQf9swFt6k3n4ldRg==
+  dependencies:
+    "@mui/base" "^5.0.0-beta.3"
+    "@mui/system" "^5.13.2"
+    "@mui/x-data-grid" "^5.17.26"
+    "@mui/x-date-pickers" "^5.0.20"
+    autosuggest-highlight "^3.3.4"
+    date-fns "^2.30.0"
+    jquery "^3.7.0"
+    react-slick "^0.29.0"
+    slick-carousel "^1.8.1"
+
 "@csstools/normalize.css@*":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"
@@ -2022,21 +2037,6 @@
     "@types/estree" "0.0.39"
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
-
-"@catena-x/portal-shared-components@^2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.16.tgz#30fbcaef31ed754ee0557505f8de1356458ee1d3"
-  integrity sha512-C5ZJxLUJ7RGgsbdSiQzEBIo3cmzfWUmLYWpC82zdZ8UZhW+aGofAbtAE3kfcXmts2USHp8+nVEw/5WfPU8A46g==
-  dependencies:
-    "@mui/base" "^5.0.0-beta.3"
-    "@mui/system" "^5.13.2"
-    "@mui/x-data-grid" "^5.17.26"
-    "@mui/x-date-pickers" "^5.0.20"
-    autosuggest-highlight "^3.3.4"
-    date-fns "^2.30.0"
-    jquery "^3.7.0"
-    react-slick "^0.29.0"
-    slick-carousel "^1.8.1"
 
 "@rushstack/eslint-patch@^1.1.0":
   version "1.3.2"
