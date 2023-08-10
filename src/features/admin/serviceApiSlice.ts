@@ -91,7 +91,8 @@ export const apiSlice = createApi({
         `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
     }),
     fetchServiceAccountRoles: builder.query<ServiceAccountRole[], void>({
-      query: () => `/api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
+      query: () =>
+        `/api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
     }),
   }),
 })
