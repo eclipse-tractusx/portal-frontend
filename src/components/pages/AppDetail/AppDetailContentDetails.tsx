@@ -95,9 +95,7 @@ export default function AppDetailContentDetails({
               <Button
                 color="secondary"
                 size="small"
-                onClick={(e: any) => {
-                  navigate('/appmarketplace')
-                }}
+                onClick={() => navigate('/appmarketplace')}
               >
                 {t('global.actions.back')}
               </Button>
