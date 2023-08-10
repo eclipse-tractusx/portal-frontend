@@ -93,7 +93,7 @@
     "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
     "lint": "yarn run eslint \"./src/**/*.{ts,tsx}\"",
     "start": "PORT=3001 BROWSER=none GENERATE_SOURCEMAP=false react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "build:docker": "if [ -d \"./build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
