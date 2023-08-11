@@ -183,17 +183,12 @@ export default function CommonValidateAndPublish({
       statusData?.documents?.APP_IMAGE &&
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
-      const newPromies = CommonService.fetchLeadPictures(
-        statusData?.documents?.APP_IMAGE,
-        id
+      setMultipleImages(
+        CommonService.imagesAndAppidToImageType(
+          statusData?.documents?.APP_IMAGE,
+          id
+        )
       )
-      Promise.all(newPromies)
-        .then((result) => {
-          setMultipleImages(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
     setDefaultValues(values)
     reset(values)

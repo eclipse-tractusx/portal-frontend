@@ -19,9 +19,10 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
+import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
 import { PaginFetchArgs, PaginResult } from '@catena-x/portal-shared-components'
-import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum ServiceAccountType {
   SECRET = 'SECRET',
@@ -90,7 +91,8 @@ export const apiSlice = createApi({
         `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
     }),
     fetchServiceAccountRoles: builder.query<ServiceAccountRole[], void>({
-      query: () => '/api/administration/serviceaccount/user/roles',
+      query: () =>
+        `/api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
     }),
   }),
 })
