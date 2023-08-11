@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.6.0-RC6
+
+### Change
+
+- Service Account creation - added multiLangugae support when fetching the role description from BE
+
+### Technical Support
+
+- Sonar findings fixed (Code smells and bugs)
+- Dependabot findings fixed (Upgrading dependencies to the latest versions)
+
+### Bugfix
+
+- Application card favorite button click (separation from the rest of the card where the click results into opening the app card)
+- Admin Credential Board - views/filter function fixed
+- Service Release Form - fixed erase of entered data on deleting uploaded image
+- Service Detail - header UI fix of rendering issues
+
 ## 1.6.0-RC5
 
 ### Change
