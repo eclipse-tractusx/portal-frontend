@@ -389,7 +389,8 @@
       "sortOptions": {
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
-        "changeDescription": "Change Description"
+        "changeDescription": "Change Description",
+        "addRoles": "Add Roles"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
@@ -432,6 +433,10 @@
       "shortDescriptionDE": "Short Description - DE *",
       "successMsg": "successfully changed description",
       "errorMsg": "Unable to change description"
+    },
+    "addRoles": {
+      "headerTitle": "Load Additional Roles",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"

@@ -30,6 +30,7 @@ enum AppSubMenuItems {
   DEACTIVATE = 'deactivate',
   CHANGE_IMAGE = 'changeImage',
   CHANGE_DESCRIPTION = 'changeDescription',
+  ADD_ROLES = 'addRoles',
 }
 
 export const AppOverviewList = ({
@@ -60,6 +61,11 @@ export const AppOverviewList = ({
     {
       label: t('content.appoverview.sortOptions.changeDescription'),
       value: AppSubMenuItems.CHANGE_DESCRIPTION,
+      url: '',
+    },
+    {
+      label: t('content.appoverview.sortOptions.addRoles'),
+      value: AppSubMenuItems.ADD_ROLES,
       url: '',
     },
   ]
@@ -93,6 +99,10 @@ export const AppOverviewList = ({
             })
           sortMenu === AppSubMenuItems.CHANGE_DESCRIPTION &&
             navigate(`/changedescription/${id}`, {
+              state: filterItem,
+            })
+          sortMenu === AppSubMenuItems.ADD_ROLES &&
+            navigate(`/addRoles/${id}`, {
               state: filterItem,
             })
           return undefined

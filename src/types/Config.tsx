@@ -79,6 +79,7 @@ import CertificateCredentials from 'components/pages/CertificateCredentials'
 import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
 import AdminCredential from 'components/pages/AdminCredential'
+import AddRoles from 'components/pages/AppOverview/AddRoles'
 
 /**
  * ALL_PAGES
@@ -447,6 +448,20 @@ export const ALL_PAGES: IPage[] = [
         element={<ChangeDescription />}
       >
         <Route path=":appId" element={<ChangeDescription />} />
+      </Route>
+    ),
+  },
+
+  {
+    name: PAGES.ADD_ROLES,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.ADD_ROLES}
+        path={PAGES.ADD_ROLES}
+        element={<AddRoles />}
+      >
+        <Route path=":appId" element={<AddRoles />} />
       </Route>
     ),
   },
