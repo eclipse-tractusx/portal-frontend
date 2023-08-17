@@ -105,6 +105,20 @@
   }
 }
 
+.add-app-roles-main {
+  .main-container {
+    background: #f9f9f9;
+    padding: 0 0 100px 0;
+    .main-row {
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 15px 0 15px !important;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
 .verify-validate-form-divider {
   margin: 20px auto !important;
 }

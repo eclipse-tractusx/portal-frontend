@@ -386,6 +386,10 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchAppRoles: builder.query<any[], string>({
+      query: (appId) =>
+        `/api/administration/user/owncompany/roles/apps/${appId}`,
+    }),
   }),
 })
 
@@ -415,4 +419,5 @@ export const {
   useUpdateImageDataMutation,
   useFetchDescriptionQuery,
   useSaveDescriptionMutation,
+  useFetchAppRolesQuery,
 } = apiSlice

@@ -90,19 +90,19 @@ export const AppOverviewList = ({
         submenuOptions={submenuOptions}
         submenuClick={(sortMenu: string, id: string | undefined) => {
           sortMenu === AppSubMenuItems.DEACTIVATE &&
-            navigate(`/deactivate/${id}`, {
+            navigate(`/${PAGES.DEACTIVATE}/${id}`, {
               state: filterItem,
             })
           sortMenu === AppSubMenuItems.CHANGE_IMAGE &&
-            navigate(`/changeimage/${id}`, {
+            navigate(`/${PAGES.CHANGE_IMAGE}/${id}`, {
               state: filterItem,
             })
           sortMenu === AppSubMenuItems.CHANGE_DESCRIPTION &&
-            navigate(`/changedescription/${id}`, {
+            navigate(`/${PAGES.CHANGE_DESCRIPTION}/${id}`, {
               state: filterItem,
             })
           sortMenu === AppSubMenuItems.ADD_ROLES &&
-            navigate(`/addRoles/${id}`, {
+            navigate(`/${PAGES.ADD_ROLES}/${id}`, {
               state: filterItem,
             })
           return undefined

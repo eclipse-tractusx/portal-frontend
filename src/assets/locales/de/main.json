@@ -436,7 +436,9 @@
     },
     "addRoles": {
       "headerTitle": "Load Additional Roles",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "addAdditionalRoles": "Add Additional Roles",
+      "establishedRoles": "Established Roles"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
