@@ -328,8 +328,8 @@ export default function OfferCard() {
       privacyPolicies: [],
       salesManager: null,
       price: '',
-      providerUri: '',
-      contactEmail: '',
+      providerUri: serviceStatusData?.providerUri ?? '',
+      contactEmail: serviceStatusData?.contactEmail ?? '',
     }
     if (validateFields) {
       setLoading(true)
