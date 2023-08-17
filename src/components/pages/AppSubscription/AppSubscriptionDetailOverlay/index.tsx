@@ -27,7 +27,7 @@ import {
   StaticTable,
   TableType,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   useFetchSubscriptionDetailQuery,
   useUpdateTenantUrlMutation,

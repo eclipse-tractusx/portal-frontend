@@ -24,7 +24,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 interface ServerResponseOverlayProps {
   title: string

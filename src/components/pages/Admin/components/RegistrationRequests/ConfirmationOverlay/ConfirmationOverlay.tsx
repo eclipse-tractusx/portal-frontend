@@ -26,7 +26,7 @@ import {
   Button,
   DialogActions,
   DialogHeader,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 interface ConfirmationOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler

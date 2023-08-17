@@ -63,6 +63,7 @@ import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/s
 import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdminBoardApiSlice'
 import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSlice'
 import { apiSlice as certificationApiSlice } from './certification/certificationApiSlice'
+import { apiSlice as userManagementApiSlice } from './appManagement/userManagementApiSlice'
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
@@ -114,6 +115,7 @@ export const reducers = {
   [serviceAdminBoardApiSlice.reducerPath]: serviceAdminBoardApiSlice.reducer,
   [companyRoleApiSlice.reducerPath]: companyRoleApiSlice.reducer,
   [certificationApiSlice.reducerPath]: certificationApiSlice.reducer,
+  [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
 }
 
@@ -143,6 +145,7 @@ export const store = configureStore({
       .concat(serviceAdminBoardApiSlice.middleware)
       .concat(companyRoleApiSlice.middleware)
       .concat(certificationApiSlice.middleware)
+      .concat(userManagementApiSlice.middleware)
       .concat(usecaseApiSlice.middleware),
 })
 

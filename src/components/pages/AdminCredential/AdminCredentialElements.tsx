@@ -21,7 +21,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import { PageLoadingTable } from '@nidhi.garg/portal-shared-components'
+import { PageLoadingTable } from '@catena-x/portal-shared-components'
 import './AdminCredential.scss'
 import {
   CredentialData,

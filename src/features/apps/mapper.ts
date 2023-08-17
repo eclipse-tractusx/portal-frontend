@@ -22,7 +22,7 @@ import {
   CardItems,
   ImageType,
   LogoGrayData,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {

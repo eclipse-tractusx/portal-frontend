@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems } from '@nidhi.garg/portal-shared-components'
+import { CardItems } from '@catena-x/portal-shared-components'
 import { TenantUser } from 'features/admin/userApiSlice'
 import { AppMarketplaceApp } from 'features/apps/apiSlice'
 import { BusinessPartner } from 'features/partnerNetwork/types'

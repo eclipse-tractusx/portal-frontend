@@ -670,6 +670,10 @@
           "subtitle": "The user cannot enter his account until he has set a new password."
         }
       },
+      "addMultipleUsers": {
+        "heading": "Add user account by bulk upload",
+        "intro": "Bulk upload process"
+      },
       "technicalUser": {
         "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
@@ -1655,7 +1659,8 @@
       "next": "Next",
       "success": "Success",
       "error": "Error",
-      "retry": "Retry"
+      "retry": "Retry",
+      "exit": "exit"
     },
     "state": {
       "enabled": "aktiv",

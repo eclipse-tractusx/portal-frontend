@@ -30,7 +30,7 @@ import {
   Radio,
   Textarea,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'

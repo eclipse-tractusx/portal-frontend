@@ -21,7 +21,7 @@
 import {
   CardDecision,
   PageSnackbar,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme, CircularProgress } from '@mui/material'
 import { show } from 'features/control/overlay'

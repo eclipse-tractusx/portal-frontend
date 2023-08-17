@@ -22,7 +22,7 @@ import {
   Typography,
   Button,
   CircleProgress,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Box, Divider } from '@mui/material'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import MuiDialogTitle from '@mui/material/DialogTitle'

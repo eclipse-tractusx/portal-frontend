@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { StatusVariants } from '@nidhi.garg/portal-shared-components'
+import { StatusVariants } from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import i18next from 'i18next'
 import { AppDetails } from 'features/apps/apiSlice'

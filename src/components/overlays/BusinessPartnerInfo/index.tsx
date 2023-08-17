@@ -22,7 +22,7 @@ import BusinessPartnerDetail from 'components/pages/PartnerNetwork/components/Bu
 import {
   DialogContent,
   DialogHeader,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

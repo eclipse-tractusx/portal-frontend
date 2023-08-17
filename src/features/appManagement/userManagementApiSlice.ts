@@ -18,18 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from '@catena-x/portal-shared-components'
-import { AppDetails } from 'features/apps/apiSlice'
-import './AppDetailTags.scss'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
 
-export default function AppDetailTags({ item }: { item: AppDetails }) {
-  const tags = item.tags
-  return (
-    <div className="appdetail-tags">
-      <Typography variant="h3">Tags:</Typography>
-      {tags.map((tag, i) => (
-        <Chip key={i} label={tag} withIcon={false} type="plain" />
-      ))}
-    </div>
-  )
+export type MultipleUsersRequest = {
+  identityProviderId: string
+  csvFile: File
 }
+
+export type MultipleUsersResponse = {
+  technicalUserInfo: {
+    technicalUserId: string
+    technicalUserSecret: string
+    technicalClientId: string
+    technicalUserPermissions: string[]
+  }
+}
+
+export const apiSlice = createApi({
+  reducerPath: 'rtk/apps/appManagement',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    addMutipleUsers: builder.mutation<
+      MultipleUsersResponse,
+      MultipleUsersRequest
+    >({
+      query: (data: MultipleUsersRequest) => ({
+        url: `/api/administration/user/owncompany/identityprovider/${data.identityProviderId}/usersfile`,
+        method: 'POST',
+        body: data.csvFile,
+      }),
+    }),
+  }),
+})
+
+export const { useAddMutipleUsersMutation } = apiSlice

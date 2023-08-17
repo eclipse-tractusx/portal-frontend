@@ -41,7 +41,7 @@ import {
   Typography,
   UploadFileStatus,
   UploadStatus,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
 import { AppStatusDataState } from 'features/appManagement/types'

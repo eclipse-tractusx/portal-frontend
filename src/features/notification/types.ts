@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { initServicetNotifications } from 'types/MainTypes'
-import { PageNotificationsProps } from '@nidhi.garg/portal-shared-components'
+import { PageNotificationsProps } from '@catena-x/portal-shared-components'
 
 export const name = 'admin/notification'
 

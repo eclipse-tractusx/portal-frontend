@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems, Cards } from '@nidhi.garg/portal-shared-components'
+import { CardItems, Cards } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import NoItems from 'components/pages/NoItems'

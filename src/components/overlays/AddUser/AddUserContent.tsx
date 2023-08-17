@@ -27,7 +27,7 @@ import {
   DialogHeader,
   LoadingButton,
   PageSnackbar,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { UserRoles } from './UserRoles'
 import {
   rolesToAddSelector,

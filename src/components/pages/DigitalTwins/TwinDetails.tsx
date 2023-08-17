@@ -21,7 +21,7 @@
 import {
   Typography,
   CustomAccordion,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   ShellDescriptor,
   SubmodelDescriptors,

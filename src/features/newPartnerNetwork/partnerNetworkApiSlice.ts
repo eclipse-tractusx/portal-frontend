@@ -23,7 +23,7 @@ import { apiBpdmQuery } from 'utils/rtkUtil'
 import {
   PaginResult,
   PaginFetchArgs,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { BusinessPartnerSearchResponse } from './types'
 import Patterns from 'types/Patterns'
 import { BusinessPartnerResponse } from 'features/partnerNetwork/types'

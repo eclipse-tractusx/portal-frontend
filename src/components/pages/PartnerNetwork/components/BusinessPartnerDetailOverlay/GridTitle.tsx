@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Grid, useTheme } from '@mui/material'
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 
 const GridTitle = ({ title }: { title: string }) => {
   const theme = useTheme()

@@ -44,7 +44,7 @@ import {
   SearchInput,
   SortOption,
   CircleProgress,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { initialNotificationState } from 'features/notification/slice'

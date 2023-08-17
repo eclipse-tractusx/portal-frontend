@@ -24,7 +24,7 @@ import {
   IconButton,
   PageNotifications,
   PageSnackbar,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'

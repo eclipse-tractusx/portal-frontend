@@ -669,6 +669,43 @@
           "subtitle": "The user cannot enter his account until he has set a new password."
         }
       },
+      "addMultipleUsers": {
+        "heading": "Add user account by bulk upload",
+        "intro": "Bulk upload process",
+        "step1": {
+          "heading": "Download this upload template by clicking the icon",
+          "buttonLabel": "Upload template"
+        },
+        "step2": {
+          "heading": "Enter user data in upload form",
+          "linkText": "Guide on how to fill the template"
+        },
+        "step3": {
+          "heading": "Upload form by selecting the form file with the user data"
+        },
+        "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "uploadedFile": {
+          "fileHeading": "Prepared for upload:",
+          "addUserRolesHeading": "Add user roles for all users in bulk upload:",
+          "usersToBeUpload": "users to be uploaded",
+          "note": "Note:",
+          "note1": "Only assign roles that apply to all users in the bulk upload file - individual roles can be applied individually later.",
+          "note2": "Roles for applications can be assigned after the user(s) have been successfully created.",
+          "note3": "We suggest to assign CX User initially to all bulk uploaded users and set specific user permissions separately.",
+          "availableRoles": "Available Roles: ",
+          "roleDesc": "Role Descriptions"
+        },
+        "success": {
+          "userUploaded": "Users successfully uploaded",
+          "userFailed": "User uploads failed",
+          "errorUsersLabel": "Errors have occured for the following usernames: <br/> Please check their entries in the upload file and try upload it again."
+        },
+        "error": {
+          "note": "Note:",
+          "description": "The upload failed due to technical issue. Please try it later once again or contact your administrator.",
+          "details": "Details: "
+        }
+      },
       "technicalUser": {
         "serviceaccount": "Service Account",
         "create": "Create technical user",
@@ -1618,7 +1655,8 @@
       "next": "Next",
       "success": "Success",
       "error": "Error",
-      "retry": "Retry"
+      "retry": "Retry",
+      "exit": "exit"
     },
     "state": {
       "enabled": "enabled",

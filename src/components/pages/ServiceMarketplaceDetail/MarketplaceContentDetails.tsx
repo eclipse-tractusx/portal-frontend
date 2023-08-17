@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import MarketplaceHeader from './components/MarketplaceHeader'
 import MarketplaceProvider from './components/MarketplaceProvider'
 import MarketplaceSubscription from './components/MarketplaceSubscription'

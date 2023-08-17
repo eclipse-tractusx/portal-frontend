@@ -22,7 +22,7 @@ import AppDetailContentDetails from 'components/pages/AppDetail/AppDetailContent
 import {
   DialogContent,
   DialogHeader,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'

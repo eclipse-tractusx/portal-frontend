@@ -38,7 +38,7 @@ import {
   DialogContent,
   IconButton,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import './UserManagement.scss'
 import { useTranslation } from 'react-i18next'
 

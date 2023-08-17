@@ -25,7 +25,7 @@ import {
   Chip,
   PageSnackbar,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
 import EditIcon from '@mui/icons-material/Edit'

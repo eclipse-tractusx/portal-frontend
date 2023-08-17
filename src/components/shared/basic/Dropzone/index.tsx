@@ -28,7 +28,7 @@ import {
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
   UploadStatus,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'

@@ -26,7 +26,7 @@ import {
   Checkbox,
   OrderStatusButton,
   paletteDefinitions,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'

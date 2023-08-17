@@ -23,7 +23,7 @@ import { PAGE_SIZE } from 'types/Constants'
 import {
   PaginFetchArgs,
   PaginResult,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum ServiceAccountType {

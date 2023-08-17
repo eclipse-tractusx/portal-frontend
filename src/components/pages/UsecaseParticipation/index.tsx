@@ -23,7 +23,7 @@ import {
   Chip,
   PageHeader,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import PixIcon from '@mui/icons-material/Pix'
 import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'

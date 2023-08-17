@@ -20,7 +20,7 @@
 
 import { UserInfo } from '../UserInfo'
 import { NavLink } from 'react-router-dom'
-import { Button, MainNavigation } from '@nidhi.garg/portal-shared-components'
+import { Button, MainNavigation } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { MenuItem, Tree } from 'types/MainTypes'
 import './Header.scss'

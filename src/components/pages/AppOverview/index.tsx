@@ -29,7 +29,7 @@ import {
   CardItems,
   Cards,
   PageSnackbar,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import {
   appCardStatus,

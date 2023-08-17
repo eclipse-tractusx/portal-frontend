@@ -26,7 +26,7 @@ import {
   IconButton,
   Tooltips,
   Chip,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'

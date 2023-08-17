@@ -21,7 +21,7 @@
 import {
   IconButton,
   PageLoadingTable,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {

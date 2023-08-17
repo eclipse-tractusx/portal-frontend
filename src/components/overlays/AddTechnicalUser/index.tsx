@@ -26,7 +26,7 @@ import {
   DialogHeader,
   CircleProgress,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
