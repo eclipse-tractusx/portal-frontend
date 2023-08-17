@@ -44,12 +44,10 @@ import {
   ConnectType,
   useFetchConnectorsQuery,
   ConnectorResponseBody,
-  useTriggerDapsMutation,
   useFetchManagedConnectorsQuery,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import CreateDapsRegistration from './AddConnectorOverlay/components/CreateDapsRegistration'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { ManagedConnectorTableColumns } from './edcManagedConnectorTableColumns'
 import { OwnConnectorTableColumns } from './edcOwnConnectorTableColumns'
@@ -86,9 +84,6 @@ const EdcConnector = () => {
   const [notificationMessage, setNotificationMessage] = useState<string>(
     t('content.edcconnector.snackbar.successmessage')
   )
-  const [createDapsModalOpen, setCreateDapsModalOpen] = useState<boolean>(false)
-  useState<boolean>(false)
-  const [triggerDaps] = useTriggerDapsMutation()
   const [
     viewConfigurationDetailsOverlayOpen,
     setViewConfigurationDetailsOverlayOpen,
@@ -125,14 +120,7 @@ const EdcConnector = () => {
 
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (
-      params.field === 'dapsRegistrationSuccessful' &&
-      !params.row.dapsRegistrationSuccessful
-    ) {
-      setSelectedConnector(params.row as ConnectorContentAPIResponse)
-      //TO-DO: Enable when DAPS enabled
-      //setCreateDapsModalOpen(true)
-    }
+    setSelectedConnector(params.row as ConnectorContentAPIResponse)
   }
 
   const onConfirmClick = (selected: ConnectorType) => {
@@ -148,8 +136,6 @@ const EdcConnector = () => {
     body.append('ConnectorUrl', data.ConnectorURL)
     body.append('Location', data.ConnectorLocation)
     body.append('Status', ConnectorStatusType.PENDING)
-    //TO-DO: Enable when DAPS enabled
-    // body.append('Certificate', data.ConnectorDoc)
     setLoading(true)
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
       await createConnector(body)
@@ -191,25 +177,6 @@ const EdcConnector = () => {
         setDeleteConnectorConfirmModalOpen(false)
         showOverlay(false)
       })
-  }
-
-  const onUploadImage = async (file: any) => {
-    setAction('daps')
-    setLoading(true)
-    const data = {
-      file: file,
-      connectorId: selectedConnector.id || '',
-    }
-    await triggerDaps(data)
-      .unwrap()
-      .then(() => {
-        showOverlay(true)
-      })
-      .catch(() => {
-        setLoading(false)
-        showOverlay(false)
-      })
-    setCreateDapsModalOpen(false)
   }
 
   const isCreate = () => {
@@ -275,12 +242,6 @@ const EdcConnector = () => {
         openDialog={deleteConnectorConfirmModalOpen}
         handleOverlayClose={() => setDeleteConnectorConfirmModalOpen(false)}
         handleConfirmClick={() => deleteSelectedConnector()}
-        loading={loading}
-      />
-      <CreateDapsRegistration
-        openDialog={createDapsModalOpen}
-        handleOverlayClose={() => setCreateDapsModalOpen(false)}
-        handleConfirmClick={(file) => onUploadImage(file)}
         loading={loading}
       />
       <AddConnectorOverlay
