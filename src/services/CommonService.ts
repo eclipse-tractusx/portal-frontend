@@ -20,8 +20,9 @@
 
 import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
-import UserService from './UserService'
 import { AppMarketplaceApp } from 'features/apps/apiSlice'
+import { ImageType } from '@catena-x/portal-shared-components'
+import { fetchImageWithToken } from './ImageService'
 
 const getName = (app: AppMarketplaceApp) => app.name ?? ''
 const getDescription = (app: AppMarketplaceApp) =>
@@ -48,48 +49,17 @@ const appToCard = (app: AppMarketplaceApp) => ({
   },
 })
 
-const fetchLeadPictures = (images: string[], appId: string) => {
-  const promises = images?.map((image: any) => {
-    return [
-      new Promise((resolve, reject) => {
-        let url = ''
-        if (!image.documentId) {
-          url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
-            image
-          )}`
-        } else {
-          url = `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
-            image.documentId
-          )}`
-        }
-
-        return fetch(url, {
-          method: 'GET',
-          headers: {
-            authorization: `Bearer ${UserService.getToken()}`,
-          },
-        })
-          .then((response) => response.blob())
-          .then(
-            async (blob) =>
-              await new Promise((callback) => {
-                let reader = new FileReader()
-                reader.onload = function () {
-                  resolve({
-                    url: this.result,
-                    text: '',
-                  })
-                }
-                reader.readAsDataURL(blob)
-              })
-          )
-      }),
-    ]
-  })
-
-  const newPromies = promises.map((promise) => Promise.all(promise))
-  return newPromies
-}
+const imagesAndAppidToImageType = (
+  images: string[],
+  appId: string
+): ImageType[] =>
+  images?.map((image: any) => ({
+    url: `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
+      image.documentId ?? image
+    )}`,
+    text: 'Catena-X',
+    loader: fetchImageWithToken,
+  }))
 
 const isValidPictureId = (id: string) => {
   return id === '00000000-0000-0000-0000-000000000000'
@@ -153,7 +123,7 @@ const CommonService = {
   getCompanyRoles,
   getUseCases,
   getDataSpace,
-  fetchLeadPictures,
+  imagesAndAppidToImageType,
   getRoleDescription,
   getCompanyRoleUpdateData,
 }

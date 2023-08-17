@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
@@ -39,20 +38,6 @@ import BoardTechnicalUserSetup from './components/BoardTechnicalUserSetup'
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [images, setImages] = useState<any>()
-
-  useEffect(() => {
-    if (item) {
-      const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
-      Promise.all(newPromies)
-        .then((result) => {
-          setImages(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }, [item])
 
   return (
     item && (
@@ -79,7 +64,13 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
             </div>
           ))}
         </div>
-        {images && <ImageGallery gallery={images} modalWidth="900" />}
+        <ImageGallery
+          gallery={CommonService.imagesAndAppidToImageType(
+            item.images,
+            item.id
+          )}
+          modalWidth="900"
+        />
         <div className="divider-height" />
         <BoardPrivacy item={item} />
         <div className="divider-height" />

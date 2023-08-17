@@ -77,7 +77,8 @@ export default function AppListSection() {
 
   const checkIsFavorite = (appId: string) => favoriteItems.includes(appId)
 
-  const addOrRemoveFavorite = (appId: string) => {
+  const addOrRemoveFavorite = (event: React.MouseEvent, appId: string) => {
+    event?.stopPropagation()
     dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
   }
 
@@ -141,7 +142,8 @@ export default function AppListSection() {
           items={cardsData.map((card) => ({
             ...card,
             onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: () => addOrRemoveFavorite(card.id!),
+            onSecondaryButtonClick: (e: React.MouseEvent) =>
+              addOrRemoveFavorite(e, card.id!),
             addButtonClicked: checkIsFavorite(card.id!),
           }))}
           groupKey={group}
