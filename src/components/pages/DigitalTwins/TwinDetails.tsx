@@ -18,10 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Typography,
-  CustomAccordion,
-} from '@catena-x/portal-shared-components'
+import { Typography, CustomAccordion } from '@catena-x/portal-shared-components'
 import {
   ShellDescriptor,
   SubmodelDescriptors,

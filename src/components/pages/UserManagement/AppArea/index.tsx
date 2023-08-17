@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Typography,
-  Card,
-  Carousel,
-} from '@catena-x/portal-shared-components'
+import { Typography, Card, Carousel } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'

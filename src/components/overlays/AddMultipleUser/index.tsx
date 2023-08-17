@@ -288,7 +288,9 @@ export default function AddMultipleUser() {
                     checked={Array.isArray(roles) && roles.includes(role.role)}
                     label={role.role}
                     key={role.roleId}
-                    onChange={(e) => handleSelectRole(role.role, e.target.checked)}
+                    onChange={(e) =>
+                      handleSelectRole(role.role, e.target.checked)
+                    }
                   />
                 ))}
               </div>
