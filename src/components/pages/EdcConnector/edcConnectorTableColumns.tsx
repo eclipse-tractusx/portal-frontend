@@ -70,25 +70,6 @@ export const ConnectorTableColumns = (
         <Typography variant="body2">{row.location}</Typography>
       ),
     },
-    // {
-    //   field: 'dapsRegistrationSuccessful',
-    //   headerName: t('content.edcconnector.columns.status'),
-    //   flex: 1.2,
-    //   sortable: false,
-    //   disableColumnMenu: true,
-    //   align: 'center',
-    //   headerAlign: 'center',
-    //   renderCell: ({ row }: { row: any }) => (
-    //     <Box>
-    //       <LockIcon
-    //         sx={{
-    //           color: row.dapsRegistrationSuccessful ? 'green' : '#b6b6b6',
-    //           cursor: 'pointer',
-    //         }}
-    //       />
-    //     </Box>
-    //   ),
-    // },
     {
       field: 'selfDescriptionDocumentId',
       headerName: t('content.edcconnector.columns.sdDescription'),

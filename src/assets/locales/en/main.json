@@ -445,7 +445,6 @@
         "type": "Connector Type",
         "details": "Status",
         "location": "Location",
-        "status": "DAPS Auth Status",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "The Self-Description is triggered. Process might take up to a couple of minutes.",
@@ -498,11 +497,6 @@
           "title": "Register Managed Connector",
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
           "disableDescription": "This option is only available if your company is App Provider or Service Provider. Company roles can get changed by the company admin /company-role"
-        },
-        "daps": {
-          "title": "Create DAPS Registration",
-          "intro": "To retrigger the daps authentication interface, please upload the public authentication key/certificate of your connector.",
-          "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
