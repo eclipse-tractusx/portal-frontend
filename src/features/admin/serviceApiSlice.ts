@@ -79,7 +79,7 @@ export const apiSlice = createApi({
         method: 'DELETE',
       }),
       transformErrorResponse: (error: any) => {
-        return error && error.errors
+        return error?.errors
           ? error.errors[
               'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
             ][0]
