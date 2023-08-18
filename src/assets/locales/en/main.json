@@ -97,6 +97,9 @@
     "Lang_de": "Switch language to german",
     "Lang_en": "Switch language to english"
   },
+  "error": {
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+  },
   "content": {
     "admin": {
       "registration-requests": {

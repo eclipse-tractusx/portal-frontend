@@ -98,6 +98,9 @@
     "Lang_de": "Sprache auf Deutsch stellen",
     "Lang_en": "Sprache auf Englisch stellen"
   },
+  "error": {
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+  },
   "content": {
     "admin": {
       "registration-requests": {
