@@ -23,16 +23,14 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type MultipleUsersRequest = {
   identityProviderId: string
-  csvFile: any
+  csvFile: File
 }
 
 export type MultipleUsersResponse = {
-  technicalUserInfo: {
-    technicalUserId: string
-    technicalUserSecret: string
-    technicalClientId: string
-    technicalUserPermissions: string[]
-  }
+  created: number
+  error: number
+  errors: string[]
+  total: number
 }
 
 export const apiSlice = createApi({
