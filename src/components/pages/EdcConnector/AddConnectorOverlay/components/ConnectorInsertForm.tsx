@@ -227,13 +227,6 @@ const ConnectorInsertForm = ({
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
-  //TO-DO: Enable when DAPS enabled
-  // const dropzoneProps = {
-  //   accept: {
-  //     'application/x-pem-file': [],
-  //     'application/x-x509-ca-cert': [],
-  //   },
-  // }
 
   return (
     <Box sx={{ width: '100%' }} className="connector-insert-form">
@@ -368,29 +361,6 @@ const ConnectorInsertForm = ({
                   />
                 </div>
               )}
-            {/* TO-DO: Enable when DAPS enabled */}
-            {/* <div className="form-input">
-              <ConnectorFormInput
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'ConnectorDoc',
-                  type: 'dropzone',
-                  rules: {
-                    required: true,
-                  },
-                  label: t('content.edcconnector.modal.insertform.doc.label'),
-                  dropzoneProps: dropzoneProps,
-                  helperText: t(
-                    'content.edcconnector.modal.insertform.doc.error'
-                  ),
-                  tooltipMsg: t(
-                    'content.edcconnector.modal.insertform.doc.tooltipMsg'
-                  ),
-                }}
-              />
-            </div> */}
           </form>
         </Grid>
       </Grid>

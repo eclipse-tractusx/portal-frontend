@@ -78,6 +78,10 @@ export const apiSlice = createApi({
         url: `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
         method: 'DELETE',
       }),
+      transformErrorResponse: (error: any) =>
+        error?.errors?.[
+          'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
+        ]?.[0] ?? i18next.t('error.deleteTechUserNotificationErrorDescription'),
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,
