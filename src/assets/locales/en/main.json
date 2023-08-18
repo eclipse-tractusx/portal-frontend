@@ -97,6 +97,9 @@
     "Lang_de": "Switch language to german",
     "Lang_en": "Switch language to english"
   },
+  "error": {
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+  },
   "content": {
     "admin": {
       "registration-requests": {
@@ -680,7 +683,8 @@
         "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
-        "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed"
+        "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed",
+        "deleteTechUserNotificationErrorTitle": "Something went wrong"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",

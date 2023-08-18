@@ -98,6 +98,9 @@
     "Lang_de": "Sprache auf Deutsch stellen",
     "Lang_en": "Sprache auf Englisch stellen"
   },
+  "error": {
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+  },
   "content": {
     "admin": {
       "registration-requests": {
@@ -681,7 +684,8 @@
         "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
-        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
+        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
+        "deleteTechUserNotificationErrorTitle": "Something went wrong"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
