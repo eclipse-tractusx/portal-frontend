@@ -26,14 +26,15 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^2.0.18",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.4",
+    "@catena-x/portal-shared-components": "^2.0.19",
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/papaparse": "^5.3.7",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.8",

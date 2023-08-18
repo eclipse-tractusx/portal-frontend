@@ -23,7 +23,7 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type MultipleUsersRequest = {
   identityProviderId: string
-  csvFile: File
+  csvFile: any
 }
 
 export type MultipleUsersResponse = {
@@ -43,11 +43,19 @@ export const apiSlice = createApi({
       MultipleUsersResponse,
       MultipleUsersRequest
     >({
-      query: (data: MultipleUsersRequest) => ({
-        url: `/api/administration/user/owncompany/identityprovider/${data.identityProviderId}/usersfile`,
-        method: 'POST',
-        body: data.csvFile,
-      }),
+      query: (data: MultipleUsersRequest) => {
+        const formData = new FormData()
+        formData.append('document', data.csvFile)
+        return {
+          url: `/api/administration/user/owncompany/identityprovider/${data.identityProviderId}/usersfile`,
+          method: 'POST',
+          body: formData,
+          // headers: {
+          //   Accept: 'text/csv; charset=utf-8',
+          //   'Content-Type': 'text/csv; charset=utf-8'
+          // }
+        }
+      },
     }),
   }),
 })

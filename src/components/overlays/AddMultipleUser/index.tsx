@@ -49,8 +49,13 @@ import {
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
-import './AddMultipleUser.scss'
 import { useAddMutipleUsersMutation } from 'features/appManagement/userManagementApiSlice'
+import {
+  useFetchIDPListQuery,
+  IdentityProvider,
+} from 'features/admin/idpApiSlice'
+import './AddMultipleUser.scss'
+import Papa from 'papaparse'
 
 export default function AddMultipleUser() {
   const dispatch = useDispatch<typeof store.dispatch>()
@@ -60,20 +65,31 @@ export default function AddMultipleUser() {
 
   const { data } = useFetchCoreoffersRolesQuery()
   const [addMutipleUsers] = useAddMutipleUsersMutation()
+  const { data: idpsData } = useFetchIDPListQuery()
 
   const [loading, setLoading] = useState(false)
   const [allRoles, setAllRoles] = useState<any>([])
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false)
+  const [totalRowsInCSV, setTotalRowsInCSV] = useState<any>(0)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
+  const [idps, setIdps] = useState<IdentityProvider[]>([])
 
   useEffect(() => {
     const rolesArray: AppRole[] = []
-    data && data.map((a) => rolesArray.push(...a.roles))
+    data?.map((a) => rolesArray.push(...a.roles))
     setAllRoles(rolesArray)
     dispatch(setRolesToAdd([]))
   }, [data, dispatch])
+
+  useEffect(
+    () =>
+      setIdps(
+        idpsData ? idpsData.filter((idp: IdentityProvider) => idp.enabled) : []
+      ),
+    [idpsData]
+  )
 
   const handleSelectRole = (role: string, select: boolean) => {
     const isSelected = roles.includes(role)
@@ -90,24 +106,41 @@ export default function AddMultipleUser() {
     return <DropArea {...props} size="small" />
   }
 
+  const handleAddUserAPICall = async (csvData: any) => {
+    try {
+      await addMutipleUsers({
+        identityProviderId: idps[0].identityProviderId,
+        csvFile: Papa.unparse(csvData),
+      }).unwrap()
+      setLoading(false)
+      setIsSuccess(true)
+      //setActivationResponse(subscriptionData)
+    } catch (error) {
+      setLoading(false)
+      setIsError(true)
+      console.log(error)
+    }
+  }
+
   const handleConfirm = async () => {
     if (isSuccess) dispatch(show(OVERLAYS.NONE, ''))
     if (uploadedFile && !roles.length) setIsFileUploaded(true)
     else if (uploadedFile && roles.length) {
       setLoading(true)
-      try {
-        await addMutipleUsers({
-          identityProviderId: 'identityProviderId',
-          csvFile: uploadedFile,
-        }).unwrap()
-        setLoading(false)
-        setIsSuccess(true)
-        //setActivationResponse(subscriptionData)
-      } catch (error) {
-        setLoading(false)
-        setIsError(true)
-        console.log(error)
-      }
+      uploadedFile &&
+        Papa.parse(uploadedFile, {
+          skipEmptyLines: true,
+          complete: async (results) => {
+            const csvData: any = results.data
+            csvData[0].push('Roles')
+            for (let i = 0; i < csvData.length; i++) {
+              if (i !== 0) csvData[i].push(roles.toString())
+            }
+            console.log('csvData', csvData)
+            console.log(Papa.unparse(csvData))
+            handleAddUserAPICall(csvData)
+          },
+        })
     }
   }
 
@@ -136,6 +169,25 @@ export default function AddMultipleUser() {
       ['Used Content'],
       ['Used Content'],
     ],
+  }
+
+  const onChangeFile = async (selectedFile: File) => {
+    setUploadedFile(selectedFile)
+
+    Papa.parse(selectedFile, {
+      skipEmptyLines: true,
+      complete: function (results) {
+        const csvData: any = results.data
+        setTotalRowsInCSV(csvData.length - 1)
+        if (
+          csvData[0][0].toLowerCase() === 'firstname' &&
+          csvData[0][1].toLowerCase() === 'lastname' &&
+          csvData[0][2].toLowerCase() === 'email'
+        )
+          console.log('TRUEEEEEEEEEEEE')
+        else console.log('ERROOROROORORO')
+      },
+    })
   }
 
   console.log(uploadedFile)
@@ -224,8 +276,8 @@ export default function AddMultipleUser() {
               </div>
               <div className="documentMain">
                 <div className="documentIcon">
-                  <Typography variant="body1" className="icon">
-                    23
+                  <Typography variant="body1" className="number">
+                    {totalRowsInCSV}
                   </Typography>
                 </div>
                 <Typography variant="body1" className="documentName">
@@ -339,7 +391,7 @@ export default function AddMultipleUser() {
                 maxFilesToUpload={1}
                 maxFileSize={1000}
                 onChange={([file]) => {
-                  setUploadedFile(file)
+                  onChangeFile(file)
                 }}
                 errorText={t(
                   'content.usermanagement.addMultipleUsers.fileSizeError'
