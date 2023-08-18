@@ -37,6 +37,7 @@ import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
 
 export default function AppDetailContentDetails({
   item,
@@ -95,7 +96,7 @@ export default function AppDetailContentDetails({
               <Button
                 color="secondary"
                 size="small"
-                onClick={() => navigate('/appmarketplace')}
+                onClick={() => navigate(`${PAGES.APP_MARKETPLACE}`)}
               >
                 {t('global.actions.back')}
               </Button>
