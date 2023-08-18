@@ -347,16 +347,13 @@ export default function CommonContractAndConsent({
       await updateAgreementConsents(updateData)
         .unwrap()
         .then(() => {
-          if (
-            buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
-            type === ReleaseProcessTypes.APP_RELEASE
-          ) {
-            dispatch(increment())
-          } else {
-            dispatch(serviceReleaseStepIncrement())
+          buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
+          if (buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED) {
+            type === ReleaseProcessTypes.APP_RELEASE && dispatch(increment())
+            type === ReleaseProcessTypes.SERVICE_RELEASE &&
+              dispatch(serviceReleaseStepIncrement())
           }
           setAgreementData([])
-          buttonLabel === ButtonLabelTypes.SAVE && setContractSnackbar(true)
         })
         .catch(() => {
           setContractNotification(true)
