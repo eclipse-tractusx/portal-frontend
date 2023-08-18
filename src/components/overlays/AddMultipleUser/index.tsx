@@ -172,135 +172,213 @@ export default function AddMultipleUser() {
     })
   }
 
-  const renderSuccessSection = () => {
-    return (
-      <div className="successSection mb-20">
-        <div className="uploadedDetailsSection mb-20">
-          <div className="userDetailsMain">
-            <div className="userSuccess">
-              <Typography variant="body1" className="number">
-                {uploadAPIRResponse?.created}
+  const renderContent = () => {
+    if (isError) {
+      return (
+        <div className="errorSection">
+          <Typography variant="body1">
+            {t('content.usermanagement.addMultipleUsers.error.note')}
+          </Typography>
+          <Typography variant="body1" className="mb-20">
+            {t('content.usermanagement.addMultipleUsers.error.description')}
+          </Typography>
+          <Typography variant="label1">
+            {t('content.usermanagement.addMultipleUsers.error.details')}
+          </Typography>
+          <Typography variant="label1" className="mb-20">
+            {isError}
+          </Typography>
+        </div>
+      )
+    } else if (isSuccess) {
+      return (
+        <div className="successSection mb-20">
+          <div className="uploadedDetailsSection mb-20">
+            <div className="userDetailsMain">
+              <div className="userSuccess">
+                <Typography variant="body1" className="number">
+                  {uploadAPIRResponse?.created}
+                </Typography>
+              </div>
+              <Typography variant="body1" className="detailLabel">
+                {t(
+                  'content.usermanagement.addMultipleUsers.success.userUploaded'
+                )}
               </Typography>
             </div>
-            <Typography variant="body1" className="detailLabel">
-              {t(
-                'content.usermanagement.addMultipleUsers.success.userUploaded'
-              )}
-            </Typography>
-          </div>
-          <div className="userDetailsMain">
-            <div className="userError">
-              <Typography variant="body1" className="number">
-                {uploadAPIRResponse?.error}
+            <div className="userDetailsMain">
+              <div className="userError">
+                <Typography variant="body1" className="number">
+                  {uploadAPIRResponse?.error}
+                </Typography>
+              </div>
+              <Typography variant="body1" className="detailLabel">
+                {t(
+                  'content.usermanagement.addMultipleUsers.success.userFailed'
+                )}
               </Typography>
             </div>
-            <Typography variant="body1" className="detailLabel">
-              {t('content.usermanagement.addMultipleUsers.success.userFailed')}
-            </Typography>
           </div>
-        </div>
-        <div className="mb-20">
-          <Trans>
-            <Typography variant="body1" className="errorUsersLabel">
-              {t(
-                'content.usermanagement.addMultipleUsers.success.errorUsersLabel'
-              )}
-            </Typography>
-          </Trans>
-        </div>
-        {tableErrorData && (
-          <StaticTable data={tableErrorData} horizontal={true} />
-        )}
-      </div>
-    )
-  }
-
-  const renderFileUploadedSection = () => {
-    return (
-      <div className="uploadedFileMain">
-        <Typography variant="h6" className="mb-20">
-          {t(
-            'content.usermanagement.addMultipleUsers.uploadedFile.fileHeading'
+          <div className="mb-20">
+            <Trans>
+              <Typography variant="body1" className="errorUsersLabel">
+                {t(
+                  'content.usermanagement.addMultipleUsers.success.errorUsersLabel'
+                )}
+              </Typography>
+            </Trans>
+          </div>
+          {tableErrorData && (
+            <StaticTable data={tableErrorData} horizontal={true} />
           )}
-        </Typography>
-        <div className="fileDetailsSection mb-20">
-          <div className="documentMain">
-            <div className="documentIcon">
-              <ArticleOutlinedIcon className="icon" />
-            </div>
-            <Typography variant="body1" className="documentName">
-              {uploadedFile?.name}
-            </Typography>
-          </div>
-          <div className="documentMain">
-            <div className="documentIcon">
-              <Typography variant="body1" className="number">
-                {totalRowsInCSV}
+        </div>
+      )
+    } else if (isFileUploaded) {
+      return (
+        <div className="uploadedFileMain">
+          <Typography variant="h6" className="mb-20">
+            {t(
+              'content.usermanagement.addMultipleUsers.uploadedFile.fileHeading'
+            )}
+          </Typography>
+          <div className="fileDetailsSection mb-20">
+            <div className="documentMain">
+              <div className="documentIcon">
+                <ArticleOutlinedIcon className="icon" />
+              </div>
+              <Typography variant="body1" className="documentName">
+                {uploadedFile?.name}
               </Typography>
             </div>
-            <Typography variant="body1" className="documentName">
-              {t(
-                'content.usermanagement.addMultipleUsers.uploadedFile.usersToBeUpload'
-              )}
+            <div className="documentMain">
+              <div className="documentIcon">
+                <Typography variant="body1" className="number">
+                  {totalRowsInCSV}
+                </Typography>
+              </div>
+              <Typography variant="body1" className="documentName">
+                {t(
+                  'content.usermanagement.addMultipleUsers.uploadedFile.usersToBeUpload'
+                )}
+              </Typography>
+            </div>
+          </div>
+          <Typography variant="h6" className="mb-20">
+            {t(
+              'content.usermanagement.addMultipleUsers.uploadedFile.addUserRolesHeading'
+            )}
+          </Typography>
+          <Typography variant="label1" className="mb-20">
+            {t('content.usermanagement.addMultipleUsers.uploadedFile.note')}
+          </Typography>
+          <ul className="mb-20">
+            <li>
+              <Typography variant="label1" className="mb-20">
+                {t(
+                  'content.usermanagement.addMultipleUsers.uploadedFile.note1'
+                )}
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="label1" className="mb-20">
+                {t(
+                  'content.usermanagement.addMultipleUsers.uploadedFile.note2'
+                )}
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="label1" className="mb-20">
+                {t(
+                  'content.usermanagement.addMultipleUsers.uploadedFile.note3'
+                )}
+              </Typography>
+            </li>
+          </ul>
+          <Typography variant="label1">
+            {t(
+              'content.usermanagement.addMultipleUsers.uploadedFile.availableRoles'
+            )}
+          </Typography>
+          <Link
+            to={`/${PAGES.ROLE_DETAILS}`}
+            target="_blank"
+            className="roleDescLink"
+          >
+            <ChevronRightIcon sx={{ fontSize: '20px' }} />
+            {t('content.usermanagement.addMultipleUsers.uploadedFile.roleDesc')}
+          </Link>
+          {allRoles.length > 0 ? (
+            <div className="rolesSection">
+              {allRoles.map((role: AppRole) => (
+                <Checkbox
+                  checked={Array.isArray(roles) && roles.includes(role.role)}
+                  label={role.role}
+                  key={role.roleId}
+                  onChange={(e) =>
+                    handleSelectRole(role.role, e.target.checked)
+                  }
+                />
+              ))}
+            </div>
+          ) : (
+            <Alert severity="info">
+              <span>{t('content.addUserRight.noRolesFound')}</span>
+            </Alert>
+          )}
+        </div>
+      )
+    } else {
+      return (
+        <div className="addMultipleUsers">
+          <div className="firstStep">
+            <Typography variant="label4" className="number">
+              1
             </Typography>
+            <Typography variant="body1" className="mb-20">
+              {t('content.usermanagement.addMultipleUsers.step1.heading')}
+            </Typography>
+            <Button variant="outlined" size="small">
+              {t('content.usermanagement.addMultipleUsers.step1.buttonLabel')}
+            </Button>
+          </div>
+          <div className="secondStep">
+            <Typography variant="label4" className="number">
+              2
+            </Typography>
+            <Typography variant="body1" className="mb-20">
+              {t('content.usermanagement.addMultipleUsers.step2.heading')}
+            </Typography>
+            <Link to="/test" target="_blank" className="linkText mb-20">
+              <Typography variant="caption2">
+                {t('content.usermanagement.addMultipleUsers.step2.linkText')}
+              </Typography>
+            </Link>
+            <EditIcon className="editIcon" />
+          </div>
+          <div className="thirdStep">
+            <Typography variant="label4" className="number">
+              3
+            </Typography>
+            <Typography variant="h6" className="mb-20">
+              {t('content.usermanagement.addMultipleUsers.step3.heading')}
+            </Typography>
+            <Dropzone
+              acceptFormat={{ '.csv': [] }}
+              maxFilesToUpload={1}
+              maxFileSize={1000}
+              onChange={([file]) => {
+                onChangeFile(file)
+              }}
+              errorText={t(
+                'content.usermanagement.addMultipleUsers.fileSizeError'
+              )}
+              DropStatusHeader={false}
+              DropArea={renderDropArea}
+            />
           </div>
         </div>
-        <Typography variant="h6" className="mb-20">
-          {t(
-            'content.usermanagement.addMultipleUsers.uploadedFile.addUserRolesHeading'
-          )}
-        </Typography>
-        <Typography variant="label1" className="mb-20">
-          {t('content.usermanagement.addMultipleUsers.uploadedFile.note')}
-        </Typography>
-        <ul className="mb-20">
-          <li>
-            <Typography variant="label1" className="mb-20">
-              {t('content.usermanagement.addMultipleUsers.uploadedFile.note1')}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="label1" className="mb-20">
-              {t('content.usermanagement.addMultipleUsers.uploadedFile.note2')}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="label1" className="mb-20">
-              {t('content.usermanagement.addMultipleUsers.uploadedFile.note3')}
-            </Typography>
-          </li>
-        </ul>
-        <Typography variant="label1">
-          {t(
-            'content.usermanagement.addMultipleUsers.uploadedFile.availableRoles'
-          )}
-        </Typography>
-        <Link
-          to={`/${PAGES.ROLE_DETAILS}`}
-          target="_blank"
-          className="roleDescLink"
-        >
-          <ChevronRightIcon sx={{ fontSize: '20px' }} />
-          {t('content.usermanagement.addMultipleUsers.uploadedFile.roleDesc')}
-        </Link>
-        {allRoles.length > 0 ? (
-          <div className="rolesSection">
-            {allRoles.map((role: AppRole) => (
-              <Checkbox
-                checked={Array.isArray(roles) && roles.includes(role.role)}
-                label={role.role}
-                key={role.roleId}
-                onChange={(e) => handleSelectRole(role.role, e.target.checked)}
-              />
-            ))}
-          </div>
-        ) : (
-          <Alert severity="info">
-            <span>{t('content.addUserRight.noRolesFound')}</span>
-          </Alert>
-        )}
-      </div>
-    )
+      )
+    }
   }
 
   return (
@@ -315,75 +393,7 @@ export default function AddMultipleUser() {
       />
 
       <DialogContent sx={{ padding: '0 150px 20px' }}>
-        {isError ? (
-          <div className="errorSection">
-            <Typography variant="body1">
-              {t('content.usermanagement.addMultipleUsers.error.note')}
-            </Typography>
-            <Typography variant="body1" className="mb-20">
-              {t('content.usermanagement.addMultipleUsers.error.description')}
-            </Typography>
-            <Typography variant="label1">
-              {t('content.usermanagement.addMultipleUsers.error.details')}
-            </Typography>
-            <Typography variant="label1" className="mb-20">
-              {isError}
-            </Typography>
-          </div>
-        ) : isSuccess ? (
-          renderSuccessSection()
-        ) : isFileUploaded ? (
-          renderFileUploadedSection()
-        ) : (
-          <div className="addMultipleUsers">
-            <div className="firstStep">
-              <Typography variant="label4" className="number">
-                1
-              </Typography>
-              <Typography variant="body1" className="mb-20">
-                {t('content.usermanagement.addMultipleUsers.step1.heading')}
-              </Typography>
-              <Button variant="outlined" size="small">
-                {t('content.usermanagement.addMultipleUsers.step1.buttonLabel')}
-              </Button>
-            </div>
-            <div className="secondStep">
-              <Typography variant="label4" className="number">
-                2
-              </Typography>
-              <Typography variant="body1" className="mb-20">
-                {t('content.usermanagement.addMultipleUsers.step2.heading')}
-              </Typography>
-              <Link to="/test" target="_blank" className="linkText mb-20">
-                <Typography variant="caption2">
-                  {t('content.usermanagement.addMultipleUsers.step2.linkText')}
-                </Typography>
-              </Link>
-              <EditIcon className="editIcon" />
-            </div>
-            <div className="thirdStep">
-              <Typography variant="label4" className="number">
-                3
-              </Typography>
-              <Typography variant="h6" className="mb-20">
-                {t('content.usermanagement.addMultipleUsers.step3.heading')}
-              </Typography>
-              <Dropzone
-                acceptFormat={{ '.csv': [] }}
-                maxFilesToUpload={1}
-                maxFileSize={1000}
-                onChange={([file]) => {
-                  onChangeFile(file)
-                }}
-                errorText={t(
-                  'content.usermanagement.addMultipleUsers.fileSizeError'
-                )}
-                DropStatusHeader={false}
-                DropArea={renderDropArea}
-              />
-            </div>
-          </div>
-        )}
+        {renderContent()}
       </DialogContent>
 
       <DialogActions>

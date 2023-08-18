@@ -1176,9 +1176,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@catena-x/portal-shared-components@^2.0.19":
-  version "2.0.20"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.20.tgz#f470238ecb865693f53efa1e190c2678d8c910e6"
-  integrity sha512-rJlWTBUY/9lJ6qVjp/ZRyNOYRw6EQ+MnWWfHnp1blkY3gzXqRAqTO7LkcayIyHXMOZ+K+8Svqsh14ANfp9ooig==
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.19.tgz#c3ba91421181e7b791379e80cdaf082beb46d201"
+  integrity sha512-+WnZgUBYs487iCILfblZBb6G/bcrU2PqHH4D5MLx864oKKVUuE5pzYJtXuRe9sJYbK1MF6fq8lGmloclMjD5Jg==
   dependencies:
     "@mui/base" "^5.0.0-beta.3"
     "@mui/system" "^5.13.2"

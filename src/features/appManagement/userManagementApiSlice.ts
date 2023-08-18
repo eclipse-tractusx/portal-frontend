@@ -48,10 +48,6 @@ export const apiSlice = createApi({
           url: `/api/administration/user/owncompany/identityprovider/${data.identityProviderId}/usersfile`,
           method: 'POST',
           body: formData,
-          // headers: {
-          //   Accept: 'text/csv; charset=utf-8',
-          //   'Content-Type': 'text/csv; charset=utf-8'
-          // }
         }
       },
     }),

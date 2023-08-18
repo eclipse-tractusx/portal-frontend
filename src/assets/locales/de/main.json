@@ -98,6 +98,9 @@
     "Lang_de": "Sprache auf Deutsch stellen",
     "Lang_en": "Sprache auf Englisch stellen"
   },
+  "error": {
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+  },
   "content": {
     "admin": {
       "registration-requests": {
@@ -446,7 +449,6 @@
         "type": "Steckertyp",
         "details": "Status",
         "location": "Location",
-        "status": "DAPS Auth Status",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
@@ -499,11 +501,6 @@
           "title": "Register Managed Connector",
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
           "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
-        },
-        "daps": {
-          "title": "Create DAPS Registration",
-          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
-          "error": "The daps  registration failed. Please reverify the uploaded document"
         },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
@@ -672,7 +669,40 @@
       },
       "addMultipleUsers": {
         "heading": "Add user account by bulk upload",
-        "intro": "Bulk upload process"
+        "intro": "Bulk upload process",
+        "step1": {
+          "heading": "Download this upload template by clicking the icon",
+          "buttonLabel": "Upload template"
+        },
+        "step2": {
+          "heading": "Enter user data in upload form",
+          "linkText": "Guide on how to fill the template"
+        },
+        "step3": {
+          "heading": "Upload form by selecting the form file with the user data"
+        },
+        "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "uploadedFile": {
+          "fileHeading": "Prepared for upload:",
+          "addUserRolesHeading": "Add user roles for all users in bulk upload:",
+          "usersToBeUpload": "users to be uploaded",
+          "note": "Note:",
+          "note1": "Only assign roles that apply to all users in the bulk upload file - individual roles can be applied individually later.",
+          "note2": "Roles for applications can be assigned after the user(s) have been successfully created.",
+          "note3": "We suggest to assign CX User initially to all bulk uploaded users and set specific user permissions separately.",
+          "availableRoles": "Available Roles: ",
+          "roleDesc": "Role Descriptions"
+        },
+        "success": {
+          "userUploaded": "Users successfully uploaded",
+          "userFailed": "User uploads failed",
+          "errorUsersLabel": "Errors have occured for the following usernames: <br/> Please check their entries in the upload file and try upload it again."
+        },
+        "error": {
+          "note": "Note:",
+          "description": "The upload failed due to technical issue. Please try it later once again or contact your administrator.",
+          "details": "Details: "
+        }
       },
       "technicalUser": {
         "serviceaccount": "Technischer Benutzer",
@@ -692,7 +722,8 @@
         "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
-        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
+        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
+        "deleteTechUserNotificationErrorTitle": "Something went wrong"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
