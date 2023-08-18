@@ -78,6 +78,13 @@ export const apiSlice = createApi({
         url: `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
         method: 'DELETE',
       }),
+      transformErrorResponse: (error: any) => {
+        return error && error.errors
+          ? error.errors[
+              'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
+            ][0]
+          : 'Please try it later again or contact your administrator.'
+      },
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,
