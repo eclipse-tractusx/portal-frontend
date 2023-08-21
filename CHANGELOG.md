@@ -1,10 +1,27 @@
 # Changelog
 
+## 1.6.0-RC7
+
+### Feature
+
+- Daps related elements, business logic and locales removed
+
+### Technical Support
+
+- changed license notice for images
+- added second license
+
+### Bugfix
+
+- fixed missing URL and Email data after re-opening a service under the service release process
+- fixed app release process process handling (Step 3 - Consent) button "save"
+- app detail page "back" button fixed
+
 ## 1.6.0-RC6
 
 ### Change
 
-- Service Account creation - added multiLangugae support when fetching the role description from BE
+- Service Account creation - added multi language support when fetching the role description from BE
 
 ### Technical Support
 
