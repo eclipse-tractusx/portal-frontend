@@ -36,7 +36,6 @@ import {
   LoadingButton,
   TableType,
   StaticTable,
-  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -70,7 +69,7 @@ export default function AddMultipleUser() {
 
   const { data } = useFetchCoreoffersRolesQuery()
   const [addMutipleUsers] = useAddMutipleUsersMutation()
-  const { data: idpsData, isFetching } = useFetchIDPListQuery()
+  const { data: idpsData } = useFetchIDPListQuery()
 
   const [loading, setLoading] = useState(false)
   const [allRoles, setAllRoles] = useState<any>([])
@@ -330,24 +329,7 @@ export default function AddMultipleUser() {
         </div>
       )
     } else {
-      return isFetching ? (
-        <div
-          style={{
-            width: '100%',
-            height: '500px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <CircleProgress
-            colorVariant="primary"
-            size={80}
-            thickness={8}
-            variant="indeterminate"
-          />
-        </div>
-      ) : idps.length === 1 ? (
+      return idps.length === 1 ? (
         <div className="addMultipleUsers">
           <div className="firstStep">
             <Typography variant="label4" className="number">
