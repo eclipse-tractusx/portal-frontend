@@ -36,6 +36,7 @@ import {
   LoadingButton,
   TableType,
   StaticTable,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -59,6 +60,7 @@ import {
 } from 'features/admin/idpApiSlice'
 import './AddMultipleUser.scss'
 import Papa from 'papaparse'
+import { AddUserDeny } from '../AddUser/AddUserDeny'
 
 export default function AddMultipleUser() {
   const dispatch = useDispatch<typeof store.dispatch>()
@@ -68,7 +70,7 @@ export default function AddMultipleUser() {
 
   const { data } = useFetchCoreoffersRolesQuery()
   const [addMutipleUsers] = useAddMutipleUsersMutation()
-  const { data: idpsData } = useFetchIDPListQuery()
+  const { data: idpsData, isFetching } = useFetchIDPListQuery()
 
   const [loading, setLoading] = useState(false)
   const [allRoles, setAllRoles] = useState<any>([])
@@ -117,7 +119,7 @@ export default function AddMultipleUser() {
   }
 
   const renderDropArea = (props: DropAreaProps) => {
-    return <DropArea {...props} size="small" />
+    return <DropArea {...props} size="normal" />
   }
 
   const handleAddUserAPICall = async (csvData: any) => {
@@ -328,7 +330,24 @@ export default function AddMultipleUser() {
         </div>
       )
     } else {
-      return (
+      return isFetching ? (
+        <div
+          style={{
+            width: '100%',
+            height: '500px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircleProgress
+            colorVariant="primary"
+            size={80}
+            thickness={8}
+            variant="indeterminate"
+          />
+        </div>
+      ) : idps.length === 1 ? (
         <div className="addMultipleUsers">
           <div className="firstStep">
             <Typography variant="label4" className="number">
@@ -337,9 +356,11 @@ export default function AddMultipleUser() {
             <Typography variant="body1" className="mb-20">
               {t('content.usermanagement.addMultipleUsers.step1.heading')}
             </Typography>
-            <Button variant="outlined" size="small">
-              {t('content.usermanagement.addMultipleUsers.step1.buttonLabel')}
-            </Button>
+            <a href={'../../user-bulk-load.csv'} download>
+              <Button variant="outlined" size="small">
+                {t('content.usermanagement.addMultipleUsers.step1.buttonLabel')}
+              </Button>
+            </a>
           </div>
           <div className="secondStep">
             <Typography variant="label4" className="number">
@@ -377,6 +398,8 @@ export default function AddMultipleUser() {
             />
           </div>
         </div>
+      ) : (
+        <AddUserDeny idps={idps} />
       )
     }
   }

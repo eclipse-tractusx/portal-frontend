@@ -671,7 +671,7 @@
         "intro": "Bulk upload process",
         "step1": {
           "heading": "Download this upload template by clicking the icon",
-          "buttonLabel": "Upload template"
+          "buttonLabel": "Download template"
         },
         "step2": {
           "heading": "Enter user data in upload form",

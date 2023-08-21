@@ -45,7 +45,7 @@ export const apiSlice = createApi({
         const formData = new FormData()
         formData.append('document', data.csvFile)
         return {
-          url: `/api/administration/user/owncompany/identityprovider/${data.identityProviderId}/usersfile`,
+          url: 'api/administration/user/owncompany/usersfile',
           method: 'POST',
           body: formData,
         }
