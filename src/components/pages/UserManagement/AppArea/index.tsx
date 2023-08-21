@@ -24,8 +24,7 @@ import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
-  SubscriptionStatus,
-  SubscriptionStatusItem,
+  ActiveSubscriptionItem,
   useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
@@ -33,10 +32,7 @@ import { fetchImageWithToken } from 'services/ImageService'
 export const AppArea = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const subscriptionStatus = useFetchSubscriptionStatusQuery().data
-  const cards = subscriptionStatus?.content.filter(
-    (app) => app.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
-  )
+  const cards = useFetchSubscriptionStatusQuery().data
 
   return (
     <section id="access-management-id">
@@ -51,13 +47,13 @@ export const AppArea = () => {
         position={cards && cards.length > 0 ? 'relative' : ''}
       >
         {cards && cards.length > 0
-          ? cards?.map((item: SubscriptionStatusItem) => {
+          ? cards?.map((item: ActiveSubscriptionItem) => {
               return (
                 <Card
                   {...item}
                   title={item.name ?? ''}
                   subtitle={item.provider}
-                  key={item.appId}
+                  key={item.offerId}
                   buttonText="Details"
                   imageSize="small"
                   imageShape="round"
@@ -66,7 +62,7 @@ export const AppArea = () => {
                   expandOnHover={false}
                   filledBackground={true}
                   onClick={() => {
-                    navigate(`/appusermanagement/${item.appId}`)
+                    navigate(`/appusermanagement/${item.offerId}`)
                   }}
                 />
               )
