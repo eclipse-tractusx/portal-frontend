@@ -82,16 +82,6 @@ export type SubscriptionStatusItem = {
   status: SubscriptionStatus
 }
 
-// export type SubscriptionStatusResponse = {
-//   content: SubscriptionStatusItem[]
-//   meta: {
-//     contentSize: number
-//     page: number
-//     totalElements: number
-//     totalPages: number
-//   }
-// }
-
 export type SubscriptionStatusDuplicateItem = {
   appId?: string
   offerSubscriptionStatus?: SubscriptionStatus
