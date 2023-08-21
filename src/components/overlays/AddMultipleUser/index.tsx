@@ -61,6 +61,9 @@ import './AddMultipleUser.scss'
 import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
 
+const HelpPageURL =
+  '/documentation/?path=docs%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
+
 export default function AddMultipleUser() {
   const dispatch = useDispatch<typeof store.dispatch>()
   const { t } = useTranslation()
@@ -351,7 +354,7 @@ export default function AddMultipleUser() {
             <Typography variant="body1" className="mb-20">
               {t('content.usermanagement.addMultipleUsers.step2.heading')}
             </Typography>
-            <Link to="/test" target="_blank" className="linkText mb-20">
+            <Link to={HelpPageURL} target="_blank" className="linkText mb-20">
               <Typography variant="caption2">
                 {t('content.usermanagement.addMultipleUsers.step2.linkText')}
               </Typography>
