@@ -58,11 +58,12 @@ export const CertificateCard = ({
 
   const renderStatusIcon = () => {
     if (
-      ssiDetailData?.participationStatus.toLowerCase() === StatusVariants.active
+      ssiDetailData?.participationStatus?.toLowerCase() ===
+      StatusVariants.active
     ) {
       return <CheckCircleOutlineIcon className="statusIcon activeIcon" />
     } else if (
-      ssiDetailData?.participationStatus.toLowerCase() ===
+      ssiDetailData?.participationStatus?.toLowerCase() ===
       StatusVariants.pending
     ) {
       return <AccessTimeIcon className="statusIcon waitingIcon" />
@@ -84,9 +85,9 @@ export const CertificateCard = ({
         <Box className="detailBox">
           <Box className="statusDetail">
             {renderStatusIcon()}
-            {ssiDetailData?.participationStatus.toLowerCase() !==
+            {ssiDetailData?.participationStatus?.toLowerCase() !==
               StatusVariants.active &&
-              ssiDetailData?.participationStatus.toLowerCase() !==
+              ssiDetailData?.participationStatus?.toLowerCase() !==
                 StatusVariants.pending && (
                 <DeleteOutlineIcon className="deleteIcon" />
               )}
@@ -104,7 +105,7 @@ export const CertificateCard = ({
             {t('content.certificates.certificateCard.status')}
             {ssiDetailData?.participationStatus ?? StatusEnum.INACTIVE}
           </Typography>
-          {ssiDetailData?.participationStatus.toLowerCase() ===
+          {ssiDetailData?.participationStatus?.toLowerCase() ===
             StatusVariants.pending && (
             <>
               <Box className="fileUploadMain">
