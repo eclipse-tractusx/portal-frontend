@@ -437,8 +437,13 @@
     "addRoles": {
       "headerTitle": "Load Additional Roles",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "addAdditionalRoles": "Add Additional Roles",
-      "establishedRoles": "Established Roles"
+      "uploadAdditionalRoles": "Upload Additional Roles",
+      "establishedRoles": "Established Roles",
+      "uploadAdditionalRolesDescription": "Note: only one file for upload allowed",
+      "newRolesToAdd": "New roles to be added",
+      "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
+      "successMsg": "successfully added roles",
+      "errorMsg": "Unable to add roles"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"

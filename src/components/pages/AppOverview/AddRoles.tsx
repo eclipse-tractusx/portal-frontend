@@ -30,8 +30,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { TableType } from 'types/MainTypes'
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import { useFetchAppRolesQuery } from 'features/appManagement/apiSlice'
+import AddRolesOverlay from './AddRolesOverlay'
 
 export default function AddRoles() {
   const { t } = useTranslation()
@@ -43,6 +43,7 @@ export default function AddRoles() {
   const app = items?.filter((item: any) => item.id === appId)
   const { data } = useFetchAppRolesQuery(appId ?? '')
   const [appRoles, setAppRoles] = useState<any[]>([[''], ['']])
+  const [addRolesOverlayOpen, setAddRolesOverlayOpen] = useState<boolean>(false)
 
   const handleSaveClick = async () => {
     setIsLoading(true)
@@ -51,16 +52,13 @@ export default function AddRoles() {
   useEffect(() => {
     setAppRoles(
       data && data.length > 0
-        ? data.map((role) => [role.role], ['--'])
+        ? data.map((role) => [role.role], ['checkbox'])
         : [['', '']]
     )
   }, [data])
 
   const tableData: TableType = {
-    head: [
-      t('content.addRoles.establishedRoles'),
-      `${(<DeleteOutlinedIcon />)}`,
-    ],
+    head: [t('content.addRoles.establishedRoles'), 'delete'],
     body: appRoles,
   }
 
@@ -80,15 +78,20 @@ export default function AddRoles() {
           {t('content.addRoles.description')}
         </Typography>
       </section>
+      <AddRolesOverlay
+        openDialog={addRolesOverlayOpen}
+        handleOverlayClose={() => setAddRolesOverlayOpen(false)}
+        appId={appId || ''}
+      />
       <div className="main-container">
         <div className="main-row">
-          <Box sx={{ textAlign: 'center' }}>
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
             <Button
               size="small"
               sx={{ alignItems: 'center' }}
-              // onClick={() => navigate('/appoverview')}
+              onClick={() => setAddRolesOverlayOpen(true)}
             >
-              {t('content.addRoles.addAdditionalRoles')}
+              {t('content.addRoles.uploadAdditionalRoles')}
             </Button>
           </Box>
           <StaticTable data={tableData} horizontal={false} />

@@ -390,6 +390,13 @@ export const apiSlice = createApi({
       query: (appId) =>
         `/api/administration/user/owncompany/roles/apps/${appId}`,
     }),
+    updateActiveApp: builder.mutation<any, any>({
+      query: (data) => ({
+        url: `/api/apps/AppChange/${data.appId}/role/activeapp`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -420,4 +427,5 @@ export const {
   useFetchDescriptionQuery,
   useSaveDescriptionMutation,
   useFetchAppRolesQuery,
+  useUpdateActiveAppMutation,
 } = apiSlice
