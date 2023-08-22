@@ -24,6 +24,7 @@ import {
   Button,
   LoadingButton,
   StaticTable,
+  Checkbox,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -32,6 +33,7 @@ import { useEffect, useState } from 'react'
 import { TableType } from 'types/MainTypes'
 import { useFetchAppRolesQuery } from 'features/appManagement/apiSlice'
 import AddRolesOverlay from './AddRolesOverlay'
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 
 export default function AddRoles() {
   const { t } = useTranslation()
@@ -42,7 +44,10 @@ export default function AddRoles() {
   const items: any = state
   const app = items?.filter((item: any) => item.id === appId)
   const { data } = useFetchAppRolesQuery(appId ?? '')
-  const [appRoles, setAppRoles] = useState<any[]>([[''], ['']])
+  const [appRoles, setAppRoles] = useState<any[]>([
+    [''],
+    [`${(<Checkbox disabled={true} />)}`],
+  ])
   const [addRolesOverlayOpen, setAddRolesOverlayOpen] = useState<boolean>(false)
 
   const handleSaveClick = async () => {
@@ -52,19 +57,22 @@ export default function AddRoles() {
   useEffect(() => {
     setAppRoles(
       data && data.length > 0
-        ? data.map((role) => [role.role], ['checkbox'])
+        ? data.map((role) => [role.role, `${(<Checkbox disabled={true} />)}`])
         : [['', '']]
     )
   }, [data])
 
   const tableData: TableType = {
-    head: [t('content.addRoles.establishedRoles'), 'delete'],
+    head: [
+      t('content.addRoles.establishedRoles'),
+      `${(<DeleteOutlinedIcon />)}`,
+    ],
     body: appRoles,
   }
 
   return (
     <main className="add-app-roles-main">
-      <PageHeader title={app?.[0]?.title} headerHeight={200} topPage={true}>
+      <PageHeader headerHeight={200} topPage={true} title={app?.[0]?.title}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
@@ -74,7 +82,7 @@ export default function AddRoles() {
         <Typography mb={3} variant="h2" align="center">
           {t('content.addRoles.headerTitle')}
         </Typography>
-        <Typography align="center" variant="body2">
+        <Typography variant="body2" align="center">
           {t('content.addRoles.description')}
         </Typography>
       </section>
@@ -100,11 +108,11 @@ export default function AddRoles() {
 
       <section>
         <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
-        <Box sx={{ position: 'relative', marginTop: '30px' }}>
+        <Box sx={{ marginTop: '30px', position: 'relative' }}>
           <Button
             color="secondary"
-            size="small"
             onClick={() => navigate('/appoverview')}
+            size="small"
           >
             {t('global.actions.cancel')}
           </Button>
@@ -113,17 +121,17 @@ export default function AddRoles() {
             {isLoading ? (
               <LoadingButton
                 size="small"
+                loadIndicator="Loading..."
                 loading={isLoading}
                 variant="contained"
                 onButtonClick={() => {}}
-                loadIndicator="Loading..."
                 label={`${t('global.actions.confirm')}`}
               />
             ) : (
               <Button
+                disabled={true}
                 size="small"
                 variant="contained"
-                disabled={true}
                 onClick={handleSaveClick}
               >
                 {t('global.actions.save')}

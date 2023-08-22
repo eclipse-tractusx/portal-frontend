@@ -74,7 +74,7 @@ const AddRolesOverlay = ({
     mode: 'onChange',
   })
 
-  const csvPreview = (files: File[]) => {
+  const csvRolesPreview = (files: File[]) => {
     return files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
@@ -93,15 +93,15 @@ const AddRolesOverlay = ({
             CSVCells[0] === 'roles;description\r' ||
             CSVCells[0] === 'roles;description'
           ) {
-            const roles = str
-              ?.split('\n')
-              .filter((item) => item !== '')
-              .map((item) => item.substring(0, item.indexOf(';')))
-
             const roleDescription = str
               ?.split('\n')
               .filter((item) => item !== '')
               .map((item) => item.substring(item.indexOf(';') + 1))
+
+            const roles = str
+              ?.split('\n')
+              .filter((item) => item !== '')
+              .map((item) => item.substring(0, item.indexOf(';')))
 
             setRolesPreviews(roles?.splice(1))
             setRolesDescription(roleDescription?.splice(1))
@@ -189,14 +189,14 @@ const AddRolesOverlay = ({
           >
             <a
               href="../../app-provider-role-upload-example.csv"
-              download
               style={{ textDecoration: 'none' }}
+              download
             >
               <Button
                 variant="outlined"
                 endIcon={<FileDownloadOutlinedIcon />}
-                size="small"
                 sx={{ fontSize: '16px' }}
+                size="small"
               >
                 {t('content.apprelease.technicalIntegration.template')}
               </Button>
@@ -229,7 +229,7 @@ const AddRolesOverlay = ({
                   }
                   reactHookFormOnChange(files[0]?.name)
                   trigger('uploadAppRoles')
-                  csvPreview(files)
+                  csvRolesPreview(files)
                 }}
                 acceptFormat={{ 'text/csv': ['.csv'] }}
                 maxFilesToUpload={1}
@@ -245,16 +245,16 @@ const AddRolesOverlay = ({
               />
             )}
           />
-          {errors?.uploadAppRoles?.type === ErrorType.REQUIRED && (
-            <Typography variant="body2" className="file-error-msg">
-              {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
-            </Typography>
-          )}
           {uploadCSVError && (
             <Typography variant="body2" className="file-error-msg">
               {t(
                 'content.apprelease.technicalIntegration.incorrectCSVFileFormat'
               )}
+            </Typography>
+          )}
+          {errors?.uploadAppRoles?.type === ErrorType.REQUIRED && (
+            <Typography variant="body2" className="file-error-msg">
+              {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
             </Typography>
           )}
 
