@@ -373,7 +373,7 @@ export default function AddMultipleUser() {
               maxFilesToUpload={1}
               maxFileSize={1000}
               onChange={([file]) => {
-                onChangeFile(file)
+                file && onChangeFile(file)
               }}
               errorText={t(
                 'content.usermanagement.addMultipleUsers.fileSizeError'
