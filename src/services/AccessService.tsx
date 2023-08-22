@@ -67,6 +67,7 @@ import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDecli
 import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
 import EditUsecase from 'components/overlays/EditUsecase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
+import AddMultipleUser from 'components/overlays/AddMultipleUser'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -119,6 +120,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return null
     case OVERLAYS.ADD_USER:
       return <AddUser />
+    case OVERLAYS.ADD_MULTIPLE_USER:
+      return <AddMultipleUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
     case OVERLAYS.TECHUSER:

@@ -48,6 +48,12 @@ export const ActiveUserTable = ({
           : ''
       }
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+      addMultipleButtonLabel={
+        UserService.hasRole(ROLES.USERMANAGEMENT_ADD)
+          ? 'content.usermanagement.table.addMultiple'
+          : ''
+      }
+      onMultipleButtonClick={() => dispatch(show(OVERLAYS.ADD_MULTIPLE_USER))}
       tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersSearchQuery}
       fetchHookArgs={{ expr, addUserResponse }}
