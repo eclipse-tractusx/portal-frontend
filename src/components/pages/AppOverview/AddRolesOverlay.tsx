@@ -79,11 +79,12 @@ const AddRolesOverlay = ({
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
         const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
         reader.onerror = () => console.log('file reading has failed')
+        reader.onabort = () => console.log('file reading was aborted')
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
+
           const CSVCells = str
             ?.split('\n')
             .filter((item) => item !== '')
@@ -203,9 +204,9 @@ const AddRolesOverlay = ({
             </a>
             <Button
               sx={{ ml: 2, fontSize: '16px' }}
+              color="secondary"
               size="small"
               variant="contained"
-              color="secondary"
               onClick={() =>
                 window.open(
                   'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
@@ -218,14 +219,14 @@ const AddRolesOverlay = ({
             </Button>
           </Grid>
           <Controller
-            name={'uploadAppRoles'}
             control={control}
+            name={'uploadAppRoles'}
             render={({ field: { onChange: reactHookFormOnChange } }) => (
               <Dropzone
                 onChange={(files, addedFiles, deletedFiles) => {
                   if (deletedFiles?.length) {
-                    setRolesPreviews([])
                     setRolesDescription([])
+                    setRolesPreviews([])
                   }
                   reactHookFormOnChange(files[0]?.name)
                   trigger('uploadAppRoles')
