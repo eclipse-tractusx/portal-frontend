@@ -1,5 +1,64 @@
 # Changelog
 
+## 1.6.0-RC7
+
+### Feature
+
+- Daps related elements, business logic and locales removed
+
+### Technical Support
+
+- changed license notice for images
+- added second license
+
+### Bugfix
+
+- fixed missing URL and Email data after re-opening a service under the service release process
+- fixed app release process process handling (Step 3 - Consent) button "save"
+- app detail page "back" button fixed
+
+## 1.6.0-RC6
+
+### Change
+
+- Service Account creation - added multi language support when fetching the role description from BE
+
+### Technical Support
+
+- Sonar findings fixed (Code smells and bugs)
+- Dependabot findings fixed (Upgrading dependencies to the latest versions)
+
+### Bugfix
+
+- Application card favorite button click (separation from the rest of the card where the click results into opening the app card)
+- Admin Credential Board - views/filter function fixed
+- Service Release Form - fixed erase of entered data on deleting uploaded image
+- Service Detail - header UI fix of rendering issues
+
+## 1.6.0-RC5
+
+### Change
+
+- Certificate Request Board - changed to dynamic error message as per API response
+- Updated asterisk color to red in app release and service release forms
+- Credential management board enhanced by filters
+
+### Features
+
+- Notifications added
+  - credential approval
+  - credential reject and
+  - subscription url msgs
+- Technical user create overlay enhanced by role description as well as direct help link
+
+### Bugfix
+
+- Permission validation 'Credential Mgmt' page updated to 'decision_ssicredential'
+- App description change - fixed page break issue in case of api response without language tag for each FE supported language
+- Notification message link - 'UseCases' welcome message fixed
+- handle empty customer link section in managed connectors
+- Overlay fix of activation response
+
 ## 1.6.0-RC4
 
 ### Change

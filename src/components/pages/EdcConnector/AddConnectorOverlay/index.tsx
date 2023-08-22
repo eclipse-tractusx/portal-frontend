@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -33,7 +33,6 @@ import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import {
   ConnectorType,
-  EdcSubscriptionsType,
   useFetchOfferSubscriptionsQuery,
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
@@ -52,16 +51,15 @@ interface AddCollectorOverlayProps {
 export type FormFieldsType = {
   ConnectorName: string
   ConnectorURL: string
-  ConnectorSubscription: EdcSubscriptionsType
+  ConnectorSubscriptionId: string
   ConnectorLocation: string
-  // ConnectorDoc: any TO-DO: Enable when DAPS enabled
 }
 
 const formFields = {
   ConnectorName: '',
   ConnectorURL: '',
   ConnectorLocation: '',
-  // ConnectorDoc: '', TO-DO: Enable when DAPS enabled
+  ConnectorSubscriptionId: '',
 }
 
 const AddConnectorOverlay = ({
@@ -99,7 +97,7 @@ const AddConnectorOverlay = ({
       'ConnectorName',
       'ConnectorURL',
       'ConnectorLocation',
-      // 'ConnectorDoc', TO-DO: Enable when DAPS enabled
+      'ConnectorSubscriptionId',
     ])
     if (validateFields) {
       onFormConfirmClick(getValues() as FormFieldsType)

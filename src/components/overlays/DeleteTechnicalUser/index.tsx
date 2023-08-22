@@ -55,6 +55,19 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
   }
 
+  const deleteUserError = (err: any) => {
+    const notification: PageNotificationsProps = {
+      open: true,
+      severity: SuccessErrorType.ERROR,
+      title:
+        'content.usermanagement.technicalUser.deleteTechUserNotificationErrorTitle',
+      description: err,
+    }
+    dispatch(closeOverlay())
+    dispatch(setNotification(notification))
+    navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
+  }
+
   const handleRemove = async () => {
     if (!data) return
     try {
@@ -64,6 +77,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
       deleteUserSuccess()
       console.log(response)
     } catch (err) {
+      deleteUserError(err)
       console.log(err)
     }
   }

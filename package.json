@@ -1,6 +1,6 @@
 {
   "name": "@catena-x/portal-frontend",
-  "version": "v1.6.0-RC4",
+  "version": "v1.6.0-RC7",
   "description": "Catena-X Portal Frontend",
   "author": "Catena-X Contributors",
   "license": "Apache-2.0",
@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^2.0.13",
+    "@catena-x/portal-shared-components": "^2.0.19",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/error-message": "^2.0.1",
@@ -88,13 +88,16 @@
     "react-scripts": "5.0.1",
     "typescript": "5.0.4"
   },
+  "resolutions": {
+    "**/nth-check": "^2.1.1"
+  },
   "scripts": {
     "prepare": "husky install",
     "build:sources": "zip -r portal-frontend.zip src package.json yarn.lock -x '*.stories.*' -x '*.test.*' -x '*.css' -x '*.scss' -x '*.svg' -x '*.jpg' -x '*.png' -x '*.webp' -x '*.ttf'",
     "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
     "lint": "yarn run eslint \"./src/**/*.{ts,tsx}\"",
     "start": "PORT=3001 BROWSER=none GENERATE_SOURCEMAP=false react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "build:docker": "if [ -d \"./build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",

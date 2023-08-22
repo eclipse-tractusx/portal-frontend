@@ -136,7 +136,7 @@ export default function OfferCard() {
         alt: fetchServiceStatus?.leadPictureUri || '',
       },
     }
-  }, [fetchServiceStatus, imageData])
+  }, [fetchServiceStatus])
 
   const {
     handleSubmit,
@@ -234,16 +234,19 @@ export default function OfferCard() {
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
-    const uploadImageValue = getValues().uploadImage
-      .leadPictureUri as unknown as DropzoneFile
+    const uploadImageValue =
+      getValues().uploadImage &&
+      (getValues().uploadImage.leadPictureUri as unknown as DropzoneFile)
     await saveService({
       id: serviceId,
       body: apiBody,
     })
       .unwrap()
       .then(() => {
-        !uploadImageValue.id &&
-          handleUploadDocument(serviceId, uploadImageValue)
+        if (uploadImageValue) {
+          !uploadImageValue.id &&
+            handleUploadDocument(serviceId, uploadImageValue)
+        }
         dispatch(setServiceId(serviceId))
         buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
           dispatch(serviceReleaseStepIncrement())
@@ -261,8 +264,9 @@ export default function OfferCard() {
     apiBody: CreateServiceStep1Item,
     buttonLabel: string
   ) => {
-    const uploadImageValue = getValues().uploadImage
-      .leadPictureUri as unknown as DropzoneFile
+    const uploadImageValue =
+      getValues().uploadImage &&
+      (getValues().uploadImage.leadPictureUri as unknown as DropzoneFile)
     await createService({
       id: '',
       body: apiBody,
@@ -270,7 +274,10 @@ export default function OfferCard() {
       .unwrap()
       .then((result) => {
         if (isString(result)) {
-          !uploadImageValue.id && handleUploadDocument(result, uploadImageValue)
+          if (uploadImageValue) {
+            !uploadImageValue.id &&
+              handleUploadDocument(result, uploadImageValue)
+          }
           dispatch(setServiceId(result))
           buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
             dispatch(serviceReleaseStepIncrement())
@@ -293,10 +300,11 @@ export default function OfferCard() {
     const apiBody = {
       serviceTypeIds: data.serviceTypeIds,
       title: data.title,
-      leadPictureUri:
-        data.uploadImage.leadPictureUri !== null &&
-        Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
-        Object.values(data.uploadImage.leadPictureUri)[0],
+      leadPictureUri: data.uploadImage?.leadPictureUri
+        ? data.uploadImage.leadPictureUri !== null &&
+          Object.keys(data.uploadImage.leadPictureUri).length > 0 &&
+          Object.values(data.uploadImage.leadPictureUri)[0]
+        : '',
       descriptions: [
         {
           languageCode: 'de',
@@ -320,8 +328,8 @@ export default function OfferCard() {
       privacyPolicies: [],
       salesManager: null,
       price: '',
-      providerUri: '',
-      contactEmail: '',
+      providerUri: serviceStatusData?.providerUri ?? '',
+      contactEmail: serviceStatusData?.contactEmail ?? '',
     }
     if (validateFields) {
       setLoading(true)
@@ -363,7 +371,12 @@ export default function OfferCard() {
               }}
               name="title"
               pattern={Patterns.offerCard.serviceName}
-              label={t('step1.serviceName')}
+              label={
+                <>
+                  {t('step1.serviceName')}
+                  <span style={{ color: 'red' }}> *</span>
+                </>
+              }
               rules={{
                 required: `${t('step1.serviceName')} ${t(
                   'serviceReleaseForm.isMandatory'
@@ -389,7 +402,12 @@ export default function OfferCard() {
                   trigger,
                   errors,
                   name: 'serviceTypeIds',
-                  label: t('step1.serviceType'),
+                  label: (
+                    <>
+                      {t('step1.serviceType')}
+                      <span style={{ color: 'red' }}> *</span>
+                    </>
+                  ),
                   placeholder: t('step1.serviceTypePlaceholder'),
                   type: 'multiSelectList',
                   rules: {
@@ -430,6 +448,7 @@ export default function OfferCard() {
                       label={
                         <>
                           {t(`step1.${desc}`)}
+                          <span style={{ color: 'red' }}> *</span>
                           <IconButton sx={{ color: '#939393' }} size="small">
                             <HelpOutlineIcon />
                           </IconButton>

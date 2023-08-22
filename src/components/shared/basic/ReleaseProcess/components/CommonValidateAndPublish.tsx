@@ -183,17 +183,12 @@ export default function CommonValidateAndPublish({
       statusData?.documents?.APP_IMAGE &&
       statusData?.documents?.APP_IMAGE[0].documentId
     ) {
-      const newPromies = CommonService.fetchLeadPictures(
-        statusData?.documents?.APP_IMAGE,
-        id
+      setMultipleImages(
+        CommonService.imagesAndAppidToImageType(
+          statusData?.documents?.APP_IMAGE,
+          id
+        )
       )
-      Promise.all(newPromies)
-        .then((result) => {
-          setMultipleImages(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
     setDefaultValues(values)
     reset(values)
@@ -265,8 +260,8 @@ export default function CommonValidateAndPublish({
   const getTechUserData = (data: string[] | null) => {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
-        <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
-          <Grid item xs={12} className="tech-user-data">
+        <Grid spacing={2} container sx={{ margin: '0px' }} key={role}>
+          <Grid xs={12} className="tech-user-data" item>
             <Typography variant="body2">* {role}</Typography>
           </Grid>
         </Grid>
@@ -274,7 +269,7 @@ export default function CommonValidateAndPublish({
     ) : (
       <Grid container spacing={2} margin={'0px'}>
         <Typography
-          variant="caption2"
+          variant="label3"
           className="not-available"
           style={{ width: '100%' }}
         >
@@ -423,7 +418,7 @@ export default function CommonValidateAndPublish({
               style={{ marginBottom: '0px', paddingTop: '0px' }}
             >
               <div className="privacy-content">
-                <Typography variant="h4" sx={{ mb: 4 }}>
+                <Typography variant="h4">
                   {t('content.appdetail.privacy.heading')}
                 </Typography>
                 <Typography variant="body2" className="form-field">
@@ -456,9 +451,7 @@ export default function CommonValidateAndPublish({
 
         {conformityDocument && (
           <>
-            <Typography variant="h4" sx={{ mb: 4 }}>
-              {conformityDocument}
-            </Typography>
+            <Typography variant="h4">{conformityDocument}</Typography>
             {defaultValues && (
               <Typography variant="body2" className="form-field">
                 {defaultValues.conformityDocumentsDescription}
@@ -487,9 +480,7 @@ export default function CommonValidateAndPublish({
           </>
         )}
 
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          {documentsTitle}
-        </Typography>
+        <Typography variant="h4">{documentsTitle}</Typography>
         {defaultValues && (
           <Typography variant="body2" className="form-field">
             {defaultValues.documentsDescription}
@@ -534,7 +525,7 @@ export default function CommonValidateAndPublish({
         {rolesData && (
           <>
             <Divider className="verify-validate-form-divider" />
-            <Typography variant="h4" sx={{ mb: 4 }}>
+            <Typography variant="h4">
               {t('content.adminboardDetail.roles.heading')}
             </Typography>
             <Typography variant="body2" className="form-field">
@@ -561,7 +552,7 @@ export default function CommonValidateAndPublish({
           Object.values(statusData?.technicalUserProfile) && (
             <>
               <Divider className="verify-validate-form-divider" />
-              <Typography variant="h4" sx={{ mb: 4 }}>
+              <Typography variant="h4">
                 {t('content.adminboardDetail.technicalUserSetup.heading')}
               </Typography>
               <Typography variant="body2" className="form-field">

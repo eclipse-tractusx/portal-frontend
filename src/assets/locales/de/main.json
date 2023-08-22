@@ -98,6 +98,9 @@
     "Lang_de": "Sprache auf Deutsch stellen",
     "Lang_en": "Sprache auf Englisch stellen"
   },
+  "error": {
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+  },
   "content": {
     "admin": {
       "registration-requests": {
@@ -242,10 +245,13 @@
           "none": "Nicht kategorisiert",
           "businesspartnermanagement": "Geschäftspartner Datenmanagement",
           "circulareconomy": "Kreislaufwirtschaft",
-          "quality&demandmanagement": "Bedarfs- & Qualitätsmanagement",
+          "qualitymanagement": "Bedarfs- & Qualitätsmanagement",
           "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
           "traceability": "Rückverfolgbarkeit",
-          "manufacturingasaservice": "Produzieren als Dienst"
+          "manufacturingasaservice": "Produzieren als Dienst",
+          "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
+          "real-timecontrol": "Real Time Control",
+          "modularproduction": "Modular Production"
         },
         "noMatch": "Keine Treffer",
         "for": "für"
@@ -443,7 +449,6 @@
         "type": "Steckertyp",
         "details": "Status",
         "location": "Location",
-        "status": "DAPS Auth Status",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
@@ -497,11 +502,6 @@
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
           "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
-        "daps": {
-          "title": "Create DAPS Registration",
-          "intro": "Far far away, behind the  word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
-          "error": "The daps  registration failed. Please reverify the uploaded document"
-        },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
         "insertform": {
@@ -539,9 +539,10 @@
             "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           },
           "subscription": {
-            "label": "Customer Link",
+            "label": "Customer Link*",
             "placeholder": "Select the related subscription",
-            "tooltipMsg": "Select the related subscription"
+            "tooltipMsg": "Select the related subscription",
+            "error": "Customer link is mandatory"
           }
         },
         "create": {
@@ -683,7 +684,8 @@
         "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
-        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist"
+        "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
+        "deleteTechUserNotificationErrorTitle": "Something went wrong"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
@@ -782,11 +784,13 @@
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
+      "help": "Help",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
-          "service": "Dienst",
+          "service": "Technical User Role",
+          "serviceSubHeading": "Select one service roles:",
           "username": "Username",
           "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -971,10 +975,10 @@
       },
       "appPage": {
         "headerTitle": "App Details",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "longDescriptionEN": "Long Description - EN",
-        "longDescriptionDE": "Long Description - DE",
-        "images": "Images",
+        "headerDescription": "Füllen Sie die Seite mit den App-Details aus. Auf dem Marktplatz werden die folgenden zusätzlichen Informationen für Kunden öffentlich verfügbar sein, um einen erweiterten Überblick über die von Ihrer Anwendung unterstützten Funktionen sowie notwendige Details zu Sicherheit, Architektur usw. zu erhalten.",
+        "longDescriptionEN": "Detailierte Beschreibung - EN",
+        "longDescriptionDE": "Detailierte Beschreibung - DE",
+        "images": "Bilder",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images",
         "uploadDataPrerequisits": "Upload “Data Prerequisits”",
@@ -1001,16 +1005,16 @@
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "step1Header": "1. User Role Upload *",
-        "step1HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "headerDescription": "Integrieren Sie Ihre App mit dem catena-x-Datenraum. Für die Integration müssen Sie die von der Anwendung unterstützten Rollen sowie das erforderliche technische Benutzerprofil hochladen, das zum Ausführen Ihrer Anwendung im Netzwerk erforderlich ist. Bitte beachten Sie: In diesem Schritt legen Sie nur den Rahmen der Authentifizierung fest – es werden keine Benutzer erstellt. Wenn Sie Unterstützung benötigen, können Sie gerne die Schaltfläche „Hilfe“ oder die beigefügte Vorlage verwenden.",
+        "step1Header": "1. User Role Upload",
+        "step1HeaderDescription": "Laden Sie Ihre Anwendungsrollen hoch, die Benutzeridentitäten zugewiesen werden können, um auf die Anwendung zugreifen zu können.",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Technical User Setup *",
-        "step2HeaderDescription": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
+        "step2Header": "2. Technical User Setup",
+        "step2HeaderDescription": "Richten Sie das technische Profil eines technischen Benutzer-/Dienstkontos mit den erforderlichen Berechtigungen ein, um die Anwendung im Datenraum ausführen zu können.",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
         "rolesPreview": "Preview of Roles uploaded",
         "uploadAppRolesButton": "Upload App Roles",
@@ -1490,7 +1494,7 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "Suchen via Zertifikatstyp",
+      "search": "Suchen via Name der Firma",
       "tabs": {
         "all": "Alle",
         "open": "Offen",
@@ -1535,7 +1539,7 @@
         "uploadDocumentTitle": "Please upload your certificate proof:",
         "note": "Please upload only pdf files with maximum 1 MB.",
         "descriptionLabel": "Description for verification",
-        "error": "Something went wrong!",
+        "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
       },
       "successCertificate": {

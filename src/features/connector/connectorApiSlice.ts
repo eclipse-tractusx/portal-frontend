@@ -56,7 +56,6 @@ export type ConnectorResponseBody = {
   location: string
   id: string
   type: string
-  DapsRegistrationSuccessful?: boolean
 }
 
 export interface EdcSubscriptionsType {
@@ -95,17 +94,6 @@ export const apiSlice = createApi({
         url: `/api/administration/Connectors/${connectorID}`,
         method: 'DELETE',
       }),
-    }),
-    triggerDaps: builder.mutation<void, any>({
-      query: (data) => {
-        const body = new FormData()
-        body.append('Certificate', data.file)
-        return {
-          url: `/api/administration/Connectors/trigger-daps/${data.connectorId}`,
-          method: 'POST',
-          body,
-        }
-      },
     }),
     fetchConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,
@@ -146,7 +134,6 @@ export const {
   useCreateManagedConnectorMutation,
   useDeleteConnectorMutation,
   useFetchConnectorsQuery,
-  useTriggerDapsMutation,
   useFetchManagedConnectorsQuery,
   useFetchOfferSubscriptionsQuery,
   useFetchOperatorBpnQuery,

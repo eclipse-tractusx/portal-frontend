@@ -18,15 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Typography,
   Navigation,
+  ImageGallery,
   Button,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
-import AppDetailImageGallery from './components/AppDetailImageGallery'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailDocuments from './components/AppDetailDocuments'
 import AppDetailProvider from './components/AppDetailProvider'
@@ -35,7 +35,9 @@ import { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
 import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
+import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
 
 export default function AppDetailContentDetails({
   item,
@@ -46,7 +48,6 @@ export default function AppDetailContentDetails({
 }) {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const [images, setImages] = useState<any>()
   const [selectedItem, setSelectedItem] = useState<string>('#description')
 
   const navigationItems = [
@@ -72,35 +73,24 @@ export default function AppDetailContentDetails({
     },
   ]
 
-  useEffect(() => {
-    if (item) {
-      const newPromies = CommonService.fetchLeadPictures(item.images, item.id)
-      Promise.all(newPromies)
-        .then((result) => {
-          setImages(result.flat())
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }, [item])
-
   return (
     item && (
       <>
-        <div className="appdetail-main-bg">
-          <div className="appdetail-back">
-            {showBack && (
+        <div className="app-marketplace-main">
+          {showBack && (
+            <Box className="app-back">
               <Button
                 color="secondary"
                 size="small"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate(`/${PAGES.APP_MARKETPLACE}`)}
               >
                 {t('global.actions.back')}
               </Button>
-            )}
-          </div>
+            </Box>
+          )}
+
           <AppDetailHeader item={item} />
+          <div className="divider-height" />
         </div>
         <div className="navigation-main">
           <div className="navigation-list">
@@ -111,18 +101,34 @@ export default function AppDetailContentDetails({
             />
           </div>
         </div>
+        <div className="divider-height" />
         <div className="appdetail-main">
-          <div className="product-description" id="description">
-            <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+          <div id="description">
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
               {item.longDescription}
             </Typography>
           </div>
-          {images && <AppDetailImageGallery images={images} />}
+          <div className="divider-height" />
+          <div id="image-gallery">
+            <ImageGallery
+              gallery={CommonService.imagesAndAppidToImageType(
+                item.images,
+                item.id
+              )}
+              modalWidth="900"
+            />
+          </div>
+          <div className="divider-height" />
           <AppDetailPrivacy item={item} />
+          <div className="divider-height" />
           <AppDetailDocuments item={item} />
+          <div className="divider-height" />
           <AppDetailTechUserSetup item={item} />
+          <div className="divider-height" />
           <AppDetailProvider item={item} />
+          <div className="divider-height" />
           <AppDetailTags item={item} />
+          <div className="divider-height" />
         </div>
       </>
     )

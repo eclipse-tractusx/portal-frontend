@@ -24,7 +24,6 @@
   width: 100%;
   max-width: 1120px;
   padding: 0 15px;
-  background: #f9f9f9;
   margin: 0 auto;
 
   .lead-image {
@@ -41,18 +40,7 @@
   .content {
     padding: 0 40px;
     flex: 1;
-    .provider {
-      margin: 0 0 10px 0;
-      padding: 0;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      color: #888888;
-    }
-    .heading {
-      margin: 0 0 10px 0;
-      color: #111111;
-    }
+
     .rating {
       display: flex;
       align-items: center;
@@ -61,38 +49,11 @@
         font-size: 14px;
       }
     }
-    .price {
-      padding: 0;
-      margin: 0 0 10px 0;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 28px;
-      color: #888888;
-    }
     ul {
       display: flex;
       align-items: center;
       margin: 0 0 10px 0;
       padding: 0;
-    }
-    .usecase,
-    .language {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      flex-wrap: wrap;
-      margin: 0 0 10px 0;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      color: #888888;
-      .head {
-        margin-right: 5px;
-        font-size: 16px;
-      }
-    }
-    .mb-30 {
-      margin-bottom: 30px;
     }
     .subscribed-success-btn {
       pointer-events: none;

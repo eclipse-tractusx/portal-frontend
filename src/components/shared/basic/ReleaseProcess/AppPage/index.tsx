@@ -482,7 +482,8 @@ export default function AppPage() {
                 }}
                 label={
                   <>
-                    {t(`content.apprelease.appPage.${item}`) + ' *'}
+                    {t(`content.apprelease.appPage.${item}`)}
+                    <span style={{ color: 'red' }}> *</span>
                     <IconButton sx={{ color: '#939393' }} size="small">
                       <HelpOutlineIcon />
                     </IconButton>
@@ -522,7 +523,8 @@ export default function AppPage() {
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <div className="form-field">
           <InputLabel sx={{ mb: 3, mt: 3 }}>
-            {t('content.apprelease.appPage.images') + ' *'}
+            {t('content.apprelease.appPage.images')}
+            <span style={{ color: 'red' }}> *</span>
           </InputLabel>
           <Controller
             name="images"
@@ -656,7 +658,8 @@ export default function AppPage() {
         </div>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>
-          {t('content.apprelease.appPage.privacyInformation') + ' *'}
+          {t('content.apprelease.appPage.privacyInformation')}
+          <span style={{ color: 'red' }}> *</span>
         </InputLabel>
         <Typography variant="body2" sx={{ marginBottom: '10px' }}>
           {t('content.apprelease.appPage.privacyInformationDescription')}

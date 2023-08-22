@@ -91,23 +91,18 @@ export const filterSubscribed = (
   const subscribed = subscriptionStatus
     .filter(
       (status: SubscriptionStatusItem) =>
-        status.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
+        status.status === SubscriptionStatus.ACTIVE
     )
-    .map((status: SubscriptionStatusItem) => status.appId)
+    .map((status: SubscriptionStatusItem) => status.offerId)
   return apps
     .filter((app: AppMarketplaceApp) => subscribed?.includes(app.id))
     .map(appToCard)
 }
 
-export const appToStatus = (
-  apps: AppMarketplaceApp[],
-  subscriptionStatus: SubscriptionStatusItem[]
-): AppMarketplaceApp[] => {
+export const appToStatus = (apps: AppMarketplaceApp[]): AppMarketplaceApp[] => {
   return apps
     ?.map((app: AppMarketplaceApp) => {
-      const status = subscriptionStatus?.find(
-        (e) => e.appId === app.id
-      )?.offerSubscriptionStatus
+      const status = SubscriptionStatus.ACTIVE
       const image = {
         src: getAppImageUrl(app),
         alt: app.title,

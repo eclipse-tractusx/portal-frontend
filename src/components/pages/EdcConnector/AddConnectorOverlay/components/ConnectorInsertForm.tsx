@@ -162,7 +162,7 @@ const ConnectorFormInput = ({
               variant="h2"
               sx={{
                 fontSize: '14px',
-                color: '#111111',
+                color: errors[name] ? '#d32f2f' : '#111111',
                 fontWeight: '400',
                 paddingRight: '10px',
               }}
@@ -191,12 +191,14 @@ const ConnectorFormInput = ({
             render={({ field: { onChange, value } }) => {
               return (
                 <SelectList
+                  error={!!errors[name]}
+                  helperText={helperText}
                   defaultValue={defaultSelectValue}
                   items={items}
                   label={''}
                   placeholder={placeholder}
                   onChangeItem={(e) => {
-                    onChange(e)
+                    onChange(e ? e.subscriptionId : '')
                   }}
                   keyTitle={keyTitle}
                 />
@@ -225,13 +227,6 @@ const ConnectorInsertForm = ({
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
-  //TO-DO: Enable when DAPS enabled
-  // const dropzoneProps = {
-  //   accept: {
-  //     'application/x-pem-file': [],
-  //     'application/x-x509-ca-cert': [],
-  //   },
-  // }
 
   return (
     <Box sx={{ width: '100%' }} className="connector-insert-form">
@@ -343,7 +338,10 @@ const ConnectorInsertForm = ({
                       trigger,
                       errors,
                       type: 'select',
-                      name: 'ConnectorSubscription',
+                      name: 'ConnectorSubscriptionId',
+                      rules: {
+                        required: true,
+                      },
                       label: t(
                         'content.edcconnector.modal.insertform.subscription.label'
                       ),
@@ -353,6 +351,9 @@ const ConnectorInsertForm = ({
                       tooltipMsg: t(
                         'content.edcconnector.modal.insertform.subscription.tooltipMsg'
                       ),
+                      helperText: t(
+                        'content.edcconnector.modal.insertform.subscription.error'
+                      ),
                       items: subscriptions,
                       defaultSelectValue: {},
                       keyTitle: 'name',
@@ -360,29 +361,6 @@ const ConnectorInsertForm = ({
                   />
                 </div>
               )}
-            {/* TO-DO: Enable when DAPS enabled */}
-            {/* <div className="form-input">
-              <ConnectorFormInput
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'ConnectorDoc',
-                  type: 'dropzone',
-                  rules: {
-                    required: true,
-                  },
-                  label: t('content.edcconnector.modal.insertform.doc.label'),
-                  dropzoneProps: dropzoneProps,
-                  helperText: t(
-                    'content.edcconnector.modal.insertform.doc.error'
-                  ),
-                  tooltipMsg: t(
-                    'content.edcconnector.modal.insertform.doc.tooltipMsg'
-                  ),
-                }}
-              />
-            </div> */}
           </form>
         </Grid>
       </Grid>

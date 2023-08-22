@@ -33,18 +33,6 @@ html {
   }
 }
 
-.appdetail-main-bg {
-  background: #f9f9f9;
-  padding-bottom: 30px;
-
-  .appdetail-back {
-    width: 100%;
-    padding: 30px 15px;
-    margin: 0 auto;
-    max-width: 1100px;
-  }
-}
-
 .appdetail-main {
   width: 100%;
   margin: 0 auto;
@@ -63,12 +51,17 @@ html {
       padding-right: 30px;
     }
   }
+}
 
-  .product-description {
-    padding-top: 85px;
+.divider-height {
+  height: 60px;
+}
 
-    p {
-      margin-bottom: 12px;
-    }
+.app-marketplace-main {
+  min-width: 1440px;
+  background: #f9f9f9;
+  .app-back {
+    height: 140px;
+    padding: 48px 256px 48px 160px;
   }
 }

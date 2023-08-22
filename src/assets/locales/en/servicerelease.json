@@ -26,18 +26,18 @@
   "step1": {
     "headerTitle": "Create Service",
     "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer.",
-    "serviceName": "Service Name*",
-    "serviceType": "Service Type*",
+    "serviceName": "Service Name",
+    "serviceType": "Service Type",
     "serviceTypePlaceholder": "Select a Service Type Id",
-    "shortDescriptionEN": "Short Description (en)*",
-    "shortDescriptionDE": "Short Description (de)*",
+    "shortDescriptionEN": "Short Description (en)",
+    "shortDescriptionDE": "Short Description (de)",
     "serviceLeadImageUpload": "Service Card Image"
   },
   "step2": {
     "headerTitle": "Service Details",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "longDescriptionEN": "Long Description (en)*",
-    "longDescriptionDE": "Long Description (de)*",
+    "longDescriptionEN": "Long Description (en)",
+    "longDescriptionDE": "Long Description (de)",
     "doc": "Supporting Material",
     "note": "Note:",
     "providerDetails": "Provider Details",
@@ -52,13 +52,13 @@
   },
   "technicalIntegration": {
     "headerTitle": "Technical Integration",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+    "headerDescription": "Setup the technical profile of a technical user/service account of needed permissions to be able to run the application inside the dataspace. Select minimum one permission, the selected permission(s) will be stored as service technical user profile and used to create technical users for subscription activations.",
+    "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
     "technicalUserProfileError": "Error while updating technical user profiles"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ",
+    "headerDescription": "Below you can find a summary of all your service registration inputs as well as the look of the marketplace service card and detail page. Please check your entered data carefully before sending the service for release. We will validate your service registration shortly after the service submission.",
     "appDetails": "Service Details",
     "documents": "Documents",
     "providerInformation": "Provider Information",
@@ -104,7 +104,7 @@
     "overview": "My services overview"
   },
   "defaultValues": {
-    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "conformityDocumentsDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceoverview": {
@@ -209,13 +209,16 @@
     "longDescriptionTitleEN": "Description - English",
     "longDescriptionTitleDE": "Description - German",
     "backToBoard": "Back to Admin Board",
+    "noDocumentsAvailable": "No documents available",
     "documents": {
       "heading": "Documents",
       "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
     },
     "provider": {
       "heading": "Provider Information",
-      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below."
+      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+      "homepage": "Homepage",
+      "email": "E-Mail"
     },
     "technicalUserSetup": {
       "heading": "Technical User Setup",
