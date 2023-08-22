@@ -73,7 +73,6 @@ export const Patterns = {
       /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
     longDescriptionDE:
       /^[^ @=<>*\-+#?%&_:;]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
-    phone: /^\+(\d{2})?(\s?)+(\(\d{3}\))?\s?\d{10,13}$/,
   },
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
@@ -113,6 +112,5 @@ export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
 export const isValidCancelInput = (expr: string) =>
   Patterns.CANCEL_INPUT.test(expr)
-export const isPhone = (expr: string) => Patterns.appPage.phone.test(expr)
 
 export default Patterns
