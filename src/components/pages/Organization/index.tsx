@@ -29,10 +29,7 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import './Organization.scss'
 import { OVERLAYS } from 'types/Constants'
-import {
-  useFetchActiveAppsQuery,
-  useFetchSubscriptionStatusQuery,
-} from 'features/apps/apiSlice'
+import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import { appToStatus } from 'features/apps/mapper'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import LoadingError from './LoadingError'
@@ -42,14 +39,8 @@ import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetai
 export default function Organization() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const {
-    data: subscriptionStatus,
-    isError,
-    isLoading,
-  } = useFetchSubscriptionStatusQuery()
   const { data } = useFetchActiveAppsQuery()
-  const appSubscribedData =
-    data && subscriptionStatus && appToStatus(data, subscriptionStatus.content)
+  const appSubscribedData = data && appToStatus(data)
   const {
     data: companyDetails,
     isError: companyDetailsError,
@@ -103,11 +94,6 @@ export default function Organization() {
         </div>
         <div className="organization-content">
           <StaticTable data={appSubscriptionsTableData} horizontal={false} />
-          <LoadingError
-            isLoading={isLoading}
-            isError={isError}
-            errorText={t('content.organization.subscriptions.error')}
-          />
         </div>
       </div>
     </main>
