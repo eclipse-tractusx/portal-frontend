@@ -99,7 +99,9 @@
     "Lang_en": "Sprache auf Englisch stellen"
   },
   "error": {
-    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
+    "tryAgain": "Try Again",
+    "errorBar": "Something went wrong. Try again"
   },
   "content": {
     "admin": {

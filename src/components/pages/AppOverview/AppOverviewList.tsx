@@ -21,7 +21,6 @@
 import { CardItems, Cards } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import NoItems from 'components/pages/NoItems'
 import { PAGES } from 'types/Constants'
 import { AppInfo } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
@@ -41,10 +40,6 @@ export const AppOverviewList = ({
 }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-
-  if (filterItem && filterItem.length === 0) {
-    return <NoItems />
-  }
 
   const submenuOptions = [
     {
