@@ -90,23 +90,23 @@ const AppSubscriptionDetailOverlay = ({
     body: [
       [
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
-        data?.name ? data.name : 'N/A',
+        data?.name ?? 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        data?.offerSubscriptionStatus ? data.offerSubscriptionStatus : 'N/A',
+        data?.offerSubscriptionStatus ?? 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
-        data?.customer ? data.customer : 'N/A',
+        data?.customer ?? 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.bpn')}`,
-        data?.bpn ? data.bpn : 'N/A',
+        data?.bpn ?? 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.contact')}`,
-        data?.contact.length ? data.contact.toString() : 'N/A',
+        data?.contact?.toString() ?? 'N/A',
       ],
     ],
   }
@@ -121,23 +121,21 @@ const AppSubscriptionDetailOverlay = ({
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
         data?.appInstanceId ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
-        data?.technicalUserData?.length
-          ? data.technicalUserData[0].name
-          : (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+        data?.technicalUserData?.[0]?.name ??
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
           ? 'N/A'
           : ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-        data?.technicalUserData?.length
-          ? data.technicalUserData[0].permissions.toString()
-          : (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+        data?.technicalUserData?.[0]?.permissions.toString() ??
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
           ? 'N/A'
           : ''),
       ],
