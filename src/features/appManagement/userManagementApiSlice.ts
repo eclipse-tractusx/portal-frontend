@@ -22,8 +22,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type MultipleUsersRequest = {
-  identityProviderId: string
   csvFile: File
+  identityProviderId?: string
 }
 
 export type MultipleUsersResponse = {
@@ -42,10 +42,13 @@ export const apiSlice = createApi({
       MultipleUsersRequest
     >({
       query: (data: MultipleUsersRequest) => {
+        const url = data.identityProviderId
+          ? `/api/administration/user/owncompany/identityprovider/${data.identityProviderId}/usersfile`
+          : 'api/administration/user/owncompany/usersfile'
         const formData = new FormData()
         formData.append('document', data.csvFile)
         return {
-          url: 'api/administration/user/owncompany/usersfile',
+          url: url,
           method: 'POST',
           body: formData,
         }
