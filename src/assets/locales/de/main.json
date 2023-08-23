@@ -419,7 +419,7 @@
       "headerTitle": "Change Lead Image",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "uploadNewImage": "Upload New Image",
-      "successMsg": "successfully changed app lead image",
+      "successMsg": "Successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {
@@ -431,7 +431,7 @@
       "shortDescription": "Short Description",
       "shortDescriptionEN": "Short Description - EN *",
       "shortDescriptionDE": "Short Description - DE *",
-      "successMsg": "successfully changed description",
+      "successMsg": "Successfully changed description",
       "errorMsg": "Unable to change description"
     },
     "addRoles": {
@@ -442,7 +442,7 @@
       "uploadAdditionalRolesDescription": "Note: only one file for upload allowed",
       "newRolesToAdd": "New roles to be added",
       "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
-      "successMsg": "successfully added roles",
+      "successMsg": "Successfully added roles",
       "errorMsg": "Unable to add roles"
     },
     "appreleaseprocess": {
