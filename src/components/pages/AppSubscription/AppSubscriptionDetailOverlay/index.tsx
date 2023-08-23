@@ -85,7 +85,7 @@ const AppSubscriptionDetailOverlay = ({
     },
   ]
 
-  const getValue = (value: any) =>  value ?? 'N/A';
+  const getValue = (value?: string) => value ?? 'N/A'
 
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
@@ -96,16 +96,18 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        data?.offerSubscriptionStatus ?? 'N/A',
+        getValue(data?.offerSubscriptionStatus),
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
-        data?.customer ?? 'N/A',
+        getValue(data?.customer),
       ],
-      [`${t('content.appSubscription.detailOverlay.bpn')}`, data?.bpn ?? 'N/A'],
+      [`${t('content.appSubscription.detailOverlay.bpn')}`,
+        getValue(data?.bpn),
+      ],
       [
         `${t('content.appSubscription.detailOverlay.contact')}`,
-        data?.contact?.toString() ?? 'N/A',
+        getValue(data?.contact?.toString()),
       ],
     ],
   }
