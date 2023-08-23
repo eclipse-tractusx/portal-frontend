@@ -145,11 +145,11 @@ const AppSubscriptionDetailOverlay = ({
     edit: [
       [
         {
-          editIcon: false,
+          icon: false,
           inputValue: '',
         },
         {
-          editIcon:
+          icon:
             UserService.hasRole(ROLES.APPSTORE_EDIT) &&
             data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
           inputValue: data?.tenantUrl ?? '',
@@ -159,22 +159,22 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          editIcon: true,
+          icon: true,
           inputValue: t('content.appSubscription.detailOverlay.appIdInfo'),
         },
         {
-          editIcon: false,
+          icon: false,
         },
       ],
       [
         {
-          editIcon: true,
+          icon: true,
           inputValue: t(
             'content.appSubscription.detailOverlay.technicalNameInfo'
           ),
         },
         {
-          editIcon: false,
+          icon: false,
           clickableLink: data?.technicalUserData[0]?.id
             ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
             : undefined,
@@ -182,13 +182,13 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          editIcon: true,
+          icon: true,
           inputValue: t(
             'content.appSubscription.detailOverlay.technicalPermissionInfo'
           ),
         },
         {
-          editIcon: false,
+          icon: false,
         },
       ],
     ],
