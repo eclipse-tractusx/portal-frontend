@@ -349,7 +349,7 @@ export default function AddMultipleUser() {
             <a
               href={
                 idps[0].identityProviderCategoryId ===
-                  IDPCategory.KEYCLOAK_SHARED
+                IDPCategory.KEYCLOAK_SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }
@@ -401,60 +401,55 @@ export default function AddMultipleUser() {
   }
 
   const renderMultiuserMainContent = () => {
-    return (
-      idps.length === 1 ? (
-        <>
-          <DialogHeader
-            {...{
-              title: t('content.usermanagement.addMultipleUsers.heading'),
-              intro: t('content.usermanagement.addMultipleUsers.intro'),
-              closeWithIcon: true,
-              onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-            }}
-          />
+    return idps.length === 1 ? (
+      <>
+        <DialogHeader
+          {...{
+            title: t('content.usermanagement.addMultipleUsers.heading'),
+            intro: t('content.usermanagement.addMultipleUsers.intro'),
+            closeWithIcon: true,
+            onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+          }}
+        />
 
-          <DialogContent sx={{ padding: '0 150px 20px' }}>
-            {renderContent()}
-          </DialogContent>
+        <DialogContent sx={{ padding: '0 150px 20px' }}>
+          {renderContent()}
+        </DialogContent>
 
-          <DialogActions>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => dispatch(show(OVERLAYS.NONE))}
+          >
+            {t('global.actions.cancel')}
+          </Button>
+          {loading ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator="Loading ..."
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
             <Button
-              variant="outlined"
-              onClick={() => dispatch(show(OVERLAYS.NONE))}
+              variant="contained"
+              onClick={handleConfirm}
+              disabled={
+                uploadedFile === undefined || (isFileUploaded && !roles.length)
+              }
             >
-              {t('global.actions.cancel')}
+              {isError ? t('global.actions.exit') : t('global.actions.confirm')}
             </Button>
-            {loading ? (
-              <LoadingButton
-                color="primary"
-                helperText=""
-                helperTextColor="success"
-                label=""
-                loadIndicator="Loading ..."
-                loading
-                size="medium"
-                onButtonClick={() => { }}
-                sx={{ marginLeft: '10px' }}
-              />
-            ) : (
-              <Button
-                variant="contained"
-                onClick={handleConfirm}
-                disabled={
-                  uploadedFile === undefined ||
-                  (isFileUploaded && !roles.length)
-                }
-              >
-                {isError
-                  ? t('global.actions.exit')
-                  : t('global.actions.confirm')}
-              </Button>
-            )}
-          </DialogActions>
-        </>
-      ) : (
-        <AddUserDeny idps={idps} />
-      )
+          )}
+        </DialogActions>
+      </>
+    ) : (
+      <AddUserDeny idps={idps} />
     )
   }
 
@@ -477,9 +472,9 @@ export default function AddMultipleUser() {
             variant="indeterminate"
           />
         </div>
-      ) :
+      ) : (
         renderMultiuserMainContent()
-      }
+      )}
     </>
   )
 }
