@@ -120,29 +120,38 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
-        data?.appInstanceId ?? 'N/A',
+        data?.appInstanceId ??
+          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+            ? 'N/A'
+            : ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
         data?.technicalUserData && data.technicalUserData.length > 0
           ? data.technicalUserData[0].name
-          : 'N/A',
+          : data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : '',
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
         data?.technicalUserData && data.technicalUserData.length > 0
           ? data.technicalUserData[0].permissions.toString()
-          : 'N/A',
+          : data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : '',
       ],
     ],
     edit: [
       [
         {
-          editIcon: false,
+          icon: false,
           inputValue: '',
         },
         {
-          editIcon: UserService.hasRole(ROLES.APPSTORE_EDIT),
+          icon:
+            UserService.hasRole(ROLES.APPSTORE_EDIT) &&
+            data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
           inputValue: data?.tenantUrl ?? '',
           isValid: (value: string) => isURL(value),
           errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
@@ -150,21 +159,36 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          editIcon: false,
+          icon: true,
+          inputValue: t('content.appSubscription.detailOverlay.appIdInfo'),
         },
         {
-          editIcon: false,
+          icon: false,
         },
       ],
       [
         {
-          editIcon: false,
+          icon: true,
+          inputValue: t(
+            'content.appSubscription.detailOverlay.technicalNameInfo'
+          ),
         },
         {
-          editIcon: false,
+          icon: false,
           clickableLink: data?.technicalUserData[0]?.id
             ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
             : undefined,
+        },
+      ],
+      [
+        {
+          icon: true,
+          inputValue: t(
+            'content.appSubscription.detailOverlay.technicalPermissionInfo'
+          ),
+        },
+        {
+          icon: false,
         },
       ],
     ],
