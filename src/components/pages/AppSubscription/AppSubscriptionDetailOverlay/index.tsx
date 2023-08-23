@@ -102,7 +102,8 @@ const AppSubscriptionDetailOverlay = ({
         `${t('content.appSubscription.detailOverlay.customer')}`,
         getValue(data?.customer),
       ],
-      [`${t('content.appSubscription.detailOverlay.bpn')}`,
+      [
+        `${t('content.appSubscription.detailOverlay.bpn')}`,
         getValue(data?.bpn),
       ],
       [
