@@ -85,12 +85,14 @@ const AppSubscriptionDetailOverlay = ({
     },
   ]
 
+  const getValue = (value: any) =>  value ?? 'N/A';
+
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
-        data?.name ?? 'N/A',
+        getValue(data?.name),
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
@@ -100,10 +102,7 @@ const AppSubscriptionDetailOverlay = ({
         `${t('content.appSubscription.detailOverlay.customer')}`,
         data?.customer ?? 'N/A',
       ],
-      [
-        `${t('content.appSubscription.detailOverlay.bpn')}`,
-        data?.bpn ?? 'N/A',
-      ],
+      [`${t('content.appSubscription.detailOverlay.bpn')}`, data?.bpn ?? 'N/A'],
       [
         `${t('content.appSubscription.detailOverlay.contact')}`,
         data?.contact?.toString() ?? 'N/A',
@@ -121,23 +120,23 @@ const AppSubscriptionDetailOverlay = ({
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
         data?.appInstanceId ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+            ? 'N/A'
+            : ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
         data?.technicalUserData?.[0]?.name ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+            ? 'N/A'
+            : ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
         data?.technicalUserData?.[0]?.permissions.toString() ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+            ? 'N/A'
+            : ''),
       ],
     ],
     edit: [
