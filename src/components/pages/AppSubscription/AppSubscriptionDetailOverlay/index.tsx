@@ -127,29 +127,29 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
-        data?.technicalUserData && data.technicalUserData.length > 0
+        data?.technicalUserData?.length
           ? data.technicalUserData[0].name
-          : data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          : (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
           ? 'N/A'
-          : '',
+          : ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-        data?.technicalUserData && data.technicalUserData.length > 0
+        data?.technicalUserData?.length
           ? data.technicalUserData[0].permissions.toString()
-          : data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          : (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
           ? 'N/A'
-          : '',
+          : ''),
       ],
     ],
     edit: [
       [
         {
-          icon: false,
+          editIcon: false,
           inputValue: '',
         },
         {
-          icon:
+          editIcon:
             UserService.hasRole(ROLES.APPSTORE_EDIT) &&
             data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
           inputValue: data?.tenantUrl ?? '',
@@ -159,22 +159,22 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          icon: true,
+          editIcon: true,
           inputValue: t('content.appSubscription.detailOverlay.appIdInfo'),
         },
         {
-          icon: false,
+          editIcon: false,
         },
       ],
       [
         {
-          icon: true,
+          editIcon: true,
           inputValue: t(
             'content.appSubscription.detailOverlay.technicalNameInfo'
           ),
         },
         {
-          icon: false,
+          editIcon: false,
           clickableLink: data?.technicalUserData[0]?.id
             ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
             : undefined,
@@ -182,13 +182,13 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          icon: true,
+          editIcon: true,
           inputValue: t(
             'content.appSubscription.detailOverlay.technicalPermissionInfo'
           ),
         },
         {
-          icon: false,
+          editIcon: false,
         },
       ],
     ],
