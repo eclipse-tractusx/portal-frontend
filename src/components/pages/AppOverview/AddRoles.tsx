@@ -34,6 +34,7 @@ import { TableType } from 'types/MainTypes'
 import { useFetchAppRolesQuery } from 'features/appManagement/apiSlice'
 import AddRolesOverlay from './AddRolesOverlay'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
+import { PAGES } from 'types/Constants'
 
 export default function AddRoles() {
   const { t } = useTranslation()
@@ -43,12 +44,16 @@ export default function AddRoles() {
   const { state } = useLocation()
   const items: any = state
   const app = items?.filter((item: any) => item.id === appId)
-  const { data } = useFetchAppRolesQuery(appId ?? '')
+  const { data, refetch } = useFetchAppRolesQuery(appId ?? '')
+  const [addRolesOverlayOpen, setAddRolesOverlayOpen] = useState<boolean>(false)
   const [appRoles, setAppRoles] = useState<any[]>([
     [''],
     [`${(<Checkbox disabled={true} />)}`],
   ])
-  const [addRolesOverlayOpen, setAddRolesOverlayOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    refetch()
+  }, [state])
 
   const handleSaveClick = async () => {
     setIsLoading(true)
@@ -111,7 +116,7 @@ export default function AddRoles() {
         <Box sx={{ marginTop: '30px', position: 'relative' }}>
           <Button
             color="secondary"
-            onClick={() => navigate('/appoverview')}
+            onClick={() => navigate(`/${PAGES.APPOVERVIEW}`)}
             size="small"
           >
             {t('global.actions.cancel')}

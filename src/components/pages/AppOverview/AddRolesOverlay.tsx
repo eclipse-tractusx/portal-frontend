@@ -55,15 +55,14 @@ const AddRolesOverlay = ({
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const defaultValues = {
-    uploadAppRoles: '',
-  }
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   const [rolesDescription, setRolesDescription] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
-
   const [uploadCSVError, setUploadCSVError] = useState(false)
   const [updateActiveApp] = useUpdateActiveAppMutation()
+  const defaultValues = {
+    uploadAppRoles: '',
+  }
 
   const {
     control,
@@ -84,7 +83,6 @@ const AddRolesOverlay = ({
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
-
           const CSVCells = str
             ?.split('\n')
             .filter((item) => item !== '')
@@ -106,12 +104,10 @@ const AddRolesOverlay = ({
 
             setRolesPreviews(roles?.splice(1))
             setRolesDescription(roleDescription?.splice(1))
-
             setUploadCSVError(false)
           } else {
             setRolesPreviews([])
             setRolesDescription([])
-
             setUploadCSVError(true)
           }
         }
@@ -125,7 +121,6 @@ const AddRolesOverlay = ({
 
   const handleConfirm = async () => {
     setIsLoading(true)
-
     const rolesDescriptionData = rolesPreviews.map((data, i) => [
       data,
       rolesDescription[i],
@@ -284,6 +279,7 @@ const AddRolesOverlay = ({
               loading={isLoading}
               label={`${t('global.actions.confirm')}`}
               loadIndicator="Loading..."
+              sx={{ ml: 3 }}
             />
           ) : (
             <Button
