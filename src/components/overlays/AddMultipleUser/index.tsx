@@ -349,7 +349,7 @@ export default function AddMultipleUser() {
             <a
               href={
                 idps[0].identityProviderCategoryId ===
-                IDPCategory.KEYCLOAK_SHARED
+                  IDPCategory.KEYCLOAK_SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }
@@ -400,26 +400,9 @@ export default function AddMultipleUser() {
     }
   }
 
-  return (
-    <>
-      {isFetching ? (
-        <div
-          style={{
-            width: '100%',
-            height: '500px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <CircleProgress
-            colorVariant="primary"
-            size={80}
-            thickness={8}
-            variant="indeterminate"
-          />
-        </div>
-      ) : idps.length === 1 ? (
+  const renderMultiuserMainContent = () => {
+    return (
+      idps.length === 1 ? (
         <>
           <DialogHeader
             {...{
@@ -450,7 +433,7 @@ export default function AddMultipleUser() {
                 loadIndicator="Loading ..."
                 loading
                 size="medium"
-                onButtonClick={() => {}}
+                onButtonClick={() => { }}
                 sx={{ marginLeft: '10px' }}
               />
             ) : (
@@ -471,7 +454,32 @@ export default function AddMultipleUser() {
         </>
       ) : (
         <AddUserDeny idps={idps} />
-      )}
+      )
+    )
+  }
+
+  return (
+    <>
+      {isFetching ? (
+        <div
+          style={{
+            width: '100%',
+            height: '500px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircleProgress
+            colorVariant="primary"
+            size={80}
+            thickness={8}
+            variant="indeterminate"
+          />
+        </div>
+      ) :
+        renderMultiuserMainContent()
+      }
     </>
   )
 }
