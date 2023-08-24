@@ -1,11 +1,7 @@
 {
-  "bpn": "BPNL0000000001YN",
-  "name": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
-  "legalForm": "",
-  "country": "Germany",
-  "street": "An der Wiese 14",
-  "zipCode": "79650",
-  "city": "Schopfheim",
+  "score": 0,
+  "legalName": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
+  "bpnl": "BPNL0000000001YN",
   "identifiers": [
     {
       "uuid": "fa59a765-d9c4-4d92-810f-e49bce3dd57c",
@@ -47,5 +43,126 @@
       "issuingBody": null,
       "status": null
     }
-  ]
+  ],
+  "legalShortName": "AFT",
+  "legalForm": "",
+  "states": [
+    {
+      "description": "",
+      "validFrom": "2023-08-24T17:03:36.367Z",
+      "validTo": "2023-08-24T17:03:36.367Z",
+      "type": {
+        "technicalKey": "ACTIVE",
+        "name": ""
+      }
+    }
+  ],
+  "classifications": [
+    {
+      "value": "",
+      "code": "",
+      "type": {
+        "technicalKey": "NACE",
+        "name": ""
+      }
+    }
+  ],
+  "relations": [
+    {
+      "type": {
+        "technicalKey": "CX_LEGAL_SUCCESSOR_OF",
+        "name": ""
+      },
+      "startBpnl": "",
+      "endBpnl": "",
+      "validFrom": "2023-08-24T17:03:36.367Z",
+      "validTo": "2023-08-24T17:03:36.367Z"
+    }
+  ],
+  "currentness": "2023-08-24T17:03:36.367Z",
+  "createdAt": "2023-08-24T17:03:36.367Z",
+  "updatedAt": "2023-08-24T17:03:36.367Z",
+  "legalAddress": {
+    "bpna": "",
+    "name": "",
+    "states": [
+      {
+        "description": "",
+        "validFrom": "2023-08-24T17:03:36.367Z",
+        "validTo": "2023-08-24T17:03:36.367Z",
+        "type": {
+          "technicalKey": "ACTIVE",
+          "name": ""
+        }
+      }
+    ],
+    "identifiers": [
+      {
+        "value": "",
+        "type": {
+          "technicalKey": "",
+          "name": ""
+        }
+      }
+    ],
+    "physicalPostalAddress": {
+      "geographicCoordinates": {
+        "longitude": 0,
+        "latitude": 0,
+        "altitude": 0
+      },
+      "country": {
+        "technicalKey": "UNDEFINED",
+        "name": "Germany"
+      },
+      "postalCode": "79650",
+      "city": "Schopfheim",
+      "street": {
+        "name": "An der Wiese 14",
+        "houseNumber": "",
+        "milestone": "",
+        "direction": ""
+      },
+      "administrativeAreaLevel1": {
+        "countryCode": "UNDEFINED",
+        "regionCode": "",
+        "regionName": ""
+      },
+      "administrativeAreaLevel2": "",
+      "administrativeAreaLevel3": "",
+      "district": "",
+      "companyPostalCode": "",
+      "industrialZone": "",
+      "building": "",
+      "floor": "",
+      "door": ""
+    },
+    "alternativePostalAddress": {
+      "geographicCoordinates": {
+        "longitude": 0,
+        "latitude": 0,
+        "altitude": 0
+      },
+      "country": {
+        "technicalKey": "UNDEFINED",
+        "name": "Germany"
+      },
+      "postalCode": "",
+      "city": "",
+      "administrativeAreaLevel1": {
+        "countryCode": "UNDEFINED",
+        "regionCode": "",
+        "regionName": ""
+      },
+      "deliveryServiceNumber": "",
+      "deliveryServiceType": "PO_BOX",
+      "deliveryServiceQualifier": ""
+    },
+    "bpnLegalEntity": "",
+    "bpnSite": "",
+    "createdAt": "2023-08-24T17:03:36.367Z",
+    "updatedAt": "2023-08-24T17:03:36.367Z",
+    "isMainAddress": true,
+    "isLegalAddress": true
+  }
 }
