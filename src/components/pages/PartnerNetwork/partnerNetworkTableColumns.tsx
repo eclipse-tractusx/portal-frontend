@@ -56,7 +56,7 @@ export const PartnerNetworksTableColumns = (
       flex: 1.5,
       sortable: false,
       renderCell: (params) =>
-        params && params.row && params.row.member ? (
+        params?.row?.member ? (
           <Box
             component="img"
             padding=".5rem"
@@ -87,7 +87,7 @@ export const PartnerNetworksTableColumns = (
       flex: 0.8,
       align: 'center',
       renderCell: (params) =>
-        params && params.row && params.row.bpnl ? (
+        params?.row?.bpnl ? (
           <IconButton
             color="secondary"
             size="small"
