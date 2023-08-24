@@ -21,7 +21,6 @@
 import {
   BusinessPartner,
   BusinessPartnerResponse,
-  BusinessPartnerSearchResponse,
   PartnerNetworkDataGrid,
 } from 'features/partnerNetwork/types'
 
@@ -29,29 +28,26 @@ import {
   RegistrationRequest,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
-import { cloneDeep } from 'lodash'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
   bpResponse: BusinessPartnerResponse,
   membershipData: string[]
 ): Array<PartnerNetworkDataGrid> => {
-  return bpResponse?.content?.map((bp: BusinessPartnerSearchResponse) => {
-    const bpAddress = bp.businessPartner.addresses[0]
+  return bpResponse?.content?.map((bp: BusinessPartner) => {
     return {
-      bpn: bp.businessPartner.bpn,
-      legalForm: bp.businessPartner.legalForm?.name || '',
-      cxmember: membershipData.includes(bp.businessPartner.bpn),
-      name: bp.businessPartner.names.filter(
-        (name) =>
-          name.type.technicalKey === 'INTERNATIONAL' ||
-          name.type.technicalKey === 'LOCAL'
-      )[0].value,
-      country: bpAddress.country.name,
-      street: bpAddress.thoroughfares[0].value,
-      zipCode: bpAddress.postCodes[0].value,
-      city: bpAddress.localities[0].value,
-      identifiers: bp.businessPartner.identifiers?.filter(
+      bpn: bp.bpnl,
+      legalForm: bp.legalForm?.name || '',
+      cxmember: membershipData.includes(bp.bpnl),
+      name: bp.legalName,
+      country:
+        bp.legalAddress?.physicalPostalAddress?.country.name ??
+        bp.legalAddress?.alternativePostalAddress?.country.name ??
+        '',
+      street: bp.legalAddress?.physicalPostalAddress?.street.name ?? '',
+      zipCode: bp.legalAddress?.physicalPostalAddress?.postalCode ?? '',
+      city: bp.legalAddress?.physicalPostalAddress?.city ?? '',
+      identifiers: bp.identifiers?.filter(
         (identifier) => identifier.type.technicalKey !== 'CDQID'
       ),
     } as PartnerNetworkDataGrid
@@ -61,20 +57,17 @@ const mapBusinessPartnerToDataGrid = (
 const mapSingleBusinessPartnerToDataGrid = (
   bp: BusinessPartner
 ): PartnerNetworkDataGrid => {
-  const bpAddress = bp.addresses[0]
-  const names = cloneDeep(bp.names)
   return {
-    bpn: bp.bpn,
-    name: names.length
-      ? names.sort((a, b) =>
-          a.type.technicalKey.localeCompare(b.type.technicalKey)
-        )[0].value
-      : '-', //value can be INTERNATIONAL < LOCAL < OTHER
+    bpn: bp.bpnl,
+    name: bp.legalName ?? '-', //value can be INTERNATIONAL < LOCAL < OTHER
     legalForm: bp.legalForm?.name || '',
-    country: bpAddress.country.name,
-    street: bpAddress.thoroughfares[0].value,
-    zipCode: bpAddress.postCodes[0].value,
-    city: bpAddress.localities[0].value,
+    country:
+      bp.legalAddress?.physicalPostalAddress?.country.name ??
+      bp.legalAddress?.alternativePostalAddress?.country.name ??
+      '',
+    street: bp.legalAddress?.physicalPostalAddress?.street.name ?? '',
+    zipCode: bp.legalAddress?.physicalPostalAddress?.postalCode ?? '',
+    city: bp.legalAddress?.physicalPostalAddress?.city ?? '',
     identifiers: bp.identifiers?.filter(
       (identifier) => identifier.type.technicalKey !== 'CDQID'
     ),

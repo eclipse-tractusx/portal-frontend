@@ -49,7 +49,7 @@ export class PartnerNetworkApi extends HttpClient {
 
   public getBusinessPartnerByBpn = (bpn: string) =>
     this.instance.get<BusinessPartner>(
-      `/catena/business-partner/${bpn}?idType=BPN`,
+      `/catena/legal-entities/${bpn}`,
       getHeaders()
     )
 

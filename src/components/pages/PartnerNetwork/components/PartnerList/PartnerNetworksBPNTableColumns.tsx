@@ -41,15 +41,14 @@ export const PartnerNetworksBPNTableColumns = (
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) =>
-        row.names ? row.names[0].value : null,
+      valueGetter: ({ row }: { row: BusinessPartner }) => row.legalName ?? null,
     },
     {
       field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row.bpn,
+      valueGetter: ({ row }: { row: BusinessPartner }) => row.bpnl,
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
@@ -77,7 +76,9 @@ export const PartnerNetworksBPNTableColumns = (
       flex: 1.5,
       sortable: false,
       valueGetter: ({ row }: { row: BusinessPartner }) =>
-        row ? row.legalAddress?.country?.name : '',
+        row?.legalAddress?.physicalPostalAddress?.country?.name ??
+        row?.legalAddress?.alternativePostalAddress?.country?.name ??
+        '',
     },
     {
       field: 'detail',
@@ -86,12 +87,12 @@ export const PartnerNetworksBPNTableColumns = (
       flex: 0.8,
       align: 'center',
       renderCell: (params) =>
-        params && params.row && params.row.bpn ? (
+        params && params.row && params.row.bpnl ? (
           <IconButton
             color="secondary"
             size="small"
             style={{ alignSelf: 'center' }}
-            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpn))}
+            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpnl))}
           >
             <ArrowForwardIcon />
           </IconButton>

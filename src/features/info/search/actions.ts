@@ -178,9 +178,7 @@ const fetchSearch = createAsyncThunk(
               : item.name?.match(searchExpr) || item.provider.match(searchExpr)
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
-        partners.content.map((item: { businessPartner: BusinessPartner }) =>
-          businessPartnerToSearchItem(item.businessPartner)
-        ),
+        partners.content.map((item: any) => businessPartnerToSearchItem(item)),
         news
           .filter(
             (item: CardItems) =>

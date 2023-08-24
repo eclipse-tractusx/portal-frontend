@@ -81,7 +81,6 @@ export default function BusinessApplicationsSection() {
             data
               .map((app: AppMarketplaceApp) => {
                 const card = appToCard(app)
-                console.log(card)
                 return card
               })
               .map((item) => (

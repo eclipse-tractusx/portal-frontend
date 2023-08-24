@@ -121,22 +121,39 @@ export interface BpdmBusinessStatus {
 //endregion
 
 export interface BusinessPartner {
-  bpn: string // Unique identifier
+  score?: number
+  legalName: string
+  bpnl: string
+  member?: boolean
   identifiers: Array<BpdmTypeUUIDKeyPair>
-  names: Array<BpdmTypeLanguagePair>
+  legalShortName: string
   legalForm: BpdmLegalFormObject
-  status: BpdmBusinessStatus
-  addresses: Array<BpdmAddresses>
-  profileClassifications: Array<BpdmProfileClassification>
-  types: Array<BpdmTypeCommonKeyValuePair>
-  bankAccounts: Array<BpdmTypeBankAccount>
-  roles: Array<BpdmTypeCommonKeyValuePair>
+  states: [
+    {
+      description: string
+      validFrom: any
+      validTo: any
+      type: {
+        technicalKey: string
+        name: string
+      }
+    }
+  ]
+  classifications: [
+    {
+      value: string
+      code: string
+      type: {
+        technicalKey: string
+        name: string
+      }
+    }
+  ]
   relations: Array<BpdmTypeRelation>
-}
-
-export interface BusinessPartnerSearchResponse {
-  score: number
-  businessPartner: BusinessPartner
+  currentness: any
+  createdAt: any
+  updatedAt: any
+  legalAddress: BpdmLegalAddressObject
 }
 
 export interface BusinessPartnerResponse {
@@ -144,7 +161,15 @@ export interface BusinessPartnerResponse {
   totalPages: number
   page: number
   contentSize: number
-  content: Array<BusinessPartnerSearchResponse>
+  content: Array<BusinessPartner>
+}
+
+export interface BusinessPartnerAddressResponse {
+  alternativePostalAddress: any
+  bpnLegalEntity: string
+  createdAt: any
+  updatedAt: any
+  physicalPostalAddress: any
 }
 
 export interface PaginationData {
@@ -170,4 +195,88 @@ export interface PartnerNetworkDataGrid {
   zipCode: string
   city: string
   identifiers: Array<BpdmTypeUUIDKeyPair>
+}
+
+export interface BpdmLegalAddressStatesObject {
+  description: string
+  validFrom: any
+  validTo: any
+  type: {
+    technicalKey: string
+    name: string
+  }
+}
+
+export interface BpdmLegalAddressObject {
+  bpna: string
+  name: string
+  states: Array<BpdmLegalAddressStatesObject>
+  identifiers: [
+    {
+      value: string
+      type: {
+        technicalKey: string
+        name: string
+      }
+    }
+  ]
+  physicalPostalAddress: {
+    geographicCoordinates: {
+      longitude: 0
+      latitude: 0
+      altitude: 0
+    }
+    country: {
+      technicalKey: string
+      name: string
+    }
+    postalCode: string
+    city: string
+    street: {
+      name: string
+      houseNumber: string
+      milestone: string
+      direction: string
+    }
+    administrativeAreaLevel1: {
+      countryCode: string
+      regionCode: string
+      regionName: string
+    }
+    administrativeAreaLevel2: string
+    administrativeAreaLevel3: string
+    district: string
+    companyPostalCode: string
+    industrialZone: string
+    building: string
+    floor: string
+    door: string
+  }
+  alternativePostalAddress: {
+    geographicCoordinates: {
+      longitude: 0
+      latitude: 0
+      altitude: 0
+    }
+    country: {
+      technicalKey: string
+      name: string
+    }
+    postalCode: string
+    city: string
+    administrativeAreaLevel1: {
+      countryCode: string
+      regionCode: string
+      regionName: string
+    }
+    deliveryServiceNumber: string
+    deliveryServiceType: string
+    deliveryServiceQualifier: string
+  }
+  bpnLegalEntity: string
+  bpnSite: string
+  createdAt: any
+  updatedAt: any
+  isMainAddress: boolean
+  isLegalAddress: boolean
 }

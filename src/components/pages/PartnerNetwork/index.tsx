@@ -24,10 +24,7 @@ import {
   useFetchBusinessPartnersQuery,
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
-import {
-  PageHeader,
-  PageLoadingTable,
-} from '@catena-x/portal-shared-components'
+import { PageHeader } from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
@@ -42,6 +39,7 @@ import {
   addCountryAttribute,
   addMemberAttribute,
 } from './components/PartnerList/helper'
+import { PageLoadingTable } from 'components/shared/basic/PageLoadingTable'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -69,7 +67,7 @@ const PartnerNetwork = () => {
       return
     }
     if (isContentPresent(cData)) {
-      const result = cData.content.map((x: any) => x.legalEntity.bpn)
+      const result = cData.content.map((x: any) => x.bpnl)
       await mutationRequest(result)
         .unwrap()
         .then((payload: any) => {
@@ -83,13 +81,14 @@ const PartnerNetwork = () => {
           setAllItems([])
         })
     } else {
-      const result = [cData.bpn]
+      const result = [cData.bpnl]
       await mutationRequest(result)
         .unwrap()
         .then((payload: any) => {
-          //update for country attribute && update member info
+          //update country attribute && update member info
           let finalObj = JSON.parse(JSON.stringify(cData))
-          finalObj.legalAddress = payload[0].legalAddress
+          finalObj.legalAddress.physicalPostalAddress =
+            payload[0].physicalPostalAddress
           if (isQueryDataPresent(data)) {
             finalObj.member = data && data.includes(finalObj.bpn)
           }
@@ -132,9 +131,7 @@ const PartnerNetwork = () => {
           fetchHook={useFetchBusinessPartnersQuery}
           fetchHookArgs={{ expr }}
           fetchHookRefresh={refresh}
-          getRowId={(row: { legalEntity: any }) =>
-            row && row.legalEntity ? row.legalEntity.bpn : ''
-          }
+          getRowId={(row: any) => row.bpnl ?? ''}
           columns={!showBPNColumn ? columns : bpnColumns}
           callbackToPage={fetchAndApply}
           allItems={allItems}
