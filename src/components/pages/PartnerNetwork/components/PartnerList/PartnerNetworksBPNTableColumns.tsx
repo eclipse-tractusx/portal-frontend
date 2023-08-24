@@ -19,21 +19,21 @@
  ********************************************************************************/
 
 import { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from '@catena-x/portal-shared-components'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+// import { IconButton } from '@catena-x/portal-shared-components'
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
-import { Box } from '@mui/material'
-import smallLogo from '../../../../../assets/logo/cx-logo-short.svg'
-import { OVERLAYS } from 'types/Constants'
-import { show } from 'features/control/overlay'
-import { useDispatch } from 'react-redux'
+// import { Box } from '@mui/material'
+// import smallLogo from '../../../../../assets/logo/cx-logo-short.svg'
+// import { OVERLAYS } from 'types/Constants'
+// import { show } from 'features/control/overlay'
+// import { useDispatch } from 'react-redux'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksBPNTableColumns = (
   translationHook: any
 ): Array<GridColDef> => {
   const { t } = translationHook()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   return [
     {
@@ -50,55 +50,55 @@ export const PartnerNetworksBPNTableColumns = (
       sortable: false,
       valueGetter: ({ row }: { row: BusinessPartner }) => row.bpnl,
     },
-    {
-      field: 'cxmember', // Temporary field, doesnt exists yet
-      headerName: t('content.partnernetwork.columns.cxparticipant'),
-      flex: 1.5,
-      sortable: false,
-      renderCell: (params) =>
-        params?.row?.member ? (
-          <Box
-            component="img"
-            padding=".5rem"
-            src={smallLogo}
-            alt="membershipFlag"
-            sx={{
-              width: 40,
-            }}
-          />
-        ) : (
-          ''
-        ),
-    },
-    {
-      field: 'country',
-      headerName: t('content.partnernetwork.columns.country'),
-      flex: 1.5,
-      sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) =>
-        row?.legalAddress?.physicalPostalAddress?.country?.name ??
-        row?.legalAddress?.alternativePostalAddress?.country?.name ??
-        '',
-    },
-    {
-      field: 'detail',
-      headerName: 'Detail',
-      headerAlign: 'center',
-      flex: 0.8,
-      align: 'center',
-      renderCell: (params) =>
-        params?.row?.bpnl ? (
-          <IconButton
-            color="secondary"
-            size="small"
-            style={{ alignSelf: 'center' }}
-            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpnl))}
-          >
-            <ArrowForwardIcon />
-          </IconButton>
-        ) : (
-          <></>
-        ),
-    },
+    // {
+    //   field: 'cxmember', // Temporary field, doesnt exists yet
+    //   headerName: t('content.partnernetwork.columns.cxparticipant'),
+    //   flex: 1.5,
+    //   sortable: false,
+    //   renderCell: (params) =>
+    //     params?.row?.member ? (
+    //       <Box
+    //         component="img"
+    //         padding=".5rem"
+    //         src={smallLogo}
+    //         alt="membershipFlag"
+    //         sx={{
+    //           width: 40,
+    //         }}
+    //       />
+    //     ) : (
+    //       ''
+    //     ),
+    // },
+    // {
+    //   field: 'country',
+    //   headerName: t('content.partnernetwork.columns.country'),
+    //   flex: 1.5,
+    //   sortable: false,
+    //   valueGetter: ({ row }: { row: BusinessPartner }) =>
+    //     row?.legalAddress?.physicalPostalAddress?.country?.name ??
+    //     row?.legalAddress?.alternativePostalAddress?.country?.name ??
+    //     '',
+    // },
+    // {
+    //   field: 'detail',
+    //   headerName: 'Detail',
+    //   headerAlign: 'center',
+    //   flex: 0.8,
+    //   align: 'center',
+    //   renderCell: (params) =>
+    //     params?.row?.bpnl ? (
+    //       <IconButton
+    //         color="secondary"
+    //         size="small"
+    //         style={{ alignSelf: 'center' }}
+    //         onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpnl))}
+    //       >
+    //         <ArrowForwardIcon />
+    //       </IconButton>
+    //     ) : (
+    //       <></>
+    //     ),
+    // },
   ]
 }

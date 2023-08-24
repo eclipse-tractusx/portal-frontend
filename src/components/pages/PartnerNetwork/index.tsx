@@ -26,12 +26,11 @@ import {
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { PageHeader } from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import Patterns from 'types/Patterns'
-import { PartnerNetworksBPNTableColumns } from './components/PartnerList/PartnerNetworksBPNTableColumns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {
   isContentPresent,
@@ -47,16 +46,11 @@ const PartnerNetwork = () => {
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updatePartnerSelector)
   const columns = PartnerNetworksTableColumns(useTranslation)
-  const bpnColumns = PartnerNetworksBPNTableColumns(useTranslation)
-  const [showBPNColumn, setShowBPNColumn] = useState<boolean>(false)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
   const { data } = useFetchMemberCompaniesQuery()
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
-
-  const checkIfBPNLNumber = (text: string): boolean =>
-    Patterns.BPN.test(text.trim())
 
   const [allItems, setAllItems] = useState<any>({})
 
@@ -100,10 +94,6 @@ const PartnerNetwork = () => {
     }
   }
 
-  useEffect(() => {
-    if (allItems?.length) setShowBPNColumn(checkIfBPNLNumber(expr))
-  }, [allItems, expr])
-
   return (
     <main className="partner-network-page-container">
       <PageHeader
@@ -132,7 +122,7 @@ const PartnerNetwork = () => {
           fetchHookArgs={{ expr }}
           fetchHookRefresh={refresh}
           getRowId={(row: any) => row.bpnl ?? ''}
-          columns={!showBPNColumn ? columns : bpnColumns}
+          columns={columns}
           callbackToPage={fetchAndApply}
           allItems={allItems}
         />
