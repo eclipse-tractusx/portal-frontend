@@ -34,11 +34,18 @@ The project maintains the following source code repositories in the GitHub organ
 
 This project leverages the following third party content:
 
+See DEPENDENCIES file.
+
+This project uses the following font:
+
 - License: Open Font License 1.1
 - Licence Path: https://github.com/impallari/Libre-Franklin/blob/master/OFL.txt
 - Source URL: https://github.com/impallari/Libre-Franklin
 
-See DEPENDENCIES file.
+This project uses the following image content:
+
+- Image: Catena-X Logo
+- Source URL: https://catena-x.net
 
 ## Cryptography
 
