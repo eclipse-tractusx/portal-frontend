@@ -85,30 +85,28 @@ const AppSubscriptionDetailOverlay = ({
     },
   ]
 
-  const getValue = (value?: string) => value ?? 'N/A'
-
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
-        getValue(data?.name),
+        data?.name ? data.name : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        getValue(data?.offerSubscriptionStatus),
+        data?.offerSubscriptionStatus ? data.offerSubscriptionStatus : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
-        getValue(data?.customer),
+        data?.customer ? data.customer : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.bpn')}`,
-        getValue(data?.bpn),
+        data?.bpn ? data.bpn : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.contact')}`,
-        getValue(data?.contact?.toString()),
+        data?.contact.length ? data.contact.toString() : 'N/A',
       ],
     ],
   }
@@ -122,36 +120,29 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
-        data?.appInstanceId ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
+        data?.appInstanceId ?? 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalName')}`,
-        data?.technicalUserData?.[0]?.name ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
+        data?.technicalUserData && data.technicalUserData.length > 0
+          ? data.technicalUserData[0].name
+          : 'N/A',
       ],
       [
         `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-        data?.technicalUserData?.[0]?.permissions.toString() ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
+        data?.technicalUserData && data.technicalUserData.length > 0
+          ? data.technicalUserData[0].permissions.toString()
+          : 'N/A',
       ],
     ],
     edit: [
       [
         {
-          icon: false,
+          editIcon: false,
           inputValue: '',
         },
         {
-          icon:
-            UserService.hasRole(ROLES.APPSTORE_EDIT) &&
-            data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
+          editIcon: UserService.hasRole(ROLES.APPSTORE_EDIT),
           inputValue: data?.tenantUrl ?? '',
           isValid: (value: string) => isURL(value),
           errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
@@ -159,36 +150,21 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          icon: true,
-          inputValue: t('content.appSubscription.detailOverlay.appIdInfo'),
+          editIcon: false,
         },
         {
-          icon: false,
+          editIcon: false,
         },
       ],
       [
         {
-          icon: true,
-          inputValue: t(
-            'content.appSubscription.detailOverlay.technicalNameInfo'
-          ),
+          editIcon: false,
         },
         {
-          icon: false,
+          editIcon: false,
           clickableLink: data?.technicalUserData[0]?.id
             ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
             : undefined,
-        },
-      ],
-      [
-        {
-          icon: true,
-          inputValue: t(
-            'content.appSubscription.detailOverlay.technicalPermissionInfo'
-          ),
-        },
-        {
-          icon: false,
         },
       ],
     ],
