@@ -77,6 +77,7 @@ export default function AppOverview() {
     state === 'deactivate-success' && refetch()
     state === 'change-image-success' && refetch()
     state === 'change-description-success' && refetch()
+    state === 'add-roles-success' && refetch()
   }, [state, refetch])
 
   useEffect(() => {
