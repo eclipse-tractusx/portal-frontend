@@ -42,7 +42,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { OVERLAYS, PAGES } from 'types/Constants'
-import { show } from 'features/control/overlay'
+import { show, closeOverlay } from 'features/control/overlay'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import {
@@ -150,7 +150,7 @@ export default function AddMultipleUser() {
   }
 
   const handleConfirm = async () => {
-    if (isSuccess || isError) dispatch(show(OVERLAYS.NONE, ''))
+    if (isSuccess || isError) dispatch(closeOverlay())
     if (uploadedFile && !roles.length) setIsFileUploaded(true)
     else if (uploadedFile && roles.length) {
       setLoading(true)
@@ -408,7 +408,7 @@ export default function AddMultipleUser() {
             title: t('content.usermanagement.addMultipleUsers.heading'),
             intro: t('content.usermanagement.addMultipleUsers.intro'),
             closeWithIcon: true,
-            onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+            onCloseWithIcon: () => dispatch(closeOverlay()),
           }}
         />
 
@@ -429,7 +429,7 @@ export default function AddMultipleUser() {
               helperText=""
               helperTextColor="success"
               label=""
-              loadIndicator="Loading ..."
+              loadIndicator={t('global.actions.loading')}
               loading
               size="medium"
               onButtonClick={() => {}}
