@@ -29,8 +29,8 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import './Organization.scss'
 import { OVERLAYS } from 'types/Constants'
-import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
-import { appToStatus } from 'features/apps/mapper'
+import { useFetchSubscribedActiveAppsQuery } from 'features/apps/apiSlice'
+import { subscribedApps } from 'features/apps/mapper'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import LoadingError from './LoadingError'
 import { CompanyDetailsToCards } from 'features/admin/mapper'
@@ -39,8 +39,8 @@ import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetai
 export default function Organization() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { data } = useFetchActiveAppsQuery()
-  const appSubscribedData = data && appToStatus(data)
+  const { data } = useFetchSubscribedActiveAppsQuery()
+  const appSubscribedData = data && subscribedApps(data)
   const {
     data: companyDetails,
     isError: companyDetailsError,
@@ -58,7 +58,7 @@ export default function Organization() {
       () => (
         <AppSubscriptions
           image={app.image}
-          onButtonClick={() => handleClick(app.id)}
+          onButtonClick={() => handleClick(app.offerId)}
           name={app.name || ''}
           provider={app.provider}
           status={app.status}
