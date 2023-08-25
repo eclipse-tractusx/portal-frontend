@@ -1,11 +1,11 @@
 # Changelog
 
-### unreleased
+## unreleased
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
 
-## 1.6.0-RC8
+## 1.6.0
 
 ### Change
 
@@ -80,7 +80,6 @@
 ### Technical Support
 
 - Changed license notice for images
-- Added second license
 - Sonar findings fixed (Code smells and bugs)
 - Dependabot findings fixed (Upgrading dependencies to the latest versions)
 - Excluded locales from duplication sonar checks
@@ -114,7 +113,15 @@
 
 ### Known Knowns
 
-...
+- Tenant URL inside the app subscription detail overlay (provider view) is displayed as changeable even though the app is not even activated yet. The request is getting rejected from the backend as expected, but frontend should ideally not even allow the user to trigger the function via the UI
+- App Subscription Activation overlay: pattern for input field "Tenant URL" allows "#" character while backend will correctly reject the input if the user adds an url containing "#"
+- UseCase Framework upload (SSI request flow): limitation of the file size missing
+- Company Certificate upload (SSI request flow): limitation of the file size missing
+- Service image, uploaded by Service Provider, is not displayed inside the service provider service overview
+- App Release Process form: image load running on fail within the "Verify" step
+- "Offer Release Approval" e-mail for offer provider currently not supported
+- If the connector deletion is running into an error with the portal backend, the user receives an error information but without any specific error message of the actual reason for failure
+- Missing user information about automatic technical user deactivation for technical user linked to an connector which is getting deleted/inactivated
 
 ## 1.5.0
 
