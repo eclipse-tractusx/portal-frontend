@@ -26,6 +26,7 @@ import {
   IconButton,
   Tooltips,
   Chip,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
@@ -121,11 +122,13 @@ export default function SubscriptionElements({
   isAppFilters,
   type,
   refetch,
+  isSuccess,
 }: {
   subscriptions?: SubscriptionContent[]
   isAppFilters?: boolean
   type: string
   refetch: () => void
+  isSuccess: boolean
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -136,8 +139,17 @@ export default function SubscriptionElements({
   const [subscriptionDetail, setSubscriptionDetail] =
     useState<SubscriptionDataType>(SubscriptionInitialData)
 
-  if (subscriptions && subscriptions.length === 0) {
+  if (subscriptions && subscriptions.length === 0 && isSuccess) {
     return <NoItems />
+  } else if (!isSuccess) {
+    return (
+      <ErrorBar
+        errorText={t('error.errorBar')}
+        handleButton={refetch}
+        buttonText={t('error.tryAgain')}
+        showButton={true}
+      />
+    )
   }
 
   return (
