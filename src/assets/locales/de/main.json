@@ -1263,10 +1263,13 @@
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
         "appId": "App ID (clientID)",
+        "appIdInfo": "Die Client-ID ist entscheidend für OAuth2/OpenID Connect-Interaktionen. Dieser Bezeichner wird als Client-ID-Parameter in Anfragen an den Autorisierungsserver gesendet. Es wird zur Kundenidentifizierung verwendet. Mit der Abonnementaktivierung wird die Client-ID erstellt.",
         "technicalName": "Technical User Name",
+        "technicalNameInfo": "Technischer Benutzername des technischen Benutzer-/Dienstkontos, das für das spezifische App-Abonnement erstellt wurde. Sie können auf den technischen Benutzernamen klicken, um die Client-ID und die geheimen Details abzurufen.",
         "technicalPermission": "Technical User Permission",
+        "technicalPermissionInfo": "Dem technischen Benutzer zugewiesene Berechtigungen.",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
-        "email": "email_address@catena_support.com",
+        "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
         "tenantUrlErrorMsg": "Error! Something went wrong"
       }
