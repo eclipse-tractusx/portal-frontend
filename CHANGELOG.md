@@ -1,5 +1,10 @@
 # Changelog
 
+### unreleased
+
+- Active Subscription
+  - Switch endpoint used to display "App Subscriptions"
+
 ## 1.6.0-RC8
 
 ### Change
