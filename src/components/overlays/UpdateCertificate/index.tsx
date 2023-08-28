@@ -208,10 +208,13 @@ export default function UpdateCertificate({ id }: { id: string }) {
               <Dropzone
                 acceptFormat={{ 'application/pdf': [] }}
                 maxFilesToUpload={1}
+                maxFileSize={2097152}
                 onChange={([file]) => {
                   setUploadedFile(file)
                 }}
-                errorText={'helperText'}
+                errorText={t(
+                  'content.usecaseParticipation.editUsecase.fileSizeError'
+                )}
                 DropStatusHeader={false}
                 DropArea={renderDropArea}
               />
