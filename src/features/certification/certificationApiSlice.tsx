@@ -125,6 +125,9 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    fetchCertificateTypes: builder.query<string[], void>({
+      query: () => '/api/administration/companydata/certificateTypes',
+    }),
   }),
 })
 
@@ -134,4 +137,5 @@ export const {
   useFetchCredentialsSearchQuery,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
+  useFetchCertificateTypesQuery,
 } = apiSlice

@@ -1497,6 +1497,7 @@
       "heading": "Company Certificates",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
+      "noUploadMessage": "No certificates available. All supported certificates are requested or active for your company.",
       "tabs": {
         "uploadedCertificates": "Uploaded Certificates",
         "pending": "Pending",
@@ -1514,6 +1515,8 @@
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
+        "certificateTypeError": "Please select a value",
+        "noOptionsMessage": "No other options available",
         "uploadDocumentTitle": "Please upload your certificate proof:",
         "note": "Please upload only pdf files with maximum 1 MB.",
         "descriptionLabel": "Description for verification",
