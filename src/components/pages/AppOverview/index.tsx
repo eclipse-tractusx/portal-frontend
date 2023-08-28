@@ -29,6 +29,7 @@ import {
   CardItems,
   Cards,
   PageSnackbar,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import {
@@ -50,13 +51,14 @@ import { initialState } from 'features/appManagement/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import NoItems from '../NoItems'
 
 export default function AppOverview() {
   const { t } = useTranslation()
   const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data, refetch } = useFetchProvidedAppsQuery()
+  const { data, refetch, isSuccess, isFetching } = useFetchProvidedAppsQuery()
   const [itemCards, setItemCards] = useState<any>([])
   const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
   const [cards, setCards] = useState<any>([])
@@ -75,6 +77,7 @@ export default function AppOverview() {
     state === 'deactivate-success' && refetch()
     state === 'change-image-success' && refetch()
     state === 'change-description-success' && refetch()
+    state === 'add-roles-success' && refetch()
   }, [state, refetch])
 
   useEffect(() => {
@@ -252,7 +255,7 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          {!filterItem ? (
+          {isFetching ? (
             <div style={{ textAlign: 'center' }}>
               <CircularProgress
                 size={50}
@@ -262,10 +265,25 @@ export default function AppOverview() {
               />
             </div>
           ) : (
-            <AppOverviewList
-              filterItem={filterItem}
-              showOverlay={showOverlay}
-            />
+            <>
+              {filterItem && filterItem.length === 0 && isSuccess && (
+                <NoItems />
+              )}
+              {!isSuccess && (
+                <ErrorBar
+                  errorText={t('error.errorBar')}
+                  handleButton={refetch}
+                  buttonText={t('error.tryAgain')}
+                  showButton={true}
+                />
+              )}
+              {filterItem && filterItem.length > 0 && isSuccess && (
+                <AppOverviewList
+                  filterItem={filterItem ?? []}
+                  showOverlay={showOverlay}
+                />
+              )}
+            </>
           )}
         </div>
       </div>

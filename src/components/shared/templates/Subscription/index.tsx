@@ -299,7 +299,12 @@ export default function Subscription({
     }
   }, [appFiltersData, type])
 
-  const { data, refetch, isFetching } = fetchQuery(fetchArgs)
+  const {
+    data,
+    refetch,
+    isFetching,
+    isSuccess: apiSuccess,
+  } = fetchQuery(fetchArgs)
   const isSuccess = useSelector(currentProviderSuccessType)
   const success: boolean = useSelector(currentSuccessType)
 
@@ -545,6 +550,7 @@ export default function Subscription({
                 isAppFilters={appFilters.length > 0}
                 type={type}
                 refetch={refetch}
+                isSuccess={apiSuccess}
               />
             )}
           </div>

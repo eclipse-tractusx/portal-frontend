@@ -98,7 +98,9 @@
     "Lang_en": "Switch language to english"
   },
   "error": {
-    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
+    "tryAgain": "Try Again",
+    "errorBar": "Something went wrong. Try again"
   },
   "content": {
     "admin": {
@@ -391,7 +393,8 @@
       "sortOptions": {
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
-        "changeDescription": "Change Description"
+        "changeDescription": "Change Description",
+        "addRoles": "Add Roles"
       },
       "addbtn": "Register your App",
       "confirmModal": {
@@ -420,7 +423,7 @@
       "headerTitle": "Change Lead Image",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "uploadNewImage": "Upload New Image",
-      "successMsg": "successfully changed app lead image",
+      "successMsg": "Successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {
@@ -432,8 +435,19 @@
       "shortDescription": "Short Description",
       "shortDescriptionEN": "Short Description - EN *",
       "shortDescriptionDE": "Short Description - DE *",
-      "successMsg": "successfully changed description",
+      "successMsg": "Successfully changed description",
       "errorMsg": "Unable to change description"
+    },
+    "addRoles": {
+      "headerTitle": "Load Additional Roles",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "uploadAdditionalRoles": "Upload Additional Roles",
+      "establishedRoles": "Established Roles",
+      "uploadAdditionalRolesDescription": "Note: only one file for upload allowed",
+      "newRolesToAdd": "New roles to be added",
+      "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
+      "successMsg": "Successfully added roles",
+      "errorMsg": "Unable to add roles"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -1223,8 +1237,11 @@
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
         "appId": "App ID (clientID)",
+        "appIdInfo": "The client-id is crucial for OAuth2/OpenID Connect interactions. This identifier is sent as the client-id parameter in requests to the authorization server. It's used for client identification. With the subscription activation, the client id is getting created.",
         "technicalName": "Technical User Name",
+        "technicalNameInfo": "Technical user name of the technical user/service account created for the specific app subscription. You can click on the technical user name to retrieve client id and secret details.",
         "technicalPermission": "Technical User Permission",
+        "technicalPermissionInfo": "Permissions assigned to the technical user.",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
