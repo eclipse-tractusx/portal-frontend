@@ -251,7 +251,7 @@ export default function CommonAdminBoard({
 
   const isDecisionSuccess = useSelector(currentSuccessType)
 
-  const { data, refetch, isFetching } = fetchQuery(fetchArgs)
+  const { data, refetch, isFetching, isSuccess } = fetchQuery(fetchArgs)
 
   useEffect(() => {
     if (data && data?.content)
@@ -427,7 +427,7 @@ export default function CommonAdminBoard({
       <div className="admin-board-main">
         <div style={{ height: '60px' }}></div>
         <div className="mainContainer">
-          {!apps || apps?.length === 0 ? (
+          {isFetching ? (
             <div className="loading-progress">
               <CircularProgress
                 size={50}
@@ -445,21 +445,20 @@ export default function CommonAdminBoard({
               errorApproveMsg={errorApproveMsg}
               successDeclineMsg={successDeclineMsg}
               errorDeclineMsg={errorDeclineMsg}
+              isSuccess={isSuccess}
+              refetch={refetch}
             />
           )}
-          {!isFetching &&
-            apps?.length &&
-            data?.meta &&
-            data?.meta?.totalPages > page + 1 && (
-              <div
-                style={{
-                  textAlign: 'center',
-                  marginTop: '30px',
-                }}
-              >
-                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
-              </div>
-            )}
+          {!isFetching && data?.meta && data?.meta?.totalPages > page + 1 && (
+            <div
+              style={{
+                textAlign: 'center',
+                marginTop: '30px',
+              }}
+            >
+              <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+            </div>
+          )}
         </div>
         <div style={{ height: '66px' }}></div>
       </div>

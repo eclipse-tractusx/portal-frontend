@@ -207,6 +207,23 @@ export type descriptionTypes = {
   shortDescription: string
 }
 
+export type RolesTypes = {
+  roleId: string
+  role: string
+  description: string
+}
+
+export type UpdateRolesTypes = {
+  appId: string
+  body: {
+    role: string
+    descriptions: {
+      languageCode: string
+      description: string
+    }[]
+  }[]
+}
+
 enum Tags {
   APP = 'App',
 }
@@ -386,6 +403,20 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchAppRoles: builder.query<RolesTypes[], string>({
+      query: (appId) =>
+        `/api/administration/user/owncompany/roles/apps/${appId}`,
+    }),
+    updateActiveApp: builder.mutation<
+      postRolesResponseType[],
+      UpdateRolesTypes
+    >({
+      query: (data) => ({
+        url: `/api/apps/AppChange/${data.appId}/role/activeapp`,
+        method: 'POST',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -415,4 +446,6 @@ export const {
   useUpdateImageDataMutation,
   useFetchDescriptionQuery,
   useSaveDescriptionMutation,
+  useFetchAppRolesQuery,
+  useUpdateActiveAppMutation,
 } = apiSlice
