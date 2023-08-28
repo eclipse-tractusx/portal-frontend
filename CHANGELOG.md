@@ -4,6 +4,8 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+- Technical User
+  - Enable search & filter
 
 ## 1.6.0
 
