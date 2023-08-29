@@ -94,7 +94,6 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (fetchArgs) => {
-        console.log(fetchArgs)
         const isFetchArgs = fetchArgs.args && fetchArgs.args.expr !== ''
         const url = `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         const isOwner =
