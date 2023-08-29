@@ -18,21 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useSelector } from 'react-redux'
-import { partnerNetworkSelector } from 'features/partnerNetwork/slice'
 import { Box, Grid, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
 import DetailGridRow from './DetailGridRow'
 
-const BusinessPartnerDetailContent = () => {
+const BusinessPartnerDetailContent = ({
+  selectedRowBPN,
+}: {
+  selectedRowBPN: any
+}) => {
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
-  const details = useSelector(partnerNetworkSelector)
-  const selectedRowBPN = details.mappedPartnerList[0]
-
   return (
     <>
       {selectedRowBPN && (
@@ -54,14 +53,14 @@ const BusinessPartnerDetailContent = () => {
               key={t('content.partnernetwork.columns.name') as string}
               {...{
                 variableName: `${t('content.partnernetwork.columns.name')}`,
-                value: selectedRowBPN.name,
+                value: selectedRowBPN.legalName ?? '',
               }}
             />
             <DetailGridRow
               key={t('content.partnernetwork.columns.bpn') as string}
               {...{
                 variableName: `${t('content.partnernetwork.columns.bpn')}`,
-                value: selectedRowBPN.bpn,
+                value: selectedRowBPN.bpnl,
               }}
             />
             {selectedRowBPN.legalForm && (
@@ -71,7 +70,7 @@ const BusinessPartnerDetailContent = () => {
                   variableName: `${t(
                     'content.partnernetwork.overlay.legalform'
                   )}`,
-                  value: selectedRowBPN.legalForm,
+                  value: selectedRowBPN.legalForm?.name ?? '',
                 }}
               />
             )}
@@ -87,18 +86,28 @@ const BusinessPartnerDetailContent = () => {
             </Grid>
             <DetailGridRow
               key="Street"
-              {...{ variableName: 'Street', value: selectedRowBPN.street }}
+              {...{
+                variableName: 'Street',
+                value:
+                  selectedRowBPN.legalAddress?.physicalPostalAddress?.street
+                    ?.name,
+              }}
             />
             <DetailGridRow
               key="PLZ / City"
               {...{
                 variableName: 'PLZ / City',
-                value: `${selectedRowBPN.zipCode} ${selectedRowBPN.city}`,
+                value: `${selectedRowBPN.legalAddress?.physicalPostalAddress?.postalCode} ${selectedRowBPN.legalAddress?.physicalPostalAddress?.city}`,
               }}
             />
             <DetailGridRow
               key="Country"
-              {...{ variableName: 'Country', value: selectedRowBPN.country }}
+              {...{
+                variableName: 'Country',
+                value:
+                  selectedRowBPN.legalAddress?.physicalPostalAddress?.country
+                    ?.name ?? '',
+              }}
             />
             <Grid
               xs={12}

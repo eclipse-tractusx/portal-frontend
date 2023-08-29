@@ -18,20 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getOneBusinessPartner } from 'features/partnerNetwork/actions'
+import { useFetchBusinessPartnersQuery } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import BusinessPartnerDetailContent from './BusinessPartnerDetailContent'
-import { AppDispatch } from 'features/store'
 
 const BusinessPartnerDetail = ({ id }: { id: string }) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const { data } = useFetchBusinessPartnersQuery({
+    page: 0,
+    args: {
+      expr: id,
+    },
+  })
 
-  useEffect(() => {
-    dispatch(getOneBusinessPartner({ bpn: id }))
-  }, [dispatch, id])
-
-  return <BusinessPartnerDetailContent />
+  return <>{data && <BusinessPartnerDetailContent selectedRowBPN={data} />}</>
 }
 
 export default BusinessPartnerDetail

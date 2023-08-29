@@ -1,128 +1,174 @@
 [
   {
-    "bpn": "BPNL00000000B44P",
-    "name": "POSTO DO CUNHADO LTDA",
-    "legalForm": "",
-    "country": "Brazil",
-    "street": "AV.IRMAOS PEREIRA 1330",
-    "zipCode": "87300-010",
-    "city": "CAMPO MOURAO",
-    "cxmember": false,
-    "identifiers": [
-      {
-        "uuid": "4e05ce63-6e69-417e-b2f1-410e97440acc",
-        "value": "BPNL00000000B44P",
-        "type": {
-          "technicalKey": "BPN",
-          "name": "Business Partner Number",
-          "url": ""
+    "score": 0.0,
+    "legalName": "Test1",
+    "bpnl": "BPNL0000000001YN",
+    "identifiers": [],
+    "legalShortName": "Test1",
+    "legalForm": null,
+    "states": [],
+    "classifications": [],
+    "relations": [],
+    "currentness": "2023-08-04T12:13:54.461889Z",
+    "createdAt": "2023-08-04T12:13:54.662482Z",
+    "updatedAt": "2023-08-04T12:13:54.662496Z",
+    "legalAddress": {
+      "bpna": "BPNA0000000004WK",
+      "name": null,
+      "states": [],
+      "identifiers": [],
+      "physicalPostalAddress": {
+        "geographicCoordinates": null,
+        "country": {
+          "technicalKey": "DE",
+          "name": "Germany"
         },
-        "issuingBody": {
-          "technicalKey": "CATENAX",
-          "name": "Catena-X",
-          "url": ""
+        "postalCode": "00001",
+        "city": "Munich",
+        "street": {
+          "name": "Street",
+          "houseNumber": "5",
+          "milestone": null,
+          "direction": null
         },
-        "status": {
-          "technicalKey": "UNKNOWN",
-          "name": "Unknown"
-        }
+        "administrativeAreaLevel1": null,
+        "administrativeAreaLevel2": null,
+        "administrativeAreaLevel3": null,
+        "district": null,
+        "companyPostalCode": null,
+        "industrialZone": null,
+        "building": null,
+        "floor": null,
+        "door": null
       },
-      {
-        "uuid": "be6c2ab7-9602-4a68-8735-7c17b5974736",
-        "value": "CX.POOL:623DA23B6E73054B143D4AAE0",
-        "type": {
-          "technicalKey": "CX_POOL_ID",
-          "name": "",
-          "url": null
-        },
-        "issuingBody": null,
-        "status": null
-      },
-      {
-        "uuid": "e3ea74fe-a964-4c4e-887f-f61d400e8836",
-        "value": "80606650000114",
-        "type": {
-          "technicalKey": "BR_CNPJ",
-          "name": "Cadastro Nacional de Pessoa Jurídica",
-          "url": "https://meta.cdq.com/CNPJ_number_(Brazil)"
-        },
-        "issuingBody": null,
-        "status": null
-      },
-      {
-        "uuid": "dbfb27a3-d72a-4d35-bf90-b5d38e92077f",
-        "value": "8010445060",
-        "type": {
-          "technicalKey": "BR_TAX_STATE",
-          "name": "Inscrição Estadual",
-          "url": "https://meta.cdq.com/State_tax_number_(Brazil)"
-        },
-        "issuingBody": null,
-        "status": null
-      }
-    ]
+      "alternativePostalAddress": null,
+      "bpnLegalEntity": "BPNL0000000001YN",
+      "isLegalAddress": true,
+      "bpnSite": null,
+      "isMainAddress": false,
+      "createdAt": "2023-08-04T12:13:54.658695Z",
+      "updatedAt": "2023-08-04T12:13:54.665740Z"
+    }
   },
   {
-    "bpn": "BPNL00000000B540",
-    "name": "PEREIRA & PEREIRA MEDIC. LTDA - ME",
-    "legalForm": "",
-    "country": "Brazil",
-    "street": "R RIO DE JANEIRO , 421",
-    "zipCode": "13800-470",
-    "city": "Moji Mirim",
-    "cxmember": true,
+    "score": 0.0,
+    "legalName": "Part 2",
+    "bpnl": "BPNL000000000001",
     "identifiers": [
       {
-        "uuid": "d38cc9b0-e9c8-4a65-a61f-f65fdc89c0d0",
-        "value": "BPNL00000000B540",
-        "type": {
-          "technicalKey": "BPN",
-          "name": "Business Partner Number",
-          "url": ""
-        },
-        "issuingBody": {
-          "technicalKey": "CATENAX",
-          "name": "Catena-X",
-          "url": ""
-        },
-        "status": {
-          "technicalKey": "UNKNOWN",
-          "name": "Unknown"
-        }
-      },
-      {
-        "uuid": "9ed0083d-fbe0-4045-83a0-38b1a511e2c1",
-        "value": "456017659110",
-        "type": {
-          "technicalKey": "BR_TAX_STATE",
-          "name": "Inscrição Estadual",
-          "url": "https://meta.cdq.com/State_tax_number_(Brazil)"
-        },
-        "issuingBody": null,
-        "status": null
-      },
-      {
-        "uuid": "b6fdea61-020c-40ad-bc0c-cf02d2cb18b2",
-        "value": "CX.POOL:623DA24246722D36980EC1A10",
-        "type": {
-          "technicalKey": "CX_POOL_ID",
-          "name": "",
-          "url": null
-        },
-        "issuingBody": null,
-        "status": null
-      },
-      {
-        "uuid": "bb50eff2-76aa-4ad0-a24e-210b2d9f6f65",
         "value": "56459977000126",
         "type": {
-          "technicalKey": "BR_CNPJ",
-          "name": "Cadastro Nacional de Pessoa Jurídica",
-          "url": "https://meta.cdq.com/CNPJ_number_(Brazil)"
+          "technicalKey": "EU_VAT_ID_DE",
+          "name": "Value added tax identification number"
         },
-        "issuingBody": null,
-        "status": null
+        "issuingBody": "CUSTOM_ISSUE_BODY"
       }
-    ]
+    ],
+    "legalShortName": "NoC",
+    "legalForm": {
+      "technicalKey": "CUSTOM_LEGAL_FORM",
+      "name": "Custom Legal Form for Testing",
+      "abbreviation": null
+    },
+    "states": [
+      {
+        "description": null,
+        "validFrom": "2020-12-16T05:54:48.942",
+        "validTo": "2023-06-05T07:31:01.213",
+        "type": {
+          "technicalKey": "ACTIVE",
+          "name": "Active"
+        }
+      }
+    ],
+    "classifications": [
+      {
+        "value": "Farming of cattle, dairy farming",
+        "code": "01.21",
+        "type": {
+          "technicalKey": "NACE",
+          "name": "NACE"
+        }
+      }
+    ],
+    "relations": [],
+    "currentness": "2023-08-04T12:56:41.450550Z",
+    "createdAt": "2023-06-27T13:11:18.539048Z",
+    "updatedAt": "2023-08-04T12:56:41.556514Z",
+    "legalAddress": {
+      "bpna": "BPNA000000000001",
+      "name": "WESTERN_LATIN_STANDARD",
+      "states": [
+        {
+          "description": "WESTERN_LATIN_STANDARD",
+          "validFrom": "2020-12-16T05:54:48.942",
+          "validTo": "2023-06-05T07:31:01.213",
+          "type": {
+            "technicalKey": "ACTIVE",
+            "name": "Active"
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "12345678910",
+          "type": {
+            "technicalKey": "CUSTOM_ADD_ID_TYPE",
+            "name": "Custom Identifier Test Type"
+          }
+        }
+      ],
+      "physicalPostalAddress": {
+        "geographicCoordinates": {
+          "longitude": 0.0,
+          "latitude": 0.0,
+          "altitude": 0.0
+        },
+        "country": {
+          "technicalKey": "DE",
+          "name": "Germany"
+        },
+        "postalCode": "70546",
+        "city": "Stuttgart",
+        "street": {
+          "name": "Neue Strasse",
+          "houseNumber": "1",
+          "milestone": "Neue Strasse 1",
+          "direction": "Neue Str."
+        },
+        "administrativeAreaLevel1": null,
+        "administrativeAreaLevel2": "test1",
+        "administrativeAreaLevel3": "test2",
+        "district": "Stuttgart",
+        "companyPostalCode": "GM01",
+        "industrialZone": "HEADQUARTER",
+        "building": "Building A",
+        "floor": "A",
+        "door": "test"
+      },
+      "alternativePostalAddress": {
+        "geographicCoordinates": {
+          "longitude": 0.0,
+          "latitude": 0.0,
+          "altitude": 0.0
+        },
+        "country": {
+          "technicalKey": "DE",
+          "name": "Germany"
+        },
+        "postalCode": "1234",
+        "city": "Stuttgart 1",
+        "administrativeAreaLevel1": null,
+        "deliveryServiceNumber": "1234",
+        "deliveryServiceType": "PO_BOX",
+        "deliveryServiceQualifier": "test"
+      },
+      "bpnLegalEntity": "BPNL000000000001",
+      "isLegalAddress": true,
+      "bpnSite": null,
+      "isMainAddress": false,
+      "createdAt": "2023-06-27T13:11:18.530737Z",
+      "updatedAt": "2023-06-27T13:14:46.458756Z"
+    }
   }
 ]

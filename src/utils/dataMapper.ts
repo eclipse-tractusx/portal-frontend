@@ -18,60 +18,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  BusinessPartner,
-  BusinessPartnerResponse,
-  PartnerNetworkDataGrid,
-} from 'features/partnerNetwork/types'
+import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
 
 import {
   RegistrationRequest,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
+import { BusinessPartner } from 'features/newPartnerNetwork/types'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
   bpResponse: BusinessPartnerResponse,
   membershipData: string[]
-): Array<PartnerNetworkDataGrid> => {
+): Array<BusinessPartner> => {
   return bpResponse?.content?.map((bp: BusinessPartner) => {
     return {
-      bpn: bp.bpnl,
-      legalForm: bp.legalForm?.name || '',
-      cxmember: membershipData.includes(bp.bpnl),
-      name: bp.legalName,
-      country:
-        bp.legalAddress?.physicalPostalAddress?.country.name ??
-        bp.legalAddress?.alternativePostalAddress?.country.name ??
-        '',
-      street: bp.legalAddress?.physicalPostalAddress?.street.name ?? '',
-      zipCode: bp.legalAddress?.physicalPostalAddress?.postalCode ?? '',
-      city: bp.legalAddress?.physicalPostalAddress?.city ?? '',
-      identifiers: bp.identifiers?.filter(
-        (identifier) => identifier.type.technicalKey !== 'CDQID'
-      ),
-    } as PartnerNetworkDataGrid
+      ...bp,
+    } as BusinessPartner
   })
 }
 
 const mapSingleBusinessPartnerToDataGrid = (
   bp: BusinessPartner
-): PartnerNetworkDataGrid => {
+): BusinessPartner => {
   return {
-    bpn: bp.bpnl,
-    name: bp.legalName ?? '-', //value can be INTERNATIONAL < LOCAL < OTHER
-    legalForm: bp.legalForm?.name || '',
-    country:
-      bp.legalAddress?.physicalPostalAddress?.country.name ??
-      bp.legalAddress?.alternativePostalAddress?.country.name ??
-      '',
-    street: bp.legalAddress?.physicalPostalAddress?.street.name ?? '',
-    zipCode: bp.legalAddress?.physicalPostalAddress?.postalCode ?? '',
-    city: bp.legalAddress?.physicalPostalAddress?.city ?? '',
-    identifiers: bp.identifiers?.filter(
-      (identifier) => identifier.type.technicalKey !== 'CDQID'
-    ),
-  } as PartnerNetworkDataGrid
+    ...bp,
+  } as BusinessPartner
 }
 
 const mapRegistrationRequestResponseToDataGrid = (

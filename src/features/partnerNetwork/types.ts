@@ -187,13 +187,10 @@ export interface PartnerNetworkInitialState {
 }
 
 export interface PartnerNetworkDataGrid {
-  bpn: string
-  name: string
-  legalForm: string
-  country: string
-  street: string
-  zipCode: string
-  city: string
+  bpnl: string
+  legalName: string
+  legalForm: any
+  legalAddress: any
   identifiers: Array<BpdmTypeUUIDKeyPair>
 }
 
