@@ -1,152 +1,66 @@
 # Changelog
 
-## 1.6.0-RC7
+## unreleased
 
-### Feature
+- Active Subscription
+  - Switch endpoint used to display "App Subscriptions"
 
-- Daps related elements, business logic and locales removed
-
-### Technical Support
-
-- changed license notice for images
-- added second license
-
-### Bugfix
-
-- fixed missing URL and Email data after re-opening a service under the service release process
-- fixed app release process process handling (Step 3 - Consent) button "save"
-- app detail page "back" button fixed
-
-## 1.6.0-RC6
+## 1.6.0
 
 ### Change
 
-- Service Account creation - added multi language support when fetching the role description from BE
-
-### Technical Support
-
-- Sonar findings fixed (Code smells and bugs)
-- Dependabot findings fixed (Upgrading dependencies to the latest versions)
-
-### Bugfix
-
-- Application card favorite button click (separation from the rest of the card where the click results into opening the app card)
-- Admin Credential Board - views/filter function fixed
-- Service Release Form - fixed erase of entered data on deleting uploaded image
-- Service Detail - header UI fix of rendering issues
-
-## 1.6.0-RC5
-
-### Change
-
-- Certificate Request Board - changed to dynamic error message as per API response
-- Updated asterisk color to red in app release and service release forms
-- Credential management board enhanced by filters
-
-### Features
-
-- Notifications added
-  - credential approval
-  - credential reject and
-  - subscription url msgs
-- Technical user create overlay enhanced by role description as well as direct help link
-
-### Bugfix
-
-- Permission validation 'Credential Mgmt' page updated to 'decision_ssicredential'
-- App description change - fixed page break issue in case of api response without language tag for each FE supported language
-- Notification message link - 'UseCases' welcome message fixed
-- handle empty customer link section in managed connectors
-- Overlay fix of activation response
-
-## 1.6.0-RC4
-
-### Change
-
-- Connector Technical Integration page - connector configuration details added
-
-### Bugfix
-
-- App Management page access permission changed to add_apps
-- Certificate Management page - approval/decline button only available for "pending" credential requests
-- Permission validation 'Credential Mgmt' page activated
-
-## 1.6.0-RC3
-
-### Change
-
+- Connector Technical Integration
+  - connector configuration details added
 - App Subscription Management
-  - Activation Approval Overlay (enhanced by customer name, bpn, technical user permission, appId)
+  - subscription activation overlay enhanced by customer name, bpn, technical user permission, appId
 - Technical User Management
-  - support managed tech user with app information
+  - added "Offer Link"/"Name" inside the technical user overview user table
 - Connector Registration
-  - managed connector option only available for app/service provider
-  - info message added for inactive select scenario
-
-### Bugfix
-
-- Managed connector registration api call - technicalUserID string empty instead of submitting the subscriptionID
-
-## 1.6.0-RC2
-
-### Change
-
+  - registration of "Managed Connectors" limited to company with the role app/service provider & info multi lingual message added for inactive select scenario(s)
 - App Release Process
   - changed 'Privacy Policy' selection to mandatory
+  - updated "mandatory"/"required" icon (asterisk) color from black to red
+  - design/styling of the app release step "validate and publish" updated
+  - GET /languages endpoint structure updated inside the FE business logic
+  - Phone number pattern updated
+- Service Release Process
+  - logic added to skip technical integration tab for serviceTypeId "consultancy"
+  - updated "mandatory"/"required" icon (asterisk) color from black to red
+- Static Pages Updated
+  - Data Space
+  - Catena-X Participant
 
 ### Feature
 
+- Removed all daps related code - frontend implementation, business logic and locales
+- New Notification messages released:
+  - credential approval
+  - credential rejection and
+  - subscription url change
+- User Management
+  - technical user role description & help link added inside the technical user creation overlay. Incl. multi language support
 - Connector Registration - Managed
   - added subscriptionID linkage inside the registration page as well as the business logic to submit the connector connected subscriptionID
 - Search
-  - enabled in all portal pages
-  - new design update for result area
-  - added functionality to close the search whenever the user clicks on the hidden background area
-- Company Role
-  - enable company role deselection
-
-### Technical Support
-
-- exclude locales from duplication sonar checks
-
-### Bugfix
-
-- App Release Process - consent conformity check upon upload of the conformity certificate, previous selected consents got deleted
-- Data Space Information page - style fix stage sub navigation header and fixed responsive issues
-
-## 1.6.0-RC1
-
-### Change
-
-- App Release Process
-  - validate and publish style updates
-  - updated language endpoint changed structure
-- Service Release Process
-  - Skip technical integration for serviceTypeIds(consultancy)
-- Company Roles Update
-  - Added deselect feature
-- SSI Certificat Credential Adminboard
-  - Add new page and created UI
-  - Add Backend Logic to fetch certificates
-  - Add Confirm/Decline business logic
-
-### Feature
-
+  - new search element enabled/activated for all portal pages
+  - search result style newly introduced
+  - added search close function whenever the user clicks on the background/outside the search component
+- Company Role Management
+  - enabled company role unselecting
 - App Subscription
   - Add "Detail Data" Button and Overlay
   - Refracting Activate Subscription Page
   - Add App Filter Search Functionality
+  - enabled app tenant url change for active apps
+- App Change Function enabled
+  - 'Change Image' enabled for app owners if app is active (App Management -> App Overview)
+  - 'Change Description' enabled for app owners if app is active (App Management -> App Overview)
 - User Account & My User Account
   - Add Admin Info
-- Home, Use cases and Company roles
-  - Mobile friendly header and stage navigation
-  - Slider stage header
-- App overview
-  - Enhance Sub Menu by adding 'Change Image' for active apps
-  - Change Image(sub menu) functionality added for active apps
-  - App overview 'in review' rendering and styling changed
-  - Enhance Sub Menu by adding 'Change Description' for active apps
-  - Change Description(sub menu) functionality added for active apps
+- Multi Device Function
+  - mobile friendly header and stage navigation enabled
+  - slider stage header implemented and activated
+  - Home - Carousel - Responsiveness - when switching the portal width screens get rendering issues
 - Usecase Participation
   - Created New page under User profile
   - Add edit Overlay UI
@@ -156,32 +70,58 @@
   - Show done state
   - Provide icon for marking a notification as read/unread
   - New Header and Filter UI
-- Connectors
-  - Disable DAPS related sections
-- App Subscription
-  - Add and Edit Tenant URL functionality in detail overlay
-- Static Pages
-  - Data Space
-  - Catena-X Participant
-- SSI Certificat Credential Adminboard
-  - Add new page and created UI
+- SSI Certificate Request Credential Adminboard released
+  - new page for credential request management released incl management filters and search
+  - GET /certificate request api endpoint connected
+  - certificate request approval function enabled (with backend connection PUT /credentials/{credentialId}/approval)
+  - certificate request decline/reject function enabled (with backend connection PUT /credentials/{credentialId}/reject)
+  - download useCase participation document enabled
 
 ### Technical Support
 
+- Changed license notice for images
+- Sonar findings fixed (Code smells and bugs)
+- Dependabot findings fixed (Upgrading dependencies to the latest versions)
+- Excluded locales from duplication sonar checks
 - Project Structure
   - Moved out shared components and source folders to root level
+- app access management component (app cards element) endpoint path updated/changed due to new endpoint path provided by apps services
 
 ### Bugfix
 
+- fixed missing URL and Email data after re-opening a service under the service release process
+- fixed app release process process handling (Step 3 - Consent) button "save"
+- app detail page "back" button fixed
+- Application card favorite button click (separation from the rest of the card where the click results into opening the app card)
+- Admin Credential Board - views/filter function fixed
+- Service Release Form - fixed erase of entered data on deleting uploaded image
+- Service Detail - header UI fix of rendering issues
+- Permission validation 'Credential Mgmt' page updated to 'decision_ssicredential'
+- App description change - fixed page break issue in case of api response without language tag for each FE supported language
+- Notification message link - 'UseCases' welcome message fixed
+- handle empty customer link section in managed connectors
+- Overlay fix of activation response
+- App Management page access permission changed to add_apps
+- Permission validation 'Credential Mgmt' page activated
+- Managed connector registration api call - technicalUserID string empty instead of submitting the subscriptionID
+- App Release Process - consent conformity check upon upload of the conformity certificate, previous selected consents got deleted
+- Data Space Information page - style fix stage sub navigation header and fixed responsive issues
 - App Detail
-  - Subscribe Button - wrong state
-- Service Release Process
-  - Service Release process not working
-  - Service details page crash issue
-- Home - Carousel
-  - Responsiveness - when switching the portal width screens get rendering issues
+  - Subscribe Button state management updated
 - Service Marketplace
   - Subscription Button cross service highlighted
+
+### Known Knowns
+
+- Tenant URL inside the app subscription detail overlay (provider view) is displayed as changeable even though the app is not even activated yet. The request is getting rejected from the backend as expected, but frontend should ideally not even allow the user to trigger the function via the UI
+- App Subscription Activation overlay: pattern for input field "Tenant URL" allows "#" character while backend will correctly reject the input if the user adds an url containing "#"
+- UseCase Framework upload (SSI request flow): limitation of the file size missing
+- Company Certificate upload (SSI request flow): limitation of the file size missing
+- Service image, uploaded by Service Provider, is not displayed inside the service provider service overview
+- App Release Process form: image load running on fail within the "Verify" step
+- "Offer Release Approval" e-mail for offer provider currently not supported
+- If the connector deletion is running into an error with the portal backend, the user receives an error information but without any specific error message of the actual reason for failure
+- Missing user information about automatic technical user deactivation for technical user linked to an connector which is getting deleted/inactivated
 
 ## 1.5.0
 
