@@ -46,6 +46,11 @@ import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+
+enum ServiceSubMenuItems {
+  DEACTIVATE = 'deactivate',
+}
+
 export default function ServiceListOverview() {
   const { t } = useTranslation('servicerelease')
   const [items, setItems] = useState<any>([])
@@ -62,6 +67,14 @@ export default function ServiceListOverview() {
   })
   const { data } = useFetchProvidedServicesQuery(argsData)
   const dispatch = useDispatch()
+
+  const submenuOptions = [
+    {
+      label: t('serviceoverview.sortOptions.deactivate'),
+      value: ServiceSubMenuItems.DEACTIVATE,
+      url: '',
+    },
+  ]
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
@@ -209,7 +222,16 @@ export default function ServiceListOverview() {
                   navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
                 }
               }}
-              subMenu={false}
+              subMenu={true}
+              submenuOptions={submenuOptions}
+              submenuClick={(sortMenu: string, id: string | undefined) => {
+                sortMenu === ServiceSubMenuItems.DEACTIVATE &&
+                  navigate(`/${PAGES.DEACTIVATE}/${id}`, {
+                    state: items,
+                  })
+                return undefined
+              }}
+              tooltipText={t('serviceoverview.submenuNotAvailable')}
             />
           </div>
         ) : (
