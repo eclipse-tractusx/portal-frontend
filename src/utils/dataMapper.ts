@@ -32,18 +32,14 @@ const mapBusinessPartnerToDataGrid = (
   membershipData: string[]
 ): Array<BusinessPartner> => {
   return bpResponse?.content?.map((bp: BusinessPartner) => {
-    return {
-      ...bp,
-    } as BusinessPartner
+    return bp
   })
 }
 
 const mapSingleBusinessPartnerToDataGrid = (
   bp: BusinessPartner
 ): BusinessPartner => {
-  return {
-    ...bp,
-  } as BusinessPartner
+  return bp
 }
 
 const mapRegistrationRequestResponseToDataGrid = (
