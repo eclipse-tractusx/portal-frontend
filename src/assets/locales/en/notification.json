@@ -52,8 +52,8 @@
     "content": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
   },
   "APP_ROLE_ADDED": {
-    "title": "App {{appName}} roles got changed",
-    "content": "App {{appName}} got new roles added; check out the user management and assign new roles to your user group."
+    "title": "App {{app}} new Roles added",
+    "content": "New user roles have been added for the app <strong>{{app}}</strong> which you can now assign.\n\nNew Roles: {{roles}}"
   },
   "TECHNICAL_USER_CREATION": {
     "title": "{{appName}} subscription created a new technical user",
