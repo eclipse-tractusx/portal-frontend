@@ -736,7 +736,13 @@
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed",
-        "deleteTechUserNotificationErrorTitle": "Something went wrong"
+        "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "tabs": {
+          "all": "All",
+          "managed": "Managed",
+          "owned": "Owned"
+        },
+        "searchText": "Search by client Id"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",

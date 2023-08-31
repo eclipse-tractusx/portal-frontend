@@ -84,6 +84,9 @@ export const Patterns = {
     COUNTRY: /^[A-Z]{2}$/,
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
+  techuser: {
+    clientId: /^[ A-Za-z0-9]{0,80}$/,
+  },
 }
 
 export const isID = (expr: string) => Patterns.ID.test(expr)
@@ -115,5 +118,7 @@ export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
 export const isValidCancelInput = (expr: string) =>
   Patterns.CANCEL_INPUT.test(expr)
+export const isClientID = (expr: string) =>
+  Patterns.techuser.clientId.test(expr)
 
 export default Patterns
