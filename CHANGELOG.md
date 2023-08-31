@@ -4,6 +4,8 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+- Serview Overview
+  - Added Sub menu for active services in service overview
 
 ## 1.6.0
 
