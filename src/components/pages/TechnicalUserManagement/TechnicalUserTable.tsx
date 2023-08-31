@@ -34,6 +34,7 @@ import { PAGES } from 'types/Constants'
 import { updateTechuserSelector } from 'features/control/updates'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Patterns from 'types/Patterns'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
@@ -74,11 +75,6 @@ export const TechnicalUserTable = () => {
     },
   ]
 
-  const validateExpr = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
-    return validateExpr
-  }
-
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry>
@@ -97,7 +93,7 @@ export const TechnicalUserTable = () => {
         filterViews={filterButtons}
         fetchHookArgs={fetchHookArgs}
         onSearch={(expr: string) => {
-          if (!validateExpr(expr)) return
+          if (!Patterns.techuser.clientId.test(expr)) return
           setExpr(expr)
           setRefresh(Date.now())
         }}
