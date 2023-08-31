@@ -266,7 +266,7 @@ export default function SubscriptionElements({
           }}
         />
       )}
-      {viewDetails && (
+      {viewDetails.appId && (
         <AppSubscriptionDetailOverlay
           openDialog={viewDetails.appId ? true : false}
           appId={viewDetails.appId}
