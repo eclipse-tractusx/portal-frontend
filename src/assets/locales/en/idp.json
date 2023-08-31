@@ -1,5 +1,6 @@
 {
   "idpmanagement": {
+    "title": "IDP Provider Config / <br>My Company Wallet",
     "addIdpHeadline": "New IdP Connection",
     "addIdpSubheadline": "Enter a name for the new Identity Provider to start the configuration",
     "updateIdpHeadline": "Identity Provider Configuration",
@@ -56,8 +57,8 @@
   "delete": {
     "title": "Delete IdP Connection",
     "subtitle": "Permanently delete this Identity Provider",
-    "success": "IdP deleted",
-    "error": "Failed to delete IdP"
+    "success": "IdP got deleted",
+    "error": "Something went wrong. IdP got not deleted."
   },
   "edit": {
     "title": "Edit Identity Provider Details",
@@ -94,8 +95,8 @@
     "short": "Disable IdP",
     "desc": "When you disable your Identity Provider you and other people of your company won't be able to login through this IDP.",
     "ask": "Are you sure you want to proceed.",
-    "success": "IdP disabled",
-    "error": "Failed to disable IdP"
+    "success": "IdP got disabled",
+    "error": "Something went wrong. IdP got not disabled."
   },
   "users": {
     "title": "Link existing users to new IdP",
@@ -174,7 +175,16 @@
     "configured": "configured",
     "enabled": "enabled",
     "disabled": "disabled",
-    "note": "Note"
+    "note": "Note",
+    "catenaXIDP": "Catena-X IDP",
+    "companyIDP": "Company IDP",
+    "notConfiguredAndEnabled": "IdP record created. Status deactivated and configuration necessary.",
+    "configuredAndNotEnabled": "The IdP is currently disabled. You can activate the record to use the IdP for login.",
+    "configuredAndEnabled": "IdP active. Users can use the IdP for login. Please ensure that all users which are supposed to login via the IdP have a user account created. You can check the same inside the 'User Management'",
+    "status1": "open",
+    "status2": "Idp created",
+    "status3": "disabled",
+    "status4": "active"
   },
   "action": {
     "actions": "Actions",

@@ -18,46 +18,122 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IdentityProvider } from 'features/admin/idpApiSlice'
-import { Image, Tooltips } from '@catena-x/portal-shared-components'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import CheckIcon from '@mui/icons-material/Check'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { Tooltips, Typography } from '@catena-x/portal-shared-components'
+import { IdentityProvider } from 'features/admin/idpApiSlice'
 import './style.scss'
+
+let initialProgressIcons = [
+  {
+    step1: {
+      icon: '1',
+      backgroundColor: '#eaeaea',
+    },
+  },
+  {
+    step2: {
+      icon: '2',
+      backgroundColor: '#eaeaea',
+    },
+  },
+  {
+    step3: {
+      icon: '3',
+      backgroundColor: '#eaeaea',
+    },
+  },
+]
 
 export default function IDPStateProgress({ idp }: { idp: IdentityProvider }) {
   const { t } = useTranslation('idp')
   const configured = idp.oidc?.clientId ? true : false
 
-  const getConjunction = (enabled: boolean) =>
-    enabled ? ' &' : `, ${t('field.not')}`
+  const [progressIcons, setProgressIcons] = useState<any>(initialProgressIcons)
+  const [hoverMessage, setHoverMessage] = useState<string>('')
 
-  const getText = (configured: boolean, enabled: boolean) =>
-    configured
-      ? `${t('field.configured')}${getConjunction(enabled)} ${t(
-          'field.enabled'
-        )}`
-      : `${t('field.not')} ${t('field.configured')}`
-
-  const getStateImage = (configured: boolean, enabled: boolean) =>
-    `<svg viewBox="-6 -6 112 36" xmlns="http://www.w3.org/2000/svg"><g stroke="gray" stroke-width="2">
-    <path d="M 12 12 H 80"/>
-    <circle fill="gray" cx="12" cy="12" r="11"/>
-    <circle fill="${configured ? 'gray' : 'white'}" cx="50" cy="12" r="11"/>
-    <circle fill="${enabled ? 'gray' : 'white'}" cx="88" cy="12" r="11"/>
-    </g></svg>`
-
-  const stateMessage = getText(configured, idp.enabled)
+  useEffect(() => {
+    if (idp.enabled && !configured) {
+      setProgressIcons([
+        {
+          step1: {
+            icon: <CheckIcon />,
+            backgroundColor: '#b4cb2e',
+          },
+        },
+        {
+          step2: {
+            icon: '2',
+            backgroundColor: '#ffa600',
+          },
+        },
+      ])
+      setHoverMessage(`${t('field.notConfiguredAndEnabled')}`)
+    } else if (!idp.enabled && configured) {
+      setProgressIcons([
+        {
+          step1: {
+            icon: <HighlightOffIcon />,
+            backgroundColor: '#d91e18',
+          },
+        },
+        {
+          step2: {
+            icon: <HighlightOffIcon />,
+            backgroundColor: '#d91e18',
+          },
+        },
+        {
+          step3: {
+            icon: <HighlightOffIcon />,
+            backgroundColor: '#d91e18',
+          },
+        },
+      ])
+      setHoverMessage(`${t('field.configuredAndNotEnabled')}`)
+    } else if (idp.enabled && configured) {
+      setProgressIcons([
+        {
+          step1: {
+            icon: <CheckIcon />,
+            backgroundColor: '#b4cb2e',
+          },
+        },
+        {
+          step2: {
+            icon: <CheckIcon />,
+            backgroundColor: '#b4cb2e',
+          },
+        },
+        {
+          step3: {
+            icon: <CheckIcon />,
+            backgroundColor: '#b4cb2e',
+          },
+        },
+      ])
+      setHoverMessage(`${t('field.configuredAndEnabled')}`)
+    }
+  }, [idp])
 
   return (
-    <Tooltips tooltipPlacement="left" tooltipText={stateMessage}>
-      <div>
-        <Image
-          alt={stateMessage}
-          style={{ width: '112px', height: '40px' }}
-          src={`data:image/svg+xml;utf8,${getStateImage(
-            configured,
-            idp.enabled
-          )}`}
-        />
+    <Tooltips tooltipPlacement="left" tooltipText={hoverMessage}>
+      <div className="progress-section">
+        {[1, 2, 3].map((item, index) => (
+          <Typography
+            variant="label4"
+            className="number"
+            style={{
+              backgroundColor:
+                progressIcons[index]?.['step' + item]?.backgroundColor,
+            }}
+            key={item}
+          >
+            {progressIcons[index]?.['step' + item]?.icon}
+          </Typography>
+        ))}
       </div>
     </Tooltips>
   )
