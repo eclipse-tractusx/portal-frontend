@@ -1675,7 +1675,8 @@
       "success": "Success",
       "error": "Error",
       "retry": "Retry",
-      "exit": "exit"
+      "exit": "exit",
+      "loading": "Loading..."
     },
     "state": {
       "enabled": "enabled",
