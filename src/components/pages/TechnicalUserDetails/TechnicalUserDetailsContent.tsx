@@ -18,18 +18,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from '@catena-x/portal-shared-components'
+import { Button, CircleProgress } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import {
   ServiceAccountDetail,
   ServiceAccountRole,
+  useResetCredentialMutation,
 } from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
+import SyncIcon from '@mui/icons-material/Sync'
+import { useState } from 'react'
+import { error, success } from 'services/NotifyService'
 
 export default function TechnicalUserDetailsContent({
   data,
@@ -38,35 +42,59 @@ export default function TechnicalUserDetailsContent({
 }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const [mutationRequest] = useResetCredentialMutation()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [newData, setNewData] = useState<ServiceAccountDetail>(data)
 
   const displayData = [
     {
       key: 'ID',
-      value: data.serviceAccountId,
+      value: newData.serviceAccountId,
       copy: true,
     },
     {
       key: `${t('content.usermanagement.technicalUser.serviceaccount')} ${t(
         'global.field.name'
       )}`,
-      value: data.name,
+      value: newData.name,
       copy: true,
     },
     {
       key: t('global.field.clientId'),
-      value: data.clientId,
+      value: newData.clientId,
       copy: true,
     },
     {
       key: t('global.field.authType'),
-      value: data.authenticationType,
+      value: newData.authenticationType,
     },
     {
       key: t('global.field.secret'),
-      value: data.secret,
+      value: newData.secret,
       copy: true,
     },
   ]
+
+  const reset = async () => {
+    setLoading(true)
+    await mutationRequest(newData.serviceAccountId)
+      .unwrap()
+      .then((payload: any) => {
+        success(
+          t('content.usermanagement.technicalUser.resetCredentialSuccess'),
+          ''
+        )
+        setNewData(payload)
+      })
+      .catch((err) => {
+        error(
+          t('content.usermanagement.technicalUser.resetCredentialError'),
+          '',
+          err
+        )
+      })
+    setLoading(false)
+  }
 
   return (
     <section>
@@ -75,10 +103,34 @@ export default function TechnicalUserDetailsContent({
         variant="outlined"
         startIcon={<HighlightOffIcon />}
         onClick={() =>
-          dispatch(show(OVERLAYS.DELETE_TECHUSER, data.serviceAccountId))
+          dispatch(show(OVERLAYS.DELETE_TECHUSER, newData.serviceAccountId))
         }
       >
         {t('content.usermanagement.technicalUser.delete')}
+      </Button>
+
+      <Button
+        size="small"
+        variant="outlined"
+        disabled={loading}
+        startIcon={
+          loading ? (
+            <CircleProgress
+              thickness={1}
+              size={20}
+              variant="indeterminate"
+              colorVariant="primary"
+            />
+          ) : (
+            <SyncIcon />
+          )
+        }
+        onClick={() => reset()}
+        sx={{
+          marginLeft: '10px',
+        }}
+      >
+        {t('content.usermanagement.technicalUser.credentialReset')}
       </Button>
 
       <Box
@@ -101,13 +153,13 @@ export default function TechnicalUserDetailsContent({
         <KeyValueView
           cols={1}
           title={t('global.field.description')}
-          items={[{ value: data.description }]}
+          items={[{ value: newData.description }]}
         />
 
         <KeyValueView
           cols={1}
           title={t('global.field.permission')}
-          items={data.roles.map((role: ServiceAccountRole) => ({
+          items={newData.roles.map((role: ServiceAccountRole) => ({
             value: role.roleName,
           }))}
         />

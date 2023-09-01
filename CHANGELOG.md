@@ -4,6 +4,8 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+- Technical User Details
+  - Reset credential
 
 ## 1.6.0
 
