@@ -52,8 +52,8 @@
     "content": "App {{app}} ist dabei, seine Allgemeinen Geschäftsbedingungen bis Ende des Monats zu ändern. Bitte werfen Sie einen Blick auf die aktualisierten AGB. Es bedarf keiner Einigung. Wenn Sie den App-Nutzungsvertrag nicht vor {{date}} kündigen, gelten automatisch die neuen Geschäftsbedingungen."
   },
   "APP_ROLE_ADDED": {
-    "title": "App {{appName}} neue Userrollen wurden hinzugefügt.",
-    "content": "App {{appName}} got new roles added; check out the user management and assign new roles to your user group."
+    "title": "App {{app}} neue Userrollen hinzugefügt",
+    "content": "Für die App <strong>{{app}}</strong> wurden neue Userrollen hinzugefügt welche sie nun assignen können.\n\nNeue Userrollen: {{roles}}"
   },
   "TECHNICAL_USER_CREATION": {
     "title": "{{appName}} subscription created a new technical user",

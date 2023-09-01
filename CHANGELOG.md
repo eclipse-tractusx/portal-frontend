@@ -6,6 +6,9 @@
   - Switch endpoint used to display "App Subscriptions"
 - Technical User Details
   - Reset credential
+  - Enable search & filter
+- Serview Overview
+  - Added Sub menu for active services in service overview
 
 ## 1.6.0
 
