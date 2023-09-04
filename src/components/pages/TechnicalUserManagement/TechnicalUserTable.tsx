@@ -26,26 +26,77 @@ import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   ServiceAccountListEntry,
+  ServiceAccountStatusFilter,
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'
 import { useSelector } from 'react-redux'
 import { PAGES } from 'types/Constants'
 import { updateTechuserSelector } from 'features/control/updates'
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import Patterns from 'types/Patterns'
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const update = useSelector(updateTechuserSelector)
+  const [fetchHookArgs, setFetchHookArgs] = useState({})
+  const [expr, setExpr] = useState<string>('')
+  const [refresh, setRefresh] = useState<number>(0)
+  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ALL)
+  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
+    const viewValue = e.currentTarget.value
+    setGroup(viewValue)
+    setRefresh(Date.now())
+  }
+
+  useEffect(() => {
+    setFetchHookArgs({
+      statusFilter: group,
+      expr: expr,
+    })
+  }, [group, expr])
+
+  const filterButtons = [
+    {
+      buttonText: t('content.usermanagement.technicalUser.tabs.all'),
+      buttonValue: ServiceAccountStatusFilter.ALL,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.usermanagement.technicalUser.tabs.managed'),
+      buttonValue: ServiceAccountStatusFilter.MANAGED,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.usermanagement.technicalUser.tabs.owned'),
+      buttonValue: ServiceAccountStatusFilter.OWNED,
+      onButtonClick: setView,
+    },
+  ]
 
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry>
+        searchExpr={expr}
+        hasBorder={false}
+        rowHeight={80}
+        defaultFilter={group}
+        columnHeadersBackgroundColor={'transparent'}
+        toolbarVariant={'searchAndFilter'}
         title={t('content.usermanagement.technicalUser.tableHeader')}
         loadLabel={t('global.actions.more')}
+        searchPlaceholder={t('content.usermanagement.technicalUser.searchText')}
         fetchHook={useFetchServiceAccountListQuery}
-        fetchHookRefresh={update}
+        fetchHookRefresh={update || refresh}
         getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
+        filterViews={filterButtons}
+        fetchHookArgs={fetchHookArgs}
+        onSearch={(expr: string) => {
+          if (!Patterns.techuser.clientId.test(expr)) return
+          setExpr(expr)
+          setRefresh(Date.now())
+        }}
         columns={[
           {
             field: 'name',

@@ -737,7 +737,13 @@
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
-        "deleteTechUserNotificationErrorTitle": "Something went wrong"
+        "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "tabs": {
+          "all": "All",
+          "managed": "Managed",
+          "owned": "Owned"
+        },
+        "searchText": "Search by client Id"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
@@ -1543,6 +1549,7 @@
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
+        "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
         "error": "Something went wrong!",
         "success": "Usecase document upload has been done successfully."
@@ -1575,6 +1582,7 @@
       "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
+      "noUploadMessage": "No certificates available. All supported certificates are requested or active for your company.",
       "tabs": {
         "uploadedCertificates": "Uploaded Certificates",
         "pending": "Pending",
@@ -1592,8 +1600,10 @@
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
+        "certificateTypeError": "Please select a value",
+        "noOptionsMessage": "No other options available",
         "uploadDocumentTitle": "Please upload your certificate proof:",
-        "note": "Please upload only pdf files with maximum 1 MB.",
+        "note": "Please upload only pdf files with maximum 2 MB.",
         "descriptionLabel": "Description for verification",
         "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
@@ -1708,7 +1718,8 @@
       "success": "Success",
       "error": "Error",
       "retry": "Retry",
-      "exit": "exit"
+      "exit": "exit",
+      "loading": "Loading..."
     },
     "state": {
       "enabled": "aktiv",

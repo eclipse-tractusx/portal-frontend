@@ -8,6 +8,10 @@
   - Full width search overlay
   - Clear the search result on closing overlay
   - Show only one overlay if user clicks on any search results
+- Technical User
+  - Enable search & filter
+- Serview Overview
+  - Added Sub menu for active services in service overview
 
 ## 1.6.0
 
