@@ -5,7 +5,7 @@
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
 - Search screen - Mobile version
-  - Full width search overlay 
+  - Full width search overlay
   - Clear the search result on closing overlay
   - Show only one overlay if user clicks on any search results
 
