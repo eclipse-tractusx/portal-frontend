@@ -8,6 +8,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Invite Business Partner Form
+  - Fix loader position to center
 
 ## 1.6.0
 
