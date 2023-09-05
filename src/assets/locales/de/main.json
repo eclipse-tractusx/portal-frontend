@@ -395,7 +395,8 @@
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
-        "addRoles": "Add Roles"
+        "addRoles": "Add Roles",
+        "changeDocuments": "Change Document(s)"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
