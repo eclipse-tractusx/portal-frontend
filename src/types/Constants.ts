@@ -73,6 +73,7 @@ export enum PAGES {
   DEACTIVATE = 'deactivate',
   CHANGE_IMAGE = 'changeimage',
   CHANGE_DESCRIPTION = 'changedescription',
+  ADD_ROLES = 'addroles',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',

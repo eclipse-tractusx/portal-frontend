@@ -394,7 +394,8 @@
       "sortOptions": {
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
-        "changeDescription": "Change Description"
+        "changeDescription": "Change Description",
+        "addRoles": "Add Roles"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
@@ -423,7 +424,7 @@
       "headerTitle": "Change Lead Image",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "uploadNewImage": "Upload New Image",
-      "successMsg": "successfully changed app lead image",
+      "successMsg": "Successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {
@@ -435,8 +436,19 @@
       "shortDescription": "Short Description",
       "shortDescriptionEN": "Short Description - EN *",
       "shortDescriptionDE": "Short Description - DE *",
-      "successMsg": "successfully changed description",
+      "successMsg": "Successfully changed description",
       "errorMsg": "Unable to change description"
+    },
+    "addRoles": {
+      "headerTitle": "Load Additional Roles",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "uploadAdditionalRoles": "Upload Additional Roles",
+      "establishedRoles": "Established Roles",
+      "uploadAdditionalRolesDescription": "Note: only one file for upload allowed",
+      "newRolesToAdd": "New roles to be added",
+      "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
+      "successMsg": "Successfully added roles",
+      "errorMsg": "Unable to add roles"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -725,7 +737,13 @@
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
-        "deleteTechUserNotificationErrorTitle": "Something went wrong"
+        "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "tabs": {
+          "all": "All",
+          "managed": "Managed",
+          "owned": "Owned"
+        },
+        "searchText": "Search by client Id"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
@@ -1263,10 +1281,13 @@
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
         "appId": "App ID (clientID)",
+        "appIdInfo": "Die Client-ID ist entscheidend für OAuth2/OpenID Connect-Interaktionen. Dieser Bezeichner wird als Client-ID-Parameter in Anfragen an den Autorisierungsserver gesendet. Es wird zur Kundenidentifizierung verwendet. Mit der Abonnementaktivierung wird die Client-ID erstellt.",
         "technicalName": "Technical User Name",
+        "technicalNameInfo": "Technischer Benutzername des technischen Benutzer-/Dienstkontos, das für das spezifische App-Abonnement erstellt wurde. Sie können auf den technischen Benutzernamen klicken, um die Client-ID und die geheimen Details abzurufen.",
         "technicalPermission": "Technical User Permission",
+        "technicalPermissionInfo": "Dem technischen Benutzer zugewiesene Berechtigungen.",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
-        "email": "email_address@catena_support.com",
+        "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
         "tenantUrlErrorMsg": "Error! Something went wrong"
       }
@@ -1528,6 +1549,7 @@
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
+        "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
         "error": "Something went wrong!",
         "success": "Usecase document upload has been done successfully."
@@ -1560,6 +1582,7 @@
       "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
+      "noUploadMessage": "No certificates available. All supported certificates are requested or active for your company.",
       "tabs": {
         "uploadedCertificates": "Uploaded Certificates",
         "pending": "Pending",
@@ -1577,8 +1600,10 @@
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
+        "certificateTypeError": "Please select a value",
+        "noOptionsMessage": "No other options available",
         "uploadDocumentTitle": "Please upload your certificate proof:",
-        "note": "Please upload only pdf files with maximum 1 MB.",
+        "note": "Please upload only pdf files with maximum 2 MB.",
         "descriptionLabel": "Description for verification",
         "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
@@ -1693,7 +1718,8 @@
       "success": "Success",
       "error": "Error",
       "retry": "Retry",
-      "exit": "exit"
+      "exit": "exit",
+      "loading": "Loading..."
     },
     "state": {
       "enabled": "aktiv",
