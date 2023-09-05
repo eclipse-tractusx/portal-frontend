@@ -185,7 +185,7 @@ const TESTDATA = {
     ],
   },
   CLIENTID: {
-    valid: ['Julia Sophie', 'Julia12', 'sa12', 'JH123'],
+    valid: ['sa-12', 'JSSS', 'Julia12'],
     invalid: ['&^%#@', '!', 'hash &*^#$'],
   },
 }
