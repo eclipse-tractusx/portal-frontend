@@ -19,8 +19,10 @@
  ********************************************************************************/
 
 import { SubscriptionStatus, ImageType } from 'features/apps/apiSlice'
-import { Image, LogoGrayData } from '@catena-x/portal-shared-components'
+import { Button, Image, LogoGrayData } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
+import './Organization.scss'
+import { useTranslation } from 'react-i18next'
 
 export default function AppSubscriptions({
   name,
@@ -28,13 +30,16 @@ export default function AppSubscriptions({
   status,
   image,
   onButtonClick = () => {},
+  onUnsubscribe = () => {},
 }: {
   name: string
   provider: string
   status: SubscriptionStatus | undefined
   image: ImageType | undefined
   onButtonClick?: React.MouseEventHandler
+  onUnsubscribe?: React.MouseEventHandler
 }) {
+  const { t } = useTranslation()
   const colorCode = [
     { name: SubscriptionStatus.PENDING, code: ' #969696' },
     { name: SubscriptionStatus.INACTIVE, code: 'red' },
@@ -47,27 +52,37 @@ export default function AppSubscriptions({
 
   return (
     <div className="organization-subscriptions" onClick={onButtonClick}>
-      <Image
-        src={image?.src || LogoGrayData}
-        style={{
-          objectFit: 'cover',
-          width: 30,
-          height: 30,
-          borderRadius: '50%',
-          marginRight: '5px',
-        }}
-        loader={fetchImageWithToken}
-      />
+      <div className="iconNameContainer">
+        <Image
+          src={image?.src || LogoGrayData}
+          style={{
+            objectFit: 'cover',
+            width: 30,
+            height: 30,
+            borderRadius: '50%',
+            marginRight: '5px',
+          }}
+          loader={fetchImageWithToken}
+        />
 
-      <span>
-        {name} - by {provider} -
-      </span>
-      {status ? (
-        <span style={{ color: colorCode }}>
-          {' '}
-          {'\u00a0' + capitalizeFirstLetter(status.toLocaleLowerCase())}
-        </span>
-      ) : null}
+        <div className="name">
+          {name} - by {provider} -
+          {status ? (
+            <span style={{ color: colorCode }}>
+              {' '}
+              {'\u00a0' + capitalizeFirstLetter(status.toLocaleLowerCase())}
+            </span>
+          ) : null}
+        </div>
+      </div>
+
+      <Button
+        variant="outlined"
+        className="unsubButton"
+        onClick={onUnsubscribe}
+      >
+        {t('global.actions.unsubscribe')}
+      </Button>
     </div>
   )
 }

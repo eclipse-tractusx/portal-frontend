@@ -177,6 +177,11 @@ export interface ActiveSubscription {
   image: string
 }
 
+interface FetchSubscriptionAppQueryType {
+  subscriptionId: string
+  appId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -271,6 +276,13 @@ export const apiSlice = createApi({
     fetchSubscribedActiveApps: builder.query<ActiveSubscription[], void>({
       query: () => '/api/apps/subscribed/activesubscriptions',
     }),
+    fetchSubscriptionApp: builder.query<
+      ActiveSubscription,
+      FetchSubscriptionAppQueryType
+    >({
+      query: (obj) =>
+        `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
+    }),
   }),
 })
 
@@ -286,4 +298,5 @@ export const {
   useFetchAgreementsQuery,
   useDeactivateAppMutation,
   useFetchSubscribedActiveAppsQuery,
+  useFetchSubscriptionAppQuery,
 } = apiSlice

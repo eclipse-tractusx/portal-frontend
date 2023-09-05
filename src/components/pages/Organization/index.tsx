@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  PageHeader,
-  StaticTable,
-  TableType,
-} from '@catena-x/portal-shared-components'
+import { PageHeader, Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppSubscriptions from './AppSubscriptions'
 import { useDispatch } from 'react-redux'
@@ -35,6 +31,8 @@ import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import LoadingError from './LoadingError'
 import { CompanyDetailsToCards } from 'features/admin/mapper'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
+import { useState } from 'react'
+import UnSubscribeOverlay from './UnSubscribeOverlay'
 
 export default function Organization() {
   const { t } = useTranslation()
@@ -48,31 +46,27 @@ export default function Organization() {
   } = useFetchOwnCompanyDetailsQuery()
   const companyDetailsData =
     companyDetails && CompanyDetailsToCards(companyDetails)
+  const [subscriptionId, setSubscriptionId] = useState<string>('')
+  const [showUnsubscribeOverlay, setShowUnsubscribeOverlay] =
+    useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleClick = (id: string | undefined) => {
     dispatch(show(OVERLAYS.APP, id, t('content.organization.company.title')))
   }
 
-  const appSubscriptionsTableBody =
-    appSubscribedData?.map((app) => [
-      () => (
-        <AppSubscriptions
-          image={app.image}
-          onButtonClick={() => handleClick(app.offerId)}
-          name={app.name || ''}
-          provider={app.provider}
-          status={app.status}
-        />
-      ),
-    ]) || []
-
-  const appSubscriptionsTableData: TableType = {
-    head: [t('content.organization.subscriptions.title')],
-    body: appSubscriptionsTableBody,
+  const onUnsubscribe = () => {
+    setLoading(true)
   }
 
   return (
     <main>
+      <UnSubscribeOverlay
+        openDialog={showUnsubscribeOverlay}
+        handleOverlayClose={() => setShowUnsubscribeOverlay(false)}
+        handleConfirmClick={() => onUnsubscribe()}
+        loading={loading}
+      />
       <PageHeader
         title={t('pages.organization')}
         topPage={false}
@@ -92,8 +86,25 @@ export default function Organization() {
             errorText={t('content.organization.company.error')}
           />
         </div>
+        {appSubscribedData?.length !== 0 && (
+          <Typography className="title">
+            {t('content.organization.subscriptions.title')}
+          </Typography>
+        )}
         <div className="organization-content">
-          <StaticTable data={appSubscriptionsTableData} horizontal={false} />
+          {appSubscribedData?.map((app) => (
+            <AppSubscriptions
+              image={app.image}
+              onButtonClick={() => handleClick(app.offerId)}
+              name={app.name || ''}
+              provider={app.provider}
+              status={app.status}
+              onUnsubscribe={() => {
+                setShowUnsubscribeOverlay(true)
+                setSubscriptionId(app.offerId)
+              }}
+            />
+          ))}
         </div>
       </div>
     </main>

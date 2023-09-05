@@ -1682,7 +1682,8 @@
       "error": "Error",
       "retry": "Retry",
       "exit": "exit",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "unsubscribe": "Unsubscribe"
     },
     "state": {
       "enabled": "enabled",
