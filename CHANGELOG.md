@@ -8,6 +8,7 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+  - Added Deactivate functionality
 
 ## 1.6.0
 

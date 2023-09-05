@@ -28,6 +28,7 @@ import {
   Cards,
   LoadMoreButton,
   CardItems,
+  PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { Box } from '@mui/material'
@@ -40,12 +41,13 @@ import {
   useFetchProvidedServicesQuery,
 } from 'features/serviceManagement/apiSlice'
 import NoItems from 'components/pages/NoItems'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 enum ServiceSubMenuItems {
   DEACTIVATE = 'deactivate',
@@ -65,8 +67,9 @@ export default function ServiceListOverview() {
       statusFilter: '',
     },
   })
-  const { data } = useFetchProvidedServicesQuery(argsData)
+  const { data, refetch } = useFetchProvidedServicesQuery(argsData)
   const dispatch = useDispatch()
+  const { state } = useLocation()
 
   const submenuOptions = [
     {
@@ -75,6 +78,10 @@ export default function ServiceListOverview() {
       url: '',
     },
   ]
+
+  useEffect(() => {
+    state === 'service-deactivate-success' && refetch()
+  }, [state, refetch])
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
@@ -226,7 +233,7 @@ export default function ServiceListOverview() {
               submenuOptions={submenuOptions}
               submenuClick={(sortMenu: string, id: string | undefined) => {
                 sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                  navigate(`/${PAGES.DEACTIVATE}/${id}`, {
+                  navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
                     state: items,
                   })
                 return undefined
@@ -247,6 +254,25 @@ export default function ServiceListOverview() {
           <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
         )}
       </div>
+
+      {state && (
+        <PageSnackbar
+          open={state !== ''}
+          onCloseNotification={() => {}}
+          severity={
+            state === 'service-deactivate-success'
+              ? SuccessErrorType.SUCCESS
+              : SuccessErrorType.ERROR
+          }
+          description={
+            state === 'service-deactivate-successs'
+              ? t('serviceoverview.serviceDeactivate.successMsg')
+              : t('serviceoverview.serviceDeactivate.errorMsg')
+          }
+          showIcon={true}
+          autoClose={true}
+        />
+      )}
     </main>
   )
 }

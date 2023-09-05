@@ -321,6 +321,12 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    deactivateService: builder.mutation<void, string>({
+      query: (serviceId) => ({
+        url: `/api/service/ServiceChange/${serviceId}/deactivateService`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -343,4 +349,5 @@ export const {
   useFetchServiceTechnicalUserProfilesQuery,
   useSaveServiceTechnicalUserProfilesMutation,
   useActivateSubscriptionMutation,
+  useDeactivateServiceMutation,
 } = apiSlice
