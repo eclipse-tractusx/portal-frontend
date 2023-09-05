@@ -33,9 +33,12 @@ import { Box } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 import { error } from 'services/NotifyService'
 import {
+  ServiceDeactivateEnum,
   useDeactivateServiceMutation,
   useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { PAGES } from 'types/Constants'
 
 export default function ServiceDeactivate() {
   const { t } = useTranslation('servicerelease')
@@ -61,7 +64,7 @@ export default function ServiceDeactivate() {
 
         if (response && 'data' in response) {
           const file = response?.data?.data
-          if (docType === 'APP_LEADIMAGE') {
+          if (docType === DocumentTypeId.APP_LEADIMAGE) {
             return setDeactivateCardImage(URL.createObjectURL(file))
           }
         }
@@ -74,7 +77,7 @@ export default function ServiceDeactivate() {
 
   useEffect(() => {
     if (leadImageId) {
-      fetchImage(leadImageId, 'APP_LEADIMAGE')
+      fetchImage(leadImageId, DocumentTypeId.APP_LEADIMAGE)
     }
   }, [fetchImage, leadImageId])
 
@@ -83,13 +86,13 @@ export default function ServiceDeactivate() {
     await deactivateService(service[0].id)
       .unwrap()
       .then(() =>
-        navigate('/serviceoverview', {
-          state: 'service-deactivate-success',
+        navigate(`/${PAGES.SERVICEOVERVIEW}`, {
+          state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS,
         })
       )
       .catch((error) =>
-        navigate('/serviceoverview', {
-          state: 'service-deactivate-error',
+        navigate(`/${PAGES.SERVICEOVERVIEW}`, {
+          state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_ERROR,
         })
       )
   }

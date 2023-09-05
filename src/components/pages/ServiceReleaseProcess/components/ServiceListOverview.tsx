@@ -37,6 +37,7 @@ import {
   ProvidedServices,
   ProvidedServiceStatusEnum,
   ProvidedServiceType,
+  ServiceDeactivateEnum,
   StatusIdEnum,
   useFetchProvidedServicesQuery,
 } from 'features/serviceManagement/apiSlice'
@@ -80,7 +81,7 @@ export default function ServiceListOverview() {
   ]
 
   useEffect(() => {
-    state === 'service-deactivate-success' && refetch()
+    state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS && refetch()
   }, [state, refetch])
 
   useEffect(() => {
@@ -260,12 +261,12 @@ export default function ServiceListOverview() {
           open={state !== ''}
           onCloseNotification={() => {}}
           severity={
-            state === 'service-deactivate-success'
+            state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
               ? SuccessErrorType.SUCCESS
               : SuccessErrorType.ERROR
           }
           description={
-            state === 'service-deactivate-successs'
+            state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
               ? t('serviceoverview.serviceDeactivate.successMsg')
               : t('serviceoverview.serviceDeactivate.errorMsg')
           }
