@@ -94,6 +94,8 @@ export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)
 export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
+export const isKeycloakURL = (expr: string) =>
+  isURL(expr) && !expr.includes('#')
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
 export const isFirstName = (expr: string) => Patterns.firstName.test(expr)
