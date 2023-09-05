@@ -31,7 +31,6 @@ import {
   ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
-import { Box } from '@mui/material'
 import { fetchImageWithToken } from 'services/ImageService'
 import {
   ProvidedServices,
@@ -47,7 +46,7 @@ import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
-import { useTheme, CircularProgress } from '@mui/material'
+import { Box, useTheme, CircularProgress } from '@mui/material'
 
 enum ServiceSubMenuItems {
   DEACTIVATE = 'deactivate',
