@@ -30,7 +30,7 @@ enum AppSubMenuItems {
   CHANGE_IMAGE = 'changeImage',
   CHANGE_DESCRIPTION = 'changeDescription',
   ADD_ROLES = 'addRoles',
-  CHANGE_DOCUMENTS = 'changedocuments',
+  CHANGE_DOCUMENTS = 'changeDocuments',
 }
 
 export const AppOverviewList = ({
