@@ -535,7 +535,7 @@ export default function Subscription({
                 })}
               </div>
             )}
-            {!subscriptions ? (
+            {isFetching ? (
               <div className="loading-progress">
                 <CircularProgress
                   size={50}

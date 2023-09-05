@@ -8,6 +8,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Page Loading and Error Component
+  - Show loading component and based on the response show "No items" component or ErrorBar component
 
 ## 1.6.0
 
