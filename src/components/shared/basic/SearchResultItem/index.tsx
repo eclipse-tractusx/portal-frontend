@@ -175,12 +175,12 @@ export const SearchResultItem = ({
         primary={getHighlightedText(t(item.title), expr)}
         secondary={getHighlightedText(t(item.description!), expr)}
         primaryTypographyProps={{
-          color: '#606060',
-          fontWeight: 800,
+          color: '#2D2D2D',
+          fontWeight: 600,
           fontSize: 16,
         }}
         secondaryTypographyProps={{
-          color: '#606060',
+          color: '#717171',
           fontWeight: 400,
           fontSize: 12,
         }}
