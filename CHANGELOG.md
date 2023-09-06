@@ -5,7 +5,7 @@
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
 - Technical User Details
-  - Reset credential
+  - Enable credential reset
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
