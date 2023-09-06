@@ -8,6 +8,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- My Account
+  - Show copy to clip board success message
 
 ## 1.6.0
 
