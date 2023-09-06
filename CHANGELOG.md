@@ -8,6 +8,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Data Space
+  - Last section background color issue
 
 ## 1.6.0
 
