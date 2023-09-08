@@ -89,7 +89,7 @@ const UpdateIDPForm = ({
       t('field.alias.name'),
       t('field.clientAuthMethod.name'),
     ],
-    body: [[idp.displayName || ''], [idp.alias], [defaultOidcAuthMethod.value]],
+    body: [[idp.displayName ?? ''], [idp.alias], [defaultOidcAuthMethod.value]],
   }
 
   return (

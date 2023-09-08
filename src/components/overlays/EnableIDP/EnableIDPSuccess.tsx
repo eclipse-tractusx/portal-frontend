@@ -31,12 +31,10 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay, exec } from 'features/control/overlay'
 import { ACTIONS } from 'types/Constants'
-import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
 export const EnableIDPSuccess = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const { data } = useFetchIDPDetailQuery(id)
 
   const stepsList = [
     {

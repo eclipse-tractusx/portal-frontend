@@ -48,13 +48,11 @@ export const IDPList = () => {
   const [deleteLoading, setDeleteLoading] = useState(false)
 
   const { data } = useFetchIDPListQuery()
-  const idpsData =
-    data &&
-    data
-      .slice()
-      .sort((a: IdentityProvider, b: IdentityProvider) =>
-        a.alias.localeCompare(b.alias)
-      )
+  const idpsData = data
+    ?.slice()
+    .sort((a: IdentityProvider, b: IdentityProvider) =>
+      a.alias.localeCompare(b.alias)
+    )
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
 

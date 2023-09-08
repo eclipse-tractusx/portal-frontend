@@ -195,7 +195,7 @@ export const AddIdp = () => {
     }
   }
 
-  const stepsList = [
+  const AddStepsList = [
     {
       headline: t('add.stepLists.firstStep'),
       step: 1,
@@ -220,7 +220,7 @@ export const AddIdp = () => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={stepsList} showSteps={3} activeStep={1} />
+          <Stepper list={AddStepsList} showSteps={3} activeStep={1} />
         </div>
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>

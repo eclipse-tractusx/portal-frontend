@@ -579,7 +579,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         ) : (
           <Button
             variant="contained"
-            disabled={!!!id || uploadedFile === undefined}
+            disabled={!id || uploadedFile === undefined}
             onClick={postUsers}
           >
             {t('action.uploadUserList')}

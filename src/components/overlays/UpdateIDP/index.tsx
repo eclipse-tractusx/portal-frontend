@@ -64,7 +64,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     }
   }
 
-  const stepsList = [
+  const UpdateStepsList = [
     {
       headline: t('add.stepLists.firstStep'),
       step: 1,
@@ -89,7 +89,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={stepsList} showSteps={3} activeStep={2} />
+          <Stepper list={UpdateStepsList} showSteps={3} activeStep={2} />
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
