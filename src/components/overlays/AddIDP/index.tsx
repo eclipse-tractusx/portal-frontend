@@ -18,13 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   DialogActions,
   DialogContent,
   DialogHeader,
+  LoadingButton,
   Radio,
+  Stepper,
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -78,17 +80,19 @@ const SelectIdpAuthType = ({
           }
         />
       </div>
-      <Radio
-        name="radio-buttons"
-        label={IDPAuthType.OIDC}
-        checked={type === IDPAuthType.OIDC}
-        onChange={() => {
-          setType(IDPAuthType.OIDC)
-          onChange(IDPAuthType.OIDC)
-        }}
-        value={IDPAuthType.OIDC}
-        inputProps={{ 'aria-label': IDPAuthType.OIDC }}
-      />
+      <div>
+        <Radio
+          name="radio-buttons"
+          label={IDPAuthType.OIDC}
+          checked={type === IDPAuthType.OIDC}
+          onChange={() => {
+            setType(IDPAuthType.OIDC)
+            onChange(IDPAuthType.OIDC)
+          }}
+          value={IDPAuthType.OIDC}
+          inputProps={{ 'aria-label': IDPAuthType.OIDC }}
+        />
+      </div>
       <Radio
         name="radio-buttons"
         disabled={true}
@@ -160,10 +164,12 @@ export const AddIdp = () => {
   const [formData, setFormData] = useState<AddIDPPrepareFormType>(
     initialAddIDPPrepareForm
   )
+  const [loading, setLoading] = useState(false)
   const [addIdp] = useAddIDPMutation()
   const [updateIdp] = useUpdateIDPMutation()
 
   const doCreateIDP = async () => {
+    setLoading(true)
     try {
       const idp = await addIdp(formData.authType).unwrap()
       const idpUpdateData: IdentityProviderUpdate = {
@@ -182,33 +188,70 @@ export const AddIdp = () => {
       await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
       success(t('add.success'))
+      setLoading(false)
     } catch (err) {
       error(t('add.error'), t('state.error'), err as object)
+      setLoading(false)
     }
   }
+
+  const stepsList = [
+    {
+      headline: t('add.stepLists.firstStep'),
+      step: 1,
+    },
+    {
+      headline: t('add.stepLists.secondStep'),
+      step: 2,
+    },
+    {
+      headline: t('add.stepLists.thirdStep'),
+      step: 3,
+    },
+  ]
 
   return (
     <>
       <DialogHeader
         title={t('add.title')}
-        intro={t('add.subtitle')}
+        intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
+        <div style={{ width: '70%', margin: '0 auto 40px' }}>
+          <Stepper list={stepsList} showSteps={3} activeStep={1} />
+        </div>
+        <Trans>
+          <Typography variant="label3">{t('add.desc')}</Typography>
+        </Trans>
         <AddIDPPrepareForm onChange={(data) => setFormData(data)} />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('action.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          disabled={!formData.name}
-          onClick={() => doCreateIDP()}
-        >
-          {t('action.next')}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator={t('action.loading')}
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            disabled={!formData.name}
+            onClick={() => doCreateIDP()}
+          >
+            {t('action.next')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )

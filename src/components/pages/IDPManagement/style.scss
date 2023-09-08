@@ -37,7 +37,11 @@
     transform: translateX(-50%);
   }
   .idp-management-desc {
-    margin: 50px;
+    width: 74%;
+    margin: 50px auto;
+  }
+  img {
+    border-radius: 10px;
   }
   .add-idp-btn {
     margin-top: 30px;

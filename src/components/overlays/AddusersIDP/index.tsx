@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Checkbox,
@@ -27,7 +27,10 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
+  LoadingButton,
   Radio,
+  StaticTable,
+  TableType,
   Textarea,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -49,6 +52,7 @@ import {
 } from 'features/control/form'
 import { useDropzone } from 'react-dropzone'
 import { error, success } from 'services/NotifyService'
+import './AddUsersIDP.scss'
 
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
@@ -56,6 +60,7 @@ enum IDPState {
   SUCCESS_DELETE_IDP = 'SUCCESS_DELETE_IDP',
   ERROR_MULTIPLE_FILES = 'ERROR_MULTIPLE_FILES',
   ERROR_INVALID_TYPE = 'ERROR_INVALID_TYPE',
+  ERROR_INVALID_SIZE = 'ERROR_INVALID_SIZE',
   ERROR_INVALID_FORMAT = 'ERROR_INVALID_FORMAT',
   ERROR_UPLOAD_USERS = 'ERROR_UPLOAD_USERS',
   ERROR_DELETE_IDP = 'ERROR_DELETE_IDP',
@@ -103,28 +108,74 @@ const AddusersIDPResponse = ({
   storeResponse: (response: string) => void
 }) => {
   const { t } = useTranslation('idp')
+  const userResponse = JSON.parse(response)
+
+  const [tableErrorData, setTableErrorData] = useState<TableType>()
+
+  useEffect(() => {
+    userResponse &&
+      setTableErrorData({
+        head: [''],
+        body: [userResponse.errors],
+      })
+  }, [userResponse])
 
   return (
     <Dialog open={true}>
       <DialogHeader
-        title={t('userssuccess.title')}
-        intro={t('userssuccess.subtitle')}
+        title={
+          !userResponse.error ? t('userssuccess.title') : t('userserror.title')
+        }
+        intro={''}
         closeWithIcon={true}
         onCloseWithIcon={() => storeResponse('')}
       />
       <DialogContent>
-        <div>
-          <Typography>{t('userssuccess.desc')}</Typography>
-          <pre
-            style={{
-              padding: '12px',
-              border: '1px solid lightgray',
-              backgroundColor: '#eee',
-            }}
-          >
-            {JSON.stringify(JSON.parse(response), null, 2)}
-          </pre>
-        </div>
+        {!userResponse.error ? (
+          <Trans>
+            <Typography variant="body1" className="successDesc">
+              {t('userssuccess.desc')}
+            </Typography>
+          </Trans>
+        ) : (
+          <div className="errorSection mb-20">
+            <div className="uploadedDetailsSection mb-20">
+              <div className="userDetailsMain">
+                <div className="userSuccess">
+                  <Typography variant="body1" className="number">
+                    {userResponse?.updated}
+                  </Typography>
+                </div>
+                <Typography variant="body1" className="detailLabel">
+                  {t('userserror.userUploaded')}
+                </Typography>
+              </div>
+              <div className="userDetailsMain">
+                <div className="userError">
+                  <Typography variant="body1" className="number">
+                    {userResponse?.error}
+                  </Typography>
+                </div>
+                <Typography variant="body1" className="detailLabel">
+                  {t('userserror.userFailed')}
+                </Typography>
+              </div>
+            </div>
+
+            {userResponse?.errors.length > 0 && tableErrorData && (
+              <>
+                <div className="mb-20">
+                  <Trans>
+                    <Typography variant="body1" className="errorUsersLabel">
+                      {t('userserror.errorUsersLabel')}
+                    </Typography>
+                  </Trans>
+                </div>
+                <StaticTable data={tableErrorData} horizontal={true} />
+              </>
+            )}
+          </div>
+        )}
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => storeResponse('')}>
@@ -147,6 +198,8 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const userContent = useSelector(editIDPUserSelector)
   const userResponse = useSelector(editIDPUserResponseSelector)
   const fetching = t('state.fetching')
+  const [loading, setLoading] = useState(false)
+  const [uploadedFile, setUploadedFile] = useState<File>()
 
   const CSV_COLUMNS = useMemo(
     () => [
@@ -163,6 +216,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
 
   const postUsers = () => {
     if (!idpData || !userContent?.data) return
+    setLoading(true)
     const postdata = new FormData()
     postdata.append(
       'document',
@@ -182,11 +236,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     )
       .then((response) => response.text())
       .then((result) => {
+        setLoading(false)
         storeResponse(result)
         success(t(`state.${IDPState.SUCCESS_UPLOAD_USERS}`))
         setStatus(true)
       })
       .catch((err) => {
+        setLoading(false)
         error(t(`state.${IDPState.ERROR_UPLOAD_USERS}`, '', err))
         setStatus(false)
       })
@@ -340,6 +396,12 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         CSV: 'text/csv',
       }
       acceptedFiles.forEach((file: File) => {
+        if (file.size > 100000) {
+          error(t(`state.${IDPState.ERROR_INVALID_SIZE}`))
+          setStatus(false)
+          setTimeout(() => setStatus(undefined), 3000)
+          return
+        }
         if (!Object.values(MIME_TYPE).includes(file.type)) {
           error(t(`state.${IDPState.ERROR_INVALID_TYPE}`))
           setStatus(false)
@@ -358,6 +420,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               : content
           )
         }
+        setUploadedFile(file)
         reader.readAsText(file)
       })
     },
@@ -371,88 +434,104 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     storeData(JSON.stringify(userData))
   }, [storeData, userData])
 
-  return (
-    <>
-      <DialogHeader
-        title={t('users.title', {
-          idp: idpData?.displayName,
-        })}
-        intro={t('users.subtitle')}
-        closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(closeOverlay())}
-      />
-      <DialogContent>
-        <Typography sx={{ mb: '12px' }} variant="body2">
-          {t('users.desc1')}
-        </Typography>
-        <Typography sx={{ mb: '12px' }} variant="body2">
-          {t('users.desc2')}
-        </Typography>
+  const renderContent = () => {
+    return (
+      <>
+        <Trans>
+          <Typography sx={{ mb: '12px' }} variant="body2">
+            {t('users.desc1')}
+          </Typography>
+        </Trans>
         {/*
         <Typography variant="h4" sx={{ margin: '10px 0' }}>
           {idpData?.displayName} - {idpData?.alias}
         </Typography>
         */}
-        <Typography sx={{ mb: '6px', mt: '24px' }}>
-          {t('users.preview')}
-        </Typography>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <SelectFormat
-            format={format}
-            onChange={(selectedFormat: FileFormat) => setFormat(selectedFormat)}
-          />
-          <Checkbox
-            label={`${t('users.pretty')}`}
-            checked={pretty}
-            onClick={() => setPretty(!pretty)}
-          />
-          <div style={{ display: 'none' }}>
-            <Checkbox
-              label={`${t('users.unlinked')}`}
-              checked={unlinked}
-              onClick={() => setUnlinked(!unlinked)}
+        <div className="uploadBulkUsers">
+          <Typography variant="label2" className="bulkUploadHeading">
+            {t('users.bulkUploadHeading')}
+          </Typography>
+          <div className="firstStep">
+            <Typography variant="label4" className="number">
+              1
+            </Typography>
+            <Typography variant="label3" className="mb-20 step1Label">
+              {t('users.step1Heading')}
+            </Typography>
+            <Typography variant="label4" className="mb-20 step1Label">
+              {t('users.step1Intro')}
+            </Typography>
+            <Textarea
+              style={{
+                ...{
+                  marginTop: '12px',
+                  padding: '12px',
+                  width: '100%',
+                  whiteSpace: 'pre',
+                  color: '#666',
+                  lineHeight: '20px',
+                  borderRadius: '24px',
+                },
+                ...(status === false ? { backgroundColor: '#FEE7E2' } : {}),
+                ...(status === true ? { backgroundColor: '#dfd' } : {}),
+              }}
+              disabled={true}
+              minRows={10}
+              maxRows={10}
+              value={
+                idpData && userContent?.data
+                  ? store2text(userContent.data)
+                  : fetching
+              }
+              onBlur={() => {}}
+              onChange={(e) => storeData(e.target.value)}
             />
+            <div className="fileFormat">
+              <SelectFormat
+                format={format}
+                onChange={(selectedFormat: FileFormat) =>
+                  setFormat(selectedFormat)
+                }
+              />
+              <Checkbox
+                label={`${t('users.pretty')}`}
+                checked={pretty}
+                onClick={() => setPretty(!pretty)}
+              />
+              <div style={{ display: 'none' }}>
+                <Checkbox
+                  label={`${t('users.unlinked')}`}
+                  checked={unlinked}
+                  onClick={() => setUnlinked(!unlinked)}
+                />
+              </div>
+            </div>
+            <Button size="small" variant="outlined" onClick={downloadUserfile}>
+              {t('users.step1ButtonLabel')}
+            </Button>
+          </div>
+          <div className="secondStep">
+            <Typography variant="label4" className="number">
+              2
+            </Typography>
+            <Trans>
+              <Typography variant="label3" className="mb-20 step1Label">
+                {t('users.step2Heading')}
+              </Typography>
+            </Trans>
+          </div>
+          <div className="thirdStep">
+            <Typography variant="label4" className="number">
+              3
+            </Typography>
+            <Typography variant="label3" className="mb-20 step1Label">
+              {t('users.step3Heading')}
+            </Typography>
           </div>
         </div>
-        <Textarea
-          style={{
-            ...{
-              marginTop: '12px',
-              padding: '12px',
-              width: '100%',
-              whiteSpace: 'pre',
-              color: '#666',
-              lineHeight: '20px',
-              borderRadius: '24px',
-            },
-            ...(status === false ? { backgroundColor: '#FEE7E2' } : {}),
-            ...(status === true ? { backgroundColor: '#dfd' } : {}),
-          }}
-          disabled={true}
-          minRows={10}
-          maxRows={10}
-          value={
-            idpData && userContent?.data
-              ? store2text(userContent.data)
-              : fetching
-          }
-          onBlur={() => {}}
-          onChange={(e) => storeData(e.target.value)}
-        />
-        <div
-          style={{ display: 'flex', flexDirection: 'row', margin: '12px 0px' }}
-        >
-          <Button size="small" onClick={downloadUserfile}>
-            {t('users.download')}
-          </Button>
-        </div>
-        <Typography sx={{ margin: '20px 0px' }}>
-          {t('users.drop.intro')}
-        </Typography>
         <div {...getRootProps()}>
           <DropArea
             error={status === false}
-            size="small"
             translations={{
               title: t('users.drop.title'),
               subTitle: t('users.drop.subTitle'),
@@ -460,29 +539,52 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             }}
           />
         </div>
-        <div
-          style={{ display: 'flex', flexDirection: 'row', margin: '20px 0px' }}
-        >
-          <Typography variant="caption1" sx={{ mr: '6px' }}>
-            {t('field.note')}
-            {': '}
-          </Typography>
-          <Typography>{t('users.drop.note')}</Typography>
-        </div>
         {userResponse?.data && (
           <AddusersIDPResponse
             response={userResponse.data}
             storeResponse={storeResponse}
           />
         )}
-      </DialogContent>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <DialogHeader
+        title={t('users.title', {
+          idp: idpData?.displayName,
+        })}
+        intro=""
+        closeWithIcon={true}
+        onCloseWithIcon={() => dispatch(closeOverlay())}
+      />
+      <DialogContent>{renderContent()}</DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('action.cancel')}
         </Button>
-        <Button variant="contained" disabled={!!!id} onClick={postUsers}>
-          {t('action.confirm')}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator={t('action.loading')}
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            disabled={!!!id || uploadedFile === undefined}
+            onClick={postUsers}
+          >
+            {t('action.uploadUserList')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )

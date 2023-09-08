@@ -41,9 +41,11 @@ export default function IDPManagement() {
               {t('idpmanagement.title')}
             </Typography>
           </Trans>
-          <Typography className="idp-management-desc">
-            {t('page.desc')}
-          </Typography>
+          <Trans>
+            <Typography className="idp-management-desc">
+              {t('page.desc')}
+            </Typography>
+          </Trans>
           <img
             src={`${getAssetBase()}/images/content/teaser.png`}
             alt={'idp management'}

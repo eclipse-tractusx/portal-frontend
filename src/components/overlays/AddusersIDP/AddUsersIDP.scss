@@ -1,0 +1,114 @@
+.uploadBulkUsers {
+  text-align: center !important;
+  margin: 0 auto;
+
+  .bulkUploadHeading {
+    margin: 30px;
+    display: inline-block;
+  }
+
+  .number {
+    border: 1px solid #0f71cb;
+    color: #0f71cb;
+    border-radius: 50%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .step1Label {
+    display: block;
+  }
+
+  .fileFormat {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .secondStep {
+    margin: 30px;
+
+    .linkText {
+      width: 100%;
+      display: inline-block;
+    }
+
+    .editIcon {
+      color: #0f71cb;
+      cursor: pointer;
+    }
+  }
+}
+
+.successDesc {
+  text-align: center !important;
+}
+
+.errorSection {
+  .uploadedDetailsSection {
+    display: flex;
+
+    .userDetailsMain {
+      display: flex;
+      width: 50%;
+
+      .userSuccess {
+        color: #5bc785;
+        background-color: #f0f5d5;
+        height: 50px;
+        width: 50px;
+        border-radius: 5px;
+      }
+
+      .userError {
+        color: #e62722;
+        background-color: #fee7e2;
+        height: 50px;
+        width: 50px;
+        border-radius: 5px;
+      }
+
+      .number {
+        text-align: center;
+        line-height: 50px;
+      }
+
+      .detailLabel {
+        margin: 10px 20px;
+      }
+    }
+  }
+
+  .errorUsersLabel {
+    color: #da241e;
+    margin-left: 10px;
+  }
+
+  table {
+    max-height: 225px;
+    overflow: auto;
+    display: block;
+
+    tbody {
+      display: table;
+      width: 100%;
+    }
+  }
+
+  /* scrollbar width */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+
+  /* scrollbar Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #4d73d5;
+    border-radius: 10px;
+  }
+}

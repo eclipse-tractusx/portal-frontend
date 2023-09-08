@@ -58,6 +58,30 @@ export const IDPList = () => {
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
 
+  const doAddUsers = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    idp: IdentityProvider
+  ) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(OVERLAYS.ADDUSERS_IDP, idp.identityProviderId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const doConfigure = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    idp: IdentityProvider
+  ) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const doConfirmDelete = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     idp: IdentityProvider
@@ -65,36 +89,28 @@ export const IDPList = () => {
     e.stopPropagation()
     setDeleteLoading(true)
     try {
-      setDeleteLoading(false)
-      //await removeIDP(idp.identityProviderId).unwrap()
+      await removeIDP(idp.identityProviderId).unwrap()
       success(ti('delete.success'))
-    } catch (err) {
       setDeleteLoading(false)
+    } catch (err) {
       error(ti('delete.error'), '', err as object)
+      setDeleteLoading(false)
     }
-    //dispatch(show(OVERLAYS.DELETE_IDP, idp.identityProviderId))
   }
 
-  const doDisableToggle = async (
+  const doEnableDisableToggle = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     idp: IdentityProvider
   ) => {
     e.stopPropagation()
     setDisableLoading(true)
     try {
+      await enableIDP({ id: idp.identityProviderId, enabled: !idp.enabled })
+      success(idp.enabled ? ti('disable.success') : ti('enable.success'))
       setDisableLoading(false)
-      //await enableIDP({ id: idp.identityProviderId, enabled: false })
-      success(ti('disable.success'))
-      // dispatch(
-      //   show(
-      //     idp.enabled ? OVERLAYS.DISABLE_IDP : OVERLAYS.ENABLE_IDP,
-      //     idp.identityProviderId
-      //   )
-      // )
     } catch (err) {
-      setDisableLoading(false)
       error(ti('disable.error'), '', err as object)
-      console.log(error)
+      setDisableLoading(false)
     }
   }
 
@@ -114,44 +130,48 @@ export const IDPList = () => {
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
-          {/* {idp.oidc?.clientId &&
-            (idp.enabled ? (
-              <MenuItem
-                onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => doEnableToggle(e, idp)}
-              //disable={idpsData && idpsData?.filter(idp => idp.enabled).length >= 2}
-              >
-                {ti('action.disable')}
-              </MenuItem>
-            ) : (
-              <MenuItem
-                onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => doEnableToggle(e, idp)}
-              >
-                {ti('action.enable')}
-              </MenuItem>
-            ))} */}
-          {idpsData &&
-            idpsData?.filter((idp: IdentityProvider) => idp.enabled).length <
-              2 && (
-              <MenuItem
-                onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                  !disableLoading && doDisableToggle(e, idp)
-                }
-                sx={{
-                  color: disableLoading ? '#b6b6b6' : '#111111',
-                }}
-              >
-                {ti('action.disable')}
-                {disableLoading && (
-                  <CircularProgress
-                    size={15}
-                    sx={{
-                      marginLeft: '5px',
-                    }}
-                  />
-                )}
-              </MenuItem>
-            )}
-          {!idp.enabled && (
+          <MenuItem
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              doConfigure(e, idp)
+            }
+          >
+            {ti('action.configure')}
+          </MenuItem>
+          {idp.oidc?.clientId && (
+            <MenuItem
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                !disableLoading && doEnableDisableToggle(e, idp)
+              }
+              sx={{
+                color: disableLoading ? '#b6b6b6' : '#111111',
+              }}
+              disabled={
+                idpsData &&
+                idp.enabled &&
+                idpsData?.filter((idp: IdentityProvider) => idp.enabled)
+                  .length < 2
+              }
+            >
+              {idp.enabled ? ti('action.disable') : ti('action.enable')}
+              {disableLoading && (
+                <CircularProgress
+                  size={15}
+                  sx={{
+                    marginLeft: '5px',
+                  }}
+                />
+              )}
+            </MenuItem>
+          )}
+          {idp.enabled ? (
+            <MenuItem
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                doAddUsers(e, idp)
+              }
+            >
+              {ti('action.users')}
+            </MenuItem>
+          ) : (
             <MenuItem
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
                 !deleteLoading && doConfirmDelete(e, idp)
@@ -159,6 +179,7 @@ export const IDPList = () => {
               sx={{
                 color: deleteLoading ? '#b6b6b6' : '#111111',
               }}
+              disabled={idp.enabled}
             >
               {ti('action.delete')}
               {deleteLoading && (
@@ -232,14 +253,6 @@ export const IDPList = () => {
               flex: 2,
               sortable: false,
               renderCell: ({ row }: { row: IdentityProvider }) =>
-                // <IconButton
-                //   color="secondary"
-                //   onClick={() =>
-                //     console.log('on details click: Company Name', row.identityProviderCategoryId)
-                //   }
-                // >
-                //   <ArrowForwardIcon />
-                // </IconButton>
                 renderMenu(row),
             },
           ]}

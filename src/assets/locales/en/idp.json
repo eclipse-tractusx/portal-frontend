@@ -46,11 +46,16 @@
   },
   "page": {
     "title": "Identity Provider Config",
-    "desc": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page."
+    "desc": "Here you can manage how the users of your company authenticate with Catena-X. <br /><br />On registration we have created an IDP with one user entry for the admin (that's probably you ;). <br />Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page."
   },
   "add": {
-    "title": "New IdP Connection",
-    "subtitle": "Enter an IdP name and choose the type to start the configuration",
+    "title": "Add your Identity Provider (IdP)",
+    "stepLists": {
+      "firstStep": "Create IdP entry",
+      "secondStep": "Add IdP data",
+      "thirdStep": "Connect user profile"
+    },
+    "desc": "To start the configuration, <br /> enter the name and select the type of your IdP",
     "success": "IdP created",
     "error": "Failed to create IdP"
   },
@@ -61,8 +66,10 @@
     "error": "Something went wrong. IdP got not deleted."
   },
   "edit": {
-    "title": "Edit Identity Provider Details",
-    "subtitle": "Configure the connection details to your company IdP",
+    "title": "Add your Identity Provider (IdP)",
+    "desc": "Configure the connection details <br/> to your company IdP",
+    "addDataHeading": "Please add the following data:",
+    "metaDataHeading": "Automatically generated metadata:",
     "success": "IdP updated",
     "error": "Failed to update IdP"
   },
@@ -74,20 +81,35 @@
     "understood": "Click 'Understood' to proceed to enable the IdP."
   },
   "enable": {
-    "title": "Enable Identity Provider",
-    "subtitle": "This requires to link at least one user ID",
-    "short": "Enable IdP",
-    "desc": "Now link your existing user ID so you keep all permissions. Specify the user ID (not name) for your user at the new IdP.",
-    "current": "You are currently logged in as: {{ name }}",
-    "label": "Your User ID",
+    "title": "Add your Identity Provider (IdP)",
+    "stepLists": {
+      "firstStep": "Create IdP entry",
+      "secondStep": "Idp data configured",
+      "thirdStep": "Connect user profile"
+    },
+    "desc": "In the next step, your IdP needs to be activated. <br /><br />To do this, connect your existing Catena-X user <br />with your user ID  in the IdP you just have added.",
+    "label": "Your IdP - User ID",
     "hint": "Your existing user ID (not name) on target IDP",
-    "success": "IdP enabled",
-    "error": "Failed to enable IdP"
+    "success": "IdP got enabled",
+    "error": "Something went wrong. IdP got not enabled."
   },
   "enablesuccess": {
-    "title": "Identity Provider Enabled",
-    "subtitle": "Your request has completed successfully",
-    "desc": "Your new Identity Provider has been enabled and your user has been linked to it. Choose 'Sign out' and then log in again with the IDP named"
+    "title": "Add your Identity Provider (IdP)",
+    "stepLists": {
+      "firstStep": "Create IdP entry",
+      "secondStep": "Idp data configured",
+      "thirdStep": "User Profile connected"
+    },
+    "subHeading1": "Your user profile has been connected successfully.",
+    "subHeading2": "You have completed the setup process of your new IdP.",
+    "nextStepHeading": "Your NEXT Steps:",
+    "nextStepSubHeading": "To test the new IdP, please do the following:",
+    "step1Heading": "“Test new IdP login” by clicking the button below",
+    "step2Heading": "“Sign in” again with your IdP “smoke test jj01” and <br /> user “julia.jeroch@bmw.de”",
+    "note": "Please note:",
+    "or": "OR",
+    "successText": "If the test succeeds, <br />... commence user migration <br />... deactivate old IdP",
+    "failText": "If the test fails,<br />please “sign in” with your “old” <br />Catena-X user and check the settings <br />of your new IdP. "
   },
   "disable": {
     "title": "Disable Identity Provider",
@@ -102,25 +124,33 @@
     "title": "Link existing users to new IdP",
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
-    "desc1": "With the user migration function you can migrate/connect users created under the Keycloak shared IdP to your own IdP. This ensures that all user data and settings stay in place and assigned to the correct user.",
-    "desc2": "Download the user list; enhance the csv file with the unique user id (available in your own idp) and upload the csv again. With the upload of the own idp user id; the existing user accounts will get linked to the own idp user account with the login of the user on the CX platform.",
-    "desc3": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
-    "preview": "Preview User Export",
-    "download": "Download",
+    "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
+    "bulkUploadHeading": "Bulk upload process",
+    "step1Heading": "Download user list as file. Please select your prefered file type:",
+    "step1Intro": "Content current userlist:",
+    "step1ButtonLabel": "Download userlist",
     "pretty": "Pretty",
     "unlinked": "Hide linked",
+    "step2Heading": "In downloaded user list:<br />Enrich each user entrie with the respective ProviderUserID",
+    "step3Heading": "Upload updated user list here:",
     "drop": {
       "intro": "Upload mapped user list with ProviderUserID",
       "title": "Drag & drop your files here",
       "subTitle": "Or browse files on your computer",
       "errorTitle": "Invalid upload",
-      "note": "only one CSV or JSON file allowed for upload"
+      "note": "only one CSV or JSON file allowed for upload",
+      "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed"
     }
   },
   "userssuccess": {
-    "title": "Request successful",
-    "subtitle": "Your request to update the users has completed",
-    "desc": "Here the detailed request response"
+    "title": "Upload updated user list successfull",
+    "desc": "Your companies Catena-X users will now be able to login with their company credentials.<br />The former Catena-X logins will be disabled in the near future."
+  },
+  "userserror": {
+    "title": "Upload updated user list.",
+    "userUploaded": "Users successfully uploaded",
+    "userFailed": "User uploads failed",
+    "errorUsersLabel": "Errors have occured for the following usernames: <br/> Please check their entries in the upload file and try upload it again."
   },
   "state": {
     "fetching": "fetching users ...",
@@ -131,6 +161,7 @@
     "SUCCESS_DELETE_IDP": "IDP deleted successfully",
     "ERROR_MULTIPLE_FILES": "Only one file allowed",
     "ERROR_INVALID_TYPE": "Invalid file type",
+    "ERROR_INVALID_SIZE": "File size should not exceed 100KB",
     "ERROR_INVALID_FORMAT": "Invalid format",
     "ERROR_UPLOAD_USERS": "Uploading users failed",
     "ERROR_DELETE_IDP": "Error deleting the IDP"
@@ -149,11 +180,11 @@
       "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
     },
     "redirectUri": {
-      "name": "Redirect URI",
+      "name": "Redirect URL",
       "hint": "Click to copy the shown URI and enter it as valid redirect URI for your IdP client"
     },
     "metadata": {
-      "name": "Metadata URI",
+      "name": "Metadata URL",
       "hint": "Enter the metadata URL from your IDP that ends with '/.well-known/openid-configuration'"
     },
     "clientId": {
@@ -200,9 +231,15 @@
     "confirm": "Confirm",
     "close": "Close",
     "cancel": "Cancel",
-    "notnow": "Not now",
+    "notnow": "Close, test later",
+    "testnow": "Test new IDP login",
     "next": "Next",
     "understood": "Understood",
-    "help": "Get help"
+    "help": "Get help",
+    "back": "Back",
+    "connect": "Connect",
+    "loading": "Loading...",
+    "uploadUserList": "Upload Updated User List",
+    "saveMetadata": "Save Metadata"
   }
 }

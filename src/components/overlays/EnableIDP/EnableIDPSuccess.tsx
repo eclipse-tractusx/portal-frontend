@@ -18,13 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogHeader,
+  Stepper,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
@@ -37,20 +38,130 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
 
+  const stepsList = [
+    {
+      headline: t('add.stepLists.firstStep'),
+      step: 1,
+    },
+    {
+      headline: t('add.stepLists.secondStep'),
+      step: 2,
+    },
+    {
+      headline: t('enablesuccess.stepLists.thirdStep'),
+      step: 3,
+    },
+  ]
+
   return (
     <Dialog open={true}>
       <DialogHeader
         title={t('enablesuccess.title')}
-        intro={t('enablesuccess.subtitle')}
+        intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <div>
-          <Typography>{t('enablesuccess.desc')}</Typography>
+        <div style={{ width: '70%', margin: '0 auto 40px' }}>
+          <Stepper list={stepsList} showSteps={3} activeStep={4} />
         </div>
-        <div style={{ margin: '20px', width: '100%', textAlign: 'center' }}>
-          <Typography variant="h5">{data?.displayName}</Typography>
+        <div
+          style={{
+            width: '90%',
+            textAlign: 'center',
+            border: '1px solid #B3CB2D',
+            padding: '15px',
+            margin: '0 auto',
+          }}
+        >
+          <Trans>
+            <Typography variant="label3">
+              {t('enablesuccess.subHeading1')}
+            </Typography>
+            <br />
+            <Typography variant="label2">
+              {t('enablesuccess.subHeading2')}
+            </Typography>
+          </Trans>
+        </div>
+        <div style={{ textAlign: 'center', margin: '30px' }}>
+          <div>
+            <Typography variant="label1">
+              {t('enablesuccess.nextStepHeading')}
+            </Typography>
+          </div>
+          <div style={{ marginTop: '20px' }}>
+            <Typography variant="label2">
+              {t('enablesuccess.nextStepSubHeading')}
+            </Typography>
+          </div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <Typography
+            variant="label4"
+            sx={{
+              border: '1px solid #0f71cb',
+              color: '#0f71cb',
+              borderRadius: '50%',
+              display: 'inline-block',
+              width: '20px',
+              height: '20px',
+              lineHeight: '20px',
+              textAlign: 'center',
+              fontSize: '15px',
+              margin: '0 10px 10px',
+            }}
+          >
+            1
+          </Typography>
+          <Typography variant="label2">
+            {t('enablesuccess.step1Heading')}
+          </Typography>
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <Typography
+            variant="label4"
+            sx={{
+              border: '1px solid #0f71cb',
+              color: '#0f71cb',
+              borderRadius: '50%',
+              display: 'inline-block',
+              width: '20px',
+              height: '20px',
+              lineHeight: '20px',
+              textAlign: 'center',
+              fontSize: '15px',
+              margin: '0 10px 10px 20px',
+            }}
+          >
+            2
+          </Typography>
+          <Trans>
+            <Typography variant="label2">
+              {t('enablesuccess.step2Heading')}
+            </Typography>
+          </Trans>
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <Typography variant="label3">{t('enablesuccess.note')}</Typography>
+        </div>
+        <div style={{ display: 'flex', margin: '30px auto' }}>
+          <Trans>
+            <Typography
+              variant="label2"
+              sx={{ width: '48%', textAlign: 'center' }}
+            >
+              {t('enablesuccess.successText')}
+            </Typography>
+          </Trans>
+          <Typography variant="label2" sx={{ width: '15%' }}>
+            {t('enablesuccess.or')}
+          </Typography>
+          <Trans>
+            <Typography variant="label2" sx={{ textAlign: 'center' }}>
+              {t('enablesuccess.failText')}
+            </Typography>
+          </Trans>
         </div>
       </DialogContent>
       <DialogActions>
