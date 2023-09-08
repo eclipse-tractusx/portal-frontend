@@ -8,6 +8,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Sub Navigation Header
+  - Align label to the left
 
 ## 1.6.0
 
