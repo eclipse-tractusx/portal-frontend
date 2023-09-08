@@ -9,6 +9,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- App management
+  - Fixed page break
 
 ## 1.6.0
 
