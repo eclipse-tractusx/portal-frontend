@@ -739,7 +739,7 @@
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed",
         "deleteTechUserNotificationErrorTitle": "Something went wrong",
         "resetCredentialError": "Something went wrong",
-        "resetCredentialSuccess": "Reset credential is successful",
+        "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
           "all": "All",
           "managed": "Managed",

@@ -740,7 +740,7 @@
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
         "deleteTechUserNotificationErrorTitle": "Something went wrong",
         "resetCredentialError": "Something went wrong",
-        "resetCredentialSuccess": "Reset credential is successful",
+        "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
           "all": "All",
           "managed": "Managed",
