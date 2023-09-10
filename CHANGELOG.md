@@ -9,6 +9,7 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+  - Added image to service overview cards
 - App management
   - Fixed page break
 
