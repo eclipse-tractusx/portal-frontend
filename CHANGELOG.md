@@ -4,13 +4,12 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+  - Bugfix - App subscription activate button showing service activation overlay
 - Technical User Details
   - Enable credential reset
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
-- Bugfix - App Subscription
-  - Activate button showing service activation screen
 - App management
   - Fixed page break
 
