@@ -66,6 +66,12 @@ const EdcConnector = () => {
       id: '',
       name: '',
       type: '',
+      technicalUser: {
+        id: '',
+        name: '',
+        clientId: '',
+        description: '',
+      },
     })
   const token = UserService.getToken()
   const [selectedService, setSelectedService] = useState<any>({})
@@ -243,6 +249,7 @@ const EdcConnector = () => {
         handleOverlayClose={() => setDeleteConnectorConfirmModalOpen(false)}
         handleConfirmClick={() => deleteSelectedConnector()}
         loading={loading}
+        techUser={selectedConnector?.technicalUser}
       />
       <AddConnectorOverlay
         openDialog={addConnectorOverlayOpen}

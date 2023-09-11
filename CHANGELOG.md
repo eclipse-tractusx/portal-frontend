@@ -8,6 +8,8 @@
   - Enable search & filter
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Connector Deletion
+  - Show confirm overlay if connector has tech user information
 
 ## 1.6.0
 
