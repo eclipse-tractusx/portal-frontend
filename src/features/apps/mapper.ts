@@ -81,6 +81,12 @@ export const serviceToCard = (app: ProvidedServiceType): CardItems => ({
   statusText: app.status,
   subtitle: app.provider,
   title: app.name ?? '',
+  image: {
+    src: app.leadPictureId
+      ? `${getApiBase()}/api/administration/documents/${app.leadPictureId}`
+      : LogoGrayData,
+    alt: app.name,
+  },
 })
 
 // mapper to create the app card used for the app access management view on the user management page

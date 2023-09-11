@@ -20,7 +20,7 @@
 import debounce from 'lodash.debounce'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from '@catena-x/portal-shared-components'
-import { useState, useMemo, useCallback, useRef } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './Search.scss'
@@ -52,6 +52,10 @@ export default function NewSearchSection() {
     },
     [debouncedSearch]
   )
+
+  useEffect(() => {
+    setSearchExpression('')
+  }, [])
 
   const reference = PageService.registerReference(label, useRef(null))
 
