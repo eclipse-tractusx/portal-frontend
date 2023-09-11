@@ -84,7 +84,7 @@ export const Patterns = {
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
   techuser: {
-    clientId: /^[ A-Za-z0-9]{0,80}$/,
+    clientId: /^[a-zA-Z0-9-]{0,80}$/,
   },
 }
 
