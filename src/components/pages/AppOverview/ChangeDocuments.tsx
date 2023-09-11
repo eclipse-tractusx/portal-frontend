@@ -50,13 +50,16 @@ export default function ChangeDocuments() {
       <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
+
       <section>
-        <Typography variant="body2" mb={3} align="center">
+        <Typography mb={3} align="center" variant="body2">
           {app?.[0]?.title}
         </Typography>
-        <Typography variant="h2" mb={3} align="center">
+
+        <Typography align="center" mb={3} variant="h2">
           {t('content.changeDocuments.headerTitle')}
         </Typography>
+
         <Typography variant="body2" align="center">
           {t('content.changeDocuments.description')}
         </Typography>
