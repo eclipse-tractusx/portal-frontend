@@ -17,6 +17,91 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
+import {
+  Typography,
+  PageHeader,
+  Button,
+  Tooltips,
+  LoadingButton,
+} from '@catena-x/portal-shared-components'
+import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Box } from '@mui/material'
+import { useState } from 'react'
+
 export default function ChangeDocuments() {
-  return <>In Progress</>
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const appId = useParams().appId
+  const [isLoading, setIsLoading] = useState(false)
+  const { state } = useLocation()
+  const items: any = state
+  const app = items?.filter((item: any) => item.id === appId)
+  const [imageChanged, setImageChanged] = useState(false)
+
+  const handleSaveClick = async () => {
+    setIsLoading(true)
+    setImageChanged(true)
+  }
+
+  return (
+    <main className="deactivate-main">
+      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
+        <PageBreadcrumb backButtonVariant="contained" />
+      </PageHeader>
+      <section>
+        <Typography variant="body2" mb={3} align="center">
+          {app?.[0]?.title}
+        </Typography>
+        <Typography variant="h2" mb={3} align="center">
+          {t('content.changeDocuments.headerTitle')}
+        </Typography>
+        <Typography variant="body2" align="center">
+          {t('content.changeDocuments.description')}
+        </Typography>
+      </section>
+      <section>
+        <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
+        <Box sx={{ position: 'relative', marginTop: '30px' }}>
+          <Button
+            color="secondary"
+            size="small"
+            onClick={() => navigate('/appoverview')}
+          >
+            {t('global.actions.cancel')}
+          </Button>
+          <Tooltips
+            tooltipPlacement="bottom-start"
+            tooltipText={
+              !imageChanged ? t('content.changeDocuments.saveTooltipMsg') : ''
+            }
+            children={
+              <span style={{ position: 'absolute', right: '10px' }}>
+                {isLoading ? (
+                  <LoadingButton
+                    size="small"
+                    loading={isLoading}
+                    variant="contained"
+                    onButtonClick={() => {}}
+                    loadIndicator="Loading..."
+                    label={`${t('global.actions.confirm')}`}
+                  />
+                ) : (
+                  <Button
+                    size="small"
+                    variant="contained"
+                    disabled={!imageChanged}
+                    onClick={handleSaveClick}
+                  >
+                    {t('global.actions.save')}
+                  </Button>
+                )}
+              </span>
+            }
+          />
+        </Box>
+      </section>
+    </main>
+  )
 }
