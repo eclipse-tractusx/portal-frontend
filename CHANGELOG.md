@@ -14,6 +14,8 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Page Loading and Error Component
+  - Show loading component and based on the response show "No items" component or ErrorBar component
 - App management
   - Fixed page break
 - App Overview
