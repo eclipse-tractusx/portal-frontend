@@ -448,7 +448,8 @@
       "newRolesToAdd": "New roles to be added",
       "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
       "successMsg": "Successfully added roles",
-      "errorMsg": "Unable to add roles"
+      "errorMsg": "Unable to add roles",
+      "deleteNotSupported": "Role deletion currently not supported."
     },
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",

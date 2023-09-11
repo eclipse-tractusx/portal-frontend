@@ -31,6 +31,7 @@
   - Fixed last step "Verify" image load issue
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
+  - Add roles for active apps
 
 ## 1.6.0
 
