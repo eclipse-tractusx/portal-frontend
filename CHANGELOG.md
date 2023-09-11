@@ -14,6 +14,8 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Data Space
+  - Last section background color issue
 - My Account
   - Show success message on click of copy to clip board
 - Invite Business Partner Form
