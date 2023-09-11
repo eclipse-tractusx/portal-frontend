@@ -363,29 +363,33 @@ export default function OfferPage({
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>{t('step2.providerDetails')}</InputLabel>
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerHomePage"
-          label={t('step2.providerHomePage')}
-          pattern={Patterns.URL}
-          ruleMessage={t('step2.pleaseEnterValidHomePageURL')}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerHomePage"
+            label={t('step2.providerHomePage')}
+            pattern={Patterns.URL}
+            ruleMessage={t('step2.pleaseEnterValidHomePageURL')}
+          />
+        </div>
 
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerContactEmail"
-          label={t('step2.providerContactEmail')}
-          pattern={Patterns.MAIL}
-          ruleMessage={t('step2.pleaseEnterValidEmail')}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerContactEmail"
+            label={t('step2.providerContactEmail')}
+            pattern={Patterns.MAIL}
+            ruleMessage={t('step2.pleaseEnterValidEmail')}
+          />
+        </div>
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}

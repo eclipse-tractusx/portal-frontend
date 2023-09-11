@@ -394,7 +394,8 @@
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
-        "addRoles": "Add Roles"
+        "addRoles": "Add Roles",
+        "changeDocuments": "Change Document(s)"
       },
       "addbtn": "Register your App",
       "confirmModal": {
@@ -448,6 +449,13 @@
       "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
       "successMsg": "Successfully added roles",
       "errorMsg": "Unable to add roles"
+    },
+    "changeDocuments": {
+      "headerTitle": "Update Contract Documents",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "saveTooltipMsg": "The save button will be active after a document was changed",
+      "successMsg": "Documents changed successfully",
+      "errorMsg": "Error! Something went wrong"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -880,6 +888,7 @@
       "userAccount": "User account",
       "token": "DEV only: Current authentication token",
       "copy_to_clipboard": "copy token to clipboard",
+      "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
@@ -1019,10 +1028,9 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Contact (E-Mail)",
         "providerPhoneContact": "Contac (Phone Number)",
-        "providerPhoneContactPlaceholder": "Following formats are supported: +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",
