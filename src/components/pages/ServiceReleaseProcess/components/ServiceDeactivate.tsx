@@ -30,15 +30,15 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { error } from 'services/NotifyService'
 import {
   ServiceDeactivateEnum,
   useDeactivateServiceMutation,
-  useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
-import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { PAGES } from 'types/Constants'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function ServiceDeactivate() {
   const { t } = useTranslation('servicerelease')
@@ -50,36 +50,24 @@ export default function ServiceDeactivate() {
   const items: any = state
   const service = items?.filter((item: any) => item.id === serviceId)
   const [deactivateService] = useDeactivateServiceMutation()
-  const [fetchDocumentById] = useFetchDocumentMutation()
   const [deactivateCardImage, setDeactivateCardImage] = useState('')
   const leadImageId = service?.[0]?.leadPictureId
 
-  const fetchImage = useCallback(
-    async (documentId: string, docType: string) => {
-      try {
-        const response = await fetchDocumentById({
-          appId: serviceId ?? '',
-          documentId,
-        })
-
-        if (response && 'data' in response) {
-          const file = response?.data?.data
-          if (docType === DocumentTypeId.APP_LEADIMAGE) {
-            return setDeactivateCardImage(URL.createObjectURL(file))
-          }
-        }
-      } catch (err) {
-        error('ERROR WHILE FETCHING IMAGE', '', err as object)
-      }
-    },
-    [fetchDocumentById, serviceId]
-  )
-
   useEffect(() => {
     if (leadImageId) {
-      fetchImage(leadImageId, DocumentTypeId.APP_LEADIMAGE)
+      fetchImageWithToken(
+        `${getApiBase()}/api/administration/documents/${leadImageId}`
+      )
+        .then((buffer) =>
+          setDeactivateCardImage(
+            URL.createObjectURL(new Blob([buffer], { type: 'image/png' }))
+          )
+        )
+        .catch((err) => {
+          error('ERROR WHILE FETCHING IMAGE', '', err as object)
+        })
     }
-  }, [fetchImage, leadImageId])
+  }, [leadImageId])
 
   const handleSaveClick = async () => {
     setIsLoading(true)

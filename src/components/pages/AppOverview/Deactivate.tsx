@@ -31,10 +31,11 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDeactivateAppMutation } from 'features/apps/apiSlice'
-import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error } from 'services/NotifyService'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function Deactivate() {
   const { t } = useTranslation()
@@ -47,34 +48,23 @@ export default function Deactivate() {
   const app = items?.filter((item: any) => item.id === appId)
   const [deactivateApp] = useDeactivateAppMutation()
   const [deactivateCardImage, setDeactivateCardImage] = useState('')
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const leadImageId = app?.[0]?.leadPictureId
-
-  const fetchImage = useCallback(
-    async (documentId: string, docType: string) => {
-      try {
-        const response = await fetchDocumentById({
-          appId: appId ?? '',
-          documentId,
-        })
-        if (response && 'data' in response) {
-          const file = response?.data?.data
-          if (docType === 'APP_LEADIMAGE') {
-            return setDeactivateCardImage(URL.createObjectURL(file))
-          }
-        }
-      } catch (err) {
-        error('ERROR WHILE FETCHING IMAGE', '', err as object)
-      }
-    },
-    [fetchDocumentById, appId]
-  )
 
   useEffect(() => {
     if (leadImageId) {
-      fetchImage(leadImageId, 'APP_LEADIMAGE')
+      fetchImageWithToken(
+        `${getApiBase()}/api/apps/${appId ?? ''}/appDocuments/${leadImageId}`
+      )
+        .then((buffer) =>
+          setDeactivateCardImage(
+            URL.createObjectURL(new Blob([buffer], { type: 'image/png' }))
+          )
+        )
+        .catch((err) => {
+          error('ERROR WHILE FETCHING IMAGE', '', err as object)
+        })
     }
-  }, [fetchImage, leadImageId])
+  }, [leadImageId])
 
   const handleSaveClick = async () => {
     setIsLoading(true)

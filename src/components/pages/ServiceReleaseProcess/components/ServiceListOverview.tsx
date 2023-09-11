@@ -212,16 +212,6 @@ export default function ServiceListOverview() {
               sx={{
                 color: theme.palette.primary.main,
               }}
-              subMenu={true}
-              submenuOptions={submenuOptions}
-              submenuClick={(sortMenu: string, id: string | undefined) => {
-                sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                  navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
-                    state: items,
-                  })
-                return undefined
-              }}
-              tooltipText={t('serviceoverview.submenuNotAvailable')}
             />
           </div>
         ) : (
@@ -266,7 +256,7 @@ export default function ServiceListOverview() {
                   submenuOptions={submenuOptions}
                   submenuClick={(sortMenu: string, id: string | undefined) => {
                     sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                      navigate(`/${PAGES.DEACTIVATE}/${id}`, {
+                      navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
                         state: items,
                       })
                     return undefined
