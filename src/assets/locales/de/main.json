@@ -723,6 +723,7 @@
         "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
+        "credentialReset": "Credential Reset",
         "headline": "Technical User Management {{company}}",
         "descriptionHeader": "Technical User Management {{company}}",
         "descriptionText": "Der technische Benutzer ist eine Identität, die ein Unternehmen verwenden kann, um sich mit CX-Backend-Diensten ohne ständige Trennung zu verbinden. Zum Beispiel ist ein technischer Run-As-Benutzer erforderlich, um sich mit der Registrierung für digitale Zwillinge oder dem semantischen Modell zu verbinden. Bitte verwenden Sie die Aktionsschaltfläche, um einen neuen technischen Benutzer mit den Rollen gemäß Ihren Anforderungen anzufordern. Oder verwalten Sie bereits vorhandene technische Benutzer, indem Sie die unten stehende Benutzerverwaltungsfunktion verwenden.",
@@ -739,6 +740,8 @@
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
         "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "resetCredentialError": "Something went wrong",
+        "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
           "all": "All",
           "managed": "Managed",
