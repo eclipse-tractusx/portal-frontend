@@ -48,7 +48,7 @@ jobs:
 
       - name: Get npm version
         id: npm-tag
-        uses: martinbeentjes/npm-get-version-action@master
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
 
       - name: Output versions
         run: |
