@@ -37,6 +37,7 @@ import { useState } from 'react'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { useReducer } from 'react'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
+import { SubscriptionTypes } from '.'
 
 type ViewDetail = {
   appId: string
@@ -169,7 +170,7 @@ export default function SubscriptionElements({
                   <Typography variant="body3" className="secondSection">
                     {subscriptionData.offerName}
                   </Typography>
-                  {isAppFilters ? (
+                  {type === SubscriptionTypes.APP_SUBSCRIPTION ? (
                     <div
                       className="viewDetails"
                       onClick={() =>
@@ -203,7 +204,7 @@ export default function SubscriptionElements({
                         type="plain"
                         variant="filled"
                         onClick={() =>
-                          isAppFilters
+                          type === SubscriptionTypes.APP_SUBSCRIPTION
                             ? setSubscriptionDetail({
                                 appId: subscriptionData.offerId,
                                 subscriptionId: subscription.subscriptionId,
@@ -226,16 +227,15 @@ export default function SubscriptionElements({
                     </div>
                   )}
                   {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.ACTIVE &&
-                    isAppFilters && (
-                      <Chip
-                        color="success"
-                        label={t('content.appSubscription.tabs.active')}
-                        type="confirm"
-                        variant="filled"
-                        withIcon
-                      />
-                    )}
+                    SubscriptionStatus.ACTIVE && (
+                    <Chip
+                      color="success"
+                      label={t('content.appSubscription.tabs.active')}
+                      type="confirm"
+                      variant="filled"
+                      withIcon
+                    />
+                  )}
                 </li>
               )
             )
