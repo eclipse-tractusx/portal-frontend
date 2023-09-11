@@ -729,6 +729,7 @@
         "serviceaccount": "Service Account",
         "create": "Create technical user",
         "delete": "Delete this technical User",
+        "credentialReset": "Credential Reset",
         "headline": "Technical user management {{company}}",
         "descriptionHeader": "Technical user management {{company}}",
         "descriptionText": "The technical user is an identity that a company can use to connect to CX backend services without continous disconnection. For example, a run-as technical user is required for connecting to the digital twin registry or the semantic model. Please use the action button to request a new technical user with the roles as per your need. Or manage already existing technical users by using the user management function below.",
@@ -745,6 +746,8 @@
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed",
         "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "resetCredentialError": "Something went wrong",
+        "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
           "all": "All",
           "managed": "Managed",
