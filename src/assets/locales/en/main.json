@@ -394,7 +394,8 @@
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
-        "addRoles": "Add Roles"
+        "addRoles": "Add Roles",
+        "changeDocuments": "Change Document(s)"
       },
       "addbtn": "Register your App",
       "confirmModal": {
@@ -448,6 +449,13 @@
       "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
       "successMsg": "Successfully added roles",
       "errorMsg": "Unable to add roles"
+    },
+    "changeDocuments": {
+      "headerTitle": "Update Contract Documents",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "saveTooltipMsg": "The save button will be active after a document was changed",
+      "successMsg": "Documents changed successfully",
+      "errorMsg": "Error! Something went wrong"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
