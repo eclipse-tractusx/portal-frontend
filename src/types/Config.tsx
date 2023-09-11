@@ -81,6 +81,7 @@ import DataSpace from 'components/pages/DataSpace'
 import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
+import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 
 /**
  * ALL_PAGES
@@ -465,7 +466,6 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-
   {
     name: PAGES.ADD_ROLES,
     isRoute: true,
@@ -476,6 +476,19 @@ export const ALL_PAGES: IPage[] = [
         element={<AddRoles />}
       >
         <Route path=":appId" element={<AddRoles />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.CHANGE_DOCUMENTS,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.CHANGE_DOCUMENTS}
+        path={PAGES.CHANGE_DOCUMENTS}
+        element={<ChangeDocuments />}
+      >
+        <Route path=":appId" element={<ChangeDocuments />} />
       </Route>
     ),
   },

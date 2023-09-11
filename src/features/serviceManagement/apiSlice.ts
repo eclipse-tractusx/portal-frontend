@@ -115,7 +115,9 @@ export interface ProvidedServiceType {
   name: string
   provider: string
   status: ProvidedServiceStatusEnum
+  leadPictureId?: string
 }
+
 export interface ProvidedServices {
   meta: {
     totalElements: number
