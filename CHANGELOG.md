@@ -11,6 +11,8 @@
   - Added Sub menu for active services in service overview
 - App management
   - Fixed page break
+- App release process
+  - Fixed last step "Verify" image load issue
 
 ## 1.6.0
 
