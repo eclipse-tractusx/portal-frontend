@@ -14,6 +14,8 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+- Sub Navigation Header
+  - Align label to the left
 - Data Space
   - Last section background color issue
 - My Account
