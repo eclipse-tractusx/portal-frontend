@@ -919,6 +919,7 @@
       "userAccount": "Benutzer Konto",
       "token": "DEV only: Aktuelles Authentisierungstoken",
       "copy_to_clipboard": "Token in die Zwischenablage kopieren",
+      "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Benutzer löschen",
       "suspendAccount": "Benutzer aussetzen",
       "resetPswrdAccount": "Passwort zurücksetzen",

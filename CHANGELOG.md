@@ -14,6 +14,8 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+- My Account
+  - Show success message on click of copy to clip board
 - Invite Business Partner Form
   - Fix loader position to center
 - Page Loading and Error Component

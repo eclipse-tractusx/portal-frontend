@@ -880,6 +880,7 @@
       "userAccount": "User account",
       "token": "DEV only: Current authentication token",
       "copy_to_clipboard": "copy token to clipboard",
+      "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
