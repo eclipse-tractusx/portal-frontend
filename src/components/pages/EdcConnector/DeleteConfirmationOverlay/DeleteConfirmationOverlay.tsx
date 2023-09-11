@@ -29,8 +29,6 @@ import {
   CircleProgress,
   Checkbox,
   StaticTable,
-  TableType,
-  Typography,
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 
