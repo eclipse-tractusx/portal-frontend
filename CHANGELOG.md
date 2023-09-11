@@ -10,8 +10,12 @@
   - Show only one overlay if user clicks on any search results
 - Technical User
   - Enable search & filter
+- Technical User Details
+  - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+- App management
+  - Fixed page break
 
 ## 1.6.0
 

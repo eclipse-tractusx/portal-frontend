@@ -38,7 +38,11 @@ import {
   appToCard,
 } from 'features/apps/mapper'
 import { Box } from '@mui/material'
-import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
+import {
+  useFetchProvidedAppsQuery,
+  AppInfo,
+  AppMarketplaceApp,
+} from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
@@ -102,7 +106,9 @@ export default function AppOverview() {
 
   useEffect(() => {
     if (data) {
-      const filterItems = data.map((item) => appToCard(item))
+      const filterItems = data.content?.map((item: AppMarketplaceApp) =>
+        appToCard(item)
+      )
       setCards(filterItems)
     }
   }, [data])
