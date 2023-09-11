@@ -4,12 +4,24 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+- Search screen - Mobile version
+  - Full width search overlay
+  - Clear the search result on closing overlay
+  - Show only one overlay if user clicks on any search results
 - Technical User
   - Enable search & filter
+- Technical User Details
+  - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
 - Invite Business Partner Form
   - Fix loader position to center
+- Page Loading and Error Component
+  - Show loading component and based on the response show "No items" component or ErrorBar component
+- App management
+  - Fixed page break
+- App Overview
+  - Enhance Sub Menu by adding 'Change Documents' for active apps
 
 ## 1.6.0
 

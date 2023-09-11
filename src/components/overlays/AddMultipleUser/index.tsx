@@ -24,7 +24,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { store } from 'features/store'
 import { Typography } from '@mui/material'
 import { Trans, useTranslation } from 'react-i18next'
-import { CircleProgress } from '@catena-x/portal-shared-components'
 import {
   Button,
   DialogActions,
@@ -37,6 +36,7 @@ import {
   LoadingButton,
   TableType,
   StaticTable,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
