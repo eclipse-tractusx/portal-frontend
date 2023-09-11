@@ -36,8 +36,8 @@ export interface BusinessPartner {
   states: [
     {
       description: string
-      validFrom: any
-      validTo: any
+      validFrom: string
+      validTo: string
       type: {
         technicalKey: string
         name: string
@@ -55,8 +55,8 @@ export interface BusinessPartner {
     }
   ]
   relations: Array<BpdmTypeRelation>
-  currentness: any
-  createdAt: any
-  updatedAt: any
+  currentness: string
+  createdAt: string
+  updatedAt: string
   legalAddress: BpdmLegalAddressObject
 }

@@ -120,6 +120,12 @@ export interface BpdmBusinessStatus {
 }
 //endregion
 
+export interface LegalFormType {
+  technicalKey: string
+  name: string
+  abbreviation: string
+}
+
 export interface BusinessPartner {
   score?: number
   legalName: string
@@ -127,12 +133,12 @@ export interface BusinessPartner {
   member?: boolean
   identifiers: Array<BpdmTypeUUIDKeyPair>
   legalShortName: string
-  legalForm: BpdmLegalFormObject
+  legalForm: any
   states: [
     {
       description: string
-      validFrom: any
-      validTo: any
+      validFrom: string
+      validTo: string
       type: {
         technicalKey: string
         name: string
@@ -150,9 +156,9 @@ export interface BusinessPartner {
     }
   ]
   relations: Array<BpdmTypeRelation>
-  currentness: any
-  createdAt: any
-  updatedAt: any
+  currentness: string
+  createdAt: string
+  updatedAt: string
   legalAddress: BpdmLegalAddressObject
 }
 
@@ -167,9 +173,9 @@ export interface BusinessPartnerResponse {
 export interface BusinessPartnerAddressResponse {
   alternativePostalAddress: any
   bpnLegalEntity: string
-  createdAt: any
-  updatedAt: any
-  physicalPostalAddress: any
+  createdAt: string
+  updatedAt: string
+  physicalPostalAddress: PhysicalPostalAddressType
 }
 
 export interface PaginationData {
@@ -196,12 +202,67 @@ export interface PartnerNetworkDataGrid {
 
 export interface BpdmLegalAddressStatesObject {
   description: string
-  validFrom: any
-  validTo: any
+  validFrom: string
+  validTo: string
   type: {
     technicalKey: string
     name: string
   }
+}
+
+export interface AlternatePostalAddressType {
+  geographicCoordinates: {
+    longitude: 0
+    latitude: 0
+    altitude: 0
+  }
+  country: {
+    technicalKey: string
+    name: string
+  }
+  postalCode: string
+  city: string
+  administrativeAreaLevel1: {
+    countryCode: string
+    regionCode: string
+    regionName: string
+  }
+  deliveryServiceNumber: string
+  deliveryServiceType: string
+  deliveryServiceQualifier: string
+}
+
+export interface PhysicalPostalAddressType {
+  geographicCoordinates: {
+    longitude: 0
+    latitude: 0
+    altitude: 0
+  }
+  country: {
+    technicalKey: string
+    name: string
+  }
+  postalCode: string
+  city: string
+  street: {
+    name: string
+    houseNumber: string
+    milestone: string
+    direction: string
+  }
+  administrativeAreaLevel1: {
+    countryCode: string
+    regionCode: string
+    regionName: string
+  }
+  administrativeAreaLevel2: string
+  administrativeAreaLevel3: string
+  district: string
+  companyPostalCode: string
+  industrialZone: string
+  building: string
+  floor: string
+  door: string
 }
 
 export interface BpdmLegalAddressObject {
@@ -217,63 +278,12 @@ export interface BpdmLegalAddressObject {
       }
     }
   ]
-  physicalPostalAddress: {
-    geographicCoordinates: {
-      longitude: 0
-      latitude: 0
-      altitude: 0
-    }
-    country: {
-      technicalKey: string
-      name: string
-    }
-    postalCode: string
-    city: string
-    street: {
-      name: string
-      houseNumber: string
-      milestone: string
-      direction: string
-    }
-    administrativeAreaLevel1: {
-      countryCode: string
-      regionCode: string
-      regionName: string
-    }
-    administrativeAreaLevel2: string
-    administrativeAreaLevel3: string
-    district: string
-    companyPostalCode: string
-    industrialZone: string
-    building: string
-    floor: string
-    door: string
-  }
-  alternativePostalAddress: {
-    geographicCoordinates: {
-      longitude: 0
-      latitude: 0
-      altitude: 0
-    }
-    country: {
-      technicalKey: string
-      name: string
-    }
-    postalCode: string
-    city: string
-    administrativeAreaLevel1: {
-      countryCode: string
-      regionCode: string
-      regionName: string
-    }
-    deliveryServiceNumber: string
-    deliveryServiceType: string
-    deliveryServiceQualifier: string
-  }
+  physicalPostalAddress: PhysicalPostalAddressType
+  alternativePostalAddress: AlternatePostalAddressType
   bpnLegalEntity: string
   bpnSite: string
-  createdAt: any
-  updatedAt: any
+  createdAt: string
+  updatedAt: string
   isMainAddress: boolean
   isLegalAddress: boolean
 }

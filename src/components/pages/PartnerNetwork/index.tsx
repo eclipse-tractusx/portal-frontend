@@ -121,7 +121,7 @@ const PartnerNetwork = () => {
           fetchHook={useFetchBusinessPartnersQuery}
           fetchHookArgs={{ expr }}
           fetchHookRefresh={refresh}
-          getRowId={(row: any) => row.bpnl ?? ''}
+          getRowId={(row: { bpnl: string }) => row.bpnl ?? ''}
           columns={columns}
           callbackToPage={fetchAndApply}
           allItems={allItems}
