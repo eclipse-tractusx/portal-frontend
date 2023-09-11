@@ -14,6 +14,7 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+  - Added image to service overview cards
 - Sub Navigation Header
   - Align label to the left
 - Data Space
