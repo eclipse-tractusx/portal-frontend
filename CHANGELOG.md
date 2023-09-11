@@ -27,6 +27,8 @@
   - Show loading component and based on the response show "No items" component or ErrorBar component
 - App management
   - Fixed page break
+- App release process
+  - Fixed last step "Verify" image load issue
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
 
