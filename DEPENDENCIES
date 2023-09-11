@@ -842,7 +842,7 @@ npm/npmjs/-/string-length/5.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/string-natural-compare/3.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/string-width/4.2.3, MIT, approved, clearlydefined
 npm/npmjs/-/string.prototype.matchall/4.0.8, MIT, approved, #4571
-npm/npmjs/-/string.prototype.trim/1.2.7, MIT, approved, clearlydefined
+npm/npmjs/-/string.prototype.trim/1.2.7, MIT, approved, #10361
 npm/npmjs/-/string.prototype.trimend/1.0.6, MIT, approved, #4564
 npm/npmjs/-/string.prototype.trimstart/1.0.6, MIT, approved, #4647
 npm/npmjs/-/string_decoder/1.1.1, MIT, approved, clearlydefined
