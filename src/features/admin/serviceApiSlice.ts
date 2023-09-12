@@ -129,6 +129,12 @@ export const apiSlice = createApi({
       query: () =>
         `/api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
     }),
+    resetCredential: builder.mutation<ServiceAccountDetail, string>({
+      query: (id: string) => ({
+        url: `api/administration/serviceaccount/owncompany/serviceaccounts/${id}/resetCredentials`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
@@ -138,4 +144,5 @@ export const {
   useFetchServiceAccountListQuery,
   useFetchServiceAccountDetailQuery,
   useFetchServiceAccountRolesQuery,
+  useResetCredentialMutation,
 } = apiSlice
