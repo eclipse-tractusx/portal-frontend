@@ -37,6 +37,7 @@ import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
+import { success } from 'services/NotifyService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -64,6 +65,7 @@ export default function MyAccount() {
             color="secondary"
             onClick={async () => {
               await navigator.clipboard.writeText(token)
+              success(t('content.account.copy_to_clipboard_success'))
             }}
             size="small"
             variant="outlined"

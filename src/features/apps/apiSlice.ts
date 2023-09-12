@@ -56,6 +56,16 @@ export type AppMarketplaceApp = {
   subscriptionStatus?: SubscriptionStatus
 }
 
+export interface ProvidedApps {
+  meta: {
+    contentSize: number
+    page: number
+    totalElements: number
+    totalPages: number
+  }
+  content: AppMarketplaceApp[]
+}
+
 export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
@@ -237,7 +247,7 @@ export const apiSlice = createApi({
         return { data: subscriptionData }
       },
     }),
-    fetchProvidedApps: builder.query<AppMarketplaceApp[], void>({
+    fetchProvidedApps: builder.query<ProvidedApps, void>({
       query: () => '/api/apps/provided',
     }),
     fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({

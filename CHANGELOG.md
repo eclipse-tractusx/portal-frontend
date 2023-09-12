@@ -4,12 +4,37 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+  - Bugfix - App subscription activate button showing service activation overlay
+- Search screen - Mobile version
+  - Full width search overlay
+  - Clear the search result on closing overlay
+  - Show only one overlay if user clicks on any search results
 - Technical User
   - Enable search & filter
+- Technical User Details
+  - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+  - Added image to service overview cards
 - Invite Business Partner Form
   - Fix loader position to center
+- Sub Navigation Header
+  - Align label to the left
+- Data Space
+  - Last section background color issue
+- My Account
+  - Show success message on click of copy to clip board
+- Invite Business Partner Form
+  - Fix loader position to center
+- Page Loading and Error Component
+  - Show loading component and based on the response show "No items" component or ErrorBar component
+- App management
+  - Fixed page break
+- App release process
+  - Fixed last step "Verify" image load issue
+- App Overview
+  - Enhance Sub Menu by adding 'Change Documents' for active apps
+  - Add roles for active apps
 
 ## 1.6.0
 
