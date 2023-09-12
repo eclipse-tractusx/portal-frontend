@@ -31,6 +31,8 @@
   - Fixed last step "Verify" image load issue
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
+- Identity Provider Config
+  - UI Enhancements
 
 ## 1.6.0
 
