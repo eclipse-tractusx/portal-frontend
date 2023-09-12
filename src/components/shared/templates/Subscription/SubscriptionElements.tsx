@@ -234,6 +234,12 @@ export default function SubscriptionElements({
                       type="confirm"
                       variant="filled"
                       withIcon
+                      sx={{
+                        borderRadius: '36px',
+                        ':hover': {
+                          pointerEvents: 'auto',
+                        },
+                      }}
                     />
                   )}
                 </li>

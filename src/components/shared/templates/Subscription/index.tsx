@@ -287,7 +287,7 @@ export default function Subscription({
   let appFiltersData: AppFiltersResponse[] = useMemo(() => [], [])
   if (fetchAppFilters) {
     const { data } = fetchAppFilters()
-    appFiltersData = data
+    appFiltersData = data?.content
   }
 
   useEffect(() => {

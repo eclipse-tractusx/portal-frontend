@@ -33,6 +33,9 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- App Subscription
+  - Change endpoint
+  - Active button hover effect change
 
 ## 1.6.0
 
