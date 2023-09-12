@@ -7540,6 +7540,11 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
 
+phone@^3.1.39:
+  version "3.1.40"
+  resolved "https://registry.yarnpkg.com/phone/-/phone-3.1.40.tgz#039c7cd432fb2459a69f1682c5814d75c7e595c7"
+  integrity sha512-RyQgv8Xl8a43LFBLrYnlS2rTOFFg5Se6DNTG2OXHZlWqC7cHcD/KA1irHjJToeQOoCVZg63pYIlXqG4cuOj/vg==
+
 picocolors@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
