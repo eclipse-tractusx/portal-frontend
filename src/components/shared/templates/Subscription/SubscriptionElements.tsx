@@ -196,36 +196,38 @@ export default function SubscriptionElements({
                     </Typography>
                   )}
                   {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.PENDING && (
-                    <div className="forthSection">
-                      <Chip
-                        color="primary"
-                        label={t('content.appSubscription.activateBtn')}
-                        type="plain"
-                        variant="filled"
-                        onClick={() =>
-                          type === SubscriptionTypes.APP_SUBSCRIPTION
-                            ? setSubscriptionDetail({
-                                appId: subscriptionData.offerId,
-                                subscriptionId: subscription.subscriptionId,
-                                title: subscriptionData.offerName,
-                                companyName: subscription.companyName,
-                                bpnNumber: subscription.bpnNumber,
-                              })
-                            : setState({
-                                type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
-                                payload: {
-                                  id: subscription.subscriptionId,
-                                  offerId: subscriptionData.offerId,
-                                  isTechUser: subscription.technicalUser,
-                                  overlay: true,
+                    SubscriptionStatus.PENDING ||
+                    (subscription.offerSubscriptionStatus ===
+                      SubscriptionStatus.INACTIVE && (
+                      <div className="forthSection">
+                        <Chip
+                          color="primary"
+                          label={t('content.appSubscription.activateBtn')}
+                          type="plain"
+                          variant="filled"
+                          onClick={() =>
+                            type === SubscriptionTypes.APP_SUBSCRIPTION
+                              ? setSubscriptionDetail({
+                                  appId: subscriptionData.offerId,
+                                  subscriptionId: subscription.subscriptionId,
+                                  title: subscriptionData.offerName,
                                   companyName: subscription.companyName,
-                                },
-                              })
-                        }
-                      />
-                    </div>
-                  )}
+                                  bpnNumber: subscription.bpnNumber,
+                                })
+                              : setState({
+                                  type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
+                                  payload: {
+                                    id: subscription.subscriptionId,
+                                    offerId: subscriptionData.offerId,
+                                    isTechUser: subscription.technicalUser,
+                                    overlay: true,
+                                    companyName: subscription.companyName,
+                                  },
+                                })
+                          }
+                        />
+                      </div>
+                    ))}
                   {subscription.offerSubscriptionStatus ===
                     SubscriptionStatus.ACTIVE && (
                     <Chip

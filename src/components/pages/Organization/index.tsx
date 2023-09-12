@@ -47,6 +47,7 @@ export default function Organization() {
     data: companyDetails,
     isError: companyDetailsError,
     isLoading: companyDetailsLoading,
+    refetch,
   } = useFetchOwnCompanyDetailsQuery()
   const companyDetailsData =
     companyDetails && CompanyDetailsToCards(companyDetails)
@@ -72,6 +73,8 @@ export default function Organization() {
         error(t('content.organization.unsubscribe.unsubscribeError'))
       })
     setLoading(false)
+    setShowUnsubscribeOverlay(false)
+    refetch()
   }
 
   return (
