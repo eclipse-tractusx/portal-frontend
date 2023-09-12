@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -27,14 +27,21 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
+  Typography,
+  Checkbox,
+  StaticTable,
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
+import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
+import './Organization.scss'
 
 interface UnSubscribeOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
   loading?: boolean
+  subscriptionId: string
+  appId: string
 }
 
 const UnSubscribeOverlay = ({
@@ -42,9 +49,13 @@ const UnSubscribeOverlay = ({
   handleOverlayClose,
   handleConfirmClick,
   loading,
+  subscriptionId,
+  appId,
 }: UnSubscribeOverlayProps) => {
   const { t } = useTranslation()
-
+  const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
+  const [checkBoxSelected, setCheckBoxSelected] = useState<boolean>(false)
+  console.log(data)
   return (
     <div>
       <Dialog
@@ -55,7 +66,7 @@ const UnSubscribeOverlay = ({
           },
         }}
       >
-        <DialogHeader title={t('content.edcconnector.deletemodal.title')} />
+        <DialogHeader title={t('content.organization.unsubscribe.title')} />
         <DialogContent
           sx={{
             textAlign: 'center',
@@ -63,15 +74,55 @@ const UnSubscribeOverlay = ({
             paddingTop: '0px',
           }}
         >
-          {t('content.edcconnector.deletemodal.description')}
+          {t('content.organization.unsubscribe.description')}
+
+          <Box className="noteBox">
+            <Typography className="noteText" variant="body2">
+              {t('content.organization.unsubscribe.note')}
+            </Typography>
+          </Box>
+          <Box className="detailsTable">
+            <StaticTable
+              data={{
+                head: [
+                  t('content.organization.unsubscribe.table.app'),
+                  t('content.organization.unsubscribe.table.status'),
+                  t('content.organization.unsubscribe.table.connector'),
+                  t('content.organization.unsubscribe.table.techUser'),
+                ],
+                body: [
+                  [data?.name || ''],
+                  [data?.offerSubscriptionStatus || ''],
+                  [data?.technicalUserData[0]?.name || ''],
+                  [data?.connectorData[0]?.name || ''],
+                ],
+              }}
+              horizontal={true}
+            />
+          </Box>
+          <Box
+            sx={{
+              marginTop: '50px',
+            }}
+          >
+            <Checkbox
+              label={t('content.organization.unsubscribe.checkBoxLabel')}
+              checked={checkBoxSelected}
+              onClick={() => setCheckBoxSelected(!checkBoxSelected)}
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {t('global.actions.cancel')}
           </Button>
           {!loading && (
-            <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
-              {t('global.actions.confirm')}
+            <Button
+              variant="contained"
+              disabled={!checkBoxSelected}
+              onClick={(e) => handleConfirmClick(e)}
+            >
+              {t('content.organization.unsubscribe.buttonText')}
             </Button>
           )}
           {loading && (

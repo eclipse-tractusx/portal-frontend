@@ -47,6 +47,7 @@ export default function Organization() {
   const companyDetailsData =
     companyDetails && CompanyDetailsToCards(companyDetails)
   const [subscriptionId, setSubscriptionId] = useState<string>('')
+  const [appId, setAppId] = useState<string>('')
   const [showUnsubscribeOverlay, setShowUnsubscribeOverlay] =
     useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -61,12 +62,16 @@ export default function Organization() {
 
   return (
     <main>
-      <UnSubscribeOverlay
-        openDialog={showUnsubscribeOverlay}
-        handleOverlayClose={() => setShowUnsubscribeOverlay(false)}
-        handleConfirmClick={() => onUnsubscribe()}
-        loading={loading}
-      />
+      {showUnsubscribeOverlay && (
+        <UnSubscribeOverlay
+          openDialog={showUnsubscribeOverlay}
+          handleOverlayClose={() => setShowUnsubscribeOverlay(false)}
+          handleConfirmClick={() => onUnsubscribe()}
+          loading={loading}
+          appId={appId}
+          subscriptionId={subscriptionId}
+        />
+      )}
       <PageHeader
         title={t('pages.organization')}
         topPage={false}
@@ -99,9 +104,11 @@ export default function Organization() {
               name={app.name || ''}
               provider={app.provider}
               status={app.status}
-              onUnsubscribe={() => {
+              onUnsubscribe={(e) => {
                 setShowUnsubscribeOverlay(true)
-                setSubscriptionId(app.offerId)
+                setAppId(app.offerId)
+                setSubscriptionId(app.subscriptionId)
+                e.stopPropagation()
               }}
             />
           ))}

@@ -371,6 +371,19 @@
       "subscriptions": {
         "title": "App Subscriptions",
         "error": "error - no data found"
+      },
+      "unsubscribe": {
+        "title": "Unsubscribe Business Application",
+        "description": "Are you sure to unsubscribe from the business application?",
+        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
+        "table": {
+          "app": "App",
+          "status": "Status",
+          "connector": "Connector",
+          "techUser": "Technical User"
+        },
+        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
+        "buttonText": "Unsubscribe"
       }
     },
     "datamanagement": {

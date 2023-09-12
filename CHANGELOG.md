@@ -31,6 +31,8 @@
   - Fixed last step "Verify" image load issue
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
+- My Organization
+  - Unsubscribe subscription flow
 
 ## 1.6.0
 

@@ -372,6 +372,19 @@
       "subscriptions": {
         "title": "App-Abonnements",
         "error": "Fehler - keine Daten gefunden"
+      },
+      "unsubscribe": {
+        "title": "Geschäftsanwendung Deaktivieren",
+        "description": "Möchten Sie sich die Geschäftsanwendung wirklich deaktivieren?",
+        "note": "Bitte beachten Sie: Alle möglicherweise verbundenen Objekte (siehe Details oben) werden ebenfalls deaktiviert. Die Abmeldung ist nicht rückgängig zu machen.",
+        "table": {
+          "app": "App",
+          "status": "Status",
+          "connector": "Connector",
+          "techUser": "Technischer User"
+        },
+        "checkBoxLabel": "Ja, ich stimme zu, dass ich die Auswirkungen der Abmeldung verstanden habe und mit dem Vorgang fortfahren möchte.",
+        "buttonText": "Abbestellen"
       }
     },
     "datamanagement": {

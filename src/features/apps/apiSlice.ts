@@ -185,6 +185,30 @@ export interface ActiveSubscription {
   name: string
   provider: string
   image: string
+  subscriptionId: string
+}
+
+export interface SubscribeTechnicalUserData {
+  id: string
+  name: string
+  permissions: Array<string>
+}
+
+export interface SubscribeConnectorData {
+  id: string
+  name: string
+  endpoint: string
+}
+
+export interface ActiveSubscriptionDetails {
+  offerId: string
+  name: string
+  provider: string
+  image: string
+  subscriptionId: string
+  offerSubscriptionStatus: string
+  technicalUserData: SubscribeTechnicalUserData[]
+  connectorData: SubscribeConnectorData[]
 }
 
 interface FetchSubscriptionAppQueryType {
@@ -287,7 +311,7 @@ export const apiSlice = createApi({
       query: () => '/api/apps/subscribed/activesubscriptions',
     }),
     fetchSubscriptionApp: builder.query<
-      ActiveSubscription,
+      ActiveSubscriptionDetails,
       FetchSubscriptionAppQueryType
     >({
       query: (obj) =>
