@@ -40,6 +40,7 @@ import { setAppear } from 'features/control/appear'
 import { Image } from '@catena-x/portal-shared-components'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
   switch (category) {
@@ -110,6 +111,10 @@ export const SearchResultItem = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
 
   return (
     <ListItem
@@ -136,6 +141,9 @@ export const SearchResultItem = ({
             navigate(`/${item.id}`)
             break
           case SearchCategory.OVERLAY:
+            if (isMobile) {
+              dispatch(setAppear({ SEARCH: false }))
+            }
             dispatch(show(item.id as OVERLAYS, ''))
             break
           case SearchCategory.ACTION:
@@ -143,6 +151,9 @@ export const SearchResultItem = ({
             dispatch(exec(item.id))
             break
           default:
+            if (isMobile) {
+              dispatch(setAppear({ SEARCH: false }))
+            }
             dispatch(show(getCategoryOverlay(item.category), item.id))
         }
       }}
@@ -164,12 +175,12 @@ export const SearchResultItem = ({
         primary={getHighlightedText(t(item.title), expr)}
         secondary={getHighlightedText(t(item.description!), expr)}
         primaryTypographyProps={{
-          color: '#606060',
-          fontWeight: 800,
+          color: '#2D2D2D',
+          fontWeight: 600,
           fontSize: 16,
         }}
         secondaryTypographyProps={{
-          color: '#606060',
+          color: '#717171',
           fontWeight: 400,
           fontSize: 12,
         }}

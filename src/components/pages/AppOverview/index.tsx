@@ -272,9 +272,6 @@ export default function AppOverview() {
             </div>
           ) : (
             <>
-              {filterItem && filterItem.length === 0 && isSuccess && (
-                <NoItems />
-              )}
               {!isSuccess && (
                 <ErrorBar
                   errorText={t('error.errorBar')}
@@ -283,11 +280,13 @@ export default function AppOverview() {
                   showButton={true}
                 />
               )}
-              {filterItem && filterItem.length > 0 && isSuccess && (
+              {filterItem && filterItem.length > 0 && isSuccess ? (
                 <AppOverviewList
-                  filterItem={filterItem ?? []}
+                  filterItem={filterItem}
                   showOverlay={showOverlay}
                 />
+              ) : (
+                <NoItems />
               )}
             </>
           )}

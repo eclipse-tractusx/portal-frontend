@@ -73,7 +73,6 @@ export const Patterns = {
       /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
     longDescriptionDE:
       /^[^ @=<>*\-+#?%&_:;]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
-    phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
@@ -85,7 +84,7 @@ export const Patterns = {
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
   techuser: {
-    clientId: /^[ A-Za-z0-9]{0,80}$/,
+    clientId: /^[a-zA-Z0-9-]{0,80}$/,
   },
 }
 

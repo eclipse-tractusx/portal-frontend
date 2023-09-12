@@ -31,6 +31,7 @@ import {
   TableType,
   CircleProgress,
   CardHorizontal,
+  ImageGallery,
 } from '@catena-x/portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -394,21 +395,7 @@ export default function CommonValidateAndPublish({
             )}
           </div>
         ))}
-        {multipleImages && (
-          <div style={{ display: 'flex' }}>
-            {multipleImages?.map((img: { url: string }, i: number) => {
-              return (
-                <Box sx={{ margin: '37px auto 0 auto' }} key={img.url}>
-                  <img
-                    src={img.url}
-                    alt={'images'}
-                    className="verify-validate-images"
-                  />
-                </Box>
-              )
-            })}
-          </div>
-        )}
+        {multipleImages && <ImageGallery gallery={multipleImages} />}
 
         <Divider className="verify-validate-form-divider" />
         {statusData?.privacyPolicies && (
