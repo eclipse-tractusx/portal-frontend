@@ -18,6 +18,7 @@
   - Added image to service overview cards
 - Sub Navigation Header
   - Align label to the left
+  - Bugfix - Sub header width in zoom out view
 - Data Space
   - Last section background color issue
 - My Account
