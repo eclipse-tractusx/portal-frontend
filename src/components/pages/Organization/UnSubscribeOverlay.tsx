@@ -55,7 +55,6 @@ const UnSubscribeOverlay = ({
   const { t } = useTranslation()
   const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
   const [checkBoxSelected, setCheckBoxSelected] = useState<boolean>(false)
-  console.log(data)
   return (
     <div>
       <Dialog

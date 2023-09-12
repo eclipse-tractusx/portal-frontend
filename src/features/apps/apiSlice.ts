@@ -317,6 +317,12 @@ export const apiSlice = createApi({
       query: (obj) =>
         `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
     }),
+    unsubscribeApp: builder.mutation<void, string>({
+      query: (subscriptionId) => ({
+        url: `/api/apps/${subscriptionId}/unsubscribe`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -333,4 +339,5 @@ export const {
   useDeactivateAppMutation,
   useFetchSubscribedActiveAppsQuery,
   useFetchSubscriptionAppQuery,
+  useUnsubscribeAppMutation,
 } = apiSlice

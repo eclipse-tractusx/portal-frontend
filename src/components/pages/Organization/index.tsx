@@ -25,7 +25,10 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import './Organization.scss'
 import { OVERLAYS } from 'types/Constants'
-import { useFetchSubscribedActiveAppsQuery } from 'features/apps/apiSlice'
+import {
+  useFetchSubscribedActiveAppsQuery,
+  useUnsubscribeAppMutation,
+} from 'features/apps/apiSlice'
 import { subscribedApps } from 'features/apps/mapper'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import LoadingError from './LoadingError'
@@ -33,6 +36,7 @@ import { CompanyDetailsToCards } from 'features/admin/mapper'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { useState } from 'react'
 import UnSubscribeOverlay from './UnSubscribeOverlay'
+import { error, success } from 'services/NotifyService'
 
 export default function Organization() {
   const { t } = useTranslation()
@@ -51,13 +55,23 @@ export default function Organization() {
   const [showUnsubscribeOverlay, setShowUnsubscribeOverlay] =
     useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const [unsubscribeMutation] = useUnsubscribeAppMutation()
 
   const handleClick = (id: string | undefined) => {
     dispatch(show(OVERLAYS.APP, id, t('content.organization.company.title')))
   }
 
-  const onUnsubscribe = () => {
+  const onUnsubscribe = async () => {
     setLoading(true)
+    await unsubscribeMutation(subscriptionId)
+      .unwrap()
+      .then(() => {
+        success(t('content.organization.unsubscribe.unsubscribeSuccess'))
+      })
+      .catch(() => {
+        error(t('content.organization.unsubscribe.unsubscribeError'))
+      })
+    setLoading(false)
   }
 
   return (
@@ -99,6 +113,7 @@ export default function Organization() {
         <div className="organization-content">
           {appSubscribedData?.map((app) => (
             <AppSubscriptions
+              key={app.offerId}
               image={app.image}
               onButtonClick={() => handleClick(app.offerId)}
               name={app.name || ''}

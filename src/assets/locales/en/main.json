@@ -383,7 +383,9 @@
           "techUser": "Technical User"
         },
         "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
-        "buttonText": "Unsubscribe"
+        "buttonText": "Unsubscribe",
+        "unsubscribeSuccess": "Unsubscribe subscription is successful",
+        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
       }
     },
     "datamanagement": {
