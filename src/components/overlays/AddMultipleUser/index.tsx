@@ -420,6 +420,7 @@ export default function AddMultipleUser() {
           <Button
             variant="outlined"
             onClick={() => dispatch(show(OVERLAYS.NONE))}
+            sx={{ textTransform: 'none' }}
           >
             {t('global.actions.cancel')}
           </Button>
@@ -433,7 +434,7 @@ export default function AddMultipleUser() {
               loading
               size="medium"
               onButtonClick={() => {}}
-              sx={{ marginLeft: '10px' }}
+              sx={{ marginLeft: '10px', textTransform: 'none' }}
             />
           ) : (
             <Button
@@ -442,6 +443,7 @@ export default function AddMultipleUser() {
               disabled={
                 uploadedFile === undefined || (isFileUploaded && !roles.length)
               }
+              sx={{ textTransform: 'none' }}
             >
               {isError ? t('global.actions.exit') : t('global.actions.confirm')}
             </Button>
