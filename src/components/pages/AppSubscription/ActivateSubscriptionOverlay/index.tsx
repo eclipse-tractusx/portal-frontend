@@ -32,7 +32,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
-import { isURL } from 'types/Patterns'
+import { isKeycloakURL } from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
   SubscriptionActivationResponse,
@@ -86,7 +86,7 @@ const ActivateSubscriptionOverlay = ({
   const addInputURL = (value: string) => {
     setInputURL(value)
     setURLErrorMessage(
-      !isURL(value.trim())
+      !isKeycloakURL(value.trim())
         ? t('content.appSubscription.pleaseEnterValidURL')
         : ''
     )

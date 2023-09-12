@@ -27,11 +27,15 @@ import {
   ViewSelector,
   SortOption,
   Button,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './CertificateCredentials.scss'
 import { OVERLAYS } from 'types/Constants'
-import { useFetchCertificatesQuery } from 'features/certification/certificationApiSlice'
+import {
+  useFetchCertificateTypesQuery,
+  useFetchCertificatesQuery,
+} from 'features/certification/certificationApiSlice'
 import CertificateElements from './CertificateElements'
 
 enum FilterType {
@@ -105,6 +109,7 @@ export default function CertificateCredentials() {
   const { t } = useTranslation()
 
   const { data } = useFetchCertificatesQuery()
+  const { data: certificateTypes } = useFetchCertificateTypesQuery()
 
   const [{ searchExpr, showModal, selected, sortOption }, setState] =
     useReducer(reducer, initialState)
@@ -221,14 +226,29 @@ export default function CertificateCredentials() {
               </div>
             </div>
             <div className="uploadBtn">
-              <Button
-                size="small"
-                onClick={() =>
-                  dispatch(show(OVERLAYS.UPDATE_CERTIFICATE, 'userId'))
-                }
-              >
-                {t('content.certificates.uploadCertificate')}
-              </Button>
+              {certificateTypes && (
+                <Tooltips
+                  additionalStyles={{
+                    cursor: 'pointer',
+                    display: certificateTypes.length >= 0 ? 'none' : 'block',
+                  }}
+                  tooltipPlacement="top-start"
+                  tooltipText={t('content.certificates.noUploadMessage')}
+                  children={
+                    <div>
+                      <Button
+                        size="small"
+                        onClick={() =>
+                          dispatch(show(OVERLAYS.UPDATE_CERTIFICATE, 'userId'))
+                        }
+                        disabled={certificateTypes.length <= 0}
+                      >
+                        {t('content.certificates.uploadCertificate')}
+                      </Button>
+                    </div>
+                  }
+                />
+              )}
             </div>
             <CertificateElements data={data} />
           </div>

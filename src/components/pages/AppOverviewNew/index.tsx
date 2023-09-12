@@ -21,7 +21,10 @@
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { ErrorBar, PageHeader } from '@catena-x/portal-shared-components'
-import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import {
+  AppMarketplaceApp,
+  useFetchProvidedAppsQuery,
+} from 'features/apps/apiSlice'
 import NoItems from '../NoItems'
 import { AppOverviewList } from '../AppOverview/AppOverviewList'
 import { appToCard } from 'features/apps/mapper'
@@ -42,9 +45,11 @@ export default function AppOverviewNew() {
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
-        {data && data.length > 0 ? (
+        {data && data.content?.length > 0 ? (
           <AppOverviewList
-            filterItem={data.map((item) => appToCard(item))}
+            filterItem={data.content.map((item: AppMarketplaceApp) =>
+              appToCard(item)
+            )}
             showOverlay={() => {}}
           />
         ) : (

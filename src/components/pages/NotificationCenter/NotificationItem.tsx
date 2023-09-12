@@ -90,6 +90,7 @@ const NotificationContent = ({
   const addedRoles = item.contentParsed?.addedRoles
   const credentialType = item.contentParsed?.type
   const newUrl = item.contentParsed?.newUrl
+  const roles = item.contentParsed?.Roles
 
   return (
     <>
@@ -108,6 +109,7 @@ const NotificationContent = ({
             addedRoles: addedRoles ? addedRoles : '-',
             credentialType: credentialType,
             newUrl: newUrl,
+            roles: roles?.join(', '),
           }}
         >
           <NameLink
@@ -206,6 +208,8 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.CREDENTIAL_REJECTED:
       return <NotificationContent item={item} />
     case NotificationType.SUBSCRIPTION_URL_UPDATE:
+      return <NotificationContent item={item} />
+    case NotificationType.APP_ROLE_ADDED:
       return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>

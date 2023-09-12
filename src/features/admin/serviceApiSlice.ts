@@ -59,6 +59,12 @@ export type AppRoleCreate = {
   roles: string[]
 }
 
+export enum ServiceAccountStatusFilter {
+  ALL = 'ALL',
+  MANAGED = 'MANAGED',
+  OWNED = 'OWNED',
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -87,8 +93,33 @@ export const apiSlice = createApi({
       PaginResult<ServiceAccountListEntry>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
+      query: (fetchArgs) => {
+        const isFetchArgs = fetchArgs.args && fetchArgs.args.expr !== ''
+        const url = `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+        const isOwner =
+          fetchArgs.args!.statusFilter === ServiceAccountStatusFilter.OWNED
+        if (
+          isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ALL
+        ) {
+          return `${url}&clientId=${fetchArgs.args!.expr}&isOwner=${isOwner}`
+        } else if (
+          isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ALL
+        ) {
+          return `${url}&clientId=${fetchArgs.args!.expr}`
+        } else if (
+          !isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ALL
+        ) {
+          return `${url}&isOwner=${isOwner}`
+        } else {
+          return url
+        }
+      },
     }),
     fetchServiceAccountDetail: builder.query<ServiceAccountDetail, string>({
       query: (id: string) =>
@@ -97,6 +128,12 @@ export const apiSlice = createApi({
     fetchServiceAccountRoles: builder.query<ServiceAccountRole[], void>({
       query: () =>
         `/api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
+    }),
+    resetCredential: builder.mutation<ServiceAccountDetail, string>({
+      query: (id: string) => ({
+        url: `api/administration/serviceaccount/owncompany/serviceaccounts/${id}/resetCredentials`,
+        method: 'POST',
+      }),
     }),
   }),
 })
@@ -107,4 +144,5 @@ export const {
   useFetchServiceAccountListQuery,
   useFetchServiceAccountDetailQuery,
   useFetchServiceAccountRolesQuery,
+  useResetCredentialMutation,
 } = apiSlice

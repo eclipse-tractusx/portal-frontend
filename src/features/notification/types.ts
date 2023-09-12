@@ -99,6 +99,7 @@ export enum NotificationType {
   CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
   CREDENTIAL_APPROVAL = 'CREDENTIAL_APPROVAL',
   SUBSCRIPTION_URL_UPDATE = 'SUBSCRIPTION_URL_UPDATE',
+  APP_ROLE_ADDED = 'APP_ROLE_ADDED',
 }
 
 export interface NotificationContent {
@@ -115,6 +116,7 @@ export interface NotificationContent {
   addedRoles?: string
   type?: string | number
   newUrl?: string
+  Roles?: string[]
 }
 
 export interface CXNotificationContent {

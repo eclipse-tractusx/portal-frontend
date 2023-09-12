@@ -29,6 +29,7 @@ import {
   isCountryCode,
   isFirstName,
   isLastName,
+  isClientID,
 } from './Patterns'
 
 const TESTDATA = {
@@ -183,6 +184,10 @@ const TESTDATA = {
       ' Julia Sophie ',
     ],
   },
+  CLIENTID: {
+    valid: ['sa-12', 'JSSS', 'Julia12'],
+    invalid: ['&^%#@', '!', 'hash &*^#$'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -249,6 +254,14 @@ describe('Input Pattern Tests', () => {
     )
     TESTDATA.LASTNAME.invalid.forEach((expr) =>
       expect(isLastName(expr)).toBe(false)
+    )
+  })
+  it('validate tech user clientId', () => {
+    TESTDATA.CLIENTID.valid.forEach((expr) =>
+      expect(isClientID(expr)).toBe(true)
+    )
+    TESTDATA.CLIENTID.invalid.forEach((expr) =>
+      expect(isClientID(expr)).toBe(false)
     )
   })
 })
