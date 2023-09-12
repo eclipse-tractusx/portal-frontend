@@ -130,7 +130,7 @@ export const InviteForm = ({
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+          <Button name="send" disabled={inpValid[4] || state === 'busy'} onClick={doSubmit}>
             {`${t('content.invite.invite')}`}
           </Button>
         </DialogActions>

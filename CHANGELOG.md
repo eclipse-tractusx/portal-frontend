@@ -18,6 +18,7 @@
   - Added image to service overview cards
 - Invite Business Partner Form
   - Fix loader position to center
+  - Disable invite button when loader is visible
 - Sub Navigation Header
   - Align label to the left
 - Data Space
