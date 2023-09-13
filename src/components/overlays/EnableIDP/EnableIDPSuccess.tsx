@@ -38,16 +38,22 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
 
   const stepsList = [
     {
-      headline: t('add.stepLists.firstStep'),
+      headline: t('enablesuccess.stepLists.firstStep'),
       step: 1,
+      text: t('enablesuccess.created'),
+      color: '#B3CB2D',
     },
     {
-      headline: t('add.stepLists.secondStep'),
+      headline: t('enablesuccess.stepLists.secondStep'),
       step: 2,
+      text: t('enablesuccess.configured'),
+      color: '#B3CB2D',
     },
     {
       headline: t('enablesuccess.stepLists.thirdStep'),
       step: 3,
+      text: t('enablesuccess.connected'),
+      color: '#B3CB2D',
     },
   ]
 

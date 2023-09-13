@@ -68,6 +68,7 @@
   "edit": {
     "title": "Add your Identity Provider (IdP)",
     "desc": "Configure the connection details <br/> to your company IdP",
+    "created": "Created",
     "addDataHeading": "Please add the following data:",
     "metaDataHeading": "Automatically generated metadata:",
     "success": "IdP updated",
@@ -87,6 +88,7 @@
       "secondStep": "Idp data configured",
       "thirdStep": "Connect user profile"
     },
+    "created": "Created",
     "desc": "In the next step, your IdP needs to be activated. <br /><br />To do this, connect your existing Catena-X user <br />with your user ID  in the IdP you just have added.",
     "label": "Your IdP - User ID",
     "hint": "Your existing user ID (not name) on target IDP",
@@ -100,6 +102,9 @@
       "secondStep": "Idp data configured",
       "thirdStep": "User Profile connected"
     },
+    "created": "Created",
+    "configured": "Configured",
+    "connected": "Connected",
     "subHeading1": "Your user profile has been connected successfully.",
     "subHeading2": "You have completed the setup process of your new IdP.",
     "nextStepHeading": "Your NEXT Steps:",

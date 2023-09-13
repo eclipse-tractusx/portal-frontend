@@ -199,6 +199,7 @@ export const AddIdp = () => {
     {
       headline: t('add.stepLists.firstStep'),
       step: 1,
+      color: '#0F71CB',
     },
     {
       headline: t('add.stepLists.secondStep'),

@@ -58,14 +58,19 @@ export const EnableIDP = ({ id }: { id: string }) => {
     {
       headline: t('enable.stepLists.firstStep'),
       step: 1,
+      text: t('enable.created'),
+      color: '#B3CB2D',
     },
     {
       headline: t('enable.stepLists.secondStep'),
       step: 2,
+      text: t('enable.created'),
+      color: '#B3CB2D',
     },
     {
       headline: t('enable.stepLists.thirdStep'),
       step: 3,
+      color: '#0F71CB',
     },
   ]
 

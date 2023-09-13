@@ -68,10 +68,13 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     {
       headline: t('add.stepLists.firstStep'),
       step: 1,
+      text: t('edit.created'),
+      color: '#B3CB2D',
     },
     {
       headline: t('add.stepLists.secondStep'),
       step: 2,
+      color: '#0F71CB',
     },
     {
       headline: t('add.stepLists.thirdStep'),
