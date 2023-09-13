@@ -41,13 +41,12 @@ import { error, success } from 'services/NotifyService'
 export default function Organization() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { data } = useFetchSubscribedActiveAppsQuery()
+  const { data, refetch } = useFetchSubscribedActiveAppsQuery()
   const appSubscribedData = data && subscribedApps(data)
   const {
     data: companyDetails,
     isError: companyDetailsError,
     isLoading: companyDetailsLoading,
-    refetch,
   } = useFetchOwnCompanyDetailsQuery()
   const companyDetailsData =
     companyDetails && CompanyDetailsToCards(companyDetails)
