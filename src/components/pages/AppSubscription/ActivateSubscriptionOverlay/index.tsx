@@ -220,7 +220,7 @@ const ActivateSubscriptionOverlay = ({
                   </Typography>
                 </li>
               </ol>
-              <Typography variant="h4" className="addTentalURLHeading">
+              <Typography variant="h5" className="addTentalURLHeading">
                 {t('content.appSubscription.activation.addTentalURLHeading')}
               </Typography>
               <Typography variant="body2">
@@ -237,7 +237,7 @@ const ActivateSubscriptionOverlay = ({
               <Input
                 name="tentant_url"
                 label={
-                  <Typography variant="body2">
+                  <Typography variant="label3">
                     {t('content.appSubscription.activation.enterURL')}
                   </Typography>
                 }
@@ -245,8 +245,8 @@ const ActivateSubscriptionOverlay = ({
                 onChange={(e) => addInputURL(e.target.value)}
                 value={inputURL}
               />
-              <p>{URLErrorMsg}</p>
-              <Typography variant="h4" className="addTentalURLHeading">
+              <p className="errorMsg">{URLErrorMsg}</p>
+              <Typography variant="h5" className="addTentalURLHeading">
                 {t(
                   'content.appSubscription.activation.technicalUserDetailsHeading'
                 )}
@@ -263,7 +263,7 @@ const ActivateSubscriptionOverlay = ({
                 </Typography>
               </Link>
               <div className="technicalUserProfile">
-                <Typography variant="h4">
+                <Typography variant="h5" sx={{ marginBottom: '20px' }}>
                   {t(
                     'content.appSubscription.activation.technicalUserProfileHeading'
                   )}

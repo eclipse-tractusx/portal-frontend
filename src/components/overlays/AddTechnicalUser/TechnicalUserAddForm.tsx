@@ -58,11 +58,11 @@ const TechnicalUserAddFormSelect = ({
             error={!!errors[name]}
             sx={{ marginBottom: '7px', color: '#000' }}
           >
-            <Typography variant="body2">
+            <Typography variant="h5">
               {t('content.addUser.technicalUser.addOverlay.service')}
             </Typography>
           </InputLabel>
-          <Typography variant="body3">
+          <Typography variant="body2">
             {t('content.addUser.technicalUser.addOverlay.serviceSubHeading')}
           </Typography>
           {roles?.map((role: ServiceAccountRole) => (
