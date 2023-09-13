@@ -18,9 +18,9 @@
   "documentDeleteError": "Something went wrong.",
   "global": {
     "actions": {
-      "confirm": "Confirm",
-      "cancel": "Cancel",
-      "save": "Save"
+      "confirm": "Bestätigen",
+      "cancel": "Stornieren",
+      "save": "Speichern"
     }
   },
   "stepper": {
@@ -129,12 +129,12 @@
       "deactivate": "Deactivate"
     },
     "serviceDeactivate": {
-      "headerTitle": "Deactivate Service",
-      "description": "Deactivation of service will deactivate the service offer inside the Catena-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
-      "checkboxLabel": "Hereby I confirm that I have read the business service terms and conditions and that I am deactivating my company business services from the marketplace with immediate effect. I understand that it is not possible to self-reverse the deactivation.",
-      "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
-      "successMsg": "Deactivation successfully completed",
-      "errorMsg": "Error! Something went wrong"
+      "headerTitle": "Dienst deaktivieren",
+      "description": "Durch die Deaktivierung des Dienstes wird das Serviceangebot auf dem Catena-X-Marktplatz deaktiviert. Alle derzeit aktiven Abonnements bleiben aktiv und die Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
+      "checkboxLabel": "Hiermit bestätige ich, dass ich die Geschäftsbedingungen für Business-Services gelesen habe und dass ich die Business-Services meines Unternehmens mit sofortiger Wirkung vom Marktplatz deaktiviere. Ich verstehe, dass es nicht möglich ist, die Deaktivierung selbst rückgängig zu machen.",
+      "checkboxErrorMsg": "Bitte bestätigen Sie, dass Sie die oben genannten Auswirkungen der Deaktivierung gelesen haben, bevor Sie fortfahren",
+      "successMsg": "Deaktivierung erfolgreich abgeschlossen",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen"
     }
   },
   "servicedetails": {
