@@ -65,7 +65,10 @@ const AppSubscriptionDetailOverlay = ({
 }: AppSubscriptionDetailProps) => {
   const { t } = useTranslation()
   const ti = useTranslation('servicerelease').t
-  const fetchAPI = type === SubscriptionTypes.APP_SUBSCRIPTION ? useFetchSubscriptionDetailQuery : useFetchServiceSubDetailQuery
+  const fetchAPI =
+    type === SubscriptionTypes.APP_SUBSCRIPTION
+      ? useFetchSubscriptionDetailQuery
+      : useFetchServiceSubDetailQuery
   const { data, refetch } = fetchAPI({
     appId,
     subscriptionId,
@@ -123,16 +126,16 @@ const AppSubscriptionDetailOverlay = ({
     [
       `${t('content.appSubscription.detailOverlay.technicalName')}`,
       data?.technicalUserData?.[0]?.name ??
-      (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-        ? 'N/A'
-        : ''),
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
     ],
     [
       `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
       data?.technicalUserData?.[0]?.permissions.toString() ??
-      (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-        ? 'N/A'
-        : ''),
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
     ],
   ]
 
@@ -145,10 +148,10 @@ const AppSubscriptionDetailOverlay = ({
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
         data?.appInstanceId ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
-      ],
+          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+            ? 'N/A'
+            : ''),
+      ]
     )
 
   const technicalDetails: TableType = {
@@ -243,7 +246,11 @@ const AppSubscriptionDetailOverlay = ({
       >
         <DialogHeader
           title={t('content.appSubscription.detailOverlay.title')}
-          intro={type === SubscriptionTypes.APP_SUBSCRIPTION ? t('content.appSubscription.detailOverlay.description') : ti('serviceSubscription.detailOverlay.description')}
+          intro={
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? t('content.appSubscription.detailOverlay.description')
+              : ti('serviceSubscription.detailOverlay.description')
+          }
           closeWithIcon={true}
           onCloseWithIcon={() => handleOverlayClose()}
         />

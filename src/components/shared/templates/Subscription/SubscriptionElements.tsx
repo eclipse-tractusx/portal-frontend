@@ -189,22 +189,22 @@ export default function SubscriptionElements({
                   </div>
                   {subscription.offerSubscriptionStatus ===
                     SubscriptionStatus.PENDING && (
-                      <div className="forthSection">
-                        <Chip
-                          color="primary"
-                          label={t('content.appSubscription.activateBtn')}
-                          type="plain"
-                          variant="filled"
-                          onClick={() =>
-                            type === SubscriptionTypes.APP_SUBSCRIPTION
-                              ? setSubscriptionDetail({
+                    <div className="forthSection">
+                      <Chip
+                        color="primary"
+                        label={t('content.appSubscription.activateBtn')}
+                        type="plain"
+                        variant="filled"
+                        onClick={() =>
+                          type === SubscriptionTypes.APP_SUBSCRIPTION
+                            ? setSubscriptionDetail({
                                 appId: subscriptionData.offerId,
                                 subscriptionId: subscription.subscriptionId,
                                 title: subscriptionData.offerName,
                                 companyName: subscription.companyName,
                                 bpnNumber: subscription.bpnNumber,
                               })
-                              : setState({
+                            : setState({
                                 type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
                                 payload: {
                                   id: subscription.subscriptionId,
@@ -214,26 +214,26 @@ export default function SubscriptionElements({
                                   companyName: subscription.companyName,
                                 },
                               })
-                          }
-                        />
-                      </div>
-                    )}
+                        }
+                      />
+                    </div>
+                  )}
                   {subscription.offerSubscriptionStatus ===
                     SubscriptionStatus.ACTIVE && (
-                      <Chip
-                        color="success"
-                        label={t('content.appSubscription.tabs.active')}
-                        type="confirm"
-                        variant="filled"
-                        withIcon
-                        sx={{
-                          borderRadius: '36px',
-                          ':hover': {
-                            pointerEvents: 'auto',
-                          },
-                        }}
-                      />
-                    )}
+                    <Chip
+                      color="success"
+                      label={t('content.appSubscription.tabs.active')}
+                      type="confirm"
+                      variant="filled"
+                      withIcon
+                      sx={{
+                        borderRadius: '36px',
+                        ':hover': {
+                          pointerEvents: 'auto',
+                        },
+                      }}
+                    />
+                  )}
                 </li>
               )
             )

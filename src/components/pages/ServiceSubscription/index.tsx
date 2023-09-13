@@ -21,7 +21,10 @@
 import Subscription, {
   SubscriptionTypes,
 } from 'components/shared/templates/Subscription'
-import { useFetchServiceSubscriptionsQuery, useFetchServiceFiltersQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import {
+  useFetchServiceSubscriptionsQuery,
+  useFetchServiceFiltersQuery,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { currentSuccessType } from 'features/serviceSubscription/slice'
 import { useTranslation } from 'react-i18next'
 

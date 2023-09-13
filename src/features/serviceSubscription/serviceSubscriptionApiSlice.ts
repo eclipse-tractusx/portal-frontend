@@ -102,7 +102,9 @@ export const apiSlice = createApi({
         return {
           url: `/api/services/provided/subscription-status?size=15&page=${
             body.page
-          }&${body.statusId && statusId}&${body.offerId && offerId}&${body.sortingType && sortingType}`,
+          }&${body.statusId && statusId}&${body.offerId && offerId}&${
+            body.sortingType && sortingType
+          }`,
         }
       },
     }),
@@ -119,4 +121,8 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { useFetchServiceSubscriptionsQuery, useFetchServiceFiltersQuery, useFetchServiceSubDetailQuery } = apiSlice
+export const {
+  useFetchServiceSubscriptionsQuery,
+  useFetchServiceFiltersQuery,
+  useFetchServiceSubDetailQuery,
+} = apiSlice
