@@ -35,6 +35,9 @@
   - Add roles for active apps
 - My Organization
   - Unsubscribe subscription flow
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 
