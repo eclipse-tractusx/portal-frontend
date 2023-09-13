@@ -29,6 +29,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
@@ -125,6 +126,24 @@ export const EnableIDP = ({ id }: { id: string }) => {
           identityProviderId={id}
           companyUserId={data?.companyUserId || ''}
         />
+        <Typography
+          variant="label3"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#0088CC',
+            textDecoration: 'underline',
+          }}
+        >
+          <HelpOutlineIcon
+            sx={{
+              fontSize: '18px',
+              marginRight: '5px',
+            }}
+          />
+          {t('add.learnMore')}
+        </Typography>
       </DialogContent>
       <DialogActions>
         <Button

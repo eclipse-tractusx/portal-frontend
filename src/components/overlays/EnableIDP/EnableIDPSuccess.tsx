@@ -30,6 +30,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, exec } from 'features/control/overlay'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { ACTIONS } from 'types/Constants'
 
 export const EnableIDPSuccess = ({ id }: { id: string }) => {
@@ -167,6 +168,24 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
             </Typography>
           </Trans>
         </div>
+        <Typography
+          variant="label3"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#0088CC',
+            textDecoration: 'underline',
+          }}
+        >
+          <HelpOutlineIcon
+            sx={{
+              fontSize: '18px',
+              marginRight: '5px',
+            }}
+          />
+          {t('add.learnMore')}
+        </Typography>
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>

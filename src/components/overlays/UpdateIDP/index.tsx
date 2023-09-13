@@ -31,6 +31,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   IdentityProviderUpdate,
   useFetchIDPDetailQuery,
@@ -63,6 +64,8 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       setLoading(false)
     }
   }
+
+  console.log('idpUpdateData', idpUpdateData)
 
   const UpdateStepsList = [
     {
@@ -101,6 +104,25 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         </div>
         <Typography variant="label2">{t('edit.addDataHeading')}</Typography>
         {data && <UpdateIDPContent idp={data} onValid={setIdpUpdateData} />}
+        <Typography
+          variant="label3"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#0088CC',
+            textDecoration: 'underline',
+            marginTop: '30px',
+          }}
+        >
+          <HelpOutlineIcon
+            sx={{
+              fontSize: '18px',
+              marginRight: '5px',
+            }}
+          />
+          {t('add.learnMore')}
+        </Typography>
       </DialogContent>
       <DialogActions>
         <Button
