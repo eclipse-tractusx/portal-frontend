@@ -21,7 +21,7 @@
 import Subscription, {
   SubscriptionTypes,
 } from 'components/shared/templates/Subscription'
-import { useFetchServiceSubscriptionsQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import { useFetchServiceSubscriptionsQuery, useFetchServiceFiltersQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { currentSuccessType } from 'features/serviceSubscription/slice'
 import { useTranslation } from 'react-i18next'
 
@@ -31,6 +31,7 @@ export default function ServiceSubscription() {
     <Subscription
       currentSuccessType={currentSuccessType}
       fetchQuery={useFetchServiceSubscriptionsQuery}
+      fetchAppFilters={useFetchServiceFiltersQuery}
       providerSuccessMessage={t(
         'serviceSubscription.register.providerSuccessMessage'
       )}

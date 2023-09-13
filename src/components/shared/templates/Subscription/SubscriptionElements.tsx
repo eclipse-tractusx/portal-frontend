@@ -120,13 +120,11 @@ function reducer(state: State, { type, payload }: Action) {
 
 export default function SubscriptionElements({
   subscriptions,
-  isAppFilters,
   type,
   refetch,
   isSuccess,
 }: {
   subscriptions?: SubscriptionContent[]
-  isAppFilters?: boolean
   type: string
   refetch: () => void
   isSuccess: boolean
@@ -170,49 +168,43 @@ export default function SubscriptionElements({
                   <Typography variant="body3" className="secondSection">
                     {subscriptionData.offerName}
                   </Typography>
-                  {type === SubscriptionTypes.APP_SUBSCRIPTION ? (
-                    <div
-                      className="viewDetails"
-                      onClick={() =>
-                        setViewDetails({
-                          appId: subscriptionData.offerId,
-                          subscriptionId: subscription.subscriptionId,
-                        })
-                      }
-                    >
-                      <IconButton color="secondary" size="small">
-                        <Tooltips
-                          color="dark"
-                          tooltipPlacement="top-start"
-                          tooltipText={t('content.appSubscription.viewDetails')}
-                        >
-                          <ArrowForwardIcon />
-                        </Tooltips>
-                      </IconButton>
-                    </div>
-                  ) : (
-                    <Typography variant="body3" className="thirdSection">
-                      {'Placeholders for add details such as BPN; etc'}
-                    </Typography>
-                  )}
+                  <div
+                    className="viewDetails"
+                    onClick={() =>
+                      setViewDetails({
+                        appId: subscriptionData.offerId,
+                        subscriptionId: subscription.subscriptionId,
+                      })
+                    }
+                  >
+                    <IconButton color="secondary" size="small">
+                      <Tooltips
+                        color="dark"
+                        tooltipPlacement="top-start"
+                        tooltipText={t('content.appSubscription.viewDetails')}
+                      >
+                        <ArrowForwardIcon />
+                      </Tooltips>
+                    </IconButton>
+                  </div>
                   {subscription.offerSubscriptionStatus ===
                     SubscriptionStatus.PENDING && (
-                    <div className="forthSection">
-                      <Chip
-                        color="primary"
-                        label={t('content.appSubscription.activateBtn')}
-                        type="plain"
-                        variant="filled"
-                        onClick={() =>
-                          type === SubscriptionTypes.APP_SUBSCRIPTION
-                            ? setSubscriptionDetail({
+                      <div className="forthSection">
+                        <Chip
+                          color="primary"
+                          label={t('content.appSubscription.activateBtn')}
+                          type="plain"
+                          variant="filled"
+                          onClick={() =>
+                            type === SubscriptionTypes.APP_SUBSCRIPTION
+                              ? setSubscriptionDetail({
                                 appId: subscriptionData.offerId,
                                 subscriptionId: subscription.subscriptionId,
                                 title: subscriptionData.offerName,
                                 companyName: subscription.companyName,
                                 bpnNumber: subscription.bpnNumber,
                               })
-                            : setState({
+                              : setState({
                                 type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
                                 payload: {
                                   id: subscription.subscriptionId,
@@ -222,20 +214,26 @@ export default function SubscriptionElements({
                                   companyName: subscription.companyName,
                                 },
                               })
-                        }
-                      />
-                    </div>
-                  )}
+                          }
+                        />
+                      </div>
+                    )}
                   {subscription.offerSubscriptionStatus ===
                     SubscriptionStatus.ACTIVE && (
-                    <Chip
-                      color="success"
-                      label={t('content.appSubscription.tabs.active')}
-                      type="confirm"
-                      variant="filled"
-                      withIcon
-                    />
-                  )}
+                      <Chip
+                        color="success"
+                        label={t('content.appSubscription.tabs.active')}
+                        type="confirm"
+                        variant="filled"
+                        withIcon
+                        sx={{
+                          borderRadius: '36px',
+                          ':hover': {
+                            pointerEvents: 'auto',
+                          },
+                        }}
+                      />
+                    )}
                 </li>
               )
             )
@@ -271,6 +269,7 @@ export default function SubscriptionElements({
           openDialog={viewDetails.appId ? true : false}
           appId={viewDetails.appId}
           subscriptionId={viewDetails.subscriptionId}
+          type={type}
           handleOverlayClose={() => setViewDetails(ViewDetailData)}
         />
       )}
