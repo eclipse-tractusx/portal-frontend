@@ -4,6 +4,7 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+  - Bugfix - App subscription activate button showing service activation overlay
 - Search screen - Mobile version
   - Full width search overlay
   - Clear the search result on closing overlay
@@ -31,6 +32,7 @@
   - Fixed last step "Verify" image load issue
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
+  - Add roles for active apps
 - overlay
   - overlays style sync
 
