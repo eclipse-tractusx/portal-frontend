@@ -29,26 +29,26 @@ export default function ProviderConnectorField({
   name,
   pattern,
   placeholder,
+  validate,
 }: any) {
   return (
-    <div className="form-field">
-      <ConnectorFormInputField
-        {...{
-          control,
-          trigger,
-          errors,
-          name: name,
-          label: label,
-          type: 'input',
-          placeholder: placeholder ?? '',
-          rules: {
-            pattern: {
-              value: pattern,
-              message: ruleMessage,
-            },
+    <ConnectorFormInputField
+      {...{
+        control,
+        trigger,
+        errors,
+        name: name,
+        label: label,
+        type: 'input',
+        placeholder: placeholder ?? '',
+        rules: {
+          pattern: {
+            value: pattern,
+            message: ruleMessage,
           },
-        }}
-      />
-    </div>
+          validate: validate,
+        },
+      }}
+    />
   )
 }
