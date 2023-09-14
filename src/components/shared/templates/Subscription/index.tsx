@@ -287,7 +287,7 @@ export default function Subscription({
   let appFiltersData: AppFiltersResponse[] = useMemo(() => [], [])
   if (fetchAppFilters) {
     const { data } = fetchAppFilters()
-    appFiltersData = data
+    appFiltersData = data?.content
   }
 
   useEffect(() => {
@@ -448,6 +448,7 @@ export default function Subscription({
   )
 
   const handleActiveAppFilter = (appId: string) => {
+    console.log('appId', appId)
     appId = activeAppFilter === appId ? '' : appId
     setState({
       type: ActionKind.SET_ACTIVE_APP_FILTER,
@@ -547,7 +548,6 @@ export default function Subscription({
             ) : (
               <SubscriptionElements
                 subscriptions={cardSubscriptions}
-                isAppFilters={appFilters.length > 0}
                 type={type}
                 refetch={refetch}
                 isSuccess={apiSuccess}
