@@ -65,8 +65,6 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     }
   }
 
-  console.log('idpUpdateData', idpUpdateData)
-
   const UpdateStepsList = [
     {
       headline: t('add.stepLists.firstStep'),

@@ -61,6 +61,7 @@ const BasicInputStyle = {
   borderRadius: '6px 6px 0 0',
   outline: 'none',
   display: 'block',
+  backgroundColor: '#eeeeee',
   padding: '17px',
 }
 

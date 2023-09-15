@@ -89,63 +89,63 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
             </Typography>
           </Trans>
         </div>
-        <div style={{ textAlign: 'center', margin: '30px' }}>
-          <div>
-            <Typography variant="label1">
-              {t('enablesuccess.nextStepHeading')}
+        <div style={{ background: '#F9F9F9', padding: '20px', margin: '30px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <div>
+              <Typography variant="label1">
+                {t('enablesuccess.nextStepHeading')}
+              </Typography>
+            </div>
+            <div style={{ marginTop: '20px' }}>
+              <Typography variant="label2">
+                {t('enablesuccess.nextStepSubHeading')}
+              </Typography>
+            </div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <Typography
+              variant="label4"
+              sx={{
+                border: '1px solid #0f71cb',
+                color: '#0f71cb',
+                borderRadius: '50%',
+                display: 'inline-block',
+                width: '20px',
+                height: '20px',
+                lineHeight: '20px',
+                textAlign: 'center',
+                margin: '0 10px 10px',
+              }}
+            >
+              1
+            </Typography>
+            <Typography variant="label2">
+              {t('enablesuccess.step1Heading')}
             </Typography>
           </div>
-          <div style={{ marginTop: '20px' }}>
-            <Typography variant="label2">
-              {t('enablesuccess.nextStepSubHeading')}
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <Typography
+              variant="label4"
+              sx={{
+                border: '1px solid #0f71cb',
+                color: '#0f71cb',
+                borderRadius: '50%',
+                display: 'inline-block',
+                width: '20px',
+                height: '20px',
+                lineHeight: '20px',
+                textAlign: 'center',
+                margin: '0 10px 10px 20px',
+              }}
+            >
+              2
             </Typography>
+            <Trans>
+              <Typography variant="label2">
+                {t('enablesuccess.step2Heading')}
+              </Typography>
+            </Trans>
           </div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <Typography
-            variant="label4"
-            sx={{
-              border: '1px solid #0f71cb',
-              color: '#0f71cb',
-              borderRadius: '50%',
-              display: 'inline-block',
-              width: '20px',
-              height: '20px',
-              lineHeight: '20px',
-              textAlign: 'center',
-              fontSize: '15px',
-              margin: '0 10px 10px',
-            }}
-          >
-            1
-          </Typography>
-          <Typography variant="label2">
-            {t('enablesuccess.step1Heading')}
-          </Typography>
-        </div>
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <Typography
-            variant="label4"
-            sx={{
-              border: '1px solid #0f71cb',
-              color: '#0f71cb',
-              borderRadius: '50%',
-              display: 'inline-block',
-              width: '20px',
-              height: '20px',
-              lineHeight: '20px',
-              textAlign: 'center',
-              fontSize: '15px',
-              margin: '0 10px 10px 20px',
-            }}
-          >
-            2
-          </Typography>
-          <Trans>
-            <Typography variant="label2">
-              {t('enablesuccess.step2Heading')}
-            </Typography>
-          </Trans>
         </div>
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <Typography variant="label3">{t('enablesuccess.note')}</Typography>

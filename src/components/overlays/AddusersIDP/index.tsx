@@ -515,7 +515,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               2
             </Typography>
             <Trans>
-              <Typography variant="label3" className="mb-20 step1Label">
+              <Typography variant="label3" className="step1Label">
                 {t('users.step2Heading')}
               </Typography>
             </Trans>
@@ -524,7 +524,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             <Typography variant="label4" className="number">
               3
             </Typography>
-            <Typography variant="label3" className="mb-20 step1Label">
+            <Typography variant="label3" className="step1Label">
               {t('users.step3Heading')}
             </Typography>
           </div>
