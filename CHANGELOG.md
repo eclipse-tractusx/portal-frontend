@@ -33,6 +33,9 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 

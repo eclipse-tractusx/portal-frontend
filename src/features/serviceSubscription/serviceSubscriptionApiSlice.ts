@@ -24,6 +24,7 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 export interface SubscriptionRequestType {
   page: number
   statusId: string
+  offerId?: string
   sortingType: string
 }
 export interface SubscriptionResponseContentType {
@@ -54,6 +55,38 @@ export interface SubscriptionStoreRequest {
   offerUrl: string
 }
 
+export type ServiceFiltersResponse = {
+  id: string
+  lastChanged: string
+  leadPictureId: string
+  name: string
+  provider: string
+  status: string
+}
+
+export type SubscriptionDetailRequestBody = {
+  appId: string
+  subscriptionId: string
+}
+
+export type TechnicalUserData = {
+  id: string
+  name: string
+  permissions: string[]
+}
+
+export type SubscriptionDetailResponse = {
+  id: string
+  appInstanceId?: string
+  offerSubscriptionStatus: string
+  name: string
+  customer: string
+  bpn: string
+  contact: string[]
+  technicalUserData: TechnicalUserData[]
+  tenantUrl?: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/services/serviceSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -64,15 +97,32 @@ export const apiSlice = createApi({
     >({
       query: (body) => {
         const statusId = `statusId=${body.statusId}`
+        const offerId = `offerId=${body.offerId}`
         const sortingType = `sorting=${body.sortingType}`
         return {
           url: `/api/services/provided/subscription-status?size=15&page=${
             body.page
-          }&${body.statusId && statusId}&${body.sortingType && sortingType}`,
+          }&${body.statusId && statusId}&${body.offerId && offerId}&${
+            body.sortingType && sortingType
+          }`,
         }
       },
+    }),
+    fetchServiceFilters: builder.query<ServiceFiltersResponse[], void>({
+      query: () => '/api/services/provided',
+    }),
+    fetchServiceSubDetail: builder.query<
+      SubscriptionDetailResponse,
+      SubscriptionDetailRequestBody
+    >({
+      query: (body) =>
+        `/api/Services/${body.appId}/subscription/${body.subscriptionId}/provider`,
     }),
   }),
 })
 
-export const { useFetchServiceSubscriptionsQuery } = apiSlice
+export const {
+  useFetchServiceSubscriptionsQuery,
+  useFetchServiceFiltersQuery,
+  useFetchServiceSubDetailQuery,
+} = apiSlice
