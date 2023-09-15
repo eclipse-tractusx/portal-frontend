@@ -26,10 +26,10 @@ import {
   Button,
   DialogActions,
   DialogHeader,
-  CircleProgress,
   Typography,
   Checkbox,
   StaticTable,
+  LoadingButton,
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
@@ -125,22 +125,17 @@ const UnSubscribeOverlay = ({
             </Button>
           )}
           {loading && (
-            <Box
-              sx={{
-                width: '110px',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <CircleProgress
-                size={40}
-                step={1}
-                interval={0.1}
-                colorVariant={'primary'}
-                variant={'indeterminate'}
-                thickness={8}
-              />
-            </Box>
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator={t('global.actions.loading')}
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px', textTransform: 'none' }}
+            />
           )}
         </DialogActions>
       </Dialog>
