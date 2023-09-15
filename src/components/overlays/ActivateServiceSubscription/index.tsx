@@ -76,17 +76,18 @@ export default function ActivateserviceSubscription({
 
   const handleConfrim = async () => {
     setLoading(true)
-    await subscribe({
-      requestId: subscriptionId,
-      offerUrl: 'https://testonly.google.de|https://testonly.google.de/',
-    })
-      .unwrap()
-      .then((data) => {
-        setActivationResponse(true)
-        setTechuserInfo(data)
-      })
-      .catch(() => {})
-    setLoading(false)
+    try {
+      const result = await subscribe({
+        requestId: subscriptionId,
+        offerUrl: 'https://testonly.google.de|https://testonly.google.de/',
+      }).unwrap()
+      setActivationResponse(true)
+      setTechuserInfo(result)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
   }
 
   return (

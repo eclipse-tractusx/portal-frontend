@@ -35,6 +35,9 @@
   - Add roles for active apps
 - overlay
   - overlays style sync
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 
