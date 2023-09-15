@@ -35,6 +35,9 @@
   - Add roles for active apps
 - Identity Provider Config
   - UI Enhancements
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 
