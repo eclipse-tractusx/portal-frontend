@@ -49,7 +49,6 @@ const DeleteConfirmationOverlay = ({
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
   const [checkBoxSelected, setCheckBoxSelected] = useState<boolean>(false)
-  console.log(techUser)
   return (
     <div>
       <Dialog
@@ -65,9 +64,7 @@ const DeleteConfirmationOverlay = ({
           sx={{
             textAlign: 'center',
             marginBottom: '25px',
-            paddingTop: '0px',
-            paddingLeft: '80px',
-            paddingRight: '80px',
+            padding: '0px 80px 20px 80px'
           }}
         >
           {!techUser
