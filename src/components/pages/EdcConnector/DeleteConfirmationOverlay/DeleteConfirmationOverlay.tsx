@@ -64,7 +64,7 @@ const DeleteConfirmationOverlay = ({
           sx={{
             textAlign: 'center',
             marginBottom: '25px',
-            padding: '0px 80px 20px 80px'
+            padding: '0px 80px 20px 80px',
           }}
         >
           {!techUser
