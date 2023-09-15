@@ -27,6 +27,7 @@ import {
   DialogContent,
   DialogHeader,
   Input,
+  LoadingButton,
 } from '@catena-x/portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -122,21 +123,28 @@ export const InviteForm = ({
               ></Input>
             ))}
           </form>
-          <span className={`InviteFormResult ${state}`}>
-            {state === 'busy' && <span className="loader" />}
-          </span>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button
-            name="send"
-            disabled={inpValid[4] || state === 'busy'}
-            onClick={doSubmit}
-          >
-            {`${t('content.invite.invite')}`}
-          </Button>
+          {state === 'busy' ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator="Loading ..."
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
+            <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+              {`${t('content.invite.invite')}`}
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>
