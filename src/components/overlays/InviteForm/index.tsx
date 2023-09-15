@@ -134,7 +134,7 @@ export const InviteForm = ({
               helperText=""
               helperTextColor="success"
               label=""
-              loadIndicator="Loading ..."
+              loadIndicator={t('global.actions.loading')}
               loading
               size="medium"
               onButtonClick={() => {}}
