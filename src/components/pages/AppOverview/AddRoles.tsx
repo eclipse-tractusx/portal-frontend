@@ -87,7 +87,18 @@ export default function AddRoles() {
           establishedRoles: string
           checkbox: string
         }
-      }) => <Chip color="info" label={row.establishedRoles} withIcon={false} />,
+      }) => (
+        <Chip
+          color="info"
+          label={row.establishedRoles}
+          withIcon={false}
+          sx={{
+            '.span.MuiChip-label:hover': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
+      ),
     },
     {
       field: 'checkbox',
