@@ -87,7 +87,18 @@ export default function AddRoles() {
           establishedRoles: string
           checkbox: string
         }
-      }) => <Chip color="info" label={row.establishedRoles} withIcon={false} />,
+      }) => (
+        <Chip
+          color="info"
+          label={row.establishedRoles}
+          withIcon={false}
+          sx={{
+            '.span.MuiChip-label:hover': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
+      ),
     },
     {
       field: 'checkbox',
@@ -130,7 +141,7 @@ export default function AddRoles() {
       />
       <div className="main-container">
         <div className="main-row">
-          <Box sx={{ textAlign: 'center' }}>
+          <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>
             <Button size="small" onClick={() => setAddRolesOverlayOpen(true)}>
               {t('content.addRoles.uploadAdditionalRoles')}
             </Button>

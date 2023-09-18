@@ -177,11 +177,17 @@
       .firstSection {
         width: 30%;
         font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
 
       .secondSection {
         width: 35%;
         font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
 
       .viewDetails {
