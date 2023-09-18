@@ -22,15 +22,16 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogHeader,
   LoadingButton,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import './style.scss'
-import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
 import { Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 import {
   ActivateSubscriptionResponse,
   useActivateSubscriptionMutation,
@@ -101,20 +102,15 @@ export default function ActivateserviceSubscription({
       >
         {activationResponse && (
           <div className="activation">
-            <CustomDialogHeader
-              title={t('serviceSubscription.activation.title')}
-              icon={true}
-              subtitle={
-                t('serviceSubscription.activation.subtitle') + companyName
+            <DialogHeader
+              title={
+                <>
+                  <CheckCircleOutlineOutlinedIcon color="success" />{' '}
+                  {t('serviceSubscription.activation.title')}
+                </>
               }
-              additionalContainerStyles={{
-                display: 'flex',
-                placeContent: 'flex-start',
-                placeItems: 'center',
-              }}
-              additionalTitleStyles={{
-                paddingLeft: '20px',
-              }}
+              intro={t('serviceSubscription.activation.subtitle') + companyName}
+              closeWithIcon={true}
             />
             <DialogContent>
               <Box
@@ -131,7 +127,7 @@ export default function ActivateserviceSubscription({
                     company: companyName,
                   }}
                 >
-                  <Typography variant="caption2">
+                  <Typography variant="body2">
                     {isTechUser
                       ? t(
                           'serviceSubscription.activation.successDescriptionWithTechUser'
@@ -146,7 +142,7 @@ export default function ActivateserviceSubscription({
                     sx={{
                       marginLeft: '10px',
                     }}
-                    variant="h3"
+                    variant="h4"
                   >
                     {t('serviceSubscription.activation.tableheader')}
                   </Typography>
@@ -154,56 +150,56 @@ export default function ActivateserviceSubscription({
                     <tbody>
                       <tr>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {t('serviceSubscription.activation.userId')}
                           </Typography>
                         </td>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {techUserInfo.technicalUserInfo.technicalUserId}
                           </Typography>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {t('serviceSubscription.activation.sercret')}
                           </Typography>
                         </td>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {techUserInfo.technicalUserInfo.technicalUserSecret}
                           </Typography>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {t('serviceSubscription.activation.url')}
                           </Typography>
                         </td>
                         {techUserInfo.clientInfo ? (
                           <td>
-                            <Typography variant="subtitle1">
+                            <Typography variant="body2">
                               {techUserInfo.clientInfo.clientUrl}
                             </Typography>
                           </td>
                         ) : (
                           <td>
-                            <Typography variant="subtitle1"></Typography>
+                            <Typography variant="body2"></Typography>
                           </td>
                         )}
                       </tr>
                       <tr>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {t(
                               'serviceSubscription.activation.technicaluserType'
                             )}
                           </Typography>
                         </td>
                         <td>
-                          <Typography variant="subtitle1">
+                          <Typography variant="body2">
                             {techUserInfo.technicalUserInfo.technicalUserPermissions.join(
                               ', '
                             )}
@@ -224,21 +220,10 @@ export default function ActivateserviceSubscription({
         )}
         {!activationResponse && (
           <>
-            <CustomDialogHeader
+            <DialogHeader
               title={t('serviceSubscription.register.title')}
-              icon={false}
-              subtitle={
-                t('serviceSubscription.register.subtitle') + companyName
-              }
-              additionalContainerStyles={{
-                display: 'flex',
-                placeContent: 'flex-start',
-                placeItems: 'center',
-              }}
-              additionalTitleStyles={{
-                paddingLeft: '10px',
-                fontSize: '24px',
-              }}
+              intro={t('serviceSubscription.register.subtitle') + companyName}
+              closeWithIcon={false}
             />
             <DialogContent>
               <Box
@@ -259,7 +244,7 @@ export default function ActivateserviceSubscription({
                     company: companyName,
                   }}
                 >
-                  <Typography variant="caption2">
+                  <Typography variant="body2">
                     {isTechUser
                       ? t(
                           'serviceSubscription.register.descriptionWithTechUser'
@@ -278,12 +263,12 @@ export default function ActivateserviceSubscription({
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
 
-                      <Typography variant="caption2">
+                      <Typography variant="body2">
                         {t('serviceSubscription.register.sectionDescription')}
                       </Typography>
                     </Box>
                     <Link to={ProfileHelpURL} target="_blank">
-                      <Typography variant="caption2" className="helpText">
+                      <Typography variant="body2" className="helpText">
                         <HelpOutlineIcon />
                         {t('serviceSubscription.register.help')}
                       </Typography>
@@ -291,18 +276,17 @@ export default function ActivateserviceSubscription({
                     <Box
                       sx={{
                         marginTop: '30px',
-                        marginLeft: '30px',
                       }}
                     >
                       <Typography variant="h4" sx={{ marginBottom: '20px' }}>
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
                       {techUserProfiles.length > 0 ? (
-                        <Typography variant="caption2">
+                        <Typography variant="body2">
                           {techUserProfiles.join(', ')}
                         </Typography>
                       ) : (
-                        <Typography variant="caption2">
+                        <Typography variant="body2">
                           {t('serviceSubscription.register.loading')}
                         </Typography>
                       )}
