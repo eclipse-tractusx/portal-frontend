@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -27,6 +27,8 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
+  Checkbox,
+  StaticTable,
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 
@@ -35,6 +37,7 @@ interface DeleteConfirmationOverlayProps {
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
   loading?: boolean
+  techUser?: any
 }
 
 const DeleteConfirmationOverlay = ({
@@ -42,9 +45,10 @@ const DeleteConfirmationOverlay = ({
   handleOverlayClose,
   handleConfirmClick,
   loading,
+  techUser,
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
-
+  const [checkBoxSelected, setCheckBoxSelected] = useState<boolean>(false)
   return (
     <div>
       <Dialog
@@ -60,17 +64,71 @@ const DeleteConfirmationOverlay = ({
           sx={{
             textAlign: 'center',
             marginBottom: '25px',
-            paddingTop: '0px',
+            padding: '0px 80px 20px 80px',
           }}
         >
-          {t('content.edcconnector.deletemodal.description')}
+          {!techUser
+            ? t('content.edcconnector.deletemodal.description')
+            : t('content.edcconnector.deletemodal.techUserdescription')}
+          {techUser && (
+            <Box
+              sx={{
+                marginTop: '50px',
+              }}
+            >
+              <StaticTable
+                data={{
+                  head: [
+                    t('content.edcconnector.deletemodal.techDetails.title'),
+                    ' ',
+                  ],
+                  body: [
+                    [
+                      t('content.edcconnector.deletemodal.techDetails.name'),
+                      techUser?.name || '',
+                    ],
+                    [
+                      t(
+                        'content.edcconnector.deletemodal.techDetails.clientId'
+                      ),
+                      techUser?.clientId || '',
+                    ],
+                    [
+                      t(
+                        'content.edcconnector.deletemodal.techDetails.description'
+                      ),
+                      techUser?.description || '',
+                    ],
+                  ],
+                }}
+                horizontal={false}
+              />
+              <Box
+                sx={{
+                  marginTop: '50px',
+                }}
+              >
+                <Checkbox
+                  label={t(
+                    'content.edcconnector.deletemodal.techUserCheckBoxLabel'
+                  )}
+                  checked={checkBoxSelected}
+                  onClick={() => setCheckBoxSelected(!checkBoxSelected)}
+                />
+              </Box>
+            </Box>
+          )}
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {t('global.actions.cancel')}
           </Button>
           {!loading && (
-            <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
+            <Button
+              variant="contained"
+              disabled={techUser ? !checkBoxSelected : false}
+              onClick={(e) => handleConfirmClick(e)}
+            >
               {t('global.actions.confirm')}
             </Button>
           )}
