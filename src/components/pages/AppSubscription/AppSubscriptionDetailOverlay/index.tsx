@@ -160,8 +160,11 @@ const AppSubscriptionDetailOverlay = ({
     edit: [
       [
         {
-          icon: false,
-          inputValue: '',
+          icon: type === SubscriptionTypes.APP_SUBSCRIPTION ? false : true,
+          inputValue:
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? ''
+              : t('content.appSubscription.detailOverlay.technicalNameInfo'),
         },
         {
           icon:
@@ -175,7 +178,12 @@ const AppSubscriptionDetailOverlay = ({
       [
         {
           icon: true,
-          inputValue: t('content.appSubscription.detailOverlay.appIdInfo'),
+          inputValue:
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? t('content.appSubscription.detailOverlay.appIdInfo')
+              : t(
+                  'content.appSubscription.detailOverlay.technicalPermissionInfo'
+                ),
         },
         {
           icon: false,
