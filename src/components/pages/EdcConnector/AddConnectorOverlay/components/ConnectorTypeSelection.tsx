@@ -67,18 +67,19 @@ const ConnectorTypeSelection = ({
   ]
 
   const [selectedCheckBox, setSelectedCheckBox] = useState({ id: 0 })
-
   return (
     <div className={'connector-type-selector-container'}>
       <Box sx={{ width: '100%' }}>
         <Grid container spacing={1.5} style={{ marginTop: 0 }}>
-          {checkBoxSelector.map((checkBox: any) => {
+          {checkBoxSelector.map((checkBox, index) => {
             return (
               <Grid
                 key={checkBox.id}
                 xs={12}
                 item
-                className={'dotted-gradient'}
+                className={
+                  checkBoxSelector.length === index + 1 ? '' : 'dotted-gradient'
+                }
               >
                 <Checkbox
                   disabled={checkBox.disable}
@@ -91,14 +92,14 @@ const ConnectorTypeSelection = ({
                 />
                 {checkBox.disable ? (
                   <Typography
-                    variant="body2"
+                    variant="body3"
                     color={'#F2BA00'}
                     style={{ marginLeft: '30px' }}
                   >
                     {checkBox.disableDescription}
                   </Typography>
                 ) : (
-                  <Typography variant="body2" style={{ marginLeft: '30px' }}>
+                  <Typography variant="body3" style={{ marginLeft: '30px' }}>
                     {checkBox.descritpion}
                   </Typography>
                 )}

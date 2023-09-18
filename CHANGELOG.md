@@ -35,6 +35,8 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- Overlay
+  - Overlays style sync
 - My Organization
   - Unsubscribe subscription flow
 - Service Subscription
