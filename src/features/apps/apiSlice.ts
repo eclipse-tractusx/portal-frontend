@@ -185,6 +185,35 @@ export interface ActiveSubscription {
   name: string
   provider: string
   image: string
+  subscriptionId: string
+}
+
+export interface SubscribeTechnicalUserData {
+  id: string
+  name: string
+  permissions: Array<string>
+}
+
+export interface SubscribeConnectorData {
+  id: string
+  name: string
+  endpoint: string
+}
+
+export interface ActiveSubscriptionDetails {
+  offerId: string
+  name: string
+  provider: string
+  image: string
+  subscriptionId: string
+  offerSubscriptionStatus: string
+  technicalUserData: SubscribeTechnicalUserData[]
+  connectorData: SubscribeConnectorData[]
+}
+
+interface FetchSubscriptionAppQueryType {
+  subscriptionId: string
+  appId: string
 }
 
 export const apiSlice = createApi({
@@ -281,6 +310,19 @@ export const apiSlice = createApi({
     fetchSubscribedActiveApps: builder.query<ActiveSubscription[], void>({
       query: () => '/api/apps/subscribed/activesubscriptions',
     }),
+    fetchSubscriptionApp: builder.query<
+      ActiveSubscriptionDetails,
+      FetchSubscriptionAppQueryType
+    >({
+      query: (obj) =>
+        `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
+    }),
+    unsubscribeApp: builder.mutation<void, string>({
+      query: (subscriptionId) => ({
+        url: `/api/apps/${subscriptionId}/unsubscribe`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -296,4 +338,6 @@ export const {
   useFetchAgreementsQuery,
   useDeactivateAppMutation,
   useFetchSubscribedActiveAppsQuery,
+  useFetchSubscriptionAppQuery,
+  useUnsubscribeAppMutation,
 } = apiSlice

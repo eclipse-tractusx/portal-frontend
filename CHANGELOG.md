@@ -16,6 +16,8 @@
 - Serview Overview
   - Added Sub menu for active services in service overview
   - Added image to service overview cards
+- Connector Deletion
+  - Show confirm overlay if connector has tech user information
 - Sub Navigation Header
   - Align label to the left
 - Data Space
@@ -33,8 +35,10 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
-- overlay
-  - overlays style sync
+- Overlay
+  - Overlays style sync
+- My Organization
+  - Unsubscribe subscription flow
 - Service Subscription
   - UI Changes
   - Add filters
