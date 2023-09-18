@@ -46,9 +46,57 @@
       cursor: pointer;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-bottom: 1px solid rgb(220, 220, 220);
     }
     .organization-error {
       padding: 10px;
     }
   }
+  .iconNameContainer {
+    display: flex;
+  }
+  .title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    background-color: rgb(237, 240, 244) !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    font-family: inherit !important;
+  }
+
+  .unsubButton {
+    height: 40px;
+    border-color: #fb6540 !important;
+    background-color: #fb6540 !important;
+    color: #ffffff !important;
+    text-transform: lowercase !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    max-width: 130px;
+  }
+  .unsubButton {
+    width: auto;
+    height: 30px;
+    font-size: 8px !important;
+    margin-left: 10px !important;
+  }
+}
+
+.noteBox {
+  margin: 0px 50px;
+  border: 1px solid #e3e3e3;
+  background: #e3e3e3;
+}
+
+.noteText {
+  padding: 20px;
+}
+
+.detailsTable {
+  margin: 50px 50px;
 }
