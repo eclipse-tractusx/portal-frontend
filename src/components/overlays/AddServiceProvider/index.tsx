@@ -26,6 +26,7 @@ import {
   Input,
   LoadingButton,
   PageSnackbar,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
@@ -90,13 +91,21 @@ export default function AddServiceProvider() {
       <DialogContent>
         <div className="manageInputURL">
           <Input
-            label={t('content.appSubscription.register.endpointConfigured')}
+            label={
+              <Typography variant="body2">
+                {t('content.appSubscription.register.endpointConfigured')}
+              </Typography>
+            }
             value={data ? data.url : ''}
             disabled={true}
             sx={{ marginBottom: '20px' }}
           />
           <Input
-            label={t('content.appSubscription.register.autosetupURL')}
+            label={
+              <Typography variant="body2">
+                {t('content.appSubscription.register.autosetupURL')}
+              </Typography>
+            }
             placeholder="URL of the customer tentant"
             onChange={(e) => addInputURL(e.target.value)}
             value={inputURL}

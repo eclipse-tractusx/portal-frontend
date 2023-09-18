@@ -27,6 +27,7 @@ import {
   DialogContent,
   DialogHeader,
   Input,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -111,7 +112,11 @@ export const InviteForm = ({
           <form className="InviteForm">
             {['company', 'email', 'first', 'last'].map((value, i) => (
               <Input
-                label={t(`global.field.${value}`)}
+                label={
+                  <Typography variant="body2">
+                    {t(`global.field.${value}`)}
+                  </Typography>
+                }
                 key={i}
                 name={value}
                 placeholder={t(`global.field.${value}`)}

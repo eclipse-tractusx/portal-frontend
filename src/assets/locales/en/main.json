@@ -371,6 +371,21 @@
       "subscriptions": {
         "title": "App Subscriptions",
         "error": "error - no data found"
+      },
+      "unsubscribe": {
+        "title": "Unsubscribe Business Application",
+        "description": "Are you sure to unsubscribe from the business application?",
+        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
+        "table": {
+          "app": "App",
+          "status": "Status",
+          "connector": "Connector",
+          "techUser": "Technical User"
+        },
+        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
+        "buttonText": "Unsubscribe",
+        "unsubscribeSuccess": "Unsubscribe subscription is successful",
+        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
       }
     },
     "datamanagement": {
@@ -511,7 +526,15 @@
       },
       "deletemodal": {
         "title": "Delete Connector",
-        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable."
+        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
+        "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected – the technical user will get inactived immediadetly as well when proceeding with the deletion.",
+        "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
+        "techDetails": {
+          "title": "Technical Details",
+          "name": "Name",
+          "clientId": "Client ID",
+          "description": "Description"
+        }
       },
       "modal": {
         "company": {
@@ -1698,7 +1721,8 @@
       "error": "Error",
       "retry": "Retry",
       "exit": "exit",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "unsubscribe": "Unsubscribe"
     },
     "state": {
       "enabled": "enabled",
