@@ -141,7 +141,7 @@ export default function AddRoles() {
       />
       <div className="main-container">
         <div className="main-row">
-          <Box sx={{ textAlign: 'center' }}>
+          <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>
             <Button size="small" onClick={() => setAddRolesOverlayOpen(true)}>
               {t('content.addRoles.uploadAdditionalRoles')}
             </Button>
