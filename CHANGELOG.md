@@ -16,6 +16,8 @@
 - Serview Overview
   - Added Sub menu for active services in service overview
   - Added image to service overview cards
+- Data Space
+  - Last section background color issue
 - Connector Deletion
   - Show confirm overlay if connector has tech user information
 - Sub Navigation Header
