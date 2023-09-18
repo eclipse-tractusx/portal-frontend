@@ -19,6 +19,8 @@
 - Invite Business Partner Form
   - Fix loader position to center
   - Disable invite button when loader is visible
+- Connector Deletion
+  - Show confirm overlay if connector has tech user information
 - Sub Navigation Header
   - Align label to the left
 - Data Space
@@ -36,6 +38,11 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- My Organization
+  - Unsubscribe subscription flow
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 
