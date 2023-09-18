@@ -51,7 +51,7 @@ export const IDPList = () => {
   const idpsData = data
     ?.slice()
     .sort((a: IdentityProvider, b: IdentityProvider) =>
-      a.alias.localeCompare(b.alias)
+      a?.alias?.localeCompare(b.alias)
     )
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
