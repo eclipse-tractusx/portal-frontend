@@ -23,18 +23,20 @@ import {
   PageHeader,
   Button,
   LoadingButton,
-  StaticTable,
   Checkbox,
+  Chip,
+  Table,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { TableType } from 'types/MainTypes'
 import { useFetchAppRolesQuery } from 'features/appManagement/apiSlice'
 import AddRolesOverlay from './AddRolesOverlay'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import { PAGES } from 'types/Constants'
+import uniqueId from 'lodash/uniqueId'
 
 export default function AddRoles() {
   const { t } = useTranslation()
@@ -67,13 +69,54 @@ export default function AddRoles() {
     )
   }, [data])
 
-  const tableData: TableType = {
-    head: [
-      t('content.addRoles.establishedRoles'),
-      `${(<DeleteOutlinedIcon />)}`,
-    ],
-    body: appRoles,
-  }
+  const appRolesData = appRoles.map((item, i) => ({
+    establishedRoles: item[0],
+    id: i,
+  }))
+
+  const columns = [
+    {
+      field: 'establishedRoles',
+      headerName: t('content.addRoles.establishedRoles'),
+      sortable: false,
+      flex: 4,
+      renderCell: ({
+        row,
+      }: {
+        row: {
+          establishedRoles: string
+          checkbox: string
+        }
+      }) => (
+        <Chip
+          color="info"
+          label={row.establishedRoles}
+          withIcon={false}
+          sx={{
+            '.span.MuiChip-label:hover': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
+      ),
+    },
+    {
+      field: 'checkbox',
+      sortable: false,
+      renderCell: () => <Checkbox disabled={true} sx={{ pl: 0 }} />,
+      renderHeader: () => (
+        <>
+          <Tooltips
+            color="dark"
+            tooltipPlacement="top-start"
+            tooltipText={t('content.addRoles.deleteNotSupported')}
+          >
+            <DeleteOutlinedIcon />
+          </Tooltips>
+        </>
+      ),
+    },
+  ]
 
   return (
     <main className="add-app-roles-main">
@@ -98,16 +141,31 @@ export default function AddRoles() {
       />
       <div className="main-container">
         <div className="main-row">
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Button
-              size="small"
-              sx={{ alignItems: 'center' }}
-              onClick={() => setAddRolesOverlayOpen(true)}
-            >
+          <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>
+            <Button size="small" onClick={() => setAddRolesOverlayOpen(true)}>
               {t('content.addRoles.uploadAdditionalRoles')}
             </Button>
           </Box>
-          <StaticTable data={tableData} horizontal={false} />
+          <Box width={620} margin={'0 auto'} justifyContent="center">
+            <Table
+              rowsCount={2}
+              hideFooter
+              loading={false}
+              disableSelectionOnClick={true}
+              disableColumnFilter={true}
+              disableColumnMenu={true}
+              disableColumnSelector={true}
+              disableDensitySelector={true}
+              columnHeadersBackgroundColor={'#ecf0f4'}
+              title={''}
+              searchPlaceholder={''}
+              toolbarVariant="ultimate"
+              columns={columns}
+              rows={appRolesData}
+              getRowId={(row) => uniqueId(row.urn)}
+              hasBorder={false}
+            />
+          </Box>
         </div>
       </div>
 

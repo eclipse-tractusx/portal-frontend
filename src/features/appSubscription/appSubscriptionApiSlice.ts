@@ -144,7 +144,7 @@ export const apiSlice = createApi({
       },
     }),
     fetchAppFilters: builder.query<AppFiltersResponse[], void>({
-      query: () => '/api/apps/provided',
+      query: () => '/api/apps/provided?statusId=Active',
     }),
     fetchSubscriptionDetail: builder.query<
       SubscriptionDetailResponse,
