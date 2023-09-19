@@ -36,6 +36,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Usermanagement
+  - Bulk upload UI Changes
 
 ## 1.6.0
 
