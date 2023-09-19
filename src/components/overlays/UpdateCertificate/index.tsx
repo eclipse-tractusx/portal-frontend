@@ -231,12 +231,15 @@ export default function UpdateCertificate({ id }: { id: string }) {
                     display:
                       certificatetypesArr.length === 1 ? 'block' : 'none',
                   }}
-                  tooltipPlacement="bottom-start"
+                  arrowStyles={{
+                    left: '181px !important',
+                  }}
+                  tooltipPlacement="bottom-end"
                   tooltipText={t(
                     'content.certificates.updateCertificate.noOptionsMessage'
                   )}
                   children={
-                    <div>
+                    <span>
                       <SelectList
                         error={!selectedCertificate}
                         helperText={t(
@@ -258,7 +261,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
                         keyTitle={'title'}
                         disabled={certificatetypesArr.length === 1}
                       />
-                    </div>
+                    </span>
                   }
                 />
               )}

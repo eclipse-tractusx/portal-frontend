@@ -19,14 +19,17 @@
 - Invite Business Partner Form
   - Fix loader position to center
   - Disable invite button when loader is visible
+- Data Space
+  - Last section background color issue
+- Connector Deletion
+  - Show confirm overlay if connector has tech user information
 - Sub Navigation Header
   - Align label to the left
+  - Bugfix - Sub header width in zoom out view
 - Data Space
   - Last section background color issue
 - My Account
   - Show success message on click of copy to clip board
-- Invite Business Partner Form
-  - Fix loader position to center
 - Page Loading and Error Component
   - Show loading component and based on the response show "No items" component or ErrorBar component
 - App management
@@ -36,6 +39,13 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- Overlay
+  - Overlays style sync
+- My Organization
+  - Unsubscribe subscription flow
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 
