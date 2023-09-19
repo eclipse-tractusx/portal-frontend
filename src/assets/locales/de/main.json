@@ -372,6 +372,19 @@
       "subscriptions": {
         "title": "App-Abonnements",
         "error": "Fehler - keine Daten gefunden"
+      },
+      "unsubscribe": {
+        "title": "Geschäftsanwendung Deaktivieren",
+        "description": "Möchten Sie sich die Geschäftsanwendung wirklich deaktivieren?",
+        "note": "Bitte beachten Sie: Alle möglicherweise verbundenen Objekte (siehe Details oben) werden ebenfalls deaktiviert. Die Abmeldung ist nicht rückgängig zu machen.",
+        "table": {
+          "app": "App",
+          "status": "Status",
+          "connector": "Connector",
+          "techUser": "Technischer User"
+        },
+        "checkBoxLabel": "Ja, ich stimme zu, dass ich die Auswirkungen der Abmeldung verstanden habe und mit dem Vorgang fortfahren möchte.",
+        "buttonText": "Abbestellen"
       }
     },
     "datamanagement": {
@@ -395,7 +408,8 @@
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
-        "addRoles": "Add Roles"
+        "addRoles": "Add Roles",
+        "changeDocuments": "Change Document(s)"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
@@ -448,7 +462,15 @@
       "newRolesToAdd": "New roles to be added",
       "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
       "successMsg": "Successfully added roles",
-      "errorMsg": "Unable to add roles"
+      "errorMsg": "Unable to add roles",
+      "deleteNotSupported": "Role deletion currently not supported."
+    },
+    "changeDocuments": {
+      "headerTitle": "Update Contract Documents",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "saveTooltipMsg": "The save button will be active after a document was changed",
+      "successMsg": "Documents changed successfully",
+      "errorMsg": "Error! Something went wrong"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -503,7 +525,15 @@
       },
       "deletemodal": {
         "title": "EDC-Connector Löschen",
-        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden."
+        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
+        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist – der technische Benutzer wird ebenfalls sofort inaktiviert, wenn mit dem Löschen fortgefahren wird.",
+        "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
+        "techDetails": {
+          "title": "Technical Details",
+          "name": "Name",
+          "clientId": "Client ID",
+          "Description": "Description"
+        }
       },
       "modal": {
         "company": {
@@ -722,6 +752,7 @@
         "serviceaccount": "Technischer Benutzer",
         "create": "Technischen Nutzer anlegen",
         "delete": "Technischen Nutzer entfernen",
+        "credentialReset": "Credential Reset",
         "headline": "Technical User Management {{company}}",
         "descriptionHeader": "Technical User Management {{company}}",
         "descriptionText": "Der technische Benutzer ist eine Identität, die ein Unternehmen verwenden kann, um sich mit CX-Backend-Diensten ohne ständige Trennung zu verbinden. Zum Beispiel ist ein technischer Run-As-Benutzer erforderlich, um sich mit der Registrierung für digitale Zwillinge oder dem semantischen Modell zu verbinden. Bitte verwenden Sie die Aktionsschaltfläche, um einen neuen technischen Benutzer mit den Rollen gemäß Ihren Anforderungen anzufordern. Oder verwalten Sie bereits vorhandene technische Benutzer, indem Sie die unten stehende Benutzerverwaltungsfunktion verwenden.",
@@ -737,7 +768,15 @@
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
-        "deleteTechUserNotificationErrorTitle": "Something went wrong"
+        "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "resetCredentialError": "Something went wrong",
+        "resetCredentialSuccess": "Credential reset was successful",
+        "tabs": {
+          "all": "All",
+          "managed": "Managed",
+          "owned": "Owned"
+        },
+        "searchText": "Search by client Id"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
@@ -902,6 +941,7 @@
       "userAccount": "Benutzer Konto",
       "token": "DEV only: Aktuelles Authentisierungstoken",
       "copy_to_clipboard": "Token in die Zwischenablage kopieren",
+      "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Benutzer löschen",
       "suspendAccount": "Benutzer aussetzen",
       "resetPswrdAccount": "Passwort zurücksetzen",
@@ -1040,10 +1080,9 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
-        "providerPhoneContactPlaceholder": "e.g. +XX (XXX) XXXXXXXXXX or +XX XXXXXXXXXX or +XXXXXXXXXXXX",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",
@@ -1543,6 +1582,7 @@
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
+        "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
         "error": "Something went wrong!",
         "success": "Usecase document upload has been done successfully."
@@ -1575,6 +1615,7 @@
       "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
+      "noUploadMessage": "No certificates available. All supported certificates are requested or active for your company.",
       "tabs": {
         "uploadedCertificates": "Uploaded Certificates",
         "pending": "Pending",
@@ -1592,8 +1633,10 @@
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
+        "certificateTypeError": "Please select a value",
+        "noOptionsMessage": "No other options available",
         "uploadDocumentTitle": "Please upload your certificate proof:",
-        "note": "Please upload only pdf files with maximum 1 MB.",
+        "note": "Please upload only pdf files with maximum 2 MB.",
         "descriptionLabel": "Description for verification",
         "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
@@ -1708,7 +1751,9 @@
       "success": "Success",
       "error": "Error",
       "retry": "Retry",
-      "exit": "exit"
+      "exit": "exit",
+      "loading": "Loading...",
+      "unsubscribe": "Unsubscribe"
     },
     "state": {
       "enabled": "aktiv",

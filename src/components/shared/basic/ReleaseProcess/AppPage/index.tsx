@@ -62,6 +62,7 @@ import ConnectorFormInputFieldShortAndLongDescription from '../components/Connec
 import { ErrorType, UseCaseType } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import { phone } from 'phone'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -608,46 +609,53 @@ export default function AppPage() {
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.providerDetails')}
         </InputLabel>
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerHomePage"
-          label={t('content.apprelease.appPage.providerHomePage')}
-          pattern={Patterns.URL}
-          ruleMessage={t(
-            'content.apprelease.appPage.pleaseEnterValidHomePageURL'
-          )}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerHomePage"
+            label={t('content.apprelease.appPage.providerHomePage')}
+            pattern={Patterns.URL}
+            ruleMessage={t(
+              'content.apprelease.appPage.pleaseEnterValidHomePageURL'
+            )}
+          />
+        </div>
 
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerContactEmail"
-          label={t('content.apprelease.appPage.providerContactEmail')}
-          pattern={Patterns.MAIL}
-          ruleMessage={t('content.apprelease.appPage.pleaseEnterValidEmail')}
-        />
-
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerPhoneContact"
-          label={t('content.apprelease.appPage.providerPhoneContact')}
-          pattern={Patterns.appPage.phone}
-          ruleMessage={t('content.apprelease.appPage.pleaseEnterValidContact')}
-          placeholder={t(
-            'content.apprelease.appPage.providerPhoneContactPlaceholder'
-          )}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerContactEmail"
+            label={t('content.apprelease.appPage.providerContactEmail')}
+            pattern={Patterns.MAIL}
+            ruleMessage={t('content.apprelease.appPage.pleaseEnterValidEmail')}
+          />
+        </div>
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerPhoneContact"
+            label={t('content.apprelease.appPage.providerPhoneContact')}
+            validate={(value: string) => phone(value).isValid}
+          />
+          {errors.providerPhoneContact &&
+            errors?.providerPhoneContact.type === 'validate' && (
+              <Typography variant="body2" className="file-error-msg">
+                {t('content.apprelease.appPage.pleaseEnterValidContact')}
+              </Typography>
+            )}
+        </div>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.privacyInformation')}

@@ -28,9 +28,9 @@ import {
   Cards,
   LoadMoreButton,
   CardItems,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
-import { Box } from '@mui/material'
 import { fetchImageWithToken } from 'services/ImageService'
 import {
   ProvidedServices,
@@ -46,6 +46,12 @@ import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+import { Box, useTheme, CircularProgress } from '@mui/material'
+
+enum ServiceSubMenuItems {
+  DEACTIVATE = 'deactivate',
+}
+
 export default function ServiceListOverview() {
   const { t } = useTranslation('servicerelease')
   const [items, setItems] = useState<any>([])
@@ -60,8 +66,18 @@ export default function ServiceListOverview() {
       statusFilter: '',
     },
   })
-  const { data } = useFetchProvidedServicesQuery(argsData)
+  const { data, isFetching, isSuccess, refetch } =
+    useFetchProvidedServicesQuery(argsData)
   const dispatch = useDispatch()
+  const theme = useTheme()
+
+  const submenuOptions = [
+    {
+      label: t('serviceoverview.sortOptions.deactivate'),
+      value: ServiceSubMenuItems.DEACTIVATE,
+      url: '',
+    },
+  ]
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
@@ -181,39 +197,69 @@ export default function ServiceListOverview() {
         </Box>
       </div>
       <section>
-        {items && items.length > 0 ? (
-          <div className="desc-card">
-            <Cards
-              items={items}
-              columns={4}
-              buttonText="Details"
-              variant="minimal"
-              filledBackground={false}
-              imageSize={'small'}
-              imageLoader={fetchImageWithToken}
-              showAddNewCard={false}
-              newButtonText={t('serviceoverview.addbtn')}
-              onNewCardButton={() =>
-                navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-              }
-              onCardClick={(item: CardItems) => {
-                // TODO: workaround - fix CardItems type
-                const cardItem: any = item
-                if (
-                  cardItem.status === ProvidedServiceStatusEnum.PENDING ||
-                  cardItem.status === ProvidedServiceStatusEnum.CREATED
-                ) {
-                  dispatch(setServiceId(item.id ?? ''))
-                  navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-                } else {
-                  navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
-                }
+        {isFetching ? (
+          <div style={{ textAlign: 'center' }}>
+            <CircularProgress
+              size={50}
+              sx={{
+                color: theme.palette.primary.main,
               }}
-              subMenu={false}
             />
           </div>
         ) : (
-          <NoItems />
+          <>
+            {!isSuccess && (
+              <ErrorBar
+                errorText={t('error.errorBar')}
+                handleButton={refetch}
+                buttonText={t('error.tryAgain')}
+                showButton={true}
+              />
+            )}
+            {items && items.length > 0 && isSuccess ? (
+              <div className="desc-card">
+                <Cards
+                  items={items}
+                  columns={4}
+                  buttonText="Details"
+                  variant="minimal"
+                  filledBackground={false}
+                  imageSize={'small'}
+                  imageLoader={fetchImageWithToken}
+                  showAddNewCard={false}
+                  newButtonText={t('serviceoverview.addbtn')}
+                  onNewCardButton={() =>
+                    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                  }
+                  onCardClick={(item: CardItems) => {
+                    // TODO: workaround - fix CardItems type
+                    const cardItem: any = item
+                    if (
+                      cardItem.status === ProvidedServiceStatusEnum.PENDING ||
+                      cardItem.status === ProvidedServiceStatusEnum.CREATED
+                    ) {
+                      dispatch(setServiceId(item.id ?? ''))
+                      navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                    } else {
+                      navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
+                    }
+                  }}
+                  subMenu={true}
+                  submenuOptions={submenuOptions}
+                  submenuClick={(sortMenu: string, id: string | undefined) => {
+                    sortMenu === ServiceSubMenuItems.DEACTIVATE &&
+                      navigate(`/${PAGES.DEACTIVATE}/${id}`, {
+                        state: items,
+                      })
+                    return undefined
+                  }}
+                  tooltipText={t('serviceoverview.submenuNotAvailable')}
+                />
+              </div>
+            ) : (
+              <NoItems />
+            )}
+          </>
         )}
       </section>
       <div

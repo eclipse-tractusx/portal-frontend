@@ -36,12 +36,13 @@ import {
   LoadingButton,
   TableType,
   StaticTable,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { OVERLAYS, PAGES } from 'types/Constants'
-import { show } from 'features/control/overlay'
+import { show, closeOverlay } from 'features/control/overlay'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import {
@@ -56,6 +57,7 @@ import {
 import {
   useFetchIDPListQuery,
   IdentityProvider,
+  IDPCategory,
 } from 'features/admin/idpApiSlice'
 import './AddMultipleUser.scss'
 import Papa from 'papaparse'
@@ -72,7 +74,7 @@ export default function AddMultipleUser() {
 
   const { data } = useFetchCoreoffersRolesQuery()
   const [addMutipleUsers] = useAddMutipleUsersMutation()
-  const { data: idpsData } = useFetchIDPListQuery()
+  const { data: idpsData, isFetching } = useFetchIDPListQuery()
 
   const [loading, setLoading] = useState(false)
   const [allRoles, setAllRoles] = useState<any>([])
@@ -130,7 +132,10 @@ export default function AddMultipleUser() {
         let blob = new Blob([Papa.unparse(csvData)], { type: 'text/csv' })
         let file = new File([blob], uploadedFile.name, { type: 'text/csv' })
         const response = await addMutipleUsers({
-          identityProviderId: idps[0].identityProviderId,
+          identityProviderId:
+            idps[0].identityProviderCategoryId === IDPCategory.KEYCLOAK_SHARED
+              ? ''
+              : idps[0].identityProviderId,
           csvFile: file,
         }).unwrap()
         setLoading(false)
@@ -145,7 +150,7 @@ export default function AddMultipleUser() {
   }
 
   const handleConfirm = async () => {
-    if (isSuccess || isError) dispatch(show(OVERLAYS.NONE, ''))
+    if (isSuccess || isError) dispatch(closeOverlay())
     if (uploadedFile && !roles.length) setIsFileUploaded(true)
     else if (uploadedFile && roles.length) {
       setLoading(true)
@@ -332,7 +337,7 @@ export default function AddMultipleUser() {
         </div>
       )
     } else {
-      return idps.length === 1 ? (
+      return (
         <div className="addMultipleUsers">
           <div className="firstStep">
             <Typography variant="label4" className="number">
@@ -341,7 +346,15 @@ export default function AddMultipleUser() {
             <Typography variant="body1" className="mb-20">
               {t('content.usermanagement.addMultipleUsers.step1.heading')}
             </Typography>
-            <a href={'../../user-bulk-load.csv'} download>
+            <a
+              href={
+                idps[0].identityProviderCategoryId ===
+                IDPCategory.KEYCLOAK_SHARED
+                  ? '../../user-bulk-load.csv'
+                  : '../../user-bulk-load-ownIdp.csv'
+              }
+              download
+            >
               <Button variant="outlined" size="small">
                 {t('content.usermanagement.addMultipleUsers.step1.buttonLabel')}
               </Button>
@@ -383,58 +396,85 @@ export default function AddMultipleUser() {
             />
           </div>
         </div>
-      ) : (
-        <AddUserDeny idps={idps} />
       )
     }
   }
 
+  const renderMultiuserMainContent = () => {
+    return idps.length === 1 ? (
+      <>
+        <DialogHeader
+          {...{
+            title: t('content.usermanagement.addMultipleUsers.heading'),
+            intro: t('content.usermanagement.addMultipleUsers.intro'),
+            closeWithIcon: true,
+            onCloseWithIcon: () => dispatch(closeOverlay()),
+          }}
+        />
+
+        <DialogContent sx={{ padding: '0 150px 20px' }}>
+          {renderContent()}
+        </DialogContent>
+
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => dispatch(show(OVERLAYS.NONE))}
+          >
+            {t('global.actions.cancel')}
+          </Button>
+          {loading ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator={t('global.actions.loading')}
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
+            <Button
+              variant="contained"
+              onClick={handleConfirm}
+              disabled={
+                uploadedFile === undefined || (isFileUploaded && !roles.length)
+              }
+            >
+              {isError ? t('global.actions.exit') : t('global.actions.confirm')}
+            </Button>
+          )}
+        </DialogActions>
+      </>
+    ) : (
+      <AddUserDeny idps={idps} />
+    )
+  }
+
   return (
     <>
-      <DialogHeader
-        {...{
-          title: t('content.usermanagement.addMultipleUsers.heading'),
-          intro: t('content.usermanagement.addMultipleUsers.intro'),
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-        }}
-      />
-
-      <DialogContent sx={{ padding: '0 150px 20px' }}>
-        {renderContent()}
-      </DialogContent>
-
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE))}
+      {isFetching ? (
+        <div
+          style={{
+            width: '100%',
+            height: '500px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          {t('global.actions.cancel')}
-        </Button>
-        {loading ? (
-          <LoadingButton
-            color="primary"
-            helperText=""
-            helperTextColor="success"
-            label=""
-            loadIndicator="Loading ..."
-            loading
-            size="medium"
-            onButtonClick={() => {}}
-            sx={{ marginLeft: '10px' }}
+          <CircleProgress
+            colorVariant="primary"
+            size={80}
+            thickness={8}
+            variant="indeterminate"
           />
-        ) : (
-          <Button
-            variant="contained"
-            onClick={handleConfirm}
-            disabled={
-              uploadedFile === undefined || (isFileUploaded && !roles.length)
-            }
-          >
-            {isError ? t('global.actions.exit') : t('global.actions.confirm')}
-          </Button>
-        )}
-      </DialogActions>
+        </div>
+      ) : (
+        renderMultiuserMainContent()
+      )}
     </>
   )
 }

@@ -116,7 +116,11 @@
     },
     "headerTitle": "Service Overview - Own managed service offers",
     "inputPlaceholder": "Suchen Sie nach Services",
-    "addbtn": "Registrieren Sie Ihre Services"
+    "addbtn": "Registrieren Sie Ihre Services",
+    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "sortOptions": {
+      "deactivate": "Deactivate"
+    }
   },
   "servicedetails": {
     "headerTitle": "Service Details"
@@ -160,6 +164,9 @@
       "confirm": "Confirm",
       "help": "Help",
       "loading": "Loading..."
+    },
+    "detailOverlay": {
+      "description": "Service Subscription Details & Status"
     },
     "activation": {
       "title": "Service Subscription Activated",

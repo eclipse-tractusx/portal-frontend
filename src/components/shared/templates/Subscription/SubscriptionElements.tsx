@@ -37,6 +37,7 @@ import { useState } from 'react'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { useReducer } from 'react'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
+import { SubscriptionTypes } from '.'
 
 type ViewDetail = {
   appId: string
@@ -119,13 +120,11 @@ function reducer(state: State, { type, payload }: Action) {
 
 export default function SubscriptionElements({
   subscriptions,
-  isAppFilters,
   type,
   refetch,
   isSuccess,
 }: {
   subscriptions?: SubscriptionContent[]
-  isAppFilters?: boolean
   type: string
   refetch: () => void
   isSuccess: boolean
@@ -169,31 +168,25 @@ export default function SubscriptionElements({
                   <Typography variant="body3" className="secondSection">
                     {subscriptionData.offerName}
                   </Typography>
-                  {isAppFilters ? (
-                    <div
-                      className="viewDetails"
-                      onClick={() =>
-                        setViewDetails({
-                          appId: subscriptionData.offerId,
-                          subscriptionId: subscription.subscriptionId,
-                        })
-                      }
-                    >
-                      <IconButton color="secondary" size="small">
-                        <Tooltips
-                          color="dark"
-                          tooltipPlacement="top-start"
-                          tooltipText={t('content.appSubscription.viewDetails')}
-                        >
-                          <ArrowForwardIcon />
-                        </Tooltips>
-                      </IconButton>
-                    </div>
-                  ) : (
-                    <Typography variant="body3" className="thirdSection">
-                      {'Placeholders for add details such as BPN; etc'}
-                    </Typography>
-                  )}
+                  <div
+                    className="viewDetails"
+                    onClick={() =>
+                      setViewDetails({
+                        appId: subscriptionData.offerId,
+                        subscriptionId: subscription.subscriptionId,
+                      })
+                    }
+                  >
+                    <IconButton color="secondary" size="small">
+                      <Tooltips
+                        color="dark"
+                        tooltipPlacement="top-start"
+                        tooltipText={t('content.appSubscription.viewDetails')}
+                      >
+                        <ArrowForwardIcon />
+                      </Tooltips>
+                    </IconButton>
+                  </div>
                   {subscription.offerSubscriptionStatus ===
                     SubscriptionStatus.PENDING && (
                     <div className="forthSection">
@@ -203,7 +196,7 @@ export default function SubscriptionElements({
                         type="plain"
                         variant="filled"
                         onClick={() =>
-                          isAppFilters
+                          type === SubscriptionTypes.APP_SUBSCRIPTION
                             ? setSubscriptionDetail({
                                 appId: subscriptionData.offerId,
                                 subscriptionId: subscription.subscriptionId,
@@ -226,16 +219,21 @@ export default function SubscriptionElements({
                     </div>
                   )}
                   {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.ACTIVE &&
-                    isAppFilters && (
-                      <Chip
-                        color="success"
-                        label={t('content.appSubscription.tabs.active')}
-                        type="confirm"
-                        variant="filled"
-                        withIcon
-                      />
-                    )}
+                    SubscriptionStatus.ACTIVE && (
+                    <Chip
+                      color="success"
+                      label={t('content.appSubscription.tabs.active')}
+                      type="confirm"
+                      variant="filled"
+                      withIcon
+                      sx={{
+                        borderRadius: '36px',
+                        ':hover': {
+                          pointerEvents: 'auto',
+                        },
+                      }}
+                    />
+                  )}
                 </li>
               )
             )
@@ -266,11 +264,12 @@ export default function SubscriptionElements({
           }}
         />
       )}
-      {viewDetails && (
+      {viewDetails.appId && (
         <AppSubscriptionDetailOverlay
           openDialog={viewDetails.appId ? true : false}
           appId={viewDetails.appId}
           subscriptionId={viewDetails.subscriptionId}
+          type={type}
           handleOverlayClose={() => setViewDetails(ViewDetailData)}
         />
       )}
