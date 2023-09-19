@@ -31,9 +31,8 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDeactivateAppMutation } from 'features/apps/apiSlice'
-import { error } from 'services/NotifyService'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
 
@@ -47,24 +46,7 @@ export default function Deactivate() {
   const items: any = state
   const app = items?.filter((item: any) => item.id === appId)
   const [deactivateApp] = useDeactivateAppMutation()
-  const [deactivateCardImage, setDeactivateCardImage] = useState('')
   const leadImageId = app?.[0]?.leadPictureId
-
-  useEffect(() => {
-    if (leadImageId) {
-      fetchImageWithToken(
-        `${getApiBase()}/api/apps/${appId ?? ''}/appDocuments/${leadImageId}`
-      )
-        .then((buffer) =>
-          setDeactivateCardImage(
-            URL.createObjectURL(new Blob([buffer], { type: 'image/png' }))
-          )
-        )
-        .catch((err) => {
-          error('ERROR WHILE FETCHING IMAGE', '', err as object)
-        })
-    }
-  }, [leadImageId])
 
   const handleSaveClick = async () => {
     setIsLoading(true)
@@ -105,16 +87,19 @@ export default function Deactivate() {
               <Box sx={{ width: '50%' }}>
                 <Card
                   image={{
-                    src: deactivateCardImage,
+                    src: `${getApiBase()}/api/apps/${
+                      appId ?? ''
+                    }/appDocuments/${leadImageId}`,
                   }}
                   title={app[0]?.title || ''}
                   subtitle={app[0]?.provider}
+                  variant="minimal"
                   expandOnHover={false}
                   buttonText={''}
-                  variant="minimal"
-                  filledBackground={false}
                   imageShape="round"
+                  filledBackground={false}
                   imageSize="small"
+                  imageLoader={fetchImageWithToken}
                 />
               </Box>
               <Box sx={{ marginTop: '10%' }}>

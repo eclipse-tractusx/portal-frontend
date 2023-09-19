@@ -30,8 +30,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { error } from 'services/NotifyService'
+import { useState } from 'react'
 import {
   ServiceDeactivateEnum,
   useDeactivateServiceMutation,
@@ -50,24 +49,7 @@ export default function ServiceDeactivate() {
   const items: any = state
   const service = items?.filter((item: any) => item.id === serviceId)
   const [deactivateService] = useDeactivateServiceMutation()
-  const [deactivateCardImage, setDeactivateCardImage] = useState('')
   const leadImageId = service?.[0]?.leadPictureId
-
-  useEffect(() => {
-    if (leadImageId) {
-      fetchImageWithToken(
-        `${getApiBase()}/api/administration/documents/${leadImageId}`
-      )
-        .then((buffer) =>
-          setDeactivateCardImage(
-            URL.createObjectURL(new Blob([buffer], { type: 'image/png' }))
-          )
-        )
-        .catch((err) => {
-          error('ERROR WHILE FETCHING IMAGE', '', err as object)
-        })
-    }
-  }, [leadImageId])
 
   const handleSaveClick = async () => {
     setIsLoading(true)
@@ -108,7 +90,7 @@ export default function ServiceDeactivate() {
               <Box sx={{ width: '50%' }}>
                 <Card
                   image={{
-                    src: deactivateCardImage,
+                    src: `${getApiBase()}/api/administration/documents/${leadImageId}`,
                   }}
                   title={service[0]?.title || ''}
                   subtitle={service[0]?.provider}
@@ -116,6 +98,7 @@ export default function ServiceDeactivate() {
                   expandOnHover={false}
                   buttonText={''}
                   imageShape="round"
+                  imageLoader={fetchImageWithToken}
                   filledBackground={false}
                   imageSize="small"
                 />
