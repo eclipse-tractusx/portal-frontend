@@ -243,6 +243,30 @@ const AppSubscriptionDetailOverlay = ({
     }
   }
 
+  const getDialogIntro = () => {
+    if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
+      return t('content.appSubscription.detailOverlay.description')
+    } else {
+      return ti('serviceSubscription.detailOverlay.description')
+    }
+  }
+
+  const getSnackbarSeverity = () => {
+    if (tenantUrlResponse === TenantUrlState.SUCCESS) {
+      return SuccessErrorType.SUCCESS
+    } else {
+      return SuccessErrorType.ERROR
+    }
+  }
+
+  const getSnackbarDesc = () => {
+    if (tenantUrlResponse === TenantUrlState.SUCCESS) {
+      return t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
+    } else {
+      return t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
+    }
+  }
+
   return (
     <div>
       <Dialog
@@ -255,11 +279,7 @@ const AppSubscriptionDetailOverlay = ({
       >
         <DialogHeader
           title={t('content.appSubscription.detailOverlay.title')}
-          intro={
-            type === SubscriptionTypes.APP_SUBSCRIPTION
-              ? t('content.appSubscription.detailOverlay.description')
-              : ti('serviceSubscription.detailOverlay.description')
-          }
+          intro={getDialogIntro()}
           closeWithIcon={true}
           onCloseWithIcon={() => handleOverlayClose()}
         />
@@ -293,16 +313,8 @@ const AppSubscriptionDetailOverlay = ({
       </Dialog>
       <PageSnackbar
         open={tenantUrlResponse !== TenantUrlState.NONE}
-        severity={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? SuccessErrorType.SUCCESS
-            : SuccessErrorType.ERROR
-        }
-        description={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
-            : t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
-        }
+        severity={getSnackbarSeverity()}
+        description={getSnackbarDesc()}
         showIcon={true}
         autoClose={true}
       />
