@@ -39,11 +39,14 @@ import { ROLES } from 'types/Constants'
 import { useState } from 'react'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { isURL } from 'types/Patterns'
+import { SubscriptionTypes } from 'components/shared/templates/Subscription'
+import { useFetchServiceSubDetailQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
   appId: string
   subscriptionId: string
+  type: string
   handleOverlayClose: () => void
 }
 
@@ -57,10 +60,16 @@ const AppSubscriptionDetailOverlay = ({
   openDialog = false,
   appId,
   subscriptionId,
+  type,
   handleOverlayClose,
 }: AppSubscriptionDetailProps) => {
   const { t } = useTranslation()
-  const { data, refetch } = useFetchSubscriptionDetailQuery({
+  const ti = useTranslation('servicerelease').t
+  const fetchAPI =
+    type === SubscriptionTypes.APP_SUBSCRIPTION
+      ? useFetchSubscriptionDetailQuery
+      : useFetchServiceSubDetailQuery
+  const { data, refetch } = fetchAPI({
     appId,
     subscriptionId,
   })
@@ -113,9 +122,25 @@ const AppSubscriptionDetailOverlay = ({
     ],
   }
 
-  const technicalDetails: TableType = {
-    head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
-    body: [
+  const bodyData = [
+    [
+      `${t('content.appSubscription.detailOverlay.technicalName')}`,
+      data?.technicalUserData?.[0]?.name ??
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
+    ],
+    [
+      `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
+      data?.technicalUserData?.[0]?.permissions.toString() ??
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
+    ],
+  ]
+
+  type === SubscriptionTypes.APP_SUBSCRIPTION &&
+    bodyData.unshift(
       [
         `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
         data?.tenantUrl ?? '',
@@ -126,22 +151,12 @@ const AppSubscriptionDetailOverlay = ({
           (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
             ? 'N/A'
             : ''),
-      ],
-      [
-        `${t('content.appSubscription.detailOverlay.technicalName')}`,
-        data?.technicalUserData?.[0]?.name ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
-      ],
-      [
-        `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-        data?.technicalUserData?.[0]?.permissions.toString() ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
-      ],
-    ],
+      ]
+    )
+
+  const technicalDetails: TableType = {
+    head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
+    body: bodyData,
     edit: [
       [
         {
@@ -231,7 +246,11 @@ const AppSubscriptionDetailOverlay = ({
       >
         <DialogHeader
           title={t('content.appSubscription.detailOverlay.title')}
-          intro={t('content.appSubscription.detailOverlay.description')}
+          intro={
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? t('content.appSubscription.detailOverlay.description')
+              : ti('serviceSubscription.detailOverlay.description')
+          }
           closeWithIcon={true}
           onCloseWithIcon={() => handleOverlayClose()}
         />

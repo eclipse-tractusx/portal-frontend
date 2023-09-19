@@ -372,6 +372,19 @@
       "subscriptions": {
         "title": "App-Abonnements",
         "error": "Fehler - keine Daten gefunden"
+      },
+      "unsubscribe": {
+        "title": "Geschäftsanwendung Deaktivieren",
+        "description": "Möchten Sie sich die Geschäftsanwendung wirklich deaktivieren?",
+        "note": "Bitte beachten Sie: Alle möglicherweise verbundenen Objekte (siehe Details oben) werden ebenfalls deaktiviert. Die Abmeldung ist nicht rückgängig zu machen.",
+        "table": {
+          "app": "App",
+          "status": "Status",
+          "connector": "Connector",
+          "techUser": "Technischer User"
+        },
+        "checkBoxLabel": "Ja, ich stimme zu, dass ich die Auswirkungen der Abmeldung verstanden habe und mit dem Vorgang fortfahren möchte.",
+        "buttonText": "Abbestellen"
       }
     },
     "datamanagement": {
@@ -449,7 +462,8 @@
       "newRolesToAdd": "New roles to be added",
       "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
       "successMsg": "Successfully added roles",
-      "errorMsg": "Unable to add roles"
+      "errorMsg": "Unable to add roles",
+      "deleteNotSupported": "Role deletion currently not supported."
     },
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",
@@ -511,7 +525,15 @@
       },
       "deletemodal": {
         "title": "EDC-Connector Löschen",
-        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden."
+        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
+        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist – der technische Benutzer wird ebenfalls sofort inaktiviert, wenn mit dem Löschen fortgefahren wird.",
+        "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
+        "techDetails": {
+          "title": "Technical Details",
+          "name": "Name",
+          "clientId": "Client ID",
+          "Description": "Description"
+        }
       },
       "modal": {
         "company": {
@@ -1730,7 +1752,8 @@
       "error": "Error",
       "retry": "Retry",
       "exit": "exit",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "unsubscribe": "Unsubscribe"
     },
     "state": {
       "enabled": "aktiv",

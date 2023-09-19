@@ -180,6 +180,9 @@
       "help": "Help",
       "loading": "Loading..."
     },
+    "detailOverlay": {
+      "description": "Service Subscription Details & Status"
+    },
     "activation": {
       "title": "Service Subscription Activated",
       "subtitle": "for ",

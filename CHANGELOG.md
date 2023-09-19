@@ -4,6 +4,7 @@
 
 - Active Subscription
   - Switch endpoint used to display "App Subscriptions"
+  - Bugfix - App subscription activate button showing service activation overlay
 - Search screen - Mobile version
   - Full width search overlay
   - Clear the search result on closing overlay
@@ -16,8 +17,13 @@
   - Added Sub menu for active services in service overview
   - Added Deactivate functionality
   - Added image to service overview cards
+- Data Space
+  - Last section background color issue
+- Connector Deletion
+  - Show confirm overlay if connector has tech user information
 - Sub Navigation Header
   - Align label to the left
+  - Bugfix - Sub header width in zoom out view
 - Data Space
   - Last section background color issue
 - My Account
@@ -32,6 +38,14 @@
   - Fixed last step "Verify" image load issue
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
+  - Add roles for active apps
+- Overlay
+  - Overlays style sync
+- My Organization
+  - Unsubscribe subscription flow
+- Service Subscription
+  - UI Changes
+  - Add filters
 
 ## 1.6.0
 
