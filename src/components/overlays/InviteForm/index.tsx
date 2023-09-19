@@ -33,6 +33,7 @@ import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
+import { ProcessingType } from 'components/pages/InviteBusinessPartner'
 
 interface AddInviteFormOverlayProps {
   openDialog?: boolean
@@ -128,7 +129,7 @@ export const InviteForm = ({
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          {state === 'busy' ? (
+          {state === ProcessingType.BUSY ? (
             <LoadingButton
               color="primary"
               helperText=""
