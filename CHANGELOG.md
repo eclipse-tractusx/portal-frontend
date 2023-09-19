@@ -45,6 +45,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Digital Twin
+  - Code clean up 
 
 ## 1.6.0
 
