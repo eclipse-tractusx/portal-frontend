@@ -45,7 +45,6 @@ import './style.scss'
 import { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
-import { CustomDialogHeader } from 'components/shared/basic/Dailog/CustomDialogHeader'
 import { closeOverlay } from 'features/control/overlay'
 
 const TentantHelpURL =
@@ -185,22 +184,13 @@ const ActivateSubscriptionOverlay = ({
             },
           }}
         >
-          <CustomDialogHeader
+          <DialogHeader
             title={t('content.appSubscription.activation.heading')}
-            icon={false}
-            subtitle={t('content.appSubscription.activation.intro').replace(
+            intro={t('content.appSubscription.activation.intro').replace(
               '{{companyName}}',
               title
             )}
-            additionalContainerStyles={{
-              display: 'flex',
-              placeContent: 'flex-start',
-              placeItems: 'center',
-            }}
-            additionalTitleStyles={{
-              paddingLeft: '10px',
-              fontSize: '24px',
-            }}
+            closeWithIcon={false}
           />
           <DialogContent>
             <div className="appSubscriptionMain">
@@ -209,74 +199,78 @@ const ActivateSubscriptionOverlay = ({
                   companyName: title,
                 }}
               >
-                <Typography variant="caption2">
+                <Typography variant="body2">
                   {t('content.appSubscription.activation.stepDescription')}
                 </Typography>
               </Trans>
               <ol>
                 <li>
-                  <Typography variant="caption2">
+                  <Typography variant="body2">
                     {t('content.appSubscription.activation.step1')}
                   </Typography>
                 </li>
                 <li>
-                  <Typography variant="caption2">
+                  <Typography variant="body2">
                     {t('content.appSubscription.activation.step2')}
                   </Typography>
                 </li>
                 <li>
-                  <Typography variant="caption2">
+                  <Typography variant="body2">
                     {t('content.appSubscription.activation.step3')}
                   </Typography>
                 </li>
               </ol>
-              <Typography variant="h4" className="addTentalURLHeading">
+              <Typography variant="h5" className="addTentalURLHeading">
                 {t('content.appSubscription.activation.addTentalURLHeading')}
               </Typography>
-              <Typography variant="caption2">
+              <Typography variant="body2">
                 {t(
                   'content.appSubscription.activation.addTentalURLDescription'
                 )}
               </Typography>
               <Link to={TentantHelpURL} target="_blank">
-                <Typography variant="caption2" className="helpText">
+                <Typography variant="body2" className="helpText">
                   <HelpOutlineIcon />
                   {t('pages.help')}
                 </Typography>
               </Link>
               <Input
                 name="tentant_url"
-                label={t('content.appSubscription.activation.enterURL')}
+                label={
+                  <Typography variant="label3">
+                    {t('content.appSubscription.activation.enterURL')}
+                  </Typography>
+                }
                 placeholder={t('content.appSubscription.activation.enterURL')}
                 onChange={(e) => addInputURL(e.target.value)}
                 value={inputURL}
               />
-              <p>{URLErrorMsg}</p>
-              <Typography variant="h4" className="addTentalURLHeading">
+              <p className="errorMsg">{URLErrorMsg}</p>
+              <Typography variant="h5" className="addTentalURLHeading">
                 {t(
                   'content.appSubscription.activation.technicalUserDetailsHeading'
                 )}
               </Typography>
-              <Typography variant="caption2">
+              <Typography variant="body2">
                 {t(
                   'content.appSubscription.activation.technicalUserDetailsDescription'
                 )}
               </Typography>
               <Link to={ProfileHelpURL} target="_blank">
-                <Typography variant="caption2" className="helpText">
+                <Typography variant="body2" className="helpText">
                   <HelpOutlineIcon />
                   {t('pages.help')}
                 </Typography>
               </Link>
               <div className="technicalUserProfile">
-                <Typography variant="h4">
+                <Typography variant="h5" sx={{ marginBottom: '20px' }}>
                   {t(
                     'content.appSubscription.activation.technicalUserProfileHeading'
                   )}
                 </Typography>
                 {data?.map((profiles) => {
                   return profiles.userRoles?.map((userRole) => (
-                    <Typography variant="caption2" key={userRole.roleId}>
+                    <Typography variant="body2" key={userRole.roleId}>
                       {userRole.roleName}
                     </Typography>
                   ))

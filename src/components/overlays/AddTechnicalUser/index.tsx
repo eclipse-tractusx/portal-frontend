@@ -172,7 +172,7 @@ export const AddTechnicalUser = () => {
               to="/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User"
               target="_blank"
             >
-              <Typography variant="caption2" className="helpText">
+              <Typography variant="body2" className="helpText">
                 <HelpOutlineIcon />
                 {t('content.addUser.help')}
               </Typography>
