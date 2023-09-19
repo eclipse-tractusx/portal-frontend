@@ -30,7 +30,6 @@ import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
-import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
@@ -156,11 +155,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.DATA_MANAGEMENT,
     role: ROLES.SEMANTICHUB_VIEW,
     element: <SemanticHub />,
-  },
-  {
-    name: PAGES.DIGITALTWIN,
-    role: ROLES.DIGITALTWIN_VIEW,
-    element: <DigitalTwins />,
   },
   {
     name: PAGES.SEMANTICHUB,
@@ -697,7 +691,7 @@ export const mainMenuFullTree = [
   },
   {
     name: PAGES.DATA_MANAGEMENT,
-    children: [{ name: PAGES.SEMANTICHUB }, { name: PAGES.DIGITALTWIN }],
+    children: [{ name: PAGES.SEMANTICHUB }],
   },
   { name: PAGES.PARTNER_NETWORK },
   {
