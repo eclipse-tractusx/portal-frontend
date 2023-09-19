@@ -46,7 +46,7 @@
   - UI Changes
   - Add filters
 - Digital Twin
-  - Code clean up 
+  - Code clean up
 
 ## 1.6.0
 
