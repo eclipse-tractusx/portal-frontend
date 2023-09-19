@@ -139,7 +139,7 @@ const AppSubscriptionDetailOverlay = ({
     ],
   ]
 
-  type === SubscriptionTypes.APP_SUBSCRIPTION &&
+  if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
     bodyData.unshift(
       [
         `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
@@ -153,6 +153,7 @@ const AppSubscriptionDetailOverlay = ({
             : ''),
       ]
     )
+  }
 
   const technicalDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
@@ -160,7 +161,7 @@ const AppSubscriptionDetailOverlay = ({
     edit: [
       [
         {
-          icon: type === SubscriptionTypes.APP_SUBSCRIPTION ? false : true,
+          icon: type === SubscriptionTypes.SERVICE_SUBSCRIPTION,
           inputValue:
             type === SubscriptionTypes.APP_SUBSCRIPTION
               ? ''

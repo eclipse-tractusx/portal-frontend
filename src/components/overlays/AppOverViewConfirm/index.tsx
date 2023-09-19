@@ -69,7 +69,7 @@ export default function AppOverViewConfirm({
         }}
       >
         {title && (
-          <Typography variant="h5">
+          <Typography variant="body2">
             {t('content.appoverview.confirmModal.description').replace(
               '{appName}',
               title

@@ -27,6 +27,12 @@ export type ConnectorContentAPIResponse = {
   id?: string
   name: string
   type: string
+  technicalUser?: {
+    id: string
+    name: string
+    clientId: string
+    description: string
+  }
 }
 
 export type ConnectorCreateBody = {
