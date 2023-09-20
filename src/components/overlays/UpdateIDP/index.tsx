@@ -58,11 +58,10 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.ENABLE_IDP, id))
       success(t('edit.success'))
-      setLoading(false)
     } catch (err) {
       error(t('edit.error'), '', err as object)
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   const UpdateStepsList = [

@@ -245,11 +245,10 @@ export const AddIdp = () => {
       await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
       success(t('add.success'))
-      setLoading(false)
     } catch (err) {
       error(t('add.error'), t('state.error'), err as object)
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   const AddStepsList = [

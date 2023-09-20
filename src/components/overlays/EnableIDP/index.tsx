@@ -94,11 +94,10 @@ export const EnableIDP = ({ id }: { id: string }) => {
         await updateUserIDP(idpUser).unwrap()
         dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
         success(t('enable.success'))
-        setLoading(false)
       } catch (err) {
         error(t('enable.error'), '', err as object)
-        setLoading(false)
       }
+      setLoading(false)
     } catch (err) {
       console.log(err)
     }
