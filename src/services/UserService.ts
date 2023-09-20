@@ -26,7 +26,6 @@ import {
   getCentralIdp,
   getClientId,
   getClientIdSemantic,
-  getClientIdDigitalTwin,
 } from './EnvironmentService'
 import { error, info } from './LogService'
 import { store } from 'features/store'
@@ -42,12 +41,6 @@ const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
   realm: 'CX-Central',
   clientId: getClientIdSemantic(),
-}
-
-const keycloakConfigDigitalTwin: Keycloak.KeycloakConfig = {
-  url: getCentralIdp(),
-  realm: 'CX-Central',
-  clientId: getClientIdDigitalTwin(),
 }
 
 // TODO: add an ESLint exception until there is a solution
@@ -111,7 +104,7 @@ const getTenant = () => KC.tokenParsed?.tenant
 const getRoles = () =>
   KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles.concat(
     KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles,
-    KC.tokenParsed?.resource_access[keycloakConfigDigitalTwin.clientId]?.roles
+    ''
   )
 
 const hasRole = (role: string) => getRoles()?.includes(role)
