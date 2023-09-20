@@ -224,14 +224,15 @@ export const AddIdp = () => {
 
   const doCreateIDP = async () => {
     setLoading(true)
-    console.log('formData', formData)
     try {
-      const idp = await addIdp(formData.authType).unwrap()
+      const idp = await addIdp({
+        protocol: formData.authType,
+        identityProviderTypeId: formData.providerType,
+      }).unwrap()
       const idpUpdateData: IdentityProviderUpdate = {
         identityProviderId: idp.identityProviderId,
         body: {
           displayName: formData.name,
-          identityProviderTypeId: formData.providerType,
           oidc: {
             metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,

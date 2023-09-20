@@ -91,9 +91,13 @@ export interface SAMLType extends BaseAuthType {
   signatureAlgorithm?: string
 }
 
+export interface AddIDPRequest {
+  protocol: IDPAuthType
+  identityProviderTypeId: string
+}
+
 export interface IdentityProviderUpdateBody {
   displayName?: string
-  identityProviderTypeId?: IDPProviderType
   oidc?: OIDCType
   saml?: OIDCType
 }
@@ -159,9 +163,9 @@ export const apiSlice = createApi({
       query: (id: string) =>
         `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
     }),
-    addIDP: builder.mutation<IdentityProvider, IDPAuthType>({
-      query: (protocol: IDPAuthType) => ({
-        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${protocol}`,
+    addIDP: builder.mutation<IdentityProvider, AddIDPRequest>({
+      query: (data: AddIDPRequest) => ({
+        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${data.protocol}&typeId=${data.identityProviderTypeId}`,
         method: 'POST',
       }),
       invalidatesTags: [TAGS.IDP],
