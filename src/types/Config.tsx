@@ -80,6 +80,7 @@ import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
 import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
+import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 
 /**
@@ -423,6 +424,19 @@ export const ALL_PAGES: IPage[] = [
         element={<Deactivate />}
       >
         <Route path=":appId" element={<Deactivate />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.SERVICEDEACTIVATE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICEDEACTIVATE}
+        path={PAGES.SERVICEDEACTIVATE}
+        element={<ServiceDeactivate />}
+      >
+        <Route path=":serviceId" element={<ServiceDeactivate />} />
       </Route>
     ),
   },

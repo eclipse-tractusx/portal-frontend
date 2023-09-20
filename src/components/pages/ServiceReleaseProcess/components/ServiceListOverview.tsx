@@ -28,6 +28,7 @@ import {
   Cards,
   LoadMoreButton,
   CardItems,
+  PageSnackbar,
   ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
@@ -36,16 +37,18 @@ import {
   ProvidedServices,
   ProvidedServiceStatusEnum,
   ProvidedServiceType,
+  ServiceDeactivateEnum,
   StatusIdEnum,
   useFetchProvidedServicesQuery,
 } from 'features/serviceManagement/apiSlice'
 import NoItems from 'components/pages/NoItems'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import debounce from 'lodash.debounce'
 import { setServiceId } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { Box, useTheme, CircularProgress } from '@mui/material'
 
 enum ServiceSubMenuItems {
@@ -66,6 +69,7 @@ export default function ServiceListOverview() {
       statusFilter: '',
     },
   })
+  const { state } = useLocation()
   const { data, isFetching, isSuccess, refetch } =
     useFetchProvidedServicesQuery(argsData)
   const dispatch = useDispatch()
@@ -78,6 +82,10 @@ export default function ServiceListOverview() {
       url: '',
     },
   ]
+
+  useEffect(() => {
+    state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS && refetch()
+  }, [state, refetch])
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
@@ -248,7 +256,7 @@ export default function ServiceListOverview() {
                   submenuOptions={submenuOptions}
                   submenuClick={(sortMenu: string, id: string | undefined) => {
                     sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                      navigate(`/${PAGES.DEACTIVATE}/${id}`, {
+                      navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
                         state: items,
                       })
                     return undefined
@@ -271,6 +279,25 @@ export default function ServiceListOverview() {
           <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
         )}
       </div>
+
+      {state && (
+        <PageSnackbar
+          open={state !== ''}
+          onCloseNotification={() => {}}
+          severity={
+            state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
+              ? SuccessErrorType.SUCCESS
+              : SuccessErrorType.ERROR
+          }
+          description={
+            state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
+              ? t('serviceoverview.serviceDeactivate.successMsg')
+              : t('serviceoverview.serviceDeactivate.errorMsg')
+          }
+          showIcon={true}
+          autoClose={true}
+        />
+      )}
     </main>
   )
 }
