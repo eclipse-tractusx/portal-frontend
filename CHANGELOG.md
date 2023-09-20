@@ -45,6 +45,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Service release process
+  - Clearing fields while registering new service
 
 ## 1.6.0
 
