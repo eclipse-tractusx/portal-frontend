@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -32,83 +31,87 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useState } from 'react'
-import { useDeactivateAppMutation } from 'features/apps/apiSlice'
+import {
+  ServiceDeactivateEnum,
+  useDeactivateServiceMutation,
+} from 'features/serviceManagement/apiSlice'
+import { PAGES } from 'types/Constants'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
 
-export default function Deactivate() {
-  const { t } = useTranslation()
+export default function ServiceDeactivate() {
+  const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
-  const appId = useParams().appId
+  const serviceId = useParams().serviceId
   const [checked, setChecked] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
+  const [isLoading, setIsLoading] = useState(false)
   const items: any = state
-  const app = items?.filter((item: any) => item.id === appId)
-  const [deactivateApp] = useDeactivateAppMutation()
-  const leadImageId = app?.[0]?.leadPictureId
+  const service = items?.filter((item: any) => item.id === serviceId)
+  const [deactivateService] = useDeactivateServiceMutation()
+  const leadImageId = service?.[0]?.leadPictureId
 
   const handleSaveClick = async () => {
     setIsLoading(true)
-    await deactivateApp(app[0].id)
+    await deactivateService(service[0].id)
       .unwrap()
       .then(() =>
-        navigate('/appoverview', {
-          state: 'deactivate-success',
+        navigate(`/${PAGES.SERVICEOVERVIEW}`, {
+          state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS,
         })
       )
       .catch((error) =>
-        navigate('/appoverview', {
-          state: 'deactivate-error',
+        navigate(`/${PAGES.SERVICEOVERVIEW}`, {
+          state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_ERROR,
         })
       )
   }
 
   return (
     <main className="deactivate-main">
-      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
+      <PageHeader title={service?.[0]?.title} topPage={true} headerHeight={200}>
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
         <Typography variant="body2" mb={3} align="center">
-          {app?.[0]?.title}
+          {service?.[0]?.title}
         </Typography>
         <Typography variant="h2" mb={3} align="center">
-          {t('content.deactivate.headerTitle')}
+          {t('serviceoverview.serviceDeactivate.headerTitle')}
         </Typography>
         <Typography variant="body2" align="center">
-          {t('content.deactivate.description')}
+          {t('serviceoverview.serviceDeactivate.description')}
         </Typography>
       </section>
       <div className="mainContainer">
         <div className="mainRow">
-          {app && (
+          {service && (
             <Box sx={{ display: 'flex' }}>
               <Box sx={{ width: '50%' }}>
                 <Card
                   image={{
-                    src: `${getApiBase()}/api/apps/${
-                      appId ?? ''
-                    }/appDocuments/${leadImageId}`,
+                    src: `${getApiBase()}/api/administration/documents/${leadImageId}`,
                   }}
-                  title={app[0]?.title || ''}
-                  subtitle={app[0]?.provider}
+                  title={service[0]?.title || ''}
+                  subtitle={service[0]?.provider}
                   variant="minimal"
                   expandOnHover={false}
                   buttonText={''}
                   imageShape="round"
+                  imageLoader={fetchImageWithToken}
                   filledBackground={false}
                   imageSize="small"
-                  imageLoader={fetchImageWithToken}
                 />
               </Box>
               <Box sx={{ marginTop: '10%' }}>
                 <Checkbox
-                  label={`${t('content.deactivate.checkboxLabel')}`}
-                  key={app[0].id}
+                  label={`${t(
+                    'serviceoverview.serviceDeactivate.checkboxLabel'
+                  )}`}
                   onChange={(e) =>
                     e.target.checked ? setChecked(true) : setChecked(false)
                   }
+                  key={service[0].id}
                   className="checkbox-input"
                 />
               </Box>
@@ -120,34 +123,36 @@ export default function Deactivate() {
         <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
           <Button
-            color="secondary"
             size="small"
-            onClick={() => navigate('/appoverview')}
+            color="secondary"
+            onClick={() => navigate('/serviceoverview')}
           >
             {t('global.actions.cancel')}
           </Button>
           <Tooltips
             tooltipPlacement="bottom-start"
             tooltipText={
-              !checked ? t('content.deactivate.checkboxErrorMsg') : ''
+              !checked
+                ? t('serviceoverview.serviceDeactivate.checkboxErrorMsg')
+                : ''
             }
             children={
               <span style={{ position: 'absolute', right: '10px' }}>
                 {isLoading ? (
                   <LoadingButton
-                    size="small"
                     loading={isLoading}
-                    variant="contained"
-                    onButtonClick={() => {}}
                     loadIndicator="Loading..."
+                    variant="contained"
+                    size="small"
+                    onButtonClick={() => {}}
                     label={`${t('global.actions.confirm')}`}
                   />
                 ) : (
                   <Button
                     size="small"
+                    onClick={handleSaveClick}
                     variant="contained"
                     disabled={!checked}
-                    onClick={handleSaveClick}
                   >
                     {t('global.actions.save')}
                   </Button>

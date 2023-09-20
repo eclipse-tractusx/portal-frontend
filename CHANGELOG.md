@@ -15,6 +15,7 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+  - Added Deactivate functionality
   - Added image to service overview cards
 - Data Space
   - Last section background color issue
