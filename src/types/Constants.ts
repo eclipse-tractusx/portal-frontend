@@ -86,6 +86,7 @@ export enum PAGES {
   USE_CASE_TRACABILITY = 'usecasetraceablity',
   SERVICE_MANAGEMENT = 'servicemanagement',
   SERVICEOVERVIEW = 'serviceoverview',
+  SERVICEDEACTIVATE = 'servicedeactivate',
   SERVICERELEASEPROCESS = 'servicereleaseprocess',
   SERVICEADMINBOARD = 'serviceadminboard',
   SERVICEADMINBOARD_DETAIL = 'serviceadminboarddetail',
