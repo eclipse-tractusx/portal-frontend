@@ -63,11 +63,11 @@ export type IdentityProviderType = {
 const IdentityProviderTypeData = [
   {
     title: 'own - create an IdP connection to your company IdP for yourself',
-    value: 'OWN'
+    value: 'OWN',
   },
   {
     title: 'managed - create an managed IdP connection for a third party',
-    value: 'MANAGED'
+    value: 'MANAGED',
   },
 ]
 
@@ -87,11 +87,9 @@ const SelectIdpProviderType = ({
       <SelectList
         items={IdentityProviderTypeData}
         label={''}
-        placeholder={t(
-          'field.providerType.placeholder'
-        )}
-        defaultValue=''
-        onChangeItem={(e) => onChange(e?.value) }
+        placeholder={t('field.providerType.placeholder')}
+        defaultValue=""
+        onChangeItem={(e) => onChange(e?.value)}
         keyTitle={'title'}
       />
     </div>
@@ -317,13 +315,15 @@ export const AddIdp = () => {
             loadIndicator={t('action.loading')}
             loading
             size="medium"
-            onButtonClick={() => { }}
+            onButtonClick={() => {}}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
           <Button
             variant="contained"
-            disabled={!formData.name || formData.providerType === IDPProviderType.NONE}
+            disabled={
+              !formData.name || formData.providerType === IDPProviderType.NONE
+            }
             onClick={() => doCreateIDP()}
           >
             {t('action.next')}

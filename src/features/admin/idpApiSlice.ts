@@ -29,7 +29,7 @@ export enum IDPCategory {
 export enum IDPProviderType {
   NONE = 'NONE',
   OWN = 'OWN',
-  MANAGED = 'MANAGED'
+  MANAGED = 'MANAGED',
 }
 
 export enum IDPAuthType {
