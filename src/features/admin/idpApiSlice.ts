@@ -26,6 +26,12 @@ export enum IDPCategory {
   OWN = 'OWN',
 }
 
+export enum IDPProviderType {
+  NONE = 'NONE',
+  OWN = 'OWN',
+  MANAGED = 'MANAGED',
+}
+
 export enum IDPAuthType {
   OIDC = 'OIDC',
   SAML = 'SAML',
@@ -83,6 +89,11 @@ export interface OIDCType extends BaseAuthType {
 export interface SAMLType extends BaseAuthType {
   clientAuthMethod: SAMLAuthMethod
   signatureAlgorithm?: string
+}
+
+export interface AddIDPRequest {
+  protocol: IDPAuthType
+  identityProviderTypeId: string
 }
 
 export interface IdentityProviderUpdateBody {
@@ -152,9 +163,9 @@ export const apiSlice = createApi({
       query: (id: string) =>
         `/api/administration/identityprovider/owncompany/identityproviders/${id}`,
     }),
-    addIDP: builder.mutation<IdentityProvider, IDPAuthType>({
-      query: (protocol: IDPAuthType) => ({
-        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${protocol}`,
+    addIDP: builder.mutation<IdentityProvider, AddIDPRequest>({
+      query: (data: AddIDPRequest) => ({
+        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${data.protocol}&typeId=${data.identityProviderTypeId}`,
         method: 'POST',
       }),
       invalidatesTags: [TAGS.IDP],

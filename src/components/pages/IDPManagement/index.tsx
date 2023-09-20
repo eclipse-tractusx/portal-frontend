@@ -19,10 +19,9 @@
  ********************************************************************************/
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import { Button, Typography } from '@catena-x/portal-shared-components'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
 import { show } from 'features/control/overlay'
@@ -35,25 +34,33 @@ export default function IDPManagement() {
 
   return (
     <main>
-      <PageHeaderWithCrumbs crumbs={[PAGES.IDP_MANAGEMENT]} />
       <section>
         <div className="idp-management-header">
+          <Trans>
+            <Typography variant="h2" className="idp-management-title">
+              {t('idpmanagement.title')}
+            </Typography>
+          </Trans>
+          <Trans>
+            <Typography className="idp-management-desc">
+              {t('page.desc')}
+            </Typography>
+          </Trans>
           <img
             src={`${getAssetBase()}/images/content/teaser.png`}
             alt={'idp management'}
           />
-          <div className="idp-management-title">
-            <Typography>{t('page.desc')}</Typography>
+          <div>
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
               onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+              className="add-idp-btn"
             >
               {t('action.create')}
             </Button>
           </div>
         </div>
-
         <div style={{ paddingTop: '70px' }}>
           <IDPList />
         </div>

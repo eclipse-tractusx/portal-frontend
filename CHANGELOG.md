@@ -39,6 +39,8 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- Identity Provider Config
+  - UI Enhancements
 - Overlay
   - Overlays style sync
 - My Organization
