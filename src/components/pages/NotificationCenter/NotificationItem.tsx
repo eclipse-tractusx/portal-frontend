@@ -92,7 +92,7 @@ const NotificationContent = ({
   const newUrl = item.contentParsed?.newUrl
   const roles = item.contentParsed?.Roles
   const userEmail = item.contentParsed?.UserEmail
-  console.log(item)
+
   return (
     <>
       <div>
