@@ -26,6 +26,7 @@ import {
   DialogHeader,
   LoadingButton,
   Radio,
+  SelectList,
   Stepper,
   Tooltips,
   Typography,
@@ -36,6 +37,7 @@ import { useState } from 'react'
 import {
   IdentityProviderUpdate,
   IDPAuthType,
+  IDPProviderType,
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
   useAddIDPMutation,
@@ -53,6 +55,49 @@ enum IDPType {
   SHARED = 'Shared',
 }
 
+export type IdentityProviderType = {
+  title: string
+  value: string
+}
+
+const IdentityProviderTypeData = [
+  {
+    title: 'own - create an IdP connection to your company IdP for yourself',
+    value: 'OWN'
+  },
+  {
+    title: 'managed - create an managed IdP connection for a third party',
+    value: 'MANAGED'
+  },
+]
+
+const SelectIdpProviderType = ({
+  onChange,
+}: {
+  onChange: (value: IDPProviderType) => void
+}) => {
+  const { t } = useTranslation('idp')
+  return (
+    <div style={{ padding: '30px 0px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Typography sx={{ marginRight: '12px' }} variant="label3">
+          {t('field.providerType.name')}
+        </Typography>
+      </div>
+      <SelectList
+        items={IdentityProviderTypeData}
+        label={''}
+        placeholder={t(
+          'field.providerType.placeholder'
+        )}
+        defaultValue=''
+        onChangeItem={(e) => onChange(e?.value) }
+        keyTitle={'title'}
+      />
+    </div>
+  )
+}
+
 const SelectIdpAuthType = ({
   onChange,
 }: {
@@ -60,6 +105,7 @@ const SelectIdpAuthType = ({
 }) => {
   const { t } = useTranslation('idp')
   const [type, setType] = useState<IDPAuthType>(IDPAuthType.OIDC)
+
   return (
     <div style={{ padding: '30px 0px' }}>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -111,12 +157,14 @@ const SelectIdpAuthType = ({
 
 type AddIDPPrepareFormType = {
   type: IDPType
+  providerType: IDPProviderType
   authType: IDPAuthType
   name: string
 }
 
 const initialAddIDPPrepareForm = {
   type: IDPType.COMPANY,
+  providerType: IDPProviderType.NONE,
   authType: IDPAuthType.OIDC,
   name: '',
 }
@@ -146,6 +194,14 @@ const AddIDPPrepareForm = ({
           onChange(currentData)
         }}
       />
+      <SelectIdpProviderType
+        onChange={(value) => {
+          const currentData = { ...formData }
+          currentData.providerType = value
+          setFormData(currentData)
+          onChange(currentData)
+        }}
+      />
       <SelectIdpAuthType
         onChange={(value) => {
           const currentData = { ...formData }
@@ -170,12 +226,14 @@ export const AddIdp = () => {
 
   const doCreateIDP = async () => {
     setLoading(true)
+    console.log('formData', formData)
     try {
       const idp = await addIdp(formData.authType).unwrap()
       const idpUpdateData: IdentityProviderUpdate = {
         identityProviderId: idp.identityProviderId,
         body: {
           displayName: formData.name,
+          identityProviderTypeId: formData.providerType,
           oidc: {
             metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
@@ -259,13 +317,13 @@ export const AddIdp = () => {
             loadIndicator={t('action.loading')}
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => { }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
           <Button
             variant="contained"
-            disabled={!formData.name}
+            disabled={!formData.name || formData.providerType === IDPProviderType.NONE}
             onClick={() => doCreateIDP()}
           >
             {t('action.next')}

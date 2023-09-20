@@ -26,6 +26,12 @@ export enum IDPCategory {
   OWN = 'OWN',
 }
 
+export enum IDPProviderType {
+  NONE = 'NONE',
+  OWN = 'OWN',
+  MANAGED = 'MANAGED'
+}
+
 export enum IDPAuthType {
   OIDC = 'OIDC',
   SAML = 'SAML',
@@ -87,6 +93,7 @@ export interface SAMLType extends BaseAuthType {
 
 export interface IdentityProviderUpdateBody {
   displayName?: string
+  identityProviderTypeId?: IDPProviderType
   oidc?: OIDCType
   saml?: OIDCType
 }

@@ -185,6 +185,10 @@
       "name": "Authentication type",
       "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
     },
+    "providerType": {
+      "name": "Identity Provider Type",
+      "placeholder": "Please select a type"
+    },
     "redirectUri": {
       "name": "Redirect URL",
       "hint": "Click to copy the shown URI and enter it as valid redirect URI for your IdP client"
