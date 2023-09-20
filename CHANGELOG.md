@@ -47,6 +47,8 @@
   - Add filters
 - Usermanagement
   - Bulk upload UI Changes
+- Service Marketplace
+  - Change Subscription roles
 
 ## 1.6.0
 
