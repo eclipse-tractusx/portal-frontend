@@ -45,6 +45,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Notifications
+  - App Subscription Request content update
 
 ## 1.6.0
 

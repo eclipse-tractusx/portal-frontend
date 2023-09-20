@@ -91,7 +91,8 @@ const NotificationContent = ({
   const credentialType = item.contentParsed?.type
   const newUrl = item.contentParsed?.newUrl
   const roles = item.contentParsed?.Roles
-
+  const userEmail = item.contentParsed?.UserEmail
+  console.log(item)
   return (
     <>
       <div>
@@ -110,6 +111,7 @@ const NotificationContent = ({
             credentialType: credentialType,
             newUrl: newUrl,
             roles: roles?.join(', '),
+            useremail: userEmail,
           }}
         >
           <NameLink
