@@ -20,15 +20,11 @@ import {
   LoadMoreButton,
   Table,
   TableProps,
+  PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { getMaxRows, hasMorePages } from './helper'
-
-export interface PaginFetchArgs {
-  page: number
-  args?: any
-}
 
 export interface PaginMeta {
   totalElements: number

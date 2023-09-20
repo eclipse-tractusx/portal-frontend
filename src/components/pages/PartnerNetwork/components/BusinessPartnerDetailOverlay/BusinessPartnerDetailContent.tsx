@@ -21,13 +21,16 @@
 import { Box, Grid, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
-import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
+import {
+  BpdmTypeUUIDKeyPair,
+  BusinessPartner,
+} from 'features/partnerNetwork/types'
 import DetailGridRow from './DetailGridRow'
 
 const BusinessPartnerDetailContent = ({
   selectedRowBPN,
 }: {
-  selectedRowBPN: any
+  selectedRowBPN: BusinessPartner
 }) => {
   const { t } = useTranslation()
   const theme = useTheme()
