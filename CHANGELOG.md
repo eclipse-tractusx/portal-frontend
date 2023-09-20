@@ -13,7 +13,7 @@
   - Enable search & filter
 - Technical User Details
   - Enable credential reset
-- Serview Overview
+- Service Overview
   - Added Sub menu for active services in service overview
   - Added image to service overview cards
 - Data Space
@@ -45,6 +45,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Service release process
+  - Skip technical integration for consultancy service
 
 ## 1.6.0
 
