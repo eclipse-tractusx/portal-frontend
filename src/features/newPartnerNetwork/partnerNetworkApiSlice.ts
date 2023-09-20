@@ -57,6 +57,29 @@ export const apiSlice = createApi({
           return `/catena/legal-entities?page=${fetchArgs.page}&size=10`
         }
       },
+      transformResponse: (response: any) => {
+        if (response.content) {
+          return {
+            ...response,
+            meta: {
+              contentSize: response.contentSize,
+              page: response.page,
+              totalElements: response.totalElements,
+              totalPages: response.totalPages,
+            },
+          }
+        } else {
+          return {
+            content: [response],
+            meta: {
+              contentSize: response.contentSize,
+              page: response.page,
+              totalElements: response.totalElements,
+              totalPages: response.totalPages,
+            },
+          }
+        }
+      },
     }),
   }),
 })

@@ -29,7 +29,13 @@ const BusinessPartnerDetail = ({ id }: { id: string }) => {
     },
   })
 
-  return <>{data && <BusinessPartnerDetailContent selectedRowBPN={data} />}</>
+  return (
+    <>
+      {data?.content?.length && (
+        <BusinessPartnerDetailContent selectedRowBPN={data.content[0]} />
+      )}
+    </>
+  )
 }
 
 export default BusinessPartnerDetail

@@ -17,19 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 export const hasMorePages = (data: {
-  page: number
-  totalPages: number
   meta: { page: number; totalPages: number }
 }) => {
-  return (
-    data?.page < data?.totalPages - 1 ||
-    (data?.meta && data.meta.page < data.meta.totalPages - 1)
-  )
+  return data?.meta?.page < data?.meta?.totalPages - 1
 }
 
-export const getMaxRows = (data: {
-  totalElements: number
-  meta: { totalElements: number }
-}) => {
-  return data?.totalElements ?? data?.meta?.totalElements ?? 0
+export const getMaxRows = (data: { meta: { totalElements: number } }) => {
+  return data?.meta?.totalElements ?? 0
 }

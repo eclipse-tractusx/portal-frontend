@@ -34,7 +34,6 @@ import Patterns from 'types/Patterns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {
   isContentPresent,
-  isQueryDataPresent,
   addCountryAttribute,
   addMemberAttribute,
 } from './components/PartnerList/helper'
@@ -60,38 +59,19 @@ const PartnerNetwork = () => {
       setAllItems([])
       return
     }
-    if (isContentPresent(cData)) {
-      const result = cData.content.map((x: any) => x.bpnl)
-      await mutationRequest(result)
-        .unwrap()
-        .then((payload: any) => {
-          //new country attribute && member attributes based on the response
-          let finalObj = JSON.parse(JSON.stringify(cData?.content))
-          finalObj = addCountryAttribute(finalObj, payload)
-          finalObj = addMemberAttribute(finalObj, data)
-          setAllItems(finalObj)
-        })
-        .catch(() => {
-          setAllItems([])
-        })
-    } else {
-      const result = [cData.bpnl]
-      await mutationRequest(result)
-        .unwrap()
-        .then((payload: any) => {
-          //update country attribute && update member info
-          let finalObj = JSON.parse(JSON.stringify(cData))
-          finalObj.legalAddress.physicalPostalAddress =
-            payload[0].physicalPostalAddress
-          if (isQueryDataPresent(data)) {
-            finalObj.member = data && data.includes(finalObj.bpn)
-          }
-          setAllItems([finalObj])
-        })
-        .catch(() => {
-          setAllItems([])
-        })
-    }
+    const result = cData.content.map((x: any) => x.bpnl)
+    await mutationRequest(result)
+      .unwrap()
+      .then((payload: any) => {
+        //new country attribute && member attributes based on the response
+        let finalObj = JSON.parse(JSON.stringify(cData?.content))
+        finalObj = addCountryAttribute(finalObj, payload)
+        finalObj = addMemberAttribute(finalObj, data)
+        setAllItems(finalObj)
+      })
+      .catch(() => {
+        setAllItems([])
+      })
   }
 
   return (
@@ -103,7 +83,7 @@ const PartnerNetwork = () => {
       ></PageHeader>
 
       <section id="identity-management-id">
-        <PageLoadingTable<BusinessPartner>
+        <PageLoadingTable<BusinessPartner, { expr: string }>
           searchExpr={expr}
           toolbarVariant={'ultimate'}
           hasBorder={false}
