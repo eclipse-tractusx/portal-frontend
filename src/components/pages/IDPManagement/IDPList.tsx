@@ -22,11 +22,13 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { CircularProgress, MenuItem } from '@mui/material'
+import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import './style.scss'
 import {
   DropdownMenu,
   StatusTag,
   Table,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
@@ -135,32 +137,32 @@ export const IDPList = () => {
           >
             {ti('action.configure')}
           </MenuItem>
-          {idp.oidc?.clientId && (
-            <MenuItem
-              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                !disableLoading && doEnableDisableToggle(e, idp)
-              }
-              sx={{
-                color: disableLoading ? '#b6b6b6' : '#111111',
-              }}
-              disabled={
-                idpsData &&
-                idp.enabled &&
-                idpsData?.filter((idp: IdentityProvider) => idp.enabled)
-                  .length < 2
-              }
-            >
-              {idp.enabled ? ti('action.disable') : ti('action.enable')}
-              {disableLoading && (
-                <CircularProgress
-                  size={15}
-                  sx={{
-                    marginLeft: '5px',
-                  }}
-                />
-              )}
-            </MenuItem>
-          )}
+          {/* {idp.oidc?.clientId && ( */}
+          <MenuItem
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
+            sx={{
+              color: disableLoading ? '#b6b6b6' : '#111111',
+            }}
+            disabled={
+              idpsData &&
+              idp.enabled &&
+              idpsData?.filter((idp: IdentityProvider) => idp.enabled).length <
+                2
+            }
+          >
+            {idp.enabled ? ti('action.disable') : ti('action.enable')}
+            {disableLoading && (
+              <CircularProgress
+                size={15}
+                sx={{
+                  marginLeft: '5px',
+                }}
+              />
+            )}
+          </MenuItem>
+          {/* )} */}
           {idp.enabled ? (
             <MenuItem
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
@@ -214,20 +216,34 @@ export const IDPList = () => {
               field: 'displayName',
               headerName: t('global.field.name'),
               flex: 2,
+              renderCell: ({ row }: { row: IdentityProvider }) =>
+                row.displayName ?? (
+                  <>
+                    <ReportProblemIcon color="error" fontSize="small" />
+                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                      {ti('field.error')}
+                    </Typography>
+                  </>
+                ),
             },
             {
               field: 'alias',
               headerName: t('global.field.alias'),
-              flex: 2,
+              flex: 1.5,
+              renderCell: ({ row }: { row: IdentityProvider }) =>
+                row.alias ?? (
+                  <>
+                    <ReportProblemIcon color="error" fontSize="small" />
+                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                      {ti('field.error')}
+                    </Typography>
+                  </>
+                ),
             },
             {
               field: 'identityProviderCategoryId',
               headerName: t('global.field.authMethod'),
               flex: 2,
-              valueGetter: ({ row }: { row: IdentityProvider }) =>
-                row.identityProviderCategoryId === 'KEYCLOAK_SHARED'
-                  ? `${ti('field.catenaXIDP')}`
-                  : `${ti('field.companyIDP')}`,
             },
             {
               field: 'progress',
