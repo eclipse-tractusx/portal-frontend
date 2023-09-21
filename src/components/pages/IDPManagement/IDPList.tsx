@@ -137,32 +137,32 @@ export const IDPList = () => {
           >
             {ti('action.configure')}
           </MenuItem>
-          {/* {idp.oidc?.clientId && ( */}
-          <MenuItem
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-              !disableLoading && doEnableDisableToggle(e, idp)
-            }
-            sx={{
-              color: disableLoading ? '#b6b6b6' : '#111111',
-            }}
-            disabled={
-              idpsData &&
-              idp.enabled &&
-              idpsData?.filter((idp: IdentityProvider) => idp.enabled).length <
-                2
-            }
-          >
-            {idp.enabled ? ti('action.disable') : ti('action.enable')}
-            {disableLoading && (
-              <CircularProgress
-                size={15}
-                sx={{
-                  marginLeft: '5px',
-                }}
-              />
-            )}
-          </MenuItem>
-          {/* )} */}
+          {idp.oidc?.clientId && (
+            <MenuItem
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                !disableLoading && doEnableDisableToggle(e, idp)
+              }
+              sx={{
+                color: disableLoading ? '#b6b6b6' : '#111111',
+              }}
+              disabled={
+                idpsData &&
+                idp.enabled &&
+                idpsData?.filter((idp: IdentityProvider) => idp.enabled)
+                  .length < 2
+              }
+            >
+              {idp.enabled ? ti('action.disable') : ti('action.enable')}
+              {disableLoading && (
+                <CircularProgress
+                  size={15}
+                  sx={{
+                    marginLeft: '5px',
+                  }}
+                />
+              )}
+            </MenuItem>
+          )}
           {idp.enabled ? (
             <MenuItem
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
