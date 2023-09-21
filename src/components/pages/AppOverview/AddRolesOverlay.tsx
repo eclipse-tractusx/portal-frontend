@@ -157,6 +157,13 @@ const AddRolesOverlay = ({
       })
   }
 
+  const handleClose = () => {
+    handleOverlayClose()
+    setRolesPreviews([])
+    setRolesDescription([])
+    setUploadCSVError(false)
+  }
+
   return (
     <div className="detailsOverlay">
       <Dialog
@@ -169,9 +176,7 @@ const AddRolesOverlay = ({
           title={t('content.addRoles.uploadAdditionalRoles')}
           intro={t('content.addRoles.uploadAdditionalRolesDescription')}
           closeWithIcon={true}
-          onCloseWithIcon={() => {
-            handleOverlayClose()
-          }}
+          onCloseWithIcon={() => handleClose()}
         />
         <DialogContent
           sx={{
@@ -256,12 +261,7 @@ const AddRolesOverlay = ({
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              handleOverlayClose()
-            }}
-          >
+          <Button variant="outlined" onClick={() => handleClose()}>
             {t('global.actions.cancel')}
           </Button>
 
