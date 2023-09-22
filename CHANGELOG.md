@@ -48,6 +48,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Linter Findings
+  - Object shorthand fix
 
 ## 1.6.0
 

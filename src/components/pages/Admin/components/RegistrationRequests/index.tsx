@@ -132,7 +132,7 @@ export default function RegistrationRequests() {
 
   const onUpdateBpn = async (bpn: string) => {
     setIsLoading(true)
-    await updateBpn({ bpn: bpn, applicationId: selectedRequestId })
+    await updateBpn({ bpn, applicationId: selectedRequestId })
       .unwrap()
       .then((payload) => {
         setEnableBpnInput(false)
@@ -173,7 +173,7 @@ export default function RegistrationRequests() {
         <CompanyDetailOverlay
           {...{
             openDialog: overlayOpen,
-            selectedRequestId: selectedRequestId,
+            selectedRequestId,
             handleOverlayClose: () => setOverlayOpen(false),
           }}
         />

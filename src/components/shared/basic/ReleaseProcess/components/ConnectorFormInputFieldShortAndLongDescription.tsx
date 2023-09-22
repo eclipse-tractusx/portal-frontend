@@ -44,7 +44,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
           trigger,
           errors,
           name: item,
-          label: label,
+          label,
           type: 'input',
           textarea: true,
           rules: {

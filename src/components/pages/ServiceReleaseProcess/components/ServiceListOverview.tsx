@@ -63,7 +63,7 @@ export default function ServiceListOverview() {
   const [page, setPage] = useState<number>(0)
   const navigate = useNavigate()
   const [argsData, setArgsData] = useState({
-    page: page,
+    page,
     args: {
       expr: '',
       statusFilter: '',
@@ -140,9 +140,9 @@ export default function ServiceListOverview() {
     () =>
       debounce((expr: string) => {
         setArgsData({
-          page: page,
+          page,
           args: {
-            expr: expr,
+            expr,
             statusFilter: group,
           },
         })

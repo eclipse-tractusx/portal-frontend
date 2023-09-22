@@ -51,9 +51,9 @@ export default function ConnectorFormInputFieldImage({
           control,
           trigger,
           errors,
-          name: name,
+          name,
           type: 'dropzone',
-          acceptFormat: acceptFormat,
+          acceptFormat,
           maxFilesToUpload: 1,
           maxFileSize: 819200,
           rules: {
@@ -61,10 +61,10 @@ export default function ConnectorFormInputFieldImage({
               value: isRequired,
             },
           },
-          handleDownload: handleDownload,
-          handleDelete: handleDelete,
+          handleDownload,
+          handleDelete,
           errorText: t('content.apprelease.appReleaseForm.fileSizeError'),
-          size: size,
+          size,
         }}
       />
       {errors?.uploadImage?.leadPictureUri?.type === ErrorType.REQUIRED && (

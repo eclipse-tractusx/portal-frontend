@@ -98,7 +98,7 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
         )}
         toolbarVariant="ultimate"
         toolbar={{
-          onSearch: onSearch,
+          onSearch,
           searchExpr: searchValue,
           onClearSearch: clearSearch,
         }}
