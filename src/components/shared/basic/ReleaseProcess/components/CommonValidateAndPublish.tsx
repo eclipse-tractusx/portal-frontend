@@ -299,9 +299,9 @@ export default function CommonValidateAndPublish({
             >
               <Card
                 image={{
-                  src: cardImage || LogoGrayData,
+                  src: cardImage ?? LogoGrayData,
                 }}
-                title={statusData?.title || ''}
+                title={statusData?.title ?? ''}
                 subtitle={statusData?.provider}
                 description={
                   statusData?.descriptions?.filter(
@@ -344,12 +344,12 @@ export default function CommonValidateAndPublish({
           <CardHorizontal
             borderRadius={6}
             imageAlt="Service Card"
-            imagePath={cardImage || LogoGrayData}
+            imagePath={cardImage ?? LogoGrayData}
             label={''}
             buttonText=""
             onBtnClick={() => {}}
-            title={statusData?.title || ''}
-            subTitle={serviceTypes || ''}
+            title={statusData?.title ?? ''}
+            subTitle={serviceTypes ?? ''}
             description={''}
             backgroundColor="rgb(224, 225, 226)"
           />

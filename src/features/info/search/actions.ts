@@ -175,7 +175,7 @@ const fetchSearch = createAsyncThunk(
           .filter((item: AppMarketplaceApp) =>
             uuid
               ? item.id.match(searchExpr)
-              : item.name?.match(searchExpr) || item.provider.match(searchExpr)
+              : item.name?.match(searchExpr) ?? item.provider.match(searchExpr)
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
         partners.content.map((item: { businessPartner: BusinessPartner }) =>
@@ -184,18 +184,18 @@ const fetchSearch = createAsyncThunk(
         news
           .filter(
             (item: CardItems) =>
-              item.title?.match(searchExpr) ||
-              item.subtitle?.match(searchExpr) ||
+              item.title?.match(searchExpr) ??
+              item.subtitle?.match(searchExpr) ??
               item.description?.match(searchExpr)
           )
           .map((item: CardItems) => newsToSearchItem(item)),
         users.content
           .filter((item: TenantUser) =>
             uuid
-              ? item.userEntityId?.match(searchExpr) ||
+              ? item.userEntityId?.match(searchExpr) ??
                 item.companyUserId.match(searchExpr)
-              : item.firstName?.match(searchExpr) ||
-                item.lastName?.match(searchExpr) ||
+              : item.firstName?.match(searchExpr) ??
+                item.lastName?.match(searchExpr) ??
                 item.email.match(searchExpr)
           )
           .map((item: TenantUser) => userToSearchItem(item)),

@@ -99,7 +99,7 @@ export default function AppPage() {
     refetchOnMountOrArgChange: true,
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
-  const statusData = fetchAppStatus || appStatusData
+  const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
   const [saveApp] = useSaveAppMutation()
 
@@ -116,21 +116,21 @@ export default function AppPage() {
       longDescriptionEN:
         fetchAppStatus?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'en'
-        )[0]?.longDescription || '',
+        )[0]?.longDescription ?? '',
       longDescriptionDE:
         fetchAppStatus?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'de'
-        )[0]?.longDescription || '',
-      images: fetchAppStatus?.documents?.APP_IMAGE || [],
+        )[0]?.longDescription ?? '',
+      images: fetchAppStatus?.documents?.APP_IMAGE ?? [],
       uploadDataPrerequisits:
-        fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
+        fetchAppStatus?.documents?.ADDITIONAL_DETAILS ?? null,
       uploadTechnicalGuide:
-        fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
-      uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
-      providerHomePage: fetchAppStatus?.providerUri || '',
-      providerContactEmail: fetchAppStatus?.contactEmail || '',
-      providerPhoneContact: fetchAppStatus?.contactNumber || '',
-      privacyPolicies: fetchAppStatus?.privacyPolicies || [],
+        fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION ?? null,
+      uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT ?? null,
+      providerHomePage: fetchAppStatus?.providerUri ?? '',
+      providerContactEmail: fetchAppStatus?.contactEmail ?? '',
+      providerPhoneContact: fetchAppStatus?.contactNumber ?? '',
+      privacyPolicies: fetchAppStatus?.privacyPolicies ?? [],
     }
   }, [fetchAppStatus])
 
@@ -367,7 +367,7 @@ export default function AppPage() {
           shortDescription:
             statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
         {
           languageCode: 'de',
@@ -375,7 +375,7 @@ export default function AppPage() {
           shortDescription:
             statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
       ],
       title: statusData.title,
@@ -385,9 +385,9 @@ export default function AppPage() {
       supportedLanguageCodes: statusData.supportedLanguageCodes,
       price: statusData.price,
       privacyPolicies: selectedPrivacyPolicies,
-      providerUri: data.providerHomePage || '',
-      contactEmail: data.providerContactEmail || '',
-      contactNumber: data.providerPhoneContact || '',
+      providerUri: data.providerHomePage ?? '',
+      contactEmail: data.providerContactEmail ?? '',
+      contactNumber: data.providerPhoneContact ?? '',
     }
 
     try {
@@ -450,7 +450,7 @@ export default function AppPage() {
   const patternValidation = (item: string) => {
     if (
       (item === 'longDescriptionEN' &&
-        /[ @=<>*\-+#?%&_:;]/.test(getValues().longDescriptionEN.charAt(0))) ||
+        /[ @=<>*\-+#?%&_:;]/.test(getValues().longDescriptionEN.charAt(0))) ??
       item === 'longDescriptionEN'
     ) {
       return `${t(

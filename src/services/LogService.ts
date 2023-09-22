@@ -28,13 +28,13 @@ export enum LogLevel {
 
 const LogService = {
   logtime: (date?: number) =>
-    new Date(date || Date.now()).toISOString().substring(11, 19),
+    new Date(date ?? Date.now()).toISOString().substring(11, 19),
 
   log: (level: LogLevel, message: string, data?: any) =>
     ((row) =>
       level === LogLevel.SEVERE || level === LogLevel.ERROR
-        ? console.error(row, data || '')
-        : console.log(row, data || ''))(
+        ? console.error(row, data ?? '')
+        : console.log(row, data ?? ''))(
       `${LogService.logtime()} ${level} ${message}`
     ),
   info: (message: string, data?: any) =>

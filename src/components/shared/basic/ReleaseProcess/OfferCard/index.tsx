@@ -125,15 +125,15 @@ export default function OfferCard() {
         fetchServiceStatus?.descriptions?.filter(
           (serviceStatus: LanguageStatusType) =>
             serviceStatus.languageCode === 'en'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       shortDescriptionDE:
         fetchServiceStatus?.descriptions?.filter(
           (serviceStatus: LanguageStatusType) =>
             serviceStatus.languageCode === 'de'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       uploadImage: {
         leadPictureUri: imageData,
-        alt: fetchServiceStatus?.leadPictureUri || '',
+        alt: fetchServiceStatus?.leadPictureUri ?? '',
       },
     }
   }, [fetchServiceStatus])
@@ -312,8 +312,8 @@ export default function OfferCard() {
             serviceStatusData?.descriptions?.filter(
               (serviceStatus: LanguageStatusType) =>
                 serviceStatus.languageCode === 'de'
-            )[0]?.longDescription || '',
-          shortDescription: data.shortDescriptionDE || '',
+            )[0]?.longDescription ?? '',
+          shortDescription: data.shortDescriptionDE ?? '',
         },
         {
           languageCode: 'en',
@@ -321,8 +321,8 @@ export default function OfferCard() {
             serviceStatusData?.descriptions?.filter(
               (serviceStatus: LanguageStatusType) =>
                 serviceStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
-          shortDescription: data.shortDescriptionEN || '',
+            )[0]?.longDescription ?? '',
+          shortDescription: data.shortDescriptionEN ?? '',
         },
       ],
       privacyPolicies: [],
@@ -424,7 +424,7 @@ export default function OfferCard() {
                       )} A-Za-z`,
                     },
                   },
-                  items: serviceTypeIds || [],
+                  items: serviceTypeIds ?? [],
                   keyTitle: 'name',
                   saveKeyTitle: 'name',
                   notItemsText: t('serviceReleaseForm.noItemsSelected'),

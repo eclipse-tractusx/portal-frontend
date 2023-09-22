@@ -71,11 +71,11 @@ export default function OfferContractAndConsent() {
         imageFieldNote={t('serviceReleaseForm.note')}
         imageFieldRequiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
         id={serviceId ?? ''}
-        fetchAgreementData={fetchAgreementData || []}
+        fetchAgreementData={fetchAgreementData ?? []}
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
-        fetchStatusData={fetchServiceStatus || undefined}
+        fetchStatusData={fetchServiceStatus ?? undefined}
         getDocumentById={getDocumentById}
         documentRequired={false}
         fetchFrameDocumentById={fetchFrameDocumentById}

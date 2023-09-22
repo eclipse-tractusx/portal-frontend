@@ -90,10 +90,10 @@ const UnSubscribeOverlay = ({
                   t('content.organization.unsubscribe.table.techUser'),
                 ],
                 body: [
-                  [data?.name || ''],
-                  [data?.offerSubscriptionStatus || ''],
-                  [data?.technicalUserData[0]?.name || ''],
-                  [data?.connectorData[0]?.name || ''],
+                  [data?.name ?? ''],
+                  [data?.offerSubscriptionStatus ?? ''],
+                  [data?.technicalUserData[0]?.name ?? ''],
+                  [data?.connectorData[0]?.name ?? ''],
                 ],
               }}
               horizontal={true}

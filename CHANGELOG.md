@@ -48,6 +48,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Linter Finding
+  - Prefer-nullish-coalescing (|| => ??)
 
 ## 1.6.0
 

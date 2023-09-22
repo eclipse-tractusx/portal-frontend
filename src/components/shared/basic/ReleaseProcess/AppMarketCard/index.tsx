@@ -96,11 +96,11 @@ export default function AppMarketCard() {
   const [deleteSuccess, setDeleteSuccess] = useState(false)
 
   const useCasesListData = useFetchUseCasesQuery().data
-  const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
+  const useCasesList = useMemo(() => useCasesListData ?? [], [useCasesListData])
 
   const appLanguagesListData = useFetchAppLanguagesQuery().data
   const appLanguagesList = useMemo(
-    () => appLanguagesListData || [],
+    () => appLanguagesListData ?? [],
     [appLanguagesListData]
   )
 
@@ -116,7 +116,7 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
-  const salesManagerList = useFetchSalesManagerDataQuery().data || []
+  const salesManagerList = useFetchSalesManagerDataQuery().data ?? []
   const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
     useState<salesManagerType>({
       userId: null,
@@ -157,16 +157,16 @@ export default function AppMarketCard() {
       shortDescriptionEN:
         appStatusData?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'en'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       shortDescriptionDE:
         appStatusData?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'de'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       uploadImage: {
         leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-        alt: appStatusData?.leadPictureUri || '',
+        alt: appStatusData?.leadPictureUri ?? '',
       },
-      privacyPolicies: appStatusData?.privacyPolicies || [],
+      privacyPolicies: appStatusData?.privacyPolicies ?? [],
     }
   }, [appStatusData, cardImage])
 
@@ -288,16 +288,16 @@ export default function AppMarketCard() {
   }
 
   const cardAppTitle =
-    getValues().title ||
+    getValues().title ??
     t('content.apprelease.appMarketCard.defaultCardAppTitle')
   const cardAppProvider =
-    getValues().provider ||
+    getValues().provider ??
     t('content.apprelease.appMarketCard.defaultCardAppProvider')
   const cardDescription =
-    getValues().shortDescriptionEN ||
+    getValues().shortDescriptionEN ??
     t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')
   const cardImageAlt =
-    getValues().uploadImage.alt ||
+    getValues().uploadImage.alt ??
     t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
 
   window.onscroll = () => setPageScrolled(window.scrollY !== 0)
@@ -367,7 +367,7 @@ export default function AppMarketCard() {
           longDescription:
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
+            )[0]?.longDescription ?? '',
           shortDescription: data.shortDescriptionDE,
         },
         {
@@ -375,7 +375,7 @@ export default function AppMarketCard() {
           longDescription:
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
+            )[0]?.longDescription ?? '',
           shortDescription: data.shortDescriptionEN,
         },
       ],
@@ -483,7 +483,7 @@ export default function AppMarketCard() {
         ) : (
           <Grid item md={7} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
-              label={cardAppProvider || ''}
+              label={cardAppProvider ?? ''}
               title={cardAppTitle}
               imagePath={cardImage}
               imageAlt={cardImageAlt}

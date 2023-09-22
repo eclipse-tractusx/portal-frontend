@@ -137,7 +137,7 @@ export default function AddRoles() {
       <AddRolesOverlay
         openDialog={addRolesOverlayOpen}
         handleOverlayClose={() => setAddRolesOverlayOpen(false)}
-        appId={appId || ''}
+        appId={appId ?? ''}
       />
       <div className="main-container">
         <div className="main-row">

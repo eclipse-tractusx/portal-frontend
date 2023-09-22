@@ -123,7 +123,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
         <EnableIDPContent
           onValid={setIdpEnableData}
           identityProviderId={id}
-          companyUserId={data?.companyUserId || ''}
+          companyUserId={data?.companyUserId ?? ''}
         />
         <Typography
           variant="label3"

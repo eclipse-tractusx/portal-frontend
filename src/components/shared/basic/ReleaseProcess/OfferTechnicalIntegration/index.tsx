@@ -66,11 +66,7 @@ export default function OfferTechnicalIntegration() {
     useSaveServiceTechnicalUserProfilesMutation()
 
   const userProfiles = useMemo(
-    () =>
-      (data &&
-        data?.length > 0 &&
-        data[0]?.userRoles.map((i: { roleId: string }) => i.roleId)) ||
-      [],
+    () => data?.[0]?.userRoles.map((i: { roleId: string }) => i.roleId) ?? [],
     [data]
   )
 
@@ -123,9 +119,7 @@ export default function OfferTechnicalIntegration() {
         serviceId: serviceId,
         body: [
           {
-            technicalUserProfileId:
-              (data && data?.length > 0 && data[0]?.technicalUserProfileId) ||
-              null,
+            technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
             userRoleIds: serviceTechUserProfiles,
           },
         ],
