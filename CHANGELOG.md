@@ -48,6 +48,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Enable ESLINT rule
+  - prefer-const
 
 ## 1.6.0
 

@@ -141,7 +141,7 @@ export const TwinDetails = ({ twin }: { twin: ShellDescriptor }) => {
   )
 
   const accordionItems = () => {
-    let items = [
+    const items = [
       {
         title: twin.idShort,
         id: 'panel1',

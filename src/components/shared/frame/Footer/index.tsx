@@ -57,7 +57,7 @@ export const Footer = ({ pages }: { pages: string[] }) => {
   )
 
   const [showScrollToTop, setShowScrollToTop] = useState(false)
-  let activePage = useSelector(currentActiveStep)
+  const activePage = useSelector(currentActiveStep)
 
   const toggleVisibility = () => {
     setShowScrollToTop(window.pageYOffset > 350)

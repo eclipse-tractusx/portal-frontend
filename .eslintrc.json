@@ -75,7 +75,7 @@
         "no-unneeded-ternary": 0,
         "no-void": 0,
         "object-shorthand": 0,
-        "prefer-const": 0,
+        "prefer-const": 1,
         "promise/param-names": 0,
         "react/display-name": 0,
         "react/jsx-key": 0,

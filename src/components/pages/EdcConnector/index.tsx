@@ -105,7 +105,7 @@ const EdcConnector = () => {
   }
 
   const swap = (arry: any, from: number, to: number) => {
-    let swapValue = arry[from]
+    const swapValue = arry[from]
     arry[from] = arry[to]
     arry[to] = swapValue
     return arry

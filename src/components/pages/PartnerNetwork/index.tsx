@@ -88,7 +88,7 @@ const PartnerNetwork = () => {
         .unwrap()
         .then((payload: any) => {
           //update for country attribute && update member info
-          let finalObj = JSON.parse(JSON.stringify(cData))
+          const finalObj = JSON.parse(JSON.stringify(cData))
           finalObj.legalAddress = payload[0].legalAddress
           if (isQueryDataPresent(data)) {
             finalObj.member = data && data.includes(finalObj.bpn)
