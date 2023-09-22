@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AdminData, UserDetail } from './types'
+import type { AdminData, UserDetail } from './types'
 
 export const userDetailsToCards = (
   user: UserDetail,

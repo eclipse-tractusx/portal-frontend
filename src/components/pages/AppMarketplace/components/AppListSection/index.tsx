@@ -21,7 +21,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  CardItems,
+  type CardItems,
   SearchInput,
   Typography,
   ViewSelector,
@@ -41,7 +41,7 @@ import {
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import debounce from 'lodash.debounce'
 import CommonService from 'services/CommonService'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export const label = 'AppList'
 

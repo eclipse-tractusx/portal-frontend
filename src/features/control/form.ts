@@ -20,8 +20,8 @@
 
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
-import { IHashMap } from 'types/MainTypes'
+import type { RootState } from 'features/store'
+import type { IHashMap } from 'types/MainTypes'
 
 const name = 'control/form'
 

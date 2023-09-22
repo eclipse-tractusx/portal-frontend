@@ -26,8 +26,8 @@ import {
   DialogHeader,
 } from '@catena-x/portal-shared-components'
 import {
-  AppRole,
-  PortalRoleRequest,
+  type AppRole,
+  type PortalRoleRequest,
   setUserRoleResp,
   SuccessErrorType,
   useFetchCoreoffersRolesQuery,

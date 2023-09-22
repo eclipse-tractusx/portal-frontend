@@ -20,8 +20,8 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { LogoGrayData } from '@catena-x/portal-shared-components'
-import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
-import { UseCaseType } from 'features/appManagement/types'
+import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import type { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'

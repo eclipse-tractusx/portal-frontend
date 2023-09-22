@@ -21,11 +21,11 @@
 import {
   IconButton,
   PageLoadingTable,
-  PaginFetchArgs,
+  type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { CompanyInvite } from 'features/admin/inviteApiSlice'
+import type { CompanyInvite } from 'features/admin/inviteApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 import { useState } from 'react'

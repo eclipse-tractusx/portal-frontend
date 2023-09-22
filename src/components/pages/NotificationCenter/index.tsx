@@ -24,8 +24,8 @@ import {
   useGetNotificationMetaQuery,
 } from 'features/notification/apiSlice'
 import {
-  CXNotificationContent,
-  CXNotificationPagination,
+  type CXNotificationContent,
+  type CXNotificationPagination,
   PAGE,
   PAGE_SIZE,
   SORT_OPTION,

@@ -32,14 +32,14 @@ import {
   pageToSearchItem,
   userToSearchItem,
 } from './mapper'
-import { name, SearchItem } from './types'
-import { CardItems, PaginResult } from '@catena-x/portal-shared-components'
+import { name, type SearchItem } from './types'
+import type { CardItems, PaginResult } from '@catena-x/portal-shared-components'
 import { isUUID, Patterns } from 'types/Patterns'
-import {
+import type {
   BusinessPartner,
   BusinessPartnerResponse,
 } from 'features/partnerNetwork/types'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 import I18nService from 'services/I18nService'
 import {
   hasAccess,
@@ -47,7 +47,7 @@ import {
   hasAccessOverlay,
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
-import { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { AppMarketplaceApp } from 'features/apps/apiSlice'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []

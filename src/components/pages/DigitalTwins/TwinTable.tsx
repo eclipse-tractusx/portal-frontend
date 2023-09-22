@@ -27,12 +27,12 @@ import {
   fetchTwinForSearch,
 } from 'features/digitalTwins/actions'
 import { twinsSelector } from 'features/digitalTwins/slice'
-import { ShellDescriptor } from 'features/digitalTwins/types'
+import type { ShellDescriptor } from 'features/digitalTwins/types'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { DigitalTwinsTableColumns } from './DigitalTwinsTableColumns'
 import uniqueId from 'lodash/uniqueId'
 import Patterns from 'types/Patterns'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 interface TwinTableProps {
   onTwinSelect: (id: string) => void

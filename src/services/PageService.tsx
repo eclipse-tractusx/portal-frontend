@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MutableRefObject } from 'react'
+import type { MutableRefObject } from 'react'
 
 let referenceMap: { [key: string]: MutableRefObject<any> } = {}
 

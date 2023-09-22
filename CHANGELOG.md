@@ -48,6 +48,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Linter Findings
+  - Add type for imports
 
 ## 1.6.0
 

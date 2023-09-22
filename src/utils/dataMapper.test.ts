@@ -27,7 +27,7 @@ import TestSingleData from '../../public/testdata/partnerNetwork/businessPartner
 import TestDataGridData from '../../public/testdata/partnerNetwork/businessPartnersDataGrid.json'
 import TestMembershipData from '../../public/testdata/partnerNetwork/membershipData.json'
 import TestSingleDataGridData from '../../public/testdata/partnerNetwork/businessPartnersSingleDataGrid.json'
-import {
+import type {
   BusinessPartner,
   BusinessPartnerResponse,
 } from 'features/partnerNetwork/types'

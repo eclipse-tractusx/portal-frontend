@@ -26,7 +26,7 @@ import {
   useSetNotificationReadMutation,
 } from 'features/notification/apiSlice'
 import {
-  CXNotificationContent,
+  type CXNotificationContent,
   NotificationType,
   PAGE,
   PAGE_SIZE,

@@ -25,7 +25,7 @@ import {
   DialogHeader,
   PageSnackbar,
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import {

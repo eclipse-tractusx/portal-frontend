@@ -18,14 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
+import type {
   BusinessPartner,
   BusinessPartnerResponse,
   BusinessPartnerSearchResponse,
   PartnerNetworkDataGrid,
 } from 'features/partnerNetwork/types'
 
-import {
+import type {
   RegistrationRequest,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'

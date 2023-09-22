@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
+import type { ProviderProps } from '../StaticTypes'
 import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
 import ReactPlayer from 'react-player'

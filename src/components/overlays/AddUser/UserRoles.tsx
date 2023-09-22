@@ -27,7 +27,7 @@ import { Box } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
-  AppRole,
+  type AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'

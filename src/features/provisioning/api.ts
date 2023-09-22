@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { HttpClient } from 'utils/HttpClient'
-import { ProvisionIdentityProviderData } from './types'
+import type { ProvisionIdentityProviderData } from './types'
 import UserService from 'services/UserService'
 import { getApiBase } from 'services/EnvironmentService'
 

@@ -27,7 +27,7 @@ import {
   LoadingButton,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'

@@ -18,11 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
+import type {
   PageNotificationsProps,
   PaginMeta,
 } from '@catena-x/portal-shared-components'
-import { ErrorServiceState } from 'features/error/types'
+import type { ErrorServiceState } from 'features/error/types'
 
 export type Nullable<T> = T | null
 

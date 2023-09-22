@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Input } from '@catena-x/portal-shared-components'
-import { IdentityProvider } from 'features/admin/idpApiSlice'
+import type { IdentityProvider } from 'features/admin/idpApiSlice'
 
 export const IDPHint = ({ idp }: { idp: IdentityProvider }) => {
   const { t } = useTranslation()

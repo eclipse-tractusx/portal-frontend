@@ -36,11 +36,11 @@ import {
 } from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import {
-  AgreementsData,
-  CompanyRoleRequest,
-  CompanyRolesResponse,
-  RoleFeatureData,
-  RolesData,
+  type AgreementsData,
+  type CompanyRoleRequest,
+  type CompanyRolesResponse,
+  type RoleFeatureData,
+  type RolesData,
   useFetchDocumentByIdMutation,
   useFetchRolesQuery,
   useUpdateCompanyRolesMutation,

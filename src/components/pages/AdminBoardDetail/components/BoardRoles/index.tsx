@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { Grid } from '@mui/material'
 import { uniqueId } from 'lodash'
-import { AppDetails } from 'features/apps/apiSlice'
+import type { AppDetails } from 'features/apps/apiSlice'
 
 export default function BoardRoles({ item }: { item: AppDetails }) {
   const { t } = useTranslation()

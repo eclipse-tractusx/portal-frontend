@@ -27,7 +27,7 @@ import {
   DialogHeader,
   LoadingButton,
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { PAGES } from 'types/Constants'

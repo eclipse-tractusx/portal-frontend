@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { multiMapBy } from './multiMapBy'
-import { Dictionary } from '@reduxjs/toolkit'
+import type { Dictionary } from '@reduxjs/toolkit'
 import { forEach, groupBy, keys, union, uniq, values } from 'lodash'
 
 describe('multiMapBy', () => {

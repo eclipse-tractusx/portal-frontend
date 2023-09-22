@@ -33,7 +33,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import {
   useAddServiceProviderMutation,
   useFetchServiceProviderQuery,

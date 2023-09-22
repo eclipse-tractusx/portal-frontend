@@ -28,13 +28,13 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   LoadingButton,
 } from '@catena-x/portal-shared-components'
 import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 import './style.scss'

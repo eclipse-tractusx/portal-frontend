@@ -47,8 +47,8 @@ import {
   setRolesToAdd,
   setUsersToAdd,
 } from 'features/admin/userDeprecated/actions'
-import { IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
-import { IHashMap } from 'types/MainTypes'
+import { type IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
+import type { IHashMap } from 'types/MainTypes'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 enum AddUserState {

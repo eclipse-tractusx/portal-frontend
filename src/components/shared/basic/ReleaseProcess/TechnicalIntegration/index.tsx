@@ -41,7 +41,7 @@ import {
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import {
-  rolesType,
+  type rolesType,
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
   useFetchRolesDataQuery,
@@ -49,7 +49,7 @@ import {
   useFetchUserRolesQuery,
   useSaveTechnicalUserProfilesMutation,
   useUpdateRoleDataMutation,
-  userRolesType,
+  type userRolesType,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'

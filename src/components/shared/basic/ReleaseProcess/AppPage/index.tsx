@@ -21,13 +21,13 @@
 import {
   Typography,
   IconButton,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
   Radio,
   Alert,
   Checkbox,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -59,7 +59,7 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
-import { ErrorType, UseCaseType } from 'features/appManagement/types'
+import { ErrorType, type UseCaseType } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'

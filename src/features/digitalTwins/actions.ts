@@ -20,7 +20,7 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
-import { FilterParams } from './types'
+import type { FilterParams } from './types'
 
 const fetchDigitalTwins = createAsyncThunk(
   'fetch twins',

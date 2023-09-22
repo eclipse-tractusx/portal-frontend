@@ -24,7 +24,7 @@ import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './RegistrationRequests.scss'
-import { GridCellParams } from '@mui/x-data-grid'
+import type { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
@@ -33,7 +33,7 @@ import {
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
   useUpdateBPNMutation,
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
@@ -42,7 +42,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()

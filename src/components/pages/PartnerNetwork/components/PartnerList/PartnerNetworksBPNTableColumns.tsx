@@ -18,10 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { BusinessPartner } from 'features/newPartnerNetwork/types'
+import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'
 import smallLogo from '../../../../../assets/logo/cx-logo-short.svg'
 import { OVERLAYS } from 'types/Constants'

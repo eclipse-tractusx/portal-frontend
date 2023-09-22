@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import CheckIcon from '@mui/icons-material/Check'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { Tooltips, Typography } from '@catena-x/portal-shared-components'
-import { IdentityProvider } from 'features/admin/idpApiSlice'
+import type { IdentityProvider } from 'features/admin/idpApiSlice'
 import './style.scss'
 
 let initialProgressIcons = [

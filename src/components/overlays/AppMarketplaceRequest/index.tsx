@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import {
-  AgreementRequest,
+  type AgreementRequest,
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
   useFetchAppDetailsQuery,

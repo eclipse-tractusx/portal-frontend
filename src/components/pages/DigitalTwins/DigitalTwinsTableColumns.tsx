@@ -18,10 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { ShellDescriptor } from 'features/digitalTwins/types'
+import type { ShellDescriptor } from 'features/digitalTwins/types'
 
 // Columns definitions of Digital Twin page Data Grid
 export const DigitalTwinsTableColumns = (

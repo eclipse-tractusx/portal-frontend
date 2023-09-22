@@ -20,7 +20,7 @@
 
 import qs from 'qs'
 import { HttpClient } from 'utils/HttpClient'
-import { FilterParams, ShellDescriptor, TwinList } from './types'
+import type { FilterParams, ShellDescriptor, TwinList } from './types'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 

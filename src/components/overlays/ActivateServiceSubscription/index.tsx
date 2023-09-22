@@ -33,7 +33,7 @@ import { Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 import {
-  ActivateSubscriptionResponse,
+  type ActivateSubscriptionResponse,
   useActivateSubscriptionMutation,
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'

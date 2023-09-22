@@ -19,9 +19,13 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { fetchDigitalTwins, fetchTwinById, fetchTwinForSearch } from './actions'
-import { DigitalTwinsInitialState, ShellDescriptor, TwinList } from './types'
+import type {
+  DigitalTwinsInitialState,
+  ShellDescriptor,
+  TwinList,
+} from './types'
 
 const defaultTwins: TwinList = {
   items: [],

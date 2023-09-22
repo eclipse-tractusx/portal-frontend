@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IdentityProvider } from 'features/admin/idpApiSlice'
+import type { IdentityProvider } from 'features/admin/idpApiSlice'
 import { useDispatch } from 'react-redux'
 import { DropdownMenu, MenuItem } from '@catena-x/portal-shared-components'
 import { show } from 'features/control/overlay'

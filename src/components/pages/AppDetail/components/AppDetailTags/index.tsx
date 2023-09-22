@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Chip, Typography } from '@catena-x/portal-shared-components'
-import { AppDetails } from 'features/apps/apiSlice'
+import type { AppDetails } from 'features/apps/apiSlice'
 import './AppDetailTags.scss'
 
 export default function AppDetailTags({ item }: { item: AppDetails }) {

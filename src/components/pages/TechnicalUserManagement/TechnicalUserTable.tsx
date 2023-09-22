@@ -25,7 +25,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
-  ServiceAccountListEntry,
+  type ServiceAccountListEntry,
   ServiceAccountStatusFilter,
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'

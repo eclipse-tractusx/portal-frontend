@@ -20,7 +20,7 @@
 
 import {
   IconButton,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -37,18 +37,18 @@ import CommonConnectorFormInputField from '../components/CommonConnectorFormInpu
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
-import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
-import { LanguageStatusType } from 'features/appManagement/types'
+import type { LanguageStatusType } from 'features/appManagement/types'
 import {
   serviceIdSelector,
   serviceStatusDataSelector,
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 import {
-  CreateServiceStep1Item,
-  ServiceTypeIdsType,
+  type CreateServiceStep1Item,
+  type ServiceTypeIdsType,
   useCreateServiceMutation,
   useDeleteDocumentMutation,
   useFetchDocumentMutation,

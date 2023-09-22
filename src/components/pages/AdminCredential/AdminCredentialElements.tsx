@@ -24,8 +24,8 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { PageLoadingTable } from '@catena-x/portal-shared-components'
 import './AdminCredential.scss'
 import {
-  CredentialData,
-  CredentialResponse,
+  type CredentialData,
+  type CredentialResponse,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
   useFetchCredentialsSearchQuery,

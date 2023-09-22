@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ConsentStatusEnum } from './apiSlice'
+import type { ConsentStatusEnum } from './apiSlice'
 
 export const name = 'admin/appManagement'
 

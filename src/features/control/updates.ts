@@ -20,9 +20,9 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
-import { IHashMap } from 'types/MainTypes'
-import { SearchInputState } from 'features/appManagement/types'
+import type { RootState } from 'features/store'
+import type { IHashMap } from 'types/MainTypes'
+import type { SearchInputState } from 'features/appManagement/types'
 
 const name = 'control/update'
 

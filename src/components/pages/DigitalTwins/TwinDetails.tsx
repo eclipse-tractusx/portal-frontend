@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Typography, CustomAccordion } from '@catena-x/portal-shared-components'
-import {
+import type {
   ShellDescriptor,
   SubmodelDescriptors,
 } from 'features/digitalTwins/types'

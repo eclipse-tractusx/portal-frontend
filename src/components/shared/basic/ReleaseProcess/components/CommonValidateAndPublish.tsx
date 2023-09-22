@@ -28,7 +28,7 @@ import {
   PageNotifications,
   StaticTable,
   Typography,
-  TableType,
+  type TableType,
   CircleProgress,
   CardHorizontal,
   ImageGallery,
@@ -42,9 +42,9 @@ import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
-  DocumentData,
+  type DocumentData,
   DocumentTypeId,
-  rolesType,
+  type rolesType,
 } from 'features/appManagement/apiSlice'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import CommonService from 'services/CommonService'
@@ -53,10 +53,10 @@ import { DocumentTypeText } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import {
   AppOverviewTypes,
-  AppStatusDataState,
-  UseCaseType,
+  type AppStatusDataState,
+  type UseCaseType,
 } from 'features/appManagement/types'
-import { ServiceStatusDataState } from 'features/serviceManagement/types'
+import type { ServiceStatusDataState } from 'features/serviceManagement/types'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepDecrement,

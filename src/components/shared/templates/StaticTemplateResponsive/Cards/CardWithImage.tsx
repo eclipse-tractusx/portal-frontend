@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import CardWithText from './CardWithText'
-import { CardDetailsProps } from '../StaticTypes'
+import type { CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
 import { Image } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'

@@ -18,11 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems } from '@catena-x/portal-shared-components'
-import { TenantUser } from 'features/admin/userApiSlice'
-import { AppMarketplaceApp } from 'features/apps/apiSlice'
-import { BusinessPartner } from 'features/partnerNetwork/types'
-import { SearchCategory, SearchItem } from './types'
+import type { CardItems } from '@catena-x/portal-shared-components'
+import type { TenantUser } from 'features/admin/userApiSlice'
+import type { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { BusinessPartner } from 'features/partnerNetwork/types'
+import { SearchCategory, type SearchItem } from './types'
 
 export const pageToSearchItem = (item: string): SearchItem => ({
   id: item,

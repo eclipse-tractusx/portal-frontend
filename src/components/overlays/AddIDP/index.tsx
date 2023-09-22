@@ -35,7 +35,7 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
-  IdentityProviderUpdate,
+  type IdentityProviderUpdate,
   IDPAuthType,
   IDPProviderType,
   OIDCAuthMethod,

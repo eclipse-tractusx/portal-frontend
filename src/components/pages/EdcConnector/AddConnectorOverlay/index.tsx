@@ -32,7 +32,7 @@ import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import {
-  ConnectorType,
+  type ConnectorType,
   useFetchOfferSubscriptionsQuery,
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'

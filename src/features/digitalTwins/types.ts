@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Nullable } from 'types/MainTypes'
+import type { Nullable } from 'types/MainTypes'
 
 export interface DigitalTwinsInitialState {
   twinList: TwinList

@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { addItem, fetchItems, removeItem } from './actions'
-import { InitialListState, ListState, RequestState } from 'types/MainTypes'
+import { InitialListState, type ListState, RequestState } from 'types/MainTypes'
 import { name } from './types'
 
 const initialState: ListState<string> = { ...InitialListState }

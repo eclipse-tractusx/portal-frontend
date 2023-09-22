@@ -21,7 +21,7 @@
 import { styled } from '@mui/material/styles'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
-import { SearchItem } from 'features/info/search/types'
+import type { SearchItem } from 'features/info/search/types'
 import { SearchResultItem } from '../SearchResultItem'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'

@@ -19,8 +19,8 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { CardItems } from '@catena-x/portal-shared-components'
-import { RootState } from 'features/store'
+import type { CardItems } from '@catena-x/portal-shared-components'
+import type { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 import { fetchItems } from './actions'
 import { initialState, name } from './types'

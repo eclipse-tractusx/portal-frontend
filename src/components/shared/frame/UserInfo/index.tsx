@@ -24,7 +24,7 @@ import {
   UserAvatar,
   UserMenu,
   UserNav,
-  NotificationBadgeType,
+  type NotificationBadgeType,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'

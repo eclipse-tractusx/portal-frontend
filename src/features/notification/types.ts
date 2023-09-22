@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { initServicetNotifications } from 'types/MainTypes'
-import { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
 
 export const name = 'admin/notification'
 

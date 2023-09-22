@@ -53,7 +53,7 @@ import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { Status } from 'features/semanticModels/types'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 interface ModelDetailDialogProps {
   show: boolean

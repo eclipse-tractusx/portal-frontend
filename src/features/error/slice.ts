@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { initErrorServiceState } from 'types/MainTypes'
-import { ErrorServiceState, initialState, name } from './types'
+import { type ErrorServiceState, initialState, name } from './types'
 
 export const ErrorSlice = createSlice({
   name,

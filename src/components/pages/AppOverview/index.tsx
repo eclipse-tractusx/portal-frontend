@@ -26,7 +26,7 @@ import {
   Typography,
   ViewSelector,
   SearchInput,
-  CardItems,
+  type CardItems,
   Cards,
   PageSnackbar,
   ErrorBar,
@@ -40,8 +40,8 @@ import {
 import { Box } from '@mui/material'
 import {
   useFetchProvidedAppsQuery,
-  AppInfo,
-  AppMarketplaceApp,
+  type AppInfo,
+  type AppMarketplaceApp,
 } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'

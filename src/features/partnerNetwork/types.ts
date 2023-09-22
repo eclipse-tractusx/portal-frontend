@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GeographicCoordinate } from 'types/MainTypes'
+import type { GeographicCoordinate } from 'types/MainTypes'
 
 //region Common Key Value pairs type
 export interface BpdmTypeNameObject {
