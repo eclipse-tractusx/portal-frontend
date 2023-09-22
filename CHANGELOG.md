@@ -48,6 +48,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Enable ESLINT rule
+  - import/no-duplicates
 
 ## 1.6.0
 
