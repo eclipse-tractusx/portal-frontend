@@ -330,7 +330,7 @@ export const apiSlice = createApi({
     }),
     deactivateService: builder.mutation<void, string>({
       query: (serviceId) => ({
-        url: `/api/service/ServiceChange/${serviceId}/deactivateService`,
+        url: `/api/services/ServiceChange/${serviceId}/deactivateService`,
         method: 'PUT',
       }),
     }),

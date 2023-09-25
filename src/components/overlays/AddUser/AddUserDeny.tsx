@@ -64,7 +64,11 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(closeOverlay())}
+          sx={{ textTransform: 'none' }}
+        >
           {t('global.actions.cancel')}
         </Button>
         <Button
@@ -73,6 +77,7 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
             navigate(`/${PAGES.IDP_MANAGEMENT}`)
             dispatch(closeOverlay())
           }}
+          sx={{ textTransform: 'none' }}
         >
           {t('pages.idpmanagement')}
         </Button>
