@@ -30,7 +30,6 @@ import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
-import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
@@ -80,6 +79,7 @@ import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
 import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
+import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 
 /**
@@ -156,11 +156,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.DATA_MANAGEMENT,
     role: ROLES.SEMANTICHUB_VIEW,
     element: <SemanticHub />,
-  },
-  {
-    name: PAGES.DIGITALTWIN,
-    role: ROLES.DIGITALTWIN_VIEW,
-    element: <DigitalTwins />,
   },
   {
     name: PAGES.SEMANTICHUB,
@@ -423,6 +418,19 @@ export const ALL_PAGES: IPage[] = [
         element={<Deactivate />}
       >
         <Route path=":appId" element={<Deactivate />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.SERVICEDEACTIVATE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICEDEACTIVATE}
+        path={PAGES.SERVICEDEACTIVATE}
+        element={<ServiceDeactivate />}
+      >
+        <Route path=":serviceId" element={<ServiceDeactivate />} />
       </Route>
     ),
   },
@@ -697,7 +705,7 @@ export const mainMenuFullTree = [
   },
   {
     name: PAGES.DATA_MANAGEMENT,
-    children: [{ name: PAGES.SEMANTICHUB }, { name: PAGES.DIGITALTWIN }],
+    children: [{ name: PAGES.SEMANTICHUB }],
   },
   { name: PAGES.PARTNER_NETWORK },
   {

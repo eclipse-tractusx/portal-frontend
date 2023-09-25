@@ -11,7 +11,6 @@
     "appdetails": "App Details",
     "datamanagement": "Data Management",
     "semantichub": "Semantic Hub",
-    "digitaltwin": "Digital Twins",
     "partnernetwork": "Partner Network",
     "connector": "Connector",
     "account": "My CX Account",
@@ -331,32 +330,6 @@
         },
         "nomodelTitle": "Oooops! No Model found!",
         "nomodelText": "The used URN is either incorrect or the model does not yet exist."
-      }
-    },
-    "digitaltwin": {
-      "table": {
-        "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Part Instance ID of the Asset",
-        "norows": "no data found with the part instance id value {data}",
-        "columns": {
-          "idShort": "Name",
-          "sm_count": "Submodel Count",
-          "asset_count": "Asset Count"
-        }
-      },
-      "detail": {
-        "error": "ERROR: No twin data available.",
-        "no_description": "This asset has no description.",
-        "assetId": "Specific asset IDs",
-        "submodel_endpoints": "Submodel endpoints:",
-        "semanticid": "Semantic ID:",
-        "key": "Key:",
-        "value": "Value:",
-        "endpoints": "Endpoints:",
-        "interface": "Interface:",
-        "protocol": "Protocol:",
-        "protocol_version": "Protocol version:",
-        "protocol_endpoint": "Aspect Endpoint:"
       }
     },
     "organization": {
@@ -1691,7 +1664,11 @@
       "toBeUpdated": "To be updated",
       "type": "Type",
       "owner": "Owner",
-      "offerLink": "Offer Link"
+      "offerLink": "Offer Link",
+      "alias": "Alias",
+      "authMethod": "Auth Method",
+      "progress": "Progress",
+      "action": "Action"
     },
     "actions": {
       "cancel": "Cancel",

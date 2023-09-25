@@ -61,7 +61,6 @@ import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
 import { AddusersIDP } from 'components/overlays/AddusersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
 import EditPortalRoles from 'components/overlays/EditPortalRoles'
-import { UpdateIDPSuccess } from 'components/overlays/UpdateIDPSuccess'
 import ServiceDeclineAdminboard from 'components/overlays/DeclineAdminboard/ServiceDeclineAdminboard'
 import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDeclineAdminboard'
 import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
@@ -160,8 +159,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddIdp />
     case OVERLAYS.UPDATE_IDP:
       return <UpdateIDP id={overlay.id} />
-    case OVERLAYS.UPDATE_IDP_SUCCESS:
-      return <UpdateIDPSuccess id={overlay.id} />
     case OVERLAYS.ENABLE_IDP:
       return <EnableIDP id={overlay.id} />
     case OVERLAYS.ENABLE_IDP_SUCCESS:

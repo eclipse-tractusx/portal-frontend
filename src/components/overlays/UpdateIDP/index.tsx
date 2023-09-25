@@ -18,16 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   DialogActions,
   DialogContent,
   DialogHeader,
+  LoadingButton,
+  Stepper,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   IdentityProviderUpdate,
   useFetchIDPDetailQuery,
@@ -45,40 +49,106 @@ export const UpdateIDP = ({ id }: { id: string }) => {
   const [idpUpdateData, setIdpUpdateData] = useState<
     IdentityProviderUpdate | undefined
   >(undefined)
+  const [loading, setLoading] = useState(false)
 
   const doUpdateIDP = async () => {
     if (!(data && idpUpdateData)) return
+    setLoading(true)
     try {
       await updateIdp(idpUpdateData).unwrap()
-      dispatch(show(OVERLAYS.UPDATE_IDP_SUCCESS, id))
+      dispatch(show(OVERLAYS.ENABLE_IDP, id))
       success(t('edit.success'))
     } catch (err) {
       error(t('edit.error'), '', err as object)
     }
+    setLoading(false)
   }
+
+  const UpdateStepsList = [
+    {
+      headline: t('add.stepLists.firstStep'),
+      step: 1,
+      text: t('edit.created'),
+      color: '#B3CB2D',
+    },
+    {
+      headline: t('add.stepLists.secondStep'),
+      step: 2,
+      color: '#0F71CB',
+    },
+    {
+      headline: t('add.stepLists.thirdStep'),
+      step: 3,
+    },
+  ]
 
   return (
     <>
       <DialogHeader
         title={t('edit.title')}
-        intro={t('edit.subtitle')}
+        intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
+        <div style={{ width: '70%', margin: '0 auto 40px' }}>
+          <Stepper list={UpdateStepsList} showSteps={3} activeStep={2} />
+        </div>
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+          <Trans>
+            <Typography variant="label3">{t('edit.desc')}</Typography>
+          </Trans>
+        </div>
+        <Typography variant="label2">{t('edit.addDataHeading')}</Typography>
         {data && <UpdateIDPContent idp={data} onValid={setIdpUpdateData} />}
+        <Typography
+          variant="label3"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#0088CC',
+            textDecoration: 'underline',
+            marginTop: '30px',
+          }}
+        >
+          <HelpOutlineIcon
+            sx={{
+              fontSize: '18px',
+              marginRight: '5px',
+            }}
+          />
+          {t('add.learnMore')}
+        </Typography>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('action.cancel')}
-        </Button>
         <Button
-          variant="contained"
-          disabled={!idpUpdateData}
-          onClick={doUpdateIDP}
+          variant="outlined"
+          onClick={() => dispatch(show(OVERLAYS.ADD_IDP, id))}
         >
-          {t('action.confirm')}
+          {t('action.back')}
         </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator={t('action.loading')}
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            disabled={!idpUpdateData}
+            onClick={doUpdateIDP}
+          >
+            {t('action.saveMetadata')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )
