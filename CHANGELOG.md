@@ -51,6 +51,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Notifications
+  - App Subscription Request content update
 - Digital Twin
   - Code clean up
 - Usermanagement
