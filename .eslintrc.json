@@ -68,7 +68,7 @@
         "@typescript-eslint/triple-slash-reference": 0,
         "@typescript-eslint/unbound-method": 0,
         "eqeqeq": 0,
-        "import/no-duplicates": 1,
+        "import/no-duplicates": 0,
         "n/handle-callback-err": 0,
         "no-extra-boolean-cast": 0,
         "no-prototype-builtins": 0,
