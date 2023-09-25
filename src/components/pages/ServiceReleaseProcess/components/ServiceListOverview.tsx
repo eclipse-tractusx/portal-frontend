@@ -45,11 +45,15 @@ import NoItems from 'components/pages/NoItems'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
 import debounce from 'lodash.debounce'
-import { setServiceId } from 'features/serviceManagement/actions'
+import {
+  setServiceId,
+  setServiceStatus,
+} from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { Box, useTheme, CircularProgress } from '@mui/material'
+import { initialState } from 'features/serviceManagement/types'
 
 enum ServiceSubMenuItems {
   DEACTIVATE = 'deactivate',
@@ -173,6 +177,13 @@ export default function ServiceListOverview() {
     setPage(page + 1)
   }
 
+  const onNewServiceCardClick = () => {
+    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+    dispatch(setServiceId(''))
+    dispatch(setServiceReleaseActiveStep())
+    dispatch(setServiceStatus(initialState.serviceStatusData))
+  }
+
   return (
     <main>
       <PageHeader
@@ -236,9 +247,7 @@ export default function ServiceListOverview() {
                   imageLoader={fetchImageWithToken}
                   showAddNewCard={false}
                   newButtonText={t('serviceoverview.addbtn')}
-                  onNewCardButton={() => {
-                    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-                  }}
+                  onNewCardButton={onNewServiceCardClick}
                   onCardClick={(item: CardItems) => {
                     // TODO: workaround - fix CardItems type
                     const cardItem: any = item

@@ -651,7 +651,7 @@ export default function AppPage() {
             }}
             name="providerPhoneContact"
             label={t('content.apprelease.appPage.providerPhoneContact')}
-            validate={(value: string) => phone(value).isValid}
+            validate={(value: string) => value === '' || phone(value).isValid}
           />
           {errors.providerPhoneContact &&
             errors?.providerPhoneContact.type === 'validate' && (
