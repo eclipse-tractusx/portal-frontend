@@ -136,7 +136,7 @@ export interface UserIdentityProviders {
 export interface IdentityProvider {
   identityProviderId: string
   alias: string
-  identityProviderCategoryId: IDPCategory
+  ProviderTypeId: IDPCategory
   displayName?: string
   redirectUrl: string
   enabled: boolean
