@@ -619,6 +619,7 @@ npm/npmjs/-/path-parse/1.0.7, MIT, approved, clearlydefined
 npm/npmjs/-/path-to-regexp/0.1.7, MIT, approved, clearlydefined
 npm/npmjs/-/path-type/4.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/performance-now/2.1.0, MIT, approved, clearlydefined
+npm/npmjs/-/phone/3.1.40, MIT, approved, #10500
 npm/npmjs/-/picocolors/0.2.1, ISC, approved, clearlydefined
 npm/npmjs/-/picocolors/1.0.0, ISC, approved, clearlydefined
 npm/npmjs/-/picomatch/2.3.1, MIT, approved, clearlydefined
@@ -1124,7 +1125,7 @@ npm/npmjs/@babel/template/7.22.5, MIT, approved, #9017
 npm/npmjs/@babel/traverse/7.22.5, MIT, approved, #8954
 npm/npmjs/@babel/types/7.22.5, MIT, approved, #8967
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/2.0.24, Apache-2.0 AND (BSD-3-Clause AND MIT), approved, #9187
+npm/npmjs/@catena-x/portal-shared-components/2.0.27, Apache-2.0 AND (BSD-3-Clause AND MIT), approved, #9187
 npm/npmjs/@csstools/normalize.css/12.0.0, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-cascade-layers/1.1.1, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-color-function/1.1.1, CC0-1.0 AND (MIT AND W3C-20150513) AND W3C-20150513 AND MIT, approved, #3022

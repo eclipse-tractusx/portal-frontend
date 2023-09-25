@@ -44,8 +44,6 @@ export default function ImageTest() {
       })
   }, [])
 
-  console.log(data)
-
   return (
     <>
       <article>

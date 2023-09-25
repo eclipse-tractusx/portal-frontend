@@ -15,14 +15,18 @@
   - Enable credential reset
 - Serview Overview
   - Added Sub menu for active services in service overview
+  - Added Deactivate functionality
   - Added image to service overview cards
 - Invite Business Partner Form
   - Fix loader position to center
   - Disable invite button when loader is visible
+- Data Space
+  - Last section background color issue
 - Connector Deletion
   - Show confirm overlay if connector has tech user information
 - Sub Navigation Header
   - Align label to the left
+  - Bugfix - Sub header width in zoom out view
 - Data Space
   - Last section background color issue
 - My Account
@@ -38,6 +42,8 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- Identity Provider Config
+  - UI Enhancements
 - Overlay
   - Overlays style sync
 - My Organization
@@ -45,6 +51,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Service release process
+  - Clearing fields while registering new service
 
 ## 1.6.0
 

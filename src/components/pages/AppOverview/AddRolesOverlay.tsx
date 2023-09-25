@@ -31,7 +31,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { PAGES } from 'types/Constants'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import { Controller, useForm } from 'react-hook-form'
 import { Dropzone } from 'components/shared/basic/Dropzone'
@@ -157,6 +157,13 @@ const AddRolesOverlay = ({
       })
   }
 
+  const handleClose = () => {
+    handleOverlayClose()
+    setRolesPreviews([])
+    setRolesDescription([])
+    setUploadCSVError(false)
+  }
+
   return (
     <div className="detailsOverlay">
       <Dialog
@@ -169,9 +176,7 @@ const AddRolesOverlay = ({
           title={t('content.addRoles.uploadAdditionalRoles')}
           intro={t('content.addRoles.uploadAdditionalRolesDescription')}
           closeWithIcon={true}
-          onCloseWithIcon={() => {
-            handleOverlayClose()
-          }}
+          onCloseWithIcon={() => handleClose()}
         />
         <DialogContent
           sx={{
@@ -229,15 +234,7 @@ const AddRolesOverlay = ({
                 }}
                 acceptFormat={{ 'text/csv': ['.csv'] }}
                 maxFilesToUpload={1}
-                enableDeleteOverlay={true}
-                deleteOverlayTranslation={{
-                  title: '',
-                  content: t(
-                    'content.apprelease.technicalIntegration.deleteOverlayContent'
-                  ),
-                  action_no: `${t('global.actions.no')}`,
-                  action_yes: `${t('global.actions.yes')}`,
-                }}
+                enableDeleteOverlay={false}
               />
             )}
           />
@@ -255,19 +252,16 @@ const AddRolesOverlay = ({
           )}
 
           {rolesPreviews?.length > 0 && (
-            <StaticTable data={tableData} horizontal={false} />
+            <Box sx={{ width: '80%', margin: '40px auto 0' }}>
+              <StaticTable data={tableData} horizontal={false} />
+            </Box>
           )}
           <Typography align="center" variant="body2" sx={{ mt: 5, mb: 2 }}>
             {t('content.addRoles.confirmButtonDescription')}
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              handleOverlayClose()
-            }}
-          >
+          <Button variant="outlined" onClick={() => handleClose()}>
             {t('global.actions.cancel')}
           </Button>
 

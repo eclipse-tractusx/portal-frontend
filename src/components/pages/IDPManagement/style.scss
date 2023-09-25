@@ -19,15 +19,33 @@
  ********************************************************************************/
 
 .idp-management-header {
-  display: flex;
-}
-
-.idp-management-title {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-left: 100px;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  .idp-management-title {
+    text-align: center;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .idp-management-title::after {
+    content: '';
+    width: 70px;
+    border-bottom: 2px solid;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .idp-management-desc {
+    width: 74%;
+    margin: 50px auto;
+  }
+  img {
+    border-radius: 10px;
+  }
+  .add-idp-btn {
+    margin-top: 30px;
+  }
 }
 
 .idp-list {
@@ -107,5 +125,37 @@
     margin-top: 0px;
     margin-bottom: 20px;
     border-radius: 10px;
+  }
+}
+
+.progress-section {
+  display: flex;
+  .number {
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      font-size: 20px;
+    }
+  }
+}
+
+.action-menu {
+  button {
+    box-shadow: none;
+    font-size: 12px;
+    padding: 8px !important;
+    &:hover {
+      box-shadow: none;
+    }
+    &:focus {
+      box-shadow: none;
+    }
   }
 }

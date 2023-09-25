@@ -1175,10 +1175,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@catena-x/portal-shared-components@^2.0.24":
-  version "2.0.24"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.24.tgz#0311063bee6c9daca07c0ebc33c64ca2e20fac7d"
-  integrity sha512-6rQy+/DMdrvw8glCoW8aov+AqapFCVuQ/orEPVIp2qXXkkmgfxSQoR2xPYZqm0TMRkblQu3Rl4pkkB7LIbBc1w==
+"@catena-x/portal-shared-components@^2.0.27":
+  version "2.0.27"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.0.27.tgz#883a3bcfda4bda4e3613a8d1fae4c6709f8a884e"
+  integrity sha512-CUaR5+UNIcR4CHALjdm8Eosd8mi9aykVj8AiRe/jER8BaGxmZyhFDgD1xS0F1sep0lPe3llybv+82YS7mzfGAw==
   dependencies:
     "@mui/base" "^5.0.0-beta.3"
     "@mui/system" "^5.13.2"
@@ -7539,6 +7539,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
+
+phone@^3.1.39:
+  version "3.1.40"
+  resolved "https://registry.yarnpkg.com/phone/-/phone-3.1.40.tgz#039c7cd432fb2459a69f1682c5814d75c7e595c7"
+  integrity sha512-RyQgv8Xl8a43LFBLrYnlS2rTOFFg5Se6DNTG2OXHZlWqC7cHcD/KA1irHjJToeQOoCVZg63pYIlXqG4cuOj/vg==
 
 picocolors@^0.2.1:
   version "0.2.1"
