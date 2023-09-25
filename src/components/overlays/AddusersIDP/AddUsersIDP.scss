@@ -1,16 +1,15 @@
-.mb-30 {
-  margin-bottom: 30px !important;
-}
-
-.backgroundSection {
-  padding: 10px;
-  background: #f4f5f6;
-  border-radius: 8px;
-}
-
-.addMultipleUsers {
+.uploadBulkUsers {
   text-align: center !important;
   margin: 0 auto;
+
+  .bulkUploadHeading {
+    margin: 30px;
+    display: inline-block;
+  }
+  .firstStep {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
 
   .number {
     border: 1px solid #0f71cb;
@@ -21,11 +20,22 @@
     height: 20px;
     line-height: 20px;
     text-align: center;
-    font-size: 12px;
     margin-bottom: 10px;
   }
 
+  .step1Label {
+    display: block;
+  }
+
+  .fileFormat {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
   .secondStep {
+    background-color: #f9f9f9;
+    padding: 20px;
     margin: 30px 0;
 
     .linkText {
@@ -35,54 +45,22 @@
 
     .editIcon {
       color: #0f71cb;
-    }
-  }
-}
-
-.uploadedFileMain {
-  .fileDetailsSection {
-    display: flex;
-
-    .documentMain {
-      display: flex;
-      width: 50%;
-
-      .documentIcon {
-        color: #0f71cb;
-        background-color: #dbe9f7;
-        height: 50px;
-        width: 50px;
-        border-radius: 5px;
-
-        .icon {
-          margin: 14px;
-        }
-        .number {
-          text-align: center;
-          line-height: 50px;
-        }
-      }
-
-      .documentName {
-        margin: 10px 20px;
-      }
+      cursor: pointer;
     }
   }
 
-  .roleDescLink {
-    display: flex;
-    font-size: 14px;
-    text-decoration: none;
-    margin-bottom: 20px;
-  }
-
-  .rolesSection {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  .thirdStep {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 30px 0;
   }
 }
 
-.successSection {
+.successDesc {
+  text-align: center !important;
+}
+
+.errorSection {
   .uploadedDetailsSection {
     display: flex;
 

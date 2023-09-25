@@ -1664,7 +1664,11 @@
       "toBeUpdated": "To be updated",
       "type": "Type",
       "owner": "Owner",
-      "offerLink": "Offer Link"
+      "offerLink": "Offer Link",
+      "alias": "Alias",
+      "authMethod": "Auth Method",
+      "progress": "Progress",
+      "action": "Action"
     },
     "actions": {
       "cancel": "Cancel",
