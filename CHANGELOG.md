@@ -51,6 +51,10 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Usermanagement
+  - Bulk upload UI Changes
+- Service Marketplace
+  - Change Subscription roles
 - Service release process
   - Clearing fields while registering new service
 

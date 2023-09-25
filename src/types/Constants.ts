@@ -163,7 +163,7 @@ export enum ROLES {
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
   APPSTORE_VIEW_SERVICES = 'view_service_marketplace',
-  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service_offering',
+  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service',
   APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',
