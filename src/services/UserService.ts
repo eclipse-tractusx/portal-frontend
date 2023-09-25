@@ -103,8 +103,7 @@ const getTenant = () => KC.tokenParsed?.tenant
 // not sustainable because client roles need to be unique across all clients
 const getRoles = () =>
   KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles.concat(
-    KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles,
-    ''
+    KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
   )
 
 const hasRole = (role: string) => getRoles()?.includes(role)
