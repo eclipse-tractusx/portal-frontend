@@ -17,6 +17,9 @@
   - Added Sub menu for active services in service overview
   - Added Deactivate functionality
   - Added image to service overview cards
+- Invite Business Partner Form
+  - Fix loader position to center
+  - Disable invite button when loader is visible
 - Data Space
   - Last section background color issue
 - Connector Deletion
@@ -52,6 +55,8 @@
   - Bulk upload UI Changes
 - Service Marketplace
   - Change Subscription roles
+- Service release process
+  - Clearing fields while registering new service
 
 ## 1.6.0
 
