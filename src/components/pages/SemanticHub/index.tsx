@@ -134,7 +134,9 @@ export default function SemanticHub() {
               </Typography>
               {UserService.hasRole(ROLES.SEMANTICHUB_ADD) && (
                 <Button
-                  onClick={() => setImportModel(true)}
+                  onClick={() => {
+                    setImportModel(true)
+                  }}
                   startIcon={<AddCircleOutlineIcon fontSize="large" />}
                 >
                   {t('content.semantichub.addModel')}
@@ -156,7 +158,9 @@ export default function SemanticHub() {
       <ModelDetailDialog show={showModel} onClose={onDetailClose} />
       <ModelImportDialog
         show={importModel}
-        onClose={() => setImportModel(false)}
+        onClose={() => {
+          setImportModel(false)
+        }}
       />
       <PageSnackbar
         open={showErrorAlert}

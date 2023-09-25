@@ -84,7 +84,7 @@ export default function ServiceAdminBoardDetail() {
       }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
-      return download(file, fileType, item.documentName)
+      download(file, fileType, item.documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -119,7 +119,9 @@ export default function ServiceAdminBoardDetail() {
         <Button
           color="secondary"
           size="small"
-          onClick={() => navigate(`/${PAGES.SERVICEADMINBOARD}`)}
+          onClick={() => {
+            navigate(`/${PAGES.SERVICEADMINBOARD}`)
+          }}
         >
           {t('adminboardDetail.action.back')}
         </Button>
@@ -232,7 +234,9 @@ export default function ServiceAdminBoardDetail() {
           <Button
             color="secondary"
             size="small"
-            onClick={() => navigate('/serviceadminboard')}
+            onClick={() => {
+              navigate('/serviceadminboard')
+            }}
           >
             {t('adminboardDetail.backToBoard')}
           </Button>

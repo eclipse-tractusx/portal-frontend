@@ -236,9 +236,9 @@ export default function ServiceListOverview() {
                   imageLoader={fetchImageWithToken}
                   showAddNewCard={false}
                   newButtonText={t('serviceoverview.addbtn')}
-                  onNewCardButton={() =>
+                  onNewCardButton={() => {
                     navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-                  }
+                  }}
                   onCardClick={(item: CardItems) => {
                     // TODO: workaround - fix CardItems type
                     const cardItem: any = item

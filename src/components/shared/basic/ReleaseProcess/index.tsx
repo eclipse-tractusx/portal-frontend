@@ -98,7 +98,9 @@ export const ReleaseProcess = ({
               color="primary"
               size="small"
               className="create-btn"
-              onClick={() => onStartClick()}
+              onClick={() => {
+                onStartClick()
+              }}
             >
               {registerButton}
             </Button>
@@ -107,7 +109,9 @@ export const ReleaseProcess = ({
               color="secondary"
               size="small"
               className="overview-btn"
-              onClick={() => onOverviewButton()}
+              onClick={() => {
+                onOverviewButton()
+              }}
             >
               {overviewButton}
             </Button>
@@ -136,7 +140,9 @@ export const ReleaseProcess = ({
                 color="primary"
                 size="small"
                 className="create-btn"
-                onClick={() => onStartClick()}
+                onClick={() => {
+                  onStartClick()
+                }}
               >
                 {startCreatingButton}
               </Button>

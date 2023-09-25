@@ -136,13 +136,20 @@ export default function AddRoles() {
       </section>
       <AddRolesOverlay
         openDialog={addRolesOverlayOpen}
-        handleOverlayClose={() => setAddRolesOverlayOpen(false)}
+        handleOverlayClose={() => {
+          setAddRolesOverlayOpen(false)
+        }}
         appId={appId || ''}
       />
       <div className="main-container">
         <div className="main-row">
           <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>
-            <Button size="small" onClick={() => setAddRolesOverlayOpen(true)}>
+            <Button
+              size="small"
+              onClick={() => {
+                setAddRolesOverlayOpen(true)
+              }}
+            >
               {t('content.addRoles.uploadAdditionalRoles')}
             </Button>
           </Box>
@@ -174,7 +181,9 @@ export default function AddRoles() {
         <Box sx={{ marginTop: '30px', position: 'relative' }}>
           <Button
             color="secondary"
-            onClick={() => navigate(`/${PAGES.APPOVERVIEW}`)}
+            onClick={() => {
+              navigate(`/${PAGES.APPOVERVIEW}`)
+            }}
             size="small"
           >
             {t('global.actions.cancel')}

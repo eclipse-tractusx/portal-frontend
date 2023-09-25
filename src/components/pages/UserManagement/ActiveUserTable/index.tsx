@@ -59,9 +59,9 @@ export const ActiveUserTable = ({
       fetchHookArgs={{ expr, addUserResponse }}
       searchExpr={expr}
       onSearch={setExpr}
-      onDetailsClick={(row: TenantUser) =>
+      onDetailsClick={(row: TenantUser) => {
         navigate(`/userdetails/${row.companyUserId}`)
-      }
+      }}
       isDetail={true}
     />
   )

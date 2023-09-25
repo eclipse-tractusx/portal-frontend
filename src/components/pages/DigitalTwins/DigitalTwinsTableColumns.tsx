@@ -62,7 +62,9 @@ export const DigitalTwinsTableColumns = (
       width: 150,
       renderCell: ({ row }: { row: ShellDescriptor }) => (
         <IconButton
-          onClick={() => onDetailClick(row.identification)}
+          onClick={() => {
+            onDetailClick(row.identification)
+          }}
           color="secondary"
           size="small"
           style={{ alignSelf: 'center' }}

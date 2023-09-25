@@ -125,7 +125,9 @@ export default function EditAppUserRoles({ id }: { id: string }) {
                   <Checkbox
                     label={role.role}
                     checked={roles.indexOf(role.role) !== -1}
-                    onChange={(e) => selectRole(role.role, e.target.checked)}
+                    onChange={(e) => {
+                      selectRole(role.role, e.target.checked)
+                    }}
                   />
                 </li>
               ))}

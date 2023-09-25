@@ -71,7 +71,9 @@ export default function ServicesElements({
                       imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                       label={service.provider}
                       buttonText="Details"
-                      onBtnClick={() => handleClick(service.id)}
+                      onBtnClick={() => {
+                        handleClick(service.id)
+                      }}
                       title={service.title}
                       subTitle={getServices(service.serviceTypes)}
                       description={service.description}

@@ -70,7 +70,9 @@ export default function ChangeDocuments() {
           <Button
             color="secondary"
             size="small"
-            onClick={() => navigate('/appoverview')}
+            onClick={() => {
+              navigate('/appoverview')
+            }}
           >
             {t('global.actions.cancel')}
           </Button>

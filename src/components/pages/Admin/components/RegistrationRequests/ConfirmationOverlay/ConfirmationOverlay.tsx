@@ -57,10 +57,20 @@ const ConfirmationOverlay = ({
           {t('content.admin.registration-requests.confirmmodal.description')}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+            }}
+          >
             {t('global.actions.cancel')}
           </Button>
-          <Button variant="contained" onClick={(e) => handleConfirmClick(e)}>
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              handleConfirmClick(e)
+            }}
+          >
             {t('global.actions.confirm')}
           </Button>
         </DialogActions>

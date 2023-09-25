@@ -84,20 +84,18 @@ export default function AppListSection() {
 
   const debouncedFilter = useMemo(
     () =>
-      debounce(
-        (expr: string) =>
-          setCardsData(
-            expr && cards?.length > 0
-              ? cards.filter(
-                  (card: { title: string; subtitle: string }) =>
-                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                    (card.subtitle &&
-                      card.subtitle.toLowerCase().includes(expr.toLowerCase()))
-                )
-              : cards
-          ),
-        300
-      ),
+      debounce((expr: string) => {
+        setCardsData(
+          expr && cards?.length > 0
+            ? cards.filter(
+                (card: { title: string; subtitle: string }) =>
+                  card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                  (card.subtitle &&
+                    card.subtitle.toLowerCase().includes(expr.toLowerCase()))
+              )
+            : cards
+        )
+      }, 300),
     [cards]
   )
 
@@ -141,9 +139,12 @@ export default function AppListSection() {
         <AppListGroupView
           items={cardsData.map((card) => ({
             ...card,
-            onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: (e: React.MouseEvent) =>
-              addOrRemoveFavorite(e, card.id!),
+            onButtonClick: () => {
+              navigate(`/appdetail/${card.id}`)
+            },
+            onSecondaryButtonClick: (e: React.MouseEvent) => {
+              addOrRemoveFavorite(e, card.id!)
+            },
             addButtonClicked: checkIsFavorite(card.id!),
           }))}
           groupKey={group}
@@ -182,7 +183,9 @@ export default function AppListSection() {
             margin={'normal'}
             placeholder={t('content.home.searchSection.inputPlaceholder')}
             value={filterExpr}
-            onChange={(e) => doFilter(e.target.value)}
+            onChange={(e) => {
+              doFilter(e.target.value)
+            }}
           />
         </Box>
         {renderList()}

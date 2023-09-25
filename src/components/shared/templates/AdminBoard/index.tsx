@@ -391,27 +391,29 @@ export default function CommonAdminBoard({
             placeholder={searchText}
             value={searchExpr}
             autoFocus={false}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => {
+              handleSearch(e.target.value)
+            }}
             autoComplete="off"
           />
         </div>
         <div
           className="filterSection"
-          onMouseLeave={() =>
+          onMouseLeave={() => {
             setState({
               type: ActionKind.SET_SHOW_MODAL,
               payload: false,
             })
-          }
+          }}
         >
           <ViewSelector activeView={selected} views={tabButtons} />
           <SortImage
-            onClick={() =>
+            onClick={() => {
               setState({
                 type: ActionKind.SET_SHOW_MODAL,
                 payload: true,
               })
-            }
+            }}
             selected={showModal}
           />
           <div className="sortSection">

@@ -98,7 +98,9 @@ export default function AppUserManagement() {
           <DialogContent>
             <IconButton
               aria-label="close"
-              onClick={() => onAlertClose()}
+              onClick={() => {
+                onAlertClose()
+              }}
               sx={{
                 position: 'absolute',
                 right: 16,

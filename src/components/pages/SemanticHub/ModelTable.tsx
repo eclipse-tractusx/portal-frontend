@@ -183,7 +183,9 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (
           <LoadMoreButton
-            onClick={() => setPageNumber((prevState) => prevState + 1)}
+            onClick={() => {
+              setPageNumber((prevState) => prevState + 1)
+            }}
             sx={{ mt: 4 }}
           />
         )}

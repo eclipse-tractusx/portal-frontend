@@ -168,7 +168,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         documentId,
       }).unwrap()
       const file = response.data
-      return setImage(URL.createObjectURL(file))
+      setImage(URL.createObjectURL(file))
     } catch (error) {
       console.log(error)
     }

@@ -98,8 +98,12 @@ export const EnableIDPContent = ({
       }
     )
       .then((response) => response.json())
-      .then((data: UserIdentityProvidersItem) => setUserId(data.userId))
-      .catch((e) => console.log(e))
+      .then((data: UserIdentityProvidersItem) => {
+        setUserId(data.userId)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   }, [identityProviderId, companyUserId])
 
   return (

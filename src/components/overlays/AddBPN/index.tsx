@@ -108,9 +108,15 @@ export default function AddBPN({ id }: { id: string }) {
                       {bpn}
                     </p>{' '}
                     <DeleteIcon
-                      onMouseOver={() => onHoverEvent(i)}
-                      onMouseOut={() => onHoverEvent(-1)}
-                      onClick={() => onDeleteBpnHandler(bpn)}
+                      onMouseOver={() => {
+                        onHoverEvent(i)
+                      }}
+                      onMouseOut={() => {
+                        onHoverEvent(-1)
+                      }}
+                      onClick={() => {
+                        onDeleteBpnHandler(bpn)
+                      }}
                       className="deleteIcon"
                     />
                   </li>
@@ -122,7 +128,9 @@ export default function AddBPN({ id }: { id: string }) {
               name="bpn"
               label="Add a new BPN"
               placeholder="Placeholder Text"
-              onChange={(e) => addInputBPN(e.target.value)}
+              onChange={(e) => {
+                addInputBPN(e.target.value)
+              }}
               onKeyPress={(event) => {
                 if (event.key === 'Enter') {
                   void addBPN()

@@ -131,9 +131,15 @@ const BasicInput = ({
           name={name}
           type={hidden ? InputType.password : InputType.text}
           defaultValue={value}
-          onKeyUp={() => onValue && onValue(ref.current?.value ?? '')}
-          onBlur={() => setFocus(false)}
-          onFocus={() => setFocus(true)}
+          onKeyUp={() => {
+            onValue && onValue(ref.current?.value ?? '')
+          }}
+          onBlur={() => {
+            setFocus(false)
+          }}
+          onFocus={() => {
+            setFocus(true)
+          }}
         />
         <div className={'actions'}>
           {(type === InputType.password || toggleHide) &&

@@ -31,11 +31,9 @@ export const AddUser = () => {
   const { data, isFetching } = useFetchIDPListQuery()
   const [idps, setIdps] = useState<IdentityProvider[]>([])
 
-  useEffect(
-    () =>
-      setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : []),
-    [data]
-  )
+  useEffect(() => {
+    setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : [])
+  }, [data])
 
   return isFetching ? (
     <div

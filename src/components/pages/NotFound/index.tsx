@@ -32,7 +32,9 @@ export default function NotFound() {
         header={t('content.notfound.title')}
         title={t('content.notfound.description')}
         reloadButtonTitle={t('content.notfound.button')}
-        onReloadClick={() => navigate('/')}
+        onReloadClick={() => {
+          navigate('/')
+        }}
       />
     </main>
   )

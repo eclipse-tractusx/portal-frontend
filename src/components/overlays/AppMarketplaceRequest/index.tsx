@@ -148,9 +148,9 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     handleCheckedAgreement(e.target.checked, agreement)
-                  }
+                  }}
                   onFocusVisible={function noRefCheck() {}}
                 />
               </li>

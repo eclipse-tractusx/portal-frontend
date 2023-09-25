@@ -96,7 +96,9 @@ export const UserRoles = () => {
               checked={Array.isArray(roles) && roles.includes(role.role)}
               label={role.role}
               key={role.roleId}
-              onChange={(e) => selectRole(role.role, e.target.checked)}
+              onChange={(e) => {
+                selectRole(role.role, e.target.checked)
+              }}
             />
           ))}
         </div>

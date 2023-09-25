@@ -110,7 +110,9 @@ export const UserDetailCard = ({
           <ContentCopyIcon
             style={{ cursor: 'pointer' }}
             sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
-            onClick={() => copyText(value?.value)}
+            onClick={() => {
+              copyText(value?.value)
+            }}
           />
         )}
       </span>

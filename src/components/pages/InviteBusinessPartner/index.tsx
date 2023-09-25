@@ -81,7 +81,9 @@ export default function InviteBusinessPartner() {
     <main className="invite-main-container">
       <InviteForm
         openDialog={inviteOverlayOpen}
-        handleOverlayClose={() => setInviteOverlayOpen(false)}
+        handleOverlayClose={() => {
+          setInviteOverlayOpen(false)
+        }}
         onSubmit={doSubmitInvite}
         state={processing}
       />
@@ -94,7 +96,9 @@ export default function InviteBusinessPartner() {
         <DialogContent>
           <IconButton
             aria-label="close"
-            onClick={() => setSuccessOverlayOpen(false)}
+            onClick={() => {
+              setSuccessOverlayOpen(false)
+            }}
             sx={{
               position: 'absolute',
               right: 16,
@@ -128,7 +132,9 @@ export default function InviteBusinessPartner() {
         <DialogContent>
           <IconButton
             aria-label="close"
-            onClick={() => setFailureOverlayOpen(false)}
+            onClick={() => {
+              setFailureOverlayOpen(false)
+            }}
             sx={{
               position: 'absolute',
               right: 16,
@@ -168,7 +174,9 @@ export default function InviteBusinessPartner() {
           {t('content.invite.inviteText2')}
         </Typography>
         <Button
-          onClick={() => setInviteOverlayOpen(true)}
+          onClick={() => {
+            setInviteOverlayOpen(true)
+          }}
           size="medium"
           sx={{ margin: 'auto', display: 'block' }}
         >

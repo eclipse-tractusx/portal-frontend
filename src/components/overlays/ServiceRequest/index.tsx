@@ -117,9 +117,9 @@ export default function ServiceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     handleSelectedAgreement(e.target.checked, agreement)
-                  }
+                  }}
                   onFocusVisible={function noRefCheck() {}}
                 />
               </li>

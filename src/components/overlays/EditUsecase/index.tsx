@@ -112,7 +112,9 @@ export default function EditUsecase({
               label={`${t(
                 'content.usecaseParticipation.editUsecase.checkboxLabel'
               )}`}
-              onChange={(e) => setChecked(e.target.checked)}
+              onChange={(e) => {
+                setChecked(e.target.checked)
+              }}
             />
           </div>
         </div>

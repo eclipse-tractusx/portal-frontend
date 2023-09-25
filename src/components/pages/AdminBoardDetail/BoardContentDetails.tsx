@@ -94,7 +94,9 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
         <Button
           color="secondary"
           size="small"
-          onClick={() => navigate('/adminboard')}
+          onClick={() => {
+            navigate('/adminboard')
+          }}
         >
           {t('content.adminboardDetail.backToBoard')}
         </Button>

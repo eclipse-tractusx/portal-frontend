@@ -185,7 +185,9 @@ export default function OfferPage({
             refetch()
             setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
           })
-          .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
+          .catch(() => {
+            setFiles(fileIndex, UploadStatus.UPLOAD_ERROR)
+          })
       }
     }
   }
@@ -401,8 +403,12 @@ export default function OfferPage({
           description: t('serviceReleaseForm.error.message'),
         }}
         pageSnackbar={appPageSnackbar}
-        setPageNotification={() => setServicePageNotification(false)}
-        setPageSnackbar={() => setServicePageSnackbar(false)}
+        setPageNotification={() => {
+          setServicePageNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setServicePageSnackbar(false)
+        }}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) => onSubmit(data, ButtonLabelTypes.SAVE))}
         onSaveAndProceed={handleSubmit((data) =>

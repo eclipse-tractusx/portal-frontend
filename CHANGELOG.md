@@ -48,6 +48,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Linter Findings
+  - No confusing void expression fixes
 
 ## 1.6.0
 

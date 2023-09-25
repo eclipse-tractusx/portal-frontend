@@ -292,12 +292,12 @@ export default function CommonContractAndConsent({
         DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS,
         uploadImageConformityValue
       )
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [
     uploadImageConformityValue,
@@ -378,7 +378,7 @@ export default function CommonContractAndConsent({
         const fileType = response.headers.get('content-type')
         const file = response.data
 
-        return download(file, fileType, documentName)
+        download(file, fileType, documentName)
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
       }
@@ -395,7 +395,7 @@ export default function CommonContractAndConsent({
         const fileType = response.headers.get('content-type')
         const file = response.data
 
-        return download(file, fileType, documentName)
+        download(file, fileType, documentName)
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
       }

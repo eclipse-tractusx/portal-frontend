@@ -76,7 +76,9 @@ export default function UserManagement() {
           <DialogContent>
             <IconButton
               aria-label="close"
-              onClick={() => alertClose()}
+              onClick={() => {
+                alertClose()
+              }}
               sx={{
                 position: 'absolute',
                 right: 16,

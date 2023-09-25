@@ -89,7 +89,7 @@ export const InviteForm = ({
     [debouncedValidation, inpExpr]
   )
 
-  const doSubmit = () =>
+  const doSubmit = () => {
     onSubmit({
       userName: inpExpr[1].trim(),
       firstName: inpExpr[2].trim(),
@@ -97,6 +97,7 @@ export const InviteForm = ({
       email: inpExpr[1].trim(),
       organisationName: inpExpr[0].trim(),
     })
+  }
 
   return (
     <>
@@ -123,7 +124,9 @@ export const InviteForm = ({
                 value={inpExpr[i]}
                 error={inpValid[i]}
                 autoFocus={value === 'company'}
-                onChange={(e) => doValidate(i, e.target.value)}
+                onChange={(e) => {
+                  doValidate(i, e.target.value)
+                }}
               ></Input>
             ))}
           </form>
@@ -132,7 +135,12 @@ export const InviteForm = ({
           </span>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+            }}
+          >
             {`${t('global.actions.cancel')}`}
           </Button>
           <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>

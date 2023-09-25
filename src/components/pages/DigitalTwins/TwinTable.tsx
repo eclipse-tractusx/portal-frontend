@@ -115,7 +115,9 @@ const TwinTable = ({ onTwinSelect }: TwinTableProps) => {
       <div className="load-more-button-container">
         {twinList.totalPages !== twinList.currentPage && (
           <LoadMoreButton
-            onClick={() => setPageNumber((prevState) => prevState + 1)}
+            onClick={() => {
+              setPageNumber((prevState) => prevState + 1)
+            }}
           />
         )}
       </div>

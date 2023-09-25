@@ -159,7 +159,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 {showDeleteBtn && (
                   <Button
                     size="small"
-                    onClick={() => setShowDeleteConfirm(true)}
+                    onClick={() => {
+                      setShowDeleteConfirm(true)
+                    }}
                     sx={{
                       position: 'absolute',
                       top: '10px',
@@ -240,7 +242,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                       id="table-select"
                       value={aasFormat}
                       label={t('content.semantichub.detail.aasSelect.label')}
-                      onChange={(e) => setAasFormat(e.target.value)}
+                      onChange={(e) => {
+                        setAasFormat(e.target.value)
+                      }}
                       variant="filled"
                       defaultValue={aasFileTypes[0]}
                       sx={{ minWidth: '200px' }}
@@ -267,7 +271,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                     placeholder={t(
                       'content.semantichub.detail.openApi.inputPlaceholder'
                     )}
-                    onChange={(e) => setOpenApiUrlInput(e.target.value)}
+                    onChange={(e) => {
+                      setOpenApiUrlInput(e.target.value)
+                    }}
                     value={openApiUrlInput}
                   />
                 </Box>
@@ -312,7 +318,11 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setShowDeleteConfirm(false)}>
+          <Button
+            onClick={() => {
+              setShowDeleteConfirm(false)
+            }}
+          >
             {t('content.semantichub.deleteDialog.buttonCancel')}
           </Button>
           <Button onClick={onDeleteConfirm}>

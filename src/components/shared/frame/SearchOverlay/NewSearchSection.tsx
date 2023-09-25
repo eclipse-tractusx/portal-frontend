@@ -65,7 +65,9 @@ export default function NewSearchSection() {
         placeholder={t('content.home.searchSection.inputPlaceholder')}
         value={searchExpression}
         autoFocus={true}
-        onChange={(e) => onSearch(e.target.value)}
+        onChange={(e) => {
+          onSearch(e.target.value)
+        }}
       />
     </div>
   )

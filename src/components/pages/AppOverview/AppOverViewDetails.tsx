@@ -99,7 +99,7 @@ export default function AppOverViewDetails({
           documentId,
         }).unwrap()
         const file = response.data
-        return setCardImage(URL.createObjectURL(file))
+        setCardImage(URL.createObjectURL(file))
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
@@ -155,7 +155,9 @@ export default function AppOverViewDetails({
               <LanguageSwitch
                 current={cardLanguage}
                 languages={[{ key: 'de' }, { key: 'en' }]}
-                onChange={(lang) => setCardLanguage(lang)}
+                onChange={(lang) => {
+                  setCardLanguage(lang)
+                }}
               />
             </div>
             {item?.useCase &&

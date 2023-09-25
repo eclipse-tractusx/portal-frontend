@@ -52,16 +52,16 @@ export default function Deactivate() {
     setIsLoading(true)
     await deactivateApp(app[0].id)
       .unwrap()
-      .then(() =>
+      .then(() => {
         navigate('/appoverview', {
           state: 'deactivate-success',
         })
-      )
-      .catch((error) =>
+      })
+      .catch((error) => {
         navigate('/appoverview', {
           state: 'deactivate-error',
         })
-      )
+      })
   }
 
   return (
@@ -106,9 +106,9 @@ export default function Deactivate() {
                 <Checkbox
                   label={`${t('content.deactivate.checkboxLabel')}`}
                   key={app[0].id}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     e.target.checked ? setChecked(true) : setChecked(false)
-                  }
+                  }}
                   className="checkbox-input"
                 />
               </Box>
@@ -122,7 +122,9 @@ export default function Deactivate() {
           <Button
             color="secondary"
             size="small"
-            onClick={() => navigate('/appoverview')}
+            onClick={() => {
+              navigate('/appoverview')
+            }}
           >
             {t('global.actions.cancel')}
           </Button>

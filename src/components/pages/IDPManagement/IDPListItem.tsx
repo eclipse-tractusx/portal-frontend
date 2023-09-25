@@ -40,7 +40,9 @@ export default function IDPListItem({
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const [open, setOpen] = useState<boolean>(false)
-  const toggle = () => setOpen(!open)
+  const toggle = () => {
+    setOpen(!open)
+  }
 
   const doConfirmDelete = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation()

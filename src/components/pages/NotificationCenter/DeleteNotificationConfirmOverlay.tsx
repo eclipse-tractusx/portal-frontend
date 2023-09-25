@@ -90,7 +90,9 @@ const DeleteNotificationConfirmOverlay = ({
           <Button
             color="error"
             variant="contained"
-            onClick={() => handleCallback()}
+            onClick={() => {
+              handleCallback()
+            }}
             size="large"
             sx={{
               borderRadius: '8px',

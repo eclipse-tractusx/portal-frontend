@@ -212,7 +212,12 @@ export default function ActivateserviceSubscription({
               )}
             </DialogContent>
             <DialogActions>
-              <Button variant="outlined" onClick={() => handleOverlayClose()}>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  handleOverlayClose()
+                }}
+              >
                 {t('serviceSubscription.activation.close')}
               </Button>
             </DialogActions>
@@ -296,7 +301,12 @@ export default function ActivateserviceSubscription({
               </Box>
             </DialogContent>
             <DialogActions>
-              <Button variant="outlined" onClick={() => handleOverlayClose()}>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  handleOverlayClose()
+                }}
+              >
                 {t('serviceSubscription.register.close')}
               </Button>
               {loading ? (

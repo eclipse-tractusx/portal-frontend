@@ -95,13 +95,11 @@ export default function AddMultipleUser() {
     dispatch(setRolesToAdd([]))
   }, [data, dispatch])
 
-  useEffect(
-    () =>
-      setIdps(
-        idpsData ? idpsData.filter((idp: IdentityProvider) => idp.enabled) : []
-      ),
-    [idpsData]
-  )
+  useEffect(() => {
+    setIdps(
+      idpsData ? idpsData.filter((idp: IdentityProvider) => idp.enabled) : []
+    )
+  }, [idpsData])
 
   useEffect(() => {
     uploadAPIRResponse &&
@@ -323,9 +321,9 @@ export default function AddMultipleUser() {
                   checked={Array.isArray(roles) && roles.includes(role.role)}
                   label={role.role}
                   key={role.roleId}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     handleSelectRole(role.role, e.target.checked)
-                  }
+                  }}
                 />
               ))}
             </div>

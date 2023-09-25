@@ -158,12 +158,13 @@ export default function OfferCard() {
           appId: serviceId,
           documentId,
         }).unwrap()
-        const setFileStatus = (status: UploadFileStatus) =>
+        const setFileStatus = (status: UploadFileStatus) => {
           setValue('uploadImage.leadPictureUri', {
             name: documentName,
             id: documentId,
             status,
           } as any)
+        }
         setFileStatus(UploadStatus.UPLOAD_SUCCESS)
         setImageData({
           name: documentName,
@@ -203,13 +204,14 @@ export default function OfferCard() {
     appId: string,
     uploadImageValue: DropzoneFile
   ) => {
-    const setFileStatus = (status: UploadFileStatus) =>
+    const setFileStatus = (status: UploadFileStatus) => {
       setValue('uploadImage.leadPictureUri', {
         id: uploadImageValue.id,
         name: uploadImageValue.name,
         size: uploadImageValue.size,
         status,
       } as any)
+    }
 
     setFileStatus(UploadStatus.UPLOADING)
     updateServiceDocumentUpload({
@@ -518,9 +520,15 @@ export default function OfferCard() {
           title: t('serviceReleaseForm.error.title'),
           description: t('serviceReleaseForm.error.message'),
         }}
-        setPageNotification={() => setServiceCardNotification(false)}
-        setPageSnackbar={() => setServiceCardSnackbar(false)}
-        onBackIconClick={() => navigate('/home')}
+        setPageNotification={() => {
+          setServiceCardNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setServiceCardSnackbar(false)
+        }}
+        onBackIconClick={() => {
+          navigate('/home')
+        }}
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}

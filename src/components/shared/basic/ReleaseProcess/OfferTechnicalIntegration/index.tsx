@@ -176,7 +176,9 @@ export default function OfferTechnicalIntegration() {
                 checked={serviceTechUserProfiles.some(
                   (role) => item.roleId === role
                 )}
-                onChange={(e) => handleUserProfiles(e.target.checked, item)}
+                onChange={(e) => {
+                  handleUserProfiles(e.target.checked, item)
+                }}
                 size="small"
               />
             </Grid>

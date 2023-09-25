@@ -83,16 +83,18 @@ export default function SnackbarNotificationWithButtons({
               }
               open
               severity="error"
-              onCloseNotification={() =>
+              onCloseNotification={() => {
                 setPageNotification && setPageNotification(false)
-              }
+              }}
             />
           </Grid>
         </Grid>
       )}
       <PageSnackbar
         open={pageSnackbar ?? false}
-        onCloseNotification={() => setPageSnackbar && setPageSnackbar(false)}
+        onCloseNotification={() => {
+          setPageSnackbar && setPageSnackbar(false)
+        }}
         severity={pageSnackBarType}
         description={pageSnackBarDescription}
         autoClose={true}
@@ -107,7 +109,9 @@ export default function SnackbarNotificationWithButtons({
         {t('footerButtons.help')}
       </Button>
       <IconButton
-        onClick={() => onBackIconClick && onBackIconClick()}
+        onClick={() => {
+          onBackIconClick && onBackIconClick()
+        }}
         color="secondary"
       >
         <KeyboardArrowLeftIcon />
@@ -133,7 +137,9 @@ export default function SnackbarNotificationWithButtons({
             sx={{ float: 'right' }}
             disabled={!isValid}
             variant="contained"
-            onClick={() => onSaveAndProceed && onSaveAndProceed()}
+            onClick={() => {
+              onSaveAndProceed && onSaveAndProceed()
+            }}
           >
             {t('footerButtons.saveAndProceed')}
           </Button>
@@ -141,7 +147,9 @@ export default function SnackbarNotificationWithButtons({
             variant="outlined"
             name="send"
             sx={{ float: 'right', mr: 1 }}
-            onClick={() => onSave && onSave()}
+            onClick={() => {
+              onSave && onSave()
+            }}
           >
             {t('footerButtons.save')}
           </Button>

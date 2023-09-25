@@ -46,7 +46,9 @@ export default function DigitalTwins() {
       </main>
       <DigitalTwinDetailDialog
         show={showTwin}
-        onClose={() => setShowTwin(false)}
+        onClose={() => {
+          setShowTwin(false)
+        }}
       />
     </>
   )

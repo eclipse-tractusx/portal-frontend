@@ -138,9 +138,11 @@ export const TechnicalUserTable = () => {
                   color="secondary"
                   onClick={() =>
                     //dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
-                    navigate(
-                      `/${PAGES.TECHUSER_DETAILS}/${row.serviceAccountId}`
-                    )
+                    {
+                      navigate(
+                        `/${PAGES.TECHUSER_DETAILS}/${row.serviceAccountId}`
+                      )
+                    }
                   }
                 >
                   <ArrowForwardIcon />

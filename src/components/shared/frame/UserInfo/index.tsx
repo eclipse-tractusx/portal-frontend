@@ -52,7 +52,9 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
     title: t(`pages.${link}`),
   }))
 
-  const openCloseMenu = () => setMenuOpen((prevVal) => !prevVal)
+  const openCloseMenu = () => {
+    setMenuOpen((prevVal) => !prevVal)
+  }
   const onClickAway = (e: MouseEvent | TouchEvent) => {
     if (!avatar.current?.contains(e.target as HTMLDivElement)) {
       setMenuOpen(false)

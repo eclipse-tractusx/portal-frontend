@@ -252,7 +252,9 @@ const AppSubscriptionDetailOverlay = ({
               : ti('serviceSubscription.detailOverlay.description')
           }
           closeWithIcon={true}
-          onCloseWithIcon={() => handleOverlayClose()}
+          onCloseWithIcon={() => {
+            handleOverlayClose()
+          }}
         />
         <DialogContent>
           <ReleaseStepper

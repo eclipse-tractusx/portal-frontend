@@ -144,7 +144,12 @@ export const UserList = ({
               : t('global.field.edit'),
             flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
-              <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
+              <IconButton
+                color="secondary"
+                onClick={() => {
+                  onDetailsClick(row)
+                }}
+              >
                 <ArrowForwardIcon />
               </IconButton>
             ),

@@ -45,7 +45,9 @@ export const SemanticModelTableColumns = (
       filterable: false,
       renderCell: ({ row }: { row: SemanticModel }) => (
         <IconButton
-          onClick={() => onDetailClick(row.urn)}
+          onClick={() => {
+            onDetailClick(row.urn)
+          }}
           color="secondary"
           size="small"
         >
