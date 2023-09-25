@@ -31,12 +31,12 @@ const CopyValue = ({ value }: { value: string }) => {
   return (
     <Box
       sx={{
-        margin: '4px 0',
+        margin: '4px 0 4px auto',
         cursor: 'pointer',
         display: 'flex',
-        color: copied ? '#44aa44' : '#cccccc',
+        color: copied ? '#44aa44' : '#0F71CB',
         ':hover': {
-          color: copied ? '#44aa44' : '#888888',
+          color: '#44aa44',
         },
       }}
       onClick={async () => {
@@ -45,7 +45,6 @@ const CopyValue = ({ value }: { value: string }) => {
         setTimeout(() => setCopied(false), 1000)
       }}
     >
-      {value}
       <ContentCopyIcon
         sx={{
           marginLeft: '10px',
@@ -68,7 +67,14 @@ const ReadOnlyValue = ({
 }) => {
   return (
     <div style={style}>
-      <div style={{ display: 'flex' }}>
+      <div
+        style={{
+          display: 'flex',
+          background: '#EDF0F4',
+          padding: '15px',
+          alignItems: 'center',
+        }}
+      >
         <Typography
           variant="label3"
           sx={{ textAlign: 'left', marginRight: '10px' }}
@@ -84,11 +90,17 @@ const ReadOnlyValue = ({
           tooltipText={tooltipMessage}
         >
           <div>
-            <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
+            <HelpOutlineIcon
+              sx={{ color: '#B6B6B6', marginTop: '2px' }}
+              fontSize={'small'}
+            />
           </div>
         </Tooltips>
+        <CopyValue value={value} />
       </div>
-      <CopyValue value={value} />
+      <Typography variant="body3" sx={{ margin: '15px' }}>
+        {value}
+      </Typography>
     </div>
   )
 }

@@ -34,6 +34,11 @@ export enum ServiceTypeIdsEnum {
   DATASPACE_SERVICE = 'DATASPACE_SERVICE',
 }
 
+export enum ServiceDeactivateEnum {
+  SERVICE_DEACTIVATE_SUCCESS = 'service-deactivate-success',
+  SERVICE_DEACTIVATE_ERROR = 'service-deactivate-error',
+}
+
 export type CreateServiceStep1Item = {
   title?: string
   price?: string | null
@@ -323,6 +328,12 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    deactivateService: builder.mutation<void, string>({
+      query: (serviceId) => ({
+        url: `/api/service/ServiceChange/${serviceId}/deactivateService`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -345,4 +356,5 @@ export const {
   useFetchServiceTechnicalUserProfilesQuery,
   useSaveServiceTechnicalUserProfilesMutation,
   useActivateSubscriptionMutation,
+  useDeactivateServiceMutation,
 } = apiSlice
