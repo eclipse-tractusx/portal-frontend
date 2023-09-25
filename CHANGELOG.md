@@ -51,6 +51,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Digital Twin
+  - Code clean up
 - Usermanagement
   - Bulk upload UI Changes
 - Service Marketplace
