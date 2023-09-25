@@ -93,7 +93,7 @@ export default function SnackbarNotificationWithButtons({
       <PageSnackbar
         open={pageSnackbar ?? false}
         onCloseNotification={() => {
-          setPageSnackbar && setPageSnackbar(false)
+          setPageSnackbar?.(false)
         }}
         severity={pageSnackBarType}
         description={pageSnackBarDescription}
@@ -110,7 +110,7 @@ export default function SnackbarNotificationWithButtons({
       </Button>
       <IconButton
         onClick={() => {
-          onBackIconClick && onBackIconClick()
+          onBackIconClick?.()
         }}
         color="secondary"
       >
@@ -138,7 +138,7 @@ export default function SnackbarNotificationWithButtons({
             disabled={!isValid}
             variant="contained"
             onClick={() => {
-              onSaveAndProceed && onSaveAndProceed()
+              onSaveAndProceed?.()
             }}
           >
             {t('footerButtons.saveAndProceed')}
@@ -148,7 +148,7 @@ export default function SnackbarNotificationWithButtons({
             name="send"
             sx={{ float: 'right', mr: 1 }}
             onClick={() => {
-              onSave && onSave()
+              onSave?.()
             }}
           >
             {t('footerButtons.save')}

@@ -132,7 +132,7 @@ const BasicInput = ({
           type={hidden ? InputType.password : InputType.text}
           defaultValue={value}
           onKeyUp={() => {
-            onValue && onValue(ref.current?.value ?? '')
+            onValue?.(ref.current?.value ?? '')
           }}
           onBlur={() => {
             setFocus(false)

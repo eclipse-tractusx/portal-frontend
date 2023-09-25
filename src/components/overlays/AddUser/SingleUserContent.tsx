@@ -73,7 +73,7 @@ export const SingleUserContent = ({
           helperText={t(i18n)}
           validate={validate}
           onValid={(key, value) => {
-            setValue(key, value || '')
+            setValue(key, value ?? '')
           }}
         />
       ))}
