@@ -103,8 +103,8 @@ export const EnableIDPContent = ({
   }, [identityProviderId, companyUserId])
 
   return (
-    <>
+    <div style={{ width: '85%', margin: '40px auto' }}>
       <EnableIDPForm onChange={checkData} userId={userId} />
-    </>
+    </div>
   )
 }

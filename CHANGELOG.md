@@ -17,6 +17,9 @@
   - Added Sub menu for active services in service overview
   - Added Deactivate functionality
   - Added image to service overview cards
+- Invite Business Partner Form
+  - Fix loader position to center
+  - Disable invite button when loader is visible
 - Data Space
   - Last section background color issue
 - Connector Deletion
@@ -39,6 +42,8 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+- Identity Provider Config
+  - UI Enhancements
 - Overlay
   - Overlays style sync
 - My Organization
@@ -46,6 +51,14 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Digital Twin
+  - Code clean up
+- Usermanagement
+  - Bulk upload UI Changes
+- Service Marketplace
+  - Change Subscription roles
+- Service release process
+  - Clearing fields while registering new service
 
 ## 1.6.0
 

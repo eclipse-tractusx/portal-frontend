@@ -11,7 +11,6 @@
     "appdetails": "App Details",
     "datamanagement": "Datenmanagement",
     "semantichub": "Semantische Modelle",
-    "digitaltwin": "Digitale Zwillinge",
     "connector": "Konnektor",
     "partnernetwork": "Partner Network",
     "account": "Mein CX Account",
@@ -332,32 +331,6 @@
         },
         "nomodelTitle": "Oooops! Kein Modell gefunden!",
         "nomodelText": "Die verwendete URN ist entweder falsch, oder das Modell existiert noch nicht."
-      }
-    },
-    "digitaltwin": {
-      "table": {
-        "title": "Übersicht Digitale Zwillinge",
-        "searchfielddefaulttext": "Teile-Instanz-ID des Assets",
-        "norows": "Keine Daten mit der Teile-Instanz-ID {data} gefunden",
-        "columns": {
-          "idShort": "Name",
-          "sm_count": "Anzahl Submodelle",
-          "asset_count": "Anzahl Assets"
-        }
-      },
-      "detail": {
-        "error": "FEHLER: Es gibt keine Details zu diesem Asset.",
-        "no_description": "Dieses Asset hat keine Beschreibung.",
-        "assetId": "Specific Asset IDs",
-        "submodel_endpoints": "Submodell Endpunkte:",
-        "semanticid": "Semantic ID:",
-        "key": "Schlüssel:",
-        "value": "Wert:",
-        "endpoints": "Endpunkte:",
-        "interface": "Schnittstelle:",
-        "protocol": "Protokoll:",
-        "protocol_version": "Protokoll Version:",
-        "protocol_endpoint": "Aspekt Endpunkt:"
       }
     },
     "organization": {
@@ -1725,7 +1698,11 @@
       "toBeUpdated": "To be updated",
       "type": "Type",
       "owner": "Owner",
-      "offerLink": "Offer Link"
+      "offerLink": "Offer Link",
+      "alias": "Alias",
+      "authMethod": "Auth Method",
+      "progress": "Progress",
+      "action": "Action"
     },
     "actions": {
       "cancel": "Abbrechen",

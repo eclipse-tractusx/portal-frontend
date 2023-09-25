@@ -26,7 +26,6 @@ import control from './control'
 import info from './info'
 import userSliceDep from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
-import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
@@ -85,7 +84,6 @@ export const reducers = {
   semanticModels: modelsSlice.reducer,
   companyRoles: updateCompanyRoleSlice.reducer,
   user: userSliceDep,
-  twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
   connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,
