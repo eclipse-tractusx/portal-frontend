@@ -44,7 +44,6 @@ export const Patterns = {
     BPN: /^BPNL/i,
     URL: /^https:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
-    URNID: /^urn:uuid:[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$/i,
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
   appMarketCard: {

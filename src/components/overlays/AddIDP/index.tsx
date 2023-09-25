@@ -18,13 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   DialogActions,
   DialogContent,
   DialogHeader,
+  LoadingButton,
   Radio,
+  SelectList,
+  Stepper,
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -34,6 +37,7 @@ import { useState } from 'react'
 import {
   IdentityProviderUpdate,
   IDPAuthType,
+  IDPProviderType,
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
   useAddIDPMutation,
@@ -51,6 +55,47 @@ enum IDPType {
   SHARED = 'Shared',
 }
 
+export type IdentityProviderType = {
+  title: string
+  value: string
+}
+
+const IdentityProviderTypeData = [
+  {
+    title: 'own - create an IdP connection to your company IdP for yourself',
+    value: 'OWN',
+  },
+  {
+    title: 'managed - create an managed IdP connection for a third party',
+    value: 'MANAGED',
+  },
+]
+
+const SelectIdpProviderType = ({
+  onChange,
+}: {
+  onChange: (value: IDPProviderType) => void
+}) => {
+  const { t } = useTranslation('idp')
+  return (
+    <div style={{ padding: '30px 0px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Typography sx={{ marginRight: '12px' }} variant="label3">
+          {t('field.providerType.name')}
+        </Typography>
+      </div>
+      <SelectList
+        items={IdentityProviderTypeData}
+        label={''}
+        placeholder={t('field.providerType.placeholder')}
+        defaultValue=""
+        onChangeItem={(e) => onChange(e?.value)}
+        keyTitle={'title'}
+      />
+    </div>
+  )
+}
+
 const SelectIdpAuthType = ({
   onChange,
 }: {
@@ -58,6 +103,7 @@ const SelectIdpAuthType = ({
 }) => {
   const { t } = useTranslation('idp')
   const [type, setType] = useState<IDPAuthType>(IDPAuthType.OIDC)
+
   return (
     <div style={{ padding: '30px 0px' }}>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -78,17 +124,19 @@ const SelectIdpAuthType = ({
           }
         />
       </div>
-      <Radio
-        name="radio-buttons"
-        label={IDPAuthType.OIDC}
-        checked={type === IDPAuthType.OIDC}
-        onChange={() => {
-          setType(IDPAuthType.OIDC)
-          onChange(IDPAuthType.OIDC)
-        }}
-        value={IDPAuthType.OIDC}
-        inputProps={{ 'aria-label': IDPAuthType.OIDC }}
-      />
+      <div>
+        <Radio
+          name="radio-buttons"
+          label={IDPAuthType.OIDC}
+          checked={type === IDPAuthType.OIDC}
+          onChange={() => {
+            setType(IDPAuthType.OIDC)
+            onChange(IDPAuthType.OIDC)
+          }}
+          value={IDPAuthType.OIDC}
+          inputProps={{ 'aria-label': IDPAuthType.OIDC }}
+        />
+      </div>
       <Radio
         name="radio-buttons"
         disabled={true}
@@ -107,12 +155,14 @@ const SelectIdpAuthType = ({
 
 type AddIDPPrepareFormType = {
   type: IDPType
+  providerType: IDPProviderType
   authType: IDPAuthType
   name: string
 }
 
 const initialAddIDPPrepareForm = {
   type: IDPType.COMPANY,
+  providerType: IDPProviderType.NONE,
   authType: IDPAuthType.OIDC,
   name: '',
 }
@@ -142,6 +192,14 @@ const AddIDPPrepareForm = ({
           onChange(currentData)
         }}
       />
+      <SelectIdpProviderType
+        onChange={(value) => {
+          const currentData = { ...formData }
+          currentData.providerType = value
+          setFormData(currentData)
+          onChange(currentData)
+        }}
+      />
       <SelectIdpAuthType
         onChange={(value) => {
           const currentData = { ...formData }
@@ -160,12 +218,17 @@ export const AddIdp = () => {
   const [formData, setFormData] = useState<AddIDPPrepareFormType>(
     initialAddIDPPrepareForm
   )
+  const [loading, setLoading] = useState(false)
   const [addIdp] = useAddIDPMutation()
   const [updateIdp] = useUpdateIDPMutation()
 
   const doCreateIDP = async () => {
+    setLoading(true)
     try {
-      const idp = await addIdp(formData.authType).unwrap()
+      const idp = await addIdp({
+        protocol: formData.authType,
+        identityProviderTypeId: formData.providerType,
+      }).unwrap()
       const idpUpdateData: IdentityProviderUpdate = {
         identityProviderId: idp.identityProviderId,
         body: {
@@ -185,30 +248,87 @@ export const AddIdp = () => {
     } catch (err) {
       error(t('add.error'), t('state.error'), err as object)
     }
+    setLoading(false)
   }
+
+  const AddStepsList = [
+    {
+      headline: t('add.stepLists.firstStep'),
+      step: 1,
+      color: '#0F71CB',
+    },
+    {
+      headline: t('add.stepLists.secondStep'),
+      step: 2,
+    },
+    {
+      headline: t('add.stepLists.thirdStep'),
+      step: 3,
+    },
+  ]
 
   return (
     <>
       <DialogHeader
         title={t('add.title')}
-        intro={t('add.subtitle')}
+        intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
+        <div style={{ width: '70%', margin: '0 auto 40px' }}>
+          <Stepper list={AddStepsList} showSteps={3} activeStep={1} />
+        </div>
+        <Trans>
+          <Typography variant="label3">{t('add.desc')}</Typography>
+        </Trans>
         <AddIDPPrepareForm onChange={(data) => setFormData(data)} />
+        <Typography
+          variant="label3"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#0088CC',
+            textDecoration: 'underline',
+          }}
+        >
+          <HelpOutlineIcon
+            sx={{
+              fontSize: '18px',
+              marginRight: '5px',
+            }}
+          />
+          {t('add.learnMore')}
+        </Typography>
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
           {t('action.cancel')}
         </Button>
-        <Button
-          variant="contained"
-          disabled={!formData.name}
-          onClick={() => doCreateIDP()}
-        >
-          {t('action.next')}
-        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator={t('action.loading')}
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button
+            variant="contained"
+            disabled={
+              !formData.name || formData.providerType === IDPProviderType.NONE
+            }
+            onClick={() => doCreateIDP()}
+          >
+            {t('action.next')}
+          </Button>
+        )}
       </DialogActions>
     </>
   )
