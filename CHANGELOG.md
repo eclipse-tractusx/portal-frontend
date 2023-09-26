@@ -59,6 +59,8 @@
   - Change Subscription roles
 - Service release process
   - Clearing fields while registering new service
+- Shared
+  - Removed PageLoadingTable component
 
 ## 1.6.0
 
