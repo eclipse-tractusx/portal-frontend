@@ -52,10 +52,10 @@ export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
 export const businessPartnerToSearchItem = (
   item: BusinessPartner
 ): SearchItem => ({
-  id: item.bpn,
+  id: item.bpnl,
   category: SearchCategory.PARTNER,
-  title: item.names[0]?.value,
-  description: item.bpn,
+  title: item.legalName,
+  description: item.bpnl,
 })
 
 export const newsToSearchItem = (item: CardItems): SearchItem => ({

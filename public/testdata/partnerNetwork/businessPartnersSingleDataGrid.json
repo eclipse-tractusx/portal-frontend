@@ -1,51 +1,51 @@
 {
-  "bpn": "BPNL0000000001YN",
-  "name": "AFT Automatisierungs- und Fördertechnik GmbH & Co.KG",
-  "legalForm": "",
-  "country": "Germany",
-  "street": "An der Wiese 14",
-  "zipCode": "79650",
-  "city": "Schopfheim",
-  "identifiers": [
-    {
-      "uuid": "fa59a765-d9c4-4d92-810f-e49bce3dd57c",
-      "value": "DE813155579",
-      "type": {
-        "technicalKey": "EU_VAT_ID_DE",
-        "name": "Umsatzsteuer-Identifikationsnummer",
-        "url": "https://meta.cdq.com/European_value_added_tax_identifier_(Germany)"
+  "score": 0.0,
+  "legalName": "Test1",
+  "bpnl": "BPNL0000000001YN",
+  "identifiers": [],
+  "legalShortName": "Test1",
+  "legalForm": null,
+  "states": [],
+  "classifications": [],
+  "relations": [],
+  "currentness": "2023-08-04T12:13:54.461889Z",
+  "createdAt": "2023-08-04T12:13:54.662482Z",
+  "updatedAt": "2023-08-04T12:13:54.662496Z",
+  "legalAddress": {
+    "bpna": "BPNA0000000004WK",
+    "name": null,
+    "states": [],
+    "identifiers": [],
+    "physicalPostalAddress": {
+      "geographicCoordinates": null,
+      "country": {
+        "technicalKey": "DE",
+        "name": "Germany"
       },
-      "issuingBody": null,
-      "status": null
+      "postalCode": "00001",
+      "city": "Munich",
+      "street": {
+        "name": "Street",
+        "houseNumber": "5",
+        "milestone": null,
+        "direction": null
+      },
+      "administrativeAreaLevel1": null,
+      "administrativeAreaLevel2": null,
+      "administrativeAreaLevel3": null,
+      "district": null,
+      "companyPostalCode": null,
+      "industrialZone": null,
+      "building": null,
+      "floor": null,
+      "door": null
     },
-    {
-      "uuid": "7854bfb0-1661-44e3-910c-1e775affa3e2",
-      "value": "BPNL0000000001YN",
-      "type": {
-        "technicalKey": "BPN",
-        "name": "Business Partner Number",
-        "url": ""
-      },
-      "issuingBody": {
-        "technicalKey": "CATENAX",
-        "name": "Catena-X",
-        "url": ""
-      },
-      "status": {
-        "technicalKey": "UNKNOWN",
-        "name": "Unknown"
-      }
-    },
-    {
-      "uuid": "6602110a-7512-495a-941d-d4904966ccee",
-      "value": "316622612",
-      "type": {
-        "technicalKey": "DUNS_ID",
-        "name": "DUNS Number",
-        "url": "https://meta.cdq.com/D-U-N-S"
-      },
-      "issuingBody": null,
-      "status": null
-    }
-  ]
+    "alternativePostalAddress": null,
+    "bpnLegalEntity": "BPNL0000000001YN",
+    "isLegalAddress": true,
+    "bpnSite": null,
+    "isMainAddress": false,
+    "createdAt": "2023-08-04T12:13:54.658695Z",
+    "updatedAt": "2023-08-04T12:13:54.665740Z"
+  }
 }

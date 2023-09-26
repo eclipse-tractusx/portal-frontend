@@ -1,351 +1,179 @@
 {
-  "totalElements": 6,
+  "totalElements": 2,
   "totalPages": 1,
   "page": 0,
-  "contentSize": 6,
+  "contentSize": 2,
   "content": [
     {
-      "score": 1,
-      "businessPartner": {
-        "bpn": "BPNL00000000B44P",
-        "identifiers": [
-          {
-            "uuid": "4e05ce63-6e69-417e-b2f1-410e97440acc",
-            "value": "BPNL00000000B44P",
-            "type": {
-              "technicalKey": "BPN",
-              "name": "Business Partner Number",
-              "url": ""
-            },
-            "issuingBody": {
-              "technicalKey": "CATENAX",
-              "name": "Catena-X",
-              "url": ""
-            },
-            "status": {
-              "technicalKey": "UNKNOWN",
-              "name": "Unknown"
-            }
+      "score": 0.0,
+      "legalName": "Test1",
+      "bpnl": "BPNL0000000001YN",
+      "identifiers": [],
+      "legalShortName": "Test1",
+      "legalForm": null,
+      "states": [],
+      "classifications": [],
+      "relations": [],
+      "currentness": "2023-08-04T12:13:54.461889Z",
+      "createdAt": "2023-08-04T12:13:54.662482Z",
+      "updatedAt": "2023-08-04T12:13:54.662496Z",
+      "legalAddress": {
+        "bpna": "BPNA0000000004WK",
+        "name": null,
+        "states": [],
+        "identifiers": [],
+        "physicalPostalAddress": {
+          "geographicCoordinates": null,
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
           },
-          {
-            "uuid": "be6c2ab7-9602-4a68-8735-7c17b5974736",
-            "value": "CX.POOL:623DA23B6E73054B143D4AAE0",
-            "type": {
-              "technicalKey": "CX_POOL_ID",
-              "name": "",
-              "url": null
-            },
-            "issuingBody": null,
-            "status": null
+          "postalCode": "00001",
+          "city": "Munich",
+          "street": {
+            "name": "Street",
+            "houseNumber": "5",
+            "milestone": null,
+            "direction": null
           },
-          {
-            "uuid": "e3ea74fe-a964-4c4e-887f-f61d400e8836",
-            "value": "80606650000114",
-            "type": {
-              "technicalKey": "BR_CNPJ",
-              "name": "Cadastro Nacional de Pessoa Jurídica",
-              "url": "https://meta.cdq.com/CNPJ_number_(Brazil)"
-            },
-            "issuingBody": null,
-            "status": null
-          },
-          {
-            "uuid": "a5e1e71d-1a48-4453-b911-a50f1c6bb0ea",
-            "value": "62457a3f3fd2374f924ef9c9",
-            "type": {
-              "technicalKey": "CDQID",
-              "name": "CDQ Identifier",
-              "url": ""
-            },
-            "issuingBody": {
-              "technicalKey": "CDQ",
-              "name": "CDQ AG",
-              "url": ""
-            },
-            "status": {
-              "technicalKey": "CDQ_IMPORTED",
-              "name": "Imported from CDQ but not synchronized"
-            }
-          },
-          {
-            "uuid": "dbfb27a3-d72a-4d35-bf90-b5d38e92077f",
-            "value": "8010445060",
-            "type": {
-              "technicalKey": "BR_TAX_STATE",
-              "name": "Inscrição Estadual",
-              "url": "https://meta.cdq.com/State_tax_number_(Brazil)"
-            },
-            "issuingBody": null,
-            "status": null
-          }
-        ],
-        "names": [
-          {
-            "uuid": "65a4569d-5e0b-4735-bd22-857f764ace2f",
-            "value": "POSTO DO CUNHADO LTDA",
-            "shortName": null,
-            "type": {
-              "technicalKey": "LOCAL",
-              "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
-              "url": ""
-            },
-            "language": {
-              "technicalKey": "undefined",
-              "name": "Undefined"
-            }
-          }
-        ],
-        "legalForm": null,
-        "status": null,
-        "addresses": [
-          {
-            "uuid": "bdcb0ea8-12d5-42ff-8908-e8f3e3288ad6",
-            "version": {
-              "characterSet": {
-                "technicalKey": "LATIN",
-                "name": "Latin"
-              },
-              "language": {
-                "technicalKey": "en",
-                "name": "English"
-              }
-            },
-            "careOf": null,
-            "contexts": [],
-            "country": {
-              "technicalKey": "BR",
-              "name": "Brazil"
-            },
-            "administrativeAreas": [],
-            "postCodes": [
-              {
-                "uuid": "114fdd6a-141a-40c7-9bb0-bf06668383d4",
-                "value": "87300-010",
-                "type": {
-                  "technicalKey": "OTHER",
-                  "name": "Other type",
-                  "url": ""
-                }
-              }
-            ],
-            "localities": [
-              {
-                "uuid": "9ecff242-d701-4a8b-8036-79fef7adc029",
-                "value": "CAMPO MOURAO",
-                "shortName": null,
-                "type": {
-                  "technicalKey": "OTHER",
-                  "name": "Other",
-                  "url": ""
-                },
-                "language": {
-                  "technicalKey": "en",
-                  "name": "English"
-                }
-              }
-            ],
-            "thoroughfares": [
-              {
-                "uuid": "baf57f9c-8916-47a8-ac94-45d337c36a92",
-                "value": "AV.IRMAOS PEREIRA 1330",
-                "name": null,
-                "shortName": null,
-                "number": "1330",
-                "direction": null,
-                "type": {
-                  "technicalKey": "OTHER",
-                  "name": "Other type",
-                  "url": ""
-                },
-                "language": {
-                  "technicalKey": "en",
-                  "name": "English"
-                }
-              }
-            ],
-            "premises": [],
-            "postalDeliveryPoints": [],
-            "geographicCoordinates": null,
-            "types": []
-          }
-        ],
-        "profileClassifications": [],
-        "types": [],
-        "bankAccounts": [],
-        "roles": [],
-        "relations": []
+          "administrativeAreaLevel1": null,
+          "administrativeAreaLevel2": null,
+          "administrativeAreaLevel3": null,
+          "district": null,
+          "companyPostalCode": null,
+          "industrialZone": null,
+          "building": null,
+          "floor": null,
+          "door": null
+        },
+        "alternativePostalAddress": null,
+        "bpnLegalEntity": "BPNL0000000001YN",
+        "isLegalAddress": true,
+        "bpnSite": null,
+        "isMainAddress": false,
+        "createdAt": "2023-08-04T12:13:54.658695Z",
+        "updatedAt": "2023-08-04T12:13:54.665740Z"
       }
     },
     {
-      "score": 1,
-      "businessPartner": {
-        "bpn": "BPNL00000000B540",
+      "score": 0.0,
+      "legalName": "Part 2",
+      "bpnl": "BPNL000000000001",
+      "identifiers": [
+        {
+          "value": "56459977000126",
+          "type": {
+            "technicalKey": "EU_VAT_ID_DE",
+            "name": "Value added tax identification number"
+          },
+          "issuingBody": "CUSTOM_ISSUE_BODY"
+        }
+      ],
+      "legalShortName": "NoC",
+      "legalForm": {
+        "technicalKey": "CUSTOM_LEGAL_FORM",
+        "name": "Custom Legal Form for Testing",
+        "abbreviation": null
+      },
+      "states": [
+        {
+          "description": null,
+          "validFrom": "2020-12-16T05:54:48.942",
+          "validTo": "2023-06-05T07:31:01.213",
+          "type": {
+            "technicalKey": "ACTIVE",
+            "name": "Active"
+          }
+        }
+      ],
+      "classifications": [
+        {
+          "value": "Farming of cattle, dairy farming",
+          "code": "01.21",
+          "type": {
+            "technicalKey": "NACE",
+            "name": "NACE"
+          }
+        }
+      ],
+      "relations": [],
+      "currentness": "2023-08-04T12:56:41.450550Z",
+      "createdAt": "2023-06-27T13:11:18.539048Z",
+      "updatedAt": "2023-08-04T12:56:41.556514Z",
+      "legalAddress": {
+        "bpna": "BPNA000000000001",
+        "name": "WESTERN_LATIN_STANDARD",
+        "states": [
+          {
+            "description": "WESTERN_LATIN_STANDARD",
+            "validFrom": "2020-12-16T05:54:48.942",
+            "validTo": "2023-06-05T07:31:01.213",
+            "type": {
+              "technicalKey": "ACTIVE",
+              "name": "Active"
+            }
+          }
+        ],
         "identifiers": [
           {
-            "uuid": "d38cc9b0-e9c8-4a65-a61f-f65fdc89c0d0",
-            "value": "BPNL00000000B540",
+            "value": "12345678910",
             "type": {
-              "technicalKey": "BPN",
-              "name": "Business Partner Number",
-              "url": ""
-            },
-            "issuingBody": {
-              "technicalKey": "CATENAX",
-              "name": "Catena-X",
-              "url": ""
-            },
-            "status": {
-              "technicalKey": "UNKNOWN",
-              "name": "Unknown"
-            }
-          },
-          {
-            "uuid": "7542c3b2-ea4a-43a1-91a9-4a66cbf5b4f5",
-            "value": "62457a3f3fd2374f924ef9ca",
-            "type": {
-              "technicalKey": "CDQID",
-              "name": "CDQ Identifier",
-              "url": ""
-            },
-            "issuingBody": {
-              "technicalKey": "CDQ",
-              "name": "CDQ AG",
-              "url": ""
-            },
-            "status": {
-              "technicalKey": "CDQ_IMPORTED",
-              "name": "Imported from CDQ but not synchronized"
-            }
-          },
-          {
-            "uuid": "9ed0083d-fbe0-4045-83a0-38b1a511e2c1",
-            "value": "456017659110",
-            "type": {
-              "technicalKey": "BR_TAX_STATE",
-              "name": "Inscrição Estadual",
-              "url": "https://meta.cdq.com/State_tax_number_(Brazil)"
-            },
-            "issuingBody": null,
-            "status": null
-          },
-          {
-            "uuid": "b6fdea61-020c-40ad-bc0c-cf02d2cb18b2",
-            "value": "CX.POOL:623DA24246722D36980EC1A10",
-            "type": {
-              "technicalKey": "CX_POOL_ID",
-              "name": "",
-              "url": null
-            },
-            "issuingBody": null,
-            "status": null
-          },
-          {
-            "uuid": "bb50eff2-76aa-4ad0-a24e-210b2d9f6f65",
-            "value": "56459977000126",
-            "type": {
-              "technicalKey": "BR_CNPJ",
-              "name": "Cadastro Nacional de Pessoa Jurídica",
-              "url": "https://meta.cdq.com/CNPJ_number_(Brazil)"
-            },
-            "issuingBody": null,
-            "status": null
-          }
-        ],
-        "names": [
-          {
-            "uuid": "1ae51fea-171d-4245-9106-7be09c62e63a",
-            "value": "PEREIRA & PEREIRA MEDIC. LTDA - ME",
-            "shortName": null,
-            "type": {
-              "technicalKey": "LOCAL",
-              "name": "The business partner name identifies a business partner in a given context, e.g. a country or region.",
-              "url": ""
-            },
-            "language": {
-              "technicalKey": "undefined",
-              "name": "Undefined"
+              "technicalKey": "CUSTOM_ADD_ID_TYPE",
+              "name": "Custom Identifier Test Type"
             }
           }
         ],
-        "legalForm": null,
-        "status": null,
-        "addresses": [
-          {
-            "uuid": "af68ea4d-8db6-4994-85a0-c49127304e55",
-            "version": {
-              "characterSet": {
-                "technicalKey": "LATIN",
-                "name": "Latin"
-              },
-              "language": {
-                "technicalKey": "en",
-                "name": "English"
-              }
-            },
-            "careOf": null,
-            "contexts": [],
-            "country": {
-              "technicalKey": "BR",
-              "name": "Brazil"
-            },
-            "administrativeAreas": [],
-            "postCodes": [
-              {
-                "uuid": "3a13e2a4-437c-4ba1-b7db-5c3ed461101c",
-                "value": "13800-470",
-                "type": {
-                  "technicalKey": "OTHER",
-                  "name": "Other type",
-                  "url": ""
-                }
-              }
-            ],
-            "localities": [
-              {
-                "uuid": "61184f57-1d91-4f95-945c-da1898ba71b2",
-                "value": "Moji Mirim",
-                "shortName": null,
-                "type": {
-                  "technicalKey": "OTHER",
-                  "name": "Other",
-                  "url": ""
-                },
-                "language": {
-                  "technicalKey": "en",
-                  "name": "English"
-                }
-              }
-            ],
-            "thoroughfares": [
-              {
-                "uuid": "481958dc-099a-424f-888d-0e07e3d3870f",
-                "value": "R RIO DE JANEIRO , 421",
-                "name": null,
-                "shortName": null,
-                "number": null,
-                "direction": null,
-                "type": {
-                  "technicalKey": "OTHER",
-                  "name": "Other type",
-                  "url": ""
-                },
-                "language": {
-                  "technicalKey": "en",
-                  "name": "English"
-                }
-              }
-            ],
-            "premises": [],
-            "postalDeliveryPoints": [],
-            "geographicCoordinates": null,
-            "types": []
-          }
-        ],
-        "profileClassifications": [],
-        "types": [],
-        "bankAccounts": [],
-        "roles": [],
-        "relations": []
+        "physicalPostalAddress": {
+          "geographicCoordinates": {
+            "longitude": 0.0,
+            "latitude": 0.0,
+            "altitude": 0.0
+          },
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "postalCode": "70546",
+          "city": "Stuttgart",
+          "street": {
+            "name": "Neue Strasse",
+            "houseNumber": "1",
+            "milestone": "Neue Strasse 1",
+            "direction": "Neue Str."
+          },
+          "administrativeAreaLevel1": null,
+          "administrativeAreaLevel2": "test1",
+          "administrativeAreaLevel3": "test2",
+          "district": "Stuttgart",
+          "companyPostalCode": "GM01",
+          "industrialZone": "HEADQUARTER",
+          "building": "Building A",
+          "floor": "A",
+          "door": "test"
+        },
+        "alternativePostalAddress": {
+          "geographicCoordinates": {
+            "longitude": 0.0,
+            "latitude": 0.0,
+            "altitude": 0.0
+          },
+          "country": {
+            "technicalKey": "DE",
+            "name": "Germany"
+          },
+          "postalCode": "1234",
+          "city": "Stuttgart 1",
+          "administrativeAreaLevel1": null,
+          "deliveryServiceNumber": "1234",
+          "deliveryServiceType": "PO_BOX",
+          "deliveryServiceQualifier": "test"
+        },
+        "bpnLegalEntity": "BPNL000000000001",
+        "isLegalAddress": true,
+        "bpnSite": null,
+        "isMainAddress": false,
+        "createdAt": "2023-06-27T13:11:18.530737Z",
+        "updatedAt": "2023-06-27T13:14:46.458756Z"
       }
     }
   ]

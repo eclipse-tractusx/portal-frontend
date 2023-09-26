@@ -24,8 +24,8 @@ import { useTranslation } from 'react-i18next'
 import {
   IconButton,
   StatusTag,
-  PageLoadingTable,
   PaginFetchArgs,
+  PageLoadingTable,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
@@ -33,6 +33,14 @@ import { TenantUser } from 'features/admin/userApiSlice'
 import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
+
+interface fetchHookArgsType {
+  appId?: string
+  expr: string
+  userRoleResponse?: boolean
+  role?: boolean
+  addUserResponse?: boolean
+}
 
 export const UserList = ({
   sectionTitle,
@@ -79,7 +87,7 @@ export const UserList = ({
   return (
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
-      <PageLoadingTable<TenantUser>
+      <PageLoadingTable<TenantUser, fetchHookArgsType>
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
         secondButtonLabel={addMultipleButtonLabel && t(addMultipleButtonLabel)}
