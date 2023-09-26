@@ -31,8 +31,6 @@
   - Last section background color issue
 - My Account
   - Show success message on click of copy to clip board
-- Invite Business Partner Form
-  - Fix loader position to center
 - Page Loading and Error Component
   - Show loading component and based on the response show "No items" component or ErrorBar component
 - App management
@@ -51,8 +49,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
-- Service release process
-  - Skip technical integration for consultancy service
+- Notifications
+  - App Subscription Request content update
 - Digital Twin
   - Code clean up
 - Usermanagement
@@ -61,6 +59,7 @@
   - Change Subscription roles
 - Service release process
   - Clearing fields while registering new service
+  - Skip technical integration for consultancy service
 
 ## 1.6.0
 

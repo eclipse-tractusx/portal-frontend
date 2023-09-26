@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -17,29 +16,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
-export const isQueryDataPresent = (queryData: any) =>
-  queryData && queryData.length > 0
-
-export const isContentPresent = (data: any) => data && data.content
-
-export const addCountryAttribute = (finalObj: any, payload: any) => {
-  finalObj.forEach((x: any) => {
-    payload.forEach((y: any) => {
-      if (x.bpnl === y.bpnLegalEntity) {
-        x.legalAddress.alternativePostalAddress = y.alternativePostalAddress
-        x.legalAddress.physicalPostalAddress = y.physicalPostalAddress
-      }
-    })
-  })
-  return finalObj
+export const hasMorePages = (data: {
+  meta: { page: number; totalPages: number }
+}) => {
+  return data?.meta?.page < data?.meta?.totalPages - 1
 }
 
-export const addMemberAttribute = (finalObj: any, queryData: any) => {
-  if (queryData) {
-    finalObj.forEach((x: any) => {
-      x.member = queryData.includes(x.bpnl)
-    })
-  }
-  return finalObj
+export const getMaxRows = (data: { meta: { totalElements: number } }) => {
+  return data?.meta?.totalElements ?? 0
 }

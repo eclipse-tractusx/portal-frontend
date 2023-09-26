@@ -20,8 +20,8 @@
     "content": "Erhalten Sie einen ersten Einblick in verfügbare Apps, folgen Sie uns einfach zum Marktplatz für Apps."
   },
   "APP_SUBSCRIPTION_REQUEST": {
-    "title": "App-Abonnement angefordert",
-    "content": "{{user}} mag es, App {{app}} zu abonnieren"
+    "title": "App {{app}}: Abonnementanfrage",
+    "content": "Eine neue App-Abonnementanfrage wurde von <strong>{{company}}</strong> ausgelöst. Nehmen Sie Kontakt mit <strong>{{useremail}}</strong> auf, um die App-Nutzungs- und Einrichtungsrichtlinien zu vereinbaren. Sobald dies erledigt ist, können Sie die App für <strong>{{company}}</strong> aktivieren"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
     "title": "Congratulations! - {{offer}} ist nun aktiv!",
@@ -110,7 +110,7 @@
     "appmanagementboard": "App Management Board öffnen",
     "servicemanagementboard": "Service Management Board öffnen",
     "appoverview": "Get there",
-    "appsubscription": "Get theme",
+    "appsubscription": "Get there",
     "adminboard": "Get there",
     "technicaluser": "Get there",
     "companyrolesserviceprovider": "Get there",
