@@ -60,6 +60,8 @@
 - Service release process
   - Clearing fields while registering new service
   - Skip technical integration for consultancy service
+- Shared
+  - Removed PageLoadingTable component
 
 ## 1.6.0
 
