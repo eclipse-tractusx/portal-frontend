@@ -87,11 +87,11 @@ export default function OfferPage({
 
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
-    fetchServiceStatus?.serviceTypeIds.includes(
-      ServiceTypeIdsEnum.DATASPACE_SERVICE
+    skipTechnicalIntegrationStep(
+      !fetchServiceStatus?.serviceTypeIds.includes(
+        ServiceTypeIdsEnum.DATASPACE_SERVICE
+      )
     )
-      ? skipTechnicalIntegrationStep(false)
-      : skipTechnicalIntegrationStep(true)
   }, [dispatch, fetchServiceStatus, skipTechnicalIntegrationStep])
 
   const onBackIconClick = () => {
