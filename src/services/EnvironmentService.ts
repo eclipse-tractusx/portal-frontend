@@ -39,8 +39,6 @@ export const getSemanticApiBase = () =>
 
 export const getClientIdSemantic = () => 'Cl3-CX-Semantic'
 
-export const getClientIdDigitalTwin = () => 'Cl4-CX-DigitalTwin'
-
 export const getManagedIdentityWalletsNewBase = () =>
   typeof ENV === 'undefined' ? '' : ENV.MANAGED_IDENTITY_WALLETS_NEW_URL
 
@@ -52,7 +50,6 @@ const EnvironmentService = {
   getSemanticApiBase,
   getClientId,
   getClientIdSemantic,
-  getClientIdDigitalTwin,
   getManagedIdentityWalletsNewBase,
 }
 
