@@ -36,7 +36,7 @@ import { uniqueId } from 'lodash'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
-import { PageLoadingTable } from 'components/shared/basic/PageLoadingTable'
+import { PageLoadingTable } from '@catena-x/portal-shared-components'
 
 interface fetchHookArgsType {
   filterType: string
