@@ -108,7 +108,7 @@ export default function IDPListItem({
   return (
     <>
       <div className="idp-list-item">
-        <span className="category">{idp.identityProviderCategoryId}</span>
+        <span className="category">{idp.ProviderTypeId}</span>
         <span className="name">{idp.displayName || '-'}</span>
         <span className="alias">{idp.alias}</span>
         <span className="state">
