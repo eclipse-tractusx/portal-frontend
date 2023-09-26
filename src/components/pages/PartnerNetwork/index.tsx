@@ -24,24 +24,20 @@ import {
   useFetchBusinessPartnersQuery,
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
-import {
-  PageHeader,
-  PageLoadingTable,
-} from '@catena-x/portal-shared-components'
+import { PageHeader } from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import Patterns from 'types/Patterns'
-import { PartnerNetworksBPNTableColumns } from './components/PartnerList/PartnerNetworksBPNTableColumns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {
   isContentPresent,
-  isQueryDataPresent,
   addCountryAttribute,
   addMemberAttribute,
 } from './components/PartnerList/helper'
+import { PageLoadingTable } from 'components/shared/basic/PageLoadingTable'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -49,16 +45,11 @@ const PartnerNetwork = () => {
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updatePartnerSelector)
   const columns = PartnerNetworksTableColumns(useTranslation)
-  const bpnColumns = PartnerNetworksBPNTableColumns(useTranslation)
-  const [showBPNColumn, setShowBPNColumn] = useState<boolean>(false)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
   const { data } = useFetchMemberCompaniesQuery()
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
-
-  const checkIfBPNLNumber = (text: string): boolean =>
-    Patterns.BPN.test(text.trim())
 
   const [allItems, setAllItems] = useState<any>({})
 
@@ -68,42 +59,20 @@ const PartnerNetwork = () => {
       setAllItems([])
       return
     }
-    if (isContentPresent(cData)) {
-      const result = cData.content.map((x: any) => x.legalEntity.bpn)
-      await mutationRequest(result)
-        .unwrap()
-        .then((payload: any) => {
-          //new country attribute && member attributes based on the response
-          let finalObj = JSON.parse(JSON.stringify(cData?.content))
-          finalObj = addCountryAttribute(finalObj, payload)
-          finalObj = addMemberAttribute(finalObj, data)
-          setAllItems(finalObj)
-        })
-        .catch(() => {
-          setAllItems([])
-        })
-    } else {
-      const result = [cData.bpn]
-      await mutationRequest(result)
-        .unwrap()
-        .then((payload: any) => {
-          //update for country attribute && update member info
-          let finalObj = JSON.parse(JSON.stringify(cData))
-          finalObj.legalAddress = payload[0].legalAddress
-          if (isQueryDataPresent(data)) {
-            finalObj.member = data && data.includes(finalObj.bpn)
-          }
-          setAllItems([finalObj])
-        })
-        .catch(() => {
-          setAllItems([])
-        })
-    }
+    const result = cData.content.map((x: any) => x.bpnl)
+    await mutationRequest(result)
+      .unwrap()
+      .then((payload: any) => {
+        //new country attribute && member attributes based on the response
+        let finalObj = JSON.parse(JSON.stringify(cData?.content))
+        finalObj = addCountryAttribute(finalObj, payload)
+        finalObj = addMemberAttribute(finalObj, data)
+        setAllItems(finalObj)
+      })
+      .catch(() => {
+        setAllItems([])
+      })
   }
-
-  useEffect(() => {
-    if (allItems?.length) setShowBPNColumn(checkIfBPNLNumber(expr))
-  }, [allItems, expr])
 
   return (
     <main className="partner-network-page-container">
@@ -114,7 +83,7 @@ const PartnerNetwork = () => {
       ></PageHeader>
 
       <section id="identity-management-id">
-        <PageLoadingTable<BusinessPartner>
+        <PageLoadingTable<BusinessPartner, { expr: string }>
           searchExpr={expr}
           toolbarVariant={'ultimate'}
           hasBorder={false}
@@ -132,10 +101,8 @@ const PartnerNetwork = () => {
           fetchHook={useFetchBusinessPartnersQuery}
           fetchHookArgs={{ expr }}
           fetchHookRefresh={refresh}
-          getRowId={(row: { legalEntity: any }) =>
-            row && row.legalEntity ? row.legalEntity.bpn : ''
-          }
-          columns={!showBPNColumn ? columns : bpnColumns}
+          getRowId={(row: { bpnl: string }) => row.bpnl ?? ''}
+          columns={columns}
           callbackToPage={fetchAndApply}
           allItems={allItems}
         />
