@@ -27,12 +27,14 @@ import {
   DialogContent,
   DialogHeader,
   Input,
+  LoadingButton,
   Typography,
 } from '@catena-x/portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
+import { ProcessingType } from 'components/pages/InviteBusinessPartner'
 
 interface AddInviteFormOverlayProps {
   openDialog?: boolean
@@ -127,17 +129,28 @@ export const InviteForm = ({
               ></Input>
             ))}
           </form>
-          <span className={`InviteFormResult ${state}`}>
-            {state === 'busy' && <span className="loader" />}
-          </span>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
-            {`${t('content.invite.invite')}`}
-          </Button>
+          {state === ProcessingType.BUSY ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator={t('global.actions.loading')}
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
+            <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+              {`${t('content.invite.invite')}`}
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>

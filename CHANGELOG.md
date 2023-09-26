@@ -17,6 +17,9 @@
   - Added Sub menu for active services in service overview
   - Added Deactivate functionality
   - Added image to service overview cards
+- Invite Business Partner Form
+  - Fix loader position to center
+  - Disable invite button when loader is visible
 - Data Space
   - Last section background color issue
 - Connector Deletion
@@ -28,8 +31,6 @@
   - Last section background color issue
 - My Account
   - Show success message on click of copy to clip board
-- Invite Business Partner Form
-  - Fix loader position to center
 - Page Loading and Error Component
   - Show loading component and based on the response show "No items" component or ErrorBar component
 - App management
@@ -50,6 +51,16 @@
   - Add filters
 - Enable ESLINT rule
   - import/no-duplicates
+- Notifications
+  - App Subscription Request content update
+- Digital Twin
+  - Code clean up
+- Usermanagement
+  - Bulk upload UI Changes
+- Service Marketplace
+  - Change Subscription roles
+- Service release process
+  - Clearing fields while registering new service
 
 ## 1.6.0
 
