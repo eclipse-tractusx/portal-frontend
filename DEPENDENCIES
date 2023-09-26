@@ -1125,7 +1125,7 @@ npm/npmjs/@babel/template/7.22.5, MIT, approved, #9017
 npm/npmjs/@babel/traverse/7.22.5, MIT, approved, #8954
 npm/npmjs/@babel/types/7.22.5, MIT, approved, #8967
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/2.0.30, Apache-2.0 AND (BSD-3-Clause AND MIT), approved, #9187
+npm/npmjs/@catena-x/portal-shared-components/2.0.32, Apache-2.0 AND (BSD-3-Clause AND MIT), approved, #9187
 npm/npmjs/@csstools/normalize.css/12.0.0, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-cascade-layers/1.1.1, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-color-function/1.1.1, CC0-1.0 AND (MIT AND W3C-20150513) AND W3C-20150513 AND MIT, approved, #3022
