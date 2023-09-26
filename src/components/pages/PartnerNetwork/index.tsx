@@ -24,7 +24,10 @@ import {
   useFetchBusinessPartnersQuery,
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
-import { PageHeader } from '@catena-x/portal-shared-components'
+import {
+  PageHeader,
+  PageLoadingTable,
+} from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
@@ -37,7 +40,6 @@ import {
   addCountryAttribute,
   addMemberAttribute,
 } from './components/PartnerList/helper'
-import { PageLoadingTable } from 'components/shared/basic/PageLoadingTable'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
