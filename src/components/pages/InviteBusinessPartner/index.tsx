@@ -39,12 +39,17 @@ import { InviteForm } from 'components/overlays/InviteForm'
 import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
 import { InviteList } from './components/InviteList'
 
+export enum ProcessingType {
+  BUSY = 'BUSY',
+  INPUT = 'INPUT',
+}
+
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
-  const [processing, setProcessing] = useState<string>('input')
+  const [processing, setProcessing] = useState<string>(ProcessingType.INPUT)
   const [expr, setExpr] = useState<string>('')
 
   useEffect(() => {
@@ -57,7 +62,7 @@ export default function InviteBusinessPartner() {
   }, [successOverlayOpen])
 
   const doSubmitInvite = (data: InviteData) => {
-    setProcessing('busy')
+    setProcessing(ProcessingType.BUSY)
     //switch to redux
     new Api()
       .postInviteBusinessPartner(data)
@@ -72,7 +77,7 @@ export default function InviteBusinessPartner() {
       })
       .finally(() => {
         setTimeout(() => {
-          setProcessing('input')
+          setProcessing(ProcessingType.INPUT)
         }, 5000)
       })
   }

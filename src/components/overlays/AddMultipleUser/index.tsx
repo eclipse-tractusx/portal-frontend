@@ -131,7 +131,7 @@ export default function AddMultipleUser() {
         let file = new File([blob], uploadedFile.name, { type: 'text/csv' })
         const response = await addMutipleUsers({
           identityProviderId:
-            idps[0].ProviderTypeId === IDPCategory.KEYCLOAK_SHARED
+            idps[0].identityProviderCategoryId === IDPCategory.KEYCLOAK_SHARED
               ? ''
               : idps[0].identityProviderId,
           csvFile: file,
@@ -352,7 +352,8 @@ export default function AddMultipleUser() {
             </Typography>
             <a
               href={
-                idps[0].ProviderTypeId === IDPCategory.KEYCLOAK_SHARED
+                idps[0].identityProviderCategoryId ===
+                IDPCategory.KEYCLOAK_SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }
