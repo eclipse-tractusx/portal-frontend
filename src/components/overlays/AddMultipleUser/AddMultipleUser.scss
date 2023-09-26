@@ -1,5 +1,11 @@
-.mb-20 {
-  margin-bottom: 20px !important;
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+
+.backgroundSection {
+  padding: 10px;
+  background: #f4f5f6;
+  border-radius: 8px;
 }
 
 .addMultipleUsers {
@@ -15,12 +21,12 @@
     height: 20px;
     line-height: 20px;
     text-align: center;
-    font-size: 15px;
+    font-size: 12px;
     margin-bottom: 10px;
   }
 
   .secondStep {
-    margin: 30px;
+    margin: 30px 0;
 
     .linkText {
       width: 100%;
@@ -29,7 +35,6 @@
 
     .editIcon {
       color: #0f71cb;
-      cursor: pointer;
     }
   }
 }
@@ -68,6 +73,7 @@
     display: flex;
     font-size: 14px;
     text-decoration: none;
+    margin-bottom: 20px;
   }
 
   .rolesSection {

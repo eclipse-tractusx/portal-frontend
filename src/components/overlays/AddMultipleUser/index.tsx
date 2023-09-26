@@ -188,21 +188,21 @@ export default function AddMultipleUser() {
           <Typography variant="body1">
             {t('content.usermanagement.addMultipleUsers.error.note')}
           </Typography>
-          <Typography variant="body1" className="mb-20">
+          <Typography variant="body1" className="mb-30">
             {t('content.usermanagement.addMultipleUsers.error.description')}
           </Typography>
           <Typography variant="label1">
             {t('content.usermanagement.addMultipleUsers.error.details')}
           </Typography>
-          <Typography variant="label1" className="mb-20">
+          <Typography variant="label1" className="mb-30">
             {isError}
           </Typography>
         </div>
       )
     } else if (isSuccess) {
       return (
-        <div className="successSection mb-20">
-          <div className="uploadedDetailsSection mb-20">
+        <div className="successSection mb-30">
+          <div className="uploadedDetailsSection mb-30">
             <div className="userDetailsMain">
               <div className="userSuccess">
                 <Typography variant="body1" className="number">
@@ -215,42 +215,46 @@ export default function AddMultipleUser() {
                 )}
               </Typography>
             </div>
-            <div className="userDetailsMain">
-              <div className="userError">
-                <Typography variant="body1" className="number">
-                  {uploadAPIRResponse?.error}
+            {uploadAPIRResponse?.error && (
+              <div className="userDetailsMain">
+                <div className="userError">
+                  <Typography variant="body1" className="number">
+                    {uploadAPIRResponse?.error}
+                  </Typography>
+                </div>
+                <Typography variant="body1" className="detailLabel">
+                  {t(
+                    'content.usermanagement.addMultipleUsers.success.userFailed'
+                  )}
                 </Typography>
               </div>
-              <Typography variant="body1" className="detailLabel">
-                {t(
-                  'content.usermanagement.addMultipleUsers.success.userFailed'
-                )}
-              </Typography>
-            </div>
-          </div>
-          <div className="mb-20">
-            <Trans>
-              <Typography variant="body1" className="errorUsersLabel">
-                {t(
-                  'content.usermanagement.addMultipleUsers.success.errorUsersLabel'
-                )}
-              </Typography>
-            </Trans>
+            )}
           </div>
           {tableErrorData && (
-            <StaticTable data={tableErrorData} horizontal={true} />
+            <>
+              <div className="mb-30">
+                <Trans>
+                  <Typography variant="body1" className="errorUsersLabel">
+                    {t(
+                      'content.usermanagement.addMultipleUsers.success.errorUsersLabel'
+                    )}
+                  </Typography>
+                </Trans>
+              </div>
+              <StaticTable data={tableErrorData} horizontal={true} />
+            </>
           )}
         </div>
       )
     } else if (isFileUploaded) {
       return (
         <div className="uploadedFileMain">
-          <Typography variant="h6" className="mb-20">
+          <Typography variant="h6" className="mb-30">
             {t(
               'content.usermanagement.addMultipleUsers.uploadedFile.fileHeading'
             )}
           </Typography>
-          <div className="fileDetailsSection mb-20">
+          <div className="fileDetailsSection mb-30">
             <div className="documentMain">
               <div className="documentIcon">
                 <ArticleOutlinedIcon className="icon" />
@@ -272,37 +276,39 @@ export default function AddMultipleUser() {
               </Typography>
             </div>
           </div>
-          <Typography variant="h6" className="mb-20">
+          <Typography variant="h6" className="mb-30">
             {t(
               'content.usermanagement.addMultipleUsers.uploadedFile.addUserRolesHeading'
             )}
           </Typography>
-          <Typography variant="label1" className="mb-20">
-            {t('content.usermanagement.addMultipleUsers.uploadedFile.note')}
-          </Typography>
-          <ul className="mb-20">
-            <li>
-              <Typography variant="label1" className="mb-20">
-                {t(
-                  'content.usermanagement.addMultipleUsers.uploadedFile.note1'
-                )}
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="label1" className="mb-20">
-                {t(
-                  'content.usermanagement.addMultipleUsers.uploadedFile.note2'
-                )}
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="label1" className="mb-20">
-                {t(
-                  'content.usermanagement.addMultipleUsers.uploadedFile.note3'
-                )}
-              </Typography>
-            </li>
-          </ul>
+          <div className="backgroundSection mb-30">
+            <Typography variant="label1">
+              {t('content.usermanagement.addMultipleUsers.uploadedFile.note')}
+            </Typography>
+            <ul>
+              <li>
+                <Typography variant="label1">
+                  {t(
+                    'content.usermanagement.addMultipleUsers.uploadedFile.note1'
+                  )}
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="label1">
+                  {t(
+                    'content.usermanagement.addMultipleUsers.uploadedFile.note2'
+                  )}
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="label1">
+                  {t(
+                    'content.usermanagement.addMultipleUsers.uploadedFile.note3'
+                  )}
+                </Typography>
+              </li>
+            </ul>
+          </div>
           <Typography variant="label1">
             {t(
               'content.usermanagement.addMultipleUsers.uploadedFile.availableRoles'
@@ -339,11 +345,11 @@ export default function AddMultipleUser() {
     } else {
       return (
         <div className="addMultipleUsers">
-          <div className="firstStep">
+          <div className="firstStep backgroundSection">
             <Typography variant="label4" className="number">
               1
             </Typography>
-            <Typography variant="body1" className="mb-20">
+            <Typography variant="body1" className="mb-30">
               {t('content.usermanagement.addMultipleUsers.step1.heading')}
             </Typography>
             <a
@@ -360,25 +366,25 @@ export default function AddMultipleUser() {
               </Button>
             </a>
           </div>
-          <div className="secondStep">
+          <div className="secondStep backgroundSection">
             <Typography variant="label4" className="number">
               2
             </Typography>
-            <Typography variant="body1" className="mb-20">
+            <Typography variant="body1" className="mb-30">
               {t('content.usermanagement.addMultipleUsers.step2.heading')}
             </Typography>
-            <Link to={HelpPageURL} target="_blank" className="linkText mb-20">
+            <Link to={HelpPageURL} target="_blank" className="linkText mb-30">
               <Typography variant="caption2">
                 {t('content.usermanagement.addMultipleUsers.step2.linkText')}
               </Typography>
             </Link>
             <EditIcon className="editIcon" />
           </div>
-          <div className="thirdStep">
+          <div className="thirdStep backgroundSection">
             <Typography variant="label4" className="number">
               3
             </Typography>
-            <Typography variant="h6" className="mb-20">
+            <Typography variant="h6" className="mb-30">
               {t('content.usermanagement.addMultipleUsers.step3.heading')}
             </Typography>
             <Dropzone
@@ -406,7 +412,7 @@ export default function AddMultipleUser() {
         <DialogHeader
           {...{
             title: t('content.usermanagement.addMultipleUsers.heading'),
-            intro: t('content.usermanagement.addMultipleUsers.intro'),
+            intro: '',
             closeWithIcon: true,
             onCloseWithIcon: () => dispatch(closeOverlay()),
           }}
@@ -420,6 +426,7 @@ export default function AddMultipleUser() {
           <Button
             variant="outlined"
             onClick={() => dispatch(show(OVERLAYS.NONE))}
+            sx={{ textTransform: 'none' }}
           >
             {t('global.actions.cancel')}
           </Button>
@@ -433,7 +440,7 @@ export default function AddMultipleUser() {
               loading
               size="medium"
               onButtonClick={() => {}}
-              sx={{ marginLeft: '10px' }}
+              sx={{ marginLeft: '10px', textTransform: 'none' }}
             />
           ) : (
             <Button
@@ -442,6 +449,7 @@ export default function AddMultipleUser() {
               disabled={
                 uploadedFile === undefined || (isFileUploaded && !roles.length)
               }
+              sx={{ textTransform: 'none' }}
             >
               {isError ? t('global.actions.exit') : t('global.actions.confirm')}
             </Button>

@@ -21,7 +21,7 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
+import { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'
 import smallLogo from '../../../assets/logo/cx-logo-short.svg'
 import { OVERLAYS } from 'types/Constants'
@@ -41,20 +41,14 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity &&
-        row?.legalEntity?.names &&
-        row?.legalEntity?.names?.length
-          ? row.legalEntity.names[0].value
-          : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) => row?.legalName ?? '',
     },
     {
       field: 'legalEntity.bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.bpn : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) => row?.bpnl ?? '',
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
@@ -62,10 +56,7 @@ export const PartnerNetworksTableColumns = (
       flex: 1.5,
       sortable: false,
       renderCell: (params) =>
-        params &&
-        params.row &&
-        params.row.legalEntity &&
-        params.row.legalEntity.member ? (
+        params?.row?.member ? (
           <Box
             component="img"
             padding=".5rem"
@@ -84,8 +75,10 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartnerSearchResponse }) =>
-        row?.legalEntity ? row.legalEntity.legalAddress?.country?.name : '',
+      valueGetter: ({ row }: { row: BusinessPartner }) =>
+        row?.legalAddress?.physicalPostalAddress?.country?.name ??
+        row?.legalAddress?.alternativePostalAddress?.country?.name ??
+        '',
     },
     {
       field: 'detail',
@@ -94,14 +87,12 @@ export const PartnerNetworksTableColumns = (
       flex: 0.8,
       align: 'center',
       renderCell: (params) =>
-        params && params.row && params.row.legalEntity ? (
+        params?.row?.bpnl ? (
           <IconButton
             color="secondary"
             size="small"
             style={{ alignSelf: 'center' }}
-            onClick={() =>
-              dispatch(show(OVERLAYS.PARTNER, params.row.legalEntity.bpn))
-            }
+            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpnl))}
           >
             <ArrowForwardIcon />
           </IconButton>
