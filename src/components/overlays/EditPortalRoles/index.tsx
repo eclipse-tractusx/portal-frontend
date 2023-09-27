@@ -91,7 +91,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
     if (!id || !offerId) return
     const data: PortalRoleRequest = {
       companyUserId: id,
-      offerId: offerId,
+      offerId,
       roles: selectedRoles,
     }
     try {

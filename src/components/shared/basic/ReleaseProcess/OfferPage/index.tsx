@@ -128,7 +128,7 @@ export default function OfferPage({
     setValue,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -197,8 +197,8 @@ export default function OfferPage({
     file: DropzoneFile
   ) => {
     const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
+      appId,
+      documentTypeId,
       body: { file },
     }
 

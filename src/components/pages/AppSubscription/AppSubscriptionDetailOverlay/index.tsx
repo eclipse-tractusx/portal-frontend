@@ -230,9 +230,9 @@ const AppSubscriptionDetailOverlay = ({
 
   const handleSaveURL = async (url: string) => {
     const data = {
-      appId: appId,
-      subscriptionId: subscriptionId,
-      body: { url: url },
+      appId,
+      subscriptionId,
+      body: { url },
     }
     try {
       await updateTenantUrl(data).unwrap()

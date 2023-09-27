@@ -179,7 +179,7 @@ export default function AppMarketCard() {
     formState: { errors, isValid },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -355,7 +355,7 @@ export default function AppMarketCard() {
     const saveData = {
       title: data.title,
       provider: data.provider,
-      salesManagerId: salesManagerId,
+      salesManagerId,
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
       })
@@ -392,7 +392,7 @@ export default function AppMarketCard() {
 
     if (appId) {
       const saveAppData = {
-        appId: appId,
+        appId,
         body: saveData,
       }
 
@@ -432,8 +432,8 @@ export default function AppMarketCard() {
     file: any
   ) => {
     const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
+      appId,
+      documentTypeId,
       body: { file },
     }
 

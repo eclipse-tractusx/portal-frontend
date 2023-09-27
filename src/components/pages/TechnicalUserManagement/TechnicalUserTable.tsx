@@ -58,7 +58,7 @@ export const TechnicalUserTable = () => {
   useEffect(() => {
     setFetchHookArgs({
       statusFilter: group,
-      expr: expr,
+      expr,
     })
   }, [group, expr])
 

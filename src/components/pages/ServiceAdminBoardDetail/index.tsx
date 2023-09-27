@@ -79,7 +79,7 @@ export default function ServiceAdminBoardDetail() {
   }) => {
     try {
       const response = await fetchDocument({
-        appId: appId,
+        appId,
         documentId: item.documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')

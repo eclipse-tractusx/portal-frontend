@@ -52,6 +52,7 @@
 - Enable ESLINT rule
   - import/no-duplicates
   - prefer-const
+  - object shorthand
 - Notifications
   - App Subscription Request content update
 - Digital Twin
