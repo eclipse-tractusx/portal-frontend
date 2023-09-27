@@ -190,10 +190,10 @@ const fetchSearch = createAsyncThunk(
         users.content
           .filter((item: TenantUser) =>
             uuid
-              ? item.userEntityId?.match(searchExpr) ??
+              ? searchExpr.exec(item.userEntityId) ??
                 item.companyUserId.match(searchExpr)
               : item.firstName?.match(searchExpr) ??
-                item.lastName?.match(searchExpr) ??
+                searchExpr.exec(item.lastName) ??
                 item.email.match(searchExpr)
           )
           .map((item: TenantUser) => userToSearchItem(item)),
