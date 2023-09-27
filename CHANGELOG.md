@@ -49,6 +49,8 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Enable ESLINT rule
+  - prefer-const
 - Notifications
   - App Subscription Request content update
 - Digital Twin
