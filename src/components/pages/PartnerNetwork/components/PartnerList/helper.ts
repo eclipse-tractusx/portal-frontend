@@ -26,8 +26,9 @@ export const isContentPresent = (data: any) => data && data.content
 export const addCountryAttribute = (finalObj: any, payload: any) => {
   finalObj.forEach((x: any) => {
     payload.forEach((y: any) => {
-      if (x.legalEntity.bpn === y.legalEntity) {
-        x.legalEntity.legalAddress = y.legalAddress
+      if (x.bpnl === y.bpnLegalEntity) {
+        x.legalAddress.alternativePostalAddress = y.alternativePostalAddress
+        x.legalAddress.physicalPostalAddress = y.physicalPostalAddress
       }
     })
   })
@@ -37,7 +38,7 @@ export const addCountryAttribute = (finalObj: any, payload: any) => {
 export const addMemberAttribute = (finalObj: any, queryData: any) => {
   if (queryData) {
     finalObj.forEach((x: any) => {
-      x.legalEntity.member = queryData.includes(x.legalEntity.bpn)
+      x.member = queryData.includes(x.bpnl)
     })
   }
   return finalObj
