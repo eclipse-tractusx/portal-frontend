@@ -33,6 +33,7 @@ import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  ServiceTypeIdsEnum,
   useDeleteDocumentMutation,
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
@@ -86,11 +87,11 @@ export default function OfferPage({
 
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
-    fetchServiceStatus?.serviceTypeIds.every((item) =>
-      ['CONSULTANCE_SERVICE']?.includes(item)
+    skipTechnicalIntegrationStep(
+      !fetchServiceStatus?.serviceTypeIds.includes(
+        ServiceTypeIdsEnum.DATASPACE_SERVICE
+      )
     )
-      ? skipTechnicalIntegrationStep(true)
-      : skipTechnicalIntegrationStep(false)
   }, [dispatch, fetchServiceStatus, skipTechnicalIntegrationStep])
 
   const onBackIconClick = () => {

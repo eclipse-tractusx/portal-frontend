@@ -48,7 +48,7 @@ export const ValidatingForm = ({
   const { t } = useTranslation()
   const [values, setValues] = useState<IHashMap<FormValidationStateItem>>(
     (() => {
-      let initialState: IHashMap<FormValidationStateItem> = {}
+      const initialState: IHashMap<FormValidationStateItem> = {}
       return fields.reduce((val, field) => {
         val[field.key] = {
           key: field.key,

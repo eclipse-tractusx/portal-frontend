@@ -210,7 +210,7 @@ export default function AppMarketCard() {
 
   useEffect(() => {
     if (salesManagerList.length > 0) {
-      let data = salesManagerList?.map((item) => {
+      const data = salesManagerList?.map((item) => {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
       reset(defaultValues)
@@ -238,7 +238,7 @@ export default function AppMarketCard() {
   const cardImageData: any = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      let isFile: any = cardImageData instanceof File
+      const isFile: any = cardImageData instanceof File
 
       if (isFile) {
         const blobFile = new Blob([cardImageData], {
