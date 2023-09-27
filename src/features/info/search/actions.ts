@@ -156,7 +156,7 @@ const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
   async (expr: string): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
-    const searchExpr = new RegExp(trexpr, 'gi')
+    const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
