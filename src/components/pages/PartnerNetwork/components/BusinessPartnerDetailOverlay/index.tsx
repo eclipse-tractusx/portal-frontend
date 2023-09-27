@@ -22,13 +22,13 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
 import DetailGridRow from './DetailGridRow'
-import type { BusinessPartnerSearchResponse } from 'features/newPartnerNetwork/types'
+import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import GridTitle from './GridTitle'
 import DialogContainer from './DailogContainer'
 
 interface BusinessPartnerDetailOverlayProps {
   openDialog?: boolean
-  selectedRowBPN: BusinessPartnerSearchResponse
+  selectedRowBPN: BusinessPartner
   handleOverlayClose: React.MouseEventHandler
 }
 
@@ -54,18 +54,14 @@ const BusinessPartnerDetailOverlay = ({
             key={t('content.partnernetwork.columns.name') as string}
             {...{
               variableName: `${t('content.partnernetwork.columns.name')}`,
-              value: selectedRowBPN.legalEntity
-                ? selectedRowBPN.legalEntity.names[0].value
-                : '',
+              value: selectedRowBPN?.legalName ?? '',
             }}
           />
           <DetailGridRow
             key={t('content.partnernetwork.columns.bpn') as string}
             {...{
               variableName: `${t('content.partnernetwork.columns.bpn')}`,
-              value: selectedRowBPN.legalEntity
-                ? selectedRowBPN.legalEntity.bpn
-                : '',
+              value: selectedRowBPN?.bpnl ?? '',
             }}
           />
 
@@ -96,27 +92,29 @@ const BusinessPartnerDetailOverlay = ({
             key="Country"
             {...{
               variableName: t('content.partnernetwork.columns.address'),
-              value: selectedRowBPN.legalEntity
-                ? selectedRowBPN.legalEntity.legalAddress.country.name
-                : '',
+              value:
+                selectedRowBPN?.legalAddress?.physicalPostalAddress?.country
+                  ?.name ??
+                selectedRowBPN?.legalAddress?.alternativePostalAddress?.country
+                  ?.name ??
+                '',
             }}
           />
           <GridTitle title={t('content.partnernetwork.columns.identifiers')} />
-          {selectedRowBPN.legalEntity &&
-            selectedRowBPN.legalEntity.identifiers?.map(
-              (identifier: BpdmTypeUUIDKeyPair) => {
-                return (
-                  <DetailGridRow
-                    key={identifier.type?.name}
-                    {...{
-                      variableName:
-                        identifier.type?.name || identifier.type?.technicalKey,
-                      value: identifier.value,
-                    }}
-                  />
-                )
-              }
-            )}
+          {selectedRowBPN?.identifiers?.map(
+            (identifier: BpdmTypeUUIDKeyPair) => {
+              return (
+                <DetailGridRow
+                  key={identifier.type?.name}
+                  {...{
+                    variableName:
+                      identifier.type?.name || identifier.type?.technicalKey,
+                    value: identifier.value,
+                  }}
+                />
+              )
+            }
+          )}
         </>
       </DialogContainer>
     </div>

@@ -231,9 +231,6 @@ export default function UpdateCertificate({ id }: { id: string }) {
                     display:
                       certificatetypesArr.length === 1 ? 'block' : 'none',
                   }}
-                  arrowStyles={{
-                    left: '181px !important',
-                  }}
                   tooltipPlacement="bottom-end"
                   tooltipText={t(
                     'content.certificates.updateCertificate.noOptionsMessage'

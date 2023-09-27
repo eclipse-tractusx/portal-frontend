@@ -117,6 +117,7 @@ export interface NotificationContent {
   type?: string | number
   newUrl?: string
   Roles?: string[]
+  UserEmail?: string
 }
 
 export interface CXNotificationContent {

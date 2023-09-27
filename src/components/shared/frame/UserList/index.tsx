@@ -34,6 +34,14 @@ import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 
+interface fetchHookArgsType {
+  appId?: string
+  expr: string
+  userRoleResponse?: boolean
+  role?: boolean
+  addUserResponse?: boolean
+}
+
 export const UserList = ({
   sectionTitle,
   addButtonLabel,
@@ -79,7 +87,7 @@ export const UserList = ({
   return (
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
-      <PageLoadingTable<TenantUser>
+      <PageLoadingTable<TenantUser, fetchHookArgsType>
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
         secondButtonLabel={addMultipleButtonLabel && t(addMultipleButtonLabel)}

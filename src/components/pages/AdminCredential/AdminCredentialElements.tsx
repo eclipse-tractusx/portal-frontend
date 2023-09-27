@@ -21,7 +21,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import { PageLoadingTable } from '@catena-x/portal-shared-components'
 import './AdminCredential.scss'
 import {
   type CredentialData,
@@ -37,6 +36,12 @@ import { uniqueId } from 'lodash'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
+import { PageLoadingTable } from '@catena-x/portal-shared-components'
+
+interface fetchHookArgsType {
+  filterType: string
+  expr: string
+}
 
 enum FilterType {
   ALL = 'all',
@@ -58,7 +63,7 @@ export default function AdminCredentialElements() {
   const [group, setGroup] = useState<string>(FilterType.ALL)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [filterValueAPI, setFilterValueAPI] = useState<string>('')
-  const [fetchHookArgs, setFetchHookArgs] = useState({})
+  const [fetchHookArgs, setFetchHookArgs] = useState<fetchHookArgsType>()
 
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
@@ -226,7 +231,7 @@ export default function AdminCredentialElements() {
 
   return (
     <div className="recommended-main">
-      <PageLoadingTable<CredentialResponse[]>
+      <PageLoadingTable<CredentialResponse[], fetchHookArgsType>
         searchExpr={searchExpr}
         alignCell="start"
         toolbarVariant={'searchAndFilter'}
