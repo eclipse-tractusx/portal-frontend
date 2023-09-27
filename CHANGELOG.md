@@ -50,6 +50,7 @@
   - UI Changes
   - Add filters
 - Enable ESLINT rule
+  - import/no-duplicates
   - prefer-const
 - Notifications
   - App Subscription Request content update
