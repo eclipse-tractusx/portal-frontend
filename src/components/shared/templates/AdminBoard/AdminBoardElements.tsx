@@ -66,7 +66,7 @@ export default function AdminBoardElements({
   successDeclineMsg?: string
   errorDeclineMsg?: string
   isSuccess: boolean
-  refetch: any
+  refetch: () => {}
 }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()

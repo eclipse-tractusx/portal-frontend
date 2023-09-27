@@ -197,7 +197,9 @@ const CheckListStatusOverlay = ({
     setState({ type: ActionKind.SET_SELECTED_CHECKLISTBUTTON, payload: button })
   }
 
-  const onUpdateComment = (e: any) => {
+  const onUpdateComment = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setState({
       type: ActionKind.SET_DECLINE_COMMENT,
       payload: e.target.value,
@@ -493,7 +495,9 @@ const CheckListStatusOverlay = ({
               rows={2}
               maxRows={4}
               placeholder={''}
-              onChange={(e: any) => {
+              onChange={(
+                e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+              ) => {
                 onUpdateComment(e)
               }}
               value={declineComment}

@@ -48,7 +48,9 @@ const AddBpnOveraly = ({
   const [value, setValue] = useState('')
   const [error, setError] = useState(false)
 
-  const onChange = (e: any) => {
+  const onChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setValue(e.target.value)
     const validateExpr = isBPN(e.target.value)
     if (validateExpr) {
@@ -79,7 +81,9 @@ const AddBpnOveraly = ({
               placeholder={t(
                 'content.edcconnector.modal.insertform.bpn.placeholder'
               )}
-              onChange={(e: any) => {
+              onChange={(
+                e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+              ) => {
                 onChange(e)
               }}
               value={value}

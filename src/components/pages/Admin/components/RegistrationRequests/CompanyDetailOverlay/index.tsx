@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, SyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -57,7 +57,7 @@ const CompanyDetailOverlay = ({
   selectedRequestId,
   handleOverlayClose,
 }: CompanyDetailOverlayProps) => {
-  const modalElement: any = useRef()
+  const modalElement = useRef<HTMLInputElement>()
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
@@ -135,7 +135,10 @@ const CompanyDetailOverlay = ({
     }
   }
 
-  const handleChange = (event: any, newValue: number) => {
+  const handleChange = (
+    event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => {
     setHeight(
       modalElement && modalElement.current
         ? `${modalElement?.current?.clientHeight}px`

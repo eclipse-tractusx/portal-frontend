@@ -69,7 +69,7 @@ import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldI
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
-import { UseCaseType } from 'features/appManagement/types'
+import { LanguageStatusType, UseCaseType } from 'features/appManagement/types'
 
 type FormDataType = {
   title: string
@@ -156,11 +156,11 @@ export default function AppMarketCard() {
       salesManagerId: appStatusData?.salesManagerId,
       shortDescriptionEN:
         appStatusData?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'en'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
         )[0]?.shortDescription || '',
       shortDescriptionDE:
         appStatusData?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'de'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
         )[0]?.shortDescription || '',
       uploadImage: {
         leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
@@ -231,7 +231,7 @@ export default function AppMarketCard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList, appStatusData])
 
-  const onSalesManagerChange = (sales: any) => {
+  const onSalesManagerChange = (sales: string) => {
     setSalesManagerId(sales)
   }
 
@@ -366,7 +366,7 @@ export default function AppMarketCard() {
           languageCode: 'de',
           longDescription:
             appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
             )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionDE,
         },
@@ -374,7 +374,7 @@ export default function AppMarketCard() {
           languageCode: 'en',
           longDescription:
             appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
             )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionEN,
         },

@@ -36,10 +36,20 @@ import { currentSuccessType } from 'features/adminBoard/slice'
 import {
   ServiceContent,
   ServiceRequestBody,
+  ServiceResponse,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
+import {
+  AppRequestBody,
+  AppResponse,
+} from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
+
+export interface TabButtonsType {
+  buttonText: string
+  buttonValue: string
+  onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
+}
 
 enum FilterType {
   INREVIEW = 'InReview',
@@ -318,7 +328,7 @@ export default function CommonAdminBoard({
     },
   ]
 
-  const tabButtons: any[] = [
+  const tabButtons: TabButtonsType[] = [
     {
       buttonText: filterOptionText.open,
       buttonValue: FilterType.INREVIEW,

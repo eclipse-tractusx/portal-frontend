@@ -51,7 +51,7 @@ export const RequestList = ({
   onConfirmationCancel,
   onChipButtonSelect,
 }: {
-  fetchHook: (paginArgs: PaginFetchArgs) => any
+  fetchHook: (paginArgs: PaginFetchArgs) => void
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (

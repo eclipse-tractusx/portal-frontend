@@ -35,7 +35,7 @@
         "@typescript-eslint/consistent-type-imports": 0,
         "@typescript-eslint/no-confusing-void-expression": 0,
         "@typescript-eslint/no-empty-function": 0,
-        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-explicit-any": 1,
         "@typescript-eslint/no-extra-semi": 0,
         "@typescript-eslint/no-unsafe-argument": 0,
         "@typescript-eslint/no-unsafe-assignment": 0,

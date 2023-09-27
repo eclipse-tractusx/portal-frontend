@@ -46,7 +46,7 @@ export default function DeleteObjectContent({
   subHeader?: string
   subHeaderTitle?: string
   subHeaderDescription?: string
-  handleConfirm?: any
+  handleConfirm?: () => void
   subHeaderNote?: string
   confirmTitle?: string
   showLoader?: boolean

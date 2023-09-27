@@ -77,10 +77,10 @@ export default function AddMultipleUser() {
   const { data: idpsData, isFetching } = useFetchIDPListQuery()
 
   const [loading, setLoading] = useState(false)
-  const [allRoles, setAllRoles] = useState<any>([])
+  const [allRoles, setAllRoles] = useState<AppRole[]>()
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false)
-  const [totalRowsInCSV, setTotalRowsInCSV] = useState<any>(0)
+  const [totalRowsInCSV, setTotalRowsInCSV] = useState<number>(0)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [isError, setIsError] = useState<string>('')
   const [idps, setIdps] = useState<IdentityProvider[]>([])
@@ -322,7 +322,7 @@ export default function AddMultipleUser() {
             <ChevronRightIcon sx={{ fontSize: '20px' }} />
             {t('content.usermanagement.addMultipleUsers.uploadedFile.roleDesc')}
           </Link>
-          {allRoles.length > 0 ? (
+          {allRoles && allRoles.length > 0 ? (
             <div className="rolesSection">
               {allRoles.map((role: AppRole) => (
                 <Checkbox
