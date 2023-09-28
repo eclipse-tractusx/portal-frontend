@@ -102,12 +102,9 @@ export default function TechnicalIntegration() {
 
   const userProfiles = useMemo(
     () =>
-      (fetchTechnicalUserProfiles &&
-        fetchTechnicalUserProfiles?.length > 0 &&
-        fetchTechnicalUserProfiles[0]?.userRoles.map(
-          (i: { roleId: string }) => i.roleId
-        )) ||
-      [],
+      fetchTechnicalUserProfiles?.[0]?.userRoles.map(
+        (i: { roleId: string }) => i.roleId
+      ) ?? [],
     [fetchTechnicalUserProfiles]
   )
 
@@ -176,10 +173,7 @@ export default function TechnicalIntegration() {
         body: [
           {
             technicalUserProfileId:
-              (fetchTechnicalUserProfiles &&
-                fetchTechnicalUserProfiles?.length > 0 &&
-                fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
-              null,
+              fetchTechnicalUserProfiles?.[0]?.technicalUserProfileId ?? null,
             userRoleIds: techUserProfiles,
           },
         ],

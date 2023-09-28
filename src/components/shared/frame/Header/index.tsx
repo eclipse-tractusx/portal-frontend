@@ -46,7 +46,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
       })
     )
 
-  const menu = addTitle(main) || []
+  const menu = addTitle(main) ?? []
 
   return (
     <>

@@ -87,11 +87,11 @@ export default function ContractAndConsent() {
           'content.apprelease.appReleaseForm.fileUploadIsMandatory'
         )}
         id={appId ?? ''}
-        fetchAgreementData={fetchAgreementData || []}
+        fetchAgreementData={fetchAgreementData ?? []}
         fetchConsentData={fetchConsentData}
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
-        fetchStatusData={fetchAppStatus || undefined}
+        fetchStatusData={fetchAppStatus ?? undefined}
         getDocumentById={getDocumentById}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={

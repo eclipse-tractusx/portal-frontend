@@ -66,6 +66,8 @@
   - Skip technical integration for consultancy service
 - Shared
   - Removed PageLoadingTable component
+- Linter Finding
+  - Prefer-nullish-coalescing (|| => ??)
 
 ## 1.6.0
 

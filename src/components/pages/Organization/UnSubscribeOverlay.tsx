@@ -87,13 +87,13 @@ const UnSubscribeOverlay = ({
                   t('content.organization.unsubscribe.table.app'),
                   t('content.organization.unsubscribe.table.status'),
                   t('content.organization.unsubscribe.table.techUser'),
-                  t('content.organization.unsubscribe.table.connector')
+                  t('content.organization.unsubscribe.table.connector'),
                 ],
                 body: [
-                  [data?.name || ''],
-                  [data?.offerSubscriptionStatus || ''],
-                  [data?.technicalUserData[0]?.name || ''],
-                  [data?.connectorData[0]?.name || ''],
+                  [data?.name ?? ''],
+                  [data?.offerSubscriptionStatus ?? ''],
+                  [data?.technicalUserData[0]?.name ?? ''],
+                  [data?.connectorData[0]?.name ?? ''],
                 ],
               }}
               horizontal={true}

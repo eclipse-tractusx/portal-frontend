@@ -61,7 +61,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
 
   useEffect(() => {
     if (
-      (data && data.unread === 0) ||
+      data?.unread === 0 ||
       (data && data.unread > 0 && data.actionRequired === 0)
     ) {
       setNotificationInfo({

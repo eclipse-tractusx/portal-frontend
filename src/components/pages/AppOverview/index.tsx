@@ -129,10 +129,10 @@ export default function AppOverview() {
             (item) =>
               item.title
                 .toLocaleLowerCase()
-                .includes(expr.toLocaleLowerCase()) ||
+                .includes(expr.toLocaleLowerCase()) ??
               item.subtitle
                 ?.toLocaleLowerCase()
-                .includes(expr.toLocaleLowerCase()) ||
+                .includes(expr.toLocaleLowerCase()) ??
               item.statusText
                 ?.toLocaleLowerCase()
                 .includes(expr.toLocaleLowerCase())

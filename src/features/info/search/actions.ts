@@ -156,7 +156,7 @@ const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
   async (expr: string): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
-    const searchExpr = new RegExp(trexpr, 'gi')
+    const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
@@ -175,25 +175,25 @@ const fetchSearch = createAsyncThunk(
           .filter((item: AppMarketplaceApp) =>
             uuid
               ? item.id.match(searchExpr)
-              : item.name?.match(searchExpr) || item.provider.match(searchExpr)
+              : item.name?.match(searchExpr) ?? item.provider.match(searchExpr)
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
         partners.content.map((item: any) => businessPartnerToSearchItem(item)),
         news
           .filter(
             (item: CardItems) =>
-              item.title?.match(searchExpr) ||
-              item.subtitle?.match(searchExpr) ||
+              item.title?.match(searchExpr) ??
+              item.subtitle?.match(searchExpr) ??
               item.description?.match(searchExpr)
           )
           .map((item: CardItems) => newsToSearchItem(item)),
         users.content
           .filter((item: TenantUser) =>
             uuid
-              ? item.userEntityId?.match(searchExpr) ||
+              ? searchExpr.exec(item.userEntityId) ??
                 item.companyUserId.match(searchExpr)
-              : item.firstName?.match(searchExpr) ||
-                item.lastName?.match(searchExpr) ||
+              : item.firstName?.match(searchExpr) ??
+                searchExpr.exec(item.lastName) ??
                 item.email.match(searchExpr)
           )
           .map((item: TenantUser) => userToSearchItem(item)),

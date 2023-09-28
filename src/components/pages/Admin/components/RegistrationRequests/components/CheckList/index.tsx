@@ -196,7 +196,7 @@ export default function CheckList({
                     padding: '8px 12px',
                     borderRadius: '8px',
                     margin: '0px 3px',
-                    backgroundColor: button?.backgroundColor || '#fff',
+                    backgroundColor: button?.backgroundColor ?? '#fff',
                     color: '#111',
                     border: button?.border,
                     fontSize: '10px',
