@@ -27,7 +27,7 @@ import { Box } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
-  AppRole,
+  type AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
@@ -96,7 +96,9 @@ export const UserRoles = () => {
               checked={Array.isArray(roles) && roles.includes(role.role)}
               label={role.role}
               key={role.roleId}
-              onChange={(e) => selectRole(role.role, e.target.checked)}
+              onChange={(e) => {
+                selectRole(role.role, e.target.checked)
+              }}
             />
           ))}
         </div>

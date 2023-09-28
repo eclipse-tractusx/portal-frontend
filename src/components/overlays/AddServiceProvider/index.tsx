@@ -33,7 +33,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import {
   useAddServiceProviderMutation,
   useFetchServiceProviderQuery,
@@ -107,7 +107,9 @@ export default function AddServiceProvider() {
               </Typography>
             }
             placeholder="URL of the customer tentant"
-            onChange={(e) => addInputURL(e.target.value)}
+            onChange={(e) => {
+              addInputURL(e.target.value)
+            }}
             value={inputURL}
           />
           <p className="error">{UrlErrorMsg}</p>
@@ -144,7 +146,9 @@ export default function AddServiceProvider() {
       </DialogActions>
       <PageSnackbar
         open={saveErrorMsg}
-        onCloseNotification={() => setSaveErrorMessage(false)}
+        onCloseNotification={() => {
+          setSaveErrorMessage(false)
+        }}
         severity="error"
         description={t('content.appSubscription.register.providerErrorMessage')}
         showIcon={true}

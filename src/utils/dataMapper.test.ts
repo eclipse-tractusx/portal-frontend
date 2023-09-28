@@ -27,8 +27,8 @@ import TestSingleData from '../../public/testdata/partnerNetwork/businessPartner
 import TestDataGridData from '../../public/testdata/partnerNetwork/businessPartnersDataGrid.json'
 import TestMembershipData from '../../public/testdata/partnerNetwork/membershipData.json'
 import TestSingleDataGridData from '../../public/testdata/partnerNetwork/businessPartnersSingleDataGrid.json'
-import { BusinessPartner } from 'features/newPartnerNetwork/types'
-import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
+import type { BusinessPartner } from 'features/newPartnerNetwork/types'
+import type { BusinessPartnerResponse } from 'features/partnerNetwork/types'
 
 describe('DataMapperTest', () => {
   it('mapBusinessPartnerToDataGrid maps correctly', () => {

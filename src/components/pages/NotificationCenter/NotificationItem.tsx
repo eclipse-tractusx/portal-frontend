@@ -26,7 +26,7 @@ import {
   useSetNotificationReadMutation,
 } from 'features/notification/apiSlice'
 import {
-  CXNotificationContent,
+  type CXNotificationContent,
   NotificationType,
   PAGE,
   PAGE_SIZE,
@@ -129,7 +129,7 @@ const NotificationContent = ({
         </Trans>
       </div>
       {message && <div className="message">{message}</div>}
-      {(appId || userId || navlinks) && (
+      {(appId ?? userId ?? navlinks) && (
         <div className="links">
           {navlinks?.map((nav) => (
             <NavLink key={nav} to={`/${nav}`}>

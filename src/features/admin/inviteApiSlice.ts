@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type {
+  PaginResult,
+  PaginFetchArgs,
+} from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 

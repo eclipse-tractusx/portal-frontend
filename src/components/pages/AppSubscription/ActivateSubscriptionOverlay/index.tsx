@@ -27,7 +27,7 @@ import {
   Input,
   LoadingButton,
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -35,14 +35,14 @@ import { useTranslation, Trans } from 'react-i18next'
 import { isKeycloakURL } from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
-  SubscriptionActivationResponse,
+  type SubscriptionActivationResponse,
   useAddUserSubscribtionMutation,
   useFetchTechnicalProfilesQuery,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './style.scss'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
 import { closeOverlay } from 'features/control/overlay'
@@ -242,7 +242,9 @@ const ActivateSubscriptionOverlay = ({
                   </Typography>
                 }
                 placeholder={t('content.appSubscription.activation.enterURL')}
-                onChange={(e) => addInputURL(e.target.value)}
+                onChange={(e) => {
+                  addInputURL(e.target.value)
+                }}
                 value={inputURL}
               />
               <p className="errorMsg">{URLErrorMsg}</p>
@@ -279,7 +281,12 @@ const ActivateSubscriptionOverlay = ({
             </div>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => handleOverlayClose()}>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                handleOverlayClose()
+              }}
+            >
               {t('global.actions.close')}
             </Button>
             {loading ? (

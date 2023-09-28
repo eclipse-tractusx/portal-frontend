@@ -19,13 +19,16 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type {
+  PaginResult,
+  PaginFetchArgs,
+} from '@catena-x/portal-shared-components'
 import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { TenantUser } from './userApiSlice'
+import type { TenantUser } from './userApiSlice'
 export interface UserRoleRequest {
   appId: string
   companyUserId: string

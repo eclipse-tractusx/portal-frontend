@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { GridRowId } from '@mui/x-data-grid'
+import type { GridRowId } from '@mui/x-data-grid'
 import { Api } from './api'
-import { AddUser, name } from './types'
+import { type AddUser, name } from './types'
 
 const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)

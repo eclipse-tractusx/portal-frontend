@@ -32,7 +32,7 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
-import { BusinessPartner } from 'features/newPartnerNetwork/types'
+import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import Patterns from 'types/Patterns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {

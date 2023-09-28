@@ -20,8 +20,8 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ConnectorApi } from './api'
-import { SearchParams } from 'types/MainTypes'
-import { ConnectorCreateBody } from './types'
+import type { SearchParams } from 'types/MainTypes'
+import type { ConnectorCreateBody } from './types'
 
 const fetchConnectors = createAsyncThunk(
   'connector/fetchConnectors',

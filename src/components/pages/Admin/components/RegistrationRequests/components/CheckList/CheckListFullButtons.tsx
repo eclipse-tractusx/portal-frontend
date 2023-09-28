@@ -25,7 +25,7 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import {
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
@@ -143,7 +143,7 @@ export default function CheckListFullButtons({
                 height: '60px',
                 padding: '12px 8px',
                 borderRadius: '6px',
-                backgroundColor: button?.backgroundColor || '#fff',
+                backgroundColor: button?.backgroundColor ?? '#fff',
                 color: '#111',
                 fontSize: '14px',
                 outlined: 'none',

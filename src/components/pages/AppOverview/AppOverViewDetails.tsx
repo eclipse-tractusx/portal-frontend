@@ -35,7 +35,7 @@ import {
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   AppOverviewTypes,
-  AppStatusDataState,
+  type AppStatusDataState,
 } from 'features/appManagement/types'
 import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
 
@@ -99,7 +99,7 @@ export default function AppOverViewDetails({
           documentId,
         }).unwrap()
         const file = response.data
-        return setCardImage(URL.createObjectURL(file))
+        setCardImage(URL.createObjectURL(file))
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
@@ -155,7 +155,9 @@ export default function AppOverViewDetails({
               <LanguageSwitch
                 current={cardLanguage}
                 languages={[{ key: 'de' }, { key: 'en' }]}
-                onChange={(lang) => setCardLanguage(lang)}
+                onChange={(lang) => {
+                  setCardLanguage(lang)
+                }}
               />
             </div>
             {item?.useCase &&

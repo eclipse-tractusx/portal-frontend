@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { initServicetNotifications } from 'types/MainTypes'
-import { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
 import { initialState, name } from './types'
 
 export const notificationSlice = createSlice({

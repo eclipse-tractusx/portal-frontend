@@ -33,11 +33,11 @@ import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
-import {
+import type {
   ServiceContent,
   ServiceRequestBody,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
+import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
 
@@ -391,27 +391,29 @@ export default function CommonAdminBoard({
             placeholder={searchText}
             value={searchExpr}
             autoFocus={false}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => {
+              handleSearch(e.target.value)
+            }}
             autoComplete="off"
           />
         </div>
         <div
           className="filterSection"
-          onMouseLeave={() =>
+          onMouseLeave={() => {
             setState({
               type: ActionKind.SET_SHOW_MODAL,
               payload: false,
             })
-          }
+          }}
         >
           <ViewSelector activeView={selected} views={tabButtons} />
           <SortImage
-            onClick={() =>
+            onClick={() => {
               setState({
                 type: ActionKind.SET_SHOW_MODAL,
                 payload: true,
               })
-            }
+            }}
             selected={showModal}
           />
           <div className="sortSection">

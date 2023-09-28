@@ -32,7 +32,7 @@ import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import {
-  ConnectorType,
+  type ConnectorType,
   useFetchOfferSubscriptionsQuery,
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
@@ -175,11 +175,11 @@ const AddConnectorOverlay = ({
             <Button
               variant="contained"
               disabled={selected && selected.id ? false : true}
-              onClick={(e) =>
+              onClick={(e) => {
                 connectorStep === 0 && selected && selected.id
                   ? handleConfirmClick(selected)
                   : onFormSubmit()
-              }
+              }}
             >
               {connectorStep === 0
                 ? `${t('global.actions.next')}`

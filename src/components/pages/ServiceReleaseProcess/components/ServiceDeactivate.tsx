@@ -55,16 +55,16 @@ export default function ServiceDeactivate() {
     setIsLoading(true)
     await deactivateService(service[0].id)
       .unwrap()
-      .then(() =>
+      .then(() => {
         navigate(`/${PAGES.SERVICEOVERVIEW}`, {
           state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS,
         })
-      )
-      .catch((error) =>
+      })
+      .catch((error) => {
         navigate(`/${PAGES.SERVICEOVERVIEW}`, {
           state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_ERROR,
         })
-      )
+      })
   }
 
   return (
@@ -108,9 +108,9 @@ export default function ServiceDeactivate() {
                   label={`${t(
                     'serviceoverview.serviceDeactivate.checkboxLabel'
                   )}`}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     e.target.checked ? setChecked(true) : setChecked(false)
-                  }
+                  }}
                   key={service[0].id}
                   className="checkbox-input"
                 />
@@ -125,7 +125,9 @@ export default function ServiceDeactivate() {
           <Button
             size="small"
             color="secondary"
-            onClick={() => navigate('/serviceoverview')}
+            onClick={() => {
+              navigate('/serviceoverview')
+            }}
           >
             {t('global.actions.cancel')}
           </Button>

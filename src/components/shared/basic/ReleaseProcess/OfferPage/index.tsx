@@ -21,7 +21,7 @@
 import {
   Typography,
   IconButton,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -39,7 +39,7 @@ import {
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
 } from 'features/serviceManagement/apiSlice'
-import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import {
@@ -50,7 +50,7 @@ import {
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../components/ProviderConnectorField'
-import { LanguageStatusType } from 'features/appManagement/types'
+import type { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { ButtonLabelTypes } from '..'
 import { success, error } from 'services/NotifyService'
@@ -109,14 +109,14 @@ export default function OfferPage({
       longDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-        )[0]?.longDescription || '',
+        )[0]?.longDescription ?? '',
       longDescriptionDE:
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-        )[0]?.longDescription || '',
-      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS || [],
-      providerHomePage: fetchServiceStatus?.providerUri || '',
-      providerContactEmail: fetchServiceStatus?.contactEmail || '',
+        )[0]?.longDescription ?? '',
+      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS ?? [],
+      providerHomePage: fetchServiceStatus?.providerUri ?? '',
+      providerContactEmail: fetchServiceStatus?.contactEmail ?? '',
     }
   }, [fetchServiceStatus])
 
@@ -186,7 +186,9 @@ export default function OfferPage({
             refetch()
             setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
           })
-          .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
+          .catch(() => {
+            setFiles(fileIndex, UploadStatus.UPLOAD_ERROR)
+          })
       }
     }
   }
@@ -229,7 +231,7 @@ export default function OfferPage({
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
               (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
         {
           languageCode: 'de',
@@ -237,14 +239,14 @@ export default function OfferPage({
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
               (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
       ],
       privacyPolicies: [],
       salesManager: null,
       price: '',
-      providerUri: data.providerHomePage || '',
-      contactEmail: data.providerContactEmail || '',
+      providerUri: data.providerHomePage ?? '',
+      contactEmail: data.providerContactEmail ?? '',
       leadPictureUri: fetchServiceStatus?.leadPictureUri,
     }
 
@@ -402,8 +404,12 @@ export default function OfferPage({
           description: t('serviceReleaseForm.error.message'),
         }}
         pageSnackbar={appPageSnackbar}
-        setPageNotification={() => setServicePageNotification(false)}
-        setPageSnackbar={() => setServicePageSnackbar(false)}
+        setPageNotification={() => {
+          setServicePageNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setServicePageSnackbar(false)
+        }}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) => onSubmit(data, ButtonLabelTypes.SAVE))}
         onSaveAndProceed={handleSubmit((data) =>

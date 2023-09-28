@@ -20,7 +20,7 @@
 
 import { getAssetBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { AppMarketplaceApp } from './types'
+import type { AppMarketplaceApp } from './types'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

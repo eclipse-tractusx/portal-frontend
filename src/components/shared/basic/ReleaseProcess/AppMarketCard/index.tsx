@@ -25,7 +25,7 @@ import {
   Card,
   LogoGrayData,
   SelectList,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
@@ -38,9 +38,9 @@ import {
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
   useUpdateDocumentUploadMutation,
-  useCasesItem,
+  type useCasesItem,
   useFetchSalesManagerDataQuery,
-  salesManagerType,
+  type salesManagerType,
   useSaveAppMutation,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
@@ -49,7 +49,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -69,7 +69,7 @@ import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldI
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
-import { UseCaseType } from 'features/appManagement/types'
+import type { UseCaseType } from 'features/appManagement/types'
 
 type FormDataType = {
   title: string
@@ -96,11 +96,11 @@ export default function AppMarketCard() {
   const [deleteSuccess, setDeleteSuccess] = useState(false)
 
   const useCasesListData = useFetchUseCasesQuery().data
-  const useCasesList = useMemo(() => useCasesListData || [], [useCasesListData])
+  const useCasesList = useMemo(() => useCasesListData ?? [], [useCasesListData])
 
   const appLanguagesListData = useFetchAppLanguagesQuery().data
   const appLanguagesList = useMemo(
-    () => appLanguagesListData || [],
+    () => appLanguagesListData ?? [],
     [appLanguagesListData]
   )
 
@@ -116,7 +116,7 @@ export default function AppMarketCard() {
   const [appCardNotification, setAppCardNotification] = useState(false)
   const [appCardSnackbar, setAppCardSnackbar] = useState<boolean>(false)
   const appStatusData = useSelector(appStatusDataSelector)
-  const salesManagerList = useFetchSalesManagerDataQuery().data || []
+  const salesManagerList = useFetchSalesManagerDataQuery().data ?? []
   const [defaultSalesManagerValue, setDefaultSalesManagerValue] =
     useState<salesManagerType>({
       userId: null,
@@ -157,16 +157,16 @@ export default function AppMarketCard() {
       shortDescriptionEN:
         appStatusData?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'en'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       shortDescriptionDE:
         appStatusData?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'de'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       uploadImage: {
         leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
-        alt: appStatusData?.leadPictureUri || '',
+        alt: appStatusData?.leadPictureUri ?? '',
       },
-      privacyPolicies: appStatusData?.privacyPolicies || [],
+      privacyPolicies: appStatusData?.privacyPolicies ?? [],
     }
   }, [appStatusData, cardImage])
 
@@ -280,7 +280,7 @@ export default function AppMarketCard() {
       const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
-      return setCardImage(URL.createObjectURL(file))
+      setCardImage(URL.createObjectURL(file))
     } catch (error) {
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
@@ -288,19 +288,21 @@ export default function AppMarketCard() {
   }
 
   const cardAppTitle =
-    getValues().title ||
+    getValues().title ??
     t('content.apprelease.appMarketCard.defaultCardAppTitle')
   const cardAppProvider =
-    getValues().provider ||
+    getValues().provider ??
     t('content.apprelease.appMarketCard.defaultCardAppProvider')
   const cardDescription =
-    getValues().shortDescriptionEN ||
+    getValues().shortDescriptionEN ??
     t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')
   const cardImageAlt =
-    getValues().uploadImage.alt ||
+    getValues().uploadImage.alt ??
     t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
 
-  window.onscroll = () => setPageScrolled(window.scrollY !== 0)
+  window.onscroll = () => {
+    setPageScrolled(window.scrollY !== 0)
+  }
 
   const onSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
@@ -332,13 +334,14 @@ export default function AppMarketCard() {
     buttonLabel: string,
     uploadImageValue: DropzoneFile
   ) => {
-    const setFileStatus = (status: UploadFileStatus) =>
+    const setFileStatus = (status: UploadFileStatus) => {
       setValue('uploadImage.leadPictureUri', {
         id: uploadImageValue.id,
         name: uploadImageValue.name,
         size: uploadImageValue.size,
         status,
       } as any)
+    }
 
     setFileStatus(UploadStatus.UPLOADING)
     uploadDocumentApi(appId, DocumentTypeId.APP_LEADIMAGE, uploadImageValue)
@@ -367,7 +370,7 @@ export default function AppMarketCard() {
           longDescription:
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
+            )[0]?.longDescription ?? '',
           shortDescription: data.shortDescriptionDE,
         },
         {
@@ -375,7 +378,7 @@ export default function AppMarketCard() {
           longDescription:
             appStatusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
+            )[0]?.longDescription ?? '',
           shortDescription: data.shortDescriptionEN,
         },
       ],
@@ -483,7 +486,7 @@ export default function AppMarketCard() {
         ) : (
           <Grid item md={7} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
-              label={cardAppProvider || ''}
+              label={cardAppProvider ?? ''}
               title={cardAppTitle}
               imagePath={cardImage}
               imageAlt={cardImageAlt}
@@ -737,7 +740,9 @@ export default function AppMarketCard() {
                 placeholder={t(
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
-                onChangeItem={(e) => onSalesManagerChange(e.userId)}
+                onChangeItem={(e) => {
+                  onSalesManagerChange(e.userId)
+                }}
                 keyTitle={'fullName'}
               />
             </div>
@@ -815,9 +820,15 @@ export default function AppMarketCard() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={() => setAppCardNotification(false)}
-        setPageSnackbar={() => setAppCardSnackbar(false)}
-        onBackIconClick={() => navigate('/appmanagement')}
+        setPageNotification={() => {
+          setAppCardNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setAppCardSnackbar(false)
+        }}
+        onBackIconClick={() => {
+          navigate('/appmanagement')
+        }}
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}

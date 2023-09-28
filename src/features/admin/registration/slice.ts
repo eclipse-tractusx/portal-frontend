@@ -20,13 +20,13 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import {
-  CompanyDetail,
-  RegistrationRequestAPIResponse,
-  RegistrationRequestDataGrid,
-  AdminRegistrationState,
+  type CompanyDetail,
+  type RegistrationRequestAPIResponse,
+  type RegistrationRequestDataGrid,
+  type AdminRegistrationState,
   initialState,
   name,
-  InvitesDataGrid,
+  type InvitesDataGrid,
 } from './types'
 import {
   fetchRegistrationRequests,
@@ -35,10 +35,10 @@ import {
 } from './actions'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
 import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
-import { RootState } from 'features/store'
-import { PaginationData } from '../../connector/types'
+import type { RootState } from 'features/store'
+import type { PaginationData } from '../../connector/types'
 import uniq from 'lodash.uniq'
-import { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@catena-x/portal-shared-components'
 
 export const slice = createSlice({
   name,

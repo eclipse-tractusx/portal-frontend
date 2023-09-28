@@ -72,7 +72,9 @@ export const SingleUserContent = ({
           placeholder={t(i18n)}
           helperText={t(i18n)}
           validate={validate}
-          onValid={(key, value) => setValue(key, value || '')}
+          onValid={(key, value) => {
+            setValue(key, value ?? '')
+          }}
         />
       ))}
     </Box>

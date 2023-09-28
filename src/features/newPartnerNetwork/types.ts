@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
+import type {
   BpdmLegalFormObject,
   BpdmTypeRelation,
   BpdmTypeUUIDKeyPair,

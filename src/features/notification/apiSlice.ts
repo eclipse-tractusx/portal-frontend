@@ -20,7 +20,11 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { CXNotification, CXNotificationMeta, NOTIFICATION_TOPIC } from './types'
+import {
+  type CXNotification,
+  type CXNotificationMeta,
+  NOTIFICATION_TOPIC,
+} from './types'
 interface FetchArgs {
   page: number
   size: number

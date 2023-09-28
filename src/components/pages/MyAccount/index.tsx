@@ -25,7 +25,7 @@ import {
   Typography,
   PageHeader,
 } from '@catena-x/portal-shared-components'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'

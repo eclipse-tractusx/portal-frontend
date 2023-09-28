@@ -22,7 +22,7 @@ import { CardHorizontal, Typography } from '@catena-x/portal-shared-components'
 import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 
@@ -71,7 +71,9 @@ export default function ServicesElements({
                       imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                       label={service.provider}
                       buttonText="Details"
-                      onBtnClick={() => handleClick(service.id)}
+                      onBtnClick={() => {
+                        handleClick(service.id)
+                      }}
                       title={service.title}
                       subTitle={getServices(service.serviceTypes)}
                       description={service.description}

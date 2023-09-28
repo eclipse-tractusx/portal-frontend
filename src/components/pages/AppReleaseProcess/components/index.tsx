@@ -65,7 +65,9 @@ export default function AppReleaseProcessForm() {
   return (
     <ReleaseProcessWrapper
       processType={ReleaseProcessTypes.APP_RELEASE}
-      onAppsOverviewClick={() => onAppsOverviewClick()}
+      onAppsOverviewClick={() => {
+        onAppsOverviewClick()
+      }}
       stepsList={stepsList}
       numberOfSteps={6}
       pageHeaderTitle={t('content.apprelease.headerTitle')}

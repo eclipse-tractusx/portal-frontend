@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { fetch } from './actions'
 import {
   AppDetailInitial,
-  AppDetails,
-  AppDetailsState,
+  type AppDetails,
+  type AppDetailsState,
   initialState,
   name,
 } from './types'

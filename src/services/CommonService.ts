@@ -20,8 +20,8 @@
 
 import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
-import { AppMarketplaceApp } from 'features/apps/apiSlice'
-import { ImageType } from '@catena-x/portal-shared-components'
+import type { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { ImageType } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from './ImageService'
 
 const getName = (app: AppMarketplaceApp) => app.name ?? ''
@@ -106,7 +106,9 @@ const getCompanyRoleUpdateData = (callback: any) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
-    .catch((error) => console.log('Fetching Company Roles Data Failed'))
+    .catch((error) => {
+      console.log('Fetching Company Roles Data Failed')
+    })
 }
 
 const getDataSpace = (callback: any) => {

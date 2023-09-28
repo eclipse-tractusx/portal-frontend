@@ -18,11 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems, Cards } from '@catena-x/portal-shared-components'
+import { type CardItems, Cards } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PAGES } from 'types/Constants'
-import { AppInfo } from 'features/apps/apiSlice'
+import type { AppInfo } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
 
 enum AppSubMenuItems {
@@ -83,7 +83,9 @@ export const AppOverviewList = ({
         imageLoader={fetchImageWithToken}
         showAddNewCard={true}
         newButtonText={t('content.appoverview.addbtn')}
-        onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+        onNewCardButton={() => {
+          navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+        }}
         onCardClick={(item: unknown) => {
           showOverlay(item as AppInfo)
         }}

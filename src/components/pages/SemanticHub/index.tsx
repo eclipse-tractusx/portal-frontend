@@ -39,7 +39,7 @@ import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAssetBase } from 'services/EnvironmentService'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
@@ -134,7 +134,9 @@ export default function SemanticHub() {
               </Typography>
               {UserService.hasRole(ROLES.SEMANTICHUB_ADD) && (
                 <Button
-                  onClick={() => setImportModel(true)}
+                  onClick={() => {
+                    setImportModel(true)
+                  }}
                   startIcon={<AddCircleOutlineIcon fontSize="large" />}
                 >
                   {t('content.semantichub.addModel')}
@@ -156,7 +158,9 @@ export default function SemanticHub() {
       <ModelDetailDialog show={showModel} onClose={onDetailClose} />
       <ModelImportDialog
         show={importModel}
-        onClose={() => setImportModel(false)}
+        onClose={() => {
+          setImportModel(false)
+        }}
       />
       <PageSnackbar
         open={showErrorAlert}

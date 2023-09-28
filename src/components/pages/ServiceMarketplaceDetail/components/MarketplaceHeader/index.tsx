@@ -22,7 +22,7 @@ import { useDispatch } from 'react-redux'
 import { Button, Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import { show } from 'features/control/overlay'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import UserService from 'services/UserService'
@@ -51,7 +51,9 @@ export default function MarketplaceHeader({
         <Button
           color="success"
           className="subscribe-btn"
-          onClick={() => console.log('click function')}
+          onClick={() => {
+            console.log('click function')
+          }}
         >
           {t('content.appdetail.subscribed')}
         </Button>

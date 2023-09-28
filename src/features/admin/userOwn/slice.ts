@@ -22,8 +22,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   name,
   initialState,
-  AdminUserDetailState,
-  UserDetail,
+  type AdminUserDetailState,
+  type UserDetail,
   InitialUserDetail,
 } from './types'
 import {
@@ -33,7 +33,7 @@ import {
   putBusinessPartnerNumber,
   putResetPassword,
 } from './actions'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 
 const pending = (state: AdminUserDetailState) => ({

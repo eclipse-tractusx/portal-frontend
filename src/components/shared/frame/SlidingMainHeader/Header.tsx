@@ -85,7 +85,13 @@ export const Header = ({
               </Typography>
             )}
             {buttonText && (
-              <Button onClick={() => handleClick()}>{buttonText}</Button>
+              <Button
+                onClick={() => {
+                  handleClick()
+                }}
+              >
+                {buttonText}
+              </Button>
             )}
           </Box>
         </Box>

@@ -25,7 +25,7 @@ import {
   DialogHeader,
   PageSnackbar,
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import {
@@ -281,7 +281,9 @@ const AppSubscriptionDetailOverlay = ({
           title={t('content.appSubscription.detailOverlay.title')}
           intro={getDialogIntro()}
           closeWithIcon={true}
-          onCloseWithIcon={() => handleOverlayClose()}
+          onCloseWithIcon={() => {
+            handleOverlayClose()
+          }}
         />
         <DialogContent>
           <ReleaseStepper

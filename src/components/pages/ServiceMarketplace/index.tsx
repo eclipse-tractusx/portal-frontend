@@ -18,7 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState, useCallback, useMemo, ChangeEvent } from 'react'
+import {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  type ChangeEvent,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -36,7 +42,7 @@ import {
   SortOption,
 } from '@catena-x/portal-shared-components'
 import {
-  ServiceRequest,
+  type ServiceRequest,
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'

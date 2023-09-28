@@ -29,12 +29,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { itemsSelector } from 'features/apps/favorites/slice'
 import { useEffect } from 'react'
 import { fetchItems } from 'features/apps/favorites/actions'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
-  const active = useFetchActiveAppsQuery().data || []
+  const active = useFetchActiveAppsQuery().data ?? []
   const favorites = useSelector(itemsSelector)
   const favoriteSectionPosition = favorites.length === 0 ? 30 : 45
 

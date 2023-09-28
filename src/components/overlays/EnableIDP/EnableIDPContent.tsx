@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import {
+import type {
   IdentityProviderUser,
   UserIdentityProvidersItem,
 } from 'features/admin/idpApiSlice'
 import { isID } from 'types/Patterns'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { getApiBase } from 'services/EnvironmentService'
@@ -98,8 +98,12 @@ export const EnableIDPContent = ({
       }
     )
       .then((response) => response.json())
-      .then((data: UserIdentityProvidersItem) => setUserId(data.userId))
-      .catch((e) => console.log(e))
+      .then((data: UserIdentityProvidersItem) => {
+        setUserId(data.userId)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   }, [identityProviderId, companyUserId])
 
   return (

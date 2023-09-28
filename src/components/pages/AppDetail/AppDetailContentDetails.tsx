@@ -31,7 +31,7 @@ import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailDocuments from './components/AppDetailDocuments'
 import AppDetailProvider from './components/AppDetailProvider'
 import AppDetailTags from './components/AppDetailTags'
-import { AppDetails } from 'features/apps/apiSlice'
+import type { AppDetails } from 'features/apps/apiSlice'
 import './AppDetail.scss'
 import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
@@ -82,7 +82,9 @@ export default function AppDetailContentDetails({
               <Button
                 color="secondary"
                 size="small"
-                onClick={() => navigate(`/${PAGES.APP_MARKETPLACE}`)}
+                onClick={() => {
+                  navigate(`/${PAGES.APP_MARKETPLACE}`)
+                }}
               >
                 {t('global.actions.back')}
               </Button>
@@ -97,7 +99,9 @@ export default function AppDetailContentDetails({
             <Navigation
               active={selectedItem}
               items={navigationItems}
-              selectedItem={(item: string) => setSelectedItem(item)}
+              selectedItem={(item: string) => {
+                setSelectedItem(item)
+              }}
             />
           </div>
         </div>

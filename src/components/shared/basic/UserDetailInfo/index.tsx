@@ -21,7 +21,7 @@
 import { Box, useTheme } from '@mui/material'
 import { UserDetailCard } from './UserDetailCard'
 import { userDetailsToCards } from 'features/admin/userOwn/mapper'
-import { TenantUserDetails } from 'features/admin/userApiSlice'
+import type { TenantUserDetails } from 'features/admin/userApiSlice'
 import { AppPermissions } from 'components/shared/frame/AppPermissions'
 import { UserRoles } from '../UserRoles'
 

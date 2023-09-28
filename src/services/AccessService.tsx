@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
+import type { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
@@ -26,7 +26,7 @@ import AddBPN from 'components/overlays/AddBPN'
 import { AddUser } from 'components/overlays/AddUser'
 import NewsDetail from 'components/overlays/NewsDetail'
 import UserInfo from 'components/overlays/UserInfo'
-import { OverlayState } from 'features/control/overlay'
+import type { OverlayState } from 'features/control/overlay'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,

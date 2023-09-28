@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems } from '@catena-x/portal-shared-components'
-import { InitialListState, ListState } from 'types/MainTypes'
+import type { CardItems } from '@catena-x/portal-shared-components'
+import { InitialListState, type ListState } from 'types/MainTypes'
 
 export const name = 'info/news'
 

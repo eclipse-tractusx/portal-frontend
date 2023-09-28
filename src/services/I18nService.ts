@@ -69,7 +69,9 @@ const init = (): void => {
         escapeValue: false,
       },
     })
-    .catch((e) => console.error('Translation library init got error:', e))
+    .catch((e) => {
+      console.error('Translation library init got error:', e)
+    })
 }
 
 const searchPages = (expr: string): string[] => {

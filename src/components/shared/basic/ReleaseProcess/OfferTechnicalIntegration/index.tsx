@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
 import {
-  serviceUserRolesType,
+  type serviceUserRolesType,
   useFetchServiceStatusQuery,
   useFetchServiceTechnicalUserProfilesQuery,
   useFetchServiceUserRolesQuery,
@@ -66,11 +66,7 @@ export default function OfferTechnicalIntegration() {
     useSaveServiceTechnicalUserProfilesMutation()
 
   const userProfiles = useMemo(
-    () =>
-      (data &&
-        data?.length > 0 &&
-        data[0]?.userRoles.map((i: { roleId: string }) => i.roleId)) ||
-      [],
+    () => data?.[0]?.userRoles.map((i: { roleId: string }) => i.roleId) ?? [],
     [data]
   )
 
@@ -123,9 +119,7 @@ export default function OfferTechnicalIntegration() {
         serviceId,
         body: [
           {
-            technicalUserProfileId:
-              (data && data?.length > 0 && data[0]?.technicalUserProfileId) ||
-              null,
+            technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
             userRoleIds: serviceTechUserProfiles,
           },
         ],
@@ -176,7 +170,9 @@ export default function OfferTechnicalIntegration() {
                 checked={serviceTechUserProfiles.some(
                   (role) => item.roleId === role
                 )}
-                onChange={(e) => handleUserProfiles(e.target.checked, item)}
+                onChange={(e) => {
+                  handleUserProfiles(e.target.checked, item)
+                }}
                 size="small"
               />
             </Grid>

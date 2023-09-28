@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { CXValidatingOverlay } from '../CXValidatingOverlay'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import {
   isMail,
   isURL,
@@ -31,8 +31,9 @@ import {
 
 export const SampleForm = () => {
   const { t } = useTranslation()
-  const onSubmit = (formData: IHashMap<string>) =>
+  const onSubmit = (formData: IHashMap<string>) => {
     console.log('submit', JSON.stringify(formData, null, 2))
+  }
 
   const fields = [
     { key: 'email', label: '', valid: isMail },

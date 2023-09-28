@@ -19,8 +19,8 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import { PageNotificationsProps } from '@catena-x/portal-shared-components'
-import { InitialNotificationType, name } from './types'
+import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import { type InitialNotificationType, name } from './types'
 
 const setNotification = createAction(
   `${name}/setNotification`,

@@ -63,7 +63,9 @@ export default function PageHeaderWithCrumbs({ crumbs }: { crumbs: string[] }) {
               {title}
             </NavLink>
           )}
-        onBackButtonClick={() => navigate(`/${path[path.length - 1]}`)}
+        onBackButtonClick={() => {
+          navigate(`/${path[path.length - 1]}`)
+        }}
       />
     </PageHeader>
   )

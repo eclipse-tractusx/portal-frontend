@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MutableRefObject } from 'react'
+import type { MutableRefObject } from 'react'
 
 const referenceMap: { [key: string]: MutableRefObject<any> } = {}
 
@@ -27,11 +27,12 @@ const registerReference = (key: string, ref: MutableRefObject<any>) => {
   return ref
 }
 
-const scrollTo = (key: string) =>
+const scrollTo = (key: string) => {
   window.scrollTo({
     top: referenceMap[key].current.offsetTop + 1,
     behavior: 'smooth',
   })
+}
 
 const PageService = {
   registerReference,

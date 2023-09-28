@@ -62,14 +62,21 @@ const BasicFormTest = () => {
     <div>
       <h3>BasicInput</h3>
       <TestValueBar onValue={setMailValue} />
-      Error <Checkbox onClick={() => setError(!error)}></Checkbox>
+      Error{' '}
+      <Checkbox
+        onClick={() => {
+          setError(!error)
+        }}
+      ></Checkbox>
       <BasicInput
         name={'mail'}
         label={'your mail address'}
         hint={'specify a valid email address'}
         errorMessage={error ? 'invalid email address' : undefined}
         value={mailValue}
-        onValue={(value?: string) => setMailValue(value ?? '')}
+        onValue={(value?: string) => {
+          setMailValue(value ?? '')
+        }}
       />
       <BasicInput
         name={'password'}
@@ -105,16 +112,21 @@ const ValidatingFormTest = () => {
     <div>
       <h3>ValidatingInput</h3>
       <TestValueBar onValue={setMailValue} />
-      Error <Checkbox onClick={() => setError(!error)}></Checkbox>
+      Error{' '}
+      <Checkbox
+        onClick={() => {
+          setError(!error)
+        }}
+      ></Checkbox>
       <ValidatingInput
         value={'250'}
         name={'debounceTime'}
         label={'debounce time'}
         hint={'specify the debounce time in ms'}
         errorMessage={error ? 'debounce time must be a number' : undefined}
-        validate={(expr) => !Number.isNaN(Number.parseInt(expr || '0'))}
+        validate={(expr) => !Number.isNaN(Number.parseInt(expr ?? '0'))}
         onValid={(_name: string, value?: string) =>
-          setDebounceTime(value || '0')
+          setDebounceTime(value ?? '0')
         }
         debounceTime={Number.parseInt(debounceTime)}
       />
@@ -125,7 +137,9 @@ const ValidatingFormTest = () => {
         errorMessage={error ? 'invalid email address' : undefined}
         value={mailValue}
         validate={isMail}
-        onValid={(_name: string, value?: string) => setMailValue(value ?? '')}
+        onValid={(_name: string, value?: string) => {
+          setMailValue(value ?? '')
+        }}
         debounceTime={Number.parseInt(debounceTime)}
       />
       <ValidatingInput
@@ -137,7 +151,9 @@ const ValidatingFormTest = () => {
           error ? 'password length must be at least 8 characters' : undefined
         }
         validate={(expr) => expr.length >= 8}
-        onValid={(_name: string, value?: string) => console.log(value ?? '')}
+        onValid={(_name: string, value?: string) => {
+          console.log(value ?? '')
+        }}
         debounceTime={Number.parseInt(debounceTime)}
       />
       <pre

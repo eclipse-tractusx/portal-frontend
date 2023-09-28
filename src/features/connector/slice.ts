@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import {
+import type {
   PaginationData,
   ConnectorInitialState,
   ConnectorAPIResponse,
 } from './types'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { fetchConnectors, createConnector } from './actions'
 import uniq from 'lodash.uniq'
 

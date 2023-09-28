@@ -20,10 +20,13 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type {
+  PaginResult,
+  PaginFetchArgs,
+} from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 
 export interface UserAppRoles {

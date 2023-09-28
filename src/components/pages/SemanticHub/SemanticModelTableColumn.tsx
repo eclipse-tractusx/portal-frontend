@@ -18,10 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { SemanticModel } from 'features/semanticModels/types'
+import type { SemanticModel } from 'features/semanticModels/types'
 
 // Columns definitions of Digital Twin page Data Grid
 export const SemanticModelTableColumns = (
@@ -45,7 +45,9 @@ export const SemanticModelTableColumns = (
       filterable: false,
       renderCell: ({ row }: { row: SemanticModel }) => (
         <IconButton
-          onClick={() => onDetailClick(row.urn)}
+          onClick={() => {
+            onDetailClick(row.urn)
+          }}
           color="secondary"
           size="small"
         >

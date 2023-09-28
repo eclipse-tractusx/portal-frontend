@@ -35,7 +35,9 @@ export default function AdminBoardDetail() {
       <Button
         color="secondary"
         size="small"
-        onClick={() => navigate('/adminboard')}
+        onClick={() => {
+          navigate('/adminboard')
+        }}
       >
         {t('global.actions.back')}
       </Button>

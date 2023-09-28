@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CompanyDetails } from './userApiSlice'
+import type { CompanyDetails } from './userApiSlice'
 export const CompanyDetailsToCards = (data: CompanyDetails) => {
   return {
     cardCategory: 'Company Details',
