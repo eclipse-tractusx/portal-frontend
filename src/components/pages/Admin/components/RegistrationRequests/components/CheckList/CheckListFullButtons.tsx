@@ -25,7 +25,7 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import {
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'

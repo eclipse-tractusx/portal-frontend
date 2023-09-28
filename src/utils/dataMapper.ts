@@ -18,13 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { BusinessPartnerResponse } from 'features/partnerNetwork/types'
-
-import {
+import type { BusinessPartnerResponse } from 'features/partnerNetwork/types'
+import type {
   RegistrationRequest,
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
-import { BusinessPartner } from 'features/newPartnerNetwork/types'
+import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (

@@ -25,7 +25,7 @@ import {
   Card,
   LogoGrayData,
   SelectList,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
@@ -38,9 +38,9 @@ import {
   useFetchAppLanguagesQuery,
   useAddCreateAppMutation,
   useUpdateDocumentUploadMutation,
-  useCasesItem,
+  type useCasesItem,
   useFetchSalesManagerDataQuery,
-  salesManagerType,
+  type salesManagerType,
   useSaveAppMutation,
   useFetchAppStatusQuery,
   useFetchDocumentByIdMutation,
@@ -49,7 +49,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -69,7 +69,7 @@ import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldI
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
-import { UseCaseType } from 'features/appManagement/types'
+import type { UseCaseType } from 'features/appManagement/types'
 
 type FormDataType = {
   title: string

@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
 import {
-  serviceUserRolesType,
+  type serviceUserRolesType,
   useFetchServiceStatusQuery,
   useFetchServiceTechnicalUserProfilesQuery,
   useFetchServiceUserRolesQuery,

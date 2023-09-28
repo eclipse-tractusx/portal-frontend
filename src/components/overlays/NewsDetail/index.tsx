@@ -26,7 +26,7 @@ import {
 import { show } from 'features/control/overlay'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'

@@ -33,11 +33,11 @@ import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
-import {
+import type {
   ServiceContent,
   ServiceRequestBody,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
+import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
 

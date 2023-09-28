@@ -20,7 +20,10 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type {
+  PaginResult,
+  PaginFetchArgs,
+} from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 
 export enum ApplicationRequestStatus {

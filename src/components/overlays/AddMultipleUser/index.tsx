@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { Typography } from '@mui/material'
 import { Trans, useTranslation } from 'react-i18next'
 import {
@@ -30,11 +30,11 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   Checkbox,
   Alert,
   LoadingButton,
-  TableType,
+  type TableType,
   StaticTable,
   CircleProgress,
 } from '@catena-x/portal-shared-components'
@@ -46,17 +46,17 @@ import { show, closeOverlay } from 'features/control/overlay'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import {
-  AppRole,
+  type AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 import {
-  MultipleUsersResponse,
+  type MultipleUsersResponse,
   useAddMutipleUsersMutation,
 } from 'features/appManagement/userManagementApiSlice'
 import {
   useFetchIDPListQuery,
-  IdentityProvider,
+  type IdentityProvider,
   IDPCategory,
 } from 'features/admin/idpApiSlice'
 import './AddMultipleUser.scss'

@@ -30,7 +30,7 @@ import {
   LoadingButton,
   Radio,
   StaticTable,
-  TableType,
+  type TableType,
   Textarea,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -39,7 +39,7 @@ import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useFetchIDPDetailQuery,
-  UserIdentityProviders,
+  type UserIdentityProviders,
   useFetchIDPUsersListQuery,
 } from 'features/admin/idpApiSlice'
 import EnvironmentService from 'services/EnvironmentService'

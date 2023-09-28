@@ -20,7 +20,7 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
-import { FilterParams, NewSemanticModel } from './types'
+import type { FilterParams, NewSemanticModel } from './types'
 
 const message = 'The server responded with an error.'
 

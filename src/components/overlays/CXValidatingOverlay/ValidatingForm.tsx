@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import Box from '@mui/material/Box'
 import { ValidatingInput } from './ValidatingInput'
 

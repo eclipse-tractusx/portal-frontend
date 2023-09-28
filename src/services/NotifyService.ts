@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Notify, SeverityType, deq, enq } from 'features/control/notify'
+import { type Notify, SeverityType, deq, enq } from 'features/control/notify'
 import { store } from 'features/store'
 import log from './LogService'
 

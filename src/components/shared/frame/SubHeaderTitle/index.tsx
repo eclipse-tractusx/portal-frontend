@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Typography } from '@catena-x/portal-shared-components'
-import { TypographyProps } from '@mui/material/Typography'
+import type { TypographyProps } from '@mui/material/Typography'
 import { useTranslation } from 'react-i18next'
 
 interface ComponentProps {

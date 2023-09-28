@@ -31,7 +31,7 @@ import {
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { InviteData } from 'features/admin/registration/types'
+import type { InviteData } from 'features/admin/registration/types'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'

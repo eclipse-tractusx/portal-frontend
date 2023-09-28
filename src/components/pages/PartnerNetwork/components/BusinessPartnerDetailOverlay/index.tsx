@@ -20,9 +20,9 @@
 
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
+import type { BpdmTypeUUIDKeyPair } from 'features/partnerNetwork/types'
 import DetailGridRow from './DetailGridRow'
-import { BusinessPartner } from 'features/newPartnerNetwork/types'
+import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import GridTitle from './GridTitle'
 import DialogContainer from './DailogContainer'
 

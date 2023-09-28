@@ -26,7 +26,7 @@ import {
   Typography,
   ViewSelector,
   SearchInput,
-  CardItems,
+  type CardItems,
   Cards,
   PageSnackbar,
   ErrorBar,
@@ -39,8 +39,8 @@ import {
 } from 'features/apps/mapper'
 import {
   useFetchProvidedAppsQuery,
-  AppInfo,
-  AppMarketplaceApp,
+  type AppInfo,
+  type AppMarketplaceApp,
 } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'

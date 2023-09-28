@@ -22,7 +22,7 @@ import { CardHorizontal, Typography } from '@catena-x/portal-shared-components'
 import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 

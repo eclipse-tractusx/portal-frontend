@@ -19,10 +19,10 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { StatusVariants } from '@catena-x/portal-shared-components'
+import type { StatusVariants } from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import i18next from 'i18next'
-import { AppDetails } from 'features/apps/apiSlice'
+import type { AppDetails } from 'features/apps/apiSlice'
 
 const PAGE_SIZE = 15
 

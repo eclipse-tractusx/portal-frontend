@@ -21,7 +21,7 @@
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import { HttpClient } from 'utils/HttpClient'
-import { UserDetail } from './types'
+import type { UserDetail } from './types'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

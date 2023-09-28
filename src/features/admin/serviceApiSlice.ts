@@ -22,7 +22,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
-import { PaginFetchArgs, PaginResult } from '@catena-x/portal-shared-components'
+import type {
+  PaginFetchArgs,
+  PaginResult,
+} from '@catena-x/portal-shared-components'
 
 export enum ServiceAccountType {
   SECRET = 'SECRET',

@@ -27,7 +27,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
-  ServiceDetailsType,
+  type ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useCallback, useEffect, useState } from 'react'

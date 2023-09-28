@@ -32,7 +32,6 @@
         "@typescript-eslint/comma-dangle": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
         "@typescript-eslint/ban-types": 0,
-        "@typescript-eslint/consistent-type-imports": 0,
         "@typescript-eslint/no-confusing-void-expression": 0,
         "@typescript-eslint/no-empty-function": 0,
         "@typescript-eslint/no-explicit-any": 0,

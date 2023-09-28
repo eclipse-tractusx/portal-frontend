@@ -31,9 +31,9 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useForm } from 'react-hook-form'
-import { DefaultFormFieldValuesType } from './TechnicalUserAddForm'
+import type { DefaultFormFieldValuesType } from './TechnicalUserAddForm'
 import {
-  ServiceAccountDetail,
+  type ServiceAccountDetail,
   ServiceAccountType,
   useAddServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'

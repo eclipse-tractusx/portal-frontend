@@ -20,21 +20,21 @@
 
 import { useState } from 'react'
 import {
-  IdentityProvider,
-  IdentityProviderUpdate,
-  IdentityProviderUpdateBody,
+  type IdentityProvider,
+  type IdentityProviderUpdate,
+  type IdentityProviderUpdateBody,
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ReadOnlyValue from 'components/shared/basic/ReadOnlyValue'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
 import {
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 

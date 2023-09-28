@@ -20,10 +20,13 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBpdmQuery } from 'utils/rtkUtil'
-import { PaginResult, PaginFetchArgs } from '@catena-x/portal-shared-components'
-import { BusinessPartner } from './types'
+import type {
+  PaginResult,
+  PaginFetchArgs,
+} from '@catena-x/portal-shared-components'
+import type { BusinessPartner } from './types'
 import Patterns from 'types/Patterns'
-import { BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
+import type { BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
 
 const checkIfBPNLNumber = (text: string): boolean =>
   Patterns.BPN.test(text.trim())

@@ -20,16 +20,22 @@
 
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  type ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 import {
-  AgreementStatusType,
-  AgreementType,
+  type AgreementStatusType,
+  type AgreementType,
   ConsentStatusEnum,
-  ConsentType,
+  type ConsentType,
   DocumentTypeId,
-  UpdateAgreementConsentType,
+  type UpdateAgreementConsentType,
   useDeleteAppReleaseDocumentMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -39,15 +45,15 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import {
   PageSnackbar,
   Typography,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import { download } from 'utils/downloadUtils'
-import { AppStatusDataState } from 'features/appManagement/types'
+import type { AppStatusDataState } from 'features/appManagement/types'
 import { Grid } from '@mui/material'
 import { ErrorMessage } from '@hookform/error-message'
-import { ServiceStatusDataState } from 'features/serviceManagement/types'
+import type { ServiceStatusDataState } from 'features/serviceManagement/types'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepIncrement,

@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { subSectionsType } from '../StaticTypes'
+import type { subSectionsType } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 

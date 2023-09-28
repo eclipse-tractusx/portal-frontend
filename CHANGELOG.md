@@ -53,6 +53,8 @@
   - import/no-duplicates
   - prefer-const
   - object shorthand
+  - Add type for imports
+  - Prefer-nullish-coalescing (|| => ??)
 - Notifications
   - App Subscription Request content update
 - Digital Twin
@@ -66,8 +68,6 @@
   - Skip technical integration for consultancy service
 - Shared
   - Removed PageLoadingTable component
-- Linter Finding
-  - Prefer-nullish-coalescing (|| => ??)
 
 ## 1.6.0
 

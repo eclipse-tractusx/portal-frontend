@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
+import type { ProviderProps } from '../StaticTypes'
 import TextCenterAligned from './TextCenterAligned'
 import RenderImage from './RenderImage'
 import '../StaticTemplate.scss'

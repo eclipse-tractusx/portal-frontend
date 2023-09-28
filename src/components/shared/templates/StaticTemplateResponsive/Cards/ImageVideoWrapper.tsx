@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ReactElement } from 'react'
-import { ProviderProps } from '../StaticTypes'
+import type { ReactElement } from 'react'
+import type { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 

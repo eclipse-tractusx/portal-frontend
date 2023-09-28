@@ -31,7 +31,7 @@ import {
   PageSnackbar,
   LoadMoreButton,
 } from '@catena-x/portal-shared-components'
-import {
+import type {
   AppFiltersResponse,
   SubscriptionContent,
   SubscriptionRequestBody,
@@ -39,8 +39,8 @@ import {
 import { currentProviderSuccessType } from 'features/serviceProvider/slice'
 import './Subscription.scss'
 import SubscriptionElements from './SubscriptionElements'
-import { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
-import { RootState } from 'features/store'
+import type { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import type { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
 import SortImage from 'components/shared/frame/SortImage'
 

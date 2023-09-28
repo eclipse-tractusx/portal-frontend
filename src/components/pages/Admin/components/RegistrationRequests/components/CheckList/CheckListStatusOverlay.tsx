@@ -32,7 +32,7 @@ import CheckList from '.'
 import {
   EndUrlMap,
   RetriggerableProcessSteps,
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
   ProgressStatus,
   StatusType,
   useApproveChecklistMutation,

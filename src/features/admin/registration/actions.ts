@@ -21,7 +21,7 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
-import { SearchParams } from '../../connector/types'
+import type { SearchParams } from '../../connector/types'
 
 const fetchRegistrationRequests = createAsyncThunk(
   `${name}/fetchRegistrationRequests`,

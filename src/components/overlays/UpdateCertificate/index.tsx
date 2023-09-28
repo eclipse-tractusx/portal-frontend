@@ -27,7 +27,7 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   LoadingButton,
   Typography,
   SelectList,
@@ -38,7 +38,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { error } from 'services/NotifyService'
 import {

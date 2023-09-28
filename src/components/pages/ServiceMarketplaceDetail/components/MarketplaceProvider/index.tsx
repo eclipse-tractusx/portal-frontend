@@ -22,9 +22,9 @@ import { useTranslation } from 'react-i18next'
 import {
   Typography,
   StaticTable,
-  TableType,
+  type TableType,
 } from '@catena-x/portal-shared-components'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceProvider.scss'
 
 export default function MarketplaceProvider({

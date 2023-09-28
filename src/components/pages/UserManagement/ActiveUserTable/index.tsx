@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  TenantUser,
+  type TenantUser,
   useFetchUsersSearchQuery,
 } from 'features/admin/userApiSlice'
 import { useNavigate } from 'react-router-dom'

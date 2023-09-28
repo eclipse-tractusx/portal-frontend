@@ -36,8 +36,8 @@ import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/DetailGridRow'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
-  ApplicationRequest,
-  ProgressButtonsProps,
+  type ApplicationRequest,
+  type ProgressButtonsProps,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,

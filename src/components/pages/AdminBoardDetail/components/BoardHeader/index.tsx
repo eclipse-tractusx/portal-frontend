@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { AppDetails } from 'features/apps/details/types'
+import type { AppDetails } from 'features/apps/details/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import './BoardHeader.scss'

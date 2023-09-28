@@ -19,10 +19,10 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
 import { fetchSearch } from './actions'
-import { initialState, name, SearchItem } from './types'
+import { initialState, name, type SearchItem } from './types'
 
 export const slice = createSlice({
   name,

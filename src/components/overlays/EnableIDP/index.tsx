@@ -35,7 +35,7 @@ import { useState } from 'react'
 import {
   useEnableIDPMutation,
   useUpdateUserIDPMutation,
-  IdentityProviderUser,
+  type IdentityProviderUser,
   useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
 import { EnableIDPContent } from './EnableIDPContent'
