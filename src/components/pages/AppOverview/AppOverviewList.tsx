@@ -83,7 +83,9 @@ export const AppOverviewList = ({
         imageLoader={fetchImageWithToken}
         showAddNewCard={true}
         newButtonText={t('content.appoverview.addbtn')}
-        onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+        onNewCardButton={() => {
+          navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+        }}
         onCardClick={(item: unknown) => {
           showOverlay(item as AppInfo)
         }}

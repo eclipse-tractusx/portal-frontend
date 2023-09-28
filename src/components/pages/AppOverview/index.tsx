@@ -249,7 +249,9 @@ export default function AppOverview() {
                 sx={{ minWidth: '544px' }}
                 margin={'normal'}
                 value={searchExpr}
-                onChange={(e) => doSearch(e.target.value)}
+                onChange={(e) => {
+                  doSearch(e.target.value)
+                }}
                 placeholder={t('content.appoverview.inputPlaceholder')}
               />
             </Box>

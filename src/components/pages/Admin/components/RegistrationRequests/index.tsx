@@ -98,16 +98,24 @@ export default function RegistrationRequests() {
     if (actionType === 'approve' && selectedRequestId) {
       await approveRequest(selectedRequestId)
         .unwrap()
-        .then((payload) => console.log('fulfilled', payload))
-        .catch((error) => setShowErrorAlert(error.data.title))
+        .then((payload) => {
+          console.log('fulfilled', payload)
+        })
+        .catch((error) => {
+          setShowErrorAlert(error.data.title)
+        })
     } else if (actionType === 'decline' && selectedRequestId) {
       await declineRequest({
         applicationId: selectedRequestId,
         comment: '',
       })
         .unwrap()
-        .then((payload) => console.log('fulfilled', payload))
-        .catch((error) => setShowErrorAlert(error.data.title))
+        .then((payload) => {
+          console.log('fulfilled', payload)
+        })
+        .catch((error) => {
+          setShowErrorAlert(error.data.title)
+        })
     }
     setLoaded(Date.now())
     setIsLoading(false)
@@ -124,7 +132,7 @@ export default function RegistrationRequests() {
       const fileType = response.headers.get('content-type')
       const file = response.data
 
-      return download(file, fileType, documentType)
+      download(file, fileType, documentType)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -174,7 +182,9 @@ export default function RegistrationRequests() {
           {...{
             openDialog: overlayOpen,
             selectedRequestId,
-            handleOverlayClose: () => setOverlayOpen(false),
+            handleOverlayClose: () => {
+              setOverlayOpen(false)
+            },
           }}
         />
       )}
@@ -280,12 +290,12 @@ export default function RegistrationRequests() {
             setErrorOverlay(false)
             setIsLoading(false)
           }}
-          onConfirmationCancel={(id: string, name: string) =>
+          onConfirmationCancel={(id: string, name: string) => {
             onConfirmationCancel(id, name)
-          }
-          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) =>
+          }}
+          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) => {
             onChipButtonSelect(selected, id)
-          }
+          }}
         />
       </div>
     </main>

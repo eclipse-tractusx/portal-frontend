@@ -40,7 +40,9 @@ export default function SearchSection() {
       >
         <Button
           sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => PageService.scrollTo(AppList)}
+          onClick={() => {
+            PageService.scrollTo(AppList)
+          }}
         >
           {t('content.appstore.stage.appButton')}
         </Button>

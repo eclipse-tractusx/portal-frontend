@@ -122,7 +122,9 @@ export default function NotificationCenter() {
     }
   }, [data])
 
-  const nextPage = () => setPage(page + 1)
+  const nextPage = () => {
+    setPage(page + 1)
+  }
 
   const sortOptions = [
     {
@@ -216,18 +218,24 @@ export default function NotificationCenter() {
       <section>
         <div
           className="searchContainer"
-          onMouseLeave={() => setShowModal(false)}
+          onMouseLeave={() => {
+            setShowModal(false)
+          }}
         >
           <SearchInput
             placeholder={t('search')}
             value={searchExpr}
             autoFocus={false}
             autoComplete="off"
-            onChange={(e) => setSearchExpr(e.target.value)}
+            onChange={(e) => {
+              setSearchExpr(e.target.value)
+            }}
           />
           <div>
             <SortImage
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                setShowModal(true)
+              }}
               selected={showModal}
             />
             <div className="sortSection">

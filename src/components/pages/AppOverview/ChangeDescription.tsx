@@ -155,7 +155,9 @@ export default function ChangeDescription() {
         <div className="main-row">
           <Tabs
             value={activeTab}
-            onChange={(e, newValue: number) => setActiveTab(newValue)}
+            onChange={(e, newValue: number) => {
+              setActiveTab(newValue)
+            }}
             centered
             sx={{
               '.MuiTab-root': {
@@ -312,7 +314,9 @@ export default function ChangeDescription() {
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
           <Button
             color="secondary"
-            onClick={() => navigate(`/${PAGES.APPOVERVIEW}`)}
+            onClick={() => {
+              navigate(`/${PAGES.APPOVERVIEW}`)
+            }}
             size="small"
           >
             {t('global.actions.cancel')}

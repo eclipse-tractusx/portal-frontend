@@ -51,7 +51,9 @@ export default function MarketplaceHeader({
         <Button
           color="success"
           className="subscribe-btn"
-          onClick={() => console.log('click function')}
+          onClick={() => {
+            console.log('click function')
+          }}
         >
           {t('content.appdetail.subscribed')}
         </Button>

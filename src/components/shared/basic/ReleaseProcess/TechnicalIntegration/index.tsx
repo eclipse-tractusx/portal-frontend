@@ -199,12 +199,16 @@ export default function TechnicalIntegration() {
   }
 
   const csvPreview = (files: File[]) => {
-    return files
+    files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
         const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
@@ -518,7 +522,9 @@ export default function TechnicalIntegration() {
                                 fontSize: '14px',
                               },
                             }}
-                            handleDelete={() => onChipDelete(role.roleId)}
+                            handleDelete={() => {
+                              onChipDelete(role.roleId)
+                            }}
                           />
                         ),
                         color: 'white',
@@ -565,9 +571,9 @@ export default function TechnicalIntegration() {
                   item.roleDescription === null ? '' : item.roleDescription
                 })`}
                 checked={techUserProfiles.some((role) => item.roleId === role)}
-                onChange={(e) =>
+                onChange={(e) => {
                   handleCheckedUserProfiles(e.target.checked, item)
-                }
+                }}
                 size="small"
               />
             </Grid>

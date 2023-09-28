@@ -147,7 +147,9 @@ export const ConnectorTableColumns = (
                   cursor: 'pointer',
                 },
               }}
-              onClick={() => onDelete(row)}
+              onClick={() => {
+                onDelete(row)
+              }}
             />
           </Box>
           <Box>

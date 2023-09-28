@@ -27,7 +27,7 @@ const fetchRegistrationRequests = createAsyncThunk(
   `${name}/fetchRegistrationRequests`,
   async ({ params }: { params: SearchParams }) => {
     try {
-      return await Api.getInstance().getRegistrationRequests(params)
+      await Api.getInstance().getRegistrationRequests(params)
     } catch (error: unknown) {
       console.error('api call error:', error)
       throw Error(`${name}/fetchRegistrationRequests error`)
@@ -62,7 +62,7 @@ const approveRequest = createAsyncThunk(
   `${name}/approveRequest`,
   async (applicationId: string) => {
     try {
-      return await Api.getInstance().approveRegistrationRequest(applicationId)
+      await Api.getInstance().approveRegistrationRequest(applicationId)
     } catch (error: unknown) {
       throw Error(`${name}/approveRequest error`)
     }
@@ -73,7 +73,7 @@ const declineRequest = createAsyncThunk(
   `${name}/declineRequest`,
   async (applicationId: string) => {
     try {
-      return await Api.getInstance().declineRegistrationRequest(applicationId)
+      await Api.getInstance().declineRegistrationRequest(applicationId)
     } catch (error: unknown) {
       throw Error(`${name}/declineRequest error`)
     }

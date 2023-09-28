@@ -112,7 +112,7 @@ const CompanyDetailOverlay = ({
       const fileType = response.headers.get('content-type')
       const file = response.data
 
-      return download(file, fileType, documentType)
+      download(file, fileType, documentType)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }

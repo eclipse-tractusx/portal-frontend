@@ -280,7 +280,7 @@ export default function AppMarketCard() {
       const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
-      return setCardImage(URL.createObjectURL(file))
+      setCardImage(URL.createObjectURL(file))
     } catch (error) {
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
       console.error(error, 'ERROR WHILE FETCHING IMAGE')
@@ -300,7 +300,9 @@ export default function AppMarketCard() {
     getValues().uploadImage.alt ??
     t('content.apprelease.appMarketCard.defaultCardAppImageAlt')
 
-  window.onscroll = () => setPageScrolled(window.scrollY !== 0)
+  window.onscroll = () => {
+    setPageScrolled(window.scrollY !== 0)
+  }
 
   const onSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
@@ -332,13 +334,14 @@ export default function AppMarketCard() {
     buttonLabel: string,
     uploadImageValue: DropzoneFile
   ) => {
-    const setFileStatus = (status: UploadFileStatus) =>
+    const setFileStatus = (status: UploadFileStatus) => {
       setValue('uploadImage.leadPictureUri', {
         id: uploadImageValue.id,
         name: uploadImageValue.name,
         size: uploadImageValue.size,
         status,
       } as any)
+    }
 
     setFileStatus(UploadStatus.UPLOADING)
     uploadDocumentApi(appId, DocumentTypeId.APP_LEADIMAGE, uploadImageValue)
@@ -737,7 +740,9 @@ export default function AppMarketCard() {
                 placeholder={t(
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
-                onChangeItem={(e) => onSalesManagerChange(e.userId)}
+                onChangeItem={(e) => {
+                  onSalesManagerChange(e.userId)
+                }}
                 keyTitle={'fullName'}
               />
             </div>
@@ -815,9 +820,15 @@ export default function AppMarketCard() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={() => setAppCardNotification(false)}
-        setPageSnackbar={() => setAppCardSnackbar(false)}
-        onBackIconClick={() => navigate('/appmanagement')}
+        setPageNotification={() => {
+          setAppCardNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setAppCardSnackbar(false)
+        }}
+        onBackIconClick={() => {
+          navigate('/appmanagement')
+        }}
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}

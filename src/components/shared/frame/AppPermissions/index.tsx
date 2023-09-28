@@ -37,7 +37,9 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
     return (
       <span
         style={{ lineHeight: 2.2, cursor: 'pointer' }}
-        onClick={() => navigate(`/appdetail/${id}`)}
+        onClick={() => {
+          navigate(`/appdetail/${id}`)
+        }}
       >
         {data ? data.title : id}
         <span style={{ marginLeft: '20px', color: '#cccccc' }}>

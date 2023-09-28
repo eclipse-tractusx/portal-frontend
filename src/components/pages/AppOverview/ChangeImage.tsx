@@ -78,7 +78,7 @@ export default function ChangeImage() {
         if (response && 'data' in response) {
           const file = response?.data?.data
           if (documentType === 'APP_LEADIMAGE') {
-            return setCardImage(URL.createObjectURL(file))
+            setCardImage(URL.createObjectURL(file))
           }
         }
       } catch (err) {
@@ -108,13 +108,14 @@ export default function ChangeImage() {
   const handleSaveClick = async () => {
     setIsLoading(true)
     if (appId && uploadImageValue) {
-      const setFileStatus = (status: UploadFileStatus) =>
+      const setFileStatus = (status: UploadFileStatus) => {
         setValue('uploadLeadImage', {
           id: uploadImageValue.id,
           name: uploadImageValue.name,
           size: uploadImageValue.size,
           status,
         } as any)
+      }
 
       setFileStatus(UploadStatus.UPLOADING)
       uploadDocumentApi(appId, uploadImageValue)
@@ -186,7 +187,9 @@ export default function ChangeImage() {
                   <Button
                     color="secondary"
                     size="small"
-                    onClick={() => setEnableImageUpload(true)}
+                    onClick={() => {
+                      setEnableImageUpload(true)
+                    }}
                   >
                     {t('content.changeImage.uploadNewImage')}
                   </Button>
@@ -202,7 +205,9 @@ export default function ChangeImage() {
           <Button
             color="secondary"
             size="small"
-            onClick={() => navigate('/appoverview')}
+            onClick={() => {
+              navigate('/appoverview')
+            }}
           >
             {t('global.actions.cancel')}
           </Button>

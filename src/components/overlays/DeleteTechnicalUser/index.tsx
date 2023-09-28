@@ -71,11 +71,8 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const handleRemove = async () => {
     if (!data) return
     try {
-      const response = await removeServiceAccount(
-        data.serviceAccountId
-      ).unwrap()
+      await removeServiceAccount(data.serviceAccountId).unwrap()
       deleteUserSuccess()
-      console.log(response)
     } catch (err) {
       deleteUserError(err)
       console.log(err)

@@ -68,6 +68,8 @@
   - Skip technical integration for consultancy service
 - Shared
   - Removed PageLoadingTable component
+- Linter Findings
+  - No confusing void expression fixes
 
 ## 1.6.0
 

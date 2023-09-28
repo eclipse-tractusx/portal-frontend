@@ -175,11 +175,11 @@ const AddConnectorOverlay = ({
             <Button
               variant="contained"
               disabled={selected && selected.id ? false : true}
-              onClick={(e) =>
+              onClick={(e) => {
                 connectorStep === 0 && selected && selected.id
                   ? handleConfirmClick(selected)
                   : onFormSubmit()
-              }
+              }}
             >
               {connectorStep === 0
                 ? `${t('global.actions.next')}`

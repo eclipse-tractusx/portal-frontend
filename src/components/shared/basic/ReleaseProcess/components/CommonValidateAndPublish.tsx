@@ -150,7 +150,7 @@ export default function CommonValidateAndPublish({
           documentId,
         }).unwrap()
         const file = response.data
-        return setCardImage(URL.createObjectURL(file))
+        setCardImage(URL.createObjectURL(file))
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
@@ -205,7 +205,7 @@ export default function CommonValidateAndPublish({
       const fileType = response.headers.get('content-type')
       const file = response.data
 
-      return download(file, fileType, documentName)
+      download(file, fileType, documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -320,7 +320,9 @@ export default function CommonValidateAndPublish({
                 <LanguageSwitch
                   current={cardLanguage}
                   languages={[{ key: 'de' }, { key: 'en' }]}
-                  onChange={(lang) => setCardLanguage(lang)}
+                  onChange={(lang) => {
+                    setCardLanguage(lang)
+                  }}
                 />
               </div>
             </Grid>
@@ -619,9 +621,9 @@ export default function CommonValidateAndPublish({
                   description={error.message}
                   open
                   severity="error"
-                  onCloseNotification={() =>
+                  onCloseNotification={() => {
                     setValidatePublishNotification(false)
-                  }
+                  }}
                 />
               </Grid>
             </Grid>

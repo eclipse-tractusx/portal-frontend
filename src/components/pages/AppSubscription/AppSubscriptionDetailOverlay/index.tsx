@@ -281,7 +281,9 @@ const AppSubscriptionDetailOverlay = ({
           title={t('content.appSubscription.detailOverlay.title')}
           intro={getDialogIntro()}
           closeWithIcon={true}
-          onCloseWithIcon={() => handleOverlayClose()}
+          onCloseWithIcon={() => {
+            handleOverlayClose()
+          }}
         />
         <DialogContent>
           <ReleaseStepper

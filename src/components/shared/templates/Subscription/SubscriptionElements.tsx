@@ -169,12 +169,12 @@ export default function SubscriptionElements({
                   </Typography>
                   <div
                     className="viewDetails"
-                    onClick={() =>
+                    onClick={() => {
                       setViewDetails({
                         appId: subscriptionData.offerId,
                         subscriptionId: subscription.subscriptionId,
                       })
-                    }
+                    }}
                   >
                     <IconButton color="secondary" size="small">
                       <Tooltips
@@ -194,7 +194,7 @@ export default function SubscriptionElements({
                         label={t('content.appSubscription.activateBtn')}
                         type="plain"
                         variant="filled"
-                        onClick={() =>
+                        onClick={() => {
                           type === SubscriptionTypes.APP_SUBSCRIPTION
                             ? setSubscriptionDetail({
                                 appId: subscriptionData.offerId,
@@ -213,7 +213,7 @@ export default function SubscriptionElements({
                                   companyName: subscription.companyName,
                                 },
                               })
-                        }
+                        }}
                       />
                     </div>
                   )}
@@ -269,7 +269,9 @@ export default function SubscriptionElements({
           appId={viewDetails.appId}
           subscriptionId={viewDetails.subscriptionId}
           type={type}
-          handleOverlayClose={() => setViewDetails(ViewDetailData)}
+          handleOverlayClose={() => {
+            setViewDetails(ViewDetailData)
+          }}
         />
       )}
       {subscriptionDetail.appId && (
@@ -280,9 +282,9 @@ export default function SubscriptionElements({
           title={subscriptionDetail.title}
           companyName={subscriptionDetail.companyName}
           bpnNumber={subscriptionDetail.bpnNumber}
-          handleOverlayClose={() =>
+          handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
-          }
+          }}
         />
       )}
     </div>

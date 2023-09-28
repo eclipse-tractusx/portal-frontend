@@ -74,12 +74,16 @@ const AddRolesOverlay = ({
   })
 
   const csvRolesPreview = (files: File[]) => {
-    return files
+    files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
         const reader = new FileReader()
-        reader.onerror = () => console.log('file reading has failed')
-        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
@@ -176,7 +180,9 @@ const AddRolesOverlay = ({
           title={t('content.addRoles.uploadAdditionalRoles')}
           intro={t('content.addRoles.uploadAdditionalRolesDescription')}
           closeWithIcon={true}
-          onCloseWithIcon={() => handleClose()}
+          onCloseWithIcon={() => {
+            handleClose()
+          }}
         />
         <DialogContent
           sx={{
@@ -261,7 +267,12 @@ const AddRolesOverlay = ({
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={() => handleClose()}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              handleClose()
+            }}
+          >
             {t('global.actions.cancel')}
           </Button>
 

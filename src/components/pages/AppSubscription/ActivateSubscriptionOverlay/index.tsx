@@ -242,7 +242,9 @@ const ActivateSubscriptionOverlay = ({
                   </Typography>
                 }
                 placeholder={t('content.appSubscription.activation.enterURL')}
-                onChange={(e) => addInputURL(e.target.value)}
+                onChange={(e) => {
+                  addInputURL(e.target.value)
+                }}
                 value={inputURL}
               />
               <p className="errorMsg">{URLErrorMsg}</p>
@@ -279,7 +281,12 @@ const ActivateSubscriptionOverlay = ({
             </div>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => handleOverlayClose()}>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                handleOverlayClose()
+              }}
+            >
               {t('global.actions.close')}
             </Button>
             {loading ? (

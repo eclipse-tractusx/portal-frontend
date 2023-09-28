@@ -92,8 +92,12 @@ export const ValidatingInput = ({
       type={type}
       error={!valid && data !== ''}
       autoFocus={autofocus}
-      onChange={(e) => doValidate(e.currentTarget.value)}
-      onBlur={(e) => doValidate(e.currentTarget.value)}
+      onChange={(e) => {
+        doValidate(e.currentTarget.value)
+      }}
+      onBlur={(e) => {
+        doValidate(e.currentTarget.value)
+      }}
     />
   )
 }

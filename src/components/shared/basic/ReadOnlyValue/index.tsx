@@ -42,7 +42,9 @@ const CopyValue = ({ value }: { value: string }) => {
       onClick={async () => {
         await navigator.clipboard.writeText(value)
         setCopied(true)
-        setTimeout(() => setCopied(false), 1000)
+        setTimeout(() => {
+          setCopied(false)
+        }, 1000)
       }}
     >
       <ContentCopyIcon

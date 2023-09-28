@@ -133,9 +133,9 @@ export default function EditPortalRoles({ id }: { id: string }) {
                   <Checkbox
                     label={role.role}
                     checked={selectedRoles.indexOf(role.role) !== -1}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       handleSelectRole(role.role, e.target.checked)
-                    }
+                    }}
                   />
                 </li>
               ))}

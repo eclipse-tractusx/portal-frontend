@@ -274,12 +274,12 @@ export default function AppPage() {
       setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
 
       uploadDocumentApi(DocumentTypeId.APP_CONTRACT, value)
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [uploadAppContractValue, getValues, setFileStatus, uploadDocumentApi])
 
@@ -290,12 +290,12 @@ export default function AppPage() {
       setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
 
       uploadDocumentApi(DocumentTypeId.ADDITIONAL_DETAILS, value)
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [uploadDataPrerequisitsValue, getValues, setFileStatus, uploadDocumentApi])
 
@@ -306,12 +306,12 @@ export default function AppPage() {
       setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
 
       uploadDocumentApi(DocumentTypeId.APP_TECHNICAL_INFORMATION, value)
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [uploadTechnicalGuideValue, getValues, setFileStatus, uploadDocumentApi])
 
@@ -332,8 +332,12 @@ export default function AppPage() {
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOADING)
         uploadDocumentApi(DocumentTypeId.APP_IMAGE, value[fileIndex])
-          .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
-          .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
+          .then(() => {
+            setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
+          })
+          .catch(() => {
+            setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR)
+          })
       }
     }
   }
@@ -673,9 +677,9 @@ export default function AppPage() {
                   <Checkbox
                     label={getLabel(item)}
                     checked={selectedPrivacyPolicies.indexOf(item) !== -1}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       selectPrivacyPolicies(item, e.target.checked, 'checkbox')
-                    }
+                    }}
                     size="small"
                   />
                 </Grid>
@@ -690,13 +694,13 @@ export default function AppPage() {
                   selectedPrivacyPolicies &&
                   selectedPrivacyPolicies[0] === privacyPolicyNone
                 }
-                onChange={(e) =>
+                onChange={(e) => {
                   selectPrivacyPolicies(
                     privacyPolicyNone,
                     e.target.checked,
                     'radio'
                   )
-                }
+                }}
                 name="radio-buttons"
                 size="small"
               />
@@ -725,8 +729,12 @@ export default function AppPage() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={() => setAppPageNotification(false)}
-        setPageSnackbar={() => setAppPageSnackbar(false)}
+        setPageNotification={() => {
+          setAppPageNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setAppPageSnackbar(false)
+        }}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) =>
           onAppPageSubmit(data, ButtonLabelTypes.SAVE)

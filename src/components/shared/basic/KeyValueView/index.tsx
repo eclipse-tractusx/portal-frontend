@@ -60,7 +60,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
         onClick={async () => {
           await navigator.clipboard.writeText(item.value.toString())
           setCopied(item.value.toString())
-          setTimeout(() => setCopied(''), 1000)
+          setTimeout(() => {
+            setCopied('')
+          }, 1000)
         }}
       >
         {renderValue(item.value.toString())}

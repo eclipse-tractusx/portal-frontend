@@ -77,7 +77,9 @@ export default function TitleDescriptionAndSectionlink({
           {provider.sectionLink.data.map((link) => (
             <Typography
               className={'highlightText'}
-              onClick={() => navigateTo(link)}
+              onClick={() => {
+                navigateTo(link)
+              }}
               key={link.title}
             >
               {link.title}

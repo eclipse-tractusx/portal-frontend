@@ -146,16 +146,24 @@ const EdcConnector = () => {
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
       await createConnector(body)
         .unwrap()
-        .then(() => showOverlay(true))
-        .catch(() => showOverlay(false))
+        .then(() => {
+          showOverlay(true)
+        })
+        .catch(() => {
+          showOverlay(false)
+        })
     } else if (selectedService.type === ConnectType.MANAGED_CONNECTOR) {
       // body.append('providerBpn', data.ConnectorBPN)
       body.append('subscriptionId', data.ConnectorSubscriptionId)
       body.append('technicalUserId', '')
       await createManagedConnector(body)
         .unwrap()
-        .then(() => showOverlay(true))
-        .catch(() => showOverlay(false))
+        .then(() => {
+          showOverlay(true)
+        })
+        .catch(() => {
+          showOverlay(false)
+        })
     }
   }
 
@@ -240,13 +248,17 @@ const EdcConnector = () => {
     <main className="connector-page-container">
       <PageSnackbar
         description={notificationMessage}
-        onCloseNotification={() => setNotificationOpen(false)}
+        onCloseNotification={() => {
+          setNotificationOpen(false)
+        }}
         severity={notificationType}
         open={notificationOpen}
       />
       <DeleteConfirmationOverlay
         openDialog={deleteConnectorConfirmModalOpen}
-        handleOverlayClose={() => setDeleteConnectorConfirmModalOpen(false)}
+        handleOverlayClose={() => {
+          setDeleteConnectorConfirmModalOpen(false)
+        }}
         handleConfirmClick={() => deleteSelectedConnector()}
         loading={loading}
         techUser={selectedConnector?.technicalUser}
@@ -262,7 +274,9 @@ const EdcConnector = () => {
       />
       <ConfigurationDetailsOverlay
         openDialog={viewConfigurationDetailsOverlayOpen}
-        handleOverlayClose={() => setViewConfigurationDetailsOverlayOpen(false)}
+        handleOverlayClose={() => {
+          setViewConfigurationDetailsOverlayOpen(false)
+        }}
       />
       <PageHeader
         title={t('content.edcconnector.headertitle')}
@@ -272,11 +286,15 @@ const EdcConnector = () => {
       <section className={'picture-with-text-section'}>
         <PictureWithText
           text={'content.edcconnector.imagetext'}
-          onHelpButtonClicked={() => onHelpButtonClicked()}
-          onButtonClicked={() => setAddConnectorOverlayOpen(true)}
-          onNewHelpButtonClicked={() =>
+          onHelpButtonClicked={() => {
+            onHelpButtonClicked()
+          }}
+          onButtonClicked={() => {
+            setAddConnectorOverlayOpen(true)
+          }}
+          onNewHelpButtonClicked={() => {
             setViewConfigurationDetailsOverlayOpen(true)
-          }
+          }}
         />
       </section>
       <div className="connector-table-container">
@@ -288,7 +306,9 @@ const EdcConnector = () => {
           fetchHookRefresh={refresh}
           getRowId={(row: { [key: string]: string }) => row.id}
           columns={ownConnectorCols}
-          onCellClick={(params: GridCellParams) => onTableCellClick(params)}
+          onCellClick={(params: GridCellParams) => {
+            onTableCellClick(params)
+          }}
         />
       </div>
       <div className="connector-table-container">
@@ -301,7 +321,9 @@ const EdcConnector = () => {
           getRowId={(row: { [key: string]: string }) => row.id}
           columns={managedConnectorCols}
           noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
-          onCellClick={(params: GridCellParams) => onTableCellClick(params)}
+          onCellClick={(params: GridCellParams) => {
+            onTableCellClick(params)
+          }}
         />
       </div>
       {response && (

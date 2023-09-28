@@ -192,28 +192,30 @@ export default function CertificateCredentials() {
               <SearchInput
                 value={searchExpr}
                 placeholder={t('content.certificates.search')}
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={(e) => {
+                  handleSearch(e.target.value)
+                }}
                 autoComplete="off"
                 autoFocus={false}
               />
             </div>
             <div
-              onMouseLeave={() =>
+              onMouseLeave={() => {
                 setState({
                   type: ActionKind.SET_SHOW_MODAL,
                   payload: false,
                 })
-              }
+              }}
               className="filterSection"
             >
               <ViewSelector views={tabButtons} activeView={selected} />
               <SortImage
-                onClick={() =>
+                onClick={() => {
                   setState({
                     type: ActionKind.SET_SHOW_MODAL,
                     payload: true,
                   })
-                }
+                }}
                 selected={showModal}
               />
               <div className="sortSection">

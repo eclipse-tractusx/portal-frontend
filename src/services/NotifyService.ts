@@ -38,24 +38,26 @@ const NotifyService = {
     title: string,
     msg?: string,
     data?: object | string | number | boolean
-  ) =>
+  ) => {
     NotifyService.notify({
       severity: SeverityType.SUCCESS,
       title,
       msg,
       data,
-    }),
+    })
+  },
   error: (
     title: string,
     msg?: string,
     data?: object | string | number | boolean
-  ) =>
+  ) => {
     NotifyService.notify({
       severity: SeverityType.ERROR,
       title,
       msg,
       data,
-    }),
+    })
+  },
 }
 
 export const { notify, success, error } = NotifyService

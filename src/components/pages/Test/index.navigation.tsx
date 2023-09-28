@@ -27,7 +27,9 @@ function NavigationTest() {
   const createItem = (target: string, title: string) => ({
     title,
     to: target,
-    onClick: () => navigate(target),
+    onClick: () => {
+      navigate(target)
+    },
   })
 
   return (

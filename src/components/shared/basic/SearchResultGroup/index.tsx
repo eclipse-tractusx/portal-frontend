@@ -70,7 +70,9 @@ export const SearchResultGroup = ({
               marginLeft: 4,
               fontSize: 14,
             }}
-            onClick={() => setAll(!all)}
+            onClick={() => {
+              setAll(!all)
+            }}
           >
             {t(all ? 'less' : 'more')}
           </Typography>

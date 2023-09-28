@@ -89,7 +89,9 @@ const SelectIdpProviderType = ({
         label={''}
         placeholder={t('field.providerType.placeholder')}
         defaultValue=""
-        onChangeItem={(e) => onChange(e?.value)}
+        onChangeItem={(e) => {
+          onChange(e?.value)
+        }}
         keyTitle={'title'}
       />
     </div>
@@ -282,7 +284,11 @@ export const AddIdp = () => {
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>
         </Trans>
-        <AddIDPPrepareForm onChange={(data) => setFormData(data)} />
+        <AddIDPPrepareForm
+          onChange={(data) => {
+            setFormData(data)
+          }}
+        />
         <Typography
           variant="label3"
           sx={{

@@ -107,7 +107,9 @@ export default function AddServiceProvider() {
               </Typography>
             }
             placeholder="URL of the customer tentant"
-            onChange={(e) => addInputURL(e.target.value)}
+            onChange={(e) => {
+              addInputURL(e.target.value)
+            }}
             value={inputURL}
           />
           <p className="error">{UrlErrorMsg}</p>
@@ -144,7 +146,9 @@ export default function AddServiceProvider() {
       </DialogActions>
       <PageSnackbar
         open={saveErrorMsg}
-        onCloseNotification={() => setSaveErrorMessage(false)}
+        onCloseNotification={() => {
+          setSaveErrorMessage(false)
+        }}
         severity="error"
         description={t('content.appSubscription.register.providerErrorMessage')}
         showIcon={true}
