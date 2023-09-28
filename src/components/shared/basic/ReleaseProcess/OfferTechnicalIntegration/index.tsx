@@ -79,7 +79,7 @@ export default function OfferTechnicalIntegration() {
   }
 
   const { handleSubmit } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -116,7 +116,7 @@ export default function OfferTechnicalIntegration() {
     ) {
       setLoading(true)
       const updateData = {
-        serviceId: serviceId,
+        serviceId,
         body: [
           {
             technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,

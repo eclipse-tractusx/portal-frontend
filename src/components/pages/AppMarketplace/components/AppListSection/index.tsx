@@ -26,10 +26,9 @@ import {
   Typography,
   ViewSelector,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme, CircularProgress, Box } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
 import { itemsSelector } from 'features/apps/favorites/slice'

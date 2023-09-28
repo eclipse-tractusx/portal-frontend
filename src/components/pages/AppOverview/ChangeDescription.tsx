@@ -76,7 +76,7 @@ export default function ChangeDescription() {
     getValues,
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -85,7 +85,7 @@ export default function ChangeDescription() {
 
     if (appId) {
       const saveData = {
-        appId: appId,
+        appId,
         body: [
           {
             languageCode: 'de',

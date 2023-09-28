@@ -80,7 +80,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
     try {
       setLoading(true)
       await enableIdp({
-        id: id,
+        id,
         enabled: true,
       }).unwrap()
       const idpUser: IdentityProviderUser = {

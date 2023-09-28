@@ -44,7 +44,7 @@ export const DisableIDP = ({ id }: { id: string }) => {
   const doDisable = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     try {
       e.stopPropagation()
-      await enableIDP({ id: id, enabled: false })
+      await enableIDP({ id, enabled: false })
       dispatch(closeOverlay())
       success(t('disable.success'))
     } catch (err) {
