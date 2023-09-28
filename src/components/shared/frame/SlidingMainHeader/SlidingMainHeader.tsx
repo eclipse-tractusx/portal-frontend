@@ -44,7 +44,7 @@ export const SlidingMainHeader = ({
   stageHeaderInfo,
 }: SlidingMainHeaderProps) => {
   const settings = {
-    customPaging: function (i: any) {
+    customPaging: function (i: number) {
       return (
         <Box>
           {stageHeaderInfo && (

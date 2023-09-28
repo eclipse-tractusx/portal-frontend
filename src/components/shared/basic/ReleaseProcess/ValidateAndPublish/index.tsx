@@ -37,7 +37,7 @@ import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 export default function ValidateAndPublish({
   showSubmitPage,
 }: {
-  showSubmitPage: any
+  showSubmitPage: (val: boolean) => void
 }) {
   const dispatch = useDispatch()
   const { t } = useTranslation()

@@ -46,6 +46,7 @@ import {
   useFetchDocumentByIdMutation,
   DocumentTypeId,
   useDeleteAppReleaseDocumentMutation,
+  appLanguagesItem,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -137,8 +138,10 @@ export default function AppMarketCard() {
   } = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
-  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
-  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
+  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<useCasesItem[]>([])
+  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<
+    appLanguagesItem[]
+  >([])
   const [loading, setLoading] = useState<boolean>(false)
   const [enableRetryOverlay, setEnableRetryOverlay] = useState<boolean>(false)
 
@@ -235,10 +238,10 @@ export default function AppMarketCard() {
     setSalesManagerId(sales)
   }
 
-  const cardImageData: any = getValues().uploadImage.leadPictureUri
+  const cardImageData: string | null = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      let isFile: any = cardImageData instanceof File
+      let isFile: any = cardImageData
 
       if (isFile) {
         const blobFile = new Blob([cardImageData], {
@@ -429,7 +432,7 @@ export default function AppMarketCard() {
   const uploadDocumentApi = async (
     appId: string,
     documentTypeId: DocumentTypeId,
-    file: any
+    file: File
   ) => {
     const data = {
       appId: appId,
@@ -710,7 +713,7 @@ export default function AppMarketCard() {
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
                   filterOptionsArgs: {
                     matchFrom: 'any',
-                    stringify: (option: any) =>
+                    stringify: (option: appLanguagesItem) =>
                       option.languageShortName +
                       option.languageLongNames[0].longDescription +
                       option.languageLongNames[1].longDescription,
@@ -737,7 +740,9 @@ export default function AppMarketCard() {
                 placeholder={t(
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
-                onChangeItem={(e) => onSalesManagerChange(e.userId)}
+                onChangeItem={(e) => {
+                  e && onSalesManagerChange(e.userId)
+                }}
                 keyTitle={'fullName'}
               />
             </div>

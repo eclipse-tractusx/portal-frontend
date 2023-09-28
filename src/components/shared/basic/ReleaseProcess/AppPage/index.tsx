@@ -59,7 +59,11 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
-import { ErrorType, UseCaseType } from 'features/appManagement/types'
+import {
+  ErrorType,
+  LanguageStatusType,
+  UseCaseType,
+} from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
@@ -115,11 +119,11 @@ export default function AppPage() {
     return {
       longDescriptionEN:
         fetchAppStatus?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'en'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
         )[0]?.longDescription || '',
       longDescriptionDE:
         fetchAppStatus?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'de'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
         )[0]?.longDescription || '',
       images: fetchAppStatus?.documents?.APP_IMAGE || [],
       uploadDataPrerequisits:
@@ -255,7 +259,7 @@ export default function AppPage() {
   ])
 
   const uploadDocumentApi = useCallback(
-    async (documentTypeId: DocumentTypeId, file: any) => {
+    async (documentTypeId: DocumentTypeId, file: File) => {
       const data = {
         appId: appId,
         documentTypeId: documentTypeId,
@@ -326,7 +330,7 @@ export default function AppPage() {
           size: value[fileIndex].size,
           status,
         }
-        setValue('images', nextFiles as any)
+        setValue('images', nextFiles as File[])
       }
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
@@ -366,7 +370,7 @@ export default function AppPage() {
           longDescription: data.longDescriptionEN,
           shortDescription:
             statusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
             )[0]?.shortDescription || '',
         },
         {
@@ -374,7 +378,7 @@ export default function AppPage() {
           longDescription: data.longDescriptionDE,
           shortDescription:
             statusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'de'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
             )[0]?.shortDescription || '',
         },
       ],

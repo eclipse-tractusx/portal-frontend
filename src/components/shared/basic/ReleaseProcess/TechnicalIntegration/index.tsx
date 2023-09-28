@@ -154,7 +154,10 @@ export default function TechnicalIntegration() {
     else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
   }
 
-  const onIntegrationSubmit = async (submitData: any, buttonLabel: string) => {
+  const onIntegrationSubmit = async (
+    submitData: unknown,
+    buttonLabel: string
+  ) => {
     if (buttonLabel === ButtonLabelTypes.SAVE) {
       data?.length === 0 && setEnableErrorMessage(true)
       techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)

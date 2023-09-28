@@ -26,7 +26,11 @@ export const StageSubNavigation = ({
   linkArray,
   fixHeader,
 }: {
-  linkArray: any
+  linkArray: {
+    index: number
+    title: string
+    navigation: string
+  }[]
   fixHeader: boolean
 }) => {
   const scrollToId = (id: string) => {

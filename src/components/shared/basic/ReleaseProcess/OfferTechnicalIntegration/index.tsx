@@ -98,7 +98,7 @@ export default function OfferTechnicalIntegration() {
     }
   }
 
-  const onSubmit = async (submitData: any, buttonLabel: string) => {
+  const onSubmit = async (submitData: unknown, buttonLabel: string) => {
     if (
       !fetchServiceStatus?.serviceTypeIds.every((item) =>
         ['CONSULTANCE_SERVICE']?.includes(item)

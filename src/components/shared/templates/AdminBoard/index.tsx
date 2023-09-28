@@ -36,12 +36,8 @@ import { currentSuccessType } from 'features/adminBoard/slice'
 import {
   ServiceContent,
   ServiceRequestBody,
-  ServiceResponse,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import {
-  AppRequestBody,
-  AppResponse,
-} from 'features/adminBoard/adminBoardApiSlice'
+import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
 

@@ -37,7 +37,7 @@ import { appManagementSelector } from 'features/appManagement/slice'
 interface fetchHookArgsType {
   appId?: string
   expr: string
-  userRoleResponse?: boolean
+  userRoleResponse?: boolean | string | undefined
   role?: boolean
   addUserResponse?: boolean
 }
@@ -64,7 +64,7 @@ export const UserList = ({
   tableLabel: string
   onDetailsClick: (row: TenantUser) => void
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: any
+  fetchHookArgs?: fetchHookArgsType
   onSearch?: (search: string) => void
   searchExpr?: string
   isDetail?: boolean
@@ -82,7 +82,7 @@ export const UserList = ({
 
   useEffect(() => {
     setRefresh(Date.now())
-  }, [fetchHookArgs.userRoleResponse, fetchHookArgs.addUserResponse])
+  }, [fetchHookArgs?.userRoleResponse, fetchHookArgs?.addUserResponse])
 
   return (
     <section id="identity-management-id" className="user-management-section">
