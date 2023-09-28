@@ -182,7 +182,9 @@ export default function RegistrationRequests() {
           {...{
             openDialog: overlayOpen,
             selectedRequestId,
-            handleOverlayClose: () => { setOverlayOpen(false) },
+            handleOverlayClose: () => {
+              setOverlayOpen(false)
+            },
           }}
         />
       )}
