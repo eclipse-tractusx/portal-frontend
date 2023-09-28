@@ -449,7 +449,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           ) {
             error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
             setStatus(false)
-            setTimeout(() => { setStatus(undefined) }, 3000)
+            setTimeout(() => {
+              setStatus(undefined)
+            }, 3000)
             return
           }
           storeData(
