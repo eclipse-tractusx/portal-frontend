@@ -156,7 +156,7 @@
     "title": "Upload updated user list.",
     "userUploaded": "Users successfully uploaded",
     "userFailed": "User uploads failed",
-    "errorUsersLabel": "Errors have occured for the following usernames: <br/> Please check their entries in the upload file and try upload it again."
+    "errorUsersLabel": "Errors have occured for the following usernames: <br/>Please check their entries in the upload file and try upload it again."
   },
   "state": {
     "fetching": "fetching users ...",
@@ -169,6 +169,7 @@
     "ERROR_INVALID_TYPE": "Invalid file type",
     "ERROR_INVALID_SIZE": "File size should not exceed 100KB",
     "ERROR_INVALID_FORMAT": "Invalid format",
+    "ERROR_FILE_HEADER": "User Migration list format wrong. Missing or incorrect header line. Recheck the download file to retrieve the expected format",
     "ERROR_UPLOAD_USERS": "Uploading users failed",
     "ERROR_DELETE_IDP": "Error deleting the IDP"
   },
