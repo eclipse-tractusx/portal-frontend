@@ -64,7 +64,7 @@ export const UserList = ({
   tableLabel: string
   onDetailsClick: (row: TenantUser) => void
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: fetchHookArgsType
+  fetchHookArgs?: FetchHookArgsType
   onSearch?: (search: string) => void
   searchExpr?: string
   isDetail?: boolean

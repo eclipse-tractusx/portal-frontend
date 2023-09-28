@@ -87,7 +87,7 @@ const UnSubscribeOverlay = ({
                   t('content.organization.unsubscribe.table.app'),
                   t('content.organization.unsubscribe.table.status'),
                   t('content.organization.unsubscribe.table.techUser'),
-                  t('content.organization.unsubscribe.table.connector')
+                  t('content.organization.unsubscribe.table.connector'),
                 ],
                 body: [
                   [data?.name || ''],
