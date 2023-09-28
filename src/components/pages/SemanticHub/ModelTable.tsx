@@ -22,8 +22,8 @@ import { Table } from '@catena-x/portal-shared-components'
 import { fetchSemanticModels } from 'features/semanticModels/actions'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import {
-  FilterParams,
-  SemanticModel,
+  type FilterParams,
+  type SemanticModel,
   DefaultStatus,
 } from 'features/semanticModels/types'
 import { useState, useEffect } from 'react'
@@ -32,7 +32,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import uniqueId from 'lodash/uniqueId'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 interface ModelTableProps {
   onModelSelect: (id: string) => void

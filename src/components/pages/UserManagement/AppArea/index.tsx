@@ -24,7 +24,7 @@ import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import {
-  ActiveSubscriptionItem,
+  type ActiveSubscriptionItem,
   useFetchSubscriptionStatusQuery,
 } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'

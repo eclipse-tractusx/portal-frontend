@@ -21,7 +21,7 @@
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { Grid } from '@mui/material'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 
 export default function MarketplaceTechnicalUserSetup({
   item,

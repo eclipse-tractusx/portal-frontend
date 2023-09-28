@@ -22,7 +22,10 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Checkbox } from '@catena-x/portal-shared-components'
 import { Box, Grid } from '@mui/material'
-import { CompanyDetails, CompanyRoleEnum } from 'features/admin/userApiSlice'
+import {
+  type CompanyDetails,
+  CompanyRoleEnum,
+} from 'features/admin/userApiSlice'
 // Static content
 // Add Connector Button action modal first step content
 const ConnectorTypeSelection = ({

@@ -35,7 +35,7 @@ import {
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   AppOverviewTypes,
-  AppStatusDataState,
+  type AppStatusDataState,
 } from 'features/appManagement/types'
 import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
 

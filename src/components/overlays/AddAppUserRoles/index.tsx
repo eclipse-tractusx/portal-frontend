@@ -39,7 +39,7 @@ import {
 import {
   setUserRoleResp,
   useUpdateUserRolesMutation,
-  UserRoleRequest,
+  type UserRoleRequest,
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'

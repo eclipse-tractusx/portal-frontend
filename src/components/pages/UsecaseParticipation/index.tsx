@@ -31,8 +31,8 @@ import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
-  UsecaseResponse,
-  VerifiedCredentialsData,
+  type UsecaseResponse,
+  type VerifiedCredentialsData,
   useFetchUsecaseQuery,
 } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'

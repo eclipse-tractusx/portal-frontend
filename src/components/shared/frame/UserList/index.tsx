@@ -24,12 +24,12 @@ import { useTranslation } from 'react-i18next'
 import {
   IconButton,
   StatusTag,
-  PaginFetchArgs,
   PageLoadingTable,
+  type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'

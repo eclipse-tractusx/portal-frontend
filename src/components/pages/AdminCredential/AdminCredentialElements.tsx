@@ -23,8 +23,8 @@ import { Button } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import './AdminCredential.scss'
 import {
-  CredentialData,
-  CredentialResponse,
+  type CredentialData,
+  type CredentialResponse,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
   useFetchCredentialsSearchQuery,

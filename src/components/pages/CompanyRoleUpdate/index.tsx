@@ -37,7 +37,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
-  CompanyRolesResponse,
+  type CompanyRolesResponse,
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
 import './CompanyRoleUpdate.scss'

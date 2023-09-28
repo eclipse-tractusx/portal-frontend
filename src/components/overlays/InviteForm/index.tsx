@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import './InviteForm.scss'
-import { InviteData } from 'features/admin/registration/types'
+import type { InviteData } from 'features/admin/registration/types'
 import {
   Button,
   Dialog,

@@ -35,7 +35,7 @@ import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 import {
-  IdentityProvider,
+  type IdentityProvider,
   useEnableIDPMutation,
   useFetchIDPListQuery,
   useRemoveIDPMutation,

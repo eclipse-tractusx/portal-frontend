@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 
 export const ManagedConnectorTableColumns = (
   translationHook: any

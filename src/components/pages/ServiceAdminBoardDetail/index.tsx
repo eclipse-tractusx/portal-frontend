@@ -27,7 +27,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
-  ServiceDetailsType,
+  type ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useCallback, useEffect, useState } from 'react'
@@ -50,7 +50,7 @@ export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId || '', {
+  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
   const [fetchDocument] = useFetchDocumentMutation()

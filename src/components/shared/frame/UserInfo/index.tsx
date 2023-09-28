@@ -24,7 +24,7 @@ import {
   UserAvatar,
   UserMenu,
   UserNav,
-  NotificationBadgeType,
+  type NotificationBadgeType,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
@@ -63,7 +63,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
 
   useEffect(() => {
     if (
-      (data && data.unread === 0) ||
+      data?.unread === 0 ||
       (data && data.unread > 0 && data.actionRequired === 0)
     ) {
       setNotificationInfo({

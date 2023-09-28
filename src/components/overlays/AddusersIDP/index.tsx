@@ -30,7 +30,7 @@ import {
   LoadingButton,
   Radio,
   StaticTable,
-  TableType,
+  type TableType,
   Textarea,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -39,7 +39,7 @@ import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useFetchIDPDetailQuery,
-  UserIdentityProviders,
+  type UserIdentityProviders,
   useFetchIDPUsersListQuery,
 } from 'features/admin/idpApiSlice'
 import EnvironmentService from 'services/EnvironmentService'
@@ -297,16 +297,16 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       `${CSV_COLUMNS.map((col) => col.name).join()}\n${users
         .map((user: UserIdentityProviders) =>
           [
-            user.companyUserId || '',
-            user.firstName || '',
-            user.lastName || '',
-            user.email || '',
+            user.companyUserId ?? '',
+            user.firstName ?? '',
+            user.lastName ?? '',
+            user.email ?? '',
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
-              user.identityProviders[0].userId) ||
+              user.identityProviders[0].userId) ??
               '',
             (user.identityProviders?.length > 0 &&
-              user.identityProviders[0].userName) ||
+              user.identityProviders[0].userName) ??
               '',
           ].join(',')
         )
@@ -322,9 +322,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       email: cols[3],
       identityProviders: [
         {
-          identityProviderId: cols[4] || '',
-          userId: cols[5] || '',
-          userName: cols[6] || '',
+          identityProviderId: cols[4] ?? '',
+          userId: cols[5] ?? '',
+          userName: cols[6] ?? '',
         },
       ],
     }),

@@ -21,7 +21,7 @@
 import { CardHorizontal } from '@catena-x/portal-shared-components'
 import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
 import { getAssetBase } from 'services/EnvironmentService'

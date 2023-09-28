@@ -40,10 +40,10 @@ import {
   MenuItem,
   FormControl,
   Select,
-  SelectChangeEvent,
+  type SelectChangeEvent,
   CircularProgress,
 } from '@mui/material'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 interface ModelDetailDialogProps {
   show: boolean

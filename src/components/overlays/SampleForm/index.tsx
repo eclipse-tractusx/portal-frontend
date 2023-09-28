@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { CXValidatingOverlay } from '../CXValidatingOverlay'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import {
   isMail,
   isURL,

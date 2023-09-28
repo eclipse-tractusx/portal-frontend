@@ -28,8 +28,8 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
-import { IHashMap } from 'types/MainTypes'
-import { ValidatingForm, ValidationField } from './ValidatingForm'
+import type { IHashMap } from 'types/MainTypes'
+import { ValidatingForm, type ValidationField } from './ValidatingForm'
 
 export const CXValidatingOverlay = ({
   title,

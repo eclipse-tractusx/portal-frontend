@@ -21,7 +21,7 @@
 import { CircleProgress } from '@catena-x/portal-shared-components'
 import {
   useFetchIDPListQuery,
-  IdentityProvider,
+  type IdentityProvider,
 } from 'features/admin/idpApiSlice'
 import { AddUserContent } from './AddUserContent'
 import { AddUserDeny } from './AddUserDeny'

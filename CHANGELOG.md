@@ -53,6 +53,8 @@
   - import/no-duplicates
   - prefer-const
   - object shorthand
+  - Add type for imports
+  - Prefer-nullish-coalescing (|| => ??)
 - Notifications
   - App Subscription Request content update
 - Digital Twin

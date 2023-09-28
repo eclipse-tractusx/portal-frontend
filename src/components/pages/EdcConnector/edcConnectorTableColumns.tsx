@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 import {
   StatusTag,
   Tooltips,
@@ -27,7 +27,7 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import Box from '@mui/material/Box'
-import { ConnectorContentAPIResponse } from 'features/connector/types'
+import type { ConnectorContentAPIResponse } from 'features/connector/types'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (

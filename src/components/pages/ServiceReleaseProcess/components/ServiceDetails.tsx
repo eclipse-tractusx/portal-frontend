@@ -43,7 +43,7 @@ import { getAssetBase } from 'services/EnvironmentService'
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
   const { serviceId } = useParams()
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId || '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const [fetchDocument] = useFetchDocumentMutation()

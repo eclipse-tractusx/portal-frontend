@@ -29,7 +29,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
 import { Radio, Typography } from '@catena-x/portal-shared-components'
 import {
-  ServiceAccountRole,
+  type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,
 } from 'features/admin/serviceApiSlice'
 

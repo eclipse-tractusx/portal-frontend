@@ -23,8 +23,8 @@ import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import {
-  ServiceAccountDetail,
-  ServiceAccountRole,
+  type ServiceAccountDetail,
+  type ServiceAccountRole,
   useResetCredentialMutation,
 } from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'

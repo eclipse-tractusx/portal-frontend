@@ -22,7 +22,7 @@ import { UserInfo } from '../UserInfo'
 import { NavLink } from 'react-router-dom'
 import { Button, MainNavigation } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { MenuItem, Tree } from 'types/MainTypes'
+import type { MenuItem, Tree } from 'types/MainTypes'
 import './Header.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import { getAssetBase } from 'services/EnvironmentService'
@@ -46,7 +46,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
       })
     )
 
-  const menu = addTitle(main) || []
+  const menu = addTitle(main) ?? []
 
   return (
     <>

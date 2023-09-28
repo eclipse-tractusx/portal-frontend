@@ -19,17 +19,17 @@
  ********************************************************************************/
 
 import {
-  DropAreaProps,
-  DropPreviewProps,
-  DropPreviewFileProps,
-  DropStatusHeaderProps,
-  UploadFile,
-  deleteConfirmOverlayTranslation,
+  type DropAreaProps,
+  type DropPreviewProps,
+  type DropPreviewFileProps,
+  type DropStatusHeaderProps,
+  type UploadFile,
+  type deleteConfirmOverlayTranslation,
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
-import { FunctionComponent, useCallback, useState } from 'react'
+import { type FunctionComponent, useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 

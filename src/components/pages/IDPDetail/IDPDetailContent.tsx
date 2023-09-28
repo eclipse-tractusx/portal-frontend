@@ -25,7 +25,7 @@ import {
   IconButton,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { IdentityProvider } from 'features/admin/idpApiSlice'
+import type { IdentityProvider } from 'features/admin/idpApiSlice'
 import CloseIcon from '@mui/icons-material/Close'
 import Box from '@mui/material/Box'
 import { t } from 'i18next'

@@ -39,7 +39,7 @@ import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAssetBase } from 'services/EnvironmentService'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export default function SemanticHub() {
   const { t } = useTranslation()

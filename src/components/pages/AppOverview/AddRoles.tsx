@@ -139,7 +139,7 @@ export default function AddRoles() {
         handleOverlayClose={() => {
           setAddRolesOverlayOpen(false)
         }}
-        appId={appId || ''}
+        appId={appId ?? ''}
       />
       <div className="main-container">
         <div className="main-row">

@@ -26,7 +26,7 @@ import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './Search.scss'
 import PageService from 'services/PageService'
 import { searchExprSelector } from 'features/info/search/slice'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export const label = 'Search'
 

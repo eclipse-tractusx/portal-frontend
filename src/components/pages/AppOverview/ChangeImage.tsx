@@ -25,7 +25,7 @@ import {
   Button,
   LoadingButton,
   Card,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -38,7 +38,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import ConnectorFormInputFieldImage from 'components/shared/basic/ReleaseProcess/components/ConnectorFormInputFieldImage'
 import { useForm } from 'react-hook-form'
-import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { error, success } from 'services/NotifyService'
 
 export default function ChangeImage() {

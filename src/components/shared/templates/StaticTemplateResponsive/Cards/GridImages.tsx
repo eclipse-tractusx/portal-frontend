@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps } from '../StaticTypes'
+import type { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import RenderImage from './RenderImage'
 import { Box } from '@mui/material'

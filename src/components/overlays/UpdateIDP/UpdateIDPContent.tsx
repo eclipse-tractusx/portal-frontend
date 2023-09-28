@@ -20,21 +20,21 @@
 
 import { useState } from 'react'
 import {
-  IdentityProvider,
-  IdentityProviderUpdate,
-  IdentityProviderUpdateBody,
+  type IdentityProvider,
+  type IdentityProviderUpdate,
+  type IdentityProviderUpdateBody,
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ReadOnlyValue from 'components/shared/basic/ReadOnlyValue'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
 import {
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 
@@ -44,14 +44,14 @@ const isWellknownMetadata = (expr: string) =>
 
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
-  form.displayName = idp.displayName || ''
+  form.displayName = idp.displayName ?? ''
   form.metadataUrl = ''
-  form.clientId = idp.oidc?.clientId || ''
+  form.clientId = idp.oidc?.clientId ?? ''
   form.secret = ''
   form.clientAuthMethod =
-    idp.oidc?.clientAuthMethod || OIDCAuthMethod.SECRET_BASIC
+    idp.oidc?.clientAuthMethod ?? OIDCAuthMethod.SECRET_BASIC
   form.signatureAlgorithm =
-    idp.oidc?.signatureAlgorithm || OIDCSignatureAlgorithm.ES256
+    idp.oidc?.signatureAlgorithm ?? OIDCSignatureAlgorithm.ES256
   return form
 }
 
@@ -76,7 +76,7 @@ const UpdateIDPForm = ({
   const { t } = useTranslation('idp')
 
   const defaultOAM =
-    idp.oidc?.clientAuthMethod || (OIDCAuthMethod.SECRET_BASIC as string)
+    idp.oidc?.clientAuthMethod ?? (OIDCAuthMethod.SECRET_BASIC as string)
   const defaultOidcAuthMethod = {
     id: defaultOAM,
     title: defaultOAM,

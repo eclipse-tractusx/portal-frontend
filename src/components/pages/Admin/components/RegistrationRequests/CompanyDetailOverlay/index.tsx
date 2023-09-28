@@ -36,8 +36,8 @@ import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/DetailGridRow'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
-  ApplicationRequest,
-  ProgressButtonsProps,
+  type ApplicationRequest,
+  type ProgressButtonsProps,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
@@ -156,7 +156,7 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: getTitle(activeTab, checklist || [], t),
+            title: getTitle(activeTab, checklist ?? [], t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}
@@ -259,7 +259,7 @@ const CompanyDetailOverlay = ({
                           key={id.type}
                           {...{
                             variableName: getUniqueIdName(id) as string,
-                            value: id.value || '',
+                            value: id.value ?? '',
                           }}
                         />
                       )
@@ -280,8 +280,8 @@ const CompanyDetailOverlay = ({
                     key="Street"
                     {...{
                       variableName: 'Street',
-                      value: `${selectedCompany?.streetName || ''} ${
-                        selectedCompany?.streetNumber || ''
+                      value: `${selectedCompany?.streetName ?? ''} ${
+                        selectedCompany?.streetNumber ?? ''
                       }`,
                     }}
                   />
@@ -289,8 +289,8 @@ const CompanyDetailOverlay = ({
                     key="PLZ / City"
                     {...{
                       variableName: 'PLZ / City',
-                      value: `${selectedCompany?.zipCode || ''} ${
-                        selectedCompany?.city || ''
+                      value: `${selectedCompany?.zipCode ?? ''} ${
+                        selectedCompany?.city ?? ''
                       }`,
                     }}
                   />
@@ -298,7 +298,7 @@ const CompanyDetailOverlay = ({
                     key="Country"
                     {...{
                       variableName: 'Country',
-                      value: selectedCompany?.countryDe || '',
+                      value: selectedCompany?.countryDe ?? '',
                     }}
                   />
                   <>

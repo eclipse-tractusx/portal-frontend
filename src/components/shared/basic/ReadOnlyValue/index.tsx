@@ -20,7 +20,7 @@
 
 import { Box } from '@mui/material'
 import { Typography, Tooltips } from '@catena-x/portal-shared-components'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useState } from 'react'

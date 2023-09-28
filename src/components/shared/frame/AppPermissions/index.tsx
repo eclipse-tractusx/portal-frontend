@@ -20,7 +20,7 @@
 
 import { Chip } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { TenantUserDetails } from 'features/admin/userApiSlice'
+import type { TenantUserDetails } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useNavigate } from 'react-router-dom'

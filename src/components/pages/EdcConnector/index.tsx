@@ -21,7 +21,7 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
-import { GridCellParams } from '@mui/x-data-grid'
+import type { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import {
   PageHeader,
@@ -31,19 +31,19 @@ import {
 } from '@catena-x/portal-shared-components'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
-import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
+import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
 import './EdcConnector.scss'
-import { ConnectorContentAPIResponse } from 'features/connector/types'
+import type { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
 import {
-  ConnectorType,
+  type ConnectorType,
   ConnectorStatusType,
   useCreateConnectorMutation,
   useCreateManagedConnectorMutation,
   useDeleteConnectorMutation,
   ConnectType,
   useFetchConnectorsQuery,
-  ConnectorResponseBody,
+  type ConnectorResponseBody,
   useFetchManagedConnectorsQuery,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
@@ -181,7 +181,7 @@ const EdcConnector = () => {
   const deleteSelectedConnector = async () => {
     setAction('delete')
     setLoading(true)
-    await deleteConnector(selectedConnector.id || '')
+    await deleteConnector(selectedConnector.id ?? '')
       .unwrap()
       .then(() => {
         setDeleteConnectorConfirmModalOpen(false)

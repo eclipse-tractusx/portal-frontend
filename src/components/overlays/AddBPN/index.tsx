@@ -36,8 +36,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import './style.scss'
 import { OVERLAYS } from 'types/Constants'
-import { OverlayState, stateSelector, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import {
+  type OverlayState,
+  stateSelector,
+  show,
+} from 'features/control/overlay'
+import type { store } from 'features/store'
 
 export default function AddBPN({ id }: { id: string }) {
   const dispatch = useDispatch<typeof store.dispatch>()

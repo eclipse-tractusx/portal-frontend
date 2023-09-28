@@ -29,7 +29,7 @@ import {
   setUserRoleResp,
   SuccessErrorType,
   useFetchAppRolesQuery,
-  UserRoleRequest,
+  type UserRoleRequest,
   useUpdateUserRolesMutation,
 } from 'features/admin/appuserApiSlice'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'

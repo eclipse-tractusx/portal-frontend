@@ -25,7 +25,7 @@ import { UserList } from 'components/shared/frame/UserList'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 
 export const AppUserDetailsTable = ({
   userRoleResponse,

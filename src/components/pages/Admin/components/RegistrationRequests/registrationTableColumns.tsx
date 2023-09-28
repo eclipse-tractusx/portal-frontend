@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { IconButton, StatusTag, Chip } from '@catena-x/portal-shared-components'
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
-import {
+import type {
   ApplicationRequest,
   ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'

@@ -23,8 +23,8 @@ import { Typography } from '@catena-x/portal-shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import 'components/styles/document.scss'
 import {
-  AppDetails,
-  Documents,
+  type AppDetails,
+  type Documents,
   DocumentTypeText,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'

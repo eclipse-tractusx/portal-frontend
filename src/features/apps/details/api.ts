@@ -20,7 +20,7 @@
 
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { AppDetails } from './types'
+import type { AppDetails } from './types'
 import i18next from 'i18next'
 import { getHeaders } from 'services/RequestService'
 

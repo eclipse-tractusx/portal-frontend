@@ -20,7 +20,7 @@
 
 import {
   IconButton,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -37,18 +37,18 @@ import CommonConnectorFormInputField from '../components/CommonConnectorFormInpu
 import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldImage'
 import Patterns from 'types/Patterns'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
-import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
-import { LanguageStatusType } from 'features/appManagement/types'
+import type { LanguageStatusType } from 'features/appManagement/types'
 import {
   serviceIdSelector,
   serviceStatusDataSelector,
   serviceReleaseStepIncrement,
 } from 'features/serviceManagement/slice'
 import {
-  CreateServiceStep1Item,
-  ServiceTypeIdsType,
+  type CreateServiceStep1Item,
+  type ServiceTypeIdsType,
   useCreateServiceMutation,
   useDeleteDocumentMutation,
   useFetchDocumentMutation,
@@ -125,15 +125,15 @@ export default function OfferCard() {
         fetchServiceStatus?.descriptions?.filter(
           (serviceStatus: LanguageStatusType) =>
             serviceStatus.languageCode === 'en'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       shortDescriptionDE:
         fetchServiceStatus?.descriptions?.filter(
           (serviceStatus: LanguageStatusType) =>
             serviceStatus.languageCode === 'de'
-        )[0]?.shortDescription || '',
+        )[0]?.shortDescription ?? '',
       uploadImage: {
         leadPictureUri: imageData,
-        alt: fetchServiceStatus?.leadPictureUri || '',
+        alt: fetchServiceStatus?.leadPictureUri ?? '',
       },
     }
   }, [fetchServiceStatus])
@@ -314,8 +314,8 @@ export default function OfferCard() {
             serviceStatusData?.descriptions?.filter(
               (serviceStatus: LanguageStatusType) =>
                 serviceStatus.languageCode === 'de'
-            )[0]?.longDescription || '',
-          shortDescription: data.shortDescriptionDE || '',
+            )[0]?.longDescription ?? '',
+          shortDescription: data.shortDescriptionDE ?? '',
         },
         {
           languageCode: 'en',
@@ -323,8 +323,8 @@ export default function OfferCard() {
             serviceStatusData?.descriptions?.filter(
               (serviceStatus: LanguageStatusType) =>
                 serviceStatus.languageCode === 'en'
-            )[0]?.longDescription || '',
-          shortDescription: data.shortDescriptionEN || '',
+            )[0]?.longDescription ?? '',
+          shortDescription: data.shortDescriptionEN ?? '',
         },
       ],
       privacyPolicies: [],
@@ -426,7 +426,7 @@ export default function OfferCard() {
                       )} A-Za-z`,
                     },
                   },
-                  items: serviceTypeIds || [],
+                  items: serviceTypeIds ?? [],
                   keyTitle: 'name',
                   saveKeyTitle: 'name',
                   notItemsText: t('serviceReleaseForm.noItemsSelected'),

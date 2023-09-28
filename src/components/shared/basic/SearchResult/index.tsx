@@ -20,7 +20,7 @@
 
 import { groupBy } from 'lodash'
 import Box from '@mui/material/Box'
-import { SearchItem } from 'features/info/search/types'
+import type { SearchItem } from 'features/info/search/types'
 import { SearchResultGroup } from '../SearchResultGroup'
 
 export const SearchResult = ({
