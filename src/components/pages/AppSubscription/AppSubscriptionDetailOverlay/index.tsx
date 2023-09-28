@@ -139,7 +139,7 @@ const AppSubscriptionDetailOverlay = ({
     ],
   ]
 
-  type === SubscriptionTypes.APP_SUBSCRIPTION &&
+  if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
     bodyData.unshift(
       [
         `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
@@ -153,6 +153,7 @@ const AppSubscriptionDetailOverlay = ({
             : ''),
       ]
     )
+  }
 
   const technicalDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
@@ -160,8 +161,11 @@ const AppSubscriptionDetailOverlay = ({
     edit: [
       [
         {
-          icon: false,
-          inputValue: '',
+          icon: type === SubscriptionTypes.SERVICE_SUBSCRIPTION,
+          inputValue:
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? ''
+              : t('content.appSubscription.detailOverlay.technicalNameInfo'),
         },
         {
           icon:
@@ -175,7 +179,12 @@ const AppSubscriptionDetailOverlay = ({
       [
         {
           icon: true,
-          inputValue: t('content.appSubscription.detailOverlay.appIdInfo'),
+          inputValue:
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? t('content.appSubscription.detailOverlay.appIdInfo')
+              : t(
+                  'content.appSubscription.detailOverlay.technicalPermissionInfo'
+                ),
         },
         {
           icon: false,
@@ -221,9 +230,9 @@ const AppSubscriptionDetailOverlay = ({
 
   const handleSaveURL = async (url: string) => {
     const data = {
-      appId: appId,
-      subscriptionId: subscriptionId,
-      body: { url: url },
+      appId,
+      subscriptionId,
+      body: { url },
     }
     try {
       await updateTenantUrl(data).unwrap()
@@ -231,6 +240,30 @@ const AppSubscriptionDetailOverlay = ({
       setTenantUrlResponse(TenantUrlState.SUCCESS)
     } catch (err) {
       setTenantUrlResponse(TenantUrlState.ERROR)
+    }
+  }
+
+  const getDialogIntro = () => {
+    if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
+      return t('content.appSubscription.detailOverlay.description')
+    } else {
+      return ti('serviceSubscription.detailOverlay.description')
+    }
+  }
+
+  const getSnackbarSeverity = () => {
+    if (tenantUrlResponse === TenantUrlState.SUCCESS) {
+      return SuccessErrorType.SUCCESS
+    } else {
+      return SuccessErrorType.ERROR
+    }
+  }
+
+  const getSnackbarDesc = () => {
+    if (tenantUrlResponse === TenantUrlState.SUCCESS) {
+      return t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
+    } else {
+      return t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
     }
   }
 
@@ -246,11 +279,7 @@ const AppSubscriptionDetailOverlay = ({
       >
         <DialogHeader
           title={t('content.appSubscription.detailOverlay.title')}
-          intro={
-            type === SubscriptionTypes.APP_SUBSCRIPTION
-              ? t('content.appSubscription.detailOverlay.description')
-              : ti('serviceSubscription.detailOverlay.description')
-          }
+          intro={getDialogIntro()}
           closeWithIcon={true}
           onCloseWithIcon={() => handleOverlayClose()}
         />
@@ -284,16 +313,8 @@ const AppSubscriptionDetailOverlay = ({
       </Dialog>
       <PageSnackbar
         open={tenantUrlResponse !== TenantUrlState.NONE}
-        severity={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? SuccessErrorType.SUCCESS
-            : SuccessErrorType.ERROR
-        }
-        description={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
-            : t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
-        }
+        severity={getSnackbarSeverity()}
+        description={getSnackbarDesc()}
         showIcon={true}
         autoClose={true}
       />

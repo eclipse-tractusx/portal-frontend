@@ -58,8 +58,8 @@ export const SlidingMainHeader = ({
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: autoplay,
-    autoplaySpeed: autoplaySpeed,
+    autoplay,
+    autoplaySpeed,
   }
 
   return (

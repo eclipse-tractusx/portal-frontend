@@ -13,7 +13,7 @@
   - Enable search & filter
 - Technical User Details
   - Enable credential reset
-- Serview Overview
+- Service Overview
   - Added Sub menu for active services in service overview
   - Added Deactivate functionality
   - Added image to service overview cards
@@ -49,6 +49,10 @@
 - Service Subscription
   - UI Changes
   - Add filters
+- Enable ESLINT rule
+  - import/no-duplicates
+  - prefer-const
+  - object shorthand
 - Notifications
   - App Subscription Request content update
 - Digital Twin
@@ -59,6 +63,7 @@
   - Change Subscription roles
 - Service release process
   - Clearing fields while registering new service
+  - Skip technical integration for consultancy service
 - Shared
   - Removed PageLoadingTable component
 

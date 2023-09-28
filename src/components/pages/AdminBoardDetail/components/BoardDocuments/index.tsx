@@ -50,7 +50,7 @@ export default function BoardDocuments({
   ) => {
     try {
       const response = await getDocumentById({
-        appId: appId,
+        appId,
         documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')

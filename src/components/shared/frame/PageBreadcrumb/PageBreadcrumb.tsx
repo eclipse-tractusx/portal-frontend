@@ -30,7 +30,7 @@ interface PageBreadcrumbProps {
 }
 
 function isParamsEmpty(params: object) {
-  for (let param in params) {
+  for (const param in params) {
     if (param) return false
   }
   return true
