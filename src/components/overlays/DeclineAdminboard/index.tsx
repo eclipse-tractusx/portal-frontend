@@ -66,7 +66,7 @@ export default function DeclineAdminBoard({
     <div className="decline-modal-main">
       <DialogHeader
         {...{
-          title: title,
+          title,
           intro: subHeading,
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),

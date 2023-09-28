@@ -26,8 +26,8 @@ import UserService from 'services/UserService'
 import {
   PageHeader,
   Typography,
-  PageLoadingTable,
   PageSnackbar,
+  PageLoadingTable,
 } from '@catena-x/portal-shared-components'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
@@ -105,7 +105,7 @@ const EdcConnector = () => {
   }
 
   const swap = (arry: any, from: number, to: number) => {
-    let swapValue = arry[from]
+    const swapValue = arry[from]
     arry[from] = arry[to]
     arry[to] = swapValue
     return arry
@@ -298,7 +298,7 @@ const EdcConnector = () => {
         />
       </section>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody>
+        <PageLoadingTable<ConnectorResponseBody, {}>
           toolbarVariant="premium"
           title={t('content.edcconnector.tabletitle')}
           loadLabel={t('global.actions.more')}
@@ -312,7 +312,7 @@ const EdcConnector = () => {
         />
       </div>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody>
+        <PageLoadingTable<ConnectorResponseBody, {}>
           toolbarVariant="premium"
           title={t('content.edcconnector.managedtabletitle')}
           loadLabel={t('global.actions.more')}

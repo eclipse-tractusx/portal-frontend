@@ -179,7 +179,7 @@ export default function AppMarketCard() {
     formState: { errors, isValid },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -210,7 +210,7 @@ export default function AppMarketCard() {
 
   useEffect(() => {
     if (salesManagerList.length > 0) {
-      let data = salesManagerList?.map((item) => {
+      const data = salesManagerList?.map((item) => {
         return { ...item, fullName: `${item.firstName} ${item.lastName}` }
       })
       reset(defaultValues)
@@ -238,7 +238,7 @@ export default function AppMarketCard() {
   const cardImageData: any = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      let isFile: any = cardImageData instanceof File
+      const isFile: any = cardImageData instanceof File
 
       if (isFile) {
         const blobFile = new Blob([cardImageData], {
@@ -358,7 +358,7 @@ export default function AppMarketCard() {
     const saveData = {
       title: data.title,
       provider: data.provider,
-      salesManagerId: salesManagerId,
+      salesManagerId,
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
       })
@@ -395,7 +395,7 @@ export default function AppMarketCard() {
 
     if (appId) {
       const saveAppData = {
-        appId: appId,
+        appId,
         body: saveData,
       }
 
@@ -435,8 +435,8 @@ export default function AppMarketCard() {
     file: any
   ) => {
     const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
+      appId,
+      documentTypeId,
       body: { file },
     }
 

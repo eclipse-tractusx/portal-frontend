@@ -75,7 +75,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const saveRoles = async () => {
     if (!appId) return
     const data: UserRoleRequest = {
-      appId: appId,
+      appId,
       companyUserId: id,
       body: roles,
     }

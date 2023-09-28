@@ -69,7 +69,7 @@ const AddRolesOverlay = ({
     trigger,
     formState: { errors },
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -131,7 +131,7 @@ const AddRolesOverlay = ({
     ])
 
     const updatedData = {
-      appId: appId,
+      appId,
       body: rolesDescriptionData?.map((item) => ({
         role: item[0],
         descriptions: [

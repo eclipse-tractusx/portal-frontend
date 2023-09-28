@@ -37,8 +37,8 @@ export default function ProviderConnectorField({
         control,
         trigger,
         errors,
-        name: name,
-        label: label,
+        name,
+        label,
         type: 'input',
         placeholder: placeholder ?? '',
         rules: {
@@ -46,7 +46,7 @@ export default function ProviderConnectorField({
             value: pattern,
             message: ruleMessage,
           },
-          validate: validate,
+          validate,
         },
       }}
     />

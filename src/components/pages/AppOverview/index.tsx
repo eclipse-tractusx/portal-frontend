@@ -31,13 +31,12 @@ import {
   PageSnackbar,
   ErrorBar,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme, CircularProgress, Box } from '@mui/material'
 import {
   appCardStatus,
   appCardRecentlyApps,
   appToCard,
 } from 'features/apps/mapper'
-import { Box } from '@mui/material'
 import {
   useFetchProvidedAppsQuery,
   AppInfo,

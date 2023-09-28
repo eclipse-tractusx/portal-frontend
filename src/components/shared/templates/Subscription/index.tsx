@@ -382,8 +382,8 @@ export default function Subscription({
         page: page + 1,
         fetchArgs: {
           page: page + 1,
-          statusId: statusId,
-          sortingType: sortingType,
+          statusId,
+          sortingType,
         },
       },
     })

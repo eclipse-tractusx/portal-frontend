@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import ReleaseProcessWrapper from 'components/shared/basic/ReleaseProcess/components/ReleaseProcessWrapper'
-import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import {
+  ReleaseProcessTypes,
+  ServiceTypeIdsEnum,
+} from 'features/serviceManagement/apiSlice'
 import {
   serviceStatusDataSelector,
   setServiceReleaseActiveStep,
@@ -88,20 +91,22 @@ export default function ServiceReleaseProcessForm() {
         onServiceOverviewClick()
       }}
       stepsList={
-        serviceStatusData?.serviceTypeIds.length > 0 &&
-        serviceStatusData?.serviceTypeIds.every((item) =>
-          ['CONSULTANCE_SERVICE']?.includes(item)
-        )
-          ? stepsListWithoutTechnicalIntegration
-          : stepsList
+        serviceStatusData?.serviceTypeIds.length === 0 ||
+        (serviceStatusData?.serviceTypeIds.length > 0 &&
+          serviceStatusData?.serviceTypeIds.includes(
+            ServiceTypeIdsEnum.DATASPACE_SERVICE
+          ))
+          ? stepsList
+          : stepsListWithoutTechnicalIntegration
       }
       numberOfSteps={
-        serviceStatusData?.serviceTypeIds.length > 0 &&
-        serviceStatusData?.serviceTypeIds.every((item) =>
-          ['CONSULTANCE_SERVICE']?.includes(item)
-        )
-          ? 4
-          : 5
+        serviceStatusData?.serviceTypeIds.length === 0 ||
+        (serviceStatusData?.serviceTypeIds.length > 0 &&
+          serviceStatusData?.serviceTypeIds.includes(
+            ServiceTypeIdsEnum.DATASPACE_SERVICE
+          ))
+          ? 5
+          : 4
       }
       pageHeaderTitle={t('headerTitle')}
       headerTitle={t('submit.headerTitle')}

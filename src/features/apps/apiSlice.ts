@@ -249,7 +249,7 @@ export const apiSlice = createApi({
             }
           )
         })
-        return { data: data }
+        return { data }
       },
     }),
     fetchFavoriteApps: builder.query<string[], void>({

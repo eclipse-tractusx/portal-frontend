@@ -29,7 +29,7 @@ export const StageSubNavigation = () => {
     const element = document.getElementById(id)
     const top = element?.offsetTop
     window.scrollTo({
-      top: top,
+      top,
       behavior: 'smooth',
     })
   }

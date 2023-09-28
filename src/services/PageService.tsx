@@ -20,7 +20,7 @@
 
 import { MutableRefObject } from 'react'
 
-let referenceMap: { [key: string]: MutableRefObject<any> } = {}
+const referenceMap: { [key: string]: MutableRefObject<any> } = {}
 
 const registerReference = (key: string, ref: MutableRefObject<any>) => {
   referenceMap[key] = ref

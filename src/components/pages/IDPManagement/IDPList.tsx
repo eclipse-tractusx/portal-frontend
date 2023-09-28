@@ -22,11 +22,13 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { CircularProgress, MenuItem } from '@mui/material'
+import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import './style.scss'
 import {
   DropdownMenu,
   StatusTag,
   Table,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
@@ -214,20 +216,34 @@ export const IDPList = () => {
               field: 'displayName',
               headerName: t('global.field.name'),
               flex: 2,
+              renderCell: ({ row }: { row: IdentityProvider }) =>
+                row.displayName ?? (
+                  <>
+                    <ReportProblemIcon color="error" fontSize="small" />
+                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                      {ti('field.error')}
+                    </Typography>
+                  </>
+                ),
             },
             {
               field: 'alias',
               headerName: t('global.field.alias'),
-              flex: 2,
+              flex: 1.5,
+              renderCell: ({ row }: { row: IdentityProvider }) =>
+                row.alias ?? (
+                  <>
+                    <ReportProblemIcon color="error" fontSize="small" />
+                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                      {ti('field.error')}
+                    </Typography>
+                  </>
+                ),
             },
             {
-              field: 'identityProviderCategoryId',
+              field: 'ProviderTypeId',
               headerName: t('global.field.authMethod'),
               flex: 2,
-              valueGetter: ({ row }: { row: IdentityProvider }) =>
-                row.identityProviderCategoryId === 'KEYCLOAK_SHARED'
-                  ? `${ti('field.catenaXIDP')}`
-                  : `${ti('field.companyIDP')}`,
             },
             {
               field: 'progress',

@@ -127,7 +127,7 @@ export default function TechnicalIntegration() {
     formState: { errors },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -172,7 +172,7 @@ export default function TechnicalIntegration() {
     ) {
       setLoading(true)
       const updateData = {
-        appId: appId,
+        appId,
         body: [
           {
             technicalUserProfileId:
@@ -256,7 +256,7 @@ export default function TechnicalIntegration() {
     ])
 
     const updateRolesData = {
-      appId: appId,
+      appId,
       body: rolesDescriptionData?.map((item) => ({
         role: item[0],
         descriptions: [
@@ -290,8 +290,8 @@ export default function TechnicalIntegration() {
 
   const onChipDelete = (roleId: string) => {
     deleteRoles({
-      appId: appId,
-      roleId: roleId,
+      appId,
+      roleId,
     })
       .unwrap()
       .then(() => {

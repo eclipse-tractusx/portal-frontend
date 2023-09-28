@@ -22,7 +22,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum IDPCategory {
-  KEYCLOAK_SHARED = 'KEYCLOAK_SHARED',
+  SHARED = 'SHARED',
   OWN = 'OWN',
 }
 

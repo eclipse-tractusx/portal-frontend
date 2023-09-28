@@ -36,11 +36,16 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Patterns from 'types/Patterns'
 
+interface FetchHookArgsType {
+  statusFilter: string
+  expr: string
+}
+
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const update = useSelector(updateTechuserSelector)
-  const [fetchHookArgs, setFetchHookArgs] = useState({})
+  const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
   const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ALL)
@@ -53,7 +58,7 @@ export const TechnicalUserTable = () => {
   useEffect(() => {
     setFetchHookArgs({
       statusFilter: group,
-      expr: expr,
+      expr,
     })
   }, [group, expr])
 
@@ -77,7 +82,7 @@ export const TechnicalUserTable = () => {
 
   return (
     <div style={{ paddingTop: '30px' }}>
-      <PageLoadingTable<ServiceAccountListEntry>
+      <PageLoadingTable<ServiceAccountListEntry, FetchHookArgsType>
         searchExpr={expr}
         hasBorder={false}
         rowHeight={80}

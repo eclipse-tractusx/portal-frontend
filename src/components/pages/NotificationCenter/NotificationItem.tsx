@@ -91,6 +91,7 @@ const NotificationContent = ({
   const credentialType = item.contentParsed?.type
   const newUrl = item.contentParsed?.newUrl
   const roles = item.contentParsed?.Roles
+  const userEmail = item.contentParsed?.UserEmail
 
   return (
     <>
@@ -104,12 +105,13 @@ const NotificationContent = ({
             offer: offerName,
             company: companyName,
             username: userName,
-            coreOfferName: coreOfferName,
+            coreOfferName,
             removedRoles: removedRoles ? removedRoles : '-',
             addedRoles: addedRoles ? addedRoles : '-',
-            credentialType: credentialType,
-            newUrl: newUrl,
+            credentialType,
+            newUrl,
             roles: roles?.join(', '),
+            useremail: userEmail,
           }}
         >
           <NameLink
@@ -232,7 +234,7 @@ export default function NotificationItem({
 
   const setRead = async (id: string, value: boolean) => {
     try {
-      await setNotificationRead({ id: id, flag: value })
+      await setNotificationRead({ id, flag: value })
     } catch (error: unknown) {
       console.log(error)
     }
