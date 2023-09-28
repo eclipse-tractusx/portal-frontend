@@ -32,7 +32,7 @@ const LogService = {
 
   log: (level: LogLevel, message: string, data?: any) =>
     { ((row) =>
-      { level === LogLevel.SEVERE ?? level === LogLevel.ERROR
+      { level === LogLevel.SEVERE || level === LogLevel.ERROR
         ? console.error(row, data ?? '')
         : console.log(row, data ?? '') })(
       `${LogService.logtime()} ${level} ${message}`
