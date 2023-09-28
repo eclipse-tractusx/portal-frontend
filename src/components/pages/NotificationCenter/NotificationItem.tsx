@@ -129,7 +129,7 @@ const NotificationContent = ({
         </Trans>
       </div>
       {message && <div className="message">{message}</div>}
-      {(appId || userId || navlinks) && (
+      {(appId ?? userId ?? navlinks) && (
         <div className="links">
           {navlinks?.map((nav) => (
             <NavLink key={nav} to={`/${nav}`}>

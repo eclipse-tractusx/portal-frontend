@@ -170,7 +170,7 @@ export default function NotificationCenter() {
       buttonValue: NOTIFICATION_TOPIC.OFFER,
       buttonDescription: t('sortOptions.app.description'),
       onButtonClick: setView,
-      count: pages?.offerUnread || 0,
+      count: pages?.offerUnread ?? 0,
       countTitle: t('sortOptions.app.countTitle'),
     },
     {
@@ -178,7 +178,7 @@ export default function NotificationCenter() {
       buttonValue: NOTIFICATION_TOPIC.INFO,
       buttonDescription: t('sortOptions.info.description'),
       onButtonClick: setView,
-      count: pages?.infoUnread || 0,
+      count: pages?.infoUnread ?? 0,
       countTitle: t('sortOptions.info.countTitle'),
     },
     {
@@ -186,7 +186,7 @@ export default function NotificationCenter() {
       buttonValue: NOTIFICATION_TOPIC.ACTION,
       buttonDescription: t('sortOptions.withaction.description'),
       onButtonClick: setView,
-      count: pages?.actionRequired || 0,
+      count: pages?.actionRequired ?? 0,
       countTitle: t('sortOptions.withaction.countTitle'),
     },
   ]

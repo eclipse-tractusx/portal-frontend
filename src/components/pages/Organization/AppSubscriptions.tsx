@@ -54,7 +54,7 @@ export default function AppSubscriptions({
     <div className="organization-subscriptions" onClick={onButtonClick}>
       <div className="iconNameContainer">
         <Image
-          src={image?.src || LogoGrayData}
+          src={image?.src ?? LogoGrayData}
           style={{
             objectFit: 'cover',
             width: 30,

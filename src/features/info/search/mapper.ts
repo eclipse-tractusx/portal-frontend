@@ -46,7 +46,7 @@ export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
   ...item,
   category: SearchCategory.APP,
   description: item.provider,
-  title: item.name || '-',
+  title: item.name ?? '-',
 })
 
 export const businessPartnerToSearchItem = (
@@ -59,7 +59,7 @@ export const businessPartnerToSearchItem = (
 })
 
 export const newsToSearchItem = (item: CardItems): SearchItem => ({
-  id: item.id || '0',
+  id: item.id ?? '0',
   category: SearchCategory.NEWS,
   title: item.title,
   description: item.subtitle,
@@ -68,6 +68,6 @@ export const newsToSearchItem = (item: CardItems): SearchItem => ({
 export const userToSearchItem = (item: TenantUser): SearchItem => ({
   id: item.companyUserId,
   category: SearchCategory.USER,
-  title: `${item.firstName || ''} ${item.lastName || ''}`,
+  title: `${item.firstName ?? ''} ${item.lastName ?? ''}`,
   description: item.email,
 })

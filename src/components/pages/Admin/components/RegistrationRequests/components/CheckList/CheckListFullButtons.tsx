@@ -143,7 +143,7 @@ export default function CheckListFullButtons({
                 height: '60px',
                 padding: '12px 8px',
                 borderRadius: '6px',
-                backgroundColor: button?.backgroundColor || '#fff',
+                backgroundColor: button?.backgroundColor ?? '#fff',
                 color: '#111',
                 fontSize: '14px',
                 outlined: 'none',

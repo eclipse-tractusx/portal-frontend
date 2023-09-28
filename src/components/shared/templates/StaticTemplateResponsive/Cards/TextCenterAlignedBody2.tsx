@@ -38,8 +38,8 @@ export default function TextCenterAlignedBody2({
     <Box
       className={'multiTextContainer'}
       sx={{
-        textAlign: provider.align || 'left',
-        backgroundColor: provider.backgroundColor || '#ffffff',
+        textAlign: provider.align ?? 'left',
+        backgroundColor: provider.backgroundColor ?? '#ffffff',
       }}
     >
       <Box>

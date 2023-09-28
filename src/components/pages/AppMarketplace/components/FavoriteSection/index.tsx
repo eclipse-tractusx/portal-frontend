@@ -34,7 +34,7 @@ import type { AppDispatch } from 'features/store'
 export default function FavoriteSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
-  const active = useFetchActiveAppsQuery().data || []
+  const active = useFetchActiveAppsQuery().data ?? []
   const favorites = useSelector(itemsSelector)
   const favoriteSectionPosition = favorites.length === 0 ? 30 : 45
 

@@ -50,7 +50,7 @@ export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId || '', {
+  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
   const [fetchDocument] = useFetchDocumentMutation()

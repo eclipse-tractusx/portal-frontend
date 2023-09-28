@@ -173,7 +173,7 @@ const EdcConnector = () => {
   const deleteSelectedConnector = async () => {
     setAction('delete')
     setLoading(true)
-    await deleteConnector(selectedConnector.id || '')
+    await deleteConnector(selectedConnector.id ?? '')
       .unwrap()
       .then(() => {
         setDeleteConnectorConfirmModalOpen(false)

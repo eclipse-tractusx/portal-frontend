@@ -112,9 +112,9 @@ const ValidatingFormTest = () => {
         label={'debounce time'}
         hint={'specify the debounce time in ms'}
         errorMessage={error ? 'debounce time must be a number' : undefined}
-        validate={(expr) => !Number.isNaN(Number.parseInt(expr || '0'))}
+        validate={(expr) => !Number.isNaN(Number.parseInt(expr ?? '0'))}
         onValid={(_name: string, value?: string) =>
-          setDebounceTime(value || '0')
+          setDebounceTime(value ?? '0')
         }
         debounceTime={Number.parseInt(debounceTime)}
       />

@@ -109,14 +109,14 @@ export default function OfferPage({
       longDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-        )[0]?.longDescription || '',
+        )[0]?.longDescription ?? '',
       longDescriptionDE:
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-        )[0]?.longDescription || '',
-      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS || [],
-      providerHomePage: fetchServiceStatus?.providerUri || '',
-      providerContactEmail: fetchServiceStatus?.contactEmail || '',
+        )[0]?.longDescription ?? '',
+      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS ?? [],
+      providerHomePage: fetchServiceStatus?.providerUri ?? '',
+      providerContactEmail: fetchServiceStatus?.contactEmail ?? '',
     }
   }, [fetchServiceStatus])
 
@@ -229,7 +229,7 @@ export default function OfferPage({
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
               (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
         {
           languageCode: 'de',
@@ -237,14 +237,14 @@ export default function OfferPage({
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
               (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
       ],
       privacyPolicies: [],
       salesManager: null,
       price: '',
-      providerUri: data.providerHomePage || '',
-      contactEmail: data.providerContactEmail || '',
+      providerUri: data.providerHomePage ?? '',
+      contactEmail: data.providerContactEmail ?? '',
       leadPictureUri: fetchServiceStatus?.leadPictureUri,
     }
 

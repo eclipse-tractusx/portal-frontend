@@ -67,10 +67,9 @@ export default function ActivateserviceSubscription({
 
   const techUserProfiles = useMemo(
     () =>
-      (data &&
-        data?.length > 0 &&
-        data[0]?.userRoles.map((i: { roleName: string }) => i.roleName)) ||
-      [],
+      data &&
+      data?.length > 0 &&
+      data[0]?.userRoles.map((i: { roleName: string }) => i.roleName),
     [data]
   )
 
@@ -281,7 +280,7 @@ export default function ActivateserviceSubscription({
                       <Typography variant="h4" sx={{ marginBottom: '20px' }}>
                         {t('serviceSubscription.register.sectionHeader')}
                       </Typography>
-                      {techUserProfiles.length > 0 ? (
+                      {techUserProfiles && techUserProfiles?.length > 0 ? (
                         <Typography variant="body2">
                           {techUserProfiles.join(', ')}
                         </Typography>

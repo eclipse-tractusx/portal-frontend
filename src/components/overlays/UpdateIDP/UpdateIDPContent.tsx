@@ -44,14 +44,14 @@ const isWellknownMetadata = (expr: string) =>
 
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
-  form.displayName = idp.displayName || ''
+  form.displayName = idp.displayName ?? ''
   form.metadataUrl = ''
-  form.clientId = idp.oidc?.clientId || ''
+  form.clientId = idp.oidc?.clientId ?? ''
   form.secret = ''
   form.clientAuthMethod =
-    idp.oidc?.clientAuthMethod || OIDCAuthMethod.SECRET_BASIC
+    idp.oidc?.clientAuthMethod ?? OIDCAuthMethod.SECRET_BASIC
   form.signatureAlgorithm =
-    idp.oidc?.signatureAlgorithm || OIDCSignatureAlgorithm.ES256
+    idp.oidc?.signatureAlgorithm ?? OIDCSignatureAlgorithm.ES256
   return form
 }
 
@@ -76,7 +76,7 @@ const UpdateIDPForm = ({
   const { t } = useTranslation('idp')
 
   const defaultOAM =
-    idp.oidc?.clientAuthMethod || (OIDCAuthMethod.SECRET_BASIC as string)
+    idp.oidc?.clientAuthMethod ?? (OIDCAuthMethod.SECRET_BASIC as string)
   const defaultOidcAuthMethod = {
     id: defaultOAM,
     title: defaultOAM,
