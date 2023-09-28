@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import { name, SearchInputState, AppStatusDataState } from './types'
+import { name, type SearchInputState, type AppStatusDataState } from './types'
 
 const setSearchInput = createAction<SearchInputState>(`${name}/setSearchOpen`)
 const setAppId = createAction<string>(`${name}/setApplicationId`)

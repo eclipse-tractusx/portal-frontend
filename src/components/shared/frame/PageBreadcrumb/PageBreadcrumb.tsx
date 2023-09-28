@@ -23,7 +23,7 @@ import { Link, Typography } from '@mui/material'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
-import { JSX } from 'react/jsx-runtime'
+import { type JSX } from 'react/jsx-runtime'
 
 interface PageBreadcrumbProps {
   backButtonVariant?: 'text' | 'contained' | 'outlined'
@@ -92,7 +92,9 @@ export const PageBreadcrumb = ({
               fontSize: '14px',
               fontWeight: index === 0 ? 'bold' : '',
             }}
-            onClick={() => navigate(-navigatePage)}
+            onClick={() => {
+              navigate(-navigatePage)
+            }}
           >
             <p style={{ marginTop: '3px !important' }}>{getCrumbTitle(item)}</p>
           </Link>
@@ -107,7 +109,9 @@ export const PageBreadcrumb = ({
     <Breadcrumb
       backButtonLabel={t('global.actions.back')}
       backButtonVariant={backButtonVariant}
-      onBackButtonClick={() => navigate(-1)}
+      onBackButtonClick={() => {
+        navigate(-1)
+      }}
       breadcrumbs={breadcrumbs()}
     />
   )

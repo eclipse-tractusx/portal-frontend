@@ -28,7 +28,7 @@ import { useTheme, CircularProgress } from '@mui/material'
 import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
-  AppContent,
+  type AppContent,
   useApproveRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
 import { OVERLAYS, PAGES } from 'types/Constants'
@@ -41,7 +41,7 @@ import {
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import NoItems from 'components/pages/NoItems'
 import {
-  ServiceContent,
+  type ServiceContent,
   useApproveServiceRequestMutation,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useState } from 'react'

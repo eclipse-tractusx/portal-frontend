@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import {
-  AgreementRequest,
+  type AgreementRequest,
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
   useFetchAppDetailsQuery,
@@ -148,9 +148,9 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     handleCheckedAgreement(e.target.checked, agreement)
-                  }
+                  }}
                   onFocusVisible={function noRefCheck() {}}
                 />
               </li>

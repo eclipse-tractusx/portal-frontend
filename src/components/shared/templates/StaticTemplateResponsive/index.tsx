@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps, TemplateNames } from './StaticTypes'
+import { type ProviderProps, TemplateNames } from './StaticTypes'
 import TextImageSideBySide from './Cards/TextImageSideBySide'
 import TextVideoSideBySide from './Cards/TextVideoSideBySide'
 import TextImageCenterAligned from './Cards/TextImageCenterAligned'

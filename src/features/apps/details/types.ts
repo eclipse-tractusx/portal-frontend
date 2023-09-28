@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import type { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
 
 export const name = 'apps/details'
 

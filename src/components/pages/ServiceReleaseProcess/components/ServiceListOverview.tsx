@@ -27,16 +27,16 @@ import {
   SearchInput,
   Cards,
   LoadMoreButton,
-  CardItems,
+  type CardItems,
   PageSnackbar,
   ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
 import {
-  ProvidedServices,
+  type ProvidedServices,
   ProvidedServiceStatusEnum,
-  ProvidedServiceType,
+  type ProvidedServiceType,
   ServiceDeactivateEnum,
   StatusIdEnum,
   useFetchProvidedServicesQuery,

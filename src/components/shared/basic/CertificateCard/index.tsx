@@ -29,8 +29,8 @@ import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import { Typography } from '@catena-x/portal-shared-components'
 import {
-  CertificateResponse,
-  SSIDetailData,
+  type CertificateResponse,
+  type SSIDetailData,
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
 import './style.scss'

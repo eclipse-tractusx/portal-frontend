@@ -40,10 +40,10 @@ import {
   MenuItem,
   FormControl,
   Select,
-  SelectChangeEvent,
+  type SelectChangeEvent,
   CircularProgress,
 } from '@mui/material'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -85,8 +85,9 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     )
   }
 
-  const onSelectChange = (e: SelectChangeEvent) =>
+  const onSelectChange = (e: SelectChangeEvent) => {
     setInputStatus(e.target.value as Status)
+  }
 
   return (
     <Dialog open={show}>
@@ -115,7 +116,9 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         </FormControl>
         <Input
           value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={(e) => {
+            setInputText(e.target.value)
+          }}
           multiline
           minRows={4}
           maxRows={18}

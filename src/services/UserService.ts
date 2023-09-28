@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import Keycloak from 'keycloak-js'
-import { IUser } from 'features/user/types'
+import type { IUser } from 'features/user/types'
 import { ROLES } from 'types/Constants'
 import AccessService from './AccessService'
 import {

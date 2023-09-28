@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import { name, ServiceStatusDataState } from './types'
+import { name, type ServiceStatusDataState } from './types'
 
 const setServiceId = createAction<string>(`${name}/setServiceId`)
 const setServiceStatus = createAction<ServiceStatusDataState>(

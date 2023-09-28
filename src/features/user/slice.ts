@@ -18,9 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
-import { IUser } from './types'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
+import type { IUser } from './types'
 
 const initialState: IUser = {
   userName: '',

@@ -72,8 +72,12 @@ const ConfirmaCancelOverlay = ({
       comment: text ? text : '',
     })
       .unwrap()
-      .then(() => handleConfirmClick(''))
-      .catch((error) => handleConfirmClick(error.data.title))
+      .then(() => {
+        handleConfirmClick('')
+      })
+      .catch((error) => {
+        handleConfirmClick(error.data.title)
+      })
     setLoading(false)
   }
 
@@ -161,7 +165,12 @@ const ConfirmaCancelOverlay = ({
             </div>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+            <Button
+              variant="outlined"
+              onClick={(e) => {
+                handleOverlayClose(e)
+              }}
+            >
               {t('global.actions.cancel')}
             </Button>
             {loading && (

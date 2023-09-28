@@ -113,21 +113,30 @@ const DeleteConfirmationOverlay = ({
                     'content.edcconnector.deletemodal.techUserCheckBoxLabel'
                   )}
                   checked={checkBoxSelected}
-                  onClick={() => setCheckBoxSelected(!checkBoxSelected)}
+                  onClick={() => {
+                    setCheckBoxSelected(!checkBoxSelected)
+                  }}
                 />
               </Box>
             </Box>
           )}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+            }}
+          >
             {t('global.actions.cancel')}
           </Button>
           {!loading && (
             <Button
               variant="contained"
               disabled={techUser ? !checkBoxSelected : false}
-              onClick={(e) => handleConfirmClick(e)}
+              onClick={(e) => {
+                handleConfirmClick(e)
+              }}
             >
               {t('global.actions.confirm')}
             </Button>

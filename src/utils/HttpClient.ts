@@ -19,10 +19,10 @@
  ********************************************************************************/
 
 import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestHeaders,
-  AxiosResponse,
+  type AxiosError,
+  type AxiosInstance,
+  type AxiosRequestHeaders,
+  type AxiosResponse,
 } from 'axios'
 
 // Tell to typescript, we can use any type of data as response data

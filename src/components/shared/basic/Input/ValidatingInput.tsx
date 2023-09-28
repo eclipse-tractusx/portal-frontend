@@ -20,7 +20,11 @@
 
 import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
-import BasicInput, { BasicInputProps, Colors, InputType } from './BasicInput'
+import BasicInput, {
+  type BasicInputProps,
+  Colors,
+  InputType,
+} from './BasicInput'
 
 export type ValidatingInputProps = BasicInputProps & {
   name: string

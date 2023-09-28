@@ -90,10 +90,10 @@ const UnSubscribeOverlay = ({
                   t('content.organization.unsubscribe.table.connector'),
                 ],
                 body: [
-                  [data?.name || ''],
-                  [data?.offerSubscriptionStatus || ''],
-                  [data?.technicalUserData[0]?.name || ''],
-                  [data?.connectorData[0]?.name || ''],
+                  [data?.name ?? ''],
+                  [data?.offerSubscriptionStatus ?? ''],
+                  [data?.technicalUserData[0]?.name ?? ''],
+                  [data?.connectorData[0]?.name ?? ''],
                 ],
               }}
               horizontal={true}
@@ -107,19 +107,28 @@ const UnSubscribeOverlay = ({
             <Checkbox
               label={t('content.organization.unsubscribe.checkBoxLabel')}
               checked={checkBoxSelected}
-              onClick={() => setCheckBoxSelected(!checkBoxSelected)}
+              onClick={() => {
+                setCheckBoxSelected(!checkBoxSelected)
+              }}
             />
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+            }}
+          >
             {t('global.actions.cancel')}
           </Button>
           {!loading && (
             <Button
               variant="contained"
               disabled={!checkBoxSelected}
-              onClick={(e) => handleConfirmClick(e)}
+              onClick={(e) => {
+                handleConfirmClick(e)
+              }}
             >
               {t('content.organization.unsubscribe.buttonText')}
             </Button>

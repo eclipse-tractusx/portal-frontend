@@ -21,7 +21,7 @@
 import { CardHorizontal } from '@catena-x/portal-shared-components'
 import { Grid, useTheme, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
 import { getAssetBase } from 'services/EnvironmentService'
@@ -60,7 +60,9 @@ export default function RecommendedServices({
                 imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                 label={service.provider}
                 buttonText="Details"
-                onBtnClick={() => handleClick(service.id)}
+                onBtnClick={() => {
+                  handleClick(service.id)
+                }}
                 title={service.title}
                 subTitle={getServices(service.serviceTypes)}
                 description={service.description}

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { SearchParams } from 'types/MainTypes'
+import type { SearchParams } from 'types/MainTypes'
 import { PartnerNetworkApi } from './api'
 
 const fetchMemberCompaniesData = createAsyncThunk(

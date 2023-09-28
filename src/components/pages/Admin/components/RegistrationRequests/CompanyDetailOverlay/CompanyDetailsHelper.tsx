@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { Trans } from 'react-i18next'

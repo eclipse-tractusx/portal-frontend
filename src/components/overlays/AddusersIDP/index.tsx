@@ -30,7 +30,7 @@ import {
   LoadingButton,
   Radio,
   StaticTable,
-  TableType,
+  type TableType,
   Textarea,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -39,7 +39,7 @@ import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useFetchIDPDetailQuery,
-  UserIdentityProviders,
+  type UserIdentityProviders,
   useFetchIDPUsersListQuery,
 } from 'features/admin/idpApiSlice'
 import EnvironmentService from 'services/EnvironmentService'
@@ -83,7 +83,9 @@ const SelectFormat = ({
       <Radio
         label={FileFormat.JSON}
         checked={format === FileFormat.JSON}
-        onChange={() => onChange(FileFormat.JSON)}
+        onChange={() => {
+          onChange(FileFormat.JSON)
+        }}
         value={FileFormat.JSON}
         name="radio-buttons"
         inputProps={{ 'aria-label': FileFormat.JSON }}
@@ -91,7 +93,9 @@ const SelectFormat = ({
       <Radio
         label={FileFormat.CSV}
         checked={format === FileFormat.CSV}
-        onChange={() => onChange(FileFormat.CSV)}
+        onChange={() => {
+          onChange(FileFormat.CSV)
+        }}
         value={FileFormat.CSV}
         name="radio-buttons"
         inputProps={{ 'aria-label': FileFormat.CSV }}
@@ -128,7 +132,9 @@ const AddusersIDPResponse = ({
         }
         intro={''}
         closeWithIcon={true}
-        onCloseWithIcon={() => storeResponse('')}
+        onCloseWithIcon={() => {
+          storeResponse('')
+        }}
       />
       <DialogContent>
         {!userResponse.error ? (
@@ -178,7 +184,12 @@ const AddusersIDPResponse = ({
         )}
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => storeResponse('')}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            storeResponse('')
+          }}
+        >
           {t('action.close')}
         </Button>
       </DialogActions>
@@ -246,7 +257,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         error(t(`state.${IDPState.ERROR_UPLOAD_USERS}`, '', err))
         setStatus(false)
       })
-    setTimeout(() => setStatus(undefined), 3000)
+    setTimeout(() => {
+      setStatus(undefined)
+    }, 3000)
   }
 
   const downloadUserfile = () => {
@@ -284,16 +297,16 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       `${CSV_COLUMNS.map((col) => col.name).join()}\n${users
         .map((user: UserIdentityProviders) =>
           [
-            user.companyUserId || '',
-            user.firstName || '',
-            user.lastName || '',
-            user.email || '',
+            user.companyUserId ?? '',
+            user.firstName ?? '',
+            user.lastName ?? '',
+            user.email ?? '',
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
-              user.identityProviders[0].userId) ||
+              user.identityProviders[0].userId) ??
               '',
             (user.identityProviders?.length > 0 &&
-              user.identityProviders[0].userName) ||
+              user.identityProviders[0].userName) ??
               '',
           ].join(',')
         )
@@ -309,9 +322,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       email: cols[3],
       identityProviders: [
         {
-          identityProviderId: cols[4] || '',
-          userId: cols[5] || '',
-          userName: cols[6] || '',
+          identityProviderId: cols[4] ?? '',
+          userId: cols[5] ?? '',
+          userName: cols[6] ?? '',
         },
       ],
     }),
@@ -388,7 +401,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       if (acceptedFiles.length > 1) {
         error(t(`state.${IDPState.ERROR_MULTIPLE_FILES}`))
         setStatus(false)
-        setTimeout(() => setStatus(undefined), 3000)
+        setTimeout(() => {
+          setStatus(undefined)
+        }, 3000)
         return
       }
       const MIME_TYPE = {
@@ -399,18 +414,26 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         if (file.size > 100000) {
           error(t(`state.${IDPState.ERROR_INVALID_SIZE}`))
           setStatus(false)
-          setTimeout(() => setStatus(undefined), 3000)
+          setTimeout(() => {
+            setStatus(undefined)
+          }, 3000)
           return
         }
         if (!Object.values(MIME_TYPE).includes(file.type)) {
           error(t(`state.${IDPState.ERROR_INVALID_TYPE}`))
           setStatus(false)
-          setTimeout(() => setStatus(undefined), 3000)
+          setTimeout(() => {
+            setStatus(undefined)
+          }, 3000)
           return
         }
         const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
         reader.onload = () => {
           if (!reader.result) return
           const content = reader.result.toString()
@@ -484,25 +507,31 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   : fetching
               }
               onBlur={() => {}}
-              onChange={(e) => storeData(e.target.value)}
+              onChange={(e) => {
+                storeData(e.target.value)
+              }}
             />
             <div className="fileFormat">
               <SelectFormat
                 format={format}
-                onChange={(selectedFormat: FileFormat) =>
+                onChange={(selectedFormat: FileFormat) => {
                   setFormat(selectedFormat)
-                }
+                }}
               />
               <Checkbox
                 label={`${t('users.pretty')}`}
                 checked={pretty}
-                onClick={() => setPretty(!pretty)}
+                onClick={() => {
+                  setPretty(!pretty)
+                }}
               />
               <div style={{ display: 'none' }}>
                 <Checkbox
                   label={`${t('users.unlinked')}`}
                   checked={unlinked}
-                  onClick={() => setUnlinked(!unlinked)}
+                  onClick={() => {
+                    setUnlinked(!unlinked)
+                  }}
                 />
               </div>
             </div>

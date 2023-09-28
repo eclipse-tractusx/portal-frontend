@@ -81,7 +81,9 @@ export default function Organization() {
       {showUnsubscribeOverlay && (
         <UnSubscribeOverlay
           openDialog={showUnsubscribeOverlay}
-          handleOverlayClose={() => setShowUnsubscribeOverlay(false)}
+          handleOverlayClose={() => {
+            setShowUnsubscribeOverlay(false)
+          }}
           handleConfirmClick={() => onUnsubscribe()}
           loading={loading}
           appId={appId}
@@ -117,7 +119,9 @@ export default function Organization() {
             <AppSubscriptions
               key={app.offerId}
               image={app.image}
-              onButtonClick={() => handleClick(app.offerId)}
+              onButtonClick={() => {
+                handleClick(app.offerId)
+              }}
               name={app.name || ''}
               provider={app.provider}
               status={app.status}

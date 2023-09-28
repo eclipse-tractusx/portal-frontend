@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { SubscriptionStatus, ImageType } from 'features/apps/apiSlice'
+import { SubscriptionStatus, type ImageType } from 'features/apps/apiSlice'
 import { Button, Image, LogoGrayData } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
 import './Organization.scss'
@@ -54,7 +54,7 @@ export default function AppSubscriptions({
     <div className="organization-subscriptions" onClick={onButtonClick}>
       <div className="iconNameContainer">
         <Image
-          src={image?.src || LogoGrayData}
+          src={image?.src ?? LogoGrayData}
           style={{
             objectFit: 'cover',
             width: 30,

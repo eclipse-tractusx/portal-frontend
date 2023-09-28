@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import {
   fetchSemanticModelById,
   fetchSemanticModels,
@@ -27,7 +27,11 @@ import {
   changeOpenApiUrl,
   deleteSemanticModelById,
 } from './actions'
-import { ModelList, SemanticModel, SemanticModelsInitialState } from './types'
+import type {
+  ModelList,
+  SemanticModel,
+  SemanticModelsInitialState,
+} from './types'
 
 const defaultModels: ModelList = {
   items: [],

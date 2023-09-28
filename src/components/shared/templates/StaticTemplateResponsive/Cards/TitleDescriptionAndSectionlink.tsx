@@ -21,7 +21,7 @@ import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { Trans } from 'react-i18next'
-import { ProviderProps, subSectionsType } from '../StaticTypes'
+import type { ProviderProps, subSectionsType } from '../StaticTypes'
 
 export default function TitleDescriptionAndSectionlink({
   scrollTop,
@@ -77,7 +77,9 @@ export default function TitleDescriptionAndSectionlink({
           {provider.sectionLink.data.map((link) => (
             <Typography
               className={'highlightText'}
-              onClick={() => navigateTo(link)}
+              onClick={() => {
+                navigateTo(link)
+              }}
               key={link.title}
             >
               {link.title}

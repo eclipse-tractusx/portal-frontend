@@ -18,7 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState } from 'react'
+import type React from 'react'
+import { useState } from 'react'
 import debounce from 'lodash.debounce'
 
 type Errors = Record<string, boolean>

@@ -24,9 +24,9 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
-import MuiChip, { ChipProps } from '@mui/material/Chip'
+import MuiChip, { type ChipProps } from '@mui/material/Chip'
 import {
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
   progressMapper,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
@@ -196,7 +196,7 @@ export default function CheckList({
                     padding: '8px 12px',
                     borderRadius: '8px',
                     margin: '0px 3px',
-                    backgroundColor: button?.backgroundColor || '#fff',
+                    backgroundColor: button?.backgroundColor ?? '#fff',
                     color: '#111',
                     border: button?.border,
                     fontSize: '10px',

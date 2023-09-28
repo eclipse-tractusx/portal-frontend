@@ -31,7 +31,7 @@ import {
   PageSnackbar,
   LoadMoreButton,
 } from '@catena-x/portal-shared-components'
-import {
+import type {
   AppFiltersResponse,
   SubscriptionContent,
   SubscriptionRequestBody,
@@ -39,8 +39,8 @@ import {
 import { currentProviderSuccessType } from 'features/serviceProvider/slice'
 import './Subscription.scss'
 import SubscriptionElements from './SubscriptionElements'
-import { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
-import { RootState } from 'features/store'
+import type { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import type { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
 import SortImage from 'components/shared/frame/SortImage'
 
@@ -492,21 +492,23 @@ export default function Subscription({
                 placeholder={searchPlaceHoder}
                 value={searchExpr}
                 autoFocus={false}
-                onChange={(e) => searchDataFn(e.target.value)}
+                onChange={(e) => {
+                  searchDataFn(e.target.value)
+                }}
                 autoComplete="off"
               />
             </div>
             <div
               className="filterSection"
-              onMouseLeave={() =>
+              onMouseLeave={() => {
                 setState({ type: ActionKind.SET_SHOW_MODAL, payload: false })
-              }
+              }}
             >
               <ViewSelector activeView={selected} views={filterButtons} />
               <SortImage
-                onClick={() =>
+                onClick={() => {
                   setState({ type: ActionKind.SET_SHOW_MODAL, payload: true })
-                }
+                }}
                 selected={showModal}
               />
               <div className="sortSection">
@@ -527,7 +529,9 @@ export default function Subscription({
                         activeAppFilter === app.id ? 'activeFilter' : ''
                       }`}
                       variant="body3"
-                      onClick={() => handleActiveAppFilter(app.id)}
+                      onClick={() => {
+                        handleActiveAppFilter(app.id)
+                      }}
                       key={app.id}
                     >
                       {app.name}
@@ -572,12 +576,12 @@ export default function Subscription({
       {
         <PageSnackbar
           open={serviceProviderSuccess}
-          onCloseNotification={() =>
+          onCloseNotification={() => {
             setState({
               type: ActionKind.SET_SERVICE_PROVIDER_SUCCESS,
               payload: false,
             })
-          }
+          }}
           severity="success"
           description={providerSuccessMessage}
           showIcon={true}

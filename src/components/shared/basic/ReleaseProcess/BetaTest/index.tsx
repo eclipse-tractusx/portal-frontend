@@ -113,7 +113,9 @@ export default function BetaTest() {
                 )}
                 open
                 severity="error"
-                onCloseNotification={() => setBetaTestNotification(false)}
+                onCloseNotification={() => {
+                  setBetaTestNotification(false)
+                }}
               />
             </Grid>
           </Grid>

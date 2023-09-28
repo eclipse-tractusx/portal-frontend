@@ -21,7 +21,7 @@
 import { Box, Grid, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
-import {
+import type {
   BpdmTypeUUIDKeyPair,
   BusinessPartner,
 } from 'features/partnerNetwork/types'

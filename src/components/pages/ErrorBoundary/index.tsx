@@ -104,8 +104,12 @@ export default function ErrorBoundary() {
         additionalDescription={additionalDescription()}
         reloadButtonTitle={reloadButtonTitleText()}
         homeButtonTitle={homeButtonTitleText()}
-        onReloadClick={() => handleReload()}
-        onHomeClick={() => handleHome()}
+        onReloadClick={() => {
+          handleReload()
+        }}
+        onHomeClick={() => {
+          handleHome()
+        }}
       />
     </div>
   )

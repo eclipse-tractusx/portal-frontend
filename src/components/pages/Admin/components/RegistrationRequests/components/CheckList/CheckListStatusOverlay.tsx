@@ -32,7 +32,7 @@ import CheckList from '.'
 import {
   EndUrlMap,
   RetriggerableProcessSteps,
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
   ProgressStatus,
   StatusType,
   useApproveChecklistMutation,
@@ -210,10 +210,12 @@ const CheckListStatusOverlay = ({
     setState({ type: ActionKind.SET_APPROVE_LOADING, payload: true })
     await approveChecklist(selectedRequestId)
       .unwrap()
-      .then((payload) => console.log('fulfilled', payload))
-      .catch((error) =>
+      .then((payload) => {
+        console.log('fulfilled', payload)
+      })
+      .catch((error) => {
         setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
-      )
+      })
     setState({ type: ActionKind.SET_APPROVE_LOADING, payload: false })
     dispatch(refreshApplicationRequest(Date.now()))
   }
@@ -229,10 +231,12 @@ const CheckListStatusOverlay = ({
       comment: declineComment,
     })
       .unwrap()
-      .then((payload) => console.log('fulfilled', payload))
-      .catch((error) =>
+      .then((payload) => {
+        console.log('fulfilled', payload)
+      })
+      .catch((error) => {
         setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
-      )
+      })
     setState({
       type: ActionKind.STOP_DECLINE_LOADIN_SHOW_INPUT,
       payload: { declineLoading: false, showInput: false },
@@ -254,12 +258,12 @@ const CheckListStatusOverlay = ({
             setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: false })
             dispatch(refreshApplicationRequest(Date.now()))
           })
-          .catch((error) =>
+          .catch((error) => {
             setState({
               type: ActionKind.SET_RETRIGGER_LOADING,
               payload: error.data.title,
             })
-          )
+          })
       }
     )
   }
@@ -538,7 +542,9 @@ const CheckListStatusOverlay = ({
                   )}
                   {!retriggerLoading && (
                     <Button
-                      onClick={() => onRetrigger()}
+                      onClick={() => {
+                        onRetrigger()
+                      }}
                       size="small"
                       variant="contained"
                     >
@@ -548,7 +554,9 @@ const CheckListStatusOverlay = ({
                 </div>
                 <div>
                   <Button
-                    onClick={() => onDecline()}
+                    onClick={() => {
+                      onDecline()
+                    }}
                     size="small"
                     variant="outlined"
                     disabled={retriggerLoading}
@@ -591,7 +599,9 @@ const CheckListStatusOverlay = ({
               </div>
               <div>
                 <Button
-                  onClick={() => onDecline()}
+                  onClick={() => {
+                    onDecline()
+                  }}
                   size="small"
                   variant="outlined"
                   disabled={approveLoading}
@@ -641,12 +651,12 @@ const CheckListStatusOverlay = ({
                       sx={{
                         marginLeft: '10px',
                       }}
-                      onClick={() =>
+                      onClick={() => {
                         setState({
                           type: ActionKind.SET_SHOW_INPUT,
                           payload: false,
                         })
-                      }
+                      }}
                       size="small"
                       variant="outlined"
                     >

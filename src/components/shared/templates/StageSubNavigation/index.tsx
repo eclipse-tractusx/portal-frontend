@@ -62,7 +62,9 @@ export const StageSubNavigation = ({
       <div className="subNavigationContainer">
         <ParentSubNavigation
           navigationArray={linkArray}
-          onClick={(value: string) => scrollToId(value)}
+          onClick={(value: string) => {
+            scrollToId(value)
+          }}
         />
       </div>
     </Box>

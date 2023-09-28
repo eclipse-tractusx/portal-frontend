@@ -19,17 +19,17 @@
  ********************************************************************************/
 
 import {
-  CardItems,
-  ImageType,
+  type CardItems,
+  type ImageType,
   LogoGrayData,
 } from '@catena-x/portal-shared-components'
-import { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
+import type { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {
-  ActiveSubscription,
-  AppMarketplaceApp,
+  type ActiveSubscription,
+  type AppMarketplaceApp,
   SubscriptionStatus,
-  SubscriptionStatusItem,
+  type SubscriptionStatusItem,
   SubscriptionStatusText,
 } from './apiSlice'
 

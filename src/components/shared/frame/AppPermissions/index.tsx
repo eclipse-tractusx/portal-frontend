@@ -20,7 +20,7 @@
 
 import { Chip } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { TenantUserDetails } from 'features/admin/userApiSlice'
+import type { TenantUserDetails } from 'features/admin/userApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useNavigate } from 'react-router-dom'
@@ -37,7 +37,9 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
     return (
       <span
         style={{ lineHeight: 2.2, cursor: 'pointer' }}
-        onClick={() => navigate(`/appdetail/${id}`)}
+        onClick={() => {
+          navigate(`/appdetail/${id}`)
+        }}
       >
         {data ? data.title : id}
         <span style={{ marginLeft: '20px', color: '#cccccc' }}>

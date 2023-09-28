@@ -20,12 +20,12 @@
 
 import { getApiBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
-import { InviteData, CompanyDetail, InvitesDataGrid } from './types'
+import type { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
 import { PAGE_SIZE } from 'types/Constants'
-import { SearchParams } from '../../connector/types'
+import type { SearchParams } from '../../connector/types'
 import qs from 'qs'
-import { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@catena-x/portal-shared-components'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

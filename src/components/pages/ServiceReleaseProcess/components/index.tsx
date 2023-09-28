@@ -87,7 +87,9 @@ export default function ServiceReleaseProcessForm() {
   return (
     <ReleaseProcessWrapper
       processType={ReleaseProcessTypes.SERVICE_RELEASE}
-      onAppsOverviewClick={() => onServiceOverviewClick()}
+      onAppsOverviewClick={() => {
+        onServiceOverviewClick()
+      }}
       stepsList={
         serviceStatusData?.serviceTypeIds.length === 0 ||
         (serviceStatusData?.serviceTypeIds.length > 0 &&

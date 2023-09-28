@@ -31,7 +31,7 @@ import {
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { InviteData } from 'features/admin/registration/types'
+import type { InviteData } from 'features/admin/registration/types'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -86,7 +86,9 @@ export default function InviteBusinessPartner() {
     <main className="invite-main-container">
       <InviteForm
         openDialog={inviteOverlayOpen}
-        handleOverlayClose={() => setInviteOverlayOpen(false)}
+        handleOverlayClose={() => {
+          setInviteOverlayOpen(false)
+        }}
         onSubmit={doSubmitInvite}
         state={processing}
       />
@@ -99,7 +101,9 @@ export default function InviteBusinessPartner() {
         <DialogContent>
           <IconButton
             aria-label="close"
-            onClick={() => setSuccessOverlayOpen(false)}
+            onClick={() => {
+              setSuccessOverlayOpen(false)
+            }}
             sx={{
               position: 'absolute',
               right: 16,
@@ -133,7 +137,9 @@ export default function InviteBusinessPartner() {
         <DialogContent>
           <IconButton
             aria-label="close"
-            onClick={() => setFailureOverlayOpen(false)}
+            onClick={() => {
+              setFailureOverlayOpen(false)
+            }}
             sx={{
               position: 'absolute',
               right: 16,
@@ -173,7 +179,9 @@ export default function InviteBusinessPartner() {
           {t('content.invite.inviteText2')}
         </Typography>
         <Button
-          onClick={() => setInviteOverlayOpen(true)}
+          onClick={() => {
+            setInviteOverlayOpen(true)
+          }}
           size="medium"
           sx={{ margin: 'auto', display: 'block' }}
         >

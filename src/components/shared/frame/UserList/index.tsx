@@ -24,12 +24,12 @@ import { useTranslation } from 'react-i18next'
 import {
   IconButton,
   StatusTag,
-  PaginFetchArgs,
   PageLoadingTable,
+  type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
@@ -152,7 +152,12 @@ export const UserList = ({
               : t('global.field.edit'),
             flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
-              <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
+              <IconButton
+                color="secondary"
+                onClick={() => {
+                  onDetailsClick(row)
+                }}
+              >
                 <ArrowForwardIcon />
               </IconButton>
             ),

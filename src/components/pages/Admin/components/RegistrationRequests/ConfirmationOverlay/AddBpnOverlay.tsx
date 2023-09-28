@@ -96,7 +96,12 @@ const AddBpnOveraly = ({
           </div>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+            }}
+          >
             {t('global.actions.cancel')}
           </Button>
           {isLoading && (

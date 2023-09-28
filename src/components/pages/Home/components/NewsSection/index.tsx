@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'
 import './news-section.scss'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export default function NewsSection() {
   const dispatch = useDispatch<AppDispatch>()

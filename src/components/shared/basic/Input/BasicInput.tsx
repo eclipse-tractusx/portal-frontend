@@ -86,7 +86,7 @@ const BasicInput = ({
   }
 
   useEffect(() => {
-    ref.current && (ref.current.value = value || '')
+    ref.current && (ref.current.value = value ?? '')
     setFocus(document.activeElement === ref.current)
   }, [value])
 
@@ -131,23 +131,32 @@ const BasicInput = ({
           name={name}
           type={hidden ? InputType.password : InputType.text}
           defaultValue={value}
-          onKeyUp={() => onValue && onValue(ref.current?.value ?? '')}
-          onBlur={() => setFocus(false)}
-          onFocus={() => setFocus(true)}
+          onKeyUp={() => {
+            onValue?.(ref.current?.value ?? '')
+          }}
+          onBlur={() => {
+            setFocus(false)
+          }}
+          onFocus={() => {
+            setFocus(true)
+          }}
         />
         <div className={'actions'}>
-          {(type === InputType.password || toggleHide) &&
-            (hidden ? (
-              <VisibilityIcon
-                style={{ marginLeft: '8px', color: Colors.secondary }}
-                onClick={toggleHidden}
-              />
-            ) : (
-              <VisibilityOffIcon
-                style={{ marginLeft: '8px', color: Colors.secondary }}
-                onClick={toggleHidden}
-              />
-            ))}
+          {
+            // eslint-disable-next-line
+            (type === InputType.password || toggleHide) &&
+              (hidden ? (
+                <VisibilityIcon
+                  style={{ marginLeft: '8px', color: Colors.secondary }}
+                  onClick={toggleHidden}
+                />
+              ) : (
+                <VisibilityOffIcon
+                  style={{ marginLeft: '8px', color: Colors.secondary }}
+                  onClick={toggleHidden}
+                />
+              ))
+          }
           {errorMessage && (
             <ErrorOutlineIcon
               style={{ marginLeft: '8px', color: Colors.error }}
@@ -157,14 +166,17 @@ const BasicInput = ({
       </div>
 
       <div style={{ width: '100%', height: '12px' }}>
-        {(errorMessage || (hint && focus)) && (
-          <Typography
-            sx={{ color: errorMessage ? Colors.error : Colors.secondary }}
-            variant={'label4'}
-          >
-            {errorMessage ?? hint}
-          </Typography>
-        )}
+        {
+          // eslint-disable-next-line
+          (errorMessage || (hint && focus)) && (
+            <Typography
+              sx={{ color: errorMessage ? Colors.error : Colors.secondary }}
+              variant={'label4'}
+            >
+              {errorMessage ?? hint}
+            </Typography>
+          )
+        }
       </div>
     </div>
   )

@@ -27,7 +27,7 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   LoadingButton,
   Typography,
   SelectList,
@@ -38,7 +38,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { error } from 'services/NotifyService'
 import {
@@ -66,12 +66,13 @@ export default function UpdateCertificate({ id }: { id: string }) {
   const { data: certificateTypes } = useFetchCertificateTypesQuery()
 
   useEffect(() => {
-    certificateTypes?.map((item) =>
+    certificateTypes?.map((item) => {
       setCertificatetypesArr((oldArray: CertificateType[]) => [
         ...oldArray,
         { title: item },
       ])
-    )
+      return null
+    })
     certificateTypes?.length === 1 &&
       setSelectedCertificate(certificateTypes?.[0] ?? '')
   }, [certificateTypes])
@@ -254,7 +255,9 @@ export default function UpdateCertificate({ id }: { id: string }) {
                                 'content.certificates.updateCertificate.placeholder'
                               )
                         }
-                        onChangeItem={(e) => setSelectedCertificate(e.title)}
+                        onChangeItem={(e) => {
+                          setSelectedCertificate(e.title)
+                        }}
                         keyTitle={'title'}
                         disabled={certificatetypesArr.length === 1}
                       />

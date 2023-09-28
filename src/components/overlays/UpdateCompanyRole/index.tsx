@@ -36,11 +36,11 @@ import {
 } from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import {
-  AgreementsData,
-  CompanyRoleRequest,
-  CompanyRolesResponse,
-  RoleFeatureData,
-  RolesData,
+  type AgreementsData,
+  type CompanyRoleRequest,
+  type CompanyRolesResponse,
+  type RoleFeatureData,
+  type RolesData,
   useFetchDocumentByIdMutation,
   useFetchRolesQuery,
   useUpdateCompanyRolesMutation,
@@ -90,9 +90,10 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   useEffect(() => {
     newSelectedRoles?.map((role: CompanyRolesResponse) =>
-      role.agreements.map((agreement: AgreementsData) =>
+      role.agreements.map((agreement: AgreementsData) => {
         setAgreements((oldArray: AgreementsData[]) => [...oldArray, agreement])
-      )
+        return null
+      })
     )
     dispatch(setOverlayCancel(false))
   }, [])
@@ -130,7 +131,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
       const response = await getDocumentById(documentId).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
-      return download(file, fileType, documentName)
+      download(file, fileType, documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -361,9 +362,9 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                           checkedAgreementsIds.indexOf(agreement.agreementId) >=
                           0
                         }
-                        onChange={(e) =>
+                        onChange={(e) => {
                           handleCheckedAgreement(e.target.checked, agreement)
-                        }
+                        }}
                       />
                       {agreement.documentId ? (
                         <>

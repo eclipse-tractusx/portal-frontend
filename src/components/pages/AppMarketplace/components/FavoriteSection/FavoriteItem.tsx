@@ -26,7 +26,7 @@ import { removeItem } from 'features/apps/favorites/actions'
 import { useDispatch } from 'react-redux'
 import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import CommonService from 'services/CommonService'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 interface FavoriteItemProps {
   item: any
   expandOnHover: boolean
@@ -63,7 +63,7 @@ export default function FavoriteItem({
         appId: item.id,
         documentId: id,
       }).unwrap()
-      return setCardImage(URL.createObjectURL(result.data))
+      setCardImage(URL.createObjectURL(result.data))
     } catch (error) {
       console.log(error)
     }
@@ -90,10 +90,20 @@ export default function FavoriteItem({
       backgroundColor="background.background11"
       rating={item.rating}
       price={item.price}
-      onButtonClick={() => handleButtonClick(item.id!)}
-      onSecondaryButtonClick={() => handleSecondaryButtonClick(item.id!)}
+      onButtonClick={() => {
+        handleButtonClick(item.id!)
+      }}
+      onSecondaryButtonClick={() => {
+        handleSecondaryButtonClick(item.id!)
+      }}
       addButtonClicked={true}
-      onClick={cardClick ? () => handleButtonClick(item.id!) : () => null}
+      onClick={
+        cardClick
+          ? () => {
+              handleButtonClick(item.id!)
+            }
+          : () => null
+      }
     />
   )
 }

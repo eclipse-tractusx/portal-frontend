@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { RequestState } from 'types/MainTypes'
-import { TenantUser } from '../userApiSlice'
+import type { TenantUser } from '../userApiSlice'
 
 export const name = 'admin/user'
 

@@ -38,12 +38,16 @@ export default function Test() {
       })(row.split(','))
 
   const csvPreview = (files: File[]) => {
-    return files
+    files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
         const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
@@ -54,13 +58,17 @@ export default function Test() {
       })
   }
 
-  const appPreview = (files: File[]) =>
+  const appPreview = (files: File[]) => {
     files
       .filter((file: File) => file.type === 'application/json')
       .forEach((file: File) => {
         const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
@@ -69,6 +77,7 @@ export default function Test() {
         }
         reader.readAsText(file)
       })
+  }
 
   return (
     <main>

@@ -33,7 +33,7 @@ import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
-  IdentityProviderUpdate,
+  type IdentityProviderUpdate,
   useFetchIDPDetailQuery,
   useUpdateIDPMutation,
 } from 'features/admin/idpApiSlice'

@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getAssetBase } from 'services/EnvironmentService'
-import { AppMarketplaceApp } from './apiSlice'
+import type { AppMarketplaceApp } from './apiSlice'
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace/test',

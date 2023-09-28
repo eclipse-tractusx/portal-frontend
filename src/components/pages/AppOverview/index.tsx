@@ -26,7 +26,7 @@ import {
   Typography,
   ViewSelector,
   SearchInput,
-  CardItems,
+  type CardItems,
   Cards,
   PageSnackbar,
   ErrorBar,
@@ -39,8 +39,8 @@ import {
 } from 'features/apps/mapper'
 import {
   useFetchProvidedAppsQuery,
-  AppInfo,
-  AppMarketplaceApp,
+  type AppInfo,
+  type AppMarketplaceApp,
 } from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
@@ -129,10 +129,10 @@ export default function AppOverview() {
             (item) =>
               item.title
                 .toLocaleLowerCase()
-                .includes(expr.toLocaleLowerCase()) ||
+                .includes(expr.toLocaleLowerCase()) ??
               item.subtitle
                 ?.toLocaleLowerCase()
-                .includes(expr.toLocaleLowerCase()) ||
+                .includes(expr.toLocaleLowerCase()) ??
               item.statusText
                 ?.toLocaleLowerCase()
                 .includes(expr.toLocaleLowerCase())
@@ -249,7 +249,9 @@ export default function AppOverview() {
                 sx={{ minWidth: '544px' }}
                 margin={'normal'}
                 value={searchExpr}
-                onChange={(e) => doSearch(e.target.value)}
+                onChange={(e) => {
+                  doSearch(e.target.value)
+                }}
                 placeholder={t('content.appoverview.inputPlaceholder')}
               />
             </Box>

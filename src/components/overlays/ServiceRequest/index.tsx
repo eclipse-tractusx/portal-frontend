@@ -29,7 +29,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import {
-  AgreementRequest,
+  type AgreementRequest,
   useAddSubscribeServiceMutation,
   useFetchAgreementsQuery,
   useFetchServiceQuery,
@@ -117,9 +117,9 @@ export default function ServiceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     handleSelectedAgreement(e.target.checked, agreement)
-                  }
+                  }}
                   onFocusVisible={function noRefCheck() {}}
                 />
               </li>
