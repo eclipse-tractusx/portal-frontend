@@ -147,7 +147,7 @@ export default function OfferCard() {
     formState: { errors, isValid },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -213,7 +213,7 @@ export default function OfferCard() {
 
     setFileStatus(UploadStatus.UPLOADING)
     updateServiceDocumentUpload({
-      appId: appId,
+      appId,
       documentTypeId: DocumentTypeId.SERVICE_LEADIMAGE,
       body: { file: uploadImageValue },
     })

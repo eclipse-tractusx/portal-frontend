@@ -145,7 +145,7 @@ export default function NotificationCenter() {
       setLoaded(false)
     }
     setNotificationState({
-      page: page,
+      page,
       size: PAGE_SIZE,
       args: {
         notificationTopic: filterOption,

@@ -37,7 +37,7 @@ import type { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
 
-interface fetchHookArgsType {
+interface FetchHookArgsType {
   statusFilter: string
   expr: string
 }
@@ -73,7 +73,7 @@ export const RequestList = ({
   const [filterStatus, setFilterStatus] = useState<string>(
     AppFilterType.INREVIEW
   )
-  const [fetchHookArgs, setFetchHookArgs] = useState<fetchHookArgsType>()
+  const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setFilterStatus(viewValue)
@@ -133,7 +133,7 @@ export const RequestList = ({
 
   return (
     <section id="registration-section-id">
-      <PageLoadingTable<ApplicationRequest, fetchHookArgsType>
+      <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
         searchExpr={searchExpr}
         rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
         alignCell="start"

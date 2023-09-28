@@ -34,7 +34,7 @@ import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 
-interface fetchHookArgsType {
+interface FetchHookArgsType {
   appId?: string
   expr: string
   userRoleResponse?: boolean
@@ -87,7 +87,7 @@ export const UserList = ({
   return (
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
-      <PageLoadingTable<TenantUser, fetchHookArgsType>
+      <PageLoadingTable<TenantUser, FetchHookArgsType>
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
         secondButtonLabel={addMultipleButtonLabel && t(addMultipleButtonLabel)}

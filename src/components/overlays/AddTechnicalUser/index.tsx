@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -38,7 +38,6 @@ import {
   useAddServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
 import { TechnicalUserAddForm } from 'components/overlays/AddTechnicalUser/TechnicalUserAddForm'
-import { useState } from 'react'
 import { updateData, UPDATES } from 'features/control/updates'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'

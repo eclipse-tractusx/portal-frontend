@@ -142,7 +142,7 @@ export default function AppPage() {
     setValue,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -257,8 +257,8 @@ export default function AppPage() {
   const uploadDocumentApi = useCallback(
     async (documentTypeId: DocumentTypeId, file: any) => {
       const data = {
-        appId: appId,
-        documentTypeId: documentTypeId,
+        appId,
+        documentTypeId,
         body: { file },
       }
 
@@ -391,7 +391,7 @@ export default function AppPage() {
     }
 
     try {
-      await saveApp({ appId: appId, body: saveData }).unwrap()
+      await saveApp({ appId, body: saveData }).unwrap()
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
       buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
     } catch (error: unknown) {

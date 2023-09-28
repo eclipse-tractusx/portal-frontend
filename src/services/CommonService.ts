@@ -68,7 +68,7 @@ const isValidPictureId = (id: string) => {
 }
 
 const getCompanyRoles = (callback: any) => {
-  let url = `${getAssetBase()}/content/${i18next.language}/companyroles.json`
+  const url = `${getAssetBase()}/content/${i18next.language}/companyroles.json`
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
@@ -78,7 +78,7 @@ const getCompanyRoles = (callback: any) => {
 }
 
 const getUseCases = (callback: any) => {
-  let url = `${getAssetBase()}/content/${i18next.language}/usecase.json`
+  const url = `${getAssetBase()}/content/${i18next.language}/usecase.json`
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
@@ -88,7 +88,9 @@ const getUseCases = (callback: any) => {
 }
 
 const getRoleDescription = (callback: any) => {
-  let url = `${getAssetBase()}/content/${i18next.language}/roledescription.json`
+  const url = `${getAssetBase()}/content/${
+    i18next.language
+  }/roledescription.json`
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))
@@ -98,7 +100,7 @@ const getRoleDescription = (callback: any) => {
 }
 
 const getCompanyRoleUpdateData = (callback: any) => {
-  let url = `${getAssetBase()}/content/${
+  const url = `${getAssetBase()}/content/${
     i18next.language
   }/companyRoleChange.json`
   fetch(url)
@@ -108,7 +110,7 @@ const getCompanyRoleUpdateData = (callback: any) => {
 }
 
 const getDataSpace = (callback: any) => {
-  let url = `${getAssetBase()}/content/${i18next.language}/dataspace.json`
+  const url = `${getAssetBase()}/content/${i18next.language}/dataspace.json`
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data))

@@ -96,7 +96,7 @@ export default function ChangeImage() {
 
   const uploadDocumentApi = async (appId: string, file: any) => {
     const data = {
-      appId: appId,
+      appId,
       body: { file },
     }
     await updateImageData(data).unwrap()

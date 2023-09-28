@@ -185,7 +185,7 @@ export default function CommonContractAndConsent({
     setValue,
     resetField,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -249,7 +249,7 @@ export default function CommonContractAndConsent({
     async (documentTypeId: DocumentTypeId, file: File) => {
       const data = {
         appId: id,
-        documentTypeId: documentTypeId,
+        documentTypeId,
         body: { file },
       }
       if (updateDocumentUpload) await updateDocumentUpload(data).unwrap()

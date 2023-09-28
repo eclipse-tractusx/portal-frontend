@@ -26,7 +26,7 @@ import { Tooltips, Typography } from '@catena-x/portal-shared-components'
 import type { IdentityProvider } from 'features/admin/idpApiSlice'
 import './style.scss'
 
-let initialProgressIcons = [
+const initialProgressIcons = [
   {
     step1: {
       icon: '1',

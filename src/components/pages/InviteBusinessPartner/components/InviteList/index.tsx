@@ -33,7 +33,7 @@ import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
 
-interface fetchHookArgsType {
+interface FetchHookArgsType {
   expr: string
 }
 
@@ -44,7 +44,7 @@ export const InviteList = ({
   searchExpr,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: fetchHookArgsType
+  fetchHookArgs?: FetchHookArgsType
   onSearch?: (search: string) => void
   searchExpr?: string
 }) => {
@@ -61,7 +61,7 @@ export const InviteList = ({
 
   return (
     <section id="identity-management-id">
-      <PageLoadingTable<CompanyInvite, fetchHookArgsType>
+      <PageLoadingTable<CompanyInvite, FetchHookArgsType>
         searchExpr={searchExpr}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.searchName')}

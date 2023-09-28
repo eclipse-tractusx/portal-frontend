@@ -129,11 +129,11 @@ export default function AddMultipleUser() {
   const handleAddUserAPICall = async (csvData: any) => {
     try {
       if (uploadedFile) {
-        let blob = new Blob([Papa.unparse(csvData)], { type: 'text/csv' })
-        let file = new File([blob], uploadedFile.name, { type: 'text/csv' })
+        const blob = new Blob([Papa.unparse(csvData)], { type: 'text/csv' })
+        const file = new File([blob], uploadedFile.name, { type: 'text/csv' })
         const response = await addMutipleUsers({
           identityProviderId:
-            idps[0].identityProviderCategoryId === IDPCategory.KEYCLOAK_SHARED
+            idps[0].ProviderTypeId === IDPCategory.SHARED
               ? ''
               : idps[0].identityProviderId,
           csvFile: file,
@@ -354,8 +354,7 @@ export default function AddMultipleUser() {
             </Typography>
             <a
               href={
-                idps[0].identityProviderCategoryId ===
-                IDPCategory.KEYCLOAK_SHARED
+                idps[0].ProviderTypeId === IDPCategory.SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }

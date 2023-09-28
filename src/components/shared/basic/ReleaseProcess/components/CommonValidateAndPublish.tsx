@@ -163,7 +163,7 @@ export default function CommonValidateAndPublish({
     formState: { isValid },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 

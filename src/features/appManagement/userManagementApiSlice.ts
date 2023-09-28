@@ -48,7 +48,7 @@ export const apiSlice = createApi({
         const formData = new FormData()
         formData.append('document', data.csvFile)
         return {
-          url: url,
+          url,
           method: 'POST',
           body: formData,
         }

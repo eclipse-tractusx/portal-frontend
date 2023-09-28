@@ -59,7 +59,7 @@ export default function AddAppUserRoles() {
 
     users.map(async (user) => {
       const data: UserRoleRequest = {
-        appId: appId,
+        appId,
         companyUserId: user,
         body: roles,
       }

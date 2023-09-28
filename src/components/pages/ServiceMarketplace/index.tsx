@@ -78,7 +78,7 @@ export default function ServiceMarketplace() {
   const { data } = useFetchServicesQuery({
     page: 0,
     serviceType: serviceTypeId,
-    sortingType: sortingType,
+    sortingType,
   })
   const services = data && data.content
 

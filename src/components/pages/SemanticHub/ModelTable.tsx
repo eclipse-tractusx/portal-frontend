@@ -170,10 +170,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         )}
         toolbarVariant="ultimate"
         toolbar={{
-          onSearch: onSearch,
-          onFilter: onFilter,
-          filter: filter,
-          selectedFilter: selectedFilter,
+          onSearch,
+          onFilter,
+          filter,
+          selectedFilter,
         }}
         columns={columns}
         rows={models}

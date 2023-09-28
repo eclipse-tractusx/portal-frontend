@@ -22,7 +22,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum IDPCategory {
-  KEYCLOAK_SHARED = 'KEYCLOAK_SHARED',
+  SHARED = 'SHARED',
   OWN = 'OWN',
 }
 
@@ -136,7 +136,7 @@ export interface UserIdentityProviders {
 export interface IdentityProvider {
   identityProviderId: string
   alias: string
-  identityProviderCategoryId: IDPCategory
+  ProviderTypeId: IDPCategory
   displayName?: string
   redirectUrl: string
   enabled: boolean

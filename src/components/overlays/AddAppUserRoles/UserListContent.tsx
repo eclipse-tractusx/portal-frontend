@@ -31,7 +31,7 @@ import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
 import Patterns from 'types/Patterns'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
 
-interface fetchHookArgsType {
+interface FetchHookArgsType {
   appId: string | undefined
   expr: string
   role: boolean
@@ -51,7 +51,7 @@ export default function UserListContent() {
     Patterns.SEARCH.test(text.trim())
 
   return (
-    <PageLoadingTable<TenantUser, fetchHookArgsType>
+    <PageLoadingTable<TenantUser, FetchHookArgsType>
       toolbarVariant={'premium'}
       columnHeadersBackgroundColor={'transparent'}
       searchExpr={expr}

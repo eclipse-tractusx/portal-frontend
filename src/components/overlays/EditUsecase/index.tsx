@@ -62,8 +62,8 @@ export default function EditUsecase({
     setLoading(true)
     try {
       const data = {
-        verifiedCredentialTypeId: verifiedCredentialTypeId,
-        credentialType: credentialType,
+        verifiedCredentialTypeId,
+        credentialType,
         document: uploadedFile,
       }
       await addUsecase(data).unwrap()
