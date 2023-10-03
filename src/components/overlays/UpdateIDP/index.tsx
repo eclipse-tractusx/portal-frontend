@@ -122,10 +122,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button 
-          onClick={() => dispatch(closeOverlay())}
-          variant="outlined"
-        >
+        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
           {t('action.cancel')}
         </Button>
         {loading ? (
