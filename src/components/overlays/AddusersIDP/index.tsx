@@ -214,6 +214,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File>()
 
+  const CsvHeader = [
+    'companyUserId',
+    'firstName',
+    'lastName',
+    'email',
+    'identityProviders',
+  ]
+
   const CSV_COLUMNS = useMemo(
     () => [
       { name: 'UserId', width: 37 },
@@ -439,13 +447,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         reader.onload = () => {
           if (!reader.result) return
           const content = reader.result.toString()
-          const CSVfileHeader = Object.keys(csv2json(content)[0])
+          const CsvFileHeader = Object.keys(csv2json(content)[0])
           if (
-            CSVfileHeader[0] !== 'companyUserId' ||
-            CSVfileHeader[1] !== 'firstName' ||
-            CSVfileHeader[2] !== 'lastName' ||
-            CSVfileHeader[3] !== 'email' ||
-            CSVfileHeader[4] !== 'identityProviders'
+            !CsvHeader.reduce((a, c, i) => a && CsvFileHeader[i] === c, true)
           ) {
             error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
             setStatus(false)
