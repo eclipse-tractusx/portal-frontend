@@ -214,7 +214,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File>()
 
-  const CsvHeader = [
+  const csvHeaderList = [
     'companyUserId',
     'firstName',
     'lastName',
@@ -447,9 +447,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         reader.onload = () => {
           if (!reader.result) return
           const content = reader.result.toString()
-          const CsvFileHeader = Object.keys(csv2json(content)[0])
+          const csvFileHeader = Object.keys(csv2json(content)[0])
           if (
-            !CsvHeader.reduce((a, c, i) => a && CsvFileHeader[i] === c, true)
+            !csvHeaderList.reduce((a, c, i) => a && csvFileHeader[i] === c, true)
           ) {
             error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
             setStatus(false)
