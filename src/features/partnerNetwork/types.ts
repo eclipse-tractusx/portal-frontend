@@ -171,7 +171,7 @@ export interface BusinessPartnerResponse {
 }
 
 export interface BusinessPartnerAddressResponse {
-  alternativePostalAddress: any
+  alternativePostalAddress: AlternatePostalAddressType
   bpnLegalEntity: string
   createdAt: string
   updatedAt: string

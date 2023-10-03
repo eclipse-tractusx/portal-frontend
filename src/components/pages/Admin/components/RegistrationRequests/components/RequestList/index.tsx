@@ -114,7 +114,7 @@ export const RequestList = ({
   ]
 
   const columns = RegistrationRequestsTableColumns(
-    useTranslation,
+    t,
     handleDownloadDocument,
     showConfirmOverlay,
     onConfirmationCancel,

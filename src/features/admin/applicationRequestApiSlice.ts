@@ -105,6 +105,20 @@ export type ProgressButtonsProps = {
   retriggerableProcessSteps?: string[]
 }
 
+export interface ProgressButtonsType {
+  statusId: ProgressStatus
+  typeId: string
+  label?: string
+  highlight?: boolean
+  backgroundColor?: string
+  border?: string
+  icon?: JSX.Element
+  details?: string
+  statusLabel?: string
+  statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
+  retriggerableProcessSteps?: string[]
+}
+
 export const progressMapper = {
   DONE: 20,
   IN_PROGRESS: 5,
@@ -142,6 +156,16 @@ type DeclineRequestType = {
 export type DocumentRequestData = {
   appId: string
   documentId: string
+}
+
+interface RetriggerProcessRequestType {
+  applicationId: string
+  endUrl?: string | undefined
+}
+
+interface UpdateBpnReuestType {
+  applicationId?: string | undefined
+  bpn: string
 }
 
 export const apiSlice = createApi({
@@ -232,7 +256,7 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    updateBPN: builder.mutation<boolean, any>({
+    updateBPN: builder.mutation<boolean, UpdateBpnReuestType>({
       query: (args) => ({
         url: `/api/administration/registration/application/${args.applicationId}/${args.bpn}/bpn`,
         method: 'POST',
@@ -255,7 +279,7 @@ export const apiSlice = createApi({
         return obj
       },
     }),
-    retriggerProcess: builder.mutation<boolean, any>({
+    retriggerProcess: builder.mutation<boolean, RetriggerProcessRequestType>({
       query: (args) => ({
         url: `/api/administration/registration/application/${args.applicationId}/${args.endUrl}`,
         method: 'POST',

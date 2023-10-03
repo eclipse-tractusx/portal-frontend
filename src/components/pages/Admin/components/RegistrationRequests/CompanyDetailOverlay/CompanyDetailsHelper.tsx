@@ -23,6 +23,7 @@ import {
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { Trans } from 'react-i18next'
+import type i18next from 'i18next'
 
 export const isComplete = (applicationChecklist: ProgressButtonsProps[]) =>
   applicationChecklist.reduce(
@@ -33,7 +34,7 @@ export const isComplete = (applicationChecklist: ProgressButtonsProps[]) =>
 export const getTitle = (
   activeTab: number,
   applicationChecklist: ProgressButtonsProps[],
-  t: any
+  t: typeof i18next.t
 ) => {
   if (activeTab === 0) {
     return t('content.admin.registration-requests.overlay.tab1Title')

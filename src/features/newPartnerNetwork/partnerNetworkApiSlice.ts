@@ -37,7 +37,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartnerAddressResponse>,
-      any
+      string[]
     >({
       query: (arry) => ({
         url: '/catena/legal-entities/legal-addresses/search',

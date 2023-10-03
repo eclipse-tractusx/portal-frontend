@@ -29,6 +29,7 @@ import {
   type ProgressButtonsProps,
   progressMapper,
   ProgressStatus,
+  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -55,7 +56,8 @@ export default function CheckList({
   selectedButton,
 }: CheckListProps) {
   const { t } = useTranslation()
-  const [checkListButtons, setCheckListButtons] = useState<any>()
+  const [checkListButtons, setCheckListButtons] =
+    useState<ProgressButtonsType[]>()
 
   const getProgressValue = () => {
     let progressValue = 0

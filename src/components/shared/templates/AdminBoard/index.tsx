@@ -324,6 +324,12 @@ export default function CommonAdminBoard({
     },
   ]
 
+  interface TabButtonsType {
+    buttonText: string
+    buttonValue: string
+    onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
+  }
+
   const tabButtons: TabButtonsType[] = [
     {
       buttonText: filterOptionText.open,
