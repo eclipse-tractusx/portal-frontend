@@ -122,11 +122,8 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.ADD_IDP, id))}
-        >
-          {t('action.back')}
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+          {t('action.cancel')}
         </Button>
         {loading ? (
           <LoadingButton

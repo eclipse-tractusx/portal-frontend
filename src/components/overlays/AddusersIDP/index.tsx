@@ -449,7 +449,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           const content = reader.result.toString()
           const csvFileHeader = Object.keys(csv2json(content)[0])
           if (
-            !csvHeaderList.reduce((a, c, i) => a && csvFileHeader[i] === c, true)
+            !csvHeaderList.reduce(
+              (a, c, i) => a && csvFileHeader[i] === c,
+              true
+            )
           ) {
             error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
             setStatus(false)

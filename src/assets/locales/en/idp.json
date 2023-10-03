@@ -229,6 +229,7 @@
   },
   "action": {
     "actions": "Actions",
+    "createIdp": "Create IdP entry",
     "create": "Add Identity Provider",
     "details": "Details",
     "enable": "Enable",

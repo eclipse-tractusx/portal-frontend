@@ -228,6 +228,7 @@
   "action": {
     "actions": "Actions",
     "create": "Add Identity Provider",
+    "createIdp": "Create IdP entry",
     "details": "Details",
     "enable": "Enable",
     "disable": "Disable",
