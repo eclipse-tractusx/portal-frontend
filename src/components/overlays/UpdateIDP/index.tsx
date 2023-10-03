@@ -114,34 +114,37 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         >
           <HelpOutlineIcon
             sx={{
-              fontSize: '18px',
               marginRight: '5px',
+              fontSize: '18px',
             }}
           />
           {t('add.learnMore')}
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <Button 
+          onClick={() => dispatch(closeOverlay())}
+          variant="outlined"
+        >
           {t('action.cancel')}
         </Button>
         {loading ? (
           <LoadingButton
             color="primary"
+            size="medium"
             helperText=""
             helperTextColor="success"
             label=""
-            loadIndicator={t('action.loading')}
             loading
-            size="medium"
+            loadIndicator={t('action.loading')}
             onButtonClick={() => {}}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
           <Button
             variant="contained"
-            disabled={!idpUpdateData}
             onClick={doUpdateIDP}
+            disabled={!idpUpdateData}
           >
             {t('action.saveMetadata')}
           </Button>
