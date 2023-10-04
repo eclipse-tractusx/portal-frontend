@@ -82,10 +82,9 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
     const data = agreements?.map((agreement) => {
       return {
         agreementId: agreement.agreementId,
-        consentStatusId:
-          checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
-            ? AgreementStatus.ACTIVE
-            : AgreementStatus.INACTIVE,
+        consentStatusId: checkedAgreementsIds.includes(agreement.agreementId)
+          ? AgreementStatus.ACTIVE
+          : AgreementStatus.INACTIVE,
       }
     })
     data &&

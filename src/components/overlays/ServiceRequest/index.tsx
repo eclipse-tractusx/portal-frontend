@@ -61,10 +61,9 @@ export default function ServiceRequest({ id }: { id: string }) {
     const subscriptionData = serviceAgreements?.map((agreement) => {
       return {
         agreementId: agreement.agreementId,
-        consentStatusId:
-          selectedAgreementsIds.indexOf(agreement.agreementId) >= 0
-            ? AgreementStatus.ACTIVE
-            : AgreementStatus.INACTIVE,
+        consentStatusId: selectedAgreementsIds.includes(agreement.agreementId)
+          ? AgreementStatus.ACTIVE
+          : AgreementStatus.INACTIVE,
       }
     })
     subscriptionData &&
