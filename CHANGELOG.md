@@ -64,9 +64,12 @@
 - Service Marketplace
   - Change Subscription roles
   - error handling for subscribe failure
+  - Updated 'consultancy' service naming for cards and service detail page
+  - fixed display of service types in cards
 - Service release process
   - Clearing fields while registering new service
   - Skip technical integration for consultancy service
+  - Updated 'consultancy' service naming for validate and publish
 - Shared
   - Removed PageLoadingTable component
 - Linter Findings

@@ -61,8 +61,8 @@ export default function OfferValidateAndPublish({
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
     fetchServiceStatus?.serviceTypeIds.forEach((serviceType: string) => {
-      if (serviceType === ServiceTypeIdsEnum.CONSULTANCE_SERVICE)
-        newArr.push(t('consultanceService'))
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(t('consultancyService'))
       if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
         newArr.push(t('dataspaceService'))
     })
