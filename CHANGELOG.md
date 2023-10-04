@@ -1,81 +1,73 @@
 # Changelog
 
-## unreleased
+## 1.7.0-alpha
 
-- Active Subscription
-  - Switch endpoint used to display "App Subscriptions"
-  - Bugfix - App subscription activate button showing service activation overlay
-- Search screen - Mobile version
-  - Full width search overlay
-  - Clear the search result on closing overlay
-  - Show only one overlay if user clicks on any search results
+### Change
+
 - Technical User
   - Enable search & filter
-- Technical User Details
-  - Enable credential reset
-- Service Overview
-  - Added Sub menu for active services in service overview
-  - Added Deactivate functionality
-  - Added image to service overview cards
 - Invite Business Partner Form
   - Fix loader position to center
   - Disable invite button when loader is visible
-- Data Space
-  - Last section background color issue
-- Connector Deletion
-  - Show confirm overlay if connector has tech user information
-- Sub Navigation Header
-  - Align label to the left
-  - Bugfix - Sub header width in zoom out view
-- Data Space
-  - Last section background color issue
-- My Account
-  - Show success message on click of copy to clip board
-- Page Loading and Error Component
-  - Show loading component and based on the response show "No items" component or ErrorBar component
-- App management
-  - Fixed page break
-- App release process
-  - Fixed last step "Verify" image load issue
-- App Overview
-  - Enhance Sub Menu by adding 'Change Documents' for active apps
-  - Add roles for active apps
+- Component/Design element changes
+  - Sub-Navigation label content changed to left aligned
+- Service Subscription Mgt page
+  - styling aligned to the app subscription Mgt page
+  - service filter added
 - Identity Provider Config
   - UI Enhancements
-- Overlay
-  - Overlays style sync
+- Service Management/Overview
+  - manage service sub-menu for active services added (deactivate service function)
+  - offer image added to service card based on backend response
+- App Marketplace
+  - role permission validation updated to sync permission validation for subscription with backend endpoints used
+- App Release Process
+  - Step "Verify" image load styling updated to support multiple images with carousel function
+- Connector Deletion
+  - added a information/confirmation overlay for connector deletion in case the connector has an technical user and/or subscription linked
+- My User Account
+  - support user response action 'success' on click of copy to clip board (only Dev/INT relevant)
+- Page Loading and Error Component
+  - released new page load and error component element for service overview, app overview and subscription management pages
+- Notifications
+  - App Subscription Request notification content update
+- Shared
+  - Removed PageLoadingTable component
+
+### Feature
+
+- Technical User Details
+  - credential reset enabled via action button
+- Usermanagement
+  - Bulk upload function released
+- Search Element
+  - implemented full width search overlay for mobile version
+- Overlay styling updated to sync used overlay styles across the portal overlays (header, description sizing and color)
+- App Management/Overview
+  - added function to support 'Change Documents' for active apps
+  - added function to support 'Add Roles' for active apps
 - My Organization
-  - Unsubscribe subscription flow
-- Service Subscription
-  - UI Changes
-  - Add filters
-- Enable ESLINT rule
+  - added app unsubscribe subscription function to inactive active app subscriptions
+
+### Technical Support
+
+- Code quality & style improvements implemented based on ESLINT rules
   - import/no-duplicates
   - prefer-const
   - object shorthand
-  - Add type for imports
-  - Prefer-nullish-coalescing (|| => ??)
-- Notifications
-  - App Subscription Request content update
-- Digital Twin
-  - Code clean up
-- Usermanagement
-  - Bulk upload UI Changes
-- Service Marketplace
-  - Change Subscription roles
-  - error handling for subscribe failure
-  - Updated 'consultancy' service naming for cards and service detail page
-  - fixed display of service types in cards
-- Service release process
-  - Clearing fields while registering new service
-  - Skip technical integration for consultancy service
-  - Updated 'consultancy' service naming for validate and publish
-- Shared
-  - Removed PageLoadingTable component
-- Linter Findings
+  - add type for imports
+  - Prefer-nullish-coalescing
   - No confusing void expression fixes
-- App Marketplace
-  - error handling for subscribe failure
+- Digital Twin content (pages, overlays, translation content, etc.) removed due to dDTR release and decommissioning of the central DTR
+- Build images also for arm64, in addition to amd64
+
+###Bugfix
+
+- "Dataspace" Introduction page background color of last section changed
+
+###Known Knowns
+
+- App Release Process - Step 2 image gets multiple times uploaded if the user uploads the images single instead of dropping all images jointly for upload
 
 ## 1.6.0
 
