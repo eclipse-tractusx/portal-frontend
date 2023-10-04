@@ -38,6 +38,7 @@ import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay'
 import './ServiceRequest.scss'
 import { error } from 'services/NotifyService'
+import { AgreementStatus } from '../UpdateCompanyRole'
 
 export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -62,8 +63,8 @@ export default function ServiceRequest({ id }: { id: string }) {
         agreementId: agreement.agreementId,
         consentStatusId:
           selectedAgreementsIds.indexOf(agreement.agreementId) >= 0
-            ? 'ACTIVE'
-            : 'INACTIVE',
+            ? AgreementStatus.ACTIVE
+            : AgreementStatus.INACTIVE,
       }
     })
     subscriptionData &&

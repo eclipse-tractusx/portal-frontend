@@ -40,6 +40,7 @@ import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay'
 import './AppMarketplaceRequest.scss'
 import { error } from 'services/NotifyService'
+import { AgreementStatus } from '../UpdateCompanyRole'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -83,8 +84,8 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
         agreementId: agreement.agreementId,
         consentStatusId:
           checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
-            ? 'ACTIVE'
-            : 'INACTIVE',
+            ? AgreementStatus.ACTIVE
+            : AgreementStatus.INACTIVE,
       }
     })
     data &&
