@@ -63,6 +63,7 @@
   - Bulk upload UI Changes
 - Service Marketplace
   - Change Subscription roles
+  - error handling for subscribe failure
 - Service release process
   - Clearing fields while registering new service
   - Skip technical integration for consultancy service
@@ -70,6 +71,8 @@
   - Removed PageLoadingTable component
 - Linter Findings
   - No confusing void expression fixes
+- App Marketplace
+  - error handling for subscribe failure
 
 ## 1.6.0
 
