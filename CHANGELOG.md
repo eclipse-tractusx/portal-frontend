@@ -70,6 +70,7 @@
   - Removed PageLoadingTable component
 - Linter Findings
   - No confusing void expression fixes
+- Update data grid table props to the new prop value
 
 ## 1.6.0
 
