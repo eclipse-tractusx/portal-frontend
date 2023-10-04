@@ -332,7 +332,7 @@ export const AddIdp = () => {
             }
             onClick={() => doCreateIDP()}
           >
-            {t('action.next')}
+            {t('action.createIdp')}
           </Button>
         )}
       </DialogActions>

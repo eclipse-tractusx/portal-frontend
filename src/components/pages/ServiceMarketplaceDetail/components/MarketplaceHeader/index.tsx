@@ -30,6 +30,7 @@ import './MarketplaceHeader.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { getAssetBase } from 'services/EnvironmentService'
 import { Box } from '@mui/material'
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 
 export default function MarketplaceHeader({
   item,
@@ -39,6 +40,7 @@ export default function MarketplaceHeader({
   success: boolean
 }) {
   const { t } = useTranslation()
+  const serviceReleaseTranslation = useTranslation('servicerelease').t
   const dispatch = useDispatch()
   const { serviceId } = useParams()
 
@@ -78,11 +80,11 @@ export default function MarketplaceHeader({
 
   const getAllServices = (serviceTypeIds: string[]) => {
     const newArr: string[] = []
-
     serviceTypeIds?.forEach((serviceType: string) => {
-      if (serviceType === 'CONSULTANCE_SERVICE')
-        newArr.push('Consultance Service')
-      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(serviceReleaseTranslation('consultancyService'))
+      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(serviceReleaseTranslation('dataspaceService'))
     })
     return newArr.join(', ')
   }
