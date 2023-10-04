@@ -20,7 +20,7 @@
 
 import {
   PageLoadingTable,
-  PaginFetchArgs,
+  type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -29,13 +29,18 @@ import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updates'
 import {
   AppFilterType,
-  ApplicationRequest,
-  ProgressButtonsProps,
+  type ApplicationRequest,
+  type ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
-import { GridCellParams } from '@mui/x-data-grid'
+import type { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
+
+interface FetchHookArgsType {
+  statusFilter: string
+  expr: string
+}
 
 export const RequestList = ({
   fetchHook,
@@ -68,7 +73,7 @@ export const RequestList = ({
   const [filterStatus, setFilterStatus] = useState<string>(
     AppFilterType.INREVIEW
   )
-  const [fetchHookArgs, setFetchHookArgs] = useState({})
+  const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setFilterStatus(viewValue)
@@ -128,7 +133,7 @@ export const RequestList = ({
 
   return (
     <section id="registration-section-id">
-      <PageLoadingTable<ApplicationRequest>
+      <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
         searchExpr={searchExpr}
         rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
         alignCell="start"

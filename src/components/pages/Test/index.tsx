@@ -21,16 +21,23 @@
 import { Button } from '@catena-x/portal-shared-components'
 import { error, success } from 'services/NotifyService'
 
-const checkDate = (date: number) =>
+const checkDate = (date: number) => {
   date % 2
     ? success('current time', 'even', date)
     : error('current time', 'odd ', date)
+}
 
 export default function Test() {
   return (
     <main>
       <section>
-        <Button onClick={() => checkDate(Date.now())}>even time?</Button>
+        <Button
+          onClick={() => {
+            checkDate(Date.now())
+          }}
+        >
+          even time?
+        </Button>
       </section>
     </main>
   )

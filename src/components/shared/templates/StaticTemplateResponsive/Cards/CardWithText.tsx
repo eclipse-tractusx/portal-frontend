@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../StaticTypes'
+import type { CardDetailsProps } from '../StaticTypes'
 import { Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
 import { Trans } from 'react-i18next'

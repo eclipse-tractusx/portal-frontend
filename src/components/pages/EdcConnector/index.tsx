@@ -21,29 +21,29 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
-import { GridCellParams } from '@mui/x-data-grid'
+import type { GridCellParams } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import {
   PageHeader,
   Typography,
-  PageLoadingTable,
   PageSnackbar,
+  PageLoadingTable,
 } from '@catena-x/portal-shared-components'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
-import { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
+import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
 import './EdcConnector.scss'
-import { ConnectorContentAPIResponse } from 'features/connector/types'
+import type { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
 import {
-  ConnectorType,
+  type ConnectorType,
   ConnectorStatusType,
   useCreateConnectorMutation,
   useCreateManagedConnectorMutation,
   useDeleteConnectorMutation,
   ConnectType,
   useFetchConnectorsQuery,
-  ConnectorResponseBody,
+  type ConnectorResponseBody,
   useFetchManagedConnectorsQuery,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
@@ -66,6 +66,12 @@ const EdcConnector = () => {
       id: '',
       name: '',
       type: '',
+      technicalUser: {
+        id: '',
+        name: '',
+        clientId: '',
+        description: '',
+      },
     })
   const token = UserService.getToken()
   const [selectedService, setSelectedService] = useState<any>({})
@@ -99,7 +105,7 @@ const EdcConnector = () => {
   }
 
   const swap = (arry: any, from: number, to: number) => {
-    let swapValue = arry[from]
+    const swapValue = arry[from]
     arry[from] = arry[to]
     arry[to] = swapValue
     return arry
@@ -140,16 +146,24 @@ const EdcConnector = () => {
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
       await createConnector(body)
         .unwrap()
-        .then(() => showOverlay(true))
-        .catch(() => showOverlay(false))
+        .then(() => {
+          showOverlay(true)
+        })
+        .catch(() => {
+          showOverlay(false)
+        })
     } else if (selectedService.type === ConnectType.MANAGED_CONNECTOR) {
       // body.append('providerBpn', data.ConnectorBPN)
       body.append('subscriptionId', data.ConnectorSubscriptionId)
       body.append('technicalUserId', '')
       await createManagedConnector(body)
         .unwrap()
-        .then(() => showOverlay(true))
-        .catch(() => showOverlay(false))
+        .then(() => {
+          showOverlay(true)
+        })
+        .catch(() => {
+          showOverlay(false)
+        })
     }
   }
 
@@ -167,7 +181,7 @@ const EdcConnector = () => {
   const deleteSelectedConnector = async () => {
     setAction('delete')
     setLoading(true)
-    await deleteConnector(selectedConnector.id || '')
+    await deleteConnector(selectedConnector.id ?? '')
       .unwrap()
       .then(() => {
         setDeleteConnectorConfirmModalOpen(false)
@@ -234,15 +248,20 @@ const EdcConnector = () => {
     <main className="connector-page-container">
       <PageSnackbar
         description={notificationMessage}
-        onCloseNotification={() => setNotificationOpen(false)}
+        onCloseNotification={() => {
+          setNotificationOpen(false)
+        }}
         severity={notificationType}
         open={notificationOpen}
       />
       <DeleteConfirmationOverlay
         openDialog={deleteConnectorConfirmModalOpen}
-        handleOverlayClose={() => setDeleteConnectorConfirmModalOpen(false)}
+        handleOverlayClose={() => {
+          setDeleteConnectorConfirmModalOpen(false)
+        }}
         handleConfirmClick={() => deleteSelectedConnector()}
         loading={loading}
+        techUser={selectedConnector?.technicalUser}
       />
       <AddConnectorOverlay
         openDialog={addConnectorOverlayOpen}
@@ -255,7 +274,9 @@ const EdcConnector = () => {
       />
       <ConfigurationDetailsOverlay
         openDialog={viewConfigurationDetailsOverlayOpen}
-        handleOverlayClose={() => setViewConfigurationDetailsOverlayOpen(false)}
+        handleOverlayClose={() => {
+          setViewConfigurationDetailsOverlayOpen(false)
+        }}
       />
       <PageHeader
         title={t('content.edcconnector.headertitle')}
@@ -265,15 +286,19 @@ const EdcConnector = () => {
       <section className={'picture-with-text-section'}>
         <PictureWithText
           text={'content.edcconnector.imagetext'}
-          onHelpButtonClicked={() => onHelpButtonClicked()}
-          onButtonClicked={() => setAddConnectorOverlayOpen(true)}
-          onNewHelpButtonClicked={() =>
+          onHelpButtonClicked={() => {
+            onHelpButtonClicked()
+          }}
+          onButtonClicked={() => {
+            setAddConnectorOverlayOpen(true)
+          }}
+          onNewHelpButtonClicked={() => {
             setViewConfigurationDetailsOverlayOpen(true)
-          }
+          }}
         />
       </section>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody>
+        <PageLoadingTable<ConnectorResponseBody, {}>
           toolbarVariant="premium"
           title={t('content.edcconnector.tabletitle')}
           loadLabel={t('global.actions.more')}
@@ -281,11 +306,13 @@ const EdcConnector = () => {
           fetchHookRefresh={refresh}
           getRowId={(row: { [key: string]: string }) => row.id}
           columns={ownConnectorCols}
-          onCellClick={(params: GridCellParams) => onTableCellClick(params)}
+          onCellClick={(params: GridCellParams) => {
+            onTableCellClick(params)
+          }}
         />
       </div>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody>
+        <PageLoadingTable<ConnectorResponseBody, {}>
           toolbarVariant="premium"
           title={t('content.edcconnector.managedtabletitle')}
           loadLabel={t('global.actions.more')}
@@ -294,7 +321,9 @@ const EdcConnector = () => {
           getRowId={(row: { [key: string]: string }) => row.id}
           columns={managedConnectorCols}
           noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
-          onCellClick={(params: GridCellParams) => onTableCellClick(params)}
+          onCellClick={(params: GridCellParams) => {
+            onTableCellClick(params)
+          }}
         />
       </div>
       {response && (

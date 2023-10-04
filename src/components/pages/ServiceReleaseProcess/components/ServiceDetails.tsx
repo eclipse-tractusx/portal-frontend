@@ -43,7 +43,7 @@ import { getAssetBase } from 'services/EnvironmentService'
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
   const { serviceId } = useParams()
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId || '', {
+  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
   const [fetchDocument] = useFetchDocumentMutation()
@@ -51,8 +51,8 @@ export default function ServiceDetails() {
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
     fetchServiceStatus?.serviceTypeIds.forEach((serviceType: string) => {
-      if (serviceType === ServiceTypeIdsEnum.CONSULTANCE_SERVICE)
-        newArr.push(t('consultanceService'))
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(t('consultancyService'))
       if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
         newArr.push(t('dataspaceService'))
     })
@@ -70,7 +70,7 @@ export default function ServiceDetails() {
       }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
-      return download(file, fileType, item.documentName)
+      download(file, fileType, item.documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }

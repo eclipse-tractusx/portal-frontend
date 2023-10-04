@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -31,14 +31,13 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useForm } from 'react-hook-form'
-import { DefaultFormFieldValuesType } from './TechnicalUserAddForm'
+import type { DefaultFormFieldValuesType } from './TechnicalUserAddForm'
 import {
-  ServiceAccountDetail,
+  type ServiceAccountDetail,
   ServiceAccountType,
   useAddServiceAccountMutation,
 } from 'features/admin/serviceApiSlice'
 import { TechnicalUserAddForm } from 'components/overlays/AddTechnicalUser/TechnicalUserAddForm'
-import { useState } from 'react'
 import { updateData, UPDATES } from 'features/control/updates'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'
@@ -172,7 +171,7 @@ export const AddTechnicalUser = () => {
               to="/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User"
               target="_blank"
             >
-              <Typography variant="caption2" className="helpText">
+              <Typography variant="body2" className="helpText">
                 <HelpOutlineIcon />
                 {t('content.addUser.help')}
               </Typography>

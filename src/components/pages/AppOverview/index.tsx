@@ -26,18 +26,22 @@ import {
   Typography,
   ViewSelector,
   SearchInput,
-  CardItems,
+  type CardItems,
   Cards,
   PageSnackbar,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme, CircularProgress, Box } from '@mui/material'
 import {
   appCardStatus,
   appCardRecentlyApps,
   appToCard,
 } from 'features/apps/mapper'
-import { Box } from '@mui/material'
-import { useFetchProvidedAppsQuery, AppInfo } from 'features/apps/apiSlice'
+import {
+  useFetchProvidedAppsQuery,
+  type AppInfo,
+  type AppMarketplaceApp,
+} from 'features/apps/apiSlice'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
@@ -50,13 +54,14 @@ import { initialState } from 'features/appManagement/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
+import NoItems from '../NoItems'
 
 export default function AppOverview() {
   const { t } = useTranslation()
   const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data, refetch } = useFetchProvidedAppsQuery()
+  const { data, refetch, isSuccess, isFetching } = useFetchProvidedAppsQuery()
   const [itemCards, setItemCards] = useState<any>([])
   const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
   const [cards, setCards] = useState<any>([])
@@ -75,6 +80,7 @@ export default function AppOverview() {
     state === 'deactivate-success' && refetch()
     state === 'change-image-success' && refetch()
     state === 'change-description-success' && refetch()
+    state === 'add-roles-success' && refetch()
   }, [state, refetch])
 
   useEffect(() => {
@@ -99,7 +105,9 @@ export default function AppOverview() {
 
   useEffect(() => {
     if (data) {
-      const filterItems = data.map((item) => appToCard(item))
+      const filterItems = data.content?.map((item: AppMarketplaceApp) =>
+        appToCard(item)
+      )
       setCards(filterItems)
     }
   }, [data])
@@ -121,10 +129,10 @@ export default function AppOverview() {
             (item) =>
               item.title
                 .toLocaleLowerCase()
-                .includes(expr.toLocaleLowerCase()) ||
+                .includes(expr.toLocaleLowerCase()) ??
               item.subtitle
                 ?.toLocaleLowerCase()
-                .includes(expr.toLocaleLowerCase()) ||
+                .includes(expr.toLocaleLowerCase()) ??
               item.statusText
                 ?.toLocaleLowerCase()
                 .includes(expr.toLocaleLowerCase())
@@ -241,7 +249,9 @@ export default function AppOverview() {
                 sx={{ minWidth: '544px' }}
                 margin={'normal'}
                 value={searchExpr}
-                onChange={(e) => doSearch(e.target.value)}
+                onChange={(e) => {
+                  doSearch(e.target.value)
+                }}
                 placeholder={t('content.appoverview.inputPlaceholder')}
               />
             </Box>
@@ -252,7 +262,7 @@ export default function AppOverview() {
         </Box>
 
         <div className="app-detail">
-          {!filterItem ? (
+          {isFetching ? (
             <div style={{ textAlign: 'center' }}>
               <CircularProgress
                 size={50}
@@ -262,10 +272,24 @@ export default function AppOverview() {
               />
             </div>
           ) : (
-            <AppOverviewList
-              filterItem={filterItem}
-              showOverlay={showOverlay}
-            />
+            <>
+              {!isSuccess && (
+                <ErrorBar
+                  errorText={t('error.errorBar')}
+                  handleButton={refetch}
+                  buttonText={t('error.tryAgain')}
+                  showButton={true}
+                />
+              )}
+              {filterItem && filterItem.length > 0 && isSuccess ? (
+                <AppOverviewList
+                  filterItem={filterItem}
+                  showOverlay={showOverlay}
+                />
+              ) : (
+                <NoItems />
+              )}
+            </>
           )}
         </div>
       </div>

@@ -20,7 +20,7 @@
 
 import qs from 'qs'
 import { HttpClient } from 'utils/HttpClient'
-import {
+import type {
   FilterParams,
   ModelList,
   NewSemanticModel,

@@ -29,7 +29,7 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/Constants'
-import { IdentityProvider } from 'features/admin/idpApiSlice'
+import type { IdentityProvider } from 'features/admin/idpApiSlice'
 
 export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
   const { t } = useTranslation()
@@ -64,7 +64,11 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(closeOverlay())}
+          sx={{ textTransform: 'none' }}
+        >
           {t('global.actions.cancel')}
         </Button>
         <Button
@@ -73,6 +77,7 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
             navigate(`/${PAGES.IDP_MANAGEMENT}`)
             dispatch(closeOverlay())
           }}
+          sx={{ textTransform: 'none' }}
         >
           {t('pages.idpmanagement')}
         </Button>

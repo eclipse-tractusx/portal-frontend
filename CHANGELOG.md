@@ -1,5 +1,74 @@
 # Changelog
 
+## 1.7.0-alpha
+
+### Change
+
+- Technical User
+  - Enable search & filter
+- Invite Business Partner Form
+  - Fix loader position to center
+  - Disable invite button when loader is visible
+- Component/Design element changes
+  - Sub-Navigation label content changed to left aligned
+- Service Subscription Mgt page
+  - styling aligned to the app subscription Mgt page
+  - service filter added
+- Identity Provider Config
+  - UI Enhancements
+- Service Management/Overview
+  - manage service sub-menu for active services added (deactivate service function)
+  - offer image added to service card based on backend response
+- App Marketplace
+  - role permission validation updated to sync permission validation for subscription with backend endpoints used
+- App Release Process
+  - Step "Verify" image load styling updated to support multiple images with carousel function
+- Connector Deletion
+  - added a information/confirmation overlay for connector deletion in case the connector has an technical user and/or subscription linked
+- My User Account
+  - support user response action 'success' on click of copy to clip board (only Dev/INT relevant)
+- Page Loading and Error Component
+  - released new page load and error component element for service overview, app overview and subscription management pages
+- Notifications
+  - App Subscription Request notification content update
+- Shared
+  - Removed PageLoadingTable component
+
+### Feature
+
+- Technical User Details
+  - credential reset enabled via action button
+- Usermanagement
+  - Bulk upload function released
+- Search Element
+  - implemented full width search overlay for mobile version
+- Overlay styling updated to sync used overlay styles across the portal overlays (header, description sizing and color)
+- App Management/Overview
+  - added function to support 'Change Documents' for active apps
+  - added function to support 'Add Roles' for active apps
+- My Organization
+  - added app unsubscribe subscription function to inactive active app subscriptions
+
+### Technical Support
+
+- Code quality & style improvements implemented based on ESLINT rules
+  - import/no-duplicates
+  - prefer-const
+  - object shorthand
+  - add type for imports
+  - Prefer-nullish-coalescing
+  - No confusing void expression fixes
+- Digital Twin content (pages, overlays, translation content, etc.) removed due to dDTR release and decommissioning of the central DTR
+- Build images also for arm64, in addition to amd64
+
+###Bugfix
+
+- "Dataspace" Introduction page background color of last section changed
+
+###Known Knowns
+
+- App Release Process - Step 2 image gets multiple times uploaded if the user uploads the images single instead of dropping all images jointly for upload
+
 ## 1.6.0
 
 ### Change

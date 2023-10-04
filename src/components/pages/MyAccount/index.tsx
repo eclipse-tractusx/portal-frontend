@@ -25,7 +25,7 @@ import {
   Typography,
   PageHeader,
 } from '@catena-x/portal-shared-components'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
@@ -37,6 +37,7 @@ import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
+import { success } from 'services/NotifyService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -64,6 +65,7 @@ export default function MyAccount() {
             color="secondary"
             onClick={async () => {
               await navigator.clipboard.writeText(token)
+              success(t('content.account.copy_to_clipboard_success'))
             }}
             size="small"
             variant="outlined"

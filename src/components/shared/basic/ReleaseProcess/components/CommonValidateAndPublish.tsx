@@ -28,9 +28,10 @@ import {
   PageNotifications,
   StaticTable,
   Typography,
-  TableType,
+  type TableType,
   CircleProgress,
   CardHorizontal,
+  ImageGallery,
 } from '@catena-x/portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -41,9 +42,9 @@ import { useDispatch } from 'react-redux'
 import { decrement, increment } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
-  DocumentData,
+  type DocumentData,
   DocumentTypeId,
-  rolesType,
+  type rolesType,
 } from 'features/appManagement/apiSlice'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import CommonService from 'services/CommonService'
@@ -52,10 +53,10 @@ import { DocumentTypeText } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import {
   AppOverviewTypes,
-  AppStatusDataState,
-  UseCaseType,
+  type AppStatusDataState,
+  type UseCaseType,
 } from 'features/appManagement/types'
-import { ServiceStatusDataState } from 'features/serviceManagement/types'
+import type { ServiceStatusDataState } from 'features/serviceManagement/types'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepDecrement,
@@ -149,7 +150,7 @@ export default function CommonValidateAndPublish({
           documentId,
         }).unwrap()
         const file = response.data
-        return setCardImage(URL.createObjectURL(file))
+        setCardImage(URL.createObjectURL(file))
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING IMAGE')
       }
@@ -162,7 +163,7 @@ export default function CommonValidateAndPublish({
     formState: { isValid },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -204,7 +205,7 @@ export default function CommonValidateAndPublish({
       const fileType = response.headers.get('content-type')
       const file = response.data
 
-      return download(file, fileType, documentName)
+      download(file, fileType, documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -298,9 +299,9 @@ export default function CommonValidateAndPublish({
             >
               <Card
                 image={{
-                  src: cardImage || LogoGrayData,
+                  src: cardImage ?? LogoGrayData,
                 }}
-                title={statusData?.title || ''}
+                title={statusData?.title ?? ''}
                 subtitle={statusData?.provider}
                 description={
                   statusData?.descriptions?.filter(
@@ -319,7 +320,9 @@ export default function CommonValidateAndPublish({
                 <LanguageSwitch
                   current={cardLanguage}
                   languages={[{ key: 'de' }, { key: 'en' }]}
-                  onChange={(lang) => setCardLanguage(lang)}
+                  onChange={(lang) => {
+                    setCardLanguage(lang)
+                  }}
                 />
               </div>
             </Grid>
@@ -343,12 +346,12 @@ export default function CommonValidateAndPublish({
           <CardHorizontal
             borderRadius={6}
             imageAlt="Service Card"
-            imagePath={cardImage || LogoGrayData}
+            imagePath={cardImage ?? LogoGrayData}
             label={''}
             buttonText=""
             onBtnClick={() => {}}
-            title={statusData?.title || ''}
-            subTitle={serviceTypes || ''}
+            title={statusData?.title ?? ''}
+            subTitle={serviceTypes ?? ''}
             description={''}
             backgroundColor="rgb(224, 225, 226)"
           />
@@ -394,21 +397,7 @@ export default function CommonValidateAndPublish({
             )}
           </div>
         ))}
-        {multipleImages && (
-          <div style={{ display: 'flex' }}>
-            {multipleImages?.map((img: { url: string }, i: number) => {
-              return (
-                <Box sx={{ margin: '37px auto 0 auto' }} key={img.url}>
-                  <img
-                    src={img.url}
-                    alt={'images'}
-                    className="verify-validate-images"
-                  />
-                </Box>
-              )
-            })}
-          </div>
-        )}
+        {multipleImages && <ImageGallery gallery={multipleImages} />}
 
         <Divider className="verify-validate-form-divider" />
         {statusData?.privacyPolicies && (
@@ -632,9 +621,9 @@ export default function CommonValidateAndPublish({
                   description={error.message}
                   open
                   severity="error"
-                  onCloseNotification={() =>
+                  onCloseNotification={() => {
                     setValidatePublishNotification(false)
-                  }
+                  }}
                 />
               </Grid>
             </Grid>

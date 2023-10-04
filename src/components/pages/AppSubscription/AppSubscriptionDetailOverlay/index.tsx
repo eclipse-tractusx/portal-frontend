@@ -25,7 +25,7 @@ import {
   DialogHeader,
   PageSnackbar,
   StaticTable,
-  TableType,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import {
@@ -39,11 +39,14 @@ import { ROLES } from 'types/Constants'
 import { useState } from 'react'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { isURL } from 'types/Patterns'
+import { SubscriptionTypes } from 'components/shared/templates/Subscription'
+import { useFetchServiceSubDetailQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
   appId: string
   subscriptionId: string
+  type: string
   handleOverlayClose: () => void
 }
 
@@ -57,10 +60,16 @@ const AppSubscriptionDetailOverlay = ({
   openDialog = false,
   appId,
   subscriptionId,
+  type,
   handleOverlayClose,
 }: AppSubscriptionDetailProps) => {
   const { t } = useTranslation()
-  const { data, refetch } = useFetchSubscriptionDetailQuery({
+  const ti = useTranslation('servicerelease').t
+  const fetchAPI =
+    type === SubscriptionTypes.APP_SUBSCRIPTION
+      ? useFetchSubscriptionDetailQuery
+      : useFetchServiceSubDetailQuery
+  const { data, refetch } = fetchAPI({
     appId,
     subscriptionId,
   })
@@ -85,64 +94,83 @@ const AppSubscriptionDetailOverlay = ({
     },
   ]
 
+  const getValue = (value?: string) => value ?? 'N/A'
+
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
-        data?.name ? data.name : 'N/A',
+        getValue(data?.name),
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        data?.offerSubscriptionStatus ? data.offerSubscriptionStatus : 'N/A',
+        getValue(data?.offerSubscriptionStatus),
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
-        data?.customer ? data.customer : 'N/A',
+        getValue(data?.customer),
       ],
       [
         `${t('content.appSubscription.detailOverlay.bpn')}`,
-        data?.bpn ? data.bpn : 'N/A',
+        getValue(data?.bpn),
       ],
       [
         `${t('content.appSubscription.detailOverlay.contact')}`,
-        data?.contact.length ? data.contact.toString() : 'N/A',
+        getValue(data?.contact?.toString()),
       ],
     ],
   }
 
-  const technicalDetails: TableType = {
-    head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
-    body: [
+  const bodyData = [
+    [
+      `${t('content.appSubscription.detailOverlay.technicalName')}`,
+      data?.technicalUserData?.[0]?.name ??
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
+    ],
+    [
+      `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
+      data?.technicalUserData?.[0]?.permissions.toString() ??
+        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+          ? 'N/A'
+          : ''),
+    ],
+  ]
+
+  if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
+    bodyData.unshift(
       [
         `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
         data?.tenantUrl ?? '',
       ],
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
-        data?.appInstanceId ?? 'N/A',
-      ],
-      [
-        `${t('content.appSubscription.detailOverlay.technicalName')}`,
-        data?.technicalUserData && data.technicalUserData.length > 0
-          ? data.technicalUserData[0].name
-          : 'N/A',
-      ],
-      [
-        `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-        data?.technicalUserData && data.technicalUserData.length > 0
-          ? data.technicalUserData[0].permissions.toString()
-          : 'N/A',
-      ],
-    ],
+        data?.appInstanceId ??
+          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+            ? 'N/A'
+            : ''),
+      ]
+    )
+  }
+
+  const technicalDetails: TableType = {
+    head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
+    body: bodyData,
     edit: [
       [
         {
-          editIcon: false,
-          inputValue: '',
+          icon: type === SubscriptionTypes.SERVICE_SUBSCRIPTION,
+          inputValue:
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? ''
+              : t('content.appSubscription.detailOverlay.technicalNameInfo'),
         },
         {
-          editIcon: UserService.hasRole(ROLES.APPSTORE_EDIT),
+          icon:
+            UserService.hasRole(ROLES.APPSTORE_EDIT) &&
+            data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
           inputValue: data?.tenantUrl ?? '',
           isValid: (value: string) => isURL(value),
           errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
@@ -150,21 +178,41 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         {
-          editIcon: false,
+          icon: true,
+          inputValue:
+            type === SubscriptionTypes.APP_SUBSCRIPTION
+              ? t('content.appSubscription.detailOverlay.appIdInfo')
+              : t(
+                  'content.appSubscription.detailOverlay.technicalPermissionInfo'
+                ),
         },
         {
-          editIcon: false,
+          icon: false,
         },
       ],
       [
         {
-          editIcon: false,
+          icon: true,
+          inputValue: t(
+            'content.appSubscription.detailOverlay.technicalNameInfo'
+          ),
         },
         {
-          editIcon: false,
+          icon: false,
           clickableLink: data?.technicalUserData[0]?.id
             ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
             : undefined,
+        },
+      ],
+      [
+        {
+          icon: true,
+          inputValue: t(
+            'content.appSubscription.detailOverlay.technicalPermissionInfo'
+          ),
+        },
+        {
+          icon: false,
         },
       ],
     ],
@@ -182,9 +230,9 @@ const AppSubscriptionDetailOverlay = ({
 
   const handleSaveURL = async (url: string) => {
     const data = {
-      appId: appId,
-      subscriptionId: subscriptionId,
-      body: { url: url },
+      appId,
+      subscriptionId,
+      body: { url },
     }
     try {
       await updateTenantUrl(data).unwrap()
@@ -192,6 +240,30 @@ const AppSubscriptionDetailOverlay = ({
       setTenantUrlResponse(TenantUrlState.SUCCESS)
     } catch (err) {
       setTenantUrlResponse(TenantUrlState.ERROR)
+    }
+  }
+
+  const getDialogIntro = () => {
+    if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
+      return t('content.appSubscription.detailOverlay.description')
+    } else {
+      return ti('serviceSubscription.detailOverlay.description')
+    }
+  }
+
+  const getSnackbarSeverity = () => {
+    if (tenantUrlResponse === TenantUrlState.SUCCESS) {
+      return SuccessErrorType.SUCCESS
+    } else {
+      return SuccessErrorType.ERROR
+    }
+  }
+
+  const getSnackbarDesc = () => {
+    if (tenantUrlResponse === TenantUrlState.SUCCESS) {
+      return t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
+    } else {
+      return t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
     }
   }
 
@@ -207,9 +279,11 @@ const AppSubscriptionDetailOverlay = ({
       >
         <DialogHeader
           title={t('content.appSubscription.detailOverlay.title')}
-          intro={t('content.appSubscription.detailOverlay.description')}
+          intro={getDialogIntro()}
           closeWithIcon={true}
-          onCloseWithIcon={() => handleOverlayClose()}
+          onCloseWithIcon={() => {
+            handleOverlayClose()
+          }}
         />
         <DialogContent>
           <ReleaseStepper
@@ -241,16 +315,8 @@ const AppSubscriptionDetailOverlay = ({
       </Dialog>
       <PageSnackbar
         open={tenantUrlResponse !== TenantUrlState.NONE}
-        severity={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? SuccessErrorType.SUCCESS
-            : SuccessErrorType.ERROR
-        }
-        description={
-          tenantUrlResponse === TenantUrlState.SUCCESS
-            ? t('content.appSubscription.detailOverlay.tenantUrlSuccessMsg')
-            : t('content.appSubscription.detailOverlay.tenantUrlErrorMsg')
-        }
+        severity={getSnackbarSeverity()}
+        description={getSnackbarDesc()}
         showIcon={true}
         autoClose={true}
       />

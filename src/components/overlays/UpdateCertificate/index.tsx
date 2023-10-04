@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import {
@@ -27,20 +27,29 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   LoadingButton,
   Typography,
+  SelectList,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import { Box, Dialog } from '@mui/material'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { error } from 'services/NotifyService'
-import { useAddCertificateMutation } from 'features/certification/certificationApiSlice'
+import {
+  useAddCertificateMutation,
+  useFetchCertificateTypesQuery,
+} from 'features/certification/certificationApiSlice'
 import './style.scss'
+
+export type CertificateType = {
+  title: string
+}
 
 export default function UpdateCertificate({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -48,8 +57,25 @@ export default function UpdateCertificate({ id }: { id: string }) {
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [submitClicked, setSubmitClicked] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const [certificatetypesArr, setCertificatetypesArr] = useState<
+    CertificateType[]
+  >([])
+  const [selectedCertificate, setSelectedCertificate] = useState<string>('')
 
   const [addCertificate] = useAddCertificateMutation()
+  const { data: certificateTypes } = useFetchCertificateTypesQuery()
+
+  useEffect(() => {
+    certificateTypes?.map((item) => {
+      setCertificatetypesArr((oldArray: CertificateType[]) => [
+        ...oldArray,
+        { title: item },
+      ])
+      return null
+    })
+    certificateTypes?.length === 1 &&
+      setSelectedCertificate(certificateTypes?.[0] ?? '')
+  }, [certificateTypes])
 
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
@@ -200,6 +226,45 @@ export default function UpdateCertificate({ id }: { id: string }) {
 
           <DialogContent>
             <div className="update-certificate">
+              {certificatetypesArr?.length && (
+                <Tooltips
+                  additionalStyles={{
+                    display:
+                      certificatetypesArr.length === 1 ? 'block' : 'none',
+                  }}
+                  tooltipPlacement="bottom-end"
+                  tooltipText={t(
+                    'content.certificates.updateCertificate.noOptionsMessage'
+                  )}
+                  children={
+                    <span>
+                      <SelectList
+                        error={!selectedCertificate}
+                        helperText={t(
+                          'content.certificates.updateCertificate.certificateTypeError'
+                        )}
+                        defaultValue={certificatetypesArr[0]}
+                        items={certificatetypesArr}
+                        label={t(
+                          'content.certificates.updateCertificate.selectLabel'
+                        )}
+                        placeholder={
+                          certificatetypesArr.length === 1
+                            ? certificatetypesArr[0].title
+                            : t(
+                                'content.certificates.updateCertificate.placeholder'
+                              )
+                        }
+                        onChangeItem={(e) => {
+                          setSelectedCertificate(e.title)
+                        }}
+                        keyTitle={'title'}
+                        disabled={certificatetypesArr.length === 1}
+                      />
+                    </span>
+                  }
+                />
+              )}
               <Typography variant="h4" className="uploadDocumentTitle">
                 {t(
                   'content.certificates.updateCertificate.uploadDocumentTitle'
@@ -208,10 +273,13 @@ export default function UpdateCertificate({ id }: { id: string }) {
               <Dropzone
                 acceptFormat={{ 'application/pdf': [] }}
                 maxFilesToUpload={1}
+                maxFileSize={2097152}
                 onChange={([file]) => {
                   setUploadedFile(file)
                 }}
-                errorText={'helperText'}
+                errorText={t(
+                  'content.usecaseParticipation.editUsecase.fileSizeError'
+                )}
                 DropStatusHeader={false}
                 DropArea={renderDropArea}
               />
@@ -243,7 +311,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
               <Button
                 variant="contained"
                 onClick={handleSubmit}
-                disabled={uploadedFile === undefined}
+                disabled={uploadedFile === undefined || !selectedCertificate}
               >
                 {t('global.actions.submit')}
               </Button>

@@ -26,7 +26,6 @@ import control from './control'
 import info from './info'
 import userSliceDep from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
-import twinsSlice from './digitalTwins/slice'
 import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
@@ -36,15 +35,15 @@ import serviceMarketplaceSlice from './serviceMarketplace/slice'
 import serviceProviderSlice from './serviceProvider/slice'
 import appSubscriptionSlice from './appSubscription/slice'
 import adminBoardSlice from './adminBoard/slice'
-import userAddSlice from './admin/userApiSlice'
-import userRoleSlice from './admin/appuserApiSlice'
 import modelsSlice from './semanticModels/slice'
 import updateCompanyRoleSlice from './companyRoles/slice'
 import { apiSlice as idpSlice } from './admin/idpApiSlice'
-import { apiSlice as userSlice } from './admin/userApiSlice'
+import userAddSlice, { apiSlice as userSlice } from './admin/userApiSlice'
 import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
 import { apiSlice as notificationSlice } from './notification/apiSlice'
-import { apiSlice as appRolesSlice } from './admin/appuserApiSlice'
+import userRoleSlice, {
+  apiSlice as appRolesSlice,
+} from './admin/appuserApiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
 import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
@@ -63,6 +62,7 @@ import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/s
 import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdminBoardApiSlice'
 import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSlice'
 import { apiSlice as certificationApiSlice } from './certification/certificationApiSlice'
+import { apiSlice as userManagementApiSlice } from './appManagement/userManagementApiSlice'
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
@@ -84,7 +84,6 @@ export const reducers = {
   semanticModels: modelsSlice.reducer,
   companyRoles: updateCompanyRoleSlice.reducer,
   user: userSliceDep,
-  twins: twinsSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
   connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,
@@ -114,6 +113,7 @@ export const reducers = {
   [serviceAdminBoardApiSlice.reducerPath]: serviceAdminBoardApiSlice.reducer,
   [companyRoleApiSlice.reducerPath]: companyRoleApiSlice.reducer,
   [certificationApiSlice.reducerPath]: certificationApiSlice.reducer,
+  [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
 }
 
@@ -143,6 +143,7 @@ export const store = configureStore({
       .concat(serviceAdminBoardApiSlice.middleware)
       .concat(companyRoleApiSlice.middleware)
       .concat(certificationApiSlice.middleware)
+      .concat(userManagementApiSlice.middleware)
       .concat(usecaseApiSlice.middleware),
 })
 

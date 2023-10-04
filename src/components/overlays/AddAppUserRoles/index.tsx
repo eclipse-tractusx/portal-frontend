@@ -39,7 +39,7 @@ import {
 import {
   setUserRoleResp,
   useUpdateUserRolesMutation,
-  UserRoleRequest,
+  type UserRoleRequest,
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
@@ -59,7 +59,7 @@ export default function AddAppUserRoles() {
 
     users.map(async (user) => {
       const data: UserRoleRequest = {
-        appId: appId,
+        appId,
         companyUserId: user,
         body: roles,
       }

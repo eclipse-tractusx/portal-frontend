@@ -20,8 +20,8 @@
     "content": "Get a first insight into available apps, just follow us to the app marketplace."
   },
   "APP_SUBSCRIPTION_REQUEST": {
-    "title": "Request for app subscription",
-    "content": "A new app subscription request for <1>{{app}}</1> was triggered by <0>{{user}}</0>. Get in contact with <0>{{user}}</0> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app usage under following link ERROR"
+    "title": "App {{app}}: Subscription Request",
+    "content": "A new app subscription request was triggered by <strong>{{company}}</strong>. Get in contact with <strong>{{useremail}}</strong> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app for <strong>{{company}}</strong>"
   },
   "APP_SUBSCRIPTION_ACTIVATION": {
     "title": "Congratulations! - {{offer}} is activated",
@@ -52,8 +52,8 @@
     "content": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
   },
   "APP_ROLE_ADDED": {
-    "title": "App {{appName}} roles got changed",
-    "content": "App {{appName}} got new roles added; check out the user management and assign new roles to your user group."
+    "title": "App {{app}} new Roles added",
+    "content": "New user roles have been added for the app <strong>{{app}}</strong> which you can now assign.\n\nNew Roles: {{roles}}"
   },
   "TECHNICAL_USER_CREATION": {
     "title": "{{appName}} subscription created a new technical user",
@@ -106,7 +106,7 @@
     "appmanagementboard": "Get there",
     "servicemanagementboard": "Get there",
     "appoverview": "Get there",
-    "appsubscription": "Get theme",
+    "appsubscription": "Get there",
     "adminboard": "Get there",
     "technicaluser": "Get there",
     "companyrolesserviceprovider": "Get there",

@@ -19,24 +19,31 @@
  ********************************************************************************/
 
 import {
-  CardItems,
-  ImageType,
+  type CardItems,
+  type ImageType,
   LogoGrayData,
 } from '@catena-x/portal-shared-components'
-import { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
+import type { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {
-  AppMarketplaceApp,
+  type ActiveSubscription,
+  type AppMarketplaceApp,
   SubscriptionStatus,
-  SubscriptionStatusItem,
+  type SubscriptionStatusItem,
   SubscriptionStatusText,
 } from './apiSlice'
 
 const baseAssets = getAssetBase()
 
-export const getAppImageUrl = (app: AppMarketplaceApp) =>
-  app.leadPictureId
-    ? `${getApiBase()}/api/apps/${app.id}/appDocuments/${app.leadPictureId}`
+export const getAppImageUrl = ({
+  id,
+  leadPictureId,
+}: {
+  id: string
+  leadPictureId: string
+}) =>
+  leadPictureId
+    ? `${getApiBase()}/api/apps/${id}/appDocuments/${leadPictureId}`
     : LogoGrayData
 
 // mapper to fetch an app lead-image from the asset repo by using the app image name; default image handling included as well
@@ -63,7 +70,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
-    src: getAppImageUrl(app),
+    src: getAppImageUrl({ id: app.id, leadPictureId: app.leadPictureUri }),
     alt: app.title,
   },
   onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,
@@ -74,6 +81,12 @@ export const serviceToCard = (app: ProvidedServiceType): CardItems => ({
   statusText: app.status,
   subtitle: app.provider,
   title: app.name ?? '',
+  image: {
+    src: app.leadPictureId
+      ? `${getApiBase()}/api/administration/documents/${app.leadPictureId}`
+      : LogoGrayData,
+    alt: app.name,
+  },
 })
 
 // mapper to create the app card used for the app access management view on the user management page
@@ -104,12 +117,23 @@ export const appToStatus = (apps: AppMarketplaceApp[]): AppMarketplaceApp[] => {
     ?.map((app: AppMarketplaceApp) => {
       const status = SubscriptionStatus.ACTIVE
       const image = {
-        src: getAppImageUrl(app),
+        src: getAppImageUrl({ id: app.id, leadPictureId: app.leadPictureUri }),
         alt: app.title,
       }
       return { ...app, status, image }
     })
     .filter((e) => e.status)
+}
+
+export const subscribedApps = (apps: ActiveSubscription[]) => {
+  return apps?.map((app: ActiveSubscription) => {
+    const status = SubscriptionStatus.ACTIVE
+    const image = {
+      src: getAppImageUrl({ id: app.offerId, leadPictureId: app.image }),
+      alt: app.name,
+    }
+    return { ...app, status, image }
+  })
 }
 
 export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {

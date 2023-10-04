@@ -24,8 +24,8 @@ import {
   useGetNotificationMetaQuery,
 } from 'features/notification/apiSlice'
 import {
-  CXNotificationContent,
-  CXNotificationPagination,
+  type CXNotificationContent,
+  type CXNotificationPagination,
   PAGE,
   PAGE_SIZE,
   SORT_OPTION,
@@ -122,7 +122,9 @@ export default function NotificationCenter() {
     }
   }, [data])
 
-  const nextPage = () => setPage(page + 1)
+  const nextPage = () => {
+    setPage(page + 1)
+  }
 
   const sortOptions = [
     {
@@ -145,7 +147,7 @@ export default function NotificationCenter() {
       setLoaded(false)
     }
     setNotificationState({
-      page: page,
+      page,
       size: PAGE_SIZE,
       args: {
         notificationTopic: filterOption,
@@ -170,7 +172,7 @@ export default function NotificationCenter() {
       buttonValue: NOTIFICATION_TOPIC.OFFER,
       buttonDescription: t('sortOptions.app.description'),
       onButtonClick: setView,
-      count: pages?.offerUnread || 0,
+      count: pages?.offerUnread ?? 0,
       countTitle: t('sortOptions.app.countTitle'),
     },
     {
@@ -178,7 +180,7 @@ export default function NotificationCenter() {
       buttonValue: NOTIFICATION_TOPIC.INFO,
       buttonDescription: t('sortOptions.info.description'),
       onButtonClick: setView,
-      count: pages?.infoUnread || 0,
+      count: pages?.infoUnread ?? 0,
       countTitle: t('sortOptions.info.countTitle'),
     },
     {
@@ -186,7 +188,7 @@ export default function NotificationCenter() {
       buttonValue: NOTIFICATION_TOPIC.ACTION,
       buttonDescription: t('sortOptions.withaction.description'),
       onButtonClick: setView,
-      count: pages?.actionRequired || 0,
+      count: pages?.actionRequired ?? 0,
       countTitle: t('sortOptions.withaction.countTitle'),
     },
   ]
@@ -216,18 +218,24 @@ export default function NotificationCenter() {
       <section>
         <div
           className="searchContainer"
-          onMouseLeave={() => setShowModal(false)}
+          onMouseLeave={() => {
+            setShowModal(false)
+          }}
         >
           <SearchInput
             placeholder={t('search')}
             value={searchExpr}
             autoFocus={false}
             autoComplete="off"
-            onChange={(e) => setSearchExpr(e.target.value)}
+            onChange={(e) => {
+              setSearchExpr(e.target.value)
+            }}
           />
           <div>
             <SortImage
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                setShowModal(true)
+              }}
               selected={showModal}
             />
             <div className="sortSection">

@@ -19,14 +19,14 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import {
+import type {
   BusinessPartner,
   BusinessPartnerResponse,
   PaginationData,
   PartnerNetworkDataGrid,
   PartnerNetworkInitialState,
 } from './types'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 import {
   getOneBusinessPartner,
   fetchBusinessPartners,

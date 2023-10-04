@@ -21,11 +21,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
   initialState,
-  SearchInputState,
+  type SearchInputState,
   name,
-  AppStatusDataState,
+  type AppStatusDataState,
 } from './types'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 
 const managementSlice = createSlice({
   name,

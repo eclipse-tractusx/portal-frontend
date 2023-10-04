@@ -18,18 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems, Cards } from '@catena-x/portal-shared-components'
+import { type CardItems, Cards } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import NoItems from 'components/pages/NoItems'
 import { PAGES } from 'types/Constants'
-import { AppInfo } from 'features/apps/apiSlice'
+import type { AppInfo } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
 
 enum AppSubMenuItems {
   DEACTIVATE = 'deactivate',
   CHANGE_IMAGE = 'changeImage',
   CHANGE_DESCRIPTION = 'changeDescription',
+  ADD_ROLES = 'addRoles',
+  CHANGE_DOCUMENTS = 'changeDocuments',
 }
 
 export const AppOverviewList = ({
@@ -41,10 +42,6 @@ export const AppOverviewList = ({
 }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-
-  if (filterItem && filterItem.length === 0) {
-    return <NoItems />
-  }
 
   const submenuOptions = [
     {
@@ -62,6 +59,16 @@ export const AppOverviewList = ({
       value: AppSubMenuItems.CHANGE_DESCRIPTION,
       url: '',
     },
+    {
+      label: t('content.appoverview.sortOptions.addRoles'),
+      value: AppSubMenuItems.ADD_ROLES,
+      url: '',
+    },
+    {
+      label: t('content.appoverview.sortOptions.changeDocuments'),
+      value: AppSubMenuItems.CHANGE_DOCUMENTS,
+      url: '',
+    },
   ]
 
   return (
@@ -76,7 +83,9 @@ export const AppOverviewList = ({
         imageLoader={fetchImageWithToken}
         showAddNewCard={true}
         newButtonText={t('content.appoverview.addbtn')}
-        onNewCardButton={() => navigate(`/${PAGES.APPRELEASEPROCESS}/form`)}
+        onNewCardButton={() => {
+          navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+        }}
         onCardClick={(item: unknown) => {
           showOverlay(item as AppInfo)
         }}
@@ -84,15 +93,23 @@ export const AppOverviewList = ({
         submenuOptions={submenuOptions}
         submenuClick={(sortMenu: string, id: string | undefined) => {
           sortMenu === AppSubMenuItems.DEACTIVATE &&
-            navigate(`/deactivate/${id}`, {
+            navigate(`/${PAGES.DEACTIVATE}/${id}`, {
               state: filterItem,
             })
           sortMenu === AppSubMenuItems.CHANGE_IMAGE &&
-            navigate(`/changeimage/${id}`, {
+            navigate(`/${PAGES.CHANGE_IMAGE}/${id}`, {
               state: filterItem,
             })
           sortMenu === AppSubMenuItems.CHANGE_DESCRIPTION &&
-            navigate(`/changedescription/${id}`, {
+            navigate(`/${PAGES.CHANGE_DESCRIPTION}/${id}`, {
+              state: filterItem,
+            })
+          sortMenu === AppSubMenuItems.ADD_ROLES &&
+            navigate(`/${PAGES.ADD_ROLES}/${id}`, {
+              state: filterItem,
+            })
+          sortMenu === AppSubMenuItems.CHANGE_DOCUMENTS &&
+            navigate(`/${PAGES.CHANGE_DOCUMENTS}/${id}`, {
               state: filterItem,
             })
           return undefined

@@ -25,19 +25,29 @@ import {
   IconButton,
   StatusTag,
   PageLoadingTable,
-  PaginFetchArgs,
+  type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
+
+interface FetchHookArgsType {
+  appId?: string
+  expr: string
+  userRoleResponse?: boolean
+  role?: boolean
+  addUserResponse?: boolean
+}
 
 export const UserList = ({
   sectionTitle,
   addButtonLabel,
   addButtonClick,
+  addMultipleButtonLabel,
+  onMultipleButtonClick,
   tableLabel,
   onDetailsClick,
   fetchHook,
@@ -49,6 +59,8 @@ export const UserList = ({
   sectionTitle: string
   addButtonLabel: string
   addButtonClick: () => void
+  addMultipleButtonLabel?: string
+  onMultipleButtonClick?: () => void
   tableLabel: string
   onDetailsClick: (row: TenantUser) => void
   fetchHook: (paginArgs: PaginFetchArgs) => any
@@ -75,9 +87,11 @@ export const UserList = ({
   return (
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
-      <PageLoadingTable<TenantUser>
+      <PageLoadingTable<TenantUser, FetchHookArgsType>
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
+        secondButtonLabel={addMultipleButtonLabel && t(addMultipleButtonLabel)}
+        onSecondButtonClick={onMultipleButtonClick}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.search')}
         columnHeadersBackgroundColor={'#FFFFFF'}
@@ -138,7 +152,12 @@ export const UserList = ({
               : t('global.field.edit'),
             flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
-              <IconButton color="secondary" onClick={() => onDetailsClick(row)}>
+              <IconButton
+                color="secondary"
+                onClick={() => {
+                  onDetailsClick(row)
+                }}
+              >
                 <ArrowForwardIcon />
               </IconButton>
             ),

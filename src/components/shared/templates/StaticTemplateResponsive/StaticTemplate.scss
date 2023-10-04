@@ -161,6 +161,10 @@
   .rightAligned .title {
     margin-bottom: 20px;
   }
+
+  .sectionContainer:last-child {
+    padding-bottom: 60px;
+  }
 }
 
 //tab layout
@@ -297,6 +301,10 @@
 
   .titleWithIcon button {
     display: none;
+  }
+
+  .sectionContainer:last-child {
+    padding-bottom: 20px;
   }
 }
 
@@ -439,6 +447,10 @@
 
   .titleWithIcon button {
     display: block;
+  }
+
+  .sectionContainer:last-child {
+    padding-bottom: 20px;
   }
 }
 

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { InitialListState, ListState } from 'types/MainTypes'
+import { InitialListState, type ListState } from 'types/MainTypes'
 
 export const name = 'info/search'
 

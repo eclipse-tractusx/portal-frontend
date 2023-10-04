@@ -18,11 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardItems } from '@catena-x/portal-shared-components'
-import { TenantUser } from 'features/admin/userApiSlice'
-import { AppMarketplaceApp } from 'features/apps/apiSlice'
-import { BusinessPartner } from 'features/partnerNetwork/types'
-import { SearchCategory, SearchItem } from './types'
+import type { CardItems } from '@catena-x/portal-shared-components'
+import type { TenantUser } from 'features/admin/userApiSlice'
+import type { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { BusinessPartner } from 'features/partnerNetwork/types'
+import { SearchCategory, type SearchItem } from './types'
 
 export const pageToSearchItem = (item: string): SearchItem => ({
   id: item,
@@ -46,20 +46,20 @@ export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
   ...item,
   category: SearchCategory.APP,
   description: item.provider,
-  title: item.name || '-',
+  title: item.name ?? '-',
 })
 
 export const businessPartnerToSearchItem = (
   item: BusinessPartner
 ): SearchItem => ({
-  id: item.bpn,
+  id: item.bpnl,
   category: SearchCategory.PARTNER,
-  title: item.names[0]?.value,
-  description: item.bpn,
+  title: item.legalName,
+  description: item.bpnl,
 })
 
 export const newsToSearchItem = (item: CardItems): SearchItem => ({
-  id: item.id || '0',
+  id: item.id ?? '0',
   category: SearchCategory.NEWS,
   title: item.title,
   description: item.subtitle,
@@ -68,6 +68,6 @@ export const newsToSearchItem = (item: CardItems): SearchItem => ({
 export const userToSearchItem = (item: TenantUser): SearchItem => ({
   id: item.companyUserId,
   category: SearchCategory.USER,
-  title: `${item.firstName || ''} ${item.lastName || ''}`,
+  title: `${item.firstName ?? ''} ${item.lastName ?? ''}`,
   description: item.email,
 })

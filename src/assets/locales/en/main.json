@@ -11,7 +11,6 @@
     "appdetails": "App Details",
     "datamanagement": "Data Management",
     "semantichub": "Semantic Hub",
-    "digitaltwin": "Digital Twins",
     "partnernetwork": "Partner Network",
     "connector": "Connector",
     "account": "My CX Account",
@@ -98,7 +97,9 @@
     "Lang_en": "Switch language to english"
   },
   "error": {
-    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator."
+    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
+    "tryAgain": "Try Again",
+    "errorBar": "Something went wrong. Try again"
   },
   "content": {
     "admin": {
@@ -331,32 +332,6 @@
         "nomodelText": "The used URN is either incorrect or the model does not yet exist."
       }
     },
-    "digitaltwin": {
-      "table": {
-        "title": "Overview Digital Twins",
-        "searchfielddefaulttext": "Part Instance ID of the Asset",
-        "norows": "no data found with the part instance id value {data}",
-        "columns": {
-          "idShort": "Name",
-          "sm_count": "Submodel Count",
-          "asset_count": "Asset Count"
-        }
-      },
-      "detail": {
-        "error": "ERROR: No twin data available.",
-        "no_description": "This asset has no description.",
-        "assetId": "Specific asset IDs",
-        "submodel_endpoints": "Submodel endpoints:",
-        "semanticid": "Semantic ID:",
-        "key": "Key:",
-        "value": "Value:",
-        "endpoints": "Endpoints:",
-        "interface": "Interface:",
-        "protocol": "Protocol:",
-        "protocol_version": "Protocol version:",
-        "protocol_endpoint": "Aspect Endpoint:"
-      }
-    },
     "organization": {
       "company": {
         "title": "Company Details",
@@ -369,6 +344,21 @@
       "subscriptions": {
         "title": "App Subscriptions",
         "error": "error - no data found"
+      },
+      "unsubscribe": {
+        "title": "Unsubscribe Business Application",
+        "description": "Are you sure to unsubscribe from the business application?",
+        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
+        "table": {
+          "app": "App",
+          "status": "Status",
+          "connector": "Connector",
+          "techUser": "Technical User"
+        },
+        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
+        "buttonText": "Unsubscribe",
+        "unsubscribeSuccess": "Unsubscribe subscription is successful",
+        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
       }
     },
     "datamanagement": {
@@ -391,7 +381,9 @@
       "sortOptions": {
         "deactivate": "Deactivate",
         "changeImage": "Change Image",
-        "changeDescription": "Change Description"
+        "changeDescription": "Change Description",
+        "addRoles": "Add Roles",
+        "changeDocuments": "Change Document(s)"
       },
       "addbtn": "Register your App",
       "confirmModal": {
@@ -420,7 +412,7 @@
       "headerTitle": "Change Lead Image",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "uploadNewImage": "Upload New Image",
-      "successMsg": "successfully changed app lead image",
+      "successMsg": "Successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {
@@ -432,8 +424,27 @@
       "shortDescription": "Short Description",
       "shortDescriptionEN": "Short Description - EN *",
       "shortDescriptionDE": "Short Description - DE *",
-      "successMsg": "successfully changed description",
+      "successMsg": "Successfully changed description",
       "errorMsg": "Unable to change description"
+    },
+    "addRoles": {
+      "headerTitle": "Load Additional Roles",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "uploadAdditionalRoles": "Upload Additional Roles",
+      "establishedRoles": "Established Roles",
+      "uploadAdditionalRolesDescription": "Note: only one file for upload allowed",
+      "newRolesToAdd": "New roles to be added",
+      "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
+      "successMsg": "Successfully added roles",
+      "errorMsg": "Unable to add roles",
+      "deleteNotSupported": "Role deletion currently not supported."
+    },
+    "changeDocuments": {
+      "headerTitle": "Update Contract Documents",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "saveTooltipMsg": "The save button will be active after a document was changed",
+      "successMsg": "Documents changed successfully",
+      "errorMsg": "Error! Something went wrong"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -488,7 +499,15 @@
       },
       "deletemodal": {
         "title": "Delete Connector",
-        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable."
+        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
+        "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected – the technical user will get inactived immediadetly as well when proceeding with the deletion.",
+        "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
+        "techDetails": {
+          "title": "Technical Details",
+          "name": "Name",
+          "clientId": "Client ID",
+          "description": "Description"
+        }
       },
       "modal": {
         "company": {
@@ -637,6 +656,7 @@
         "title": "User List",
         "details": "Details",
         "add": "Add user",
+        "addMultiple": "Add Multiple users",
         "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
@@ -665,10 +685,48 @@
           "subtitle": "The user cannot enter his account until he has set a new password."
         }
       },
+      "addMultipleUsers": {
+        "heading": "Add user account by bulk upload",
+        "intro": "Bulk upload process",
+        "step1": {
+          "heading": "Download this upload template by clicking the icon",
+          "buttonLabel": "Download template"
+        },
+        "step2": {
+          "heading": "Enter user data in upload form",
+          "linkText": "Guide on how to fill the template"
+        },
+        "step3": {
+          "heading": "Upload form by selecting the form file with the user data"
+        },
+        "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "uploadedFile": {
+          "fileHeading": "Prepared for upload:",
+          "addUserRolesHeading": "Add user roles for all users in bulk upload:",
+          "usersToBeUpload": "users to be uploaded",
+          "note": "Note:",
+          "note1": "Only assign roles that apply to all users in the bulk upload file - individual roles can be applied individually later.",
+          "note2": "Roles for applications can be assigned after the user(s) have been successfully created.",
+          "note3": "We suggest to assign CX User initially to all bulk uploaded users and set specific user permissions separately.",
+          "availableRoles": "Available Roles: ",
+          "roleDesc": "Role Descriptions"
+        },
+        "success": {
+          "userUploaded": "Users successfully uploaded",
+          "userFailed": "User uploads failed",
+          "errorUsersLabel": "Errors have occured for the following usernames: <br/> Please check their entries in the upload file and try upload it again."
+        },
+        "error": {
+          "note": "Note:",
+          "description": "The upload failed due to technical issue. Please try it later once again or contact your administrator.",
+          "details": "Details: "
+        }
+      },
       "technicalUser": {
         "serviceaccount": "Service Account",
         "create": "Create technical user",
         "delete": "Delete this technical User",
+        "credentialReset": "Credential Reset",
         "headline": "Technical user management {{company}}",
         "descriptionHeader": "Technical user management {{company}}",
         "descriptionText": "The technical user is an identity that a company can use to connect to CX backend services without continous disconnection. For example, a run-as technical user is required for connecting to the digital twin registry or the semantic model. Please use the action button to request a new technical user with the roles as per your need. Or manage already existing technical users by using the user management function below.",
@@ -684,7 +742,15 @@
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
         "confirmDeleteNotificationDescription": "The action can not be reversed. Please create a new user in case it's needed",
-        "deleteTechUserNotificationErrorTitle": "Something went wrong"
+        "deleteTechUserNotificationErrorTitle": "Something went wrong",
+        "resetCredentialError": "Something went wrong",
+        "resetCredentialSuccess": "Credential reset was successful",
+        "tabs": {
+          "all": "All",
+          "managed": "Managed",
+          "owned": "Owned"
+        },
+        "searchText": "Search by client Id"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
@@ -811,6 +877,7 @@
       "userAccount": "User account",
       "token": "DEV only: Current authentication token",
       "copy_to_clipboard": "copy token to clipboard",
+      "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
       "resetPswrdAccount": "Reset password",
@@ -950,10 +1017,9 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Contact (E-Mail)",
         "providerPhoneContact": "Contac (Phone Number)",
-        "providerPhoneContactPlaceholder": "Following formats are supported: +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact in the format +xx (xxx) xxxxxxxxxx; +xx xxxxxxxxxx and +xxxxxxxxxxxx",
+        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",
@@ -1080,7 +1146,7 @@
       "tabs": {
         "all": "All Services",
         "dataspaceService": "Dataspace Services",
-        "consultantService": "Consultant Services"
+        "consultancyService": "Consultancy Services"
       },
       "sortOptions": {
         "new": "Newest First",
@@ -1089,7 +1155,8 @@
       "document": {
         "heading": "Relevant Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
-      }
+      },
+      "errorMessage": "The subscription was unsuccessful; please contact your administrator."
     },
     "appMarketplace": {
       "headline": "Business Application Subscription",
@@ -1097,7 +1164,8 @@
       "desc2": "With click on 'Confirm' below, the app provider will get automatically informed about your request and start the subscription process. If additional informations are needed, the provider will contact you directly. The process may take up to 5 days.",
       "desc3": "As soon as all queries are clarified, the app provider will be able to activate your app tenant and you will get automatically informed to take further steps.",
       "desc4": "Please note: with confirming the app subscription request, the app provider will receive your dataspace available business partner data (company name, bpn, address, etc.) as well as your email address in case additional information are needed.",
-      "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace."
+      "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace.",
+      "errorMessage": "The subscription was unsuccessful; please contact your administrator."
     },
     "techUser": {
       "details": {
@@ -1185,8 +1253,11 @@
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
         "appId": "App ID (clientID)",
+        "appIdInfo": "The client-id is crucial for OAuth2/OpenID Connect interactions. This identifier is sent as the client-id parameter in requests to the authorization server. It's used for client identification. With the subscription activation, the client id is getting created.",
         "technicalName": "Technical User Name",
+        "technicalNameInfo": "Technical user name of the technical user/service account created for the specific app subscription. You can click on the technical user name to retrieve client id and secret details.",
         "technicalPermission": "Technical User Permission",
+        "technicalPermissionInfo": "Permissions assigned to the technical user.",
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
@@ -1450,6 +1521,7 @@
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
+        "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
         "error": "Something went wrong!",
         "success": "Usecase document upload has been done successfully."
@@ -1459,6 +1531,7 @@
       "heading": "Company Certificates",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "search": "Search",
+      "noUploadMessage": "No certificates available. All supported certificates are requested or active for your company.",
       "tabs": {
         "uploadedCertificates": "Uploaded Certificates",
         "pending": "Pending",
@@ -1476,8 +1549,10 @@
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "selectLabel": "Type of certificate",
         "placeholder": "Please select",
+        "certificateTypeError": "Please select a value",
+        "noOptionsMessage": "No other options available",
         "uploadDocumentTitle": "Please upload your certificate proof:",
-        "note": "Please upload only pdf files with maximum 1 MB.",
+        "note": "Please upload only pdf files with maximum 2 MB.",
         "descriptionLabel": "Description for verification",
         "error": "Something went wrong. ",
         "success": "Certificate uploaded successfully."
@@ -1591,7 +1666,11 @@
       "toBeUpdated": "To be updated",
       "type": "Type",
       "owner": "Owner",
-      "offerLink": "Offer Link"
+      "offerLink": "Offer Link",
+      "alias": "Alias",
+      "authMethod": "Auth Method",
+      "progress": "Progress",
+      "action": "Action"
     },
     "actions": {
       "cancel": "Cancel",
@@ -1615,7 +1694,10 @@
       "next": "Next",
       "success": "Success",
       "error": "Error",
-      "retry": "Retry"
+      "retry": "Retry",
+      "exit": "exit",
+      "loading": "Loading...",
+      "unsubscribe": "Unsubscribe"
     },
     "state": {
       "enabled": "enabled",

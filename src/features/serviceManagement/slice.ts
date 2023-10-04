@@ -19,8 +19,8 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from 'features/store'
-import { initialState, name, ServiceStatusDataState } from './types'
+import type { RootState } from 'features/store'
+import { initialState, name, type ServiceStatusDataState } from './types'
 
 const serviceManagementSlice = createSlice({
   name,

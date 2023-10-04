@@ -20,13 +20,13 @@
 import debounce from 'lodash.debounce'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from '@catena-x/portal-shared-components'
-import { useState, useMemo, useCallback, useRef } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './Search.scss'
 import PageService from 'services/PageService'
 import { searchExprSelector } from 'features/info/search/slice'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export const label = 'Search'
 
@@ -53,6 +53,10 @@ export default function NewSearchSection() {
     [debouncedSearch]
   )
 
+  useEffect(() => {
+    setSearchExpression('')
+  }, [])
+
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
@@ -61,7 +65,9 @@ export default function NewSearchSection() {
         placeholder={t('content.home.searchSection.inputPlaceholder')}
         value={searchExpression}
         autoFocus={true}
-        onChange={(e) => onSearch(e.target.value)}
+        onChange={(e) => {
+          onSearch(e.target.value)
+        }}
       />
     </div>
   )

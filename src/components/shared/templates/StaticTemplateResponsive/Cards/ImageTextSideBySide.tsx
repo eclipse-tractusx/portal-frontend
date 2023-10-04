@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { IconButton, Typography } from '@catena-x/portal-shared-components'
-import { ProviderProps } from '../StaticTypes'
+import type { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 import RenderImage from './RenderImage'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'

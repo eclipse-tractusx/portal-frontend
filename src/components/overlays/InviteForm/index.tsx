@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import './InviteForm.scss'
-import { InviteData } from 'features/admin/registration/types'
+import type { InviteData } from 'features/admin/registration/types'
 import {
   Button,
   Dialog,
@@ -27,11 +27,14 @@ import {
   DialogContent,
   DialogHeader,
   Input,
+  LoadingButton,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Patterns from 'types/Patterns'
+import { ProcessingType } from 'components/pages/InviteBusinessPartner'
 
 interface AddInviteFormOverlayProps {
   openDialog?: boolean
@@ -88,7 +91,7 @@ export const InviteForm = ({
     [debouncedValidation, inpExpr]
   )
 
-  const doSubmit = () =>
+  const doSubmit = () => {
     onSubmit({
       userName: inpExpr[1].trim(),
       firstName: inpExpr[2].trim(),
@@ -96,6 +99,7 @@ export const InviteForm = ({
       email: inpExpr[1].trim(),
       organisationName: inpExpr[0].trim(),
     })
+  }
 
   return (
     <>
@@ -111,28 +115,50 @@ export const InviteForm = ({
           <form className="InviteForm">
             {['company', 'email', 'first', 'last'].map((value, i) => (
               <Input
-                label={t(`global.field.${value}`)}
+                label={
+                  <Typography variant="body2">
+                    {t(`global.field.${value}`)}
+                  </Typography>
+                }
                 key={i}
                 name={value}
                 placeholder={t(`global.field.${value}`)}
                 value={inpExpr[i]}
                 error={inpValid[i]}
                 autoFocus={value === 'company'}
-                onChange={(e) => doValidate(i, e.target.value)}
+                onChange={(e) => {
+                  doValidate(i, e.target.value)
+                }}
               ></Input>
             ))}
           </form>
-          <span className={`InviteFormResult ${state}`}>
-            {state === 'busy' && <span className="loader" />}
-          </span>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={(e) => handleOverlayClose(e)}>
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              handleOverlayClose(e)
+            }}
+          >
             {`${t('global.actions.cancel')}`}
           </Button>
-          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
-            {`${t('content.invite.invite')}`}
-          </Button>
+          {state === ProcessingType.BUSY ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator={t('global.actions.loading')}
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
+            <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+              {`${t('content.invite.invite')}`}
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>

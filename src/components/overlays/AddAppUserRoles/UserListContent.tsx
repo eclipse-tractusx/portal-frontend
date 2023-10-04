@@ -22,14 +22,20 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { PageLoadingTable, StatusTag } from '@catena-x/portal-shared-components'
-import { GridRowId } from '@mui/x-data-grid'
+import type { GridRowId } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updates'
 import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
 import Patterns from 'types/Patterns'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
+
+interface FetchHookArgsType {
+  appId: string | undefined
+  expr: string
+  role: boolean
+}
 
 export default function UserListContent() {
   const { t } = useTranslation()
@@ -45,7 +51,7 @@ export default function UserListContent() {
     Patterns.SEARCH.test(text.trim())
 
   return (
-    <PageLoadingTable<TenantUser>
+    <PageLoadingTable<TenantUser, FetchHookArgsType>
       toolbarVariant={'premium'}
       columnHeadersBackgroundColor={'transparent'}
       searchExpr={expr}

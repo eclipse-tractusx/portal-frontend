@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Chip, Typography } from '@catena-x/portal-shared-components'
-import { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
+import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceSubscription.scss'
 
 export default function MarketplaceSubscription({

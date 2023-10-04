@@ -44,7 +44,6 @@ export const Patterns = {
     BPN: /^BPNL/i,
     URL: /^https:/i,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
-    URNID: /^urn:uuid:[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$/i,
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
   appMarketCard: {
@@ -73,7 +72,6 @@ export const Patterns = {
       /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
     longDescriptionDE:
       /^[^ @=<>*\-+#?%&_:;]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
-    phone: /^\+(\d{2})+(\(\s\d{3}\))?\s?\d{9,20}$/,
   },
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
@@ -84,6 +82,9 @@ export const Patterns = {
     COUNTRY: /^[A-Z]{2}$/,
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
+  techuser: {
+    clientId: /^[a-zA-Z0-9-]{0,80}$/,
+  },
 }
 
 export const isID = (expr: string) => Patterns.ID.test(expr)
@@ -91,6 +92,8 @@ export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)
 export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
+export const isKeycloakURL = (expr: string) =>
+  isURL(expr) && !expr.includes('#')
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
 export const isFirstName = (expr: string) => Patterns.firstName.test(expr)
@@ -113,5 +116,7 @@ export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
 export const isValidCancelInput = (expr: string) =>
   Patterns.CANCEL_INPUT.test(expr)
+export const isClientID = (expr: string) =>
+  Patterns.techuser.clientId.test(expr)
 
 export default Patterns

@@ -59,7 +59,9 @@ export const FramedSelector = ({ views, activeView }: FramedSelectorProps) => {
             }}
             key={buttonText}
             className="frameButton"
-            onClick={() => onButtonClick(buttonValue)}
+            onClick={() => {
+              onButtonClick(buttonValue)
+            }}
           >
             <Typography className="title" variant="h4">
               {buttonText}:

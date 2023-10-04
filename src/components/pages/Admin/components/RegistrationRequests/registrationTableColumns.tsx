@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { IconButton, StatusTag, Chip } from '@catena-x/portal-shared-components'
-import { GridColDef } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
-import {
+import type {
   ApplicationRequest,
   ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
@@ -79,9 +79,9 @@ export const RegistrationRequestsTableColumns = (
                 style={{
                   paddingTop: '2px',
                 }}
-                onClick={() =>
+                onClick={() => {
                   showConfirmOverlay && showConfirmOverlay(row.applicationId)
-                }
+                }}
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
               </span>
@@ -107,13 +107,13 @@ export const RegistrationRequestsTableColumns = (
               <ArticleOutlinedIcon />
               <button
                 className="document-button-link"
-                onClick={() =>
+                onClick={() => {
                   handleDownloadDocument(
                     row.applicationId,
                     contract.documentId,
                     contract.documentType
                   )
-                }
+                }}
               >
                 {contract?.documentType}
               </button>
@@ -204,14 +204,14 @@ export const RegistrationRequestsTableColumns = (
               showCancel={row.applicationStatus === 'SUBMITTED'}
               cancelText={t('content.admin.registration-requests.cancel')}
               alignRow="center"
-              onButtonClick={(button) =>
+              onButtonClick={(button) => {
                 onChipButtonSelect &&
-                onChipButtonSelect(button, row.applicationId)
-              }
-              onCancel={() =>
+                  onChipButtonSelect(button, row.applicationId)
+              }}
+              onCancel={() => {
                 onConfirmationCancel &&
-                onConfirmationCancel(row.applicationId, row.companyName)
-              }
+                  onConfirmationCancel(row.applicationId, row.companyName)
+              }}
             />
           ) : null}
         </div>

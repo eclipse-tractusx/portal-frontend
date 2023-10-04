@@ -27,7 +27,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import './../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
-  ServiceDetailsType,
+  type ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useCallback, useEffect, useState } from 'react'
@@ -50,7 +50,7 @@ export default function ServiceAdminBoardDetail() {
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
-  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId || '', {
+  const { data, isFetching } = useFetchBoardServiceDetailsQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
   const [fetchDocument] = useFetchDocumentMutation()
@@ -65,8 +65,8 @@ export default function ServiceAdminBoardDetail() {
   const getTypes = useCallback(() => {
     const newArr: string[] = []
     serviceData?.serviceTypes.forEach((serviceType: string) => {
-      if (serviceType === ServiceTypeIdsEnum.CONSULTANCE_SERVICE)
-        newArr.push(t('consultanceService'))
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(t('consultancyService'))
       if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
         newArr.push(t('dataspaceService'))
     })
@@ -79,12 +79,12 @@ export default function ServiceAdminBoardDetail() {
   }) => {
     try {
       const response = await fetchDocument({
-        appId: appId,
+        appId,
         documentId: item.documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
-      return download(file, fileType, item.documentName)
+      download(file, fileType, item.documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -119,7 +119,9 @@ export default function ServiceAdminBoardDetail() {
         <Button
           color="secondary"
           size="small"
-          onClick={() => navigate(`/${PAGES.SERVICEADMINBOARD}`)}
+          onClick={() => {
+            navigate(`/${PAGES.SERVICEADMINBOARD}`)
+          }}
         >
           {t('adminboardDetail.action.back')}
         </Button>
@@ -232,7 +234,9 @@ export default function ServiceAdminBoardDetail() {
           <Button
             color="secondary"
             size="small"
-            onClick={() => navigate('/serviceadminboard')}
+            onClick={() => {
+              navigate('/serviceadminboard')
+            }}
           >
             {t('adminboardDetail.backToBoard')}
           </Button>

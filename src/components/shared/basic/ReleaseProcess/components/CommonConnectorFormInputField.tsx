@@ -38,8 +38,8 @@ export default function CommonConnectorFormInputField({
           control,
           trigger,
           errors,
-          name: name,
-          label: label,
+          name,
+          label,
           type: 'input',
           rules: {
             required: {

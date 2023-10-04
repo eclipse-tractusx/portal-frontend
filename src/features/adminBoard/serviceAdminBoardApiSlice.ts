@@ -19,9 +19,9 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { StatusVariants } from '@catena-x/portal-shared-components'
+import type { StatusVariants } from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { DeclineRequestType } from './adminBoardApiSlice'
+import type { DeclineRequestType } from './adminBoardApiSlice'
 
 const PAGE_SIZE = 15
 

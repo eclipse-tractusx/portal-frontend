@@ -37,7 +37,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
-  CompanyRolesResponse,
+  type CompanyRolesResponse,
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
 import './CompanyRoleUpdate.scss'
@@ -161,12 +161,12 @@ export default function CompanyRoles() {
                         'content.companyRolesUpdate.' + role.companyRoles
                       )}`}
                       checked={role.companyRolesActive}
-                      onChange={(e) =>
+                      onChange={(e) => {
                         handleAgreementCheck(
                           e.target.checked,
                           role.companyRoles
                         )
-                      }
+                      }}
                       className="checkbox-input"
                     />
                     <Typography
@@ -186,13 +186,13 @@ export default function CompanyRoles() {
                           ? 'primary'
                           : ''
                       }`}
-                      onClick={() =>
+                      onClick={() => {
                         setShowActiveDescRole(
                           showActiveDescRole === role.companyRoles
                             ? role.companyRoles
                             : ''
                         )
-                      }
+                      }}
                     >
                       {showActiveDescRole === role.companyRoles ? (
                         <>
@@ -216,7 +216,9 @@ export default function CompanyRoles() {
             <Button
               color="secondary"
               size="small"
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/')
+              }}
             >
               {t('global.actions.cancel')}
             </Button>

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps } from '../StaticTypes'
+import type { CardDetailsProps } from '../StaticTypes'
 import CardWithText from './CardWithText'
 import { Box } from '@mui/material'
 import '../StaticTemplate.scss'

@@ -29,7 +29,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import {
-  AgreementRequest,
+  type AgreementRequest,
   useAddSubscribeServiceMutation,
   useFetchAgreementsQuery,
   useFetchServiceQuery,
@@ -37,6 +37,8 @@ import {
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay'
 import './ServiceRequest.scss'
+import { error } from 'services/NotifyService'
+import { AgreementStatus } from '../UpdateCompanyRole'
 
 export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -56,21 +58,20 @@ export default function ServiceRequest({ id }: { id: string }) {
   }
 
   const handleConfirmService = async (id: string) => {
-    try {
-      const subscriptionData = serviceAgreements?.map((agreement) => {
-        return {
-          agreementId: agreement.agreementId,
-          consentStatusId:
-            selectedAgreementsIds.indexOf(agreement.agreementId) >= 0
-              ? 'ACTIVE'
-              : 'INACTIVE',
-        }
-      })
-      subscriptionData &&
-        addSubscribeService({ serviceId: id, body: subscriptionData }).unwrap()
-    } catch (err) {
-      console.log('error', err)
-    }
+    const subscriptionData = serviceAgreements?.map((agreement) => {
+      return {
+        agreementId: agreement.agreementId,
+        consentStatusId: selectedAgreementsIds.includes(agreement.agreementId)
+          ? AgreementStatus.ACTIVE
+          : AgreementStatus.INACTIVE,
+      }
+    })
+    subscriptionData &&
+      (await addSubscribeService({ serviceId: id, body: subscriptionData })
+        .unwrap()
+        .catch((err) => {
+          error(t('content.serviceMarketplace.errorMessage'), '', err as object)
+        }))
   }
 
   const handleSelectedAgreement = (
@@ -117,9 +118,9 @@ export default function ServiceRequest({ id }: { id: string }) {
               <li key={index}>
                 <Checkbox
                   label={agreement.name}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     handleSelectedAgreement(e.target.checked, agreement)
-                  }
+                  }}
                   onFocusVisible={function noRefCheck() {}}
                 />
               </li>

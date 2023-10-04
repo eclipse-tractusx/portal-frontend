@@ -120,7 +120,9 @@ export default function ItemProcessor({
             <IconButton
               className="cancel"
               aria-label="close"
-              onClick={() => cancelItem(item)}
+              onClick={() => {
+                cancelItem(item)
+              }}
               sx={{
                 position: 'absolute',
                 right: 8,

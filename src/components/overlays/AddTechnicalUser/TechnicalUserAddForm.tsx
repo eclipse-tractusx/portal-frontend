@@ -29,7 +29,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
 import { Radio, Typography } from '@catena-x/portal-shared-components'
 import {
-  ServiceAccountRole,
+  type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,
 } from 'features/admin/serviceApiSlice'
 
@@ -58,9 +58,11 @@ const TechnicalUserAddFormSelect = ({
             error={!!errors[name]}
             sx={{ marginBottom: '7px', color: '#000' }}
           >
-            {t('content.addUser.technicalUser.addOverlay.service')}
+            <Typography variant="h5">
+              {t('content.addUser.technicalUser.addOverlay.service')}
+            </Typography>
           </InputLabel>
-          <Typography variant="caption3">
+          <Typography variant="body2">
             {t('content.addUser.technicalUser.addOverlay.serviceSubHeading')}
           </Typography>
           {roles?.map((role: ServiceAccountRole) => (
@@ -79,9 +81,10 @@ const TechnicalUserAddFormSelect = ({
                 size="small"
                 sx={{
                   display: 'flex',
+                  fontFamily: 'LibreFranklin-Light !important',
                 }}
               />
-              <Typography variant="caption3" className="roleDescription">
+              <Typography variant="body3" className="roleDescription">
                 {role.roleDescription ?? '-'}
               </Typography>
             </>
@@ -121,7 +124,7 @@ const TechnicalUserAddFormTextfield = ({
             error={!!errors[name]}
             sx={{ marginBottom: '7px', color: '#000' }}
           >
-            {label}
+            <Typography variant="body2">{label}</Typography>
           </InputLabel>
           <TextField
             error={!!errors[name]}

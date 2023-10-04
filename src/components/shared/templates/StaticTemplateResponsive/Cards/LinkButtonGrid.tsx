@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ProviderProps, linkProps } from '../StaticTypes'
+import type { ProviderProps, linkProps } from '../StaticTypes'
 import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'

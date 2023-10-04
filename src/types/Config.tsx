@@ -30,7 +30,6 @@ import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
 import CookiePolicy from 'components/pages/CookiePolicy'
-import DigitalTwins from 'components/pages/DigitalTwins'
 import EdcConnector from 'components/pages/EdcConnector'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
@@ -53,7 +52,7 @@ import UserManagement from 'components/pages/UserManagement'
 import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
-import { IAction, IOverlay, IPage } from './MainTypes'
+import type { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
@@ -79,6 +78,9 @@ import CertificateCredentials from 'components/pages/CertificateCredentials'
 import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
 import AdminCredential from 'components/pages/AdminCredential'
+import AddRoles from 'components/pages/AppOverview/AddRoles'
+import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
+import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 
 /**
  * ALL_PAGES
@@ -154,11 +156,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.DATA_MANAGEMENT,
     role: ROLES.SEMANTICHUB_VIEW,
     element: <SemanticHub />,
-  },
-  {
-    name: PAGES.DIGITALTWIN,
-    role: ROLES.DIGITALTWIN_VIEW,
-    element: <DigitalTwins />,
   },
   {
     name: PAGES.SEMANTICHUB,
@@ -425,6 +422,19 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
+    name: PAGES.SERVICEDEACTIVATE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICEDEACTIVATE}
+        path={PAGES.SERVICEDEACTIVATE}
+        element={<ServiceDeactivate />}
+      >
+        <Route path=":serviceId" element={<ServiceDeactivate />} />
+      </Route>
+    ),
+  },
+  {
     name: PAGES.CHANGE_IMAGE,
     isRoute: true,
     element: (
@@ -447,6 +457,32 @@ export const ALL_PAGES: IPage[] = [
         element={<ChangeDescription />}
       >
         <Route path=":appId" element={<ChangeDescription />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.ADD_ROLES,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.ADD_ROLES}
+        path={PAGES.ADD_ROLES}
+        element={<AddRoles />}
+      >
+        <Route path=":appId" element={<AddRoles />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.CHANGE_DOCUMENTS,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.CHANGE_DOCUMENTS}
+        path={PAGES.CHANGE_DOCUMENTS}
+        element={<ChangeDocuments />}
+      >
+        <Route path=":appId" element={<ChangeDocuments />} />
       </Route>
     ),
   },
@@ -498,6 +534,10 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.ADD_USER,
+    role: ROLES.USERMANAGEMENT_ADD,
+  },
+  {
+    name: OVERLAYS.ADD_MULTIPLE_USER,
     role: ROLES.USERMANAGEMENT_ADD,
   },
   {
@@ -665,7 +705,7 @@ export const mainMenuFullTree = [
   },
   {
     name: PAGES.DATA_MANAGEMENT,
-    children: [{ name: PAGES.SEMANTICHUB }, { name: PAGES.DIGITALTWIN }],
+    children: [{ name: PAGES.SEMANTICHUB }],
   },
   { name: PAGES.PARTNER_NETWORK },
   {

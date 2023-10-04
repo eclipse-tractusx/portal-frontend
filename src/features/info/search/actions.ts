@@ -32,14 +32,14 @@ import {
   pageToSearchItem,
   userToSearchItem,
 } from './mapper'
-import { name, SearchItem } from './types'
-import { CardItems, PaginResult } from '@catena-x/portal-shared-components'
+import { name, type SearchItem } from './types'
+import type { CardItems, PaginResult } from '@catena-x/portal-shared-components'
 import { isUUID, Patterns } from 'types/Patterns'
-import {
+import type {
   BusinessPartner,
   BusinessPartnerResponse,
 } from 'features/partnerNetwork/types'
-import { TenantUser } from 'features/admin/userApiSlice'
+import type { TenantUser } from 'features/admin/userApiSlice'
 import I18nService from 'services/I18nService'
 import {
   hasAccess,
@@ -47,7 +47,7 @@ import {
   hasAccessOverlay,
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
-import { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { AppMarketplaceApp } from 'features/apps/apiSlice'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -156,7 +156,7 @@ const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
   async (expr: string): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
-    const searchExpr = new RegExp(trexpr, 'gi')
+    const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
@@ -175,27 +175,25 @@ const fetchSearch = createAsyncThunk(
           .filter((item: AppMarketplaceApp) =>
             uuid
               ? item.id.match(searchExpr)
-              : item.name?.match(searchExpr) || item.provider.match(searchExpr)
+              : item.name?.match(searchExpr) ?? item.provider.match(searchExpr)
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
-        partners.content.map((item: { businessPartner: BusinessPartner }) =>
-          businessPartnerToSearchItem(item.businessPartner)
-        ),
+        partners.content.map((item: any) => businessPartnerToSearchItem(item)),
         news
           .filter(
             (item: CardItems) =>
-              item.title?.match(searchExpr) ||
-              item.subtitle?.match(searchExpr) ||
+              item.title?.match(searchExpr) ??
+              item.subtitle?.match(searchExpr) ??
               item.description?.match(searchExpr)
           )
           .map((item: CardItems) => newsToSearchItem(item)),
         users.content
           .filter((item: TenantUser) =>
             uuid
-              ? item.userEntityId?.match(searchExpr) ||
+              ? searchExpr.exec(item.userEntityId) ??
                 item.companyUserId.match(searchExpr)
-              : item.firstName?.match(searchExpr) ||
-                item.lastName?.match(searchExpr) ||
+              : item.firstName?.match(searchExpr) ??
+                searchExpr.exec(item.lastName) ??
                 item.email.match(searchExpr)
           )
           .map((item: TenantUser) => userToSearchItem(item)),

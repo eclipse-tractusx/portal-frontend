@@ -20,15 +20,18 @@
 
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { PageHeader } from '@catena-x/portal-shared-components'
-import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import { ErrorBar, PageHeader } from '@catena-x/portal-shared-components'
+import {
+  type AppMarketplaceApp,
+  useFetchProvidedAppsQuery,
+} from 'features/apps/apiSlice'
 import NoItems from '../NoItems'
 import { AppOverviewList } from '../AppOverview/AppOverviewList'
 import { appToCard } from 'features/apps/mapper'
 
 export default function AppOverviewNew() {
   const { t } = useTranslation()
-  const { data } = useFetchProvidedAppsQuery()
+  const { data, refetch, isSuccess } = useFetchProvidedAppsQuery()
 
   console.log('data', data)
 
@@ -42,13 +45,26 @@ export default function AppOverviewNew() {
         <PageBreadcrumb backButtonVariant="contained" />
       </PageHeader>
       <section>
-        {data && data.length > 0 ? (
+        {data && data.content?.length > 0 ? (
           <AppOverviewList
-            filterItem={data.map((item) => appToCard(item))}
+            filterItem={data.content.map((item: AppMarketplaceApp) =>
+              appToCard(item)
+            )}
             showOverlay={() => {}}
           />
         ) : (
-          <NoItems />
+          <>
+            {isSuccess ? (
+              <NoItems />
+            ) : (
+              <ErrorBar
+                errorText={t('error.errorBar')}
+                handleButton={refetch}
+                buttonText={t('error.tryAgain')}
+                showButton={true}
+              />
+            )}
+          </>
         )}
       </section>
     </main>

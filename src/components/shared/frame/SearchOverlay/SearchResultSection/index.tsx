@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   searchExprSelector,
   searchItemSelector,
@@ -26,9 +26,11 @@ import { SearchResult } from 'components/shared/basic/SearchResult'
 import './search-result-section.scss'
 import { Typography } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
+import { clearSearch } from 'features/info/search/actions'
 
 export default function SearchResultSection() {
   const searchExpr = useSelector(searchExprSelector)
+  const dispatch = useDispatch()
   const searchItems = useSelector(searchItemSelector)
   const [canShowNow, setCanShowNow] = useState<boolean>(false)
   useEffect(() => {
@@ -39,13 +41,17 @@ export default function SearchResultSection() {
         }, 1000)
   }, [searchExpr])
 
+  useEffect(() => {
+    dispatch(clearSearch())
+  }, [])
+
   return searchItems.length > 0 ? (
     <div className="search-result-section">
       <SearchResult expr={searchExpr} items={searchItems} />
     </div>
   ) : (
     <>
-      {canShowNow && (
+      {canShowNow && searchExpr.length > 0 && (
         <div className="search-result-section">
           <Typography variant="body1" className="not-found">
             No search results found

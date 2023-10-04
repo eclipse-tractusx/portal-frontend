@@ -27,7 +27,7 @@ import { clearSearch, fetchSearch } from 'features/info/search/actions'
 import './search-section.scss'
 import PageService from 'services/PageService'
 import { searchExprSelector } from 'features/info/search/slice'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export const label = 'Search'
 
@@ -62,7 +62,9 @@ export default function SearchSection() {
         placeholder={t('content.home.searchSection.inputPlaceholder')}
         value={searchExpr}
         autoFocus={true}
-        onChange={(e) => doSearch(e.target.value)}
+        onChange={(e) => {
+          doSearch(e.target.value)
+        }}
       />
     </div>
   )

@@ -36,8 +36,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import './style.scss'
 import { OVERLAYS } from 'types/Constants'
-import { OverlayState, stateSelector, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import {
+  type OverlayState,
+  stateSelector,
+  show,
+} from 'features/control/overlay'
+import type { store } from 'features/store'
 
 export default function AddBPN({ id }: { id: string }) {
   const dispatch = useDispatch<typeof store.dispatch>()
@@ -108,9 +112,15 @@ export default function AddBPN({ id }: { id: string }) {
                       {bpn}
                     </p>{' '}
                     <DeleteIcon
-                      onMouseOver={() => onHoverEvent(i)}
-                      onMouseOut={() => onHoverEvent(-1)}
-                      onClick={() => onDeleteBpnHandler(bpn)}
+                      onMouseOver={() => {
+                        onHoverEvent(i)
+                      }}
+                      onMouseOut={() => {
+                        onHoverEvent(-1)
+                      }}
+                      onClick={() => {
+                        onDeleteBpnHandler(bpn)
+                      }}
                       className="deleteIcon"
                     />
                   </li>
@@ -122,7 +132,9 @@ export default function AddBPN({ id }: { id: string }) {
               name="bpn"
               label="Add a new BPN"
               placeholder="Placeholder Text"
-              onChange={(e) => addInputBPN(e.target.value)}
+              onChange={(e) => {
+                addInputBPN(e.target.value)
+              }}
               onKeyPress={(event) => {
                 if (event.key === 'Enter') {
                   void addBPN()

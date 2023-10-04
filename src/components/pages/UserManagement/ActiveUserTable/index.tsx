@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  TenantUser,
+  type TenantUser,
   useFetchUsersSearchQuery,
 } from 'features/admin/userApiSlice'
 import { useNavigate } from 'react-router-dom'
@@ -48,14 +48,20 @@ export const ActiveUserTable = ({
           : ''
       }
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
+      addMultipleButtonLabel={
+        UserService.hasRole(ROLES.USERMANAGEMENT_ADD)
+          ? 'content.usermanagement.table.addMultiple'
+          : ''
+      }
+      onMultipleButtonClick={() => dispatch(show(OVERLAYS.ADD_MULTIPLE_USER))}
       tableLabel={'content.usermanagement.table.title'}
       fetchHook={useFetchUsersSearchQuery}
       fetchHookArgs={{ expr, addUserResponse }}
       searchExpr={expr}
       onSearch={setExpr}
-      onDetailsClick={(row: TenantUser) =>
+      onDetailsClick={(row: TenantUser) => {
         navigate(`/userdetails/${row.companyUserId}`)
-      }
+      }}
       isDetail={true}
     />
   )

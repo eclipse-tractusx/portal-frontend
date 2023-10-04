@@ -21,7 +21,7 @@
 import { CircleProgress } from '@catena-x/portal-shared-components'
 import {
   useFetchIDPListQuery,
-  IdentityProvider,
+  type IdentityProvider,
 } from 'features/admin/idpApiSlice'
 import { AddUserContent } from './AddUserContent'
 import { AddUserDeny } from './AddUserDeny'
@@ -31,11 +31,9 @@ export const AddUser = () => {
   const { data, isFetching } = useFetchIDPListQuery()
   const [idps, setIdps] = useState<IdentityProvider[]>([])
 
-  useEffect(
-    () =>
-      setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : []),
-    [data]
-  )
+  useEffect(() => {
+    setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : [])
+  }, [data])
 
   return isFetching ? (
     <div

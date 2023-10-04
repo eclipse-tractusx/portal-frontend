@@ -20,19 +20,23 @@
 
 import { useState } from 'react'
 import {
-  IdentityProvider,
-  IdentityProviderUpdate,
-  IdentityProviderUpdateBody,
+  type IdentityProvider,
+  type IdentityProviderUpdate,
+  type IdentityProviderUpdateBody,
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import ReadOnlyValue from 'components/shared/basic/ReadOnlyValue'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
+import {
+  StaticTable,
+  type TableType,
+  Typography,
+} from '@catena-x/portal-shared-components'
 
 const isWellknownMetadata = (expr: string) =>
   (isURL(expr) || expr.startsWith('http://localhost')) &&
@@ -40,14 +44,14 @@ const isWellknownMetadata = (expr: string) =>
 
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
-  form.displayName = idp.displayName || ''
+  form.displayName = idp.displayName ?? ''
   form.metadataUrl = ''
-  form.clientId = idp.oidc?.clientId || ''
+  form.clientId = idp.oidc?.clientId ?? ''
   form.secret = ''
   form.clientAuthMethod =
-    idp.oidc?.clientAuthMethod || OIDCAuthMethod.SECRET_BASIC
+    idp.oidc?.clientAuthMethod ?? OIDCAuthMethod.SECRET_BASIC
   form.signatureAlgorithm =
-    idp.oidc?.signatureAlgorithm || OIDCSignatureAlgorithm.ES256
+    idp.oidc?.signatureAlgorithm ?? OIDCSignatureAlgorithm.ES256
   return form
 }
 
@@ -69,52 +73,27 @@ const UpdateIDPForm = ({
   idp: IdentityProvider
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
-  const HELPLINK =
-    '/documentation/?path=docs%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md#create-the-new-idp-record'
   const { t } = useTranslation('idp')
 
   const defaultOAM =
-    idp.oidc?.clientAuthMethod || (OIDCAuthMethod.SECRET_BASIC as string)
+    idp.oidc?.clientAuthMethod ?? (OIDCAuthMethod.SECRET_BASIC as string)
   const defaultOidcAuthMethod = {
     id: defaultOAM,
     title: defaultOAM,
     value: defaultOAM,
   }
 
+  const tableData: TableType = {
+    head: [
+      t('field.display.name'),
+      t('field.alias.name'),
+      t('field.clientAuthMethod.name'),
+    ],
+    body: [[idp.displayName ?? ''], [idp.alias], [defaultOidcAuthMethod.value]],
+  }
+
   return (
     <>
-      <Link to={HELPLINK} target="_help">
-        {t('action.help')}
-      </Link>
-
-      <ReadOnlyValue
-        label={t('field.redirectUri.name')}
-        tooltipMessage={t('field.redirectUri.hint')}
-        value={`${idp.redirectUrl}*`}
-        style={{ marginTop: '10px' }}
-      />
-
-      <div style={{ marginTop: '40px', display: 'flex' }}>
-        <ReadOnlyValue
-          label={t('field.display.name')}
-          tooltipMessage={t('field.display.hint')}
-          value={idp.displayName || ''}
-          style={{ width: '40%', marginRight: '2%' }}
-        />
-        <ReadOnlyValue
-          label={t('field.alias.name')}
-          tooltipMessage={t('field.alias.hint')}
-          value={idp.alias}
-          style={{ width: '31%', margin: '0 2%' }}
-        />
-        <ReadOnlyValue
-          label={t('field.clientAuthMethod.name')}
-          tooltipMessage={t('field.clientAuthMethod.hint')}
-          value={defaultOidcAuthMethod.value}
-          style={{ width: '23%', marginLeft: '2%' }}
-        />
-      </div>
-
       <div style={{ marginTop: '34px' }}>
         <ValidatingInput
           name="metadataUrl"
@@ -125,27 +104,34 @@ const UpdateIDPForm = ({
           onValid={onChange}
         />
       </div>
-
-      <div style={{ margin: '12px 0', display: 'flex' }}>
-        <div style={{ width: '48%', marginRight: '2%' }}>
-          <ValidatingInput
-            name="clientId"
-            label={t('field.clientId.name')}
-            hint={t('field.clientId.hint')}
-            validate={isIDPClientID}
-            onValid={onChange}
-          />
-        </div>
-        <div style={{ width: '48%', marginLeft: '2%' }}>
-          <ValidatingInput
-            name="secret"
-            label={t('field.clientSecret.name')}
-            hint={t('field.clientSecret.hint')}
-            type={InputType.password}
-            validate={isIDPClientSecret}
-            onValid={onChange}
-          />
-        </div>
+      <div style={{ margin: '12px 0' }}>
+        <ValidatingInput
+          name="clientId"
+          label={t('field.clientId.name')}
+          hint={t('field.clientId.hint')}
+          validate={isIDPClientID}
+          onValid={onChange}
+        />
+      </div>
+      <div style={{ margin: '12px 0 30px' }}>
+        <ValidatingInput
+          name="secret"
+          label={t('field.clientSecret.name')}
+          hint={t('field.clientSecret.hint')}
+          type={InputType.password}
+          validate={isIDPClientSecret}
+          onValid={onChange}
+        />
+      </div>
+      <Typography variant="label2">{t('edit.metaDataHeading')}</Typography>
+      <ReadOnlyValue
+        label={t('field.redirectUri.name')}
+        tooltipMessage={t('field.redirectUri.hint')}
+        value={`${idp.redirectUrl}*`}
+        style={{ marginTop: '30px' }}
+      />
+      <div style={{ marginTop: '40px', display: 'flex' }}>
+        <StaticTable data={tableData} horizontal={true} />
       </div>
     </>
   )

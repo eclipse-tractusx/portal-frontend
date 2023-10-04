@@ -20,10 +20,10 @@
 
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
-import { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@catena-x/portal-shared-components'
 import { HttpClient } from 'utils/HttpClient'
-import { TenantUser } from '../userApiSlice'
-import { AddUser } from './types'
+import type { TenantUser } from '../userApiSlice'
+import type { AddUser } from './types'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

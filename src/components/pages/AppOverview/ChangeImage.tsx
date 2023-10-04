@@ -25,7 +25,7 @@ import {
   Button,
   LoadingButton,
   Card,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -38,7 +38,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import ConnectorFormInputFieldImage from 'components/shared/basic/ReleaseProcess/components/ConnectorFormInputFieldImage'
 import { useForm } from 'react-hook-form'
-import { DropzoneFile } from 'components/shared/basic/Dropzone'
+import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { error, success } from 'services/NotifyService'
 
 export default function ChangeImage() {
@@ -78,7 +78,7 @@ export default function ChangeImage() {
         if (response && 'data' in response) {
           const file = response?.data?.data
           if (documentType === 'APP_LEADIMAGE') {
-            return setCardImage(URL.createObjectURL(file))
+            setCardImage(URL.createObjectURL(file))
           }
         }
       } catch (err) {
@@ -96,7 +96,7 @@ export default function ChangeImage() {
 
   const uploadDocumentApi = async (appId: string, file: any) => {
     const data = {
-      appId: appId,
+      appId,
       body: { file },
     }
     await updateImageData(data).unwrap()
@@ -108,13 +108,14 @@ export default function ChangeImage() {
   const handleSaveClick = async () => {
     setIsLoading(true)
     if (appId && uploadImageValue) {
-      const setFileStatus = (status: UploadFileStatus) =>
+      const setFileStatus = (status: UploadFileStatus) => {
         setValue('uploadLeadImage', {
           id: uploadImageValue.id,
           name: uploadImageValue.name,
           size: uploadImageValue.size,
           status,
         } as any)
+      }
 
       setFileStatus(UploadStatus.UPLOADING)
       uploadDocumentApi(appId, uploadImageValue)
@@ -186,7 +187,9 @@ export default function ChangeImage() {
                   <Button
                     color="secondary"
                     size="small"
-                    onClick={() => setEnableImageUpload(true)}
+                    onClick={() => {
+                      setEnableImageUpload(true)
+                    }}
                   >
                     {t('content.changeImage.uploadNewImage')}
                   </Button>
@@ -202,7 +205,9 @@ export default function ChangeImage() {
           <Button
             color="secondary"
             size="small"
-            onClick={() => navigate('/appoverview')}
+            onClick={() => {
+              navigate('/appoverview')
+            }}
           >
             {t('global.actions.cancel')}
           </Button>

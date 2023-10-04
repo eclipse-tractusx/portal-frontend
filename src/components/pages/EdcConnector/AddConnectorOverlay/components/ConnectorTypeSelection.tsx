@@ -22,7 +22,10 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Checkbox } from '@catena-x/portal-shared-components'
 import { Box, Grid } from '@mui/material'
-import { CompanyDetails, CompanyRoleEnum } from 'features/admin/userApiSlice'
+import {
+  type CompanyDetails,
+  CompanyRoleEnum,
+} from 'features/admin/userApiSlice'
 // Static content
 // Add Connector Button action modal first step content
 const ConnectorTypeSelection = ({
@@ -67,18 +70,19 @@ const ConnectorTypeSelection = ({
   ]
 
   const [selectedCheckBox, setSelectedCheckBox] = useState({ id: 0 })
-
   return (
     <div className={'connector-type-selector-container'}>
       <Box sx={{ width: '100%' }}>
         <Grid container spacing={1.5} style={{ marginTop: 0 }}>
-          {checkBoxSelector.map((checkBox: any) => {
+          {checkBoxSelector.map((checkBox, index) => {
             return (
               <Grid
                 key={checkBox.id}
                 xs={12}
                 item
-                className={'dotted-gradient'}
+                className={
+                  checkBoxSelector.length === index + 1 ? '' : 'dotted-gradient'
+                }
               >
                 <Checkbox
                   disabled={checkBox.disable}
@@ -91,14 +95,14 @@ const ConnectorTypeSelection = ({
                 />
                 {checkBox.disable ? (
                   <Typography
-                    variant="body2"
+                    variant="body3"
                     color={'#F2BA00'}
                     style={{ marginLeft: '30px' }}
                   >
                     {checkBox.disableDescription}
                   </Typography>
                 ) : (
-                  <Typography variant="body2" style={{ marginLeft: '30px' }}>
+                  <Typography variant="body3" style={{ marginLeft: '30px' }}>
                     {checkBox.descritpion}
                   </Typography>
                 )}

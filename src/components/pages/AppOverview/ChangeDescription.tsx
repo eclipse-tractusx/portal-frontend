@@ -39,6 +39,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined'
+import { PAGES } from 'types/Constants'
 
 export default function ChangeDescription() {
   const { t } = useTranslation()
@@ -75,7 +76,7 @@ export default function ChangeDescription() {
     getValues,
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -84,7 +85,7 @@ export default function ChangeDescription() {
 
     if (appId) {
       const saveData = {
-        appId: appId,
+        appId,
         body: [
           {
             languageCode: 'de',
@@ -102,7 +103,7 @@ export default function ChangeDescription() {
       await saveDescription(saveData)
         .unwrap()
         .then(() => {
-          navigate('/appoverview', {
+          navigate(`/${PAGES.APPOVERVIEW}`, {
             state: 'change-description-success',
           })
           success(t('content.changeDescription.successMsg'))
@@ -154,7 +155,9 @@ export default function ChangeDescription() {
         <div className="main-row">
           <Tabs
             value={activeTab}
-            onChange={(e, newValue: number) => setActiveTab(newValue)}
+            onChange={(e, newValue: number) => {
+              setActiveTab(newValue)
+            }}
             centered
             sx={{
               '.MuiTab-root': {
@@ -311,7 +314,9 @@ export default function ChangeDescription() {
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
           <Button
             color="secondary"
-            onClick={() => navigate('/appoverview')}
+            onClick={() => {
+              navigate(`/${PAGES.APPOVERVIEW}`)
+            }}
             size="small"
           >
             {t('global.actions.cancel')}

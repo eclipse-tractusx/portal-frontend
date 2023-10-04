@@ -41,7 +41,7 @@ import {
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import {
-  rolesType,
+  type rolesType,
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
   useFetchRolesDataQuery,
@@ -49,7 +49,7 @@ import {
   useFetchUserRolesQuery,
   useSaveTechnicalUserProfilesMutation,
   useUpdateRoleDataMutation,
-  userRolesType,
+  type userRolesType,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
@@ -102,12 +102,9 @@ export default function TechnicalIntegration() {
 
   const userProfiles = useMemo(
     () =>
-      (fetchTechnicalUserProfiles &&
-        fetchTechnicalUserProfiles?.length > 0 &&
-        fetchTechnicalUserProfiles[0]?.userRoles.map(
-          (i: { roleId: string }) => i.roleId
-        )) ||
-      [],
+      fetchTechnicalUserProfiles?.[0]?.userRoles.map(
+        (i: { roleId: string }) => i.roleId
+      ) ?? [],
     [fetchTechnicalUserProfiles]
   )
 
@@ -127,7 +124,7 @@ export default function TechnicalIntegration() {
     formState: { errors },
     reset,
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -172,14 +169,11 @@ export default function TechnicalIntegration() {
     ) {
       setLoading(true)
       const updateData = {
-        appId: appId,
+        appId,
         body: [
           {
             technicalUserProfileId:
-              (fetchTechnicalUserProfiles &&
-                fetchTechnicalUserProfiles?.length > 0 &&
-                fetchTechnicalUserProfiles[0]?.technicalUserProfileId) ||
-              null,
+              fetchTechnicalUserProfiles?.[0]?.technicalUserProfileId ?? null,
             userRoleIds: techUserProfiles,
           },
         ],
@@ -205,12 +199,16 @@ export default function TechnicalIntegration() {
   }
 
   const csvPreview = (files: File[]) => {
-    return files
+    files
       .filter((file: File) => file.type === 'text/csv')
       .forEach((file: File) => {
         const reader = new FileReader()
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
         reader.onload = () => {
           const str = reader.result
           if (!isString(str)) return
@@ -252,7 +250,7 @@ export default function TechnicalIntegration() {
     ])
 
     const updateRolesData = {
-      appId: appId,
+      appId,
       body: rolesDescriptionData?.map((item) => ({
         role: item[0],
         descriptions: [
@@ -286,8 +284,8 @@ export default function TechnicalIntegration() {
 
   const onChipDelete = (roleId: string) => {
     deleteRoles({
-      appId: appId,
-      roleId: roleId,
+      appId,
+      roleId,
     })
       .unwrap()
       .then(() => {
@@ -524,7 +522,9 @@ export default function TechnicalIntegration() {
                                 fontSize: '14px',
                               },
                             }}
-                            handleDelete={() => onChipDelete(role.roleId)}
+                            handleDelete={() => {
+                              onChipDelete(role.roleId)
+                            }}
                           />
                         ),
                         color: 'white',
@@ -571,9 +571,9 @@ export default function TechnicalIntegration() {
                   item.roleDescription === null ? '' : item.roleDescription
                 })`}
                 checked={techUserProfiles.some((role) => item.roleId === role)}
-                onChange={(e) =>
+                onChange={(e) => {
                   handleCheckedUserProfiles(e.target.checked, item)
-                }
+                }}
                 size="small"
               />
             </Grid>

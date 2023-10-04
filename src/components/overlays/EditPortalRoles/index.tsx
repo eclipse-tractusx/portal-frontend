@@ -26,8 +26,8 @@ import {
   DialogHeader,
 } from '@catena-x/portal-shared-components'
 import {
-  AppRole,
-  PortalRoleRequest,
+  type AppRole,
+  type PortalRoleRequest,
   setUserRoleResp,
   SuccessErrorType,
   useFetchCoreoffersRolesQuery,
@@ -91,7 +91,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
     if (!id || !offerId) return
     const data: PortalRoleRequest = {
       companyUserId: id,
-      offerId: offerId,
+      offerId,
       roles: selectedRoles,
     }
     try {
@@ -133,9 +133,9 @@ export default function EditPortalRoles({ id }: { id: string }) {
                   <Checkbox
                     label={role.role}
                     checked={selectedRoles.indexOf(role.role) !== -1}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       handleSelectRole(role.role, e.target.checked)
-                    }
+                    }}
                   />
                 </li>
               ))}

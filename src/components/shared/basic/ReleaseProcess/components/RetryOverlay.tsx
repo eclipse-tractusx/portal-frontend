@@ -72,14 +72,21 @@ const RetryOverlay = ({
             {description}
           </Typography>
           <Box className="buttonSection">
-            <Button variant="text" onClick={(e) => handleOverlayClose(e)}>
+            <Button
+              variant="text"
+              onClick={(e) => {
+                handleOverlayClose(e)
+              }}
+            >
               {t('global.actions.back')}
             </Button>
             <Button
               variant="contained"
               color="success"
               className="retryButton"
-              onClick={(e) => handleConfirmClick(e)}
+              onClick={(e) => {
+                handleConfirmClick(e)
+              }}
             >
               {t('global.actions.retry')}
             </Button>

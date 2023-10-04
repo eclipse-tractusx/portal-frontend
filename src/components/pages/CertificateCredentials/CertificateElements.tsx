@@ -20,7 +20,7 @@
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
-import { CertificateResponse } from 'features/certification/certificationApiSlice'
+import type { CertificateResponse } from 'features/certification/certificationApiSlice'
 import { CertificateCard } from 'components/shared/basic/CertificateCard'
 import './CertificateCredentials.scss'
 

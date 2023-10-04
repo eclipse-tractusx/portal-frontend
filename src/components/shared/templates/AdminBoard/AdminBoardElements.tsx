@@ -18,13 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDecision, PageSnackbar } from '@catena-x/portal-shared-components'
+import {
+  CardDecision,
+  ErrorBar,
+  PageSnackbar,
+} from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme, CircularProgress } from '@mui/material'
 import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
-  AppContent,
+  type AppContent,
   useApproveRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
 import { OVERLAYS, PAGES } from 'types/Constants'
@@ -37,10 +41,11 @@ import {
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import NoItems from 'components/pages/NoItems'
 import {
-  ServiceContent,
+  type ServiceContent,
   useApproveServiceRequestMutation,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function AdminBoardElements({
   apps,
@@ -50,6 +55,8 @@ export default function AdminBoardElements({
   errorApproveMsg,
   successDeclineMsg,
   errorDeclineMsg,
+  isSuccess,
+  refetch,
 }: {
   apps?: AppContent[] | ServiceContent[]
   onClick: (appId: string) => void
@@ -58,7 +65,10 @@ export default function AdminBoardElements({
   errorApproveMsg?: string
   successDeclineMsg?: string
   errorDeclineMsg?: string
+  isSuccess: boolean
+  refetch: any
 }) {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()
   const [approveRequest] = useApproveRequestMutation()
@@ -67,8 +77,17 @@ export default function AdminBoardElements({
   const isDecisionError = useSelector(currentErrorType)
   const [actionApprove, setActionApprove] = useState<boolean>(false)
 
-  if (apps && apps.length === 0) {
+  if (apps && apps.length === 0 && isSuccess) {
     return <NoItems />
+  } else if (!isSuccess) {
+    return (
+      <ErrorBar
+        errorText={t('error.errorBar')}
+        handleButton={refetch}
+        buttonText={t('error.tryAgain')}
+        showButton={true}
+      />
+    )
   }
 
   const handleApprove = async (appId: string) => {

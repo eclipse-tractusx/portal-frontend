@@ -32,7 +32,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import {
-  TenantUserDetails,
+  type TenantUserDetails,
   useFetchUserDetailsQuery,
 } from 'features/admin/userApiSlice'
 import './UserRole.scss'

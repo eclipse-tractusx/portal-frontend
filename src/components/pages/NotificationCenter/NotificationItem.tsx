@@ -26,7 +26,7 @@ import {
   useSetNotificationReadMutation,
 } from 'features/notification/apiSlice'
 import {
-  CXNotificationContent,
+  type CXNotificationContent,
   NotificationType,
   PAGE,
   PAGE_SIZE,
@@ -90,6 +90,8 @@ const NotificationContent = ({
   const addedRoles = item.contentParsed?.addedRoles
   const credentialType = item.contentParsed?.type
   const newUrl = item.contentParsed?.newUrl
+  const roles = item.contentParsed?.Roles
+  const userEmail = item.contentParsed?.UserEmail
 
   return (
     <>
@@ -103,11 +105,13 @@ const NotificationContent = ({
             offer: offerName,
             company: companyName,
             username: userName,
-            coreOfferName: coreOfferName,
+            coreOfferName,
             removedRoles: removedRoles ? removedRoles : '-',
             addedRoles: addedRoles ? addedRoles : '-',
-            credentialType: credentialType,
-            newUrl: newUrl,
+            credentialType,
+            newUrl,
+            roles: roles?.join(', '),
+            useremail: userEmail,
           }}
         >
           <NameLink
@@ -125,7 +129,7 @@ const NotificationContent = ({
         </Trans>
       </div>
       {message && <div className="message">{message}</div>}
-      {(appId || userId || navlinks) && (
+      {(appId ?? userId ?? navlinks) && (
         <div className="links">
           {navlinks?.map((nav) => (
             <NavLink key={nav} to={`/${nav}`}>
@@ -207,6 +211,8 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return <NotificationContent item={item} />
     case NotificationType.SUBSCRIPTION_URL_UPDATE:
       return <NotificationContent item={item} />
+    case NotificationType.APP_ROLE_ADDED:
+      return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
   }
@@ -228,7 +234,7 @@ export default function NotificationItem({
 
   const setRead = async (id: string, value: boolean) => {
     try {
-      await setNotificationRead({ id: id, flag: value })
+      await setNotificationRead({ id, flag: value })
     } catch (error: unknown) {
       console.log(error)
     }

@@ -31,7 +31,7 @@ import {
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { InviteData } from 'features/admin/registration/types'
+import type { InviteData } from 'features/admin/registration/types'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -39,12 +39,17 @@ import { InviteForm } from 'components/overlays/InviteForm'
 import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
 import { InviteList } from './components/InviteList'
 
+export enum ProcessingType {
+  BUSY = 'BUSY',
+  INPUT = 'INPUT',
+}
+
 export default function InviteBusinessPartner() {
   const { t } = useTranslation()
   const [failureOverlayOpen, setFailureOverlayOpen] = useState<boolean>(false)
   const [successOverlayOpen, setSuccessOverlayOpen] = useState<boolean>(false)
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
-  const [processing, setProcessing] = useState<string>('input')
+  const [processing, setProcessing] = useState<string>(ProcessingType.INPUT)
   const [expr, setExpr] = useState<string>('')
 
   useEffect(() => {
@@ -57,7 +62,7 @@ export default function InviteBusinessPartner() {
   }, [successOverlayOpen])
 
   const doSubmitInvite = (data: InviteData) => {
-    setProcessing('busy')
+    setProcessing(ProcessingType.BUSY)
     //switch to redux
     new Api()
       .postInviteBusinessPartner(data)
@@ -72,7 +77,7 @@ export default function InviteBusinessPartner() {
       })
       .finally(() => {
         setTimeout(() => {
-          setProcessing('input')
+          setProcessing(ProcessingType.INPUT)
         }, 5000)
       })
   }
@@ -81,7 +86,9 @@ export default function InviteBusinessPartner() {
     <main className="invite-main-container">
       <InviteForm
         openDialog={inviteOverlayOpen}
-        handleOverlayClose={() => setInviteOverlayOpen(false)}
+        handleOverlayClose={() => {
+          setInviteOverlayOpen(false)
+        }}
         onSubmit={doSubmitInvite}
         state={processing}
       />
@@ -94,7 +101,9 @@ export default function InviteBusinessPartner() {
         <DialogContent>
           <IconButton
             aria-label="close"
-            onClick={() => setSuccessOverlayOpen(false)}
+            onClick={() => {
+              setSuccessOverlayOpen(false)
+            }}
             sx={{
               position: 'absolute',
               right: 16,
@@ -128,7 +137,9 @@ export default function InviteBusinessPartner() {
         <DialogContent>
           <IconButton
             aria-label="close"
-            onClick={() => setFailureOverlayOpen(false)}
+            onClick={() => {
+              setFailureOverlayOpen(false)
+            }}
             sx={{
               position: 'absolute',
               right: 16,
@@ -168,7 +179,9 @@ export default function InviteBusinessPartner() {
           {t('content.invite.inviteText2')}
         </Typography>
         <Button
-          onClick={() => setInviteOverlayOpen(true)}
+          onClick={() => {
+            setInviteOverlayOpen(true)
+          }}
           size="medium"
           sx={{ margin: 'auto', display: 'block' }}
         >

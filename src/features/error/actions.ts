@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import { ErrorServiceState, name } from './types'
+import { type ErrorServiceState, name } from './types'
 
 const setError = createAction(
   `${name}/setError`,

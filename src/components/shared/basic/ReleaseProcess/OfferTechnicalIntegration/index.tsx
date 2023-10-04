@@ -23,7 +23,8 @@ import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
 import {
-  serviceUserRolesType,
+  type serviceUserRolesType,
+  ServiceTypeIdsEnum,
   useFetchServiceStatusQuery,
   useFetchServiceTechnicalUserProfilesQuery,
   useFetchServiceUserRolesQuery,
@@ -66,11 +67,7 @@ export default function OfferTechnicalIntegration() {
     useSaveServiceTechnicalUserProfilesMutation()
 
   const userProfiles = useMemo(
-    () =>
-      (data &&
-        data?.length > 0 &&
-        data[0]?.userRoles.map((i: { roleId: string }) => i.roleId)) ||
-      [],
+    () => data?.[0]?.userRoles.map((i: { roleId: string }) => i.roleId) ?? [],
     [data]
   )
 
@@ -83,7 +80,7 @@ export default function OfferTechnicalIntegration() {
   }
 
   const { handleSubmit } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -101,7 +98,7 @@ export default function OfferTechnicalIntegration() {
   const onSubmit = async (submitData: any, buttonLabel: string) => {
     if (
       !fetchServiceStatus?.serviceTypeIds.every((item) =>
-        ['CONSULTANCE_SERVICE']?.includes(item)
+        [`${ServiceTypeIdsEnum.CONSULTANCY_SERVICE}`]?.includes(item)
       ) &&
       serviceTechUserProfiles.length === 0
     ) {
@@ -120,12 +117,10 @@ export default function OfferTechnicalIntegration() {
     ) {
       setLoading(true)
       const updateData = {
-        serviceId: serviceId,
+        serviceId,
         body: [
           {
-            technicalUserProfileId:
-              (data && data?.length > 0 && data[0]?.technicalUserProfileId) ||
-              null,
+            technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
             userRoleIds: serviceTechUserProfiles,
           },
         ],
@@ -176,7 +171,9 @@ export default function OfferTechnicalIntegration() {
                 checked={serviceTechUserProfiles.some(
                   (role) => item.roleId === role
                 )}
-                onChange={(e) => handleUserProfiles(e.target.checked, item)}
+                onChange={(e) => {
+                  handleUserProfiles(e.target.checked, item)
+                }}
                 size="small"
               />
             </Grid>

@@ -23,8 +23,8 @@ import { Typography } from '@catena-x/portal-shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import 'components/styles/document.scss'
 import {
-  Documents,
-  DocumentData,
+  type Documents,
+  type DocumentData,
   DocumentTypeText,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
@@ -50,12 +50,12 @@ export default function BoardDocuments({
   ) => {
     try {
       const response = await getDocumentById({
-        appId: appId,
+        appId,
         documentId,
       }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
-      return download(file, fileType, documentName)
+      download(file, fileType, documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
+import type { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
 import UserService from './UserService'
 import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
@@ -26,7 +26,7 @@ import AddBPN from 'components/overlays/AddBPN'
 import { AddUser } from 'components/overlays/AddUser'
 import NewsDetail from 'components/overlays/NewsDetail'
 import UserInfo from 'components/overlays/UserInfo'
-import { OverlayState } from 'features/control/overlay'
+import type { OverlayState } from 'features/control/overlay'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,
@@ -61,12 +61,12 @@ import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
 import { AddusersIDP } from 'components/overlays/AddusersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
 import EditPortalRoles from 'components/overlays/EditPortalRoles'
-import { UpdateIDPSuccess } from 'components/overlays/UpdateIDPSuccess'
 import ServiceDeclineAdminboard from 'components/overlays/DeclineAdminboard/ServiceDeclineAdminboard'
 import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDeclineAdminboard'
 import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
 import EditUsecase from 'components/overlays/EditUsecase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
+import AddMultipleUser from 'components/overlays/AddMultipleUser'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -119,6 +119,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return null
     case OVERLAYS.ADD_USER:
       return <AddUser />
+    case OVERLAYS.ADD_MULTIPLE_USER:
+      return <AddMultipleUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
     case OVERLAYS.TECHUSER:
@@ -157,8 +159,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddIdp />
     case OVERLAYS.UPDATE_IDP:
       return <UpdateIDP id={overlay.id} />
-    case OVERLAYS.UPDATE_IDP_SUCCESS:
-      return <UpdateIDPSuccess id={overlay.id} />
     case OVERLAYS.ENABLE_IDP:
       return <EnableIDP id={overlay.id} />
     case OVERLAYS.ENABLE_IDP_SUCCESS:

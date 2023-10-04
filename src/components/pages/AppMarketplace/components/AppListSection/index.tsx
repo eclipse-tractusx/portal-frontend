@@ -21,15 +21,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  CardItems,
+  type CardItems,
   SearchInput,
   Typography,
   ViewSelector,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme, CircularProgress, Box } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PageService from 'services/PageService'
 import { itemsSelector } from 'features/apps/favorites/slice'
@@ -41,7 +40,7 @@ import {
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import debounce from 'lodash.debounce'
 import CommonService from 'services/CommonService'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export const label = 'AppList'
 
@@ -84,20 +83,18 @@ export default function AppListSection() {
 
   const debouncedFilter = useMemo(
     () =>
-      debounce(
-        (expr: string) =>
-          setCardsData(
-            expr && cards?.length > 0
-              ? cards.filter(
-                  (card: { title: string; subtitle: string }) =>
-                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                    (card.subtitle &&
-                      card.subtitle.toLowerCase().includes(expr.toLowerCase()))
-                )
-              : cards
-          ),
-        300
-      ),
+      debounce((expr: string) => {
+        setCardsData(
+          expr && cards?.length > 0
+            ? cards.filter(
+                (card: { title: string; subtitle: string }) =>
+                  card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                  (card.subtitle &&
+                    card.subtitle.toLowerCase().includes(expr.toLowerCase()))
+              )
+            : cards
+        )
+      }, 300),
     [cards]
   )
 
@@ -141,9 +138,12 @@ export default function AppListSection() {
         <AppListGroupView
           items={cardsData.map((card) => ({
             ...card,
-            onButtonClick: () => navigate(`/appdetail/${card.id}`),
-            onSecondaryButtonClick: (e: React.MouseEvent) =>
-              addOrRemoveFavorite(e, card.id!),
+            onButtonClick: () => {
+              navigate(`/appdetail/${card.id}`)
+            },
+            onSecondaryButtonClick: (e: React.MouseEvent) => {
+              addOrRemoveFavorite(e, card.id!)
+            },
             addButtonClicked: checkIsFavorite(card.id!),
           }))}
           groupKey={group}
@@ -182,7 +182,9 @@ export default function AppListSection() {
             margin={'normal'}
             placeholder={t('content.home.searchSection.inputPlaceholder')}
             value={filterExpr}
-            onChange={(e) => doFilter(e.target.value)}
+            onChange={(e) => {
+              doFilter(e.target.value)
+            }}
           />
         </Box>
         {renderList()}

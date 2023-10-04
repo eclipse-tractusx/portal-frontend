@@ -21,7 +21,7 @@
 import {
   Typography,
   IconButton,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -33,12 +33,13 @@ import { useEffect, useMemo, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  ServiceTypeIdsEnum,
   useDeleteDocumentMutation,
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
 } from 'features/serviceManagement/apiSlice'
-import { Dropzone, DropzoneFile } from 'components/shared/basic/Dropzone'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import {
@@ -49,7 +50,7 @@ import {
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import ProviderConnectorField from '../components/ProviderConnectorField'
-import { LanguageStatusType } from 'features/appManagement/types'
+import type { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { ButtonLabelTypes } from '..'
 import { success, error } from 'services/NotifyService'
@@ -86,11 +87,11 @@ export default function OfferPage({
 
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
-    fetchServiceStatus?.serviceTypeIds.every((item) =>
-      ['CONSULTANCE_SERVICE']?.includes(item)
+    skipTechnicalIntegrationStep(
+      !fetchServiceStatus?.serviceTypeIds.includes(
+        ServiceTypeIdsEnum.DATASPACE_SERVICE
+      )
     )
-      ? skipTechnicalIntegrationStep(true)
-      : skipTechnicalIntegrationStep(false)
   }, [dispatch, fetchServiceStatus, skipTechnicalIntegrationStep])
 
   const onBackIconClick = () => {
@@ -108,14 +109,14 @@ export default function OfferPage({
       longDescriptionEN:
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-        )[0]?.longDescription || '',
+        )[0]?.longDescription ?? '',
       longDescriptionDE:
         fetchServiceStatus?.descriptions?.filter(
           (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-        )[0]?.longDescription || '',
-      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS || [],
-      providerHomePage: fetchServiceStatus?.providerUri || '',
-      providerContactEmail: fetchServiceStatus?.contactEmail || '',
+        )[0]?.longDescription ?? '',
+      images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS ?? [],
+      providerHomePage: fetchServiceStatus?.providerUri ?? '',
+      providerContactEmail: fetchServiceStatus?.contactEmail ?? '',
     }
   }, [fetchServiceStatus])
 
@@ -127,7 +128,7 @@ export default function OfferPage({
     setValue,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -185,7 +186,9 @@ export default function OfferPage({
             refetch()
             setFiles(fileIndex, UploadStatus.UPLOAD_SUCCESS)
           })
-          .catch(() => setFiles(fileIndex, UploadStatus.UPLOAD_ERROR))
+          .catch(() => {
+            setFiles(fileIndex, UploadStatus.UPLOAD_ERROR)
+          })
       }
     }
   }
@@ -196,8 +199,8 @@ export default function OfferPage({
     file: DropzoneFile
   ) => {
     const data = {
-      appId: appId,
-      documentTypeId: documentTypeId,
+      appId,
+      documentTypeId,
       body: { file },
     }
 
@@ -228,7 +231,7 @@ export default function OfferPage({
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
               (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
         {
           languageCode: 'de',
@@ -236,14 +239,14 @@ export default function OfferPage({
           shortDescription:
             fetchServiceStatus?.descriptions?.filter(
               (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
       ],
       privacyPolicies: [],
       salesManager: null,
       price: '',
-      providerUri: data.providerHomePage || '',
-      contactEmail: data.providerContactEmail || '',
+      providerUri: data.providerHomePage ?? '',
+      contactEmail: data.providerContactEmail ?? '',
       leadPictureUri: fetchServiceStatus?.leadPictureUri,
     }
 
@@ -363,29 +366,33 @@ export default function OfferPage({
 
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>{t('step2.providerDetails')}</InputLabel>
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerHomePage"
-          label={t('step2.providerHomePage')}
-          pattern={Patterns.URL}
-          ruleMessage={t('step2.pleaseEnterValidHomePageURL')}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerHomePage"
+            label={t('step2.providerHomePage')}
+            pattern={Patterns.URL}
+            ruleMessage={t('step2.pleaseEnterValidHomePageURL')}
+          />
+        </div>
 
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerContactEmail"
-          label={t('step2.providerContactEmail')}
-          pattern={Patterns.MAIL}
-          ruleMessage={t('step2.pleaseEnterValidEmail')}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerContactEmail"
+            label={t('step2.providerContactEmail')}
+            pattern={Patterns.MAIL}
+            ruleMessage={t('step2.pleaseEnterValidEmail')}
+          />
+        </div>
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={appPageNotification}
@@ -397,8 +404,12 @@ export default function OfferPage({
           description: t('serviceReleaseForm.error.message'),
         }}
         pageSnackbar={appPageSnackbar}
-        setPageNotification={() => setServicePageNotification(false)}
-        setPageSnackbar={() => setServicePageSnackbar(false)}
+        setPageNotification={() => {
+          setServicePageNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setServicePageSnackbar(false)
+        }}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) => onSubmit(data, ButtonLabelTypes.SAVE))}
         onSaveAndProceed={handleSubmit((data) =>

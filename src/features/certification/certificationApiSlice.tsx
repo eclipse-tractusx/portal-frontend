@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
@@ -125,6 +125,9 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    fetchCertificateTypes: builder.query<string[], void>({
+      query: () => '/api/administration/companydata/certificateTypes',
+    }),
   }),
 })
 
@@ -134,4 +137,5 @@ export const {
   useFetchCredentialsSearchQuery,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
+  useFetchCertificateTypesQuery,
 } = apiSlice

@@ -25,7 +25,7 @@ import {
   MultiSelectList,
   Checkbox,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
 } from '@catena-x/portal-shared-components'
 
 export const ConnectorFormInputField = ({

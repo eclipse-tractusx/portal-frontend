@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { IHashMap } from 'types/MainTypes'
+import type { IHashMap } from 'types/MainTypes'
 import Box from '@mui/material/Box'
 import { ValidatingInput } from './ValidatingInput'
 
@@ -48,19 +48,19 @@ export const ValidatingForm = ({
   const { t } = useTranslation()
   const [values, setValues] = useState<IHashMap<FormValidationStateItem>>(
     (() => {
-      let initialState: IHashMap<FormValidationStateItem> = {}
+      const initialState: IHashMap<FormValidationStateItem> = {}
       return fields.reduce((val, field) => {
         val[field.key] = {
           key: field.key,
-          value: field.value || '',
-          valid: field.valid(field.value || ''),
+          value: field.value ?? '',
+          valid: field.valid(field.value ?? ''),
         }
         return val
       }, initialState)
     })()
   )
   const onInputValid = (key: string, value: string | undefined) => {
-    const newValue = value || ''
+    const newValue = value ?? ''
     if (values[key].value === newValue) return
     const currentValues = { ...values }
     currentValues[key] = { key, value: newValue, valid: value !== undefined }
@@ -73,7 +73,7 @@ export const ValidatingForm = ({
       formValid
         ? Object.values(currentValues).reduce(
             (data: IHashMap<string>, current) => {
-              data[current.key] = current.value || ''
+              data[current.key] = current.value ?? ''
               return data
             },
             {}
@@ -89,7 +89,7 @@ export const ValidatingForm = ({
           <ValidatingInput
             name={key}
             value={value}
-            label={label || t(`global.field.${key}`)}
+            label={label ?? t(`global.field.${key}`)}
             validate={valid}
             onValid={onInputValid}
           />

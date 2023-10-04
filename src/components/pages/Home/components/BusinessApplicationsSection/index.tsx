@@ -25,7 +25,7 @@ import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
 import {
-  AppMarketplaceApp,
+  type AppMarketplaceApp,
   useFetchBusinessAppsQuery,
 } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
@@ -81,7 +81,6 @@ export default function BusinessApplicationsSection() {
             data
               .map((app: AppMarketplaceApp) => {
                 const card = appToCard(app)
-                console.log(card)
                 return card
               })
               .map((item) => (

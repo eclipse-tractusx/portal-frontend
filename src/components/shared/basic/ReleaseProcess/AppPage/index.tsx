@@ -21,13 +21,13 @@
 import {
   Typography,
   IconButton,
-  UploadFileStatus,
+  type UploadFileStatus,
   UploadStatus,
   Radio,
   Alert,
   Checkbox,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -59,9 +59,10 @@ import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
-import { ErrorType, UseCaseType } from 'features/appManagement/types'
+import { ErrorType, type UseCaseType } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import { phone } from 'phone'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -98,7 +99,7 @@ export default function AppPage() {
     refetchOnMountOrArgChange: true,
   }).data
   const appStatusData: any = useSelector(appStatusDataSelector)
-  const statusData = fetchAppStatus || appStatusData
+  const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
   const [saveApp] = useSaveAppMutation()
 
@@ -115,21 +116,21 @@ export default function AppPage() {
       longDescriptionEN:
         fetchAppStatus?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'en'
-        )[0]?.longDescription || '',
+        )[0]?.longDescription ?? '',
       longDescriptionDE:
         fetchAppStatus?.descriptions?.filter(
           (appStatus: any) => appStatus.languageCode === 'de'
-        )[0]?.longDescription || '',
-      images: fetchAppStatus?.documents?.APP_IMAGE || [],
+        )[0]?.longDescription ?? '',
+      images: fetchAppStatus?.documents?.APP_IMAGE ?? [],
       uploadDataPrerequisits:
-        fetchAppStatus?.documents?.ADDITIONAL_DETAILS || null,
+        fetchAppStatus?.documents?.ADDITIONAL_DETAILS ?? null,
       uploadTechnicalGuide:
-        fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION || null,
-      uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT || null,
-      providerHomePage: fetchAppStatus?.providerUri || '',
-      providerContactEmail: fetchAppStatus?.contactEmail || '',
-      providerPhoneContact: fetchAppStatus?.contactNumber || '',
-      privacyPolicies: fetchAppStatus?.privacyPolicies || [],
+        fetchAppStatus?.documents?.APP_TECHNICAL_INFORMATION ?? null,
+      uploadAppContract: fetchAppStatus?.documents?.APP_CONTRACT ?? null,
+      providerHomePage: fetchAppStatus?.providerUri ?? '',
+      providerContactEmail: fetchAppStatus?.contactEmail ?? '',
+      providerPhoneContact: fetchAppStatus?.contactNumber ?? '',
+      privacyPolicies: fetchAppStatus?.privacyPolicies ?? [],
     }
   }, [fetchAppStatus])
 
@@ -141,7 +142,7 @@ export default function AppPage() {
     setValue,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   })
 
@@ -256,8 +257,8 @@ export default function AppPage() {
   const uploadDocumentApi = useCallback(
     async (documentTypeId: DocumentTypeId, file: any) => {
       const data = {
-        appId: appId,
-        documentTypeId: documentTypeId,
+        appId,
+        documentTypeId,
         body: { file },
       }
 
@@ -273,12 +274,12 @@ export default function AppPage() {
       setFileStatus('uploadAppContract', UploadStatus.UPLOADING)
 
       uploadDocumentApi(DocumentTypeId.APP_CONTRACT, value)
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadAppContract', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [uploadAppContractValue, getValues, setFileStatus, uploadDocumentApi])
 
@@ -289,12 +290,12 @@ export default function AppPage() {
       setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOADING)
 
       uploadDocumentApi(DocumentTypeId.ADDITIONAL_DETAILS, value)
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [uploadDataPrerequisitsValue, getValues, setFileStatus, uploadDocumentApi])
 
@@ -305,12 +306,12 @@ export default function AppPage() {
       setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOADING)
 
       uploadDocumentApi(DocumentTypeId.APP_TECHNICAL_INFORMATION, value)
-        .then(() =>
+        .then(() => {
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
-        )
-        .catch(() =>
+        })
+        .catch(() => {
           setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_ERROR)
-        )
+        })
     }
   }, [uploadTechnicalGuideValue, getValues, setFileStatus, uploadDocumentApi])
 
@@ -331,8 +332,12 @@ export default function AppPage() {
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
         setFileStatus(fileIndex, UploadStatus.UPLOADING)
         uploadDocumentApi(DocumentTypeId.APP_IMAGE, value[fileIndex])
-          .then(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS))
-          .catch(() => setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR))
+          .then(() => {
+            setFileStatus(fileIndex, UploadStatus.UPLOAD_SUCCESS)
+          })
+          .catch(() => {
+            setFileStatus(fileIndex, UploadStatus.UPLOAD_ERROR)
+          })
       }
     }
   }
@@ -366,7 +371,7 @@ export default function AppPage() {
           shortDescription:
             statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
         {
           languageCode: 'de',
@@ -374,7 +379,7 @@ export default function AppPage() {
           shortDescription:
             statusData?.descriptions?.filter(
               (appStatus: any) => appStatus.languageCode === 'de'
-            )[0]?.shortDescription || '',
+            )[0]?.shortDescription ?? '',
         },
       ],
       title: statusData.title,
@@ -384,13 +389,13 @@ export default function AppPage() {
       supportedLanguageCodes: statusData.supportedLanguageCodes,
       price: statusData.price,
       privacyPolicies: selectedPrivacyPolicies,
-      providerUri: data.providerHomePage || '',
-      contactEmail: data.providerContactEmail || '',
-      contactNumber: data.providerPhoneContact || '',
+      providerUri: data.providerHomePage ?? '',
+      contactEmail: data.providerContactEmail ?? '',
+      contactNumber: data.providerPhoneContact ?? '',
     }
 
     try {
-      await saveApp({ appId: appId, body: saveData }).unwrap()
+      await saveApp({ appId, body: saveData }).unwrap()
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
       buttonLabel === ButtonLabelTypes.SAVE && setAppPageSnackbar(true)
     } catch (error: unknown) {
@@ -449,7 +454,7 @@ export default function AppPage() {
   const patternValidation = (item: string) => {
     if (
       (item === 'longDescriptionEN' &&
-        /[ @=<>*\-+#?%&_:;]/.test(getValues().longDescriptionEN.charAt(0))) ||
+        /[ @=<>*\-+#?%&_:;]/.test(getValues().longDescriptionEN.charAt(0))) ??
       item === 'longDescriptionEN'
     ) {
       return `${t(
@@ -608,46 +613,53 @@ export default function AppPage() {
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.providerDetails')}
         </InputLabel>
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerHomePage"
-          label={t('content.apprelease.appPage.providerHomePage')}
-          pattern={Patterns.URL}
-          ruleMessage={t(
-            'content.apprelease.appPage.pleaseEnterValidHomePageURL'
-          )}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerHomePage"
+            label={t('content.apprelease.appPage.providerHomePage')}
+            pattern={Patterns.URL}
+            ruleMessage={t(
+              'content.apprelease.appPage.pleaseEnterValidHomePageURL'
+            )}
+          />
+        </div>
 
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerContactEmail"
-          label={t('content.apprelease.appPage.providerContactEmail')}
-          pattern={Patterns.MAIL}
-          ruleMessage={t('content.apprelease.appPage.pleaseEnterValidEmail')}
-        />
-
-        <ProviderConnectorField
-          {...{
-            control,
-            trigger,
-            errors,
-          }}
-          name="providerPhoneContact"
-          label={t('content.apprelease.appPage.providerPhoneContact')}
-          pattern={Patterns.appPage.phone}
-          ruleMessage={t('content.apprelease.appPage.pleaseEnterValidContact')}
-          placeholder={t(
-            'content.apprelease.appPage.providerPhoneContactPlaceholder'
-          )}
-        />
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerContactEmail"
+            label={t('content.apprelease.appPage.providerContactEmail')}
+            pattern={Patterns.MAIL}
+            ruleMessage={t('content.apprelease.appPage.pleaseEnterValidEmail')}
+          />
+        </div>
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerPhoneContact"
+            label={t('content.apprelease.appPage.providerPhoneContact')}
+            validate={(value: string) => value === '' || phone(value).isValid}
+          />
+          {errors.providerPhoneContact &&
+            errors?.providerPhoneContact.type === 'validate' && (
+              <Typography variant="body2" className="file-error-msg">
+                {t('content.apprelease.appPage.pleaseEnterValidContact')}
+              </Typography>
+            )}
+        </div>
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
         <InputLabel sx={{ mb: 3 }}>
           {t('content.apprelease.appPage.privacyInformation')}
@@ -665,9 +677,9 @@ export default function AppPage() {
                   <Checkbox
                     label={getLabel(item)}
                     checked={selectedPrivacyPolicies.indexOf(item) !== -1}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       selectPrivacyPolicies(item, e.target.checked, 'checkbox')
-                    }
+                    }}
                     size="small"
                   />
                 </Grid>
@@ -682,13 +694,13 @@ export default function AppPage() {
                   selectedPrivacyPolicies &&
                   selectedPrivacyPolicies[0] === privacyPolicyNone
                 }
-                onChange={(e) =>
+                onChange={(e) => {
                   selectPrivacyPolicies(
                     privacyPolicyNone,
                     e.target.checked,
                     'radio'
                   )
-                }
+                }}
                 name="radio-buttons"
                 size="small"
               />
@@ -717,8 +729,12 @@ export default function AppPage() {
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
-        setPageNotification={() => setAppPageNotification(false)}
-        setPageSnackbar={() => setAppPageSnackbar(false)}
+        setPageNotification={() => {
+          setAppPageNotification(false)
+        }}
+        setPageSnackbar={() => {
+          setAppPageSnackbar(false)
+        }}
         onBackIconClick={onBackIconClick}
         onSave={handleSubmit((data) =>
           onAppPageSubmit(data, ButtonLabelTypes.SAVE)

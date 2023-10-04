@@ -47,8 +47,8 @@ import {
   setRolesToAdd,
   setUsersToAdd,
 } from 'features/admin/userDeprecated/actions'
-import { IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
-import { IHashMap } from 'types/MainTypes'
+import { type IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
+import type { IHashMap } from 'types/MainTypes'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 
 enum AddUserState {
@@ -110,7 +110,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
       rolesToAdd.length > 0
     )
     setValid(
-      idp.identityProviderCategoryId === IDPCategory.KEYCLOAK_SHARED
+      idp.ProviderTypeId === IDPCategory.SHARED
         ? isValid
         : !!(isValid && usersToAdd.userId)
     )
@@ -123,7 +123,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
     const addUser = { ...usersToAdd, roles: rolesToAdd }
     addUser.userName = addUser.email
     try {
-      idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
+      idp.ProviderTypeId !== IDPCategory.SHARED
         ? await addUserIdp({
             identityProviderId: idp.identityProviderId,
             user: addUser,
@@ -159,9 +159,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
 
       <DialogContent className="w-100">
         <SingleUserContent
-          withUserId={
-            idp.identityProviderCategoryId !== IDPCategory.KEYCLOAK_SHARED
-          }
+          withUserId={idp.ProviderTypeId !== IDPCategory.SHARED}
           setValue={setField}
         />
         <UserRoles />

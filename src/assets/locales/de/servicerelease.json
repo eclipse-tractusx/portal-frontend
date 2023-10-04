@@ -11,11 +11,18 @@
   "requiredButton": "Neu",
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Erläuterung der Anforderung",
-  "consultanceService": "Beratungsleistung",
+  "consultancyService": "Beratungsleistung",
   "dataspaceService": "Tool/Service",
   "loadmore": "Mehr laden",
   "documentDeleteSuccess": "Document deleted successfully",
   "documentDeleteError": "Something went wrong.",
+  "global": {
+    "actions": {
+      "confirm": "Bestätigen",
+      "cancel": "Stornieren",
+      "save": "Speichern"
+    }
+  },
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -116,7 +123,19 @@
     },
     "headerTitle": "Service Overview - Own managed service offers",
     "inputPlaceholder": "Suchen Sie nach Services",
-    "addbtn": "Registrieren Sie Ihre Services"
+    "addbtn": "Registrieren Sie Ihre Services",
+    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "sortOptions": {
+      "deactivate": "Deactivate"
+    },
+    "serviceDeactivate": {
+      "headerTitle": "Dienst deaktivieren",
+      "description": "Durch die Deaktivierung des Dienstes wird das Serviceangebot auf dem Catena-X-Marktplatz deaktiviert. Alle derzeit aktiven Abonnements bleiben aktiv und die Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
+      "checkboxLabel": "Hiermit bestätige ich, dass ich die Geschäftsbedingungen für Business-Services gelesen habe und dass ich die Business-Services meines Unternehmens mit sofortiger Wirkung vom Marktplatz deaktiviere. Ich verstehe, dass es nicht möglich ist, die Deaktivierung selbst rückgängig zu machen.",
+      "checkboxErrorMsg": "Bitte bestätigen Sie, dass Sie die oben genannten Auswirkungen der Deaktivierung gelesen haben, bevor Sie fortfahren",
+      "successMsg": "Deaktivierung erfolgreich abgeschlossen",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen"
+    }
   },
   "servicedetails": {
     "headerTitle": "Service Details"
@@ -160,6 +179,9 @@
       "confirm": "Confirm",
       "help": "Help",
       "loading": "Loading..."
+    },
+    "detailOverlay": {
+      "description": "Service Subscription Details & Status"
     },
     "activation": {
       "title": "Service Subscription Activated",

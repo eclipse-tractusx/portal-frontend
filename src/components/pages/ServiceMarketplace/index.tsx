@@ -18,7 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState, useCallback, useMemo, ChangeEvent } from 'react'
+import {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  type ChangeEvent,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { useTheme, CircularProgress } from '@mui/material'
 import debounce from 'lodash.debounce'
@@ -36,10 +42,11 @@ import {
   SortOption,
 } from '@catena-x/portal-shared-components'
 import {
-  ServiceRequest,
+  type ServiceRequest,
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -47,6 +54,7 @@ dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
+  const serviceReleaseTranslation = useTranslation('servicerelease').t
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -56,10 +64,10 @@ export default function ServiceMarketplace() {
 
   let serviceTypeId = ''
 
-  if (selected === 'Dataspace Services') {
-    serviceTypeId = 'DATASPACE_SERVICE'
-  } else if (selected === 'Consultant Services') {
-    serviceTypeId = 'CONSULTANCE_SERVICE'
+  if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
+    serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
+  } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
+    serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
   }
 
   let sortingType = 'ReleaseDateDesc'
@@ -72,7 +80,7 @@ export default function ServiceMarketplace() {
   const { data } = useFetchServicesQuery({
     page: 0,
     serviceType: serviceTypeId,
-    sortingType: sortingType,
+    sortingType,
   })
   const services = data && data.content
 
@@ -107,8 +115,8 @@ export default function ServiceMarketplace() {
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.serviceMarketplace.tabs.consultantService'),
-      buttonValue: t('content.serviceMarketplace.tabs.consultantService'),
+      buttonText: t('content.serviceMarketplace.tabs.consultancyService'),
+      buttonValue: t('content.serviceMarketplace.tabs.consultancyService'),
       onButtonClick: setView,
     },
   ]
@@ -162,11 +170,11 @@ export default function ServiceMarketplace() {
 
   const getServices = useCallback((serviceTypeIds: string[]) => {
     const newArr: string[] = []
-
     serviceTypeIds?.forEach((serviceType: string) => {
-      if (serviceType === 'CONSULTANCE_SERVICE')
-        newArr.push('Consultance Service')
-      if (serviceType === 'DATASPACE_SERVICE') newArr.push('Dataspace Service')
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(serviceReleaseTranslation('consultancyService'))
+      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(serviceReleaseTranslation('dataspaceService'))
     })
     return newArr.join(', ')
   }, [])

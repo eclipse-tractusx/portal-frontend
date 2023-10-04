@@ -25,7 +25,7 @@ import {
   paletteDefinitions,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { AppDetails } from 'features/apps/details/types'
+import type { AppDetails } from 'features/apps/details/types'
 import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
 import { OVERLAYS } from 'types/Constants'
@@ -37,7 +37,7 @@ import {
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
-import { UseCaseType } from 'features/appManagement/types'
+import type { UseCaseType } from 'features/appManagement/types'
 
 enum Roles {
   SUBSCRIBE_APPS = 'subscribe_apps',
@@ -168,7 +168,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         documentId,
       }).unwrap()
       const file = response.data
-      return setImage(URL.createObjectURL(file))
+      setImage(URL.createObjectURL(file))
     } catch (error) {
       console.log(error)
     }

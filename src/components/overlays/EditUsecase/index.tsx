@@ -28,13 +28,13 @@ import {
   DialogContent,
   DialogHeader,
   DropArea,
-  DropAreaProps,
+  type DropAreaProps,
   LoadingButton,
 } from '@catena-x/portal-shared-components'
 import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 import './style.scss'
@@ -62,8 +62,8 @@ export default function EditUsecase({
     setLoading(true)
     try {
       const data = {
-        verifiedCredentialTypeId: verifiedCredentialTypeId,
-        credentialType: credentialType,
+        verifiedCredentialTypeId,
+        credentialType,
         document: uploadedFile,
       }
       await addUsecase(data).unwrap()
@@ -97,10 +97,13 @@ export default function EditUsecase({
           <Dropzone
             acceptFormat={{ 'application/pdf': [] }}
             maxFilesToUpload={1}
+            maxFileSize={2097152}
             onChange={([file]) => {
               setUploadedFile(file)
             }}
-            errorText={'helperText'}
+            errorText={t(
+              'content.usecaseParticipation.editUsecase.fileSizeError'
+            )}
             DropStatusHeader={false}
             DropArea={renderDropArea}
           />
@@ -109,7 +112,9 @@ export default function EditUsecase({
               label={`${t(
                 'content.usecaseParticipation.editUsecase.checkboxLabel'
               )}`}
-              onChange={(e) => setChecked(e.target.checked)}
+              onChange={(e) => {
+                setChecked(e.target.checked)
+              }}
             />
           </div>
         </div>

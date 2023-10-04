@@ -26,13 +26,14 @@ import {
   Input,
   LoadingButton,
   PageSnackbar,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import {
   useAddServiceProviderMutation,
   useFetchServiceProviderQuery,
@@ -90,15 +91,25 @@ export default function AddServiceProvider() {
       <DialogContent>
         <div className="manageInputURL">
           <Input
-            label={t('content.appSubscription.register.endpointConfigured')}
+            label={
+              <Typography variant="body2">
+                {t('content.appSubscription.register.endpointConfigured')}
+              </Typography>
+            }
             value={data ? data.url : ''}
             disabled={true}
             sx={{ marginBottom: '20px' }}
           />
           <Input
-            label={t('content.appSubscription.register.autosetupURL')}
+            label={
+              <Typography variant="body2">
+                {t('content.appSubscription.register.autosetupURL')}
+              </Typography>
+            }
             placeholder="URL of the customer tentant"
-            onChange={(e) => addInputURL(e.target.value)}
+            onChange={(e) => {
+              addInputURL(e.target.value)
+            }}
             value={inputURL}
           />
           <p className="error">{UrlErrorMsg}</p>
@@ -135,7 +146,9 @@ export default function AddServiceProvider() {
       </DialogActions>
       <PageSnackbar
         open={saveErrorMsg}
-        onCloseNotification={() => setSaveErrorMessage(false)}
+        onCloseNotification={() => {
+          setSaveErrorMessage(false)
+        }}
         severity="error"
         description={t('content.appSubscription.register.providerErrorMessage')}
         showIcon={true}

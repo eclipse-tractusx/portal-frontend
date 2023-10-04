@@ -20,7 +20,7 @@
 
 import { createAction, createSlice } from '@reduxjs/toolkit'
 import { OVERLAYS } from 'types/Constants'
-import { RootState } from 'features/store'
+import type { RootState } from 'features/store'
 
 export const name = 'control/overlay'
 

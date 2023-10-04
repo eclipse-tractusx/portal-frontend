@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { UseCaseType } from 'features/appManagement/types'
+import type { UseCaseType } from 'features/appManagement/types'
 
 export const name = 'apps/marketplace'
 

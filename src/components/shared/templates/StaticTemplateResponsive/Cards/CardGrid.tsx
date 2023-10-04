@@ -20,7 +20,7 @@
 
 import CardWithImage from './CardWithImage'
 import CardWithoutImage from './CardWithoutImage'
-import { ProviderProps, CardDetailsProps } from '../StaticTypes'
+import type { ProviderProps, CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
 import '../StaticTemplate.scss'
 

@@ -23,7 +23,7 @@ import { Typography } from '@catena-x/portal-shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { download } from 'utils/downloadUtils'
 import 'components/styles/document.scss'
-import {
+import type {
   DocumentData,
   ServiceRequest,
 } from 'features/serviceMarketplace/serviceApiSlice'
@@ -50,7 +50,7 @@ export default function MarketplaceDocuments({
       }).unwrap()
       const fileType = response.headers.get('content-type')
       const file = response.data
-      return download(file, fileType, documentName)
+      download(file, fileType, documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }

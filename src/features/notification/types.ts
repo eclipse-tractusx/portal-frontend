@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { initServicetNotifications } from 'types/MainTypes'
-import { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
 
 export const name = 'admin/notification'
 
@@ -99,6 +99,7 @@ export enum NotificationType {
   CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
   CREDENTIAL_APPROVAL = 'CREDENTIAL_APPROVAL',
   SUBSCRIPTION_URL_UPDATE = 'SUBSCRIPTION_URL_UPDATE',
+  APP_ROLE_ADDED = 'APP_ROLE_ADDED',
 }
 
 export interface NotificationContent {
@@ -115,6 +116,8 @@ export interface NotificationContent {
   addedRoles?: string
   type?: string | number
   newUrl?: string
+  Roles?: string[]
+  UserEmail?: string
 }
 
 export interface CXNotificationContent {

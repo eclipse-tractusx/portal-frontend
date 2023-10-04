@@ -27,7 +27,7 @@ import {
   LoadingButton,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { store } from 'features/store'
+import type { store } from 'features/store'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -66,7 +66,7 @@ export default function DeclineAdminBoard({
     <div className="decline-modal-main">
       <DialogHeader
         {...{
-          title: title,
+          title,
           intro: subHeading,
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),

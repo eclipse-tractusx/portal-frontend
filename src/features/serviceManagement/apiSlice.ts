@@ -19,10 +19,10 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import type { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { ServiceStatusDataState } from './types'
-import { PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type { ServiceStatusDataState } from './types'
+import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',
@@ -30,8 +30,15 @@ export enum ReleaseProcessTypes {
 }
 
 export enum ServiceTypeIdsEnum {
-  CONSULTANCE_SERVICE = 'CONSULTANCE_SERVICE',
+  CONSULTANCY_SERVICE = 'CONSULTANCY_SERVICE',
   DATASPACE_SERVICE = 'DATASPACE_SERVICE',
+  DATASPACE_SERVICES = 'Dataspace Services',
+  CONSULTANCY_SERVICES = 'Consultancy Services',
+}
+
+export enum ServiceDeactivateEnum {
+  SERVICE_DEACTIVATE_SUCCESS = 'service-deactivate-success',
+  SERVICE_DEACTIVATE_ERROR = 'service-deactivate-error',
 }
 
 export type CreateServiceStep1Item = {
@@ -110,7 +117,9 @@ export interface ProvidedServiceType {
   name: string
   provider: string
   status: ProvidedServiceStatusEnum
+  leadPictureId?: string
 }
+
 export interface ProvidedServices {
   meta: {
     totalElements: number
@@ -321,6 +330,12 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    deactivateService: builder.mutation<void, string>({
+      query: (serviceId) => ({
+        url: `/api/services/ServiceChange/${serviceId}/deactivateService`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -343,4 +358,5 @@ export const {
   useFetchServiceTechnicalUserProfilesQuery,
   useSaveServiceTechnicalUserProfilesMutation,
   useActivateSubscriptionMutation,
+  useDeactivateServiceMutation,
 } = apiSlice

@@ -44,7 +44,9 @@ const PartnerNetworkSearchForm = ({
           variant="outlined"
           placeholder={t('content.partnernetwork.searchfielddefaulttext')}
           margin="dense"
-          onChange={(e) => onSearchTextChange(e)}
+          onChange={(e) => {
+            onSearchTextChange(e)
+          }}
           value={searchText}
           error={Boolean(searchError)}
           helperText={searchError}

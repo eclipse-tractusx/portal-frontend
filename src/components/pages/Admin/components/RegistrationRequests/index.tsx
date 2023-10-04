@@ -24,7 +24,7 @@ import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './RegistrationRequests.scss'
-import { GridCellParams } from '@mui/x-data-grid'
+import type { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
@@ -33,7 +33,7 @@ import {
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
   useUpdateBPNMutation,
-  ProgressButtonsProps,
+  type ProgressButtonsProps,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
@@ -42,7 +42,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
-import { AppDispatch } from 'features/store'
+import type { AppDispatch } from 'features/store'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -98,16 +98,24 @@ export default function RegistrationRequests() {
     if (actionType === 'approve' && selectedRequestId) {
       await approveRequest(selectedRequestId)
         .unwrap()
-        .then((payload) => console.log('fulfilled', payload))
-        .catch((error) => setShowErrorAlert(error.data.title))
+        .then((payload) => {
+          console.log('fulfilled', payload)
+        })
+        .catch((error) => {
+          setShowErrorAlert(error.data.title)
+        })
     } else if (actionType === 'decline' && selectedRequestId) {
       await declineRequest({
         applicationId: selectedRequestId,
         comment: '',
       })
         .unwrap()
-        .then((payload) => console.log('fulfilled', payload))
-        .catch((error) => setShowErrorAlert(error.data.title))
+        .then((payload) => {
+          console.log('fulfilled', payload)
+        })
+        .catch((error) => {
+          setShowErrorAlert(error.data.title)
+        })
     }
     setLoaded(Date.now())
     setIsLoading(false)
@@ -124,7 +132,7 @@ export default function RegistrationRequests() {
       const fileType = response.headers.get('content-type')
       const file = response.data
 
-      return download(file, fileType, documentType)
+      download(file, fileType, documentType)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
@@ -132,7 +140,7 @@ export default function RegistrationRequests() {
 
   const onUpdateBpn = async (bpn: string) => {
     setIsLoading(true)
-    await updateBpn({ bpn: bpn, applicationId: selectedRequestId })
+    await updateBpn({ bpn, applicationId: selectedRequestId })
       .unwrap()
       .then((payload) => {
         setEnableBpnInput(false)
@@ -173,8 +181,10 @@ export default function RegistrationRequests() {
         <CompanyDetailOverlay
           {...{
             openDialog: overlayOpen,
-            selectedRequestId: selectedRequestId,
-            handleOverlayClose: () => setOverlayOpen(false),
+            selectedRequestId,
+            handleOverlayClose: () => {
+              setOverlayOpen(false)
+            },
           }}
         />
       )}
@@ -280,12 +290,12 @@ export default function RegistrationRequests() {
             setErrorOverlay(false)
             setIsLoading(false)
           }}
-          onConfirmationCancel={(id: string, name: string) =>
+          onConfirmationCancel={(id: string, name: string) => {
             onConfirmationCancel(id, name)
-          }
-          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) =>
+          }}
+          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) => {
             onChipButtonSelect(selected, id)
-          }
+          }}
         />
       </div>
     </main>

@@ -29,7 +29,7 @@ import {
   setUserRoleResp,
   SuccessErrorType,
   useFetchAppRolesQuery,
-  UserRoleRequest,
+  type UserRoleRequest,
   useUpdateUserRolesMutation,
 } from 'features/admin/appuserApiSlice'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
@@ -75,7 +75,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const saveRoles = async () => {
     if (!appId) return
     const data: UserRoleRequest = {
-      appId: appId,
+      appId,
       companyUserId: id,
       body: roles,
     }
@@ -125,7 +125,9 @@ export default function EditAppUserRoles({ id }: { id: string }) {
                   <Checkbox
                     label={role.role}
                     checked={roles.indexOf(role.role) !== -1}
-                    onChange={(e) => selectRole(role.role, e.target.checked)}
+                    onChange={(e) => {
+                      selectRole(role.role, e.target.checked)
+                    }}
                   />
                 </li>
               ))}

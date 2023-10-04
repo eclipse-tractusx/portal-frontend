@@ -11,11 +11,18 @@
   "requiredButton": "New",
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Explanation of the requirement",
-  "consultanceService": "Consultance Service",
+  "consultancyService": "Consultancy Service",
   "dataspaceService": "Dataspace Service",
   "loadmore": "Load More",
   "documentDeleteSuccess": "Document deleted successfully",
   "documentDeleteError": "Something went wrong.",
+  "global": {
+    "actions": {
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
   "stepper": {
     "marketCard": "Offer Card",
     "servicePage": "Offer Page Details",
@@ -116,7 +123,19 @@
       "inactive": "Inactive",
       "wip": "WIP"
     },
-    "addbtn": "Register your Service"
+    "addbtn": "Register your Service",
+    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "sortOptions": {
+      "deactivate": "Deactivate"
+    },
+    "serviceDeactivate": {
+      "headerTitle": "Deactivate Service",
+      "description": "Deactivation of service will deactivate the service offer inside the Catena-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
+      "checkboxLabel": "Hereby I confirm that I have read the business service terms and conditions and that I am deactivating my company business services from the marketplace with immediate effect. I understand that it is not possible to self-reverse the deactivation.",
+      "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
+      "successMsg": "Deactivation successfully completed",
+      "errorMsg": "Error! Something went wrong"
+    }
   },
   "servicedetails": {
     "headerTitle": "Service Details"
@@ -160,6 +179,9 @@
       "confirm": "Confirm",
       "help": "Help",
       "loading": "Loading..."
+    },
+    "detailOverlay": {
+      "description": "Service Subscription Details & Status"
     },
     "activation": {
       "title": "Service Subscription Activated",

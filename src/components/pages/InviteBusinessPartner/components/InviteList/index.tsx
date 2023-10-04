@@ -21,17 +21,21 @@
 import {
   IconButton,
   PageLoadingTable,
-  PaginFetchArgs,
+  type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { CompanyInvite } from 'features/admin/inviteApiSlice'
+import type { CompanyInvite } from 'features/admin/inviteApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 import { useState } from 'react'
 import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
+
+interface FetchHookArgsType {
+  expr: string
+}
 
 export const InviteList = ({
   fetchHook,
@@ -40,7 +44,7 @@ export const InviteList = ({
   searchExpr,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: any
+  fetchHookArgs?: FetchHookArgsType
   onSearch?: (search: string) => void
   searchExpr?: string
 }) => {
@@ -57,7 +61,7 @@ export const InviteList = ({
 
   return (
     <section id="identity-management-id">
-      <PageLoadingTable<CompanyInvite>
+      <PageLoadingTable<CompanyInvite, FetchHookArgsType>
         searchExpr={searchExpr}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.searchName')}
@@ -112,9 +116,9 @@ export const InviteList = ({
               <IconButton
                 disabled={true}
                 color="secondary"
-                onClick={() =>
+                onClick={() => {
                   console.log('on details click: Company Name', row.companyName)
-                }
+                }}
               >
                 <ArrowForwardIcon />
               </IconButton>

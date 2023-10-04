@@ -33,11 +33,11 @@ import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
-import {
+import type {
   ServiceContent,
   ServiceRequestBody,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
+import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
 
@@ -251,7 +251,7 @@ export default function CommonAdminBoard({
 
   const isDecisionSuccess = useSelector(currentSuccessType)
 
-  const { data, refetch, isFetching } = fetchQuery(fetchArgs)
+  const { data, refetch, isFetching, isSuccess } = fetchQuery(fetchArgs)
 
   useEffect(() => {
     if (data && data?.content)
@@ -369,8 +369,8 @@ export default function CommonAdminBoard({
         page: page + 1,
         fetchArgs: {
           page: page + 1,
-          statusId: statusId,
-          sortingType: sortingType,
+          statusId,
+          sortingType,
         },
       },
     })
@@ -391,27 +391,29 @@ export default function CommonAdminBoard({
             placeholder={searchText}
             value={searchExpr}
             autoFocus={false}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => {
+              handleSearch(e.target.value)
+            }}
             autoComplete="off"
           />
         </div>
         <div
           className="filterSection"
-          onMouseLeave={() =>
+          onMouseLeave={() => {
             setState({
               type: ActionKind.SET_SHOW_MODAL,
               payload: false,
             })
-          }
+          }}
         >
           <ViewSelector activeView={selected} views={tabButtons} />
           <SortImage
-            onClick={() =>
+            onClick={() => {
               setState({
                 type: ActionKind.SET_SHOW_MODAL,
                 payload: true,
               })
-            }
+            }}
             selected={showModal}
           />
           <div className="sortSection">
@@ -427,7 +429,7 @@ export default function CommonAdminBoard({
       <div className="admin-board-main">
         <div style={{ height: '60px' }}></div>
         <div className="mainContainer">
-          {!apps || apps?.length === 0 ? (
+          {isFetching ? (
             <div className="loading-progress">
               <CircularProgress
                 size={50}
@@ -445,21 +447,20 @@ export default function CommonAdminBoard({
               errorApproveMsg={errorApproveMsg}
               successDeclineMsg={successDeclineMsg}
               errorDeclineMsg={errorDeclineMsg}
+              isSuccess={isSuccess}
+              refetch={refetch}
             />
           )}
-          {!isFetching &&
-            apps?.length &&
-            data?.meta &&
-            data?.meta?.totalPages > page + 1 && (
-              <div
-                style={{
-                  textAlign: 'center',
-                  marginTop: '30px',
-                }}
-              >
-                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
-              </div>
-            )}
+          {!isFetching && data?.meta && data?.meta?.totalPages > page + 1 && (
+            <div
+              style={{
+                textAlign: 'center',
+                marginTop: '30px',
+              }}
+            >
+              <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+            </div>
+          )}
         </div>
         <div style={{ height: '66px' }}></div>
       </div>

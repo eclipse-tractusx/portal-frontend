@@ -28,8 +28,8 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
-import { IHashMap } from 'types/MainTypes'
-import { ValidatingForm, ValidationField } from './ValidatingForm'
+import type { IHashMap } from 'types/MainTypes'
+import { ValidatingForm, type ValidationField } from './ValidatingForm'
 
 export const CXValidatingOverlay = ({
   title,
@@ -47,8 +47,9 @@ export const CXValidatingOverlay = ({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [formData, setFormData] = useState<IHashMap<string> | undefined>()
-  const onValid = (formValues: IHashMap<string> | undefined) =>
+  const onValid = (formValues: IHashMap<string> | undefined) => {
     setFormData(formValues)
+  }
 
   return (
     <>
@@ -67,7 +68,9 @@ export const CXValidatingOverlay = ({
         </Button>
         <Button
           variant="contained"
-          onClick={() => formData && onSubmit(formData)}
+          onClick={() => {
+            formData && onSubmit(formData)
+          }}
           disabled={!formData}
         >
           {submitLabel}

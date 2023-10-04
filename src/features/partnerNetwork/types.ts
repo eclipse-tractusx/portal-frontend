@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { GeographicCoordinate } from 'types/MainTypes'
+import type { GeographicCoordinate } from 'types/MainTypes'
 
 //region Common Key Value pairs type
 export interface BpdmTypeNameObject {
@@ -120,23 +120,46 @@ export interface BpdmBusinessStatus {
 }
 //endregion
 
-export interface BusinessPartner {
-  bpn: string // Unique identifier
-  identifiers: Array<BpdmTypeUUIDKeyPair>
-  names: Array<BpdmTypeLanguagePair>
-  legalForm: BpdmLegalFormObject
-  status: BpdmBusinessStatus
-  addresses: Array<BpdmAddresses>
-  profileClassifications: Array<BpdmProfileClassification>
-  types: Array<BpdmTypeCommonKeyValuePair>
-  bankAccounts: Array<BpdmTypeBankAccount>
-  roles: Array<BpdmTypeCommonKeyValuePair>
-  relations: Array<BpdmTypeRelation>
+export interface LegalFormType {
+  technicalKey: string
+  name: string
+  abbreviation: string
 }
 
-export interface BusinessPartnerSearchResponse {
-  score: number
-  businessPartner: BusinessPartner
+export interface BusinessPartner {
+  score?: number
+  legalName: string
+  bpnl: string
+  member?: boolean
+  identifiers: Array<BpdmTypeUUIDKeyPair>
+  legalShortName: string
+  legalForm: any
+  states: [
+    {
+      description: string
+      validFrom: string
+      validTo: string
+      type: {
+        technicalKey: string
+        name: string
+      }
+    }
+  ]
+  classifications: [
+    {
+      value: string
+      code: string
+      type: {
+        technicalKey: string
+        name: string
+      }
+    }
+  ]
+  relations: Array<BpdmTypeRelation>
+  currentness: string
+  createdAt: string
+  updatedAt: string
+  legalAddress: BpdmLegalAddressObject
 }
 
 export interface BusinessPartnerResponse {
@@ -144,7 +167,15 @@ export interface BusinessPartnerResponse {
   totalPages: number
   page: number
   contentSize: number
-  content: Array<BusinessPartnerSearchResponse>
+  content: Array<BusinessPartner>
+}
+
+export interface BusinessPartnerAddressResponse {
+  alternativePostalAddress: any
+  bpnLegalEntity: string
+  createdAt: string
+  updatedAt: string
+  physicalPostalAddress: PhysicalPostalAddressType
 }
 
 export interface PaginationData {
@@ -162,12 +193,97 @@ export interface PartnerNetworkInitialState {
 }
 
 export interface PartnerNetworkDataGrid {
-  bpn: string
-  name: string
-  legalForm: string
-  country: string
-  street: string
-  zipCode: string
-  city: string
+  bpnl: string
+  legalName: string
+  legalForm: any
+  legalAddress: any
   identifiers: Array<BpdmTypeUUIDKeyPair>
+}
+
+export interface BpdmLegalAddressStatesObject {
+  description: string
+  validFrom: string
+  validTo: string
+  type: {
+    technicalKey: string
+    name: string
+  }
+}
+
+export interface AlternatePostalAddressType {
+  geographicCoordinates: {
+    longitude: 0
+    latitude: 0
+    altitude: 0
+  }
+  country: {
+    technicalKey: string
+    name: string
+  }
+  postalCode: string
+  city: string
+  administrativeAreaLevel1: {
+    countryCode: string
+    regionCode: string
+    regionName: string
+  }
+  deliveryServiceNumber: string
+  deliveryServiceType: string
+  deliveryServiceQualifier: string
+}
+
+export interface PhysicalPostalAddressType {
+  geographicCoordinates: {
+    longitude: 0
+    latitude: 0
+    altitude: 0
+  }
+  country: {
+    technicalKey: string
+    name: string
+  }
+  postalCode: string
+  city: string
+  street: {
+    name: string
+    houseNumber: string
+    milestone: string
+    direction: string
+  }
+  administrativeAreaLevel1: {
+    countryCode: string
+    regionCode: string
+    regionName: string
+  }
+  administrativeAreaLevel2: string
+  administrativeAreaLevel3: string
+  district: string
+  companyPostalCode: string
+  industrialZone: string
+  building: string
+  floor: string
+  door: string
+}
+
+export interface BpdmLegalAddressObject {
+  bpna: string
+  name: string
+  states: Array<BpdmLegalAddressStatesObject>
+  identifiers: [
+    {
+      value: string
+      type: {
+        technicalKey: string
+        name: string
+      }
+    }
+  ]
+  physicalPostalAddress: PhysicalPostalAddressType
+  alternativePostalAddress: AlternatePostalAddressType
+  bpnLegalEntity: string
+  bpnSite: string
+  createdAt: string
+  updatedAt: string
+  isMainAddress: boolean
+  isLegalAddress: boolean
 }

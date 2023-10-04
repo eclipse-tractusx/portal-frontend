@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardDetailsProps, ProviderProps } from '../StaticTypes'
+import type { CardDetailsProps, ProviderProps } from '../StaticTypes'
 import RenderImage from './RenderImage'
 import '../StaticTemplate.scss'
 import AlignedText from './AlignedText'

@@ -24,7 +24,7 @@ import {
   PageNotifications,
 } from '@catena-x/portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { AppRole } from 'features/admin/appuserApiSlice'
+import type { AppRole } from 'features/admin/appuserApiSlice'
 import './AppUserDetailsHeader.scss'
 
 export interface AppUserDetailsHeaderProps {

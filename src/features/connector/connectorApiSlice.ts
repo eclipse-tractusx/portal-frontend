@@ -20,7 +20,10 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PaginFetchArgs, PaginResult } from '@catena-x/portal-shared-components'
+import type {
+  PaginFetchArgs,
+  PaginResult,
+} from '@catena-x/portal-shared-components'
 
 export enum ConnectType {
   MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',

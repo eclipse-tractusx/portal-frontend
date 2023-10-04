@@ -29,6 +29,7 @@ import {
   isCountryCode,
   isFirstName,
   isLastName,
+  isClientID,
 } from './Patterns'
 
 const TESTDATA = {
@@ -183,72 +184,106 @@ const TESTDATA = {
       ' Julia Sophie ',
     ],
   },
+  CLIENTID: {
+    valid: ['sa-12', 'JSSS', 'Julia12'],
+    invalid: ['&^%#@', '!', 'hash &*^#$'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
   it('validates BPNs', () => {
-    TESTDATA.BPN.valid.forEach((expr) => expect(isBPN(expr)).toBe(true))
-    TESTDATA.BPN.invalid.forEach((expr) => expect(isBPN(expr)).toBe(false))
+    TESTDATA.BPN.valid.forEach((expr) => {
+      expect(isBPN(expr)).toBe(true)
+    })
+    TESTDATA.BPN.invalid.forEach((expr) => {
+      expect(isBPN(expr)).toBe(false)
+    })
   })
 
   it('validates mail adresses', () => {
-    TESTDATA.MAIL.valid.forEach((expr) => expect(isMail(expr)).toBe(true))
-    TESTDATA.MAIL.invalid.forEach((expr) => expect(isMail(expr)).toBe(false))
+    TESTDATA.MAIL.valid.forEach((expr) => {
+      expect(isMail(expr)).toBe(true)
+    })
+    TESTDATA.MAIL.invalid.forEach((expr) => {
+      expect(isMail(expr)).toBe(false)
+    })
   })
 
   it('validates domain names', () => {
-    TESTDATA.DOMAIN.valid.forEach((expr) => expect(isDomain(expr)).toBe(true))
-    TESTDATA.DOMAIN.invalid.forEach((expr) =>
+    TESTDATA.DOMAIN.valid.forEach((expr) => {
+      expect(isDomain(expr)).toBe(true)
+    })
+    TESTDATA.DOMAIN.invalid.forEach((expr) => {
       expect(isDomain(expr)).toBe(false)
-    )
+    })
   })
 
   it('validates URLs', () => {
-    TESTDATA.URL.valid.forEach((expr) => expect(isURL(expr)).toBe(true))
-    TESTDATA.URL.invalid.forEach((expr) => expect(isURL(expr)).toBe(false))
+    TESTDATA.URL.valid.forEach((expr) => {
+      expect(isURL(expr)).toBe(true)
+    })
+    TESTDATA.URL.invalid.forEach((expr) => {
+      expect(isURL(expr)).toBe(false)
+    })
   })
 
   it('validates UUIDs', () => {
-    TESTDATA.UUID.valid.forEach((expr) => expect(isUUID(expr)).toBe(true))
-    TESTDATA.UUID.invalid.forEach((expr) => expect(isUUID(expr)).toBe(false))
+    TESTDATA.UUID.valid.forEach((expr) => {
+      expect(isUUID(expr)).toBe(true)
+    })
+    TESTDATA.UUID.invalid.forEach((expr) => {
+      expect(isUUID(expr)).toBe(false)
+    })
   })
 
   it('validates Company Names', () => {
-    TESTDATA.COMPANY_NAME.valid.forEach((expr) =>
+    TESTDATA.COMPANY_NAME.valid.forEach((expr) => {
       expect(isCompanyName(expr)).toBe(true)
-    )
-    TESTDATA.COMPANY_NAME.invalid.forEach((expr) =>
+    })
+    TESTDATA.COMPANY_NAME.invalid.forEach((expr) => {
       expect(isCompanyName(expr)).toBe(false)
-    )
+    })
   })
 
   it('validates connector Names', () => {
-    TESTDATA.CNAMES.valid.forEach((expr) => expect(isCName(expr)).toBe(true))
-    TESTDATA.CNAMES.invalid.forEach((expr) => expect(isCName(expr)).toBe(false))
+    TESTDATA.CNAMES.valid.forEach((expr) => {
+      expect(isCName(expr)).toBe(true)
+    })
+    TESTDATA.CNAMES.invalid.forEach((expr) => {
+      expect(isCName(expr)).toBe(false)
+    })
   })
 
   it('validates Country code', () => {
-    TESTDATA.COUNTRY.valid.forEach((expr) =>
+    TESTDATA.COUNTRY.valid.forEach((expr) => {
       expect(isCountryCode(expr)).toBe(true)
-    )
-    TESTDATA.COUNTRY.invalid.forEach((expr) =>
+    })
+    TESTDATA.COUNTRY.invalid.forEach((expr) => {
       expect(isCountryCode(expr)).toBe(false)
-    )
+    })
   })
   it('validates firstName', () => {
-    TESTDATA.FIRSTNAME.valid.forEach((expr) =>
+    TESTDATA.FIRSTNAME.valid.forEach((expr) => {
       expect(isFirstName(expr)).toBe(true)
-    )
-    TESTDATA.FIRSTNAME.invalid.forEach((expr) =>
+    })
+    TESTDATA.FIRSTNAME.invalid.forEach((expr) => {
       expect(isFirstName(expr)).toBe(false)
-    )
+    })
   })
   it('validates lastName', () => {
-    TESTDATA.LASTNAME.valid.forEach((expr) =>
+    TESTDATA.LASTNAME.valid.forEach((expr) => {
       expect(isLastName(expr)).toBe(true)
-    )
-    TESTDATA.LASTNAME.invalid.forEach((expr) =>
+    })
+    TESTDATA.LASTNAME.invalid.forEach((expr) => {
       expect(isLastName(expr)).toBe(false)
-    )
+    })
+  })
+  it('validate tech user clientId', () => {
+    TESTDATA.CLIENTID.valid.forEach((expr) => {
+      expect(isClientID(expr)).toBe(true)
+    })
+    TESTDATA.CLIENTID.invalid.forEach((expr) => {
+      expect(isClientID(expr)).toBe(false)
+    })
   })
 })
