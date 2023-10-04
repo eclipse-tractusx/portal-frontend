@@ -34,9 +34,8 @@ const LogService = {
     ;((row) => {
       level === LogLevel.SEVERE || level === LogLevel.ERROR
         ? console.error(row, data ?? '')
-        : console.log(row, data ?? ''))(
-      `${LogService.logtime()} ${level} ${message}`
-    ),
+        : console.log(row, data ?? '')
+    })(`${LogService.logtime()} ${level} ${message}`)
   },
   info: (message: string, data?: any) => {
     LogService.log(LogLevel.INFO, message, data)
