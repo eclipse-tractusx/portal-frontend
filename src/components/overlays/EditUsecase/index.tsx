@@ -64,9 +64,9 @@ export default function EditUsecase({
       const data = {
         verifiedCredentialTypeId,
         credentialType,
-        document: uploadedFile,
+        document: uploadedFile!,
       }
-      await addUsecase(data).unwrap()
+      await addUsecase(data!).unwrap()
       setLoading(false)
       dispatch(closeOverlay())
       success(t('content.usecaseParticipation.editUsecase.success'))

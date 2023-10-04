@@ -20,7 +20,7 @@
 
 import { type Notify, SeverityType, deq, enq } from 'features/control/notify'
 import { store } from 'features/store'
-import log from './LogService'
+import log, { type LogData } from './LogService'
 
 const NOTIFY_TIME = 7000
 
@@ -34,11 +34,7 @@ const NotifyService = {
     store.dispatch(enq(item))
     setTimeout(() => store.dispatch(deq()), NOTIFY_TIME)
   },
-  success: (
-    title: string,
-    msg?: string,
-    data?: object | string | number | boolean
-  ) => {
+  success: (title: string, msg?: string, data?: LogData) => {
     NotifyService.notify({
       severity: SeverityType.SUCCESS,
       title,
@@ -46,11 +42,7 @@ const NotifyService = {
       data,
     })
   },
-  error: (
-    title: string,
-    msg?: string,
-    data?: object | string | number | boolean
-  ) => {
+  error: (title: string, msg?: string, data?: LogData) => {
     NotifyService.notify({
       severity: SeverityType.ERROR,
       title,

@@ -28,8 +28,7 @@ const registerReference = (key: string, ref: MutableRefObject<any>) => {
 }
 
 const scrollTo = (key: string) => {
-  window.scrollTo({
-    top: referenceMap[key].current.offsetTop + 1,
+  referenceMap[key].current.scrollIntoView({
     behavior: 'smooth',
   })
 }
