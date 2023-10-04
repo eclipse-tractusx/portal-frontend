@@ -63,6 +63,7 @@
   - Bulk upload UI Changes
 - Service Marketplace
   - Change Subscription roles
+  - error handling for subscribe failure
   - Updated 'consultancy' service naming for cards and service detail page
   - fixed display of service types in cards
 - Service release process
@@ -73,6 +74,8 @@
   - Removed PageLoadingTable component
 - Linter Findings
   - No confusing void expression fixes
+- App Marketplace
+  - error handling for subscribe failure
 
 ## 1.6.0
 

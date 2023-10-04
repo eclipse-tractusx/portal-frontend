@@ -39,6 +39,8 @@ import {
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay'
 import './AppMarketplaceRequest.scss'
+import { error } from 'services/NotifyService'
+import { AgreementStatus } from '../UpdateCompanyRole'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -77,20 +79,20 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
   ]
 
   const handleConfirmApp = async (id: string) => {
-    try {
-      const data = agreements?.map((agreement) => {
-        return {
-          agreementId: agreement.agreementId,
-          consentStatusId:
-            checkedAgreementsIds.indexOf(agreement.agreementId) >= 0
-              ? 'ACTIVE'
-              : 'INACTIVE',
-        }
-      })
-      data && addSubscribeApp({ appId: id, body: data }).unwrap()
-    } catch (err) {
-      console.log('error', err)
-    }
+    const data = agreements?.map((agreement) => {
+      return {
+        agreementId: agreement.agreementId,
+        consentStatusId: checkedAgreementsIds.includes(agreement.agreementId)
+          ? AgreementStatus.ACTIVE
+          : AgreementStatus.INACTIVE,
+      }
+    })
+    data &&
+      (await addSubscribeApp({ appId: id, body: data })
+        .unwrap()
+        .catch((err) => {
+          error(t('content.appMarketplace.errorMessage'), '', err as object)
+        }))
   }
 
   const handleCheckedAgreement = (

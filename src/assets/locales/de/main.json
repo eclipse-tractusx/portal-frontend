@@ -1191,7 +1191,8 @@
       "document": {
         "heading": "Nutzungsbedingungen",
         "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
-      }
+      },
+      "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator."
     },
     "appMarketplace": {
       "headline": "Geschäftsanwednung abonnieren",
@@ -1199,7 +1200,8 @@
       "desc2": "Wenn Sie unten auf „Bestätigen“ klicken, wird der App-Anbieter automatisch über Ihre Anfrage informiert und startet den Abonnementvorgang. Sollten weitere Informationen benötigt werden, wird sich der Anbieter direkt mit Ihnen in Verbindung setzen. Der Vorgang kann bis zu 5 Tage dauern.",
       "desc3": "Sobald alle Fragen geklärt sind, kann der App-Anbieter Ihren App-Mandanten freischalten und Sie werden automatisch über die weiteren Schritte informiert.",
       "desc4": "Bitte beachten Sie: Mit der Bestätigung der App-Abonnementanfrage erhält der App-Anbieter die in Ihrem Datenbereich verfügbaren Geschäftspartnerdaten (Firmenname, BPN, Adresse usw.) sowie Ihre E-Mail-Adresse, falls zusätzliche Informationen benötigt werden.",
-      "statusHeading": "Für eine bessere Transparenz wird die Abonnementstatusleiste auf der App-Detailseite verfügbar sein. Sie können den Abonnementstatus überprüfen, wenn Sie die App-Detailseite über den App-Marktplatz öffnen."
+      "statusHeading": "Für eine bessere Transparenz wird die Abonnementstatusleiste auf der App-Detailseite verfügbar sein. Sie können den Abonnementstatus überprüfen, wenn Sie die App-Detailseite über den App-Marktplatz öffnen.",
+      "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator."
     },
     "techUser": {
       "details": {
