@@ -54,7 +54,7 @@ import {
   setOverlayCancel,
 } from 'features/companyRoles/slice'
 
-enum AgreementStatus {
+export enum AgreementStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
 }
