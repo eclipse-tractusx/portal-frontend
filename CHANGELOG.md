@@ -4,6 +4,8 @@
 
 - App Release Process
   - Fixed double loading of images for app page
+- App Overview
+  - Fixed image display in app overview cards
 
 ## 1.7.0-alpha
 
