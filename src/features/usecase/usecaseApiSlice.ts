@@ -50,8 +50,6 @@ export type UsecaseResponse = {
 export type UsecaseRequest = {
   verifiedCredentialTypeId: string
   credentialType: string
-  // TODO: add an ESLint exception until there is a solution
-  // eslint-disable-next-line
   document: File
 }
 

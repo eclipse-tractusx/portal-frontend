@@ -200,7 +200,6 @@ export interface PartnerNetworkDataGrid {
   // TODO: add an ESLint exception until there is a solution
   // eslint-disable-next-line
   legalForm: any
-  // TODO: add an ESLint exception until there is a solution
   // eslint-disable-next-line
   legalAddress: any
   identifiers: Array<BpdmTypeUUIDKeyPair>
