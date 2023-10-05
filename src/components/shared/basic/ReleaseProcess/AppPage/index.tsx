@@ -541,7 +541,7 @@ export default function AppPage() {
                   onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
                     trigger('images')
-                    addedFiles && uploadImages(files)
+                    addedFiles && uploadImages(addedFiles)
                   }}
                   acceptFormat={{
                     'image/png': [],

@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- App Release Process
+  - Fixed double loading of images for app page
+
 ## 1.7.0-alpha
 
 ### Change
