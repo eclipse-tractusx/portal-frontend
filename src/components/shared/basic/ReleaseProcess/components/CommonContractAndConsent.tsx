@@ -168,7 +168,6 @@ export default function CommonContractAndConsent({
   }
 
   const defaultValues = useMemo(() => {
-    console.log('fetchStatusData', fetchStatusData)
     return {
       agreements: defaultValue,
       uploadImageConformity:
