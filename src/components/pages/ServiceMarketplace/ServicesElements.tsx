@@ -75,7 +75,7 @@ export default function ServicesElements({
                         handleClick(service.id)
                       }}
                       title={service.title}
-                      subTitle={getServices(service.serviceTypes)}
+                      subTitle={getServices(service.serviceTypeIds)}
                       description={service.description}
                       backgroundColor="#fff"
                     />

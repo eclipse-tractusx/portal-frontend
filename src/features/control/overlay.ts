@@ -77,6 +77,8 @@ const exec = createAction(`${name}/exec`, (id: string) => ({
   },
 }))
 
+// TODO: add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const forward = (_state: any, action: any) => ({
   ...action.payload,
 })

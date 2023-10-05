@@ -52,6 +52,7 @@ import {
 } from 'features/control/form'
 import { useDropzone } from 'react-dropzone'
 import { error, success } from 'services/NotifyService'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import './AddUsersIDP.scss'
 
 enum IDPState {
@@ -62,6 +63,7 @@ enum IDPState {
   ERROR_INVALID_TYPE = 'ERROR_INVALID_TYPE',
   ERROR_INVALID_SIZE = 'ERROR_INVALID_SIZE',
   ERROR_INVALID_FORMAT = 'ERROR_INVALID_FORMAT',
+  ERROR_FILE_HEADER = 'ERROR_FILE_HEADER',
   ERROR_UPLOAD_USERS = 'ERROR_UPLOAD_USERS',
   ERROR_DELETE_IDP = 'ERROR_DELETE_IDP',
 }
@@ -144,8 +146,8 @@ const AddusersIDPResponse = ({
             </Typography>
           </Trans>
         ) : (
-          <div className="errorSection mb-20">
-            <div className="uploadedDetailsSection mb-20">
+          <div className="errorSection mb-30">
+            <div className="uploadedDetailsSection mb-30">
               <div className="userDetailsMain">
                 <div className="userSuccess">
                   <Typography variant="body1" className="number">
@@ -170,9 +172,9 @@ const AddusersIDPResponse = ({
 
             {userResponse?.errors.length > 0 && tableErrorData && (
               <>
-                <div className="mb-20">
+                <div className="mb-30">
                   <Trans>
-                    <Typography variant="body1" className="errorUsersLabel">
+                    <Typography variant="label2" className="errorUsersLabel">
                       {t('userserror.errorUsersLabel')}
                     </Typography>
                   </Trans>
@@ -211,6 +213,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const fetching = t('state.fetching')
   const [loading, setLoading] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File>()
+
+  const csvHeaderList = [
+    'companyUserId',
+    'firstName',
+    'lastName',
+    'email',
+    'identityProviders',
+  ]
 
   const CSV_COLUMNS = useMemo(
     () => [
@@ -437,6 +447,20 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         reader.onload = () => {
           if (!reader.result) return
           const content = reader.result.toString()
+          const csvFileHeader = Object.keys(csv2json(content)[0])
+          if (
+            !csvHeaderList.reduce(
+              (a, c, i) => a && csvFileHeader[i] === c,
+              true
+            )
+          ) {
+            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+            setStatus(false)
+            setTimeout(() => {
+              setStatus(undefined)
+            }, 3000)
+            return
+          }
           storeData(
             file.type === MIME_TYPE.CSV
               ? JSON.stringify(csv2json(content))
@@ -478,10 +502,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             <Typography variant="label4" className="number">
               1
             </Typography>
-            <Typography variant="label3" className="mb-20 step1Label">
+            <Typography variant="label3" className="mb-30 step1Label">
               {t('users.step1Heading')}
             </Typography>
-            <Typography variant="label4" className="mb-20 step1Label">
+            <Typography variant="label4" className="mb-30 step1Label">
               {t('users.step1Intro')}
             </Typography>
             <Textarea
@@ -558,7 +582,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             </Typography>
           </div>
         </div>
-        <div {...getRootProps()}>
+        <div {...getRootProps()} className="mb-30">
           <DropArea
             error={status === false}
             translations={{
@@ -568,6 +592,24 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             }}
           />
         </div>
+        <Typography
+          variant="label3"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#0088CC',
+            textDecoration: 'underline',
+          }}
+        >
+          <HelpOutlineIcon
+            sx={{
+              fontSize: '18px',
+              marginRight: '5px',
+            }}
+          />
+          {t('add.learnMore')}
+        </Typography>
         {userResponse?.data && (
           <AddusersIDPResponse
             response={userResponse.data}

@@ -1146,7 +1146,7 @@
       "tabs": {
         "all": "All Services",
         "dataspaceService": "Dataspace Services",
-        "consultantService": "Consultant Services"
+        "consultancyService": "Consultancy Services"
       },
       "sortOptions": {
         "new": "Newest First",
@@ -1155,7 +1155,8 @@
       "document": {
         "heading": "Relevant Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
-      }
+      },
+      "errorMessage": "The subscription was unsuccessful; please contact your administrator."
     },
     "appMarketplace": {
       "headline": "Business Application Subscription",
@@ -1163,7 +1164,8 @@
       "desc2": "With click on 'Confirm' below, the app provider will get automatically informed about your request and start the subscription process. If additional informations are needed, the provider will contact you directly. The process may take up to 5 days.",
       "desc3": "As soon as all queries are clarified, the app provider will be able to activate your app tenant and you will get automatically informed to take further steps.",
       "desc4": "Please note: with confirming the app subscription request, the app provider will receive your dataspace available business partner data (company name, bpn, address, etc.) as well as your email address in case additional information are needed.",
-      "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace."
+      "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace.",
+      "errorMessage": "The subscription was unsuccessful; please contact your administrator."
     },
     "techUser": {
       "details": {

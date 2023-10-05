@@ -60,6 +60,8 @@ export const apiSlice = createApi({
           return `/catena/legal-entities?page=${fetchArgs.page}&size=10`
         }
       },
+      // TODO: add an ESLint exception until there is a solution
+      // eslint-disable-next-line
       transformResponse: (response: any) => {
         if (response.content) {
           return {

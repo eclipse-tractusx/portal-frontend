@@ -94,7 +94,7 @@ export default function ChangeImage() {
     }
   }, [fetchLeadImage, leadImageId])
 
-  const uploadDocumentApi = async (appId: string, file: any) => {
+  const uploadDocumentApi = async (appId: string, file: File) => {
     const data = {
       appId,
       body: { file },

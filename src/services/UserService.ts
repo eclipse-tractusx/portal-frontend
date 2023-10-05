@@ -59,7 +59,7 @@ const update = () => {
     })
 }
 
-const init = (onAuthenticatedCallback: (loggedUser: IUser) => any) => {
+const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',

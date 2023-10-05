@@ -30,8 +30,10 @@ export enum ReleaseProcessTypes {
 }
 
 export enum ServiceTypeIdsEnum {
-  CONSULTANCE_SERVICE = 'CONSULTANCE_SERVICE',
+  CONSULTANCY_SERVICE = 'CONSULTANCY_SERVICE',
   DATASPACE_SERVICE = 'DATASPACE_SERVICE',
+  DATASPACE_SERVICES = 'Dataspace Services',
+  CONSULTANCY_SERVICES = 'Consultancy Services',
 }
 
 export enum ServiceDeactivateEnum {

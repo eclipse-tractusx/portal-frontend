@@ -72,6 +72,8 @@ export interface ServiceDetailsType {
     longDescription: string
     shortDescription: string
   }[]
+  // TODO: add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   documents: any
   providerUri: string
   contactEmail: string

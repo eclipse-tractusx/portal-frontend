@@ -50,7 +50,9 @@ export type UsecaseResponse = {
 export type UsecaseRequest = {
   verifiedCredentialTypeId: string
   credentialType: string
-  document: File
+  // TODO: add an ESLint exception until there is a solution
+  // eslint-disable-next-line
+  document: any
 }
 
 export const apiSlice = createApi({

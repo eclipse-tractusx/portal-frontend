@@ -24,6 +24,7 @@ import SnackbarNotificationWithButtons from '../components/SnackbarNotificationW
 import { Grid } from '@mui/material'
 import {
   type serviceUserRolesType,
+  ServiceTypeIdsEnum,
   useFetchServiceStatusQuery,
   useFetchServiceTechnicalUserProfilesQuery,
   useFetchServiceUserRolesQuery,
@@ -97,7 +98,7 @@ export default function OfferTechnicalIntegration() {
   const onSubmit = async (submitData: unknown, buttonLabel: string) => {
     if (
       !fetchServiceStatus?.serviceTypeIds.every((item) =>
-        ['CONSULTANCE_SERVICE']?.includes(item)
+        [`${ServiceTypeIdsEnum.CONSULTANCY_SERVICE}`]?.includes(item)
       ) &&
       serviceTechUserProfiles.length === 0
     ) {
