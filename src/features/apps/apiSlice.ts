@@ -37,6 +37,25 @@ export interface AppInfo {
   name: string | undefined
 }
 
+export type AppItem = {
+  addButtonClicked: boolean
+  description: string
+  id: string
+  image: ImageType
+  leadPictureId: string
+  licenseType: string
+  name: string
+  onButtonClick: any
+  onClick: any
+  onSecondaryButtonClick: any
+  price: string
+  provider: string
+  shortDescription: string
+  subtitle: string
+  title: string
+  useCases: string[]
+}
+
 export type AppMarketplaceApp = {
   id: string
   title: string

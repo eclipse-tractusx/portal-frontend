@@ -61,15 +61,17 @@ export default function EditUsecase({
   const handleUpload = async () => {
     setLoading(true)
     try {
-      const data = {
-        verifiedCredentialTypeId,
-        credentialType,
-        document: uploadedFile,
+      if (uploadedFile) {
+        const data = {
+          verifiedCredentialTypeId,
+          credentialType,
+          document: uploadedFile,
+        }
+        await addUsecase(data).unwrap()
+        setLoading(false)
+        dispatch(closeOverlay())
+        success(t('content.usecaseParticipation.editUsecase.success'))
       }
-      await addUsecase(data).unwrap()
-      setLoading(false)
-      dispatch(closeOverlay())
-      success(t('content.usecaseParticipation.editUsecase.success'))
     } catch (err) {
       setLoading(false)
       error(t('content.usecaseParticipation.editUsecase.error'), '', '')

@@ -10,7 +10,7 @@
  * https://www.apache.org/licenses/LICENSE-2.0.
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * distributed under the License is distributed on an 'AS IS' BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
@@ -22,7 +22,7 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import InputLabel from '@mui/material/InputLabel'
-import { Controller } from 'react-hook-form'
+import { type Control, Controller, type FieldErrors } from 'react-hook-form'
 import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -39,13 +39,37 @@ export type DefaultFormFieldValuesType = {
   TechnicalUserDescription: string
 }
 
+export type FormType = {
+  control: Control<DefaultFormFieldValuesType>
+  trigger: (
+    name:
+      | 'TechnicalUserName'
+      | 'TechnicalUserService'
+      | 'TechnicalUserDescription'
+  ) => void
+  errors: FieldErrors<{
+    TechnicalUserName: string
+    TechnicalUserService: string
+    TechnicalUserDescription: string
+  }>
+  helperText?: string
+  label?: string
+  placeholder?: string
+  name:
+    | 'TechnicalUserName'
+    | 'TechnicalUserService'
+    | 'TechnicalUserDescription'
+  rules: Object
+  limit?: number
+}
+
 const TechnicalUserAddFormSelect = ({
   control,
   trigger,
   errors,
   name,
   rules,
-}: any) => {
+}: FormType) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
   const [selectedValue, setSelectedValue] = useState<string>()
@@ -55,7 +79,7 @@ const TechnicalUserAddFormSelect = ({
       render={({ field: { onChange, value } }) => (
         <Box className="technicalUserForm">
           <InputLabel
-            error={!!errors[name]}
+            error={!!errors[name as keyof Object]}
             sx={{ marginBottom: '7px', color: '#000' }}
           >
             <Typography variant="h5">
@@ -89,7 +113,7 @@ const TechnicalUserAddFormSelect = ({
               </Typography>
             </>
           ))}
-          {!!errors[name] && (
+          {!!errors[name as keyof Object] && (
             <FormHelperText
               sx={{ marginBottom: '23px', color: 'danger.danger' }}
             >
@@ -115,22 +139,24 @@ const TechnicalUserAddFormTextfield = ({
   name,
   rules,
   limit = 80,
-}: any) => {
+}: FormType) => {
   return (
     <Controller
       render={({ field: { onChange, value } }) => (
         <>
           <InputLabel
-            error={!!errors[name]}
+            error={!!errors[name as keyof Object]}
             sx={{ marginBottom: '7px', color: '#000' }}
           >
             <Typography variant="body2">{label}</Typography>
           </InputLabel>
           <TextField
-            error={!!errors[name]}
+            error={!!errors[name as keyof Object]}
             fullWidth
             helperText={
-              !!errors[name] ? helperText : `${value.length}/${limit}`
+              !!errors[name as keyof Object]
+                ? helperText
+                : `${value.length}/${limit}`
             }
             inputProps={{
               maxLength: limit,
@@ -144,10 +170,10 @@ const TechnicalUserAddFormTextfield = ({
             value={value}
             variant="filled"
             FormHelperTextProps={{
-              sx: { marginLeft: !!errors[name] ? '' : 'auto' },
+              sx: { marginLeft: !!errors[name as keyof Object] ? '' : 'auto' },
             }}
             InputProps={{
-              endAdornment: !!errors[name] && (
+              endAdornment: !!errors[name as keyof Object] && (
                 <InputAdornment sx={{ color: 'danger.danger' }} position="end">
                   <ErrorOutlineOutlinedIcon />
                 </InputAdornment>
@@ -168,7 +194,23 @@ export const TechnicalUserAddForm = ({
   errors,
   handleSubmit,
   trigger,
-}: any) => {
+}: {
+  control: Control<DefaultFormFieldValuesType>
+  errors: FieldErrors<{
+    TechnicalUserName: string
+    TechnicalUserService: string
+    TechnicalUserDescription: string
+  }>
+  //TODO: add an ESLint exception until there is a solution
+  /* eslint @typescript-eslint/no-explicit-any: "off" */
+  handleSubmit: any
+  trigger: (
+    name:
+      | 'TechnicalUserName'
+      | 'TechnicalUserService'
+      | 'TechnicalUserDescription'
+  ) => void
+}) => {
   const { t } = useTranslation()
 
   return (

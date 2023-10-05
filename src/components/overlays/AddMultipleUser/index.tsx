@@ -124,7 +124,7 @@ export default function AddMultipleUser() {
     return <DropArea {...props} size="normal" />
   }
 
-  const handleAddUserAPICall = async (csvData: any) => {
+  const handleAddUserAPICall = async (csvData: Array<Array<string>>) => {
     try {
       if (uploadedFile) {
         const blob = new Blob([Papa.unparse(csvData)], { type: 'text/csv' })
@@ -140,6 +140,8 @@ export default function AddMultipleUser() {
         setIsSuccess(true)
         setUploadAPIRResponse(response)
       }
+      //TODO: add an ESLint exception until there is a solution
+      /* eslint @typescript-eslint/no-explicit-any: "off" */
     } catch (error: any) {
       setLoading(false)
       setIsError(error.data.errors.document[0])
@@ -156,7 +158,10 @@ export default function AddMultipleUser() {
         Papa.parse(uploadedFile, {
           skipEmptyLines: true,
           complete: async (results) => {
-            const csvData: any = results.data
+            console.log('results', results)
+            const csvData: Array<Array<string>> = results.data as Array<
+              Array<string>
+            >
             csvData[0].push('Roles')
             for (let i = 0; i < csvData.length; i++) {
               if (i !== 0) csvData[i].push(roles.toString())
@@ -173,7 +178,9 @@ export default function AddMultipleUser() {
     Papa.parse(selectedFile, {
       skipEmptyLines: true,
       complete: function (results) {
-        const csvData: any = results.data
+        const csvData: Array<Array<string>> = results.data as Array<
+          Array<string>
+        >
         setTotalRowsInCSV(csvData.length - 1)
       },
     })

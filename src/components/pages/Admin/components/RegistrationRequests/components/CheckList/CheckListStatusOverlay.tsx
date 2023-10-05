@@ -94,6 +94,8 @@ const initialState: State = {
 
 type Action = {
   type: string
+  //TODO: add an ESLint exception until there is a solution
+  /* eslint @typescript-eslint/no-explicit-any: "off" */
   payload: any
 }
 
