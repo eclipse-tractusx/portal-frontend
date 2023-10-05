@@ -26,6 +26,8 @@ import { name } from './types'
 
 const initialState: ListState<string> = { ...InitialListState }
 
+// TODO: add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const pendingCase = (state: ListState<string>, action: any) => ({
   ...state,
   change: action.meta.arg || null,
@@ -33,6 +35,8 @@ const pendingCase = (state: ListState<string>, action: any) => ({
   error: '',
 })
 
+// TODO: add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const rejectedCase = (state: ListState<string>, action: any) => ({
   ...state,
   change: null,

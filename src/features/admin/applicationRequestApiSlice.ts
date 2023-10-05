@@ -103,6 +103,8 @@ export type ProgressButtonsProps = {
   statusLabel?: string
   statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
   retriggerableProcessSteps?: string[]
+  status?: string
+  type?: string
 }
 
 export interface ProgressButtonsType {
@@ -138,10 +140,12 @@ export interface ApplicationRequest {
 }
 
 type CheckListDetailsButton = {
-  status: string
+  status: ProgressStatus
   type: string
   details: string
   retriggerableProcessSteps: string[]
+  statusId?: ProgressStatus
+  typeId?: string
 }
 
 export interface CheckListDetailsType {
@@ -267,7 +271,7 @@ export const apiSlice = createApi({
         url: `api/administration/registration/applications/${applicationId}/checklistDetails`,
       }),
       providesTags: ['checklist'],
-      transformResponse: (response: any) => {
+      transformResponse: (response: CheckListDetailsButton[]) => {
         const obj = response.map((res: CheckListDetailsButton) => {
           return {
             statusId: res.status,

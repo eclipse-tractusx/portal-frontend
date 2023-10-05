@@ -22,6 +22,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { StatusVariants } from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { DeclineRequestType } from './adminBoardApiSlice'
+import { type Documents } from 'features/apps/apiSlice'
 
 const PAGE_SIZE = 15
 
@@ -72,6 +73,8 @@ export interface ServiceDetailsType {
     longDescription: string
     shortDescription: string
   }[]
+  // TODO: add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   documents: any
   providerUri: string
   contactEmail: string
