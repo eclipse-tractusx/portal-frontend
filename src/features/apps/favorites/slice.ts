@@ -26,9 +26,10 @@ import { name } from './types'
 
 const initialState: ListState<string> = { ...InitialListState }
 
-// TODO: add an ESLint exception until there is a solution
-// eslint-disable-next-line
-const pendingCase = (state: ListState<string>, action: any) => ({
+const pendingCase = (
+  state: ListState<string>,
+  action: { meta: { arg: string } }
+) => ({
   ...state,
   change: action.meta.arg || null,
   request: RequestState.SUBMIT,

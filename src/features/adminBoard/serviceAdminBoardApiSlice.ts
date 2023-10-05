@@ -62,6 +62,11 @@ export type ServiceResponse = {
   meta: MetaBody
 }
 
+export type DocumentData = {
+  documentId: string
+  documentName: string
+}
+
 export interface ServiceDetailsType {
   id: string
   title: string
@@ -72,9 +77,7 @@ export interface ServiceDetailsType {
     longDescription: string
     shortDescription: string
   }[]
-  // TODO: add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  documents: any
+  documents: { [key: string]: Array<DocumentData> }
   providerUri: string
   contactEmail: string
   contactNumber: null

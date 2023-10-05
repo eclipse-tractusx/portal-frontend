@@ -52,7 +52,7 @@ export type UsecaseRequest = {
   credentialType: string
   // TODO: add an ESLint exception until there is a solution
   // eslint-disable-next-line
-  document: any
+  document: File
 }
 
 export const apiSlice = createApi({
