@@ -26,7 +26,7 @@ import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
 import type {
   ApplicationRequest,
-  ProgressButtonsProps,
+  ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import './RegistrationRequests.scss'
@@ -43,7 +43,7 @@ export const RegistrationRequestsTableColumns = (
   ) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void,
-  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
+  onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 ): Array<GridColDef> => {
   return [
     {

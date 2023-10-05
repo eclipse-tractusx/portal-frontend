@@ -37,7 +37,7 @@ import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPa
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   type ApplicationRequest,
-  type ProgressButtonsProps,
+  type ProgressButtonsType,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
@@ -65,7 +65,7 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [checklist, setCheckList] = useState<ProgressButtonsProps[]>()
+  const [checklist, setCheckList] = useState<ProgressButtonsType[]>()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [height, setHeight] = useState<string>('')

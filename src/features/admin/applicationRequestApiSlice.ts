@@ -91,7 +91,7 @@ export enum RetriggerableProcessSteps {
   OVERRIDE_BUSINESS_PARTNER_NUMBER = 'OVERRIDE_BUSINESS_PARTNER_NUMBER',
 }
 
-export type ProgressButtonsProps = {
+export type ProgressButtonsType = {
   statusId: ProgressStatus
   typeId: string
   label?: string
@@ -105,20 +105,6 @@ export type ProgressButtonsProps = {
   retriggerableProcessSteps?: string[]
   status?: string
   type?: string
-}
-
-export interface ProgressButtonsType {
-  statusId: ProgressStatus
-  typeId: string
-  label?: string
-  highlight?: boolean
-  backgroundColor?: string
-  border?: string
-  icon?: JSX.Element
-  details?: string
-  statusLabel?: string
-  statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
-  retriggerableProcessSteps?: string[]
 }
 
 export const progressMapper = {
@@ -136,7 +122,7 @@ export interface ApplicationRequest {
   email: string
   bpn: string
   documents: Array<DocumentMapper>
-  applicationChecklist: Array<ProgressButtonsProps>
+  applicationChecklist: Array<ProgressButtonsType>
 }
 
 type CheckListDetailsButton = {
@@ -146,6 +132,7 @@ type CheckListDetailsButton = {
   retriggerableProcessSteps: string[]
   statusId?: ProgressStatus
   typeId?: string
+  statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
 }
 
 export interface CheckListDetailsType {

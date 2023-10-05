@@ -26,7 +26,6 @@ import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import MuiChip, { type ChipProps } from '@mui/material/Chip'
 import {
-  type ProgressButtonsProps,
   progressMapper,
   ProgressStatus,
   type ProgressButtonsType,
@@ -36,13 +35,13 @@ import { useTranslation } from 'react-i18next'
 
 interface CheckListProps extends ChipProps {
   headerText?: string
-  progressButtons?: Array<ProgressButtonsProps>
+  progressButtons?: Array<ProgressButtonsType>
   showCancel?: boolean
   onCancel?: () => void
   cancelText?: string
   alignRow?: string
-  onButtonClick?: (button: ProgressButtonsProps) => void
-  selectedButton?: ProgressButtonsProps
+  onButtonClick?: (button: ProgressButtonsType) => void
+  selectedButton?: ProgressButtonsType
 }
 
 export default function CheckList({
@@ -61,7 +60,7 @@ export default function CheckList({
 
   const getProgressValue = () => {
     let progressValue = 0
-    checkListButtons?.forEach((button: ProgressButtonsProps) => {
+    checkListButtons?.forEach((button: ProgressButtonsType) => {
       progressValue += progressMapper[button.statusId]
     })
     return progressValue
@@ -136,9 +135,9 @@ export default function CheckList({
   }, [])
 
   const updateCheckListStatusButtons = useCallback(
-    (progressButtons: ProgressButtonsProps[]) => {
+    (progressButtons: ProgressButtonsType[]) => {
       setCheckListButtons(
-        progressButtons.map((button: ProgressButtonsProps) => ({
+        progressButtons.map((button: ProgressButtonsType) => ({
           statusId: button.statusId,
           typeId: button.typeId,
           details: button.details,
@@ -146,6 +145,7 @@ export default function CheckList({
           label: t(`content.checklistOverlay.checkList.${button.typeId}`),
           highlight: isButtonSelected(button.typeId),
           ...getButtonProps(button.statusId, isButtonSelected(button.typeId)),
+          statusTag: 'label',
         }))
       )
     },
@@ -183,7 +183,7 @@ export default function CheckList({
             </Box>
           )}
           <Box>
-            {checkListButtons.map((button: ProgressButtonsProps) => {
+            {checkListButtons.map((button: ProgressButtonsType) => {
               return (
                 <MuiChip
                   key={button.typeId}
