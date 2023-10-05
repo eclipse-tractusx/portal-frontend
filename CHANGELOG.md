@@ -40,6 +40,7 @@
 - App Overview
   - Enhance Sub Menu by adding 'Change Documents' for active apps
   - Add roles for active apps
+  - Fixed image display in app overview cards
 - Identity Provider Config
   - UI Enhancements
 - Overlay
