@@ -19,13 +19,13 @@
  ********************************************************************************/
 
 import {
-  type ProgressButtonsProps,
+  type ProgressButtonsType,
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { Trans } from 'react-i18next'
 import type i18next from 'i18next'
 
-export const isComplete = (applicationChecklist: ProgressButtonsProps[]) =>
+export const isComplete = (applicationChecklist: ProgressButtonsType[]) =>
   applicationChecklist.reduce(
     (a, b) => a && b.statusId === ProgressStatus.DONE,
     true
@@ -33,7 +33,7 @@ export const isComplete = (applicationChecklist: ProgressButtonsProps[]) =>
 
 export const getTitle = (
   activeTab: number,
-  applicationChecklist: ProgressButtonsProps[],
+  applicationChecklist: ProgressButtonsType[],
   t: typeof i18next.t
 ) => {
   if (activeTab === 0) {
