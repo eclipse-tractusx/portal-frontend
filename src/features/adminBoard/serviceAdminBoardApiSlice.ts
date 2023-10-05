@@ -22,7 +22,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { StatusVariants } from '@catena-x/portal-shared-components'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { DeclineRequestType } from './adminBoardApiSlice'
-import { type Documents } from 'features/apps/apiSlice'
 
 const PAGE_SIZE = 15
 
