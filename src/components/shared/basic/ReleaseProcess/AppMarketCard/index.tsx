@@ -244,7 +244,7 @@ export default function AppMarketCard() {
   const cardImageData: string | null = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      const isFile: any = cardImageData
+      const isFile: string = cardImageData
 
       if (isFile) {
         const blobFile = new Blob([cardImageData], {
