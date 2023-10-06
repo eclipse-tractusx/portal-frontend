@@ -203,7 +203,7 @@ export const IDPList = () => {
         <Table
           rowsCount={idpsData.length}
           hideFooter
-          disableSelectionOnClick={true}
+          disableRowSelectionOnClick={true}
           disableColumnFilter={true}
           disableColumnMenu={true}
           disableColumnSelector={true}
