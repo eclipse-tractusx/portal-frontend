@@ -241,7 +241,7 @@ export const IDPList = () => {
                 ),
             },
             {
-              field: 'ProviderTypeId',
+              field: 'identityProviderTypeId',
               headerName: t('global.field.authMethod'),
               flex: 2,
             },
