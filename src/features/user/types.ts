@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { type KeycloakTokenParsed } from 'keycloak-js'
+
 export interface IUser {
   userName: string
   name: string
@@ -26,6 +28,6 @@ export interface IUser {
   tenant: string
   roles: Array<string>
   isAdmin: boolean
-  token: string
-  parsedToken: string
+  token?: string
+  parsedToken?: KeycloakTokenParsed
 }
