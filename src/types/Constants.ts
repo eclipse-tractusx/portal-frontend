@@ -99,7 +99,6 @@ export enum PAGES {
   CERTIFICATE_CREDENTIAL = 'certificate-credential',
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
-  OSP_PROTOTYPE = 'osp-prototype',
 }
 
 export enum OVERLAYS {

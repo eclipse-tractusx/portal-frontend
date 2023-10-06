@@ -81,7 +81,6 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
-import OSPPrototype from 'components/pages/OSPPrototype'
 
 /**
  * ALL_PAGES
@@ -525,11 +524,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.ADMIN_CREDENTIAL,
     role: ROLES.DECISION_SSICREDENTIAL,
     element: <AdminCredential />,
-  },
-  {
-    name: PAGES.OSP_PROTOTYPE,
-    role: ROLES.IDP_VIEW,
-    element: <OSPPrototype />,
   },
 ]
 
