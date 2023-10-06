@@ -53,6 +53,7 @@ import {
 import { useDropzone } from 'react-dropzone'
 import { error, success } from 'services/NotifyService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import DownloadIcon from '@mui/icons-material/Download'
 import './AddUsersIDP.scss'
 
 enum IDPState {
@@ -154,7 +155,7 @@ const AddusersIDPResponse = ({
                     {userResponse?.updated}
                   </Typography>
                 </div>
-                <Typography variant="body1" className="detailLabel">
+                <Typography variant="label2" className="detailLabel">
                   {t('userserror.userUploaded')}
                 </Typography>
               </div>
@@ -164,7 +165,7 @@ const AddusersIDPResponse = ({
                     {userResponse?.error}
                   </Typography>
                 </div>
-                <Typography variant="body1" className="detailLabel">
+                <Typography variant="label2" className="detailLabel">
                   {t('userserror.userFailed')}
                 </Typography>
               </div>
@@ -559,7 +560,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                 />
               </div>
             </div>
-            <Button size="small" variant="outlined" onClick={downloadUserfile}>
+            <Button
+              size="small"
+              variant="outlined"
+              onClick={downloadUserfile}
+              endIcon={<DownloadIcon />}
+              className="downloadButton"
+            >
               {t('users.step1ButtonLabel')}
             </Button>
           </div>
