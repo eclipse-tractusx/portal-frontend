@@ -151,11 +151,11 @@ export type DocumentRequestData = {
 
 interface RetriggerProcessRequestType {
   applicationId: string
-  endUrl?: string | undefined
+  endUrl?: string
 }
 
 interface UpdateBpnReuestType {
-  applicationId?: string | undefined
+  applicationId?: string
   bpn: string
 }
 

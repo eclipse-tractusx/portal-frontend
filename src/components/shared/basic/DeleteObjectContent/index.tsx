@@ -41,7 +41,7 @@ export default function DeleteObjectContent({
   subHeaderNote,
   confirmTitle,
   showLoader = false,
-}: {
+}: Readonly<{
   header?: string
   subHeader?: string
   subHeaderTitle?: string
@@ -50,7 +50,7 @@ export default function DeleteObjectContent({
   subHeaderNote?: string
   confirmTitle?: string
   showLoader?: boolean
-}) {
+}>) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 

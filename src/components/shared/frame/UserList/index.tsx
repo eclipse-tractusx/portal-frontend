@@ -37,7 +37,7 @@ import { appManagementSelector } from 'features/appManagement/slice'
 interface FetchHookArgsType {
   appId?: string
   expr: string
-  userRoleResponse?: boolean | string | undefined
+  userRoleResponse?: boolean | string
   role?: boolean
   addUserResponse?: boolean
 }

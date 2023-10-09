@@ -57,7 +57,7 @@ export default function AdminBoardElements({
   errorDeclineMsg,
   isSuccess,
   refetch,
-}: {
+}: Readonly<{
   apps?: AppContent[] | ServiceContent[]
   onClick: (appId: string) => void
   type?: string
@@ -67,7 +67,7 @@ export default function AdminBoardElements({
   errorDeclineMsg?: string
   isSuccess: boolean
   refetch: () => {}
-}) {
+}>) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()
