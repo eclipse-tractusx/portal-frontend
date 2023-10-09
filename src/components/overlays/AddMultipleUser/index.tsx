@@ -140,7 +140,7 @@ export default function AddMultipleUser() {
         setIsSuccess(true)
         setUploadAPIRResponse(response)
       }
-      //Add an ESLint exception until there is a solution
+      // Add an ESLint exception until there is a solution
       /* eslint @typescript-eslint/no-explicit-any: "off" */
     } catch (error: any) {
       setLoading(false)

@@ -529,12 +529,12 @@ export default function OfferCard() {
         onBackIconClick={() => {
           navigate('/home')
         }}
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)

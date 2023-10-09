@@ -166,7 +166,7 @@ export default function OfferPage({
     const value = files
     if (value.length > 0) {
       const setFiles = (fileIndex: number, status: UploadFileStatus) => {
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         const files = [...getValues().images] as any[]
         files[fileIndex] = {

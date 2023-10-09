@@ -87,10 +87,10 @@ type CommonConsentType = {
   helpUrl: string
   fetchAgreementData: AgreementType[]
   fetchConsentData?: ConsentType
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   updateDocumentUpload?: (obj: {
     appId: string
@@ -100,11 +100,11 @@ type CommonConsentType = {
     }
   }) => any
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   getDocumentById?: (id: string) => any
   documentRequired?: boolean
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   fetchFrameDocumentById?: (id: string) => any
 }
@@ -164,7 +164,7 @@ export default function CommonContractAndConsent({
             t('content.apprelease.contractAndConsent.documentDeleteSuccess')
           )
         })
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         .catch((err: any) => {
           error(

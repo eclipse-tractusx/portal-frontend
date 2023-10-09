@@ -90,7 +90,7 @@ const initialState: State = {
 
 type Action = {
   type: string
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   payload: any
 }

@@ -82,11 +82,11 @@ interface CommonValidateAndPublishType {
   stepperDescription: string
   statusData: AppStatusDataState | ServiceStatusDataState | undefined
   id: string
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   fetchDocumentById: (obj: { appId: string; documentId: string }) => any
   showSubmitPage?: (val: boolean) => void
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   submitData: (id: string) => any
   validateAndPublishItemText?: string
@@ -102,7 +102,7 @@ interface CommonValidateAndPublishType {
   helpText: string
   submitButton: string
   helpUrl?: string
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   values: DefaultValueType | any
   type:

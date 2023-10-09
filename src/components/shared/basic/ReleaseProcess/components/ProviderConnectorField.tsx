@@ -30,7 +30,7 @@ export default function ProviderConnectorField({
   pattern,
   placeholder,
   validate,
-}: //Add an ESLint exception until there is a solution
+}: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
   return (

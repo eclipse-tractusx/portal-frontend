@@ -102,7 +102,7 @@ export default function AppPage() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  //Add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus ?? appStatusData
@@ -325,7 +325,7 @@ export default function AppPage() {
     const value = files
     if (value.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         const nextFiles = [...getValues().images] as any[]
         nextFiles[fileIndex] = {

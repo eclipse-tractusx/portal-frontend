@@ -41,7 +41,7 @@ export type StoreFormType = {
   att: FormAttribute
 }
 
-//Add an ESLint exception until there is a solution
+// Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 const initialState: IHashMap<any> = {}
 initialState[FORMS.GENERIC] = {}

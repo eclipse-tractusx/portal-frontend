@@ -368,7 +368,7 @@ export default function AppMarketCard() {
       title: data.title,
       provider: data.provider,
       salesManagerId,
-      //Add an ESLint exception until there is a solution
+      // Add an ESLint exception until there is a solution
       // eslint-disable-next-line
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
@@ -840,12 +840,12 @@ export default function AppMarketCard() {
         onBackIconClick={() => {
           navigate('/appmanagement')
         }}
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)

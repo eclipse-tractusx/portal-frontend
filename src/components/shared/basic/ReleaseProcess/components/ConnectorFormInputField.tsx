@@ -53,7 +53,7 @@ export const ConnectorFormInputField = ({
   handleDelete,
   size,
   errorText,
-}: //Add an ESLint exception until there is a solution
+}: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
   const renderDropArea = (
@@ -136,7 +136,7 @@ any) => {
               value={value}
               items={items}
               keyTitle={keyTitle}
-              //Add an ESLint exception until there is a solution
+              // Add an ESLint exception until there is a solution
               // eslint-disable-next-line
               onAddItem={(items: any[]) => {
                 trigger(name)

@@ -178,7 +178,7 @@ const fetchSearch = createAsyncThunk(
               : item.name?.match(searchExpr) ?? item.provider.match(searchExpr)
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
-        //Add an ESLint exception until there is a solution
+        // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
         partners.content.map((item: any) => businessPartnerToSearchItem(item)),
         news

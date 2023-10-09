@@ -35,7 +35,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
   isRequired = true,
   minLength = 10,
   maxLength = 255,
-}: //Add an ESLint exception until there is a solution
+}: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
   return (

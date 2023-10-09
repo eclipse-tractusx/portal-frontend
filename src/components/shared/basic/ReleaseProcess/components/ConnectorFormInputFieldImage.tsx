@@ -41,7 +41,7 @@ export default function ConnectorFormInputFieldImage({
   handleDelete,
   isRequired = true,
   size,
-}: //Add an ESLint exception until there is a solution
+}: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
   const { t } = useTranslation()
