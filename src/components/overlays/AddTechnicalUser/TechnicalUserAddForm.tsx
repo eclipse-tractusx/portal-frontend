@@ -72,9 +72,9 @@ export type FormAddType = {
     TechnicalUserService: string
     TechnicalUserDescription: string
   }>
-  helperText?: string
-  label?: string
-  placeholder?: string
+  helperText: string
+  label: string
+  placeholder: string
   name:
     | 'TechnicalUserName'
     | 'TechnicalUserService'
@@ -174,7 +174,7 @@ const TechnicalUserAddFormTextfield = ({
             error={!!errors[name as keyof Object]}
             fullWidth
             helperText={
-              Boolean(errors[name as keyof Object])
+              errors[name as keyof Object]
                 ? helperText
                 : `${value.length}/${limit}`
             }
@@ -191,7 +191,7 @@ const TechnicalUserAddFormTextfield = ({
             variant="filled"
             FormHelperTextProps={{
               sx: {
-                marginLeft: Boolean(errors[name as keyof Object]) ? '' : 'auto',
+                marginLeft: errors[name as keyof Object] ? '' : 'auto',
               },
             }}
             InputProps={{

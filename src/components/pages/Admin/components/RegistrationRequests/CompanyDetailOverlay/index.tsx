@@ -37,7 +37,6 @@ import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPa
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   type ApplicationRequest,
-  type ProgressButtonsType,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
@@ -65,11 +64,11 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [checklistData, setCheckListData] = useState<ProgressButtonsType[]>()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [height, setHeight] = useState<string>('')
-  const { data: res } = useFetchCheckListDetailsQuery(selectedRequestId)
+  const { data: checklistData } =
+    useFetchCheckListDetailsQuery(selectedRequestId)
   const { data } = useFetchCompanySearchQuery({
     page: 0,
     args: {
@@ -88,10 +87,6 @@ const CompanyDetailOverlay = ({
       setCompany(selected[0])
     }
   }, [data, selectedCompany])
-
-  useEffect(() => {
-    setCheckListData(res)
-  }, [res])
 
   const getLocaleStr = (str: string) => {
     if (str === 'ACTIVE_PARTICIPANT') {
