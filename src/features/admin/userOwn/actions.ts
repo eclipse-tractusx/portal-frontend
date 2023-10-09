@@ -48,7 +48,7 @@ const deleteUserBpn = createAsyncThunk(
   async ({ companyUserId, bpn }: { companyUserId: string; bpn: string }) => {
     try {
       return await Api.getInstance().deleteBpn(companyUserId, bpn)
-      // TODO: add an ESLint exception until there is a solution
+      //Add an ESLint exception until there is a solution
       // eslint-disable-next-line
     } catch (error: any) {
       throw Error(JSON.stringify(error.response.status))
@@ -70,7 +70,7 @@ const putBusinessPartnerNumber = createAsyncThunk(
         companyUserId,
         inputBPN
       )
-      // TODO: add an ESLint exception until there is a solution
+      //Add an ESLint exception until there is a solution
       // eslint-disable-next-line
     } catch (error: any) {
       throw Error(JSON.stringify(error.response.status))

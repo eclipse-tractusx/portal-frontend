@@ -39,7 +39,27 @@ export type DefaultFormFieldValuesType = {
   TechnicalUserDescription: string
 }
 
-export type FormType = {
+export type FormSelectType = {
+  control: Control<DefaultFormFieldValuesType>
+  trigger: (
+    name:
+      | 'TechnicalUserName'
+      | 'TechnicalUserService'
+      | 'TechnicalUserDescription'
+  ) => void
+  errors: FieldErrors<{
+    TechnicalUserName: string
+    TechnicalUserService: string
+    TechnicalUserDescription: string
+  }>
+  name:
+    | 'TechnicalUserName'
+    | 'TechnicalUserService'
+    | 'TechnicalUserDescription'
+  rules: Object
+}
+
+export type FormAddType = {
   control: Control<DefaultFormFieldValuesType>
   trigger: (
     name:
@@ -69,7 +89,7 @@ const TechnicalUserAddFormSelect = ({
   errors,
   name,
   rules,
-}: FormType) => {
+}: FormSelectType) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
   const [selectedValue, setSelectedValue] = useState<string>()
@@ -139,7 +159,7 @@ const TechnicalUserAddFormTextfield = ({
   name,
   rules,
   limit = 80,
-}: FormType) => {
+}: FormAddType) => {
   return (
     <Controller
       render={({ field: { onChange, value } }) => (
@@ -154,7 +174,7 @@ const TechnicalUserAddFormTextfield = ({
             error={!!errors[name as keyof Object]}
             fullWidth
             helperText={
-              !!errors[name as keyof Object]
+              Boolean(errors[name as keyof Object])
                 ? helperText
                 : `${value.length}/${limit}`
             }
@@ -170,7 +190,9 @@ const TechnicalUserAddFormTextfield = ({
             value={value}
             variant="filled"
             FormHelperTextProps={{
-              sx: { marginLeft: !!errors[name as keyof Object] ? '' : 'auto' },
+              sx: {
+                marginLeft: Boolean(errors[name as keyof Object]) ? '' : 'auto',
+              },
             }}
             InputProps={{
               endAdornment: !!errors[name as keyof Object] && (
@@ -201,7 +223,7 @@ export const TechnicalUserAddForm = ({
     TechnicalUserService: string
     TechnicalUserDescription: string
   }>
-  //TODO: add an ESLint exception until there is a solution
+  //Add an ESLint exception until there is a solution
   /* eslint @typescript-eslint/no-explicit-any: "off" */
   handleSubmit: any
   trigger: (

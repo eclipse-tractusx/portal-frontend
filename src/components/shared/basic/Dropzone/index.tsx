@@ -42,7 +42,7 @@ export interface DropzoneProps {
     deletedFiles: DropzoneFile[] | undefined
   ) => void
   files?: DropzoneFile[]
-  // TODO: add an ESLint exception until there is a solution
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   acceptFormat?: any
   maxFilesToUpload?: number

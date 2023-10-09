@@ -87,7 +87,7 @@ export const apiSlice = createApi({
         url: `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
         method: 'DELETE',
       }),
-      // TODO: add an ESLint exception until there is a solution
+      //Add an ESLint exception until there is a solution
       // eslint-disable-next-line
       transformErrorResponse: (error: any) =>
         error?.errors?.[

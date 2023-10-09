@@ -36,7 +36,7 @@ const pendingCase = (
   error: '',
 })
 
-// TODO: add an ESLint exception until there is a solution
+//Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 const rejectedCase = (state: ListState<string>, action: any) => ({
   ...state,

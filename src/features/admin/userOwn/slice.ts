@@ -52,7 +52,7 @@ const fulfilled = (
   error: '',
 })
 
-// TODO: add an ESLint exception until there is a solution
+//Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 const rejected = (state: AdminUserDetailState, action: { error: any }) => ({
   ...state,

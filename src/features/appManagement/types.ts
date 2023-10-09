@@ -66,7 +66,7 @@ export interface AppStatusDataState {
   providerUri: string
   contactEmail: string
   contactNumber?: string
-  // TODO: add an ESLint exception until there is a solution
+  //Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   documents: any
   salesManagerId?: string | null

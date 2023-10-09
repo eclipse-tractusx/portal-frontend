@@ -65,7 +65,7 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [checklist, setCheckList] = useState<ProgressButtonsType[]>()
+  const [checklistData, setCheckListData] = useState<ProgressButtonsType[]>()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [height, setHeight] = useState<string>('')
@@ -90,7 +90,7 @@ const CompanyDetailOverlay = ({
   }, [data, selectedCompany])
 
   useEffect(() => {
-    setCheckList(res)
+    setCheckListData(res)
   }, [res])
 
   const getLocaleStr = (str: string) => {
@@ -159,7 +159,7 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: getTitle(activeTab, checklist ?? [], t),
+            title: getTitle(activeTab, checklistData ?? [], t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}
@@ -433,7 +433,7 @@ const CompanyDetailOverlay = ({
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <Box sx={{ width: '100%', height }}>
-                <CheckListFullButtons progressButtons={checklist} />
+                <CheckListFullButtons progressButtons={checklistData} />
               </Box>
             </TabPanel>
           </DialogContent>

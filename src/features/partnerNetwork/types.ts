@@ -133,7 +133,7 @@ export interface BusinessPartner {
   member?: boolean
   identifiers: Array<BpdmTypeUUIDKeyPair>
   legalShortName: string
-  // TODO: add an ESLint exception until there is a solution
+  //Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   legalForm: any
   states: [
@@ -197,7 +197,7 @@ export interface PartnerNetworkInitialState {
 export interface PartnerNetworkDataGrid {
   bpnl: string
   legalName: string
-  // TODO: add an ESLint exception until there is a solution
+  //Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   legalForm: any
   // eslint-disable-next-line
