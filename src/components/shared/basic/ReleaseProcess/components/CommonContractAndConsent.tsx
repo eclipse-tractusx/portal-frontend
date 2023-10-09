@@ -90,14 +90,14 @@ type CommonConsentType = {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
   updateDocumentUpload?: (obj: {
     appId: string
     documentTypeId: DocumentTypeId
     body: {
       file: File
     }
+    // Add an ESLint exception until there is a solution
+    // eslint-disable-next-line
   }) => any
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
   // Add an ESLint exception until there is a solution
@@ -230,7 +230,8 @@ export default function CommonContractAndConsent({
         ...item,
         consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
       }))
-
+    // Add an ESLint exception until there is a solution
+    // eslint-disable-next-line
     const consentAgreementData: any =
       fetchAgreementData &&
       fetchConsent &&

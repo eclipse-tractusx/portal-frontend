@@ -63,6 +63,8 @@ export const UserList = ({
   onMultipleButtonClick?: () => void
   tableLabel: string
   onDetailsClick: (row: TenantUser) => void
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchHook: (paginArgs: PaginFetchArgs) => any
   fetchHookArgs?: FetchHookArgsType
   onSearch?: (search: string) => void

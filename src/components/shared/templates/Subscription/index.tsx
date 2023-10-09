@@ -112,6 +112,8 @@ type State = {
 
 type Action = {
   type: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   payload: any
 }
 
@@ -224,7 +226,11 @@ const setData = (
 
 interface SubscriptionType {
   providerSuccessMessage: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchQuery: (Obj: SubscriptionRequestType | SubscriptionRequestBody) => any
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchAppFilters?: () => any
   headline: string
   subHeading: string
@@ -242,7 +248,7 @@ interface SubscriptionType {
     showAll: string
   }
   doNotShowAutoSetup?: boolean
-  currentSuccessType: (state: RootState) => any
+  currentSuccessType: (state: RootState) => boolean
   loadMoreButtonText?: string
   type?: string
 }

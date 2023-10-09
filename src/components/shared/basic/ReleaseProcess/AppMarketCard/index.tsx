@@ -368,12 +368,12 @@ export default function AppMarketCard() {
       title: data.title,
       provider: data.provider,
       salesManagerId,
-      // Add an ESLint exception until there is a solution
-      // eslint-disable-next-line
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
       })
-        ? data.useCaseCategory?.map((item: any) => item.id)
+        ? // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
+          data.useCaseCategory?.map((item: any) => item.id)
         : data.useCaseCategory,
       descriptions: [
         {
