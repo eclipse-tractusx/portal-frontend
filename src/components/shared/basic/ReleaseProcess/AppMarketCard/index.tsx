@@ -226,25 +226,27 @@ export default function AppMarketCard() {
       )
       setSalesManagerListData(uniqueSalesManagerList)
 
-      if (appStatusData?.salesManagerId) {
-        const defaultsalesMgr: any = uniqueSalesManagerList?.filter(
+      if (appStatusData?.salesManagerId && uniqueSalesManagerList) {
+        const defaultsalesMgr = uniqueSalesManagerList?.filter(
           (item) => item.userId === appStatusData?.salesManagerId
         )
-        onSalesManagerChange(defaultsalesMgr && defaultsalesMgr[0]?.userId)
-        setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
+        if (defaultsalesMgr) {
+          onSalesManagerChange(defaultsalesMgr[0]?.userId)
+          setDefaultSalesManagerValue(defaultsalesMgr[0])
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList, appStatusData])
 
-  const onSalesManagerChange = (sales: string) => {
+  const onSalesManagerChange = (sales: string | null) => {
     setSalesManagerId(sales)
   }
 
   const cardImageData: string | null = getValues().uploadImage.leadPictureUri
   useEffect(() => {
     if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      const isFile: string = cardImageData
+      const isFile: string | null = cardImageData
 
       if (isFile) {
         const blobFile = new Blob([cardImageData], {
@@ -278,7 +280,7 @@ export default function AppMarketCard() {
       id: documentId,
       name: documentName,
       status,
-    } as any)
+    } as unknown as string | null)
   }
 
   const fetchCardImage = async (documentId: string, documentName: string) => {
@@ -286,6 +288,7 @@ export default function AppMarketCard() {
       const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
+      console.log(URL.createObjectURL(file))
       setCardImage(URL.createObjectURL(file))
     } catch (error) {
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
@@ -346,7 +349,7 @@ export default function AppMarketCard() {
         name: uploadImageValue.name,
         size: uploadImageValue.size,
         status,
-      } as any)
+      } as unknown as string | null)
     }
 
     setFileStatus(UploadStatus.UPLOADING)
@@ -365,6 +368,8 @@ export default function AppMarketCard() {
       title: data.title,
       provider: data.provider,
       salesManagerId,
+      //Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
       })
@@ -835,9 +840,13 @@ export default function AppMarketCard() {
         onBackIconClick={() => {
           navigate('/appmanagement')
         }}
+        //Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}
+        //Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}

@@ -53,7 +53,7 @@ import {
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
@@ -71,7 +71,7 @@ import { phone } from 'phone'
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: any
+  images: []
   uploadDataPrerequisits: File | null
   uploadTechnicalGuide: File | null
   uploadAppContract: File | null | string
@@ -102,6 +102,8 @@ export default function AppPage() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
+  //Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const appStatusData: any = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
@@ -175,7 +177,7 @@ export default function AppPage() {
           name: value.name,
           size: value.size,
           status,
-        } as any)
+        } as unknown)
     },
     [getValues, setValue]
   )
@@ -319,10 +321,12 @@ export default function AppPage() {
     }
   }, [uploadTechnicalGuideValue, getValues, setFileStatus, uploadDocumentApi])
 
-  const uploadImages = (files: any) => {
+  const uploadImages = (files: DropzoneFile[]) => {
     const value = files
     if (value.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
+        //Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         const nextFiles = [...getValues().images] as any[]
         nextFiles[fileIndex] = {
           id: value[fileIndex].id,

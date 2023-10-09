@@ -166,13 +166,15 @@ export default function OfferPage({
     const value = files
     if (value.length > 0) {
       const setFiles = (fileIndex: number, status: UploadFileStatus) => {
+        //Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         const files = [...getValues().images] as any[]
         files[fileIndex] = {
           name: value[fileIndex].name,
           size: value[fileIndex].size,
           status,
         }
-        setValue('images', files as any)
+        setValue('images', files as unknown)
       }
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
