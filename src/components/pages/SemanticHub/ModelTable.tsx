@@ -158,7 +158,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         rowsCount={modelList.totalItems}
         hideFooter
         loading={loadingModelList}
-        disableRowSelectionOnClick={true}
+        disableSelectionOnClick={true}
         disableColumnFilter={true}
         disableColumnMenu={true}
         disableColumnSelector={true}
