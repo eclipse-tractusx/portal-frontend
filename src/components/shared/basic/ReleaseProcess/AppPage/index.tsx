@@ -60,7 +60,7 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import {
-  AppStatusDataState,
+  type AppStatusDataState,
   ErrorType,
   type LanguageStatusType,
   type UseCaseType,

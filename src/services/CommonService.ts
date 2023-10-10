@@ -23,6 +23,8 @@ import i18next from 'i18next'
 import type { AppMarketplaceApp } from 'features/apps/apiSlice'
 import type { ImageType } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from './ImageService'
+import type { RoleDescData } from 'components/pages/RoleDetails'
+import type { RolesData } from 'features/companyRoles/companyRoleApiSlice'
 
 export interface SubNavigationType {
   index: number
@@ -152,25 +154,25 @@ const getUseCases = (callback: (data: UseCaseType) => void) => {
     })
 }
 
-const getRoleDescription = (callback: any) => {
+const getRoleDescription = (callback: (data: RoleDescData[]) => void) => {
   const url = `${getAssetBase()}/content/${
     i18next.language
   }/roledescription.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => callback(data))
+    .then((data) => {callback(data)})
     .catch((err) => {
       console.log(err)
     })
 }
 
-const getCompanyRoleUpdateData = (callback: any) => {
+const getCompanyRoleUpdateData = (callback: (data: RolesData) => void) => {
   const url = `${getAssetBase()}/content/${
     i18next.language
   }/companyRoleChange.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => callback(data))
+    .then((data) => {callback(data)})
     .catch((error) => {
       console.log('Fetching Company Roles Data Failed')
     })
