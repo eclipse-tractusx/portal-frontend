@@ -79,7 +79,7 @@ export default function TechnicalUserDetailsContent({
     setLoading(true)
     await mutationRequest(newData.serviceAccountId)
       .unwrap()
-      .then((payload: any) => {
+      .then((payload: ServiceAccountDetail) => {
         success(
           t('content.usermanagement.technicalUser.resetCredentialSuccess'),
           ''

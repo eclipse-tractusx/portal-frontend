@@ -48,6 +48,10 @@ export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
+  isOwner?: boolean
+  offer?: {
+    name?: string
+  }
 }
 
 export interface ServiceAccountDetail extends ServiceAccountListEntry {
