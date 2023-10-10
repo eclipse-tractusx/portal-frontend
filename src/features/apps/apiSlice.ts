@@ -45,9 +45,9 @@ export type AppItem = {
   leadPictureId: string
   licenseType: string
   name: string
-  onButtonClick: any
-  onClick: any
-  onSecondaryButtonClick: any
+  onButtonClick: () => void
+  onClick: () => void
+  onSecondaryButtonClick: () => void
   price: string
   provider: string
   shortDescription: string

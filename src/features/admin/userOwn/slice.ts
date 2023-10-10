@@ -106,6 +106,8 @@ export const slice = createSlice({
 export const UserdetailSelector = (state: RootState): UserDetail =>
   state.admin.userOwn.data
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 export const resetSelector = (state: RootState): any => state.admin.userOwn
 
 const Slice = { slice }
