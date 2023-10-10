@@ -128,75 +128,53 @@ const AddusersIDPResponse = ({
   }, [userResponse])
 
   return (
-    <Dialog open={true}>
-      <DialogHeader
-        title={
-          !userResponse.error ? t('userssuccess.title') : t('userserror.title')
-        }
-        intro={''}
-        closeWithIcon={true}
-        onCloseWithIcon={() => {
-          storeResponse('')
-        }}
-      />
-      <DialogContent>
-        {!userResponse.error ? (
-          <Trans>
-            <Typography variant="body1" className="successDesc">
-              {t('userssuccess.desc')}
-            </Typography>
-          </Trans>
-        ) : (
-          <div className="errorSection mb-30">
-            <div className="uploadedDetailsSection mb-30">
-              <div className="userDetailsMain">
-                <div className="userSuccess">
-                  <Typography variant="body1" className="number">
-                    {userResponse?.updated}
-                  </Typography>
-                </div>
-                <Typography variant="label2" className="detailLabel">
-                  {t('userserror.userUploaded')}
+    <>
+      {!userResponse.error ? (
+        <Trans>
+          <Typography variant="body1" className="successDesc">
+            {t('userssuccess.desc')}
+          </Typography>
+        </Trans>
+      ) : (
+        <div className="errorSection mb-30">
+          <div className="uploadedDetailsSection mb-30">
+            <div className="userDetailsMain">
+              <div className="userSuccess">
+                <Typography variant="body1" className="number">
+                  {userResponse?.updated}
                 </Typography>
               </div>
-              <div className="userDetailsMain">
-                <div className="userError">
-                  <Typography variant="body1" className="number">
-                    {userResponse?.error}
-                  </Typography>
-                </div>
-                <Typography variant="label2" className="detailLabel">
-                  {t('userserror.userFailed')}
-                </Typography>
-              </div>
+              <Typography variant="label2" className="detailLabel">
+                {t('userserror.userUploaded')}
+              </Typography>
             </div>
-
-            {userResponse?.errors.length > 0 && tableErrorData && (
-              <>
-                <div className="mb-30">
-                  <Trans>
-                    <Typography variant="label2" className="errorUsersLabel">
-                      {t('userserror.errorUsersLabel')}
-                    </Typography>
-                  </Trans>
-                </div>
-                <StaticTable data={tableErrorData} horizontal={true} />
-              </>
-            )}
+            <div className="userDetailsMain">
+              <div className="userError">
+                <Typography variant="body1" className="number">
+                  {userResponse?.error}
+                </Typography>
+              </div>
+              <Typography variant="label2" className="detailLabel">
+                {t('userserror.userFailed')}
+              </Typography>
+            </div>
           </div>
-        )}
-      </DialogContent>
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            storeResponse('')
-          }}
-        >
-          {t('action.close')}
-        </Button>
-      </DialogActions>
-    </Dialog>
+
+          {userResponse?.errors.length > 0 && tableErrorData && (
+            <>
+              <div className="mb-30">
+                <Trans>
+                  <Typography variant="label2" className="errorUsersLabel">
+                    {t('userserror.errorUsersLabel')}
+                  </Typography>
+                </Trans>
+              </div>
+              <StaticTable data={tableErrorData} horizontal={true} />
+            </>
+          )}
+        </div>
+      )}
+    </>
   )
 }
 
@@ -315,10 +293,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-              '',
+            '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-              '',
+            '',
           ].join(',')
         )
         .join('\n')}`,
@@ -531,7 +509,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => {}}
+              onBlur={() => { }}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -617,53 +595,81 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           />
           {t('add.learnMore')}
         </Typography>
-        {userResponse?.data && (
-          <AddusersIDPResponse
-            response={userResponse.data}
-            storeResponse={storeResponse}
-          />
-        )}
+
       </>
     )
+  }
+
+  const fetchTitle = () => {
+    if(Object.keys(userResponse).length !== 0 && userResponse.error){
+      return t('userserror.title')
+    }else if(Object.keys(userResponse).length !== 0 && !userResponse.error){
+      return t('userssuccess.title')
+    }else{
+      return (t('users.title', {idp: idpData?.displayName}))
+    }
   }
 
   return (
     <>
       <DialogHeader
-        title={t('users.title', {
-          idp: idpData?.displayName,
-        })}
+        title={fetchTitle()}
         intro=""
         closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(closeOverlay())}
+        onCloseWithIcon={() => { userResponse?.data ? storeResponse('') : dispatch(closeOverlay()) }}
       />
-      <DialogContent>{renderContent()}</DialogContent>
-      <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('action.cancel')}
-        </Button>
-        {loading ? (
-          <LoadingButton
-            color="primary"
-            helperText=""
-            helperTextColor="success"
-            label=""
-            loadIndicator={t('action.loading')}
-            loading
-            size="medium"
-            onButtonClick={() => {}}
-            sx={{ marginLeft: '10px' }}
-          />
-        ) : (
-          <Button
-            variant="contained"
-            disabled={!id || uploadedFile === undefined}
-            onClick={postUsers}
-          >
-            {t('action.uploadUserList')}
-          </Button>
-        )}
-      </DialogActions>
+      <DialogContent>
+        {
+          userResponse?.data ? (
+            <AddusersIDPResponse
+              response={userResponse.data}
+              storeResponse={storeResponse}
+            />
+          ) :
+            renderContent()
+        }
+      </DialogContent>
+      {
+        userResponse?.data ?
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                storeResponse('')
+              }}
+            >
+              {t('action.close')}
+            </Button>
+          </DialogActions>
+          :
+          <DialogActions>
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('action.cancel')}
+            </Button>
+            {loading ? (
+              <LoadingButton
+                color="primary"
+                helperText=""
+                helperTextColor="success"
+                label=""
+                loadIndicator={t('action.loading')}
+                loading
+                size="medium"
+                onButtonClick={() => { }}
+                sx={{ marginLeft: '10px' }}
+              />
+            ) : (
+              <Button
+                variant="contained"
+                disabled={!id || uploadedFile === undefined}
+                onClick={postUsers}
+              >
+                {t('action.uploadUserList')}
+              </Button>
+            )}
+          </DialogActions>
+      }
+
     </>
   )
 }
