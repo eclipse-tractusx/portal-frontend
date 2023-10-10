@@ -22,21 +22,25 @@ import './CompanyRoles.scss'
 import { useEffect, useState } from 'react'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import CommonService from 'services/CommonService'
+import CommonService, {
+  type SubNavigationType,
+  type CompanyRolesType,
+  type CompanyType,
+} from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
 
 export default function CompanyRoles() {
-  const [companyRoles, setCompanyRoles] = useState<any>()
-  const [linkArray, setLinkArray] = useState<any>()
+  const [companyRoles, setCompanyRoles] = useState<CompanyType>()
+  const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const url = window.location.href
   const language = useSelector(languageSelector)
   const [topReached, setTopReached] = useState<boolean>(false)
 
   useEffect(() => {
-    CommonService.getCompanyRoles((data: any) => {
+    CommonService.getCompanyRoles((data: CompanyRolesType) => {
       if (url.indexOf('companyrolesappprovider') > 1) {
         setCompanyRoles(data.appProvider)
         setLinkArray(data.appProvider.subNavigation)

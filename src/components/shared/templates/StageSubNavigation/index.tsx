@@ -21,16 +21,13 @@
 import { ParentSubNavigation } from '@catena-x/portal-shared-components'
 import '../Templates.scss'
 import { Box } from '@mui/material'
+import { type SubNavigationType } from 'services/CommonService'
 
 export const StageSubNavigation = ({
   linkArray,
   fixHeader,
 }: {
-  linkArray: {
-    index: number
-    title: string
-    navigation: string
-  }[]
+  linkArray: SubNavigationType[]
   fixHeader: boolean
 }) => {
   const scrollToId = (id: string) => {

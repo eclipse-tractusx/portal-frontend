@@ -24,6 +24,67 @@ import type { AppMarketplaceApp } from 'features/apps/apiSlice'
 import type { ImageType } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from './ImageService'
 
+export interface SubNavigationType {
+  index: number
+  title: string
+  navigation: string
+}
+
+export interface UseCaseType {
+  traceability: {
+    title: string
+    description: string
+    sections: []
+    subNavigation?: SubNavigationType[]
+  }
+  subNavigation: SubNavigationType[]
+}
+
+export interface DataSpaceType {
+  dataSpace: {
+    title: string
+    description: string
+    sections: []
+    subNavigation?: SubNavigationType[]
+  }
+  subNavigation: SubNavigationType[]
+}
+
+export interface CompanyRolesType {
+  appProvider: {
+    title: string
+    description: string
+    sections: []
+    subNavigation: SubNavigationType[]
+  }
+  serviceProvider: {
+    title: string
+    description: string
+    sections: []
+    subNavigation: SubNavigationType[]
+  }
+  confirmity: {
+    title: string
+    description: string
+    sections: []
+    subNavigation: SubNavigationType[]
+  }
+  participant: {
+    title: string
+    description: string
+    sections: []
+    subNavigation: SubNavigationType[]
+  }
+  subNavigation?: SubNavigationType[]
+}
+
+export interface CompanyType {
+  title: string
+  description: string
+  sections: []
+  subNavigation: SubNavigationType[]
+}
+
 const getName = (app: AppMarketplaceApp) => app.name ?? ''
 const getDescription = (app: AppMarketplaceApp) =>
   app.shortDescription === 'ERROR' ? '' : app.shortDescription
@@ -67,21 +128,25 @@ const isValidPictureId = (id: string) => {
     : id
 }
 
-const getCompanyRoles = (callback: any) => {
+const getCompanyRoles = (callback: (data: CompanyRolesType) => void) => {
   const url = `${getAssetBase()}/content/${i18next.language}/companyroles.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => callback(data))
+    .then((data) => {
+      callback(data)
+    })
     .catch((err) => {
       console.log(err)
     })
 }
 
-const getUseCases = (callback: any) => {
+const getUseCases = (callback: (data: UseCaseType) => void) => {
   const url = `${getAssetBase()}/content/${i18next.language}/usecase.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => callback(data))
+    .then((data) => {
+      callback(data)
+    })
     .catch((err) => {
       console.log(err)
     })
@@ -111,11 +176,13 @@ const getCompanyRoleUpdateData = (callback: any) => {
     })
 }
 
-const getDataSpace = (callback: any) => {
+const getDataSpace = (callback: (data: DataSpaceType) => void) => {
   const url = `${getAssetBase()}/content/${i18next.language}/dataspace.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => callback(data))
+    .then((data) => {
+      callback(data)
+    })
     .catch((err) => {
       console.log(err)
     })
