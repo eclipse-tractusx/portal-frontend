@@ -22,7 +22,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Checkbox,
-  Dialog,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -293,10 +292,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-            '',
+              '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-            '',
+              '',
           ].join(',')
         )
         .join('\n')}`,
@@ -509,7 +508,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => { }}
+              onBlur={() => {}}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -595,18 +594,17 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           />
           {t('add.learnMore')}
         </Typography>
-
       </>
     )
   }
 
   const fetchTitle = () => {
-    if(Object.keys(userResponse).length !== 0 && userResponse.error){
+    if (Object.keys(userResponse).length !== 0 && userResponse.error) {
       return t('userserror.title')
-    }else if(Object.keys(userResponse).length !== 0 && !userResponse.error){
+    } else if (Object.keys(userResponse).length !== 0 && !userResponse.error) {
       return t('userssuccess.title')
-    }else{
-      return (t('users.title', {idp: idpData?.displayName}))
+    } else {
+      return t('users.title', { idp: idpData?.displayName })
     }
   }
 
@@ -616,60 +614,59 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         title={fetchTitle()}
         intro=""
         closeWithIcon={true}
-        onCloseWithIcon={() => { userResponse?.data ? storeResponse('') : dispatch(closeOverlay()) }}
+        onCloseWithIcon={() => {
+          userResponse?.data ? storeResponse('') : dispatch(closeOverlay())
+        }}
       />
       <DialogContent>
-        {
-          userResponse?.data ? (
-            <AddusersIDPResponse
-              response={userResponse.data}
-              storeResponse={storeResponse}
-            />
-          ) :
-            renderContent()
-        }
+        {userResponse?.data ? (
+          <AddusersIDPResponse
+            response={userResponse.data}
+            storeResponse={storeResponse}
+          />
+        ) : (
+          renderContent()
+        )}
       </DialogContent>
-      {
-        userResponse?.data ?
-          <DialogActions>
+      {userResponse?.data ? (
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              storeResponse('')
+            }}
+          >
+            {t('action.close')}
+          </Button>
+        </DialogActions>
+      ) : (
+        <DialogActions>
+          <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            {t('action.cancel')}
+          </Button>
+          {loading ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator={t('action.loading')}
+              loading
+              size="medium"
+              onButtonClick={() => {}}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
             <Button
-              variant="outlined"
-              onClick={() => {
-                storeResponse('')
-              }}
+              variant="contained"
+              disabled={!id || uploadedFile === undefined}
+              onClick={postUsers}
             >
-              {t('action.close')}
+              {t('action.uploadUserList')}
             </Button>
-          </DialogActions>
-          :
-          <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-              {t('action.cancel')}
-            </Button>
-            {loading ? (
-              <LoadingButton
-                color="primary"
-                helperText=""
-                helperTextColor="success"
-                label=""
-                loadIndicator={t('action.loading')}
-                loading
-                size="medium"
-                onButtonClick={() => { }}
-                sx={{ marginLeft: '10px' }}
-              />
-            ) : (
-              <Button
-                variant="contained"
-                disabled={!id || uploadedFile === undefined}
-                onClick={postUsers}
-              >
-                {t('action.uploadUserList')}
-              </Button>
-            )}
-          </DialogActions>
-      }
-
+          )}
+        </DialogActions>
+      )}
     </>
   )
 }
