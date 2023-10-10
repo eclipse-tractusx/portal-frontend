@@ -31,6 +31,8 @@ export const AppListGroupView = ({
   items,
   groupKey,
 }: {
+  // Add an ESLint exception until there is a solution
+  /* eslint @typescript-eslint/no-explicit-any: "off" */
   items: any[]
   groupKey: string
 }) => {

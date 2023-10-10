@@ -160,7 +160,9 @@ const getRoleDescription = (callback: (data: RoleDescData[]) => void) => {
   }/roledescription.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => {callback(data)})
+    .then((data) => {
+      callback(data)
+    })
     .catch((err) => {
       console.log(err)
     })
@@ -172,7 +174,9 @@ const getCompanyRoleUpdateData = (callback: (data: RolesData) => void) => {
   }/companyRoleChange.json`
   fetch(url)
     .then((response) => response.json())
-    .then((data) => {callback(data)})
+    .then((data) => {
+      callback(data)
+    })
     .catch((error) => {
       console.log('Fetching Company Roles Data Failed')
     })

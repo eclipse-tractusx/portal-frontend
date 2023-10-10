@@ -38,14 +38,33 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import { PAGES } from 'types/Constants'
 import uniqueId from 'lodash/uniqueId'
 
+export type ItemType = {
+  description: string
+  id: string
+  image: {
+    src: string
+    alt: string
+  }
+  lastChanged: string
+  leadPictureId: string
+  name: string
+  onClick: () => void
+  price: string
+  provider: string
+  status: string
+  statusText: string
+  subtitle: string
+  title: string
+}
+
 export default function AddRoles() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const appId = useParams().appId
   const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
-  const items: any = state
-  const app = items?.filter((item: any) => item.id === appId)
+  const items = state
+  const app = items?.filter((item: ItemType) => item.id === appId)
   const { data, refetch } = useFetchAppRolesQuery(appId ?? '')
   const [addRolesOverlayOpen, setAddRolesOverlayOpen] = useState<boolean>(false)
   const [appRoles, setAppRoles] = useState<any[]>([
