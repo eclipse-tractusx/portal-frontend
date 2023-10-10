@@ -60,6 +60,7 @@ import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
 import {
+  AppStatusDataState,
   ErrorType,
   type LanguageStatusType,
   type UseCaseType,
@@ -102,9 +103,7 @@ export default function AppPage() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  const appStatusData: any = useSelector(appStatusDataSelector)
+  const appStatusData: AppStatusDataState = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
   const [saveApp] = useSaveAppMutation()
@@ -390,11 +389,11 @@ export default function AppPage() {
             )[0]?.shortDescription ?? '',
         },
       ],
-      title: statusData.title,
-      provider: statusData.provider,
-      salesManagerId: statusData.salesManagerId,
-      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
-      supportedLanguageCodes: statusData.supportedLanguageCodes,
+      title: statusData.title ?? '',
+      provider: statusData.provider ?? '',
+      salesManagerId: statusData.salesManagerId ?? '',
+      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id) ?? [],
+      supportedLanguageCodes: statusData.supportedLanguageCodes ?? [],
       price: statusData.price,
       privacyPolicies: selectedPrivacyPolicies,
       providerUri: data.providerHomePage ?? '',

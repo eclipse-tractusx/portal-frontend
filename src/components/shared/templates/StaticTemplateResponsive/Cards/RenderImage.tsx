@@ -28,12 +28,12 @@ export default function RenderImage({
   height,
   additionalStyles,
   width,
-}: {
+}: Readonly<{
   url: string
   additionalStyles?: SxProps
   height?: string
   width?: string
-}) {
+}>) {
   const web = useMediaQuery('(min-width:1025px)')
 
   return (

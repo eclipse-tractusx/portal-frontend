@@ -30,7 +30,7 @@ import {
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { type FunctionComponent, useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 
 export type DropzoneFile = File & Partial<UploadFile>
@@ -42,9 +42,7 @@ export interface DropzoneProps {
     deletedFiles: DropzoneFile[] | undefined
   ) => void
   files?: DropzoneFile[]
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  acceptFormat?: any
+  acceptFormat?: Accept | undefined
   maxFilesToUpload?: number
   maxFileSize?: number
 
