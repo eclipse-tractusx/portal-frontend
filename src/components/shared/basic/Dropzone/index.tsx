@@ -42,7 +42,7 @@ export interface DropzoneProps {
     deletedFiles: DropzoneFile[] | undefined
   ) => void
   files?: DropzoneFile[]
-  acceptFormat?: Accept | undefined
+  acceptFormat?: Accept
   maxFilesToUpload?: number
   maxFileSize?: number
 

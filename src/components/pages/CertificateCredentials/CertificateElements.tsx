@@ -24,11 +24,11 @@ import type { CertificateResponse } from 'features/certification/certificationAp
 import { CertificateCard } from 'components/shared/basic/CertificateCard'
 import './CertificateCredentials.scss'
 
-export interface CertificateProps {
-  item: CertificateResponse[]
-}
-
-export default function CertificateElements({ data }: any) {
+export default function CertificateElements({
+  data,
+}: {
+  data: CertificateResponse[]
+}) {
   const { t } = useTranslation()
 
   if (data && data.length === 0) {

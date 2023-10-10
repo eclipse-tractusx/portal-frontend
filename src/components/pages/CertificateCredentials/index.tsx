@@ -38,6 +38,12 @@ import {
 } from 'features/certification/certificationApiSlice'
 import CertificateElements from './CertificateElements'
 
+type TabButtonsType = {
+  buttonText: string
+  buttonValue: FilterType
+  onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
+}
+
 enum FilterType {
   UPLOADED = 'Uploaded',
   PENDING = 'Pending',
@@ -133,7 +139,7 @@ export default function CertificateCredentials() {
     },
   ]
 
-  const tabButtons: any[] = [
+  const tabButtons: TabButtonsType[] = [
     {
       buttonText: t('content.certificates.tabs.uploadedCertificates'),
       buttonValue: FilterType.UPLOADED,
@@ -252,7 +258,7 @@ export default function CertificateCredentials() {
                 />
               )}
             </div>
-            <CertificateElements data={data} />
+            {data && <CertificateElements data={data} />}
           </div>
 
           <div style={{ height: '66px' }}></div>
