@@ -51,7 +51,17 @@ export default function IDPStateProgress({ idp }: { idp: IdentityProvider }) {
   const { t } = useTranslation('idp')
   const configured = idp.oidc?.clientId ? true : false
 
-  const [progressIcons, setProgressIcons] = useState<any>(initialProgressIcons)
+  type ProgressType = {
+    [key: string]:
+      | {
+          icon: any
+          backgroundColor: string
+        }
+      | undefined
+  }
+
+  const [progressIcons, setProgressIcons] =
+    useState<ProgressType[]>(initialProgressIcons)
   const [hoverMessage, setHoverMessage] = useState<string>('')
 
   useEffect(() => {

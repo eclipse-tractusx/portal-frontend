@@ -49,7 +49,7 @@ export const addMemberAttribute = (
   queryData: (string | null)[] | undefined
 ) => {
   if (queryData) {
-    finalObj.forEach((x: any) => {
+    finalObj.forEach((x: BusinessPartner) => {
       x.member = queryData.includes(x.bpnl)
     })
   }
