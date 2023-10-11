@@ -18,14 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export const isQueryDataPresent = (queryData: any) =>
+import {
+  type BusinessPartner,
+  type BusinessPartnerAddressResponse,
+} from 'features/partnerNetwork/types'
+
+export const isQueryDataPresent = (queryData: string[]) =>
   queryData && queryData.length > 0
 
-export const isContentPresent = (data: any) => data && data.content
+export const isContentPresent = (data: { content: Object }) =>
+  data && data.content
 
-export const addCountryAttribute = (finalObj: any, payload: any) => {
-  finalObj.forEach((x: any) => {
-    payload.forEach((y: any) => {
+export const addCountryAttribute = (
+  finalObj: BusinessPartner[],
+  payload: BusinessPartnerAddressResponse[]
+) => {
+  finalObj.forEach((x: BusinessPartner) => {
+    payload.forEach((y: BusinessPartnerAddressResponse) => {
       if (x.bpnl === y.bpnLegalEntity) {
         x.legalAddress.alternativePostalAddress = y.alternativePostalAddress
         x.legalAddress.physicalPostalAddress = y.physicalPostalAddress
@@ -35,7 +44,10 @@ export const addCountryAttribute = (finalObj: any, payload: any) => {
   return finalObj
 }
 
-export const addMemberAttribute = (finalObj: any, queryData: any) => {
+export const addMemberAttribute = (
+  finalObj: BusinessPartner[],
+  queryData: (string | null)[] | undefined
+) => {
   if (queryData) {
     finalObj.forEach((x: any) => {
       x.member = queryData.includes(x.bpnl)
