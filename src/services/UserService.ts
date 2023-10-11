@@ -44,7 +44,7 @@ const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
 }
 
 // Add an ESLint exception until there is a solution
-/* eslint @typescript-eslint/no-explicit-any: "off" */
+// eslint-disable-next-line
 const KC = new (Keycloak as any)(keycloakConfig)
 
 const update = () => {
