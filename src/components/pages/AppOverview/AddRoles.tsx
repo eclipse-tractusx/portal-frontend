@@ -67,6 +67,8 @@ export default function AddRoles() {
   const app = items?.filter((item: ItemType) => item.id === appId)
   const { data, refetch } = useFetchAppRolesQuery(appId ?? '')
   const [addRolesOverlayOpen, setAddRolesOverlayOpen] = useState<boolean>(false)
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const [appRoles, setAppRoles] = useState<any[]>([
     [''],
     [`${(<Checkbox disabled={true} />)}`],

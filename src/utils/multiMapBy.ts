@@ -42,6 +42,8 @@ export const multiMapBy = <T>(
 
   return reduce(
     collection,
+    // Add an ESLint exception until there is a solution
+    // eslint-disable-next-line
     (result: Record<string, T[]>, value: any) => {
       const keys = iteratee(value as T)
       forEach(

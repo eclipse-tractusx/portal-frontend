@@ -29,7 +29,7 @@ import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
 interface FavoriteItemProps {
   // Add an ESLint exception until there is a solution
-  /* eslint @typescript-eslint/no-explicit-any: "off" */
+  // eslint-disable-next-line
   item: any
   expandOnHover: boolean
   cardClick: boolean

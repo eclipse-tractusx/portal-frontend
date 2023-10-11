@@ -30,8 +30,6 @@ const initialState: IUser = {
   tenant: '',
   roles: [],
   isAdmin: false,
-  token: '',
-  parsedToken: '',
 }
 
 const userSlice = createSlice({
