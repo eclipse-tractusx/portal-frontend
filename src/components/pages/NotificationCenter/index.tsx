@@ -76,7 +76,7 @@ const NotificationGroup = ({
 
 export default function NotificationCenter() {
   const { t } = useTranslation('notification')
-  const sectionElement: any = useRef()
+  const sectionElement = useRef<HTMLElement>()
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
