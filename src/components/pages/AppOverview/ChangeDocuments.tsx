@@ -71,7 +71,7 @@ export default function ChangeDocuments() {
           <Box sx={{ mb: '20px', mt: '10px' }}>
             {documents?.map((doc: DocumentData) => {
               return (
-                <div>
+                <div key={doc.documentId}>
                   <Typography variant="label4" sx={{ ml: '28px' }}>
                     {doc.documentName}
                   </Typography>
@@ -146,7 +146,7 @@ export default function ChangeDocuments() {
             )}
           </div>
         </div>
-        <hr 
+        <hr
           style={{
             border: 0,
             borderTop: '1px solid #DCDCDC',
