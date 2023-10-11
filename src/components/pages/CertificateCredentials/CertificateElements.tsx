@@ -26,9 +26,9 @@ import './CertificateCredentials.scss'
 
 export default function CertificateElements({
   data,
-}: {
+}: Readonly<{
   data: CertificateResponse[]
-}) {
+}>) {
   const { t } = useTranslation()
 
   if (data && data.length === 0) {
