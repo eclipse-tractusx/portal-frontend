@@ -116,6 +116,8 @@ const imagesAndAppidToImageType = (
   images: string[],
   appId: string
 ): ImageType[] =>
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   images?.map((image: any) => ({
     url: `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
       image.documentId ?? image
