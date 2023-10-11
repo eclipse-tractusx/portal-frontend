@@ -115,6 +115,8 @@ export default function ChangeImage() {
           name: uploadImageValue.name,
           size: uploadImageValue.size,
           status,
+          // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
         } as any)
       }
 

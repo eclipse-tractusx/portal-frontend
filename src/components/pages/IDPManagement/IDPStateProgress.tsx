@@ -54,7 +54,7 @@ export default function IDPStateProgress({ idp }: { idp: IdentityProvider }) {
   type ProgressType = {
     [key: string]:
       | {
-          icon: any
+          icon: string | JSX.Element
           backgroundColor: string
         }
       | undefined
