@@ -31,10 +31,10 @@ export default function ItemProcessor({
 }: {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
-  items: any[]
+  readonly items: any[]
   // eslint-disable-next-line
-  process?: (item: any) => any
-  autostart?: boolean
+  readonly process?: (item: any) => any
+  readonly autostart?: boolean
 }) {
   // eslint-disable-next-line
   const [processed, setProcessed] = useState<any[]>([])
