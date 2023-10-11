@@ -21,7 +21,6 @@
 import Keycloak from 'keycloak-js'
 import type { IUser } from 'features/user/types'
 import { ROLES } from 'types/Constants'
-import AccessService from './AccessService'
 import {
   getCentralIdp,
   getClientId,
@@ -45,13 +44,13 @@ const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
 
 // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
-const KC = new (Keycloak as any)(keycloakConfig)
+const KC = new Keycloak(keycloakConfig)
 
 const update = () => {
   //info(`${getUsername()} updating token`)
-  KC.updateToken(50)
+  KC.updateToken(600)
     .then((refreshed: boolean) => {
-      refreshed && info(`${getUsername()} token refreshed ${refreshed}`)
+      info(`${getUsername()} token refreshed ${refreshed}`)
       store.dispatch(setLoggedUser(getLoggedUser()))
     })
     .catch(() => {
@@ -63,17 +62,20 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',
-  }).then((authenticated: boolean) => {
-    if (authenticated) {
-      info(`${getUsername()} authenticated`)
-      AccessService.init()
-      onAuthenticatedCallback(getLoggedUser())
-      store.dispatch(setLoggedUser(getLoggedUser()))
-      setInterval(update, 50000)
-    } else {
-      error(`${getUsername()} authentication failed`)
-    }
+    enableLogging: true,
   })
+    .then((authenticated: boolean) => {
+      if (authenticated) {
+        info(`${getUsername()} authenticated`)
+        onAuthenticatedCallback(getLoggedUser())
+        store.dispatch(setLoggedUser(getLoggedUser()))
+      } else {
+        error(`${getUsername()} authentication failed`)
+      }
+    })
+    .catch((err: unknown) => {
+      error('Keycloak initialization failed', err)
+    })
 }
 
 KC.onTokenExpired = () => {
@@ -101,18 +103,18 @@ const getTenant = () => KC.tokenParsed?.tenant
 
 // Add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients
-const getRoles = () =>
-  KC.tokenParsed?.resource_access[keycloakConfig.clientId]?.roles.concat(
+const getRoles = (): Array<string> =>
+  KC.tokenParsed?.resource_access?.[keycloakConfig.clientId]?.roles.concat(
     KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
-  )
+  ) ?? []
 
 const hasRole = (role: string) => getRoles()?.includes(role)
 
-const isAdmin = () => hasRole(ROLES.CX_ADMIN)
+const isAdmin = (): boolean => hasRole(ROLES.CX_ADMIN) ?? false
 
 const isLoggedIn = () => !!KC.token
 
-const getLoggedUser = () => ({
+const getLoggedUser = (): IUser => ({
   userName: getUsername(),
   name: getName(),
   email: getEmail(),

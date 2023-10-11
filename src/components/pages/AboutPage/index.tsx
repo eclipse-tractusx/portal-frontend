@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { AboutCard, PageHeader } from '@catena-x/portal-shared-components'
-import legalJson from '../../../../src/assets/notice/legal-notice.json'
+import legalJson from '../../../assets/notice/legal-notice.json'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useTranslation } from 'react-i18next'
 

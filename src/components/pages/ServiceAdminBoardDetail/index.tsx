@@ -24,7 +24,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
-import './../AdminBoardDetail/AdminBoardDetail.scss'
+import '../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
   type ServiceDetailsType,

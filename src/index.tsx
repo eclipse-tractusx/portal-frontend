@@ -22,6 +22,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from 'features/store'
+import AccessService from 'services/AccessService'
 import I18nService from 'services/I18nService'
 import UserService from 'services/UserService'
 import { AuthProvider } from 'components/AuthProvider'
@@ -33,6 +34,7 @@ import {
 } from '@catena-x/portal-shared-components'
 
 I18nService.init()
+AccessService.init()
 
 UserService.init((user) => {
   ReactDOM.render(
