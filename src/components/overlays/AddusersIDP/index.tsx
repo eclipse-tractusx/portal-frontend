@@ -391,35 +391,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         setUploadedFile(undefined)
         return
       }
-      if (acceptedFiles.length > 1) {
-        error(t(`state.${IDPState.ERROR_MULTIPLE_FILES}`))
-        setStatus(false)
-        setTimeout(() => {
-          setStatus(undefined)
-        }, 3000)
-        return
-      }
       const MIME_TYPE = {
         JSON: 'application/json',
         CSV: 'text/csv',
       }
       acceptedFiles.forEach((file: File) => {
-        if (file?.size > 100000) {
-          error(t(`state.${IDPState.ERROR_INVALID_SIZE}`))
-          setStatus(false)
-          setTimeout(() => {
-            setStatus(undefined)
-          }, 3000)
-          return
-        }
-        if (!Object.values(MIME_TYPE).includes(file.type)) {
-          error(t(`state.${IDPState.ERROR_INVALID_TYPE}`))
-          setStatus(false)
-          setTimeout(() => {
-            setStatus(undefined)
-          }, 3000)
-          return
-        }
         const reader = new FileReader()
         reader.onabort = () => {
           console.log('file reading was aborted')
@@ -428,9 +404,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           console.log('file reading has failed')
         }
         reader.onload = () => {
-          if (!reader.result) {
-            return
-          }
+          if (!reader.result) return
           const content = reader.result.toString()
           const csvFileHeader = Object.keys(csv2json(content)[0])
           if (
@@ -577,9 +551,12 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         </div>
         <div className="mb-30">
           <Dropzone
-            acceptFormat={{ 'text/csv': [] }}
+            acceptFormat={{
+              'text/csv': [],
+              'application/json': [],
+            }}
             maxFilesToUpload={1}
-            maxFileSize={2097152}
+            maxFileSize={100000}
             onChange={([file]) => {
               onDrop([file])
             }}
