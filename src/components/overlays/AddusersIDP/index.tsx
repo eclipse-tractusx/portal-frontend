@@ -428,7 +428,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           console.log('file reading has failed')
         }
         reader.onload = () => {
-          if (!reader.result) { return }
+          if (!reader.result) {
+            return
+          }
           const content = reader.result.toString()
           const csvFileHeader = Object.keys(csv2json(content)[0])
           if (
