@@ -26,7 +26,7 @@ import {
   getClientId,
   getClientIdSemantic,
 } from './EnvironmentService'
-import { error, info } from './LogService'
+import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
 import { setLoggedUser } from 'features/user/slice'
 
@@ -73,7 +73,7 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
         error(`${getUsername()} authentication failed`)
       }
     })
-    .catch((err: unknown) => {
+    .catch((err: LogData | undefined) => {
       error('Keycloak initialization failed', err)
     })
 }
