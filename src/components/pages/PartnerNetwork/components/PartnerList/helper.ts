@@ -26,8 +26,7 @@ import {
 export const isQueryDataPresent = (queryData: string[]) =>
   queryData && queryData.length > 0
 
-export const isContentPresent = (data: { content: Object }) =>
-  data?.content
+export const isContentPresent = (data: { content: Object }) => data?.content
 
 export const addCountryAttribute = (
   finalObj: BusinessPartner[],
