@@ -314,7 +314,10 @@ export default function CommonContractAndConsent({
     getValues,
   ])
 
-  const onContractConsentSubmit = async (data: Object, buttonLabel: string) => {
+  const onContractConsentSubmit = async (
+    data: Record<string, unknown>,
+    buttonLabel: string
+  ) => {
     const validateFields = await trigger([
       'agreements',
       'uploadImageConformity',
@@ -324,7 +327,10 @@ export default function CommonContractAndConsent({
     }
   }
 
-  const handleSave = async (data: Object, buttonLabel: string) => {
+  const handleSave = async (
+    data: Record<string, unknown>,
+    buttonLabel: string
+  ) => {
     setLoading(true)
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')

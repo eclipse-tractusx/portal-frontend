@@ -298,7 +298,7 @@ const EdcConnector = () => {
         />
       </section>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody, {}>
+        <PageLoadingTable<ConnectorResponseBody, unknown>
           toolbarVariant="premium"
           title={t('content.edcconnector.tabletitle')}
           loadLabel={t('global.actions.more')}
@@ -312,7 +312,7 @@ const EdcConnector = () => {
         />
       </div>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody, {}>
+        <PageLoadingTable<ConnectorResponseBody, unknown>
           toolbarVariant="premium"
           title={t('content.edcconnector.managedtabletitle')}
           loadLabel={t('global.actions.more')}

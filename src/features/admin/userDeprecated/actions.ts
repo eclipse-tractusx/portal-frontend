@@ -25,7 +25,7 @@ import { type AddUser, name } from './types'
 
 const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)
-const setUsersToAdd = createAction<AddUser | {}>(`${name}/setUsersToAdd`)
+const setUsersToAdd = createAction<AddUser | unknown>(`${name}/setUsersToAdd`)
 const setRolesToAdd = createAction<string[]>(`${name}/setRolesToAdd`)
 const setSelectedUserToAdd = createAction<GridRowId[]>(
   `${name}/setSelectedUserToAdd`
