@@ -70,7 +70,10 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
   image: {
-    src: getAppImageUrl({ id: app.id, leadPictureId: app.leadPictureUri }),
+    src: getAppImageUrl({
+      id: app.id,
+      leadPictureId: app.leadPictureUri ?? app.leadPictureId,
+    }),
     alt: app.title,
   },
   onClick: app.uri ? () => window.open(app.uri, '_blank')?.focus() : undefined,

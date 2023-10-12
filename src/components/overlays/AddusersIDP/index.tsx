@@ -32,6 +32,7 @@ import {
   type TableType,
   Textarea,
   Typography,
+  type DropAreaProps,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -49,11 +50,11 @@ import {
   FORMS,
   storeForm,
 } from 'features/control/form'
-import { useDropzone } from 'react-dropzone'
 import { error, success } from 'services/NotifyService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
 import './AddUsersIDP.scss'
+import { Dropzone } from 'components/shared/basic/Dropzone'
 
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
@@ -386,6 +387,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
+      if (!acceptedFiles[0]) {
+        setUploadedFile(undefined)
+        return
+      }
       if (acceptedFiles.length > 1) {
         error(t(`state.${IDPState.ERROR_MULTIPLE_FILES}`))
         setStatus(false)
@@ -399,7 +404,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         CSV: 'text/csv',
       }
       acceptedFiles.forEach((file: File) => {
-        if (file.size > 100000) {
+        if (file?.size > 100000) {
           error(t(`state.${IDPState.ERROR_INVALID_SIZE}`))
           setStatus(false)
           setTimeout(() => {
@@ -452,12 +457,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     [csv2json, storeData, t]
   )
 
-  const { getRootProps } = useDropzone({ onDrop })
-
   useEffect(() => {
     if (!userData) return
     storeData(JSON.stringify(userData))
   }, [storeData, userData])
+
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
+  }
 
   const renderContent = () => {
     return (
@@ -566,14 +573,19 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             </Typography>
           </div>
         </div>
-        <div {...getRootProps()} className="mb-30">
-          <DropArea
-            error={status === false}
-            translations={{
-              title: t('users.drop.title'),
-              subTitle: t('users.drop.subTitle'),
-              errorTitle: t('users.drop.errorTitle'),
+        <div className="mb-30">
+          <Dropzone
+            acceptFormat={{ 'text/csv': [] }}
+            maxFilesToUpload={1}
+            maxFileSize={2097152}
+            onChange={([file]) => {
+              onDrop([file])
             }}
+            errorText={t(
+              'content.usecaseParticipation.editUsecase.fileSizeError'
+            )}
+            DropStatusHeader={false}
+            DropArea={renderDropArea}
           />
         </div>
         <Typography
@@ -633,7 +645,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           <Button
             variant="outlined"
             onClick={() => {
-              storeResponse('')
+              dispatch(closeOverlay())
             }}
           >
             {t('action.close')}

@@ -1,5 +1,13 @@
 # Changelog
 
+## unreleased
+
+- App Release Process
+  - Fixed double loading of images for app page
+- App Overview
+  - Fixed image display in app overview cards
+- Update data grid table props to the new prop value
+
 ## 1.7.0-alpha
 
 ### Change
