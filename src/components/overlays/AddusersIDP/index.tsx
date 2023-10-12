@@ -54,7 +54,7 @@ import { error, success } from 'services/NotifyService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
 import './AddUsersIDP.scss'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
@@ -191,7 +191,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const userResponse = useSelector(editIDPUserResponseSelector)
   const fetching = t('state.fetching')
   const [loading, setLoading] = useState(false)
-  const [uploadedFile, setUploadedFile] = useState<File>()
+  const [uploadedFile, setUploadedFile] = useState<DropzoneFile>()
 
   const csvHeaderList = [
     'companyUserId',
@@ -293,10 +293,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-              '',
+            '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-              '',
+            '',
           ].join(',')
         )
         .join('\n')}`,
@@ -386,49 +386,44 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   )
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      if (!acceptedFiles[0]) {
+    (acceptedFile: DropzoneFile) => {
+      if (!acceptedFile) {
         setUploadedFile(undefined)
         return
       }
-      const MIME_TYPE = {
-        JSON: 'application/json',
-        CSV: 'text/csv',
+      const reader = new FileReader()
+      reader.onabort = () => {
+        console.log('file reading was aborted')
       }
-      acceptedFiles.forEach((file: File) => {
-        const reader = new FileReader()
-        reader.onabort = () => {
-          console.log('file reading was aborted')
-        }
-        reader.onerror = () => {
-          console.log('file reading has failed')
-        }
-        reader.onload = () => {
-          if (!reader.result) return
-          const content = reader.result.toString()
-          const csvFileHeader = Object.keys(csv2json(content)[0])
-          if (
-            !csvHeaderList.reduce(
-              (a, c, i) => a && csvFileHeader[i] === c,
-              true
-            )
-          ) {
-            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-            setStatus(false)
-            setTimeout(() => {
-              setStatus(undefined)
-            }, 3000)
-            return
-          }
-          storeData(
-            file.type === MIME_TYPE.CSV
-              ? JSON.stringify(csv2json(content))
-              : content
+      reader.onerror = () => {
+        console.log('file reading has failed')
+      }
+      reader.onload = () => {
+        if (!reader.result) return
+        const content = reader.result.toString()
+        const csvFileHeader = Object.keys(csv2json(content)[0])
+        if (
+          !csvHeaderList.reduce(
+            (a, c, i) => a && csvFileHeader[i] === c,
+            true
           )
+        ) {
+          error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+          setStatus(false)
+          setTimeout(() => {
+            setStatus(undefined)
+          }, 3000)
+          return
         }
-        setUploadedFile(file)
-        reader.readAsText(file)
-      })
+        storeData(
+          acceptedFile.type === 'text/csv'
+            ? JSON.stringify(csv2json(content))
+            : content
+        )
+      }
+      setUploadedFile(acceptedFile)
+      reader.readAsText(acceptedFile)
+
     },
     [csv2json, storeData, t]
   )
@@ -491,7 +486,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => {}}
+              onBlur={() => { }}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -551,6 +546,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         </div>
         <div className="mb-30">
           <Dropzone
+            files={uploadedFile && [uploadedFile]}
             acceptFormat={{
               'text/csv': [],
               'application/json': [],
@@ -558,7 +554,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             maxFilesToUpload={1}
             maxFileSize={100000}
             onChange={([file]) => {
-              onDrop([file])
+              onDrop(file)
             }}
             errorText={t(
               'content.usecaseParticipation.editUsecase.fileSizeError'
@@ -644,7 +640,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               loadIndicator={t('action.loading')}
               loading
               size="medium"
-              onButtonClick={() => {}}
+              onButtonClick={() => { }}
               sx={{ marginLeft: '10px' }}
             />
           ) : (
