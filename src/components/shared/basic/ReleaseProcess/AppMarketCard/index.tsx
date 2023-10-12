@@ -245,10 +245,12 @@ export default function AppMarketCard() {
 
   const cardImageData: string | null = getValues().uploadImage.leadPictureUri
   useEffect(() => {
-    if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      const isFile: string | null = cardImageData
-
-      if (isFile) {
+    if (
+      cardImageData !== null &&
+      cardImageData !== LogoGrayData &&
+      cardImage === LogoGrayData
+    ) {
+      if (cardImageData) {
         const blobFile = new Blob([cardImageData], {
           type: 'image/png',
         })
@@ -288,7 +290,6 @@ export default function AppMarketCard() {
       const response = await fetchDocumentById({ appId, documentId }).unwrap()
       const file = response.data
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
-      console.log(URL.createObjectURL(file))
       setCardImage(URL.createObjectURL(file))
     } catch (error) {
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
