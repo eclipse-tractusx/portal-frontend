@@ -7,6 +7,8 @@
 - App Overview
   - Fixed image display in app overview cards
 - Update data grid table props to the new prop value
+- Linters
+  - Fix ban-types
 
 ## 1.7.0-alpha
 
