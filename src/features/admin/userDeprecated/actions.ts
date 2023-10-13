@@ -22,10 +22,11 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import type { GridRowId } from '@mui/x-data-grid'
 import { Api } from './api'
 import { type AddUser, name } from './types'
+import type { IHashMap } from 'types/MainTypes'
 
 const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)
-const setUsersToAdd = createAction<AddUser | unknown>(`${name}/setUsersToAdd`)
+const setUsersToAdd = createAction<IHashMap<string>>(`${name}/setUsersToAdd`)
 const setRolesToAdd = createAction<string[]>(`${name}/setRolesToAdd`)
 const setSelectedUserToAdd = createAction<GridRowId[]>(
   `${name}/setSelectedUserToAdd`
