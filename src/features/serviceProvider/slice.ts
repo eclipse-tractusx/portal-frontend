@@ -41,7 +41,7 @@ const slice = createSlice({
   },
 })
 
-export const currentProviderSuccessType = (state: RootState): any =>
+export const currentProviderSuccessType = (state: RootState): boolean =>
   state.serviceProvider.isSuccess
 
 export const { setSuccessType } = slice.actions

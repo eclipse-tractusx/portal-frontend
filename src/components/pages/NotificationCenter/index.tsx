@@ -76,7 +76,7 @@ const NotificationGroup = ({
 
 export default function NotificationCenter() {
   const { t } = useTranslation('notification')
-  const sectionElement: any = useRef()
+  const sectionElement = useRef<HTMLElement>()
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -286,6 +286,8 @@ export default function NotificationCenter() {
           >
             <ul>
               {groups &&
+                // Add an ESLint exception until there is a solution
+                // eslint-disable-next-line
                 Object.entries(groups).map((entry: any) => (
                   <li key={entry[0]}>
                     <NotificationGroup label={entry[0]} items={entry[1]} />

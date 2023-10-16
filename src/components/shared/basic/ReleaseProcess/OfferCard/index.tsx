@@ -163,7 +163,7 @@ export default function OfferCard() {
             name: documentName,
             id: documentId,
             status,
-          } as any)
+          } as unknown as string)
         }
         setFileStatus(UploadStatus.UPLOAD_SUCCESS)
         setImageData({
@@ -210,7 +210,7 @@ export default function OfferCard() {
         name: uploadImageValue.name,
         size: uploadImageValue.size,
         status,
-      } as any)
+      } as unknown as string)
     }
 
     setFileStatus(UploadStatus.UPLOADING)
@@ -529,9 +529,13 @@ export default function OfferCard() {
         onBackIconClick={() => {
           navigate('/home')
         }}
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}

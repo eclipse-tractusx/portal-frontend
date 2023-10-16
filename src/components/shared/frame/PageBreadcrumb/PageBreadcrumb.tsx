@@ -23,6 +23,7 @@ import { Link, Typography } from '@mui/material'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
+import { type JSX } from 'react/jsx-runtime'
 
 interface PageBreadcrumbProps {
   backButtonVariant?: 'text' | 'contained' | 'outlined'
@@ -64,7 +65,7 @@ export const PageBreadcrumb = ({
   }
 
   const breadcrumbs = () => {
-    const crumbsArr: any[] = []
+    const crumbsArr: JSX.Element[] = []
     crumbs.forEach((item: string, index) => {
       const count = crumbs.length - 1
       const navigatePage = count - index

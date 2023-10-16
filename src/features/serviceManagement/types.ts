@@ -39,6 +39,8 @@ export interface ServiceStatusDataState {
     offerSubscriptionStatus: string
   }[]
   serviceTypeIds: string[]
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   documents: any
   leadPictureUri?: string
   leadPictureId?: string

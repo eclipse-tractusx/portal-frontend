@@ -21,18 +21,19 @@
 import { ImageItem } from '@catena-x/portal-shared-components'
 import { useMediaQuery } from '@mui/material'
 import '../StaticTemplate.scss'
+import { type SxProps } from '@mui/system'
 
 export default function RenderImage({
   url,
   height,
   additionalStyles,
   width,
-}: {
+}: Readonly<{
   url: string
-  additionalStyles?: any
+  additionalStyles?: SxProps
   height?: string
   width?: string
-}) {
+}>) {
   const web = useMediaQuery('(min-width:1025px)')
 
   return (
@@ -48,7 +49,7 @@ export default function RenderImage({
           borderRadius={true}
           shadow={false}
           modalWidth="1100"
-          additionalStyles={additionalStyles || {}}
+          additionalStyles={additionalStyles ?? {}}
         />
       ) : (
         <img
