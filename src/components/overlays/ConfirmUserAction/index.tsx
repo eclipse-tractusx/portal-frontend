@@ -54,12 +54,30 @@ export const ConfirmUserAction = ({
   const [response, setResponse] = useState<boolean>(false)
   const [loading, showLoading] = useState<boolean>(false)
 
-  const messageMap: any = {
+  type MessageData = {
+    header: string
+    subHeader: string
+    subHeaderNote: string
+    subHeaderDescription?: string
+    successTitle: string
+    successDescription: string
+    errorTitle: string
+    errorDescription: string
+  }
+
+  type MessageMapType = {
+    user: MessageData
+    suspend: MessageData
+    ownUser: MessageData
+    resetPassword: MessageData
+  }
+
+  const messageMap: MessageMapType = {
     user: {
       header: t('content.usermanagement.deleteUserConfirm.header'),
       subHeader: t(
         'content.usermanagement.deleteUserConfirm.confirmTitle'
-      ).replace('{userName}', `${data?.firstName} ${data?.lastName}`),
+      ).replace('{userName}', `${data?.firstName} ${data?.lastName} `),
       subHeaderNote: t('content.usermanagement.deleteUserConfirm.note'),
       subHeaderDescription: t(
         'content.usermanagement.deleteUserConfirm.description'
@@ -77,7 +95,7 @@ export const ConfirmUserAction = ({
       header: t('content.usermanagement.suspendUserConfirm.header'),
       subHeader: t(
         'content.usermanagement.suspendUserConfirm.confirmTitle'
-      ).replace('{userName}', `${data?.firstName} ${data?.lastName}`),
+      ).replace('{userName}', `${data?.firstName} ${data?.lastName} `),
       subHeaderDescription: t(
         'content.usermanagement.suspendUserConfirm.description'
       ),
@@ -114,7 +132,7 @@ export const ConfirmUserAction = ({
     resetPassword: {
       header: `${t('content.usermanagement.resetPasswordConfirm.header')} ${
         data?.firstName
-      } ${data?.lastName}`,
+      } ${data?.lastName} `,
       subHeader: t('content.usermanagement.resetPasswordConfirm.confirmTitle'),
       subHeaderNote: t(
         'content.usermanagement.resetPasswordConfirm.note'
@@ -167,7 +185,7 @@ export const ConfirmUserAction = ({
     showLoading(false)
     if (title === 'ownUser') {
       setTimeout(() => {
-        UserService.doLogout({ redirectUri: `${document.location.origin}/` })
+        UserService.doLogout({ redirectUri: `${document.location.origin} /` })
       }, 5000)
     }
   }
@@ -194,11 +212,15 @@ export const ConfirmUserAction = ({
     <>
       {data && canHideOverlay() && (
         <DeleteUserContent
-          header={messageMap[title].header}
-          subHeader={messageMap[title].subHeader}
-          subHeaderTitle={messageMap[title].subHeaderTitle}
-          subHeaderNote={messageMap[title].subHeaderNote}
-          subHeaderDescription={messageMap[title].subHeaderDescription}
+          header={messageMap[title as keyof MessageMapType].header}
+          subHeader={messageMap[title as keyof MessageMapType].subHeader}
+          subHeaderTitle={messageMap[title as keyof MessageMapType].subHeader}
+          subHeaderNote={
+            messageMap[title as keyof MessageMapType].subHeaderNote
+          }
+          subHeaderDescription={
+            messageMap[title as keyof MessageMapType].subHeaderDescription
+          }
           handleConfirm={handleConfirm}
           confirmTitle={
             title === 'resetPassword' || title === 'suspend'
@@ -210,8 +232,8 @@ export const ConfirmUserAction = ({
       )}
       {response && (
         <ServerResponseOverlay
-          title={messageMap[title].successTitle}
-          intro={messageMap[title].successDescription}
+          title={messageMap[title as keyof MessageMapType].successTitle}
+          intro={messageMap[title as keyof MessageMapType].successDescription}
           dialogOpen={true}
           handleCallback={handleCallback}
         >
@@ -220,8 +242,8 @@ export const ConfirmUserAction = ({
       )}
       {error && (
         <ServerResponseOverlay
-          title={messageMap[title].errorTitle}
-          intro={messageMap[title].errorDescription}
+          title={messageMap[title as keyof MessageMapType].errorTitle}
+          intro={messageMap[title as keyof MessageMapType].errorDescription}
           dialogOpen={true}
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />

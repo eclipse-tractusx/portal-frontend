@@ -86,7 +86,7 @@ export default function AppOverViewDetails({
     }
   }, [item, t])
 
-  const getDescription = (item: any) =>
+  const getDescription = (item: AppStatusDataState) =>
     item?.descriptions?.filter(
       (lang: { languageCode: string }) => lang.languageCode === cardLanguage
     )[0]?.shortDescription

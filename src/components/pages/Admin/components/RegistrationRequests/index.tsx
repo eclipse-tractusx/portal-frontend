@@ -33,7 +33,7 @@ import {
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
   useUpdateBPNMutation,
-  type ProgressButtonsProps,
+  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
 import { download } from 'utils/downloadUtils'
@@ -73,7 +73,7 @@ export default function RegistrationRequests() {
   const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
   const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
 
-  const [selectedButton, setSelectedButton] = useState<ProgressButtonsProps>()
+  const [selectedButton, setSelectedButton] = useState<ProgressButtonsType>()
   const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
     useState<boolean>(false)
   const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
@@ -161,7 +161,7 @@ export default function RegistrationRequests() {
     setConfirmCancelModalOpen(true)
   }
 
-  const onChipButtonSelect = (selected: ProgressButtonsProps, id: string) => {
+  const onChipButtonSelect = (selected: ProgressButtonsType, id: string) => {
     setSelectedButton(selected)
     setSelectedRequestId(id)
     setStatusConfirmationOverlay(true)
@@ -293,7 +293,7 @@ export default function RegistrationRequests() {
           onConfirmationCancel={(id: string, name: string) => {
             onConfirmationCancel(id, name)
           }}
-          onChipButtonSelect={(selected: ProgressButtonsProps, id: string) => {
+          onChipButtonSelect={(selected: ProgressButtonsType, id: string) => {
             onChipButtonSelect(selected, id)
           }}
         />

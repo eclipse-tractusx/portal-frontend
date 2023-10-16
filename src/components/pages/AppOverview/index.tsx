@@ -62,14 +62,22 @@ export default function AppOverview() {
   const dispatch = useDispatch()
 
   const { data, refetch, isSuccess, isFetching } = useFetchProvidedAppsQuery()
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const [itemCards, setItemCards] = useState<any>([])
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const [recentlyChangedApps, setRecentlyChangedApps] = useState<any>([])
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const [cards, setCards] = useState<any>([])
   const { state } = useLocation()
   const [group, setGroup] = useState<string>('')
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const valueMap: any = {
     wip: ['in_review', 'created'],
     inactive: 'inactive',
@@ -116,6 +124,8 @@ export default function AppOverview() {
     () =>
       debounce((expr: string, data: CardItems[] | undefined, group: string) => {
         if (group) {
+          // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
           data = data?.filter((item: any) => {
             if (group === 'wip') {
               return valueMap[group].includes(item.status)

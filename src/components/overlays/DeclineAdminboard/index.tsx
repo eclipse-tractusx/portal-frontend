@@ -95,7 +95,9 @@ export default function DeclineAdminBoard({
             rows={2}
             maxRows={4}
             placeholder={''}
-            onChange={(e: any) => {
+            onChange={(
+              e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+            ) => {
               setInputMessage(e.target.value)
             }}
             value={inputMessage}

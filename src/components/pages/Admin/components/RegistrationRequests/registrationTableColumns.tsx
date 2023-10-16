@@ -26,15 +26,16 @@ import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
 import type {
   ApplicationRequest,
-  ProgressButtonsProps,
+  ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import './RegistrationRequests.scss'
 import CheckList from './components/CheckList'
+import type i18next from 'i18next'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
-  translationHook: any,
+  t: typeof i18next.t,
   handleDownloadDocument: (
     appId: string,
     documentId: string,
@@ -42,10 +43,8 @@ export const RegistrationRequestsTableColumns = (
   ) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void,
-  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
+  onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 ): Array<GridColDef> => {
-  const { t } = translationHook()
-
   return [
     {
       field: 'dateCreated',

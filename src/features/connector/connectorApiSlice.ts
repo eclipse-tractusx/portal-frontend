@@ -50,7 +50,7 @@ export type ConnectorCreateBody = {
   status?: ConnectorStatusType
   location?: string
   providerBpn?: string
-  file?: any
+  file?: File
 }
 
 export type ConnectorResponseBody = {

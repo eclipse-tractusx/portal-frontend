@@ -24,7 +24,7 @@ import { Link } from 'react-router-dom'
 interface DetailGridProps {
   topic: string
   content: string | number
-  link?: any
+  link?: string
 }
 export const DetailGrid = ({ topic, content, link }: DetailGridProps) => {
   return (

@@ -28,7 +28,10 @@ import {
 interface FetchArgs {
   page: number
   size: number
-  args?: any
+  args?: {
+    notificationTopic: string
+    sorting: string
+  }
 }
 export interface NotificationArgsProps {
   sorting: string
@@ -53,14 +56,14 @@ export const apiSlice = createApi({
     getNotifications: builder.query<CXNotification, FetchArgs>({
       query: (fetchArgs) => {
         let base = `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}`
-        if (fetchArgs.args.sorting) {
+        if (fetchArgs?.args?.sorting) {
           base += `&sorting=${fetchArgs.args.sorting}`
         }
         if (
-          fetchArgs.args.notificationTopic &&
-          fetchArgs.args.notificationTopic !== NOTIFICATION_TOPIC.ALL
+          fetchArgs?.args?.notificationTopic &&
+          fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL
         ) {
-          base += `&notificationTopicId=${fetchArgs.args.notificationTopic}`
+          base += `&notificationTopicId=${fetchArgs?.args?.notificationTopic}`
         }
         return base
       },

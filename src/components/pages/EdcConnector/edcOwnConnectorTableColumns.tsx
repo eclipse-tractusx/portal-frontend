@@ -19,11 +19,10 @@
  ********************************************************************************/
 
 import type { GridColDef } from '@mui/x-data-grid'
+import { useTranslation } from 'react-i18next'
 
-export const OwnConnectorTableColumns = (
-  translationHook: any
-): Array<GridColDef> => {
-  const { t } = translationHook()
+export const OwnConnectorTableColumns = (): Array<GridColDef> => {
+  const { t } = useTranslation()
 
   return [
     {

@@ -265,7 +265,7 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    submitService: builder.mutation<any, string>({
+    submitService: builder.mutation<void, string>({
       query: (id) => ({
         url: `/api/services/serviceRelease/${id}/submit`,
         method: 'PUT',

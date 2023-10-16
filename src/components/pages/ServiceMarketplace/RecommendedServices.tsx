@@ -25,16 +25,29 @@ import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
 import { getAssetBase } from 'services/EnvironmentService'
+import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 
 export default function RecommendedServices({
   services,
-  getServices,
 }: {
   services?: ServiceRequest[]
-  getServices: any
 }) {
   const theme = useTheme()
   const navigate = useNavigate()
+  const serviceReleaseTranslation = useTranslation('servicerelease').t
+
+  const getServices = useCallback((serviceTypeIds: string[]) => {
+    const newArr: string[] = []
+    serviceTypeIds?.forEach((serviceType: string) => {
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(serviceReleaseTranslation('consultancyService'))
+      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(serviceReleaseTranslation('dataspaceService'))
+    })
+    return newArr.join(', ')
+  }, [])
 
   const handleClick = (id: string) => {
     navigate(`/servicemarketplacedetail/${id}`)
@@ -64,7 +77,7 @@ export default function RecommendedServices({
                   handleClick(service.id)
                 }}
                 title={service.title}
-                subTitle={getServices(service.serviceTypeIds)}
+                subTitle={getServices(service.serviceTypeIds ?? [])}
                 description={service.description}
                 backgroundColor="#f7f7f7"
               />
