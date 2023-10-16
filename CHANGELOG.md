@@ -9,6 +9,8 @@
   - Fixed image display in app overview cards
   - GET documents api endpoint connected for active apps-change documents
 - Update data grid table props to the new prop value
+- Linters
+  - Fix ban-types
 
 ## 1.7.0-alpha
 
