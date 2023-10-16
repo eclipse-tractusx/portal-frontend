@@ -37,7 +37,7 @@ import { appManagementSelector } from 'features/appManagement/slice'
 interface FetchHookArgsType {
   appId?: string
   expr: string
-  userRoleResponse?: boolean
+  userRoleResponse?: boolean | string
   role?: boolean
   addUserResponse?: boolean
 }
@@ -63,8 +63,10 @@ export const UserList = ({
   onMultipleButtonClick?: () => void
   tableLabel: string
   onDetailsClick: (row: TenantUser) => void
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchHook: (paginArgs: PaginFetchArgs) => any
-  fetchHookArgs?: any
+  fetchHookArgs?: FetchHookArgsType
   onSearch?: (search: string) => void
   searchExpr?: string
   isDetail?: boolean
@@ -82,7 +84,7 @@ export const UserList = ({
 
   useEffect(() => {
     setRefresh(Date.now())
-  }, [fetchHookArgs.userRoleResponse, fetchHookArgs.addUserResponse])
+  }, [fetchHookArgs?.userRoleResponse, fetchHookArgs?.addUserResponse])
 
   return (
     <section id="identity-management-id" className="user-management-section">

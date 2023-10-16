@@ -53,7 +53,9 @@ const ConfirmaCancelOverlay = ({
   const [loading, setLoading] = useState<boolean>(false)
   const [declineRequest] = useDeclineChecklistMutation()
 
-  const onChangeText = (e: any) => {
+  const onChangeText = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setText(e.target.value)
     const validateExpr = isValidCancelInput(e.target.value)
     if (validateExpr) {
@@ -139,7 +141,9 @@ const ConfirmaCancelOverlay = ({
                   rows={2}
                   maxRows={4}
                   placeholder={''}
-                  onChange={(e: any) => {
+                  onChange={(
+                    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+                  ) => {
                     onChangeText(e)
                   }}
                   value={text}

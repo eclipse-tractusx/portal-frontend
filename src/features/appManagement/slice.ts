@@ -59,7 +59,7 @@ const managementSlice = createSlice({
 export const appManagementSelector = (state: RootState): SearchInputState =>
   state.management
 
-export const currentActiveStep = (state: RootState): any =>
+export const currentActiveStep = (state: RootState): number =>
   state.management.currentActiveStep
 
 export const appIdSelector = (state: RootState): string =>

@@ -28,13 +28,13 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import Box from '@mui/material/Box'
 import type { ConnectorContentAPIResponse } from 'features/connector/types'
+import { useTranslation } from 'react-i18next'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
-  translationHook: any,
   onDelete: (row: ConnectorContentAPIResponse) => void
 ): Array<GridColDef> => {
-  const { t } = translationHook()
+  const { t } = useTranslation()
 
   return [
     {
@@ -50,7 +50,7 @@ export const ConnectorTableColumns = (
       flex: 1,
       sortable: false,
       disableColumnMenu: true,
-      renderCell: ({ row }: { row: any }) => (
+      renderCell: ({ row }: { row: ConnectorContentAPIResponse }) => (
         <Typography variant="body2">
           {row.type === 'COMPANY_CONNECTOR'
             ? t('content.edcconnector.rowValue.owned')
@@ -66,7 +66,7 @@ export const ConnectorTableColumns = (
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
-      renderCell: ({ row }: { row: any }) => (
+      renderCell: ({ row }: { row: ConnectorContentAPIResponse }) => (
         <Typography variant="body2">{row.location}</Typography>
       ),
     },
@@ -78,7 +78,7 @@ export const ConnectorTableColumns = (
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
-      renderCell: ({ row }: { row: any }) => (
+      renderCell: ({ row }: { row: ConnectorContentAPIResponse }) => (
         <>
           {row.selfDescriptionDocumentId ? (
             <Box>
@@ -124,7 +124,7 @@ export const ConnectorTableColumns = (
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
-      renderCell: ({ row }: { row: any }) => (
+      renderCell: ({ row }: { row: ConnectorContentAPIResponse }) => (
         <Box
           sx={{
             display: 'flex',

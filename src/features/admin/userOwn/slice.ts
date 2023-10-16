@@ -31,7 +31,6 @@ import {
   fetchAny,
   fetchOwn,
   putBusinessPartnerNumber,
-  putResetPassword,
 } from './actions'
 import type { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
@@ -53,6 +52,8 @@ const fulfilled = (
   error: '',
 })
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const rejected = (state: AdminUserDetailState, action: { error: any }) => ({
   ...state,
   data: InitialUserDetail,
@@ -72,25 +73,6 @@ export const slice = createSlice({
     builder.addCase(fetchAny.pending, pending)
     builder.addCase(fetchAny.fulfilled, fulfilled)
     builder.addCase(fetchAny.rejected, rejected)
-
-    builder.addCase(putResetPassword.pending, (state) => ({
-      ...state,
-      resetStatus: null,
-      request: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(putResetPassword.fulfilled, (state, { payload }) => ({
-      ...state,
-      resetStatus: payload,
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(putResetPassword.rejected, (state, action) => ({
-      ...state,
-      resetStatus: null,
-      request: RequestState.ERROR,
-      error: action.error.message as string,
-    }))
 
     builder.addCase(putBusinessPartnerNumber.pending, (state) => ({
       ...state,
@@ -124,6 +106,8 @@ export const slice = createSlice({
 export const UserdetailSelector = (state: RootState): UserDetail =>
   state.admin.userOwn.data
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 export const resetSelector = (state: RootState): any => state.admin.userOwn
 
 const Slice = { slice }

@@ -41,7 +41,7 @@ const slice = createSlice({
   },
 })
 
-export const currentSuccessType = (state: RootState): any =>
+export const currentSuccessType = (state: RootState): boolean =>
   state.serviceMarketplace.isSuccess
 
 export const { setSuccessType } = slice.actions

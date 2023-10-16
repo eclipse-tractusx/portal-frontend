@@ -55,13 +55,13 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
   }
 
-  const deleteUserError = (err: any) => {
+  const deleteUserError = (err: unknown) => {
     const notification: PageNotificationsProps = {
       open: true,
       severity: SuccessErrorType.ERROR,
       title:
         'content.usermanagement.technicalUser.deleteTechUserNotificationErrorTitle',
-      description: err,
+      description: err as string,
     }
     dispatch(closeOverlay())
     dispatch(setNotification(notification))
@@ -73,7 +73,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     try {
       await removeServiceAccount(data.serviceAccountId).unwrap()
       deleteUserSuccess()
-    } catch (err) {
+    } catch (err: unknown) {
       deleteUserError(err)
       console.log(err)
     }

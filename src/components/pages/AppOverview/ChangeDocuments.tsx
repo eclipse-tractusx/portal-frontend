@@ -30,6 +30,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box, Divider } from '@mui/material'
 import { useState } from 'react'
+import type { ItemType } from './AddRoles'
 import type { DocumentData } from 'features/appManagement/apiSlice'
 import { useFetchAppDocumentsQuery } from 'features/appManagement/apiSlice'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -48,8 +49,8 @@ export default function ChangeDocuments() {
   const appId = useParams().appId
   const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
-  const items: any = state
-  const app = items?.filter((item: any) => item.id === appId)
+  const items = state
+  const app = items?.filter((item: ItemType) => item.id === appId)
   const [imageChanged, setImageChanged] = useState(false)
   const { data } = useFetchAppDocumentsQuery(appId ?? '')
 

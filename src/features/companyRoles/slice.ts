@@ -51,13 +51,13 @@ const slice = createSlice({
   },
 })
 
-export const updateRoleSuccessType = (state: RootState): any =>
+export const updateRoleSuccessType = (state: RootState): boolean =>
   state.companyRoles.isSuccess
 
-export const updateRoleErrorType = (state: RootState): any =>
+export const updateRoleErrorType = (state: RootState): boolean =>
   state.companyRoles.isError
 
-export const cancelOverlayType = (state: RootState): any =>
+export const cancelOverlayType = (state: RootState): boolean =>
   state.companyRoles.isCancel
 
 export const { setCompanyRoleSuccess, setCompanyRoleError, setOverlayCancel } =

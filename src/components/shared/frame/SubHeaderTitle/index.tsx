@@ -24,6 +24,8 @@ import { useTranslation } from 'react-i18next'
 
 interface ComponentProps {
   title: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   params?: any
 }
 

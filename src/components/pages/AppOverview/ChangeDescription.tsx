@@ -40,6 +40,7 @@ import {
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined'
 import { PAGES } from 'types/Constants'
+import type { ItemType } from './AddRoles'
 
 export default function ChangeDescription() {
   const { t } = useTranslation()
@@ -47,8 +48,8 @@ export default function ChangeDescription() {
   const appId = useParams().appId
   const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
-  const items: any = state
-  const app = items?.filter((item: any) => item.id === appId)
+  const items = state
+  const app = items?.filter((item: ItemType) => item.id === appId)
   const [activeTab, setActiveTab] = useState<number>(0)
   const longDescriptionMaxLength = 2000
   const { data: description, refetch } = useFetchDescriptionQuery(appId ?? '')
@@ -80,7 +81,7 @@ export default function ChangeDescription() {
     mode: 'onChange',
   })
 
-  const handleSave = async (data: any) => {
+  const handleSave = async () => {
     setIsLoading(true)
 
     if (appId) {
@@ -337,7 +338,7 @@ export default function ChangeDescription() {
                 disabled={!(isDirty && isValid)}
                 size="small"
                 variant="contained"
-                onClick={handleSubmit((data) => handleSave(data))}
+                onClick={handleSubmit((data) => handleSave())}
               >
                 {t('global.actions.save')}
               </Button>

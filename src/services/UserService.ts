@@ -26,7 +26,7 @@ import {
   getClientId,
   getClientIdSemantic,
 } from './EnvironmentService'
-import { error, info } from './LogService'
+import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
 import { setLoggedUser } from 'features/user/slice'
 
@@ -42,8 +42,8 @@ const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
   clientId: getClientIdSemantic(),
 }
 
-// TODO: add an ESLint exception until there is a solution
-/* eslint @typescript-eslint/no-explicit-any: "off" */
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const KC = new Keycloak(keycloakConfig)
 
 const update = () => {
@@ -73,7 +73,7 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
         error(`${getUsername()} authentication failed`)
       }
     })
-    .catch((err: unknown) => {
+    .catch((err: LogData | undefined) => {
       error('Keycloak initialization failed', err)
     })
 }
@@ -101,7 +101,7 @@ const getCompany = () => KC.tokenParsed?.organisation
 
 const getTenant = () => KC.tokenParsed?.tenant
 
-// TODO: add a more sustainable logic for role management with multiple clients
+// Add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients
 const getRoles = (): Array<string> =>
   KC.tokenParsed?.resource_access?.[keycloakConfig.clientId]?.roles.concat(

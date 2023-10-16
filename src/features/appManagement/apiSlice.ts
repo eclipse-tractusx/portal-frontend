@@ -66,22 +66,6 @@ export type DocumentAppContract = {
   APP_LEADIMAGE?: Array<DocumentData>
 }
 
-export type NewAppDetails = {
-  agreements: any[]
-  contactEmail: string
-  contactNumber: string
-  descriptions: string[]
-  documents: DocumentAppContract
-  images: string[]
-  leadPictureUri: ImageType
-  price: string
-  provider: string
-  providerName: string
-  providerUri: string
-  supportedLanguageCodes: string[]
-  title: string
-  useCase: string[]
-}
 export type AgreementType = {
   agreementId: string
   name: string
@@ -255,7 +239,7 @@ export const apiSlice = createApi({
         body,
       }),
     }),
-    submitapp: builder.mutation<any, string>({
+    submitapp: builder.mutation<void, string>({
       query: (appId) => ({
         url: `/api/apps/appreleaseprocess/${appId}/submit`,
         method: 'PUT',
@@ -263,7 +247,7 @@ export const apiSlice = createApi({
     }),
     updateDocumentUpload: builder.mutation({
       async queryFn(
-        data: { appId: string; documentTypeId: string; body: any },
+        data: { appId: string; documentTypeId: string; body: { file: File } },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery
@@ -383,7 +367,7 @@ export const apiSlice = createApi({
     }),
     updateImageData: builder.mutation({
       async queryFn(
-        data: { appId: string; body: any },
+        data: { appId: string; body: { file: File } },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery

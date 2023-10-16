@@ -122,14 +122,14 @@ export const TechnicalUserTable = () => {
             field: 'offer',
             headerName: t('global.field.offerLink'),
             flex: 1.5,
-            valueGetter: ({ row }: { row: any }) =>
+            valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.offer ? row.offer?.name : '',
           },
           {
             field: 'isOwner',
             headerName: t('global.field.owner'),
             flex: 1,
-            valueGetter: ({ row }: { row: any }) =>
+            valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.isOwner ? 'Yes' : 'No',
           },
           {
