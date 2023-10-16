@@ -7,6 +7,7 @@
   - Fixed validation for contact in app page
 - App Overview
   - Fixed image display in app overview cards
+  - GET documents api endpoint connected for active apps-change documents
 - Update data grid table props to the new prop value
 
 ## 1.7.0-alpha

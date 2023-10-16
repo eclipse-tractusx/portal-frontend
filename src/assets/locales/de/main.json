@@ -443,7 +443,8 @@
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "saveTooltipMsg": "The save button will be active after a document was changed",
       "successMsg": "Documents changed successfully",
-      "errorMsg": "Error! Something went wrong"
+      "errorMsg": "Error! Something went wrong",
+      "uploadNewDocument": "Neues Dokument hochladen"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"

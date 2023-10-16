@@ -208,6 +208,15 @@ export type UpdateRolesTypes = {
   }[]
 }
 
+export type ChangeDocumentsTypes = {
+  documents: {
+    APP_IMAGE: DocumentData[] | []
+    APP_TECHNICAL_INFORMATION: DocumentData[] | []
+    APP_CONTRACT: DocumentData[] | []
+    ADDITIONAL_DETAILS: DocumentData[] | []
+  }
+}
+
 enum Tags {
   APP = 'App',
 }
@@ -401,6 +410,9 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchAppDocuments: builder.query<ChangeDocumentsTypes, string>({
+      query: (appId) => `api/apps/appchange/${appId}/documents`,
+    }),
   }),
 })
 
@@ -432,4 +444,5 @@ export const {
   useSaveDescriptionMutation,
   useFetchAppRolesQuery,
   useUpdateActiveAppMutation,
+  useFetchAppDocumentsQuery,
 } = apiSlice
