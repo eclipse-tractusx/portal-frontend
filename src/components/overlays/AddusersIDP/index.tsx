@@ -22,6 +22,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Checkbox,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -32,7 +33,6 @@ import {
   type TableType,
   Textarea,
   Typography,
-  type DropAreaProps,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -50,11 +50,11 @@ import {
   FORMS,
   storeForm,
 } from 'features/control/form'
+import { useDropzone } from 'react-dropzone'
 import { error, success } from 'services/NotifyService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
 import './AddUsersIDP.scss'
-import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
@@ -128,53 +128,75 @@ const AddusersIDPResponse = ({
   }, [userResponse])
 
   return (
-    <>
-      {!userResponse.error ? (
-        <Trans>
-          <Typography variant="body1" className="successDesc">
-            {t('userssuccess.desc')}
-          </Typography>
-        </Trans>
-      ) : (
-        <div className="errorSection mb-30">
-          <div className="uploadedDetailsSection mb-30">
-            <div className="userDetailsMain">
-              <div className="userSuccess">
-                <Typography variant="body1" className="number">
-                  {userResponse?.updated}
-                </Typography>
-              </div>
-              <Typography variant="label2" className="detailLabel">
-                {t('userserror.userUploaded')}
-              </Typography>
-            </div>
-            <div className="userDetailsMain">
-              <div className="userError">
-                <Typography variant="body1" className="number">
-                  {userResponse?.error}
-                </Typography>
-              </div>
-              <Typography variant="label2" className="detailLabel">
-                {t('userserror.userFailed')}
-              </Typography>
-            </div>
-          </div>
-
-          {userResponse?.errors.length > 0 && tableErrorData && (
-            <>
-              <div className="mb-30">
-                <Trans>
-                  <Typography variant="label2" className="errorUsersLabel">
-                    {t('userserror.errorUsersLabel')}
+    <Dialog open={true}>
+      <DialogHeader
+        title={
+          !userResponse.error ? t('userssuccess.title') : t('userserror.title')
+        }
+        intro={''}
+        closeWithIcon={true}
+        onCloseWithIcon={() => {
+          storeResponse('')
+        }}
+      />
+      <DialogContent>
+        {!userResponse.error ? (
+          <Trans>
+            <Typography variant="body1" className="successDesc">
+              {t('userssuccess.desc')}
+            </Typography>
+          </Trans>
+        ) : (
+          <div className="errorSection mb-30">
+            <div className="uploadedDetailsSection mb-30">
+              <div className="userDetailsMain">
+                <div className="userSuccess">
+                  <Typography variant="body1" className="number">
+                    {userResponse?.updated}
                   </Typography>
-                </Trans>
+                </div>
+                <Typography variant="label2" className="detailLabel">
+                  {t('userserror.userUploaded')}
+                </Typography>
               </div>
-              <StaticTable data={tableErrorData} horizontal={true} />
-            </>
-          )}
-        </div>
-      )}
-    </>
+              <div className="userDetailsMain">
+                <div className="userError">
+                  <Typography variant="body1" className="number">
+                    {userResponse?.error}
+                  </Typography>
+                </div>
+                <Typography variant="label2" className="detailLabel">
+                  {t('userserror.userFailed')}
+                </Typography>
+              </div>
+            </div>
+
+            {userResponse?.errors.length > 0 && tableErrorData && (
+              <>
+                <div className="mb-30">
+                  <Trans>
+                    <Typography variant="label2" className="errorUsersLabel">
+                      {t('userserror.errorUsersLabel')}
+                    </Typography>
+                  </Trans>
+                </div>
+                <StaticTable data={tableErrorData} horizontal={true} />
+              </>
+            )}
+          </div>
+        )}
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            storeResponse('')
+          }}
+        >
+          {t('action.close')}
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 
@@ -191,7 +213,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const userResponse = useSelector(editIDPUserResponseSelector)
   const fetching = t('state.fetching')
   const [loading, setLoading] = useState(false)
-  const [uploadedFile, setUploadedFile] = useState<DropzoneFile>()
+  const [uploadedFile, setUploadedFile] = useState<File>()
 
   const csvHeaderList = [
     'companyUserId',
@@ -293,10 +315,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-            '',
+              '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-            '',
+              '',
           ].join(',')
         )
         .join('\n')}`,
@@ -386,56 +408,79 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   )
 
   const onDrop = useCallback(
-    (acceptedFile: DropzoneFile) => {
-      if (!acceptedFile) {
-        setUploadedFile(undefined)
+    (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 1) {
+        error(t(`state.${IDPState.ERROR_MULTIPLE_FILES}`))
+        setStatus(false)
+        setTimeout(() => {
+          setStatus(undefined)
+        }, 3000)
         return
       }
-      const reader = new FileReader()
-      reader.onabort = () => {
-        console.log('file reading was aborted')
+      const MIME_TYPE = {
+        JSON: 'application/json',
+        CSV: 'text/csv',
       }
-      reader.onerror = () => {
-        console.log('file reading has failed')
-      }
-      reader.onload = () => {
-        if (!reader.result) return
-        const content = reader.result.toString()
-        const csvFileHeader = Object.keys(csv2json(content)[0])
-        if (
-          !csvHeaderList.reduce(
-            (a, c, i) => a && csvFileHeader[i] === c,
-            true
-          )
-        ) {
-          error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+      acceptedFiles.forEach((file: File) => {
+        if (file.size > 100000) {
+          error(t(`state.${IDPState.ERROR_INVALID_SIZE}`))
           setStatus(false)
           setTimeout(() => {
             setStatus(undefined)
           }, 3000)
           return
         }
-        storeData(
-          acceptedFile.type === 'text/csv'
-            ? JSON.stringify(csv2json(content))
-            : content
-        )
-      }
-      setUploadedFile(acceptedFile)
-      reader.readAsText(acceptedFile)
-
+        if (!Object.values(MIME_TYPE).includes(file.type)) {
+          error(t(`state.${IDPState.ERROR_INVALID_TYPE}`))
+          setStatus(false)
+          setTimeout(() => {
+            setStatus(undefined)
+          }, 3000)
+          return
+        }
+        const reader = new FileReader()
+        reader.onabort = () => {
+          console.log('file reading was aborted')
+        }
+        reader.onerror = () => {
+          console.log('file reading has failed')
+        }
+        reader.onload = () => {
+          if (!reader.result) return
+          const content = reader.result.toString()
+          const csvFileHeader = Object.keys(csv2json(content)[0])
+          if (
+            !csvHeaderList.reduce(
+              (a, c, i) => a && csvFileHeader[i] === c,
+              true
+            )
+          ) {
+            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+            setStatus(false)
+            setTimeout(() => {
+              setStatus(undefined)
+            }, 3000)
+            return
+          }
+          storeData(
+            file.type === MIME_TYPE.CSV
+              ? JSON.stringify(csv2json(content))
+              : content
+          )
+        }
+        setUploadedFile(file)
+        reader.readAsText(file)
+      })
     },
     [csv2json, storeData, t]
   )
+
+  const { getRootProps } = useDropzone({ onDrop })
 
   useEffect(() => {
     if (!userData) return
     storeData(JSON.stringify(userData))
   }, [storeData, userData])
-
-  const renderDropArea = (props: DropAreaProps) => {
-    return <DropArea {...props} size="small" />
-  }
 
   const renderContent = () => {
     return (
@@ -486,7 +531,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => { }}
+              onBlur={() => {}}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -544,23 +589,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             </Typography>
           </div>
         </div>
-        <div className="mb-30">
-          <Dropzone
-            files={uploadedFile && [uploadedFile]}
-            acceptFormat={{
-              'text/csv': [],
-              'application/json': [],
+        <div {...getRootProps()} className="mb-30">
+          <DropArea
+            error={status === false}
+            translations={{
+              title: t('users.drop.title'),
+              subTitle: t('users.drop.subTitle'),
+              errorTitle: t('users.drop.errorTitle'),
             }}
-            maxFilesToUpload={1}
-            maxFileSize={100000}
-            onChange={([file]) => {
-              onDrop(file)
-            }}
-            errorText={t(
-              'content.usecaseParticipation.editUsecase.fileSizeError'
-            )}
-            DropStatusHeader={false}
-            DropArea={renderDropArea}
           />
         </div>
         <Typography
@@ -581,79 +617,53 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           />
           {t('add.learnMore')}
         </Typography>
+        {userResponse?.data && (
+          <AddusersIDPResponse
+            response={userResponse.data}
+            storeResponse={storeResponse}
+          />
+        )}
       </>
     )
-  }
-
-  const fetchTitle = () => {
-    if (Object.keys(userResponse).length !== 0 && userResponse.error) {
-      return t('userserror.title')
-    } else if (Object.keys(userResponse).length !== 0 && !userResponse.error) {
-      return t('userssuccess.title')
-    } else {
-      return t('users.title', { idp: idpData?.displayName })
-    }
   }
 
   return (
     <>
       <DialogHeader
-        title={fetchTitle()}
+        title={t('users.title', {
+          idp: idpData?.displayName,
+        })}
         intro=""
         closeWithIcon={true}
-        onCloseWithIcon={() => {
-          userResponse?.data ? storeResponse('') : dispatch(closeOverlay())
-        }}
+        onCloseWithIcon={() => dispatch(closeOverlay())}
       />
-      <DialogContent>
-        {userResponse?.data ? (
-          <AddusersIDPResponse
-            response={userResponse.data}
-            storeResponse={storeResponse}
+      <DialogContent>{renderContent()}</DialogContent>
+      <DialogActions>
+        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+          {t('action.cancel')}
+        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator={t('action.loading')}
+            loading
+            size="medium"
+            onButtonClick={() => {}}
+            sx={{ marginLeft: '10px' }}
           />
         ) : (
-          renderContent()
-        )}
-      </DialogContent>
-      {userResponse?.data ? (
-        <DialogActions>
           <Button
-            variant="outlined"
-            onClick={() => {
-              dispatch(closeOverlay())
-            }}
+            variant="contained"
+            disabled={!id || uploadedFile === undefined}
+            onClick={postUsers}
           >
-            {t('action.close')}
+            {t('action.uploadUserList')}
           </Button>
-        </DialogActions>
-      ) : (
-        <DialogActions>
-          <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-            {t('action.cancel')}
-          </Button>
-          {loading ? (
-            <LoadingButton
-              color="primary"
-              helperText=""
-              helperTextColor="success"
-              label=""
-              loadIndicator={t('action.loading')}
-              loading
-              size="medium"
-              onButtonClick={() => { }}
-              sx={{ marginLeft: '10px' }}
-            />
-          ) : (
-            <Button
-              variant="contained"
-              disabled={!id || uploadedFile === undefined}
-              onClick={postUsers}
-            >
-              {t('action.uploadUserList')}
-            </Button>
-          )}
-        </DialogActions>
-      )}
+        )}
+      </DialogActions>
     </>
   )
 }
