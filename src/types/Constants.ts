@@ -99,6 +99,7 @@ export enum PAGES {
   CERTIFICATE_CREDENTIAL = 'certificate-credential',
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
+  ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
 }
 
 export enum OVERLAYS {
@@ -132,6 +133,8 @@ export enum OVERLAYS {
   IDP_STATUS = 'idp_status',
   IDP_TEST_RUN = 'idp_test_run',
   ENABLE_IDP_SUCCESS = 'enable_idp_success',
+  ADD_OSP = 'add_osp',
+  UPDATE_OSP = 'update_osp',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',
