@@ -26,24 +26,28 @@ export enum LogLevel {
   DEBUG = ' DEBUG',
 }
 
+export type LogDataItem = object | string | number | boolean | Date
+
+export type LogData = LogDataItem | Array<LogDataItem>
+
 const LogService = {
   logtime: (date?: number) =>
     new Date(date ?? Date.now()).toISOString().substring(11, 19),
 
-  log: (level: LogLevel, message: string, data?: any) => {
+  log: (level: LogLevel, message: string, data?: LogData) => {
     ;((row) => {
       level === LogLevel.SEVERE || level === LogLevel.ERROR
         ? console.error(row, data ?? '')
         : console.log(row, data ?? '')
     })(`${LogService.logtime()} ${level} ${message}`)
   },
-  info: (message: string, data?: any) => {
+  info: (message: string, data?: LogData) => {
     LogService.log(LogLevel.INFO, message, data)
   },
-  warn: (message: string, data?: any) => {
+  warn: (message: string, data?: LogData) => {
     LogService.log(LogLevel.WARN, message, data)
   },
-  error: (message: string, data?: any) => {
+  error: (message: string, data?: LogData) => {
     LogService.log(LogLevel.ERROR, message, data)
   },
 }

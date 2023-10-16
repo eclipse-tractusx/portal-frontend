@@ -131,7 +131,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     dispatch(fetchSemanticModels({ filter }))
   }
 
-  const onFilter = (selectedFilter: any) => {
+  const onFilter = (selectedFilter: SelectedFilter) => {
     setModels([])
     //Reset PageNumber back to 0
     setPageNumber(0)

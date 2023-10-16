@@ -37,7 +37,12 @@ interface DeleteConfirmationOverlayProps {
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
   loading?: boolean
-  techUser?: any
+  techUser?: {
+    id: string
+    name: string
+    clientId: string
+    description: string
+  }
 }
 
 const DeleteConfirmationOverlay = ({

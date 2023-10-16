@@ -22,10 +22,11 @@ import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { SemanticModel } from 'features/semanticModels/types'
+import type i18next from 'i18next'
 
 // Columns definitions of Digital Twin page Data Grid
 export const SemanticModelTableColumns = (
-  t: any,
+  t: typeof i18next.t,
   onDetailClick: (id: string) => void
 ): Array<GridColDef> => {
   const columnIds = ['name', 'type', 'version', 'status']

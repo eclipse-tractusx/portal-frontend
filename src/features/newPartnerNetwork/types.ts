@@ -60,3 +60,18 @@ export interface BusinessPartner {
   updatedAt: string
   legalAddress: BpdmLegalAddressObject
 }
+
+export interface FetchBusinessPartnerType {
+  content: BusinessPartner[]
+  contentSize: number
+  page: number
+  totalElements: number
+  totalPages: number
+}
+
+export interface FetchBusinessPartnerContentType {
+  contentSize: number
+  page: number
+  totalElements: number
+  totalPages: number
+}

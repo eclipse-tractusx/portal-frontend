@@ -41,16 +41,16 @@ export default function DeleteObjectContent({
   subHeaderNote,
   confirmTitle,
   showLoader = false,
-}: {
+}: Readonly<{
   header?: string
   subHeader?: string
   subHeaderTitle?: string
   subHeaderDescription?: string
-  handleConfirm?: any
+  handleConfirm?: () => void
   subHeaderNote?: string
   confirmTitle?: string
   showLoader?: boolean
-}) {
+}>) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
