@@ -11,7 +11,9 @@
 - Update data grid table props to the new prop value
 - Linters
   - Fix ban-types
-
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes 
+  
 ## 1.7.0-alpha
 
 ### Change
