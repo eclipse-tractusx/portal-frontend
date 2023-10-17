@@ -44,16 +44,15 @@ import {
 export const IDPList = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const ti = useTranslation('idp').t
+  const ti = useTranslation('osp').t
 
   const [disableLoading, setDisableLoading] = useState(false)
 
   const { data } = useFetchIDPListQuery()
   const idpsData = data
     ?.slice()
-    .sort(
-      (a: IdentityProvider, b: IdentityProvider) =>
-        a?.displayName?.localeCompare(b.displayName ?? '') ?? 0
+    .sort((a: IdentityProvider, b: IdentityProvider) =>
+      a?.alias?.localeCompare(b.alias)
     )
   const [enableIDP] = useEnableIDPMutation()
 
@@ -64,6 +63,30 @@ export const IDPList = () => {
     try {
       e.stopPropagation()
       dispatch(show(OVERLAYS.UPDATE_OSP, idp.identityProviderId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const doRegisterUser = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    idp: IdentityProvider
+  ) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(OVERLAYS.REGISTER_OSP, idp.identityProviderId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const doConsent = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    idp: IdentityProvider
+  ) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(OVERLAYS.CONSENT_OSP, idp.identityProviderId))
     } catch (error) {
       console.log(error)
     }
@@ -132,6 +155,24 @@ export const IDPList = () => {
                   }}
                 />
               )}
+            </MenuItem>
+          )}
+          {idp.enabled && (
+            <MenuItem
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                doRegisterUser(e, idp)
+              }
+            >
+              {ti('action.register')}
+            </MenuItem>
+          )}
+          {idp.enabled && (
+            <MenuItem
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                doConsent(e, idp)
+              }
+            >
+              {ti('action.consent')}
             </MenuItem>
           )}
         </DropdownMenu>
@@ -212,10 +253,15 @@ export const IDPList = () => {
                 renderMenu(row),
             },
           ]}
-          rows={idpsData.filter(
-            (idp) =>
-              idp.identityProviderTypeId === (IDPProviderType.MANAGED as string)
-          )}
+          rows={idpsData
+            .filter(
+              (idp) =>
+                idp.identityProviderTypeId ===
+                (IDPProviderType.MANAGED as string)
+            )
+            .sort((a, b) =>
+              (a.displayName ?? '').localeCompare(b.displayName ?? '')
+            )}
           getRowId={(row: { [key: string]: string }) => row.identityProviderId}
           hasBorder={false}
         />

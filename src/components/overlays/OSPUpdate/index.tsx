@@ -64,17 +64,15 @@ export const OSPUpdate = ({ id }: { id: string }) => {
     setLoading(false)
   }
 
-  const UpdateStepsList = [
+  const steps = [
     {
       headline: t('add.stepLists.firstStep'),
       step: 1,
       text: t('edit.created'),
-      color: '#B3CB2D',
     },
     {
       headline: t('add.stepLists.secondStep'),
       step: 2,
-      color: '#0F71CB',
     },
     {
       headline: t('add.stepLists.thirdStep'),
@@ -96,7 +94,7 @@ export const OSPUpdate = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={UpdateStepsList} showSteps={4} activeStep={2} />
+          <Stepper list={steps} showSteps={4} activeStep={2} />
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>

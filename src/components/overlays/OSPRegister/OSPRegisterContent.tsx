@@ -26,21 +26,10 @@ import {
   OIDCAuthMethod,
   OIDCSignatureAlgorithm,
 } from 'features/admin/idpApiSlice'
-import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
+import { isBPN, isCompanyName, isCountryCode, isID } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
-import ReadOnlyValue from 'components/shared/basic/ReadOnlyValue'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
-import { InputType } from 'components/shared/basic/Input/BasicInput'
-import {
-  StaticTable,
-  type TableType,
-  Typography,
-} from '@catena-x/portal-shared-components'
-
-const isWellknownMetadata = (expr: string) =>
-  (isURL(expr) || expr.startsWith('http://localhost')) &&
-  expr.endsWith('.well-known/openid-configuration')
 
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
@@ -75,63 +64,104 @@ const OSPRegisterForm = ({
 }) => {
   const { t } = useTranslation('osp')
 
-  const defaultOAM =
-    idp.oidc?.clientAuthMethod ?? (OIDCAuthMethod.SECRET_BASIC as string)
-  const defaultOidcAuthMethod = {
-    id: defaultOAM,
-    title: defaultOAM,
-    value: defaultOAM,
-  }
-
-  const tableData: TableType = {
-    head: [
-      t('field.display.name'),
-      t('field.alias.name'),
-      t('field.clientAuthMethod.name'),
-    ],
-    body: [[idp.displayName ?? ''], [idp.alias], [defaultOidcAuthMethod.value]],
-  }
-
   return (
     <>
-      <div style={{ marginTop: '34px' }}>
-        <ValidatingInput
-          name="metadataUrl"
-          label={t('field.metadata.name')}
-          validate={(expr) => isWellknownMetadata(expr)}
-          hint={t('field.metadata.hint')}
-          debounceTime={0}
-          onValid={onChange}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="clientId"
-          label={t('field.clientId.name')}
-          hint={t('field.clientId.hint')}
-          validate={isIDPClientID}
-          onValid={onChange}
-        />
-      </div>
-      <div style={{ margin: '12px 0 30px' }}>
-        <ValidatingInput
-          name="secret"
-          label={t('field.clientSecret.name')}
-          hint={t('field.clientSecret.hint')}
-          type={InputType.password}
-          validate={isIDPClientSecret}
-          onValid={onChange}
-        />
-      </div>
-      <Typography variant="label2">{t('edit.metaDataHeading')}</Typography>
-      <ReadOnlyValue
-        label={t('field.redirectUri.name')}
-        tooltipMessage={t('field.redirectUri.hint')}
-        value={`${idp.redirectUrl}*`}
-        style={{ marginTop: '30px' }}
-      />
-      <div style={{ marginTop: '40px', display: 'flex' }}>
-        <StaticTable data={tableData} horizontal={true} />
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ width: 400, marginRight: 12 }}>
+          <div style={{ marginTop: '12px 0' }}>
+            <ValidatingInput
+              name="extid"
+              label={t('field.extid.name')}
+              hint={t('field.extid.hint')}
+              validate={isID}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="company"
+              label={t('field.company.name')}
+              hint={t('field.company.hint')}
+              validate={isCompanyName}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="bpn"
+              label={t('field.bpn.name')}
+              hint={t('field.bpn.hint')}
+              validate={isBPN}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="street"
+              label={t('field.street.name')}
+              hint={t('field.street.hint')}
+              validate={() => true}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="country"
+              label={t('field.country.name')}
+              hint={t('field.country.hint')}
+              validate={isCountryCode}
+              onValid={onChange}
+            />
+          </div>
+        </div>
+
+        <div style={{ width: 400, marginLeft: 12 }}>
+          <div style={{ marginTop: '12px 0' }}>
+            <ValidatingInput
+              name="lorem"
+              label={t('field.lorem.name')}
+              hint={t('field.lorem.hint')}
+              validate={isID}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="ipsum"
+              label={t('field.ipsum.name')}
+              hint={t('field.ipsum.hint')}
+              validate={isCompanyName}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="dolor"
+              label={t('field.dolor.name')}
+              hint={t('field.dolor.hint')}
+              validate={() => true}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="sit"
+              label={t('field.sit.name')}
+              hint={t('field.sit.hint')}
+              validate={() => true}
+              onValid={onChange}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="amet"
+              label={t('field.amet.name')}
+              hint={t('field.amet.hint')}
+              validate={() => true}
+              onValid={onChange}
+            />
+          </div>
+        </div>
       </div>
     </>
   )
@@ -150,12 +180,7 @@ export const OSPRegisterContent = ({
     const current: IHashMap<string> = { ...formData }
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
-    const formValid =
-      current.displayName &&
-      current.metadataUrl &&
-      current.clientId &&
-      current.secret &&
-      current.clientAuthMethod
+    const formValid = current.extid
     onValid(
       formValid
         ? {

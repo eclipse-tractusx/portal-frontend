@@ -29,56 +29,46 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay'
+import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import {
-  type IdentityProviderUpdate,
-  useFetchIDPDetailQuery,
-  useUpdateIDPMutation,
-} from 'features/admin/idpApiSlice'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OSPConsentContent } from './OSPConsentContent'
-import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 
 export const OSPConsent = ({ id }: { id: string }) => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
-  const [updateIdp] = useUpdateIDPMutation()
-  const [idpUpdateData, setIdpUpdateData] = useState<
-    IdentityProviderUpdate | undefined
-  >(undefined)
+  const [consent, setConsent] = useState<boolean>(false)
   const [loading, setLoading] = useState(false)
 
-  const doUpdateIDP = async () => {
-    if (!(data && idpUpdateData)) return
+  const doConsent = async () => {
+    if (!(data && consent)) return
     setLoading(true)
     try {
-      await updateIdp(idpUpdateData).unwrap()
-      dispatch(show(OVERLAYS.ENABLE_IDP, id))
-      success(t('edit.success'))
+      success(t('consent.success'))
+      dispatch(closeOverlay())
     } catch (err) {
-      error(t('edit.error'), '', err as object)
+      error(t('consent.error'), '', err as object)
     }
     setLoading(false)
   }
 
-  const UpdateStepsList = [
+  const steps = [
     {
       headline: t('add.stepLists.firstStep'),
       step: 1,
       text: t('edit.created'),
-      color: '#B3CB2D',
     },
     {
       headline: t('add.stepLists.secondStep'),
       step: 2,
-      color: '#0F71CB',
+      text: t('edit.configured'),
     },
     {
       headline: t('add.stepLists.thirdStep'),
       step: 3,
+      text: t('edit.registered'),
     },
     {
       headline: t('add.stepLists.fourthStep'),
@@ -89,41 +79,22 @@ export const OSPConsent = ({ id }: { id: string }) => {
   return (
     <>
       <DialogHeader
-        title={t('edit.title')}
+        title={t('consent.title')}
         intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={UpdateStepsList} showSteps={4} activeStep={2} />
+          <Stepper list={steps} showSteps={4} activeStep={4} />
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
-            <Typography variant="label3">{t('edit.desc')}</Typography>
+            <Typography variant="label3">{t('consent.desc')}</Typography>
           </Trans>
         </div>
-        <Typography variant="label2">{t('edit.addDataHeading')}</Typography>
-        {data && <OSPConsentContent idp={data} onValid={setIdpUpdateData} />}
-        <Typography
-          variant="label3"
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            color: '#0088CC',
-            textDecoration: 'underline',
-            marginTop: '30px',
-          }}
-        >
-          <HelpOutlineIcon
-            sx={{
-              marginRight: '5px',
-              fontSize: '18px',
-            }}
-          />
-          {t('add.learnMore')}
-        </Typography>
+        <Typography variant="label2">{t('consent.addDataHeading')}</Typography>
+        {data && <OSPConsentContent idp={data} onValid={setConsent} />}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
@@ -142,12 +113,8 @@ export const OSPConsent = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
-            variant="contained"
-            onClick={doUpdateIDP}
-            disabled={!idpUpdateData}
-          >
-            {t('action.saveMetadata')}
+          <Button variant="contained" onClick={doConsent} disabled={!consent}>
+            {t('action.consent')}
           </Button>
         )}
       </DialogActions>
