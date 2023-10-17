@@ -13,6 +13,8 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- Onboarding Serviceprovider
+  - Add the OSP prototype
 
 ## 1.7.0-alpha
 
