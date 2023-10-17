@@ -29,6 +29,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import {
+  ProcessStep,
   useFetchSubscriptionDetailQuery,
   useUpdateTenantUrlMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
@@ -96,6 +97,22 @@ const AppSubscriptionDetailOverlay = ({
 
   const getValue = (value?: string) => value ?? 'N/A'
 
+  const getStatus = () => {
+    if (
+      data?.processStepTypeId === ProcessStep.START_AUTOSETUP ||
+      data?.processStepTypeId === ProcessStep.TRIGGER_PROVIDER
+    ) {
+      return t('content.appSubscription.detailOverlay.subscriptionInitiated')
+    } else if (
+      data?.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION ||
+      data?.processStepTypeId === ProcessStep.TRIGGER_PROVIDER_CALLBACK
+    ) {
+      return t('content.appSubscription.detailOverlay.subscriptionActivate')
+    } else {
+      return t('content.appSubscription.detailOverlay.setupOngoing')
+    }
+  }
+
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
@@ -103,10 +120,7 @@ const AppSubscriptionDetailOverlay = ({
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
         getValue(data?.name),
       ],
-      [
-        `${t('content.appSubscription.detailOverlay.status')}`,
-        getValue(data?.offerSubscriptionStatus),
-      ],
+      [`${t('content.appSubscription.detailOverlay.status')}`, getStatus()],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
         getValue(data?.customer),

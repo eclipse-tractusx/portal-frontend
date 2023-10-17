@@ -177,11 +177,12 @@ export default function SubscriptionElements({
               label={t('content.appSubscription.configureBtn')}
               type="plain"
               variant="filled"
+              className="configureBtn"
             />
             <img
               src="/subscription-pending.png"
               className="statusIcon"
-              alt="subscription active"
+              alt="subscription pending"
             />
           </>
         )
@@ -219,7 +220,7 @@ export default function SubscriptionElements({
             <img
               src="/subscription-pending.png"
               className="statusIcon"
-              alt="subscription active"
+              alt="subscription pending"
             />
           </>
         )
@@ -228,7 +229,7 @@ export default function SubscriptionElements({
           <img
             src="/subscription-process.png"
             className="statusIcon"
-            alt="subscription active"
+            alt="subscription process"
           />
         )
       }
@@ -237,7 +238,7 @@ export default function SubscriptionElements({
         <img
           src="/subscription-error.png"
           className="statusErrorIcon"
-          alt="subscription active"
+          alt="subscription error"
         />
       )
     }

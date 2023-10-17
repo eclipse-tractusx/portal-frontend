@@ -202,20 +202,26 @@
       }
 
       .forthSection {
-        display: flex;
+        width: 15%;
+        display: block;
         button {
           width: 50%;
           border-radius: 15px;
           padding: 5px;
+        }
+        .configureBtn {
+          pointer-events: none;
         }
         img {
           margin: -3px 0 0 5px;
         }
         .statusIcon {
           height: 35px;
+          float: right;
         }
         .statusErrorIcon {
           height: 20px;
+          float: right;
         }
       }
     }
