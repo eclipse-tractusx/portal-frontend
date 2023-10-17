@@ -11,7 +11,7 @@
 - Update data grid table props to the new prop value
 - IDP
   - Add load element for IDP list
-- Linters
+- Linter Findings
   - Fix ban-types
 
 ## 1.7.0-alpha
