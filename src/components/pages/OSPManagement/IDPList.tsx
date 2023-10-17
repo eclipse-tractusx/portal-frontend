@@ -51,8 +51,9 @@ export const IDPList = () => {
   const { data } = useFetchIDPListQuery()
   const idpsData = data
     ?.slice()
-    .sort((a: IdentityProvider, b: IdentityProvider) =>
-      a?.displayName?.localeCompare(b.displayName ?? '') ?? 0
+    .sort(
+      (a: IdentityProvider, b: IdentityProvider) =>
+        a?.displayName?.localeCompare(b.displayName ?? '') ?? 0
     )
   const [enableIDP] = useEnableIDPMutation()
 
@@ -211,7 +212,10 @@ export const IDPList = () => {
                 renderMenu(row),
             },
           ]}
-          rows={idpsData.filter((idp) => idp.identityProviderTypeId === IDPProviderType.MANAGED as string)}
+          rows={idpsData.filter(
+            (idp) =>
+              idp.identityProviderTypeId === (IDPProviderType.MANAGED as string)
+          )}
           getRowId={(row: { [key: string]: string }) => row.identityProviderId}
           hasBorder={false}
         />

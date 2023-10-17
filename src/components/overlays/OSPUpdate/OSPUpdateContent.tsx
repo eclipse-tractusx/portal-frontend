@@ -66,7 +66,7 @@ const formToUpdate = (form: IHashMap<string>): IdentityProviderUpdateBody => ({
   },
 })
 
-const UpdateIDPForm = ({
+const OSPUpdateForm = ({
   idp,
   onChange,
 }: {
@@ -137,7 +137,7 @@ const UpdateIDPForm = ({
   )
 }
 
-export const UpdateOSPContent = ({
+export const OSPUpdateContent = ({
   idp,
   onValid,
 }: {
@@ -167,5 +167,5 @@ export const UpdateOSPContent = ({
     return true
   }
 
-  return <UpdateIDPForm idp={idp} onChange={checkData} />
+  return <OSPUpdateForm idp={idp} onChange={checkData} />
 }

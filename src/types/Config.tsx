@@ -81,7 +81,7 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
-import OnbardingServiceprovider from 'components/pages/OnboardingServiceprovider'
+import OSPManagement from 'components/pages/OSPManagement'
 
 /**
  * ALL_PAGES
@@ -529,7 +529,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.ONBOARDING_SERVICEPROVIDER,
     role: ROLES.IDP_VIEW,
-    element: <OnbardingServiceprovider />,
+    element: <OSPManagement />,
   },
 ]
 
@@ -642,6 +642,14 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.UPDATE_OSP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.REGISTER_OSP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.CONSENT_OSP,
     role: ROLES.IDP_SETUP,
   },
   {

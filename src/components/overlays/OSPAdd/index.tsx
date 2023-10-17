@@ -26,7 +26,6 @@ import {
   DialogHeader,
   LoadingButton,
   Radio,
-  SelectList,
   Stepper,
   Tooltips,
   Typography,
@@ -58,44 +57,6 @@ enum IDPType {
 export type IdentityProviderType = {
   title: string
   value: string
-}
-
-const IdentityProviderTypeData = [
-  {
-    title: 'own - create an IdP connection to your company IdP for yourself',
-    value: 'OWN',
-  },
-  {
-    title: 'managed - create an managed IdP connection for a third party',
-    value: 'MANAGED',
-  },
-]
-
-const SelectIdpProviderType = ({
-  onChange,
-}: {
-  onChange: (value: IDPProviderType) => void
-}) => {
-  const { t } = useTranslation('idp')
-  return (
-    <div style={{ padding: '30px 0px' }}>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <Typography sx={{ marginRight: '12px' }} variant="label3">
-          {t('field.providerType.name')}
-        </Typography>
-      </div>
-      <SelectList
-        items={IdentityProviderTypeData}
-        label={''}
-        placeholder={t('field.providerType.placeholder')}
-        defaultValue=""
-        onChangeItem={(e) => {
-          onChange(e?.value)
-        }}
-        keyTitle={'title'}
-      />
-    </div>
-  )
 }
 
 const SelectIdpAuthType = ({
@@ -169,7 +130,7 @@ const initialAddIDPPrepareForm = {
   name: '',
 }
 
-const AddIDPPrepareForm = ({
+const OSPAddPrepareForm = ({
   onChange,
 }: {
   onChange: (value: AddIDPPrepareFormType) => void
@@ -206,7 +167,7 @@ const AddIDPPrepareForm = ({
   )
 }
 
-export const AddOsp = () => {
+export const OSPAdd = () => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const [formData, setFormData] = useState<AddIDPPrepareFormType>(
@@ -237,7 +198,7 @@ export const AddOsp = () => {
         },
       }
       await updateIdp(idpUpdateData).unwrap()
-      dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
+      dispatch(show(OVERLAYS.UPDATE_OSP, idp.identityProviderId))
       success(t('add.success'))
     } catch (err) {
       error(t('add.error'), t('state.error'), err as object)
@@ -276,7 +237,7 @@ export const AddOsp = () => {
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>
         </Trans>
-        <AddIDPPrepareForm
+        <OSPAddPrepareForm
           onChange={(data) => {
             setFormData(data)
           }}
@@ -319,9 +280,7 @@ export const AddOsp = () => {
         ) : (
           <Button
             variant="contained"
-            disabled={
-              !formData.name
-            }
+            disabled={!formData.name}
             onClick={() => doCreateIDP()}
           >
             {t('action.createIdp')}

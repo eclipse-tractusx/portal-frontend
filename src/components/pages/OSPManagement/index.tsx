@@ -28,7 +28,7 @@ import { show } from 'features/control/overlay'
 import './style.scss'
 import { getAssetBase } from 'services/EnvironmentService'
 
-export default function OnbardingServiceprovider() {
+export default function OSPManagement() {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
 
@@ -47,7 +47,7 @@ export default function OnbardingServiceprovider() {
             </Typography>
           </Trans>
           <Image
-            style={{width: 480, height: 240}}
+            style={{ width: 480, height: 240 }}
             src={`${getAssetBase()}/images/content/teaser_osp.png`}
             alt={t('onboarding.title')}
           />

@@ -37,11 +37,11 @@ import {
   useFetchIDPDetailQuery,
   useUpdateIDPMutation,
 } from 'features/admin/idpApiSlice'
-import { UpdateOSPContent } from './UpdateOSPContent'
+import { OSPRegisterContent } from './OSPRegisterContent'
 import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 
-export const UpdateOSP = ({ id }: { id: string }) => {
+export const OSPRegister = ({ id }: { id: string }) => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
@@ -104,7 +104,7 @@ export const UpdateOSP = ({ id }: { id: string }) => {
           </Trans>
         </div>
         <Typography variant="label2">{t('edit.addDataHeading')}</Typography>
-        {data && <UpdateOSPContent idp={data} onValid={setIdpUpdateData} />}
+        {data && <OSPRegisterContent idp={data} onValid={setIdpUpdateData} />}
         <Typography
           variant="label3"
           sx={{
