@@ -49,22 +49,15 @@ export class Api extends HttpClient {
       getHeaders()
     )
 
-  public resetPassword = (companyUserId: string) =>
-    this.instance.put<any>(
-      `/api/administration/user/ownCompany/users/${companyUserId}/resetPassword`,
-      {},
-      getHeaders()
-    )
-
   public addBusinessPartnerNumber = (companyUserId: string, bpn: string) =>
-    this.instance.put<any>(
+    this.instance.put<number>(
       `/api/administration/user/ownCompany/users/${companyUserId}/businessPartnerNumbers/${bpn}`,
       {},
       getHeaders()
     )
 
   public deleteBpn = (companyUserId: string, bpn: string) =>
-    this.instance.delete<any>(
+    this.instance.delete<number>(
       `/api/administration/user/ownCompany/users/${companyUserId}/businessPartnerNumbers/${bpn}`,
       getHeaders()
     )

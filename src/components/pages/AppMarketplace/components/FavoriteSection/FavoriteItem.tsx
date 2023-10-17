@@ -28,6 +28,8 @@ import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
 interface FavoriteItemProps {
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   item: any
   expandOnHover: boolean
   cardClick: boolean

@@ -92,6 +92,8 @@ export default function UpdateCertificate({ id }: { id: string }) {
         await addCertificate(data).unwrap()
         setSubmitClicked(true)
       }
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
     } catch (err: any) {
       setLoading(false)
       error(

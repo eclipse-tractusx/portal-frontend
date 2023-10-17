@@ -43,22 +43,13 @@ const fetchAny = createAsyncThunk(
   }
 )
 
-const putResetPassword = createAsyncThunk(
-  `${name}/resetPassword`,
-  async (companyUserId: string) => {
-    try {
-      return await Api.getInstance().resetPassword(companyUserId)
-    } catch (error: any) {
-      throw Error(JSON.stringify(error.response.status))
-    }
-  }
-)
-
 const deleteUserBpn = createAsyncThunk(
   `${name}/deleteBpn`,
   async ({ companyUserId, bpn }: { companyUserId: string; bpn: string }) => {
     try {
       return await Api.getInstance().deleteBpn(companyUserId, bpn)
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
     } catch (error: any) {
       throw Error(JSON.stringify(error.response.status))
     }
@@ -79,16 +70,12 @@ const putBusinessPartnerNumber = createAsyncThunk(
         companyUserId,
         inputBPN
       )
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
     } catch (error: any) {
       throw Error(JSON.stringify(error.response.status))
     }
   }
 )
 
-export {
-  fetchOwn,
-  fetchAny,
-  putResetPassword,
-  putBusinessPartnerNumber,
-  deleteUserBpn,
-}
+export { fetchOwn, fetchAny, putBusinessPartnerNumber, deleteUserBpn }

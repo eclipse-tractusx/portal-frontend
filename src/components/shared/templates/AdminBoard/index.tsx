@@ -41,6 +41,12 @@ import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
 
+export interface TabButtonsType {
+  buttonText: string
+  buttonValue: string
+  onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
+}
+
 enum FilterType {
   INREVIEW = 'InReview',
   ALL = 'All',
@@ -93,6 +99,8 @@ type State = {
 
 type Action = {
   type: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   payload: any
 }
 
@@ -207,6 +215,8 @@ type CommonAdminBoardType = {
     newFirst: string
     AppTitle: string
   }
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchQuery: (Obj: ServiceRequestBody | AppRequestBody) => any
   loadMoreButtonText?: string
   isDynamicSearchEnabled?: boolean
@@ -318,7 +328,13 @@ export default function CommonAdminBoard({
     },
   ]
 
-  const tabButtons: any[] = [
+  interface TabButtonsType {
+    buttonText: string
+    buttonValue: string
+    onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
+  }
+
+  const tabButtons: TabButtonsType[] = [
     {
       buttonText: filterOptionText.open,
       buttonValue: FilterType.INREVIEW,

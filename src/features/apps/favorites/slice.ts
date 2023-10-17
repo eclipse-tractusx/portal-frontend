@@ -26,13 +26,18 @@ import { name } from './types'
 
 const initialState: ListState<string> = { ...InitialListState }
 
-const pendingCase = (state: ListState<string>, action: any) => ({
+const pendingCase = (
+  state: ListState<string>,
+  action: { meta: { arg: string } }
+) => ({
   ...state,
   change: action.meta.arg || null,
   request: RequestState.SUBMIT,
   error: '',
 })
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const rejectedCase = (state: ListState<string>, action: any) => ({
   ...state,
   change: null,

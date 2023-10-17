@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { type SyntheticEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Grid, Box } from '@mui/material'
 import {
@@ -51,7 +51,10 @@ export default function RoleDetails() {
 
   const [activeTab, setActiveTab] = useState<number>(0)
 
-  const handleChange = (event: any, newValue: number) => {
+  const handleChange = (
+    event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => {
     setActiveTab(newValue)
   }
 

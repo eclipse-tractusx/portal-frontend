@@ -21,9 +21,10 @@
 import { Input } from '@catena-x/portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useState, useMemo, useCallback } from 'react'
+import { type SxProps } from '@mui/system'
 
 export type ValidatingInputProps = {
-  sx?: any
+  sx?: SxProps
   name: string
   label?: string
   helperText?: string
