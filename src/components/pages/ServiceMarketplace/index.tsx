@@ -54,7 +54,6 @@ dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
-  const serviceReleaseTranslation = useTranslation('servicerelease').t
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -168,17 +167,6 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
-  const getServices = useCallback((serviceTypeIds: string[]) => {
-    const newArr: string[] = []
-    serviceTypeIds?.forEach((serviceType: string) => {
-      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
-        newArr.push(serviceReleaseTranslation('consultancyService'))
-      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
-        newArr.push(serviceReleaseTranslation('dataspaceService'))
-    })
-    return newArr.join(', ')
-  }, [])
-
   return (
     <main className="serviceMarketplace">
       <div className="mainContainer">
@@ -222,17 +210,13 @@ export default function ServiceMarketplace() {
             ) : (
               <RecommendedServices
                 services={cardServices && cardServices.slice(0, indexToSplit)}
-                getServices={getServices}
               />
             )}
           </div>
         </div>
       </div>
       {cardServices && cardServices.length > 2 && (
-        <ServicesElements
-          services={cardServices.slice(indexToSplit)}
-          getServices={getServices}
-        />
+        <ServicesElements services={cardServices.slice(indexToSplit)} />
       )}
     </main>
   )

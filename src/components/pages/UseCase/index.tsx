@@ -22,20 +22,23 @@ import './UseCase.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useEffect, useState } from 'react'
-import CommonService from 'services/CommonService'
+import CommonService, {
+  type SubNavigationType,
+  type UseCaseType,
+} from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
 
 export default function UseCase() {
-  const [useCase, setUseCase] = useState<any>()
-  const [linkArray, setLinkArray] = useState<any>()
+  const [useCase, setUseCase] = useState<UseCaseType>()
+  const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const [isTop, setIsTop] = useState<boolean>(false)
   const language = useSelector(languageSelector)
 
   useEffect(() => {
-    CommonService.getUseCases((data: any) => {
+    CommonService.getUseCases((data: UseCaseType) => {
       setUseCase(data)
       setLinkArray(data.subNavigation)
     })

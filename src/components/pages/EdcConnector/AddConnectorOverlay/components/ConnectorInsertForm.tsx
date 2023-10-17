@@ -49,7 +49,9 @@ const ConnectorFormInput = ({
   defaultSelectValue,
   items,
   keyTitle,
-}: any) => {
+}: // Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+any) => {
   return (
     <>
       {type === 'dropzone' && (
@@ -223,7 +225,9 @@ const ConnectorInsertForm = ({
   trigger,
   selectedService,
   subscriptions,
-}: any) => {
+}: // Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+any) => {
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme

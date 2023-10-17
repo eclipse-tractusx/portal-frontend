@@ -26,6 +26,8 @@ import { useState } from 'react'
 import ItemProcessor from './ItemProcessor'
 
 export default function Test() {
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const [items, setItems] = useState<any[]>([])
 
   const techUserRowToJson = (row: string) =>

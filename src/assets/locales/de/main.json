@@ -443,7 +443,8 @@
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "saveTooltipMsg": "The save button will be active after a document was changed",
       "successMsg": "Documents changed successfully",
-      "errorMsg": "Error! Something went wrong"
+      "errorMsg": "Error! Something went wrong",
+      "uploadNewDocument": "Neues Dokument hochladen"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -1055,7 +1056,7 @@
         "providerPhoneContact": "Provider Phone Contact",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please enter a valid Provider Phone Contact",
+        "pleaseEnterValidContact": "Bitte fügen Sie eine gültige Telefonnummer im folgenden Format hinzu: „+ xx xxxx xxxxxx“, „+ xxx xxxx-xxxx“, „+xx xxxxxxxxxx“. Hinweis: Es sind weitere Formate zulässig. Die genannten Formate sind die am häufigsten verwendeten Formate.",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",

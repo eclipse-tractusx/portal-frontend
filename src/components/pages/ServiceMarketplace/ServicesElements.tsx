@@ -25,16 +25,29 @@ import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import { getAssetBase } from 'services/EnvironmentService'
+import { useCallback } from 'react'
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 
 export default function ServicesElements({
   services,
-  getServices,
 }: {
   services: ServiceRequest[]
-  getServices: any
 }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
+
+  const serviceReleaseTranslation = useTranslation('servicerelease').t
+
+  const getServiceString = useCallback((ids: string[]) => {
+    const newArr: string[] = []
+    ids?.forEach((serviceString: string) => {
+      if (serviceString === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(serviceReleaseTranslation('consultancyService'))
+      if (serviceString === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(serviceReleaseTranslation('dataspaceService'))
+    })
+    return newArr.join(', ')
+  }, [])
 
   const handleClick = (id: string) => {
     navigate(`/servicemarketplacedetail/${id}`)
@@ -75,7 +88,7 @@ export default function ServicesElements({
                         handleClick(service.id)
                       }}
                       title={service.title}
-                      subTitle={getServices(service.serviceTypeIds)}
+                      subTitle={getServiceString(service.serviceTypeIds ?? [])}
                       description={service.description}
                       backgroundColor="#fff"
                     />

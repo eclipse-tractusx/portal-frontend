@@ -54,6 +54,8 @@ export default function AppListSection() {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const [cards, setCards] = useState<any>([])
   const favoriteItems = useSelector(itemsSelector)
   const reference = PageService.registerReference(label, useRef(null))
