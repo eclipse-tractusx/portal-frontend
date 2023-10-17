@@ -30,7 +30,6 @@ import {
   Table,
   Typography,
 } from '@catena-x/portal-shared-components'
-import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
@@ -40,6 +39,7 @@ import {
   useFetchIDPListQuery,
   IDPProviderType,
 } from 'features/admin/idpApiSlice'
+import IDPStateProgress from '../IDPManagement/IDPStateProgress'
 
 export const IDPList = () => {
   const dispatch = useDispatch()
