@@ -13,6 +13,8 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- Home
+  - Fixed image display for 'my business applications'
 
 ## 1.7.0-alpha
 
