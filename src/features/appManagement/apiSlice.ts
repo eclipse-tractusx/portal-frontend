@@ -66,22 +66,6 @@ export type DocumentAppContract = {
   APP_LEADIMAGE?: Array<DocumentData>
 }
 
-export type NewAppDetails = {
-  agreements: any[]
-  contactEmail: string
-  contactNumber: string
-  descriptions: string[]
-  documents: DocumentAppContract
-  images: string[]
-  leadPictureUri: ImageType
-  price: string
-  provider: string
-  providerName: string
-  providerUri: string
-  supportedLanguageCodes: string[]
-  title: string
-  useCase: string[]
-}
 export type AgreementType = {
   agreementId: string
   name: string
@@ -224,6 +208,15 @@ export type UpdateRolesTypes = {
   }[]
 }
 
+export type ChangeDocumentsTypes = {
+  documents: {
+    APP_IMAGE: DocumentData[] | []
+    APP_TECHNICAL_INFORMATION: DocumentData[] | []
+    APP_CONTRACT: DocumentData[] | []
+    ADDITIONAL_DETAILS: DocumentData[] | []
+  }
+}
+
 enum Tags {
   APP = 'App',
 }
@@ -246,7 +239,7 @@ export const apiSlice = createApi({
         body,
       }),
     }),
-    submitapp: builder.mutation<any, string>({
+    submitapp: builder.mutation<void, string>({
       query: (appId) => ({
         url: `/api/apps/appreleaseprocess/${appId}/submit`,
         method: 'PUT',
@@ -254,7 +247,7 @@ export const apiSlice = createApi({
     }),
     updateDocumentUpload: builder.mutation({
       async queryFn(
-        data: { appId: string; documentTypeId: string; body: any },
+        data: { appId: string; documentTypeId: string; body: { file: File } },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery
@@ -374,7 +367,7 @@ export const apiSlice = createApi({
     }),
     updateImageData: builder.mutation({
       async queryFn(
-        data: { appId: string; body: any },
+        data: { appId: string; body: { file: File } },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery
@@ -417,6 +410,9 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchAppDocuments: builder.query<ChangeDocumentsTypes, string>({
+      query: (appId) => `api/apps/appchange/${appId}/documents`,
+    }),
   }),
 })
 
@@ -448,4 +444,5 @@ export const {
   useSaveDescriptionMutation,
   useFetchAppRolesQuery,
   useUpdateActiveAppMutation,
+  useFetchAppDocumentsQuery,
 } = apiSlice

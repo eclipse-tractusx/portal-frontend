@@ -50,7 +50,7 @@ export type UsecaseResponse = {
 export type UsecaseRequest = {
   verifiedCredentialTypeId: string
   credentialType: string
-  document: any
+  document: File
 }
 
 export const apiSlice = createApi({

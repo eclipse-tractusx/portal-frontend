@@ -53,9 +53,14 @@ export const ConnectorFormInputField = ({
   handleDelete,
   size,
   errorText,
-}: any) => {
-  const renderDropArea = (props: DropAreaProps, size: any) => {
-    return <DropArea {...props} size={size || 'normal'} />
+}: // Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+any) => {
+  const renderDropArea = (
+    props: DropAreaProps,
+    size: 'small' | 'normal' | undefined
+  ) => {
+    return <DropArea {...props} size={size ?? 'normal'} />
   }
 
   return (
@@ -131,6 +136,8 @@ export const ConnectorFormInputField = ({
               value={value}
               items={items}
               keyTitle={keyTitle}
+              // Add an ESLint exception until there is a solution
+              // eslint-disable-next-line
               onAddItem={(items: any[]) => {
                 trigger(name)
                 onChange(items?.map((item) => item[saveKeyTitle]))

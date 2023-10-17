@@ -27,6 +27,7 @@ import {
 import {
   PageHeader,
   PageLoadingTable,
+  type PaginResult,
 } from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
@@ -40,34 +41,38 @@ import {
   addCountryAttribute,
   addMemberAttribute,
 } from './components/PartnerList/helper'
+import { type BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updatePartnerSelector)
-  const columns = PartnerNetworksTableColumns(useTranslation)
+  const columns = PartnerNetworksTableColumns(t)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
   const { data } = useFetchMemberCompaniesQuery()
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
 
-  const [allItems, setAllItems] = useState<any>({})
+  const [allItems, setAllItems] = useState<BusinessPartner[]>()
 
-  const fetchAndApply = async (cData: any) => {
+  const fetchAndApply = async (cData: PaginResult<BusinessPartner>) => {
     //BPDM response does not has content attribute. Check for it and proceed
     if (isContentPresent(cData) && cData.content.length === 0) {
       setAllItems([])
       return
     }
-    const result = cData.content.map((x: any) => x.bpnl)
+    const result = cData.content.map((x: BusinessPartner) => x.bpnl)
     await mutationRequest(result)
       .unwrap()
-      .then((payload: any) => {
+      .then((payload: PaginResult<BusinessPartnerAddressResponse>) => {
         //new country attribute && member attributes based on the response
         let finalObj = JSON.parse(JSON.stringify(cData?.content))
-        finalObj = addCountryAttribute(finalObj, payload)
+        finalObj = addCountryAttribute(
+          finalObj,
+          payload as unknown as BusinessPartnerAddressResponse[]
+        )
         finalObj = addMemberAttribute(finalObj, data)
         setAllItems(finalObj)
       })

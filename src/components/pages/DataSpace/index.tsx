@@ -21,20 +21,23 @@ import './UseCase.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useEffect, useState } from 'react'
-import CommonService from 'services/CommonService'
+import CommonService, {
+  type SubNavigationType,
+  type DataSpaceType,
+} from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
 
 export default function DataSpace() {
-  const [dataSpace, setDataSpace] = useState<any>()
-  const [linkArray, setLinkArray] = useState<any>()
+  const [dataSpace, setDataSpace] = useState<DataSpaceType>()
+  const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const [isTop, setIsTop] = useState<boolean>(false)
   const language = useSelector(languageSelector)
 
   useEffect(() => {
-    CommonService.getDataSpace((data: any) => {
+    CommonService.getDataSpace((data: DataSpaceType) => {
       setDataSpace(data)
       setLinkArray(data.subNavigation)
     })

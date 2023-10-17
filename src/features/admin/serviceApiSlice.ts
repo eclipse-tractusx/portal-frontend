@@ -48,6 +48,10 @@ export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
+  isOwner?: boolean
+  offer?: {
+    name?: string
+  }
 }
 
 export interface ServiceAccountDetail extends ServiceAccountListEntry {
@@ -87,6 +91,8 @@ export const apiSlice = createApi({
         url: `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
         method: 'DELETE',
       }),
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
       transformErrorResponse: (error: any) =>
         error?.errors?.[
           'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
