@@ -77,6 +77,12 @@ export interface CompanyRolesType {
     sections: []
     subNavigation: SubNavigationType[]
   }
+  ospProvider: {
+    title: string
+    description: string
+    sections: []
+    subNavigation: SubNavigationType[]
+  }
   subNavigation?: SubNavigationType[]
 }
 
