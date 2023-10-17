@@ -28,7 +28,11 @@ import {
   Chip,
   ErrorBar,
 } from '@catena-x/portal-shared-components'
-import type { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
+import {
+  type CompanySubscriptionData,
+  ProcessStep,
+  type SubscriptionContent,
+} from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'
 import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'
@@ -150,6 +154,95 @@ export default function SubscriptionElements({
     )
   }
 
+  const renderStatus = (
+    subscriptionData: SubscriptionContent,
+    subscription: CompanySubscriptionData
+  ) => {
+    if (subscription.offerSubscriptionStatus === SubscriptionStatus.ACTIVE) {
+      return (
+        <img
+          src="/subscription-active.png"
+          className="statusIcon"
+          alt="subscription active"
+        />
+      )
+    } else if (
+      subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
+    ) {
+      if (subscriptionData.processStepTypeId === ProcessStep.START_AUTOSETUP) {
+        return (
+          <>
+            <Chip
+              color="primary"
+              label={t('content.appSubscription.configureBtn')}
+              type="plain"
+              variant="filled"
+            />
+            <img
+              src="/subscription-pending.png"
+              className="statusIcon"
+              alt="subscription active"
+            />
+          </>
+        )
+      } else if (
+        subscriptionData.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+      ) {
+        return (
+          <>
+            <Chip
+              color="primary"
+              label={t('content.appSubscription.activateBtn')}
+              type="plain"
+              variant="filled"
+              onClick={() => {
+                type === SubscriptionTypes.APP_SUBSCRIPTION
+                  ? setSubscriptionDetail({
+                      appId: subscriptionData.offerId,
+                      subscriptionId: subscription.subscriptionId,
+                      title: subscriptionData.offerName,
+                      companyName: subscription.companyName,
+                      bpnNumber: subscription.bpnNumber,
+                    })
+                  : setState({
+                      type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
+                      payload: {
+                        id: subscription.subscriptionId,
+                        offerId: subscriptionData.offerId,
+                        isTechUser: subscription.technicalUser,
+                        overlay: true,
+                        companyName: subscription.companyName,
+                      },
+                    })
+              }}
+            />
+            <img
+              src="/subscription-pending.png"
+              className="statusIcon"
+              alt="subscription active"
+            />
+          </>
+        )
+      } else {
+        return (
+          <img
+            src="/subscription-process.png"
+            className="statusIcon"
+            alt="subscription active"
+          />
+        )
+      }
+    } else {
+      return (
+        <img
+          src="/subscription-error.png"
+          className="statusErrorIcon"
+          alt="subscription active"
+        />
+      )
+    }
+  }
+
   return (
     <div className="recommended-main">
       {subscriptions && subscriptions.length ? (
@@ -186,53 +279,9 @@ export default function SubscriptionElements({
                       </Tooltips>
                     </IconButton>
                   </div>
-                  {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.PENDING && (
-                    <div className="forthSection">
-                      <Chip
-                        color="primary"
-                        label={t('content.appSubscription.activateBtn')}
-                        type="plain"
-                        variant="filled"
-                        onClick={() => {
-                          type === SubscriptionTypes.APP_SUBSCRIPTION
-                            ? setSubscriptionDetail({
-                                appId: subscriptionData.offerId,
-                                subscriptionId: subscription.subscriptionId,
-                                title: subscriptionData.offerName,
-                                companyName: subscription.companyName,
-                                bpnNumber: subscription.bpnNumber,
-                              })
-                            : setState({
-                                type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
-                                payload: {
-                                  id: subscription.subscriptionId,
-                                  offerId: subscriptionData.offerId,
-                                  isTechUser: subscription.technicalUser,
-                                  overlay: true,
-                                  companyName: subscription.companyName,
-                                },
-                              })
-                        }}
-                      />
-                    </div>
-                  )}
-                  {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.ACTIVE && (
-                    <Chip
-                      color="success"
-                      label={t('content.appSubscription.tabs.active')}
-                      type="confirm"
-                      variant="filled"
-                      withIcon
-                      sx={{
-                        borderRadius: '36px',
-                        ':hover': {
-                          pointerEvents: 'auto',
-                        },
-                      }}
-                    />
-                  )}
+                  <div className="forthSection">
+                    {renderStatus(subscriptionData, subscription)}
+                  </div>
                 </li>
               )
             )

@@ -78,9 +78,16 @@ export type CompanySubscriptionData = {
   technicalUser?: boolean
 }
 
+export enum ProcessStep {
+  START_AUTOSETUP = 'START_AUTOSETUP',
+  ACTIVATE_SUBSCRIPTION = 'ACTIVATE_SUBSCRIPTION',
+  NULL = 'null',
+}
+
 export type SubscriptionContent = {
   offerId: string
   offerName: string
+  processStepTypeId: ProcessStep
   companySubscriptionStatuses: CompanySubscriptionData[]
 }
 

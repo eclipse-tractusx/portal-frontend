@@ -191,7 +191,7 @@
       }
 
       .viewDetails {
-        width: 20%;
+        width: 15%;
       }
 
       .thirdSection {
@@ -202,13 +202,20 @@
       }
 
       .forthSection {
-        margin-left: 0px;
-        text-align: center;
-
+        display: flex;
         button {
           width: 50%;
           border-radius: 15px;
           padding: 5px;
+        }
+        img {
+          margin: -3px 0 0 5px;
+        }
+        .statusIcon {
+          height: 35px;
+        }
+        .statusErrorIcon {
+          height: 20px;
         }
       }
     }
