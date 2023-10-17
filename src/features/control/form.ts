@@ -41,6 +41,8 @@ export type StoreFormType = {
   att: FormAttribute
 }
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const initialState: IHashMap<any> = {}
 initialState[FORMS.GENERIC] = {}
 initialState[FORMS.IDP_FORM] = {}
@@ -62,16 +64,11 @@ export const slice = createSlice({
 
 export const { storeForm } = slice.actions
 
-export const genericSelector = (state: RootState): any =>
-  state.control.form[FORMS.GENERIC]
-
-export const editIDPSelector = (state: RootState): any =>
-  state.control.form[FORMS.IDP_FORM]
-
-export const editIDPUserSelector = (state: RootState): any =>
+export const editIDPUserSelector = (state: RootState): { data: string } =>
   state.control.form[FORMS.IDP_USER_FORM]
 
-export const editIDPUserResponseSelector = (state: RootState): any =>
-  state.control.form[FORMS.IDP_USER_RESPONSE_FORM]
+export const editIDPUserResponseSelector = (
+  state: RootState
+): { data: string } => state.control.form[FORMS.IDP_USER_RESPONSE_FORM]
 
 export default slice.reducer

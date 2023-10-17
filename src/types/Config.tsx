@@ -405,6 +405,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.INTRODUCTION, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_APP_PROVIDER, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, element: <CompanyRoles /> },
+  { name: PAGES.INTRODUCTION_OSP_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
   { name: PAGES.USE_CASE, element: <UseCase /> },
@@ -709,6 +710,7 @@ export const mainMenuFullTree = [
       { name: PAGES.INTRODUCTION_APP_PROVIDER, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, hint: HINTS.NEW },
+      { name: PAGES.INTRODUCTION_OSP_BODY, hint: HINTS.NEW },
     ],
   },
   {

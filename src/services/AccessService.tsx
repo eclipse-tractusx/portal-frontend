@@ -94,6 +94,8 @@ export const hasAccessOverlay = (overlay: string) =>
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const accessToMenuTree = (menu: Tree[] | undefined): any =>
   menu
     ?.filter((item: Tree) => hasAccess(item.name))

@@ -26,7 +26,11 @@ export type ConnectorAPIResponse = {
 export type ConnectorContentAPIResponse = {
   id?: string
   name: string
+  location: string
   type: string
+  providerCompanyName: string
+  selfDescriptionDocumentId: string
+  status: string
   technicalUser?: {
     id: string
     name: string

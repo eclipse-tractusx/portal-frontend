@@ -29,22 +29,32 @@ export default function ItemProcessor({
   process = (item) => ({ ...item }),
   autostart = true,
 }: {
-  items: any[]
-  process?: (item: any) => any
-  autostart?: boolean
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
+  readonly items: any[]
+  // eslint-disable-next-line
+  readonly process?: (item: any) => any
+  readonly autostart?: boolean
 }) {
+  // eslint-disable-next-line
   const [processed, setProcessed] = useState<any[]>([])
+  // eslint-disable-next-line
   const [cancelled, setCancelled] = useState<any[]>([])
+  // eslint-disable-next-line
   const [success, setSuccess] = useState<any[]>([])
+  // eslint-disable-next-line
   const [failure, setFailure] = useState<any[]>([])
+  // eslint-disable-next-line
   const [queueItems, setQueueItems] = useState<any[]>(items)
 
+  // eslint-disable-next-line
   const cancelItem = (item: any) => {
     setQueueItems(queueItems.filter((i) => i !== item))
     setProcessed([...processed, item])
     setCancelled([...cancelled, item])
   }
 
+  // eslint-disable-next-line
   const startItem = async (item: any) => {
     if (!item) return
     if (processed.includes(item)) return
@@ -66,6 +76,8 @@ export default function ItemProcessor({
     setQueueItems(queueItems.slice(1))
   }
 
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const getStatusColor = (item: any) => {
     if (success.includes(item)) return '#dff0d8'
     if (failure.includes(item)) return '#f2dede'
@@ -87,6 +99,8 @@ export default function ItemProcessor({
     // eslint-disable-next-line
   }, [items])
 
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const renderItem = (item: any, i?: number) =>
     item ? (
       <Box

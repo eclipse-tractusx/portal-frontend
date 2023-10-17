@@ -23,13 +23,14 @@ import { useTranslation } from 'react-i18next'
 import type { IHashMap } from 'types/MainTypes'
 import Box from '@mui/material/Box'
 import { ValidatingInput } from './ValidatingInput'
+import { type SxProps } from '@mui/system'
 
 export type ValidationField = {
   key: string
   value?: string
   label?: string
   valid: (expr: string) => boolean
-  sx?: any
+  sx?: SxProps
 }
 
 export type FormValidationStateItem = {

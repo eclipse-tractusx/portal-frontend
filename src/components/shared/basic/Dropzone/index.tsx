@@ -30,7 +30,7 @@ import {
   UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { type FunctionComponent, useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 
 export type DropzoneFile = File & Partial<UploadFile>
@@ -42,7 +42,7 @@ export interface DropzoneProps {
     deletedFiles: DropzoneFile[] | undefined
   ) => void
   files?: DropzoneFile[]
-  acceptFormat?: any
+  acceptFormat?: Accept
   maxFilesToUpload?: number
   maxFileSize?: number
 
