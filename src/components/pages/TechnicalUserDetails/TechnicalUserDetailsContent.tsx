@@ -55,7 +55,7 @@ export default function TechnicalUserDetailsContent({
     {
       key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),
       value: newData.offer?.name ?? 'N/A',
-      copy: newData.offer?.name ? true : false,
+      copy: !!newData.offer?.name,
     },
   ]
 
