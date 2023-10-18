@@ -29,6 +29,7 @@ import {
   useFetchBusinessAppsQuery,
 } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const label = 'BusinessApplictions'
 
@@ -94,6 +95,7 @@ export default function BusinessApplicationsSection() {
                   expandOnHover={false}
                   filledBackground={true}
                   onClick={item.onClick}
+                  imageLoader={fetchImageWithToken}
                 />
               ))}
           {data &&
