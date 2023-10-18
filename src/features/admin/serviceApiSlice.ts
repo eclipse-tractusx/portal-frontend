@@ -54,11 +54,18 @@ export interface ServiceAccountListEntry {
   }
 }
 
+export interface ConnectedObject {
+  id: string
+  name: string
+}
+
 export interface ServiceAccountDetail extends ServiceAccountListEntry {
   description: string
   authenticationType: ServiceAccountType
   secret: string
   roles: ServiceAccountRole[]
+  connector: ConnectedObject
+  offer: ConnectedObject
 }
 
 export type AppRoleCreate = {

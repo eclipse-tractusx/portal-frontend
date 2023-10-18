@@ -13,6 +13,9 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- Technical User Detail
+  - Add new table as data from backend
+  - UI Changes
 
 ## 1.7.0-alpha
 
