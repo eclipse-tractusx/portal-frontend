@@ -13,6 +13,9 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- Technical User Detail
+  - Add new table as data from backend
+  - UI Changes
 - Home
   - Fixed image display for 'my business applications'
 
