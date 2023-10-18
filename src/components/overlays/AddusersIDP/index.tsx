@@ -617,6 +617,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           <Button
             variant="outlined"
             onClick={() => {
+              storeResponse('')
               dispatch(closeOverlay())
             }}
           >

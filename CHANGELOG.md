@@ -15,6 +15,11 @@
   - Fix ban-types
 - Onboarding Serviceprovider
   - Add the OSP prototype
+- Technical User Detail
+  - Add new table as data from backend
+  - UI Changes
+- Home
+  - Fixed image display for 'my business applications'
 
 ## 1.7.0-alpha
 
