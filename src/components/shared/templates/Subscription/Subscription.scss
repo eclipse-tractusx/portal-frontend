@@ -212,12 +212,15 @@
         .configureBtn {
           pointer-events: none;
         }
-        img {
-          margin: -3px 0 0 5px;
-        }
         .statusIcon {
-          height: 35px;
+          height: 30px;
           float: right;
+        }
+        .active {
+          color: #5bb52e;
+        }
+        .pending {
+          color: #989898;
         }
         .statusErrorIcon {
           color: #c20909;

@@ -41,6 +41,9 @@ import { useState, useReducer } from 'react'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
 import { SubscriptionTypes } from '.'
+import { getAssetBase } from 'services/EnvironmentService'
+import AddTaskIcon from '@mui/icons-material/AddTask'
+import HistoryIcon from '@mui/icons-material/History'
 
 type ViewDetail = {
   appId: string
@@ -161,13 +164,7 @@ export default function SubscriptionElements({
     subscription: CompanySubscriptionData
   ) => {
     if (subscription.offerSubscriptionStatus === SubscriptionStatus.ACTIVE) {
-      return (
-        <img
-          src="/subscription-active.png"
-          className="statusIcon"
-          alt="subscription active"
-        />
-      )
+      return <AddTaskIcon className="statusIcon active" />
     } else if (
       subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
     ) {
@@ -181,11 +178,7 @@ export default function SubscriptionElements({
               variant="filled"
               className="configureBtn"
             />
-            <img
-              src="/subscription-pending.png"
-              className="statusIcon"
-              alt="subscription pending"
-            />
+            <HistoryIcon className="statusIcon pending" />
           </>
         )
       } else if (
@@ -219,17 +212,13 @@ export default function SubscriptionElements({
                     })
               }}
             />
-            <img
-              src="/subscription-pending.png"
-              className="statusIcon"
-              alt="subscription pending"
-            />
+            <HistoryIcon className="statusIcon pending" />
           </>
         )
       } else {
         return (
           <img
-            src="/subscription-process.png"
+            src={`${getAssetBase()}/images/icons/process.svg`}
             className="statusIcon"
             alt="subscription process"
           />
