@@ -120,7 +120,12 @@ const AppSubscriptionDetailOverlay = ({
         `${t('content.appSubscription.detailOverlay.appTitle')}`,
         getValue(data?.name),
       ],
-      [`${t('content.appSubscription.detailOverlay.status')}`, getStatus()],
+      [
+        `${t('content.appSubscription.detailOverlay.status')}`,
+        type === SubscriptionTypes.APP_SUBSCRIPTION
+          ? getStatus()
+          : getValue(data?.offerSubscriptionStatus),
+      ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
         getValue(data?.customer),

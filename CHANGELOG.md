@@ -14,8 +14,8 @@
 - Linter Findings
   - Fix ban-types
 - App Subscription and Servcie Subscripiton
-  - Status UI Changes 
-  
+  - Status UI Changes
+
 ## 1.7.0-alpha
 
 ### Change

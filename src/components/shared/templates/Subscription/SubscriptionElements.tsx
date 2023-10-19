@@ -237,11 +237,9 @@ export default function SubscriptionElements({
       }
     } else {
       return (
-        <img
-          src="/subscription-error.png"
-          className="statusErrorIcon"
-          alt="subscription error"
-        />
+        <Typography variant="label2" className="statusErrorIcon">
+          {t('global.actions.error')}
+        </Typography>
       )
     }
   }
@@ -252,41 +250,43 @@ export default function SubscriptionElements({
         <ul className="subscription-list">
           {subscriptions.map((subscriptionData) => {
             return subscriptionData.companySubscriptionStatuses.map(
-              (subscription) => (
-                <li
-                  key={subscription.subscriptionId}
-                  className="subscription-list-item"
-                >
-                  <Typography variant="body3" className="firstSection">
-                    {subscription.companyName}
-                  </Typography>
-                  <Typography variant="body3" className="secondSection">
-                    {subscriptionData.offerName}
-                  </Typography>
-                  <div
-                    className="viewDetails"
-                    onClick={() => {
-                      setViewDetails({
-                        appId: subscriptionData.offerId,
-                        subscriptionId: subscription.subscriptionId,
-                      })
-                    }}
+              (subscription) =>
+                subscription.offerSubscriptionStatus !==
+                  SubscriptionStatus.INACTIVE && (
+                  <li
+                    key={subscription.subscriptionId}
+                    className="subscription-list-item"
                   >
-                    <IconButton color="secondary" size="small">
-                      <Tooltips
-                        color="dark"
-                        tooltipPlacement="top-start"
-                        tooltipText={t('content.appSubscription.viewDetails')}
-                      >
-                        <ArrowForwardIcon />
-                      </Tooltips>
-                    </IconButton>
-                  </div>
-                  <div className="forthSection">
-                    {renderStatus(subscriptionData, subscription)}
-                  </div>
-                </li>
-              )
+                    <Typography variant="body3" className="firstSection">
+                      {subscription.companyName}
+                    </Typography>
+                    <Typography variant="body3" className="secondSection">
+                      {subscriptionData.offerName}
+                    </Typography>
+                    <div
+                      className="viewDetails"
+                      onClick={() => {
+                        setViewDetails({
+                          appId: subscriptionData.offerId,
+                          subscriptionId: subscription.subscriptionId,
+                        })
+                      }}
+                    >
+                      <IconButton color="secondary" size="small">
+                        <Tooltips
+                          color="dark"
+                          tooltipPlacement="top-start"
+                          tooltipText={t('content.appSubscription.viewDetails')}
+                        >
+                          <ArrowForwardIcon />
+                        </Tooltips>
+                      </IconButton>
+                    </div>
+                    <div className="forthSection">
+                      {renderStatus(subscriptionData, subscription)}
+                    </div>
+                  </li>
+                )
             )
           })}
         </ul>
