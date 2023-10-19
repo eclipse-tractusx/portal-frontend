@@ -5,6 +5,7 @@
 - App Release Process
   - Fixed double loading of images for app page
   - Fixed validation for contact in app page
+  - Fixed salesManagerId(null) error
 - App Overview
   - Fixed image display in app overview cards
   - GET documents api endpoint connected for active apps-change documents
