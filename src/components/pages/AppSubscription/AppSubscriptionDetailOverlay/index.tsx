@@ -117,7 +117,9 @@ const AppSubscriptionDetailOverlay = ({
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [
-        `${t('content.appSubscription.detailOverlay.appTitle')}`,
+        type === SubscriptionTypes.APP_SUBSCRIPTION
+          ? `${t('content.appSubscription.detailOverlay.appTitle')}`
+          : `${t('content.appSubscription.detailOverlay.serviceTitle')}`,
         getValue(data?.name),
       ],
       [

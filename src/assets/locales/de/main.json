@@ -1285,6 +1285,7 @@
         },
         "subscriptionDetails": "Subscription Details",
         "appTitle": "App Title",
+        "serviceTitle": "Service Title",
         "status": "Status",
         "subscriptionInitiated": "Subscription Initiated",
         "subscriptionActivate": "Subscription Activate",
