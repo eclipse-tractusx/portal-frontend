@@ -293,10 +293,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-            '',
+              '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-            '',
+              '',
           ].join(',')
         )
         .join('\n')}`,
@@ -403,10 +403,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         const content = reader.result.toString()
         const csvFileHeader = Object.keys(csv2json(content)[0])
         if (
-          !csvHeaderList.reduce(
-            (a, c, i) => a && csvFileHeader[i] === c,
-            true
-          )
+          !csvHeaderList.reduce((a, c, i) => a && csvFileHeader[i] === c, true)
         ) {
           error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
           setStatus(false)
@@ -423,7 +420,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       setUploadedFile(acceptedFile)
       reader.readAsText(acceptedFile)
-
     },
     [csv2json, storeData, t]
   )
@@ -486,7 +482,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => { }}
+              onBlur={() => {}}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -586,12 +582,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   }
 
   const fetchTitle = () => {
-    if (Object.keys(userResponse).length !== 0 && userResponse.error) {
+    const response = userResponse?.data ? JSON.parse(userResponse.data) : {}
+    if (Object.keys(response).length !== 0 && response.error) {
       return t('userserror.title')
-    } else if (Object.keys(userResponse).length !== 0 && !userResponse.error) {
+    } else if (Object.keys(response).length !== 0 && !response.error) {
       return t('userssuccess.title')
     } else {
-      return t('users.title', { idp: idpData?.displayName })
+      return t('users.title')
     }
   }
 
@@ -640,7 +637,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               loadIndicator={t('action.loading')}
               loading
               size="medium"
-              onButtonClick={() => { }}
+              onButtonClick={() => {}}
               sx={{ marginLeft: '10px' }}
             />
           ) : (

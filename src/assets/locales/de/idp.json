@@ -151,7 +151,7 @@
     "desc": "Your companies Catena-X users will now be able to login with their company credentials. <br />The former Catena-X logins will be disabled in the near future."
   },
   "userserror": {
-    "title": "Upload updated user list.",
+    "title": "Upload updated user list",
     "userUploaded": "Users successfully uploaded",
     "userFailed": "User uploads failed",
     "errorUsersLabel": "Errors have occured for the following usernames: <br/>Please check their entries in the upload file and try upload it again."

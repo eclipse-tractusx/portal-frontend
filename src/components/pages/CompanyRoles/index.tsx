@@ -50,6 +50,9 @@ export default function CompanyRoles() {
       } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
         setCompanyRoles(data.confirmity)
         setLinkArray(data.confirmity.subNavigation)
+      } else if (url.indexOf('companyrolesonboardingserviceprovider') > 1) {
+        setCompanyRoles(data.ospProvider)
+        setLinkArray(data.ospProvider.subNavigation)
       } else {
         setCompanyRoles(data.participant)
         setLinkArray(data.participant.subNavigation)
@@ -71,7 +74,9 @@ export default function CompanyRoles() {
             title={companyRoles.title}
             description={companyRoles.description}
           />
-          <StageSubNavigation fixHeader={topReached} linkArray={linkArray} />
+          {linkArray && linkArray.length > 0 && (
+            <StageSubNavigation fixHeader={topReached} linkArray={linkArray} />
+          )}
           <StaticTemplateResponsive
             sectionInfo={companyRoles.sections}
             baseUrl={getAssetBase()}

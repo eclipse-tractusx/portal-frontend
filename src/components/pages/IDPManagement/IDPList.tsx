@@ -49,7 +49,7 @@ export const IDPList = () => {
   const [disableLoading, setDisableLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState(false)
 
-  const { data } = useFetchIDPListQuery()
+  const { data, isFetching } = useFetchIDPListQuery()
   const idpsData = data
     ?.slice()
     .sort((a: IdentityProvider, b: IdentityProvider) =>
@@ -198,83 +198,79 @@ export const IDPList = () => {
   }
 
   return (
-    <>
-      {idpsData && (
-        <Table
-          rowsCount={idpsData.length}
-          hideFooter
-          disableSelectionOnClick={true}
-          disableColumnFilter={true}
-          disableColumnMenu={true}
-          disableColumnSelector={true}
-          disableDensitySelector={true}
-          columnHeadersBackgroundColor={'#ffffff'}
-          title=""
-          toolbarVariant="ultimate"
-          columns={[
-            {
-              field: 'displayName',
-              headerName: t('global.field.name'),
-              flex: 2,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                row.displayName ?? (
-                  <>
-                    <ReportProblemIcon color="error" fontSize="small" />
-                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                      {ti('field.error')}
-                    </Typography>
-                  </>
-                ),
-            },
-            {
-              field: 'alias',
-              headerName: t('global.field.alias'),
-              flex: 1.5,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                row.alias ?? (
-                  <>
-                    <ReportProblemIcon color="error" fontSize="small" />
-                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                      {ti('field.error')}
-                    </Typography>
-                  </>
-                ),
-            },
-            {
-              field: 'identityProviderTypeId',
-              headerName: t('global.field.authMethod'),
-              flex: 2,
-            },
-            {
-              field: 'progress',
-              headerName: t('global.field.progress'),
-              flex: 2,
-              sortable: false,
-              renderCell: ({ row }: { row: IdentityProvider }) => (
-                <IDPStateProgress idp={row} />
-              ),
-            },
-            {
-              field: 'enabled',
-              headerName: t('global.field.status'),
-              flex: 2,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                getStatus(row.enabled, row.oidc?.clientId),
-            },
-            {
-              field: 'details',
-              headerName: t('global.field.action'),
-              flex: 2,
-              sortable: false,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                renderMenu(row),
-            },
-          ]}
-          rows={idpsData}
-          getRowId={(row: { [key: string]: string }) => row.identityProviderId}
-          hasBorder={false}
-        />
-      )}
-    </>
+    <Table
+      rowsCount={idpsData?.length}
+      hideFooter
+      loading={isFetching}
+      disableSelectionOnClick={true}
+      disableColumnFilter={true}
+      disableColumnMenu={true}
+      disableColumnSelector={true}
+      disableDensitySelector={true}
+      columnHeadersBackgroundColor={'#ffffff'}
+      title=""
+      toolbarVariant="ultimate"
+      columns={[
+        {
+          field: 'displayName',
+          headerName: t('global.field.name'),
+          flex: 2,
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            row.displayName ?? (
+              <>
+                <ReportProblemIcon color="error" fontSize="small" />
+                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                  {ti('field.error')}
+                </Typography>
+              </>
+            ),
+        },
+        {
+          field: 'alias',
+          headerName: t('global.field.alias'),
+          flex: 1.5,
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            row.alias ?? (
+              <>
+                <ReportProblemIcon color="error" fontSize="small" />
+                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                  {ti('field.error')}
+                </Typography>
+              </>
+            ),
+        },
+        {
+          field: 'identityProviderTypeId',
+          headerName: t('global.field.authMethod'),
+          flex: 2,
+        },
+        {
+          field: 'progress',
+          headerName: t('global.field.progress'),
+          flex: 2,
+          sortable: false,
+          renderCell: ({ row }: { row: IdentityProvider }) => (
+            <IDPStateProgress idp={row} />
+          ),
+        },
+        {
+          field: 'enabled',
+          headerName: t('global.field.status'),
+          flex: 2,
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            getStatus(row.enabled, row.oidc?.clientId),
+        },
+        {
+          field: 'details',
+          headerName: t('global.field.action'),
+          flex: 2,
+          sortable: false,
+          renderCell: ({ row }: { row: IdentityProvider }) => renderMenu(row),
+        },
+      ]}
+      rows={idpsData ?? []}
+      getRowId={(row: { [key: string]: string }) => row.identityProviderId}
+      hasBorder={false}
+    />
   )
 }

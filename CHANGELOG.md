@@ -9,7 +9,9 @@
   - Fixed image display in app overview cards
   - GET documents api endpoint connected for active apps-change documents
 - Update data grid table props to the new prop value
-- Linters
+- IDP
+  - Add load element for IDP list
+- Linter Findings
   - Fix ban-types
 - App Subscription and Servcie Subscripiton
   - Status UI Changes 
