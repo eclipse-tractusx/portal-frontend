@@ -391,7 +391,7 @@ export default function AppPage() {
       ],
       title: statusData.title ?? '',
       provider: statusData.provider ?? '',
-      salesManagerId: statusData.salesManagerId ?? '',
+      salesManagerId: statusData.salesManagerId ?? null,
       useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id) ?? [],
       supportedLanguageCodes: statusData.supportedLanguageCodes ?? [],
       price: statusData.price,
