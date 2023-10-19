@@ -113,15 +113,16 @@ const AppSubscriptionDetailOverlay = ({
     }
   }
 
+  const getTitle = () => {
+    if (isAppSubscription)
+      return `${t('content.appSubscription.detailOverlay.appTitle')}`
+    else return `${t('content.appSubscription.detailOverlay.serviceTitle')}`
+  }
+
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
-      [
-        isAppSubscription
-          ? `${t('content.appSubscription.detailOverlay.appTitle')}`
-          : `${t('content.appSubscription.detailOverlay.serviceTitle')}`,
-        getValue(data?.name),
-      ],
+      [getTitle(), getValue(data?.name)],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
         isAppSubscription
@@ -176,6 +177,11 @@ const AppSubscriptionDetailOverlay = ({
     )
   }
 
+  const getTechnicalName = () => {
+    if (isAppSubscription) return ''
+    else return t('content.appSubscription.detailOverlay.technicalNameInfo')
+  }
+
   const technicalDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
     body: bodyData,
@@ -183,9 +189,7 @@ const AppSubscriptionDetailOverlay = ({
       [
         {
           icon: !isAppSubscription,
-          inputValue: isAppSubscription
-            ? ''
-            : t('content.appSubscription.detailOverlay.technicalNameInfo'),
+          inputValue: getTechnicalName(),
         },
         {
           icon:
