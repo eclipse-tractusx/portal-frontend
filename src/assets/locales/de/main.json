@@ -734,6 +734,9 @@
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
+          "connectedObjects": "Connected Objects",
+          "connectorLink": "Connector Link",
+          "offerLink": "Offer Link",
           "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
