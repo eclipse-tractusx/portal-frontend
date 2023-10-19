@@ -13,6 +13,7 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+  - No Extra Semi
 - Technical User Detail
   - Add new table as data from backend
   - UI Changes

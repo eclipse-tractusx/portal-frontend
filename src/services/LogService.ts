@@ -35,7 +35,8 @@ const LogService = {
     new Date(date ?? Date.now()).toISOString().substring(11, 19),
 
   log: (level: LogLevel, message: string, data?: LogData) => {
-    ;((row) => {
+    // eslint-disable-next-line no-eval
+    ((row) => {
       level === LogLevel.SEVERE || level === LogLevel.ERROR
         ? console.error(row, data ?? '')
         : console.log(row, data ?? '')
