@@ -66,10 +66,10 @@ const AppSubscriptionDetailOverlay = ({
 }: AppSubscriptionDetailProps) => {
   const { t } = useTranslation()
   const ti = useTranslation('servicerelease').t
-  const fetchAPI =
-    type === SubscriptionTypes.APP_SUBSCRIPTION
-      ? useFetchSubscriptionDetailQuery
-      : useFetchServiceSubDetailQuery
+  const isAppSubscription = type === SubscriptionTypes.APP_SUBSCRIPTION
+  const fetchAPI = isAppSubscription
+    ? useFetchSubscriptionDetailQuery
+    : useFetchServiceSubDetailQuery
   const { data, refetch } = fetchAPI({
     appId,
     subscriptionId,
@@ -117,14 +117,14 @@ const AppSubscriptionDetailOverlay = ({
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [
-        type === SubscriptionTypes.APP_SUBSCRIPTION
+        isAppSubscription
           ? `${t('content.appSubscription.detailOverlay.appTitle')}`
           : `${t('content.appSubscription.detailOverlay.serviceTitle')}`,
         getValue(data?.name),
       ],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        type === SubscriptionTypes.APP_SUBSCRIPTION
+        isAppSubscription
           ? getStatus()
           : getValue(data?.offerSubscriptionStatus),
       ],
@@ -160,7 +160,7 @@ const AppSubscriptionDetailOverlay = ({
     ],
   ]
 
-  if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
+  if (isAppSubscription) {
     bodyData.unshift(
       [
         `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
@@ -182,11 +182,10 @@ const AppSubscriptionDetailOverlay = ({
     edit: [
       [
         {
-          icon: type === SubscriptionTypes.SERVICE_SUBSCRIPTION,
-          inputValue:
-            type === SubscriptionTypes.APP_SUBSCRIPTION
-              ? ''
-              : t('content.appSubscription.detailOverlay.technicalNameInfo'),
+          icon: !isAppSubscription,
+          inputValue: isAppSubscription
+            ? ''
+            : t('content.appSubscription.detailOverlay.technicalNameInfo'),
         },
         {
           icon:
@@ -200,12 +199,11 @@ const AppSubscriptionDetailOverlay = ({
       [
         {
           icon: true,
-          inputValue:
-            type === SubscriptionTypes.APP_SUBSCRIPTION
-              ? t('content.appSubscription.detailOverlay.appIdInfo')
-              : t(
-                  'content.appSubscription.detailOverlay.technicalPermissionInfo'
-                ),
+          inputValue: isAppSubscription
+            ? t('content.appSubscription.detailOverlay.appIdInfo')
+            : t(
+                'content.appSubscription.detailOverlay.technicalPermissionInfo'
+              ),
         },
         {
           icon: false,
@@ -265,7 +263,7 @@ const AppSubscriptionDetailOverlay = ({
   }
 
   const getDialogIntro = () => {
-    if (type === SubscriptionTypes.APP_SUBSCRIPTION) {
+    if (isAppSubscription) {
       return t('content.appSubscription.detailOverlay.description')
     } else {
       return ti('serviceSubscription.detailOverlay.description')
