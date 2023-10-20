@@ -21,6 +21,9 @@
 import { Checkbox } from '@catena-x/portal-shared-components'
 import { type IdentityProvider } from 'features/admin/idpApiSlice'
 import { useState } from 'react'
+import { type IHashMap } from 'types/MainTypes'
+
+type AgreementMap = IHashMap<boolean>
 
 export const OSPConsentContent = ({
   idp,
@@ -29,19 +32,38 @@ export const OSPConsentContent = ({
   idp: IdentityProvider
   onValid: (consent: boolean) => void
 }) => {
-  const [consent, setConsent] = useState<boolean>(false)
+  const TEST_AGREEMENTS: Array<string> = [
+    '11111111-1111-1111-1111-111111111111',
+    '22222222-2222-2222-2222-222222222222',
+    '33333333-3333-3333-3333-333333333333',
+  ]
+  const agreementMap: AgreementMap = TEST_AGREEMENTS.reduce((a, c) => {
+    a[c] = false
+    return a
+  }, {} as AgreementMap)
 
-  const toggleConsent = () => {
-    onValid(!consent)
-    setConsent(!consent)
+  const [consent, setConsent] = useState<AgreementMap>(agreementMap)
+
+  const doCheckData = (agreement: string) => {
+    const currentConsent = consent
+    currentConsent[agreement] = !currentConsent[agreement]
+    const valid = TEST_AGREEMENTS.reduce((a, c) => a && currentConsent[c], true)
+    console.log(valid)
+    onValid(valid)
+    setConsent({ ...currentConsent })
   }
 
   return (
-    <div style={{ margin: '80px 250px' }}>
-      <Checkbox
-        label="I consent to the terms and conditions"
-        onChange={toggleConsent}
-      />
+    <div style={{ margin: '80px 120px' }}>
+      {TEST_AGREEMENTS.map((agreement) => (
+        <Checkbox
+          label={`I consent to ${agreement}`}
+          onChange={() => {
+            doCheckData(agreement)
+          }}
+          checked={consent[agreement]}
+        />
+      ))}
     </div>
   )
 }

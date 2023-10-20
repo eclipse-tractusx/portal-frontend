@@ -36,6 +36,7 @@ import {
   type IdentityProviderUpdate,
   useFetchIDPDetailQuery,
   useUpdateIDPMutation,
+  useEnableIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { OSPUpdateContent } from './OSPUpdateContent'
 import { OVERLAYS } from 'types/Constants'
@@ -46,6 +47,7 @@ export const OSPUpdate = ({ id }: { id: string }) => {
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const [updateIdp] = useUpdateIDPMutation()
+  const [enableIdp] = useEnableIDPMutation()
   const [idpUpdateData, setIdpUpdateData] = useState<
     IdentityProviderUpdate | undefined
   >(undefined)
@@ -56,8 +58,13 @@ export const OSPUpdate = ({ id }: { id: string }) => {
     setLoading(true)
     try {
       await updateIdp(idpUpdateData).unwrap()
-      dispatch(show(OVERLAYS.ENABLE_IDP, id))
-      success(t('edit.success'))
+      success(t('configure.success'))
+      await enableIdp({
+        id,
+        enabled: true,
+      }).unwrap()
+      dispatch(show(OVERLAYS.REGISTER_OSP, id))
+      success(t('enable.success'))
     } catch (err) {
       error(t('edit.error'), '', err as object)
     }

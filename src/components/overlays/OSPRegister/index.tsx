@@ -31,27 +31,31 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
-import {
-  type IdentityProviderUpdate,
-  useFetchIDPDetailQuery,
-} from 'features/admin/idpApiSlice'
-import { OSPRegisterContent } from './OSPRegisterContent'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
+import { OSPRegisterContent } from './OSPRegisterContentTesting'
 import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
+import {
+  useRegisterPartnerMutation,
+  type PartnerRegistration,
+} from 'features/admin/networkApiSlice'
 
 export const OSPRegister = ({ id }: { id: string }) => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
-  const [ospData, setOspData] = useState<IdentityProviderUpdate | undefined>(
-    undefined
-  )
+  const [registerPartner] = useRegisterPartnerMutation()
+
+  const [registerData, setRegisterData] = useState<
+    PartnerRegistration | undefined
+  >(undefined)
   const [loading, setLoading] = useState(false)
 
   const doRegister = async () => {
-    if (!(data && ospData)) return
+    if (!(data && registerData)) return
     setLoading(true)
     try {
+      await registerPartner(registerData).unwrap()
       dispatch(show(OVERLAYS.CONSENT_OSP, id))
       success(t('register.success'))
     } catch (err) {
@@ -99,7 +103,7 @@ export const OSPRegister = ({ id }: { id: string }) => {
           </Trans>
         </div>
         <Typography variant="label2">{t('register.addDataHeading')}</Typography>
-        {data && <OSPRegisterContent idp={data} onValid={setOspData} />}
+        {data && <OSPRegisterContent idp={data} onValid={setRegisterData} />}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
@@ -118,7 +122,11 @@ export const OSPRegister = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" onClick={doRegister} disabled={!ospData}>
+          <Button
+            variant="contained"
+            onClick={doRegister}
+            disabled={!registerData}
+          >
             {t('action.register')}
           </Button>
         )}
