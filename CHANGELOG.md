@@ -14,6 +14,8 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
 - Technical User Detail
   - Add new table as data from backend
   - UI Changes
