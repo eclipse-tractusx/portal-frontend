@@ -378,7 +378,6 @@ const OSPRegisterForm = ({
         }}
       />
     ),
-
     uniqueId: (
       <div style={{ marginTop: -39, marginRight: 30, width: 820 }}>
         ,
@@ -559,7 +558,7 @@ export const OSPRegisterContent = ({
         2
       )
     )
-    return valid ? true : false
+    return !!valid
   }
 
   return (

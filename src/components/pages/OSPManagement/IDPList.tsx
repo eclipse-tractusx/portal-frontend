@@ -233,7 +233,7 @@ export const IDPList = () => {
               headerName: t('global.field.progress'),
               flex: 2,
               sortable: false,
-              renderCell: ({ row }: { row: IdentityProvider }) => (
+              renderCell: ({ row }) => (
                 <IDPStateProgress idp={row} />
               ),
             },
