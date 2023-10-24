@@ -440,7 +440,7 @@ const OSPRegisterForm = ({
                 const companyRoles = [...data.companyRoles]
                 if (useRole) {
                   companyRoles.push(role.companyRole)
-                  companyRoles.sort()
+                  companyRoles.sort((a, b) => a.localeCompare(b))
                 } else {
                   const index = companyRoles.indexOf(role.companyRole)
                   if (index > -1) {
