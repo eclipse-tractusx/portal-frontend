@@ -33,14 +33,13 @@ export type LogData = LogDataItem | Array<LogDataItem>
 const LogService = {
   logtime: (date?: number) =>
     new Date(date ?? Date.now()).toISOString().substring(11, 19),
-
   log: (level: LogLevel, message: string, data?: LogData) => {
-    // eslint-disable-next-line no-eval
-    ((row) => {
+    const logMessage = (row: string) => {
       level === LogLevel.SEVERE || level === LogLevel.ERROR
         ? console.error(row, data ?? '')
         : console.log(row, data ?? '')
-    })(`${LogService.logtime()} ${level} ${message}`)
+    }
+    logMessage(`${LogService.logtime()} ${level} ${message}`)
   },
   info: (message: string, data?: LogData) => {
     LogService.log(LogLevel.INFO, message, data)
