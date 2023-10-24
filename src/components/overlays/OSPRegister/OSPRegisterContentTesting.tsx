@@ -24,6 +24,7 @@ import {
   type PartnerRegistration,
   UNIQUE_ID_TYPE,
   COMPANY_ROLE,
+  useFetchCompanyRoleAgreementDataQuery,
 } from 'features/admin/networkApiSlice'
 import { useState } from 'react'
 import UserService from 'services/UserService'
@@ -35,6 +36,10 @@ export const OSPRegisterContent = ({
   idp: IdentityProvider
   onValid: (form: PartnerRegistration | undefined) => void
 }) => {
+  const companyRoleAgreementData = useFetchCompanyRoleAgreementDataQuery().data
+
+  console.log(companyRoleAgreementData)
+
   const TEST_DATA: PartnerRegistration = {
     externalId: '3fa85f64-0000-0000-0000-2c963f66afa6',
     name: 'Testcompany',

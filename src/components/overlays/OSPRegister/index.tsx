@@ -32,18 +32,22 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
-import { OSPRegisterContent } from './OSPRegisterContentTesting'
+import { OSPRegisterContent } from './OSPRegisterContent'
 import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 import {
   useRegisterPartnerMutation,
   type PartnerRegistration,
+  useFetchCompanyRoleAgreementDataQuery,
 } from 'features/admin/networkApiSlice'
 
 export const OSPRegister = ({ id }: { id: string }) => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
+  const companyRoleAgreementData = useFetchCompanyRoleAgreementDataQuery().data
+  console.log(companyRoleAgreementData)
+
   const [registerPartner] = useRegisterPartnerMutation()
 
   const [registerData, setRegisterData] = useState<
@@ -103,7 +107,13 @@ export const OSPRegister = ({ id }: { id: string }) => {
           </Trans>
         </div>
         <Typography variant="label2">{t('register.addDataHeading')}</Typography>
-        {data && <OSPRegisterContent idp={data} onValid={setRegisterData} />}
+        {data && companyRoleAgreementData && (
+          <OSPRegisterContent
+            idp={data}
+            companyRoleAgreementData={companyRoleAgreementData}
+            onValid={setRegisterData}
+          />
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">

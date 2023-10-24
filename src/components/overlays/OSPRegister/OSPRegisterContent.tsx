@@ -18,179 +18,558 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { type CSSProperties, useState } from 'react'
+import { type IdentityProvider } from 'features/admin/idpApiSlice'
 import {
-  type IdentityProvider,
-  type IdentityProviderUpdate,
-  type IdentityProviderUpdateBody,
-  OIDCAuthMethod,
-  OIDCSignatureAlgorithm,
-} from 'features/admin/idpApiSlice'
-import { isBPN, isCompanyName, isCountryCode, isID } from 'types/Patterns'
-import type { IHashMap } from 'types/MainTypes'
+  isBPN,
+  isCityName,
+  isCompanyName,
+  isCountryCode,
+  isFirstName,
+  isID,
+  isLastName,
+  isMail,
+  isName,
+  isRegionName,
+  isStreetName,
+  isStreetNumber,
+  isUserName,
+  isZipCode,
+} from 'types/Patterns'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
+import { Checkbox, SelectList } from '@catena-x/portal-shared-components'
+import {
+  type PartnerRegistration,
+  type CompanyRoleAgreementData,
+  type CompanyRole,
+  UNIQUE_ID_TYPE,
+  COMPANY_ROLE,
+  emptyPartnerRegistration,
+} from 'features/admin/networkApiSlice'
+import UserService from 'services/UserService'
 
-const idpToForm = (idp: IdentityProvider) => {
-  const form: IHashMap<string> = {}
-  form.displayName = idp.displayName ?? ''
-  form.metadataUrl = ''
-  form.clientId = idp.oidc?.clientId ?? ''
-  form.secret = ''
-  form.clientAuthMethod =
-    idp.oidc?.clientAuthMethod ?? OIDCAuthMethod.SECRET_BASIC
-  form.signatureAlgorithm =
-    idp.oidc?.signatureAlgorithm ?? OIDCSignatureAlgorithm.ES256
-  return form
+const emptyData: PartnerRegistration = {
+  externalId: '',
+  name: '',
+  bpn: '',
+  streetName: '',
+  streetNumber: '',
+  city: '',
+  zipCode: '',
+  region: '',
+  countryAlpha2Code: '',
+  uniqueIds: [],
+  userDetails: [
+    {
+      identityProviderId: '',
+      providerId: '',
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+    },
+  ],
+  companyRoles: [],
 }
 
-const formToUpdate = (form: IHashMap<string>): IdentityProviderUpdateBody => ({
-  displayName: form.displayName,
-  oidc: {
-    metadataUrl: form.metadataUrl,
-    clientId: form.clientId,
-    secret: form.secret,
-    clientAuthMethod: form.clientAuthMethod as OIDCAuthMethod,
-    signatureAlgorithm: form.signatureAlgorithm as OIDCSignatureAlgorithm,
-  },
-})
+type ItemType = { id: string }
+
+const uniqeIdItems: Array<ItemType> = Object.keys(UNIQUE_ID_TYPE).map(
+  (item) => ({
+    id: item,
+  })
+)
 
 const OSPRegisterForm = ({
   idp,
+  companyRoleAgreementData,
   onChange,
 }: {
   idp: IdentityProvider
-  onChange: (key: string, value: string | undefined) => boolean
+  companyRoleAgreementData: CompanyRoleAgreementData
+  onChange: (partnerRegistration: PartnerRegistration | undefined) => boolean
 }) => {
   const { t } = useTranslation('osp')
 
+  const [data, setData] = useState<PartnerRegistration>(emptyData)
+
+  const updateData = (newData: PartnerRegistration | undefined) => {
+    if (newData) setData(newData)
+    onChange(newData)
+  }
+
+  const invalidate = () => {
+    updateData(undefined)
+  }
+
+  const inputStyle: CSSProperties = { width: 260 }
+
+  const inputs: Record<string, JSX.Element> = {
+    extid: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'extid'}
+        label={t('field.extid.name')}
+        hint={t('field.extid.hint')}
+        validate={isID}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            externalId: value,
+          })
+        }}
+      />
+    ),
+    company: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'company'}
+        label={t('field.company.name')}
+        hint={t('field.company.hint')}
+        validate={isCompanyName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            name: value,
+          })
+        }}
+      />
+    ),
+    bpn: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'bpn'}
+        label={t('field.bpn.name')}
+        hint={t('field.bpn.hint')}
+        validate={isBPN}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            bpn: value,
+          })
+        }}
+      />
+    ),
+    country: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'country'}
+        label={t('field.country.name')}
+        hint={t('field.country.hint')}
+        validate={isCountryCode}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            countryAlpha2Code: value,
+          })
+        }}
+      />
+    ),
+    region: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'region'}
+        label={t('field.region.name')}
+        hint={t('field.region.hint')}
+        validate={isRegionName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            region: value,
+          })
+        }}
+      />
+    ),
+    city: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'city'}
+        label={t('field.city.name')}
+        hint={t('field.city.hint')}
+        validate={isCityName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            city: value,
+          })
+        }}
+      />
+    ),
+    zipcode: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'zipcode'}
+        label={t('field.zipcode.name')}
+        hint={t('field.zipcode.hint')}
+        validate={isZipCode}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            zipCode: value,
+          })
+        }}
+      />
+    ),
+
+    streetName: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'streetName'}
+        label={t('field.streetName.name')}
+        hint={t('field.streetName.hint')}
+        validate={isStreetName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            streetName: value,
+          })
+        }}
+      />
+    ),
+    streetNumber: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'streetNumber'}
+        label={t('field.streetNumber.name')}
+        hint={t('field.streetNumber.hint')}
+        validate={isStreetNumber}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            streetNumber: value,
+          })
+        }}
+      />
+    ),
+    identityProviderId: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'identityProviderId'}
+        label={t('field.identityProviderId.name')}
+        hint={t('field.identityProviderId.hint')}
+        validate={isID}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            userDetails: [
+              {
+                ...data.userDetails[0],
+                identityProviderId: value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+    providerId: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'providerId'}
+        label={t('field.providerId.name')}
+        hint={t('field.providerId.hint')}
+        validate={isID}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            userDetails: [
+              {
+                ...data.userDetails[0],
+                providerId: value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+
+    username: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'username'}
+        label={t('field.username.name')}
+        hint={t('field.username.hint')}
+        validate={isUserName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            userDetails: [
+              {
+                ...data.userDetails[0],
+                username: value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+    firstName: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'firstName'}
+        label={t('field.firstName.name')}
+        hint={t('field.firstName.hint')}
+        validate={isFirstName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            userDetails: [
+              {
+                ...data.userDetails[0],
+                firstName: value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+    lastName: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'lastName'}
+        label={t('field.lastName.name')}
+        hint={t('field.lastName.hint')}
+        validate={isLastName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            userDetails: [
+              {
+                ...data.userDetails[0],
+                lastName: value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+    email: (
+      <ValidatingInput
+        style={inputStyle}
+        name={'email'}
+        label={t('field.email.name')}
+        hint={t('field.email.hint')}
+        validate={isMail}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            userDetails: [
+              {
+                ...data.userDetails[0],
+                email: value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+
+    uniqueId: (
+      <div style={{ marginTop: -39, marginRight: 30, width: 820 }}>
+        ,
+        <SelectList
+          {...{
+            items: uniqeIdItems,
+            defaultValue: uniqeIdItems[0],
+            label: t('field.uniqueId.name'),
+            placeholder: '',
+            helperText: t('field.uniqueId.name'),
+            margin: 'dense',
+            variant: 'filled',
+            clearText: 'clear',
+            keyTitle: 'id',
+            onChangeItem: (value: ItemType): void => {
+              updateData({
+                ...data,
+                uniqueIds: [
+                  {
+                    ...data.uniqueIds[0],
+                    type: value.id as UNIQUE_ID_TYPE,
+                  },
+                ],
+              })
+            },
+          }}
+        />
+      </div>
+    ),
+    uniqeIdValue: (
+      <ValidatingInput
+        style={{ width: 400 }}
+        name={'uniqeIdValue'}
+        label={t('field.uniqeIdValue.name')}
+        hint={t('field.uniqeIdValue.hint')}
+        validate={isName}
+        onInvalid={invalidate}
+        onValid={(_key, value: string) => {
+          updateData({
+            ...data,
+            uniqueIds: [
+              {
+                ...data.uniqueIds[0],
+                value,
+              },
+            ],
+          })
+        }}
+      />
+    ),
+    companyRoles: (
+      <div>
+        {companyRoleAgreementData.companyRoles.map((role: CompanyRole) => (
+          <div key={role.companyRole}>
+            <Checkbox
+              label={role.companyRole}
+              onChange={(e) => {
+                const useRole = e.target.checked
+                const companyRoles = [...data.companyRoles]
+                if (useRole) {
+                  companyRoles.push(role.companyRole)
+                  companyRoles.sort()
+                } else {
+                  const index = companyRoles.indexOf(role.companyRole)
+                  if (index > -1) {
+                    companyRoles.splice(index, 1)
+                  }
+                }
+                updateData({
+                  ...data,
+                  companyRoles,
+                })
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    ),
+  }
+
+  const rowStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 864,
+  }
+
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ width: 400, marginRight: 12 }}>
-          <div style={{ marginTop: '12px 0' }}>
-            <ValidatingInput
-              name="extid"
-              label={t('field.extid.name')}
-              hint={t('field.extid.hint')}
-              validate={isID}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="company"
-              label={t('field.company.name')}
-              hint={t('field.company.hint')}
-              validate={isCompanyName}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="bpn"
-              label={t('field.bpn.name')}
-              hint={t('field.bpn.hint')}
-              validate={isBPN}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="street"
-              label={t('field.street.name')}
-              hint={t('field.street.hint')}
-              validate={() => true}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="country"
-              label={t('field.country.name')}
-              hint={t('field.country.hint')}
-              validate={isCountryCode}
-              onValid={onChange}
-            />
-          </div>
-        </div>
-
-        <div style={{ width: 400, marginLeft: 12 }}>
-          <div style={{ marginTop: '12px 0' }}>
-            <ValidatingInput
-              name="lorem"
-              label={t('field.lorem.name')}
-              hint={t('field.lorem.hint')}
-              validate={isID}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="ipsum"
-              label={t('field.ipsum.name')}
-              hint={t('field.ipsum.hint')}
-              validate={isCompanyName}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="dolor"
-              label={t('field.dolor.name')}
-              hint={t('field.dolor.hint')}
-              validate={() => true}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="sit"
-              label={t('field.sit.name')}
-              hint={t('field.sit.hint')}
-              validate={() => true}
-              onValid={onChange}
-            />
-          </div>
-          <div style={{ margin: '12px 0' }}>
-            <ValidatingInput
-              name="amet"
-              label={t('field.amet.name')}
-              hint={t('field.amet.hint')}
-              validate={() => true}
-              onValid={onChange}
-            />
-          </div>
-        </div>
+      <div style={rowStyle}>
+        {inputs.company}
+        {inputs.extid}
+        {inputs.bpn}
       </div>
+      <div style={rowStyle}>
+        {inputs.country}
+        {inputs.region}
+        {inputs.zipcode}
+      </div>
+      <div style={rowStyle}>
+        {inputs.city}
+        {inputs.streetName}
+        {inputs.streetNumber}
+      </div>
+      <div style={rowStyle}>
+        {inputs.uniqueId}
+        {inputs.uniqeIdValue}
+      </div>
+      <div style={rowStyle}>
+        {inputs.identityProviderId}
+        {inputs.providerId}
+        {inputs.username}
+      </div>
+      <div style={rowStyle}>
+        {inputs.firstName}
+        {inputs.lastName}
+        {inputs.email}
+      </div>
+      <div>{inputs.companyRoles}</div>
     </>
   )
 }
 
 export const OSPRegisterContent = ({
   idp,
+  companyRoleAgreementData,
   onValid,
 }: {
   idp: IdentityProvider
-  onValid: (form: IdentityProviderUpdate | undefined) => void
+  companyRoleAgreementData: CompanyRoleAgreementData
+  onValid: (form: PartnerRegistration | undefined) => void
 }) => {
-  const [formData, setFormData] = useState<IHashMap<string>>(idpToForm(idp))
-
-  const checkData = (key: string, value: string | undefined): boolean => {
-    const current: IHashMap<string> = { ...formData }
-    current[key] = value as OIDCSignatureAlgorithm
-    setFormData(current)
-    const formValid = current.extid
-    onValid(
-      formValid
-        ? {
-            identityProviderId: idp.identityProviderId,
-            body: formToUpdate(current),
-          }
-        : undefined
-    )
-    return true
+  const TEST_DATA: PartnerRegistration = {
+    externalId: '3fa85f64-0000-0000-0000-2c963f66afa6',
+    name: 'Testcompany',
+    bpn: 'BPNL000000123456',
+    streetName: 'Bremer Str.',
+    streetNumber: '6',
+    city: 'München',
+    zipCode: '80809',
+    region: 'Bayern',
+    countryAlpha2Code: 'DE',
+    uniqueIds: [
+      {
+        type: UNIQUE_ID_TYPE.COMMERCIAL_REG_NUMBER,
+        value: 'string',
+      },
+    ],
+    userDetails: [
+      {
+        identityProviderId: idp.identityProviderId,
+        providerId: idp.alias,
+        username: UserService.getUsername(),
+        firstName: UserService.getName(),
+        lastName: UserService.getName(),
+        email: UserService.getEmail(),
+      },
+    ],
+    companyRoles: [COMPANY_ROLE.ACTIVE_PARTICIPANT],
   }
 
-  return <OSPRegisterForm idp={idp} onChange={checkData} />
+  const [data, setData] = useState<string>(JSON.stringify(TEST_DATA, null, 2))
+
+  const doCheckForm = (
+    partnerRegistration: PartnerRegistration | undefined
+  ) => {
+    const valid =
+      partnerRegistration?.externalId &&
+      partnerRegistration.name &&
+      partnerRegistration?.bpn &&
+      partnerRegistration.companyRoles.length > 0
+    onValid(valid ? partnerRegistration : undefined)
+    console.log('check', valid, partnerRegistration)
+    setData(
+      JSON.stringify(
+        valid ? partnerRegistration : emptyPartnerRegistration,
+        null,
+        2
+      )
+    )
+    return valid ? true : false
+  }
+
+  return (
+    <>
+      <pre style={{ fontSize: '10px', backgroundColor: '#eeeeee' }}>{data}</pre>
+      <OSPRegisterForm
+        idp={idp}
+        companyRoleAgreementData={companyRoleAgreementData}
+        onChange={doCheckForm}
+      />
+    </>
+  )
 }
