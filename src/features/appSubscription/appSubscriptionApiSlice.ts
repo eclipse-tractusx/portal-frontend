@@ -40,6 +40,13 @@ export type TechnicalUserData = {
   permissions: string[]
 }
 
+export enum ProcessStep {
+  START_AUTOSETUP = 'START_AUTOSETUP',
+  ACTIVATE_SUBSCRIPTION = 'ACTIVATE_SUBSCRIPTION',
+  TRIGGER_PROVIDER = 'TRIGGER_PROVIDER',
+  TRIGGER_PROVIDER_CALLBACK = 'TRIGGER_PROVIDER_CALLBACK',
+}
+
 export type SubscriptionDetailResponse = {
   id: string
   appInstanceId: string
@@ -50,6 +57,7 @@ export type SubscriptionDetailResponse = {
   contact: string[]
   technicalUserData: TechnicalUserData[]
   tenantUrl: string
+  processStepTypeId: ProcessStep
 }
 
 export type UserRoles = {
@@ -81,6 +89,7 @@ export type CompanySubscriptionData = {
 export type SubscriptionContent = {
   offerId: string
   offerName: string
+  processStepTypeId: ProcessStep
   companySubscriptionStatuses: CompanySubscriptionData[]
 }
 

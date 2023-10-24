@@ -16,6 +16,8 @@
   - Fix ban-types
 - Onboarding Serviceprovider
   - Add the OSP prototype
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
 - Technical User Detail
   - Add new table as data from backend
   - UI Changes

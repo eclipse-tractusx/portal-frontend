@@ -191,7 +191,7 @@
       }
 
       .viewDetails {
-        width: 20%;
+        width: 15%;
       }
 
       .thirdSection {
@@ -202,13 +202,30 @@
       }
 
       .forthSection {
-        margin-left: 0px;
-        text-align: center;
-
+        width: 15%;
+        display: block;
         button {
           width: 50%;
           border-radius: 15px;
           padding: 5px;
+        }
+        .configureBtn {
+          pointer-events: none;
+        }
+        .statusIcon {
+          height: 30px;
+          float: right;
+        }
+        .active {
+          color: #5bb52e;
+        }
+        .pending {
+          color: #989898;
+        }
+        .statusErrorIcon {
+          color: #c20909;
+          font-style: italic;
+          float: right;
         }
       }
     }
