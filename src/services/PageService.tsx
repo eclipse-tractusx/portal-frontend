@@ -20,16 +20,19 @@
 
 import type { MutableRefObject } from 'react'
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const referenceMap: { [key: string]: MutableRefObject<any> } = {}
 
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
 const registerReference = (key: string, ref: MutableRefObject<any>) => {
   referenceMap[key] = ref
   return ref
 }
 
 const scrollTo = (key: string) => {
-  window.scrollTo({
-    top: referenceMap[key].current.offsetTop + 1,
+  referenceMap[key].current.scrollIntoView({
     behavior: 'smooth',
   })
 }

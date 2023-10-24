@@ -27,12 +27,12 @@ import smallLogo from '../../../assets/logo/cx-logo-short.svg'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
+import type i18next from 'i18next'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksTableColumns = (
-  translationHook: any
+  t: typeof i18next.t
 ): Array<GridColDef> => {
-  const { t } = translationHook()
   const dispatch = useDispatch()
 
   return [

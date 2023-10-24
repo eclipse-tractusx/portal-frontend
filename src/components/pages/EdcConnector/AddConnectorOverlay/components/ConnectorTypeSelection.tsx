@@ -32,6 +32,8 @@ const ConnectorTypeSelection = ({
   selectedServiceCallback,
   ownCompanyDetails,
 }: {
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   selectedServiceCallback: (selected: any) => any
   ownCompanyDetails?: CompanyDetails
 }) => {

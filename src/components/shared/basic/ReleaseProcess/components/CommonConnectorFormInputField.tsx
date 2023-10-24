@@ -30,7 +30,9 @@ export default function CommonConnectorFormInputField({
   pattern,
   maxLength = 40,
   minLength = 5,
-}: any) {
+}: // Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+any) {
   return (
     <div className="form-field">
       <ConnectorFormInputField

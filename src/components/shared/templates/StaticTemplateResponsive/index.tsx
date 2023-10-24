@@ -229,7 +229,7 @@ export const StaticTemplateResponsive = ({
   sectionInfo,
   baseUrl,
 }: {
-  sectionInfo: any
+  sectionInfo: ProviderProps[]
   baseUrl: string
 }) => {
   const [showScroll, setShowScroll] = useState(false)

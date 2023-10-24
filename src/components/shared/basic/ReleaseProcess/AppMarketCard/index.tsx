@@ -46,6 +46,7 @@ import {
   useFetchDocumentByIdMutation,
   DocumentTypeId,
   useDeleteAppReleaseDocumentMutation,
+  type appLanguagesItem,
 } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -69,7 +70,10 @@ import ConnectorFormInputFieldImage from '../components/ConnectorFormInputFieldI
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
-import type { UseCaseType } from 'features/appManagement/types'
+import {
+  type LanguageStatusType,
+  type UseCaseType,
+} from 'features/appManagement/types'
 
 type FormDataType = {
   title: string
@@ -137,8 +141,10 @@ export default function AppMarketCard() {
   } = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
-  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<any[]>([])
-  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<any[]>([])
+  const [defaultUseCaseVal, setDefaultUseCaseVal] = useState<useCasesItem[]>([])
+  const [defaultAppLanguageVal, setDefaultAppLanguageVal] = useState<
+    appLanguagesItem[]
+  >([])
   const [loading, setLoading] = useState<boolean>(false)
   const [enableRetryOverlay, setEnableRetryOverlay] = useState<boolean>(false)
 
@@ -156,11 +162,11 @@ export default function AppMarketCard() {
       salesManagerId: appStatusData?.salesManagerId,
       shortDescriptionEN:
         appStatusData?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'en'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
         )[0]?.shortDescription ?? '',
       shortDescriptionDE:
         appStatusData?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'de'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
         )[0]?.shortDescription ?? '',
       uploadImage: {
         leadPictureUri: cardImage === LogoGrayData ? null : cardImage,
@@ -220,27 +226,31 @@ export default function AppMarketCard() {
       )
       setSalesManagerListData(uniqueSalesManagerList)
 
-      if (appStatusData?.salesManagerId) {
-        const defaultsalesMgr: any = uniqueSalesManagerList?.filter(
+      if (appStatusData?.salesManagerId && uniqueSalesManagerList) {
+        const defaultsalesMgr = uniqueSalesManagerList?.filter(
           (item) => item.userId === appStatusData?.salesManagerId
         )
-        onSalesManagerChange(defaultsalesMgr && defaultsalesMgr[0]?.userId)
-        setDefaultSalesManagerValue(defaultsalesMgr && defaultsalesMgr[0])
+        if (defaultsalesMgr) {
+          onSalesManagerChange(defaultsalesMgr[0]?.userId)
+          setDefaultSalesManagerValue(defaultsalesMgr[0])
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList, appStatusData])
 
-  const onSalesManagerChange = (sales: any) => {
+  const onSalesManagerChange = (sales: string | null) => {
     setSalesManagerId(sales)
   }
 
-  const cardImageData: any = getValues().uploadImage.leadPictureUri
+  const cardImageData: string | null = getValues().uploadImage.leadPictureUri
   useEffect(() => {
-    if (cardImageData !== null && cardImageData !== LogoGrayData) {
-      const isFile: any = cardImageData instanceof File
-
-      if (isFile) {
+    if (
+      cardImageData !== null &&
+      cardImageData !== LogoGrayData &&
+      cardImage === LogoGrayData
+    ) {
+      if (cardImageData) {
         const blobFile = new Blob([cardImageData], {
           type: 'image/png',
         })
@@ -272,7 +282,7 @@ export default function AppMarketCard() {
       id: documentId,
       name: documentName,
       status,
-    } as any)
+    } as unknown as string | null)
   }
 
   const fetchCardImage = async (documentId: string, documentName: string) => {
@@ -340,7 +350,7 @@ export default function AppMarketCard() {
         name: uploadImageValue.name,
         size: uploadImageValue.size,
         status,
-      } as any)
+      } as unknown as string | null)
     }
 
     setFileStatus(UploadStatus.UPLOADING)
@@ -362,23 +372,25 @@ export default function AppMarketCard() {
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
       })
-        ? data.useCaseCategory?.map((item: any) => item.id)
+        ? // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
+          data.useCaseCategory?.map((item: any) => item.id)
         : data.useCaseCategory,
       descriptions: [
         {
           languageCode: 'de',
           longDescription:
             appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription ?? '',
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionDE,
         },
         {
           languageCode: 'en',
           longDescription:
             appStatusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
-            )[0]?.longDescription ?? '',
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
+            )[0]?.longDescription || '',
           shortDescription: data.shortDescriptionEN,
         },
       ],
@@ -432,7 +444,7 @@ export default function AppMarketCard() {
   const uploadDocumentApi = async (
     appId: string,
     documentTypeId: DocumentTypeId,
-    file: any
+    file: File
   ) => {
     const data = {
       appId,
@@ -713,7 +725,7 @@ export default function AppMarketCard() {
                   buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
                   filterOptionsArgs: {
                     matchFrom: 'any',
-                    stringify: (option: any) =>
+                    stringify: (option: appLanguagesItem) =>
                       option.languageShortName +
                       option.languageLongNames[0].longDescription +
                       option.languageLongNames[1].longDescription,
@@ -741,7 +753,7 @@ export default function AppMarketCard() {
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
                 onChangeItem={(e) => {
-                  onSalesManagerChange(e.userId)
+                  e && onSalesManagerChange(e.userId)
                 }}
                 keyTitle={'fullName'}
               />
@@ -829,9 +841,13 @@ export default function AppMarketCard() {
         onBackIconClick={() => {
           navigate('/appmanagement')
         }}
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         onSave={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE)
         )}
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         onSaveAndProceed={handleSubmit((data: any) =>
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
         )}

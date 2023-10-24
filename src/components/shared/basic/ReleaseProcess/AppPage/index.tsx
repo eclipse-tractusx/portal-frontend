@@ -53,13 +53,18 @@ import {
   useUpdateDocumentUploadMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
-import { ErrorType, type UseCaseType } from 'features/appManagement/types'
+import {
+  type AppStatusDataState,
+  ErrorType,
+  type LanguageStatusType,
+  type UseCaseType,
+} from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
@@ -67,7 +72,7 @@ import { phone } from 'phone'
 type FormDataType = {
   longDescriptionEN: string
   longDescriptionDE: string
-  images: any
+  images: []
   uploadDataPrerequisits: File | null
   uploadTechnicalGuide: File | null
   uploadAppContract: File | null | string
@@ -98,7 +103,7 @@ export default function AppPage() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const appStatusData: any = useSelector(appStatusDataSelector)
+  const appStatusData: AppStatusDataState = useSelector(appStatusDataSelector)
   const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
   const [saveApp] = useSaveAppMutation()
@@ -115,13 +120,13 @@ export default function AppPage() {
     return {
       longDescriptionEN:
         fetchAppStatus?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'en'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
         )[0]?.longDescription ?? '',
       longDescriptionDE:
         fetchAppStatus?.descriptions?.filter(
-          (appStatus: any) => appStatus.languageCode === 'de'
+          (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
         )[0]?.longDescription ?? '',
-      images: fetchAppStatus?.documents?.APP_IMAGE ?? [],
+      images: fetchAppStatus?.documents?.APP_IMAGE || [],
       uploadDataPrerequisits:
         fetchAppStatus?.documents?.ADDITIONAL_DETAILS ?? null,
       uploadTechnicalGuide:
@@ -171,7 +176,7 @@ export default function AppPage() {
           name: value.name,
           size: value.size,
           status,
-        } as any)
+        } as unknown)
     },
     [getValues, setValue]
   )
@@ -255,7 +260,7 @@ export default function AppPage() {
   ])
 
   const uploadDocumentApi = useCallback(
-    async (documentTypeId: DocumentTypeId, file: any) => {
+    async (documentTypeId: DocumentTypeId, file: File) => {
       const data = {
         appId,
         documentTypeId,
@@ -315,10 +320,12 @@ export default function AppPage() {
     }
   }, [uploadTechnicalGuideValue, getValues, setFileStatus, uploadDocumentApi])
 
-  const uploadImages = (files: any) => {
+  const uploadImages = (files: DropzoneFile[]) => {
     const value = files
     if (value.length > 0) {
       const setFileStatus = (fileIndex: number, status: UploadFileStatus) => {
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         const nextFiles = [...getValues().images] as any[]
         nextFiles[fileIndex] = {
           id: value[fileIndex].id,
@@ -326,7 +333,7 @@ export default function AppPage() {
           size: value[fileIndex].size,
           status,
         }
-        setValue('images', nextFiles as any)
+        setValue('images', nextFiles as File[])
       }
 
       for (let fileIndex = 0; fileIndex < value.length; fileIndex++) {
@@ -370,7 +377,7 @@ export default function AppPage() {
           longDescription: data.longDescriptionEN,
           shortDescription:
             statusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'en'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'en'
             )[0]?.shortDescription ?? '',
         },
         {
@@ -378,15 +385,15 @@ export default function AppPage() {
           longDescription: data.longDescriptionDE,
           shortDescription:
             statusData?.descriptions?.filter(
-              (appStatus: any) => appStatus.languageCode === 'de'
+              (appStatus: LanguageStatusType) => appStatus.languageCode === 'de'
             )[0]?.shortDescription ?? '',
         },
       ],
-      title: statusData.title,
-      provider: statusData.provider,
-      salesManagerId: statusData.salesManagerId,
-      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id),
-      supportedLanguageCodes: statusData.supportedLanguageCodes,
+      title: statusData.title ?? '',
+      provider: statusData.provider ?? '',
+      salesManagerId: statusData.salesManagerId ?? null,
+      useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id) ?? [],
+      supportedLanguageCodes: statusData.supportedLanguageCodes ?? [],
       price: statusData.price,
       privacyPolicies: selectedPrivacyPolicies,
       providerUri: data.providerHomePage ?? '',
@@ -541,7 +548,7 @@ export default function AppPage() {
                   onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
                     trigger('images')
-                    addedFiles && uploadImages(files)
+                    addedFiles && uploadImages(addedFiles)
                   }}
                   acceptFormat={{
                     'image/png': [],
@@ -651,7 +658,9 @@ export default function AppPage() {
             }}
             name="providerPhoneContact"
             label={t('content.apprelease.appPage.providerPhoneContact')}
-            validate={(value: string) => value === '' || phone(value).isValid}
+            validate={(value: string) =>
+              value === '' || phone(value.replace(/^00/, '+')).isValid
+            }
           />
           {errors.providerPhoneContact &&
             errors?.providerPhoneContact.type === 'validate' && (

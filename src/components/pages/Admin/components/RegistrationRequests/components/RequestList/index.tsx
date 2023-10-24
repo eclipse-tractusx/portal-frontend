@@ -30,7 +30,7 @@ import { updateApplicationRequestSelector } from 'features/control/updates'
 import {
   AppFilterType,
   type ApplicationRequest,
-  type ProgressButtonsProps,
+  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
 import type { GridCellParams } from '@mui/x-data-grid'
@@ -51,7 +51,7 @@ export const RequestList = ({
   onConfirmationCancel,
   onChipButtonSelect,
 }: {
-  fetchHook: (paginArgs: PaginFetchArgs) => any
+  fetchHook: (paginArgs: PaginFetchArgs) => void
   onTableCellClick: (params: GridCellParams) => void
   loaded: number
   handleDownloadDocument: (
@@ -61,7 +61,7 @@ export const RequestList = ({
   ) => void
   showConfirmOverlay?: (applicationId: string) => void
   onConfirmationCancel?: (applicationId: string, name: string) => void
-  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
+  onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -114,7 +114,7 @@ export const RequestList = ({
   ]
 
   const columns = RegistrationRequestsTableColumns(
-    useTranslation,
+    t,
     handleDownloadDocument,
     showConfirmOverlay,
     onConfirmationCancel,

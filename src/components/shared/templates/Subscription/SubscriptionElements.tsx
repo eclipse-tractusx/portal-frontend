@@ -28,7 +28,11 @@ import {
   Chip,
   ErrorBar,
 } from '@catena-x/portal-shared-components'
-import type { SubscriptionContent } from 'features/appSubscription/appSubscriptionApiSlice'
+import {
+  type CompanySubscriptionData,
+  ProcessStep,
+  type SubscriptionContent,
+} from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'
 import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'
@@ -37,6 +41,9 @@ import { useState, useReducer } from 'react'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
 import { SubscriptionTypes } from '.'
+import { getAssetBase } from 'services/EnvironmentService'
+import AddTaskIcon from '@mui/icons-material/AddTask'
+import HistoryIcon from '@mui/icons-material/History'
 
 type ViewDetail = {
   appId: string
@@ -90,6 +97,8 @@ const initialState: State = {
 
 type Action = {
   type: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   payload: any
 }
 
@@ -150,91 +159,123 @@ export default function SubscriptionElements({
     )
   }
 
+  const renderStatus = (
+    subscriptionData: SubscriptionContent,
+    subscription: CompanySubscriptionData
+  ) => {
+    if (subscription.offerSubscriptionStatus === SubscriptionStatus.ACTIVE) {
+      return <AddTaskIcon className="statusIcon active" />
+    } else if (
+      subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
+    ) {
+      if (subscriptionData.processStepTypeId === ProcessStep.START_AUTOSETUP) {
+        return (
+          <>
+            <Chip
+              color="primary"
+              label={t('content.appSubscription.configureBtn')}
+              type="plain"
+              variant="filled"
+              className="configureBtn"
+            />
+            <HistoryIcon className="statusIcon pending" />
+          </>
+        )
+      } else if (
+        subscriptionData.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+      ) {
+        return (
+          <>
+            <Chip
+              color="primary"
+              label={t('content.appSubscription.activateBtn')}
+              type="plain"
+              variant="filled"
+              onClick={() => {
+                type === SubscriptionTypes.APP_SUBSCRIPTION
+                  ? setSubscriptionDetail({
+                      appId: subscriptionData.offerId,
+                      subscriptionId: subscription.subscriptionId,
+                      title: subscriptionData.offerName,
+                      companyName: subscription.companyName,
+                      bpnNumber: subscription.bpnNumber,
+                    })
+                  : setState({
+                      type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
+                      payload: {
+                        id: subscription.subscriptionId,
+                        offerId: subscriptionData.offerId,
+                        isTechUser: subscription.technicalUser,
+                        overlay: true,
+                        companyName: subscription.companyName,
+                      },
+                    })
+              }}
+            />
+            <HistoryIcon className="statusIcon pending" />
+          </>
+        )
+      } else {
+        return (
+          <img
+            src={`${getAssetBase()}/images/icons/process.svg`}
+            className="statusIcon"
+            alt="subscription process"
+          />
+        )
+      }
+    } else {
+      return (
+        <Typography variant="label2" className="statusErrorIcon">
+          {t('global.actions.error')}
+        </Typography>
+      )
+    }
+  }
+
   return (
     <div className="recommended-main">
       {subscriptions && subscriptions.length ? (
         <ul className="subscription-list">
           {subscriptions.map((subscriptionData) => {
             return subscriptionData.companySubscriptionStatuses.map(
-              (subscription) => (
-                <li
-                  key={subscription.subscriptionId}
-                  className="subscription-list-item"
-                >
-                  <Typography variant="body3" className="firstSection">
-                    {subscription.companyName}
-                  </Typography>
-                  <Typography variant="body3" className="secondSection">
-                    {subscriptionData.offerName}
-                  </Typography>
-                  <div
-                    className="viewDetails"
-                    onClick={() => {
-                      setViewDetails({
-                        appId: subscriptionData.offerId,
-                        subscriptionId: subscription.subscriptionId,
-                      })
-                    }}
+              (subscription) =>
+                subscription.offerSubscriptionStatus !==
+                  SubscriptionStatus.INACTIVE && (
+                  <li
+                    key={subscription.subscriptionId}
+                    className="subscription-list-item"
                   >
-                    <IconButton color="secondary" size="small">
-                      <Tooltips
-                        color="dark"
-                        tooltipPlacement="top-start"
-                        tooltipText={t('content.appSubscription.viewDetails')}
-                      >
-                        <ArrowForwardIcon />
-                      </Tooltips>
-                    </IconButton>
-                  </div>
-                  {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.PENDING && (
-                    <div className="forthSection">
-                      <Chip
-                        color="primary"
-                        label={t('content.appSubscription.activateBtn')}
-                        type="plain"
-                        variant="filled"
-                        onClick={() => {
-                          type === SubscriptionTypes.APP_SUBSCRIPTION
-                            ? setSubscriptionDetail({
-                                appId: subscriptionData.offerId,
-                                subscriptionId: subscription.subscriptionId,
-                                title: subscriptionData.offerName,
-                                companyName: subscription.companyName,
-                                bpnNumber: subscription.bpnNumber,
-                              })
-                            : setState({
-                                type: ActionKind.SET_ID_OFFER_ID_TECH_USER_OVERLEY,
-                                payload: {
-                                  id: subscription.subscriptionId,
-                                  offerId: subscriptionData.offerId,
-                                  isTechUser: subscription.technicalUser,
-                                  overlay: true,
-                                  companyName: subscription.companyName,
-                                },
-                              })
-                        }}
-                      />
-                    </div>
-                  )}
-                  {subscription.offerSubscriptionStatus ===
-                    SubscriptionStatus.ACTIVE && (
-                    <Chip
-                      color="success"
-                      label={t('content.appSubscription.tabs.active')}
-                      type="confirm"
-                      variant="filled"
-                      withIcon
-                      sx={{
-                        borderRadius: '36px',
-                        ':hover': {
-                          pointerEvents: 'auto',
-                        },
+                    <Typography variant="body3" className="firstSection">
+                      {subscription.companyName}
+                    </Typography>
+                    <Typography variant="body3" className="secondSection">
+                      {subscriptionData.offerName}
+                    </Typography>
+                    <div
+                      className="viewDetails"
+                      onClick={() => {
+                        setViewDetails({
+                          appId: subscriptionData.offerId,
+                          subscriptionId: subscription.subscriptionId,
+                        })
                       }}
-                    />
-                  )}
-                </li>
-              )
+                    >
+                      <IconButton color="secondary" size="small">
+                        <Tooltips
+                          color="dark"
+                          tooltipPlacement="top-start"
+                          tooltipText={t('content.appSubscription.viewDetails')}
+                        >
+                          <ArrowForwardIcon />
+                        </Tooltips>
+                      </IconButton>
+                    </div>
+                    <div className="forthSection">
+                      {renderStatus(subscriptionData, subscription)}
+                    </div>
+                  </li>
+                )
             )
           })}
         </ul>

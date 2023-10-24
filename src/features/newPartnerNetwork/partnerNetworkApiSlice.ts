@@ -37,7 +37,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartnerAddressResponse>,
-      any
+      string[]
     >({
       query: (arry) => ({
         url: '/catena/legal-entities/legal-addresses/search',
@@ -60,6 +60,8 @@ export const apiSlice = createApi({
           return `/catena/legal-entities?page=${fetchArgs.page}&size=10`
         }
       },
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
       transformResponse: (response: any) => {
         if (response.content) {
           return {

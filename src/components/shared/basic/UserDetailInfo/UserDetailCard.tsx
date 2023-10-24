@@ -71,9 +71,9 @@ export const UserDetailCard = ({
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
   const [copied, setCopied] = useState<boolean>(false)
 
-  const copyText = (value: any) => {
+  const copyText = (value: string | string[]) => {
     setCopied(true)
-    navigator.clipboard.writeText(value).catch((err) => {
+    navigator.clipboard.writeText(value as string).catch((err) => {
       console.log(err)
     })
   }
@@ -111,7 +111,7 @@ export const UserDetailCard = ({
             style={{ cursor: 'pointer' }}
             sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
             onClick={() => {
-              copyText(value?.value)
+              copyText(value?.value as string)
             }}
           />
         )}
