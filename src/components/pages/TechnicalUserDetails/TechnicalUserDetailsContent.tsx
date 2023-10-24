@@ -46,6 +46,19 @@ export default function TechnicalUserDetailsContent({
   const [loading, setLoading] = useState<boolean>(false)
   const [newData, setNewData] = useState<ServiceAccountDetail>(data)
 
+  const connectedData = [
+    {
+      key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
+      value: newData.connector?.name,
+      copy: true,
+    },
+    {
+      key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),
+      value: newData.offer?.name ?? 'N/A',
+      copy: !!newData.offer?.name,
+    },
+  ]
+
   const displayData = [
     {
       key: 'ID',
@@ -128,6 +141,9 @@ export default function TechnicalUserDetailsContent({
         onClick={() => reset()}
         sx={{
           marginLeft: '10px',
+          '@media (max-width: 600px)': {
+            margin: '10px 0',
+          },
         }}
       >
         {t('content.usermanagement.technicalUser.credentialReset')}
@@ -142,27 +158,68 @@ export default function TechnicalUserDetailsContent({
           width: '100%',
         }}
       >
-        <KeyValueView
-          cols={2}
-          title={t(
-            'content.usermanagement.technicalUser.detailsPage.userDetails'
-          )}
-          items={displayData}
-        />
-
-        <KeyValueView
-          cols={1}
-          title={t('global.field.description')}
-          items={[{ value: newData.description }]}
-        />
-
-        <KeyValueView
-          cols={1}
-          title={t('global.field.permission')}
-          items={newData.roles.map((role: ServiceAccountRole) => ({
-            value: role.roleName,
-          }))}
-        />
+        <Box
+          sx={{
+            '@media (max-width: 1200px)': {
+              order: 1,
+              width: '100%',
+            },
+          }}
+        >
+          <KeyValueView
+            cols={2}
+            title={t(
+              'content.usermanagement.technicalUser.detailsPage.connectedObjects'
+            )}
+            items={connectedData}
+          />
+        </Box>
+        <Box
+          sx={{
+            '@media (max-width: 1200px)': {
+              order: 3,
+              width: '100%',
+            },
+          }}
+        >
+          <KeyValueView
+            cols={1}
+            title={t('global.field.description')}
+            items={[{ value: newData.description }]}
+          />
+        </Box>
+        <Box
+          sx={{
+            '@media (max-width: 1200px)': {
+              order: 2,
+              width: '100%',
+            },
+          }}
+        >
+          <KeyValueView
+            cols={2}
+            title={t(
+              'content.usermanagement.technicalUser.detailsPage.userDetails'
+            )}
+            items={displayData}
+          />
+        </Box>
+        <Box
+          sx={{
+            '@media (max-width: 1200px)': {
+              order: 4,
+              width: '100%',
+            },
+          }}
+        >
+          <KeyValueView
+            cols={1}
+            title={t('global.field.permission')}
+            items={newData.roles.map((role: ServiceAccountRole) => ({
+              value: role.roleName,
+            }))}
+          />
+        </Box>
       </Box>
     </section>
   )

@@ -5,6 +5,7 @@
 - App Release Process
   - Fixed double loading of images for app page
   - Fixed validation for contact in app page
+  - Fixed salesManagerId(null) error
 - App Overview
   - Fixed image display in app overview cards
   - GET documents api endpoint connected for active apps-change documents
@@ -15,6 +16,13 @@
   - Fix ban-types
 - Partner Network
   - Search for Company name issue fix
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
+- Technical User Detail
+  - Add new table as data from backend
+  - UI Changes
+- Home
+  - Fixed image display for 'my business applications'
 
 ## 1.7.0-alpha
 
