@@ -90,247 +90,241 @@ export default function ActivateserviceSubscription({
   }
 
   return (
-    <>
-      <Dialog
-        open={true}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: '45%',
-          },
-        }}
-      >
-        {activationResponse && (
-          <div className="activation">
-            <DialogHeader
-              title={
-                <>
-                  <CheckCircleOutlineOutlinedIcon color="success" />{' '}
-                  {t('serviceSubscription.activation.title')}
-                </>
-              }
-              intro={t('serviceSubscription.activation.subtitle') + companyName}
-              closeWithIcon={true}
-            />
-            <DialogContent>
-              <Box
-                sx={{
-                  marginBottom: '40px',
-                  paddingLeft: '10px',
-                }}
-              >
-                <Trans
-                  i18nKey={t(
-                    'serviceSubscription.activation.successDescriptionWithTechUser'
-                  )}
-                  values={{
-                    company: companyName,
-                  }}
-                >
-                  <Typography variant="body2">
-                    {isTechUser
-                      ? t(
-                          'serviceSubscription.activation.successDescriptionWithTechUser'
-                        )
-                      : t('serviceSubscription.activation.successDescription')}
-                  </Typography>
-                </Trans>
-              </Box>
-              {isTechUser && techUserInfo && (
-                <>
-                  <Typography
-                    sx={{
-                      marginLeft: '10px',
-                    }}
-                    variant="h4"
-                  >
-                    {t('serviceSubscription.activation.tableheader')}
-                  </Typography>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <Typography variant="body2">
-                            {t('serviceSubscription.activation.userId')}
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2">
-                            {techUserInfo.technicalUserInfo.technicalUserId}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Typography variant="body2">
-                            {t('serviceSubscription.activation.sercret')}
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2">
-                            {techUserInfo.technicalUserInfo.technicalUserSecret}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Typography variant="body2">
-                            {t('serviceSubscription.activation.url')}
-                          </Typography>
-                        </td>
-                        {techUserInfo.clientInfo ? (
-                          <td>
-                            <Typography variant="body2">
-                              {techUserInfo.clientInfo.clientUrl}
-                            </Typography>
-                          </td>
-                        ) : (
-                          <td>
-                            <Typography variant="body2"></Typography>
-                          </td>
-                        )}
-                      </tr>
-                      <tr>
-                        <td>
-                          <Typography variant="body2">
-                            {t(
-                              'serviceSubscription.activation.technicaluserType'
-                            )}
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2">
-                            {techUserInfo.technicalUserInfo.technicalUserPermissions.join(
-                              ', '
-                            )}
-                          </Typography>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </>
-              )}
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  handleOverlayClose()
-                }}
-              >
-                {t('serviceSubscription.activation.close')}
-              </Button>
-            </DialogActions>
-          </div>
-        )}
-        {!activationResponse && (
-          <>
-            <DialogHeader
-              title={t('serviceSubscription.register.title')}
-              intro={t('serviceSubscription.register.subtitle') + companyName}
-              closeWithIcon={false}
-            />
-            <DialogContent>
-              <Box
-                sx={{
-                  marginBottom: '40px',
-                  paddingLeft: '10px',
-                }}
-              >
-                <Trans
-                  i18nKey={
-                    isTechUser
-                      ? t(
-                          'serviceSubscription.register.descriptionWithTechUser'
-                        )
-                      : t('serviceSubscription.register.description')
-                  }
-                  values={{
-                    company: companyName,
-                  }}
-                >
-                  <Typography variant="body2">
-                    {isTechUser
-                      ? t(
-                          'serviceSubscription.register.descriptionWithTechUser'
-                        )
-                      : t('serviceSubscription.register.description')}
-                  </Typography>
-                </Trans>
-                {isTechUser && (
-                  <>
-                    <Box
-                      sx={{
-                        marginTop: '30px',
-                      }}
-                    >
-                      <Typography variant="h4" sx={{ marginBottom: '20px' }}>
-                        {t('serviceSubscription.register.sectionHeader')}
-                      </Typography>
-
-                      <Typography variant="body2">
-                        {t('serviceSubscription.register.sectionDescription')}
-                      </Typography>
-                    </Box>
-                    <Link to={ProfileHelpURL} target="_blank">
-                      <Typography variant="body2" className="helpText">
-                        <HelpOutlineIcon />
-                        {t('serviceSubscription.register.help')}
-                      </Typography>
-                    </Link>
-                    <Box
-                      sx={{
-                        marginTop: '30px',
-                      }}
-                    >
-                      <Typography variant="h4" sx={{ marginBottom: '20px' }}>
-                        {t('serviceSubscription.register.sectionHeader')}
-                      </Typography>
-                      {techUserProfiles && techUserProfiles?.length > 0 ? (
-                        <Typography variant="body2">
-                          {techUserProfiles.join(', ')}
-                        </Typography>
-                      ) : (
-                        <Typography variant="body2">
-                          {t('serviceSubscription.register.loading')}
-                        </Typography>
-                      )}
-                    </Box>
-                  </>
+    <Dialog
+      open={true}
+      sx={{
+        '.MuiDialog-paper': {
+          maxWidth: '45%',
+        },
+      }}
+    >
+      {activationResponse && (
+        <div className="activation">
+          <DialogHeader
+            title={
+              <>
+                <CheckCircleOutlineOutlinedIcon color="success" />{' '}
+                {t('serviceSubscription.activation.title')}
+              </>
+            }
+            intro={t('serviceSubscription.activation.subtitle') + companyName}
+            closeWithIcon={true}
+          />
+          <DialogContent>
+            <Box
+              sx={{
+                marginBottom: '40px',
+                paddingLeft: '10px',
+              }}
+            >
+              <Trans
+                i18nKey={t(
+                  'serviceSubscription.activation.successDescriptionWithTechUser'
                 )}
-              </Box>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  handleOverlayClose()
+                values={{
+                  company: companyName,
                 }}
               >
-                {t('serviceSubscription.register.close')}
-              </Button>
-              {loading ? (
-                <LoadingButton
-                  color="primary"
-                  helperText=""
-                  helperTextColor="success"
-                  label=""
-                  loadIndicator="Loading ..."
-                  loading
-                  size="medium"
-                  onButtonClick={() => {
-                    // do nothing
+                <Typography variant="body2">
+                  {isTechUser
+                    ? t(
+                        'serviceSubscription.activation.successDescriptionWithTechUser'
+                      )
+                    : t('serviceSubscription.activation.successDescription')}
+                </Typography>
+              </Trans>
+            </Box>
+            {isTechUser && techUserInfo && (
+              <>
+                <Typography
+                  sx={{
+                    marginLeft: '10px',
                   }}
-                  sx={{ marginLeft: '10px' }}
-                />
-              ) : (
-                <Button variant="contained" onClick={() => handleConfrim()}>
-                  {t('serviceSubscription.register.confirm')}
-                </Button>
+                  variant="h4"
+                >
+                  {t('serviceSubscription.activation.tableheader')}
+                </Typography>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <Typography variant="body2">
+                          {t('serviceSubscription.activation.userId')}
+                        </Typography>
+                      </td>
+                      <td>
+                        <Typography variant="body2">
+                          {techUserInfo.technicalUserInfo.technicalUserId}
+                        </Typography>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Typography variant="body2">
+                          {t('serviceSubscription.activation.sercret')}
+                        </Typography>
+                      </td>
+                      <td>
+                        <Typography variant="body2">
+                          {techUserInfo.technicalUserInfo.technicalUserSecret}
+                        </Typography>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Typography variant="body2">
+                          {t('serviceSubscription.activation.url')}
+                        </Typography>
+                      </td>
+                      {techUserInfo.clientInfo ? (
+                        <td>
+                          <Typography variant="body2">
+                            {techUserInfo.clientInfo.clientUrl}
+                          </Typography>
+                        </td>
+                      ) : (
+                        <td>
+                          <Typography variant="body2"></Typography>
+                        </td>
+                      )}
+                    </tr>
+                    <tr>
+                      <td>
+                        <Typography variant="body2">
+                          {t(
+                            'serviceSubscription.activation.technicaluserType'
+                          )}
+                        </Typography>
+                      </td>
+                      <td>
+                        <Typography variant="body2">
+                          {techUserInfo.technicalUserInfo.technicalUserPermissions.join(
+                            ', '
+                          )}
+                        </Typography>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                handleOverlayClose()
+              }}
+            >
+              {t('serviceSubscription.activation.close')}
+            </Button>
+          </DialogActions>
+        </div>
+      )}
+      {!activationResponse && (
+        <>
+          <DialogHeader
+            title={t('serviceSubscription.register.title')}
+            intro={t('serviceSubscription.register.subtitle') + companyName}
+            closeWithIcon={false}
+          />
+          <DialogContent>
+            <Box
+              sx={{
+                marginBottom: '40px',
+                paddingLeft: '10px',
+              }}
+            >
+              <Trans
+                i18nKey={
+                  isTechUser
+                    ? t('serviceSubscription.register.descriptionWithTechUser')
+                    : t('serviceSubscription.register.description')
+                }
+                values={{
+                  company: companyName,
+                }}
+              >
+                <Typography variant="body2">
+                  {isTechUser
+                    ? t('serviceSubscription.register.descriptionWithTechUser')
+                    : t('serviceSubscription.register.description')}
+                </Typography>
+              </Trans>
+              {isTechUser && (
+                <>
+                  <Box
+                    sx={{
+                      marginTop: '30px',
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+                      {t('serviceSubscription.register.sectionHeader')}
+                    </Typography>
+
+                    <Typography variant="body2">
+                      {t('serviceSubscription.register.sectionDescription')}
+                    </Typography>
+                  </Box>
+                  <Link to={ProfileHelpURL} target="_blank">
+                    <Typography variant="body2" className="helpText">
+                      <HelpOutlineIcon />
+                      {t('serviceSubscription.register.help')}
+                    </Typography>
+                  </Link>
+                  <Box
+                    sx={{
+                      marginTop: '30px',
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+                      {t('serviceSubscription.register.sectionHeader')}
+                    </Typography>
+                    {techUserProfiles && techUserProfiles?.length > 0 ? (
+                      <Typography variant="body2">
+                        {techUserProfiles.join(', ')}
+                      </Typography>
+                    ) : (
+                      <Typography variant="body2">
+                        {t('serviceSubscription.register.loading')}
+                      </Typography>
+                    )}
+                  </Box>
+                </>
               )}
-            </DialogActions>
-          </>
-        )}
-      </Dialog>
-    </>
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                handleOverlayClose()
+              }}
+            >
+              {t('serviceSubscription.register.close')}
+            </Button>
+            {loading ? (
+              <LoadingButton
+                color="primary"
+                helperText=""
+                helperTextColor="success"
+                label=""
+                loadIndicator="Loading ..."
+                loading
+                size="medium"
+                onButtonClick={() => {
+                  // do nothing
+                }}
+                sx={{ marginLeft: '10px' }}
+              />
+            ) : (
+              <Button variant="contained" onClick={() => handleConfrim()}>
+                {t('serviceSubscription.register.confirm')}
+              </Button>
+            )}
+          </DialogActions>
+        </>
+      )}
+    </Dialog>
   )
 }
