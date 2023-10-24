@@ -482,7 +482,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => {}}
+              onBlur={() => {
+                // do nothing
+              }}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -638,7 +640,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               loadIndicator={t('action.loading')}
               loading
               size="medium"
-              onButtonClick={() => {}}
+              onButtonClick={() => {
+                // do nothing
+              }}
               sx={{ marginLeft: '10px' }}
             />
           ) : (

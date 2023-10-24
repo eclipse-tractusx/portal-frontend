@@ -356,7 +356,9 @@ export default function CommonValidateAndPublish({
             imagePath={cardImage ?? LogoGrayData}
             label={''}
             buttonText=""
-            onBtnClick={() => {}}
+            onBtnClick={() => {
+              // do nothing
+            }}
             title={statusData?.title ?? ''}
             subTitle={serviceTypes ?? ''}
             description={''}

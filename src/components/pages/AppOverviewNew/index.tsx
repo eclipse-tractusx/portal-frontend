@@ -50,7 +50,9 @@ export default function AppOverviewNew() {
             filterItem={data.content.map((item: AppMarketplaceApp) =>
               appToCard(item)
             )}
-            showOverlay={() => {}}
+            showOverlay={() => {
+              // do nothing
+            }}
           />
         ) : (
           <>

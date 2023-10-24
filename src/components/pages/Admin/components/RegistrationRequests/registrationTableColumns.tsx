@@ -156,7 +156,9 @@ export const RegistrationRequestsTableColumns = (
                       'content.admin.registration-requests.buttonprogress'
                     ),
                     type: 'progress',
-                    onClick: () => {},
+                    onClick: () => {
+                      // do nothing
+                    },
                     withIcon: true,
                   }}
                 />

@@ -14,6 +14,7 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+  - No empty function
 - App Subscription and Servcie Subscripiton
   - Status UI Changes
 - Technical User Detail

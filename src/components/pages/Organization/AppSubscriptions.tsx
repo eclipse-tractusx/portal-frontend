@@ -29,8 +29,12 @@ export default function AppSubscriptions({
   provider,
   status,
   image,
-  onButtonClick = () => {},
-  onUnsubscribe = () => {},
+  onButtonClick = () => {
+    // do nothing
+  },
+  onUnsubscribe = () => {
+    // do nothing
+  },
 }: {
   name: string
   provider: string
