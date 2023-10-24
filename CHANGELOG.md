@@ -13,6 +13,8 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- Partner Network
+  - Search for Company name issue fix
 
 ## 1.7.0-alpha
 
