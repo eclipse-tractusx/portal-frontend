@@ -67,7 +67,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
           enabled: true,
         }).unwrap()
         success(t('enable.success'))
-        dispatch(show(OVERLAYS.REGISTER_OSP, id))  
+        dispatch(show(OVERLAYS.REGISTER_OSP, id))
       } else {
         dispatch(show(OVERLAYS.ENABLE_IDP, id))
       }
