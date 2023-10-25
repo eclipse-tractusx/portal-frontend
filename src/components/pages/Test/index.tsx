@@ -18,47 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { SelectList } from '@catena-x/portal-shared-components'
-import { UNIQUE_ID_TYPE } from 'features/admin/networkApiSlice'
+import { Button } from '@catena-x/portal-shared-components'
+import { error, success } from 'services/NotifyService'
 
-const UniqueIdSelectList = () => {
-  type ItemType = { id: string; title: string; value: string }
-  const uniqeIdItems: Array<ItemType> = Object.keys(UNIQUE_ID_TYPE).map(
-    (item) => ({
-      id: item,
-      title: item,
-      value: item,
-    })
-  )
-
-  return (
-    <SelectList
-      {...{
-        items: uniqeIdItems,
-        value: uniqeIdItems[0],
-        label: 'Select country',
-        placeholder: 'Enter country name (type min 2 character)',
-        helperText: 'Helper',
-        disabled: false,
-        error: false,
-        margin: 'dense',
-        variant: 'filled',
-        focused: false,
-        clearText: 'clear',
-        noOptionsText: 'No Options',
-        popperHeight: 0, // 0 = auto size
-        onChangeItem: console.log,
-        keyTitle: 'title',
-      }}
-    />
-  )
+const checkDate = (date: number) => {
+  date % 2
+    ? success('current time', 'even', date)
+    : error('current time', 'odd ', date)
 }
 
 export default function Test() {
   return (
     <main>
       <section>
-        <UniqueIdSelectList />
+        <Button
+          onClick={() => {
+            checkDate(Date.now())
+          }}
+        >
+          even time?
+        </Button>
       </section>
     </main>
   )

@@ -233,9 +233,7 @@ export const IDPList = () => {
               headerName: t('global.field.progress'),
               flex: 2,
               sortable: false,
-              renderCell: ({ row }) => (
-                <IDPStateProgress idp={row} />
-              ),
+              renderCell: ({ row }) => <IDPStateProgress idp={row} />,
             },
             {
               field: 'enabled',

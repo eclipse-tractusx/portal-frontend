@@ -68,7 +68,6 @@ import EditUsecase from 'components/overlays/EditUsecase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
 import AddMultipleUser from 'components/overlays/AddMultipleUser'
 import { OSPAdd } from 'components/overlays/OSPAdd'
-import { OSPUpdate } from 'components/overlays/OSPUpdate'
 import { OSPRegister } from 'components/overlays/OSPRegister'
 import { OSPConsent } from 'components/overlays/OSPConsent'
 
@@ -179,8 +178,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <IDPTestRun />
     case OVERLAYS.ADD_OSP:
       return <OSPAdd />
-    case OVERLAYS.UPDATE_OSP:
-      return <OSPUpdate id={overlay.id} />
     case OVERLAYS.REGISTER_OSP:
       return <OSPRegister id={overlay.id} />
     case OVERLAYS.CONSENT_OSP:

@@ -198,7 +198,7 @@ export const OSPAdd = () => {
         },
       }
       await updateIdp(idpUpdateData).unwrap()
-      dispatch(show(OVERLAYS.UPDATE_OSP, idp.identityProviderId))
+      dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
       success(t('add.success'))
     } catch (err) {
       error(t('add.error'), t('state.error'), err as object)
