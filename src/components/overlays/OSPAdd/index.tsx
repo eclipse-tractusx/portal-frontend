@@ -82,21 +82,19 @@ const OSPAddPrepareForm = ({
   )
 
   return (
-    <>
-      <ValidatingInput
-        name="name"
-        label={t('field.display.name')}
-        tooltipMessage={t('field.display.hint')}
-        validate={isCompanyName}
-        onValid={(_name, value) => {
-          if (!value) return
-          const currentData = { ...formData }
-          currentData.name = value
-          setFormData(currentData)
-          onChange(currentData)
-        }}
-      />
-    </>
+    <ValidatingInput
+      name="name"
+      label={t('field.display.name')}
+      tooltipMessage={t('field.display.hint')}
+      validate={isCompanyName}
+      onValid={(_name, value) => {
+        if (!value) return
+        const currentData = { ...formData }
+        currentData.name = value
+        setFormData(currentData)
+        onChange(currentData)
+      }}
+    />
   )
 }
 
