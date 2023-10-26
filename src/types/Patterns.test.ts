@@ -28,7 +28,6 @@ import {
   isCName,
   isCountryCode,
   isFirstName,
-  isLastName,
   isClientID,
 } from './Patterns'
 

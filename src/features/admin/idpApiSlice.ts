@@ -24,6 +24,7 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 export enum IDPCategory {
   SHARED = 'SHARED',
   OWN = 'OWN',
+  MANAGED = 'MANAGED',
 }
 
 export enum IDPProviderType {

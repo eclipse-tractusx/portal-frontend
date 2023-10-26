@@ -642,27 +642,11 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_ADD,
   },
   {
-    name: OVERLAYS.UPDATE_OSP,
-    role: ROLES.IDP_SETUP,
-  },
-  {
     name: OVERLAYS.REGISTER_OSP,
     role: ROLES.IDP_SETUP,
   },
   {
     name: OVERLAYS.CONSENT_OSP,
-    role: ROLES.IDP_SETUP,
-  },
-  {
-    name: OVERLAYS.ENABLE_OSP,
-    role: ROLES.IDP_SETUP,
-  },
-  {
-    name: OVERLAYS.DISABLE_OSP,
-    role: ROLES.IDP_SETUP,
-  },
-  {
-    name: OVERLAYS.DELETE_OSP,
     role: ROLES.IDP_SETUP,
   },
   {

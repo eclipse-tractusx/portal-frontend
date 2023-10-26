@@ -37,6 +37,7 @@ import {
   useFetchIDPDetailQuery,
   useUpdateIDPMutation,
   useEnableIDPMutation,
+  IDPCategory,
 } from 'features/admin/idpApiSlice'
 import { UpdateIDPContent } from './UpdateIDPContent'
 import { OVERLAYS } from 'types/Constants'
@@ -61,7 +62,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     try {
       await updateIdp(idpUpdateData).unwrap()
       success(t('edit.success'))
-      if (data) {
+      if (data.identityProviderTypeId === IDPCategory.MANAGED) {
         await enableIdp({
           id,
           enabled: true,

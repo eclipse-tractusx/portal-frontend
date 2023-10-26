@@ -56,41 +56,33 @@ export const IDPList = () => {
     )
   const [enableIDP] = useEnableIDPMutation()
 
-  const doConfigure = async (
+  const openOverlay = async (
+    overlay: OVERLAYS,
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     idp: IdentityProvider
   ) => {
     try {
       e.stopPropagation()
-      dispatch(show(OVERLAYS.UPDATE_OSP, idp.identityProviderId))
+      dispatch(show(overlay, idp.identityProviderId))
     } catch (error) {
       console.log(error)
     }
   }
+
+  const doConfigure = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    idp: IdentityProvider
+  ) => openOverlay(OVERLAYS.UPDATE_IDP, e, idp)
 
   const doRegisterUser = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     idp: IdentityProvider
-  ) => {
-    try {
-      e.stopPropagation()
-      dispatch(show(OVERLAYS.REGISTER_OSP, idp.identityProviderId))
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  ) => openOverlay(OVERLAYS.REGISTER_OSP, e, idp)
 
   const doConsent = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     idp: IdentityProvider
-  ) => {
-    try {
-      e.stopPropagation()
-      dispatch(show(OVERLAYS.CONSENT_OSP, idp.identityProviderId))
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  ) => openOverlay(OVERLAYS.CONSENT_OSP, e, idp)
 
   const doEnableDisableToggle = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
