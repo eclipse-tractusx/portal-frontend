@@ -25,9 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-  Radio,
   Stepper,
-  Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
@@ -57,63 +55,6 @@ enum IDPType {
 export type IdentityProviderType = {
   title: string
   value: string
-}
-
-const SelectIdpAuthType = ({
-  onChange,
-}: {
-  onChange: (value: IDPAuthType) => void
-}) => {
-  const { t } = useTranslation('idp')
-  const [type, setType] = useState<IDPAuthType>(IDPAuthType.OIDC)
-
-  return (
-    <div style={{ padding: '30px 0px' }}>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <Typography sx={{ marginRight: '12px' }} variant="label3">
-          {t('field.type.name')}
-        </Typography>
-        <Tooltips
-          additionalStyles={{
-            cursor: 'pointer',
-            marginTop: '30px !important',
-          }}
-          tooltipPlacement="top-start"
-          tooltipText={t('field.type.hint')}
-          children={
-            <div>
-              <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
-            </div>
-          }
-        />
-      </div>
-      <div>
-        <Radio
-          name="radio-buttons"
-          label={IDPAuthType.OIDC}
-          checked={type === IDPAuthType.OIDC}
-          onChange={() => {
-            setType(IDPAuthType.OIDC)
-            onChange(IDPAuthType.OIDC)
-          }}
-          value={IDPAuthType.OIDC}
-          inputProps={{ 'aria-label': IDPAuthType.OIDC }}
-        />
-      </div>
-      <Radio
-        name="radio-buttons"
-        disabled={true}
-        label={IDPAuthType.SAML}
-        checked={type === IDPAuthType.SAML}
-        onChange={() => {
-          setType(IDPAuthType.SAML)
-          onChange(IDPAuthType.SAML)
-        }}
-        value={IDPAuthType.SAML}
-        inputProps={{ 'aria-label': IDPAuthType.SAML }}
-      />
-    </div>
-  )
 }
 
 type AddIDPPrepareFormType = {
@@ -151,14 +92,6 @@ const OSPAddPrepareForm = ({
           if (!value) return
           const currentData = { ...formData }
           currentData.name = value
-          setFormData(currentData)
-          onChange(currentData)
-        }}
-      />
-      <SelectIdpAuthType
-        onChange={(value) => {
-          const currentData = { ...formData }
-          currentData.authType = value
           setFormData(currentData)
           onChange(currentData)
         }}

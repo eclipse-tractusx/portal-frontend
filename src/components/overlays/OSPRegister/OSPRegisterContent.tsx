@@ -529,6 +529,9 @@ export const OSPRegisterContent = ({
     JSON.stringify(initialData, null, 2)
   )
   const [debug, setDebug] = useState<boolean>(false)
+  const toggleDebug = () => {
+    setDebug(!debug)
+  }
 
   const doCheckForm = (
     partnerRegistration: PartnerRegistration | undefined
@@ -559,9 +562,8 @@ export const OSPRegisterContent = ({
           backgroundColor: '#eeeeee',
           cursor: 'pointer',
         }}
-        onClick={() => {
-          setDebug(!debug)
-        }}
+        onClick={toggleDebug}
+        onKeyUp={toggleDebug}
       >
         {debug ? formData : '{...}'}
       </pre>

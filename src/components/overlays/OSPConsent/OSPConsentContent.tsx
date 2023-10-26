@@ -119,10 +119,10 @@ export const OSPConsentContent = ({
   companyRoleAgreementData: CompanyRoleAgreementData
   onValid: (consent: boolean) => void
 }) => {
-  const [formData] = useState<string>(
-    JSON.stringify(companyRoleAgreementData, null, 2)
-  )
   const [debug, setDebug] = useState<boolean>(false)
+  const toggleDebug = () => {
+    setDebug(!debug)
+  }
 
   return (
     <div>
@@ -138,11 +138,10 @@ export const OSPConsentContent = ({
           backgroundColor: '#eeeeee',
           cursor: 'pointer',
         }}
-        onClick={() => {
-          setDebug(!debug)
-        }}
+        onClick={toggleDebug}
+        onKeyUp={toggleDebug}
       >
-        {debug ? formData : '{...}'}
+        {debug ? JSON.stringify(companyRoleAgreementData, null, 2) : '{...}'}
       </pre>
     </div>
   )
