@@ -1185,9 +1185,9 @@
       "recommendations": "Recommendations",
       "allServices": "All Services",
       "tabs": {
-        "all": "All Services",
-        "dataspaceService": "Dataspace Services",
-        "consultancyService": "Consultancy Services"
+        "all": "Alle Dienstleistungen",
+        "dataspaceService": "Datenraumdienste",
+        "consultancyService": "Beratungsservice"
       },
       "sortOptions": {
         "new": "Newest First",

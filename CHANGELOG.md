@@ -2,7 +2,8 @@
 
 ## unreleased
 
-- ...
+- Service Marketplace
+  - Changed text for german translation from english to german
 
 ## 1.7.0-RC1
 
