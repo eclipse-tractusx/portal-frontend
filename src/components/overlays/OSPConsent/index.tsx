@@ -25,7 +25,6 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-  Stepper,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
@@ -34,11 +33,13 @@ import { useState } from 'react'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OSPConsentContent } from './OSPConsentContent'
 import { error, success } from 'services/NotifyService'
+import { useFetchCompanyRoleAgreementDataQuery } from 'features/admin/networkApiSlice'
 
 export const OSPConsent = ({ id }: { id: string }) => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
+  const companyRoleAgreementData = useFetchCompanyRoleAgreementDataQuery().data
   const [consent, setConsent] = useState<boolean>(false)
   const [loading, setLoading] = useState(false)
 
@@ -54,28 +55,6 @@ export const OSPConsent = ({ id }: { id: string }) => {
     setLoading(false)
   }
 
-  const steps = [
-    {
-      headline: t('add.stepLists.firstStep'),
-      step: 1,
-      text: t('edit.created'),
-    },
-    {
-      headline: t('add.stepLists.secondStep'),
-      step: 2,
-      text: t('edit.configured'),
-    },
-    {
-      headline: t('add.stepLists.thirdStep'),
-      step: 3,
-      text: t('edit.registered'),
-    },
-    {
-      headline: t('add.stepLists.fourthStep'),
-      step: 4,
-    },
-  ]
-
   return (
     <>
       <DialogHeader
@@ -85,16 +64,19 @@ export const OSPConsent = ({ id }: { id: string }) => {
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={steps} showSteps={4} activeStep={4} />
-        </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
             <Typography variant="label3">{t('consent.desc')}</Typography>
           </Trans>
         </div>
         <Typography variant="label2">{t('consent.addDataHeading')}</Typography>
-        {data && <OSPConsentContent idp={data} onValid={setConsent} />}
+        {data && companyRoleAgreementData && (
+          <OSPConsentContent
+            idp={data}
+            companyRoleAgreementData={companyRoleAgreementData}
+            onValid={setConsent}
+          />
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">

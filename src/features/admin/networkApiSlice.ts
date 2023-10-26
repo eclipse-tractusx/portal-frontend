@@ -86,11 +86,7 @@ export type PartnerRegistrationConsent = {
   agreements: Array<AgreementConsent>
 }
 
-export type CompanyRoleDescriptions = {
-  additionalProp1: string
-  additionalProp2: string
-  additionalProp3: string
-}
+export type CompanyRoleDescriptions = Record<string, string>
 
 export type CompanyRole = {
   companyRole: COMPANY_ROLE
@@ -100,7 +96,7 @@ export type CompanyRole = {
 
 export type CompanyRoleAgreementData = {
   companyRoles: Array<CompanyRole>
-  agreements: Array<string>
+  agreements: Array<Agreement>
 }
 
 export const emptyPartnerRegistration: PartnerRegistration = {
@@ -112,13 +108,8 @@ export const emptyPartnerRegistration: PartnerRegistration = {
   city: '',
   zipCode: '',
   region: '',
-  countryAlpha2Code: 'DE',
-  uniqueIds: [
-    {
-      type: UNIQUE_ID_TYPE.COMMERCIAL_REG_NUMBER,
-      value: 'string',
-    },
-  ],
+  countryAlpha2Code: '',
+  uniqueIds: [],
   userDetails: [
     {
       identityProviderId: '',

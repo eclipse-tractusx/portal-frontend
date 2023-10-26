@@ -19,51 +19,131 @@
  ********************************************************************************/
 
 import { Checkbox } from '@catena-x/portal-shared-components'
+import { Typography } from '@mui/material'
 import { type IdentityProvider } from 'features/admin/idpApiSlice'
+import type {
+  CompanyRole,
+  CompanyRoleAgreementData,
+} from 'features/admin/networkApiSlice'
+import i18next from 'i18next'
 import { useState } from 'react'
-import { type IHashMap } from 'types/MainTypes'
+import { getHeaders } from 'services/RequestService'
+import { getApiBase } from 'services/EnvironmentService'
+import './style.scss'
 
-type AgreementMap = IHashMap<boolean>
-
-export const OSPConsentContent = ({
-  idp,
-  onValid,
-}: {
-  idp: IdentityProvider
-  onValid: (consent: boolean) => void
-}) => {
-  const TEST_AGREEMENTS: Array<string> = [
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    '33333333-3333-3333-3333-333333333333',
-  ]
-  const agreementMap: AgreementMap = TEST_AGREEMENTS.reduce((a, c) => {
-    a[c] = false
-    return a
-  }, {} as AgreementMap)
-
-  const [consent, setConsent] = useState<AgreementMap>(agreementMap)
-
-  const doCheckData = (agreement: string) => {
-    const currentConsent = consent
-    currentConsent[agreement] = !currentConsent[agreement]
-    const valid = TEST_AGREEMENTS.reduce((a, c) => a && currentConsent[c], true)
-    console.log(valid)
-    onValid(valid)
-    setConsent({ ...currentConsent })
+const DocumentDownloadLink = ({ id, name }: { id: string; name: string }) => {
+  const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault()
+    fetch(
+      `${getApiBase()}/api/administration/registration/documents/${id}`,
+      getHeaders()
+    )
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', `${name}.pdf`)
+        document.body.appendChild(link)
+        link.click()
+        link.parentNode!.removeChild(link)
+      })
   }
 
   return (
-    <div style={{ margin: '80px 120px' }}>
-      {TEST_AGREEMENTS.map((agreement) => (
-        <Checkbox
-          label={`I consent to ${agreement}`}
-          onChange={() => {
-            doCheckData(agreement)
-          }}
-          checked={consent[agreement]}
-        />
+    <a href={'#'} onClick={onClick}>
+      [doc]
+    </a>
+  )
+}
+
+const OSPConsentContentForm = ({
+  companyRoleAgreementData,
+  onChange,
+}: {
+  companyRoleAgreementData: CompanyRoleAgreementData
+  onChange: (consent: Set<string>) => void
+}) => {
+  const [consent, setConsent] = useState<Set<string>>(new Set<string>())
+
+  const toggleConsent = (id: string) => {
+    const newConsent = new Set<string>(consent)
+    if (newConsent.has(id)) {
+      newConsent.delete(id)
+    } else {
+      newConsent.add(id)
+    }
+    setConsent(newConsent)
+    onChange(newConsent)
+  }
+
+  return (
+    <ul className={'roles'}>
+      {companyRoleAgreementData.companyRoles.map((role: CompanyRole) => (
+        <li key={role.companyRole}>
+          <Typography variant="label3">{role.companyRole}</Typography>
+          <div>{role.descriptions[i18next.language]}</div>
+          <ul className={'agreements'}>
+            {role.agreementIds.map((id) => {
+              const agreement = companyRoleAgreementData.agreements.filter(
+                (a) => id === a.agreementId
+              )?.[0]
+              return agreement ? (
+                <li key={id}>
+                  <Checkbox
+                    label={agreement.name}
+                    onChange={() => {
+                      toggleConsent(agreement.agreementId)
+                    }}
+                    checked={consent.has(agreement.agreementId)}
+                  />
+                  <DocumentDownloadLink id={id} name={agreement.name} />
+                </li>
+              ) : (
+                <></>
+              )
+            })}
+          </ul>
+        </li>
       ))}
+    </ul>
+  )
+}
+
+export const OSPConsentContent = ({
+  idp,
+  companyRoleAgreementData,
+  onValid,
+}: {
+  idp: IdentityProvider
+  companyRoleAgreementData: CompanyRoleAgreementData
+  onValid: (consent: boolean) => void
+}) => {
+  const [formData] = useState<string>(
+    JSON.stringify(companyRoleAgreementData, null, 2)
+  )
+  const [debug, setDebug] = useState<boolean>(false)
+
+  return (
+    <div>
+      <OSPConsentContentForm
+        companyRoleAgreementData={companyRoleAgreementData}
+        onChange={(consent) => {
+          onValid(consent.size === companyRoleAgreementData.agreements.length)
+        }}
+      />
+      <pre
+        style={{
+          fontSize: '10px',
+          backgroundColor: '#eeeeee',
+          cursor: 'pointer',
+        }}
+        onClick={() => {
+          setDebug(!debug)
+        }}
+      >
+        {debug ? formData : '{...}'}
+      </pre>
     </div>
   )
 }

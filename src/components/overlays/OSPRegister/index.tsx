@@ -29,11 +29,10 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
-import { closeOverlay, show } from 'features/control/overlay'
+import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OSPRegisterContent } from './OSPRegisterContent'
-import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 import {
   useRegisterPartnerMutation,
@@ -60,7 +59,7 @@ export const OSPRegister = ({ id }: { id: string }) => {
     setLoading(true)
     try {
       await registerPartner(registerData).unwrap()
-      dispatch(show(OVERLAYS.CONSENT_OSP, id))
+      dispatch(closeOverlay())
       success(t('register.success'))
     } catch (err) {
       error(t('register.error'), '', err as object)
@@ -83,10 +82,6 @@ export const OSPRegister = ({ id }: { id: string }) => {
       headline: t('add.stepLists.thirdStep'),
       step: 3,
     },
-    {
-      headline: t('add.stepLists.fourthStep'),
-      step: 4,
-    },
   ]
 
   return (
@@ -99,7 +94,7 @@ export const OSPRegister = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={steps} showSteps={4} activeStep={3} />
+          <Stepper list={steps} showSteps={3} activeStep={3} />
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>

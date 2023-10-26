@@ -38,16 +38,18 @@ import {
 } from 'types/Patterns'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
-import { Checkbox, SelectList } from '@catena-x/portal-shared-components'
+import {
+  Checkbox,
+  SelectList,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import {
   type PartnerRegistration,
   type CompanyRoleAgreementData,
   type CompanyRole,
   UNIQUE_ID_TYPE,
-  COMPANY_ROLE,
   emptyPartnerRegistration,
 } from 'features/admin/networkApiSlice'
-import UserService from 'services/UserService'
 
 const emptyData: PartnerRegistration = {
   externalId: '',
@@ -430,29 +432,33 @@ const OSPRegisterForm = ({
     ),
     companyRoles: (
       <div>
+        <div>
+          <Typography variant="label3">
+            {t('field.companyRoles.name')}
+          </Typography>
+        </div>
         {companyRoleAgreementData.companyRoles.map((role: CompanyRole) => (
-          <div key={role.companyRole}>
-            <Checkbox
-              label={role.companyRole}
-              onChange={(e) => {
-                const useRole = e.target.checked
-                const companyRoles = [...data.companyRoles]
-                if (useRole) {
-                  companyRoles.push(role.companyRole)
-                  companyRoles.sort((a, b) => a.localeCompare(b))
-                } else {
-                  const index = companyRoles.indexOf(role.companyRole)
-                  if (index > -1) {
-                    companyRoles.splice(index, 1)
-                  }
+          <Checkbox
+            key={role.companyRole}
+            label={role.companyRole}
+            onChange={(e) => {
+              const useRole = e.target.checked
+              const companyRoles = [...data.companyRoles]
+              if (useRole) {
+                companyRoles.push(role.companyRole)
+                companyRoles.sort((a, b) => a.localeCompare(b))
+              } else {
+                const index = companyRoles.indexOf(role.companyRole)
+                if (index > -1) {
+                  companyRoles.splice(index, 1)
                 }
-                updateData({
-                  ...data,
-                  companyRoles,
-                })
-              }}
-            />
-          </div>
+              }
+              updateData({
+                ...data,
+                companyRoles,
+              })
+            }}
+          />
         ))}
       </div>
     ),
@@ -510,65 +516,56 @@ export const OSPRegisterContent = ({
   companyRoleAgreementData: CompanyRoleAgreementData
   onValid: (form: PartnerRegistration | undefined) => void
 }) => {
-  const TEST_DATA: PartnerRegistration = {
-    externalId: '3fa85f64-0000-0000-0000-2c963f66afa6',
-    name: 'Testcompany',
-    bpn: 'BPNL000000123456',
-    streetName: 'Bremer Str.',
-    streetNumber: '6',
-    city: 'München',
-    zipCode: '80809',
-    region: 'Bayern',
-    countryAlpha2Code: 'DE',
-    uniqueIds: [
-      {
-        type: UNIQUE_ID_TYPE.COMMERCIAL_REG_NUMBER,
-        value: 'string',
-      },
-    ],
+  const initialData: PartnerRegistration = {
+    ...emptyPartnerRegistration,
     userDetails: [
       {
+        ...emptyPartnerRegistration.userDetails[0],
         identityProviderId: idp.identityProviderId,
-        providerId: idp.alias,
-        username: UserService.getUsername(),
-        firstName: UserService.getName(),
-        lastName: UserService.getName(),
-        email: UserService.getEmail(),
       },
     ],
-    companyRoles: [COMPANY_ROLE.ACTIVE_PARTICIPANT],
   }
-
-  const [data, setData] = useState<string>(JSON.stringify(TEST_DATA, null, 2))
+  const [formData, setFormData] = useState<string>(
+    JSON.stringify(initialData, null, 2)
+  )
+  const [debug, setDebug] = useState<boolean>(false)
 
   const doCheckForm = (
     partnerRegistration: PartnerRegistration | undefined
   ) => {
     const valid =
-      partnerRegistration?.externalId &&
-      partnerRegistration.name &&
-      partnerRegistration?.bpn &&
-      partnerRegistration.companyRoles.length > 0
+      partnerRegistration?.name !== undefined &&
+      partnerRegistration?.externalId !== undefined &&
+      partnerRegistration.companyRoles.length > 0 &&
+      partnerRegistration?.uniqueIds.length > 0 &&
+      partnerRegistration?.uniqueIds[0].value !== undefined
     onValid(valid ? partnerRegistration : undefined)
-    console.log('check', valid, partnerRegistration)
-    setData(
-      JSON.stringify(
-        valid ? partnerRegistration : emptyPartnerRegistration,
-        null,
-        2
-      )
+    setFormData(
+      valid ? JSON.stringify(partnerRegistration, null, 2) : '# data invalid'
     )
     return !!valid
   }
 
   return (
     <>
-      <pre style={{ fontSize: '10px', backgroundColor: '#eeeeee' }}>{data}</pre>
       <OSPRegisterForm
         idp={idp}
         companyRoleAgreementData={companyRoleAgreementData}
         onChange={doCheckForm}
       />
+      <pre
+        style={{
+          fontSize: '10px',
+          backgroundColor: '#eeeeee',
+          cursor: 'pointer',
+        }}
+        onClick={() => {
+          setDebug(!debug)
+        }}
+      >
+        {debug ? formData : '{...}'}
+      </pre>
+      ,
     </>
   )
 }

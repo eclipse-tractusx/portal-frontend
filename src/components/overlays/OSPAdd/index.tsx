@@ -219,10 +219,6 @@ export const OSPAdd = () => {
       headline: t('add.stepLists.thirdStep'),
       step: 3,
     },
-    {
-      headline: t('add.stepLists.fourthStep'),
-      step: 4,
-    },
   ]
 
   return (
@@ -235,7 +231,7 @@ export const OSPAdd = () => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={steps} showSteps={4} activeStep={1} />
+          <Stepper list={steps} showSteps={3} activeStep={1} />
         </div>
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>

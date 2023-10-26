@@ -41,8 +41,42 @@ import {
 } from 'features/admin/idpApiSlice'
 import IDPStateProgress from '../IDPManagement/IDPStateProgress'
 
-export const IDPList = () => {
+const MenuItemOpenOverlay = ({
+  overlay,
+  id,
+  label,
+}: {
+  overlay: OVERLAYS
+  id: string
+  label: string
+}) => {
   const dispatch = useDispatch()
+
+  const openOverlay = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    overlay: OVERLAYS,
+    id: string
+  ) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(overlay, id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return (
+    <MenuItem
+      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+        openOverlay(e, overlay, id)
+      }
+    >
+      {label}
+    </MenuItem>
+  )
+}
+
+export const IDPList = () => {
   const { t } = useTranslation()
   const ti = useTranslation('osp').t
 
@@ -55,34 +89,6 @@ export const IDPList = () => {
       a?.alias?.localeCompare(b.alias)
     )
   const [enableIDP] = useEnableIDPMutation()
-
-  const openOverlay = async (
-    overlay: OVERLAYS,
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    idp: IdentityProvider
-  ) => {
-    try {
-      e.stopPropagation()
-      dispatch(show(overlay, idp.identityProviderId))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const doConfigure = async (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    idp: IdentityProvider
-  ) => openOverlay(OVERLAYS.UPDATE_IDP, e, idp)
-
-  const doRegisterUser = async (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    idp: IdentityProvider
-  ) => openOverlay(OVERLAYS.REGISTER_OSP, e, idp)
-
-  const doConsent = async (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    idp: IdentityProvider
-  ) => openOverlay(OVERLAYS.CONSENT_OSP, e, idp)
 
   const doEnableDisableToggle = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -116,13 +122,11 @@ export const IDPList = () => {
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
-          <MenuItem
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-              doConfigure(e, idp)
-            }
-          >
-            {ti('action.configure')}
-          </MenuItem>
+          <MenuItemOpenOverlay
+            overlay={OVERLAYS.UPDATE_IDP}
+            id={idp.identityProviderId}
+            label={ti('action.configure')}
+          />
           {idp.oidc?.clientId && (
             <MenuItem
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
@@ -150,22 +154,25 @@ export const IDPList = () => {
             </MenuItem>
           )}
           {idp.enabled && (
-            <MenuItem
-              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                doRegisterUser(e, idp)
-              }
-            >
-              {ti('action.register')}
-            </MenuItem>
+            <MenuItemOpenOverlay
+              overlay={OVERLAYS.REGISTER_OSP}
+              id={idp.identityProviderId}
+              label={ti('action.register')}
+            />
           )}
           {idp.enabled && (
-            <MenuItem
-              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                doConsent(e, idp)
-              }
-            >
-              {ti('action.consent')}
-            </MenuItem>
+            <MenuItemOpenOverlay
+              overlay={OVERLAYS.REGISTER_NEXT_OSP}
+              id={idp.identityProviderId}
+              label={ti('action.register_next')}
+            />
+          )}
+          {idp.enabled && (
+            <MenuItemOpenOverlay
+              overlay={OVERLAYS.CONSENT_OSP}
+              id={idp.identityProviderId}
+              label={ti('action.consent')}
+            />
           )}
         </DropdownMenu>
       </div>
