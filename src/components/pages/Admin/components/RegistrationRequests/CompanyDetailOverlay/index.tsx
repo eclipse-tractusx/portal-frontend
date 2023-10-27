@@ -72,18 +72,15 @@ const CompanyDetailOverlay = ({
   const { data } = useFetchCompanySearchQuery({
     page: 0,
     args: {
-      expr: selectedCompany && selectedCompany.name,
+      expr: selectedCompany?.name,
     },
   })
 
   useEffect(() => {
     if (data) {
-      const selected =
-        data &&
-        data.content &&
-        data.content.filter(
-          (company: { bpn: string }) => selectedCompany.bpn === company.bpn
-        )
+      const selected = data?.content?.filter(
+        (company: { bpn: string }) => selectedCompany.bpn === company.bpn
+      )
       setCompany(selected[0])
     }
   }, [data, selectedCompany])
@@ -135,7 +132,7 @@ const CompanyDetailOverlay = ({
     newValue: number
   ) => {
     setHeight(
-      modalElement && modalElement.current
+      modalElement?.current
         ? `${modalElement?.current?.clientHeight}px`
         : '400px'
     )
@@ -250,18 +247,17 @@ const CompanyDetailOverlay = ({
                       value: selectedCompany?.bpn,
                     }}
                   />
-                  {selectedCompany.uniqueIds &&
-                    selectedCompany.uniqueIds.map(
-                      (id: { type: string; value: string }) => (
-                        <DetailGridRow
-                          key={id.type}
-                          {...{
-                            variableName: getUniqueIdName(id) as string,
-                            value: id.value ?? '',
-                          }}
-                        />
-                      )
-                    )}
+                  {selectedCompany?.uniqueIds?.map(
+                    (id: { type: string; value: string }) => (
+                      <DetailGridRow
+                        key={id.type}
+                        {...{
+                          variableName: getUniqueIdName(id) as string,
+                          value: id.value ?? '',
+                        }}
+                      />
+                    )
+                  )}
                   <Grid
                     xs={12}
                     item

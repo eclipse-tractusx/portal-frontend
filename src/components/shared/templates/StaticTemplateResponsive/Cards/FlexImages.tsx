@@ -31,10 +31,9 @@ export default function FlexImages({
 }) {
   return (
     <div className={'flex'}>
-      {provider.images &&
-        provider.images.map((path) => (
-          <RenderImage key={path} height="250px" url={baseUrl + path || ''} />
-        ))}
+      {provider?.images?.map((path) => (
+        <RenderImage key={path} height="250px" url={baseUrl + path || ''} />
+      ))}
     </div>
   )
 }

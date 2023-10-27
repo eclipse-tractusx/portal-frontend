@@ -79,7 +79,9 @@ export const RegistrationRequestsTableColumns = (
                   paddingTop: '2px',
                 }}
                 onClick={() => {
-                  showConfirmOverlay && showConfirmOverlay(row.applicationId)
+                  if (showConfirmOverlay) {
+                    showConfirmOverlay(row.applicationId)
+                  }
                 }}
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
@@ -204,12 +206,14 @@ export const RegistrationRequestsTableColumns = (
               cancelText={t('content.admin.registration-requests.cancel')}
               alignRow="center"
               onButtonClick={(button) => {
-                onChipButtonSelect &&
+                if (onChipButtonSelect) {
                   onChipButtonSelect(button, row.applicationId)
+                }
               }}
               onCancel={() => {
-                onConfirmationCancel &&
+                if (onConfirmationCancel) {
                   onConfirmationCancel(row.applicationId, row.companyName)
+                }
               }}
             />
           ) : null}

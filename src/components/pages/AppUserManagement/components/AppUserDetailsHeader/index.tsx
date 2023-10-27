@@ -55,24 +55,23 @@ export default function AppUserDetailsHeader({
       </div>
 
       <div className="app-user-details-header-roles-section">
-        {roles &&
-          roles.map((role) => {
-            return (
-              <div className="wrapper" key={role.role}>
-                <div key={role.role} className="app-user-details-header-role">
-                  <Typography variant="h5" className="app-user-details-role">
-                    {role.role}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    className="app-user-details-header-description"
-                  >
-                    {role.description}
-                  </Typography>
-                </div>
+        {roles?.map((role) => {
+          return (
+            <div className="wrapper" key={role.role}>
+              <div key={role.role} className="app-user-details-header-role">
+                <Typography variant="h5" className="app-user-details-role">
+                  {role.role}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  className="app-user-details-header-description"
+                >
+                  {role.description}
+                </Typography>
               </div>
-            )
-          })}
+            </div>
+          )
+        })}
       </div>
       <div className="errorMsg">
         {error && (

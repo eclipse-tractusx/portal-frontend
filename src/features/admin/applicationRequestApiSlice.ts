@@ -197,7 +197,7 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (fetchArgs) => {
-        const isFetchArgs = fetchArgs.args && fetchArgs.args.expr
+        const isFetchArgs = fetchArgs?.args?.expr ? true : false
         if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&

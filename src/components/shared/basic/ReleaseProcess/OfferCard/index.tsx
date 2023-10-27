@@ -188,7 +188,7 @@ export default function OfferCard() {
         serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentName
       )
     }
-    if (serviceStatusData && serviceStatusData.serviceTypeIds) {
+    if (serviceStatusData?.serviceTypeIds) {
       setDefaultServiceTypeVal(
         serviceStatusData?.serviceTypeIds.map((item: string, index: number) => {
           return {

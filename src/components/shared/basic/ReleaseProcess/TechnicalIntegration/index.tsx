@@ -453,7 +453,7 @@ export default function TechnicalIntegration() {
                         color: 'white',
                         children: (
                           <Typography variant="caption3">
-                            {rolesDescription && rolesDescription[index]}
+                            {rolesDescription?.[index]}
                           </Typography>
                         ),
                       },

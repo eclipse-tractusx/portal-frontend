@@ -106,29 +106,28 @@ export default function RoleDetails() {
         </Tabs>
         <div style={{ margin: '20px' }}>
           <TabPanel value={activeTab} index={0}>
-            {dataArray &&
-              dataArray.map((data: RoleDescData) => (
-                <div key={uniqueId(data.title)}>
-                  <Typography
-                    variant="h4"
-                    sx={{ textDecoration: 'underline', marginBottom: '5px' }}
-                  >
-                    {data.title}
-                  </Typography>
-                  <Grid container spacing={2} sx={{ margin: '0px 0 40px' }}>
-                    <>
-                      {data.subTitles.map((subTitle: string, index: number) => (
-                        <Grid item xs={6} key={uniqueId(subTitle)}>
-                          <Typography variant="h5">{subTitle}</Typography>
-                          <Typography variant="caption3">
-                            {data.descriptions[index]}
-                          </Typography>
-                        </Grid>
-                      ))}
-                    </>
-                  </Grid>
-                </div>
-              ))}
+            {dataArray?.map((data: RoleDescData) => (
+              <div key={uniqueId(data.title)}>
+                <Typography
+                  variant="h4"
+                  sx={{ textDecoration: 'underline', marginBottom: '5px' }}
+                >
+                  {data.title}
+                </Typography>
+                <Grid container spacing={2} sx={{ margin: '0px 0 40px' }}>
+                  <>
+                    {data.subTitles.map((subTitle: string, index: number) => (
+                      <Grid item xs={6} key={uniqueId(subTitle)}>
+                        <Typography variant="h5">{subTitle}</Typography>
+                        <Typography variant="caption3">
+                          {data.descriptions[index]}
+                        </Typography>
+                      </Grid>
+                    ))}
+                  </>
+                </Grid>
+              </div>
+            ))}
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
             <Image

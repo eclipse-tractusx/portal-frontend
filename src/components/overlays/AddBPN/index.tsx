@@ -104,28 +104,27 @@ export default function AddBPN({ id }: { id: string }) {
       <DialogContent>
         <div className="manageBPN">
           <ul className="bpnListing">
-            {bpnValues &&
-              bpnValues.map((bpn: string, i: number) => {
-                return (
-                  <li key={i}>
-                    <p className={`${hoverClass === i ? 'redActive' : ''}`}>
-                      {bpn}
-                    </p>{' '}
-                    <DeleteIcon
-                      onMouseOver={() => {
-                        onHoverEvent(i)
-                      }}
-                      onMouseOut={() => {
-                        onHoverEvent(-1)
-                      }}
-                      onClick={() => {
-                        onDeleteBpnHandler(bpn)
-                      }}
-                      className="deleteIcon"
-                    />
-                  </li>
-                )
-              })}
+            {bpnValues?.map((bpn: string, i: number) => {
+              return (
+                <li key={i}>
+                  <p className={`${hoverClass === i ? 'redActive' : ''}`}>
+                    {bpn}
+                  </p>{' '}
+                  <DeleteIcon
+                    onMouseOver={() => {
+                      onHoverEvent(i)
+                    }}
+                    onMouseOut={() => {
+                      onHoverEvent(-1)
+                    }}
+                    onClick={() => {
+                      onDeleteBpnHandler(bpn)
+                    }}
+                    className="deleteIcon"
+                  />
+                </li>
+              )
+            })}
           </ul>
           <div className="bpnInput">
             <Input
