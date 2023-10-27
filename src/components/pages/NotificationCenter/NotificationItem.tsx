@@ -293,6 +293,7 @@ export default function NotificationItem({
       )}
       <li
         onClick={toggle}
+        onKeyDown={() => {}}
         style={{
           backgroundColor: userRead
             ? 'rgba(255, 255, 255, 1)'
@@ -376,6 +377,7 @@ export default function NotificationItem({
                 setRead(item.id, !userRead)
                 e.stopPropagation()
               }}
+              onKeyDown={() => {}}
             >
               {userRead ? (
                 <Tooltips
@@ -417,6 +419,7 @@ export default function NotificationItem({
                 setShowDeleteModal(true)
                 e.stopPropagation()
               }}
+              onKeyDown={() => {}}
             >
               <CloseIcon sx={{ fontSize: 15 }} />
             </div>

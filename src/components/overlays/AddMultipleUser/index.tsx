@@ -97,12 +97,10 @@ export default function AddMultipleUser() {
   }, [data, dispatch])
 
   useEffect(() => {
-    const filteredIdps =
-      idpsData &&
-      idpsData.filter(
-        (idp: IdentityProvider) =>
-          idp.identityProviderTypeId !== IDPProviderType.MANAGED
-      )
+    const filteredIdps = idpsData?.filter(
+      (idp: IdentityProvider) =>
+        idp.identityProviderTypeId !== IDPProviderType.MANAGED
+    )
     setIdps(
       filteredIdps
         ? filteredIdps.filter((idp: IdentityProvider) => idp.enabled)

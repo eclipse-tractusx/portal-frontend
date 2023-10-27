@@ -81,6 +81,7 @@ export const RegistrationRequestsTableColumns = (
                 onClick={() => {
                   showConfirmOverlay && showConfirmOverlay(row.applicationId)
                 }}
+                onKeyDown={() => {}}
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
               </span>

@@ -260,6 +260,7 @@ export default function SubscriptionElements({
                           subscriptionId: subscription.subscriptionId,
                         })
                       }}
+                      onKeyDown={() => {}}
                     >
                       <IconButton color="secondary" size="small">
                         <Tooltips
