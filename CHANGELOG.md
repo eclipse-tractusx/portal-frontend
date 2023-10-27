@@ -20,6 +20,8 @@
   - UI Changes
 - Home
   - Fixed image display for 'my business applications'
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
 
 ## 1.7.0-alpha
 
