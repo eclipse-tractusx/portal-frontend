@@ -21,6 +21,8 @@
   - UI Changes
 - Home
   - Fixed image display for 'my business applications'
+- Usermanagement
+  - User Invite IdP connection logic
 
 ## 1.7.0-alpha
 
