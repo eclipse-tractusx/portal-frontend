@@ -36,6 +36,8 @@
   - Fixed image display in app overview cards
 - IDP
   - Add load element for IDP list
+- Onboarding Serviceprovider
+  - Add the OSP prototype
 - Linter Findings
   - Fix ban-types
   - No empty function

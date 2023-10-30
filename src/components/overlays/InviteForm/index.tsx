@@ -72,8 +72,8 @@ export const InviteForm = ({
         const check = [
           /^.{2,60}$/i,
           Patterns.MAIL,
-          Patterns.NAME,
-          Patterns.NAME,
+          Patterns.name,
+          Patterns.name,
         ].map((p, i) => !p.test(expr[i]))
         check.push(check.reduce((all, valid) => all || valid))
         setInpValid(check)

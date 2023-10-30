@@ -58,7 +58,6 @@ import {
   useFetchIDPListQuery,
   type IdentityProvider,
   IDPCategory,
-  IDPProviderType,
 } from 'features/admin/idpApiSlice'
 import './AddMultipleUser.scss'
 import Papa from 'papaparse'
@@ -99,7 +98,7 @@ export default function AddMultipleUser() {
   useEffect(() => {
     const filteredIdps = idpsData?.filter(
       (idp: IdentityProvider) =>
-        idp.identityProviderTypeId !== IDPProviderType.MANAGED
+        idp.identityProviderTypeId !== IDPCategory.MANAGED
     )
     setIdps(
       filteredIdps
@@ -138,7 +137,7 @@ export default function AddMultipleUser() {
         const file = new File([blob], uploadedFile.name, { type: 'text/csv' })
         const response = await addMutipleUsers({
           identityProviderId:
-            idps[0].ProviderTypeId === IDPCategory.SHARED
+            idps[0].identityProviderTypeId === IDPCategory.SHARED
               ? ''
               : idps[0].identityProviderId,
           csvFile: file,
@@ -365,7 +364,7 @@ export default function AddMultipleUser() {
             </Typography>
             <a
               href={
-                idps[0].ProviderTypeId === IDPCategory.SHARED
+                idps[0].identityProviderTypeId === IDPCategory.SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }

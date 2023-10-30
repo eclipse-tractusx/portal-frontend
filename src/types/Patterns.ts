@@ -33,13 +33,11 @@ export const Patterns = {
     `^(https)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
     'i'
   ),
-  NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   COMPANY_NAME: /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ-_+=.,:;!?'"&#@()]\s?){1,29}$/i,
-  firstName:
-    /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
-  lastName:
-    /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
+  name: /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
+  zipcode: /^[A-Z0-9-]{1,8}$/,
+  streetNumber: /^[0-9A-Za-z- ]{1,20}$/,
   prefix: {
     BPN: /^BPNL/i,
     URL: /^https:/i,
@@ -96,8 +94,15 @@ export const isKeycloakURL = (expr: string) =>
   isURL(expr) && !expr.includes('#')
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
-export const isFirstName = (expr: string) => Patterns.firstName.test(expr)
-export const isLastName = (expr: string) => Patterns.lastName.test(expr)
+export const isName = (expr: string) => Patterns.name.test(expr)
+export const isCityName = isName
+export const isStreetName = isName
+export const isRegionName = isName
+export const isFirstName = isName
+export const isLastName = isName
+export const isUserName = (expr: string) => isName(expr) || isMail(expr)
+export const isZipCode = (expr: string) => Patterns.zipcode.test(expr)
+export const isStreetNumber = (expr: string) => Patterns.streetNumber.test(expr)
 export const isIDPClientID = (expr: string) => Patterns.idp.clientId.test(expr)
 export const isIDPClientSecret = (expr: string) =>
   Patterns.idp.clientSecret.test(expr)
