@@ -107,13 +107,7 @@ const SelectFormat = ({
   )
 }
 
-const AddusersIDPResponse = ({
-  response,
-  storeResponse,
-}: {
-  response: string
-  storeResponse: (response: string) => void
-}) => {
+const AddusersIDPResponse = ({ response }: { response: string }) => {
   const { t } = useTranslation('idp')
   const userResponse = JSON.parse(response)
 
@@ -601,15 +595,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => {
-          userResponse?.data ? storeResponse('') : dispatch(closeOverlay())
+          storeResponse('')
+          dispatch(closeOverlay())
         }}
       />
       <DialogContent>
         {userResponse?.data ? (
-          <AddusersIDPResponse
-            response={userResponse.data}
-            storeResponse={storeResponse}
-          />
+          <AddusersIDPResponse response={userResponse.data} />
         ) : (
           renderContent()
         )}

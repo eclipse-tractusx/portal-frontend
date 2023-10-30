@@ -58,6 +58,7 @@ import {
   useFetchIDPListQuery,
   type IdentityProvider,
   IDPCategory,
+  IDPProviderType,
 } from 'features/admin/idpApiSlice'
 import './AddMultipleUser.scss'
 import Papa from 'papaparse'
@@ -96,8 +97,14 @@ export default function AddMultipleUser() {
   }, [data, dispatch])
 
   useEffect(() => {
+    const filteredIdps = idpsData?.filter(
+      (idp: IdentityProvider) =>
+        idp.identityProviderTypeId !== IDPProviderType.MANAGED
+    )
     setIdps(
-      idpsData ? idpsData.filter((idp: IdentityProvider) => idp.enabled) : []
+      filteredIdps
+        ? filteredIdps.filter((idp: IdentityProvider) => idp.enabled)
+        : []
     )
   }, [idpsData])
 
@@ -158,7 +165,6 @@ export default function AddMultipleUser() {
         Papa.parse(uploadedFile, {
           skipEmptyLines: true,
           complete: async (results) => {
-            console.log('results', results)
             const csvData: Array<Array<string>> = results.data as Array<
               Array<string>
             >

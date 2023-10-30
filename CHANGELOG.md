@@ -2,7 +2,8 @@
 
 ## unreleased
 
-- ...
+- Usermanagement
+  - User Invite IdP connection logic
 
 ## 1.7.0-RC1
 
