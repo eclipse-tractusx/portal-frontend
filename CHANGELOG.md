@@ -38,6 +38,10 @@
 - Linter Findings
   - Fix ban-types
   - No Extra Semi
+- Partner Network
+  - Search for Company name issue fix
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
 - Technical User Detail
   - Add new table as data from backend
   - UI Changes
