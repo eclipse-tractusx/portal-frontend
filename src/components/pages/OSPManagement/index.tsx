@@ -55,7 +55,7 @@ export default function OSPManagement() {
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
-              onClick={() => dispatch(show(OVERLAYS.ADD_OSP))}
+              onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
               className="add-idp-btn"
             >
               {t('action.create')}
@@ -63,7 +63,7 @@ export default function OSPManagement() {
           </div>
         </div>
         <div style={{ paddingTop: '70px' }}>
-          <IDPList isOSP={true} />
+          <IDPList />
         </div>
       </section>
     </main>

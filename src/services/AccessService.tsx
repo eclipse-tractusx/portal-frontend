@@ -67,7 +67,6 @@ import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
 import EditUsecase from 'components/overlays/EditUsecase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
 import AddMultipleUser from 'components/overlays/AddMultipleUser'
-import { OSPAdd } from 'components/overlays/OSPAdd'
 import { OSPRegister } from 'components/overlays/OSPRegister'
 import { OSPConsent } from 'components/overlays/OSPConsent'
 import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
@@ -177,8 +176,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <DeleteIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
       return <IDPTestRun />
-    case OVERLAYS.ADD_OSP:
-      return <OSPAdd />
     case OVERLAYS.REGISTER_OSP:
       return <OSPRegister id={overlay.id} />
     case OVERLAYS.REGISTER_NEXT_OSP:

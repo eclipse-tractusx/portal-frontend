@@ -134,7 +134,6 @@ export enum OVERLAYS {
   IDP_STATUS = 'idp_status',
   IDP_TEST_RUN = 'idp_test_run',
   ENABLE_IDP_SUCCESS = 'enable_idp_success',
-  ADD_OSP = 'add_osp',
   REGISTER_OSP = 'register_osp',
   REGISTER_NEXT_OSP = 'register_next_osp',
   CONSENT_OSP = 'consent_osp',

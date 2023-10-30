@@ -39,7 +39,7 @@ import {
   useEnableIDPMutation,
   useFetchIDPListQuery,
   useRemoveIDPMutation,
-  IDPProviderType,
+  IDPCategory,
 } from 'features/admin/idpApiSlice'
 
 const MenuItemOpenOverlay = ({
@@ -77,7 +77,7 @@ const MenuItemOpenOverlay = ({
   )
 }
 
-export const IDPList = ({ isOSP = false }: { isOSP?: boolean }) => {
+export const IDPList = () => {
   const { t } = useTranslation()
   const ti = useTranslation('idp').t
 
@@ -88,7 +88,7 @@ export const IDPList = ({ isOSP = false }: { isOSP?: boolean }) => {
   const idpsData = data
     ?.slice()
     .sort((a: IdentityProvider, b: IdentityProvider) =>
-      a?.alias?.localeCompare(b.alias)
+      (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
@@ -221,22 +221,18 @@ export const IDPList = ({ isOSP = false }: { isOSP?: boolean }) => {
         </MenuItem>
       ),
     }
+
+    const isManaged = idp.identityProviderTypeId === IDPCategory.MANAGED
+
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
           {menuItems.configure}
-          {isOSP ? (
-            <>
-              {idp.enabled && menuItems.register}
-              {idp.enabled && menuItems.registerNext}
-              {idp.enabled && menuItems.consent}
-            </>
-          ) : (
-            <>
-              {idp.oidc?.clientId && menuItems.enableToggle}
-              {idp.enabled ? menuItems.addUsers : menuItems.delete}
-            </>
-          )}
+          {isManaged && idp.enabled && menuItems.register}
+          {isManaged && idp.enabled && menuItems.registerNext}
+          {isManaged && idp.enabled && menuItems.consent}
+          {!isManaged && idp.oidc?.clientId && menuItems.enableToggle}
+          {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}
         </DropdownMenu>
       </div>
     )
@@ -313,15 +309,7 @@ export const IDPList = ({ isOSP = false }: { isOSP?: boolean }) => {
           renderCell: ({ row }: { row: IdentityProvider }) => renderMenu(row),
         },
       ]}
-      rows={(idpsData ?? [])
-        .filter(
-          (idp) =>
-            !isOSP ||
-            idp.identityProviderTypeId === (IDPProviderType.MANAGED as string)
-        )
-        .sort((a, b) =>
-          (a.displayName ?? '').localeCompare(b.displayName ?? '')
-        )}
+      rows={idpsData ?? []}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
     />

@@ -638,10 +638,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_ADD,
   },
   {
-    name: OVERLAYS.ADD_OSP,
-    role: ROLES.IDP_ADD,
-  },
-  {
     name: OVERLAYS.REGISTER_OSP,
     role: ROLES.IDP_SETUP,
   },
