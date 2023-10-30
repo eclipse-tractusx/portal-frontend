@@ -37,6 +37,7 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+  - No empty function
   - No Extra Semi
 - Partner Network
   - Search for Company name issue fix
