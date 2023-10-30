@@ -295,7 +295,9 @@ export default function ServiceListOverview() {
       {state && (
         <PageSnackbar
           open={state !== ''}
-          onCloseNotification={() => {}}
+          onCloseNotification={() => {
+            // do nothing
+          }}
           severity={
             state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
               ? SuccessErrorType.SUCCESS

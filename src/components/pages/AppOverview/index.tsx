@@ -306,7 +306,9 @@ export default function AppOverview() {
       {state && (
         <PageSnackbar
           open={state !== ''}
-          onCloseNotification={() => {}}
+          onCloseNotification={() => {
+            // do nothing
+          }}
           severity={
             state === 'deactivate-success'
               ? SuccessErrorType.SUCCESS

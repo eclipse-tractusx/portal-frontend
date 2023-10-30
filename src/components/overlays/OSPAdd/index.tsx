@@ -204,7 +204,9 @@ export const OSPAdd = () => {
             loadIndicator={t('action.loading')}
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (

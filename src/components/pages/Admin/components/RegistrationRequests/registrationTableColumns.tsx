@@ -81,6 +81,9 @@ export const RegistrationRequestsTableColumns = (
                 onClick={() => {
                   showConfirmOverlay && showConfirmOverlay(row.applicationId)
                 }}
+                onKeyDown={() => {
+                  // do nothing
+                }}
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
               </span>
@@ -156,7 +159,9 @@ export const RegistrationRequestsTableColumns = (
                       'content.admin.registration-requests.buttonprogress'
                     ),
                     type: 'progress',
-                    onClick: () => {},
+                    onClick: () => {
+                      // do nothing
+                    },
                     withIcon: true,
                   }}
                 />

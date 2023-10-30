@@ -148,7 +148,9 @@ export const UpdateIDP = ({ id }: { id: string }) => {
             label=""
             loading
             loadIndicator={t('action.loading')}
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (

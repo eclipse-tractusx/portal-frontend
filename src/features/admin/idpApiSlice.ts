@@ -135,6 +135,7 @@ export interface UserIdentityProviders {
 }
 
 export interface IdentityProvider {
+  identityProviderTypeId: string
   identityProviderId: string
   alias: string
   identityProviderTypeId: IDPCategory

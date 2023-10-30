@@ -179,7 +179,9 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (

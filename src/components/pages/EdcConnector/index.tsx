@@ -335,7 +335,9 @@ const EdcConnector = () => {
           title={getSuccessTitle()}
           intro={getSuccessIntro()}
           dialogOpen={true}
-          handleCallback={() => {}}
+          handleCallback={() => {
+            // do nothing
+          }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
@@ -348,7 +350,9 @@ const EdcConnector = () => {
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
           }
-          handleCallback={() => {}}
+          handleCallback={() => {
+            // do nothing
+          }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
