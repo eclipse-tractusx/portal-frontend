@@ -91,8 +91,7 @@ export default function AppListSection() {
             ? cards.filter(
                 (card: { title: string; subtitle: string }) =>
                   card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                  (card.subtitle &&
-                    card.subtitle.toLowerCase().includes(expr.toLowerCase()))
+                  card?.subtitle?.toLowerCase().includes(expr.toLowerCase())
               )
             : cards
         )
@@ -135,7 +134,7 @@ export default function AppListSection() {
           </Typography>
         </div>
       )
-    } else if (cardsData && cardsData.length) {
+    } else if (cardsData?.length) {
       return (
         <AppListGroupView
           items={cardsData.map((card) => ({
