@@ -274,12 +274,8 @@ export default function CommonContractAndConsent({
       Object.keys(defaultuploadImageConformity).length > 0
     ) {
       setValue('uploadImageConformity', {
-        id:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentId,
-        name:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentName,
+        id: defaultuploadImageConformity?.[0]?.documentId,
+        name: defaultuploadImageConformity?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
@@ -291,12 +287,8 @@ export default function CommonContractAndConsent({
 
     if (Array.isArray(value)) {
       setValue('uploadImageConformity', {
-        id:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentId,
-        name:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentName,
+        id: defaultuploadImageConformity?.[0]?.documentId,
+        name: defaultuploadImageConformity?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
@@ -461,6 +453,9 @@ export default function CommonContractAndConsent({
                     onClick={() =>
                       handleFrameDocumentDownload(item.name, item.documentId)
                     }
+                    onKeyDown={() => {
+                      // do nothing
+                    }}
                   >
                     {item.name}
                   </span>

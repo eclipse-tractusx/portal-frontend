@@ -81,7 +81,7 @@ export default function ServiceMarketplace() {
     serviceType: serviceTypeId,
     sortingType,
   })
-  const services = data && data.content
+  const services = data?.content
 
   useEffect(() => {
     services && setCardServices(services)
@@ -126,18 +126,12 @@ export default function ServiceMarketplace() {
         services &&
           setCardServices(
             expr
-              ? services &&
-                  services.filter(
-                    (card: ServiceRequest) =>
-                      card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                      card.provider
-                        .toLowerCase()
-                        .includes(expr.toLowerCase()) ||
-                      (card.description &&
-                        card.description
-                          .toLowerCase()
-                          .includes(expr.toLowerCase()))
-                  )
+              ? services?.filter(
+                  (card: ServiceRequest) =>
+                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                    card.provider.toLowerCase().includes(expr.toLowerCase()) ||
+                    card?.description.toLowerCase().includes(expr.toLowerCase())
+                )
               : services
           )
       }, 300),
@@ -209,7 +203,7 @@ export default function ServiceMarketplace() {
               </div>
             ) : (
               <RecommendedServices
-                services={cardServices && cardServices.slice(0, indexToSplit)}
+                services={cardServices?.slice(0, indexToSplit)}
               />
             )}
           </div>

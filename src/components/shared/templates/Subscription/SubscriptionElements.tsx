@@ -235,7 +235,7 @@ export default function SubscriptionElements({
 
   return (
     <div className="recommended-main">
-      {subscriptions && subscriptions.length ? (
+      {subscriptions?.length ? (
         <ul className="subscription-list">
           {subscriptions.map((subscriptionData) => {
             return subscriptionData.companySubscriptionStatuses.map(
@@ -259,6 +259,9 @@ export default function SubscriptionElements({
                           appId: subscriptionData.offerId,
                           subscriptionId: subscription.subscriptionId,
                         })
+                      }}
+                      onKeyDown={() => {
+                        // do nothing
                       }}
                     >
                       <IconButton color="secondary" size="small">

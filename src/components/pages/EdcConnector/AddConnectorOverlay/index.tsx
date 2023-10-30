@@ -174,8 +174,8 @@ const AddConnectorOverlay = ({
           {!loading && (
             <Button
               variant="contained"
-              disabled={selected && selected.id ? false : true}
-              onClick={(e) => {
+              disabled={selected?.id ? false : true}
+              onClick={() => {
                 connectorStep === 0 && selected && selected.id
                   ? handleConfirmClick(selected)
                   : onFormSubmit()
