@@ -37,6 +37,8 @@
   - Add load element for IDP list
 - Linter Findings
   - Fix ban-types
+- Partner Network
+  - Search for Company name issue fix
 - App Subscription and Servcie Subscripiton
   - Status UI Changes
 - Technical User Detail

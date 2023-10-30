@@ -51,9 +51,9 @@ export const apiSlice = createApi({
     >({
       query: (fetchArgs) => {
         if (fetchArgs.args.expr && !checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/catena/legal-entities?page=${fetchArgs.page}&size=10&name=${
-            fetchArgs.args!.expr
-          }`
+          return `/catena/legal-entities?page=${
+            fetchArgs.page
+          }&size=10&legalName=${fetchArgs.args!.expr}`
         } else if (checkIfBPNLNumber(fetchArgs.args.expr)) {
           return `/catena/legal-entities/${fetchArgs.args!.expr}`
         } else {
