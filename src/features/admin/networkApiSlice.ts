@@ -123,6 +123,11 @@ export const emptyPartnerRegistration: PartnerRegistration = {
   companyRoles: [],
 }
 
+export const emptyPartnerRegistrationConsent: PartnerRegistrationConsent = {
+  companyRoles: [],
+  agreements: [],
+}
+
 enum TAGS {
   PARTNER_REGISTRATION = 'PARTNER_REGISTRATION',
   REGISTRATION = 'REGISTRATION',

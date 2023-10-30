@@ -58,7 +58,6 @@ import {
   useFetchIDPListQuery,
   type IdentityProvider,
   IDPCategory,
-  IDPProviderType,
 } from 'features/admin/idpApiSlice'
 import './AddMultipleUser.scss'
 import Papa from 'papaparse'
@@ -99,7 +98,7 @@ export default function AddMultipleUser() {
   useEffect(() => {
     const filteredIdps = idpsData?.filter(
       (idp: IdentityProvider) =>
-        idp.identityProviderTypeId !== IDPProviderType.MANAGED
+        idp.identityProviderTypeId !== IDPCategory.MANAGED
     )
     setIdps(
       filteredIdps

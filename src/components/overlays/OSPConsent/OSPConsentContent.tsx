@@ -21,9 +21,11 @@
 import { Checkbox } from '@catena-x/portal-shared-components'
 import { Typography } from '@mui/material'
 import { type IdentityProvider } from 'features/admin/idpApiSlice'
-import type {
-  CompanyRole,
-  CompanyRoleAgreementData,
+import {
+  CONSENT_STATUS,
+  type CompanyRole,
+  type CompanyRoleAgreementData,
+  type PartnerRegistrationConsent,
 } from 'features/admin/networkApiSlice'
 import i18next from 'i18next'
 import { useState } from 'react'
@@ -117,20 +119,30 @@ export const OSPConsentContent = ({
 }: {
   idp: IdentityProvider
   companyRoleAgreementData: CompanyRoleAgreementData
-  onValid: (consent: boolean) => void
+  onValid: (consent: PartnerRegistrationConsent) => void
 }) => {
   const [debug, setDebug] = useState<boolean>(false)
   const toggleDebug = () => {
     setDebug(!debug)
   }
 
+  const doCheckData = (consent: Set<string>) => {
+    onValid({
+      companyRoles: companyRoleAgreementData.companyRoles.map(
+        (role) => role.companyRole
+      ),
+      agreements: [...consent].map((agreementId) => ({
+        agreementId,
+        consentStatus: CONSENT_STATUS.ACTIVE,
+      })),
+    })
+  }
+
   return (
     <div>
       <OSPConsentContentForm
         companyRoleAgreementData={companyRoleAgreementData}
-        onChange={(consent) => {
-          onValid(consent.size === companyRoleAgreementData.agreements.length)
-        }}
+        onChange={doCheckData}
       />
       <pre
         style={{

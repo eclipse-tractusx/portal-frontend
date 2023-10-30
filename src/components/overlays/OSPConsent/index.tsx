@@ -33,20 +33,29 @@ import { useState } from 'react'
 import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OSPConsentContent } from './OSPConsentContent'
 import { error, success } from 'services/NotifyService'
-import { useFetchCompanyRoleAgreementDataQuery } from 'features/admin/networkApiSlice'
+import {
+  type PartnerRegistrationConsent,
+  useFetchCompanyRoleAgreementDataQuery,
+  useRegisterPartnerConsentMutation,
+  emptyPartnerRegistrationConsent,
+} from 'features/admin/networkApiSlice'
 
 export const OSPConsent = ({ id }: { id: string }) => {
   const { t } = useTranslation('osp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const companyRoleAgreementData = useFetchCompanyRoleAgreementDataQuery().data
-  const [consent, setConsent] = useState<boolean>(false)
+  const [registerPartnerConsent] = useRegisterPartnerConsentMutation()
+  const [consent, setConsent] = useState<PartnerRegistrationConsent>(
+    emptyPartnerRegistrationConsent
+  )
   const [loading, setLoading] = useState(false)
 
   const doConsent = async () => {
     if (!(data && consent)) return
     setLoading(true)
     try {
+      await registerPartnerConsent(consent).unwrap()
       success(t('consent.success'))
       dispatch(closeOverlay())
     } catch (err) {
@@ -97,7 +106,14 @@ export const OSPConsent = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" onClick={doConsent} disabled={!consent}>
+          <Button
+            variant="contained"
+            onClick={doConsent}
+            disabled={
+              consent.agreements.length !==
+              companyRoleAgreementData?.agreements.length
+            }
+          >
             {t('action.consent')}
           </Button>
         )}
