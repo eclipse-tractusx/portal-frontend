@@ -23,10 +23,10 @@ import { OVERLAYS } from 'types/Constants'
 import { Button, Image, Typography } from '@catena-x/portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { IDPList } from './IDPList'
 import { show } from 'features/control/overlay'
 import './style.scss'
 import { getAssetBase } from 'services/EnvironmentService'
+import { IDPList } from '../IDPManagement/IDPList'
 
 export default function OSPManagement() {
   const { t } = useTranslation('osp')
@@ -63,7 +63,7 @@ export default function OSPManagement() {
           </div>
         </div>
         <div style={{ paddingTop: '70px' }}>
-          <IDPList />
+          <IDPList isOSP={true} />
         </div>
       </section>
     </main>
