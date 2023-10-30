@@ -150,7 +150,9 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
                 onChange={(e) => {
                   handleCheckedAgreement(e.target.checked, agreement)
                 }}
-                onFocusVisible={function noRefCheck() {}}
+                onFocusVisible={function noRefCheck() {
+                  // do nothing
+                }}
               />
             </li>
           ))}

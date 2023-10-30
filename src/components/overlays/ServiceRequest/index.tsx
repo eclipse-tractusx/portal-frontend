@@ -118,7 +118,9 @@ export default function ServiceRequest({ id }: { id: string }) {
                 onChange={(e) => {
                   handleSelectedAgreement(e.target.checked, agreement)
                 }}
-                onFocusVisible={function noRefCheck() {}}
+                onFocusVisible={function noRefCheck() {
+                  // do nothing
+                }}
               />
             </li>
           ))}

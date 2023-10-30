@@ -420,7 +420,9 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (

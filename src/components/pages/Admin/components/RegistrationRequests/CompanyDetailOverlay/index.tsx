@@ -395,8 +395,12 @@ const CompanyDetailOverlay = ({
                                   margin: '0px 10px',
                                   cursor: 'auto',
                                 }}
-                                onClick={function noRefCheck() {}}
-                                onFocusVisible={function noRefCheck() {}}
+                                onClick={function noRefCheck() {
+                                  // do nothing
+                                }}
+                                onFocusVisible={function noRefCheck() {
+                                  // do nothing
+                                }}
                                 size="small"
                                 variant="contained"
                               >

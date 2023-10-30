@@ -453,6 +453,7 @@ export default function CommonContractAndConsent({
                     onClick={() =>
                       handleFrameDocumentDownload(item.name, item.documentId)
                     }
+                    onKeyDown={() => {}}
                   >
                     {item.name}
                   </span>
