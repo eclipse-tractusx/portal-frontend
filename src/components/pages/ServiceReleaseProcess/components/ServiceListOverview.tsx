@@ -96,7 +96,7 @@ export default function ServiceListOverview() {
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
-    if (data && data.content)
+    if (data?.content)
       setItems(
         data?.meta.page === 0
           ? setDataInfo(data)

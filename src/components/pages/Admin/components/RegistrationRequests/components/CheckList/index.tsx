@@ -188,7 +188,9 @@ export default function CheckList({
                 <MuiChip
                   key={button.typeId}
                   onClick={() => {
-                    onButtonClick && onButtonClick(button)
+                    if (onButtonClick) {
+                      onButtonClick(button)
+                    }
                   }}
                   variant="filled"
                   icon={button?.icon}
