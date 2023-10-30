@@ -75,7 +75,7 @@ any) => {
               label={label}
               placeholder={placeholder}
               error={!!errors[name]}
-              helperText={errors && errors[name] && errors[name].message}
+              helperText={errors?.[name]?.message}
               value={value || ''}
               onChange={(event) => {
                 trigger(name)
@@ -94,7 +94,7 @@ any) => {
         } else if (type === 'dropzone') {
           return (
             <Dropzone
-              files={value && value.name ? [value] : undefined}
+              files={value?.name ? [value] : undefined}
               onChange={([file]) => {
                 trigger(name)
                 onChange(file)
@@ -132,7 +132,7 @@ any) => {
               label={label}
               placeholder={placeholder}
               error={!!errors[name]}
-              helperText={errors && errors[name] && errors[name].message}
+              helperText={errors?.[name]?.message}
               value={value}
               items={items}
               keyTitle={keyTitle}

@@ -104,7 +104,9 @@ export const Dropzone = ({
 
       setDropped(nextFiles)
       onChange(nextFiles, undefined, deletedFiles)
-      handleDelete && handleDelete(documentId)
+      if (handleDelete) {
+        handleDelete(documentId)
+      }
     },
     [currentFiles, onChange, handleDelete]
   )

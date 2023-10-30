@@ -54,7 +54,7 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
         <Typography variant="h3">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
       </div>
-      {item.privacyPolicies && item.privacyPolicies.length ? (
+      {item?.privacyPolicies?.length ? (
         <div className="policies-list app-policies">
           {item.privacyPolicies.map((policy: PrivacyPolicyType) => (
             <Typography

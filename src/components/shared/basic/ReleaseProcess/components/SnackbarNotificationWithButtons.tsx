@@ -77,14 +77,14 @@ export default function SnackbarNotificationWithButtons({
           <Grid xs={6}></Grid>
           <Grid xs={6}>
             <PageNotifications
-              title={pageNotificationsObject && pageNotificationsObject.title}
-              description={
-                pageNotificationsObject && pageNotificationsObject.description
-              }
+              title={pageNotificationsObject?.title}
+              description={pageNotificationsObject?.description}
               open
               severity="error"
               onCloseNotification={() => {
-                setPageNotification && setPageNotification(false)
+                if (setPageNotification) {
+                  setPageNotification(false)
+                }
               }}
             />
           </Grid>
