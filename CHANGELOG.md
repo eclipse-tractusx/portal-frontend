@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- App Subscription
+  - Autosetup Process Worker implementation (adjust overlay)
 - Usermanagement
   - User Invite IdP connection logic
 

@@ -32,6 +32,7 @@ import {
   type CompanySubscriptionData,
   ProcessStep,
   type SubscriptionContent,
+  useActivateSubscriptionMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
 import './Subscription.scss'
@@ -44,6 +45,7 @@ import { SubscriptionTypes } from '.'
 import { getAssetBase } from 'services/EnvironmentService'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import HistoryIcon from '@mui/icons-material/History'
+import { error, success } from 'services/NotifyService'
 
 type ViewDetail = {
   appId: string
@@ -146,6 +148,17 @@ export default function SubscriptionElements({
   const [subscriptionDetail, setSubscriptionDetail] =
     useState<SubscriptionDataType>(SubscriptionInitialData)
 
+  const [activateSubscription] = useActivateSubscriptionMutation()
+
+  const handleActivate = async (subscriptionId: string) => {
+    try {
+      await activateSubscription(subscriptionId).unwrap()
+      success(t('content.appSubscription.success'))
+    } catch (err) {
+      error(t('content.appSubscription.error'), '', err as object)
+    }
+  }
+
   if (subscriptions && subscriptions.length === 0 && isSuccess) {
     return <NoItems />
   } else if (!isSuccess) {
@@ -176,21 +189,6 @@ export default function SubscriptionElements({
               label={t('content.appSubscription.configureBtn')}
               type="plain"
               variant="filled"
-              className="configureBtn"
-            />
-            <HistoryIcon className="statusIcon pending" />
-          </>
-        )
-      } else if (
-        subscriptionData.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
-      ) {
-        return (
-          <>
-            <Chip
-              color="primary"
-              label={t('content.appSubscription.activateBtn')}
-              type="plain"
-              variant="filled"
               onClick={() => {
                 type === SubscriptionTypes.APP_SUBSCRIPTION
                   ? setSubscriptionDetail({
@@ -211,6 +209,21 @@ export default function SubscriptionElements({
                       },
                     })
               }}
+            />
+            <HistoryIcon className="statusIcon pending" />
+          </>
+        )
+      } else if (
+        subscriptionData.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+      ) {
+        return (
+          <>
+            <Chip
+              color="primary"
+              label={t('content.appSubscription.activateBtn')}
+              type="plain"
+              variant="filled"
+              onClick={() => handleActivate(subscription.subscriptionId)}
             />
             <HistoryIcon className="statusIcon pending" />
           </>

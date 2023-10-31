@@ -186,6 +186,12 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    activateSubscription: builder.mutation<void, string>({
+      query: (subscriptionId) => ({
+        url: `/subscription/${subscriptionId}/activate `,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -196,4 +202,5 @@ export const {
   useFetchTechnicalProfilesQuery,
   useAddUserSubscribtionMutation,
   useUpdateTenantUrlMutation,
+  useActivateSubscriptionMutation,
 } = apiSlice
