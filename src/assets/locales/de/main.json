@@ -1233,6 +1233,8 @@
       "activateBtn": "Activate",
       "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
+      "error": "Error",
+      "success": "Success",
       "tabs": {
         "request": "Request",
         "active": "Active",
