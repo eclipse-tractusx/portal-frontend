@@ -25,7 +25,6 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-  Stepper,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
