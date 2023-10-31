@@ -2,7 +2,8 @@
 
 ## unreleased
 
-- ...
+- App Subscription
+  - Autosetup Process Worker implementation (adjust overlay)
 
 ## 1.7.0-RC1
 
