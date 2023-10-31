@@ -33,6 +33,7 @@ import {
   isRegionName,
   isStreetName,
   isStreetNumber,
+  isUUID,
   isUserName,
   isZipCode,
 } from 'types/Patterns'
@@ -92,7 +93,7 @@ const OSPRegisterForm = ({
   companyRoleAgreementData: CompanyRoleAgreementData
   onChange: (partnerRegistration: PartnerRegistration | undefined) => boolean
 }) => {
-  const { t } = useTranslation('osp')
+  const { t } = useTranslation('idp')
 
   const [data, setData] = useState<PartnerRegistration>(emptyData)
 
@@ -105,16 +106,17 @@ const OSPRegisterForm = ({
     updateData(undefined)
   }
 
-  const inputStyle: CSSProperties = { width: 260 }
+  const inputStyle2: CSSProperties = { width: 406 }
+  const inputStyle3: CSSProperties = { width: 260 }
 
   const inputs: Record<string, JSX.Element> = {
     extid: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'extid'}
         label={t('field.extid.name')}
         hint={t('field.extid.hint')}
-        validate={isID}
+        validate={isUUID}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
@@ -126,7 +128,7 @@ const OSPRegisterForm = ({
     ),
     company: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'company'}
         label={t('field.company.name')}
         hint={t('field.company.hint')}
@@ -142,7 +144,7 @@ const OSPRegisterForm = ({
     ),
     bpn: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'bpn'}
         label={t('field.bpn.name')}
         hint={t('field.bpn.hint')}
@@ -158,7 +160,7 @@ const OSPRegisterForm = ({
     ),
     country: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'country'}
         label={t('field.country.name')}
         hint={t('field.country.hint')}
@@ -174,7 +176,7 @@ const OSPRegisterForm = ({
     ),
     region: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'region'}
         label={t('field.region.name')}
         hint={t('field.region.hint')}
@@ -190,7 +192,7 @@ const OSPRegisterForm = ({
     ),
     city: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'city'}
         label={t('field.city.name')}
         hint={t('field.city.hint')}
@@ -206,7 +208,7 @@ const OSPRegisterForm = ({
     ),
     zipcode: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'zipcode'}
         label={t('field.zipcode.name')}
         hint={t('field.zipcode.hint')}
@@ -223,7 +225,7 @@ const OSPRegisterForm = ({
 
     streetName: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'streetName'}
         label={t('field.streetName.name')}
         hint={t('field.streetName.hint')}
@@ -239,7 +241,7 @@ const OSPRegisterForm = ({
     ),
     streetNumber: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'streetNumber'}
         label={t('field.streetNumber.name')}
         hint={t('field.streetNumber.hint')}
@@ -255,7 +257,7 @@ const OSPRegisterForm = ({
     ),
     identityProviderId: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'identityProviderId'}
         label={t('field.identityProviderId.name')}
         hint={t('field.identityProviderId.hint')}
@@ -276,7 +278,7 @@ const OSPRegisterForm = ({
     ),
     providerId: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'providerId'}
         label={t('field.providerId.name')}
         hint={t('field.providerId.hint')}
@@ -298,7 +300,7 @@ const OSPRegisterForm = ({
 
     username: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'username'}
         label={t('field.username.name')}
         hint={t('field.username.hint')}
@@ -319,7 +321,7 @@ const OSPRegisterForm = ({
     ),
     firstName: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'firstName'}
         label={t('field.firstName.name')}
         hint={t('field.firstName.hint')}
@@ -340,7 +342,7 @@ const OSPRegisterForm = ({
     ),
     lastName: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'lastName'}
         label={t('field.lastName.name')}
         hint={t('field.lastName.hint')}
@@ -361,7 +363,7 @@ const OSPRegisterForm = ({
     ),
     email: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'email'}
         label={t('field.email.name')}
         hint={t('field.email.hint')}
@@ -381,7 +383,7 @@ const OSPRegisterForm = ({
       />
     ),
     uniqueId: (
-      <div style={{ marginTop: -39, marginRight: 30, width: 820 }}>
+      <div style={{ marginTop: -39, marginRight: 26, width: 814 }}>
         ,
         <SelectList
           {...{
@@ -411,7 +413,7 @@ const OSPRegisterForm = ({
     ),
     uniqeIdValue: (
       <ValidatingInput
-        style={{ width: 400 }}
+        style={inputStyle2}
         name={'uniqeIdValue'}
         label={t('field.uniqeIdValue.name')}
         hint={t('field.uniqeIdValue.hint')}
@@ -493,14 +495,12 @@ const OSPRegisterForm = ({
         {inputs.uniqeIdValue}
       </div>
       <div style={rowStyle}>
-        {inputs.identityProviderId}
         {inputs.providerId}
-        {inputs.username}
+        {inputs.email}
       </div>
       <div style={rowStyle}>
         {inputs.firstName}
         {inputs.lastName}
-        {inputs.email}
       </div>
       <div>{inputs.companyRoles}</div>
     </>
