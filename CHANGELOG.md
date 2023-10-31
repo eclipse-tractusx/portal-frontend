@@ -4,6 +4,8 @@
 
 - App Subscription
   - Autosetup Process Worker implementation (adjust overlay)
+- Usermanagement
+  - User Invite IdP connection logic
 
 ## 1.7.0-RC1
 
@@ -36,8 +38,12 @@
   - Fixed image display in app overview cards
 - IDP
   - Add load element for IDP list
+- Onboarding Serviceprovider
+  - Add the OSP prototype
 - Linter Findings
   - Fix ban-types
+  - No empty function
+  - No Extra Semi
 - Partner Network
   - Search for Company name issue fix
 - App Subscription and Servcie Subscripiton
@@ -47,6 +53,8 @@
   - UI Changes
 - Home
   - Fixed image display for 'my business applications'
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
 - Vulnerability from dependency
   - Set resolution for @babel/traverse (CVE-2023-45133)
 

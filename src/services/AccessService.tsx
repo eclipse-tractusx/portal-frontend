@@ -67,6 +67,9 @@ import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
 import EditUsecase from 'components/overlays/EditUsecase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
 import AddMultipleUser from 'components/overlays/AddMultipleUser'
+import { OSPRegister } from 'components/overlays/OSPRegister'
+import { OSPConsent } from 'components/overlays/OSPConsent'
+import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -173,6 +176,12 @@ export const getOverlay = (overlay: OverlayState) => {
       return <DeleteIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
       return <IDPTestRun />
+    case OVERLAYS.REGISTER_OSP:
+      return <OSPRegister id={overlay.id} />
+    case OVERLAYS.REGISTER_NEXT_OSP:
+      return <OSPRegisterNext id={overlay.id} />
+    case OVERLAYS.CONSENT_OSP:
+      return <OSPConsent id={overlay.id} />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
       return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
     case OVERLAYS.APP_DETAILS_OVERLAY:

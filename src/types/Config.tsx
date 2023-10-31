@@ -81,6 +81,7 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
+import OSPManagement from 'components/pages/OSPManagement'
 
 /**
  * ALL_PAGES
@@ -526,6 +527,11 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.DECISION_SSICREDENTIAL,
     element: <AdminCredential />,
   },
+  {
+    name: PAGES.ONBOARDING_SERVICEPROVIDER,
+    role: ROLES.IDP_VIEW,
+    element: <OSPManagement />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -630,6 +636,18 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.IDP_TEST_RUN,
     role: ROLES.IDP_ADD,
+  },
+  {
+    name: OVERLAYS.REGISTER_OSP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.REGISTER_NEXT_OSP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.CONSENT_OSP,
+    role: ROLES.IDP_SETUP,
   },
   {
     name: OVERLAYS.APP_OVERVIEW_CONFIRM,
