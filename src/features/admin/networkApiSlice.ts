@@ -40,6 +40,15 @@ export enum CONSENT_STATUS {
   INACTIVE = 'INACTIVE',
 }
 
+export enum REGISTRATION_APPLICATION_STATUS {
+  PENDING = 'PENDING',
+  CREATED = 'CREATED',
+}
+
+export enum REGISTRATION_APPLICATION_ITEM_TYPE {
+  REGISTRATION_VERIFICATION = 'REGISTRATION_VERIFICATION',
+}
+
 export type PartnerRegistrationUniqeId = {
   type: UNIQUE_ID_TYPE
   value: string
@@ -56,7 +65,7 @@ export type PartnerRegistrationUser = {
 
 export type PartnerRegistration = {
   externalId: string
-  bpn: string
+  bpn: string | null
   name: string
   streetName: string
   streetNumber: string
@@ -67,6 +76,18 @@ export type PartnerRegistration = {
   uniqueIds: Array<PartnerRegistrationUniqeId>
   userDetails: Array<PartnerRegistrationUser>
   companyRoles: Array<COMPANY_ROLE>
+  agreements?: Array<AgreementConsent>
+}
+
+export type RegistrationApplicationItem = {
+  typeId: REGISTRATION_APPLICATION_ITEM_TYPE
+  statusId: string
+}
+
+export type RegistrationApplication = {
+  applicationId: string
+  applicationStatus: REGISTRATION_APPLICATION_STATUS
+  applicationChecklist: Array<RegistrationApplicationItem>
 }
 
 export type Agreement = {
@@ -146,6 +167,21 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [TAGS.PARTNER_REGISTRATION],
     }),
+    fetchRegistrationApplications: builder.query<
+      Array<RegistrationApplication>,
+      void
+    >({
+      query: () => '/api/registration/applications',
+      providesTags: [TAGS.REGISTRATION],
+    }),
+    fetchRegistrationApplicationData: builder.query<
+      PartnerRegistration,
+      string
+    >({
+      query: (applicationId: string) =>
+        `/api/registration/application/${applicationId}/registrationData`,
+      providesTags: [TAGS.REGISTRATION],
+    }),
     fetchCompanyRoleAgreementData: builder.query<
       CompanyRoleAgreementData,
       void
@@ -166,6 +202,8 @@ export const apiSlice = createApi({
 
 export const {
   useRegisterPartnerMutation,
+  useFetchRegistrationApplicationsQuery,
+  useFetchRegistrationApplicationDataQuery,
   useFetchCompanyRoleAgreementDataQuery,
   useRegisterPartnerConsentMutation,
 } = apiSlice
