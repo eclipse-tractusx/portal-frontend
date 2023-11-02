@@ -123,7 +123,7 @@ export type CompanyRoleAgreementData = {
 export const emptyPartnerRegistration: PartnerRegistration = {
   externalId: '',
   name: '',
-  bpn: '',
+  bpn: null,
   streetName: '',
   streetNumber: '',
   city: '',
