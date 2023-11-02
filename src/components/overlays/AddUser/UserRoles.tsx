@@ -44,7 +44,7 @@ export const UserRoles = () => {
 
   useEffect(() => {
     const rolesArr: AppRole[] = []
-    data && data.map((a) => rolesArr.push(...a.roles))
+    data?.map((a) => rolesArr.push(...a.roles))
     setAllRoles(rolesArr)
   }, [data])
 

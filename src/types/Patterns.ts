@@ -33,13 +33,12 @@ export const Patterns = {
     `^(https)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
     'i'
   ),
-  NAME: /^([A-Za-zÀ-ÿ-,.']{1,40} ?){1,8}$/i,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   COMPANY_NAME: /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ-_+=.,:;!?'"&#@()]\s?){1,29}$/i,
-  firstName:
-    /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
-  lastName:
-    /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
+  name: /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
+  zipcode: /^[A-Z0-9-]{1,8}$/,
+  streetNumber: /^[0-9A-Za-z- ]{1,20}$/,
+  regionName: /^[0-9A-Za-z- ]{2,20}$/,
   prefix: {
     BPN: /^BPNL/i,
     URL: /^https:/i,
@@ -96,21 +95,18 @@ export const isKeycloakURL = (expr: string) =>
   isURL(expr) && !expr.includes('#')
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
-export const isFirstName = (expr: string) => Patterns.firstName.test(expr)
-export const isLastName = (expr: string) => Patterns.lastName.test(expr)
+export const isName = (expr: string) => Patterns.name.test(expr)
+export const isCityName = isName
+export const isStreetName = isName
+export const isRegionName = (expr: string) => Patterns.regionName.test(expr)
+export const isFirstName = isName
+export const isLastName = isName
+export const isUserName = (expr: string) => isName(expr) || isMail(expr)
+export const isZipCode = (expr: string) => Patterns.zipcode.test(expr)
+export const isStreetNumber = (expr: string) => Patterns.streetNumber.test(expr)
 export const isIDPClientID = (expr: string) => Patterns.idp.clientId.test(expr)
 export const isIDPClientSecret = (expr: string) =>
   Patterns.idp.clientSecret.test(expr)
-export const isMailOrEmpty = (expr: string) =>
-  expr === '' || Patterns.MAIL.test(expr)
-export const isBPNOrEmpty = (expr: string) =>
-  expr === '' || Patterns.BPN.test(expr)
-export const isDomainOrEmpty = (expr: string) =>
-  expr === '' || Patterns.DOMAIN.test(expr)
-export const isURLOrEmpty = (expr: string) =>
-  expr === '' || Patterns.URL.test(expr)
-export const isUUIDOrEmpty = (expr: string) =>
-  expr === '' || Patterns.UUID.test(expr)
 export const isCName = (expr: string) => Patterns.connectors.NAME.test(expr)
 export const isCountryCode = (expr: string) =>
   Patterns.connectors.COUNTRY.test(expr)
@@ -118,5 +114,31 @@ export const isValidCancelInput = (expr: string) =>
   Patterns.CANCEL_INPUT.test(expr)
 export const isClientID = (expr: string) =>
   Patterns.techuser.clientId.test(expr)
+export const isMailOrEmpty = (expr: string) => expr === '' || isMail(expr)
+export const isBPNOrEmpty = (expr: string) => expr === '' || isBPN(expr)
+export const isDomainOrEmpty = (expr: string) => expr === '' || isDomain(expr)
+export const isURLOrEmpty = (expr: string) => expr === '' || isURL(expr)
+export const isIDOrEmpty = (expr: string) => expr === '' || isID(expr)
+export const isUUIDOrEmpty = (expr: string) => expr === '' || isUUID(expr)
+export const isNameOrEmpty = (expr: string) => expr === '' || isName(expr)
+export const isCompanyNameOrEmpty = (expr: string) =>
+  expr === '' || isCompanyName(expr)
+export const isCityNameOrEmpty = (expr: string) =>
+  expr === '' || isCityName(expr)
+export const isStreetNameOrEmpty = (expr: string) =>
+  expr === '' || isStreetName(expr)
+export const isRegionNameOrEmpty = (expr: string) =>
+  expr === '' || isRegionName(expr)
+export const isFirstNameOrEmpty = (expr: string) =>
+  expr === '' || isFirstName(expr)
+export const isLastNameOrEmpty = (expr: string) =>
+  expr === '' || isLastName(expr)
+export const isUserNameOrEmpty = (expr: string) =>
+  expr === '' || isUserName(expr)
+export const isZipCodeOrEmpty = (expr: string) => expr === '' || isZipCode(expr)
+export const isCountryCodeOrEmpty = (expr: string) =>
+  expr === '' || isCountryCode(expr)
+export const isStreetNumberOrEmpty = (expr: string) =>
+  expr === '' || isStreetNumber(expr)
 
 export default Patterns

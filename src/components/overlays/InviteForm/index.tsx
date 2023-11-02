@@ -72,8 +72,8 @@ export const InviteForm = ({
         const check = [
           /^.{2,60}$/i,
           Patterns.MAIL,
-          Patterns.NAME,
-          Patterns.NAME,
+          Patterns.name,
+          Patterns.name,
         ].map((p, i) => !p.test(expr[i]))
         check.push(check.reduce((all, valid) => all || valid))
         setInpValid(check)
@@ -102,65 +102,62 @@ export const InviteForm = ({
   }
 
   return (
-    <>
-      <Dialog
-        open={openDialog}
-        sx={{ '.MuiDialog-paper': { maxWidth: '60%' } }}
-      >
-        <DialogHeader
-          title={t('content.invite.headerTitle')}
-          intro={t('content.invite.headerIntro')}
-        />
-        <DialogContent sx={{ padding: '0px 130px 40px 150px' }}>
-          <form className="InviteForm">
-            {['company', 'email', 'first', 'last'].map((value, i) => (
-              <Input
-                label={
-                  <Typography variant="body2">
-                    {t(`global.field.${value}`)}
-                  </Typography>
-                }
-                key={i}
-                name={value}
-                placeholder={t(`global.field.${value}`)}
-                value={inpExpr[i]}
-                error={inpValid[i]}
-                autoFocus={value === 'company'}
-                onChange={(e) => {
-                  doValidate(i, e.target.value)
-                }}
-              ></Input>
-            ))}
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            variant="outlined"
-            onClick={(e) => {
-              handleOverlayClose(e)
+    <Dialog open={openDialog} sx={{ '.MuiDialog-paper': { maxWidth: '60%' } }}>
+      <DialogHeader
+        title={t('content.invite.headerTitle')}
+        intro={t('content.invite.headerIntro')}
+      />
+      <DialogContent sx={{ padding: '0px 130px 40px 150px' }}>
+        <form className="InviteForm">
+          {['company', 'email', 'first', 'last'].map((value, i) => (
+            <Input
+              label={
+                <Typography variant="body2">
+                  {t(`global.field.${value}`)}
+                </Typography>
+              }
+              key={i}
+              name={value}
+              placeholder={t(`global.field.${value}`)}
+              value={inpExpr[i]}
+              error={inpValid[i]}
+              autoFocus={value === 'company'}
+              onChange={(e) => {
+                doValidate(i, e.target.value)
+              }}
+            ></Input>
+          ))}
+        </form>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="outlined"
+          onClick={(e) => {
+            handleOverlayClose(e)
+          }}
+        >
+          {`${t('global.actions.cancel')}`}
+        </Button>
+        {state === ProcessingType.BUSY ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator={t('global.actions.loading')}
+            loading
+            size="medium"
+            onButtonClick={() => {
+              // do nothing
             }}
-          >
-            {`${t('global.actions.cancel')}`}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+            {`${t('content.invite.invite')}`}
           </Button>
-          {state === ProcessingType.BUSY ? (
-            <LoadingButton
-              color="primary"
-              helperText=""
-              helperTextColor="success"
-              label=""
-              loadIndicator={t('global.actions.loading')}
-              loading
-              size="medium"
-              onButtonClick={() => {}}
-              sx={{ marginLeft: '10px' }}
-            />
-          ) : (
-            <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
-              {`${t('content.invite.invite')}`}
-            </Button>
-          )}
-        </DialogActions>
-      </Dialog>
-    </>
+        )}
+      </DialogActions>
+    </Dialog>
   )
 }

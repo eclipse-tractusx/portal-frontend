@@ -217,7 +217,9 @@ export default function AddRoles() {
                 loadIndicator="Loading..."
                 loading={isLoading}
                 variant="contained"
-                onButtonClick={() => {}}
+                onButtonClick={() => {
+                  // do nothing
+                }}
                 label={`${t('global.actions.confirm')}`}
               />
             ) : (
