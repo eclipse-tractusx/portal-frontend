@@ -4,6 +4,8 @@
 
 - Service Marketplace
   - Changed text for german translation from english to german
+- App marketplace
+  - Fixed UI alignment for the navigation
 
 ## 1.7.0-RC1
 

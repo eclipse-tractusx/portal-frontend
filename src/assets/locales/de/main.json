@@ -972,6 +972,7 @@
       },
       "description": "Description",
       "imageGallery": "Images",
+      "tags": "Tags",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
