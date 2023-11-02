@@ -88,7 +88,7 @@ const SelectIdpProviderType = ({
       </div>
       <Radio
         name="radio-provider"
-        label={IDPProviderType.OWN}
+        label={`${IDPProviderType.OWN} - ${t('field.providerType.option.OWN')}`}
         checked={type === IDPProviderType.OWN}
         onChange={() => {
           setType(IDPProviderType.OWN)
@@ -99,7 +99,9 @@ const SelectIdpProviderType = ({
       />
       <Radio
         name="radio-provider"
-        label={IDPProviderType.MANAGED}
+        label={`${IDPProviderType.MANAGED} - ${t(
+          'field.providerType.option.MANAGED'
+        )}`}
         checked={type === IDPProviderType.MANAGED}
         onChange={() => {
           setType(IDPProviderType.MANAGED)
@@ -210,20 +212,9 @@ const AddIDPPrepareForm = ({
         style={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
         }}
       >
-        <SelectIdpProviderType
-          onChange={(value) => {
-            const currentData = {
-              ...formData,
-              providerType: value,
-            }
-            setFormData(currentData)
-            onChange(currentData)
-            console.log(currentData)
-          }}
-        />
         <SelectIdpAuthType
           onChange={(value) => {
             const currentData = {
@@ -232,7 +223,16 @@ const AddIDPPrepareForm = ({
             }
             setFormData(currentData)
             onChange(currentData)
-            console.log(currentData)
+          }}
+        />
+        <SelectIdpProviderType
+          onChange={(value) => {
+            const currentData = {
+              ...formData,
+              providerType: value,
+            }
+            setFormData(currentData)
+            onChange(currentData)
           }}
         />
       </div>
@@ -312,7 +312,17 @@ export const AddIdp = ({
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={AddStepsList} showSteps={3} activeStep={1} />
+          <Stepper
+            list={
+              formData.providerType === IDPProviderType.MANAGED
+                ? AddStepsList.slice(0, 2)
+                : AddStepsList
+            }
+            showSteps={
+              formData.providerType === IDPProviderType.MANAGED ? 2 : 3
+            }
+            activeStep={1}
+          />
         </div>
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>

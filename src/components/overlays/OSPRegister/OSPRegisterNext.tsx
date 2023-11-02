@@ -31,35 +31,35 @@ import { closeOverlay } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
 
 export const OSPRegisterNext = ({ id }: { id: string }) => {
-  const { t } = useTranslation('osp')
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
 
   const steps = [
     {
       step: 1,
-      headline: t('steps.one.title'),
-      text: t('steps.one.text'),
+      headline: t('osp.steps.one.title'),
+      text: t('osp.steps.one.text'),
     },
     {
       step: 2,
-      headline: t('steps.two.title'),
-      text: t('steps.two.text'),
+      headline: t('osp.steps.two.title'),
+      text: t('osp.steps.two.text'),
     },
     {
       step: 3,
-      headline: t('steps.three.title'),
-      text: t('steps.three.text'),
+      headline: t('osp.steps.three.title'),
+      text: t('osp.steps.three.text'),
     },
     {
       step: 4,
-      headline: t('steps.four.title'),
+      headline: t('osp.steps.four.title'),
     },
   ]
 
   return (
     <>
       <DialogHeader
-        title={t('register.next.title')}
+        title={t('osp.register_next.title')}
         intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
@@ -70,12 +70,13 @@ export const OSPRegisterNext = ({ id }: { id: string }) => {
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
-            <Typography variant="label3">{t('register.next.desc')}</Typography>
+            <Typography variant="label3">
+              {t('osp.register_next.desc')}
+            </Typography>
           </Trans>
         </div>
-        <Typography variant="label2">{t('register.next.heading')}</Typography>
-        <Typography variant="body1">
-          Registration for IDP {id} successful. Next steps...
+        <Typography variant="body1" style={{ margin: '50px 0' }}>
+          {t('osp.register_next.body1', { id })}
         </Typography>
       </DialogContent>
       <DialogActions>

@@ -21,20 +21,20 @@
 import { type CSSProperties, useState } from 'react'
 import { type IdentityProvider } from 'features/admin/idpApiSlice'
 import {
-  isBPN,
+  isBPNOrEmpty,
   isCityName,
   isCompanyName,
   isCountryCode,
   isFirstName,
   isID,
+  isIDOrEmpty,
   isLastName,
   isMail,
-  isName,
-  isRegionName,
+  isRegionNameOrEmpty,
   isStreetName,
-  isStreetNumber,
-  isUserName,
-  isZipCode,
+  isStreetNumberOrEmpty,
+  isUUID,
+  isZipCodeOrEmpty,
 } from 'types/Patterns'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
@@ -75,6 +75,16 @@ const emptyData: PartnerRegistration = {
   companyRoles: [],
 }
 
+const getEmptyPartnerRegistration = (identityProviderId: string) => ({
+  ...emptyData,
+  userDetails: [
+    {
+      ...emptyData.userDetails[0],
+      identityProviderId,
+    },
+  ],
+})
+
 type ItemType = { id: string }
 
 const uniqeIdItems: Array<ItemType> = Object.keys(UNIQUE_ID_TYPE).map(
@@ -92,9 +102,11 @@ const OSPRegisterForm = ({
   companyRoleAgreementData: CompanyRoleAgreementData
   onChange: (partnerRegistration: PartnerRegistration | undefined) => boolean
 }) => {
-  const { t } = useTranslation('osp')
+  const { t } = useTranslation('idp')
 
-  const [data, setData] = useState<PartnerRegistration>(emptyData)
+  const [data, setData] = useState<PartnerRegistration>(
+    getEmptyPartnerRegistration(idp.identityProviderId)
+  )
 
   const updateData = (newData: PartnerRegistration | undefined) => {
     if (newData) setData(newData)
@@ -105,16 +117,17 @@ const OSPRegisterForm = ({
     updateData(undefined)
   }
 
-  const inputStyle: CSSProperties = { width: 260 }
+  const inputStyle2: CSSProperties = { width: 406 }
+  const inputStyle3: CSSProperties = { width: 260 }
 
   const inputs: Record<string, JSX.Element> = {
     extid: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'extid'}
         label={t('field.extid.name')}
         hint={t('field.extid.hint')}
-        validate={isID}
+        validate={isUUID}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
@@ -126,7 +139,7 @@ const OSPRegisterForm = ({
     ),
     company: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'company'}
         label={t('field.company.name')}
         hint={t('field.company.hint')}
@@ -142,23 +155,23 @@ const OSPRegisterForm = ({
     ),
     bpn: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'bpn'}
         label={t('field.bpn.name')}
         hint={t('field.bpn.hint')}
-        validate={isBPN}
+        validate={isBPNOrEmpty}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
             ...data,
-            bpn: value,
+            bpn: value ? value.toLocaleUpperCase() : null,
           })
         }}
       />
     ),
     country: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'country'}
         label={t('field.country.name')}
         hint={t('field.country.hint')}
@@ -174,11 +187,11 @@ const OSPRegisterForm = ({
     ),
     region: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'region'}
         label={t('field.region.name')}
         hint={t('field.region.hint')}
-        validate={isRegionName}
+        validate={isRegionNameOrEmpty}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
@@ -190,7 +203,7 @@ const OSPRegisterForm = ({
     ),
     city: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'city'}
         label={t('field.city.name')}
         hint={t('field.city.hint')}
@@ -206,11 +219,11 @@ const OSPRegisterForm = ({
     ),
     zipcode: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'zipcode'}
         label={t('field.zipcode.name')}
         hint={t('field.zipcode.hint')}
-        validate={isZipCode}
+        validate={isZipCodeOrEmpty}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
@@ -220,10 +233,9 @@ const OSPRegisterForm = ({
         }}
       />
     ),
-
     streetName: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'streetName'}
         label={t('field.streetName.name')}
         hint={t('field.streetName.hint')}
@@ -239,11 +251,11 @@ const OSPRegisterForm = ({
     ),
     streetNumber: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle3}
         name={'streetNumber'}
         label={t('field.streetNumber.name')}
         hint={t('field.streetNumber.hint')}
-        validate={isStreetNumber}
+        validate={isStreetNumberOrEmpty}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
@@ -253,30 +265,9 @@ const OSPRegisterForm = ({
         }}
       />
     ),
-    identityProviderId: (
-      <ValidatingInput
-        style={inputStyle}
-        name={'identityProviderId'}
-        label={t('field.identityProviderId.name')}
-        hint={t('field.identityProviderId.hint')}
-        validate={isID}
-        onInvalid={invalidate}
-        onValid={(_key, value: string) => {
-          updateData({
-            ...data,
-            userDetails: [
-              {
-                ...data.userDetails[0],
-                identityProviderId: value,
-              },
-            ],
-          })
-        }}
-      />
-    ),
     providerId: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'providerId'}
         label={t('field.providerId.name')}
         hint={t('field.providerId.hint')}
@@ -295,31 +286,9 @@ const OSPRegisterForm = ({
         }}
       />
     ),
-
-    username: (
-      <ValidatingInput
-        style={inputStyle}
-        name={'username'}
-        label={t('field.username.name')}
-        hint={t('field.username.hint')}
-        validate={isUserName}
-        onInvalid={invalidate}
-        onValid={(_key, value: string) => {
-          updateData({
-            ...data,
-            userDetails: [
-              {
-                ...data.userDetails[0],
-                username: value,
-              },
-            ],
-          })
-        }}
-      />
-    ),
     firstName: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'firstName'}
         label={t('field.firstName.name')}
         hint={t('field.firstName.hint')}
@@ -340,7 +309,7 @@ const OSPRegisterForm = ({
     ),
     lastName: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'lastName'}
         label={t('field.lastName.name')}
         hint={t('field.lastName.hint')}
@@ -361,7 +330,7 @@ const OSPRegisterForm = ({
     ),
     email: (
       <ValidatingInput
-        style={inputStyle}
+        style={inputStyle2}
         name={'email'}
         label={t('field.email.name')}
         hint={t('field.email.hint')}
@@ -381,8 +350,7 @@ const OSPRegisterForm = ({
       />
     ),
     uniqueId: (
-      <div style={{ marginTop: -39, marginRight: 30, width: 820 }}>
-        ,
+      <div style={{ marginTop: -15, marginRight: 26, width: 814 }}>
         <SelectList
           {...{
             items: uniqeIdItems,
@@ -397,12 +365,14 @@ const OSPRegisterForm = ({
             onChangeItem: (value: ItemType): void => {
               updateData({
                 ...data,
-                uniqueIds: [
-                  {
-                    ...data.uniqueIds[0],
-                    type: value.id as UNIQUE_ID_TYPE,
-                  },
-                ],
+                uniqueIds: value
+                  ? [
+                      {
+                        ...data.uniqueIds[0],
+                        type: value.id as UNIQUE_ID_TYPE,
+                      },
+                    ]
+                  : [],
               })
             },
           }}
@@ -411,11 +381,11 @@ const OSPRegisterForm = ({
     ),
     uniqeIdValue: (
       <ValidatingInput
-        style={{ width: 400 }}
+        style={inputStyle2}
         name={'uniqeIdValue'}
         label={t('field.uniqeIdValue.name')}
         hint={t('field.uniqeIdValue.hint')}
-        validate={isName}
+        validate={isIDOrEmpty}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
@@ -493,14 +463,12 @@ const OSPRegisterForm = ({
         {inputs.uniqeIdValue}
       </div>
       <div style={rowStyle}>
-        {inputs.identityProviderId}
         {inputs.providerId}
-        {inputs.username}
+        {inputs.email}
       </div>
       <div style={rowStyle}>
         {inputs.firstName}
         {inputs.lastName}
-        {inputs.email}
       </div>
       <div>{inputs.companyRoles}</div>
     </>
@@ -537,11 +505,9 @@ export const OSPRegisterContent = ({
     partnerRegistration: PartnerRegistration | undefined
   ) => {
     const valid =
-      partnerRegistration?.name !== undefined &&
-      partnerRegistration?.externalId !== undefined &&
+      partnerRegistration &&
       partnerRegistration.companyRoles.length > 0 &&
-      partnerRegistration?.uniqueIds.length > 0 &&
-      partnerRegistration?.uniqueIds[0].value !== undefined
+      partnerRegistration?.uniqueIds.length > 0
     onValid(valid ? partnerRegistration : undefined)
     setFormData(
       valid ? JSON.stringify(partnerRegistration, null, 2) : '# data invalid'

@@ -68,7 +68,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
           enabled: true,
         }).unwrap()
         success(t('enable.success'))
-        dispatch(show(OVERLAYS.REGISTER_OSP, id))
+        dispatch(closeOverlay())
       } else {
         dispatch(show(OVERLAYS.ENABLE_IDP, id))
       }
@@ -96,6 +96,14 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     },
   ]
 
+  const steps =
+    data?.identityProviderTypeId === IDPCategory.MANAGED
+      ? UpdateStepsList.slice(0, 2)
+      : UpdateStepsList
+
+  const numberSteps =
+    data?.identityProviderTypeId === IDPCategory.MANAGED ? 2 : 3
+
   return (
     <>
       <DialogHeader
@@ -106,7 +114,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={UpdateStepsList} showSteps={3} activeStep={2} />
+          <Stepper list={steps} showSteps={numberSteps} activeStep={2} />
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
