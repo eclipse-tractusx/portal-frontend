@@ -85,9 +85,7 @@ export default function ServiceRequest({ id }: { id: string }) {
           agreement.agreementId,
         ])
     } else {
-      const index =
-        selectedAgreementsIds &&
-        selectedAgreementsIds.indexOf(agreement.agreementId)
+      const index = selectedAgreementsIds?.indexOf(agreement.agreementId)
       if (index > -1) {
         selectedAgreementsIds.splice(index, 1)
         setSelectedAgreementsIds([...selectedAgreementsIds])
@@ -113,18 +111,19 @@ export default function ServiceRequest({ id }: { id: string }) {
             )}
         </Typography>
         <ul className="agreements-list">
-          {serviceAgreements &&
-            serviceAgreements.map((agreement, index) => (
-              <li key={index}>
-                <Checkbox
-                  label={agreement.name}
-                  onChange={(e) => {
-                    handleSelectedAgreement(e.target.checked, agreement)
-                  }}
-                  onFocusVisible={function noRefCheck() {}}
-                />
-              </li>
-            ))}
+          {serviceAgreements?.map((agreement, index) => (
+            <li key={index}>
+              <Checkbox
+                label={agreement.name}
+                onChange={(e) => {
+                  handleSelectedAgreement(e.target.checked, agreement)
+                }}
+                onFocusVisible={function noRefCheck() {
+                  // do nothing
+                }}
+              />
+            </li>
+          ))}
         </ul>
       </DialogContent>
 

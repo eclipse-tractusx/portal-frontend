@@ -68,8 +68,16 @@ export default function AppDetailContentDetails({
       title: t('content.appdetail.howtouse.heading'),
     },
     {
+      href: '#technical-user-setup',
+      title: t('content.appdetail.technicalUserSetup.heading'),
+    },
+    {
       href: '#provider-info',
       title: t('content.appdetail.providerInformation.heading'),
+    },
+    {
+      href: '#tags',
+      title: t('content.appdetail.tags'),
     },
   ]
 
@@ -105,15 +113,15 @@ export default function AppDetailContentDetails({
             />
           </div>
         </div>
-        <div className="divider-height" />
         <div className="appdetail-main">
           <div id="description">
+            <div className="divider-height" />
             <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
               {item.longDescription}
             </Typography>
           </div>
-          <div className="divider-height" />
           <div id="image-gallery">
+            <div className="divider-height" />
             <ImageGallery
               gallery={CommonService.imagesAndAppidToImageType(
                 item.images,
@@ -122,13 +130,9 @@ export default function AppDetailContentDetails({
               modalWidth="900"
             />
           </div>
-          <div className="divider-height" />
           <AppDetailPrivacy item={item} />
-          <div className="divider-height" />
           <AppDetailDocuments item={item} />
-          <div className="divider-height" />
           <AppDetailTechUserSetup item={item} />
-          <div className="divider-height" />
           <AppDetailProvider item={item} />
           <div className="divider-height" />
           <AppDetailTags item={item} />

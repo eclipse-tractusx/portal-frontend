@@ -96,8 +96,14 @@ export default function AddMultipleUser() {
   }, [data, dispatch])
 
   useEffect(() => {
+    const filteredIdps = idpsData?.filter(
+      (idp: IdentityProvider) =>
+        idp.identityProviderTypeId !== IDPCategory.MANAGED
+    )
     setIdps(
-      idpsData ? idpsData.filter((idp: IdentityProvider) => idp.enabled) : []
+      filteredIdps
+        ? filteredIdps.filter((idp: IdentityProvider) => idp.enabled)
+        : []
     )
   }, [idpsData])
 
@@ -131,7 +137,7 @@ export default function AddMultipleUser() {
         const file = new File([blob], uploadedFile.name, { type: 'text/csv' })
         const response = await addMutipleUsers({
           identityProviderId:
-            idps[0].ProviderTypeId === IDPCategory.SHARED
+            idps[0].identityProviderTypeId === IDPCategory.SHARED
               ? ''
               : idps[0].identityProviderId,
           csvFile: file,
@@ -158,7 +164,6 @@ export default function AddMultipleUser() {
         Papa.parse(uploadedFile, {
           skipEmptyLines: true,
           complete: async (results) => {
-            console.log('results', results)
             const csvData: Array<Array<string>> = results.data as Array<
               Array<string>
             >
@@ -359,7 +364,7 @@ export default function AddMultipleUser() {
             </Typography>
             <a
               href={
-                idps[0].ProviderTypeId === IDPCategory.SHARED
+                idps[0].identityProviderTypeId === IDPCategory.SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }
@@ -443,7 +448,9 @@ export default function AddMultipleUser() {
               loadIndicator={t('global.actions.loading')}
               loading
               size="medium"
-              onButtonClick={() => {}}
+              onButtonClick={() => {
+                // do nothing
+              }}
               sx={{ marginLeft: '10px', textTransform: 'none' }}
             />
           ) : (

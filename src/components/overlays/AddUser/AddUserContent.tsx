@@ -110,7 +110,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
       rolesToAdd.length > 0
     )
     setValid(
-      idp.ProviderTypeId === IDPCategory.SHARED
+      idp.identityProviderTypeId === IDPCategory.SHARED
         ? isValid
         : !!(isValid && usersToAdd.userId)
     )
@@ -123,7 +123,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
     const addUser = { ...usersToAdd, roles: rolesToAdd }
     addUser.userName = addUser.email
     try {
-      idp.ProviderTypeId !== IDPCategory.SHARED
+      idp.identityProviderTypeId !== IDPCategory.SHARED
         ? await addUserIdp({
             identityProviderId: idp.identityProviderId,
             user: addUser,
@@ -159,7 +159,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
 
       <DialogContent className="w-100">
         <SingleUserContent
-          withUserId={idp.ProviderTypeId !== IDPCategory.SHARED}
+          withUserId={idp.identityProviderTypeId !== IDPCategory.SHARED}
           setValue={setField}
         />
         <UserRoles />
@@ -179,7 +179,9 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
             loadIndicator="Loading ..."
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (

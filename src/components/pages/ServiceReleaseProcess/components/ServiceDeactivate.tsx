@@ -149,7 +149,9 @@ export default function ServiceDeactivate() {
                     loadIndicator="Loading..."
                     variant="contained"
                     size="small"
-                    onButtonClick={() => {}}
+                    onButtonClick={() => {
+                      // do nothing
+                    }}
                     label={`${t('global.actions.confirm')}`}
                   />
                 ) : (
