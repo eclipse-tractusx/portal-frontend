@@ -21,12 +21,16 @@
 import { Chip, Typography } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/apiSlice'
 import './AppDetailTags.scss'
+import '../../AppDetail.scss'
+import { useTranslation } from 'react-i18next'
 
 export default function AppDetailTags({ item }: { item: AppDetails }) {
+  const { t } = useTranslation()
+
   const tags = item.tags
   return (
-    <div className="appdetail-tags">
-      <Typography variant="h3">Tags:</Typography>
+    <div id="tags" className="appdetail-tags">
+      <Typography variant="h3"> {t('content.appdetail.tags')}: </Typography>
       {tags.map((tag, i) => (
         <Chip key={i} label={tag} withIcon={false} type="plain" />
       ))}

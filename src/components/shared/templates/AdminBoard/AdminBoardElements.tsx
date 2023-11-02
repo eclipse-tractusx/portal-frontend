@@ -134,7 +134,7 @@ export default function AdminBoardElements({
         showIcon={true}
         autoClose={true}
       />
-      {apps && apps.length ? (
+      {apps?.length ? (
         <CardDecision
           items={apps}
           onDelete={(appId: string) => {

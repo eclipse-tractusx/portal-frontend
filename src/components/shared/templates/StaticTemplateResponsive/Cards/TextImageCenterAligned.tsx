@@ -50,6 +50,9 @@ export default function TextImageCenterAligned({
         }}
         width="100%"
       />
+      {provider?.images?.map((path) => (
+        <RenderImage key={path} height="472px" url={baseUrl + path || ''} />
+      ))}
     </div>
   )
 }

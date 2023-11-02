@@ -356,7 +356,9 @@ export default function CommonValidateAndPublish({
             imagePath={cardImage ?? LogoGrayData}
             label={''}
             buttonText=""
-            onBtnClick={() => {}}
+            onBtnClick={() => {
+              // do nothing
+            }}
             title={statusData?.title ?? ''}
             subTitle={serviceTypes ?? ''}
             description={''}
@@ -598,21 +600,20 @@ export default function CommonValidateAndPublish({
             </Typography>
             {defaultValues && (
               <div className="form-field">
-                {defaultValues.cxTestRuns &&
-                  defaultValues.cxTestRuns?.map(
-                    (item: { name: string; consentStatus: string }) => (
-                      <div key={item.name}>
-                        <Checkbox
-                          key={item.name}
-                          label={item.name}
-                          checked={
-                            item.consentStatus === ConsentStatusEnum.ACTIVE
-                          }
-                          disabled
-                        />
-                      </div>
-                    )
-                  )}
+                {defaultValues?.cxTestRuns?.map(
+                  (item: { name: string; consentStatus: string }) => (
+                    <div key={item.name}>
+                      <Checkbox
+                        key={item.name}
+                        label={item.name}
+                        checked={
+                          item.consentStatus === ConsentStatusEnum.ACTIVE
+                        }
+                        disabled
+                      />
+                    </div>
+                  )
+                )}
               </div>
             )}
           </>

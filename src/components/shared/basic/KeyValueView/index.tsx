@@ -65,14 +65,15 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           },
         }}
         onClick={async () => {
-          await navigator.clipboard.writeText(item.value.toString())
-          setCopied(item.value.toString())
+          const value = item.value?.toString() ?? ''
+          await navigator.clipboard.writeText(value)
+          setCopied(value)
           setTimeout(() => {
             setCopied('')
           }, 1000)
         }}
       >
-        {renderValue(item.value.toString())}
+        {renderValue(item.value?.toString() ?? '')}
         <ContentCopyIcon
           sx={{
             marginLeft: '10px',

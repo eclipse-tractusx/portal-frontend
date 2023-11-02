@@ -261,28 +261,27 @@ export const StaticTemplateResponsive = ({
   window.addEventListener('scroll', checkScrollTop)
   return (
     <div>
-      {sectionInfo &&
-        sectionInfo.map((provider: ProviderProps) => {
-          return (
-            <div
-              className="sectionContainer"
-              style={{
-                backgroundColor: provider.backgroundColor,
-              }}
-              key={provider.id}
-              id={`${provider.id}`}
-            >
-              <div className="sectionSubContainer">
-                <TemplateConfig
-                  provider={provider}
-                  baseUrl={baseUrl}
-                  scrollTop={scrollTop}
-                  showScroll={showScroll}
-                />
-              </div>
+      {sectionInfo?.map((provider: ProviderProps) => {
+        return (
+          <div
+            className="sectionContainer"
+            style={{
+              backgroundColor: provider.backgroundColor,
+            }}
+            key={provider.id}
+            id={`${provider.id}`}
+          >
+            <div className="sectionSubContainer">
+              <TemplateConfig
+                provider={provider}
+                baseUrl={baseUrl}
+                scrollTop={scrollTop}
+                showScroll={showScroll}
+              />
             </div>
-          )
-        })}
+          </div>
+        )
+      })}
     </div>
   )
 }

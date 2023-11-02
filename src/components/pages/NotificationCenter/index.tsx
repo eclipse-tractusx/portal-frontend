@@ -202,10 +202,9 @@ export default function NotificationCenter() {
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
 
-  const height =
-    sectionElement && sectionElement.current
-      ? `${sectionElement?.current?.clientHeight}px`
-      : '400px'
+  const height = sectionElement?.current
+    ? `${sectionElement?.current?.clientHeight}px`
+    : '400px'
 
   return (
     <main className="notifications">
