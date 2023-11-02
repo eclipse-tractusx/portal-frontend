@@ -27,9 +27,9 @@ import {
   isCountryCode,
   isFirstName,
   isID,
-  isIDOrEmpty,
   isLastName,
   isMail,
+  isPartnerUniqueID,
   isRegionNameOrEmpty,
   isStreetName,
   isStreetNumberOrEmpty,
@@ -51,35 +51,11 @@ import {
   emptyPartnerRegistration,
 } from 'features/admin/networkApiSlice'
 
-const emptyData: PartnerRegistration = {
-  externalId: '',
-  name: '',
-  bpn: '',
-  streetName: '',
-  streetNumber: '',
-  city: '',
-  zipCode: '',
-  region: '',
-  countryAlpha2Code: '',
-  uniqueIds: [],
-  userDetails: [
-    {
-      identityProviderId: '',
-      providerId: '',
-      username: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-    },
-  ],
-  companyRoles: [],
-}
-
 const getEmptyPartnerRegistration = (identityProviderId: string) => ({
-  ...emptyData,
+  ...emptyPartnerRegistration,
   userDetails: [
     {
-      ...emptyData.userDetails[0],
+      ...emptyPartnerRegistration.userDetails[0],
       identityProviderId,
     },
   ],
@@ -385,7 +361,7 @@ const OSPRegisterForm = ({
         name={'uniqeIdValue'}
         label={t('field.uniqeIdValue.name')}
         hint={t('field.uniqeIdValue.hint')}
-        validate={isIDOrEmpty}
+        validate={isPartnerUniqueID}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({

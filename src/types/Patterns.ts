@@ -45,6 +45,13 @@ export const Patterns = {
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
+  partner: {
+    COMMERCIAL_REG_NUMBER: /^[a-zA-Z\d-\s]{9}$/,
+    VAT_ID: /^[a-zA-Z\d-\s]{8,15}$/,
+    LEI_CODE: /^[a-zA-Z\d]{20}$/,
+    VIES: /.{1,500}/,
+    EORI: /^[a-zA-Z\d\s]{18}$/,
+  },
   appMarketCard: {
     appTitle: /^([A-Za-z.:_@&0-9' -]){5,40}$/,
     appProvider: /^([A-Za-z.:_@&0-9' -]){3,30}$/,
@@ -114,6 +121,18 @@ export const isValidCancelInput = (expr: string) =>
   Patterns.CANCEL_INPUT.test(expr)
 export const isClientID = (expr: string) =>
   Patterns.techuser.clientId.test(expr)
+export const isCommercialRegNumber = (expr: string) =>
+  Patterns.partner.COMMERCIAL_REG_NUMBER.test(expr)
+export const isVatID = (expr: string) => Patterns.partner.VAT_ID.test(expr)
+export const isLeiCode = (expr: string) => Patterns.partner.LEI_CODE.test(expr)
+export const isVies = (expr: string) => Patterns.partner.VIES.test(expr)
+export const isEori = (expr: string) => Patterns.partner.EORI.test(expr)
+export const isPartnerUniqueID = (expr: string) =>
+  isVies(expr) ||
+  isCommercialRegNumber(expr) ||
+  isVatID(expr) ||
+  isLeiCode(expr) ||
+  isEori(expr)
 export const isMailOrEmpty = (expr: string) => expr === '' || isMail(expr)
 export const isBPNOrEmpty = (expr: string) => expr === '' || isBPN(expr)
 export const isDomainOrEmpty = (expr: string) => expr === '' || isDomain(expr)
