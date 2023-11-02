@@ -63,7 +63,7 @@ export default function RecommendedServices({
 
   return (
     <div className="recommended-main">
-      {services && services.length ? (
+      {services?.length ? (
         <Grid className="recommended-section">
           {services.map((service: ServiceRequest) => (
             <Grid className="recommended-card" key={service.id}>

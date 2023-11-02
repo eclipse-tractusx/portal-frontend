@@ -25,6 +25,7 @@ import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import './AppDetailPrivacy.scss'
 import type { AppDetails } from 'features/apps/apiSlice'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import '../../AppDetail.scss'
 
 export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
@@ -50,11 +51,12 @@ export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
 
   return (
     <div className="appdetail-privacy" id="privacy-policy">
+      <div className="divider-height" />
       <div className="privacy-content">
         <Typography variant="h3">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
       </div>
-      {item.privacyPolicies && item.privacyPolicies.length ? (
+      {item?.privacyPolicies?.length ? (
         <div className="policies-list app-policies">
           {item.privacyPolicies.map((policy: PrivacyPolicyType) => (
             <Typography

@@ -37,7 +37,9 @@ export const IDPHint = ({ idp }: { idp: IdentityProvider }) => {
       helperText={t('idp')}
       disabled={true}
       defaultValue={idpName}
-      onChange={() => {}}
+      onChange={() => {
+        // do nothing
+      }}
     />
   )
 }

@@ -26,7 +26,6 @@ import {
   DialogHeader,
   LoadingButton,
   Radio,
-  SelectList,
   Stepper,
   Tooltips,
   Typography,
@@ -55,44 +54,61 @@ enum IDPType {
   SHARED = 'Shared',
 }
 
-export type IdentityProviderType = {
-  title: string
-  value: string
-}
-
-const IdentityProviderTypeData = [
-  {
-    title: 'own - create an IdP connection to your company IdP for yourself',
-    value: 'OWN',
-  },
-  {
-    title: 'managed - create an managed IdP connection for a third party',
-    value: 'MANAGED',
-  },
-]
-
 const SelectIdpProviderType = ({
   onChange,
+  providerType = IDPProviderType.OWN,
 }: {
+  providerType?: IDPProviderType
   onChange: (value: IDPProviderType) => void
 }) => {
   const { t } = useTranslation('idp')
+  const [type, setType] = useState<IDPProviderType>(providerType)
+
   return (
-    <div style={{ padding: '30px 0px' }}>
+    <div
+      style={{ padding: '30px 0px', display: 'flex', flexDirection: 'column' }}
+    >
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Typography sx={{ marginRight: '12px' }} variant="label3">
           {t('field.providerType.name')}
         </Typography>
+        <Tooltips
+          additionalStyles={{
+            cursor: 'pointer',
+            marginTop: '30px !important',
+          }}
+          tooltipPlacement="top-start"
+          tooltipText={t('field.providerType.hint')}
+          children={
+            <div>
+              <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
+            </div>
+          }
+        />
       </div>
-      <SelectList
-        items={IdentityProviderTypeData}
-        label={''}
-        placeholder={t('field.providerType.placeholder')}
-        defaultValue=""
-        onChangeItem={(e) => {
-          onChange(e?.value)
+      <Radio
+        name="radio-provider"
+        label={`${IDPProviderType.OWN} - ${t('field.providerType.option.OWN')}`}
+        checked={type === IDPProviderType.OWN}
+        onChange={() => {
+          setType(IDPProviderType.OWN)
+          onChange(IDPProviderType.OWN)
         }}
-        keyTitle={'title'}
+        value={IDPProviderType.OWN}
+        inputProps={{ 'aria-label': IDPProviderType.OWN }}
+      />
+      <Radio
+        name="radio-provider"
+        label={`${IDPProviderType.MANAGED} - ${t(
+          'field.providerType.option.MANAGED'
+        )}`}
+        checked={type === IDPProviderType.MANAGED}
+        onChange={() => {
+          setType(IDPProviderType.MANAGED)
+          onChange(IDPProviderType.MANAGED)
+        }}
+        value={IDPProviderType.MANAGED}
+        inputProps={{ 'aria-label': IDPProviderType.MANAGED }}
       />
     </div>
   )
@@ -107,7 +123,9 @@ const SelectIdpAuthType = ({
   const [type, setType] = useState<IDPAuthType>(IDPAuthType.OIDC)
 
   return (
-    <div style={{ padding: '30px 0px' }}>
+    <div
+      style={{ padding: '30px 0px', display: 'flex', flexDirection: 'column' }}
+    >
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Typography sx={{ marginRight: '12px' }} variant="label3">
           {t('field.type.name')}
@@ -126,21 +144,19 @@ const SelectIdpAuthType = ({
           }
         />
       </div>
-      <div>
-        <Radio
-          name="radio-buttons"
-          label={IDPAuthType.OIDC}
-          checked={type === IDPAuthType.OIDC}
-          onChange={() => {
-            setType(IDPAuthType.OIDC)
-            onChange(IDPAuthType.OIDC)
-          }}
-          value={IDPAuthType.OIDC}
-          inputProps={{ 'aria-label': IDPAuthType.OIDC }}
-        />
-      </div>
       <Radio
-        name="radio-buttons"
+        name="radio-auth"
+        label={IDPAuthType.OIDC}
+        checked={type === IDPAuthType.OIDC}
+        onChange={() => {
+          setType(IDPAuthType.OIDC)
+          onChange(IDPAuthType.OIDC)
+        }}
+        value={IDPAuthType.OIDC}
+        inputProps={{ 'aria-label': IDPAuthType.OIDC }}
+      />
+      <Radio
+        name="radio-auth"
         disabled={true}
         label={IDPAuthType.SAML}
         checked={type === IDPAuthType.SAML}
@@ -162,22 +178,20 @@ type AddIDPPrepareFormType = {
   name: string
 }
 
-const initialAddIDPPrepareForm = {
-  type: IDPType.COMPANY,
-  providerType: IDPProviderType.NONE,
-  authType: IDPAuthType.OIDC,
-  name: '',
-}
-
 const AddIDPPrepareForm = ({
   onChange,
+  providerType = IDPProviderType.OWN,
 }: {
+  providerType?: IDPProviderType
   onChange: (value: AddIDPPrepareFormType) => void
 }) => {
   const { t } = useTranslation('idp')
-  const [formData, setFormData] = useState<AddIDPPrepareFormType>(
-    initialAddIDPPrepareForm
-  )
+  const [formData, setFormData] = useState<AddIDPPrepareFormType>({
+    type: IDPType.COMPANY,
+    providerType,
+    authType: IDPAuthType.OIDC,
+    name: '',
+  })
 
   return (
     <>
@@ -194,32 +208,51 @@ const AddIDPPrepareForm = ({
           onChange(currentData)
         }}
       />
-      <SelectIdpProviderType
-        onChange={(value) => {
-          const currentData = { ...formData }
-          currentData.providerType = value
-          setFormData(currentData)
-          onChange(currentData)
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
         }}
-      />
-      <SelectIdpAuthType
-        onChange={(value) => {
-          const currentData = { ...formData }
-          currentData.authType = value
-          setFormData(currentData)
-          onChange(currentData)
-        }}
-      />
+      >
+        <SelectIdpAuthType
+          onChange={(value) => {
+            const currentData = {
+              ...formData,
+              authType: value,
+            }
+            setFormData(currentData)
+            onChange(currentData)
+          }}
+        />
+        <SelectIdpProviderType
+          onChange={(value) => {
+            const currentData = {
+              ...formData,
+              providerType: value,
+            }
+            setFormData(currentData)
+            onChange(currentData)
+          }}
+        />
+      </div>
     </>
   )
 }
 
-export const AddIdp = () => {
+export const AddIdp = ({
+  providerType = IDPProviderType.OWN,
+}: {
+  providerType?: IDPProviderType
+}) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const [formData, setFormData] = useState<AddIDPPrepareFormType>(
-    initialAddIDPPrepareForm
-  )
+  const [formData, setFormData] = useState<AddIDPPrepareFormType>({
+    type: IDPType.COMPANY,
+    providerType,
+    authType: IDPAuthType.OIDC,
+    name: '',
+  })
   const [loading, setLoading] = useState(false)
   const [addIdp] = useAddIDPMutation()
   const [updateIdp] = useUpdateIDPMutation()
@@ -279,16 +312,22 @@ export const AddIdp = () => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={AddStepsList} showSteps={3} activeStep={1} />
+          <Stepper
+            list={
+              formData.providerType === IDPProviderType.MANAGED
+                ? AddStepsList.slice(0, 2)
+                : AddStepsList
+            }
+            showSteps={
+              formData.providerType === IDPProviderType.MANAGED ? 2 : 3
+            }
+            activeStep={1}
+          />
         </div>
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>
         </Trans>
-        <AddIDPPrepareForm
-          onChange={(data) => {
-            setFormData(data)
-          }}
-        />
+        <AddIDPPrepareForm providerType={providerType} onChange={setFormData} />
         <Typography
           variant="label3"
           sx={{
@@ -321,15 +360,15 @@ export const AddIdp = () => {
             loadIndicator={t('action.loading')}
             loading
             size="medium"
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (
           <Button
             variant="contained"
-            disabled={
-              !formData.name || formData.providerType === IDPProviderType.NONE
-            }
+            disabled={!formData.name}
             onClick={() => doCreateIDP()}
           >
             {t('action.createIdp')}

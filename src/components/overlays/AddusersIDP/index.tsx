@@ -107,13 +107,7 @@ const SelectFormat = ({
   )
 }
 
-const AddusersIDPResponse = ({
-  response,
-  storeResponse,
-}: {
-  response: string
-  storeResponse: (response: string) => void
-}) => {
+const AddusersIDPResponse = ({ response }: { response: string }) => {
   const { t } = useTranslation('idp')
   const userResponse = JSON.parse(response)
 
@@ -482,7 +476,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
                   ? store2text(userContent.data)
                   : fetching
               }
-              onBlur={() => {}}
+              onBlur={() => {
+                // do nothing
+              }}
               onChange={(e) => {
                 storeData(e.target.value)
               }}
@@ -599,15 +595,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => {
-          userResponse?.data ? storeResponse('') : dispatch(closeOverlay())
+          storeResponse('')
+          dispatch(closeOverlay())
         }}
       />
       <DialogContent>
         {userResponse?.data ? (
-          <AddusersIDPResponse
-            response={userResponse.data}
-            storeResponse={storeResponse}
-          />
+          <AddusersIDPResponse response={userResponse.data} />
         ) : (
           renderContent()
         )}
@@ -638,7 +632,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               loadIndicator={t('action.loading')}
               loading
               size="medium"
-              onButtonClick={() => {}}
+              onButtonClick={() => {
+                // do nothing
+              }}
               sx={{ marginLeft: '10px' }}
             />
           ) : (

@@ -152,32 +152,27 @@ export const ReleaseProcess = ({
             </Box>
             <div className="marketplace-requirements">
               <ul>
-                {requirements &&
-                  requirements.map((req: RequerementStepType, index) => (
-                    <li key={req.index}>
-                      <Button
-                        color="secondary"
-                        size="small"
-                        className="neu-btn"
+                {requirements?.map((req: RequerementStepType, index) => (
+                  <li key={req.index}>
+                    <Button color="secondary" size="small" className="neu-btn">
+                      {req.neuButton}
+                    </Button>
+                    <span>
+                      <Typography
+                        variant="body2"
+                        className="marketplace-title1"
                       >
-                        {req.neuButton}
-                      </Button>
-                      <span>
-                        <Typography
-                          variant="body2"
-                          className="marketplace-title1"
-                        >
-                          {req.marketplaceTitle}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          className="marketplace-title1"
-                        >
-                          {req.marketplaceExplanation}
-                        </Typography>
-                      </span>
-                    </li>
-                  ))}
+                        {req.marketplaceTitle}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        className="marketplace-title1"
+                      >
+                        {req.marketplaceExplanation}
+                      </Typography>
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
