@@ -935,6 +935,7 @@
       },
       "description": "Description",
       "imageGallery": "Images",
+      "tags": "Tags",
       "privacy": {
         "heading": "Privacy Policy",
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
