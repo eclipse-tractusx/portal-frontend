@@ -55,6 +55,13 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
 import './AddUsersIDP.scss'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
+import Papa from 'papaparse'
+
+export type ErrorResponse = {
+  details: string[]
+  line: number
+  message: string
+}
 
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
@@ -107,18 +114,35 @@ const SelectFormat = ({
   )
 }
 
-const AddusersIDPResponse = ({ response }: { response: string }) => {
+const AddusersIDPResponse = ({
+  csvData,
+  response,
+}: {
+  csvData: UserIdentityProviders[]
+  response: string
+}) => {
   const { t } = useTranslation('idp')
   const userResponse = JSON.parse(response)
 
   const [tableErrorData, setTableErrorData] = useState<TableType>()
 
   useEffect(() => {
-    userResponse &&
-      setTableErrorData({
-        head: [''],
-        body: [userResponse.errors],
+    if (userResponse) {
+      const errorMsgs = userResponse.errors.map((error: ErrorResponse) => {
+        return [
+          csvData[error.line - 1].firstName +
+            ' ' +
+            csvData[error.line - 1].lastName +
+            ', ' +
+            csvData[error.line - 1].email,
+          error.message,
+        ]
       })
+      setTableErrorData({
+        head: [],
+        body: errorMsgs,
+      })
+    }
   }, [userResponse])
 
   return (
@@ -154,7 +178,7 @@ const AddusersIDPResponse = ({ response }: { response: string }) => {
             </div>
           </div>
 
-          {userResponse?.errors.length > 0 && tableErrorData && (
+          {tableErrorData && tableErrorData.body[0].length >= 1 && (
             <>
               <div className="mb-30">
                 <Trans>
@@ -163,7 +187,7 @@ const AddusersIDPResponse = ({ response }: { response: string }) => {
                   </Typography>
                 </Trans>
               </div>
-              <StaticTable data={tableErrorData} horizontal={true} />
+              <StaticTable data={tableErrorData} horizontal={false} />
             </>
           )}
         </div>
@@ -186,13 +210,16 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   const fetching = t('state.fetching')
   const [loading, setLoading] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<DropzoneFile>()
+  const [csvData, setCsvData] = useState<UserIdentityProviders[]>([])
 
   const csvHeaderList = [
-    'companyUserId',
+    'UserId',
     'firstName',
     'lastName',
     'email',
-    'identityProviders',
+    'ProviderAlias',
+    'ProviderUserId',
+    'ProviderUserName',
   ]
 
   const CSV_COLUMNS = useMemo(
@@ -395,17 +422,42 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       reader.onload = () => {
         if (!reader.result) return
         const content = reader.result.toString()
-        const csvFileHeader = Object.keys(csv2json(content)[0])
-        if (
-          !csvHeaderList.reduce((a, c, i) => a && csvFileHeader[i] === c, true)
-        ) {
-          error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-          setStatus(false)
-          setTimeout(() => {
-            setStatus(undefined)
-          }, 3000)
-          return
-        }
+
+        Papa.parse(acceptedFile, {
+          skipEmptyLines: true,
+          complete: function (results) {
+            const csvData: Array<Array<string>> = results.data as Array<
+              Array<string>
+            >
+            if (
+              !csvHeaderList.reduce(
+                (a, c, i) =>
+                  a && csvData[0][i].toLowerCase() === c.toLowerCase(),
+                true
+              )
+            ) {
+              error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+              setStatus(false)
+              setTimeout(() => {
+                setStatus(undefined)
+              }, 3000)
+              setUploadedFile(undefined)
+            }
+          },
+        })
+
+        // const csvFileHeader = Object.keys(csv2json(content)[0])
+        // if (
+        //   !csvHeaderList.reduce((a, c, i) => a && csvFileHeader[i].toLowerCase() === c.toLowerCase(), true)
+        // ) {
+        //   error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+        //   setStatus(false)
+        //   setTimeout(() => {
+        //     setStatus(undefined)
+        //   }, 3000)
+        //   return
+        // }
+        setCsvData(csv2json(content))
         storeData(
           acceptedFile.type === 'text/csv'
             ? JSON.stringify(csv2json(content))
@@ -601,7 +653,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         {userResponse?.data ? (
-          <AddusersIDPResponse response={userResponse.data} />
+          <AddusersIDPResponse csvData={csvData} response={userResponse.data} />
         ) : (
           renderContent()
         )}

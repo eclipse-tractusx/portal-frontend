@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.0-RC3
+
+- IDP User Migration
+  - Error Handling Logic
+
 ## 1.7.0-RC2
 
 ### Change
