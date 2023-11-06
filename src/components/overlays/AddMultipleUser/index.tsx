@@ -53,6 +53,7 @@ import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 import {
   type MultipleUsersResponse,
   useAddMutipleUsersMutation,
+  type ErrorResponse,
 } from 'features/appManagement/userManagementApiSlice'
 import {
   useFetchIDPListQuery,
@@ -62,6 +63,7 @@ import {
 import './AddMultipleUser.scss'
 import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
+import { error } from 'services/NotifyService'
 
 const HelpPageURL =
   '/documentation/?path=docs%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
@@ -87,6 +89,9 @@ export default function AddMultipleUser() {
   const [uploadAPIRResponse, setUploadAPIRResponse] =
     useState<MultipleUsersResponse>()
   const [tableErrorData, setTableErrorData] = useState<TableType>()
+  const [csvData, setCsvData] = useState<string[][]>([])
+
+  const CsvHeader = ['firstname', 'lastname', 'email']
 
   useEffect(() => {
     const rolesArray: AppRole[] = []
@@ -108,11 +113,24 @@ export default function AddMultipleUser() {
   }, [idpsData])
 
   useEffect(() => {
-    uploadAPIRResponse &&
+    if (uploadAPIRResponse) {
+      const errorMsgs = uploadAPIRResponse.errors.map(
+        (error: ErrorResponse) => {
+          return [
+            csvData[error.line][0] +
+              ' ' +
+              csvData[error.line][1] +
+              ', ' +
+              csvData[error.line][2],
+            error.message,
+          ]
+        }
+      )
       setTableErrorData({
-        head: [''],
-        body: [uploadAPIRResponse.errors],
+        head: [],
+        body: errorMsgs,
       })
+    }
   }, [uploadAPIRResponse])
 
   const handleSelectRole = (role: string, select: boolean) => {
@@ -167,6 +185,7 @@ export default function AddMultipleUser() {
             const csvData: Array<Array<string>> = results.data as Array<
               Array<string>
             >
+            setCsvData(csvData)
             csvData[0].push('Roles')
             for (let i = 0; i < csvData.length; i++) {
               if (i !== 0) csvData[i].push(roles.toString())
@@ -178,14 +197,23 @@ export default function AddMultipleUser() {
   }
 
   const onChangeFile = async (selectedFile: File) => {
-    setUploadedFile(selectedFile)
-
+    setUploadedFile(undefined)
     Papa.parse(selectedFile, {
       skipEmptyLines: true,
       complete: function (results) {
         const csvData: Array<Array<string>> = results.data as Array<
           Array<string>
         >
+        if (
+          !CsvHeader.reduce(
+            (a, c, i) => a && csvData[0][i].toLowerCase() === c.toLowerCase(),
+            true
+          )
+        ) {
+          error(t('content.usermanagement.addMultipleUsers.fileHeaderError'))
+          return
+        }
+        setUploadedFile(selectedFile)
         setTotalRowsInCSV(csvData.length - 1)
       },
     })
@@ -225,7 +253,7 @@ export default function AddMultipleUser() {
                 )}
               </Typography>
             </div>
-            {uploadAPIRResponse?.error && (
+            {uploadAPIRResponse && uploadAPIRResponse?.error >= 1 && (
               <div className="userDetailsMain">
                 <div className="userError">
                   <Typography variant="body1" className="number">
@@ -240,7 +268,7 @@ export default function AddMultipleUser() {
               </div>
             )}
           </div>
-          {tableErrorData && (
+          {tableErrorData && tableErrorData.body[0].length >= 1 && (
             <>
               <div className="mb-30">
                 <Trans>
@@ -251,7 +279,7 @@ export default function AddMultipleUser() {
                   </Typography>
                 </Trans>
               </div>
-              <StaticTable data={tableErrorData} horizontal={true} />
+              <StaticTable data={tableErrorData} horizontal={false} />
             </>
           )}
         </div>
@@ -408,12 +436,17 @@ export default function AddMultipleUser() {
               )}
               DropStatusHeader={false}
               DropArea={renderDropArea}
+              handleDelete={() => {
+                setUploadedFile(undefined)
+              }}
             />
           </div>
         </div>
       )
     }
   }
+
+  console.log('uploadedFile', uploadedFile)
 
   const renderMultiuserMainContent = () => {
     return idps.length === 1 ? (

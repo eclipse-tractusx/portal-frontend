@@ -26,10 +26,16 @@ export type MultipleUsersRequest = {
   identityProviderId?: string
 }
 
+export type ErrorResponse = {
+  details: string[]
+  line: number
+  message: string
+}
+
 export type MultipleUsersResponse = {
   created: number
   error: number
-  errors: string[]
+  errors: ErrorResponse[]
   total: number
 }
 
