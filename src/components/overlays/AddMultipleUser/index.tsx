@@ -446,8 +446,6 @@ export default function AddMultipleUser() {
     }
   }
 
-  console.log('uploadedFile', uploadedFile)
-
   const renderMultiuserMainContent = () => {
     return idps.length === 1 ? (
       <>

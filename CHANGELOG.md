@@ -6,6 +6,8 @@
   - Autosetup Process Worker implementation (adjust overlay)
 - Usermanagement
   - User Invite IdP connection logic
+- User Bulk Upload
+  - Error Handling
 
 ## 1.7.0-RC1
 
