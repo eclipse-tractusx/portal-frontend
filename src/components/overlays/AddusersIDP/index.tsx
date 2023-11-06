@@ -445,18 +445,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             }
           },
         })
-
-        // const csvFileHeader = Object.keys(csv2json(content)[0])
-        // if (
-        //   !csvHeaderList.reduce((a, c, i) => a && csvFileHeader[i].toLowerCase() === c.toLowerCase(), true)
-        // ) {
-        //   error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-        //   setStatus(false)
-        //   setTimeout(() => {
-        //     setStatus(undefined)
-        //   }, 3000)
-        //   return
-        // }
         setCsvData(csv2json(content))
         storeData(
           acceptedFile.type === 'text/csv'
