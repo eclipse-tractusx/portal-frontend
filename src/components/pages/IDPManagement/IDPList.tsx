@@ -229,8 +229,6 @@ export const IDPList = () => {
         <DropdownMenu buttonText={ti('action.actions')}>
           {menuItems.configure}
           {isManaged && idp.enabled && menuItems.register}
-          {isManaged && idp.enabled && menuItems.registerNext}
-          {isManaged && idp.enabled && menuItems.consent}
           {!isManaged && idp.oidc?.clientId && menuItems.enableToggle}
           {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}
         </DropdownMenu>

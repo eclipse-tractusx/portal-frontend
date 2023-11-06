@@ -29,7 +29,7 @@ import { getAssetBase } from 'services/EnvironmentService'
 import { IDPList } from '../IDPManagement/IDPList'
 
 export default function OSPManagement() {
-  const { t } = useTranslation('osp')
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
 
   return (
@@ -38,18 +38,18 @@ export default function OSPManagement() {
         <div className="idp-management-header">
           <Trans>
             <Typography variant="h2" className="idp-management-title">
-              {t('onboarding.title')}
+              {t('osp.title')}
             </Typography>
           </Trans>
           <Trans>
             <Typography className="idp-management-desc">
-              {t('onboarding.desc')}
+              {t('osp.desc')}
             </Typography>
           </Trans>
           <Image
             style={{ width: 480, height: 240 }}
             src={`${getAssetBase()}/images/content/teaser_osp.png`}
-            alt={t('onboarding.title')}
+            alt={t('osp.title')}
           />
           <div>
             <Button

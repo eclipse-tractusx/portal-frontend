@@ -1,13 +1,37 @@
 # Changelog
 
-## unreleased
+## 1.7.0-RC3
+
+- User Bulk Upload
+  - Error Handling
+
+## 1.7.0-RC2
 
 - App Subscription
   - Autosetup Process Worker implementation (adjust overlay)
 - Usermanagement
   - User Invite IdP connection logic
-- User Bulk Upload
-  - Error Handling
+  
+### Change
+
+- User Management screen for user invite block due to multiple active IdPs got enhanced inside the frontend-business-logic to exclude "MANAGED" idps
+- Enhanced /StaticTemplateResponsive/Cards/TextImageCenterAligned.tsx to support multiple images
+
+### Feature
+
+- released prototype (identity provider creation "MANAGED"; register 3rd party company; approve consent osp registration company) onboarding service provider registration flow
+
+### Technical Support
+
+- Code quality & style improvements implemented based on ESLINT rules
+  - removed extra semicolons to avoid warnings
+  - no-empty-function
+  - prefer-optional-chain
+
+### Bugfix
+
+- Partner Network - update search query parameter name to legalName
+- Fixed broken KeyValueView/index.tsx for undefined object attributes
 
 ## 1.7.0-RC1
 

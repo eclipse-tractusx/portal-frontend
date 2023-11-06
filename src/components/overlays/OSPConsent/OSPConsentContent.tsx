@@ -20,12 +20,12 @@
 
 import { Checkbox } from '@catena-x/portal-shared-components'
 import { Typography } from '@mui/material'
-import { type IdentityProvider } from 'features/admin/idpApiSlice'
 import {
   CONSENT_STATUS,
   type CompanyRole,
   type CompanyRoleAgreementData,
   type PartnerRegistrationConsent,
+  type PartnerRegistration,
 } from 'features/admin/networkApiSlice'
 import i18next from 'i18next'
 import { useState } from 'react'
@@ -60,13 +60,19 @@ const DocumentDownloadLink = ({ id, name }: { id: string; name: string }) => {
 }
 
 const OSPConsentContentForm = ({
+  application,
   companyRoleAgreementData,
   onChange,
 }: {
+  application: PartnerRegistration
   companyRoleAgreementData: CompanyRoleAgreementData
   onChange: (consent: Set<string>) => void
 }) => {
-  const [consent, setConsent] = useState<Set<string>>(new Set<string>())
+  const [consent, setConsent] = useState<Set<string>>(
+    new Set<string>(
+      application.agreements?.map((agreement) => agreement.agreementId)
+    )
+  )
 
   const toggleConsent = (id: string) => {
     const newConsent = new Set<string>(consent)
@@ -81,43 +87,45 @@ const OSPConsentContentForm = ({
 
   return (
     <ul className={'roles'}>
-      {companyRoleAgreementData.companyRoles.map((role: CompanyRole) => (
-        <li key={role.companyRole}>
-          <Typography variant="label3">{role.companyRole}</Typography>
-          <div>{role.descriptions[i18next.language]}</div>
-          <ul className={'agreements'}>
-            {role.agreementIds.map((id) => {
-              const agreement = companyRoleAgreementData.agreements.filter(
-                (a) => id === a.agreementId
-              )?.[0]
-              return agreement ? (
-                <li key={id}>
-                  <Checkbox
-                    label={agreement.name}
-                    onChange={() => {
-                      toggleConsent(agreement.agreementId)
-                    }}
-                    checked={consent.has(agreement.agreementId)}
-                  />
-                  <DocumentDownloadLink id={id} name={agreement.name} />
-                </li>
-              ) : (
-                <></>
-              )
-            })}
-          </ul>
-        </li>
-      ))}
+      {companyRoleAgreementData.companyRoles
+        .filter((role) => application.companyRoles.includes(role.companyRole))
+        .map((role: CompanyRole) => (
+          <li key={role.companyRole}>
+            <Typography variant="label3">{role.companyRole}</Typography>
+            <div>{role.descriptions[i18next.language]}</div>
+            <ul className={'agreements'}>
+              {role.agreementIds.map((id) => {
+                const agreement = companyRoleAgreementData.agreements.filter(
+                  (a) => id === a.agreementId
+                )?.[0]
+                return agreement ? (
+                  <li key={id}>
+                    <Checkbox
+                      label={agreement.name}
+                      onChange={() => {
+                        toggleConsent(agreement.agreementId)
+                      }}
+                      checked={consent.has(agreement.agreementId)}
+                    />
+                    <DocumentDownloadLink id={id} name={agreement.name} />
+                  </li>
+                ) : (
+                  <></>
+                )
+              })}
+            </ul>
+          </li>
+        ))}
     </ul>
   )
 }
 
 export const OSPConsentContent = ({
-  idp,
+  application,
   companyRoleAgreementData,
   onValid,
 }: {
-  idp: IdentityProvider
+  application: PartnerRegistration
   companyRoleAgreementData: CompanyRoleAgreementData
   onValid: (consent: PartnerRegistrationConsent) => void
 }) => {
@@ -128,9 +136,7 @@ export const OSPConsentContent = ({
 
   const doCheckData = (consent: Set<string>) => {
     onValid({
-      companyRoles: companyRoleAgreementData.companyRoles.map(
-        (role) => role.companyRole
-      ),
+      companyRoles: application.companyRoles,
       agreements: [...consent].map((agreementId) => ({
         agreementId,
         consentStatus: CONSENT_STATUS.ACTIVE,
@@ -140,7 +146,17 @@ export const OSPConsentContent = ({
 
   return (
     <div>
+      <pre
+        style={{
+          fontSize: '10px',
+          backgroundColor: '#eeeeee',
+          cursor: 'pointer',
+        }}
+      >
+        {JSON.stringify(application, null, 2)}
+      </pre>
       <OSPConsentContentForm
+        application={application}
         companyRoleAgreementData={companyRoleAgreementData}
         onChange={doCheckData}
       />

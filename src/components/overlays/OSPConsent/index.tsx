@@ -30,7 +30,6 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'
-import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 import { OSPConsentContent } from './OSPConsentContent'
 import { error, success } from 'services/NotifyService'
 import {
@@ -38,12 +37,14 @@ import {
   useFetchCompanyRoleAgreementDataQuery,
   useRegisterPartnerConsentMutation,
   emptyPartnerRegistrationConsent,
+  useFetchRegistrationApplicationsQuery,
+  useFetchRegistrationApplicationDataQuery,
 } from 'features/admin/networkApiSlice'
 
-export const OSPConsent = ({ id }: { id: string }) => {
-  const { t } = useTranslation('osp')
+export const OSPApplicationConsent = ({ id }: { id: string }) => {
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const { data } = useFetchIDPDetailQuery(id)
+  const application = useFetchRegistrationApplicationDataQuery(id).data
   const companyRoleAgreementData = useFetchCompanyRoleAgreementDataQuery().data
   const [registerPartnerConsent] = useRegisterPartnerConsentMutation()
   const [consent, setConsent] = useState<PartnerRegistrationConsent>(
@@ -51,15 +52,18 @@ export const OSPConsent = ({ id }: { id: string }) => {
   )
   const [loading, setLoading] = useState(false)
 
+  console.log(application, companyRoleAgreementData)
+
   const doConsent = async () => {
-    if (!(data && consent)) return
+    if (!(application && consent)) return
     setLoading(true)
     try {
+      console.log(consent)
       await registerPartnerConsent(consent).unwrap()
-      success(t('consent.success'))
+      success(t('osp.consent.success'))
       dispatch(closeOverlay())
     } catch (err) {
-      error(t('consent.error'), '', err as object)
+      error(t('osp.consent.error'), '', err as object)
     }
     setLoading(false)
   }
@@ -67,7 +71,7 @@ export const OSPConsent = ({ id }: { id: string }) => {
   return (
     <>
       <DialogHeader
-        title={t('consent.title')}
+        title={t('osp.consent.title')}
         intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
@@ -75,13 +79,12 @@ export const OSPConsent = ({ id }: { id: string }) => {
       <DialogContent>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
-            <Typography variant="label3">{t('consent.desc')}</Typography>
+            <Typography variant="label3">{t('osp.consent.desc')}</Typography>
           </Trans>
         </div>
-        <Typography variant="label2">{t('consent.addDataHeading')}</Typography>
-        {data && companyRoleAgreementData && (
+        {application && companyRoleAgreementData && (
           <OSPConsentContent
-            idp={data}
+            application={application}
             companyRoleAgreementData={companyRoleAgreementData}
             onValid={setConsent}
           />
@@ -111,7 +114,11 @@ export const OSPConsent = ({ id }: { id: string }) => {
             onClick={doConsent}
             disabled={
               consent.agreements.length !==
-              companyRoleAgreementData?.agreements.length
+              companyRoleAgreementData?.companyRoles
+                .filter((role) =>
+                  application?.companyRoles.includes(role.companyRole)
+                )
+                .reduce((a, r) => a + r.agreementIds.length, 0)
             }
           >
             {t('action.consent')}
@@ -119,5 +126,14 @@ export const OSPConsent = ({ id }: { id: string }) => {
         )}
       </DialogActions>
     </>
+  )
+}
+
+export const OSPConsent = () => {
+  const applications = useFetchRegistrationApplicationsQuery().data
+  return applications && applications.length > 0 ? (
+    <OSPApplicationConsent id={applications[0].applicationId} />
+  ) : (
+    <></>
   )
 }

@@ -25,6 +25,7 @@ import {
   type TableType,
 } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/apiSlice'
+import '../../AppDetail.scss'
 
 export default function AppDetailProvider({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
@@ -43,6 +44,7 @@ export default function AppDetailProvider({ item }: { item: AppDetails }) {
 
   return (
     <div id="provider-info">
+      <div className="divider-height" />
       <Typography variant="h3">{t('heading')}</Typography>
       <Typography variant="body2" sx={{ mb: 3 }}>
         {t('message')}

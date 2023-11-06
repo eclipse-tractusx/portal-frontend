@@ -647,7 +647,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.CONSENT_OSP,
-    role: ROLES.IDP_SETUP,
   },
   {
     name: OVERLAYS.APP_OVERVIEW_CONFIRM,

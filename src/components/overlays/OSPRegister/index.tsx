@@ -25,7 +25,6 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-  Stepper,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
@@ -41,11 +40,10 @@ import {
 } from 'features/admin/networkApiSlice'
 
 export const OSPRegister = ({ id }: { id: string }) => {
-  const { t } = useTranslation('osp')
+  const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const companyRoleAgreementData = useFetchCompanyRoleAgreementDataQuery().data
-  console.log(companyRoleAgreementData)
 
   const [registerPartner] = useRegisterPartnerMutation()
 
@@ -60,48 +58,27 @@ export const OSPRegister = ({ id }: { id: string }) => {
     try {
       await registerPartner(registerData).unwrap()
       dispatch(closeOverlay())
-      success(t('register.success'))
+      success(t('osp.register.success'))
     } catch (err) {
-      error(t('register.error'), '', err as object)
+      error(t('osp.register.error'), '', err as object)
     }
     setLoading(false)
   }
 
-  const steps = [
-    {
-      headline: t('add.stepLists.firstStep'),
-      step: 1,
-      text: t('edit.created'),
-    },
-    {
-      headline: t('add.stepLists.secondStep'),
-      step: 2,
-      text: t('edit.created'),
-    },
-    {
-      headline: t('add.stepLists.thirdStep'),
-      step: 3,
-    },
-  ]
-
   return (
     <>
       <DialogHeader
-        title={t('register.title')}
+        title={t('osp.register.title')}
         intro=""
         closeWithIcon={true}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent>
-        <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={steps} showSteps={3} activeStep={3} />
-        </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
-            <Typography variant="label3">{t('register.desc')}</Typography>
+            <Typography variant="label3">{t('osp.register.desc')}</Typography>
           </Trans>
         </div>
-        <Typography variant="label2">{t('register.addDataHeading')}</Typography>
         {data && companyRoleAgreementData && (
           <OSPRegisterContent
             idp={data}

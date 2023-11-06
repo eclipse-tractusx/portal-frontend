@@ -181,7 +181,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.REGISTER_NEXT_OSP:
       return <OSPRegisterNext id={overlay.id} />
     case OVERLAYS.CONSENT_OSP:
-      return <OSPConsent id={overlay.id} />
+      return <OSPConsent />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
       return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
     case OVERLAYS.APP_DETAILS_OVERLAY:

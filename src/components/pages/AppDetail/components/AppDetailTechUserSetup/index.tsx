@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/apiSlice'
 import { Grid } from '@mui/material'
+import '../../AppDetail.scss'
 
 export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
   const { t } = useTranslation('')
@@ -48,7 +49,8 @@ export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
   }
 
   return (
-    <>
+    <div id="technical-user-setup">
+      <div className="divider-height" />
       <Typography variant="h3">
         {t('content.appdetail.technicalUserSetup.heading')}
       </Typography>
@@ -57,6 +59,6 @@ export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
       </Typography>
       {item.technicalUserProfile &&
         getAppDetailTechUserData(Object.values(item?.technicalUserProfile)[0])}
-    </>
+    </div>
   )
 }
