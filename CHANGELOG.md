@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.7.0-RC3
+
 - Change Company Role showing invalid Deselect
 
 ## 1.7.0-RC2
