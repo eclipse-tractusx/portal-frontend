@@ -83,7 +83,10 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
     : []
 
   const newDeselectedRoles = data
-    ? data.filter((role) => roles.indexOf(role.companyRoles) === -1 && role.companyRolesActive)
+    ? data.filter(
+        (role) =>
+          roles.indexOf(role.companyRoles) === -1 && role.companyRolesActive
+      )
     : []
 
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]

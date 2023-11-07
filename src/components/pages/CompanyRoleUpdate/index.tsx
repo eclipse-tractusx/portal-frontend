@@ -98,7 +98,10 @@ export default function CompanyRoles() {
 
   const checkDisabledSubmit = () => {
     const roles = preSelectedRoles.map((preRole) => preRole.companyRoles)
-    return JSON.stringify(roles) === JSON.stringify(selectedRoles) || !selectedRoles.length
+    return (
+      JSON.stringify(roles) === JSON.stringify(selectedRoles) ||
+      !selectedRoles.length
+    )
   }
 
   return (
