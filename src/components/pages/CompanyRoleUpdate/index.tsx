@@ -96,6 +96,11 @@ export default function CompanyRoles() {
     setSelectedRoles(rolesArr)
   }
 
+  const checkDisabledSubmit = () => {
+    const roles = preSelectedRoles.map((preRole) => preRole.companyRoles)
+    return JSON.stringify(roles) === JSON.stringify(selectedRoles) || !selectedRoles.length
+  }
+
   return (
     <main className="companyRoleUpdate">
       <PageHeader
@@ -226,7 +231,7 @@ export default function CompanyRoles() {
               <Button
                 size="small"
                 variant="contained"
-                disabled={selectedRoles.length === preSelectedRoles.length}
+                disabled={checkDisabledSubmit()}
                 onClick={() =>
                   dispatch(
                     show(
