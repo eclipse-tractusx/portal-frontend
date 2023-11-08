@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.7.0-RC3
+
 - Service Subscription sorting fix
 
 ## 1.7.0-RC2
