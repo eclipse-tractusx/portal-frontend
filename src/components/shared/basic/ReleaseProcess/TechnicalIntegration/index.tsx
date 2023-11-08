@@ -135,11 +135,19 @@ export default function TechnicalIntegration() {
   const handleCheckedUserProfiles = (checked: boolean, item: userRolesType) => {
     const isSelected = techUserProfiles?.includes(item.roleId)
     if (!isSelected && checked) {
-      setTechUserProfiles([...techUserProfiles, item.roleId])
+      const selectedProfiles = [...techUserProfiles, item.roleId]
+      selectedProfiles.length === 0
+        ? setEnableUserProfilesErrorMessage(true)
+        : setEnableUserProfilesErrorMessage(false)
+      setTechUserProfiles(selectedProfiles)
     } else if (isSelected && !checked) {
       const oldTechUserProfiles = [...techUserProfiles]
       oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
-      setTechUserProfiles([...oldTechUserProfiles])
+      const selectedProfiles = [...oldTechUserProfiles]
+      selectedProfiles.length === 0
+        ? setEnableUserProfilesErrorMessage(true)
+        : setEnableUserProfilesErrorMessage(false)
+      setTechUserProfiles(selectedProfiles)
     }
   }
 

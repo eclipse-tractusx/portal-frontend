@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.0-RC3
+
+- App release process
+  - error message fix in technical integration
+
 ## 1.7.0-RC2
 
 ### Change
