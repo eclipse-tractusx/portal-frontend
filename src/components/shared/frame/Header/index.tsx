@@ -26,13 +26,19 @@ import type { MenuItem, Tree } from 'types/MainTypes'
 import './Header.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import { getAssetBase } from 'services/EnvironmentService'
-import { appearSearchSelector, setAppear } from 'features/control/appear'
+import {
+  appearSearchSelector,
+  setAppear,
+  appearMenuSelector,
+} from 'features/control/appear'
 import { useSelector, useDispatch } from 'react-redux'
 import { Logo } from '../Logo'
+import MenuIcon from '@mui/icons-material/Menu'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
   const visible = useSelector(appearSearchSelector)
+  const show = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
 
   const addTitle = (items: Tree[] | undefined) =>
@@ -79,14 +85,24 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           </div>
         </MainNavigation>
       </header>
-      <div className="mobileHeader">
-        <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
-      </div>
-      <div
-        onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
-        className="mobile-search-icon"
-      >
-        <SearchIcon sx={{ color: '#0f71cb' }} />
+      <div className="mobileNav">
+        <div className="mobileHeader">
+          <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
+        </div>
+        <div className="mobileHeaderRight">
+          <div
+            onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
+            className="mobile-search-icon"
+          >
+            <SearchIcon sx={{ color: '#0f71cb' }} />
+          </div>
+          <div
+            onClick={() => dispatch(setAppear({ MENU: !show }))}
+            className="mobile-search-icon"
+          >
+            <MenuIcon sx={{ color: '#0f71cb' }} />
+          </div>
+        </div>
       </div>
     </>
   )
