@@ -32,6 +32,7 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import {
   type IdentityProviderUpdate,
   useFetchIDPDetailQuery,
@@ -53,8 +54,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     IdentityProviderUpdate | undefined
   >(undefined)
   const [loading, setLoading] = useState(false)
-
-  console.log(data)
+  const [showError, setShowError] = useState(false)
 
   const doUpdateIDP = async () => {
     if (!(data && idpUpdateData)) return
@@ -73,6 +73,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         dispatch(show(OVERLAYS.ENABLE_IDP, id))
       }
     } catch (err) {
+      setShowError(true)
       error(t('edit.error'), '', err as object)
     }
     setLoading(false)
@@ -142,6 +143,27 @@ export const UpdateIDP = ({ id }: { id: string }) => {
           />
           {t('add.learnMore')}
         </Typography>
+        {showError && (
+          <Typography
+            variant="label3"
+            sx={{
+              display: 'flex',
+              marginTop: '30px',
+              color: '#d91e18',
+              border: '1px solid #d91e18',
+              padding: '20px 40px',
+              borderRadius: '5px',
+            }}
+          >
+            <WarningAmberIcon
+              sx={{
+                marginRight: '5px',
+                fontSize: '18px',
+              }}
+            />
+            {t('add.metadataError')}
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
