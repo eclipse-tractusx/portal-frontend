@@ -21,18 +21,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import {
+  NOTIFICATION_TOPIC,
+  type NotificationType,
   type CXNotification,
   type CXNotificationMeta,
-  NOTIFICATION_TOPIC,
+  type NotificationFetchType,
 } from './types'
-interface FetchArgs {
-  page: number
-  size: number
-  args?: {
-    notificationTopic: string
-    sorting: string
-  }
-}
+
 export interface NotificationArgsProps {
   sorting: string
   notificationTopic: string
@@ -53,20 +48,14 @@ export const apiSlice = createApi({
     getNotificationMeta: builder.query<CXNotificationMeta, null>({
       query: () => '/api/notification/count-details',
     }),
-    getNotifications: builder.query<CXNotification, FetchArgs>({
-      query: (fetchArgs) => {
-        let base = `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}`
-        if (fetchArgs?.args?.sorting) {
-          base += `&sorting=${fetchArgs.args.sorting}`
-        }
-        if (
-          fetchArgs?.args?.notificationTopic &&
-          fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL
-        ) {
-          base += `&notificationTopicId=${fetchArgs?.args?.notificationTopic}`
-        }
-        return base
-      },
+    getNotifications: builder.query<CXNotification, NotificationFetchType>({
+      query: (fetchArgs) => `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}${
+        fetchArgs?.args?.sorting ? `&sorting=${fetchArgs.args.sorting}` : ''
+      }${
+        (fetchArgs?.args?.notificationTopic && fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL) ? `&notificationTopicId=${fetchArgs?.args?.notificationTopic}` : ''
+      }${
+        fetchArgs?.args?.notificationTypeIds?.map((typeId: NotificationType) => `&searchTypeIds=${typeId}`).join('') ?? ''
+      }`,
       // configuration for an individual endpoint, overriding the api setting
       keepUnusedDataFor: 10,
     }),

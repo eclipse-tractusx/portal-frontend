@@ -33,6 +33,7 @@ import notificationDE from '../assets/locales/de/notification.json'
 import notificationEN from '../assets/locales/en/notification.json'
 import servicereleaseDE from '../assets/locales/de/servicerelease.json'
 import servicereleaseEN from '../assets/locales/en/servicerelease.json'
+import type { NotificationType } from 'features/notification/types'
 
 const resources = {
   de: {
@@ -104,10 +105,18 @@ const searchActions = (expr: string): string[] => {
     ...new Set(
       Object.entries(resources.en.translation.actions)
         .concat(Object.entries(resources.de.translation.actions))
-        .filter(([_key, value]) => value.match(regex))
-        .map(([key, _value]) => key)
+        .filter((item) => item[1].match(regex))
+        .map((item) => item[0])
     ),
   ]
+}
+
+const searchNotifications = (expr: string): NotificationType[] => {
+  const regex = new RegExp(expr, 'ig')
+  return Object.entries(resources.en.notification.item)
+    .concat(Object.entries(resources.de.notification.item))
+    .filter((item) => item[1].title.match(regex) ?? item[1].content.match(regex))
+    .map(item => item[0] as NotificationType)
 }
 
 const I18nService = {
@@ -116,6 +125,7 @@ const I18nService = {
   searchPages,
   searchOverlays,
   searchActions,
+  searchNotifications,
   useTranslation,
   supportedLanguages,
 }

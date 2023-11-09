@@ -29,35 +29,9 @@ export const SORT_OPTION = 'DateDesc'
 
 export enum NOTIFICATION_TOPIC {
   ALL = 'ALL',
-  ACTION = 'ACTION',
-  INFO = 'INFO',
   OFFER = 'OFFER',
-}
-
-export type InitialNotificationType = {
-  page: number
-  size: number
-  args: {
-    notificationTopic: string
-    sorting: string
-  }
-}
-
-export interface ServiceAccountState {
-  notification: PageNotificationsProps
-  initialNotificationState: InitialNotificationType
-}
-
-export const initialState: ServiceAccountState = {
-  notification: initServicetNotifications,
-  initialNotificationState: {
-    page: PAGE,
-    size: PAGE_SIZE,
-    args: {
-      notificationTopic: NOTIFICATION_TOPIC.ALL,
-      sorting: SORT_OPTION,
-    },
-  },
+  INFO = 'INFO',
+  ACTION = 'ACTION',
 }
 
 export enum NotificationType {
@@ -70,36 +44,50 @@ export enum NotificationType {
   WELCOME_APP_MARKETPLACE = 'WELCOME_APP_MARKETPLACE',
   APP_SUBSCRIPTION_REQUEST = 'APP_SUBSCRIPTION_REQUEST',
   APP_SUBSCRIPTION_ACTIVATION = 'APP_SUBSCRIPTION_ACTIVATION',
-  APP_RELEASE_REQUEST = 'APP_RELEASE_REQUEST',
-  APP_RELEASE_APPROVAL = 'APP_RELEASE_APPROVAL',
-  TECHNICAL_USER_CREATION = 'TECHNICAL_USER_CREATION',
   CONNECTOR_REGISTERED = 'CONNECTOR_REGISTERED',
-  Welcome = 'Welcome',
-  WelcomeInvite = 'WelcomeInvite',
-  WelcomeUser = 'WelcomeUser',
-  WelcomeAppMarketplace = 'WelcomeAppMarketplace',
-  NoUseCase = 'NoUseCase',
-  NoConnector = 'NoConnector',
-  ConnectorRegistered = 'ConnectorRegistered',
-  PersonalMessage = 'PersonalMessage',
-  AppRecommendation = 'AppRecommendation',
-  AppRequestSubmitted = 'AppRequestSubmitted',
-  AppRequestReceived = 'AppRequestReceived',
-  AppRequestApproved = 'AppRequestApproved',
-  AppRequestRejected = 'AppRequestRejected',
-  AppSubscriptionSubmitted = 'AppSubscriptionSubmitted',
-  AppSubscriptionReceived = 'AppSubscriptionReceived',
-  AppSubscriptionApproved = 'AppSubscriptionApproved',
-  AppSubscriptionRejected = 'AppSubscriptionRejected',
-  APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
+  APP_RELEASE_REQUEST = 'APP_RELEASE_REQUEST',
+  TECHNICAL_USER_CREATION = 'TECHNICAL_USER_CREATION',
   SERVICE_REQUEST = 'SERVICE_REQUEST',
-  SERVICE_RELEASE_REQUEST = 'SERVICE_RELEASE_REQUEST',
-  ROLE_UPDATE_APP_OFFER = 'ROLE_UPDATE_APP_OFFER',
-  ROLE_UPDATE_CORE_OFFER = 'ROLE_UPDATE_CORE_OFFER',
-  CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
-  CREDENTIAL_APPROVAL = 'CREDENTIAL_APPROVAL',
-  SUBSCRIPTION_URL_UPDATE = 'SUBSCRIPTION_URL_UPDATE',
+  SERVICE_ACTIVATION = 'SERVICE_ACTIVATION',
   APP_ROLE_ADDED = 'APP_ROLE_ADDED',
+  APP_RELEASE_APPROVAL = 'APP_RELEASE_APPROVAL',
+  SERVICE_RELEASE_REQUEST = 'SERVICE_RELEASE_REQUEST',
+  SERVICE_RELEASE_APPROVAL = 'SERVICE_RELEASE_APPROVAL',
+  APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
+  SERVICE_RELEASE_REJECTION = 'SERVICE_RELEASE_REJECTION',
+  ROLE_UPDATE_CORE_OFFER = 'ROLE_UPDATE_CORE_OFFER',
+  ROLE_UPDATE_APP_OFFER = 'ROLE_UPDATE_APP_OFFER',
+  SUBSCRIPTION_URL_UPDATE = 'SUBSCRIPTION_URL_UPDATE',
+  CREDENTIAL_APPROVAL = 'CREDENTIAL_APPROVAL',
+  CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
+}
+
+export type NotificationFetchType = {
+  page: number
+  size: number
+  args: {
+    notificationTypeIds: Array<NotificationType>,
+    notificationTopic: NOTIFICATION_TOPIC,
+    sorting: string
+  }
+}
+
+export interface ServiceAccountState {
+  notification: PageNotificationsProps
+  initialNotificationState: NotificationFetchType
+}
+
+export const initialState: ServiceAccountState = {
+  notification: initServicetNotifications,
+  initialNotificationState: {
+    page: PAGE,
+    size: PAGE_SIZE,
+    args: {
+      notificationTypeIds: [],
+      notificationTopic: NOTIFICATION_TOPIC.ALL,
+      sorting: SORT_OPTION,
+    },
+  },
 }
 
 export interface NotificationContent {

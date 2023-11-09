@@ -2,8 +2,9 @@
 
 ## unreleased
 
-- ...
--
+- Search
+  - Find notifications related to search term
+...
 
 ## 1.7.0-RC2
 

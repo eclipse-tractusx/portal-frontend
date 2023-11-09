@@ -18,32 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAction } from '@reduxjs/toolkit'
-import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
-import { type NotificationFetchType, name } from './types'
+import debounce from 'lodash.debounce'
+import { useCallback, useMemo, useState } from 'react'
+import { SearchInput } from '@catena-x/portal-shared-components'
 
-const setNotification = createAction(
-  `${name}/setNotification`,
-  function update(notification: PageNotificationsProps) {
-    return {
-      payload: {
-        notification,
-      },
-    }
-  }
-)
+const DebouncedSearchInput = ({
+  onSearch,
+  debounceTime = 300,
+}: {
+  onSearch: (expr: string) => void,
+  debounceTime?: number
+}) => {
 
-const resetNotification = createAction(`${name}/resetNotification`)
+  const [searchExpr, setSearchExpr] = useState<string>('')
 
-const resetInitialNotificationState = createAction(
-  `${name}/resetInitialNotificationState`,
-  function update(initialNotificationState: NotificationFetchType) {
-    return {
-      payload: {
-        initialNotificationState,
-      },
-    }
-  }
-)
+  const debouncedSearch = useMemo(
+    () => debounce(onSearch, debounceTime), []
+  )
 
-export { setNotification, resetNotification, resetInitialNotificationState }
+  const doSearch = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
+
+  return (
+    <SearchInput
+      value={searchExpr}
+      onChange={(e) => { doSearch(e.target.value)}}
+      />
+  )
+}
+
+export default DebouncedSearchInput

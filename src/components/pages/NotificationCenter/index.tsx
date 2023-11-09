@@ -30,6 +30,7 @@ import {
   PAGE_SIZE,
   SORT_OPTION,
   NOTIFICATION_TOPIC,
+  type NotificationType,
 } from 'features/notification/types'
 import { useTranslation } from 'react-i18next'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
@@ -41,7 +42,6 @@ import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
 import {
-  SearchInput,
   SortOption,
   CircleProgress,
 } from '@catena-x/portal-shared-components'
@@ -51,6 +51,8 @@ import { initialNotificationState } from 'features/notification/slice'
 import SortImage from 'components/shared/frame/SortImage'
 import { SeactionHeader } from 'components/shared/frame/SectionHeader'
 import { FramedSelector } from 'components/shared/frame/FramedSelector'
+import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
+import I18nService from 'services/I18nService'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -78,10 +80,13 @@ export default function NotificationCenter() {
   const { t } = useTranslation('notification')
   const sectionElement = useRef<HTMLElement>()
   const { data: pages } = useGetNotificationMetaQuery(null)
-  const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [filterOption, setFilterOption] = useState<string>(
+  const [search, setSearch] = useState<string>('')
+  const [filterTopic, setFilterTopic] = useState<string>(
     NOTIFICATION_TOPIC.ALL
+  )
+  const [filterType, setFilterType] = useState<Array<NotificationType>>(
+    []
   )
   const [loaded, setLoaded] = useState<boolean>(false)
   const [sortOption, setSortOption] = useState<string>(SORT_OPTION)
@@ -110,7 +115,7 @@ export default function NotificationCenter() {
   const setView = (val: string) => {
     setLoaded(true)
     setPage(0)
-    setFilterOption(val)
+    setFilterTopic(val)
   }
 
   useEffect(() => {
@@ -142,6 +147,7 @@ export default function NotificationCenter() {
   ]
 
   useEffect(() => {
+    console.log('eff')
     if (loaded) {
       setNotificationItems([])
       setLoaded(false)
@@ -150,11 +156,13 @@ export default function NotificationCenter() {
       page,
       size: PAGE_SIZE,
       args: {
-        notificationTopic: filterOption,
+        notificationTypeIds: filterType,
+        notificationTopic: filterTopic,
         sorting: sortOption,
+        search,
       },
     })
-  }, [filterOption, sortOption, page, loaded])
+  }, [search, filterTopic, filterType, sortOption, page, loaded])
 
   const getTotalCount = (unread = 0) => (unread ? unread : 0)
 
@@ -202,6 +210,22 @@ export default function NotificationCenter() {
     (item: CXNotificationContent) => dayjs(item.created).format('YYYY-MM-DD')
   )
 
+  const doSearch = (expr: string) => {
+    const exp = expr.trim()
+    console.log('search', search, 'exp', exp)
+    setSearch(exp)
+    console.log('set', exp)
+    if (exp === '') {
+      setFilterType([])
+      return
+    }
+    const types = I18nService.searchNotifications(exp)
+    if (types.length === 0)
+      setNotificationItems([])
+    else
+      setFilterType(types)
+  }
+
   const height = sectionElement?.current
     ? `${sectionElement?.current?.clientHeight}px`
     : '400px'
@@ -221,14 +245,9 @@ export default function NotificationCenter() {
             setShowModal(false)
           }}
         >
-          <SearchInput
-            placeholder={t('search')}
-            value={searchExpr}
-            autoFocus={false}
-            autoComplete="off"
-            onChange={(e) => {
-              setSearchExpr(e.target.value)
-            }}
+          <DebouncedSearchInput
+            debounceTime={500}
+            onSearch={doSearch}
           />
           <div>
             <SortImage
@@ -253,7 +272,7 @@ export default function NotificationCenter() {
           </div>
         </div>
         <div className="filterSection">
-          <FramedSelector activeView={filterOption} views={filterButtons} />
+          <FramedSelector activeView={filterTopic} views={filterButtons} />
         </div>
         {isFetching && (
           <Box
