@@ -2,6 +2,11 @@
 
 ## 1.7.0-RC2
 
+- Registration process
+  - update country code field as per the backend change
+
+## 1.7.0-RC2
+
 ### Change
 
 - User Management screen for user invite block due to multiple active IdPs got enhanced inside the frontend-business-logic to exclude "MANAGED" idps
