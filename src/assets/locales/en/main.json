@@ -1496,7 +1496,6 @@
       "ACTIVE_PARTICIPANT": "Active Participant",
       "APP_PROVIDER": "App Provider",
       "SERVICE_PROVIDER": "Service Provider",
-      "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",
