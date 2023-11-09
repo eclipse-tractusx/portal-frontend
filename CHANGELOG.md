@@ -4,6 +4,8 @@
 
 - App release process
   - error message fix in technical integration
+- Company Role
+  - Updated OSP translations
 
 ## 1.7.0-RC2
 
