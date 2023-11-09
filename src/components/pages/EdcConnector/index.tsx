@@ -21,7 +21,7 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
-import type { GridCellParams } from '@mui/x-data-grid'
+import type { GridCellParams, GridColDef } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import {
   PageHeader,
@@ -65,7 +65,11 @@ const EdcConnector = () => {
     useState<ConnectorContentAPIResponse>({
       id: '',
       name: '',
+      location: '',
       type: '',
+      providerCompanyName: '',
+      selfDescriptionDocumentId: '',
+      status: '',
       technicalUser: {
         id: '',
         name: '',
@@ -74,7 +78,7 @@ const EdcConnector = () => {
       },
     })
   const token = UserService.getToken()
-  const [selectedService, setSelectedService] = useState<any>({})
+  const [selectedService, setSelectedService] = useState<ConnectorType>({})
   const [createConnector] = useCreateConnectorMutation()
   const [createManagedConnector] = useCreateManagedConnectorMutation()
   const [deleteConnector] = useDeleteConnectorMutation()
@@ -104,16 +108,16 @@ const EdcConnector = () => {
     setDeleteConnectorConfirmModalOpen(true)
   }
 
-  const swap = (arry: any, from: number, to: number) => {
+  const swap = (arry: Array<GridColDef>, from: number, to: number) => {
     const swapValue = arry[from]
     arry[from] = arry[to]
     arry[to] = swapValue
     return arry
   }
 
-  const rawColumns = ConnectorTableColumns(useTranslation, onDelete) // Common col values for own and managed connectors
-  let ownConnectorCols = OwnConnectorTableColumns(useTranslation) // unique col values from own connectors
-  let managedConnectorCols = ManagedConnectorTableColumns(useTranslation) // unique col values from managed connectors
+  const rawColumns = ConnectorTableColumns(onDelete) // Common col values for own and managed connectors
+  let ownConnectorCols = OwnConnectorTableColumns() // unique col values from own connectors
+  let managedConnectorCols = ManagedConnectorTableColumns() // unique col values from managed connectors
   ownConnectorCols.push(...rawColumns)
   ownConnectorCols = swap(ownConnectorCols, 2, 0) //swap position according to the design
   managedConnectorCols.push(...rawColumns)
@@ -298,7 +302,7 @@ const EdcConnector = () => {
         />
       </section>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody, {}>
+        <PageLoadingTable<ConnectorResponseBody, unknown>
           toolbarVariant="premium"
           title={t('content.edcconnector.tabletitle')}
           loadLabel={t('global.actions.more')}
@@ -312,7 +316,7 @@ const EdcConnector = () => {
         />
       </div>
       <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody, {}>
+        <PageLoadingTable<ConnectorResponseBody, unknown>
           toolbarVariant="premium"
           title={t('content.edcconnector.managedtabletitle')}
           loadLabel={t('global.actions.more')}
@@ -331,7 +335,9 @@ const EdcConnector = () => {
           title={getSuccessTitle()}
           intro={getSuccessIntro()}
           dialogOpen={true}
-          handleCallback={() => {}}
+          handleCallback={() => {
+            // do nothing
+          }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
@@ -344,7 +350,9 @@ const EdcConnector = () => {
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
           }
-          handleCallback={() => {}}
+          handleCallback={() => {
+            // do nothing
+          }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>

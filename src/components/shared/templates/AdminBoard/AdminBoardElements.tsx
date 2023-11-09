@@ -57,7 +57,7 @@ export default function AdminBoardElements({
   errorDeclineMsg,
   isSuccess,
   refetch,
-}: {
+}: Readonly<{
   apps?: AppContent[] | ServiceContent[]
   onClick: (appId: string) => void
   type?: string
@@ -66,8 +66,8 @@ export default function AdminBoardElements({
   successDeclineMsg?: string
   errorDeclineMsg?: string
   isSuccess: boolean
-  refetch: any
-}) {
+  refetch: () => {}
+}>) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -134,7 +134,7 @@ export default function AdminBoardElements({
         showIcon={true}
         autoClose={true}
       />
-      {apps && apps.length ? (
+      {apps?.length ? (
         <CardDecision
           items={apps}
           onDelete={(appId: string) => {

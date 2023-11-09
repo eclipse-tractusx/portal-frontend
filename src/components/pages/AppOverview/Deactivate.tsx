@@ -35,6 +35,7 @@ import { useState } from 'react'
 import { useDeactivateAppMutation } from 'features/apps/apiSlice'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
+import type { ItemType } from './AddRoles'
 
 export default function Deactivate() {
   const { t } = useTranslation()
@@ -43,8 +44,8 @@ export default function Deactivate() {
   const [checked, setChecked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
-  const items: any = state
-  const app = items?.filter((item: any) => item.id === appId)
+  const items = state
+  const app = items?.filter((item: ItemType) => item.id === appId)
   const [deactivateApp] = useDeactivateAppMutation()
   const leadImageId = app?.[0]?.leadPictureId
 
@@ -140,7 +141,9 @@ export default function Deactivate() {
                     size="small"
                     loading={isLoading}
                     variant="contained"
-                    onButtonClick={() => {}}
+                    onButtonClick={() => {
+                      // do nothing
+                    }}
                     loadIndicator="Loading..."
                     label={`${t('global.actions.confirm')}`}
                   />

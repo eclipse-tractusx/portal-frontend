@@ -1,12 +1,78 @@
 # Changelog
 
-## unreleased
+## 1.7.0-RC2
+
+### Change
+
+- User Management screen for user invite block due to multiple active IdPs got enhanced inside the frontend-business-logic to exclude "MANAGED" idps
+- Enhanced /StaticTemplateResponsive/Cards/TextImageCenterAligned.tsx to support multiple images
+
+### Feature
+
+- released prototype (identity provider creation "MANAGED"; register 3rd party company; approve consent osp registration company) onboarding service provider registration flow
+
+### Technical Support
+
+- Code quality & style improvements implemented based on ESLINT rules
+  - removed extra semicolons to avoid warnings
+  - no-empty-function
+  - prefer-optional-chain
+
+### Bugfix
+
+- Partner Network - update search query parameter name to legalName
+- Fixed broken KeyValueView/index.tsx for undefined object attributes
+
+## 1.7.0-RC1
+
+### Change
+
+- Technical User Detail
+  - enhanced technical user detail page with connected object information (edc, connector, etc.)
+  - enhanced responsiveness of the page
+- App Subscription and Service Subscription
+  - Enhanced subscription request status ui flow to support extended status settings
+
+### Feature
+
+- App Overview
+  - GET documents api endpoint connected for active apps-change documents
+
+### Technical Support
+
+- Update data grid table props to the new prop value
+- Code quality & style improvements implemented based on ESLINT rules
+  - ban-types
+
+### Bugfix
 
 - App Release Process
   - Fixed double loading of images for app page
+  - Fixed validation for contact in app page
+  - Fixed salesManagerId(null) error
 - App Overview
   - Fixed image display in app overview cards
-- Update data grid table props to the new prop value
+- IDP
+  - Add load element for IDP list
+- Onboarding Serviceprovider
+  - Add the OSP prototype
+- Linter Findings
+  - Fix ban-types
+  - No empty function
+  - No Extra Semi
+- Partner Network
+  - Search for Company name issue fix
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
+- Technical User Detail
+  - Add new table as data from backend
+  - UI Changes
+- Home
+  - Fixed image display for 'my business applications'
+- App Subscription and Servcie Subscripiton
+  - Status UI Changes
+- Vulnerability from dependency
+  - Set resolution for @babel/traverse (CVE-2023-45133)
 
 ## 1.7.0-alpha
 
@@ -69,11 +135,11 @@
 - Digital Twin content (pages, overlays, translation content, etc.) removed due to dDTR release and decommissioning of the central DTR
 - Build images also for arm64, in addition to amd64
 
-###Bugfix
+### Bugfix
 
 - "Dataspace" Introduction page background color of last section changed
 
-###Known Knowns
+### Known Knowns
 
 - App Release Process - Step 2 image gets multiple times uploaded if the user uploads the images single instead of dropping all images jointly for upload
 

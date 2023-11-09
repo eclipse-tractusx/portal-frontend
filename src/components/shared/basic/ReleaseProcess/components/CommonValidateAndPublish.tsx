@@ -32,6 +32,7 @@ import {
   CircleProgress,
   CardHorizontal,
   ImageGallery,
+  type ImageType,
 } from '@catena-x/portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -81,8 +82,12 @@ interface CommonValidateAndPublishType {
   stepperDescription: string
   statusData: AppStatusDataState | ServiceStatusDataState | undefined
   id: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchDocumentById: (obj: { appId: string; documentId: string }) => any
   showSubmitPage?: (val: boolean) => void
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   submitData: (id: string) => any
   validateAndPublishItemText?: string
   detailsText: string
@@ -97,6 +102,8 @@ interface CommonValidateAndPublishType {
   helpText: string
   submitButton: string
   helpUrl?: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   values: DefaultValueType | any
   type:
     | ReleaseProcessTypes.APP_RELEASE
@@ -137,7 +144,7 @@ export default function CommonValidateAndPublish({
   const [validatePublishNotification, setValidatePublishNotification] =
     useState(false)
   const [cardImage, setCardImage] = useState('')
-  const [multipleImages, setMultipleImages] = useState<any[]>([])
+  const [multipleImages, setMultipleImages] = useState<ImageType[]>([])
   const [defaultValues, setDefaultValues] = useState<DefaultValueType>()
   const [loading, setLoading] = useState<boolean>(false)
   const [cardLanguage, setCardLanguage] = useState<string>('en')
@@ -211,7 +218,7 @@ export default function CommonValidateAndPublish({
     }
   }
 
-  const onValidatePublishSubmit = async (data: any) => {
+  const onValidatePublishSubmit = async () => {
     setLoading(true)
     try {
       await submitData(id).unwrap()
@@ -349,7 +356,9 @@ export default function CommonValidateAndPublish({
             imagePath={cardImage ?? LogoGrayData}
             label={''}
             buttonText=""
-            onBtnClick={() => {}}
+            onBtnClick={() => {
+              // do nothing
+            }}
             title={statusData?.title ?? ''}
             subTitle={serviceTypes ?? ''}
             description={''}
@@ -591,8 +600,8 @@ export default function CommonValidateAndPublish({
             </Typography>
             {defaultValues && (
               <div className="form-field">
-                {defaultValues.cxTestRuns &&
-                  defaultValues.cxTestRuns?.map((item: any, index: number) => (
+                {defaultValues?.cxTestRuns?.map(
+                  (item: { name: string; consentStatus: string }) => (
                     <div key={item.name}>
                       <Checkbox
                         key={item.name}
@@ -603,7 +612,8 @@ export default function CommonValidateAndPublish({
                         disabled
                       />
                     </div>
-                  ))}
+                  )
+                )}
               </div>
             )}
           </>

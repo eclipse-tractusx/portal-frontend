@@ -54,7 +54,6 @@ dayjs.extend(relativeTime)
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
-  const serviceReleaseTranslation = useTranslation('servicerelease').t
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -82,7 +81,7 @@ export default function ServiceMarketplace() {
     serviceType: serviceTypeId,
     sortingType,
   })
-  const services = data && data.content
+  const services = data?.content
 
   useEffect(() => {
     services && setCardServices(services)
@@ -127,18 +126,12 @@ export default function ServiceMarketplace() {
         services &&
           setCardServices(
             expr
-              ? services &&
-                  services.filter(
-                    (card: ServiceRequest) =>
-                      card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                      card.provider
-                        .toLowerCase()
-                        .includes(expr.toLowerCase()) ||
-                      (card.description &&
-                        card.description
-                          .toLowerCase()
-                          .includes(expr.toLowerCase()))
-                  )
+              ? services?.filter(
+                  (card: ServiceRequest) =>
+                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
+                    card.provider.toLowerCase().includes(expr.toLowerCase()) ||
+                    card?.description.toLowerCase().includes(expr.toLowerCase())
+                )
               : services
           )
       }, 300),
@@ -166,17 +159,6 @@ export default function ServiceMarketplace() {
 
   const setModalTrue = useCallback(() => {
     setShowModal(true)
-  }, [])
-
-  const getServices = useCallback((serviceTypeIds: string[]) => {
-    const newArr: string[] = []
-    serviceTypeIds?.forEach((serviceType: string) => {
-      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
-        newArr.push(serviceReleaseTranslation('consultancyService'))
-      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
-        newArr.push(serviceReleaseTranslation('dataspaceService'))
-    })
-    return newArr.join(', ')
   }, [])
 
   return (
@@ -221,18 +203,14 @@ export default function ServiceMarketplace() {
               </div>
             ) : (
               <RecommendedServices
-                services={cardServices && cardServices.slice(0, indexToSplit)}
-                getServices={getServices}
+                services={cardServices?.slice(0, indexToSplit)}
               />
             )}
           </div>
         </div>
       </div>
       {cardServices && cardServices.length > 2 && (
-        <ServicesElements
-          services={cardServices.slice(indexToSplit)}
-          getServices={getServices}
-        />
+        <ServicesElements services={cardServices.slice(indexToSplit)} />
       )}
     </main>
   )

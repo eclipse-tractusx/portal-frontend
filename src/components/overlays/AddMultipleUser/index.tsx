@@ -77,10 +77,10 @@ export default function AddMultipleUser() {
   const { data: idpsData, isFetching } = useFetchIDPListQuery()
 
   const [loading, setLoading] = useState(false)
-  const [allRoles, setAllRoles] = useState<any>([])
+  const [allRoles, setAllRoles] = useState<AppRole[]>()
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false)
-  const [totalRowsInCSV, setTotalRowsInCSV] = useState<any>(0)
+  const [totalRowsInCSV, setTotalRowsInCSV] = useState<number>(0)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [isError, setIsError] = useState<string>('')
   const [idps, setIdps] = useState<IdentityProvider[]>([])
@@ -96,8 +96,14 @@ export default function AddMultipleUser() {
   }, [data, dispatch])
 
   useEffect(() => {
+    const filteredIdps = idpsData?.filter(
+      (idp: IdentityProvider) =>
+        idp.identityProviderTypeId !== IDPCategory.MANAGED
+    )
     setIdps(
-      idpsData ? idpsData.filter((idp: IdentityProvider) => idp.enabled) : []
+      filteredIdps
+        ? filteredIdps.filter((idp: IdentityProvider) => idp.enabled)
+        : []
     )
   }, [idpsData])
 
@@ -124,14 +130,14 @@ export default function AddMultipleUser() {
     return <DropArea {...props} size="normal" />
   }
 
-  const handleAddUserAPICall = async (csvData: any) => {
+  const handleAddUserAPICall = async (csvData: Array<Array<string>>) => {
     try {
       if (uploadedFile) {
         const blob = new Blob([Papa.unparse(csvData)], { type: 'text/csv' })
         const file = new File([blob], uploadedFile.name, { type: 'text/csv' })
         const response = await addMutipleUsers({
           identityProviderId:
-            idps[0].ProviderTypeId === IDPCategory.SHARED
+            idps[0].identityProviderTypeId === IDPCategory.SHARED
               ? ''
               : idps[0].identityProviderId,
           csvFile: file,
@@ -140,6 +146,8 @@ export default function AddMultipleUser() {
         setIsSuccess(true)
         setUploadAPIRResponse(response)
       }
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
     } catch (error: any) {
       setLoading(false)
       setIsError(error.data.errors.document[0])
@@ -156,7 +164,9 @@ export default function AddMultipleUser() {
         Papa.parse(uploadedFile, {
           skipEmptyLines: true,
           complete: async (results) => {
-            const csvData: any = results.data
+            const csvData: Array<Array<string>> = results.data as Array<
+              Array<string>
+            >
             csvData[0].push('Roles')
             for (let i = 0; i < csvData.length; i++) {
               if (i !== 0) csvData[i].push(roles.toString())
@@ -173,7 +183,9 @@ export default function AddMultipleUser() {
     Papa.parse(selectedFile, {
       skipEmptyLines: true,
       complete: function (results) {
-        const csvData: any = results.data
+        const csvData: Array<Array<string>> = results.data as Array<
+          Array<string>
+        >
         setTotalRowsInCSV(csvData.length - 1)
       },
     })
@@ -320,7 +332,7 @@ export default function AddMultipleUser() {
             <ChevronRightIcon sx={{ fontSize: '20px' }} />
             {t('content.usermanagement.addMultipleUsers.uploadedFile.roleDesc')}
           </Link>
-          {allRoles.length > 0 ? (
+          {allRoles && allRoles.length > 0 ? (
             <div className="rolesSection">
               {allRoles.map((role: AppRole) => (
                 <Checkbox
@@ -352,7 +364,7 @@ export default function AddMultipleUser() {
             </Typography>
             <a
               href={
-                idps[0].ProviderTypeId === IDPCategory.SHARED
+                idps[0].identityProviderTypeId === IDPCategory.SHARED
                   ? '../../user-bulk-load.csv'
                   : '../../user-bulk-load-ownIdp.csv'
               }
@@ -436,7 +448,9 @@ export default function AddMultipleUser() {
               loadIndicator={t('global.actions.loading')}
               loading
               size="medium"
-              onButtonClick={() => {}}
+              onButtonClick={() => {
+                // do nothing
+              }}
               sx={{ marginLeft: '10px', textTransform: 'none' }}
             />
           ) : (

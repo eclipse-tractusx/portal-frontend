@@ -40,6 +40,7 @@ import ConnectorFormInputFieldImage from 'components/shared/basic/ReleaseProcess
 import { useForm } from 'react-hook-form'
 import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { error, success } from 'services/NotifyService'
+import type { ItemType } from './AddRoles'
 
 export default function ChangeImage() {
   const { t } = useTranslation()
@@ -47,12 +48,12 @@ export default function ChangeImage() {
   const appId = useParams().appId
   const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
-  const items: any = state
+  const items = state
   const [cardImage, setCardImage] = useState('')
   const [enableImageUpload, setEnableImageUpload] = useState(false)
   const [updateImageData] = useUpdateImageDataMutation()
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
-  const app = items?.filter((item: any) => item.id === appId)
+  const app = items?.filter((item: ItemType) => item.id === appId)
   const leadImageId = app?.[0]?.leadPictureId
 
   const {
@@ -94,7 +95,7 @@ export default function ChangeImage() {
     }
   }, [fetchLeadImage, leadImageId])
 
-  const uploadDocumentApi = async (appId: string, file: any) => {
+  const uploadDocumentApi = async (appId: string, file: File) => {
     const data = {
       appId,
       body: { file },
@@ -114,6 +115,8 @@ export default function ChangeImage() {
           name: uploadImageValue.name,
           size: uploadImageValue.size,
           status,
+          // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
         } as any)
       }
 
@@ -218,7 +221,9 @@ export default function ChangeImage() {
                 size="small"
                 loading={isLoading}
                 variant="contained"
-                onButtonClick={() => {}}
+                onButtonClick={() => {
+                  // do nothing
+                }}
                 loadIndicator="Loading..."
                 label={`${t('global.actions.confirm')}`}
               />

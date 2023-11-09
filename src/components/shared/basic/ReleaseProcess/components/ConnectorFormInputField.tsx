@@ -53,9 +53,14 @@ export const ConnectorFormInputField = ({
   handleDelete,
   size,
   errorText,
-}: any) => {
-  const renderDropArea = (props: DropAreaProps, size: any) => {
-    return <DropArea {...props} size={size || 'normal'} />
+}: // Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+any) => {
+  const renderDropArea = (
+    props: DropAreaProps,
+    size: 'small' | 'normal' | undefined
+  ) => {
+    return <DropArea {...props} size={size ?? 'normal'} />
   }
 
   return (
@@ -70,7 +75,7 @@ export const ConnectorFormInputField = ({
               label={label}
               placeholder={placeholder}
               error={!!errors[name]}
-              helperText={errors && errors[name] && errors[name].message}
+              helperText={errors?.[name]?.message}
               value={value || ''}
               onChange={(event) => {
                 trigger(name)
@@ -89,7 +94,7 @@ export const ConnectorFormInputField = ({
         } else if (type === 'dropzone') {
           return (
             <Dropzone
-              files={value && value.name ? [value] : undefined}
+              files={value?.name ? [value] : undefined}
               onChange={([file]) => {
                 trigger(name)
                 onChange(file)
@@ -127,10 +132,12 @@ export const ConnectorFormInputField = ({
               label={label}
               placeholder={placeholder}
               error={!!errors[name]}
-              helperText={errors && errors[name] && errors[name].message}
+              helperText={errors?.[name]?.message}
               value={value}
               items={items}
               keyTitle={keyTitle}
+              // Add an ESLint exception until there is a solution
+              // eslint-disable-next-line
               onAddItem={(items: any[]) => {
                 trigger(name)
                 onChange(items?.map((item) => item[saveKeyTitle]))

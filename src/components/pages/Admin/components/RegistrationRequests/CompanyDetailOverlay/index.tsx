@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, type SyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -37,7 +37,6 @@ import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPa
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   type ApplicationRequest,
-  type ProgressButtonsProps,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
   useFetchNewDocumentByIdMutation,
@@ -57,7 +56,7 @@ const CompanyDetailOverlay = ({
   selectedRequestId,
   handleOverlayClose,
 }: CompanyDetailOverlayProps) => {
-  const modalElement: any = useRef()
+  const modalElement = useRef<HTMLInputElement>()
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
@@ -65,33 +64,26 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [checklist, setCheckList] = useState<ProgressButtonsProps[]>()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [height, setHeight] = useState<string>('')
-  const { data: res } = useFetchCheckListDetailsQuery(selectedRequestId)
+  const { data: checklistData } =
+    useFetchCheckListDetailsQuery(selectedRequestId)
   const { data } = useFetchCompanySearchQuery({
     page: 0,
     args: {
-      expr: selectedCompany && selectedCompany.name,
+      expr: selectedCompany?.name,
     },
   })
 
   useEffect(() => {
     if (data) {
-      const selected =
-        data &&
-        data.content &&
-        data.content.filter(
-          (company: { bpn: string }) => selectedCompany.bpn === company.bpn
-        )
+      const selected = data?.content?.filter(
+        (company: { bpn: string }) => selectedCompany.bpn === company.bpn
+      )
       setCompany(selected[0])
     }
   }, [data, selectedCompany])
-
-  useEffect(() => {
-    setCheckList(res)
-  }, [res])
 
   const getLocaleStr = (str: string) => {
     if (str === 'ACTIVE_PARTICIPANT') {
@@ -135,9 +127,12 @@ const CompanyDetailOverlay = ({
     }
   }
 
-  const handleChange = (event: any, newValue: number) => {
+  const handleChange = (
+    event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => {
     setHeight(
-      modalElement && modalElement.current
+      modalElement?.current
         ? `${modalElement?.current?.clientHeight}px`
         : '400px'
     )
@@ -156,7 +151,7 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: getTitle(activeTab, checklist ?? [], t),
+            title: getTitle(activeTab, checklistData ?? [], t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}
@@ -252,18 +247,17 @@ const CompanyDetailOverlay = ({
                       value: selectedCompany?.bpn,
                     }}
                   />
-                  {selectedCompany.uniqueIds &&
-                    selectedCompany.uniqueIds.map(
-                      (id: { type: string; value: string }) => (
-                        <DetailGridRow
-                          key={id.type}
-                          {...{
-                            variableName: getUniqueIdName(id) as string,
-                            value: id.value ?? '',
-                          }}
-                        />
-                      )
-                    )}
+                  {selectedCompany?.uniqueIds?.map(
+                    (id: { type: string; value: string }) => (
+                      <DetailGridRow
+                        key={id.type}
+                        {...{
+                          variableName: getUniqueIdName(id) as string,
+                          value: id.value ?? '',
+                        }}
+                      />
+                    )
+                  )}
                   <Grid
                     xs={12}
                     item
@@ -401,8 +395,12 @@ const CompanyDetailOverlay = ({
                                   margin: '0px 10px',
                                   cursor: 'auto',
                                 }}
-                                onClick={function noRefCheck() {}}
-                                onFocusVisible={function noRefCheck() {}}
+                                onClick={function noRefCheck() {
+                                  // do nothing
+                                }}
+                                onFocusVisible={function noRefCheck() {
+                                  // do nothing
+                                }}
                                 size="small"
                                 variant="contained"
                               >
@@ -430,7 +428,7 @@ const CompanyDetailOverlay = ({
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <Box sx={{ width: '100%', height }}>
-                <CheckListFullButtons progressButtons={checklist} />
+                <CheckListFullButtons progressButtons={checklistData} />
               </Box>
             </TabPanel>
           </DialogContent>

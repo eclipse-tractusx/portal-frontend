@@ -81,6 +81,7 @@ export enum PAGES {
   INTRODUCTION_APP_PROVIDER = 'companyrolesappprovider',
   INTRODUCTION_SERVICE_PROVIDER = 'companyrolesserviceprovider',
   INTRODUCTION_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
+  INTRODUCTION_OSP_BODY = 'companyrolesonboardingserviceprovider',
   USE_CASE = 'usecase',
   USE_CASE_TRACABILITY = 'usecasetraceablity',
   SERVICE_MANAGEMENT = 'servicemanagement',
@@ -99,6 +100,7 @@ export enum PAGES {
   CERTIFICATE_CREDENTIAL = 'certificate-credential',
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
+  ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
 }
 
 export enum OVERLAYS {
@@ -132,6 +134,9 @@ export enum OVERLAYS {
   IDP_STATUS = 'idp_status',
   IDP_TEST_RUN = 'idp_test_run',
   ENABLE_IDP_SUCCESS = 'enable_idp_success',
+  REGISTER_OSP = 'register_osp',
+  REGISTER_NEXT_OSP = 'register_next_osp',
+  CONSENT_OSP = 'consent_osp',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',

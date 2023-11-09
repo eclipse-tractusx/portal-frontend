@@ -58,10 +58,13 @@ import { initialState } from 'features/serviceManagement/types'
 enum ServiceSubMenuItems {
   DEACTIVATE = 'deactivate',
 }
+interface CardItemsInterface extends CardItems {
+  status?: ProvidedServiceStatusEnum
+}
 
 export default function ServiceListOverview() {
   const { t } = useTranslation('servicerelease')
-  const [items, setItems] = useState<any>([])
+  const [items, setItems] = useState<CardItems[]>([])
   const [group, setGroup] = useState<string>('')
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [page, setPage] = useState<number>(0)
@@ -93,7 +96,7 @@ export default function ServiceListOverview() {
 
   useEffect(() => {
     dispatch(setServiceReleaseActiveStep())
-    if (data && data.content)
+    if (data?.content)
       setItems(
         data?.meta.page === 0
           ? setDataInfo(data)
@@ -250,7 +253,7 @@ export default function ServiceListOverview() {
                   onNewCardButton={onNewServiceCardClick}
                   onCardClick={(item: CardItems) => {
                     // TODO: workaround - fix CardItems type
-                    const cardItem: any = item
+                    const cardItem: CardItemsInterface = item
                     if (
                       cardItem.status === ProvidedServiceStatusEnum.PENDING ||
                       cardItem.status === ProvidedServiceStatusEnum.CREATED
@@ -292,7 +295,9 @@ export default function ServiceListOverview() {
       {state && (
         <PageSnackbar
           open={state !== ''}
-          onCloseNotification={() => {}}
+          onCloseNotification={() => {
+            // do nothing
+          }}
           severity={
             state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
               ? SuccessErrorType.SUCCESS

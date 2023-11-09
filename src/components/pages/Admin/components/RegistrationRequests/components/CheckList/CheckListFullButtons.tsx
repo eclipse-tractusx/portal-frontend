@@ -25,23 +25,24 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
 import {
-  type ProgressButtonsProps,
   ProgressStatus,
+  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface CheckListFullButtonsProps {
-  progressButtons?: Array<ProgressButtonsProps>
+  progressButtons?: Array<ProgressButtonsType>
 }
 
 export default function CheckListFullButtons({
   progressButtons,
 }: CheckListFullButtonsProps) {
   const { t } = useTranslation()
-  const [checkListButtons, setCheckListButtons] = useState<any>()
+  const [checkListButtons, setCheckListButtons] =
+    useState<ProgressButtonsType[]>()
 
-  const getButtonProps = useCallback((statusId: string) => {
+  const getButtonProps = (statusId: string) => {
     switch (statusId) {
       case ProgressStatus.IN_PROGRESS:
         return {
@@ -55,7 +56,6 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#EAF1FE',
-          statusTag: 'label',
         }
       case ProgressStatus.TO_DO:
         return {
@@ -69,7 +69,6 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#EAF1FE',
-          statusTag: 'label',
         }
       case ProgressStatus.DONE:
         return {
@@ -83,7 +82,6 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#F5F9EE',
-          statusTag: 'confirmed',
         }
       case ProgressStatus.FAILED:
         return {
@@ -97,15 +95,27 @@ export default function CheckListFullButtons({
             />
           ),
           backgroundColor: '#FFF6FF',
-          statusTag: 'declined',
         }
     }
-  }, [])
+  }
+
+  const getButtonStatusTag = (statusId: string) => {
+    switch (statusId) {
+      case ProgressStatus.IN_PROGRESS:
+        return 'label'
+      case ProgressStatus.TO_DO:
+        return 'label'
+      case ProgressStatus.DONE:
+        return 'confirmed'
+      case ProgressStatus.FAILED:
+        return 'declined'
+    }
+  }
 
   const updateCheckListStatusButtons = useCallback(
-    (progressButtons: ProgressButtonsProps[]) => {
+    (progressButtons: ProgressButtonsType[]) => {
       setCheckListButtons(
-        progressButtons.map((button: ProgressButtonsProps) => ({
+        progressButtons.map((button: ProgressButtonsType) => ({
           statusId: button.statusId,
           typeId: button.typeId,
           details: button.details,
@@ -114,6 +124,7 @@ export default function CheckListFullButtons({
           statusLabel: t(
             `content.checklistOverlay.checkListProgress.${button.statusId}`
           ),
+          statusTag: getButtonStatusTag(button.statusId),
           ...getButtonProps(button.statusId),
         }))
       )
@@ -131,7 +142,7 @@ export default function CheckListFullButtons({
     <>
       {checkListButtons && (
         <Box>
-          {checkListButtons.map((button: ProgressButtonsProps) => (
+          {checkListButtons.map((button: ProgressButtonsType) => (
             <Box
               key={button.typeId}
               sx={{

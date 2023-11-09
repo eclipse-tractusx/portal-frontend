@@ -32,7 +32,7 @@ import CheckList from '.'
 import {
   EndUrlMap,
   RetriggerableProcessSteps,
-  type ProgressButtonsProps,
+  type ProgressButtonsType,
   ProgressStatus,
   StatusType,
   useApproveChecklistMutation,
@@ -48,7 +48,7 @@ import { refreshApplicationRequest } from 'features/admin/registration/actions'
 interface CheckListStatusOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
-  selectedButton?: ProgressButtonsProps
+  selectedButton?: ProgressButtonsType
   modalWidth?: string
   selectedRequestId: string
 }
@@ -71,8 +71,8 @@ type State = {
   retriggerLoading: boolean
   approveLoading: boolean
   declineLoading: boolean
-  selectedCheckListButton: ProgressButtonsProps
-  checkListButton: ProgressButtonsProps[]
+  selectedCheckListButton: ProgressButtonsType
+  checkListButton: ProgressButtonsType[]
   error: string
   showInput: boolean
   declineComment: string
@@ -94,6 +94,8 @@ const initialState: State = {
 
 type Action = {
   type: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   payload: any
 }
 
@@ -175,8 +177,7 @@ const CheckListStatusOverlay = ({
           type: ActionKind.SET_CHECKLISTBUTTONS_AND_SELECTEDBUTTON,
           payload: {
             selected: data.find(
-              (btn: ProgressButtonsProps) =>
-                btn.typeId === selectedButton.typeId
+              (btn: ProgressButtonsType) => btn.typeId === selectedButton.typeId
             ),
             buttons: data,
           },
@@ -185,7 +186,7 @@ const CheckListStatusOverlay = ({
     }, 100)
   }, [data, selectedButton])
 
-  const reset = (button: ProgressButtonsProps) => {
+  const reset = (button: ProgressButtonsType) => {
     setState({
       type: ActionKind.SET_CHECKLIST_BUTTONS_AND_SHOWINPUT,
       payload: {
@@ -197,7 +198,9 @@ const CheckListStatusOverlay = ({
     setState({ type: ActionKind.SET_SELECTED_CHECKLISTBUTTON, payload: button })
   }
 
-  const onUpdateComment = (e: any) => {
+  const onUpdateComment = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setState({
       type: ActionKind.SET_DECLINE_COMMENT,
       payload: e.target.value,
@@ -497,7 +500,9 @@ const CheckListStatusOverlay = ({
               rows={2}
               maxRows={4}
               placeholder={''}
-              onChange={(e: any) => {
+              onChange={(
+                e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+              ) => {
                 onUpdateComment(e)
               }}
               value={declineComment}

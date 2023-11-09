@@ -26,15 +26,16 @@ import dayjs from 'dayjs'
 import uniqueId from 'lodash/uniqueId'
 import type {
   ApplicationRequest,
-  ProgressButtonsProps,
+  ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import './RegistrationRequests.scss'
 import CheckList from './components/CheckList'
+import type i18next from 'i18next'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
-  translationHook: any,
+  t: typeof i18next.t,
   handleDownloadDocument: (
     appId: string,
     documentId: string,
@@ -42,10 +43,8 @@ export const RegistrationRequestsTableColumns = (
   ) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void,
-  onChipButtonSelect?: (button: ProgressButtonsProps, id: string) => void
+  onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 ): Array<GridColDef> => {
-  const { t } = translationHook()
-
   return [
     {
       field: 'dateCreated',
@@ -80,7 +79,12 @@ export const RegistrationRequestsTableColumns = (
                   paddingTop: '2px',
                 }}
                 onClick={() => {
-                  showConfirmOverlay && showConfirmOverlay(row.applicationId)
+                  if (showConfirmOverlay) {
+                    showConfirmOverlay(row.applicationId)
+                  }
+                }}
+                onKeyDown={() => {
+                  // do nothing
                 }}
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
@@ -157,7 +161,9 @@ export const RegistrationRequestsTableColumns = (
                       'content.admin.registration-requests.buttonprogress'
                     ),
                     type: 'progress',
-                    onClick: () => {},
+                    onClick: () => {
+                      // do nothing
+                    },
                     withIcon: true,
                   }}
                 />
@@ -205,12 +211,14 @@ export const RegistrationRequestsTableColumns = (
               cancelText={t('content.admin.registration-requests.cancel')}
               alignRow="center"
               onButtonClick={(button) => {
-                onChipButtonSelect &&
+                if (onChipButtonSelect) {
                   onChipButtonSelect(button, row.applicationId)
+                }
               }}
               onCancel={() => {
-                onConfirmationCancel &&
+                if (onConfirmationCancel) {
                   onConfirmationCancel(row.applicationId, row.companyName)
+                }
               }}
             />
           ) : null}

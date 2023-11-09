@@ -31,6 +31,7 @@ export type ValidatingInputProps = BasicInputProps & {
   debounceTime?: number
   validate?: (expr: string) => boolean
   onValid?: (name: string, value: string) => void
+  onInvalid?: (name: string, value: string) => void
 }
 
 const ValidatingInput = ({
@@ -46,16 +47,19 @@ const ValidatingInput = ({
   debounceTime = 250,
   validate,
   onValid,
+  onInvalid,
 }: ValidatingInputProps) => {
   const [color, setColor] = useState<Colors>(Colors.secondary)
+  const [currentValue, setCurrentValue] = useState<string>(value)
 
   const immediateValidate = useCallback(
     (expr: string) => {
       const isValid = validate ? validate(expr) : true
       setColor(isValid ? Colors.success : Colors.error)
-      isValid && onValid && onValid(name, expr)
+      if (isValid && onValid) onValid(name, expr)
+      else if (!isValid && onInvalid) onInvalid(name, expr)
     },
-    [name, onValid, validate]
+    [name, onValid, onInvalid, validate]
   )
 
   const debouncedValidate = useMemo(
@@ -65,6 +69,10 @@ const ValidatingInput = ({
 
   const doValidate = useCallback(
     (expr: string) => {
+      if (expr === currentValue) {
+        return
+      }
+      setCurrentValue(expr)
       if (debounceTime === 0) immediateValidate(expr)
       else debouncedValidate(expr)
     },

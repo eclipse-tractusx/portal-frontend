@@ -91,7 +91,7 @@ export enum RetriggerableProcessSteps {
   OVERRIDE_BUSINESS_PARTNER_NUMBER = 'OVERRIDE_BUSINESS_PARTNER_NUMBER',
 }
 
-export type ProgressButtonsProps = {
+export type ProgressButtonsType = {
   statusId: ProgressStatus
   typeId: string
   label?: string
@@ -103,6 +103,8 @@ export type ProgressButtonsProps = {
   statusLabel?: string
   statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
   retriggerableProcessSteps?: string[]
+  status?: string
+  type?: string
 }
 
 export const progressMapper = {
@@ -120,14 +122,17 @@ export interface ApplicationRequest {
   email: string
   bpn: string
   documents: Array<DocumentMapper>
-  applicationChecklist: Array<ProgressButtonsProps>
+  applicationChecklist: Array<ProgressButtonsType>
 }
 
 type CheckListDetailsButton = {
-  status: string
+  status: ProgressStatus
   type: string
   details: string
   retriggerableProcessSteps: string[]
+  statusId?: ProgressStatus
+  typeId?: string
+  statusTag?: 'confirmed' | 'pending' | 'declined' | 'label'
 }
 
 export interface CheckListDetailsType {
@@ -142,6 +147,16 @@ type DeclineRequestType = {
 export type DocumentRequestData = {
   appId: string
   documentId: string
+}
+
+interface RetriggerProcessRequestType {
+  applicationId: string
+  endUrl?: string
+}
+
+interface UpdateBpnReuestType {
+  applicationId?: string
+  bpn: string
 }
 
 export const apiSlice = createApi({
@@ -182,7 +197,7 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (fetchArgs) => {
-        const isFetchArgs = fetchArgs.args && fetchArgs.args.expr
+        const isFetchArgs = fetchArgs?.args?.expr
         if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
@@ -232,7 +247,7 @@ export const apiSlice = createApi({
         }),
       }),
     }),
-    updateBPN: builder.mutation<boolean, any>({
+    updateBPN: builder.mutation<boolean, UpdateBpnReuestType>({
       query: (args) => ({
         url: `/api/administration/registration/application/${args.applicationId}/${args.bpn}/bpn`,
         method: 'POST',
@@ -243,7 +258,7 @@ export const apiSlice = createApi({
         url: `api/administration/registration/applications/${applicationId}/checklistDetails`,
       }),
       providesTags: ['checklist'],
-      transformResponse: (response: any) => {
+      transformResponse: (response: CheckListDetailsButton[]) => {
         const obj = response.map((res: CheckListDetailsButton) => {
           return {
             statusId: res.status,
@@ -255,7 +270,7 @@ export const apiSlice = createApi({
         return obj
       },
     }),
-    retriggerProcess: builder.mutation<boolean, any>({
+    retriggerProcess: builder.mutation<boolean, RetriggerProcessRequestType>({
       query: (args) => ({
         url: `/api/administration/registration/application/${args.applicationId}/${args.endUrl}`,
         method: 'POST',

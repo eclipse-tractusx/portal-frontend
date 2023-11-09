@@ -112,6 +112,8 @@ type State = {
 
 type Action = {
   type: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   payload: any
 }
 
@@ -213,7 +215,7 @@ const setData = (
     content: SubscriptionContent[]
   }
 ) => {
-  if (payload && payload.meta) {
+  if (payload?.meta) {
     return payload.meta.page === 0
       ? payload.content
       : state.subscriptions.concat(payload.content)
@@ -224,7 +226,11 @@ const setData = (
 
 interface SubscriptionType {
   providerSuccessMessage: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchQuery: (Obj: SubscriptionRequestType | SubscriptionRequestBody) => any
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchAppFilters?: () => any
   headline: string
   subHeading: string
@@ -242,7 +248,7 @@ interface SubscriptionType {
     showAll: string
   }
   doNotShowAutoSetup?: boolean
-  currentSuccessType: (state: RootState) => any
+  currentSuccessType: (state: RootState) => boolean
   loadMoreButtonText?: string
   type?: string
 }
@@ -309,7 +315,7 @@ export default function Subscription({
   const success: boolean = useSelector(currentSuccessType)
 
   useEffect(() => {
-    if (data && data?.content) {
+    if (data?.content) {
       setState({
         type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
         payload: data,
@@ -429,8 +435,7 @@ export default function Subscription({
           setState({
             type: ActionKind.SET_CARD_SUBSCRIPTION,
             payload: expr
-              ? subscriptions &&
-                subscriptions.filter((card: SubscriptionContent) =>
+              ? subscriptions?.filter((card: SubscriptionContent) =>
                   card.offerName.toLowerCase().includes(expr.toLowerCase())
                 )
               : subscriptions,

@@ -87,6 +87,8 @@ type CommonConsentType = {
   helpUrl: string
   fetchAgreementData: AgreementType[]
   fetchConsentData?: ConsentType
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   updateAgreementConsents?: (obj: UpdateAgreementConsentType) => any
   updateDocumentUpload?: (obj: {
     appId: string
@@ -94,10 +96,16 @@ type CommonConsentType = {
     body: {
       file: File
     }
+    // Add an ESLint exception until there is a solution
+    // eslint-disable-next-line
   }) => any
   fetchStatusData: AppStatusDataState | ServiceStatusDataState | undefined
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   getDocumentById?: (id: string) => any
   documentRequired?: boolean
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchFrameDocumentById?: (id: string) => any
 }
 
@@ -156,6 +164,8 @@ export default function CommonContractAndConsent({
             t('content.apprelease.contractAndConsent.documentDeleteSuccess')
           )
         })
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
         .catch((err: any) => {
           error(
             err.status === 409
@@ -204,7 +214,7 @@ export default function CommonContractAndConsent({
           name: value.name,
           size: value.size,
           status,
-        } as any)
+        } as unknown)
     },
     [getValues, setValue]
   )
@@ -220,7 +230,8 @@ export default function CommonContractAndConsent({
         ...item,
         consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
       }))
-
+    // Add an ESLint exception until there is a solution
+    // eslint-disable-next-line
     const consentAgreementData: any =
       fetchAgreementData &&
       fetchConsent &&
@@ -263,12 +274,8 @@ export default function CommonContractAndConsent({
       Object.keys(defaultuploadImageConformity).length > 0
     ) {
       setValue('uploadImageConformity', {
-        id:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentId,
-        name:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentName,
+        id: defaultuploadImageConformity?.[0]?.documentId,
+        name: defaultuploadImageConformity?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
@@ -280,12 +287,8 @@ export default function CommonContractAndConsent({
 
     if (Array.isArray(value)) {
       setValue('uploadImageConformity', {
-        id:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentId,
-        name:
-          defaultuploadImageConformity &&
-          defaultuploadImageConformity[0]?.documentName,
+        id: defaultuploadImageConformity?.[0]?.documentId,
+        name: defaultuploadImageConformity?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
@@ -314,7 +317,10 @@ export default function CommonContractAndConsent({
     getValues,
   ])
 
-  const onContractConsentSubmit = async (data: Object, buttonLabel: string) => {
+  const onContractConsentSubmit = async (
+    data: Record<string, unknown>,
+    buttonLabel: string
+  ) => {
     const validateFields = await trigger([
       'agreements',
       'uploadImageConformity',
@@ -324,7 +330,10 @@ export default function CommonContractAndConsent({
     }
   }
 
-  const handleSave = async (data: Object, buttonLabel: string) => {
+  const handleSave = async (
+    data: Record<string, unknown>,
+    buttonLabel: string
+  ) => {
     setLoading(true)
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
@@ -444,6 +453,9 @@ export default function CommonContractAndConsent({
                     onClick={() =>
                       handleFrameDocumentDownload(item.name, item.documentId)
                     }
+                    onKeyDown={() => {
+                      // do nothing
+                    }}
                   >
                     {item.name}
                   </span>
