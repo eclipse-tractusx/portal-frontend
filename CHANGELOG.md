@@ -11,7 +11,7 @@
   - Autosetup Process Worker implementation (adjust overlay)
 - Usermanagement
   - User Invite IdP connection logic
-  
+
 ### Change
 
 - User Management screen for user invite block due to multiple active IdPs got enhanced inside the frontend-business-logic to exclude "MANAGED" idps

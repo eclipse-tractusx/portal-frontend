@@ -268,7 +268,7 @@ export default function AddMultipleUser() {
               </div>
             )}
           </div>
-          {tableErrorData && tableErrorData.body[0].length >= 1 && (
+          {tableErrorData && tableErrorData.body[0]?.length > 0 && (
             <>
               <div className="mb-30">
                 <Trans>
@@ -468,34 +468,38 @@ export default function AddMultipleUser() {
             onClick={() => dispatch(show(OVERLAYS.NONE))}
             sx={{ textTransform: 'none' }}
           >
-            {t('global.actions.cancel')}
+            {isSuccess ? t('global.actions.close') : t('global.actions.cancel')}
           </Button>
-          {loading ? (
-            <LoadingButton
-              color="primary"
-              helperText=""
-              helperTextColor="success"
-              label=""
-              loadIndicator={t('global.actions.loading')}
-              loading
-              size="medium"
-              onButtonClick={() => {
-                // do nothing
-              }}
-              sx={{ marginLeft: '10px', textTransform: 'none' }}
-            />
-          ) : (
-            <Button
-              variant="contained"
-              onClick={handleConfirm}
-              disabled={
-                uploadedFile === undefined || (isFileUploaded && !roles.length)
-              }
-              sx={{ textTransform: 'none' }}
-            >
-              {isError ? t('global.actions.exit') : t('global.actions.confirm')}
-            </Button>
-          )}
+          {!isSuccess &&
+            (loading ? (
+              <LoadingButton
+                color="primary"
+                helperText=""
+                helperTextColor="success"
+                label=""
+                loadIndicator={t('global.actions.loading')}
+                loading
+                size="medium"
+                onButtonClick={() => {
+                  // do nothing
+                }}
+                sx={{ marginLeft: '10px', textTransform: 'none' }}
+              />
+            ) : (
+              <Button
+                variant="contained"
+                onClick={handleConfirm}
+                disabled={
+                  uploadedFile === undefined ||
+                  (isFileUploaded && !roles.length)
+                }
+                sx={{ textTransform: 'none' }}
+              >
+                {isError
+                  ? t('global.actions.exit')
+                  : t('global.actions.confirm')}
+              </Button>
+            ))}
         </DialogActions>
       </>
     ) : (
