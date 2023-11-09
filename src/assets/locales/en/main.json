@@ -79,7 +79,7 @@
     "idp_status_change_info": "{{status}} identity provider",
     "idp_status_change_intro2": "Are you sure you want to enable this idp?",
     "idp_status_change_intro1": "Disable the idp will always result into the deactivation, but not deletion. You can always enable it again",
-    "idp_status_tooltip_info": "Atleast one company service needs to enabled",
+    "idp_status_tooltip_info": "At least one company service needs to enabled",
     "idp_test_intro1": "Identity Provider was successfully created.",
     "idp_test_intro2": "The IdP is disabled for now and get enabled below.",
     "idp_test_description": "Please note, before enabling the Idp and trying to login, you need to setup the Idp connection on you side as well and connect your CX user to the IdP connection. To enable the same, please fillout the fields below.",
@@ -1067,7 +1067,7 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "technicalUserSetupMandatory": "Please select at least one technical user setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles"

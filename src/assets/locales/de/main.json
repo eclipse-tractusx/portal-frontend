@@ -1103,7 +1103,7 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles"
