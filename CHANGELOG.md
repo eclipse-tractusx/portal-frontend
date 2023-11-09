@@ -3,7 +3,8 @@
 ## 1.7.0-RC3
 
 - IDP User Migration
-  - Error Handling Logic
+  - Extended error handling of the api response message implemented
+  - Included csv file upload validation of csv header row content
 
 ## 1.7.0-RC2
 
