@@ -29,6 +29,7 @@ import {
   useFetchBusinessAppsQuery,
 } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export const label = 'BusinessApplictions'
 
@@ -77,25 +78,25 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {data &&
-            data
-              .map((app: AppMarketplaceApp) => {
-                const card = appToCard(app)
-                return card
-              })
-              .map((item) => (
-                <Card
-                  {...item}
-                  key={uniqueId(item.title)}
-                  buttonText="Details"
-                  imageSize="small"
-                  imageShape="round"
-                  variant="minimal"
-                  expandOnHover={false}
-                  filledBackground={true}
-                  onClick={item.onClick}
-                />
-              ))}
+          {data
+            ?.map((app: AppMarketplaceApp) => {
+              const card = appToCard(app)
+              return card
+            })
+            .map((item) => (
+              <Card
+                {...item}
+                key={uniqueId(item.title)}
+                buttonText="Details"
+                imageSize="small"
+                imageShape="round"
+                variant="minimal"
+                expandOnHover={false}
+                filledBackground={true}
+                onClick={item.onClick}
+                imageLoader={fetchImageWithToken}
+              />
+            ))}
           {data &&
             new Array(4 - data.length)
               .fill(true)

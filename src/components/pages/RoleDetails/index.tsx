@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { type SyntheticEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Grid, Box } from '@mui/material'
 import {
@@ -51,7 +51,10 @@ export default function RoleDetails() {
 
   const [activeTab, setActiveTab] = useState<number>(0)
 
-  const handleChange = (event: any, newValue: number) => {
+  const handleChange = (
+    event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => {
     setActiveTab(newValue)
   }
 
@@ -103,29 +106,28 @@ export default function RoleDetails() {
         </Tabs>
         <div style={{ margin: '20px' }}>
           <TabPanel value={activeTab} index={0}>
-            {dataArray &&
-              dataArray.map((data: RoleDescData) => (
-                <div key={uniqueId(data.title)}>
-                  <Typography
-                    variant="h4"
-                    sx={{ textDecoration: 'underline', marginBottom: '5px' }}
-                  >
-                    {data.title}
-                  </Typography>
-                  <Grid container spacing={2} sx={{ margin: '0px 0 40px' }}>
-                    <>
-                      {data.subTitles.map((subTitle: string, index: number) => (
-                        <Grid item xs={6} key={uniqueId(subTitle)}>
-                          <Typography variant="h5">{subTitle}</Typography>
-                          <Typography variant="caption3">
-                            {data.descriptions[index]}
-                          </Typography>
-                        </Grid>
-                      ))}
-                    </>
-                  </Grid>
-                </div>
-              ))}
+            {dataArray?.map((data: RoleDescData) => (
+              <div key={uniqueId(data.title)}>
+                <Typography
+                  variant="h4"
+                  sx={{ textDecoration: 'underline', marginBottom: '5px' }}
+                >
+                  {data.title}
+                </Typography>
+                <Grid container spacing={2} sx={{ margin: '0px 0 40px' }}>
+                  <>
+                    {data.subTitles.map((subTitle: string, index: number) => (
+                      <Grid item xs={6} key={uniqueId(subTitle)}>
+                        <Typography variant="h5">{subTitle}</Typography>
+                        <Typography variant="caption3">
+                          {data.descriptions[index]}
+                        </Typography>
+                      </Grid>
+                    ))}
+                  </>
+                </Grid>
+              </div>
+            ))}
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
             <Image

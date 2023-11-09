@@ -40,11 +40,11 @@ export const UserRoles = () => {
   const roles = useSelector(rolesToAddSelector)
   const { data } = useFetchCoreoffersRolesQuery()
 
-  const [allRoles, setAllRoles] = useState<any>([])
+  const [allRoles, setAllRoles] = useState<AppRole[]>()
 
   useEffect(() => {
     const rolesArr: AppRole[] = []
-    data && data.map((a) => rolesArr.push(...a.roles))
+    data?.map((a) => rolesArr.push(...a.roles))
     setAllRoles(rolesArr)
   }, [data])
 
@@ -89,7 +89,7 @@ export const UserRoles = () => {
           {t('content.addUser.roleDesc')}
         </Link>
       </div>
-      {allRoles.length > 0 ? (
+      {allRoles && allRoles.length > 0 ? (
         <div className="checkbox-section">
           {allRoles.map((role: AppRole) => (
             <Checkbox

@@ -60,10 +60,16 @@ const NameLink = ({
   path,
   renderName,
 }: {
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   fetchHook: any
   id?: string
   path: string
-  renderName: (item: any) => string
+  renderName: (item: {
+    firstName: string
+    lastName: string
+    title: string
+  }) => string
 }) => {
   const { data } = fetchHook(id)
   return <NavLink to={`/${path}/${id}`}>{data ? renderName(data) : id}</NavLink>
@@ -118,13 +124,15 @@ const NotificationContent = ({
             fetchHook={useFetchUserDetailsQuery}
             id={userId}
             path={'userdetails'}
-            renderName={(item: any) => `${item.firstName} ${item.lastName}`}
+            renderName={(item: { firstName: string; lastName: string }) =>
+              `${item.firstName} ${item.lastName}`
+            }
           />
           <NameLink
             fetchHook={useFetchAppDetailsQuery}
             id={appId}
             path={'appdetail'}
-            renderName={(item: any) => item.title}
+            renderName={(item: { title: string }) => item.title}
           />
         </Trans>
       </div>
@@ -285,6 +293,9 @@ export default function NotificationItem({
       )}
       <li
         onClick={toggle}
+        onKeyDown={() => {
+          // do nothing
+        }}
         style={{
           backgroundColor: userRead
             ? 'rgba(255, 255, 255, 1)'
@@ -368,6 +379,9 @@ export default function NotificationItem({
                 setRead(item.id, !userRead)
                 e.stopPropagation()
               }}
+              onKeyDown={() => {
+                // do nothing
+              }}
             >
               {userRead ? (
                 <Tooltips
@@ -408,6 +422,9 @@ export default function NotificationItem({
               onClick={(e) => {
                 setShowDeleteModal(true)
                 e.stopPropagation()
+              }}
+              onKeyDown={() => {
+                // do nothing
               }}
             >
               <CloseIcon sx={{ fontSize: 15 }} />

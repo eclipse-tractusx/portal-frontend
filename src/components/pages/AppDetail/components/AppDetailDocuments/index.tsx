@@ -29,6 +29,7 @@ import {
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
+import '../../AppDetail.scss'
 
 export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -61,6 +62,7 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   }
   return (
     <div id="documents">
+      <div className="divider-height" />
       <Typography variant="h3">
         {t('content.appdetail.howtouse.heading')}
       </Typography>

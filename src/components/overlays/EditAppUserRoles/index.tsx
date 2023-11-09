@@ -52,10 +52,9 @@ export default function EditAppUserRoles({ id }: { id: string }) {
   const appDetails = useFetchAppDetailsQuery(appId ?? '').data
   const appRoles = useFetchAppRolesQuery(appId ?? '').data
   const { data, refetch } = useFetchUserDetailsQuery(id)
-  const assignedRoles =
-    data &&
-    data.assignedRoles.filter((assignedRole) => assignedRole.appId === appId)[0]
-      ?.roles
+  const assignedRoles = data?.assignedRoles.filter(
+    (assignedRole) => assignedRole.appId === appId
+  )[0]?.roles
 
   useEffect(() => {
     setRoles(assignedRoles ?? [])

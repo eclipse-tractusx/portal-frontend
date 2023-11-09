@@ -38,7 +38,14 @@ interface KeyValueViewProps {
 }
 
 const renderValue = (value: DataValue) => (
-  <Typography sx={{ fontSize: '14px', color: 'gray', margin: 'auto 0px' }}>
+  <Typography
+    sx={{
+      fontSize: '14px',
+      color: 'gray',
+      margin: 'auto 0px',
+      wordBreak: 'break-all',
+    }}
+  >
     {isValidElement(value) ? value : value.toString()}
   </Typography>
 )
@@ -58,14 +65,15 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           },
         }}
         onClick={async () => {
-          await navigator.clipboard.writeText(item.value.toString())
-          setCopied(item.value.toString())
+          const value = item.value?.toString() ?? ''
+          await navigator.clipboard.writeText(value)
+          setCopied(value)
           setTimeout(() => {
             setCopied('')
           }, 1000)
         }}
       >
-        {renderValue(item.value.toString())}
+        {renderValue(item.value?.toString() ?? '')}
         <ContentCopyIcon
           sx={{
             marginLeft: '10px',
@@ -84,6 +92,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
         width: `${cols * 349 + (cols - 1) * 31}px`,
         marginRight: '31px',
         marginBottom: '92px',
+        '@media (max-width: 1200px)': {
+          width: '100%',
+        },
       }}
     >
       <Box

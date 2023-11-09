@@ -81,6 +81,7 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
+import OSPManagement from 'components/pages/OSPManagement'
 
 /**
  * ALL_PAGES
@@ -404,6 +405,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.INTRODUCTION, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_APP_PROVIDER, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, element: <CompanyRoles /> },
+  { name: PAGES.INTRODUCTION_OSP_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
   { name: PAGES.USE_CASE, element: <UseCase /> },
@@ -525,6 +527,11 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.DECISION_SSICREDENTIAL,
     element: <AdminCredential />,
   },
+  {
+    name: PAGES.ONBOARDING_SERVICEPROVIDER,
+    role: ROLES.IDP_VIEW,
+    element: <OSPManagement />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -631,6 +638,17 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_ADD,
   },
   {
+    name: OVERLAYS.REGISTER_OSP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.REGISTER_NEXT_OSP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
+    name: OVERLAYS.CONSENT_OSP,
+  },
+  {
     name: OVERLAYS.APP_OVERVIEW_CONFIRM,
     role: ROLES.APPOVERVIEW_VIEW,
   },
@@ -687,6 +705,7 @@ export const mainMenuFullTree = [
       { name: PAGES.INTRODUCTION_APP_PROVIDER, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, hint: HINTS.NEW },
+      { name: PAGES.INTRODUCTION_OSP_BODY, hint: HINTS.NEW },
     ],
   },
   {

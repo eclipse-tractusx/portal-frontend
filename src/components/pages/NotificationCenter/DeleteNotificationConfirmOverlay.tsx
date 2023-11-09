@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 interface DeleteNotificationConfirmOverlayProps {
   title: string
   intro: string
-  handleClose: any
+  handleClose: (e: { stopPropagation: () => void }) => void
   handleCallback: () => void
   loading: boolean
 }
@@ -76,7 +76,9 @@ const DeleteNotificationConfirmOverlay = ({
         <Button
           color="primary"
           variant="text"
-          onClick={(e) => handleClose(e)}
+          onClick={(e) => {
+            handleClose(e)
+          }}
           size="medium"
           sx={{
             fontSize: '14px',

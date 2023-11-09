@@ -39,50 +39,61 @@ import {
   useEnableIDPMutation,
   useFetchIDPListQuery,
   useRemoveIDPMutation,
+  IDPCategory,
 } from 'features/admin/idpApiSlice'
 
-export const IDPList = () => {
+const MenuItemOpenOverlay = ({
+  overlay,
+  id,
+  label,
+}: {
+  overlay: OVERLAYS
+  id: string
+  label: string
+}) => {
   const dispatch = useDispatch()
+
+  const openOverlay = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    overlay: OVERLAYS,
+    id: string
+  ) => {
+    try {
+      e.stopPropagation()
+      dispatch(show(overlay, id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return (
+    <MenuItem
+      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+        openOverlay(e, overlay, id)
+      }
+    >
+      {label}
+    </MenuItem>
+  )
+}
+
+export const IDPList = () => {
   const { t } = useTranslation()
   const ti = useTranslation('idp').t
 
   const [disableLoading, setDisableLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState(false)
 
-  const { data } = useFetchIDPListQuery()
+  const { data, isFetching } = useFetchIDPListQuery()
   const idpsData = data
     ?.slice()
     .sort((a: IdentityProvider, b: IdentityProvider) =>
-      a?.alias?.localeCompare(b.alias)
+      (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
 
-  const doAddUsers = async (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    idp: IdentityProvider
-  ) => {
-    try {
-      e.stopPropagation()
-      dispatch(show(OVERLAYS.ADDUSERS_IDP, idp.identityProviderId))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const doConfigure = async (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    idp: IdentityProvider
-  ) => {
-    try {
-      e.stopPropagation()
-      dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const doConfirmDelete = async (
+  const doDelete = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     idp: IdentityProvider
   ) => {
@@ -127,154 +138,178 @@ export const IDPList = () => {
   }
 
   const renderMenu = (idp: IdentityProvider) => {
+    const menuItems = {
+      configure: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.UPDATE_IDP}
+          id={idp.identityProviderId}
+          label={ti('action.configure')}
+        />
+      ),
+      addUsers: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.ADDUSERS_IDP}
+          id={idp.identityProviderId}
+          label={ti('action.users')}
+        />
+      ),
+      delete: (
+        <MenuItem
+          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+            !deleteLoading && doDelete(e, idp)
+          }
+          sx={{
+            color: deleteLoading ? '#b6b6b6' : '#111111',
+          }}
+          disabled={idp.enabled}
+        >
+          {ti('action.delete')}
+          {deleteLoading && (
+            <CircularProgress
+              size={15}
+              sx={{
+                marginLeft: '5px',
+              }}
+            />
+          )}
+        </MenuItem>
+      ),
+      register: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.REGISTER_OSP}
+          id={idp.identityProviderId}
+          label={ti('action.register')}
+        />
+      ),
+      registerNext: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.REGISTER_NEXT_OSP}
+          id={idp.identityProviderId}
+          label={ti('action.register_next')}
+        />
+      ),
+      consent: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.CONSENT_OSP}
+          id={idp.identityProviderId}
+          label={ti('action.consent')}
+        />
+      ),
+      enableToggle: (
+        <MenuItem
+          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+            !disableLoading && doEnableDisableToggle(e, idp)
+          }
+          sx={{
+            color: disableLoading ? '#b6b6b6' : '#111111',
+          }}
+          disabled={
+            data &&
+            idp.enabled &&
+            data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
+          }
+        >
+          {idp.enabled ? ti('action.disable') : ti('action.enable')}
+          {disableLoading && (
+            <CircularProgress
+              size={15}
+              sx={{
+                marginLeft: '5px',
+              }}
+            />
+          )}
+        </MenuItem>
+      ),
+    }
+
+    const isManaged = idp.identityProviderTypeId === IDPCategory.MANAGED
+
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
-          <MenuItem
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-              doConfigure(e, idp)
-            }
-          >
-            {ti('action.configure')}
-          </MenuItem>
-          {idp.oidc?.clientId && (
-            <MenuItem
-              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                !disableLoading && doEnableDisableToggle(e, idp)
-              }
-              sx={{
-                color: disableLoading ? '#b6b6b6' : '#111111',
-              }}
-              disabled={
-                idpsData &&
-                idp.enabled &&
-                idpsData?.filter((idp: IdentityProvider) => idp.enabled)
-                  .length < 2
-              }
-            >
-              {idp.enabled ? ti('action.disable') : ti('action.enable')}
-              {disableLoading && (
-                <CircularProgress
-                  size={15}
-                  sx={{
-                    marginLeft: '5px',
-                  }}
-                />
-              )}
-            </MenuItem>
-          )}
-          {idp.enabled ? (
-            <MenuItem
-              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                doAddUsers(e, idp)
-              }
-            >
-              {ti('action.users')}
-            </MenuItem>
-          ) : (
-            <MenuItem
-              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                !deleteLoading && doConfirmDelete(e, idp)
-              }
-              sx={{
-                color: deleteLoading ? '#b6b6b6' : '#111111',
-              }}
-              disabled={idp.enabled}
-            >
-              {ti('action.delete')}
-              {deleteLoading && (
-                <CircularProgress
-                  size={15}
-                  sx={{
-                    marginLeft: '5px',
-                  }}
-                />
-              )}
-            </MenuItem>
-          )}
+          {menuItems.configure}
+          {isManaged && idp.enabled && menuItems.register}
+          {!isManaged && idp.oidc?.clientId && menuItems.enableToggle}
+          {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}
         </DropdownMenu>
       </div>
     )
   }
 
   return (
-    <>
-      {idpsData && (
-        <Table
-          rowsCount={idpsData.length}
-          hideFooter
-          disableSelectionOnClick={true}
-          disableColumnFilter={true}
-          disableColumnMenu={true}
-          disableColumnSelector={true}
-          disableDensitySelector={true}
-          columnHeadersBackgroundColor={'#ffffff'}
-          title=""
-          toolbarVariant="ultimate"
-          columns={[
-            {
-              field: 'displayName',
-              headerName: t('global.field.name'),
-              flex: 2,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                row.displayName ?? (
-                  <>
-                    <ReportProblemIcon color="error" fontSize="small" />
-                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                      {ti('field.error')}
-                    </Typography>
-                  </>
-                ),
-            },
-            {
-              field: 'alias',
-              headerName: t('global.field.alias'),
-              flex: 1.5,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                row.alias ?? (
-                  <>
-                    <ReportProblemIcon color="error" fontSize="small" />
-                    <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                      {ti('field.error')}
-                    </Typography>
-                  </>
-                ),
-            },
-            {
-              field: 'identityProviderTypeId',
-              headerName: t('global.field.authMethod'),
-              flex: 2,
-            },
-            {
-              field: 'progress',
-              headerName: t('global.field.progress'),
-              flex: 2,
-              sortable: false,
-              renderCell: ({ row }: { row: IdentityProvider }) => (
-                <IDPStateProgress idp={row} />
-              ),
-            },
-            {
-              field: 'enabled',
-              headerName: t('global.field.status'),
-              flex: 2,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                getStatus(row.enabled, row.oidc?.clientId),
-            },
-            {
-              field: 'details',
-              headerName: t('global.field.action'),
-              flex: 2,
-              sortable: false,
-              renderCell: ({ row }: { row: IdentityProvider }) =>
-                renderMenu(row),
-            },
-          ]}
-          rows={idpsData}
-          getRowId={(row: { [key: string]: string }) => row.identityProviderId}
-          hasBorder={false}
-        />
-      )}
-    </>
+    <Table
+      rowsCount={idpsData?.length}
+      hideFooter
+      loading={isFetching}
+      disableSelectionOnClick={true}
+      disableColumnFilter={true}
+      disableColumnMenu={true}
+      disableColumnSelector={true}
+      disableDensitySelector={true}
+      columnHeadersBackgroundColor={'#ffffff'}
+      title=""
+      toolbarVariant="ultimate"
+      columns={[
+        {
+          field: 'displayName',
+          headerName: t('global.field.name'),
+          flex: 2,
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            row.displayName ?? (
+              <>
+                <ReportProblemIcon color="error" fontSize="small" />
+                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                  {ti('field.error')}
+                </Typography>
+              </>
+            ),
+        },
+        {
+          field: 'alias',
+          headerName: t('global.field.alias'),
+          flex: 1.5,
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            row.alias ?? (
+              <>
+                <ReportProblemIcon color="error" fontSize="small" />
+                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                  {ti('field.error')}
+                </Typography>
+              </>
+            ),
+        },
+        {
+          field: 'identityProviderTypeId',
+          headerName: t('global.field.authMethod'),
+          flex: 2,
+        },
+        {
+          field: 'progress',
+          headerName: t('global.field.progress'),
+          flex: 2,
+          sortable: false,
+          renderCell: ({ row }: { row: IdentityProvider }) => (
+            <IDPStateProgress idp={row} />
+          ),
+        },
+        {
+          field: 'enabled',
+          headerName: t('global.field.status'),
+          flex: 2,
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            getStatus(row.enabled, row.oidc?.clientId),
+        },
+        {
+          field: 'details',
+          headerName: t('global.field.action'),
+          flex: 2,
+          sortable: false,
+          renderCell: ({ row }: { row: IdentityProvider }) => renderMenu(row),
+        },
+      ]}
+      rows={idpsData ?? []}
+      getRowId={(row: { [key: string]: string }) => row.identityProviderId}
+      hasBorder={false}
+    />
   )
 }

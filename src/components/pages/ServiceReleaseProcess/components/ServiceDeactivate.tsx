@@ -32,6 +32,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import {
+  type ProvidedServiceType,
   ServiceDeactivateEnum,
   useDeactivateServiceMutation,
 } from 'features/serviceManagement/apiSlice'
@@ -46,8 +47,10 @@ export default function ServiceDeactivate() {
   const [checked, setChecked] = useState(false)
   const { state } = useLocation()
   const [isLoading, setIsLoading] = useState(false)
-  const items: any = state
-  const service = items?.filter((item: any) => item.id === serviceId)
+  const items = state
+  const service = items?.filter(
+    (item: ProvidedServiceType) => item.id === serviceId
+  )
   const [deactivateService] = useDeactivateServiceMutation()
   const leadImageId = service?.[0]?.leadPictureId
 
@@ -146,7 +149,9 @@ export default function ServiceDeactivate() {
                     loadIndicator="Loading..."
                     variant="contained"
                     size="small"
-                    onButtonClick={() => {}}
+                    onButtonClick={() => {
+                      // do nothing
+                    }}
                     label={`${t('global.actions.confirm')}`}
                   />
                 ) : (
