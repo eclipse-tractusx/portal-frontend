@@ -972,6 +972,7 @@
       },
       "description": "Description",
       "imageGallery": "Images",
+      "tags": "Tags",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
@@ -1185,9 +1186,9 @@
       "recommendations": "Recommendations",
       "allServices": "All Services",
       "tabs": {
-        "all": "All Services",
-        "dataspaceService": "Dataspace Services",
-        "consultancyService": "Consultancy Services"
+        "all": "Alle Dienstleistungen",
+        "dataspaceService": "Datenraumdienste",
+        "consultancyService": "Beratungsservice"
       },
       "sortOptions": {
         "new": "Newest First",
@@ -1231,7 +1232,10 @@
       "allServices": "All Services",
       "viewDetails": "Display more details",
       "activateBtn": "Activate",
+      "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
+      "error": "Error",
+      "success": "Success",
       "tabs": {
         "request": "Request",
         "active": "Active",
@@ -1287,7 +1291,11 @@
         },
         "subscriptionDetails": "Subscription Details",
         "appTitle": "App Title",
+        "serviceTitle": "Service Title",
         "status": "Status",
+        "subscriptionInitiated": "Subscription Initiated",
+        "subscriptionActivate": "Subscription Activate",
+        "setupOngoing": "Setup Ongoing",
         "customer": "Customer",
         "bpn": "BPN",
         "contact": "Contact",

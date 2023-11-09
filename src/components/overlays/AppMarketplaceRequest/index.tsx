@@ -106,9 +106,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           agreement.agreementId,
         ])
     } else {
-      const index =
-        checkedAgreementsIds &&
-        checkedAgreementsIds.indexOf(agreement.agreementId)
+      const index = checkedAgreementsIds?.indexOf(agreement.agreementId)
       if (index > -1) {
         checkedAgreementsIds.splice(index, 1)
         setCheckedAgreementsIds([...checkedAgreementsIds])
@@ -145,18 +143,19 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
             t('content.appMarketplace.desc4').replace('{appName}', data.title)}
         </Typography>
         <ul className="agreements-list">
-          {agreements &&
-            agreements.map((agreement, index) => (
-              <li key={index}>
-                <Checkbox
-                  label={agreement.name}
-                  onChange={(e) => {
-                    handleCheckedAgreement(e.target.checked, agreement)
-                  }}
-                  onFocusVisible={function noRefCheck() {}}
-                />
-              </li>
-            ))}
+          {agreements?.map((agreement, index) => (
+            <li key={index}>
+              <Checkbox
+                label={agreement.name}
+                onChange={(e) => {
+                  handleCheckedAgreement(e.target.checked, agreement)
+                }}
+                onFocusVisible={function noRefCheck() {
+                  // do nothing
+                }}
+              />
+            </li>
+          ))}
         </ul>
         <Typography variant="body2" sx={{ marginBottom: '15px' }}>
           {t('content.appMarketplace.statusHeading')}

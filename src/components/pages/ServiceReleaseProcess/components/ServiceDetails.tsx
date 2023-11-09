@@ -97,7 +97,9 @@ export default function ServiceDetails() {
                 imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
                 label={''}
                 buttonText=""
-                onBtnClick={() => {}}
+                onBtnClick={() => {
+                  // do nothing
+                }}
                 title={fetchServiceStatus.title}
                 subTitle={getServiceTypes()}
                 description={''}

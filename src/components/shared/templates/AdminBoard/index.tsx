@@ -195,7 +195,7 @@ const setCards = (
     content: ServiceContent[]
   }
 ) => {
-  if (payload && payload.meta) {
+  if (payload?.meta) {
     return payload.meta.page === 0
       ? payload.content
       : state.appCards.concat(payload.content)
@@ -264,7 +264,7 @@ export default function CommonAdminBoard({
   const { data, refetch, isFetching, isSuccess } = fetchQuery(fetchArgs)
 
   useEffect(() => {
-    if (data && data?.content)
+    if (data?.content)
       setState({ type: ActionKind.SET_APPS_AND_APP_CARDS, payload: data })
   }, [data])
 

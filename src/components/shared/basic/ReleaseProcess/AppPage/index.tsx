@@ -94,6 +94,7 @@ export default function AppPage() {
 
   const getPrivacyPolicies = useFetchPrivacyPoliciesQuery().data
   const privacyPolicies =
+    // eslint-disable-next-line
     getPrivacyPolicies && getPrivacyPolicies?.privacyPolicies.slice(0, -1)
   const [selectedPrivacyPolicies, setSelectedPrivacyPolicies] = useState<
     string[]
@@ -211,12 +212,8 @@ export default function AppPage() {
       Object.keys(defaultuploadDataPrerequisits).length > 0
     ) {
       setValue('uploadDataPrerequisits', {
-        id:
-          defaultuploadDataPrerequisits &&
-          defaultuploadDataPrerequisits[0]?.documentId,
-        name:
-          defaultuploadDataPrerequisits &&
-          defaultuploadDataPrerequisits[0]?.documentName,
+        id: defaultuploadDataPrerequisits?.[0]?.documentId,
+        name: defaultuploadDataPrerequisits?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadDataPrerequisits', UploadStatus.UPLOAD_SUCCESS)
@@ -227,12 +224,8 @@ export default function AppPage() {
       Object.keys(defaultuploadTechnicalGuide).length > 0
     ) {
       setValue('uploadTechnicalGuide', {
-        id:
-          defaultuploadTechnicalGuide &&
-          defaultuploadTechnicalGuide[0]?.documentId,
-        name:
-          defaultuploadTechnicalGuide &&
-          defaultuploadTechnicalGuide[0]?.documentName,
+        id: defaultuploadTechnicalGuide?.[0]?.documentId,
+        name: defaultuploadTechnicalGuide?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadTechnicalGuide', UploadStatus.UPLOAD_SUCCESS)
@@ -243,9 +236,8 @@ export default function AppPage() {
       Object.keys(defaultuploadAppContract).length > 0
     ) {
       setValue('uploadAppContract', {
-        id: defaultuploadAppContract && defaultuploadAppContract[0]?.documentId,
-        name:
-          defaultuploadAppContract && defaultuploadAppContract[0]?.documentName,
+        id: defaultuploadAppContract?.[0]?.documentId,
+        name: defaultuploadAppContract?.[0]?.documentName,
         status: UploadStatus.UPLOAD_SUCCESS,
       })
       setFileStatus('uploadAppContract', UploadStatus.UPLOAD_SUCCESS)
@@ -391,7 +383,7 @@ export default function AppPage() {
       ],
       title: statusData.title ?? '',
       provider: statusData.provider ?? '',
-      salesManagerId: statusData.salesManagerId ?? '',
+      salesManagerId: statusData.salesManagerId ?? null,
       useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id) ?? [],
       supportedLanguageCodes: statusData.supportedLanguageCodes ?? [],
       price: statusData.price,
@@ -680,22 +672,22 @@ export default function AppPage() {
 
         {privacyPolicies ? (
           <Grid container item spacing={2}>
-            {privacyPolicies &&
-              privacyPolicies?.map((item: string) => (
-                <Grid item md={6} key={item} className="privacyPolicies">
-                  <Checkbox
-                    label={getLabel(item)}
-                    checked={selectedPrivacyPolicies.indexOf(item) !== -1}
-                    onChange={(e) => {
-                      selectPrivacyPolicies(item, e.target.checked, 'checkbox')
-                    }}
-                    size="small"
-                  />
-                </Grid>
-              ))}
+            {privacyPolicies?.map((item: string) => (
+              <Grid item md={6} key={item} className="privacyPolicies">
+                <Checkbox
+                  label={getLabel(item)}
+                  checked={selectedPrivacyPolicies.indexOf(item) !== -1}
+                  onChange={(e) => {
+                    selectPrivacyPolicies(item, e.target.checked, 'checkbox')
+                  }}
+                  size="small"
+                />
+              </Grid>
+            ))}
             <Grid item md={6} className="privacyPolicies">
               <Radio
                 label={getLabel(
+                  // eslint-disable-next-line
                   getPrivacyPolicies &&
                     getPrivacyPolicies?.privacyPolicies.slice(-1)[0]
                 )}

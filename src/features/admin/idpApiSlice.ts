@@ -24,6 +24,7 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 export enum IDPCategory {
   SHARED = 'SHARED',
   OWN = 'OWN',
+  MANAGED = 'MANAGED',
 }
 
 export enum IDPProviderType {
@@ -136,7 +137,7 @@ export interface UserIdentityProviders {
 export interface IdentityProvider {
   identityProviderId: string
   alias: string
-  ProviderTypeId: IDPCategory
+  identityProviderTypeId: IDPCategory
   displayName?: string
   redirectUrl: string
   enabled: boolean
