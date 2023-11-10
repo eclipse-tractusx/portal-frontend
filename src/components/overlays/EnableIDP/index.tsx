@@ -30,6 +30,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
@@ -41,7 +42,7 @@ import {
 import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
-import { error, success } from 'services/NotifyService'
+import { success } from 'services/NotifyService'
 
 export const EnableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -54,6 +55,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
     IdentityProviderUser | undefined
   >(undefined)
   const [loading, setLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   const stepsList = [
     {
@@ -95,7 +97,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
         dispatch(show(OVERLAYS.ENABLE_IDP_SUCCESS, id))
         success(t('enable.success'))
       } catch (err) {
-        error(t('enable.error'), '', err as object)
+        setShowError(true)
       }
       setLoading(false)
     } catch (err) {
@@ -128,11 +130,11 @@ export const EnableIDP = ({ id }: { id: string }) => {
         <Typography
           variant="label3"
           sx={{
+            textDecoration: 'underline',
             display: 'flex',
             justifyContent: 'center',
             cursor: 'pointer',
             color: '#0088CC',
-            textDecoration: 'underline',
           }}
         >
           <HelpOutlineIcon
@@ -143,6 +145,27 @@ export const EnableIDP = ({ id }: { id: string }) => {
           />
           {t('add.learnMore')}
         </Typography>
+        {showError && (
+          <Typography
+            variant="label3"
+            sx={{
+              display: 'flex',
+              marginTop: '30px',
+              border: '1px solid #d91e18',
+              borderRadius: '5px',
+              color: '#d91e18',
+              padding: '20px 40px',
+            }}
+          >
+            <WarningAmberIcon
+              sx={{
+                marginRight: '5px',
+                fontSize: '18px',
+              }}
+            />
+            {t('add.metadataError')}
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
         <Button
