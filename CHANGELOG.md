@@ -4,6 +4,8 @@
 
 - Company Role
   - Updated OSP translations
+- Technical User
+  - Fix - After adding / creating new technical users, list view at bottom "randomly" shows duplicates. Applies to all the views (ALL, MANAGED, OWNED)
 
 ## 1.7.0-RC2
 
