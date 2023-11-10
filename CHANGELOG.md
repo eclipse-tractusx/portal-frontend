@@ -2,6 +2,7 @@
 
 ## 1.7.0-RC3
 
+- Service Subscription sorting fix
 - Change Company Role showing invalid Deselect
 - Company Role
   - Updated OSP translations
