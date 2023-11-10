@@ -47,7 +47,8 @@ import { ValidatingInput } from '../CXValidatingOverlay/ValidatingInput'
 import { isCompanyName } from 'types/Patterns'
 import { getCentralIdp } from 'services/EnvironmentService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { error, success } from 'services/NotifyService'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import { success } from 'services/NotifyService'
 
 enum IDPType {
   COMPANY = 'Company',
@@ -254,6 +255,8 @@ export const AddIdp = ({
     name: '',
   })
   const [loading, setLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
+
   const [addIdp] = useAddIDPMutation()
   const [updateIdp] = useUpdateIDPMutation()
 
@@ -281,7 +284,7 @@ export const AddIdp = ({
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
       success(t('add.success'))
     } catch (err) {
-      error(t('add.error'), t('state.error'), err as object)
+      setShowError(true)
     }
     setLoading(false)
   }
@@ -333,19 +336,40 @@ export const AddIdp = ({
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            cursor: 'pointer',
             color: '#0088CC',
+            cursor: 'pointer',
             textDecoration: 'underline',
           }}
         >
           <HelpOutlineIcon
             sx={{
-              fontSize: '18px',
               marginRight: '5px',
+              fontSize: '18px',
             }}
           />
           {t('add.learnMore')}
         </Typography>
+        {showError && (
+          <Typography
+            sx={{
+              display: 'flex',
+              color: '#d91e18',
+              padding: '20px 40px',
+              marginTop: '30px',
+              border: '1px solid #d91e18',
+              borderRadius: '5px',
+            }}
+            variant="label3"
+          >
+            <WarningAmberIcon
+              sx={{
+                fontSize: '18px',
+                marginRight: '5px',
+              }}
+            />
+            {t('add.metadataError')}
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>

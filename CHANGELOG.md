@@ -4,9 +4,12 @@
 
 - User Bulk Upload
   - Error Handling
+- Service Subscription sorting fix
 - Change Company Role showing invalid Deselect
 - Company Role
   - Updated OSP translations
+- Technical User
+  - Fix - After adding / creating new technical users, list view at bottom "randomly" shows duplicates. Applies to all the views (ALL, MANAGED, OWNED)
 - Registration Process
   - Show contry code info
 
