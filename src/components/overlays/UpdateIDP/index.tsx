@@ -42,7 +42,7 @@ import {
 } from 'features/admin/idpApiSlice'
 import { UpdateIDPContent } from './UpdateIDPContent'
 import { OVERLAYS } from 'types/Constants'
-import { error, success } from 'services/NotifyService'
+import { success } from 'services/NotifyService'
 
 export const UpdateIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -74,7 +74,6 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       }
     } catch (err) {
       setShowError(true)
-      error(t('edit.error'), '', err as object)
     }
     setLoading(false)
   }

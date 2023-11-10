@@ -47,7 +47,8 @@ import { ValidatingInput } from '../CXValidatingOverlay/ValidatingInput'
 import { isCompanyName } from 'types/Patterns'
 import { getCentralIdp } from 'services/EnvironmentService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { error, success } from 'services/NotifyService'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import { success } from 'services/NotifyService'
 
 enum IDPType {
   COMPANY = 'Company',
@@ -254,6 +255,8 @@ export const AddIdp = ({
     name: '',
   })
   const [loading, setLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
+
   const [addIdp] = useAddIDPMutation()
   const [updateIdp] = useUpdateIDPMutation()
 
@@ -281,7 +284,7 @@ export const AddIdp = ({
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
       success(t('add.success'))
     } catch (err) {
-      error(t('add.error'), t('state.error'), err as object)
+      setShowError(true)
     }
     setLoading(false)
   }
@@ -346,6 +349,27 @@ export const AddIdp = ({
           />
           {t('add.learnMore')}
         </Typography>
+        {showError && (
+          <Typography
+            variant="label3"
+            sx={{
+              display: 'flex',
+              marginTop: '30px',
+              color: '#d91e18',
+              border: '1px solid #d91e18',
+              padding: '20px 40px',
+              borderRadius: '5px',
+            }}
+          >
+            <WarningAmberIcon
+              sx={{
+                marginRight: '5px',
+                fontSize: '18px',
+              }}
+            />
+            {t('add.metadataError')}
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
