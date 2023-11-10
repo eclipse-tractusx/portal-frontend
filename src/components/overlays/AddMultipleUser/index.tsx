@@ -115,16 +115,12 @@ export default function AddMultipleUser() {
   useEffect(() => {
     if (uploadAPIRResponse) {
       const errorMsgs = uploadAPIRResponse.errors.map(
-        (error: ErrorResponse) => {
-          return [
-            csvData[error.line][0] +
-              ' ' +
-              csvData[error.line][1] +
-              ', ' +
-              csvData[error.line][2],
-            error.message,
-          ]
-        }
+        (error: ErrorResponse) => [
+          `${csvData[error.line][0]} ${csvData[error.line][1]}, ${
+            csvData[error.line][2]
+          }`,
+          error.message,
+        ]
       )
       setTableErrorData({
         head: [],
