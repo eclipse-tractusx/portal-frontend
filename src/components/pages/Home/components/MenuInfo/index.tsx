@@ -21,15 +21,13 @@ import { useTranslation } from 'react-i18next'
 import './menu-info.scss'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { useSelector, useDispatch } from 'react-redux'
-import { Button, LanguageSwitch, UserNav } from '@catena-x/portal-shared-components'
 import { Link } from 'react-router-dom'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import CloseIcon from '@mui/icons-material/Close'
-import i18next, { changeLanguage } from 'i18next'
-import I18nService from 'services/I18nService'
+import { MobileMenu } from 'components/shared/MobileMenu'
 
-export const MenuInfo = ({ main, user }: { main: Tree[]; user: string[] }) => {
+export const MenuInfo = ({ main }: { main: Tree[] }) => {
   const { t } = useTranslation()
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
@@ -53,14 +51,18 @@ export const MenuInfo = ({ main, user }: { main: Tree[]; user: string[] }) => {
           onClickAway={() => dispatch(setAppear({ MENU: !visible }))}
         >
           <div className="MenuInfo">
-            <CloseIcon onClick={() => dispatch(setAppear({ MENU: !visible }))} sx={{
-                color: '#B6B6B6'
-            }} className='closeIcon' />
-            <UserNav className='userMenuInfo' component={Link} divider items={menu} />
-            <LanguageSwitch
-                current={i18next.language}
-                languages={I18nService.supportedLanguages.map((key) => ({ key }))}
-                onChange={changeLanguage}
+            <CloseIcon
+              onClick={() => dispatch(setAppear({ MENU: !visible }))}
+              sx={{
+                color: '#B6B6B6',
+              }}
+              className="closeIcon"
+            />
+            <MobileMenu
+              className="userMenuInfo"
+              component={Link}
+              divider
+              items={menu}
             />
           </div>
         </ClickAwayListener>

@@ -54,8 +54,7 @@ export default function Main() {
       <Footer pages={AccessService.footerMenu()} />
       <MainOverlay />
       <MainNotify />
-      <MenuInfo main={AccessService.mainMenuTree()}
-        user={AccessService.userMenu()} />
+      <MenuInfo main={AccessService.mainMenuTree()} />
     </>
   )
 }
