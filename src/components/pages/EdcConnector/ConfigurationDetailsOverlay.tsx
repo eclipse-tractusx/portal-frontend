@@ -97,6 +97,9 @@ const ConfigurationDetailsOverlay = ({
                   '_blank'
                 )
               }
+              onKeyUp={() => {
+                //doChange
+              }}
             >
               {t(
                 'content.edcconnector.configurationDetails.orderList.clickhere'
@@ -117,6 +120,9 @@ const ConfigurationDetailsOverlay = ({
                   '_blank'
                 )
               }
+              onKeyUp={() => {
+                //doChange
+              }}
             >
               {t(
                 'content.edcconnector.configurationDetails.orderList.clickhere'

@@ -78,7 +78,13 @@ const getIntro = (status: Status, retry: () => void, idpStatus?: boolean) => {
     return (
       <Trans i18nKey="[span]overlays.idp_delete_error_intro">
         Please{' '}
-        <span className="idp-retry-link" onClick={retry}>
+        <span
+          className="idp-retry-link"
+          onClick={retry}
+          onKeyUp={() => {
+            //doChange
+          }}
+        >
           {' '}
           retry
         </span>{' '}

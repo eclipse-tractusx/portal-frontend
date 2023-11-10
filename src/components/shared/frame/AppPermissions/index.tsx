@@ -40,6 +40,9 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
         onClick={() => {
           navigate(`/appdetail/${id}`)
         }}
+        onKeyUp={() => {
+          //doChange
+        }}
       >
         {data ? data.title : id}
         <span style={{ marginLeft: '20px', color: '#cccccc' }}>
