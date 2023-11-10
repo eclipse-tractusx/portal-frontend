@@ -5,6 +5,8 @@
 - Change Company Role showing invalid Deselect
 - Company Role
   - Updated OSP translations
+- Registration Process
+  - Show contry code info
 
 ## 1.7.0-RC2
 

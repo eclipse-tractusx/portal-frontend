@@ -48,6 +48,7 @@ export type CompanyDetail = {
   countryDe: string
   companyRoles: []
   uniqueIds?: []
+  countryAlpha2Code?: string
 }
 
 export type RegistrationRequestDocument = {
