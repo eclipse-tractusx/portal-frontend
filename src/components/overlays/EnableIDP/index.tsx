@@ -130,11 +130,11 @@ export const EnableIDP = ({ id }: { id: string }) => {
         <Typography
           variant="label3"
           sx={{
+            textDecoration: 'underline',
             display: 'flex',
             justifyContent: 'center',
             cursor: 'pointer',
             color: '#0088CC',
-            textDecoration: 'underline',
           }}
         >
           <HelpOutlineIcon
@@ -151,10 +151,10 @@ export const EnableIDP = ({ id }: { id: string }) => {
             sx={{
               display: 'flex',
               marginTop: '30px',
-              color: '#d91e18',
               border: '1px solid #d91e18',
-              padding: '20px 40px',
               borderRadius: '5px',
+              color: '#d91e18',
+              padding: '20px 40px',
             }}
           >
             <WarningAmberIcon

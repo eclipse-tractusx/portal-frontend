@@ -336,35 +336,35 @@ export const AddIdp = ({
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            cursor: 'pointer',
             color: '#0088CC',
+            cursor: 'pointer',
             textDecoration: 'underline',
           }}
         >
           <HelpOutlineIcon
             sx={{
-              fontSize: '18px',
               marginRight: '5px',
+              fontSize: '18px',
             }}
           />
           {t('add.learnMore')}
         </Typography>
         {showError && (
           <Typography
-            variant="label3"
             sx={{
               display: 'flex',
-              marginTop: '30px',
               color: '#d91e18',
-              border: '1px solid #d91e18',
               padding: '20px 40px',
+              marginTop: '30px',
+              border: '1px solid #d91e18',
               borderRadius: '5px',
             }}
+            variant="label3"
           >
             <WarningAmberIcon
               sx={{
-                marginRight: '5px',
                 fontSize: '18px',
+                marginRight: '5px',
               }}
             />
             {t('add.metadataError')}
