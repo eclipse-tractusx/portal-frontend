@@ -131,7 +131,7 @@ const AddusersIDPResponse = ({
       const errorMsgs = userResponse.errors.map((error: ErrorResponse) => [
         `${csvData[error.line - 1].firstName} ${
           csvData[error.line - 1].lastName
-        } ${csvData[error.line - 1].email}`,
+        }, ${csvData[error.line - 1].email}`,
         error.message,
       ])
       setTableErrorData({
