@@ -340,10 +340,6 @@ export default function Subscription({
 
   const resetCardsAndSetFetchArgs = (value: string, type: string) => {
     setState({
-      type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
-      payload: [],
-    })
-    setState({
       type: ActionKind.SET_PAGE_STATUS_SORTING_FETCH_ARGS,
       payload: {
         page: 0,
