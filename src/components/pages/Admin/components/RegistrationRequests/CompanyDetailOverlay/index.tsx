@@ -292,7 +292,7 @@ const CompanyDetailOverlay = ({
                     key="Country"
                     {...{
                       variableName: 'Country',
-                      value: selectedCompany?.countryDe ?? '',
+                      value: selectedCompany?.countryAlpha2Code ?? '',
                     }}
                   />
                   <>

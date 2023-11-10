@@ -128,16 +128,12 @@ const AddusersIDPResponse = ({
 
   useEffect(() => {
     if (userResponse) {
-      const errorMsgs = userResponse.errors.map((error: ErrorResponse) => {
-        return [
-          csvData[error.line - 1].firstName +
-            ' ' +
-            csvData[error.line - 1].lastName +
-            ', ' +
-            csvData[error.line - 1].email,
-          error.message,
-        ]
-      })
+      const errorMsgs = userResponse.errors.map((error: ErrorResponse) => [
+        `${csvData[error.line - 1].firstName} ${
+          csvData[error.line - 1].lastName
+        } ${csvData[error.line - 1].email}`,
+        error.message,
+      ])
       setTableErrorData({
         head: [],
         body: errorMsgs,
