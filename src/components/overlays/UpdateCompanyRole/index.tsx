@@ -77,15 +77,13 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const newSelectedRoles = data
     ? data.filter(
-        (role) =>
-          roles.indexOf(role.companyRoles) !== -1 && !role.companyRolesActive
+        (role) => roles.includes(role.companyRoles) && !role.companyRolesActive
       )
     : []
 
   const newDeselectedRoles = data
     ? data.filter(
-        (role) =>
-          roles.indexOf(role.companyRoles) === -1 && role.companyRolesActive
+        (role) => !roles.includes(role.companyRoles) && role.companyRolesActive
       )
     : []
 
@@ -248,12 +246,12 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                     <td>
                       <Chip
                         color={
-                          roles.indexOf(role.companyRoles) !== -1
+                          roles.includes(role.companyRoles)
                             ? 'warning'
                             : 'error'
                         }
                         label={
-                          roles.indexOf(role.companyRoles) !== -1
+                          roles.includes(role.companyRoles)
                             ? t('content.companyRolesUpdate.overlay.added')
                             : t('content.companyRolesUpdate.overlay.deselected')
                         }
