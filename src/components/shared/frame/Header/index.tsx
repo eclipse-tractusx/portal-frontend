@@ -58,7 +58,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
               className="search-icon"
               onKeyUp={() => {
-                //doChange
+                // do nothing
               }}
             >
               <SearchIcon sx={{ color: '#0f71cb' }} />
@@ -89,7 +89,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
         className="mobile-search-icon"
         onKeyUp={() => {
-          //doChange
+          // do nothing
         }}
       >
         <SearchIcon sx={{ color: '#0f71cb' }} />

@@ -98,7 +98,7 @@ const ConfigurationDetailsOverlay = ({
                 )
               }
               onKeyUp={() => {
-                //doChange
+                // do nothing
               }}
             >
               {t(
@@ -121,7 +121,7 @@ const ConfigurationDetailsOverlay = ({
                 )
               }
               onKeyUp={() => {
-                //doChange
+                // do nothing
               }}
             >
               {t(

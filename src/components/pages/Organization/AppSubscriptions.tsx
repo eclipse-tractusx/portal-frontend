@@ -55,7 +55,7 @@ export default function AppSubscriptions({
       className="organization-subscriptions"
       onClick={onButtonClick}
       onKeyUp={() => {
-        //doChange
+        // do nothing
       }}
     >
       <div className="iconNameContainer">

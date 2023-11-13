@@ -41,7 +41,7 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
           navigate(`/appdetail/${id}`)
         }}
         onKeyUp={() => {
-          //doChange
+          // do nothing
         }}
       >
         {data ? data.title : id}

@@ -74,7 +74,7 @@ const getIntro = (status: Status, retry: () => void) => {
           className="idp-retry-link"
           onClick={retry}
           onKeyUp={() => {
-            //doChange
+            // do nothing
           }}
         >
           {' '}
