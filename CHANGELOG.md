@@ -2,6 +2,8 @@
 
 ## 1.7.0-RC3
 
+- App release process
+  - error message fix in technical integration
 - IDP User Migration
   - Extended error handling of the api response message implemented
   - Included csv file upload validation of csv header row content
