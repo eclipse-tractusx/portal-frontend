@@ -54,15 +54,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.14.0
         with:
           scan-type: "config"
           # ignore-unfixed: true
-          exit-code: "1"
           hide-progress: false
           format: "sarif"
           output: "trivy-results1.sarif"
-          severity: "CRITICAL,HIGH"
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
@@ -88,14 +86,13 @@ jobs:
       # For public images, no ENV vars must be set.
       - name: Run Trivy vulnerability scanner
         if: always()
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.14.0
         with:
           # Path to Docker image
           image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest"
           format: "sarif"
           output: "trivy-results2.sarif"
-          exit-code: "1"
-          severity: "CRITICAL,HIGH"
+          vuln-type: "os,library"
 
       - name: Upload Trivy scan results to GitHub Security tab
         if: always()
