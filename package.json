@@ -92,7 +92,8 @@
   },
   "resolutions": {
     "**/nth-check": "^2.1.1",
-    "@babel/traverse": "^7.23.2"
+    "**/@babel/traverse": "^7.23.2",
+    "**/axios": "^1.6.1"
   },
   "scripts": {
     "prepare": "husky install",
