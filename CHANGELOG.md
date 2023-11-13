@@ -2,6 +2,8 @@
 
 ## 1.7.0-RC3
 
+- User Bulk Upload
+  - Error Handling
 - Service Subscription sorting fix
 - Change Company Role showing invalid Deselect
 - Company Role
@@ -12,6 +14,11 @@
   - Show contry code info
 
 ## 1.7.0-RC2
+
+- App Subscription
+  - Autosetup Process Worker implementation (adjust overlay)
+- Usermanagement
+  - User Invite IdP connection logic
 
 ### Change
 

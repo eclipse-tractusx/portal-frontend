@@ -702,6 +702,7 @@
           "heading": "Upload form by selecting the form file with the user data"
         },
         "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "fileHeaderError": "Bulk Upload list format wrong. Missing or incorrect header line. Recheck the download file to retrieve the expected format",
         "uploadedFile": {
           "fileHeading": "Prepared for upload:",
           "addUserRolesHeading": "Add user roles for all users in bulk upload:",
