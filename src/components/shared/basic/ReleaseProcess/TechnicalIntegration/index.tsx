@@ -142,9 +142,7 @@ export default function TechnicalIntegration() {
       oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
       selectedProfiles = [...oldTechUserProfiles]
     }
-    selectedProfiles?.length === 0
-      ? setEnableUserProfilesErrorMessage(true)
-      : setEnableUserProfilesErrorMessage(false)
+    setEnableUserProfilesErrorMessage(selectedProfiles?.length === 0)
     setTechUserProfiles(selectedProfiles)
   }
 
