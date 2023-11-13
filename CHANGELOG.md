@@ -5,6 +5,8 @@
 - IDP User Migration
   - Extended error handling of the api response message implemented
   - Included csv file upload validation of csv header row content
+- User Bulk Upload
+  - Error Handling
 - Service Subscription sorting fix
 - Change Company Role showing invalid Deselect
 - Company Role
@@ -15,6 +17,11 @@
   - Show contry code info
 
 ## 1.7.0-RC2
+
+- App Subscription
+  - Autosetup Process Worker implementation (adjust overlay)
+- Usermanagement
+  - User Invite IdP connection logic
 
 ### Change
 
