@@ -17,6 +17,7 @@
   - Fix - After adding / creating new technical users, list view at bottom "randomly" shows duplicates. Applies to all the views (ALL, MANAGED, OWNED)
 - Registration Process
   - Show contry code info
+- App Detail UI changes
 
 ## 1.7.0-RC2
 
