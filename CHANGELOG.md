@@ -2,6 +2,9 @@
 
 ## 1.7.0-RC3
 
+- IDP User Migration
+  - Extended error handling of the api response message implemented
+  - Included csv file upload validation of csv header row content
 - User Bulk Upload
   - Error Handling
 - Service Subscription sorting fix
