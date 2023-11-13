@@ -212,8 +212,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
             {item.languages?.map((lang, index) => (
               <span key={lang}>
-                {' '}
-                {(index ? ', ' : '') + lang.toUpperCase()}{' '}
+                {` ${index ? ', ' : ''}${lang.toUpperCase()} `}
               </span>
             ))}
           </Typography>
