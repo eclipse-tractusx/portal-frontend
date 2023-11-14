@@ -5,6 +5,39 @@
 - ...
 -
 
+## 1.7.0-RC3
+
+### Change
+
+- IdP configuration overlays, extended error handling on the ui
+- New backend error handling (extended details) implemented for bulk user changes
+  - User Management - bulk user creation error overlay for single user error message response enhanced to show for each failed user details regarding the reason for failure (if available)
+  - IdP Switch - user migration function error support enhanced with single user error message response to show for each failed user details regarding the reason for failure (if available)
+
+### Feature
+
+n/a
+
+### Technical Support
+
+- upgraded dependencies to latest version
+
+### Bugfix
+
+- Admin Business Partner Registration Request Screen - Detail Overlay country fixed to display country code received via backend api
+- Technical User Overview - displaying duplicates after adding/creating new technical users fixed
+- Technical User detail screen - removed copy icon from connector link
+- Company Role Change Screen - updated OSP value to human readable text instead of displaying technical keys
+- Company Role Change Detail Overlay - displayed invalid deselect role details for OSP fixed
+- Service Subscription sorting element behavior fixed in case the user sorts multiple times with the same sorting option
+- Vulnerability from dependency
+  - Set resolution for axios
+
+### Known Knowns
+
+- App change process 'documents' not yet integrated with backend
+- App/Service Release Process - upon clicking "Save" given consent is removed and needs to get set newly
+
 ## 1.7.0-RC2
 
 ### Change
@@ -74,8 +107,6 @@
   - UI Changes
 - Home
   - Fixed image display for 'my business applications'
-- App Subscription and Servcie Subscripiton
-  - Status UI Changes
 - Vulnerability from dependency
   - Set resolution for @babel/traverse (CVE-2023-45133)
 

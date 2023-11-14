@@ -180,7 +180,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         <img src={image} alt={item.title} />
       </div>
       <div className="content">
-        <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
+        <Typography variant="caption2" sx={{ pb: '6px' }}>
           {item.provider}
         </Typography>
         <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
@@ -192,21 +192,31 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
           <span className="rating-number">{item.rating}</span>
           */}
         </div>
-        <Typography variant="body2" sx={{ pb: 1 }}>
+        <Typography variant="caption1" sx={{ mb: 1, display: 'inherit' }}>
           {item.price}
         </Typography>
-        <Typography variant="body2" sx={{ pb: 1 }}>
-          {t('content.appdetail.usecase')}:
-          {item.useCases.map((useCase: UseCaseType) => (
-            <span key={useCase.id}> {useCase.label} </span>
-          ))}
-        </Typography>
-        <Typography variant="body2" sx={{ pb: '18px' }}>
-          {t('content.appdetail.language')}:
-          {item.languages?.map((lang, index) => (
-            <span key={lang}> {(index ? ', ' : '') + lang} </span>
-          ))}
-        </Typography>
+        <div className="usecase">
+          <Typography variant="label2" sx={{ pb: 1 }}>
+            {t('content.appdetail.usecase')}:
+          </Typography>
+          <Typography variant="caption2" sx={{ pb: 1, ml: 1 }}>
+            {item.useCases.map((useCase: UseCaseType) => (
+              <span key={useCase.id}> {useCase.label} </span>
+            ))}
+          </Typography>
+        </div>
+        <div className="usecase">
+          <Typography variant="label2">
+            {t('content.appdetail.language')}:
+          </Typography>
+          <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
+            {item.languages?.map((lang, index) => (
+              <span key={lang}>
+                {` ${index ? ', ' : ''}${lang.toUpperCase()} `}
+              </span>
+            ))}
+          </Typography>
+        </div>
         {getSubscribeBtn()}
       </div>
     </div>

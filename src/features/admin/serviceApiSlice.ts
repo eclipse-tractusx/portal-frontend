@@ -31,6 +31,10 @@ export enum ServiceAccountType {
   SECRET = 'SECRET',
 }
 
+export enum Tags {
+  SERVICEACCOUNTS = 'SERVICEACCOUNTS',
+}
+
 export interface ServiceAccountRole {
   roleId: string
   roleDescription: string
@@ -82,6 +86,7 @@ export enum ServiceAccountStatusFilter {
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: [Tags.SERVICEACCOUNTS],
   endpoints: (builder) => ({
     addServiceAccount: builder.mutation<
       ServiceAccountDetail,
@@ -92,6 +97,7 @@ export const apiSlice = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: [Tags.SERVICEACCOUNTS],
     }),
     removeServiceAccount: builder.mutation<void, string>({
       query: (id: string) => ({
@@ -136,6 +142,7 @@ export const apiSlice = createApi({
           return url
         }
       },
+      providesTags: [Tags.SERVICEACCOUNTS],
     }),
     fetchServiceAccountDetail: builder.query<ServiceAccountDetail, string>({
       query: (id: string) =>
