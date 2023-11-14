@@ -94,8 +94,7 @@ export const UserInfo = ({
         <div
           ref={avatar}
           onClick={openCloseMenu}
-          onFocus={() => {}}
-          onMouseOver={() => {}}
+          onKeyDown={() => {}}
         >
           <div className="titleBox">
             <div>
