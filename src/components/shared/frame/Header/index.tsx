@@ -94,6 +94,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
             className="mobile-search-icon"
             onFocus={() => {}}
+            onMouseOver={() => {}}
           >
             <SearchIcon sx={{ color: '#0f71cb' }} />
           </div>
@@ -101,6 +102,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             onClick={() => dispatch(setAppear({ MENU: !show }))}
             className="mobile-search-icon"
             onFocus={() => {}}
+            onMouseOver={() => {}}
           >
             <MenuIcon sx={{ color: '#0f71cb' }} />
           </div>
