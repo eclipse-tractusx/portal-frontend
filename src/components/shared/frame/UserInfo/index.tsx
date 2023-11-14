@@ -91,7 +91,13 @@ export const UserInfo = ({
   return (
     <div className="UserInfo">
       {isMobile ? (
-        <div ref={avatar} onClick={openCloseMenu} onKeyDown={() => {}}>
+        <div
+          ref={avatar}
+          onClick={openCloseMenu}
+          onKeyDown={() => {
+            //ignore
+          }}
+        >
           <div className="titleBox">
             <div>
               <AccountCircleIcon
