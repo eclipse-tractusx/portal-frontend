@@ -13,6 +13,7 @@
   - enhanced responsiveness of the page
 - App Subscription and Service Subscription
   - Enhanced subscription request status ui flow to support extended status settings
+- Mobile version. Hamburger menu
 
 ### Feature
 

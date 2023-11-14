@@ -141,6 +141,7 @@ export const MenuItem = ({
           {children?.map((item) => (
             <Link
               component={component}
+              key={item.title}
               sx={{
                 color: `${disable ? 'text.disabled' : 'text.primary'}`,
                 pointerEvents: `${disable ? 'none' : 'auto'}`,
