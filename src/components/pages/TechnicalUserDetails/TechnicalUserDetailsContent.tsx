@@ -50,7 +50,6 @@ export default function TechnicalUserDetailsContent({
     {
       key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
       value: newData.connector?.name,
-      copy: true,
     },
     {
       key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),

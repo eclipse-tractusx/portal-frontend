@@ -60,7 +60,7 @@
   "technicalIntegration": {
     "headerTitle": "Technical Integration",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+    "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
     "technicalUserProfileError": "Error while updating technical user profiles"
   },
   "step4": {
