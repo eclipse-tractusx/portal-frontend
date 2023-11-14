@@ -93,14 +93,14 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           <div
             onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
             className="mobile-search-icon"
-            onFocus={ () => {} }
+            onFocus={() => {}}
           >
             <SearchIcon sx={{ color: '#0f71cb' }} />
           </div>
           <div
             onClick={() => dispatch(setAppear({ MENU: !show }))}
             className="mobile-search-icon"
-            onFocus={ () => {} }
+            onFocus={() => {}}
           >
             <MenuIcon sx={{ color: '#0f71cb' }} />
           </div>
