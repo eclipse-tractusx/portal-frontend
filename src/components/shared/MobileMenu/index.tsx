@@ -23,7 +23,6 @@ import { MenuItem, type MenuItemProps } from './MenuItem'
 import { UserInfo } from '../frame/UserInfo'
 import AccessService from 'services/AccessService'
 import { Typography } from '@catena-x/portal-shared-components'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import HelpIcon from '@mui/icons-material/Help'
 
 export interface NotificationBadgeType {
@@ -99,13 +98,6 @@ export const MobileMenu = ({
             {'Help'}
           </Typography>
         </div>
-        <KeyboardArrowRightIcon
-          sx={{
-            color: 'icon.icon02',
-            width: '30px !important',
-            height: '20px !important',
-          }}
-        />
       </Box>
     </Box>
   )

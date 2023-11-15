@@ -2,7 +2,7 @@
 
 ## unreleased
 
-- ...
+- Mobile version. Hamburger menu
 
 ## 1.7.0-RC1
 
@@ -13,7 +13,6 @@
   - enhanced responsiveness of the page
 - App Subscription and Service Subscription
   - Enhanced subscription request status ui flow to support extended status settings
-- Mobile version. Hamburger menu
 
 ### Feature
 
