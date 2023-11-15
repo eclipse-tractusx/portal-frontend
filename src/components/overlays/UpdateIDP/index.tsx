@@ -32,34 +32,48 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import {
   type IdentityProviderUpdate,
   useFetchIDPDetailQuery,
   useUpdateIDPMutation,
+  useEnableIDPMutation,
+  IDPCategory,
 } from 'features/admin/idpApiSlice'
 import { UpdateIDPContent } from './UpdateIDPContent'
 import { OVERLAYS } from 'types/Constants'
-import { error, success } from 'services/NotifyService'
+import { success } from 'services/NotifyService'
 
 export const UpdateIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const [updateIdp] = useUpdateIDPMutation()
+  const [enableIdp] = useEnableIDPMutation()
   const [idpUpdateData, setIdpUpdateData] = useState<
     IdentityProviderUpdate | undefined
   >(undefined)
   const [loading, setLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   const doUpdateIDP = async () => {
     if (!(data && idpUpdateData)) return
     setLoading(true)
     try {
       await updateIdp(idpUpdateData).unwrap()
-      dispatch(show(OVERLAYS.ENABLE_IDP, id))
       success(t('edit.success'))
+      if (data.identityProviderTypeId === IDPCategory.MANAGED) {
+        await enableIdp({
+          id,
+          enabled: true,
+        }).unwrap()
+        success(t('enable.success'))
+        dispatch(closeOverlay())
+      } else {
+        dispatch(show(OVERLAYS.ENABLE_IDP, id))
+      }
     } catch (err) {
-      error(t('edit.error'), '', err as object)
+      setShowError(true)
     }
     setLoading(false)
   }
@@ -82,6 +96,14 @@ export const UpdateIDP = ({ id }: { id: string }) => {
     },
   ]
 
+  const steps =
+    data?.identityProviderTypeId === IDPCategory.MANAGED
+      ? UpdateStepsList.slice(0, 2)
+      : UpdateStepsList
+
+  const numberSteps =
+    data?.identityProviderTypeId === IDPCategory.MANAGED ? 2 : 3
+
   return (
     <>
       <DialogHeader
@@ -92,7 +114,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
-          <Stepper list={UpdateStepsList} showSteps={3} activeStep={2} />
+          <Stepper list={steps} showSteps={numberSteps} activeStep={2} />
         </div>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <Trans>
@@ -120,6 +142,27 @@ export const UpdateIDP = ({ id }: { id: string }) => {
           />
           {t('add.learnMore')}
         </Typography>
+        {showError && (
+          <Typography
+            variant="label3"
+            sx={{
+              display: 'flex',
+              marginTop: '30px',
+              color: '#d91e18',
+              border: '1px solid #d91e18',
+              padding: '20px 40px',
+              borderRadius: '5px',
+            }}
+          >
+            <WarningAmberIcon
+              sx={{
+                marginRight: '5px',
+                fontSize: '18px',
+              }}
+            />
+            {t('add.metadataError')}
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
@@ -134,7 +177,9 @@ export const UpdateIDP = ({ id }: { id: string }) => {
             label=""
             loading
             loadIndicator={t('action.loading')}
-            onButtonClick={() => {}}
+            onButtonClick={() => {
+              // do nothing
+            }}
             sx={{ marginLeft: '10px' }}
           />
         ) : (

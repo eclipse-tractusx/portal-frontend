@@ -29,15 +29,15 @@ export default function AppSubscriptions({
   provider,
   status,
   image,
-  onButtonClick = () => {},
-  onUnsubscribe = () => {},
+  onButtonClick,
+  onUnsubscribe,
 }: {
-  name: string
-  provider: string
-  status: SubscriptionStatus | undefined
-  image: ImageType | undefined
-  onButtonClick?: React.MouseEventHandler
-  onUnsubscribe?: React.MouseEventHandler
+  readonly name: string
+  readonly provider: string
+  readonly status: SubscriptionStatus | undefined
+  readonly image: ImageType | undefined
+  readonly onButtonClick?: React.MouseEventHandler
+  readonly onUnsubscribe?: React.MouseEventHandler
 }) {
   const { t } = useTranslation()
   const colorCode = [
@@ -51,7 +51,13 @@ export default function AppSubscriptions({
   }
 
   return (
-    <div className="organization-subscriptions" onClick={onButtonClick}>
+    <div
+      className="organization-subscriptions"
+      onClick={onButtonClick}
+      onKeyUp={() => {
+        // do nothing
+      }}
+    >
       <div className="iconNameContainer">
         <Image
           src={image?.src ?? LogoGrayData}

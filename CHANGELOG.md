@@ -4,6 +4,62 @@
 
 - Mobile version. Hamburger menu
 
+## 1.7.0-RC3
+
+### Change
+
+- IdP configuration overlays, extended error handling on the ui
+- New backend error handling (extended details) implemented for bulk user changes
+  - User Management - bulk user creation error overlay for single user error message response enhanced to show for each failed user details regarding the reason for failure (if available)
+  - IdP Switch - user migration function error support enhanced with single user error message response to show for each failed user details regarding the reason for failure (if available)
+
+### Feature
+
+n/a
+
+### Technical Support
+
+- upgraded dependencies to latest version
+
+### Bugfix
+
+- Admin Business Partner Registration Request Screen - Detail Overlay country fixed to display country code received via backend api
+- Technical User Overview - displaying duplicates after adding/creating new technical users fixed
+- Technical User detail screen - removed copy icon from connector link
+- Company Role Change Screen - updated OSP value to human readable text instead of displaying technical keys
+- Company Role Change Detail Overlay - displayed invalid deselect role details for OSP fixed
+- Service Subscription sorting element behavior fixed in case the user sorts multiple times with the same sorting option
+- Vulnerability from dependency
+  - Set resolution for axios
+
+### Known Knowns
+
+- App change process 'documents' not yet integrated with backend
+- App/Service Release Process - upon clicking "Save" given consent is removed and needs to get set newly
+
+## 1.7.0-RC2
+
+### Change
+
+- User Management screen for user invite block due to multiple active IdPs got enhanced inside the frontend-business-logic to exclude "MANAGED" idps
+- Enhanced /StaticTemplateResponsive/Cards/TextImageCenterAligned.tsx to support multiple images
+
+### Feature
+
+- released prototype (identity provider creation "MANAGED"; register 3rd party company; approve consent osp registration company) onboarding service provider registration flow
+
+### Technical Support
+
+- Code quality & style improvements implemented based on ESLINT rules
+  - removed extra semicolons to avoid warnings
+  - no-empty-function
+  - prefer-optional-chain
+
+### Bugfix
+
+- Partner Network - update search query parameter name to legalName
+- Fixed broken KeyValueView/index.tsx for undefined object attributes
+
 ## 1.7.0-RC1
 
 ### Change
@@ -35,8 +91,12 @@
   - Fixed image display in app overview cards
 - IDP
   - Add load element for IDP list
+- Onboarding Serviceprovider
+  - Add the OSP prototype
 - Linter Findings
   - Fix ban-types
+  - No empty function
+  - No Extra Semi
 - Partner Network
   - Search for Company name issue fix
 - App Subscription and Servcie Subscripiton

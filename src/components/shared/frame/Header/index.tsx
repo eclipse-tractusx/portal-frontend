@@ -63,6 +63,9 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <div
               onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
               className="search-icon"
+              onKeyUp={() => {
+                // do nothing
+              }}
             >
               <SearchIcon sx={{ color: '#0f71cb' }} />
             </div>

@@ -701,6 +701,7 @@
           "heading": "Upload form by selecting the form file with the user data"
         },
         "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "fileHeaderError": "Bulk Upload list format wrong. Missing or incorrect header line. Recheck the download file to retrieve the expected format",
         "uploadedFile": {
           "fileHeading": "Prepared for upload:",
           "addUserRolesHeading": "Add user roles for all users in bulk upload:",
@@ -972,6 +973,7 @@
       },
       "description": "Description",
       "imageGallery": "Images",
+      "tags": "Tags",
       "privacy": {
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
@@ -1102,7 +1104,7 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles"
@@ -1185,9 +1187,9 @@
       "recommendations": "Recommendations",
       "allServices": "All Services",
       "tabs": {
-        "all": "All Services",
-        "dataspaceService": "Dataspace Services",
-        "consultancyService": "Consultancy Services"
+        "all": "Alle Dienstleistungen",
+        "dataspaceService": "Datenraumdienste",
+        "consultancyService": "Beratungsservice"
       },
       "sortOptions": {
         "new": "Newest First",
@@ -1233,6 +1235,8 @@
       "activateBtn": "Activate",
       "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
+      "error": "Error",
+      "success": "Success",
       "tabs": {
         "request": "Request",
         "active": "Active",
@@ -1526,9 +1530,10 @@
       "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
       "note": "Please note: ",
       "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
-      "ACTIVE_PARTICIPANT": "Active Participant",
-      "APP_PROVIDER": "App Provider",
-      "SERVICE_PROVIDER": "Service Provider",
+      "ACTIVE_PARTICIPANT": "Activer Teilnehmer",
+      "APP_PROVIDER": "App-Anbieter",
+      "SERVICE_PROVIDER": "Dienstleister",
+      "ONBOARDING_SERVICE_PROVIDER": "Onboarding-Dienstleister",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",

@@ -215,7 +215,7 @@ const setData = (
     content: SubscriptionContent[]
   }
 ) => {
-  if (payload && payload.meta) {
+  if (payload?.meta) {
     return payload.meta.page === 0
       ? payload.content
       : state.subscriptions.concat(payload.content)
@@ -315,7 +315,7 @@ export default function Subscription({
   const success: boolean = useSelector(currentSuccessType)
 
   useEffect(() => {
-    if (data && data?.content) {
+    if (data?.content) {
       setState({
         type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
         payload: data,
@@ -339,10 +339,6 @@ export default function Subscription({
   }
 
   const resetCardsAndSetFetchArgs = (value: string, type: string) => {
-    setState({
-      type: ActionKind.SET_SUBSCRIPTION_AND_CARD_SUBSCRIPTION,
-      payload: [],
-    })
     setState({
       type: ActionKind.SET_PAGE_STATUS_SORTING_FETCH_ARGS,
       payload: {
@@ -435,8 +431,7 @@ export default function Subscription({
           setState({
             type: ActionKind.SET_CARD_SUBSCRIPTION,
             payload: expr
-              ? subscriptions &&
-                subscriptions.filter((card: SubscriptionContent) =>
+              ? subscriptions?.filter((card: SubscriptionContent) =>
                   card.offerName.toLowerCase().includes(expr.toLowerCase())
                 )
               : subscriptions,

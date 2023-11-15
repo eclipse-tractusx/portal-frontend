@@ -58,7 +58,8 @@
     "desc": "To start the configuration, <br /> enter the name and select the type of your IdP",
     "learnMore": "Learn More",
     "success": "IdP created",
-    "error": "Failed to create IdP"
+    "error": "Failed to create IdP",
+    "metadataError": "Saving Metadata - FAILED"
   },
   "delete": {
     "title": "Delete IdP Connection",
@@ -188,7 +189,12 @@
     },
     "providerType": {
       "name": "Identity Provider Type",
-      "placeholder": "Please select a type"
+      "placeholder": "Please select a type",
+      "hint": "Select provider type for your own company or managed for a third party company",
+      "option": {
+        "OWN": "create an IdP connection to your company IdP for yourself",
+        "MANAGED": "create a managed IdP connection for a third party"
+      }
     },
     "redirectUri": {
       "name": "Redirect URL",
@@ -213,6 +219,26 @@
     "copy": {
       "hint": "click to copy"
     },
+    "name": {
+      "name": "Client ID",
+      "hint": "Enter the client ID provided by your IdP"
+    },
+    "company": { "name": "company", "hint": "company" },
+    "extid": { "name": "extid", "hint": "extid" },
+    "bpn": { "name": "bpn", "hint": "bpn" },
+    "country": { "name": "country", "hint": "country" },
+    "region": { "name": "region", "hint": "region" },
+    "zipcode": { "name": "zipcode", "hint": "zipcode" },
+    "city": { "name": "city", "hint": "city" },
+    "streetName": { "name": "street", "hint": "street" },
+    "streetNumber": { "name": "street no", "hint": "street no" },
+    "uniqueId": { "name": "unique id", "hint": "unique id" },
+    "uniqeIdValue": { "name": "uid value", "hint": "uid value" },
+    "providerId": { "name": "provider id", "hint": "provider id" },
+    "email": { "name": "email", "hint": "email" },
+    "firstName": { "name": "first name", "hint": "first name" },
+    "lastName": { "name": "last name", "hint": "last name" },
+    "companyRoles": { "name": "company roles", "hint": "company roles" },
     "not": "not",
     "configured": "configured",
     "enabled": "enabled",
@@ -227,6 +253,45 @@
     "status3": "disabled",
     "status4": "active"
   },
+  "osp": {
+    "title": "Onboarding Serviceprovider",
+    "desc": "{Description of the Onboarding Serviceprovider process}",
+    "steps": {
+      "one": {
+        "text": "done",
+        "title": "Create"
+      },
+      "two": {
+        "text": "done",
+        "title": "Configure"
+      },
+      "three": {
+        "text": "done",
+        "title": "Register"
+      },
+      "four": {
+        "text": "done",
+        "title": "Next Steps"
+      }
+    },
+    "register": {
+      "title": "Register Partner",
+      "desc": "{Description of the Register Partner process}",
+      "error": "Error submitting registration",
+      "success": "Registration successful"
+    },
+    "register_next": {
+      "title": "Next Steps",
+      "desc": "{Description of next steps}",
+      "body1": "Registration of IDP {{id}} successful. Now do ..."
+    },
+    "consent": {
+      "title": "Consent",
+      "desc": "{Description of the Consent process}",
+      "error": "Error submitting consent",
+      "success": "Consent successful"
+    }
+  },
   "action": {
     "actions": "Actions",
     "createIdp": "Create IdP entry",
@@ -237,6 +302,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "configure": "Configure",
+    "register": "Register Partner",
+    "consent": "Consent",
     "users": "Users",
     "signout": "Sign out",
     "confirm": "Confirm",

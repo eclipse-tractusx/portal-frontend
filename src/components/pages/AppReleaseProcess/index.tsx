@@ -78,7 +78,9 @@ export default function AppReleaseProcess() {
     dispatch(setAppStatus(initialState.appStatusData))
   }
 
-  const onOverviewButton = () => {}
+  const onOverviewButton = () => {
+    // do nothing
+  }
 
   const requirements = [
     {

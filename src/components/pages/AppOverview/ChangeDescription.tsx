@@ -328,7 +328,9 @@ export default function ChangeDescription() {
               <LoadingButton
                 size="small"
                 variant="contained"
-                onButtonClick={() => {}}
+                onButtonClick={() => {
+                  // do nothing
+                }}
                 loading={isLoading}
                 label={`${t('global.actions.confirm')}`}
                 loadIndicator="Loading..."

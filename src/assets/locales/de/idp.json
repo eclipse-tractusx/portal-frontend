@@ -58,7 +58,8 @@
     "desc": "To start the configuration, <br /> enter the name and select the type of your IdP",
     "learnMore": "Learn More",
     "success": "IdP created",
-    "error": "Failed to create IdP"
+    "error": "Failed to create IdP",
+    "metadataError": "Saving Metadata - FAILED"
   },
   "delete": {
     "title": "Delete IdP Connection",

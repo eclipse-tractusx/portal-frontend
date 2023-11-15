@@ -221,7 +221,9 @@ export default function ChangeImage() {
                 size="small"
                 loading={isLoading}
                 variant="contained"
-                onButtonClick={() => {}}
+                onButtonClick={() => {
+                  // do nothing
+                }}
                 loadIndicator="Loading..."
                 label={`${t('global.actions.confirm')}`}
               />

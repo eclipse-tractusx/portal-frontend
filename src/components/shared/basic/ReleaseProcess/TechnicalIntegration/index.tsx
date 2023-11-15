@@ -134,13 +134,16 @@ export default function TechnicalIntegration() {
 
   const handleCheckedUserProfiles = (checked: boolean, item: userRolesType) => {
     const isSelected = techUserProfiles?.includes(item.roleId)
+    let selectedProfiles: string[] = []
     if (!isSelected && checked) {
-      setTechUserProfiles([...techUserProfiles, item.roleId])
+      selectedProfiles = [...techUserProfiles, item.roleId]
     } else if (isSelected && !checked) {
       const oldTechUserProfiles = [...techUserProfiles]
       oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
-      setTechUserProfiles([...oldTechUserProfiles])
+      selectedProfiles = [...oldTechUserProfiles]
     }
+    setEnableUserProfilesErrorMessage(selectedProfiles?.length === 0)
+    setTechUserProfiles(selectedProfiles)
   }
 
   const handleSaveSuccess = (buttonLabel: string) => {
@@ -155,7 +158,10 @@ export default function TechnicalIntegration() {
     submitData: unknown,
     buttonLabel: string
   ) => {
-    if (buttonLabel === ButtonLabelTypes.SAVE) {
+    if (
+      buttonLabel === ButtonLabelTypes.SAVE &&
+      (data?.length === 0 || techUserProfiles.length === 0)
+    ) {
       data?.length === 0 && setEnableErrorMessage(true)
       techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)
     } else if (
@@ -453,7 +459,7 @@ export default function TechnicalIntegration() {
                         color: 'white',
                         children: (
                           <Typography variant="caption3">
-                            {rolesDescription && rolesDescription[index]}
+                            {rolesDescription?.[index]}
                           </Typography>
                         ),
                       },
