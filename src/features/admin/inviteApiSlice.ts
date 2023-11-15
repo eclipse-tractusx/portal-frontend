@@ -25,6 +25,7 @@ import type {
 } from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { type InviteData } from './registration/types'
 
 export enum CompanyInviteStatus {
   PENDING = 'PENDING',
@@ -54,7 +55,14 @@ export const apiSlice = createApi({
           fetchArgs.page
         }&size=${PAGE_SIZE}&companyName=${fetchArgs.args!.expr}`,
     }),
+    sendInvite: builder.mutation<void, InviteData>({
+      query: (data: InviteData) => ({
+        url: '/api/administration/invitation',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
-export const { useFetchInviteSearchQuery } = apiSlice
+export const { useFetchInviteSearchQuery, useSendInviteMutation } = apiSlice
