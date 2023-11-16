@@ -368,6 +368,7 @@ export default function CommonContractAndConsent({
             type === ReleaseProcessTypes.SERVICE_RELEASE &&
               dispatch(serviceReleaseStepIncrement())
           }
+          setAgreementData([])
         })
         .catch(() => {
           setContractNotification(true)
