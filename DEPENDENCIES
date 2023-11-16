@@ -50,7 +50,6 @@ npm/npmjs/-/autoprefixer/10.4.16, MIT, approved, #7494
 npm/npmjs/-/autosuggest-highlight/3.3.4, MIT, approved, clearlydefined
 npm/npmjs/-/available-typed-arrays/1.0.5, MIT, approved, clearlydefined
 npm/npmjs/-/axe-core/4.8.2, MPL-2.0 AND MIT AND (Apache-2.0 AND OFL-1.1), approved, #10969
-npm/npmjs/-/axios/1.5.1, MIT, approved, #10504
 npm/npmjs/-/axios/1.6.1, MIT, approved, #11338
 npm/npmjs/-/axobject-query/3.2.1, Apache-2.0, approved, #9144
 npm/npmjs/-/babel-jest/27.5.1, MIT, approved, clearlydefined
@@ -1025,7 +1024,7 @@ npm/npmjs/@ampproject/remapping/2.2.1, Apache-2.0, approved, clearlydefined
 npm/npmjs/@apideck/better-ajv-errors/0.3.6, MIT, approved, clearlydefined
 npm/npmjs/@babel/code-frame/7.22.13, MIT, approved, #8946
 npm/npmjs/@babel/compat-data/7.22.20, MIT, approved, #9062
-npm/npmjs/@babel/core/7.23.0, MIT, approved, clearlydefined
+npm/npmjs/@babel/core/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11570
 npm/npmjs/@babel/eslint-parser/7.22.15, MIT, approved, #9138
 npm/npmjs/@babel/generator/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11522
 npm/npmjs/@babel/generator/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11522
