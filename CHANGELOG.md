@@ -3,7 +3,6 @@
 ## 1.7.0-RC4
 
 - App release process
-
   - Fixed error message deletion upon deleting of csv file in technical integration
 
 ## 1.7.0-RC3
