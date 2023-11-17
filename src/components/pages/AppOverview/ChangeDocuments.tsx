@@ -29,6 +29,7 @@ import {
   UploadStatus,
   DropArea,
   type DropAreaProps,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -157,37 +158,65 @@ export default function ChangeDocuments() {
                   <Typography variant="label4" sx={{ ml: '28px' }}>
                     {doc.documentName}
                   </Typography>
-                  <IconButton
-                    sx={{ height: '18px', width: '18px', float: 'right' }}
-                    onClick={() => deleteDocument(doc.documentId)}
-                    disabled={
+                  <Tooltips
+                    tooltipPlacement="right-end"
+                    tooltipText={
                       docType === DocumentNameType.APP_IMAGE &&
                       documents.length <= 1
+                        ? t('content.changeDocuments.deleteIconTooltip')
+                        : ''
                     }
-                  >
-                    <DeleteOutlinedIcon />
-                  </IconButton>
+                    children={
+                      <span style={{ float: 'right' }}>
+                        <IconButton
+                          sx={{ height: '18px', width: '18px', float: 'right' }}
+                          onClick={() => deleteDocument(doc.documentId)}
+                          disabled={
+                            docType === DocumentNameType.APP_IMAGE &&
+                            documents.length <= 1
+                          }
+                        >
+                          <DeleteOutlinedIcon />
+                        </IconButton>
+                      </span>
+                    }
+                  />
                 </div>
               )
             })}
           </Box>
-          <Button
-            size="small"
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              setUploadDocsOverlayOpen(true)
-              setDocumentType(documentTypeId)
-            }}
-            sx={{ fontSize: '12px' }}
-            disabled={
+          <Tooltips
+            tooltipPlacement="right-end"
+            tooltipText={
               (docType === DocumentNameType.APP_IMAGE &&
                 documents.length === 3) ||
               (docType !== DocumentNameType.APP_IMAGE && documents.length === 1)
+                ? t('content.changeDocuments.uploadButtonTooltip')
+                : ''
             }
-          >
-            {t('content.changeDocuments.uploadNewDocument')}
-          </Button>
+            children={
+              <span>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => {
+                    setUploadDocsOverlayOpen(true)
+                    setDocumentType(documentTypeId)
+                  }}
+                  sx={{ fontSize: '12px' }}
+                  disabled={
+                    (docType === DocumentNameType.APP_IMAGE &&
+                      documents.length === 3) ||
+                    (docType !== DocumentNameType.APP_IMAGE &&
+                      documents.length === 1)
+                  }
+                >
+                  {t('content.changeDocuments.uploadNewDocument')}
+                </Button>
+              </span>
+            }
+          />
           {docType !== DocumentNameType.ADDITIONAL_DETAILS && (
             <Divider sx={{ margin: '34px auto' }} />
           )}
