@@ -422,21 +422,20 @@ export const apiSlice = createApi({
     }),
     updateAppChangeDocument: builder.mutation({
       async queryFn(
-        data: { appId: string; documentTypeId: string; body: { file: File } },
+        data: { documentTypeId: string; appId: string; body: { file: File } },
         _queryApi,
         _extraOptions,
         fetchWithBaseQuery
       ) {
-        const formData = new FormData()
-        formData.append('document', data.body.file)
-        const response = await fetchWithBaseQuery({
+        const docFormData = new FormData()
+        docFormData.append('document', data.body.file)
+
+        const result = await fetchWithBaseQuery({
           url: `api/apps/AppChange/${data.appId}/documentType/${data.documentTypeId}/documents`,
           method: 'POST',
-          body: formData,
+          body: docFormData,
         })
-        return response.data
-          ? { data: response.data }
-          : { error: response.error }
+        return result.data ? { data: result.data } : { error: result.error }
       },
       invalidatesTags: [Tags.APP],
     }),

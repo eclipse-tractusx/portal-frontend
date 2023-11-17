@@ -443,10 +443,13 @@
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "successMsg": "Documents changed successfully",
+      "successMsg": "Document uploaded successfully",
       "errorMsg": "Error! Something went wrong",
-      "uploadNewDocument": "Upload new Document",
-      "uploadNewDocumentDescription": "Note: only one file for upload allowed"
+      "uploadNewDocument": "Upload new document",
+      "uploadNewDocumentDescription": "Note: only one file for upload allowed",
+      "documentDeleteSuccess": "Document deleted successfully",
+      "deleteIconTooltip": "At least one document is mandatory. Upload a new document before being able to remove the image.",
+      "uploadButtonTooltip": "Maximum number of allowed documents reached. Please delete one document before uploading a new one."
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"

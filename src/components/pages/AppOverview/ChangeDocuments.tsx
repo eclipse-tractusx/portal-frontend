@@ -27,6 +27,7 @@ import {
   Dialog,
   DialogContent,
   UploadStatus,
+  DropArea,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -103,11 +104,11 @@ export default function ChangeDocuments() {
           setFileStatus(UploadStatus.UPLOAD_SUCCESS)
           refetch()
           setUploadDocsOverlayOpen(false)
-          success(t('content.changeImage.successMsg'))
+          success(t('content.changeDocuments.successMsg'))
         })
         .catch((err) => {
           setFileStatus(UploadStatus.UPLOAD_ERROR)
-          error(t('content.changeImage.errorMsg'), '', err)
+          error(t('content.changeDocuments.errorMsg'), '', err)
         })
     }
   }
@@ -118,9 +119,7 @@ export default function ChangeDocuments() {
       (await deleteAppChangeDocument({ appId, documentId })
         .unwrap()
         .then(() => {
-          success(
-            t('content.apprelease.contractAndConsent.documentDeleteSuccess')
-          )
+          success(t('content.changeDocuments.documentDeleteSuccess'))
           refetch()
         })
         // Add an ESLint exception until there is a solution
@@ -129,7 +128,7 @@ export default function ChangeDocuments() {
           error(
             err.status === 409
               ? err.data.title
-              : t('content.apprelease.appReleaseForm.errormessage'),
+              : t('content.changeDocuments.errorMsg'),
             '',
             err
           )
@@ -226,9 +225,11 @@ export default function ChangeDocuments() {
             >
               <DialogHeader
                 title={t('content.changeDocuments.uploadNewDocument')}
-                intro={t(
-                  'content.changeDocuments.uploadNewDocumentDescription'
-                )}
+                intro={
+                  <Typography variant="body2">
+                    {t('content.changeDocuments.uploadNewDocumentDescription')}
+                  </Typography>
+                }
                 closeWithIcon={true}
                 onCloseWithIcon={() => {
                   setUploadDocsOverlayOpen(false)
@@ -260,6 +261,10 @@ export default function ChangeDocuments() {
                       maxFileSize={819200}
                       maxFilesToUpload={1}
                       enableDeleteOverlay={false}
+                      DropArea={(props) => <DropArea {...props} size="small" />}
+                      errorText={t(
+                        'content.apprelease.appReleaseForm.fileSizeError'
+                      )}
                     />
                   )}
                 />
