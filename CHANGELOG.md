@@ -4,6 +4,8 @@
 
 - App release process
   - Fixed error message deletion upon deleting of csv file in technical integration
+- Technical User Creation
+  - Overlay Type SubHeading Typo fix
 
 ## 1.7.0-RC3
 
