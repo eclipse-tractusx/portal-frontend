@@ -863,7 +863,7 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one service roles:",
+          "serviceSubHeading": "Select one of the following service roles:",
           "username": "Username",
           "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC)",
