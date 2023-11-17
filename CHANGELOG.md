@@ -4,8 +4,17 @@
 
 - App release process
   - Fixed error message deletion upon deleting of csv file in technical integration
+  - Fixed consent check removal issue on save
 - App Overview
   - post and delete api endpoints connected for active apps-change documents
+- Technical User Creation
+  - Overlay Type SubHeading Typo fix
+- Admin Credential
+  - Certification Management Element reaction
+- Service Subscription
+  - Activation Overlay Changes
+- Service release process
+  - Fixed consent check removal issue on save
 
 ## 1.7.0-RC3
 
