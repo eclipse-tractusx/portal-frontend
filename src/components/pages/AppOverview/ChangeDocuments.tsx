@@ -28,6 +28,7 @@ import {
   DialogContent,
   UploadStatus,
   DropArea,
+  type DropAreaProps,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -195,6 +196,10 @@ export default function ChangeDocuments() {
     )
   }
 
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
+  }
+
   return (
     <main className="deactivate-main">
       <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
@@ -261,7 +266,7 @@ export default function ChangeDocuments() {
                       maxFileSize={819200}
                       maxFilesToUpload={1}
                       enableDeleteOverlay={false}
-                      DropArea={(props) => <DropArea {...props} size="small" />}
+                      DropArea={renderDropArea}
                       errorText={t(
                         'content.apprelease.appReleaseForm.fileSizeError'
                       )}
