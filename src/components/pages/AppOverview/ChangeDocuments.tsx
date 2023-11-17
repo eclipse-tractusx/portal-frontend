@@ -22,9 +22,10 @@ import {
   Typography,
   PageHeader,
   Button,
-  Tooltips,
-  LoadingButton,
   IconButton,
+  DialogHeader,
+  Dialog,
+  DialogContent,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -32,9 +33,14 @@ import { Box, Divider } from '@mui/material'
 import { useState } from 'react'
 import type { ItemType } from './AddRoles'
 import type { DocumentData } from 'features/appManagement/apiSlice'
-import { useFetchAppDocumentsQuery } from 'features/appManagement/apiSlice'
+import {
+  useDeleteAppChangeDocumentMutation,
+  useFetchAppDocumentsQuery,
+  useUpdateAppChangeDocumentMutation,
+} from 'features/appManagement/apiSlice'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
+import { error, success } from 'services/NotifyService'
 
 enum DocumentNameType {
   APP_IMAGE = 'App Image',
@@ -47,16 +53,38 @@ export default function ChangeDocuments() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const appId = useParams().appId
-  const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
   const items = state
   const app = items?.filter((item: ItemType) => item.id === appId)
-  const [imageChanged, setImageChanged] = useState(false)
-  const { data } = useFetchAppDocumentsQuery(appId ?? '')
+  const { data, refetch } = useFetchAppDocumentsQuery(appId ?? '')
+  const [deleteAppChangeDocument, deleteResponse] =
+    useDeleteAppChangeDocumentMutation()
+  const [uploadDocsOverlayOpen, setUploadDocsOverlayOpen] =
+    useState<boolean>(false)
+  const [updateAppChangeDocument] = useUpdateAppChangeDocumentMutation()
 
-  const handleSaveClick = async () => {
-    setIsLoading(true)
-    setImageChanged(true)
+  const deleteDocument = async (documentId: string) => {
+    appId &&
+      documentId &&
+      (await deleteAppChangeDocument({ appId, documentId })
+        .unwrap()
+        .then(() => {
+          success(
+            t('content.apprelease.contractAndConsent.documentDeleteSuccess')
+          )
+          refetch()
+        })
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
+        .catch((err: any) => {
+          error(
+            err.status === 409
+              ? err.data.title
+              : t('content.apprelease.appReleaseForm.errormessage'),
+            '',
+            err
+          )
+        }))
   }
 
   const renderdocs = (doctype: string, documents: DocumentData[]) => {
@@ -77,8 +105,12 @@ export default function ChangeDocuments() {
                     {doc.documentName}
                   </Typography>
                   <IconButton
-                    disabled
                     sx={{ height: '18px', width: '18px', float: 'right' }}
+                    onClick={() => deleteDocument(doc.documentId)}
+                    disabled={
+                      doctype === DocumentNameType.APP_IMAGE &&
+                      documents.length <= 1
+                    }
                   >
                     <DeleteOutlinedIcon />
                   </IconButton>
@@ -90,8 +122,15 @@ export default function ChangeDocuments() {
             size="small"
             variant="contained"
             color="secondary"
-            onClick={handleSaveClick}
+            onClick={() => {
+              setUploadDocsOverlayOpen(true)
+            }}
             sx={{ fontSize: '12px' }}
+            disabled={
+              (doctype === DocumentNameType.APP_IMAGE &&
+                documents.length === 3) ||
+              (doctype !== DocumentNameType.APP_IMAGE && documents.length === 1)
+            }
           >
             {t('content.changeDocuments.uploadNewDocument')}
           </Button>
@@ -125,6 +164,28 @@ export default function ChangeDocuments() {
       <section>
         <div className="main-container">
           <div className="main-row">
+            <Dialog
+              open={uploadDocsOverlayOpen}
+              additionalModalRootStyles={{
+                width: '60%',
+              }}
+            >
+              <DialogHeader
+                title={t('content.changeDocuments.uploadNewDocument')}
+                intro={t(
+                  'content.changeDocuments.uploadNewDocumentDescription'
+                )}
+                closeWithIcon={true}
+                onCloseWithIcon={() => {
+                  setUploadDocsOverlayOpen(false)
+                }}
+              />
+              <DialogContent
+                sx={{
+                  padding: '0px 120px 40px 120px',
+                }}
+              ></DialogContent>
+            </Dialog>
             {data?.documents && (
               <>
                 {renderdocs(
@@ -154,7 +215,9 @@ export default function ChangeDocuments() {
             marginTop: '80px',
           }}
         />
-        <Box sx={{ position: 'relative', marginTop: '30px' }}>
+        <Box
+          sx={{ position: 'relative', marginTop: '30px', textAlign: 'center' }}
+        >
           <Button
             color="secondary"
             size="small"
@@ -162,39 +225,8 @@ export default function ChangeDocuments() {
               navigate('/appoverview')
             }}
           >
-            {t('global.actions.cancel')}
+            {t('global.actions.close')}
           </Button>
-          <Tooltips
-            tooltipPlacement="bottom-start"
-            tooltipText={
-              !imageChanged ? t('content.changeDocuments.saveTooltipMsg') : ''
-            }
-            children={
-              <span style={{ position: 'absolute', right: '10px' }}>
-                {isLoading ? (
-                  <LoadingButton
-                    size="small"
-                    loading={isLoading}
-                    variant="contained"
-                    onButtonClick={() => {
-                      // do nothing
-                    }}
-                    loadIndicator="Loading..."
-                    label={`${t('global.actions.confirm')}`}
-                  />
-                ) : (
-                  <Button
-                    size="small"
-                    variant="contained"
-                    disabled={!imageChanged}
-                    onClick={handleSaveClick}
-                  >
-                    {t('global.actions.save')}
-                  </Button>
-                )}
-              </span>
-            }
-          />
         </Box>
       </section>
     </main>

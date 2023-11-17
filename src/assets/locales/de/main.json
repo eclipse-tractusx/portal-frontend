@@ -442,10 +442,10 @@
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "saveTooltipMsg": "The save button will be active after a document was changed",
       "successMsg": "Documents changed successfully",
       "errorMsg": "Error! Something went wrong",
-      "uploadNewDocument": "Neues Dokument hochladen"
+      "uploadNewDocument": "Neues Dokument hochladen",
+      "uploadNewDocumentDescription": "Hinweis: Es ist nur eine Datei zum Hochladen zulässig"
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"

@@ -413,6 +413,33 @@ export const apiSlice = createApi({
     fetchAppDocuments: builder.query<ChangeDocumentsTypes, string>({
       query: (appId) => `api/apps/appchange/${appId}/documents`,
     }),
+    deleteAppChangeDocument: builder.mutation<void, DocumentRequestData>({
+      query: (data) => ({
+        url: `/api/apps/AppChange/${data.appId}/document/${data.documentId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [Tags.APP],
+    }),
+    updateAppChangeDocument: builder.mutation({
+      async queryFn(
+        data: { appId: string; documentTypeId: string; body: { file: File } },
+        _queryApi,
+        _extraOptions,
+        fetchWithBaseQuery
+      ) {
+        const formData = new FormData()
+        formData.append('document', data.body.file)
+        const response = await fetchWithBaseQuery({
+          url: `api/apps/AppChange/${data.appId}/documentType/${data.documentTypeId}/documents`,
+          method: 'POST',
+          body: formData,
+        })
+        return response.data
+          ? { data: response.data }
+          : { error: response.error }
+      },
+      invalidatesTags: [Tags.APP],
+    }),
   }),
 })
 
@@ -445,4 +472,6 @@ export const {
   useFetchAppRolesQuery,
   useUpdateActiveAppMutation,
   useFetchAppDocumentsQuery,
+  useDeleteAppChangeDocumentMutation,
+  useUpdateAppChangeDocumentMutation,
 } = apiSlice
