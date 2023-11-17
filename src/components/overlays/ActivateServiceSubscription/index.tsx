@@ -38,6 +38,7 @@ import {
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
 import { Link } from 'react-router-dom'
+import { KeyValueView } from 'components/shared/basic/KeyValueView'
 
 const ProfileHelpURL =
   '/documentation/?path=docs%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
@@ -89,6 +90,28 @@ export default function ActivateserviceSubscription({
     }
   }
 
+  const activationData = [
+    {
+      key: t('serviceSubscription.activation.userId'),
+      value: techUserInfo?.technicalUserInfo.technicalClientId ?? '',
+    },
+    {
+      key: t('serviceSubscription.activation.sercret'),
+      value: techUserInfo?.technicalUserInfo.technicalUserSecret ?? '',
+      copy: true,
+    },
+    {
+      key: t('serviceSubscription.activation.url'),
+      value: techUserInfo?.clientInfo?.clientUrl ?? 'n/a',
+    },
+    {
+      key: t('serviceSubscription.activation.technicaluserType'),
+      value:
+        techUserInfo?.technicalUserInfo.technicalUserPermissions.join(', ') ??
+        '',
+    },
+  ]
+
   return (
     <Dialog
       open={true}
@@ -108,7 +131,6 @@ export default function ActivateserviceSubscription({
               </>
             }
             intro={t('serviceSubscription.activation.subtitle') + companyName}
-            closeWithIcon={true}
           />
           <DialogContent>
             <Box
@@ -135,78 +157,11 @@ export default function ActivateserviceSubscription({
               </Trans>
             </Box>
             {isTechUser && techUserInfo && (
-              <>
-                <Typography
-                  sx={{
-                    marginLeft: '10px',
-                  }}
-                  variant="h4"
-                >
-                  {t('serviceSubscription.activation.tableheader')}
-                </Typography>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <Typography variant="body2">
-                          {t('serviceSubscription.activation.userId')}
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body2">
-                          {techUserInfo.technicalUserInfo.technicalUserId}
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Typography variant="body2">
-                          {t('serviceSubscription.activation.sercret')}
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body2">
-                          {techUserInfo.technicalUserInfo.technicalUserSecret}
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Typography variant="body2">
-                          {t('serviceSubscription.activation.url')}
-                        </Typography>
-                      </td>
-                      {techUserInfo.clientInfo ? (
-                        <td>
-                          <Typography variant="body2">
-                            {techUserInfo.clientInfo.clientUrl}
-                          </Typography>
-                        </td>
-                      ) : (
-                        <td>
-                          <Typography variant="body2"></Typography>
-                        </td>
-                      )}
-                    </tr>
-                    <tr>
-                      <td>
-                        <Typography variant="body2">
-                          {t(
-                            'serviceSubscription.activation.technicaluserType'
-                          )}
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body2">
-                          {techUserInfo.technicalUserInfo.technicalUserPermissions.join(
-                            ', '
-                          )}
-                        </Typography>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
+              <KeyValueView
+                cols={2}
+                title={t('serviceSubscription.activation.tableheader')}
+                items={activationData}
+              />
             )}
           </DialogContent>
           <DialogActions>

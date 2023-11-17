@@ -3,9 +3,15 @@
 ## 1.7.0-RC4
 
 - App release process
+
   - Fixed error message deletion upon deleting of csv file in technical integration
 - Admin Credential
   - Certification Management Element reaction
+- Service Subscription
+  - Activation Overlay Changes
+  - Fixed consent check removal issue on save
+- Service release process
+  - Fixed consent check removal issue on save
 
 ## 1.7.0-RC3
 
