@@ -26,6 +26,7 @@ import {
   DialogHeader,
   Dialog,
   DialogContent,
+  UploadStatus,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -34,6 +35,7 @@ import { useState } from 'react'
 import type { ItemType } from './AddRoles'
 import type { DocumentData } from 'features/appManagement/apiSlice'
 import {
+  DocumentTypeId,
   useDeleteAppChangeDocumentMutation,
   useFetchAppDocumentsQuery,
   useUpdateAppChangeDocumentMutation,
@@ -41,6 +43,8 @@ import {
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import { error, success } from 'services/NotifyService'
+import { Controller, useForm } from 'react-hook-form'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 
 enum DocumentNameType {
   APP_IMAGE = 'App Image',
@@ -57,11 +61,56 @@ export default function ChangeDocuments() {
   const items = state
   const app = items?.filter((item: ItemType) => item.id === appId)
   const { data, refetch } = useFetchAppDocumentsQuery(appId ?? '')
-  const [deleteAppChangeDocument, deleteResponse] =
-    useDeleteAppChangeDocumentMutation()
+  const [deleteAppChangeDocument] = useDeleteAppChangeDocumentMutation()
+  const [documentType, setDocumentType] = useState('')
   const [uploadDocsOverlayOpen, setUploadDocsOverlayOpen] =
     useState<boolean>(false)
   const [updateAppChangeDocument] = useUpdateAppChangeDocumentMutation()
+
+  const { control, trigger, setValue } = useForm({
+    defaultValues: { uploadDocument: '' },
+    mode: 'onChange',
+  })
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: File
+  ) => {
+    const data = {
+      appId,
+      documentTypeId,
+      body: { file },
+    }
+    await updateAppChangeDocument(data).unwrap()
+  }
+
+  const onFileUpload = async (file: DropzoneFile) => {
+    if (appId && file) {
+      const setFileStatus = (status: UploadStatus) => {
+        setValue('uploadDocument', {
+          id: file.id,
+          name: file.name,
+          size: file.size,
+          status,
+          // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
+        } as any)
+      }
+      setFileStatus(UploadStatus.UPLOADING)
+      uploadDocumentApi(appId, documentType, file)
+        .then(() => {
+          setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+          refetch()
+          setUploadDocsOverlayOpen(false)
+          success(t('content.changeImage.successMsg'))
+        })
+        .catch((err) => {
+          setFileStatus(UploadStatus.UPLOAD_ERROR)
+          error(t('content.changeImage.errorMsg'), '', err)
+        })
+    }
+  }
 
   const deleteDocument = async (documentId: string) => {
     appId &&
@@ -87,7 +136,11 @@ export default function ChangeDocuments() {
         }))
   }
 
-  const renderdocs = (doctype: string, documents: DocumentData[]) => {
+  const renderdocs = (
+    docType: string,
+    documents: DocumentData[],
+    documentTypeId: string
+  ) => {
     return (
       <div>
         <Box width={500} margin={'0 auto'} justifyContent="center">
@@ -95,7 +148,7 @@ export default function ChangeDocuments() {
             variant="label3"
             sx={{ color: '#1977cc', display: 'flex', marginTop: '28px' }}
           >
-            <ArrowForwardIcon fontSize="small" sx={{ mr: 1 }} /> {doctype}
+            <ArrowForwardIcon fontSize="small" sx={{ mr: 1 }} /> {docType}
           </Typography>
           <Box sx={{ mb: '20px', mt: '10px' }}>
             {documents?.map((doc: DocumentData) => {
@@ -108,7 +161,7 @@ export default function ChangeDocuments() {
                     sx={{ height: '18px', width: '18px', float: 'right' }}
                     onClick={() => deleteDocument(doc.documentId)}
                     disabled={
-                      doctype === DocumentNameType.APP_IMAGE &&
+                      docType === DocumentNameType.APP_IMAGE &&
                       documents.length <= 1
                     }
                   >
@@ -124,17 +177,18 @@ export default function ChangeDocuments() {
             color="secondary"
             onClick={() => {
               setUploadDocsOverlayOpen(true)
+              setDocumentType(documentTypeId)
             }}
             sx={{ fontSize: '12px' }}
             disabled={
-              (doctype === DocumentNameType.APP_IMAGE &&
+              (docType === DocumentNameType.APP_IMAGE &&
                 documents.length === 3) ||
-              (doctype !== DocumentNameType.APP_IMAGE && documents.length === 1)
+              (docType !== DocumentNameType.APP_IMAGE && documents.length === 1)
             }
           >
             {t('content.changeDocuments.uploadNewDocument')}
           </Button>
-          {doctype !== DocumentNameType.ADDITIONAL_DETAILS && (
+          {docType !== DocumentNameType.ADDITIONAL_DETAILS && (
             <Divider sx={{ margin: '34px auto' }} />
           )}
         </Box>
@@ -184,25 +238,54 @@ export default function ChangeDocuments() {
                 sx={{
                   padding: '0px 120px 40px 120px',
                 }}
-              ></DialogContent>
+              >
+                <Controller
+                  control={control}
+                  name={'uploadDocument'}
+                  render={({ field: { onChange: reactHookFormOnChange } }) => (
+                    <Dropzone
+                      onChange={(files) => {
+                        reactHookFormOnChange(files[0]?.name)
+                        trigger('uploadDocument')
+                        onFileUpload(files[0])
+                      }}
+                      acceptFormat={
+                        documentType === DocumentTypeId.APP_IMAGE
+                          ? {
+                              'image/png': [],
+                              'image/jpeg': [],
+                            }
+                          : { 'application/pdf': [] }
+                      }
+                      maxFileSize={819200}
+                      maxFilesToUpload={1}
+                      enableDeleteOverlay={false}
+                    />
+                  )}
+                />
+              </DialogContent>
             </Dialog>
             {data?.documents && (
               <>
                 {renderdocs(
                   DocumentNameType.APP_IMAGE,
-                  data.documents.APP_IMAGE
+                  data.documents.APP_IMAGE,
+                  DocumentTypeId.APP_IMAGE
                 )}
                 {renderdocs(
                   DocumentNameType.APP_TECHNICAL_INFORMATION,
-                  data.documents.APP_TECHNICAL_INFORMATION
+                  data.documents.APP_TECHNICAL_INFORMATION,
+                  DocumentTypeId.APP_TECHNICAL_INFORMATION
                 )}
                 {renderdocs(
                   DocumentNameType.APP_CONTRACT,
-                  data.documents.APP_CONTRACT
+                  data.documents.APP_CONTRACT,
+                  DocumentTypeId.APP_CONTRACT
                 )}
                 {renderdocs(
                   DocumentNameType.ADDITIONAL_DETAILS,
-                  data.documents.ADDITIONAL_DETAILS
+                  data.documents.ADDITIONAL_DETAILS,
+                  DocumentTypeId.ADDITIONAL_DETAILS
                 )}
               </>
             )}

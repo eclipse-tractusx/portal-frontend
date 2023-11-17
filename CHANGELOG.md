@@ -4,6 +4,8 @@
 
 - App release process
   - Fixed error message deletion upon deleting of csv file in technical integration
+- App Overview
+  - post and delete api endpoints connected for active apps-change documents
 
 ## 1.7.0-RC3
 
