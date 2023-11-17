@@ -67,8 +67,8 @@ export default function AdminCredentialElements() {
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [filterValueAPI, setFilterValueAPI] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
-  const [approveLoading, setApproveLoading] = useState(false)
-  const [declineLoading, setDeclineLoading] = useState(false)
+  const [approveLoading, setApproveLoading] = useState<string>()
+  const [declineLoading, setDeclineLoading] = useState<string>()
 
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
@@ -119,8 +119,8 @@ export default function AdminCredentialElements() {
     status: StatusType
   ) => {
     status === StatusType.APPROVE
-      ? setApproveLoading(true)
-      : setDeclineLoading(true)
+      ? setApproveLoading(credentialId)
+      : setDeclineLoading(credentialId)
     const APIRequest =
       status === StatusType.APPROVE ? approveCredential : declineCredential
     await APIRequest(credentialId)
@@ -134,8 +134,8 @@ export default function AdminCredentialElements() {
       .catch(() => {
         error(t('content.adminCertificate.errorMessage'))
       })
-    setApproveLoading(false)
-    setDeclineLoading(false)
+    setApproveLoading('')
+    setDeclineLoading('')
   }
 
   const filterButtons = [
@@ -210,7 +210,7 @@ export default function AdminCredentialElements() {
                 variant="contained"
                 className="statusBtn"
                 endIcon={
-                  declineLoading && (
+                  declineLoading === row.credentialDetailId && (
                     <CircleProgress
                       thickness={5}
                       size={20}
@@ -234,7 +234,7 @@ export default function AdminCredentialElements() {
                 variant="contained"
                 className="statusBtn ml-10"
                 endIcon={
-                  approveLoading && (
+                  approveLoading === row.credentialDetailId && (
                     <CircleProgress
                       thickness={5}
                       size={20}
