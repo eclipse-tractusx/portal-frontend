@@ -5,6 +5,8 @@
 - App release process
 
   - Fixed error message deletion upon deleting of csv file in technical integration
+- Service Subscription
+  - Activation Overlay Changes
   - Fixed consent check removal issue on save
 
 - Service release process
