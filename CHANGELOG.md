@@ -5,6 +5,8 @@
 - Mobile version. Hamburger menu
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
+- Admin Credential
+  - Document Hover Effect
 - Tech User Details
   - Fix crash issue
 
