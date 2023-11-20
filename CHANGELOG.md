@@ -2,6 +2,7 @@
 
 ## unreleased
 
+- Mobile version. Hamburger menu
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
 

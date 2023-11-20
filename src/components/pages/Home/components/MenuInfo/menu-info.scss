@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,40 +17,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.UserInfo {
-  position: relative;
-  z-index: 100;
-  cursor: pointer;
+.MenuInfo {
+  display: block;
+  position: absolute;
+  top: 0px;
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+  right: 0px;
+  width: 70%;
+  padding: 10px 0px;
 }
 
-.titleBox {
-  display: flex;
-  margin: 20px;
-  align-items: center;
-  justify-content: space-between;
+.closeIcon {
+  position: absolute;
+  right: 20px;
 }
 
-.titleBox div {
-  display: flex;
-  align-items: center;
-}
-
-.titleBox .MuiAvatar-circular {
-  width: 30px;
-  height: 30px;
-}
-
-.badgeBox {
-  background-color: #b3cb2d;
-  width: 25px;
-  height: 25px;
-  border-radius: 30px;
-  padding: 5px;
-}
-
-.badgeBox p {
-  min-width: 27px;
-  color: #fff;
-  font-size: 12px;
-  text-align: center;
+.userMenuInfo {
+  margin-top: 20px;
 }
