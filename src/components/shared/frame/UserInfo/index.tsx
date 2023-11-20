@@ -95,7 +95,7 @@ export const UserInfo = ({
           ref={avatar}
           onClick={openCloseMenu}
           onKeyDown={() => {
-            //ignore
+            // do nothing
           }}
         >
           <div className="titleBox">

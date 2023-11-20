@@ -136,7 +136,7 @@ export const MenuItem = ({
             </Typography>
           )}
       </Link>
-      {Menu != null && children != null && open && (
+      {Menu != null && open && (
         <>
           {children?.map((item) => (
             <Link
@@ -163,10 +163,8 @@ export const MenuItem = ({
                 },
               }}
               onClick={() => {
-                if (children != null) {
-                  setOpen(!open)
-                  dispatch(setAppear({ MENU: !visible }))
-                }
+                setOpen(!open)
+                dispatch(setAppear({ MENU: !visible }))
               }}
               to={item.to}
             >
