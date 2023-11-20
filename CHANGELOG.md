@@ -4,6 +4,8 @@
 
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
+- Tech User Details
+  - Fix crash issue
 
 ## 1.7.0-RC3
 
