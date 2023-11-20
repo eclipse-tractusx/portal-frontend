@@ -1532,6 +1532,7 @@
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
+      "nodocument": "No document available",
       "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
