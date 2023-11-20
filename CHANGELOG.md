@@ -15,6 +15,8 @@
   - Activation Overlay Changes
 - Service release process
   - Fixed consent check removal issue on save
+- Credential
+  - Document Icon Handling
 
 ## 1.7.0-RC3
 
