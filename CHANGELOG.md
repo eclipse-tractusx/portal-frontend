@@ -4,6 +4,8 @@
 
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
+- Admin Credential
+  - Document Hover Effect
 
 ## 1.7.0-RC3
 
