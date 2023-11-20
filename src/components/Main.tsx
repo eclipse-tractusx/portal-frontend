@@ -31,6 +31,7 @@ import type { OVERLAYS } from 'types/Constants'
 import './styles/main.scss'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
+import { MenuInfo } from './pages/Home/components/MenuInfo'
 
 export default function Main() {
   document.title = useTranslation().t('title')
@@ -53,6 +54,7 @@ export default function Main() {
       <Footer pages={AccessService.footerMenu()} />
       <MainOverlay />
       <MainNotify />
+      <MenuInfo main={AccessService.mainMenuTree()} />
     </>
   )
 }

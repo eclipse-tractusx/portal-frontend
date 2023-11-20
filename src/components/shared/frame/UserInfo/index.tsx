@@ -25,6 +25,7 @@ import {
   UserMenu,
   UserNav,
   type NotificationBadgeType,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
@@ -36,8 +37,17 @@ import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
 import { useDispatch } from 'react-redux'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
-export const UserInfo = ({ pages }: { pages: string[] }) => {
+export const UserInfo = ({
+  pages,
+  title,
+  isMobile = false,
+}: {
+  pages: string[]
+  title?: string
+  isMobile?: boolean
+}) => {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
@@ -80,13 +90,53 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
 
   return (
     <div className="UserInfo">
-      <div ref={avatar}>
-        <UserAvatar
+      {isMobile ? (
+        <div
+          ref={avatar}
           onClick={openCloseMenu}
-          notificationCount={notificationInfo?.notificationCount}
-          isNotificationAlert={notificationInfo?.isNotificationAlert}
-        />
-      </div>
+          onKeyDown={() => {
+            // do nothing
+          }}
+        >
+          <div className="titleBox">
+            <div>
+              <AccountCircleIcon
+                sx={{
+                  color: '#0f71cb',
+                  width: '30px',
+                  height: '30px',
+                }}
+              />
+              <Typography
+                sx={{
+                  paddingLeft: '10px',
+                }}
+                variant="body2"
+              >
+                {title}
+              </Typography>
+            </div>
+            <div className="badgeBox">
+              <Typography
+                sx={{
+                  paddingRight: '12px',
+                }}
+                variant="body2"
+              >
+                {notificationInfo?.notificationCount}
+              </Typography>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div ref={avatar}>
+          <UserAvatar
+            onClick={openCloseMenu}
+            notificationCount={notificationInfo?.notificationCount}
+            isNotificationAlert={notificationInfo?.isNotificationAlert}
+          />
+        </div>
+      )}
       <UserMenu
         open={menuOpen}
         top={60}
