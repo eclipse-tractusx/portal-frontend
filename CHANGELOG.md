@@ -9,6 +9,8 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- Overlays
+  - Change Overlay Button from "Cancel" to "Close"
 
 ## 1.7.0-RC3
 
