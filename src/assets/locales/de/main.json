@@ -442,10 +442,13 @@
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "saveTooltipMsg": "The save button will be active after a document was changed",
-      "successMsg": "Documents changed successfully",
+      "successMsg": "Document uploaded successfully",
       "errorMsg": "Error! Something went wrong",
-      "uploadNewDocument": "Neues Dokument hochladen"
+      "uploadNewDocument": "Upload new document",
+      "uploadNewDocumentDescription": "Hinweis: Es ist nur eine Datei zum Hochladen zulässig",
+      "documentDeleteSuccess": "Document deleted successfully",
+      "deleteIconTooltip": "Mindestens ein Dokument ist obligatorisch. Laden Sie ein neues Dokument hoch, bevor Sie das Bild entfernen können.",
+      "uploadButtonTooltip": "Maximale Anzahl zulässiger Dokumente erreicht. Bitte löschen Sie ein Dokument, bevor Sie ein neues hochladen."
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -1568,6 +1571,7 @@
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
+      "nodocument": "Kein Dokument vorhanden",
       "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",

@@ -22,6 +22,7 @@ import { useTranslation, Trans } from 'react-i18next'
 import {
   Chip,
   PageHeader,
+  Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
 import PixIcon from '@mui/icons-material/Pix'
@@ -179,19 +180,36 @@ export default function UsecaseParticipation() {
                                   {t('content.usecaseParticipation.version')}
                                 </Typography>
                               </Trans>
-                              <Link
-                                to={credential.externalDetailData.template}
-                                target="_blank"
-                                className="thirdSection"
-                              >
-                                <Typography
-                                  variant="body3"
-                                  className="framework"
-                                >
-                                  <LaunchIcon />
-                                  {t('content.usecaseParticipation.framework')}
-                                </Typography>
-                              </Link>
+                              <Tooltips
+                                tooltipPlacement="top-start"
+                                tooltipText={
+                                  !credential.externalDetailData.template
+                                    ? t(
+                                        'content.usecaseParticipation.nodocument'
+                                      )
+                                    : ''
+                                }
+                                children={
+                                  <Link
+                                    to={credential.externalDetailData.template}
+                                    target="_blank"
+                                    className={`thirdSection ${
+                                      !credential.externalDetailData.template &&
+                                      'documentDisabled'
+                                    }`}
+                                  >
+                                    <Typography
+                                      variant="body3"
+                                      className="framework"
+                                    >
+                                      <LaunchIcon />
+                                      {t(
+                                        'content.usecaseParticipation.framework'
+                                      )}
+                                    </Typography>
+                                  </Link>
+                                }
+                              />
                               <Trans
                                 values={{
                                   expiry: credential.externalDetailData.expiry
