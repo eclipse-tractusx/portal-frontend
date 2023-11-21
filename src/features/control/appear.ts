@@ -24,10 +24,12 @@ const name = 'control/appear'
 
 export enum AppearItem {
   SEARCH = 'SEARCH',
+  MENU = 'MENU',
 }
 
 const initialState: Record<AppearItem, boolean> = {
   SEARCH: false,
+  MENU: false,
 }
 
 export const slice = createSlice({
@@ -45,5 +47,8 @@ export const { setAppear } = slice.actions
 
 export const appearSearchSelector = (state: RootState): boolean =>
   state.control.appear.SEARCH
+
+export const appearMenuSelector = (state: RootState): boolean =>
+  state.control.appear.MENU
 
 export default slice.reducer
