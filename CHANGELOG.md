@@ -9,6 +9,8 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- User management
+  - Updated app access management flow
 
 ## 1.7.0-RC3
 
