@@ -41,10 +41,14 @@ export type TechnicalUserData = {
 }
 
 export enum ProcessStep {
-  START_AUTOSETUP = 'START_AUTOSETUP',
-  ACTIVATE_SUBSCRIPTION = 'ACTIVATE_SUBSCRIPTION',
   TRIGGER_PROVIDER = 'TRIGGER_PROVIDER',
+  START_AUTOSETUP = 'START_AUTOSETUP',
+  OFFERSUBSCRIPTION_CLIENT_CREATION = 'OFFERSUBSCRIPTION_CLIENT_CREATION',
+  SINGLE_INSTANCE_SUBSCRIPTION_DETAILS_CREATION = 'SINGLE_INSTANCE_SUBSCRIPTION_DETAILS_CREATION',
+  OFFERSUBSCRIPTION_TECHNICALUSER_CREATION = 'OFFERSUBSCRIPTION_TECHNICALUSER_CREATION',
+  ACTIVATE_SUBSCRIPTION = 'ACTIVATE_SUBSCRIPTION',
   TRIGGER_PROVIDER_CALLBACK = 'TRIGGER_PROVIDER_CALLBACK',
+  RETRIGGER_PROVIDER = 'RETRIGGER_PROVIDER',
 }
 
 export type SubscriptionDetailResponse = {
@@ -84,12 +88,12 @@ export type CompanySubscriptionData = {
   subscriptionId: string
   offerSubscriptionStatus: string
   technicalUser?: boolean
+  processStepTypeId: ProcessStep
 }
 
 export type SubscriptionContent = {
   offerId: string
   offerName: string
-  processStepTypeId: ProcessStep
   companySubscriptionStatuses: CompanySubscriptionData[]
 }
 
