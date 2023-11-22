@@ -61,7 +61,7 @@ export type SubscriptionDetailResponse = {
   contact: string[]
   technicalUserData: TechnicalUserData[]
   tenantUrl: string
-  processStepTypeId: ProcessStep
+  processStepTypeId: ProcessStep | null
 }
 
 export type UserRoles = {
