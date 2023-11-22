@@ -88,7 +88,7 @@ export type CompanySubscriptionData = {
   subscriptionId: string
   offerSubscriptionStatus: string
   technicalUser?: boolean
-  processStepTypeId: ProcessStep
+  processStepTypeId: ProcessStep | null
 }
 
 export type SubscriptionContent = {
