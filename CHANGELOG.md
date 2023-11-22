@@ -17,6 +17,8 @@
   - Fixed consent check removal issue on save
 - Credential
   - Document Icon Handling
+- Subscription
+  - App and Service Subscription Pages - logic update
 
 ## 1.7.0-RC3
 

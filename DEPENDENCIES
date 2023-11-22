@@ -675,7 +675,7 @@ npm/npmjs/-/postcss-import/15.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/postcss-initial/4.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/postcss-js/4.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/postcss-lab-function/4.2.1, CC0-1.0 AND (MIT AND W3C-20150513) AND W3C-20150513 AND MIT, approved, #3020
-npm/npmjs/-/postcss-load-config/4.0.1, MIT, approved, clearlydefined
+npm/npmjs/-/postcss-load-config/4.0.1, MIT, approved, #11674
 npm/npmjs/-/postcss-loader/6.2.1, MIT, approved, clearlydefined
 npm/npmjs/-/postcss-logical/5.0.4, CC0-1.0, approved, clearlydefined
 npm/npmjs/-/postcss-media-minmax/5.0.0, MIT, approved, clearlydefined
