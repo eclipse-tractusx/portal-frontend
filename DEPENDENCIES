@@ -1051,7 +1051,7 @@ npm/npmjs/@babel/helper-string-parser/7.22.5, MIT, approved, #8962
 npm/npmjs/@babel/helper-validator-identifier/7.22.20, MIT, approved, #8955
 npm/npmjs/@babel/helper-validator-option/7.22.15, MIT, approved, #8961
 npm/npmjs/@babel/helper-wrap-function/7.22.20, MIT, approved, #8951
-npm/npmjs/@babel/helpers/7.23.1, MIT, approved, clearlydefined
+npm/npmjs/@babel/helpers/7.23.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11662
 npm/npmjs/@babel/highlight/7.22.20, MIT, approved, #9073
 npm/npmjs/@babel/parser/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10663
 npm/npmjs/@babel/parser/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10663
@@ -1320,7 +1320,7 @@ npm/npmjs/@types/qs/6.9.8, MIT, approved, clearlydefined
 npm/npmjs/@types/range-parser/1.2.5, MIT, approved, #10795
 npm/npmjs/@types/react-dom/18.2.11, MIT, approved, #8256
 npm/npmjs/@types/react-redux/7.1.27, MIT, approved, #10970
-npm/npmjs/@types/react-slick/0.23.10, MIT, approved, clearlydefined
+npm/npmjs/@types/react-slick/0.23.10, MIT, approved, #11666
 npm/npmjs/@types/react-transition-group/4.4.7, MIT, approved, #8416
 npm/npmjs/@types/react/18.2.25, MIT, approved, #8234
 npm/npmjs/@types/resolve/1.17.1, MIT, approved, clearlydefined
