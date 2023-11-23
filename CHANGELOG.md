@@ -9,6 +9,8 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- version upgrade issues
+  - Fixed portal shared components version upgrade issues
 
 ## 1.7.0-RC3
 

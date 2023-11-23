@@ -241,7 +241,7 @@ export const IDPList = () => {
       rowsCount={idpsData?.length}
       hideFooter
       loading={isFetching}
-      disableSelectionOnClick={true}
+      disableRowSelectionOnClick={true}
       disableColumnFilter={true}
       disableColumnMenu={true}
       disableColumnSelector={true}
