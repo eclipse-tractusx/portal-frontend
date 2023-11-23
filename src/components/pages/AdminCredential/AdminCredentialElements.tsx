@@ -36,7 +36,10 @@ import { uniqueId } from 'lodash'
 import { SubscriptionStatus } from 'features/apps/apiSlice'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
-import { PageLoadingTable } from '@catena-x/portal-shared-components'
+import {
+  CircleProgress,
+  PageLoadingTable,
+} from '@catena-x/portal-shared-components'
 
 interface FetchHookArgsType {
   filterType: string
@@ -64,6 +67,8 @@ export default function AdminCredentialElements() {
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [filterValueAPI, setFilterValueAPI] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
+  const [approveLoading, setApproveLoading] = useState<string>()
+  const [declineLoading, setDeclineLoading] = useState<string>()
 
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
@@ -113,6 +118,9 @@ export default function AdminCredentialElements() {
     credentialId: string,
     status: StatusType
   ) => {
+    status === StatusType.APPROVE
+      ? setApproveLoading(credentialId)
+      : setDeclineLoading(credentialId)
     const APIRequest =
       status === StatusType.APPROVE ? approveCredential : declineCredential
     await APIRequest(credentialId)
@@ -126,6 +134,8 @@ export default function AdminCredentialElements() {
       .catch(() => {
         error(t('content.adminCertificate.errorMessage'))
       })
+    setApproveLoading('')
+    setDeclineLoading('')
   }
 
   const filterButtons = [
@@ -199,6 +209,16 @@ export default function AdminCredentialElements() {
                 color="error"
                 variant="contained"
                 className="statusBtn"
+                endIcon={
+                  declineLoading === row.credentialDetailId && (
+                    <CircleProgress
+                      thickness={5}
+                      size={20}
+                      variant="indeterminate"
+                      colorVariant="secondary"
+                    />
+                  )
+                }
                 onClick={() =>
                   handleApproveDecline(
                     row.credentialDetailId,
@@ -213,6 +233,16 @@ export default function AdminCredentialElements() {
                 color="success"
                 variant="contained"
                 className="statusBtn ml-10"
+                endIcon={
+                  approveLoading === row.credentialDetailId && (
+                    <CircleProgress
+                      thickness={5}
+                      size={20}
+                      variant="indeterminate"
+                      colorVariant="secondary"
+                    />
+                  )
+                }
                 onClick={() =>
                   handleApproveDecline(
                     row.credentialDetailId,
