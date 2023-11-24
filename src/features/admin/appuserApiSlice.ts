@@ -162,7 +162,7 @@ const slice = createSlice({
 })
 
 export const currentUserRoleResp = (state: RootState): string => {
-  return state.userRole.userRoleResp
+  return state.userRole.userRoleResp as string
 }
 
 export const { setUserRoleResp } = slice.actions

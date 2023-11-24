@@ -51,8 +51,8 @@ export const slice = createSlice({
   },
 })
 
-export const itemsSelector = (state: RootState): CardItems[] =>
-  state.info.news.items
+export const itemsSelector = (state: RootState) =>
+  state.info.news.items as CardItems[]
 
 const Slice = { slice }
 

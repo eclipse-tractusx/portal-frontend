@@ -58,11 +58,11 @@ export const slice = createSlice({
   },
 })
 
-export const searchExprSelector = (state: RootState): string =>
-  state.info.search.expr
+export const searchExprSelector = (state: RootState) =>
+  state.info.search.expr as string
 
-export const searchItemSelector = (state: RootState): SearchItem[] =>
-  state.info.search.items
+export const searchItemSelector = (state: RootState) =>
+  state.info.search.items as SearchItem[]
 
 const Slice = { slice }
 

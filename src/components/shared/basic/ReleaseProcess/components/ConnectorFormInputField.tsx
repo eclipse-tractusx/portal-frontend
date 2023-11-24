@@ -140,6 +140,8 @@ any) => {
               // eslint-disable-next-line
               onAddItem={(items: any[]) => {
                 trigger(name)
+                // Add an ESLint exception until there is a solution
+                // eslint-disable-next-line
                 onChange(items?.map((item) => item[saveKeyTitle]))
               }}
               notItemsText={notItemsText}

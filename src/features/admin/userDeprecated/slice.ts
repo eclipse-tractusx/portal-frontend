@@ -88,29 +88,29 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): AdminUserState =>
-  state.admin.user
+export const stateSelector = (state: RootState) =>
+  state.admin.user as AdminUserState
 
-export const addOpenSelector = (state: RootState): boolean =>
-  state.admin.user.addOpen
+export const addOpenSelector = (state: RootState) =>
+  state.admin.user.addOpen as boolean
 
-export const tenantUsersSelector = (state: RootState): TenantUser[] =>
-  state.admin.user.tenantUsers
+export const tenantUsersSelector = (state: RootState) =>
+  state.admin.user.tenantUsers as TenantUser[]
 
-export const usersToAddSelector = (state: RootState): AddUserIdp =>
-  state.admin.user.usersToAdd
+export const usersToAddSelector = (state: RootState) =>
+  state.admin.user.usersToAdd as AddUserIdp
 
-export const rolesToAddSelector = (state: RootState): string[] =>
-  state.admin.user.rolesToAdd
+export const rolesToAddSelector = (state: RootState) =>
+  state.admin.user.rolesToAdd as string[]
 
-export const selectedUserSelector = (state: RootState): string[] =>
-  state.admin.user.selectedUser
+export const selectedUserSelector = (state: RootState) =>
+  state.admin.user.selectedUser as string[]
 
-export const getRequestStateSelector = (state: RootState): RequestState =>
-  state.admin.user.getRequest
+export const getRequestStateSelector = (state: RootState) =>
+  state.admin.user.getRequest as RequestState
 
-export const addRequestStateSelector = (state: RootState): RequestState =>
-  state.admin.user.addRequest
+export const addRequestStateSelector = (state: RootState) =>
+  state.admin.user.addRequest as RequestState
 
 const Slice = { slice }
 

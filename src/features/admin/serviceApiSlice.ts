@@ -107,9 +107,12 @@ export const apiSlice = createApi({
       // Add an ESLint exception until there is a solution
       // eslint-disable-next-line
       transformErrorResponse: (error: any) =>
-        error?.errors?.[
+        (error?.errors?.[
           'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
-        ]?.[0] ?? i18next.t('error.deleteTechUserNotificationErrorDescription'),
+        ]?.[0] as string) ??
+        (i18next.t(
+          'error.deleteTechUserNotificationErrorDescription'
+        ) as string),
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,

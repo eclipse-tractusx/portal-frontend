@@ -216,12 +216,12 @@ const slice = createSlice({
   },
 })
 
-export const currentAddUserSuccess = (state: RootState): boolean => {
-  return state.userAdd.isSuccess
+export const currentAddUserSuccess = (state: RootState) => {
+  return state.userAdd.isSuccess as boolean
 }
 
-export const currentAddUserError = (state: RootState): boolean =>
-  state.userAdd.isError
+export const currentAddUserError = (state: RootState) =>
+  state.userAdd.isError as boolean
 
 export const { setAddUserSuccess, setAddUserError } = slice.actions
 export default slice

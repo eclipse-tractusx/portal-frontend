@@ -26,6 +26,7 @@ import { useEffect, useState } from 'react'
 
 export default function ItemProcessor({
   items,
+  // eslint-disable-next-line
   process = (item) => ({ ...item }),
   autostart = true,
 }: {

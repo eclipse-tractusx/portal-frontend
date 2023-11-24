@@ -46,15 +46,14 @@ const serviceManagementSlice = createSlice({
   },
 })
 
-export const serviceReleaseActiveStep = (state: RootState): number =>
-  state.serviceManagement.serviceReleaseActiveStep
+export const serviceReleaseActiveStep = (state: RootState) =>
+  state.serviceManagement.serviceReleaseActiveStep as number
 
-export const serviceIdSelector = (state: RootState): string =>
-  state.serviceManagement.serviceId
+export const serviceIdSelector = (state: RootState) =>
+  state.serviceManagement.serviceId as string
 
-export const serviceStatusDataSelector = (
-  state: RootState
-): ServiceStatusDataState => state.serviceManagement.serviceStatusData
+export const serviceStatusDataSelector = (state: RootState) =>
+  state.serviceManagement.serviceStatusData as ServiceStatusDataState
 
 export const {
   serviceReleaseStepIncrement,

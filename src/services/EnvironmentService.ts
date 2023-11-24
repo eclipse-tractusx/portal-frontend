@@ -23,26 +23,28 @@
 declare const ENV: any
 
 export const getApiBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.PORTAL_BACKEND_URL
+  typeof ENV === 'undefined' ? '' : (ENV.PORTAL_BACKEND_URL as string)
 
 export const getAssetBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.PORTAL_ASSETS_URL
+  typeof ENV === 'undefined' ? '' : (ENV.PORTAL_ASSETS_URL as string)
 
 export const getCentralIdp = () =>
-  typeof ENV === 'undefined' ? '' : ENV.CENTRALIDP_URL
+  typeof ENV === 'undefined' ? '' : (ENV.CENTRALIDP_URL as string)
 
-export const getClientId = () => 'Cl2-CX-Portal'
+export const getClientId = () => 'Cl2-CX-Portal' as string
 
 export const getBpdmApiBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.BPDM_API_URL
+  typeof ENV === 'undefined' ? '' : (ENV.BPDM_API_URL as string)
 
 export const getSemanticApiBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.SEMANTICS_URL
+  typeof ENV === 'undefined' ? '' : (ENV.SEMANTICS_URL as string)
 
-export const getClientIdSemantic = () => 'Cl3-CX-Semantic'
+export const getClientIdSemantic = () => 'Cl3-CX-Semantic' as string
 
 export const getManagedIdentityWalletsNewBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.MANAGED_IDENTITY_WALLETS_NEW_URL
+  typeof ENV === 'undefined'
+    ? ''
+    : (ENV.MANAGED_IDENTITY_WALLETS_NEW_URL as string)
 
 const EnvironmentService = {
   getApiBase,

@@ -22,7 +22,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
 import { initServicetNotifications } from 'types/MainTypes'
 import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
-import { initialState, name } from './types'
+import { type InitialNotificationType, initialState, name } from './types'
 
 export const notificationSlice = createSlice({
   name,
@@ -43,11 +43,10 @@ export const notificationSlice = createSlice({
   },
 })
 
-export const notificationSelector = (
-  state: RootState
-): PageNotificationsProps => state.notification.notification
+export const notificationSelector = (state: RootState) =>
+  state.notification.notification as PageNotificationsProps
 
 export const initialNotificationState = (state: RootState) =>
-  state.notification.initialNotificationState
+  state.notification.initialNotificationState as InitialNotificationType
 
 export default notificationSlice

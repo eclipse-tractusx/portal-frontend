@@ -103,8 +103,8 @@ export const slice = createSlice({
   },
 })
 
-export const UserdetailSelector = (state: RootState): UserDetail =>
-  state.admin.userOwn.data
+export const UserdetailSelector = (state: RootState) =>
+  state.admin.userOwn.data as UserDetail
 
 // Add an ESLint exception until there is a solution
 // eslint-disable-next-line

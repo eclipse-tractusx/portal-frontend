@@ -103,6 +103,7 @@ const accessToMenuTree = (menu: Tree[] | undefined): any =>
       children: accessToMenuTree(item.children),
     }))
 
+// eslint-disable-next-line
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)

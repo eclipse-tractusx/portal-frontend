@@ -50,29 +50,28 @@ export const slice = createSlice({
 
 export const { updateData } = slice.actions
 
-export const updateUserSelector = (state: RootState): number =>
-  state.control.update[UPDATES.USER_LIST]
+export const updateUserSelector = (state: RootState) =>
+  state.control.update[UPDATES.USER_LIST] as number
 
-export const updateTechuserSelector = (state: RootState): number =>
-  state.control.update[UPDATES.TECHUSER_LIST]
+export const updateTechuserSelector = (state: RootState) =>
+  state.control.update[UPDATES.TECHUSER_LIST] as number
 
-export const updateActiveAppsSelector = (state: RootState): number =>
-  state.control.update[UPDATES.APPS_ACTIVE_LIST]
+export const updateActiveAppsSelector = (state: RootState) =>
+  state.control.update[UPDATES.APPS_ACTIVE_LIST] as number
 
-export const updateFavoriteAppsSelector = (state: RootState): number =>
-  state.control.update[UPDATES.APPS_FAVORITE_LIST]
+export const updateFavoriteAppsSelector = (state: RootState) =>
+  state.control.update[UPDATES.APPS_FAVORITE_LIST] as number
 
-export const updateSubscribedAppsSelector = (state: RootState): number =>
-  state.control.update[UPDATES.APPS_SUBSCRIBED_LIST]
+export const updateSubscribedAppsSelector = (state: RootState) =>
+  state.control.update[UPDATES.APPS_SUBSCRIBED_LIST] as number
 
-export const updateInviteSelector = (state: RootState): SearchInputState =>
-  state.management
+export const updateInviteSelector = (state: RootState) =>
+  state.management as SearchInputState
 
-export const updateApplicationRequestSelector = (
-  state: RootState
-): SearchInputState => state.management
+export const updateApplicationRequestSelector = (state: RootState) =>
+  state.management as SearchInputState
 
-export const updatePartnerSelector = (state: RootState): SearchInputState =>
-  state.management
+export const updatePartnerSelector = (state: RootState) =>
+  state.management as SearchInputState
 
 export default slice.reducer

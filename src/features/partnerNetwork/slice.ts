@@ -127,8 +127,7 @@ const partnerNetworkSlice = createSlice({
   },
 })
 
-export const partnerNetworkSelector = (
-  state: RootState
-): PartnerNetworkInitialState => state.partnerNetwork
+export const partnerNetworkSelector = (state: RootState) =>
+  state.partnerNetwork as PartnerNetworkInitialState
 
 export default partnerNetworkSlice

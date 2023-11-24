@@ -125,8 +125,7 @@ const modelsSlice = createSlice({
   },
 })
 
-export const semanticModelsSelector = (
-  state: RootState
-): SemanticModelsInitialState => state.semanticModels
+export const semanticModelsSelector = (state: RootState) =>
+  state.semanticModels as SemanticModelsInitialState
 
 export default modelsSlice

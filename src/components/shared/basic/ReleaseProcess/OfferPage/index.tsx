@@ -132,6 +132,8 @@ export default function OfferPage({
     mode: 'onChange',
   })
 
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const dImages = useMemo(() => defaultValues.images, [defaultValues])
 
   useEffect(() => {

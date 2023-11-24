@@ -92,11 +92,11 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): ListState<string> =>
-  state.apps.favorites
+export const stateSelector = (state: RootState) =>
+  state.apps.favorites as ListState<string>
 
-export const itemsSelector = (state: RootState): string[] =>
-  state.apps.favorites.items
+export const itemsSelector = (state: RootState) =>
+  state.apps.favorites.items as string[]
 
 const Slice = { slice }
 

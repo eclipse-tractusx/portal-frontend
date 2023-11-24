@@ -65,6 +65,7 @@ export abstract class HttpClient {
   }
 
   // Pass response object to Promise resolve
+  // eslint-disable-next-line
   private _handleResponse = ({ data }: AxiosResponse) => data
 
   // Catch error and throw code to .catch block

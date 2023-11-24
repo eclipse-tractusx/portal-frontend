@@ -54,7 +54,7 @@ export const ErrorSlice = createSlice({
   },
 })
 
-export const errorSelector = (state: RootState): ErrorServiceState =>
-  state.error
+export const errorSelector = (state: RootState) =>
+  state.error as ErrorServiceState
 
 export default ErrorSlice

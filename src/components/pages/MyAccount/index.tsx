@@ -39,10 +39,16 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
 
+export type ParsedTokenObj = {
+  organisation: string
+}
+
 export default function MyAccount() {
   const { t } = useTranslation()
-  const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
-  const token = useSelector((state: RootState) => state.user.token)
+  const parsedToken = useSelector(
+    (state: RootState) => state.user.parsedToken as ParsedTokenObj
+  )
+  const token = useSelector((state: RootState) => state.user.token as string)
   const { data } = useFetchOwnUserDetailsQuery()
   const dispatch = useDispatch()
 

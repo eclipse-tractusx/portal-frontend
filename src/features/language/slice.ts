@@ -33,7 +33,7 @@ export const languageSlice = createSlice({
   },
 })
 
-export const languageSelector = (state: RootState): string =>
-  state.languageSlice.language
+export const languageSelector = (state: RootState) =>
+  state.languageSlice.language as string
 
 export default languageSlice

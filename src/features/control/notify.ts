@@ -49,7 +49,7 @@ export const slice = createSlice({
 
 export const { enq, deq } = slice.actions
 
-export const notifySelector = (state: RootState): Array<Notify> =>
-  state.control.notify
+export const notifySelector = (state: RootState) =>
+  state.control.notify as Array<Notify>
 
 export default slice.reducer

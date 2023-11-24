@@ -46,11 +46,11 @@ const slice = createSlice({
   },
 })
 
-export const currentSuccessType = (state: RootState): boolean =>
-  state.adminBoard.isSuccess
+export const currentSuccessType = (state: RootState) =>
+  state.adminBoard.isSuccess as boolean
 
-export const currentErrorType = (state: RootState): boolean =>
-  state.adminBoard.isError
+export const currentErrorType = (state: RootState) =>
+  state.adminBoard.isError as boolean
 
 export const { setSuccessType, setErrorType } = slice.actions
 export default slice

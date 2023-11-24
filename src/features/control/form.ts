@@ -64,11 +64,10 @@ export const slice = createSlice({
 
 export const { storeForm } = slice.actions
 
-export const editIDPUserSelector = (state: RootState): { data: string } =>
-  state.control.form[FORMS.IDP_USER_FORM]
+export const editIDPUserSelector = (state: RootState) =>
+  state.control.form[FORMS.IDP_USER_FORM] as { data: string }
 
-export const editIDPUserResponseSelector = (
-  state: RootState
-): { data: string } => state.control.form[FORMS.IDP_USER_RESPONSE_FORM]
+export const editIDPUserResponseSelector = (state: RootState) =>
+  state.control.form[FORMS.IDP_USER_RESPONSE_FORM] as { data: string }
 
 export default slice.reducer

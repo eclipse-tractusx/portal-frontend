@@ -64,6 +64,7 @@ export const apiSlice = createApi({
       // eslint-disable-next-line
       transformResponse: (response: any) => {
         if (response.content) {
+          // eslint-disable-next-line
           return {
             ...response,
             meta: {
@@ -74,6 +75,7 @@ export const apiSlice = createApi({
             },
           }
         } else {
+          // eslint-disable-next-line
           return {
             content: [response],
             meta: {

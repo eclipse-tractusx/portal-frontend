@@ -93,8 +93,8 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): OverlayState =>
-  state.control.overlay
+export const stateSelector = (state: RootState) =>
+  state.control.overlay as OverlayState
 
 export { closeOverlay, show, exec }
 

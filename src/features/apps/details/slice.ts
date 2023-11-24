@@ -52,11 +52,11 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): AppDetailsState =>
-  state.apps.details
+export const stateSelector = (state: RootState) =>
+  state.apps.details as AppDetailsState
 
-export const itemSelector = (state: RootState): AppDetails =>
-  state.apps.details.item
+export const itemSelector = (state: RootState) =>
+  state.apps.details.item as AppDetails
 
 const Slice = { slice }
 

@@ -79,7 +79,7 @@ const connectorSlice = createSlice({
   },
 })
 
-export const connectorSelector = (state: RootState): ConnectorInitialState =>
-  state.connector
+export const connectorSelector = (state: RootState) =>
+  state.connector as ConnectorInitialState
 
 export default connectorSlice

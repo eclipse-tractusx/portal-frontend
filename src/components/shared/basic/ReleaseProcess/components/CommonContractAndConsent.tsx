@@ -69,6 +69,11 @@ type AgreementDataType = {
   documentId: string
 }[]
 
+type DocumentTypeObj = {
+  documentId: string
+  documentName: string
+}[]
+
 type CommonConsentType = {
   type: string
   stepperTitle: string
@@ -201,7 +206,7 @@ export default function CommonContractAndConsent({
 
   const uploadImageConformityValue = getValues().uploadImageConformity
   const defaultuploadImageConformity = useMemo(
-    () => defaultValues.uploadImageConformity,
+    () => defaultValues.uploadImageConformity as DocumentTypeObj,
     [defaultValues]
   )
 

@@ -118,19 +118,17 @@ export const slice = createSlice({
   },
 })
 
-export const adminRegistrationSelector = (
-  state: RootState
-): AdminRegistrationState => state.admin.registration
+export const adminRegistrationSelector = (state: RootState) =>
+  state.admin.registration as AdminRegistrationState
 
-export const registrationRequestsSelector = (
-  state: RootState
-): RegistrationRequestDataGrid[] =>
-  state.admin.registration.registrationRequests
+export const registrationRequestsSelector = (state: RootState) =>
+  state.admin.registration.registrationRequests as RegistrationRequestDataGrid[]
 
-export const itemsSelector = (state: RootState): PaginResult<InvitesDataGrid> =>
-  state.admin.registration.data
+export const itemsSelector = (state: RootState) =>
+  state.admin.registration.data as PaginResult<InvitesDataGrid>
 
-export const refetch = (state: RootState) => state.admin.registration.refresh
+export const refetch = (state: RootState) =>
+  state.admin.registration.refresh as boolean
 
 const Slice = { slice }
 

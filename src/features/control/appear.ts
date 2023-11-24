@@ -36,6 +36,7 @@ export const slice = createSlice({
   name,
   initialState,
   reducers: {
+    // eslint-disable-next-line
     setAppear: (state, { payload }) => ({
       ...state,
       ...payload,
@@ -45,10 +46,10 @@ export const slice = createSlice({
 
 export const { setAppear } = slice.actions
 
-export const appearSearchSelector = (state: RootState): boolean =>
-  state.control.appear.SEARCH
+export const appearSearchSelector = (state: RootState) =>
+  state.control.appear.SEARCH as boolean
 
-export const appearMenuSelector = (state: RootState): boolean =>
-  state.control.appear.MENU
+export const appearMenuSelector = (state: RootState) =>
+  state.control.appear.MENU as boolean
 
 export default slice.reducer

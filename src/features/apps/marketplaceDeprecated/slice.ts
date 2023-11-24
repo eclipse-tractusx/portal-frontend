@@ -96,21 +96,31 @@ export const slice = createSlice({
   },
 })
 
-export const stateSelector = (state: RootState): AppMarketplaceState =>
-  state.apps.marketplace
+export const stateSelector = (state: RootState) =>
+  state.apps.marketplace as AppMarketplaceState
 
-export const activeSelector = (state: RootState): CardItems[] =>
-  state.apps.marketplace.items.map((app: AppMarketplaceApp) => appToCard(app))
+export const activeSelector = (state: RootState) =>
+  state.apps.marketplace.items.map((app: AppMarketplaceApp) =>
+    appToCard(app)
+  ) as CardItems[]
 
-export const latestSelector = (state: RootState): CardItems[] =>
-  state.apps.marketplace.latest.map((app: AppMarketplaceApp) => appToCard(app))
+export const latestSelector = (state: RootState) =>
+  state.apps.marketplace.latest.map((app: AppMarketplaceApp) =>
+    appToCard(app)
+  ) as CardItems[]
 
 export const subscribedStatusSelector = (state: RootState) =>
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   state.apps.marketplace.subscribedApps
 
 export const subscribedAppsSelector = (state: RootState) =>
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   state.apps.marketplace.items
     .filter((item: AppMarketplaceApp) => {
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
       return state.apps.marketplace.subscribedApps.find(
         (app: SubscribedApps) => {
           return (

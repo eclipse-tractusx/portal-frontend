@@ -60,6 +60,8 @@ export const AppListGroupView = ({
     )
   }
 
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
   const group = multiMapBy(items, (item) => item[groupKey])
 
   return (

@@ -65,6 +65,7 @@ const deleteConnector = createAsyncThunk(
   async ({ connectorID }: { connectorID: string }) => {
     try {
       // Call axios instance to get values
+      // eslint-disable-next-line
       return await ConnectorApi.getInstance().deleteConnector(connectorID)
     } catch (error: unknown) {
       console.error('api call error:', error)

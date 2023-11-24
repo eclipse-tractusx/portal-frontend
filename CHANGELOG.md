@@ -9,6 +9,8 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- Eslint
+  - Enable no-unsafe-return rule
 
 ## 1.7.0-RC3
 

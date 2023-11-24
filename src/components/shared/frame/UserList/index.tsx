@@ -136,6 +136,8 @@ export const UserList = ({
             headerName: t('global.field.role'),
             flex: 4,
             renderCell: ({ value: roles }) =>
+              // Add an ESLint exception until there is a solution
+              // eslint-disable-next-line
               roles.length
                 ? roles.map((role: string) => (
                     <StatusTag

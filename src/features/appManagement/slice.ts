@@ -56,17 +56,17 @@ const managementSlice = createSlice({
   },
 })
 
-export const appManagementSelector = (state: RootState): SearchInputState =>
-  state.management
+export const appManagementSelector = (state: RootState) =>
+  state.management as SearchInputState
 
-export const currentActiveStep = (state: RootState): number =>
-  state.management.currentActiveStep
+export const currentActiveStep = (state: RootState) =>
+  state.management.currentActiveStep as number
 
-export const appIdSelector = (state: RootState): string =>
-  state.management.appId
+export const appIdSelector = (state: RootState) =>
+  state.management.appId as string
 
-export const appStatusDataSelector = (state: RootState): AppStatusDataState =>
-  state.management.appStatusData
+export const appStatusDataSelector = (state: RootState) =>
+  state.management.appStatusData as AppStatusDataState
 
 export const { increment, decrement, setCurrentActiveStep, setApplicationId } =
   managementSlice.actions
