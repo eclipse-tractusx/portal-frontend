@@ -113,10 +113,7 @@ export const subscribedAppsSelector = (state: RootState) =>
     .filter((item: AppMarketplaceApp) => {
       return state.apps.marketplace.subscribedApps.find(
         (app: SubscribedApps) => {
-          return (
-            item['id'] === app['appId'] &&
-            app['appSubscriptionStatus'] === 'ACTIVE'
-          )
+          return item.id === app.appId && app.appSubscriptionStatus === 'ACTIVE'
         }
       )
     })
