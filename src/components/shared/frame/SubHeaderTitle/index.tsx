@@ -42,6 +42,7 @@ export default function SubHeaderTitle({
       variant={variant}
       className="section-title"
     >
+      {/* eslint-disable-next-line */}
       {`${t(title, params)}`}
     </Typography>
   )

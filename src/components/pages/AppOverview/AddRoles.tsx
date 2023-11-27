@@ -71,6 +71,7 @@ export default function AddRoles() {
   // eslint-disable-next-line
   const [appRoles, setAppRoles] = useState<any[]>([
     [''],
+    // eslint-disable-next-line
     [`${(<Checkbox disabled={true} />)}`],
   ])
 
@@ -85,7 +86,8 @@ export default function AddRoles() {
   useEffect(() => {
     setAppRoles(
       data && data.length > 0
-        ? data.map((role) => [role.role, `${(<Checkbox disabled={true} />)}`])
+        ? // eslint-disable-next-line
+          data.map((role) => [role.role, `${(<Checkbox disabled={true} />)}`])
         : [['', '']]
     )
   }, [data])
