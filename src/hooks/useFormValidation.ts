@@ -32,10 +32,7 @@ interface FormField {
 }
 
 export const useFormValidation = (formFields: FormField[]) => {
-  const validate = (
-    field: FormField | undefined,
-    value: string = ''
-  ): boolean => {
+  const validate = (field: FormField | undefined, value = ''): boolean => {
     const pattern = field?.pattern
     return !pattern || pattern.test(value)
   }

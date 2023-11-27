@@ -46,7 +46,6 @@
         "@typescript-eslint/dot-notation": 0,
         "@typescript-eslint/no-base-to-string": 0,
         "@typescript-eslint/no-floating-promises": 0,
-        "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-invalid-void-type": 0,
         "@typescript-eslint/no-misused-promises": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
