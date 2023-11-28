@@ -181,7 +181,7 @@ export default function SubscriptionElements({
     } else if (
       subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
     ) {
-      if (subscriptionData.processStepTypeId === ProcessStep.START_AUTOSETUP) {
+      if (subscription.processStepTypeId === ProcessStep.START_AUTOSETUP) {
         return (
           <>
             <Chip
@@ -214,7 +214,7 @@ export default function SubscriptionElements({
           </>
         )
       } else if (
-        subscriptionData.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+        subscription.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
       ) {
         return (
           <>

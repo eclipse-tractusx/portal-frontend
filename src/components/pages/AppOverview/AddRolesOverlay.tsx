@@ -232,6 +232,7 @@ const AddRolesOverlay = ({
                 onChange={(files, addedFiles, deletedFiles) => {
                   if (deletedFiles?.length) {
                     setRolesDescription([])
+                    setUploadCSVError(false)
                     setRolesPreviews([])
                   }
                   reactHookFormOnChange(files[0]?.name)

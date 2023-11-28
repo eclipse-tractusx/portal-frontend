@@ -43,7 +43,6 @@
         "@typescript-eslint/consistent-indexed-object-style": 0,
         "@typescript-eslint/consistent-type-assertions": 0,
         "@typescript-eslint/consistent-type-definitions": 0,
-        "@typescript-eslint/dot-notation": 0,
         "@typescript-eslint/no-base-to-string": 0,
         "@typescript-eslint/no-floating-promises": 0,
         "@typescript-eslint/no-invalid-void-type": 0,
