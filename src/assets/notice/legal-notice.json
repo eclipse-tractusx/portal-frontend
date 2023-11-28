@@ -1,9 +1,9 @@
 {
-  "name": "@catena-x/portal-shared-components-app",
-  "repositoryPath": "/",
-  "license": "Apache-2.0",
-  "licensePath": "//blob//LICENSE",
-  "noticePath": "//blob//NOTICE.md",
-  "sourcePath": "//tree/",
-  "commitId": "2cd1db3f218abe41889ed68f0bcf25b7375c8aeb"
+  "name": "NAME_PLACEHOLDER",
+  "repositoryPath": "SERVER_URL_PLACEHOLDER/REPOSITORY_PLACEHOLDER",
+  "license": "LICENSE_PLACEHOLDER",
+  "licensePath": "SERVER_URL_PLACEHOLDER/REPOSITORY_PLACEHOLDER/blob/REF_PLACEHOLDER/LICENSE",
+  "noticePath": "SERVER_URL_PLACEHOLDER/REPOSITORY_PLACEHOLDER/blob/REF_PLACEHOLDER/NOTICE.md",
+  "sourcePath": "SERVER_URL_PLACEHOLDER/REPOSITORY_PLACEHOLDER/tree/REF_PLACEHOLDER",
+  "commitId": "COMMIT_ID_PLACEHOLDER"
 }
