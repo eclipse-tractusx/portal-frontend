@@ -9,10 +9,17 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- ESLINT
+  - Enable no-inferrable-types rule
+  - Enable dot-notation rule
+- User management
+  - Updated app access management flow
 - Overlays
   - Change Overlay Button from "Cancel" to "Close"
 - ESLINT
   - Enable require-await rule
+  - Enable prefer-reduce-type-parameter rule
+  - Enable prefer-readonly rule
 
 ## 1.7.0-RC4
 

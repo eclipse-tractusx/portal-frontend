@@ -23,6 +23,7 @@ import {
   DialogContent,
   DialogHeader,
   Button,
+  Stepper,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
@@ -43,6 +44,8 @@ import {
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import { Box, Typography } from '@mui/material'
+import { useState } from 'react'
 
 export default function AddAppUserRoles() {
   const { t } = useTranslation()
@@ -51,7 +54,7 @@ export default function AddAppUserRoles() {
 
   const roles = useSelector(rolesToAddSelector)
   const users = useSelector(selectedUserSelector)
-
+  const [activeStep, setActiveStep] = useState(1)
   const [updateUserRoles] = useUpdateUserRolesMutation()
 
   const handleConfirm = () => {
@@ -79,41 +82,93 @@ export default function AddAppUserRoles() {
     dispatch(setRolesToAdd([]))
   }
 
+  const AddStepsList = [
+    {
+      headline: 'Search & Select Users',
+      step: 1,
+      color: '#0F71CB',
+    },
+    {
+      headline: 'Add Roles',
+      step: 2,
+    },
+  ]
+
   return (
     <>
       <DialogHeader
         title={t('content.addUserRight.headline')}
-        intro={t('content.addUserRight.subheadline')}
+        intro={''}
         closeWithIcon={true}
         onCloseWithIcon={handleCancel}
       />
 
       <DialogContent className="add-user-overlay-content">
-        <div className="add-user-overlay-content-roles">
-          <AppRoles />
+        <div style={{ width: '40%', margin: '0 auto 40px' }}>
+          <Stepper list={AddStepsList} showSteps={2} activeStep={activeStep} />
         </div>
-
-        <div className="add-user-overlay-content-content">
-          <UserListContent />
-        </div>
+        {activeStep === 1 && (
+          <Box sx={{ margin: '50px 110px' }}>
+            <Typography variant="label3">
+              {t('content.addUserRight.selectUsersDescription')}
+            </Typography>
+            <Box sx={{ mt: '46px' }}>
+              <UserListContent />
+            </Box>
+          </Box>
+        )}
+        {activeStep === 2 && (
+          <Box sx={{ margin: '50px 110px' }}>
+            <Typography variant="label3">
+              {t('content.addUserRight.addRolesDescription')}
+            </Typography>
+            <Box sx={{ mt: '46px' }}>
+              <Typography variant="label1">
+                {t('content.addUserRight.selectRoles')}
+              </Typography>
+            </Box>
+            <Box sx={{ mb: '30px' }}>
+              <Typography variant="body2">
+                <a href="">{`> ${t(
+                  'content.addUserRight.roleDescriptions'
+                )}`}</a>
+              </Typography>
+            </Box>
+            <AppRoles />
+          </Box>
+        )}
       </DialogContent>
 
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(show(OVERLAYS.NONE))}
-        >
-          {t('global.actions.cancel')}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => {
-            handleConfirm()
-          }}
-          disabled={!users || roles.length <= 0}
-        >
-          {t('global.actions.confirm')}
-        </Button>
+        {activeStep === 1 ? (
+          <Button
+            variant="contained"
+            onClick={() => {
+              setActiveStep(2)
+            }}
+            disabled={users.length <= 0}
+          >
+            {t('content.addUserRight.confirmSelectedUsers')}
+          </Button>
+        ) : (
+          <>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                setActiveStep(1)
+              }}
+            >
+              {t('global.actions.back')}
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => handleConfirm()}
+              disabled={!users || roles.length <= 0}
+            >
+              {t('content.addUserRight.confirmSelectedRoles')}
+            </Button>
+          </>
+        )}
       </DialogActions>
     </>
   )
