@@ -211,7 +211,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-              {t('global.actions.cancel')}
+              {t('global.actions.close')}
             </Button>
           </DialogActions>
         </Dialog>
@@ -294,7 +294,7 @@ export default function UpdateCertificate({ id }: { id: string }) {
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-              {t('global.actions.cancel')}
+              {t('global.actions.close')}
             </Button>
 
             {loading ? (

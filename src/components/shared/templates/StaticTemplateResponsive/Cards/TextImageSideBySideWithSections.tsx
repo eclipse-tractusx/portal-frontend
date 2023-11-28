@@ -56,54 +56,6 @@ export default function TextImageSideBySideWithSections({
             provider={provider}
             scrollTop={scrollTop}
           />
-          {provider.subDescriptions && (
-            <>
-              <Typography className={'providerDescription'}>
-                <Trans
-                  key={provider.subDescriptions.title}
-                  i18nKey={provider.subDescriptions.title}
-                  components={[
-                    <span key={provider.subDescriptions.title}></span>,
-                    <br key={provider.subDescriptions.title} />,
-                    <p
-                      key={provider.subDescriptions.title}
-                      className="padding-left-30"
-                    ></p>,
-                  ]}
-                ></Trans>
-              </Typography>
-              {provider?.subDescriptions?.sections?.length > 0 &&
-                provider?.subDescriptions?.sections.map(
-                  (section: { title: string; link: string; value: string }) => (
-                    <>
-                      <Typography>
-                        <Trans
-                          key={section.title}
-                          i18nKey={section.title}
-                          components={[
-                            <span key={section.title}></span>,
-                            <br key={section.title} />,
-                            <span
-                              key={section.title}
-                              className="subDescription"
-                            ></span>,
-                          ]}
-                        ></Trans>
-                      </Typography>
-                      <Typography
-                        className={
-                          'padding-left-30 highlightText padding-bottom-20'
-                        }
-                        onClick={() => window.open(section.link, '_blank')}
-                        key={section.value}
-                      >
-                        {section.value}
-                      </Typography>
-                    </>
-                  )
-                )}
-            </>
-          )}
           {provider.detailsWithoutImageRow1 && (
             <Box
               className={'gridStyle'}
@@ -132,6 +84,60 @@ export default function TextImageSideBySideWithSections({
             }}
             width="50%"
           />
+        )}
+      </div>
+      <div
+        style={{
+          margin: isMobile ? '0px 0px 0px 20px' : '-20px 0px 0px 70px',
+        }}
+      >
+        {provider.subDescriptions && (
+          <>
+            <Typography className={'providerDescription'}>
+              <Trans
+                key={provider.subDescriptions.title}
+                i18nKey={provider.subDescriptions.title}
+                components={[
+                  <span key={provider.subDescriptions.title}></span>,
+                  <br key={provider.subDescriptions.title} />,
+                  <p
+                    key={provider.subDescriptions.title}
+                    className="padding-left-30"
+                  ></p>,
+                ]}
+              ></Trans>
+            </Typography>
+            {provider?.subDescriptions?.sections?.length > 0 &&
+              provider?.subDescriptions?.sections.map(
+                (section: { title: string; link: string; value: string }) => (
+                  <>
+                    <Typography>
+                      <Trans
+                        key={section.title}
+                        i18nKey={section.title}
+                        components={[
+                          <span key={section.title}></span>,
+                          <br key={section.title} />,
+                          <span
+                            key={section.title}
+                            className="subDescription"
+                          ></span>,
+                        ]}
+                      ></Trans>
+                    </Typography>
+                    <Typography
+                      className={
+                        'padding-left-30 highlightText padding-bottom-20'
+                      }
+                      onClick={() => window.open(section.link, '_blank')}
+                      key={section.value}
+                    >
+                      {section.value}
+                    </Typography>
+                  </>
+                )
+              )}
+          </>
         )}
       </div>
       {provider.subsections && (

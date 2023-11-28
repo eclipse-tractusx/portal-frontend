@@ -380,6 +380,7 @@ export default function TechnicalIntegration() {
                 if (deletedFiles?.length) {
                   setRolesPreviews([])
                   setRolesDescription([])
+                  setUploadCSVError(false)
                 }
                 reactHookFormOnChange(files[0]?.name)
                 trigger('uploadAppRoles')
