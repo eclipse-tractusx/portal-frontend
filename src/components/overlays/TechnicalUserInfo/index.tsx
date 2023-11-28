@@ -52,9 +52,6 @@ export default function TechnicalUserInfo({ id }: { id: string }) {
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {`${t('global.actions.cancel')}`}
-        </Button>
         <Button variant="contained" onClick={() => dispatch(closeOverlay())}>
           {`${t('global.actions.close')}`}
         </Button>

@@ -193,6 +193,7 @@ const AppSubscriptionDetailOverlay = ({
         },
         {
           icon:
+            isAppSubscription &&
             UserService.hasRole(ROLES.APPSTORE_EDIT) &&
             data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
           inputValue: data?.tenantUrl ?? '',
