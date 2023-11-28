@@ -17,6 +17,7 @@
 - Overlays
   - Change Overlay Button from "Cancel" to "Close"
 - ESLINT
+  - Enable return-await rule
   - Enable prefer-reduce-type-parameter rule
   - Enable prefer-readonly rule
 
