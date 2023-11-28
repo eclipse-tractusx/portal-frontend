@@ -42,12 +42,12 @@ export const useFormValidation = (formFields: FormField[]) => {
 
   const [errors, setErrors] = useState<Errors>({})
   const [valids, setValids] = useState<Valids>(
-    formFields.reduce((values, field) => {
+    formFields.reduce<Valids>((values, field) => {
       return {
         ...values,
         [field.key]: validate(field),
       }
-    }, {} as Valids)
+    }, {})
   )
 
   const handleChange = (key: string) => {
