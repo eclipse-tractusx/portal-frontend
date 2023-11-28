@@ -10,6 +10,7 @@
 - Tech User Details
   - Fix crash issue
 - ESLINT
+  - Enable no-inferrable-types rule
   - Enable dot-notation rule
 - User management
   - Updated app access management flow
