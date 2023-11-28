@@ -878,9 +878,14 @@
       }
     },
     "addUserRight": {
-      "headline": "Add app permissions to your company user",
-      "subheadline": "Select one or multiple user roles with the checkboxes below as well as the relevant user/s which should receive the role.",
-      "noRolesFound": "No user roles found"
+      "headline": "Assign app roles to your user(s)",
+      "noRolesFound": "No user roles found",
+      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "confirmSelectedUsers": "Confirm selected users",
+      "confirmSelectedRoles": "Confirm selected roles",
+      "selectRoles": "Select Roles:",
+      "roleDescriptions": "Role Descriptions"
     },
     "account": {
       "userAccount": "User account",

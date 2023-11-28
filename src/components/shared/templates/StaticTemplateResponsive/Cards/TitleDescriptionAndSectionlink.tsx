@@ -48,30 +48,34 @@ export default function TitleDescriptionAndSectionlink({
   }
   return (
     <>
-      <div className="titleWithIcon sideBySideTitle">
-        {defaultTitleVariation ? (
-          <>
-            <Typography variant="h2">{provider.title}</Typography>
-            {showScroll && (
-              <IconButton onClick={scrollTop}>
-                <ArrowUpwardIcon />
-              </IconButton>
-            )}
-          </>
-        ) : (
-          <Typography variant="h3">{provider.title}</Typography>
-        )}
-      </div>
-      <Typography className={'providerDescription'}>
-        <Trans
-          key={provider.description}
-          i18nKey={provider.description}
-          components={[
-            <span key={provider.description}></span>,
-            <br key={provider.description} />,
-          ]}
-        ></Trans>
-      </Typography>
+      {provider.title !== '' && (
+        <div className="titleWithIcon sideBySideTitle">
+          {defaultTitleVariation ? (
+            <>
+              <Typography variant="h2">{provider.title}</Typography>
+              {showScroll && (
+                <IconButton onClick={scrollTop}>
+                  <ArrowUpwardIcon />
+                </IconButton>
+              )}
+            </>
+          ) : (
+            <Typography variant="h3">{provider.title}</Typography>
+          )}
+        </div>
+      )}
+      {provider.description !== '' && (
+        <Typography className={'providerDescription'}>
+          <Trans
+            key={provider.description}
+            i18nKey={provider.description}
+            components={[
+              <span key={provider.description}></span>,
+              <br key={provider.description} />,
+            ]}
+          ></Trans>
+        </Typography>
+      )}
       {provider.sectionLink && (
         <>
           {provider.sectionLink.data.map((link) => (
