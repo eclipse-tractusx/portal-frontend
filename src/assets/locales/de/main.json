@@ -878,9 +878,14 @@
       }
     },
     "addUserRight": {
-      "headline": "Benutzer hinzufügen",
-      "subheadline": "Auswählen und hinzufügen von Benutzern",
-      "noRolesFound": "No user roles found"
+      "headline": "Assign app roles to your user(s)",
+      "noRolesFound": "No user roles found",
+      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "confirmSelectedUsers": "Confirm selected users",
+      "confirmSelectedRoles": "Confirm selected roles",
+      "selectRoles": "Select Roles:",
+      "roleDescriptions": "Role Descriptions"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
