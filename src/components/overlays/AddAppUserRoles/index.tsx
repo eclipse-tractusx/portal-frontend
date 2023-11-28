@@ -54,7 +54,7 @@ export default function AddAppUserRoles() {
 
   const [updateUserRoles] = useUpdateUserRolesMutation()
 
-  const handleConfirm = async () => {
+  const handleConfirm = () => {
     if (!appId || !users || roles.length <= 0) return
 
     users.map(async (user) => {
@@ -107,7 +107,9 @@ export default function AddAppUserRoles() {
         </Button>
         <Button
           variant="contained"
-          onClick={() => handleConfirm()}
+          onClick={() => {
+            handleConfirm()
+          }}
           disabled={!users || roles.length <= 0}
         >
           {t('global.actions.confirm')}

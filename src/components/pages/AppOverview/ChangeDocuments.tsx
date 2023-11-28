@@ -88,7 +88,7 @@ export default function ChangeDocuments() {
     await updateAppChangeDocument(data).unwrap()
   }
 
-  const onFileUpload = async (file: DropzoneFile) => {
+  const onFileUpload = (file: DropzoneFile) => {
     if (appId && file) {
       const setFileStatus = (status: UploadStatus) => {
         setValue('uploadDocument', {

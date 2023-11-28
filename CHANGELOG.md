@@ -11,6 +11,8 @@
   - Fix crash issue
 - Overlays
   - Change Overlay Button from "Cancel" to "Close"
+- ESLINT
+  - Enable require-await rule
 
 ## 1.7.0-RC4
 
