@@ -32,7 +32,7 @@ import {
 import { appToCard } from '../mapper'
 
 enum Status {
-  ACTIVE = 'ACTIVE'
+  ACTIVE = 'ACTIVE',
 }
 
 export const slice = createSlice({
@@ -117,7 +117,9 @@ export const subscribedAppsSelector = (state: RootState) =>
     .filter((item: AppMarketplaceApp) => {
       return state.apps.marketplace.subscribedApps.find(
         (app: SubscribedApps) => {
-          return item.id === app.appId && app.appSubscriptionStatus === Status.ACTIVE
+          return (
+            item.id === app.appId && app.appSubscriptionStatus === Status.ACTIVE
+          )
         }
       )
     })
