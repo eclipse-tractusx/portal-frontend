@@ -11,6 +11,8 @@
   - Fix crash issue
 - ESLINT
   - Enable dot-notation rule
+- User management
+  - Updated app access management flow
 - Overlays
   - Change Overlay Button from "Cancel" to "Close"
 
