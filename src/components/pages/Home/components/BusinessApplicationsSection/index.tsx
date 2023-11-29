@@ -62,6 +62,7 @@ export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
   const { data } = useFetchBusinessAppsQuery()
   const reference = PageService.registerReference(label, useRef(null))
+  const businessAppsData = data?.filter((val, index) => index < 4)
 
   return (
     <div ref={reference} className="orange-background">
@@ -78,7 +79,7 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {data
+          {businessAppsData
             ?.map((app: AppMarketplaceApp) => {
               const card = appToCard(app)
               return card
@@ -97,8 +98,8 @@ export default function BusinessApplicationsSection() {
                 imageLoader={fetchImageWithToken}
               />
             ))}
-          {data &&
-            new Array(4 - data.length)
+          {businessAppsData &&
+            new Array(4 - businessAppsData.length)
               .fill(true)
               .map((_item, i) => (
                 <EmptyBox key={i} text={t('content.home.emptyCards.title')} />
