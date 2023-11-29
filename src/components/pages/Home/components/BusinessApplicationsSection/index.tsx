@@ -62,6 +62,7 @@ export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
   const { data } = useFetchBusinessAppsQuery()
   const reference = PageService.registerReference(label, useRef(null))
+  const businessAppsData = data?.filter((val, index) => index < 4)
 
   return (
     <div ref={reference} className="orange-background-home">
@@ -78,7 +79,7 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {data
+          {businessAppsData
             ?.map((app: AppMarketplaceApp) => {
               const card = appToCard(app)
               return card
