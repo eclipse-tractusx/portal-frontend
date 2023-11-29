@@ -162,7 +162,9 @@ export default function AddAppUserRoles() {
             </Button>
             <Button
               variant="contained"
-              onClick={() => { handleConfirm() }}
+              onClick={() => {
+                handleConfirm()
+              }}
               disabled={!users || roles.length <= 0}
             >
               {t('content.addUserRight.confirmSelectedRoles')}
