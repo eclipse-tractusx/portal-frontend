@@ -53,7 +53,6 @@
         "@typescript-eslint/promise-function-async": 0,
         "@typescript-eslint/require-await": 0,
         "@typescript-eslint/restrict-plus-operands": 0,
-        "@typescript-eslint/triple-slash-reference": 0,
         "@typescript-eslint/unbound-method": 0,
         "eqeqeq": 0,
         "n/handle-callback-err": 0,

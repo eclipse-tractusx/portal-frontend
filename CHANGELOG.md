@@ -20,6 +20,7 @@
   - Enable return-await rule
   - Enable prefer-reduce-type-parameter rule
   - Enable prefer-readonly rule
+  - Enable triple-slash-reference rule
 
 ## 1.7.0-RC4
 
