@@ -42,7 +42,7 @@ export abstract class HttpClient {
     headers: Partial<AxiosRequestHeaders> = {
       'Content-Type': 'application/json',
     },
-    timeout: number = 30000
+    timeout = 30000
   ) {
     this.instance = axios.create({
       baseURL,
@@ -57,7 +57,7 @@ export abstract class HttpClient {
   // Handles two case in below:
   // _handleResponse : Successful response from call
   // _handleError: Error case of call
-  private _initializeResponseInterceptor = () => {
+  private readonly _initializeResponseInterceptor = () => {
     this.instance.interceptors.response.use(
       this._handleResponse,
       this._handleError
@@ -66,7 +66,7 @@ export abstract class HttpClient {
 
   // Pass response object to Promise resolve
   // eslint-disable-next-line
-  private _handleResponse = ({ data }: AxiosResponse) => data
+  private readonly _handleResponse = ({ data }: AxiosResponse) => data
 
   // Catch error and throw code to .catch block
   protected _handleError = (error: AxiosError) => Promise.reject(error)

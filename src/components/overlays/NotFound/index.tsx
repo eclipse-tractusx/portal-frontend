@@ -49,9 +49,6 @@ export default function NotFound() {
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={close}>
-          {`${t('global.actions.cancel')}`}
-        </Button>
         <Button variant="contained" onClick={close}>
           {`${t('global.actions.close')}`}
         </Button>
