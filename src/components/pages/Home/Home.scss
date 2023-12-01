@@ -24,6 +24,7 @@
 }
 
 .orange-background-home {
+  overflow: hidden;
   background-image: linear-gradient(
     to right,
     #ffb326,
@@ -32,5 +33,4 @@
     #ff8728,
     #ff782c
   );
-  overflow: hidden;
 }
