@@ -78,7 +78,7 @@ export default function AddRoles() {
     refetch()
   }, [state])
 
-  const handleSaveClick = async () => {
+  const handleSaveClick = () => {
     setIsLoading(true)
   }
 
