@@ -291,14 +291,15 @@ export default function AppOverview() {
                   showButton={true}
                 />
               )}
-              {filterItem && filterItem.length > 0 && isSuccess ? (
-                <AppOverviewList
-                  filterItem={filterItem}
-                  showOverlay={showOverlay}
-                />
-              ) : (
-                <NoItems />
-              )}
+              {isSuccess &&
+                (filterItem && filterItem.length > 0 ? (
+                  <AppOverviewList
+                    filterItem={filterItem}
+                    showOverlay={showOverlay}
+                  />
+                ) : (
+                  <NoItems />
+                ))}
             </>
           )}
         </div>

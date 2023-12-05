@@ -22,6 +22,9 @@
   - Enable prefer-reduce-type-parameter rule
   - Enable prefer-readonly rule
   - Enable triple-slash-reference rule
+- App overview
+  - api failing component appears with "no data available" and with error bar
+
 
 ## 1.7.0-RC4
 
