@@ -20,6 +20,8 @@
   - Enable return-await rule
   - Enable prefer-reduce-type-parameter rule
   - Enable prefer-readonly rule
+- Company Roles
+  - Fix typo error to fix conformity body issue
 
 ## 1.7.0-RC4
 

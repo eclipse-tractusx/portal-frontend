@@ -65,7 +65,7 @@ export interface CompanyRolesType {
     sections: []
     subNavigation: SubNavigationType[]
   }
-  confirmity: {
+  conformity: {
     title: string
     description: string
     sections: []
