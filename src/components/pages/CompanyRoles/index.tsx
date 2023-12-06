@@ -47,9 +47,9 @@ export default function CompanyRoles() {
       } else if (url.indexOf('companyrolesserviceprovider') > 1) {
         setCompanyRoles(data.serviceProvider)
         setLinkArray(data.serviceProvider.subNavigation)
-      } else if (url.indexOf('companyrolesconfirmitybody') > 1) {
-        setCompanyRoles(data.confirmity)
-        setLinkArray(data.confirmity.subNavigation)
+      } else if (url.indexOf('companyrolesconformitybody') > 1) {
+        setCompanyRoles(data.conformity)
+        setLinkArray(data.conformity.subNavigation)
       } else if (url.indexOf('companyrolesonboardingserviceprovider') > 1) {
         setCompanyRoles(data.ospProvider)
         setLinkArray(data.ospProvider.subNavigation)

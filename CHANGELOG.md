@@ -24,7 +24,8 @@
   - Enable triple-slash-reference rule
 - App overview
   - api failing component appears with "no data available" and with error bar
-
+- Company Roles
+  - Fix typo error to fix conformity body issue
 
 ## 1.7.0-RC4
 
