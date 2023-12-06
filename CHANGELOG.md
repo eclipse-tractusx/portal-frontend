@@ -81,6 +81,7 @@
 - Updated data grid table props to the new prop value
 - Upgraded dependencies to latest version
 - Trivy scan: changed to no failure on high findings, as it should only fail if there is an error/misconfiguration
+- Pull request linting added
 
 ### Bugfix
 
@@ -126,12 +127,14 @@
 ### Known Knowns
 
 - App Release Process
-  - help link hyperlink incorrectly set
+  - help link for app role upload incorrectly set
   - mutated vowel/umlaut of uploaded app roles are incorrectly displayed
 - Semantic Models
-  - semantic model overlay diagram can not get displayed due to semantic model backend external dependency error. Interim deactivated the function.
-- Service Subscription Management
-  - detail overlay incorrectly displays an "Edit" icon for the technical user name
+  - semantic model overlay diagram can not get displayed due to semantic model backend external dependency error - function temporarily deactivated
+- Technical User Creation Overlay
+  - Role description overlapping in case of long text value or if screen width is limited
+- Service Subscription Activation Overlay
+  - incorrect value displayed in the field "User Id", expected property is 'technicalClientId' but 'technicalUserId' is actually displayed
 
 ## 1.6.0
 
