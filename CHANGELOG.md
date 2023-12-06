@@ -1,176 +1,24 @@
 # Changelog
 
-## 1.7.0-RC4
-
 ### Change
 
-- Admin Credential Management Board
-  - support the load element for "decline" and "approve" button
-  - document icons updated to support hover to show that the document can get clicked
-
-### Feature
-
-- App Change Process
-  - Document change (delete and add) added and backend integrated
-
-### Technical Support
-
-- Trivy scan: changed to no failure on high findings, as it should only fail if there is an error/misconfiguration
-
-### Bugfix
-
-- Service Release Process
-  - fixed consent check removal issue on save
-- App Release Process
-  - fixed error message deletion upon deleting of csv file in technical integration
-  - fixed consent check removal issue on save
-- Invite Business Partner - fixed auto page refresh/update when inviting via the invite overlay a new company
-- App Subscription
-  - business logic and backend api response connection updated to be able to handle the service setup status for each subscription instead of the offer level itself
-- Service Subscription
-  - activation Overlay field names updated
-  - field value mapping to backend api response properties updated/changed
-  - copy feature/icon added for the technical user secret
-  - header description updated
-  - business logic and backend api response connection updated to be able to handle the service setup status for each subscription instead of the offer level itself
-- Technical User Creation
-  - Overlay Type SubHeading Typo fix
-- Technical User Details
-  - fixed white screen for technical users with connector null object
-- Vulnerability from dependency
-  - upgrade axios dependency to v1.6.1
-
-### Known Knowns
-
-- App Release Process
-  - help link hyperlink incorrectly set
-  - mutated vowel/umlaut of uploaded app roles are incorrectly displayed
-- Semantic Models
-  - semantic model overlay diagram can not get displayed due to semantic model backend external dependency error. Interim deactivated the function.
-- Service Subscription Management
-  - detail overlay incorrectly displays an "Edit" icon for the technical user name
-
-## 1.7.0-RC3
-
-### Change
-
-- IdP configuration overlays, extended error handling on the ui
-- New backend error handling (extended details) implemented for bulk user changes
-  - User Management - bulk user creation error overlay for single user error message response enhanced to show for each failed user details regarding the reason for failure (if available)
-  - IdP Switch - user migration function error support enhanced with single user error message response to show for each failed user details regarding the reason for failure (if available)
-
-### Feature
-
-n/a
-
-### Technical Support
-
-- upgraded dependencies to latest version
-
-### Bugfix
-
-- Admin Business Partner Registration Request Screen - Detail Overlay country fixed to display country code received via backend api
-- Technical User Overview - displaying duplicates after adding/creating new technical users fixed
-- Technical User detail screen - removed copy icon from connector link
-- Company Role Change Screen - updated OSP value to human readable text instead of displaying technical keys
-- Company Role Change Detail Overlay - displayed invalid deselect role details for OSP fixed
-- Service Subscription sorting element behavior fixed in case the user sorts multiple times with the same sorting option
-- Vulnerability from dependency
-  - Set resolution for axios
-
-### Known Knowns
-
-- App change process 'documents' not yet integrated with backend
-- App/Service Release Process - upon clicking "Save" given consent is removed and needs to get set newly
-
-## 1.7.0-RC2
-
-### Change
-
-- User Management screen for user invite block due to multiple active IdPs got enhanced inside the frontend-business-logic to exclude "MANAGED" idps
-- Enhanced /StaticTemplateResponsive/Cards/TextImageCenterAligned.tsx to support multiple images
-
-### Feature
-
-- released prototype (identity provider creation "MANAGED"; register 3rd party company; approve consent osp registration company) onboarding service provider registration flow
-
-### Technical Support
-
-- Code quality & style improvements implemented based on ESLINT rules
-  - removed extra semicolons to avoid warnings
-  - no-empty-function
-  - prefer-optional-chain
-
-### Bugfix
-
-- Partner Network - update search query parameter name to legalName
-- Fixed broken KeyValueView/index.tsx for undefined object attributes
-
-## 1.7.0-RC1
-
-### Change
-
-- Technical User Detail
-  - enhanced technical user detail page with connected object information (edc, connector, etc.)
-  - enhanced responsiveness of the page
 - App Subscription and Service Subscription
-  - Enhanced subscription request status ui flow to support extended status settings
-
-### Feature
-
-- App Overview
-  - GET documents api endpoint connected for active apps-change documents
-
-### Technical Support
-
-- Update data grid table props to the new prop value
-- Code quality & style improvements implemented based on ESLINT rules
-  - ban-types
-
-### Bugfix
-
-- App Release Process
-  - Fixed double loading of images for app page
-  - Fixed validation for contact in app page
-  - Fixed salesManagerId(null) error
-- App Overview
-  - Fixed image display in app overview cards
-- IDP
-  - Add load element for IDP list
-- Onboarding Serviceprovider
-  - Add the OSP prototype
-- Linter Findings
-  - Fix ban-types
-  - No empty function
-  - No Extra Semi
-- Partner Network
-  - Search for Company name issue fix
-- App Subscription and Servcie Subscripiton
-  - Status UI Changes
-- Technical User Detail
-  - Add new table as data from backend
-  - UI Changes
-- Home
-  - Fixed image display for 'my business applications'
-- Vulnerability from dependency
-  - Set resolution for @babel/traverse (CVE-2023-45133)
-
-## 1.7.0-alpha
-
-### Change
-
-- Technical User
-  - Enable search & filter
+  - extended ui support on app/service subscription configuration and activation
+- Locale files enhanced with new feature "Onboarding Service Provider"
+- Technical User Management
+  - overview page: enabled search & filter for technical user accounts
+  - user detail page: enhanced technical user detail page with connected object information (edc, connector, etc.)
+  - user detail page: enhanced responsiveness of the page
 - Invite Business Partner Form
-  - Fix loader position to center
-  - Disable invite button when loader is visible
+  - disable invite button when loader is visible
 - Component/Design element changes
   - Sub-Navigation label content changed to left aligned
 - Service Subscription Mgt page
   - styling aligned to the app subscription Mgt page
   - service filter added
 - Identity Provider Config
-  - UI Enhancements
+  - ui enhancements to support user flow
+  - extended error handling implemented based on backend implementation with error details per object
 - Service Management/Overview
   - manage service sub-menu for active services added (deactivate service function)
   - offer image added to service card based on backend response
@@ -185,16 +33,21 @@ n/a
 - Page Loading and Error Component
   - released new page load and error component element for service overview, app overview and subscription management pages
 - Notifications
-  - App Subscription Request notification content update
-- Shared
-  - Removed PageLoadingTable component
+  - app subscription request notification content update
+- Enhanced /StaticTemplateResponsive/Cards/TextImageCenterAligned.tsx to support multiple images
+- Admin Credential Management Board
+  - support the load element for "decline" and "approve" button
+  - document icons updated to support hover to show that the document can get clicked
+- Legal information for distributions [TRG 7.05](https://eclipse-tractusx.github.io/docs/release/trg-7/trg-7-05/)
+  - add legal info at build
 
 ### Feature
 
 - Technical User Details
   - credential reset enabled via action button
 - Usermanagement
-  - Bulk upload function released
+  - bulk upload function released
+  - extended error handling implemented based on backend implementation with error details per object
 - Search Element
   - implemented full width search overlay for mobile version
 - Overlay styling updated to sync used overlay styles across the portal overlays (header, description sizing and color)
@@ -203,9 +56,15 @@ n/a
   - added function to support 'Add Roles' for active apps
 - My Organization
   - added app unsubscribe subscription function to inactive active app subscriptions
+- Onboarding Service Provider - Prototype
+  - enabled identity provider creation "MANAGED"
+  - 3rd party company registration
+  - approve consent osp registration company
 
 ### Technical Support
 
+- Technical User Management
+  - multi device support added for technical user detail screen
 - Code quality & style improvements implemented based on ESLINT rules
   - import/no-duplicates
   - prefer-const
@@ -213,16 +72,69 @@ n/a
   - add type for imports
   - Prefer-nullish-coalescing
   - No confusing void expression fixes
+  - ban-types
+  - removed extra semicolons to avoid warnings
+  - no-empty-function
+  - prefer-optional-chain
 - Digital Twin content (pages, overlays, translation content, etc.) removed due to dDTR release and decommissioning of the central DTR
 - Build images also for arm64, in addition to amd64
+- Updated data grid table props to the new prop value
+- Upgraded dependencies to latest version
+- Trivy scan: changed to no failure on high findings, as it should only fail if there is an error/misconfiguration
+- Pull request linting added
 
 ### Bugfix
 
 - "Dataspace" Introduction page background color of last section changed
+- App Release Process
+  - fixed double loading of images for app page
+  - fixed validation for contact in app page
+  - fixed salesManagerId(null) error
+  - fixed error message deletion upon deleting of csv file in technical integration
+  - fixed consent check removal issue on save
+- Service Release Process
+  - fixed consent check removal issue on save
+- App Overview
+  - fixed image display in app overview cards
+- IDP Configuration
+  - added load element for IDP list display function
+- Home
+  - Fixed image display for 'my business applications'
+  - Fixed white screen due to 'my business applications'
+- Partner Network - update search query parameter name to legalName
+- Technical User Management
+  - technical user creation overlay: type subheading typo fixed
+  - overview page: displaying duplicates after adding/creating new technical users fixed
+  - user detail page: removed copy icon from connector link
+- Admin Business Partner Registration Request Screen - Detail Overlay country fixed to display country code received via backend api
+- Invite Business Partner
+  - fixed auto page refresh/update when inviting via the invite overlay a new company
+  - fix invite overlay loader position
+- Service Subscription
+  - activation overlay field names updated
+  - field value mapping to backend api response properties updated/changed
+  - copy feature/icon added for the technical user secret
+  - header description updated
+  - sorting element behavior fixed in case the user sorts multiple times with the same sorting option
+- Vulnerability from dependency
+  - upgrade axios dependency to v1.6.1
+  - Set resolution for @babel/traverse (CVE-2023-45133)
+- Legal-notice for about page
+  - Re-introduce placeholder values to be replaced during the build process
+- Others
+  - Fixed broken KeyValueView/index.tsx for undefined object attributes
 
 ### Known Knowns
 
-- App Release Process - Step 2 image gets multiple times uploaded if the user uploads the images single instead of dropping all images jointly for upload
+- App Release Process
+  - help link for app role upload incorrectly set
+  - mutated vowel/umlaut of uploaded app roles are incorrectly displayed
+- Semantic Models
+  - semantic model overlay diagram can not get displayed due to semantic model backend external dependency error - function temporarily deactivated
+- Technical User Creation Overlay
+  - Role description overlapping in case of long text value or if screen width is limited
+- Service Subscription Activation Overlay
+  - incorrect value displayed in the field "User Id", expected property is 'technicalClientId' but 'technicalUserId' is actually displayed
 
 ## 1.6.0
 
