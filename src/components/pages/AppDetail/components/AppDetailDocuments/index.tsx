@@ -25,11 +25,11 @@ import 'components/styles/document.scss'
 import {
   type AppDetails,
   type Documents,
-  DocumentTypeText,
   useFetchDocumentByIdMutation,
 } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import '../../AppDetail.scss'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -52,14 +52,6 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
     }
   }
-
-  const renderNoDocs = () => {
-    return (
-      <Typography variant="label3" className="not-available">
-        {t('global.errors.noDocumentsAvailable')}
-      </Typography>
-    )
-  }
   return (
     <div id="documents">
       <div className="divider-height" />
@@ -69,11 +61,18 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
       <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.appdetail.howtouse.message')}
       </Typography>
-      {item.documents && Object.keys(item.documents)?.length
-        ? Object.keys(item.documents).map((document) =>
-            document !== DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS ? (
-              <li className="document-list" key={document}>
-                <ArticleOutlinedIcon className="document-icon" />
+      {item.documents.hasOwnProperty(
+        DocumentTypeId.APP_TECHNICAL_INFORMATION
+      ) ||
+      item.documents.hasOwnProperty(DocumentTypeId.APP_CONTRACT) ||
+      item.documents.hasOwnProperty(DocumentTypeId.ADDITIONAL_DETAILS) ? (
+        Object.keys(item.documents).map(
+          (document) =>
+            (document === DocumentTypeId.APP_TECHNICAL_INFORMATION ||
+              document === DocumentTypeId.APP_CONTRACT ||
+              document === DocumentTypeId.ADDITIONAL_DETAILS) && (
+              <li key={document} className="document-list doc-list">
+                <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                 <button
                   className="document-button-link"
                   onClick={() =>
@@ -87,11 +86,13 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
                   {item.documents[document as keyof Documents][0].documentName}
                 </button>
               </li>
-            ) : (
-              renderNoDocs()
             )
-          )
-        : renderNoDocs()}
+        )
+      ) : (
+        <Typography variant="label3" className="not-available">
+          {t('global.errors.noDocumentsAvailable')}
+        </Typography>
+      )}
     </div>
   )
 }
