@@ -18,9 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ParentSubNavigation } from '@catena-x/portal-shared-components'
+import {
+  ParentSubNavigation,
+  NewSubNavigation,
+} from '@catena-x/portal-shared-components'
 import '../Templates.scss'
-import { Box } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material'
 import { type SubNavigationType } from 'services/CommonService'
 
 export const StageSubNavigation = ({
@@ -30,9 +33,11 @@ export const StageSubNavigation = ({
   linkArray: SubNavigationType[]
   fixHeader: boolean
 }) => {
+  const isWeb = useMediaQuery('(min-width: 1400px)')
   const scrollToId = (id: string) => {
     const element = document.getElementById(id)
     const top = element && element.offsetTop - 100
+
     window.scrollTo({
       top: top ?? 0,
       behavior: 'smooth',
@@ -57,12 +62,21 @@ export const StageSubNavigation = ({
       }}
     >
       <div className="subNavigationContainer">
-        <ParentSubNavigation
-          navigationArray={linkArray}
-          onClick={(value: string) => {
-            scrollToId(value)
-          }}
-        />
+        {isWeb && linkArray.length <= 4 ? (
+          <ParentSubNavigation
+            navigationArray={linkArray}
+            onClick={(value: string) => {
+              scrollToId(value)
+            }}
+          />
+        ) : (
+          <NewSubNavigation
+            onClick={(value: string) => {
+              scrollToId(value)
+            }}
+            navigationArray={linkArray}
+          />
+        )}
       </div>
     </Box>
   )

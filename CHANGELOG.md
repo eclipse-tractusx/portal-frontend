@@ -24,7 +24,8 @@
   - Enable triple-slash-reference rule
 - App overview
   - api failing component appears with "no data available" and with error bar
-
+- Static Pages
+  - Use New Sub Navigation component based on input links
 
 ## 1.7.0-RC4
 
