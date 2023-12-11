@@ -56,6 +56,10 @@ export const TechnicalUserTable = () => {
   }
 
   useEffect(() => {
+    setRefresh(Date.now())
+  }, [update])
+
+  useEffect(() => {
     setFetchHookArgs({
       statusFilter: group,
       expr,
@@ -93,7 +97,7 @@ export const TechnicalUserTable = () => {
         loadLabel={t('global.actions.more')}
         searchPlaceholder={t('content.usermanagement.technicalUser.searchText')}
         fetchHook={useFetchServiceAccountListQuery}
-        fetchHookRefresh={update || refresh}
+        fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.serviceAccountId}
         filterViews={filterButtons}
         fetchHookArgs={fetchHookArgs}

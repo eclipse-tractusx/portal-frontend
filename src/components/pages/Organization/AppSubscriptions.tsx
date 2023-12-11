@@ -51,7 +51,13 @@ export default function AppSubscriptions({
   }
 
   return (
-    <div className="organization-subscriptions" onClick={onButtonClick}>
+    <div
+      className="organization-subscriptions"
+      onClick={onButtonClick}
+      onKeyUp={() => {
+        // do nothing
+      }}
+    >
       <div className="iconNameContainer">
         <Image
           src={image?.src ?? LogoGrayData}

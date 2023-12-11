@@ -4,7 +4,113 @@
 
 - Search
   - Find notifications related to search term
-...
+- Mobile version. Hamburger menu
+- Invite Business Partner
+  - Add the new invited company gets right away in to the table
+- Admin Credential
+  - Document Hover Effect
+- Tech User Details
+  - Fix crash issue
+- ESLINT
+  - Enable no-inferrable-types rule
+  - Enable dot-notation rule
+- User management
+  - Updated app access management flow
+- Overlays
+  - Change Overlay Button from "Cancel" to "Close"
+- ESLINT
+  - Enable require-await rule
+  - Enable return-await rule
+  - Enable prefer-reduce-type-parameter rule
+  - Enable prefer-readonly rule
+  - Enable triple-slash-reference rule
+- App overview
+  - api failing component appears with "no data available" and with error bar
+- Company Roles
+  - Fix typo error to fix conformity body issue
+
+## 1.7.0-RC4
+
+### Change
+
+- Admin Credential Management Board
+  - support the load element for "decline" and "approve" button
+  - document icons updated to support hover to show that the document can get clicked
+
+### Feature
+
+- App Change Process
+  - Document change (delete and add) added and backend integrated
+
+### Technical Support
+
+- Trivy scan: changed to no failure on high findings, as it should only fail if there is an error/misconfiguration
+
+### Bugfix
+
+- Service Release Process
+  - fixed consent check removal issue on save
+- App Release Process
+  - fixed error message deletion upon deleting of csv file in technical integration
+  - fixed consent check removal issue on save
+- Invite Business Partner - fixed auto page refresh/update when inviting via the invite overlay a new company
+- App Subscription
+  - business logic and backend api response connection updated to be able to handle the service setup status for each subscription instead of the offer level itself
+- Service Subscription
+  - activation Overlay field names updated
+  - field value mapping to backend api response properties updated/changed
+  - copy feature/icon added for the technical user secret
+  - header description updated
+  - business logic and backend api response connection updated to be able to handle the service setup status for each subscription instead of the offer level itself
+- Technical User Creation
+  - Overlay Type SubHeading Typo fix
+- Technical User Details
+  - fixed white screen for technical users with connector null object
+- Vulnerability from dependency
+  - upgrade axios dependency to v1.6.1
+
+### Known Knowns
+
+- App Release Process
+  - help link hyperlink incorrectly set
+  - mutated vowel/umlaut of uploaded app roles are incorrectly displayed
+- Semantic Models
+  - semantic model overlay diagram can not get displayed due to semantic model backend external dependency error. Interim deactivated the function.
+- Service Subscription Management
+  - detail overlay incorrectly displays an "Edit" icon for the technical user name
+
+## 1.7.0-RC3
+
+### Change
+
+- IdP configuration overlays, extended error handling on the ui
+- New backend error handling (extended details) implemented for bulk user changes
+  - User Management - bulk user creation error overlay for single user error message response enhanced to show for each failed user details regarding the reason for failure (if available)
+  - IdP Switch - user migration function error support enhanced with single user error message response to show for each failed user details regarding the reason for failure (if available)
+
+### Feature
+
+n/a
+
+### Technical Support
+
+- upgraded dependencies to latest version
+
+### Bugfix
+
+- Admin Business Partner Registration Request Screen - Detail Overlay country fixed to display country code received via backend api
+- Technical User Overview - displaying duplicates after adding/creating new technical users fixed
+- Technical User detail screen - removed copy icon from connector link
+- Company Role Change Screen - updated OSP value to human readable text instead of displaying technical keys
+- Company Role Change Detail Overlay - displayed invalid deselect role details for OSP fixed
+- Service Subscription sorting element behavior fixed in case the user sorts multiple times with the same sorting option
+- Vulnerability from dependency
+  - Set resolution for axios
+
+### Known Knowns
+
+- App change process 'documents' not yet integrated with backend
+- App/Service Release Process - upon clicking "Save" given consent is removed and needs to get set newly
 
 ## 1.7.0-RC2
 
@@ -75,8 +181,6 @@
   - UI Changes
 - Home
   - Fixed image display for 'my business applications'
-- App Subscription and Servcie Subscripiton
-  - Status UI Changes
 - Vulnerability from dependency
   - Set resolution for @babel/traverse (CVE-2023-45133)
 

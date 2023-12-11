@@ -80,7 +80,7 @@ export enum PAGES {
   INTRODUCTION_PARTICIPANT = 'companyrolesparticipant',
   INTRODUCTION_APP_PROVIDER = 'companyrolesappprovider',
   INTRODUCTION_SERVICE_PROVIDER = 'companyrolesserviceprovider',
-  INTRODUCTION_CONFIRMITY_BODY = 'companyrolesconfirmitybody',
+  INTRODUCTION_CONFORMITY_BODY = 'companyrolesconformitybody',
   INTRODUCTION_OSP_BODY = 'companyrolesonboardingserviceprovider',
   USE_CASE = 'usecase',
   USE_CASE_TRACABILITY = 'usecasetraceablity',

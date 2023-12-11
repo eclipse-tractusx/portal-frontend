@@ -96,6 +96,15 @@ export default function CompanyRoles() {
     setSelectedRoles(rolesArr)
   }
 
+  const checkDisabledSubmit = () => {
+    const roles = preSelectedRoles.map((preRole) => preRole.companyRoles)
+    return (
+      (roles.length === selectedRoles.length &&
+        roles.every((role) => selectedRoles.includes(role))) ||
+      !selectedRoles.length
+    )
+  }
+
   return (
     <main className="companyRoleUpdate">
       <PageHeader
@@ -226,7 +235,7 @@ export default function CompanyRoles() {
               <Button
                 size="small"
                 variant="contained"
-                disabled={selectedRoles.length === preSelectedRoles.length}
+                disabled={checkDisabledSubmit()}
                 onClick={() =>
                   dispatch(
                     show(

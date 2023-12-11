@@ -49,12 +49,11 @@ export default function TechnicalUserDetailsContent({
   const connectedData = [
     {
       key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
-      value: newData.connector?.name,
-      copy: true,
+      value: newData?.connector?.name ?? 'N/A',
     },
     {
       key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),
-      value: newData.offer?.name ?? 'N/A',
+      value: newData?.offer?.name ?? 'N/A',
       copy: !!newData.offer?.name,
     },
   ]

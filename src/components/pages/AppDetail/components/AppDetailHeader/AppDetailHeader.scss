@@ -34,6 +34,7 @@
     object-fit: cover;
     img {
       width: 100%;
+      height: 270px;
       border-radius: 20px;
     }
   }
@@ -48,6 +49,9 @@
         color: #8888;
         font-size: 14px;
       }
+    }
+    .usecase {
+      display: flex;
     }
     ul {
       display: flex;

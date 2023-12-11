@@ -111,7 +111,8 @@
     "usermanagement": "Get there",
     "servicesubscription": "Get there",
     "serviceadminboard": "Get there",
-    "role-details": "Open Role Matrix"
+    "role-details": "Open Role Matrix",
+    "servicemarketplace": "Get there"
   },
   "due": "fällig",
   "search": "...suchen",

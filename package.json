@@ -1,6 +1,6 @@
 {
   "name": "@catena-x/portal-frontend",
-  "version": "v1.7.0-RC2",
+  "version": "v1.7.0-RC4",
   "description": "Catena-X Portal Frontend",
   "author": "Catena-X Contributors",
   "license": "Apache-2.0",
@@ -35,7 +35,7 @@
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/papaparse": "^5.3.7",
-    "axios": "^1.4.0",
+    "axios": "^1.6.1",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.8",
     "i18next": "^22.5.1",
@@ -92,7 +92,7 @@
   },
   "resolutions": {
     "**/nth-check": "^2.1.1",
-    "@babel/traverse": "^7.23.2"
+    "**/@babel/traverse": "^7.23.2"
   },
   "scripts": {
     "prepare": "husky install",

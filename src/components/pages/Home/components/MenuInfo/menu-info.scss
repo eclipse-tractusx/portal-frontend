@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,4 +17,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import 'react-scripts'
+.MenuInfo {
+  display: block;
+  position: absolute;
+  top: 0px;
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+  right: 0px;
+  width: 70%;
+  padding: 10px 0px;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 20px;
+}
+
+.userMenuInfo {
+  margin-top: 20px;
+}

@@ -47,7 +47,7 @@
     "companyrolesparticipant": "Participant",
     "companyrolesappprovider": "App Provider",
     "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconfirmitybody": "Confirmity Body",
+    "companyrolesconformitybody": "Conformity Body",
     "companyrolesonboardingserviceprovider": "Onboarding Service Provider",
     "usecase": "Use Case",
     "usecasetraceablity": "Traceablity",
@@ -442,10 +442,13 @@
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "saveTooltipMsg": "The save button will be active after a document was changed",
-      "successMsg": "Documents changed successfully",
+      "successMsg": "Document uploaded successfully",
       "errorMsg": "Error! Something went wrong",
-      "uploadNewDocument": "Neues Dokument hochladen"
+      "uploadNewDocument": "Upload new document",
+      "uploadNewDocumentDescription": "Hinweis: Es ist nur eine Datei zum Hochladen zulässig",
+      "documentDeleteSuccess": "Document deleted successfully",
+      "deleteIconTooltip": "Mindestens ein Dokument ist obligatorisch. Laden Sie ein neues Dokument hoch, bevor Sie das Bild entfernen können.",
+      "uploadButtonTooltip": "Maximale Anzahl zulässiger Dokumente erreicht. Bitte löschen Sie ein Dokument, bevor Sie ein neues hochladen."
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -701,6 +704,7 @@
           "heading": "Upload form by selecting the form file with the user data"
         },
         "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "fileHeaderError": "Bulk Upload list format wrong. Missing or incorrect header line. Recheck the download file to retrieve the expected format",
         "uploadedFile": {
           "fileHeading": "Prepared for upload:",
           "addUserRolesHeading": "Add user roles for all users in bulk upload:",
@@ -859,7 +863,7 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one service roles:",
+          "serviceSubHeading": "Select one of the following service roles:",
           "username": "Username",
           "description": "Beschreibung",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -874,9 +878,14 @@
       }
     },
     "addUserRight": {
-      "headline": "Benutzer hinzufügen",
-      "subheadline": "Auswählen und hinzufügen von Benutzern",
-      "noRolesFound": "No user roles found"
+      "headline": "Assign app roles to your user(s)",
+      "noRolesFound": "No user roles found",
+      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "confirmSelectedUsers": "Confirm selected users",
+      "confirmSelectedRoles": "Confirm selected roles",
+      "selectRoles": "Select Roles:",
+      "roleDescriptions": "Role Descriptions"
     },
     "help": {
       "message": "Fügen Sie hier Inhalte hinzu"
@@ -1103,7 +1112,7 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select atleast one technical user setup",
+        "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles"
@@ -1529,9 +1538,10 @@
       "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
       "note": "Please note: ",
       "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
-      "ACTIVE_PARTICIPANT": "Active Participant",
-      "APP_PROVIDER": "App Provider",
-      "SERVICE_PROVIDER": "Service Provider",
+      "ACTIVE_PARTICIPANT": "Activer Teilnehmer",
+      "APP_PROVIDER": "App-Anbieter",
+      "SERVICE_PROVIDER": "Dienstleister",
+      "ONBOARDING_SERVICE_PROVIDER": "Onboarding-Dienstleister",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",
@@ -1566,6 +1576,7 @@
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
+      "nodocument": "Kein Dokument vorhanden",
       "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
