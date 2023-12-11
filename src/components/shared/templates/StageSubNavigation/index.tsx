@@ -32,16 +32,18 @@ export const StageSubNavigation = ({
 }: {
   linkArray: SubNavigationType[]
   fixHeader: boolean
-}) => {
+}): void => {
   const isWeb = useMediaQuery('(min-width: 1400px)')
-  const scrollToId = (id: string) => {
+  const scrollToId = (id: string): void => {
     const element = document.getElementById(id)
-    const top = element && element.offsetTop - 100
+    if (element !== null) {
+      const top = element.offsetTop - 100
 
-    window.scrollTo({
-      top: top ?? 0,
-      behavior: 'smooth',
-    })
+      window.scrollTo({
+        top: top ?? 0,
+        behavior: 'smooth',
+      })
+    }
   }
 
   const customStyles = fixHeader && {
