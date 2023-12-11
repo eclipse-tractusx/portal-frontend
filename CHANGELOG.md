@@ -26,6 +26,7 @@
   - api failing component appears with "no data available" and with error bar
 - Company Roles
   - Fix typo error to fix conformity body issue
+- Fixed error message display when data is available issue
 
 ## 1.7.0
 
