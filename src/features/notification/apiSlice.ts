@@ -49,13 +49,19 @@ export const apiSlice = createApi({
       query: () => '/api/notification/count-details',
     }),
     getNotifications: builder.query<CXNotification, NotificationFetchType>({
-      query: (fetchArgs) => `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}${
-        fetchArgs?.args?.sorting ? `&sorting=${fetchArgs.args.sorting}` : ''
-      }${
-        (fetchArgs?.args?.notificationTopic && fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL) ? `&notificationTopicId=${fetchArgs?.args?.notificationTopic}` : ''
-      }${
-        fetchArgs?.args?.notificationTypeIds?.map((typeId: NotificationType) => `&searchTypeIds=${typeId}`).join('') ?? ''
-      }`,
+      query: (fetchArgs) =>
+        `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}${
+          fetchArgs?.args?.sorting ? `&sorting=${fetchArgs.args.sorting}` : ''
+        }${
+          fetchArgs?.args?.notificationTopic &&
+          fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL
+            ? `&notificationTopicId=${fetchArgs?.args?.notificationTopic}`
+            : ''
+        }${
+          fetchArgs?.args?.notificationTypeIds
+            ?.map((typeId: NotificationType) => `&searchTypeIds=${typeId}`)
+            .join('') ?? ''
+        }`,
       // configuration for an individual endpoint, overriding the api setting
       keepUnusedDataFor: 10,
     }),

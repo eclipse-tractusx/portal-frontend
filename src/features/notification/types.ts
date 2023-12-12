@@ -66,8 +66,8 @@ export type NotificationFetchType = {
   page: number
   size: number
   args: {
-    notificationTypeIds: Array<NotificationType>,
-    notificationTopic: NOTIFICATION_TOPIC,
+    notificationTypeIds: Array<NotificationType>
+    notificationTopic: NOTIFICATION_TOPIC
     sorting: string
   }
 }

@@ -115,8 +115,10 @@ const searchNotifications = (expr: string): NotificationType[] => {
   const regex = new RegExp(expr, 'ig')
   return Object.entries(resources.en.notification.item)
     .concat(Object.entries(resources.de.notification.item))
-    .filter((item) => item[1].title.match(regex) ?? item[1].content.match(regex))
-    .map(item => item[0] as NotificationType)
+    .filter(
+      (item) => item[1].title.match(regex) ?? item[1].content.match(regex)
+    )
+    .map((item) => item[0] as NotificationType)
 }
 
 const I18nService = {

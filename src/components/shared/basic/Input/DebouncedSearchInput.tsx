@@ -26,15 +26,12 @@ const DebouncedSearchInput = ({
   onSearch,
   debounceTime = 300,
 }: {
-  onSearch: (expr: string) => void,
+  onSearch: (expr: string) => void
   debounceTime?: number
 }) => {
-
   const [searchExpr, setSearchExpr] = useState<string>('')
 
-  const debouncedSearch = useMemo(
-    () => debounce(onSearch, debounceTime), []
-  )
+  const debouncedSearch = useMemo(() => debounce(onSearch, debounceTime), [])
 
   const doSearch = useCallback(
     (expr: string) => {
@@ -47,8 +44,10 @@ const DebouncedSearchInput = ({
   return (
     <SearchInput
       value={searchExpr}
-      onChange={(e) => { doSearch(e.target.value)}}
-      />
+      onChange={(e) => {
+        doSearch(e.target.value)
+      }}
+    />
   )
 }
 

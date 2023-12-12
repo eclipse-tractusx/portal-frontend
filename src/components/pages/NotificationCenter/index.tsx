@@ -41,10 +41,7 @@ import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
-import {
-  SortOption,
-  CircleProgress,
-} from '@catena-x/portal-shared-components'
+import { SortOption, CircleProgress } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { initialNotificationState } from 'features/notification/slice'
@@ -82,12 +79,8 @@ export default function NotificationCenter() {
   const { data: pages } = useGetNotificationMetaQuery(null)
   const [showModal, setShowModal] = useState<boolean>(false)
   const [search, setSearch] = useState<string>('')
-  const [filterTopic, setFilterTopic] = useState<string>(
-    NOTIFICATION_TOPIC.ALL
-  )
-  const [filterType, setFilterType] = useState<Array<NotificationType>>(
-    []
-  )
+  const [filterTopic, setFilterTopic] = useState<string>(NOTIFICATION_TOPIC.ALL)
+  const [filterType, setFilterType] = useState<Array<NotificationType>>([])
   const [loaded, setLoaded] = useState<boolean>(false)
   const [sortOption, setSortOption] = useState<string>(SORT_OPTION)
   const [page, setPage] = useState<number>(PAGE)
@@ -220,10 +213,8 @@ export default function NotificationCenter() {
       return
     }
     const types = I18nService.searchNotifications(exp)
-    if (types.length === 0)
-      setNotificationItems([])
-    else
-      setFilterType(types)
+    if (types.length === 0) setNotificationItems([])
+    else setFilterType(types)
   }
 
   const height = sectionElement?.current
@@ -245,10 +236,7 @@ export default function NotificationCenter() {
             setShowModal(false)
           }}
         >
-          <DebouncedSearchInput
-            debounceTime={500}
-            onSearch={doSearch}
-          />
+          <DebouncedSearchInput debounceTime={500} onSearch={doSearch} />
           <div>
             <SortImage
               onClick={() => {
