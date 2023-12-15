@@ -248,7 +248,7 @@ export default function TechnicalIntegration() {
             setUploadCSVError(true)
           }
         }
-        reader.readAsText(file)
+        reader.readAsText(file, 'ISO-8859-4')
       })
   }
 
@@ -494,61 +494,62 @@ export default function TechnicalIntegration() {
           </Box>
         )}
         <Box>
-          <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
-            {t(
-              'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
-            )}
-          </Typography>
-
           {data && data.length > 0 ? (
-            <Grid item container xs={12}>
-              {data?.map((role: rolesType, index) => (
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                  key={role.roleId}
-                  sx={{
-                    pl: !isMobile && index % 2 === 0 ? 0 : 1,
-                    pr: !isMobile && index % 2 === 0 ? 1 : 0,
-                  }}
-                >
-                  <CustomAccordion
-                    items={[
-                      {
-                        expanded: false,
-                        id: role.roleId,
-                        title: '',
-                        titleElement: (
-                          <Chip
-                            key={role.roleId}
-                            label={role.role}
-                            withIcon={true}
-                            type="delete"
-                            variant="filled"
-                            color="info"
-                            sx={{
-                              '.MuiChip-label': {
-                                fontSize: '14px',
-                              },
-                            }}
-                            handleDelete={() => {
-                              onChipDelete(role.roleId)
-                            }}
-                          />
-                        ),
-                        color: 'white',
-                        children: (
-                          <Typography variant="caption3">
-                            {role.description}
-                          </Typography>
-                        ),
-                      },
-                    ]}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+            <>
+              <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
+                {t(
+                  'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
+                )}
+              </Typography>
+              <Grid item container xs={12}>
+                {data?.map((role: rolesType, index) => (
+                  <Grid
+                    item
+                    md={6}
+                    xs={12}
+                    key={role.roleId}
+                    sx={{
+                      pl: !isMobile && index % 2 === 0 ? 0 : 1,
+                      pr: !isMobile && index % 2 === 0 ? 1 : 0,
+                    }}
+                  >
+                    <CustomAccordion
+                      items={[
+                        {
+                          expanded: false,
+                          id: role.roleId,
+                          title: '',
+                          titleElement: (
+                            <Chip
+                              key={role.roleId}
+                              label={role.role}
+                              withIcon={true}
+                              type="delete"
+                              variant="filled"
+                              color="info"
+                              sx={{
+                                '.MuiChip-label': {
+                                  fontSize: '14px',
+                                },
+                              }}
+                              handleDelete={() => {
+                                onChipDelete(role.roleId)
+                              }}
+                            />
+                          ),
+                          color: 'white',
+                          children: (
+                            <Typography variant="caption3">
+                              {role.description}
+                            </Typography>
+                          ),
+                        },
+                      ]}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </>
           ) : (
             <Box className="no-roles-box">
               <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>

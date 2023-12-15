@@ -27,6 +27,8 @@
 - Company Roles
   - Fix typo error to fix conformity body issue
 - Fixed error message display when data is available issue
+- App release process
+  - Fixed help link, funky character display and the success message display in user role upload
 
 ## 1.7.0
 
