@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,28 +17,70 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Main from 'components/Main'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NotFound from 'components/pages/NotFound'
-import AccessService from 'services/AccessService'
-import ScrollToTop from '../utils/ScrollToTop'
-import ErrorBoundary from 'components/pages/ErrorBoundary'
-import DeleteCompany from './pages/DeleteCompany'
-
-const AuthorizingRouter = () => {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="error" element={<ErrorBoundary />} />
-        <Route path="/" element={<Main />}>
-          {AccessService.permittedRoutes()}
-        </Route>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/decline" element={<DeleteCompany />} />
-      </Routes>
-    </BrowserRouter>
-  )
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
+.deleteMain {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 70px 0 50px 0;
 
-export default AuthorizingRouter
+  .d-flex {
+    display: flex;
+  }
+
+  .align-item-center {
+    align-items: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .mr-10 {
+    margin-right: 10px !important;
+  }
+
+  .mb-15 {
+    margin-bottom: 15px !important;
+  }
+
+  .mb-20 {
+    margin-bottom: 20px !important;
+  }
+
+  .mb-25 {
+    margin-bottom: 25px !important;
+  }
+
+  .logo {
+    margin-bottom: 70px;
+
+    img {
+      height: 50px;
+    }
+  }
+
+  .content {
+    max-width: 650px;
+    margin: 0 auto;
+
+    .contentListing {
+      max-width: 80%;
+      margin: 0 auto;
+
+      .icon {
+        color: #0f71cb;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .deleteBtn {
+    text-transform: capitalize;
+  }
+}
