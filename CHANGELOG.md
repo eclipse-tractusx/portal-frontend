@@ -9,6 +9,8 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- Pattern
+  - Company name search pattern updated
 
 ## 1.7.0-RC3
 
