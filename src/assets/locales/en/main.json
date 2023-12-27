@@ -46,7 +46,7 @@
     "companyrolesparticipant": "Participant",
     "companyrolesappprovider": "App Provider",
     "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconfirmitybody": "Confirmity Body",
+    "companyrolesconformitybody": "Conformity Body",
     "companyrolesonboardingserviceprovider": "Onboarding Service Provider",
     "usecase": "Use Case",
     "usecasetraceablity": "Traceablity",
@@ -443,10 +443,13 @@
     "changeDocuments": {
       "headerTitle": "Update Contract Documents",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "saveTooltipMsg": "The save button will be active after a document was changed",
-      "successMsg": "Documents changed successfully",
+      "successMsg": "Document uploaded successfully",
       "errorMsg": "Error! Something went wrong",
-      "uploadNewDocument": "Upload new Document"
+      "uploadNewDocument": "Upload new document",
+      "uploadNewDocumentDescription": "Note: only one file for upload allowed",
+      "documentDeleteSuccess": "Document deleted successfully",
+      "deleteIconTooltip": "At least one document is mandatory. Upload a new document before being able to remove the image.",
+      "uploadButtonTooltip": "Maximum number of allowed documents reached. Please delete one document before uploading a new one."
     },
     "appreleaseprocess": {
       "message": "App Release Process Message"
@@ -860,7 +863,7 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one service roles:",
+          "serviceSubHeading": "Select one of the following service roles:",
           "username": "Username",
           "description": "Description",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -875,9 +878,14 @@
       }
     },
     "addUserRight": {
-      "headline": "Add app permissions to your company user",
-      "subheadline": "Select one or multiple user roles with the checkboxes below as well as the relevant user/s which should receive the role.",
-      "noRolesFound": "No user roles found"
+      "headline": "Assign app roles to your user(s)",
+      "noRolesFound": "No user roles found",
+      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "confirmSelectedUsers": "Confirm selected users",
+      "confirmSelectedRoles": "Confirm selected roles",
+      "selectRoles": "Select Roles:",
+      "roleDescriptions": "Role Descriptions"
     },
     "account": {
       "userAccount": "User account",
@@ -1532,6 +1540,7 @@
       "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
+      "nodocument": "No document available",
       "expiry": "Expiry: {{expiry}}",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",

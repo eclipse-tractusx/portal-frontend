@@ -1,6 +1,6 @@
 {
   "name": "@catena-x/portal-frontend",
-  "version": "v1.7.0-RC3",
+  "version": "v1.7.0",
   "description": "Catena-X Portal Frontend",
   "author": "Catena-X Contributors",
   "license": "Apache-2.0",
@@ -35,7 +35,7 @@
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/papaparse": "^5.3.7",
-    "axios": "^1.4.0",
+    "axios": "^1.6.1",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.8",
     "i18next": "^22.5.1",
@@ -92,8 +92,7 @@
   },
   "resolutions": {
     "**/nth-check": "^2.1.1",
-    "**/@babel/traverse": "^7.23.2",
-    "**/axios": "^1.6.1"
+    "**/@babel/traverse": "^7.23.2"
   },
   "scripts": {
     "prepare": "husky install",
@@ -101,7 +100,7 @@
     "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
     "lint": "yarn run eslint \"./src/**/*.{ts,tsx}\"",
     "start": "PORT=3001 BROWSER=none GENERATE_SOURCEMAP=false react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "yarn build:copy-legal-info && GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "build:docker": "if [ -d \"./build\" ]; then yarn build:docker:prebuilt; else yarn build:docker:full; fi",
@@ -109,6 +108,7 @@
     "build:docker:prebuilt": "IMAGE=$npm_package_config_image && docker build -t $IMAGE -f .conf/Dockerfile.prebuilt . && docker tag $IMAGE:latest $IMAGE:$npm_package_version",
     "start:docker": "IMAGE=$npm_package_config_image  && docker run --rm -d -p 3001:8080 --name cx-portal $IMAGE",
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
-    "build:legal-notice": "bash scripts/legal-notice.sh"
+    "build:legal-notice": "bash scripts/legal-notice.sh",
+    "build:copy-legal-info": "cp LICENSE NOTICE.md DEPENDENCIES SECURITY.md public/"
   }
 }

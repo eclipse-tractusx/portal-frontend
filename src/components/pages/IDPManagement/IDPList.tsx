@@ -53,7 +53,7 @@ const MenuItemOpenOverlay = ({
 }) => {
   const dispatch = useDispatch()
 
-  const openOverlay = async (
+  const openOverlay = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     overlay: OVERLAYS,
     id: string
@@ -68,9 +68,9 @@ const MenuItemOpenOverlay = ({
 
   return (
     <MenuItem
-      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         openOverlay(e, overlay, id)
-      }
+      }}
     >
       {label}
     </MenuItem>
