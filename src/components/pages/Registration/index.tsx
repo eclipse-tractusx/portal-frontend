@@ -84,7 +84,7 @@ export default function Registration() {
 
   const NewAddStepList = AddStepsList.map((list) => {
     if (list.step === activeStep) {
-      const obj = Object.assign({}, list)
+      const obj = {...list}
       obj.color = '#0F71CB'
       return obj
     }
