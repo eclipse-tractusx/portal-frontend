@@ -35,7 +35,7 @@ export default function DeleteCompany() {
   const { t } = useTranslation()
 
   const [initialPage, setInitialPage] = useState(false)
-  const [isSuccess, setIsSucess] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
   const [isError, setIsError] = useState(false)
   const [notSupported, setNotSupported] = useState(false)
   const [isLoadingBtn, setIsLoadingBtn] = useState(false)
@@ -62,7 +62,7 @@ export default function DeleteCompany() {
       try {
         await declineRegistration(companyData.applicationId).unwrap()
         setInitialPage(false)
-        setIsSucess(true)
+        setIsSuccess(true)
         setIsLoadingBtn(false)
       } catch (err) {
         setInitialPage(false)
