@@ -1301,7 +1301,7 @@ npm/npmjs/@types/istanbul-lib-coverage/2.0.4, MIT, approved, clearlydefined
 npm/npmjs/@types/istanbul-lib-report/3.0.1, MIT, approved, clearlydefined
 npm/npmjs/@types/istanbul-reports/3.0.2, MIT, approved, clearlydefined
 npm/npmjs/@types/jest/27.5.2, MIT, approved, clearlydefined
-npm/npmjs/@types/jest/29.5.5, MIT, approved, clearlydefined
+npm/npmjs/@types/jest/29.5.5, MIT, approved, #11951
 npm/npmjs/@types/json-schema/7.0.13, MIT, approved, clearlydefined
 npm/npmjs/@types/json5/0.0.29, MIT, approved, clearlydefined
 npm/npmjs/@types/lodash.debounce/4.0.7, MIT, approved, clearlydefined
