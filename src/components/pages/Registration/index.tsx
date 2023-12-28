@@ -1,0 +1,135 @@
+/********************************************************************************
+ * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Button, Stepper, Typography } from '@catena-x/portal-shared-components'
+import './Registration.scss'
+import {
+  ApplicationStatus,
+  useFetchApplicationsQuery,
+} from 'features/registration/registrationApiSlice'
+
+export default function Registration() {
+  const { t } = useTranslation()
+
+  const [activeStep, setActiveStep] = useState(1)
+
+  const { data } = useFetchApplicationsQuery()
+  const companyData = data?.[0]
+
+  useEffect(() => {
+    if (
+      companyData?.applicationStatus === ApplicationStatus.CREATED ||
+      companyData?.applicationStatus === ApplicationStatus.ADD_COMPANY_DATA
+    ) {
+      setActiveStep(1)
+    } else if (
+      companyData?.applicationStatus === ApplicationStatus.INVITE_USER
+    ) {
+      setActiveStep(2)
+    } else if (
+      companyData?.applicationStatus === ApplicationStatus.SELECT_COMPANY_ROLE
+    ) {
+      setActiveStep(3)
+    } else if (
+      companyData?.applicationStatus === ApplicationStatus.UPLOAD_DOCUMENTS
+    ) {
+      setActiveStep(4)
+    } else if (companyData?.applicationStatus === ApplicationStatus.VERIFY) {
+      setActiveStep(5)
+    }
+  }, [companyData])
+
+  const AddStepsList = [
+    {
+      headline: t('content.registration.steps.step1'),
+      step: 1,
+      color: '',
+    },
+    {
+      headline: t('content.registration.steps.step2'),
+      step: 2,
+    },
+    {
+      headline: t('content.registration.steps.step3'),
+      step: 3,
+    },
+    {
+      headline: t('content.registration.steps.step4'),
+      step: 4,
+    },
+    {
+      headline: t('content.registration.steps.step5'),
+      step: 5,
+    },
+  ]
+
+  const NewAddStepList = AddStepsList.map((list) => {
+    if (list.step === activeStep) {
+      const obj = Object.assign({}, list)
+      obj.color = '#0F71CB'
+      return obj
+    }
+    return list
+  })
+
+  return (
+    <div className="container registration-main mobile-left">
+      <div className="text-center">
+        <Typography variant="h2" className="text-center mb-35 title">
+          {t('content.registration.title')}
+        </Typography>
+        <Typography
+          variant="body1"
+          className="mainDescription text-center mb-35"
+        >
+          {t('content.registration.mainDescription')}
+        </Typography>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            window.open('/registration/form', '_blank')
+          }}
+          size="small"
+          className="completeBtn mb-35"
+        >
+          {t('content.registration.completeBtn')}
+        </Button>
+        <Typography variant="body3" className="description text-center">
+          {t('content.registration.description')}
+        </Typography>
+        <Stepper
+          list={NewAddStepList}
+          showSteps={5}
+          activeStep={activeStep}
+          tooltipText={t('content.registration.steps.tooltipText')}
+          tooltipLink="/registration/form"
+        />
+        <div className="helpTextReg">
+          <Typography variant="body3">
+            {t('content.registration.helpText')}
+            <a href="/"> {t('content.registration.email')}</a>
+          </Typography>
+        </div>
+      </div>
+    </div>
+  )
+}

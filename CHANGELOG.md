@@ -27,6 +27,7 @@
 - Company Roles
   - Fix typo error to fix conformity body issue
 - Fixed error message display when data is available issue
+- Portal Login with unfinished registration
 
 ## 1.7.0
 
