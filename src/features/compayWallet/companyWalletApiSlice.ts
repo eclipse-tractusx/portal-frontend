@@ -18,33 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  getApiBase,
-  getBpdmApiBase,
-  getManagedIdentityWalletsNewBase,
-} from 'services/EnvironmentService'
-import UserService from 'services/UserService'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiIdentityWalletQuery } from 'utils/rtkUtil'
 
-export const apiBaseQuery = () => ({
-  baseUrl: getApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
+export const apiSlice = createApi({
+  reducerPath: 'rtk/apps/companyWallet',
+  baseQuery: fetchBaseQuery(apiIdentityWalletQuery()),
+  endpoints: (builder) => ({
+    fetchCompanyWallet: builder.query<any, void>({
+      query: () => {
+        return {
+          url: '/api/credentials',
+        }
+      },
+    }),
+  }),
 })
 
-export const apiBpdmQuery = () => ({
-  baseUrl: getBpdmApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
-
-export const apiIdentityWalletQuery = () => ({
-  baseUrl: getManagedIdentityWalletsNewBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+export const { useFetchCompanyWalletQuery } = apiSlice

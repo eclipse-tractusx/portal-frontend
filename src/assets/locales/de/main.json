@@ -62,7 +62,8 @@
     "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space",
-    "admin-credential": "Certification Mgmt"
+    "admin-credential": "Certification Mgmt",
+    "companyWallet": "Company Wallet"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -1656,6 +1657,19 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+    },
+    "companyWallet": {
+      "heading": "My Company Wallet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "activate": "Connected",
+      "activateDescription": "You have activated your Catena-X wallet.",
+      "inactive": "Not Connected",
+      "inactiveDescription": "You have not activated your Catena-X wallet.",
+      "subnavigation": {
+        "title": "Wallet operations :",
+        "button1": "Connect a 3rd party wallet",
+        "button2": "Activate your Catena-X wallet"
+      }
     }
   },
   "navigation": {

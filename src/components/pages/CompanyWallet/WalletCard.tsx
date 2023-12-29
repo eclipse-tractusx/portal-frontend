@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,33 +17,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  getApiBase,
-  getBpdmApiBase,
-  getManagedIdentityWalletsNewBase,
-} from 'services/EnvironmentService'
-import UserService from 'services/UserService'
+import { Typography } from '@catena-x/portal-shared-components'
+import './CompanyWallet.scss'
+import smallLogo from '../../../assets/logo/cx-logo-short.svg'
 
-export const apiBaseQuery = () => ({
-  baseUrl: getApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
-
-export const apiBpdmQuery = () => ({
-  baseUrl: getBpdmApiBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
-
-export const apiIdentityWalletQuery = () => ({
-  baseUrl: getManagedIdentityWalletsNewBase(),
-  prepareHeaders: (headers: Headers) => {
-    headers.set('authorization', `Bearer ${UserService.getToken()}`)
-    return headers
-  },
-})
+export default function WalletCard(): JSX.Element {
+  return (
+    <div className="main-card-container">
+      <div className="card-container">
+        <div className="icon-text">
+          <div>
+            <img src={smallLogo} alt="jhgasjg12i" />
+          </div>
+          <Typography variant="body2">QE1231</Typography>
+          <Typography variant="caption1">MKJHASDKHA</Typography>
+        </div>
+        <div>
+          <Typography
+            sx={{
+              textAlign: 'left',
+              color: '#ffffff',
+            }}
+            variant="body2"
+          >
+            dd.mm.yyyy
+          </Typography>
+        </div>
+      </div>
+    </div>
+  )
+}
