@@ -19,13 +19,12 @@
  ********************************************************************************/
 
 import { initServicetNotifications } from 'types/MainTypes'
-import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type {
+  PageNotificationsProps,
+  PaginMeta,
+} from '@catena-x/portal-shared-components'
 
-export const name = 'admin/notification'
-
-export const PAGE_SIZE = 10
-export const PAGE = 0
-export const SORT_OPTION = 'DateDesc'
+export const name = 'info/notification'
 
 export enum NOTIFICATION_TOPIC {
   ALL = 'ALL',
@@ -62,32 +61,47 @@ export enum NotificationType {
   CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
 }
 
+export enum NotificationSortingType {
+  DateAsc = 'DateAsc',
+  DateDesc = 'DateDesc',
+  ReadStatusAsc = 'ReadStatusAsc',
+  ReadStatusDesc = 'ReadStatusDesc',
+}
+
 export type NotificationFetchType = {
   page: number
   size: number
   args: {
-    notificationTypeIds: Array<NotificationType>
     notificationTopic: NOTIFICATION_TOPIC
-    sorting: string
+    searchQuery: string
+    searchTypeIds: Array<NotificationType>
+    sorting: NotificationSortingType
   }
 }
 
-export interface ServiceAccountState {
-  notification: PageNotificationsProps
-  initialNotificationState: NotificationFetchType
+export const PAGE_SIZE = 10
+export const PAGE = 0
+export const SORT_OPTION = NotificationSortingType.DateDesc
+
+export const initialNotificationFetchType: NotificationFetchType = {
+  page: PAGE,
+  size: PAGE_SIZE,
+  args: {
+    notificationTopic: NOTIFICATION_TOPIC.ALL,
+    searchQuery: '',
+    searchTypeIds: [],
+    sorting: NotificationSortingType.DateDesc,
+  },
 }
 
-export const initialState: ServiceAccountState = {
+export interface NotificationState {
+  notification: PageNotificationsProps
+  fetch: NotificationFetchType
+}
+
+export const initialState: NotificationState = {
   notification: initServicetNotifications,
-  initialNotificationState: {
-    page: PAGE,
-    size: PAGE_SIZE,
-    args: {
-      notificationTypeIds: [],
-      notificationTopic: NOTIFICATION_TOPIC.ALL,
-      sorting: SORT_OPTION,
-    },
-  },
+  fetch: initialNotificationFetchType,
 }
 
 export interface NotificationContent {
@@ -131,14 +145,7 @@ export type CXNotificationMeta = {
   actionRequired: number
 }
 
-export type CXNotificationPagination = {
-  contentSize: number
-  page: number
-  totalElements: number
-  totalPages: number
-}
-
 export type CXNotification = {
   content: CXNotificationContent[]
-  meta: CXNotificationPagination
+  meta: PaginMeta
 }

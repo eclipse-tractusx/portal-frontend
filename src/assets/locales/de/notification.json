@@ -127,22 +127,22 @@
     "new": "Neuste",
     "oldest": "Älteste",
     "unread": "Ungelesen",
-    "all": {
+    "ALL": {
       "title": "All notifications",
       "description": "Messaged for required action from your side",
       "countTitle": "new"
     },
-    "info": {
+    "INFO": {
       "title": "Info notifications",
       "description": "Changes of assigned roles or newly created tech users",
       "countTitle": "new"
     },
-    "app": {
+    "OFFER": {
       "title": "App notifications",
       "description": "App publish notifications, request, activations, etc.",
       "countTitle": "new"
     },
-    "withaction": {
+    "ACTION": {
       "title": "Action Required",
       "description": "Your action is needed",
       "countTitle": "to do"

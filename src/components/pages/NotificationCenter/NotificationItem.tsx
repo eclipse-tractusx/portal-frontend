@@ -266,7 +266,8 @@ export default function NotificationItem({
         page: PAGE,
         size: PAGE_SIZE,
         args: {
-          notificationTypeIds: [],
+          searchQuery: '',
+          searchTypeIds: [],
           notificationTopic: NOTIFICATION_TOPIC.ALL,
           sorting: SORT_OPTION,
         },

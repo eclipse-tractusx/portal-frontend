@@ -44,10 +44,6 @@
       "title": "App Release request rejected",
       "content": "Your request for app {{offer}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Catena-X."
     },
-    "AppTermsChange": {
-      "title": "Changed terms and conditions",
-      "content": "App {{app}} is about to change its terms and conditions till end of the month. Please have a look at the updated T&Cs. There is no agreement needed. If you don't cancel the app usage contract till {{date}} the new terms and conditions will automatically apply."
-    },
     "APP_ROLE_ADDED": {
       "title": "App {{app}} new Roles added",
       "content": "New user roles have been added for the app <strong>{{app}}</strong> which you can now assign.\n\nNew Roles: {{roles}}"
@@ -71,6 +67,10 @@
     "SERVICE_REQUEST": {
       "title": "Service Subscription Request - Service: {{app}}",
       "content": "{{company}} triggered a subscription request for service {{app}}. Validate the request details on the subscription board."
+    },
+    "SERVICE_ACTIVATION": {
+      "title": "Service request activated",
+      "content": "Your subscription for service offer {{serviceName}} is now active"
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
@@ -127,22 +127,22 @@
     "new": "Newest First",
     "oldest": "Oldest First",
     "unread": "Unread First",
-    "all": {
+    "ALL": {
       "title": "All notifications",
       "description": "Messaged for required action from your side",
       "countTitle": "new"
     },
-    "info": {
+    "INFO": {
       "title": "Info notifications",
       "description": "Changes of assigned roles or newly created tech users",
       "countTitle": "new"
     },
-    "app": {
+    "OFFER": {
       "title": "App notifications",
       "description": "App publish notifications, request, activations, etc.",
       "countTitle": "new"
     },
-    "withaction": {
+    "ACTION": {
       "title": "Action Required",
       "description": "Your action is needed",
       "countTitle": "to do"
@@ -156,7 +156,7 @@
   },
   "header": {
     "title": "Notifications",
-    "subtitle": "Here you will receive relevant news about Catena-X, published apps and services and the apps and services you use. In addition, changes to your user account, e.g. B. newly assigned or revoked roles.",
+    "subtitle": "Here you will receive relevant news about Catena-X, published apps and services and the apps and services you use. In addition, changes to your user account, e.g. newly assigned or revoked roles.",
     "linkText": "Help",
     "link": "https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F06.+Notifications"
   }
