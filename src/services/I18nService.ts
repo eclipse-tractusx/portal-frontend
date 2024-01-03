@@ -112,7 +112,7 @@ const searchActions = (expr: string): string[] => {
 }
 
 const searchNotifications = (expr: string): NotificationType[] => {
-  const regex = new RegExp(expr, 'ig')
+  const regex = new RegExp(expr, 'i')
   return Object.entries(resources.en.notification.item)
     .concat(Object.entries(resources.de.notification.item))
     .filter((item) => regex.exec(item[1].title) ?? regex.exec(item[1].content))
