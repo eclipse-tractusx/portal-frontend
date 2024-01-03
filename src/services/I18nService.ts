@@ -81,7 +81,7 @@ const searchPages = (expr: string): string[] => {
     ...new Set(
       Object.entries(resources.en.translation.pages)
         .concat(Object.entries(resources.de.translation.pages))
-        .filter(([_key, value]) => value.match(regex))
+        .filter(([_key, value]) => regex.exec(value))
         .map(([key, _value]) => key)
     ),
   ]
@@ -93,7 +93,7 @@ const searchOverlays = (expr: string): string[] => {
     ...new Set(
       Object.entries(resources.en.translation.overlays)
         .concat(Object.entries(resources.de.translation.overlays))
-        .filter(([_key, value]) => value.match(regex))
+        .filter(([_key, value]) => regex.exec(value))
         .map(([key, _value]) => key)
     ),
   ]
@@ -105,7 +105,7 @@ const searchActions = (expr: string): string[] => {
     ...new Set(
       Object.entries(resources.en.translation.actions)
         .concat(Object.entries(resources.de.translation.actions))
-        .filter((item) => item[1].match(regex))
+        .filter((item) => regex.exec(item[1]))
         .map((item) => item[0])
     ),
   ]
@@ -115,9 +115,7 @@ const searchNotifications = (expr: string): NotificationType[] => {
   const regex = new RegExp(expr, 'ig')
   return Object.entries(resources.en.notification.item)
     .concat(Object.entries(resources.de.notification.item))
-    .filter(
-      (item) => item[1].title.match(regex) ?? item[1].content.match(regex)
-    )
+    .filter((item) => regex.exec(item[1].title) ?? regex.exec(item[1].content))
     .map((item) => item[0] as NotificationType)
 }
 

@@ -36,17 +36,15 @@ dayjs.extend(relativeTime)
 
 const NotificationGroup = ({ items }: { items: CXNotificationContent[] }) => {
   return (
-    <>
-      <ul className="group">
-        {items.length > 0 ? (
-          items.map((item: CXNotificationContent) => (
-            <NotificationItem key={item.id} item={item} />
-          ))
-        ) : (
-          <NoItems />
-        )}
-      </ul>
-    </>
+    <ul className="group">
+      {items.length > 0 ? (
+        items.map((item: CXNotificationContent) => (
+          <NotificationItem key={item.id} item={item} />
+        ))
+      ) : (
+        <NoItems />
+      )}
+    </ul>
   )
 }
 

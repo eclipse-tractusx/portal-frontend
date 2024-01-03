@@ -26,12 +26,7 @@ export default function NotificationSearch() {
   const dispatch = useDispatch()
 
   return (
-    <div
-      className="searchContainer"
-      onMouseLeave={() => {
-        // do nothing
-      }}
-    >
+    <div className="searchContainer">
       <DebouncedSearchInput
         debounceTime={500}
         onSearch={(expr: string) => dispatch(setSearch(expr))}
