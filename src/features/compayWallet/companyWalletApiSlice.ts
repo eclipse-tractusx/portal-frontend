@@ -1,5 +1,4 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -21,11 +20,69 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiIdentityWalletQuery } from 'utils/rtkUtil'
 
+export enum CredentialSubjectType {
+  SummaryCredential = 'SummaryCredential',
+  MembershipCredential = 'MembershipCredential',
+  BpnCredential = 'BpnCredential',
+  VerifiableCredential = 'VerifiableCredential',
+}
+export interface CredentialSubject {
+  holderIdentifier: string
+  id: string
+  type: CredentialSubjectType
+  contractTemplate: string
+  items?: CredentialSubjectType[]
+}
+export interface WalletContent {
+  issuanceDate: string
+  credentialSubject: CredentialSubject[]
+  id: string
+  proof: {
+    proofPurpose: string
+    type: string
+    verificationMethod: string
+    created: string
+    jws: string
+  }
+  type: CredentialSubjectType[]
+  '@context': string[]
+  issuer: string
+  expirationDate: string
+}
+export interface CompanyWalletType {
+  content: WalletContent[]
+  pageable: {
+    sort: {
+      unsorted: boolean
+      sorted: boolean
+      empty: boolean
+    }
+    pageSize: number
+    pageNumber: number
+    offset: number
+    paged: boolean
+    unpaged: boolean
+  }
+  totalPages: number
+  totalElements: number
+  last: boolean
+  first: boolean
+  numberOfElements: number
+  size: number
+  number: number
+  sort: {
+    unsorted: boolean
+    sorted: boolean
+    empty: boolean
+  }
+  empty: boolean
+}
+
 export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/companyWallet',
+  reducerPath: 'rtk/companyWallet',
   baseQuery: fetchBaseQuery(apiIdentityWalletQuery()),
   endpoints: (builder) => ({
-    fetchCompanyWallet: builder.query<any, void>({
+    fetchCompanyWallet: builder.query<CompanyWalletType, void>({
       query: () => {
         return {
           url: '/api/credentials',

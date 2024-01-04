@@ -58,29 +58,17 @@ export default function RuleCard(): JSX.Element {
       <div className="main-rule-card-container">
         {ruleCards?.map((card: CardType) => (
           <div className="rule-card-container">
-            <Typography
-              className='text'
-              variant="body2"
-            >
+            <Typography className="text" variant="body2">
               {card.title}
             </Typography>
-            <Typography
-              className='text'
-              variant="h4"
-            >
+            <Typography className="text" variant="h4">
               {card.subtitle}
             </Typography>
             <div>
-              <Typography
-                className='text'
-                variant="body3"
-              >
+              <Typography className="text" variant="body3">
                 {card.signature}
               </Typography>
-              <Typography
-                className='text'
-                variant="body3"
-              >
+              <Typography className="text" variant="body3">
                 {card.date}
               </Typography>
             </div>
