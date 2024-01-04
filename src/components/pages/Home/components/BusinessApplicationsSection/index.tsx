@@ -64,7 +64,7 @@ export default function BusinessApplicationsSection() {
   const reference = PageService.registerReference(label, useRef(null))
 
   return (
-    <div ref={reference} className="orange-background">
+    <div ref={reference} className="orange-background-home">
       <section className="business-applications-section">
         <Typography
           sx={{
@@ -98,6 +98,7 @@ export default function BusinessApplicationsSection() {
               />
             ))}
           {data &&
+            data.length < 4 &&
             new Array(4 - data.length)
               .fill(true)
               .map((_item, i) => (

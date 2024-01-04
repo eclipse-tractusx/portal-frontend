@@ -249,7 +249,7 @@ export default function NotificationItem({
     setUserRead(item.userRead)
   }, [item.userRead])
 
-  const toggle = async () => {
+  const toggle = () => {
     const nextState = !open
     if (nextState && !userRead) {
       setUserRead(true)

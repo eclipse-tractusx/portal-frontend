@@ -22,9 +22,14 @@ import {
   Typography,
   PageHeader,
   Button,
-  Tooltips,
-  LoadingButton,
   IconButton,
+  DialogHeader,
+  Dialog,
+  DialogContent,
+  UploadStatus,
+  DropArea,
+  type DropAreaProps,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -32,9 +37,17 @@ import { Box, Divider } from '@mui/material'
 import { useState } from 'react'
 import type { ItemType } from './AddRoles'
 import type { DocumentData } from 'features/appManagement/apiSlice'
-import { useFetchAppDocumentsQuery } from 'features/appManagement/apiSlice'
+import {
+  DocumentTypeId,
+  useDeleteAppChangeDocumentMutation,
+  useFetchAppDocumentsQuery,
+  useUpdateAppChangeDocumentMutation,
+} from 'features/appManagement/apiSlice'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
+import { error, success } from 'services/NotifyService'
+import { Controller, useForm } from 'react-hook-form'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 
 enum DocumentNameType {
   APP_IMAGE = 'App Image',
@@ -47,19 +60,88 @@ export default function ChangeDocuments() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const appId = useParams().appId
-  const [isLoading, setIsLoading] = useState(false)
   const { state } = useLocation()
   const items = state
   const app = items?.filter((item: ItemType) => item.id === appId)
-  const [imageChanged, setImageChanged] = useState(false)
-  const { data } = useFetchAppDocumentsQuery(appId ?? '')
+  const { data, refetch } = useFetchAppDocumentsQuery(appId ?? '')
+  const [deleteAppChangeDocument] = useDeleteAppChangeDocumentMutation()
+  const [documentType, setDocumentType] = useState('')
+  const [uploadDocsOverlayOpen, setUploadDocsOverlayOpen] =
+    useState<boolean>(false)
+  const [updateAppChangeDocument] = useUpdateAppChangeDocumentMutation()
 
-  const handleSaveClick = async () => {
-    setIsLoading(true)
-    setImageChanged(true)
+  const { control, trigger, setValue } = useForm({
+    defaultValues: { uploadDocument: '' },
+    mode: 'onChange',
+  })
+
+  const uploadDocumentApi = async (
+    appId: string,
+    documentTypeId: string,
+    file: File
+  ) => {
+    const data = {
+      appId,
+      documentTypeId,
+      body: { file },
+    }
+    await updateAppChangeDocument(data).unwrap()
   }
 
-  const renderdocs = (doctype: string, documents: DocumentData[]) => {
+  const onFileUpload = (file: DropzoneFile) => {
+    if (appId && file) {
+      const setFileStatus = (status: UploadStatus) => {
+        setValue('uploadDocument', {
+          id: file.id,
+          name: file.name,
+          size: file.size,
+          status,
+          // Add an ESLint exception until there is a solution
+          // eslint-disable-next-line
+        } as any)
+      }
+      setFileStatus(UploadStatus.UPLOADING)
+      uploadDocumentApi(appId, documentType, file)
+        .then(() => {
+          setFileStatus(UploadStatus.UPLOAD_SUCCESS)
+          refetch()
+          setUploadDocsOverlayOpen(false)
+          success(t('content.changeDocuments.successMsg'))
+        })
+        .catch((err) => {
+          setFileStatus(UploadStatus.UPLOAD_ERROR)
+          error(t('content.changeDocuments.errorMsg'), '', err)
+        })
+    }
+  }
+
+  const deleteDocument = async (documentId: string) => {
+    appId &&
+      documentId &&
+      (await deleteAppChangeDocument({ appId, documentId })
+        .unwrap()
+        .then(() => {
+          success(t('content.changeDocuments.documentDeleteSuccess'))
+          refetch()
+        })
+        // Add an ESLint exception until there is a solution
+        // eslint-disable-next-line
+        .catch((err: any) => {
+          error(
+            err.status === 409
+              ? err.data.title
+              : t('content.changeDocuments.errorMsg'),
+            '',
+            err
+          )
+        }))
+  }
+
+  const renderdocs = (
+    docType: string,
+    documents: DocumentData[],
+    documentTypeId: string
+  ) => {
     return (
       <div>
         <Box width={500} margin={'0 auto'} justifyContent="center">
@@ -67,7 +149,7 @@ export default function ChangeDocuments() {
             variant="label3"
             sx={{ color: '#1977cc', display: 'flex', marginTop: '28px' }}
           >
-            <ArrowForwardIcon fontSize="small" sx={{ mr: 1 }} /> {doctype}
+            <ArrowForwardIcon fontSize="small" sx={{ mr: 1 }} /> {docType}
           </Typography>
           <Box sx={{ mb: '20px', mt: '10px' }}>
             {documents?.map((doc: DocumentData) => {
@@ -76,31 +158,75 @@ export default function ChangeDocuments() {
                   <Typography variant="label4" sx={{ ml: '28px' }}>
                     {doc.documentName}
                   </Typography>
-                  <IconButton
-                    disabled
-                    sx={{ height: '18px', width: '18px', float: 'right' }}
-                  >
-                    <DeleteOutlinedIcon />
-                  </IconButton>
+                  <Tooltips
+                    tooltipPlacement="right-end"
+                    tooltipText={
+                      docType === DocumentNameType.APP_IMAGE &&
+                      documents.length <= 1
+                        ? t('content.changeDocuments.deleteIconTooltip')
+                        : ''
+                    }
+                    children={
+                      <span style={{ float: 'right' }}>
+                        <IconButton
+                          sx={{ height: '18px', width: '18px', float: 'right' }}
+                          onClick={() => deleteDocument(doc.documentId)}
+                          disabled={
+                            docType === DocumentNameType.APP_IMAGE &&
+                            documents.length <= 1
+                          }
+                        >
+                          <DeleteOutlinedIcon />
+                        </IconButton>
+                      </span>
+                    }
+                  />
                 </div>
               )
             })}
           </Box>
-          <Button
-            size="small"
-            variant="contained"
-            color="secondary"
-            onClick={handleSaveClick}
-            sx={{ fontSize: '12px' }}
-          >
-            {t('content.changeDocuments.uploadNewDocument')}
-          </Button>
-          {doctype !== DocumentNameType.ADDITIONAL_DETAILS && (
+          <Tooltips
+            tooltipPlacement="right-end"
+            tooltipText={
+              (docType === DocumentNameType.APP_IMAGE &&
+                documents.length === 3) ||
+              (docType !== DocumentNameType.APP_IMAGE && documents.length === 1)
+                ? t('content.changeDocuments.uploadButtonTooltip')
+                : ''
+            }
+            children={
+              <span>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => {
+                    setUploadDocsOverlayOpen(true)
+                    setDocumentType(documentTypeId)
+                  }}
+                  sx={{ fontSize: '12px' }}
+                  disabled={
+                    (docType === DocumentNameType.APP_IMAGE &&
+                      documents.length === 3) ||
+                    (docType !== DocumentNameType.APP_IMAGE &&
+                      documents.length === 1)
+                  }
+                >
+                  {t('content.changeDocuments.uploadNewDocument')}
+                </Button>
+              </span>
+            }
+          />
+          {docType !== DocumentNameType.ADDITIONAL_DETAILS && (
             <Divider sx={{ margin: '34px auto' }} />
           )}
         </Box>
       </div>
     )
+  }
+
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="small" />
   }
 
   return (
@@ -125,23 +251,80 @@ export default function ChangeDocuments() {
       <section>
         <div className="main-container">
           <div className="main-row">
+            <Dialog
+              open={uploadDocsOverlayOpen}
+              additionalModalRootStyles={{
+                width: '60%',
+              }}
+            >
+              <DialogHeader
+                title={t('content.changeDocuments.uploadNewDocument')}
+                intro={
+                  <Typography variant="body2">
+                    {t('content.changeDocuments.uploadNewDocumentDescription')}
+                  </Typography>
+                }
+                closeWithIcon={true}
+                onCloseWithIcon={() => {
+                  setUploadDocsOverlayOpen(false)
+                }}
+              />
+              <DialogContent
+                sx={{
+                  padding: '0px 120px 40px 120px',
+                }}
+              >
+                <Controller
+                  control={control}
+                  name={'uploadDocument'}
+                  render={({ field: { onChange: reactHookFormOnChange } }) => (
+                    <Dropzone
+                      onChange={(files) => {
+                        reactHookFormOnChange(files[0]?.name)
+                        trigger('uploadDocument')
+                        onFileUpload(files[0])
+                      }}
+                      acceptFormat={
+                        documentType === DocumentTypeId.APP_IMAGE
+                          ? {
+                              'image/png': [],
+                              'image/jpeg': [],
+                            }
+                          : { 'application/pdf': [] }
+                      }
+                      maxFileSize={819200}
+                      maxFilesToUpload={1}
+                      enableDeleteOverlay={false}
+                      DropArea={renderDropArea}
+                      errorText={t(
+                        'content.apprelease.appReleaseForm.fileSizeError'
+                      )}
+                    />
+                  )}
+                />
+              </DialogContent>
+            </Dialog>
             {data?.documents && (
               <>
                 {renderdocs(
                   DocumentNameType.APP_IMAGE,
-                  data.documents.APP_IMAGE
+                  data.documents.APP_IMAGE,
+                  DocumentTypeId.APP_IMAGE
                 )}
                 {renderdocs(
                   DocumentNameType.APP_TECHNICAL_INFORMATION,
-                  data.documents.APP_TECHNICAL_INFORMATION
+                  data.documents.APP_TECHNICAL_INFORMATION,
+                  DocumentTypeId.APP_TECHNICAL_INFORMATION
                 )}
                 {renderdocs(
                   DocumentNameType.APP_CONTRACT,
-                  data.documents.APP_CONTRACT
+                  data.documents.APP_CONTRACT,
+                  DocumentTypeId.APP_CONTRACT
                 )}
                 {renderdocs(
                   DocumentNameType.ADDITIONAL_DETAILS,
-                  data.documents.ADDITIONAL_DETAILS
+                  data.documents.ADDITIONAL_DETAILS,
+                  DocumentTypeId.ADDITIONAL_DETAILS
                 )}
               </>
             )}
@@ -154,7 +337,9 @@ export default function ChangeDocuments() {
             marginTop: '80px',
           }}
         />
-        <Box sx={{ position: 'relative', marginTop: '30px' }}>
+        <Box
+          sx={{ position: 'relative', marginTop: '30px', textAlign: 'center' }}
+        >
           <Button
             color="secondary"
             size="small"
@@ -162,39 +347,8 @@ export default function ChangeDocuments() {
               navigate('/appoverview')
             }}
           >
-            {t('global.actions.cancel')}
+            {t('global.actions.close')}
           </Button>
-          <Tooltips
-            tooltipPlacement="bottom-start"
-            tooltipText={
-              !imageChanged ? t('content.changeDocuments.saveTooltipMsg') : ''
-            }
-            children={
-              <span style={{ position: 'absolute', right: '10px' }}>
-                {isLoading ? (
-                  <LoadingButton
-                    size="small"
-                    loading={isLoading}
-                    variant="contained"
-                    onButtonClick={() => {
-                      // do nothing
-                    }}
-                    loadIndicator="Loading..."
-                    label={`${t('global.actions.confirm')}`}
-                  />
-                ) : (
-                  <Button
-                    size="small"
-                    variant="contained"
-                    disabled={!imageChanged}
-                    onClick={handleSaveClick}
-                  >
-                    {t('global.actions.save')}
-                  </Button>
-                )}
-              </span>
-            }
-          />
         </Box>
       </section>
     </main>

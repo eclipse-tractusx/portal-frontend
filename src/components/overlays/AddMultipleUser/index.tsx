@@ -169,7 +169,7 @@ export default function AddMultipleUser() {
     }
   }
 
-  const handleConfirm = async () => {
+  const handleConfirm = () => {
     if (isSuccess || isError) dispatch(closeOverlay())
     if (uploadedFile && !roles.length) setIsFileUploaded(true)
     else if (uploadedFile && roles.length) {
@@ -177,7 +177,7 @@ export default function AddMultipleUser() {
       uploadedFile &&
         Papa.parse(uploadedFile, {
           skipEmptyLines: true,
-          complete: async (results) => {
+          complete: (results) => {
             const csvData: Array<Array<string>> = results.data as Array<
               Array<string>
             >
@@ -192,7 +192,7 @@ export default function AddMultipleUser() {
     }
   }
 
-  const onChangeFile = async (selectedFile: File) => {
+  const onChangeFile = (selectedFile: File) => {
     setUploadedFile(undefined)
     Papa.parse(selectedFile, {
       skipEmptyLines: true,
