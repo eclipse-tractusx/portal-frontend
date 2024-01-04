@@ -27,6 +27,8 @@
 - Company Roles
   - Fix typo error to fix conformity body issue
 - Fixed error message display when data is available issue
+- Idp
+  - Added snackbar for idp error
 
 ## 1.7.0
 
