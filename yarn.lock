@@ -1193,10 +1193,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@catena-x/portal-shared-components@^2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.1.11.tgz#5582e3055d6633e96b3c2158a2e9a60ad980a011"
-  integrity sha512-puo5PSdp5ifWl3kYDB3IHHO8Ecj3yPz97nlkBrDwRl00a9KNGsIUoAdHV8O7/GA+8tpeNtN6v1rszXlSMU6u7Q==
+"@catena-x/portal-shared-components@^2.1.15":
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.1.15.tgz#69699ade58fe458a150a174aac5eab5bd8e66266"
+  integrity sha512-oAQBo+tOYG/0qhjjnma5FwjtMGFhT/E/j2csQctnhNi94PXDzhGoUOPRWwMRcSi7uIW1tDVdgl72OdPuET1I+g==
   dependencies:
     "@mui/base" "^5.0.0-beta.3"
     "@mui/system" "^5.13.2"
