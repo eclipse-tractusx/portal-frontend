@@ -36,7 +36,7 @@ import { RegistrationRequestsTableColumns } from '../../registrationTableColumns
 import type { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
-import Patterns, { isCompanyName } from 'types/Patterns'
+import { isCompanyName } from 'types/Patterns'
 
 interface FetchHookArgsType {
   statusFilter: string
