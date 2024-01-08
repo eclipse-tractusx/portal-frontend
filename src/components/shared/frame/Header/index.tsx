@@ -34,6 +34,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { Logo } from '../Logo'
 import MenuIcon from '@mui/icons-material/Menu'
+import { Box } from '@mui/material'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -102,7 +103,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           >
             <SearchIcon sx={{ color: '#0f71cb' }} />
           </div>
-          <div
+          <Box
             onClick={() => dispatch(setAppear({ MENU: !show }))}
             className="mobile-search-icon"
             onKeyDown={() => {
@@ -110,7 +111,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             }}
           >
             <MenuIcon sx={{ color: '#0f71cb' }} />
-          </div>
+          </Box>
         </div>
       </div>
     </>

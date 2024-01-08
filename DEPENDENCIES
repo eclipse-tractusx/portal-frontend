@@ -170,7 +170,7 @@ npm/npmjs/-/csso/4.2.0, MIT, approved, clearlydefined
 npm/npmjs/-/cssom/0.3.8, MIT, approved, clearlydefined
 npm/npmjs/-/cssom/0.4.4, MIT, approved, clearlydefined
 npm/npmjs/-/cssstyle/2.3.0, MIT, approved, clearlydefined
-npm/npmjs/-/csstype/3.1.2, MIT, approved, clearlydefined
+npm/npmjs/-/csstype/3.1.2, MIT, approved, #11847
 npm/npmjs/-/damerau-levenshtein/1.0.8, BSD-2-Clause, approved, clearlydefined
 npm/npmjs/-/data-urls/2.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/date-fns/2.30.0, MIT, approved, clearlydefined
@@ -1301,7 +1301,7 @@ npm/npmjs/@types/istanbul-lib-coverage/2.0.4, MIT, approved, clearlydefined
 npm/npmjs/@types/istanbul-lib-report/3.0.1, MIT, approved, clearlydefined
 npm/npmjs/@types/istanbul-reports/3.0.2, MIT, approved, clearlydefined
 npm/npmjs/@types/jest/27.5.2, MIT, approved, clearlydefined
-npm/npmjs/@types/jest/29.5.5, MIT, approved, clearlydefined
+npm/npmjs/@types/jest/29.5.5, MIT, approved, #11951
 npm/npmjs/@types/json-schema/7.0.13, MIT, approved, clearlydefined
 npm/npmjs/@types/json5/0.0.29, MIT, approved, clearlydefined
 npm/npmjs/@types/lodash.debounce/4.0.7, MIT, approved, clearlydefined

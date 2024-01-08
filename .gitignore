@@ -9,3 +9,10 @@ storybook
 *.tar.gz
 *.ignore
 .DS_Store
+
+# Add legal info files during build
+
+public/LICENSE
+public/DEPENDENCIES
+public/NOTICE.md
+public/SECURITY.md
