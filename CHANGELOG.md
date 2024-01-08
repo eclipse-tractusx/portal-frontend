@@ -3,6 +3,7 @@
 ## unreleased
 
 - Mobile version. Hamburger menu
+  - Show hamburger based on the browser resolution/width
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
 - Admin Credential
