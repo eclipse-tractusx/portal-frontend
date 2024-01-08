@@ -11,8 +11,10 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
-- version upgrade issues
+- Version upgrade issues
   - Fixed portal shared components version upgrade issues
+- Pattern
+  - Company name search pattern updated
 - User management
   - Updated app access management flow
 - Overlays
