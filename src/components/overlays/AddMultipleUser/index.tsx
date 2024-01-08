@@ -37,6 +37,7 @@ import {
   type TableType,
   StaticTable,
   CircleProgress,
+  PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -76,8 +77,12 @@ export default function AddMultipleUser() {
 
   const { data } = useFetchCoreoffersRolesQuery()
   const [addMutipleUsers] = useAddMutipleUsersMutation()
-  const { data: idpsData, isFetching } = useFetchIDPListQuery()
-
+  const {
+    data: idpsData,
+    isFetching,
+    isError: fetchError,
+    refetch,
+  } = useFetchIDPListQuery()
   const [loading, setLoading] = useState(false)
   const [allRoles, setAllRoles] = useState<AppRole[]>()
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -498,6 +503,22 @@ export default function AddMultipleUser() {
             ))}
         </DialogActions>
       </>
+    ) : fetchError ? (
+      <PageSnackbar
+        open={fetchError}
+        severity="error"
+        description={
+          <>
+            {t('content.usermanagement.addUsers.error')}
+            <Button sx={{ mt: 2 }} size="small" onClick={() => refetch()}>
+              {t('error.tryAgain')}
+            </Button>
+          </>
+        }
+        showIcon={true}
+        autoClose={false}
+        onCloseNotification={() => dispatch(closeOverlay())}
+      />
     ) : (
       <AddUserDeny idps={idps} />
     )

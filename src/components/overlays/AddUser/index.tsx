@@ -31,11 +31,14 @@ import { AddUserContent } from './AddUserContent'
 import { AddUserDeny } from './AddUserDeny'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { closeOverlay } from 'features/control/overlay'
+import { useDispatch } from 'react-redux'
 
 export const AddUser = () => {
   const { refetch, data, isFetching, isError } = useFetchIDPListQuery()
   const [idps, setIdps] = useState<IdentityProvider[]>([])
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : [])
@@ -43,45 +46,44 @@ export const AddUser = () => {
 
   return (
     <>
-      {isError && (
+      {isFetching ? (
+        <div
+          style={{
+            width: '100%',
+            height: '500px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircleProgress
+            colorVariant="primary"
+            size={80}
+            thickness={8}
+            variant="indeterminate"
+          />
+        </div>
+      ) : isError ? (
         <PageSnackbar
           open={isError}
           severity="error"
           description={
             <>
               {t('content.usermanagement.addUsers.error')}
-              <Button size="small" onClick={() => refetch()}>
+              <Button size="small" sx={{ mt: 2 }} onClick={() => refetch()}>
                 {t('error.tryAgain')}
               </Button>
             </>
           }
           showIcon={true}
           autoClose={false}
+          onCloseNotification={() => dispatch(closeOverlay())}
         />
+      ) : idps && idps.length === 1 ? (
+        <AddUserContent idp={idps[0]} />
+      ) : (
+        <AddUserDeny idps={idps} />
       )}
-      {!isError &&
-        (isFetching ? (
-          <div
-            style={{
-              width: '100%',
-              height: '500px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <CircleProgress
-              colorVariant="primary"
-              size={80}
-              thickness={8}
-              variant="indeterminate"
-            />
-          </div>
-        ) : idps.length === 1 ? (
-          <AddUserContent idp={idps[0]} />
-        ) : (
-          <AddUserDeny idps={idps} />
-        ))}
     </>
   )
 }
