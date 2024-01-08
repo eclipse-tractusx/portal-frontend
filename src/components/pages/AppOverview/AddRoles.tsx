@@ -179,7 +179,7 @@ export default function AddRoles() {
               rowsCount={2}
               hideFooter
               loading={false}
-              disableSelectionOnClick={true}
+              disableRowSelectionOnClick={true}
               disableColumnFilter={true}
               disableColumnMenu={true}
               disableColumnSelector={true}

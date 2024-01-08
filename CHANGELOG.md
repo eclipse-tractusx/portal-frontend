@@ -11,9 +11,10 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
-- ESLINT
-  - Enable no-inferrable-types rule
-  - Enable dot-notation rule
+- Version upgrade issues
+  - Fixed portal shared components version upgrade issues
+- Pattern
+  - Company name search pattern updated
 - User management
   - Updated app access management flow
 - Overlays
@@ -23,6 +24,8 @@
   - Enable return-await rule
   - Enable prefer-reduce-type-parameter rule
   - Enable prefer-readonly rule
+  - Enable no-inferrable-types rule
+  - Enable dot-notation rule
   - Enable triple-slash-reference rule
 - App overview
   - api failing component appears with "no data available" and with error bar
