@@ -11,6 +11,8 @@
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
+- Pattern
+  - Company name search pattern updated
 - ESLINT
   - Enable no-inferrable-types rule
   - Enable dot-notation rule
