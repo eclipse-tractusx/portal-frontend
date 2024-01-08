@@ -36,6 +36,7 @@ import { RegistrationRequestsTableColumns } from '../../registrationTableColumns
 import type { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
+import { isCompanyName } from 'types/Patterns'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -126,7 +127,7 @@ export const RequestList = ({
   }, [loaded])
 
   const onValidate = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
+    const validateExpr = isCompanyName(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }

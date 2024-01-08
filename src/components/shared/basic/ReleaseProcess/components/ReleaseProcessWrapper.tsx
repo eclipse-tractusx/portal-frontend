@@ -108,7 +108,7 @@ export default function ReleaseProcessWrapper({
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [skipTechnicalIntegrationStep])
+  }, [skipTechnicalIntegrationStep, serviceActiveStep, activeStep])
 
   return (
     <div className="app-release-process-form">
