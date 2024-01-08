@@ -32,8 +32,8 @@ export const StageSubNavigation = ({
 }: {
   linkArray: SubNavigationType[]
   fixHeader: boolean
-}): void => {
-  const isWeb = useMediaQuery('(min-width: 1400px)')
+}): JSX.Element => {
+  const isWeb = useMediaQuery('(min-width: 1600px)')
   const scrollToId = (id: string): void => {
     const element = document.getElementById(id)
     if (element !== null) {
@@ -64,7 +64,7 @@ export const StageSubNavigation = ({
       }}
     >
       <div className="subNavigationContainer">
-        {isWeb && linkArray.length <= 4 ? (
+        {isWeb ? (
           <ParentSubNavigation
             navigationArray={linkArray}
             onClick={(value: string) => {
