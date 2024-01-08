@@ -2,16 +2,20 @@
 
 ## unreleased
 
+- Search
+  - Find notifications related to search term
 - Mobile version. Hamburger menu
+  - Show hamburger based on the browser resolution/width
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
 - Admin Credential
   - Document Hover Effect
 - Tech User Details
   - Fix crash issue
-- ESLINT
-  - Enable no-inferrable-types rule
-  - Enable dot-notation rule
+- Version upgrade issues
+  - Fixed portal shared components version upgrade issues
+- Pattern
+  - Company name search pattern updated
 - User management
   - Updated app access management flow
 - Overlays
@@ -21,12 +25,18 @@
   - Enable return-await rule
   - Enable prefer-reduce-type-parameter rule
   - Enable prefer-readonly rule
+  - Enable no-inferrable-types rule
+  - Enable dot-notation rule
   - Enable triple-slash-reference rule
 - App overview
   - api failing component appears with "no data available" and with error bar
 - Company Roles
   - Fix typo error to fix conformity body issue
 - Fixed error message display when data is available issue
+- App Release Process
+  - fixed automatic upscrolling in form pages
+- Service Release Process
+  - fixed automatic upscrolling in form pages
 - Idp
   - Added snackbar for idp error
 

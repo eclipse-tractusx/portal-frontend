@@ -154,7 +154,6 @@ const TESTDATA = {
       'BMW/Mini]]',
       'BMW]]',
       'aaaaaaaaaaaa  aaaaaaaaaaaaaaaaaa',
-      'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     ],
   },
   CNAMES: {

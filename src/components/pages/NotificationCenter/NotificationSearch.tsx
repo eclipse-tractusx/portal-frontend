@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,27 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from '@catena-x/portal-shared-components'
+import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
+import { useDispatch } from 'react-redux'
+import { setSearch } from 'features/notification/slice'
 
-export interface StepType {
-  headline: string
-  step: number
-}
+export default function NotificationSearch() {
+  const dispatch = useDispatch()
 
-export default function ReleaseStepper({
-  activePage,
-  stepsList,
-  numberOfSteps,
-}: {
-  activePage: number
-  stepsList: StepType[]
-  numberOfSteps: number
-}) {
   return (
-    <Stepper
-      list={stepsList}
-      showSteps={numberOfSteps}
-      activeStep={activePage}
-    />
+    <div className="searchContainer">
+      <DebouncedSearchInput
+        debounceTime={500}
+        onSearch={(expr: string) => dispatch(setSearch(expr))}
+      />
+    </div>
   )
 }

@@ -109,7 +109,6 @@ npm/npmjs/-/cjs-module-lexer/1.2.3, MIT, approved, #9069
 npm/npmjs/-/classnames/2.3.2, MIT, approved, clearlydefined
 npm/npmjs/-/clean-css/5.3.2, MIT, approved, clearlydefined
 npm/npmjs/-/cliui/7.0.4, ISC AND Artistic-2.0, approved, #2724
-npm/npmjs/-/clsx/1.2.1, MIT, approved, clearlydefined
 npm/npmjs/-/clsx/2.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/co/4.6.0, MIT, approved, clearlydefined
 npm/npmjs/-/coa/2.0.2, MIT, approved, clearlydefined
@@ -751,6 +750,7 @@ npm/npmjs/-/react-error-overlay/6.0.11, MIT, approved, clearlydefined
 npm/npmjs/-/react-fast-compare/3.2.2, MIT, approved, clearlydefined
 npm/npmjs/-/react-hook-form/7.47.0, MIT, approved, #10982
 npm/npmjs/-/react-i18next/12.3.1, MIT, approved, clearlydefined
+npm/npmjs/-/react-i18next/13.5.0, MIT AND Apache-2.0, approved, #11697
 npm/npmjs/-/react-is/16.13.1, MIT, approved, clearlydefined
 npm/npmjs/-/react-is/17.0.2, MIT, approved, clearlydefined
 npm/npmjs/-/react-is/18.2.0, MIT, approved, clearlydefined
@@ -1150,12 +1150,13 @@ npm/npmjs/@babel/preset-react/7.22.15, MIT, approved, #8987
 npm/npmjs/@babel/preset-typescript/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10959
 npm/npmjs/@babel/regjsgen/0.8.0, MIT, approved, #7149
 npm/npmjs/@babel/runtime/7.23.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10718
+npm/npmjs/@babel/runtime/7.23.4, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10718
 npm/npmjs/@babel/template/7.22.15, MIT, approved, #9017
 npm/npmjs/@babel/traverse/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11520
 npm/npmjs/@babel/types/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11521
 npm/npmjs/@babel/types/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11521
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/2.1.3, Apache-2.0 AND CC-BY-4.0, approved, #10502
+npm/npmjs/@catena-x/portal-shared-components/2.1.15, Apache-2.0 AND CC-BY-4.0, approved, #10502
 npm/npmjs/@csstools/normalize.css/12.0.0, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-cascade-layers/1.1.1, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-color-function/1.1.1, CC0-1.0 AND (MIT AND W3C-20150513) AND W3C-20150513 AND MIT, approved, #3022
@@ -1234,7 +1235,8 @@ npm/npmjs/@mui/styled-engine/5.14.12, MIT, approved, #10971
 npm/npmjs/@mui/system/5.14.12, MIT AND CC-BY-3.0, approved, #9905
 npm/npmjs/@mui/types/7.2.5, MIT, approved, clearlydefined
 npm/npmjs/@mui/utils/5.14.12, MIT AND CC-BY-3.0, approved, #9891
-npm/npmjs/@mui/x-data-grid/5.17.26, MIT, approved, #3248
+npm/npmjs/@mui/utils/5.14.18, MIT AND CC-BY-3.0, approved, #9891
+npm/npmjs/@mui/x-data-grid/6.18.2, MIT AND ISC, approved, #11696
 npm/npmjs/@mui/x-date-pickers/6.16.1, MIT, approved, clearlydefined
 npm/npmjs/@nicolo-ribaudo/eslint-scope-5-internals/5.1.1-v1, MIT, approved, clearlydefined
 npm/npmjs/@nodelib/fs.scandir/2.1.5, MIT, approved, clearlydefined
@@ -1301,7 +1303,7 @@ npm/npmjs/@types/istanbul-lib-coverage/2.0.4, MIT, approved, clearlydefined
 npm/npmjs/@types/istanbul-lib-report/3.0.1, MIT, approved, clearlydefined
 npm/npmjs/@types/istanbul-reports/3.0.2, MIT, approved, clearlydefined
 npm/npmjs/@types/jest/27.5.2, MIT, approved, clearlydefined
-npm/npmjs/@types/jest/29.5.5, MIT, approved, clearlydefined
+npm/npmjs/@types/jest/29.5.5, MIT, approved, #11951
 npm/npmjs/@types/json-schema/7.0.13, MIT, approved, clearlydefined
 npm/npmjs/@types/json5/0.0.29, MIT, approved, clearlydefined
 npm/npmjs/@types/lodash.debounce/4.0.7, MIT, approved, clearlydefined
@@ -1314,6 +1316,7 @@ npm/npmjs/@types/node/20.8.3, MIT, approved, #10804
 npm/npmjs/@types/papaparse/5.3.9, MIT, approved, #10964
 npm/npmjs/@types/parse-json/4.0.0, MIT, approved, clearlydefined
 npm/npmjs/@types/prettier/2.7.3, MIT, approved, #9030
+npm/npmjs/@types/prop-types/15.7.11, MIT, approved, clearlydefined
 npm/npmjs/@types/prop-types/15.7.8, MIT, approved, clearlydefined
 npm/npmjs/@types/q/1.5.6, MIT, approved, clearlydefined
 npm/npmjs/@types/qs/6.9.8, MIT, approved, clearlydefined
