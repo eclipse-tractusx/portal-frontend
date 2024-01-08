@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- Search
+  - Find notifications related to search term
 - Mobile version. Hamburger menu
 - Invite Business Partner
   - Add the new invited company gets right away in to the table
@@ -28,6 +30,10 @@
   - Fix typo error to fix conformity body issue
 - Fixed error message display when data is available issue
 - Portal Login with unfinished registration
+- App Release Process
+  - fixed automatic upscrolling in form pages
+- Service Release Process
+  - fixed automatic upscrolling in form pages
 
 ## 1.7.0
 
