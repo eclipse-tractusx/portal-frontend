@@ -30,7 +30,6 @@ import {
   name,
 } from './types'
 import I18nService from 'services/I18nService'
-import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES } from 'react'
 
 export const slice = createSlice({
   name: `${name}/control`,

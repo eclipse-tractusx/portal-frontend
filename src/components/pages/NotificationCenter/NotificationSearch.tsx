@@ -23,7 +23,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   notificationFetchSelector,
   setOrder,
-  setPage,
   setSearch,
 } from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
