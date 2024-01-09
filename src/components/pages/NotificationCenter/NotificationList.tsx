@@ -73,7 +73,9 @@ export default function NotificationList() {
       {fetchArgs &&
         new Array(fetchArgs.page + 1)
           .fill(0)
-          .map((_, i) => <NotificationGroup fetchArgs={fetchArgs} key={i} page={i} />)}
+          .map((_, i) => (
+            <NotificationGroup fetchArgs={fetchArgs} key={i} page={i} />
+          ))}
       {fetchArgs && <NotificationPager />}
     </>
   )
