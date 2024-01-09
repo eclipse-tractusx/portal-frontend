@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type ProcessStep } from 'features/appSubscription/appSubscriptionApiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export interface SubscriptionRequestType {
@@ -26,6 +27,7 @@ export interface SubscriptionRequestType {
   statusId: string
   offerId?: string
   sortingType: string
+  companyName?: string
 }
 export interface SubscriptionResponseContentType {
   companyId: string
@@ -85,6 +87,7 @@ export type SubscriptionDetailResponse = {
   contact: string[]
   technicalUserData: TechnicalUserData[]
   tenantUrl?: string
+  processStepTypeId?: ProcessStep
 }
 
 export const apiSlice = createApi({
@@ -96,15 +99,17 @@ export const apiSlice = createApi({
       SubscriptionRequestType
     >({
       query: (body) => {
-        const statusId = `statusId=${body.statusId}`
-        const offerId = `offerId=${body.offerId}`
-        const sortingType = `sorting=${body.sortingType}`
+        const url = `/api/services/provided/subscription-status?size=15&page=${body.page}`
+        const statusId = body.statusId ? `&statusId=${body.statusId}` : ''
+        const offerId = body.offerId ? `&offerId=${body.offerId}` : ''
+        const sortingType = body.sortingType
+          ? `&sorting=${body.sortingType}`
+          : ''
+        const companyName = body.companyName
+          ? `&companyName=${body.companyName}`
+          : ''
         return {
-          url: `/api/services/provided/subscription-status?size=15&page=${
-            body.page
-          }&${body.statusId && statusId}&${body.offerId && offerId}&${
-            body.sortingType && sortingType
-          }`,
+          url: `${url}${statusId}${offerId}${sortingType}${companyName}`,
         }
       },
     }),
