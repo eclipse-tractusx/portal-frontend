@@ -31,6 +31,11 @@ export default function NotificationPager() {
   const ref = useRef<HTMLDivElement>(null)
   const isVisible = useOnScreen(ref)
 
+  const triggerLoad = () => {
+    setTimeout(() => dispatch(setPage(fetchArgs.page + 1)), 700)
+    return true
+  }
+
   return (
     <Box
       sx={{
@@ -53,9 +58,7 @@ export default function NotificationPager() {
         />
       )}
       <div style={{ marginTop: 200 }} ref={ref}>
-        {isVisible &&
-          setTimeout(() => dispatch(setPage(fetchArgs.page + 1)), 700) &&
-          ''}
+        {isVisible && triggerLoad()}
       </div>
     </Box>
   )
