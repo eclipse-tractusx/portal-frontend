@@ -33,6 +33,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { closeOverlay } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export const AddUser = () => {
   const { refetch, data, isFetching, isError } = useFetchIDPListQuery()
@@ -43,6 +44,41 @@ export const AddUser = () => {
   useEffect(() => {
     setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : [])
   }, [data])
+
+  const renderAddUserContent = () => {
+    return isError ? (
+      <PageSnackbar
+        open={isError}
+        severity="error"
+        description={
+          <>
+            {t('content.usermanagement.addUsers.error')}
+            <Button
+              size="small"
+              sx={{ mt: 2, mb: 1, float: 'right' }}
+              onClick={() => refetch()}
+              endIcon={<ArrowForwardIcon />}
+            >
+              {t('error.tryAgain')}
+            </Button>
+          </>
+        }
+        showIcon={true}
+        autoClose={false}
+        onCloseNotification={() => dispatch(closeOverlay())}
+      />
+    ) : (
+      renderAdduserMainContent()
+    )
+  }
+
+  const renderAdduserMainContent = () => {
+    return idps && idps.length === 1 ? (
+      <AddUserContent idp={idps[0]} />
+    ) : (
+      <AddUserDeny idps={idps} />
+    )
+  }
 
   return (
     <>
@@ -63,26 +99,8 @@ export const AddUser = () => {
             variant="indeterminate"
           />
         </div>
-      ) : isError ? (
-        <PageSnackbar
-          open={isError}
-          severity="error"
-          description={
-            <>
-              {t('content.usermanagement.addUsers.error')}
-              <Button size="small" sx={{ mt: 2 }} onClick={() => refetch()}>
-                {t('error.tryAgain')}
-              </Button>
-            </>
-          }
-          showIcon={true}
-          autoClose={false}
-          onCloseNotification={() => dispatch(closeOverlay())}
-        />
-      ) : idps && idps.length === 1 ? (
-        <AddUserContent idp={idps[0]} />
       ) : (
-        <AddUserDeny idps={idps} />
+        renderAddUserContent()
       )}
     </>
   )

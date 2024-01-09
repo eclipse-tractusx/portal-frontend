@@ -65,6 +65,7 @@ import './AddMultipleUser.scss'
 import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
 import { error } from 'services/NotifyService'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 const HelpPageURL =
   '/documentation/?path=docs%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
@@ -503,14 +504,25 @@ export default function AddMultipleUser() {
             ))}
         </DialogActions>
       </>
-    ) : fetchError ? (
+    ) : (
+      handleMultiuserError()
+    )
+  }
+
+  const handleMultiuserError = () => {
+    return fetchError ? (
       <PageSnackbar
         open={fetchError}
         severity="error"
         description={
           <>
             {t('content.usermanagement.addUsers.error')}
-            <Button sx={{ mt: 2 }} size="small" onClick={() => refetch()}>
+            <Button
+              sx={{ mt: 2, mb: 1, float: 'right' }}
+              size="small"
+              onClick={() => refetch()}
+              endIcon={<ArrowForwardIcon />}
+            >
               {t('error.tryAgain')}
             </Button>
           </>
