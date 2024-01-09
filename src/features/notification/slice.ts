@@ -30,6 +30,7 @@ import {
   name,
 } from './types'
 import I18nService from 'services/I18nService'
+import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES } from 'react'
 
 export const slice = createSlice({
   name: `${name}/control`,
@@ -47,10 +48,18 @@ export const slice = createSlice({
       ...state,
       fetch: payload.initialNotificationState,
     }),
+    setPage: (state, action: PayloadAction<number>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: action.payload,
+      },
+    }),
     setOrder: (state, action: PayloadAction<NotificationSortingType>) => ({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           sorting: action.payload,
@@ -61,6 +70,7 @@ export const slice = createSlice({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           searchTypeIds: I18nService.searchNotifications(action.payload),
@@ -71,6 +81,7 @@ export const slice = createSlice({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           notificationTopic: action.payload,
@@ -95,6 +106,7 @@ export const {
   setTopic,
   setSearch,
   setOrder,
+  setPage,
 } = slice.actions
 
 export default slice

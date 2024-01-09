@@ -19,11 +19,39 @@
  ********************************************************************************/
 
 import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
-import { useDispatch } from 'react-redux'
-import { setSearch } from 'features/notification/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  notificationFetchSelector,
+  setOrder,
+  setPage,
+  setSearch,
+} from 'features/notification/slice'
+import { useTranslation } from 'react-i18next'
+import { SortOption } from '@catena-x/portal-shared-components'
+import SortImage from 'components/shared/frame/SortImage'
+import { NotificationSortingType } from 'features/notification/types'
+import { useState } from 'react'
 
 export default function NotificationSearch() {
+  const [showOrder, setShowOrder] = useState<boolean>(false)
+  const order = useSelector(notificationFetchSelector).args.sorting
   const dispatch = useDispatch()
+  const { t } = useTranslation('notification')
+
+  const sortOptions = [
+    {
+      label: t('sortOptions.new'),
+      value: NotificationSortingType.DateDesc,
+    },
+    {
+      label: t('sortOptions.oldest'),
+      value: NotificationSortingType.DateAsc,
+    },
+    {
+      label: t('sortOptions.unread'),
+      value: NotificationSortingType.ReadStatusAsc,
+    },
+  ]
 
   return (
     <div className="searchContainer">
@@ -31,6 +59,25 @@ export default function NotificationSearch() {
         debounceTime={500}
         onSearch={(expr: string) => dispatch(setSearch(expr))}
       />
+      <div>
+        <SortImage
+          onClick={() => {
+            setShowOrder(true)
+          }}
+          selected={showOrder}
+        />
+        <div className="sortSection">
+          <SortOption
+            show={showOrder}
+            selectedOption={order}
+            setSortOption={(value: string) => {
+              dispatch(setOrder(value as NotificationSortingType))
+              setShowOrder(false)
+            }}
+            sortOptions={sortOptions}
+          />
+        </div>
+      </div>
     </div>
   )
 }
