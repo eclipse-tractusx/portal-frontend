@@ -44,9 +44,11 @@ export default function OfferValidateAndPublish({
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId, {
     refetchOnMountOrArgChange: true,
   }).data
+
   const defaultValues = useMemo(() => {
     return {
       images: [LogoGrayData, LogoGrayData, LogoGrayData],
+      conformityDocumentsDescription: t('step4.conformityDocumentsDescription'),
       documentsDescription: t('defaultValues.documentsDescription'),
       providerTableData: {
         head: ['Homepage', 'E-Mail'],
@@ -98,6 +100,7 @@ export default function OfferValidateAndPublish({
           helpUrl={
             '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
           }
+          conformityDocument={t('step4.conformityDocument')}
         />
       )}
     </div>

@@ -298,7 +298,9 @@ export default function CommonContractAndConsent({
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
       uploadDocumentApi(
-        DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS,
+        type === ReleaseProcessTypes.APP_RELEASE
+          ? DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS
+          : DocumentTypeId.CONFORMITY_APPROVAL_SERVICES,
         uploadImageConformityValue
       )
         .then(() => {

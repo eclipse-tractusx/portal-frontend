@@ -55,7 +55,9 @@
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu."
+    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
+    "uploadImageConformity": "Conformity Service Certificate",
+    "documentDeleteSuccess": "Document deleted successfully"
   },
   "technicalIntegration": {
     "headerTitle": "Technical Integration",
@@ -71,7 +73,9 @@
     "providerInformation": "Provider Information",
     "consent": "Consent",
     "longDescriptionTitleEN": "[Long Description - EN] ",
-    "longDescriptionTitleDE": "[Long Description - DE] "
+    "longDescriptionTitleDE": "[Long Description - DE] ",
+    "conformityDocument": "Conformity Document",
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceReleaseForm": {
     "headerTitle": "Create Service",

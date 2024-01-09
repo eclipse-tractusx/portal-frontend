@@ -456,9 +456,9 @@ export default function CommonValidateAndPublish({
               </Typography>
             )}
             {statusData?.documents &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ] &&
+            statusData.documents[
+              DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+            ] ? (
               statusData.documents[
                 DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
               ].map((item: DocumentData) => (
@@ -473,7 +473,12 @@ export default function CommonValidateAndPublish({
                     {item.documentName}
                   </button>
                 </li>
-              ))}
+              ))
+            ) : (
+              <Typography variant="caption2" className="not-available">
+                {t('global.errors.noDocumentsAvailable')}
+              </Typography>
+            )}
             <Divider className="verify-validate-form-divider" />
           </>
         )}
