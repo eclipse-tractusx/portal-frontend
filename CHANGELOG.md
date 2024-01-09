@@ -39,6 +39,8 @@
   - fixed automatic upscrolling in form pages
 - Service Release Process
   - fixed automatic upscrolling in form pages
+- Idp
+  - Added snackbar for idp error
 
 ## 1.7.0
 

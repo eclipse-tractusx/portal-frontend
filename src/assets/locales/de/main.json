@@ -689,6 +689,9 @@
           "subtitle": "The user cannot enter his account until he has set a new password."
         }
       },
+      "addUsers": {
+        "error": "Es tut uns leid, es scheint ein Problem mit dem Identitätsaufruf zu geben, das jede weitere Aktion für diese Funktion blockiert. Bitte versuchen Sie es später noch einmal. Wenn das Problem weiterhin besteht, wenden Sie sich an den Plattformadministrator."
+      },
       "addMultipleUsers": {
         "heading": "Add user account by bulk upload",
         "intro": "Bulk upload process",
