@@ -24,9 +24,7 @@ import { useTranslation } from 'react-i18next'
 
 interface ComponentProps {
   title: string
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  params?: any
+  params?: Record<string, string>
 }
 
 export default function SubHeaderTitle({
@@ -42,8 +40,7 @@ export default function SubHeaderTitle({
       variant={variant}
       className="section-title"
     >
-      {/* eslint-disable-next-line */}
-      {`${t(title, params)}`}
+      {`${t(title, params ?? {})}`}
     </Typography>
   )
 }
