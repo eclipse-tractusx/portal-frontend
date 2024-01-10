@@ -34,10 +34,14 @@
   - Fix typo error to fix conformity body issue
 - Fixed error message display when data is available issue
 - Portal Login with unfinished registration
+- Static Page - Company Roles, Use Case, Data Space
+  - Use New Sub Navigation Menu component based on browser width to support multi device implementations
 - App Release Process
   - fixed automatic upscrolling in form pages
 - Service Release Process
   - fixed automatic upscrolling in form pages
+- Idp
+  - Added snackbar for idp error
 
 ## 1.7.0
 
