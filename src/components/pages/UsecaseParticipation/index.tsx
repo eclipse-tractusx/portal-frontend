@@ -191,9 +191,7 @@ export default function UsecaseParticipation() {
                                 }
                                 children={
                                   <Link
-                                    to={
-                                      credential.externalDetailData.template
-                                    }
+                                    to={credential.externalDetailData.template}
                                     target={
                                       credential.externalDetailData.template &&
                                       '_blank'
