@@ -163,18 +163,27 @@ const NotificationContent = ({
 const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
-      return <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />
+      )
     case NotificationType.WELCOME:
       return <NotificationContent item={item} navlinks={[PAGES.HOME]} />
     case NotificationType.WELCOME_APP_MARKETPLACE:
-      return <NotificationContent item={item} navlinks={[PAGES.APP_MARKETPLACE]} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.APP_MARKETPLACE]} />
+      )
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
-      return <NotificationContent item={item} navlinks={[PAGES.TECHNICAL_SETUP]} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.TECHNICAL_SETUP]} />
+      )
     case NotificationType.WELCOME_USE_CASES:
       return <NotificationContent item={item} navlinks={[PAGES.USE_CASE]} />
     case NotificationType.WELCOME_SERVICE_PROVIDER:
       return (
-        <NotificationContent item={item} navlinks={[PAGES.SERVICE_MARKETPLACE]} />
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.SERVICE_MARKETPLACE]}
+        />
       )
     case NotificationType.APP_SUBSCRIPTION_REQUEST:
       return (
@@ -239,7 +248,7 @@ export default function NotificationItem({
 
   item = {
     ...item,
-    contentParsed: JSON.parse(item.content ?? '{}')
+    contentParsed: JSON.parse(item.content ?? '{}'),
   }
 
   const setRead = async (id: string, flag: boolean) => {
