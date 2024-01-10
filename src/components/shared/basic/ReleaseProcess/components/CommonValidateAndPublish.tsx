@@ -457,10 +457,14 @@ export default function CommonValidateAndPublish({
             )}
             {statusData?.documents &&
             statusData.documents[
-              DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+              type === ReleaseProcessTypes.APP_RELEASE
+                ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
             ] ? (
               statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                type === ReleaseProcessTypes.APP_RELEASE
+                  ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+                  : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
               ].map((item: DocumentData) => (
                 <li key={item.documentId} className="document-list doc-list">
                   <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
