@@ -192,7 +192,6 @@ export default function UsecaseParticipation() {
                                 children={
                                   <Link
                                     to={
-                                      credential.externalDetailData.template &&
                                       credential.externalDetailData.template
                                     }
                                     target={
