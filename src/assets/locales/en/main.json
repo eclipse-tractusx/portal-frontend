@@ -706,6 +706,9 @@
           "subtitle": "The user cannot enter his account until he has set a new password."
         }
       },
+      "addUsers": {
+        "error": "We are sorry, it seems there's an issue with the identity call which blocks any further action on this function. Please try it later again. If the problem persist, consider to reach out to the platform administrator."
+      },
       "addMultipleUsers": {
         "heading": "Add user account by bulk upload",
         "intro": "Bulk upload process",

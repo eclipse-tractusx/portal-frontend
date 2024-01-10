@@ -1150,7 +1150,7 @@ npm/npmjs/@babel/preset-react/7.22.15, MIT, approved, #8987
 npm/npmjs/@babel/preset-typescript/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10959
 npm/npmjs/@babel/regjsgen/0.8.0, MIT, approved, #7149
 npm/npmjs/@babel/runtime/7.23.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10718
-npm/npmjs/@babel/runtime/7.23.4, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10718
+npm/npmjs/@babel/runtime/7.23.6, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #10718
 npm/npmjs/@babel/template/7.22.15, MIT, approved, #9017
 npm/npmjs/@babel/traverse/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11520
 npm/npmjs/@babel/types/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11521
@@ -1235,8 +1235,8 @@ npm/npmjs/@mui/styled-engine/5.14.12, MIT, approved, #10971
 npm/npmjs/@mui/system/5.14.12, MIT AND CC-BY-3.0, approved, #9905
 npm/npmjs/@mui/types/7.2.5, MIT, approved, clearlydefined
 npm/npmjs/@mui/utils/5.14.12, MIT AND CC-BY-3.0, approved, #9891
-npm/npmjs/@mui/utils/5.14.18, MIT AND CC-BY-3.0, approved, #9891
-npm/npmjs/@mui/x-data-grid/6.18.2, MIT AND ISC, approved, #11696
+npm/npmjs/@mui/utils/5.14.20, MIT AND CC-BY-3.0, approved, #9891
+npm/npmjs/@mui/x-data-grid/6.18.4, MIT AND ISC, approved, #11696
 npm/npmjs/@mui/x-date-pickers/6.16.1, MIT, approved, clearlydefined
 npm/npmjs/@nicolo-ribaudo/eslint-scope-5-internals/5.1.1-v1, MIT, approved, clearlydefined
 npm/npmjs/@nodelib/fs.scandir/2.1.5, MIT, approved, clearlydefined
