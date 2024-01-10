@@ -18,4 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import 'react-scripts'
+import debounce from 'lodash.debounce'
+import { useCallback, useMemo, useState } from 'react'
+import { SearchInput } from '@catena-x/portal-shared-components'
+
+const DebouncedSearchInput = ({
+  onSearch,
+  debounceTime = 300,
+}: {
+  onSearch: (expr: string) => void
+  debounceTime?: number
+}) => {
+  const [searchExpr, setSearchExpr] = useState<string>('')
+
+  const debouncedSearch = useMemo(() => debounce(onSearch, debounceTime), [])
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
+
+  return (
+    <SearchInput
+      value={searchExpr}
+      onChange={(e) => {
+        doSearch(e.target.value)
+      }}
+    />
+  )
+}
+
+export default DebouncedSearchInput

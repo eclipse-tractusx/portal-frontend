@@ -104,7 +104,7 @@ const NotificationContent = ({
       <div>
         <Trans
           ns="notification"
-          i18nKey={`${item.typeId}.content`}
+          i18nKey={`item.${item.typeId}.content`}
           values={{
             you,
             app: appName,
@@ -249,7 +249,7 @@ export default function NotificationItem({
     setUserRead(item.userRead)
   }, [item.userRead])
 
-  const toggle = async () => {
+  const toggle = () => {
     const nextState = !open
     if (nextState && !userRead) {
       setUserRead(true)
@@ -266,6 +266,8 @@ export default function NotificationItem({
         page: PAGE,
         size: PAGE_SIZE,
         args: {
+          searchQuery: '',
+          searchTypeIds: [],
           notificationTopic: NOTIFICATION_TOPIC.ALL,
           sorting: SORT_OPTION,
         },
@@ -338,7 +340,7 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`${item.typeId}.title`, {
+              {t(`item.${item.typeId}.title`, {
                 app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
                 offer: item.contentParsed?.OfferName,
                 credentialType: item.contentParsed?.type,

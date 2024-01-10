@@ -106,7 +106,7 @@ export default function ChangeImage() {
   const uploadImageValue = getValues()
     .uploadLeadImage as unknown as DropzoneFile
 
-  const handleSaveClick = async () => {
+  const handleSaveClick = () => {
     setIsLoading(true)
     if (appId && uploadImageValue) {
       const setFileStatus = (status: UploadFileStatus) => {

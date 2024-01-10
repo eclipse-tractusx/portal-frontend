@@ -38,6 +38,7 @@ import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
 import { useDispatch } from 'react-redux'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import { Box } from '@mui/material'
 
 export const UserInfo = ({
   pages,
@@ -91,7 +92,7 @@ export const UserInfo = ({
   return (
     <div className="UserInfo">
       {isMobile ? (
-        <div
+        <Box
           ref={avatar}
           onClick={openCloseMenu}
           onKeyDown={() => {
@@ -127,7 +128,7 @@ export const UserInfo = ({
               </Typography>
             </div>
           </div>
-        </div>
+        </Box>
       ) : (
         <div ref={avatar}>
           <UserAvatar

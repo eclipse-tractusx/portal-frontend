@@ -79,7 +79,7 @@ export default function AddRoles() {
     refetch()
   }, [state])
 
-  const handleSaveClick = async () => {
+  const handleSaveClick = () => {
     setIsLoading(true)
   }
 
@@ -181,7 +181,7 @@ export default function AddRoles() {
               rowsCount={2}
               hideFooter
               loading={false}
-              disableSelectionOnClick={true}
+              disableRowSelectionOnClick={true}
               disableColumnFilter={true}
               disableColumnMenu={true}
               disableColumnSelector={true}

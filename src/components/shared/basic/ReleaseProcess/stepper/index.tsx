@@ -21,8 +21,8 @@
 import { Stepper } from '@catena-x/portal-shared-components'
 
 export interface StepType {
-  headline?: string
-  step?: number
+  headline: string
+  step: number
 }
 
 export default function ReleaseStepper({

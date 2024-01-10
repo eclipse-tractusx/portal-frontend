@@ -18,4 +18,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import 'react-scripts'
+import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
+import { useDispatch } from 'react-redux'
+import { setSearch } from 'features/notification/slice'
+
+export default function NotificationSearch() {
+  const dispatch = useDispatch()
+
+  return (
+    <div className="searchContainer">
+      <DebouncedSearchInput
+        debounceTime={500}
+        onSearch={(expr: string) => dispatch(setSearch(expr))}
+      />
+    </div>
+  )
+}
