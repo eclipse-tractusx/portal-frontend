@@ -17,30 +17,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.registration-review{
-    text-align: center;
-    .description{
-        border-bottom: 1px dashed #DCDCDC;
-        padding-bottom: 35px;
+.registration-review {
+  text-align: center;
+  .description {
+    border-bottom: 1px dashed #dcdcdc;
+    padding-bottom: 35px;
+  }
+  .stepTitle {
+    margin-top: 30px;
+  }
+  .statusList {
+    list-style: none;
+    margin-top: 30px;
+    li {
+      display: flex;
+      margin: 15px 0;
+      padding: 10px;
+      align-items: center;
+      .icon {
+        display: flex;
+      }
+      .statusLabel {
+        margin-left: 10px;
+        margin-right: auto;
+      }
     }
-    .stepTitle{
-        margin-top: 30px;
-    }
-    .statusList{
-        list-style: none;
-        margin-top: 30px;
-        li{
-            display: flex;
-            margin: 15px 0;
-            padding: 10px;
-            align-items: center;
-            .icon{
-                display: flex;
-            }
-            .statusLabel{
-                margin-left: 10px;
-                margin-right: auto;
-            }
-        }
-    }
+  }
 }

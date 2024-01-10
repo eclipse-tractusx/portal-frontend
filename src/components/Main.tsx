@@ -54,7 +54,8 @@ export default function Main() {
 
   if (
     companyData &&
-    companyData.applicationStatus !== ApplicationStatus.SUBMITTED && Object.values(ApplicationStatus).includes(companyData.applicationStatus) &&
+    companyData.applicationStatus !== ApplicationStatus.SUBMITTED &&
+    Object.values(ApplicationStatus).includes(companyData.applicationStatus) &&
     window.location.pathname !== '/logout'
   ) {
     return (

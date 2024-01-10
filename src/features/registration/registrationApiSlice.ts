@@ -28,7 +28,7 @@ export enum ApplicationStatus {
   SELECT_COMPANY_ROLE = 'SELECT_COMPANY_ROLE',
   UPLOAD_DOCUMENTS = 'UPLOAD_DOCUMENTS',
   VERIFY = 'VERIFY',
-  SUBMITTED = 'SUBMITTED'
+  SUBMITTED = 'SUBMITTED',
 }
 
 export type ApplicationChecklist = {

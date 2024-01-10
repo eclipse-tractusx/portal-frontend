@@ -25,10 +25,18 @@ import { useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { Button, CustomAccordion, MainNavigation, Typography } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  CustomAccordion,
+  MainNavigation,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import { getAssetBase } from 'services/EnvironmentService'
-import { ApplicationStatus, useFetchApplicationsQuery } from 'features/registration/registrationApiSlice'
+import {
+  ApplicationStatus,
+  useFetchApplicationsQuery,
+} from 'features/registration/registrationApiSlice'
 import {
   appearSearchSelector,
   setAppear,
@@ -48,7 +56,11 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
 
-  const [overlayOpen, setOverlayOpen] = useState(companyData?.applicationStatus === ApplicationStatus.SUBMITTED ? true : false)
+  const [overlayOpen, setOverlayOpen] = useState(
+    companyData?.applicationStatus === ApplicationStatus.SUBMITTED
+      ? true
+      : false
+  )
   const [headerNote, setHeaderNote] = useState(false)
 
   const addTitle = (items: Tree[] | undefined) =>
@@ -97,22 +109,28 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <UserInfo pages={user} />
           </div>
         </MainNavigation>
-        {headerNote &&
+        {headerNote && (
           <div>
             <CustomAccordion
               items={[
                 {
                   children: <Typography>Content of the first item</Typography>,
                   expanded: false,
-                  icon: <div>< SearchIcon />NOTE:</div>,
+                  icon: (
+                    <div>
+                      <SearchIcon />
+                      NOTE:
+                    </div>
+                  ),
                   id: 'panel-1',
                   //onChange: function noRefCheck() { },
-                  title: 'Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk: help@catena-x.com'
-                }
+                  title:
+                    'Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk: help@catena-x.com',
+                },
               ]}
             />
           </div>
-        }
+        )}
       </header>
       <div className="mobileNav">
         <div className="mobileHeader">
