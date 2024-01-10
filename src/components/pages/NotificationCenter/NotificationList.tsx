@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { type CXNotificationContent } from 'features/notification/types'
+import {
+  type NotificationFetchType,
+  type CXNotificationContent,
+} from 'features/notification/types'
 import NotificationItem from './NotificationItem'
 import dayjs from 'dayjs'
 import isToday from 'dayjs/plugin/isToday'
@@ -28,29 +31,52 @@ import { useGetNotificationsQuery } from 'features/notification/apiSlice'
 import './Notifications.scss'
 import { useSelector } from 'react-redux'
 import { notificationFetchSelector } from 'features/notification/slice'
-import NoItems from '../NoItems'
+import NotificationPager from './NotificationPager'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
 
-const NotificationGroup = ({ items }: { items: CXNotificationContent[] }) => {
+const NotificationItems = ({ items }: { items: CXNotificationContent[] }) => {
   return (
     <ul className="group">
-      {items.length > 0 ? (
-        items.map((item: CXNotificationContent) => (
-          <NotificationItem key={item.id} item={item} />
-        ))
-      ) : (
-        <NoItems />
-      )}
+      {items.map((item: CXNotificationContent) => (
+        <NotificationItem key={item.id} item={item} />
+      ))}
+    </ul>
+  )
+}
+
+const NotificationGroup = ({
+  fetchArgs,
+  page,
+}: {
+  fetchArgs: NotificationFetchType
+  page: number
+}) => {
+  const { data } = useGetNotificationsQuery({
+    ...fetchArgs,
+    page,
+  })
+  return (
+    <ul className="group">
+      <NotificationItems items={data?.content ?? []} />
     </ul>
   )
 }
 
 export default function NotificationList() {
   const fetchArgs = useSelector(notificationFetchSelector)
-  const { data } = useGetNotificationsQuery(fetchArgs)
 
-  return <NotificationGroup items={data?.content ?? []} />
+  return (
+    <>
+      {fetchArgs &&
+        new Array(fetchArgs.page + 1)
+          .fill(0)
+          .map((_, i) => (
+            <NotificationGroup fetchArgs={fetchArgs} key={i} page={i} />
+          ))}
+      {fetchArgs && <NotificationPager />}
+    </>
+  )
 }
