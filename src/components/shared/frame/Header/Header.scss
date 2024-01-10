@@ -29,7 +29,7 @@ header {
     align-items: center;
   }
 }
-@media (min-width: 481px) {
+@media (min-width: 1499px) {
   .mobileHeader,
   .mobileNav {
     display: none;
@@ -46,7 +46,7 @@ header {
 }
 
 //mobile layout
-@media (max-width: 480px) {
+@media (max-width: 1499px) {
   header {
     display: none;
   }
