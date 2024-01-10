@@ -18,29 +18,38 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { UserInfo } from '../UserInfo'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Button, MainNavigation } from '@catena-x/portal-shared-components'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import type { MenuItem, Tree } from 'types/MainTypes'
-import './Header.scss'
+import MenuIcon from '@mui/icons-material/Menu'
+import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import { Button, CustomAccordion, MainNavigation, Typography } from '@catena-x/portal-shared-components'
+import type { MenuItem, Tree } from 'types/MainTypes'
 import { getAssetBase } from 'services/EnvironmentService'
+import { ApplicationStatus, useFetchApplicationsQuery } from 'features/registration/registrationApiSlice'
 import {
   appearSearchSelector,
   setAppear,
   appearMenuSelector,
 } from 'features/control/appear'
-import { useSelector, useDispatch } from 'react-redux'
+import { UserInfo } from '../UserInfo'
 import { Logo } from '../Logo'
-import MenuIcon from '@mui/icons-material/Menu'
-import { Box } from '@mui/material'
+import RegistrationReviewOverlay from './RegistrationReviewOverlay'
+import './Header.scss'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
-  const visible = useSelector(appearSearchSelector)
-  const show = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
+  const visible = useSelector(appearSearchSelector)
+  const appearShow = useSelector(appearMenuSelector)
+
+  const { data } = useFetchApplicationsQuery()
+  const companyData = data?.[0]
+
+  const [overlayOpen, setOverlayOpen] = useState(companyData?.applicationStatus === ApplicationStatus.SUBMITTED ? true : false)
+  const [headerNote, setHeaderNote] = useState(false)
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -88,6 +97,22 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <UserInfo pages={user} />
           </div>
         </MainNavigation>
+        {headerNote &&
+          <div>
+            <CustomAccordion
+              items={[
+                {
+                  children: <Typography>Content of the first item</Typography>,
+                  expanded: false,
+                  icon: <div>< SearchIcon />NOTE:</div>,
+                  id: 'panel-1',
+                  //onChange: function noRefCheck() { },
+                  title: 'Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk: help@catena-x.com'
+                }
+              ]}
+            />
+          </div>
+        }
       </header>
       <div className="mobileNav">
         <div className="mobileHeader">
@@ -104,7 +129,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <SearchIcon sx={{ color: '#0f71cb' }} />
           </div>
           <Box
-            onClick={() => dispatch(setAppear({ MENU: !show }))}
+            onClick={() => dispatch(setAppear({ MENU: !appearShow }))}
             className="mobile-search-icon"
             onKeyDown={() => {
               // do nothing
@@ -114,6 +139,13 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           </Box>
         </div>
       </div>
+      <RegistrationReviewOverlay
+        openDialog={overlayOpen}
+        handleOverlayClose={() => {
+          setOverlayOpen(false)
+          setHeaderNote(true)
+        }}
+      />
     </>
   )
 }

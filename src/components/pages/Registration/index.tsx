@@ -120,8 +120,8 @@ export default function Registration() {
           list={NewAddStepList}
           showSteps={5}
           activeStep={activeStep}
-          tooltipText={t('content.registration.steps.tooltipText')}
-          tooltipLink="/registration/form"
+          //tooltipText={t('content.registration.steps.tooltipText')}
+          //tooltipLink="/registration/form"
         />
         <div className="helpTextReg">
           <Typography variant="body3">
