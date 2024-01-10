@@ -105,19 +105,19 @@
   },
   "content": {
     "registration": {
-      "title": "Welcome to Catena-X",
-      "mainDescription": "Thank you for registering with us. You have started your registration process but a few things are still missing.",
-      "completeBtn": "Complete your registration",
-      "description": "At the current state of the registration you cannot access the portal. After completing all phases of the registration you will get limited access to the portal while your registration is being reviewed.",
+      "title": "Willkommen bei Catena-X",
+      "mainDescription": "Vielen Dank, dass Sie sich bei uns registriert haben. Sie haben Ihren Registrierungsprozess gestartet, aber es fehlen noch ein paar Dinge.",
+      "completeBtn": "Vervollständige deine Registrierung",
+      "description": "Zum aktuellen Stand der Registrierung können Sie nicht auf das Portal zugreifen. Nach Abschluss aller Phasen der Registrierung erhalten Sie eingeschränkten Zugriff auf das Portal, während Ihre Registrierung überprüft wird.",
       "steps": {
         "step1": "Verify your company data",
         "step2": "Responsibilities & admin account",
         "step3": "Role of your company",
         "step4": "Upload IDs and certificates",
         "step5": "Verify your entries",
-        "tooltipText": "Continue where you left"
+        "tooltipText": "Fahren Sie dort fort, wo Sie aufgehört haben"
       },
-      "helpText": "If you have any questions regarding your registration please contact our Helpdesk:",
+      "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:",
       "email": "help@catena-x.com"
     },
     "admin": {

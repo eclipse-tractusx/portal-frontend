@@ -36,25 +36,22 @@ export default function Registration() {
   const companyData = data?.[0]
 
   useEffect(() => {
-    if (
-      companyData?.applicationStatus === ApplicationStatus.CREATED ||
-      companyData?.applicationStatus === ApplicationStatus.ADD_COMPANY_DATA
-    ) {
-      setActiveStep(1)
-    } else if (
-      companyData?.applicationStatus === ApplicationStatus.INVITE_USER
-    ) {
-      setActiveStep(2)
-    } else if (
-      companyData?.applicationStatus === ApplicationStatus.SELECT_COMPANY_ROLE
-    ) {
-      setActiveStep(3)
-    } else if (
-      companyData?.applicationStatus === ApplicationStatus.UPLOAD_DOCUMENTS
-    ) {
-      setActiveStep(4)
-    } else if (companyData?.applicationStatus === ApplicationStatus.VERIFY) {
-      setActiveStep(5)
+    switch (companyData?.applicationStatus) {
+      case ApplicationStatus.CREATED:
+      case ApplicationStatus.ADD_COMPANY_DATA:
+        setActiveStep(1)
+        return
+      case ApplicationStatus.INVITE_USER:
+        setActiveStep(2)
+        return
+      case ApplicationStatus.SELECT_COMPANY_ROLE:
+        setActiveStep(3)
+        return
+      case ApplicationStatus.UPLOAD_DOCUMENTS:
+        setActiveStep(4)
+        return
+      case ApplicationStatus.VERIFY:
+        setActiveStep(5)
     }
   }, [companyData])
 
