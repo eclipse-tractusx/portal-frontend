@@ -186,7 +186,7 @@
     "activation": {
       "title": "Service Subscription Activated",
       "subtitle": "for ",
-      "successDescription": "The service is now activated and is now located in your active contract management",
+      "successDescription": "The service is now activated and technical user was successfully created. <br />Please find the necessary user details below.",
       "successDescriptionWithTechUser": "The service is now activated and technical user was successfully created.<br /> Please find the necessary user details below.",
       "tableheader": "Technical User Details:",
       "userId": "Client ID Tech User:",
