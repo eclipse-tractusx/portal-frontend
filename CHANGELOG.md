@@ -39,6 +39,7 @@
   - fixed automatic upscrolling in form pages
 - Service Release Process
   - fixed automatic upscrolling in form pages
+- Service Management
   - Added conformity document UI and functionality
 - Idp
   - Added snackbar for idp error
