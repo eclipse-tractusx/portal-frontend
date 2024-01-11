@@ -104,6 +104,22 @@
     "errorBar": "Something went wrong. Try again"
   },
   "content": {
+    "registration": {
+      "title": "Willkommen bei Catena-X",
+      "mainDescription": "Vielen Dank, dass Sie sich bei uns registriert haben. Sie haben Ihren Registrierungsprozess gestartet, aber es fehlen noch ein paar Dinge.",
+      "completeBtn": "Vervollständige deine Registrierung",
+      "description": "Zum aktuellen Stand der Registrierung können Sie nicht auf das Portal zugreifen. Nach Abschluss aller Phasen der Registrierung erhalten Sie eingeschränkten Zugriff auf das Portal, während Ihre Registrierung überprüft wird.",
+      "steps": {
+        "step1": "Verify your company data",
+        "step2": "Responsibilities & admin account",
+        "step3": "Role of your company",
+        "step4": "Upload IDs and certificates",
+        "step5": "Verify your entries",
+        "tooltipText": "Fahren Sie dort fort, wo Sie aufgehört haben"
+      },
+      "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:",
+      "email": "help@catena-x.com"
+    },
     "admin": {
       "registration-requests": {
         "columns": {
