@@ -35,7 +35,9 @@ export enum UPDATES {
   INVITE_LIST = 'INVITE_LIST',
 }
 
-const initialState: IHashMap<number> = {}
+export type UpdatesState = IHashMap<number>
+
+const initialState: UpdatesState = {}
 Object.keys(UPDATES).forEach((key) => (initialState[key] = 0))
 
 export const slice = createSlice({

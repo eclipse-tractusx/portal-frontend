@@ -20,9 +20,9 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-import admin from './admin'
+import admin, { type AdminState } from './admin'
 import apps from './apps'
-import control from './control'
+import control, { type ControlState } from './control'
 import info from './info'
 import userSliceDep from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
@@ -36,7 +36,9 @@ import serviceProviderSlice from './serviceProvider/slice'
 import appSubscriptionSlice from './appSubscription/slice'
 import adminBoardSlice from './adminBoard/slice'
 import modelsSlice from './semanticModels/slice'
-import updateCompanyRoleSlice from './companyRoles/slice'
+import updateCompanyRoleSlice, {
+  type UpdateCompanyRoleState,
+} from './companyRoles/slice'
 import { apiSlice as idpSlice } from './admin/idpApiSlice'
 import userAddSlice, { apiSlice as userSlice } from './admin/userApiSlice'
 import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
@@ -67,6 +69,8 @@ import { apiSlice as userManagementApiSlice } from './appManagement/userManageme
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
+import { type NotificationState } from './notification/types'
+import { type ServiceManagementState } from './serviceManagement/types'
 
 export const reducers = {
   admin,
@@ -150,7 +154,15 @@ export const store = configureStore({
       .concat(usecaseApiSlice.middleware),
 })
 
-type RootState = ReturnType<typeof store.getState>
+//type RootState = ReturnType<typeof store.getState>
 type AppDispatch = typeof store.dispatch
+
+interface RootState {
+  admin: AdminState
+  control: ControlState
+  companyRoles: UpdateCompanyRoleState
+  notification: NotificationState
+  serviceManagement: ServiceManagementState
+}
 
 export type { RootState, AppDispatch }

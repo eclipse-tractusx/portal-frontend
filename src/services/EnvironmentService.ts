@@ -18,9 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
-declare const ENV: any
+declare const ENV: Record<string, string>
 
 export const getApiBase = () =>
   typeof ENV === 'undefined' ? '' : ENV.PORTAL_BACKEND_URL

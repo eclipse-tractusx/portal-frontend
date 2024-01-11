@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createSlice } from '@reduxjs/toolkit'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
 
 const name = 'control/appear'
@@ -27,7 +27,9 @@ export enum AppearItem {
   MENU = 'MENU',
 }
 
-const initialState: Record<AppearItem, boolean> = {
+export type AppearState = Record<AppearItem, boolean>
+
+const initialState: AppearState = {
   SEARCH: false,
   MENU: false,
 }
@@ -36,9 +38,9 @@ export const slice = createSlice({
   name,
   initialState,
   reducers: {
-    setAppear: (state, { payload }) => ({
+    setAppear: (state, action: PayloadAction<AppearState>) => ({
       ...state,
-      ...payload,
+      ...action.payload,
     }),
   },
 })

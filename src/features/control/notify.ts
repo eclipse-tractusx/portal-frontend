@@ -36,7 +36,9 @@ export type Notify = {
   data?: object | string | number | boolean
 }
 
-const initialState: Array<Notify> = []
+export type NotifyState = Array<Notify>
+
+const initialState: NotifyState = []
 
 export const slice = createSlice({
   name,
@@ -49,7 +51,7 @@ export const slice = createSlice({
 
 export const { enq, deq } = slice.actions
 
-export const notifySelector = (state: RootState): Array<Notify> =>
+export const notifySelector = (state: RootState): NotifyState =>
   state.control.notify
 
 export default slice.reducer

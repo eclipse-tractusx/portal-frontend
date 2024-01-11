@@ -22,9 +22,14 @@ import { combineReducers } from 'redux'
 import { slice as registration } from './registration/slice'
 import { slice as user } from './userDeprecated/slice'
 import { slice as userOwn } from './userOwn/slice'
+import { type AdminUserState } from './userDeprecated/types'
 
 export default combineReducers({
   user: user.reducer,
   registration: registration.reducer,
   userOwn: userOwn.reducer,
 })
+
+export interface AdminState {
+  user: AdminUserState
+}

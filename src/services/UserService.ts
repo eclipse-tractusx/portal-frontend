@@ -89,17 +89,17 @@ const doLogout = KC.logout
 
 const getToken = () => KC.token
 
-const getParsedToken = () => KC.tokenParsed
+const getParsedToken = () => KC.tokenParsed ?? {}
 
-const getUsername = () => KC.tokenParsed?.preferred_username
+const getUsername = () => KC.tokenParsed?.preferred_username as string
 
-const getName = () => KC.tokenParsed?.name
+const getName = () => KC.tokenParsed?.name as string
 
-const getEmail = () => KC.tokenParsed?.email
+const getEmail = () => KC.tokenParsed?.email as string
 
-const getCompany = () => KC.tokenParsed?.organisation
+const getCompany = () => KC.tokenParsed?.organisation as string
 
-const getTenant = () => KC.tokenParsed?.tenant
+const getTenant = () => KC.tokenParsed?.tenant as string
 
 // Add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients

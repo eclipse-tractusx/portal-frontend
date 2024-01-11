@@ -19,11 +19,11 @@
  ********************************************************************************/
 
 import { combineReducers } from 'redux'
-import overlay from './overlay'
 import form from './form'
-import notify from './notify'
-import update from './updates'
-import appear from './appear'
+import appear, { type AppearState } from './appear'
+import notify, { type NotifyState } from './notify'
+import update, { type UpdatesState } from './updates'
+import overlay, { type OverlayState } from './overlay'
 
 export default combineReducers({
   form,
@@ -32,3 +32,10 @@ export default combineReducers({
   update,
   appear,
 })
+
+export interface ControlState {
+  appear: AppearState
+  notify: NotifyState
+  overlay: OverlayState
+  update: UpdatesState
+}
