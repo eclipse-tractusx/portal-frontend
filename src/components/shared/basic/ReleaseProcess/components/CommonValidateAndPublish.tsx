@@ -287,6 +287,27 @@ export default function CommonValidateAndPublish({
     )
   }
 
+  const renderConformityDocuments = () => {
+    return (
+      statusData?.documents &&
+      statusData.documents[
+        type === ReleaseProcessTypes.APP_RELEASE
+          ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+          : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
+      ].map((item: DocumentData) => (
+        <li key={item.documentId} className="document-list doc-list">
+          <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+          <button
+            className="document-button-link"
+            onClick={() => handleDownloadFn(item.documentId, item.documentName)}
+          >
+            {item.documentName}
+          </button>
+        </li>
+      ))
+    )
+  }
+
   return (
     <div className="validate-and-publish">
       {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
@@ -461,23 +482,7 @@ export default function CommonValidateAndPublish({
                 ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
                 : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
             ] ? (
-              statusData.documents[
-                type === ReleaseProcessTypes.APP_RELEASE
-                  ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-                  : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
-              ].map((item: DocumentData) => (
-                <li key={item.documentId} className="document-list doc-list">
-                  <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
-                  <button
-                    className="document-button-link"
-                    onClick={() =>
-                      handleDownloadFn(item.documentId, item.documentName)
-                    }
-                  >
-                    {item.documentName}
-                  </button>
-                </li>
-              ))
+              renderConformityDocuments()
             ) : (
               <Typography variant="caption2" className="not-available">
                 {t('global.errors.noDocumentsAvailable')}
