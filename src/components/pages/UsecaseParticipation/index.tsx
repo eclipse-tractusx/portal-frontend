@@ -192,7 +192,10 @@ export default function UsecaseParticipation() {
                                 children={
                                   <Link
                                     to={credential.externalDetailData.template}
-                                    target="_blank"
+                                    target={
+                                      credential.externalDetailData.template &&
+                                      '_blank'
+                                    }
                                     className={`thirdSection ${
                                       !credential.externalDetailData.template &&
                                       'documentDisabled'

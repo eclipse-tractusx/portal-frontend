@@ -103,6 +103,22 @@
     "errorBar": "Something went wrong. Try again"
   },
   "content": {
+    "registration": {
+      "title": "Welcome to Catena-X",
+      "mainDescription": "Thank you for registering with us. You have started your registration process but a few things are still missing.",
+      "completeBtn": "Complete your registration",
+      "description": "At the current state of the registration you cannot access the portal. After completing all phases of the registration you will get limited access to the portal while your registration is being reviewed.",
+      "steps": {
+        "step1": "Verify your company data",
+        "step2": "Responsibilities & admin account",
+        "step3": "Role of your company",
+        "step4": "Upload IDs and certificates",
+        "step5": "Verify your entries",
+        "tooltipText": "Continue where you left"
+      },
+      "helpText": "If you have any questions regarding your registration please contact our Helpdesk:",
+      "email": "help@catena-x.com"
+    },
     "admin": {
       "registration-requests": {
         "columns": {
@@ -689,6 +705,9 @@
           "title": "Manage roles for ",
           "subtitle": "The user cannot enter his account until he has set a new password."
         }
+      },
+      "addUsers": {
+        "error": "We are sorry, it seems there's an issue with the identity call which blocks any further action on this function. Please try it later again. If the problem persist, consider to reach out to the platform administrator."
       },
       "addMultipleUsers": {
         "heading": "Add user account by bulk upload",
