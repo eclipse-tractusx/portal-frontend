@@ -289,6 +289,7 @@ export const apiSlice = createApi({
             src: subscriptionItem.image
               ? `${getApiBase()}/api/apps/${
                   subscriptionItem.offerId
+                  // eslint-disable-next-line
                 }/appDocuments/${subscriptionItem.image}`
               : LogoGrayData,
           }
