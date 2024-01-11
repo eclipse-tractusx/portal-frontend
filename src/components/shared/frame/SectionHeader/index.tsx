@@ -22,7 +22,7 @@ import './SectionHeader.scss'
 import { Typography } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
-export interface SeactionHeaderProps {
+export interface SectionHeaderProps {
   title?: string
   subTitle?: string
   description?: string
@@ -30,13 +30,13 @@ export interface SeactionHeaderProps {
   link?: string
 }
 
-export const SeactionHeader = ({
+export const SectionHeader = ({
   title,
   subTitle,
   description,
   linkText,
   link,
-}: SeactionHeaderProps) => {
+}: SectionHeaderProps) => {
   return (
     <Box className="mainWrapper">
       <Box>

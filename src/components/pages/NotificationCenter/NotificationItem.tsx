@@ -104,7 +104,7 @@ const NotificationContent = ({
       <div>
         <Trans
           ns="notification"
-          i18nKey={`${item.typeId}.content`}
+          i18nKey={`item.${item.typeId}.content`}
           values={{
             you,
             app: appName,
@@ -163,18 +163,27 @@ const NotificationContent = ({
 const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
   switch (item.typeId) {
     case NotificationType.APP_SUBSCRIPTION_ACTIVATION:
-      return <NotificationContent item={item} navlinks={['usermanagement']} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />
+      )
     case NotificationType.WELCOME:
-      return <NotificationContent item={item} navlinks={['home']} />
+      return <NotificationContent item={item} navlinks={[PAGES.HOME]} />
     case NotificationType.WELCOME_APP_MARKETPLACE:
-      return <NotificationContent item={item} navlinks={['appmarketplace']} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.APP_MARKETPLACE]} />
+      )
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
-      return <NotificationContent item={item} navlinks={['technicalsetup']} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.TECHNICAL_SETUP]} />
+      )
     case NotificationType.WELCOME_USE_CASES:
-      return <NotificationContent item={item} navlinks={['usecase']} />
+      return <NotificationContent item={item} navlinks={[PAGES.USE_CASE]} />
     case NotificationType.WELCOME_SERVICE_PROVIDER:
       return (
-        <NotificationContent item={item} navlinks={['servicemarketplace']} />
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.SERVICE_MARKETPLACE]}
+        />
       )
     case NotificationType.APP_SUBSCRIPTION_REQUEST:
       return (
@@ -237,9 +246,14 @@ export default function NotificationItem({
   const dispatch = useDispatch()
   const [userRead, setUserRead] = useState<boolean>(false)
 
-  const setRead = async (id: string, value: boolean) => {
+  item = {
+    ...item,
+    contentParsed: JSON.parse(item.content ?? '{}'),
+  }
+
+  const setRead = async (id: string, flag: boolean) => {
     try {
-      await setNotificationRead({ id, flag: value })
+      await setNotificationRead({ id, flag })
     } catch (error: unknown) {
       console.log(error)
     }
@@ -266,6 +280,8 @@ export default function NotificationItem({
         page: PAGE,
         size: PAGE_SIZE,
         args: {
+          searchQuery: '',
+          searchTypeIds: [],
           notificationTopic: NOTIFICATION_TOPIC.ALL,
           sorting: SORT_OPTION,
         },
@@ -338,7 +354,7 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`${item.typeId}.title`, {
+              {t(`item.${item.typeId}.title`, {
                 app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
                 offer: item.contentParsed?.OfferName,
                 credentialType: item.contentParsed?.type,

@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,27 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from '@catena-x/portal-shared-components'
+import { type RefObject, useEffect, useMemo, useState } from 'react'
 
-export interface StepType {
-  headline: string
-  step: number
-}
+export default function useOnScreen(ref: RefObject<HTMLElement>) {
+  const [isIntersecting, setIsIntersecting] = useState<boolean>(false)
 
-export default function ReleaseStepper({
-  activePage,
-  stepsList,
-  numberOfSteps,
-}: {
-  activePage: number
-  stepsList: StepType[]
-  numberOfSteps: number
-}) {
-  return (
-    <Stepper
-      list={stepsList}
-      showSteps={numberOfSteps}
-      activeStep={activePage}
-    />
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) => {
+        setIsIntersecting(entry.isIntersecting)
+      }),
+    [ref]
   )
+
+  useEffect(() => {
+    if (!ref.current) return
+    observer.observe(ref.current)
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  return isIntersecting
 }

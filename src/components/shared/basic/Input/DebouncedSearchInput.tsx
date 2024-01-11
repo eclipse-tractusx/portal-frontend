@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,27 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from '@catena-x/portal-shared-components'
+import debounce from 'lodash.debounce'
+import { useCallback, useMemo, useState } from 'react'
+import { SearchInput } from '@catena-x/portal-shared-components'
 
-export interface StepType {
-  headline: string
-  step: number
-}
-
-export default function ReleaseStepper({
-  activePage,
-  stepsList,
-  numberOfSteps,
+const DebouncedSearchInput = ({
+  onSearch,
+  debounceTime = 300,
 }: {
-  activePage: number
-  stepsList: StepType[]
-  numberOfSteps: number
-}) {
+  onSearch: (expr: string) => void
+  debounceTime?: number
+}) => {
+  const [searchExpr, setSearchExpr] = useState<string>('')
+
+  const debouncedSearch = useMemo(() => debounce(onSearch, debounceTime), [])
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
+
   return (
-    <Stepper
-      list={stepsList}
-      showSteps={numberOfSteps}
-      activeStep={activePage}
+    <SearchInput
+      value={searchExpr}
+      onChange={(e) => {
+        doSearch(e.target.value)
+      }}
     />
   )
 }
+
+export default DebouncedSearchInput
