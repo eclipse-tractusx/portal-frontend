@@ -34,6 +34,7 @@ export type CompanyDataResponse = {
   applicationId: string
   applicationStatus: ApplicationStatus
   companyName: string
+  user: string
   users: string[]
 }
 

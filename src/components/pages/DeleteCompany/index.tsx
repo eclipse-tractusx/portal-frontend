@@ -105,6 +105,7 @@ export default function DeleteCompany() {
                 <Trans
                   values={{
                     companyName: companyData?.companyName,
+                    name: companyData?.user,
                   }}
                 >
                   <Typography variant="body1" className="text-center mb-25">
@@ -112,11 +113,17 @@ export default function DeleteCompany() {
                   </Typography>
                 </Trans>
                 <div className="contentListing">
-                  <div className="d-flex align-item-center mb-15">
+                  <div className="d-flex mb-15">
                     <CheckCircleOutlineIcon className="icon mr-10" />
-                    <Typography variant="body3">
-                      {t('content.deleteCompany.heading1')}
-                    </Typography>
+                    <Trans
+                      values={{
+                        name: companyData?.user,
+                      }}
+                    >
+                      <Typography variant="body3">
+                        {t('content.deleteCompany.heading1')}
+                      </Typography>
+                    </Trans>
                   </div>
                   <div className="d-flex align-item-center mb-15">
                     <CheckCircleOutlineIcon className="icon mr-10" />
