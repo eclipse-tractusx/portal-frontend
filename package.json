@@ -35,7 +35,7 @@
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/papaparse": "^5.3.7",
-    "axios": "^1.6.1",
+    "axios": "^1.6.4",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.8",
     "i18next": "^22.5.1",
@@ -92,7 +92,9 @@
   },
   "resolutions": {
     "**/nth-check": "^2.1.1",
-    "**/@babel/traverse": "^7.23.2"
+    "**/@babel/traverse": "^7.23.2",
+    "**/follow-redirects": "^1.15.4",
+    "**/@adobe/css-tools": "^4.3.2"
   },
   "scripts": {
     "prepare": "husky install",
