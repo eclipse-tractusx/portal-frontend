@@ -94,27 +94,27 @@ export interface CompanyType {
 }
 
 export interface StandardLibraryType {
-  rows: StdRows[],
-  useCases: StdObject[],
-  capabilities: StdObject[],
-  roles: StdObject[],
-  status: StdObject[],
+  rows: StdRows[]
+  useCases: StdObject[]
+  capabilities: StdObject[]
+  roles: StdObject[]
+  status: StdObject[]
   typesOfDocuments: StdObject[]
 }
 
 export interface StdRows {
-    uid: number
-    name: string
-    title: string
-    releaseOfDocument: string
-    standardizationCandidate: string
-    description: string,
-    download:string
-    roles: number[]
-    capabilities: number[]
-    useCases: number[]
-    typesOfDocuments: number[]
-    status: number[]
+  uid: number
+  name: string
+  title: string
+  releaseOfDocument: string
+  standardizationCandidate: string
+  description: string
+  download: string
+  roles: number[]
+  capabilities: number[]
+  useCases: number[]
+  typesOfDocuments: number[]
+  status: number[]
 }
 export interface StdObject {
   uid: number
@@ -231,7 +231,9 @@ const getDataSpace = (callback: (data: DataSpaceType) => void) => {
     })
 }
 
-const StandardLibraryResponse = (callback: (data: StandardLibraryType) => void) => {
+const StandardLibraryResponse = (
+  callback: (data: StandardLibraryType) => void
+) => {
   const url = `${getAssetBase()}/content/${i18next.language}/standards.json`
   fetch(url)
     .then((response) => response.json())

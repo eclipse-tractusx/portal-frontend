@@ -23,45 +23,53 @@ import { IconButton } from '@catena-x/portal-shared-components'
 import { type StandardLibraryType, type StdRows } from 'services/CommonService'
 import { getCapabilityTitle } from 'utils/stdutils'
 
-
-export const StandardLibrariesTableColumns = (stdJson: StandardLibraryType): Array<GridColDef> => {
+export const StandardLibrariesTableColumns = (
+  stdJson: StandardLibraryType
+): Array<GridColDef> => {
   return [
     {
       field: 'Capabilities',
       headerName: 'Capabilities',
       flex: 1.5,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: StdRows }) => row?.capabilities?.length > 0 && stdJson ? getCapabilityTitle(row.capabilities, stdJson) : ''
+      valueGetter: ({ row }: { row: StdRows }) =>
+        row?.capabilities?.length > 0 && stdJson
+          ? getCapabilityTitle(row.capabilities, stdJson)
+          : '',
     },
     {
-        field: 'Version',
-        headerName: 'Version',
-        flex: 1,
-        disableColumnMenu: true,
-        valueGetter: ({ row }: { row: StdRows }) => row.releaseOfDocument
+      field: 'Version',
+      headerName: 'Version',
+      flex: 1,
+      disableColumnMenu: true,
+      valueGetter: ({ row }: { row: StdRows }) => row.releaseOfDocument,
     },
     {
-        field: 'Title',
-        headerName: 'Title',
-        flex: 1.5,
-        disableColumnMenu: true,
-        valueGetter: ({ row }: { row: StdRows }) => row.title
+      field: 'Title',
+      headerName: 'Title',
+      flex: 1.5,
+      disableColumnMenu: true,
+      valueGetter: ({ row }: { row: StdRows }) => row.title,
     },
     {
-        field: 'Download',
-        headerName: 'Download',
-        flex: 1,
-        disableColumnMenu: true,
-        align: 'center',
-        headerAlign: 'center',
-        valueGetter: ({ row }: { row: StdRows }) => row.title,
-        renderCell: ({ row }: { row: StdRows }) => (
-            <IconButton color="secondary" size="small">
-                <a href={`https://catena-x.net/${row.download}`} target="_blank" rel="noreferrer">
-                    <DownloadForOfflineIcon />
-                </a>
-            </IconButton>
-          ),
-    }
+      field: 'Download',
+      headerName: 'Download',
+      flex: 1,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
+      valueGetter: ({ row }: { row: StdRows }) => row.title,
+      renderCell: ({ row }: { row: StdRows }) => (
+        <IconButton color="secondary" size="small">
+          <a
+            href={`https://catena-x.net/${row.download}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <DownloadForOfflineIcon />
+          </a>
+        </IconButton>
+      ),
+    },
   ]
 }

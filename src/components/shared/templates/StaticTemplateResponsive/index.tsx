@@ -233,7 +233,7 @@ const TemplateConfig = ({
 export const StaticTemplateResponsive = ({
   sectionInfo,
   baseUrl,
-  stdLibraries
+  stdLibraries,
 }: {
   sectionInfo: ProviderProps[]
   baseUrl: string
@@ -289,7 +289,7 @@ export const StaticTemplateResponsive = ({
                   showScroll={showScroll}
                 />
               ) : (
-                <div className='table-compo'>
+                <div className="table-compo">
                   <TitleDescriptionAndSectionlink
                     showScroll={showScroll}
                     provider={provider}
