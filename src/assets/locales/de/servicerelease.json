@@ -55,7 +55,9 @@
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu."
+    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
+    "uploadImageConformity": "Conformity Service Certificate",
+    "documentDeleteSuccess": "Document deleted successfully"
   },
   "technicalIntegration": {
     "headerTitle": "Technical Integration",
@@ -71,7 +73,9 @@
     "providerInformation": "Provider Information",
     "consent": "Consent",
     "longDescriptionTitleEN": "[Long Description - EN] ",
-    "longDescriptionTitleDE": "[Long Description - DE] "
+    "longDescriptionTitleDE": "[Long Description - DE] ",
+    "conformityDocument": "Conformity Document",
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceReleaseForm": {
     "headerTitle": "Create Service",
@@ -186,7 +190,7 @@
     "activation": {
       "title": "Service Subscription Activated",
       "subtitle": "for ",
-      "successDescription": "The service is now activated and is now located in your active contract management",
+      "successDescription": "The service is now activated and technical user was successfully created. <br />Please find the necessary user details below.",
       "successDescriptionWithTechUser": "The service is now activated and technical user was successfully created.<br /> Please find the necessary user details below.",
       "tableheader": "Technical User Details:",
       "userId": "Client ID Tech User:",
@@ -232,6 +236,10 @@
     "longDescriptionTitleDE": "Description - German",
     "backToBoard": "Back to Admin Board",
     "noDocumentsAvailable": "No documents available",
+    "ConformityDocument": {
+      "heading": "Conformity Document",
+      "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+    },
     "documents": {
       "heading": "Documents",
       "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "

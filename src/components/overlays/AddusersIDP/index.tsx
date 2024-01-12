@@ -417,8 +417,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       reader.onload = () => {
         if (!reader.result) return
-        const content = reader.result.toString()
-
+        const content = JSON.stringify(reader.result)
         Papa.parse(acceptedFile, {
           skipEmptyLines: true,
           complete: function (results) {

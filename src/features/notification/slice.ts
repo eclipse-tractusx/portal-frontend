@@ -47,10 +47,18 @@ export const slice = createSlice({
       ...state,
       fetch: payload.initialNotificationState,
     }),
+    setPage: (state, action: PayloadAction<number>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: action.payload,
+      },
+    }),
     setOrder: (state, action: PayloadAction<NotificationSortingType>) => ({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           sorting: action.payload,
@@ -61,6 +69,7 @@ export const slice = createSlice({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           searchTypeIds: I18nService.searchNotifications(action.payload),
@@ -71,6 +80,7 @@ export const slice = createSlice({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           notificationTopic: action.payload,
@@ -95,6 +105,7 @@ export const {
   setTopic,
   setSearch,
   setOrder,
+  setPage,
 } = slice.actions
 
 export default slice

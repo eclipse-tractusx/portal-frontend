@@ -27,6 +27,7 @@ import {
   type CXNotification,
   type CXNotificationMeta,
   type NotificationFetchType,
+  NotificationSortingType,
 } from './types'
 
 export interface NotificationArgsProps {
@@ -51,7 +52,7 @@ export const apiSlice = createApi({
     }),
     getNotifications: builder.query<CXNotification, NotificationFetchType>({
       query: (fetchArgs) =>
-        `/api/notification?page=${0}&size=${20}${
+        `/api/notification?page=${fetchArgs?.page ?? 0}&size=${10}${
           fetchArgs?.args?.notificationTopic &&
           fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL
             ? `&notificationTopicId=${fetchArgs?.args?.notificationTopic}`
@@ -60,6 +61,8 @@ export const apiSlice = createApi({
           fetchArgs?.args?.searchTypeIds
             ?.map((typeId: NotificationType) => `&searchTypeIds=${typeId}`)
             .join('') ?? ''
+        }&sorting=${
+          fetchArgs?.args?.sorting ?? NotificationSortingType.DateDesc
         }`,
     }),
     setNotificationRead: builder.mutation<void, NotificationReadType>({
