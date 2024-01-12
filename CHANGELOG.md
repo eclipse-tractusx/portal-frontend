@@ -36,6 +36,8 @@
 - Portal Login with unfinished registration
 - Static Page - Company Roles, Use Case, Data Space
   - Use New Sub Navigation Menu component based on browser width to support multi device implementations
+- Company Roles
+  - Display Table component for standard libraries
 - App Release Process
   - fixed automatic upscrolling in form pages
 - Service Release Process

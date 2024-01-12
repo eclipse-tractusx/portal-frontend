@@ -26,6 +26,7 @@ import CommonService, {
   type SubNavigationType,
   type CompanyRolesType,
   type CompanyType,
+  type StandardLibraryType,
 } from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
@@ -34,6 +35,7 @@ import { languageSelector } from 'features/language/slice'
 
 export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<CompanyType>()
+  const [stdJson, setStdJson] = useState<StandardLibraryType>()
   const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const url = window.location.href
   const language = useSelector(languageSelector)
@@ -58,6 +60,9 @@ export default function CompanyRoles() {
         setLinkArray(data.participant.subNavigation)
       }
     })
+    CommonService.StandardLibraryResponse((data: StandardLibraryType) => {
+      setStdJson(data)
+    })
   }, [url, language])
 
   const scrollStarted = () => {
@@ -80,6 +85,7 @@ export default function CompanyRoles() {
           <StaticTemplateResponsive
             sectionInfo={companyRoles.sections}
             baseUrl={getAssetBase()}
+            stdLibraries={stdJson}
           />
         </>
       )}

@@ -93,6 +93,35 @@ export interface CompanyType {
   subNavigation: SubNavigationType[]
 }
 
+export interface StandardLibraryType {
+  rows: StdRows[],
+  useCases: StdObject[],
+  capabilities: StdObject[],
+  roles: StdObject[],
+  status: StdObject[],
+  typesOfDocuments: StdObject[]
+}
+
+export interface StdRows {
+    uid: number
+    name: string
+    title: string
+    releaseOfDocument: string
+    standardizationCandidate: string
+    description: string,
+    download:string
+    roles: number[]
+    capabilities: number[]
+    useCases: number[]
+    typesOfDocuments: number[]
+    status: number[]
+}
+export interface StdObject {
+  uid: number
+  name: string
+  title: string
+}
+
 const getName = (app: AppMarketplaceApp) => app.name ?? ''
 const getDescription = (app: AppMarketplaceApp) =>
   app.shortDescription === 'ERROR' ? '' : app.shortDescription
@@ -202,6 +231,18 @@ const getDataSpace = (callback: (data: DataSpaceType) => void) => {
     })
 }
 
+const StandardLibraryResponse = (callback: (data: StandardLibraryType) => void) => {
+  const url = `${getAssetBase()}/content/${i18next.language}/standards.json`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      callback(data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 const CommonService = {
   appToCard,
   isValidPictureId,
@@ -211,6 +252,7 @@ const CommonService = {
   imagesAndAppidToImageType,
   getRoleDescription,
   getCompanyRoleUpdateData,
+  StandardLibraryResponse,
 }
 
 export default CommonService
