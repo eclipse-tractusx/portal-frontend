@@ -18,6 +18,7 @@
   - Company name search pattern updated
 - User management
   - Updated app access management flow
+  - Update delete user success message
 - Overlays
   - Change Overlay Button from "Cancel" to "Close"
 - ESLINT
