@@ -24,6 +24,11 @@ import { UserInfo } from '../frame/UserInfo'
 import AccessService from 'services/AccessService'
 import { Typography } from '@catena-x/portal-shared-components'
 import HelpIcon from '@mui/icons-material/Help'
+import {
+  ApplicationStatus,
+  useFetchApplicationsQuery,
+} from 'features/registration/registrationApiSlice'
+import { useEffect, useState } from 'react'
 
 export interface NotificationBadgeType {
   notificationCount: number
@@ -46,6 +51,18 @@ export const MobileMenu = ({
   ...props
 }: MenuProps) => {
   const { spacing } = useTheme()
+  const { data } = useFetchApplicationsQuery()
+  const companyData = data?.[0]
+  const [userMenu, setUserMenu] = useState(AccessService.userMenu())
+
+  useEffect(() => {
+    if (
+      companyData &&
+      Object.values(ApplicationStatus).includes(companyData.applicationStatus)
+    ) {
+      setUserMenu(AccessService.userMenuReg())
+    }
+  }, [companyData])
 
   return (
     <Box {...props}>
@@ -65,11 +82,7 @@ export const MobileMenu = ({
       </List>
       {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
       <Box>
-        <UserInfo
-          pages={AccessService.userMenu()}
-          title={'Profile'}
-          isMobile={true}
-        />
+        <UserInfo pages={userMenu} title={'Profile'} isMobile={true} />
       </Box>
       <Box
         className="titleBox"

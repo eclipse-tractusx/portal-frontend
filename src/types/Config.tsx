@@ -109,10 +109,6 @@ export const ALL_PAGES: IPage[] = [
     element: <Redirect path="_storybook" tab={'storybook'} />,
   },
   {
-    name: PAGES.REGISTRATION,
-    element: <Redirect path="registration" tab={'registration'} />,
-  },
-  {
     name: PAGES.MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
