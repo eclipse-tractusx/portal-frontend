@@ -67,7 +67,6 @@ import { apiSlice as userManagementApiSlice } from './appManagement/userManageme
 import { apiSlice as registrationApiSlice } from './registration/registrationApiSlice'
 import { apiSlice as staticContentApiSlice } from './staticContent/staticContentApiSlice'
 
-
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
 
@@ -121,7 +120,7 @@ export const reducers = {
   [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
   [registrationApiSlice.reducerPath]: registrationApiSlice.reducer,
-  [staticContentApiSlice.reducerPath]: staticContentApiSlice.reducer
+  [staticContentApiSlice.reducerPath]: staticContentApiSlice.reducer,
 }
 
 export const store = configureStore({
