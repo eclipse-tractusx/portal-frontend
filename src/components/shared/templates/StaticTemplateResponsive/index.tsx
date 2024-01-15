@@ -34,11 +34,11 @@ import GridImages from './Cards/GridImages'
 import { useState } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material'
 import TextImageSideBySideWithSections from './Cards/TextImageSideBySideWithSections'
-import { type StandardLibraryType } from 'services/CommonService'
 import { Table } from '@catena-x/portal-shared-components'
 import { uniqueId } from 'lodash'
 import TitleDescriptionAndSectionlink from './Cards/TitleDescriptionAndSectionlink'
 import { StandardLibrariesTableColumns } from './Cards/StandardLibrariesTableColumns'
+import { type StandardLibraryType } from 'features/staticContent/staticContentApiSlice'
 
 const TemplateConfig = ({
   provider,

@@ -65,6 +65,8 @@ import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSl
 import { apiSlice as certificationApiSlice } from './certification/certificationApiSlice'
 import { apiSlice as userManagementApiSlice } from './appManagement/userManagementApiSlice'
 import { apiSlice as registrationApiSlice } from './registration/registrationApiSlice'
+import { apiSlice as staticContentApiSlice } from './staticContent/staticContentApiSlice'
+
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
@@ -119,6 +121,7 @@ export const reducers = {
   [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
   [registrationApiSlice.reducerPath]: registrationApiSlice.reducer,
+  [staticContentApiSlice.reducerPath]: staticContentApiSlice.reducer
 }
 
 export const store = configureStore({
@@ -150,7 +153,8 @@ export const store = configureStore({
       .concat(certificationApiSlice.middleware)
       .concat(userManagementApiSlice.middleware)
       .concat(usecaseApiSlice.middleware)
-      .concat(registrationApiSlice.middleware),
+      .concat(registrationApiSlice.middleware)
+      .concat(staticContentApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

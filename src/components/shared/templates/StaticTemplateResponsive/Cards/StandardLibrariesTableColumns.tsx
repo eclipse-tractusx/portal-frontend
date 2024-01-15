@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,8 +20,22 @@
 import type { GridColDef } from '@mui/x-data-grid'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
 import { IconButton } from '@catena-x/portal-shared-components'
-import { type StandardLibraryType, type StdRows } from 'services/CommonService'
-import { getCapabilityTitle } from 'utils/stdutils'
+import {
+  type StandardLibraryType,
+  type StdRows,
+} from 'features/staticContent/staticContentApiSlice'
+
+interface UidType {
+  uid: number
+  title: string
+}
+
+const getItemTitle = (values: number[], uids: UidType[]) => {
+  return (
+    uids.filter((e: { uid: number }) => values?.includes(e.uid))?.[0]?.title ??
+    ''
+  )
+}
 
 export const StandardLibrariesTableColumns = (
   stdJson: StandardLibraryType
@@ -34,7 +48,7 @@ export const StandardLibrariesTableColumns = (
       disableColumnMenu: true,
       valueGetter: ({ row }: { row: StdRows }) =>
         row?.capabilities?.length > 0 && stdJson
-          ? getCapabilityTitle(row.capabilities, stdJson)
+          ? getItemTitle(row.capabilities, stdJson.capabilities)
           : '',
     },
     {
