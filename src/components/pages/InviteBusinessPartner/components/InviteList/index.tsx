@@ -28,7 +28,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { CompanyInvite } from 'features/admin/inviteApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
@@ -42,6 +42,7 @@ export const InviteList = ({
   fetchHookArgs,
   onSearch,
   searchExpr,
+  refetch,
 }: {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
@@ -49,6 +50,7 @@ export const InviteList = ({
   fetchHookArgs?: FetchHookArgsType
   onSearch?: (search: string) => void
   searchExpr?: string
+  refetch?: number
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -60,6 +62,10 @@ export const InviteList = ({
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
+
+  useEffect(() => {
+    setRefresh(Date.now())
+  }, [refetch])
 
   return (
     <section id="identity-management-id">

@@ -83,7 +83,7 @@ export default function AddBPN({ id }: { id: string }) {
   }
 
   const onDeleteBpnHandler = (deleteBpnId: string) => {
-    const params = { companyUserId: stateSelectorInfo['id'], bpn: deleteBpnId }
+    const params = { companyUserId: stateSelectorInfo.id, bpn: deleteBpnId }
     dispatch(deleteUserBpn(params))
   }
 

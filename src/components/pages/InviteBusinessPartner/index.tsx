@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import './InviteBusinessPartner.scss'
-import { Api } from 'features/admin/registration/api'
 import {
   Button,
   Dialog,
@@ -36,7 +35,10 @@ import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBread
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
-import { useFetchInviteSearchQuery } from 'features/admin/inviteApiSlice'
+import {
+  useFetchInviteSearchQuery,
+  useSendInviteMutation,
+} from 'features/admin/inviteApiSlice'
 import { InviteList } from './components/InviteList'
 
 export enum ProcessingType {
@@ -51,6 +53,8 @@ export default function InviteBusinessPartner() {
   const [inviteOverlayOpen, setInviteOverlayOpen] = useState<boolean>(false)
   const [processing, setProcessing] = useState<string>(ProcessingType.INPUT)
   const [expr, setExpr] = useState<string>('')
+  const [create] = useSendInviteMutation()
+  const [refresh, setRefresh] = useState<number>(0)
 
   useEffect(() => {
     // close success overlay/dialog after 5 seconds
@@ -61,24 +65,18 @@ export default function InviteBusinessPartner() {
     }
   }, [successOverlayOpen])
 
-  const doSubmitInvite = (data: InviteData) => {
+  const doSubmitInvite = async (data: InviteData) => {
     setProcessing(ProcessingType.BUSY)
-    //switch to redux
-    new Api()
-      .postInviteBusinessPartner(data)
+    await create(data)
+      .unwrap()
       .then(() => {
         setSuccessOverlayOpen(true)
         setInviteOverlayOpen(false)
+        setRefresh(Date.now())
       })
-      .catch((error: unknown) => {
-        console.log(error)
+      .catch(() => {
         setFailureOverlayOpen(true)
         setInviteOverlayOpen(false)
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setProcessing(ProcessingType.INPUT)
-        }, 5000)
       })
   }
 
@@ -192,6 +190,7 @@ export default function InviteBusinessPartner() {
           fetchHookArgs={{ expr }}
           onSearch={setExpr}
           searchExpr={expr}
+          refetch={refresh}
         />
       </section>
     </main>

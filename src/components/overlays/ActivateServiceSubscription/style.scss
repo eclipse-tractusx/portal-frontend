@@ -17,24 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.activation {
-  table {
-    width: 90%;
-    margin: 20px 40px;
-    border-collapse: collapse;
-
-    tr td {
-      border-top: 1px solid rgb(220, 220, 220);
-      padding: 10px;
-      text-align: left;
-    }
-
-    tr:first-child td {
-      border: none;
-    }
-  }
-}
-
 .helpText {
   display: flex;
   color: #0d55af !important;

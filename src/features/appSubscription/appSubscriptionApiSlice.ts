@@ -27,6 +27,7 @@ export type SubscriptionRequestBody = {
   statusId: string
   offerId?: string
   sortingType: string
+  companyName?: string
 }
 
 export type SubscriptionDetailRequestBody = {
@@ -144,15 +145,17 @@ export const apiSlice = createApi({
       SubscriptionRequestBody
     >({
       query: (body) => {
-        const statusId = `statusId=${body.statusId}`
-        const offerId = `offerId=${body.offerId}`
-        const sortingType = `sorting=${body.sortingType}`
+        const url = `/api/Apps/provided/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const statusId = body.statusId ? `&statusId=${body.statusId}` : ''
+        const offerId = body.offerId ? `&offerId=${body.offerId}` : ''
+        const sortingType = body.sortingType
+          ? `&sorting=${body.sortingType}`
+          : ''
+        const companyName = body.companyName
+          ? `&companyName=${body.companyName}`
+          : ''
         return {
-          url: `/api/Apps/provided/subscription-status?size=${PAGE_SIZE}&page=${
-            body.page
-          }&${body.statusId && statusId}&${body.offerId && offerId}&${
-            body.sortingType && sortingType
-          }`,
+          url: `${url}${statusId}${offerId}${sortingType}${companyName}`,
         }
       },
     }),

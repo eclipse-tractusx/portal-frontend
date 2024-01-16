@@ -37,6 +37,7 @@ import {
   type TableType,
   StaticTable,
   CircleProgress,
+  PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -64,6 +65,7 @@ import './AddMultipleUser.scss'
 import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
 import { error } from 'services/NotifyService'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 const HelpPageURL =
   '/documentation/?path=docs%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
@@ -76,8 +78,12 @@ export default function AddMultipleUser() {
 
   const { data } = useFetchCoreoffersRolesQuery()
   const [addMutipleUsers] = useAddMutipleUsersMutation()
-  const { data: idpsData, isFetching } = useFetchIDPListQuery()
-
+  const {
+    data: idpsData,
+    isFetching,
+    isError: fetchError,
+    refetch,
+  } = useFetchIDPListQuery()
   const [loading, setLoading] = useState(false)
   const [allRoles, setAllRoles] = useState<AppRole[]>()
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -169,7 +175,7 @@ export default function AddMultipleUser() {
     }
   }
 
-  const handleConfirm = async () => {
+  const handleConfirm = () => {
     if (isSuccess || isError) dispatch(closeOverlay())
     if (uploadedFile && !roles.length) setIsFileUploaded(true)
     else if (uploadedFile && roles.length) {
@@ -177,7 +183,7 @@ export default function AddMultipleUser() {
       uploadedFile &&
         Papa.parse(uploadedFile, {
           skipEmptyLines: true,
-          complete: async (results) => {
+          complete: (results) => {
             const csvData: Array<Array<string>> = results.data as Array<
               Array<string>
             >
@@ -192,7 +198,7 @@ export default function AddMultipleUser() {
     }
   }
 
-  const onChangeFile = async (selectedFile: File) => {
+  const onChangeFile = (selectedFile: File) => {
     setUploadedFile(undefined)
     Papa.parse(selectedFile, {
       skipEmptyLines: true,
@@ -498,6 +504,33 @@ export default function AddMultipleUser() {
             ))}
         </DialogActions>
       </>
+    ) : (
+      handleMultiuserError()
+    )
+  }
+
+  const handleMultiuserError = () => {
+    return fetchError ? (
+      <PageSnackbar
+        open={fetchError}
+        severity="error"
+        description={
+          <>
+            {t('content.usermanagement.addUsers.error')}
+            <Button
+              sx={{ mt: 2, mb: 1, float: 'right' }}
+              size="small"
+              onClick={() => refetch()}
+              endIcon={<ArrowForwardIcon />}
+            >
+              {t('error.tryAgain')}
+            </Button>
+          </>
+        }
+        showIcon={true}
+        autoClose={false}
+        onCloseNotification={() => dispatch(closeOverlay())}
+      />
     ) : (
       <AddUserDeny idps={idps} />
     )

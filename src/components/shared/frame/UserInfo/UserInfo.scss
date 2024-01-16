@@ -23,3 +23,35 @@
   z-index: 100;
   cursor: pointer;
 }
+
+.titleBox {
+  display: flex;
+  margin: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleBox div {
+  display: flex;
+  align-items: center;
+}
+
+.titleBox .MuiAvatar-circular {
+  width: 30px;
+  height: 30px;
+}
+
+.badgeBox {
+  background-color: #b3cb2d;
+  width: 25px;
+  height: 25px;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.badgeBox p {
+  min-width: 27px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}

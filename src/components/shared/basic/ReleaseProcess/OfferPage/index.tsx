@@ -206,7 +206,7 @@ export default function OfferPage({
       body: { file },
     }
 
-    return updateDocumentUpload(data).unwrap()
+    return await updateDocumentUpload(data).unwrap()
   }
 
   const onSubmit = async (data: FormDataType, buttonLabel: string) => {

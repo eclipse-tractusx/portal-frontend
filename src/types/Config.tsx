@@ -404,7 +404,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.LOGOUT, element: <Logout /> },
   { name: PAGES.INTRODUCTION, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_APP_PROVIDER, element: <CompanyRoles /> },
-  { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, element: <CompanyRoles /> },
+  { name: PAGES.INTRODUCTION_CONFORMITY_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_OSP_BODY, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
   { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
@@ -704,7 +704,7 @@ export const mainMenuFullTree = [
       { name: PAGES.INTRODUCTION_PARTICIPANT, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_APP_PROVIDER, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, hint: HINTS.NEW },
-      { name: PAGES.INTRODUCTION_CONFIRMITY_BODY, hint: HINTS.NEW },
+      { name: PAGES.INTRODUCTION_CONFORMITY_BODY, hint: HINTS.NEW },
       { name: PAGES.INTRODUCTION_OSP_BODY, hint: HINTS.NEW },
     ],
   },
@@ -771,6 +771,8 @@ export const userMenuFull = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.LOGOUT,
 ]
+
+export const userMenuRegistration = [PAGES.LOGOUT]
 
 /**
  * footerMenuFull

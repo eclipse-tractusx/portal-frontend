@@ -32,22 +32,19 @@ interface FormField {
 }
 
 export const useFormValidation = (formFields: FormField[]) => {
-  const validate = (
-    field: FormField | undefined,
-    value: string = ''
-  ): boolean => {
+  const validate = (field: FormField | undefined, value = ''): boolean => {
     const pattern = field?.pattern
     return !pattern || pattern.test(value)
   }
 
   const [errors, setErrors] = useState<Errors>({})
   const [valids, setValids] = useState<Valids>(
-    formFields.reduce((values, field) => {
+    formFields.reduce<Valids>((values, field) => {
       return {
         ...values,
         [field.key]: validate(field),
       }
-    }, {} as Valids)
+    }, {})
   )
 
   const handleChange = (key: string) => {

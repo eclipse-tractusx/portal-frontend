@@ -24,6 +24,8 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
+  StaticTable,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
@@ -38,7 +40,6 @@ import {
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
 import { Link } from 'react-router-dom'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
 
 const ProfileHelpURL =
   '/documentation/?path=docs%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
@@ -90,27 +91,47 @@ export default function ActivateserviceSubscription({
     }
   }
 
-  const activationData = [
-    {
-      key: t('serviceSubscription.activation.userId'),
-      value: techUserInfo?.technicalUserInfo.technicalClientId ?? '',
-    },
-    {
-      key: t('serviceSubscription.activation.sercret'),
-      value: techUserInfo?.technicalUserInfo.technicalUserSecret ?? '',
-      copy: true,
-    },
-    {
-      key: t('serviceSubscription.activation.url'),
-      value: techUserInfo?.clientInfo?.clientUrl ?? 'n/a',
-    },
-    {
-      key: t('serviceSubscription.activation.technicaluserType'),
-      value:
+  const tableData: TableType = {
+    head: [t('serviceSubscription.activation.tableheader'), ''],
+    body: [
+      [
+        t('serviceSubscription.activation.userId'),
+        techUserInfo?.technicalUserInfo.technicalClientId ?? '',
+      ],
+      [
+        t('serviceSubscription.activation.sercret'),
+        techUserInfo?.technicalUserInfo.technicalUserSecret ?? '',
+      ],
+      [
+        t('serviceSubscription.activation.url'),
+        techUserInfo?.clientInfo?.clientUrl ?? 'n/a',
+      ],
+      [
+        t('serviceSubscription.activation.technicaluserType'),
         techUserInfo?.technicalUserInfo.technicalUserPermissions.join(', ') ??
-        '',
-    },
-  ]
+          '',
+      ],
+    ],
+    edit: [
+      [
+        {
+          icon: false,
+        },
+        {
+          icon: false,
+        },
+      ],
+      [
+        {
+          icon: false,
+        },
+        {
+          icon: false,
+          copyValue: techUserInfo?.technicalUserInfo.technicalUserSecret,
+        },
+      ],
+    ],
+  }
 
   return (
     <Dialog
@@ -156,13 +177,7 @@ export default function ActivateserviceSubscription({
                 </Typography>
               </Trans>
             </Box>
-            {isTechUser && techUserInfo && (
-              <KeyValueView
-                cols={2}
-                title={t('serviceSubscription.activation.tableheader')}
-                items={activationData}
-              />
-            )}
+            <StaticTable data={tableData} horizontal={false} />
           </DialogContent>
           <DialogActions>
             <Button

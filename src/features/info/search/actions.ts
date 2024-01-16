@@ -72,7 +72,7 @@ const getSinglePartnerResult = (partner: BusinessPartner) => ({
 
 const searchForExpression = async function (expr: string) {
   if (!expr || expr.length < 3) {
-    return Promise.all([
+    return await Promise.all([
       emptyPageResult,
       emptyOverlayResult,
       emptyActionResult,
@@ -82,7 +82,7 @@ const searchForExpression = async function (expr: string) {
       emptyUserResult,
     ])
   } else if (Patterns.prefix.BPN.test(expr)) {
-    return Promise.all([
+    return await Promise.all([
       emptyPageResult,
       emptyOverlayResult,
       emptyActionResult,
@@ -98,7 +98,7 @@ const searchForExpression = async function (expr: string) {
       emptyUserResult,
     ])
   } else if (Patterns.prefix.MAIL.test(expr)) {
-    return Promise.all([
+    return await Promise.all([
       emptyPageResult,
       emptyOverlayResult,
       emptyActionResult,
@@ -112,7 +112,7 @@ const searchForExpression = async function (expr: string) {
         : emptyUserResult,
     ])
   } else if (Patterns.UUID.test(expr)) {
-    return Promise.all([
+    return await Promise.all([
       emptyPageResult,
       emptyOverlayResult,
       emptyActionResult,
@@ -126,7 +126,7 @@ const searchForExpression = async function (expr: string) {
         .catch(() => emptyUserResult),
     ])
   } else {
-    return Promise.all([
+    return await Promise.all([
       I18nService.searchPages(expr),
       I18nService.searchOverlays(expr),
       I18nService.searchActions(expr),

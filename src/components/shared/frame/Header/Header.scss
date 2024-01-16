@@ -29,8 +29,9 @@ header {
     align-items: center;
   }
 }
-@media (min-width: 481px) {
-  .mobileHeader {
+@media (min-width: 1499px) {
+  .mobileHeader,
+  .mobileNav {
     display: none;
   }
   .mobile-search-icon {
@@ -45,15 +46,29 @@ header {
 }
 
 //mobile layout
-@media (max-width: 480px) {
+@media (max-width: 1499px) {
   header {
     display: none;
   }
 
+  .mobileNav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+  }
+
+  .mobileHeaderRight {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
   .mobileHeader {
     display: block;
-    position: absolute;
-    top: 15px;
     width: 50px;
     height: 50px;
     z-index: 999;
@@ -65,9 +80,6 @@ header {
   }
 
   .mobile-search-icon {
-    position: absolute;
-    right: 20px;
-    top: 25px;
-    z-index: 999;
+    margin-right: 10px;
   }
 }
