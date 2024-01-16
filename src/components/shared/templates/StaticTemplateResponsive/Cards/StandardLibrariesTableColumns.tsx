@@ -24,6 +24,7 @@ import {
   type StandardLibraryType,
   type StdRows,
 } from 'features/staticContent/staticContentApiSlice'
+import { useTranslation } from 'react-i18next'
 
 interface UidType {
   uid: number
@@ -40,10 +41,11 @@ const getItemTitle = (values: number[], uids: UidType[]) => {
 export const StandardLibrariesTableColumns = (
   stdJson: StandardLibraryType
 ): Array<GridColDef> => {
+  const { t } = useTranslation()
   return [
     {
       field: 'Capabilities',
-      headerName: 'Capabilities',
+      headerName: t('content.standardLibraryTable.capabilities'),
       flex: 1.5,
       disableColumnMenu: true,
       valueGetter: ({ row }: { row: StdRows }) =>
@@ -53,21 +55,21 @@ export const StandardLibrariesTableColumns = (
     },
     {
       field: 'Version',
-      headerName: 'Version',
+      headerName: t('content.standardLibraryTable.version'),
       flex: 1,
       disableColumnMenu: true,
       valueGetter: ({ row }: { row: StdRows }) => row.releaseOfDocument,
     },
     {
       field: 'Title',
-      headerName: 'Title',
+      headerName: t('content.standardLibraryTable.title'),
       flex: 1.5,
       disableColumnMenu: true,
       valueGetter: ({ row }: { row: StdRows }) => row.title,
     },
     {
       field: 'Download',
-      headerName: 'Download',
+      headerName: t('content.standardLibraryTable.download'),
       flex: 1,
       disableColumnMenu: true,
       align: 'center',

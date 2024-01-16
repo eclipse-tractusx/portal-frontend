@@ -45,7 +45,7 @@ export default function CompanyRoles() {
   const { data: standardLibraryResponse } = useFetchStandardLibraryQuery()
 
   useEffect(() => {
-    if (companyRolesResponse)
+    if (companyRolesResponse) {
       if (url.indexOf('companyrolesappprovider') > 1) {
         setCompanyRoles(companyRolesResponse.appProvider)
         setLinkArray(companyRolesResponse.appProvider.subNavigation)
@@ -62,8 +62,12 @@ export default function CompanyRoles() {
         setCompanyRoles(companyRolesResponse.participant)
         setLinkArray(companyRolesResponse.participant.subNavigation)
       }
-    if (standardLibraryResponse) setStdJson(standardLibraryResponse)
-  }, [url, language, companyRolesResponse, standardLibraryResponse])
+    }
+  }, [url, language, companyRolesResponse])
+
+  useEffect(() => {
+    setStdJson(standardLibraryResponse)
+  }, [language, standardLibraryResponse])
 
   const scrollStarted = () => {
     setTopReached(window.scrollY > 500)
@@ -73,7 +77,7 @@ export default function CompanyRoles() {
 
   return (
     <main className="companyRoles">
-      {companyRoles && linkArray && (
+      {companyRoles && linkArray && stdJson && (
         <>
           <StageSection
             title={companyRoles.title}

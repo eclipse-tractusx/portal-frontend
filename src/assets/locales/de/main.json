@@ -1675,6 +1675,12 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+    },
+    "standardLibraryTable": {
+      "version": "Version",
+      "capabilities": "Capabilities",
+      "title": "Title",
+      "download": "Download"
     }
   },
   "navigation": {
