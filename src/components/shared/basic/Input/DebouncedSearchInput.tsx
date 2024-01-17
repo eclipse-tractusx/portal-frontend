@@ -1,4 +1,5 @@
 /********************************************************************************
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -17,12 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.helpText {
-  display: flex;
-  color: #0d55af !important;
-  margin-top: 30px !important;
-  text-decoration: none;
-  svg {
-    font-size: 20px;
-  }
+import debounce from 'lodash.debounce'
+import { useCallback, useMemo, useState } from 'react'
+import { SearchInput } from '@catena-x/portal-shared-components'
+
+const DebouncedSearchInput = ({
+  onSearch,
+  debounceTime = 300,
+}: {
+  onSearch: (expr: string) => void
+  debounceTime?: number
+}) => {
+  const [searchExpr, setSearchExpr] = useState<string>('')
+
+  const debouncedSearch = useMemo(() => debounce(onSearch, debounceTime), [])
+
+  const doSearch = useCallback(
+    (expr: string) => {
+      setSearchExpr(expr)
+      debouncedSearch(expr)
+    },
+    [debouncedSearch]
+  )
+
+  return (
+    <SearchInput
+      value={searchExpr}
+      onChange={(e) => {
+        doSearch(e.target.value)
+      }}
+    />
+  )
 }
+
+export default DebouncedSearchInput

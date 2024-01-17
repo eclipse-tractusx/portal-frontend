@@ -18,14 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createSlice } from '@reduxjs/toolkit'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
 import { initServicetNotifications } from 'types/MainTypes'
 import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
-import { initialState, name } from './types'
-
-export const notificationSlice = createSlice({
+import {
+  type NotificationFetchType,
+  type NOTIFICATION_TOPIC,
+  type NotificationSortingType,
+  initialState,
   name,
+} from './types'
+import I18nService from 'services/I18nService'
+
+export const slice = createSlice({
+  name: `${name}/control`,
   initialState,
   reducers: {
     setNotification: (state, { payload }) => ({
@@ -36,9 +43,49 @@ export const notificationSlice = createSlice({
       ...state,
       notification: initServicetNotifications,
     }),
-    resetInitialNotificationState: (state, { payload }) => ({
+    setFetch: (state, { payload }) => ({
       ...state,
-      initialNotificationState: payload.initialNotificationState,
+      fetch: payload.initialNotificationState,
+    }),
+    setPage: (state, action: PayloadAction<number>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: action.payload,
+      },
+    }),
+    setOrder: (state, action: PayloadAction<NotificationSortingType>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: 0,
+        args: {
+          ...state.fetch.args,
+          sorting: action.payload,
+        },
+      },
+    }),
+    setSearch: (state, action: PayloadAction<string>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: 0,
+        args: {
+          ...state.fetch.args,
+          searchTypeIds: I18nService.searchNotifications(action.payload),
+        },
+      },
+    }),
+    setTopic: (state, action: PayloadAction<NOTIFICATION_TOPIC>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: 0,
+        args: {
+          ...state.fetch.args,
+          notificationTopic: action.payload,
+        },
+      },
     }),
   },
 })
@@ -47,7 +94,18 @@ export const notificationSelector = (
   state: RootState
 ): PageNotificationsProps => state.notification.notification
 
-export const initialNotificationState = (state: RootState) =>
-  state.notification.initialNotificationState
+export const notificationFetchSelector = (
+  state: RootState
+): NotificationFetchType => state.notification.fetch
 
-export default notificationSlice
+export const {
+  setNotification,
+  resetNotification,
+  setFetch,
+  setTopic,
+  setSearch,
+  setOrder,
+  setPage,
+} = slice.actions
+
+export default slice

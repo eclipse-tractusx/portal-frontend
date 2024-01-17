@@ -1,4 +1,5 @@
 /********************************************************************************
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -17,12 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.helpText {
-  display: flex;
-  color: #0d55af !important;
-  margin-top: 30px !important;
-  text-decoration: none;
-  svg {
-    font-size: 20px;
-  }
+import { type RefObject, useEffect, useMemo, useState } from 'react'
+
+export default function useOnScreen(ref: RefObject<HTMLElement>) {
+  const [isIntersecting, setIsIntersecting] = useState<boolean>(false)
+
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) => {
+        setIsIntersecting(entry.isIntersecting)
+      }),
+    [ref]
+  )
+
+  useEffect(() => {
+    if (!ref.current) return
+    observer.observe(ref.current)
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  return isIntersecting
 }

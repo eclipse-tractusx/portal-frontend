@@ -18,29 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
-import type { TypographyProps } from '@mui/material/Typography'
-import { useTranslation } from 'react-i18next'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
 
-interface ComponentProps {
-  title: string
-  params?: Record<string, string>
+export enum ApplicationStatus {
+  CREATED = 'CREATED',
+  ADD_COMPANY_DATA = 'ADD_COMPANY_DATA',
+  INVITE_USER = 'INVITE_USER',
+  SELECT_COMPANY_ROLE = 'SELECT_COMPANY_ROLE',
+  UPLOAD_DOCUMENTS = 'UPLOAD_DOCUMENTS',
+  VERIFY = 'VERIFY',
 }
 
-export default function SubHeaderTitle({
-  title,
-  params,
-  variant = 'body1',
-}: ComponentProps & TypographyProps) {
-  const { t } = useTranslation()
-
-  return (
-    <Typography
-      sx={{ fontFamily: 'LibreFranklin-Light' }}
-      variant={variant}
-      className="section-title"
-    >
-      {`${t(title, params ?? {})}`}
-    </Typography>
-  )
+export type ApplicationRank = {
+  CREATED: 1
+  ADD_COMPANY_DATA: 1
+  INVITE_USER: 2
+  SELECT_COMPANY_ROLE: 3
+  UPLOAD_DOCUMENTS: 4
+  VERIFY: 5
 }
+
+export type ApplicationResponse = {
+  applicationId: string
+  applicationStatus: ApplicationStatus
+}
+
+export const apiSlice = createApi({
+  reducerPath: 'rtk/registration',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    fetchApplications: builder.query<ApplicationResponse[], void>({
+      query: () => '/api/registration/applications',
+    }),
+  }),
+})
+
+export const { useFetchApplicationsQuery } = apiSlice
