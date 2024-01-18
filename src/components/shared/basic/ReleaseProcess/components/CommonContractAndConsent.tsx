@@ -54,7 +54,10 @@ import type { AppStatusDataState } from 'features/appManagement/types'
 import { Grid } from '@mui/material'
 import { ErrorMessage } from '@hookform/error-message'
 import type { ServiceStatusDataState } from 'features/serviceManagement/types'
-import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import {
+  ReleaseProcessTypes,
+  useDeleteDocumentMutation,
+} from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
@@ -139,11 +142,15 @@ export default function CommonContractAndConsent({
   const [defaultValue, setDefaultValue] = useState<ConsentType>({
     agreements: [],
   })
-  const [deleteSuccess, setDeleteSuccess] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
-
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
+
+  const [deleteServiceDocumentSuccess, setDeleteServiceDocumentSuccess] =
+    useState(false)
+  const [deleteServiceReleaseDocument, deleteServiceReleaseDocumentResponse] =
+    useDeleteDocumentMutation()
 
   useEffect(() => {
     if (deleteResponse.isSuccess) setDeleteSuccess(true)
@@ -155,9 +162,23 @@ export default function CommonContractAndConsent({
     }
   }, [deleteResponse])
 
+  useEffect(() => {
+    if (deleteServiceReleaseDocumentResponse.isSuccess)
+      setDeleteServiceDocumentSuccess(true)
+    if (deleteServiceReleaseDocumentResponse.isError) {
+      resetField('uploadImageConformity', {
+        defaultValue:
+          fetchStatusData?.documents?.CONFORMITY_APPROVAL_SERVICES ?? null,
+      })
+    }
+  }, [deleteServiceReleaseDocumentResponse])
+
   const deleteDocument = async (documentId: string) => {
     documentId &&
-      (await deleteAppReleaseDocument(documentId)
+      (await (type === ReleaseProcessTypes.APP_RELEASE
+        ? deleteAppReleaseDocument(documentId)
+        : deleteServiceReleaseDocument(documentId)
+      )
         .unwrap()
         .then(() => {
           success(
@@ -181,7 +202,10 @@ export default function CommonContractAndConsent({
     return {
       agreements: defaultValue,
       uploadImageConformity:
-        fetchStatusData?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS || null,
+        type === ReleaseProcessTypes.APP_RELEASE
+          ? fetchStatusData?.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS ||
+            null
+          : fetchStatusData?.documents?.CONFORMITY_APPROVAL_SERVICES || null,
     }
   }, [fetchStatusData, defaultValue])
 
@@ -298,7 +322,9 @@ export default function CommonContractAndConsent({
       setFileStatus('uploadImageConformity', UploadStatus.UPLOADING)
 
       uploadDocumentApi(
-        DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS,
+        type === ReleaseProcessTypes.APP_RELEASE
+          ? DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS
+          : DocumentTypeId.CONFORMITY_APPROVAL_SERVICES,
         uploadImageConformityValue
       )
         .then(() => {
@@ -519,7 +545,7 @@ export default function CommonContractAndConsent({
         description={t(
           'content.apprelease.contractAndConsent.documentDeleteSuccess'
         )}
-        open={deleteSuccess}
+        open={deleteSuccess || deleteServiceDocumentSuccess}
         severity={'success'}
         showIcon
       />

@@ -1,42 +1,74 @@
 # Changelog
 
-## unreleased
+## 1.8.0-RC1
 
-- Search
-  - Find notifications related to search term
-- Mobile version. Hamburger menu
-  - Show hamburger based on the browser resolution/width
+### Change
+
+- Notifications
+  - search enabled
+  - enable automatic page loading and sorting for notifications
+- App Subscription Management
+  - enabled company search under company name pattern
+- Service Subscription Management
+  - enabled company search under company name pattern
 - Invite Business Partner
-  - Add the new invited company gets right away in to the table
-- Admin Credential
-  - Document Hover Effect
-- Tech User Details
-  - Fix crash issue
-- Version upgrade issues
-  - Fixed portal shared components version upgrade issues
-- Pattern
-  - Company name search pattern updated
-- User management
-  - Updated app access management flow
-- Overlays
-  - Change Overlay Button from "Cancel" to "Close"
-- ESLINT
-  - Enable require-await rule
-  - Enable return-await rule
-  - Enable prefer-reduce-type-parameter rule
-  - Enable prefer-readonly rule
-  - Enable no-inferrable-types rule
-  - Enable dot-notation rule
-  - Enable triple-slash-reference rule
+  - added company name pattern to the invite form
+- Application Request Management
+  - update company name pattern in application requests section search
+- Multi Device Support
+  - Navigation element - multi device size support implemented by using burger menu depending on content and browser width
+  - Sub Navigation updated to support multi device sizes with direct impact to (Company Roles, Use Case, Data Space pages)
+- User Management
+  - improved user deletion success info messages by adding details of the deletion activation
+  - reworked user role assignment flow to improve the user accessibility
+- Others
+  - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
+- Introduction Page "Conformity Body" new content defined
+
+### Feature
+
+- Registration started but not completed: in case of login into portal the user gets redirected accordingly
+- Service Release Process
+  - enabled service conformity check as part of the service release flow and subsequent service summary pages
+
+### Technical Support
+
+- upgraded shared component versions
+- implemented code quality & style improvements based on ESLINT rules
+  - enable require-await rule
+  - enable return-await rule
+  - enable prefer-reduce-type-parameter rule
+  - enable prefer-read-only rule
+  - enable no-inferable-types rule
+  - enable dot-notation rule
+  - enable triple-slash-reference rule
+- upgraded dependencies for vulnerabilities in axios, follow-redirects and @adobe/css-tools
+- added build check at pull request
+- updated file header template
+- added additional image tags of type semver to release workflows
+
+### Bugfix
+
+- Release Process (Apps & Services)
+  - information message "no {object} available" getting displayed while content is available
+- App Release Process
+  - fixed automatic up scrolling in form pages
+- Service Release Process
+  - fixed automatic up scrolling in form pages
+- User Management
+  - create user account(s) - added api error handling component (snackbar) for the FE flow when calling GET /company/identityproviders
+- Use Case FrameAgreement Credential request
+  - Enhance the element handling, if no document template url is provided by the backend, then link will be disabled
+- Business Partner Invite
+  - fixed auto page reload/refresh with successful BP invite
+- Credential Request Overview
+  - fixed document icon over function
 - App overview
   - api failing component appears with "no data available" and with error bar
-- Company Roles
-  - Fix typo error to fix conformity body issue
-- Fixed error message display when data is available issue
-- App Release Process
-  - fixed automatic upscrolling in form pages
-- Service Release Process
-  - fixed automatic upscrolling in form pages
+
+### Known Knowns
+
+- /registration url provided via the registration email is not directing the user to the registration form as expected; instead, the new registration status is displayed where the user can jump via hyperlink to the registration form
 
 ## 1.7.0
 

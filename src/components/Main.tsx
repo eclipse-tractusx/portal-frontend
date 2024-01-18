@@ -18,43 +18,92 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Outlet, useSearchParams } from 'react-router-dom'
+import { CircleProgress } from '@catena-x/portal-shared-components'
 import { Header } from './shared/frame/Header'
 import { Footer } from './shared/frame/Footer'
 import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
-import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
-import { useEffect } from 'react'
 import type { OVERLAYS } from 'types/Constants'
-import './styles/main.scss'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
 import { MenuInfo } from './pages/Home/components/MenuInfo'
+import {
+  ApplicationStatus,
+  useFetchApplicationsQuery,
+} from 'features/registration/registrationApiSlice'
+import './styles/main.scss'
+import RegistrationStatus from './pages/RegistrationStatus'
+import Logout from './pages/Logout'
 
 export default function Main() {
   document.title = useTranslation().t('title')
   const [searchParams] = useSearchParams()
   const dispatch = useDispatch()
 
+  const { data, isLoading } = useFetchApplicationsQuery()
+  const companyData = data?.[0]
+
   useEffect(() => {
     const overlay = searchParams.get('overlay')?.split(':')
     overlay && dispatch(show(overlay[0] as OVERLAYS, overlay[1]))
   }, [dispatch, searchParams])
 
+  if (
+    companyData &&
+    Object.values(ApplicationStatus).includes(companyData.applicationStatus)
+  ) {
+    return (
+      <>
+        <Header main={[]} user={AccessService.userMenuReg()} />
+        <MainSearchOverlay />
+        {window.location.pathname === '/logout' ? (
+          <Logout />
+        ) : (
+          <RegistrationStatus />
+        )}
+        <Footer pages={AccessService.footerMenu()} />
+        <MenuInfo main={[]} />
+      </>
+    )
+  }
+
   return (
     <>
-      <Header
-        main={AccessService.mainMenuTree()}
-        user={AccessService.userMenu()}
-      />
-      <MainSearchOverlay />
-      <Outlet />
-      <Footer pages={AccessService.footerMenu()} />
-      <MainOverlay />
-      <MainNotify />
-      <MenuInfo main={AccessService.mainMenuTree()} />
+      {isLoading ? (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '100vh',
+          }}
+        >
+          <CircleProgress
+            colorVariant="primary"
+            size={80}
+            thickness={8}
+            variant="indeterminate"
+          />
+        </div>
+      ) : (
+        <>
+          <Header
+            main={AccessService.mainMenuTree()}
+            user={AccessService.userMenu()}
+          />
+          <MainSearchOverlay />
+          <Outlet />
+          <Footer pages={AccessService.footerMenu()} />
+          <MainOverlay />
+          <MainNotify />
+          <MenuInfo main={AccessService.mainMenuTree()} />
+        </>
+      )}
     </>
   )
 }

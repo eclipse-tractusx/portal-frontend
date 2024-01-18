@@ -65,6 +65,7 @@ import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSl
 import { apiSlice as certificationApiSlice } from './certification/certificationApiSlice'
 import { apiSlice as userManagementApiSlice } from './appManagement/userManagementApiSlice'
 import { apiSlice as companyWalletApiSlice } from './compayWallet/companyWalletApiSlice'
+import { apiSlice as registrationApiSlice } from './registration/registrationApiSlice'
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
@@ -119,6 +120,7 @@ export const reducers = {
   [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
   [companyWalletApiSlice.reducerPath]: companyWalletApiSlice.reducer,
+  [registrationApiSlice.reducerPath]: registrationApiSlice.reducer,
 }
 
 export const store = configureStore({
@@ -150,7 +152,8 @@ export const store = configureStore({
       .concat(certificationApiSlice.middleware)
       .concat(userManagementApiSlice.middleware)
       .concat(usecaseApiSlice.middleware)
-      .concat(companyWalletApiSlice.middleware),
+      .concat(companyWalletApiSlice.middleware)
+      .concat(registrationApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

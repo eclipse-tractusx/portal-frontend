@@ -46,7 +46,7 @@ const renderValue = (value: DataValue) => (
       wordBreak: 'break-all',
     }}
   >
-    {isValidElement(value) ? value : value.toString()}
+    {isValidElement(value) ? value : JSON.stringify(value)}
   </Typography>
 )
 
@@ -65,7 +65,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           },
         }}
         onClick={async () => {
-          const value = item.value?.toString() ?? ''
+          const value = JSON.stringify(item.value) ?? ''
           await navigator.clipboard.writeText(value)
           setCopied(value)
           setTimeout(() => {
@@ -73,7 +73,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           }, 1000)
         }}
       >
-        {renderValue(item.value?.toString() ?? '')}
+        {renderValue(JSON.stringify(item.value) ?? '')}
         <ContentCopyIcon
           sx={{
             marginLeft: '10px',
@@ -138,7 +138,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           ))
         ) : (
           <Box
-            key={items.value.toString()}
+            key={JSON.stringify(items.value)}
             sx={{
               padding: '18px 24px',
               borderBottom: '1px solid #EDF0F4',

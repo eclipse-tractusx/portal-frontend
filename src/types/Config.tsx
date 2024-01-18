@@ -779,6 +779,8 @@ export const userMenuFull = [
   PAGES.LOGOUT,
 ]
 
+export const userMenuRegistration = [PAGES.LOGOUT]
+
 /**
  * footerMenuFull
  *
