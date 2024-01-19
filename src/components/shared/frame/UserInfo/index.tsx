@@ -67,8 +67,7 @@ export const UserInfo = ({
 
   const openCloseMenu = () => {
     setMenuOpen((prevVal) => !prevVal)
-    if(menuOpen)
-    dispatch(setAppear({ MENU: !visible }))
+    if (menuOpen) dispatch(setAppear({ MENU: !visible }))
   }
   const onClickAway = (e: MouseEvent | TouchEvent) => {
     if (!avatar.current?.contains(e.target as HTMLDivElement)) {
