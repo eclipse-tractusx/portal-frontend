@@ -36,9 +36,10 @@ import './UserInfo.scss'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Box } from '@mui/material'
+import { appearMenuSelector, setAppear } from 'features/control/appear'
 
 export const UserInfo = ({
   pages,
@@ -56,6 +57,7 @@ export const UserInfo = ({
   const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
   })
+  const visible = useSelector(appearMenuSelector)
   const [notificationInfo, setNotificationInfo] =
     useState<NotificationBadgeType>()
   const menu = pages.map((link) => ({
@@ -65,6 +67,8 @@ export const UserInfo = ({
 
   const openCloseMenu = () => {
     setMenuOpen((prevVal) => !prevVal)
+    if(menuOpen)
+    dispatch(setAppear({ MENU: !visible }))
   }
   const onClickAway = (e: MouseEvent | TouchEvent) => {
     if (!avatar.current?.contains(e.target as HTMLDivElement)) {
@@ -92,75 +96,105 @@ export const UserInfo = ({
   return (
     <div className="UserInfo">
       {isMobile ? (
-        <Box
-          ref={avatar}
-          onClick={openCloseMenu}
-          onKeyDown={() => {
-            // do nothing
-          }}
-        >
-          <div className="titleBox">
-            <div>
-              <AccountCircleIcon
-                sx={{
-                  color: '#0f71cb',
-                  width: '30px',
-                  height: '30px',
-                }}
-              />
-              <Typography
-                sx={{
-                  paddingLeft: '10px',
-                }}
-                variant="body2"
-              >
-                {title}
-              </Typography>
-            </div>
-            <div className="badgeBox">
-              <Typography
-                sx={{
-                  paddingRight: '12px',
-                }}
-                variant="body2"
-              >
-                {notificationInfo?.notificationCount}
-              </Typography>
-            </div>
-          </div>
-        </Box>
-      ) : (
-        <div ref={avatar}>
-          <UserAvatar
+        <>
+          <Box
+            ref={avatar}
             onClick={openCloseMenu}
-            notificationCount={notificationInfo?.notificationCount}
-            isNotificationAlert={notificationInfo?.isNotificationAlert}
-          />
-        </div>
+            onKeyDown={() => {
+              // do nothing
+            }}
+          >
+            <div className="titleBox">
+              <div>
+                <AccountCircleIcon
+                  sx={{
+                    color: '#0f71cb',
+                    width: '30px',
+                    height: '30px',
+                  }}
+                />
+                <Typography
+                  sx={{
+                    paddingLeft: '10px',
+                  }}
+                  variant="body2"
+                >
+                  {title}
+                </Typography>
+              </div>
+              <div className="badgeBox">
+                <Typography
+                  sx={{
+                    paddingRight: '12px',
+                  }}
+                  variant="body2"
+                >
+                  {notificationInfo?.notificationCount}
+                </Typography>
+              </div>
+            </div>
+          </Box>
+          <UserMenu
+            open={menuOpen}
+            width={280}
+            position={'relative'}
+            shadow={false}
+            userName={UserService.getName()}
+            userRole={UserService.getCompany()}
+            onClickAway={onClickAway}
+          >
+            <UserNav
+              component={Link}
+              onClick={openCloseMenu}
+              divider
+              items={menu}
+              notificationInfo={notificationInfo}
+            />
+            <LanguageSwitch
+              current={i18next.language}
+              languages={I18nService.supportedLanguages.map((key) => ({ key }))}
+              onChange={(key: string) => {
+                dispatch(setLanguage({ language: key }))
+                changeLanguage(key)
+                dispatch(setAppear({ MENU: !visible }))
+              }}
+            />
+          </UserMenu>
+        </>
+      ) : (
+        <>
+          <div ref={avatar}>
+            <UserAvatar
+              onClick={openCloseMenu}
+              notificationCount={notificationInfo?.notificationCount}
+              isNotificationAlert={notificationInfo?.isNotificationAlert}
+            />
+          </div>
+          <UserMenu
+            open={menuOpen}
+            top={60}
+            userName={UserService.getName()}
+            userRole={UserService.getCompany()}
+            onClickAway={onClickAway}
+          >
+            <UserNav
+              component={Link}
+              onClick={openCloseMenu}
+              divider
+              items={menu}
+              notificationInfo={notificationInfo}
+            />
+            <LanguageSwitch
+              current={i18next.language}
+              languages={I18nService.supportedLanguages.map((key) => ({ key }))}
+              onChange={(key: string) => {
+                dispatch(setLanguage({ language: key }))
+                changeLanguage(key)
+              }}
+            />
+          </UserMenu>
+        </>
       )}
-      <UserMenu
-        open={menuOpen}
-        top={60}
-        userName={UserService.getName()}
-        userRole={UserService.getCompany()}
-        onClickAway={onClickAway}
-      >
-        <UserNav
-          component={Link}
-          onClick={openCloseMenu}
-          divider
-          items={menu}
-          notificationInfo={notificationInfo}
-        />
-        <LanguageSwitch
-          current={i18next.language}
-          languages={I18nService.supportedLanguages.map((key) => ({ key }))}
-          onChange={(key: string) => {
-            dispatch(setLanguage({ language: key }))
-            changeLanguage(key)
-          }}
-        />
-      </UserMenu>
     </div>
   )
 }
