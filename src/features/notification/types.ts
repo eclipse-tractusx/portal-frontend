@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { initServicetNotifications, initialPaginMeta } from 'types/MainTypes'
+import { initServicetNotifications } from 'types/MainTypes'
 import type {
   PageNotificationsProps,
   PaginMeta,
