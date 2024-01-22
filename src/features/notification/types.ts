@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { initServicetNotifications } from 'types/MainTypes'
+import { initServicetNotifications, initialPaginMeta } from 'types/MainTypes'
 import type {
   PageNotificationsProps,
   PaginMeta,
@@ -95,6 +95,7 @@ export const initialNotificationFetchType: NotificationFetchType = {
 }
 
 export interface NotificationState {
+  meta?: PaginMeta
   notification: PageNotificationsProps
   fetch: NotificationFetchType
 }
