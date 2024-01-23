@@ -20,14 +20,15 @@
 
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { Button, Stepper, Typography } from '@catena-x/portal-shared-components'
-import './Registration.scss'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
+import './RegistrationStatus.scss'
 
-export default function Registration() {
+export default function RegistrationStatus() {
   const { t } = useTranslation()
 
   const [activeStep, setActiveStep] = useState(1)
@@ -123,7 +124,9 @@ export default function Registration() {
         <div className="helpTextReg">
           <Typography variant="body3">
             {t('content.registration.helpText')}
-            <a href="/"> {t('content.registration.email')}</a>
+            <Link to={''} className="emailText">
+              {t('content.registration.email')}
+            </Link>
           </Typography>
         </div>
       </div>
