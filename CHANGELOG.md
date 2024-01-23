@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.8.0-RC2
+
+### Change
+
+- Notifications
+  - extended search function to return hits on in content matches
+
+### BugFix
+
+- fixed styling of mobile version navigation element (profile section)
+- Notification Search
+  - fixed infinite loading icon at the end of the search result list
+- fixed IdP workflow/UI flow inside the overlay "Create IdP" depending on selected IdP type (managed vs own)
+
 ## 1.8.0-RC1
 
 ### Change
@@ -24,6 +38,8 @@
 - Others
   - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
 - Introduction Page "Conformity Body" new content defined
+- Mobile version. Hamburger menu
+  - Show hamburger based on the browser resolution/width
 
 ### Feature
 

@@ -18,7 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type RootState } from 'features/store'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export enum IDPCategory {
@@ -28,7 +30,6 @@ export enum IDPCategory {
 }
 
 export enum IDPProviderType {
-  NONE = 'NONE',
   OWN = 'OWN',
   MANAGED = 'MANAGED',
 }
@@ -146,12 +147,55 @@ export interface IdentityProvider {
   saml?: OIDCType
 }
 
+export type AddIDPStep1Type = {
+  name: string
+  authType: IDPAuthType
+  providerType: IDPProviderType
+}
+
+const initialState: AddIDPStep1Type = {
+  name: '',
+  authType: IDPAuthType.OIDC,
+  providerType: IDPProviderType.OWN,
+}
+
 enum TAGS {
   IDP = 'idp',
 }
 
+export const slice = createSlice({
+  name: 'admin/idp/control',
+  initialState,
+  reducers: {
+    setName: (state, action: PayloadAction<string>) => ({
+      ...state,
+      name: action.payload,
+    }),
+    setAuthType: (state, action: PayloadAction<IDPAuthType>) => ({
+      ...state,
+      authType: action.payload,
+    }),
+    setProviderType: (state, action: PayloadAction<IDPProviderType>) => ({
+      ...state,
+      providerType: action.payload,
+    }),
+  },
+})
+
+export const idpAddSelector = (state: RootState): AddIDPStep1Type =>
+  state.admin.idp
+
+export const idpAddNameSelector = (state: RootState): string =>
+  state.admin.idp.name
+
+export const idpAddAuthTypeSelector = (state: RootState): IDPAuthType =>
+  state.admin.idp.authType
+
+export const idpAddProviderTypeSelector = (state: RootState): IDPProviderType =>
+  state.admin.idp.providerType
+
 export const apiSlice = createApi({
-  reducerPath: 'rtk/admin/idp',
+  reducerPath: 'admin/idp/api',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   tagTypes: [TAGS.IDP],
   endpoints: (builder) => ({
@@ -217,6 +261,8 @@ export const apiSlice = createApi({
   }),
 })
 
+export const { setName, setAuthType, setProviderType } = slice.actions
+
 export const {
   useFetchIDPListQuery,
   useFetchIDPDetailQuery,
@@ -228,3 +274,5 @@ export const {
   useEnableIDPMutation,
   useUpdateUserIDPMutation,
 } = apiSlice
+
+export default slice
