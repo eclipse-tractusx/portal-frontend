@@ -34,7 +34,7 @@ export default function WalletCard({
     <div
       style={{
         backgroundColor:
-          wallet.credentialSubject[0].status === 'Active'
+          wallet?.credentialSubject[0].status === 'Active'
             ? '#004f4b'
             : '#EAEAEA',
       }}
@@ -44,7 +44,7 @@ export default function WalletCard({
         <div className="icon-text">
           <div className="icon">
             <img src={smallLogo} alt="jhgasjg12i" />
-            {wallet.credentialSubject[0].status !== 'Active' && (
+            {wallet?.credentialSubject[0].status !== 'Active' && (
               <div>
                 <Typography variant="body2">
                   {t('content.companyWallet.inactive')}
@@ -53,10 +53,10 @@ export default function WalletCard({
             )}
           </div>
           <Typography variant="body2">
-            {wallet.credentialSubject[0].type}
+            {wallet?.credentialSubject[0].type}
           </Typography>
           <Typography variant="caption1">
-            {wallet.issuer?.split('.net:')[1]}
+            {wallet?.issuer?.split('.net:')[1]}
           </Typography>
         </div>
         <div>
@@ -67,7 +67,7 @@ export default function WalletCard({
             }}
             variant="body2"
           >
-            {dayjs(wallet.expirationDate).format('YYYY-MM-DD')}
+            {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
           </Typography>
         </div>
       </div>

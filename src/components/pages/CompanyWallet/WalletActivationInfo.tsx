@@ -24,11 +24,15 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
+import {
+  CredentialSubjectStatus,
+  type WalletContent,
+} from 'features/compayWallet/companyWalletApiSlice'
 
 export default function WalletActivationInfo({
-  status = 'active',
+  wallet,
 }: {
-  readonly status: string
+  readonly wallet: WalletContent
 }): JSX.Element {
   const { t } = useTranslation()
   const [current, setCurrent] = useState<{
@@ -37,8 +41,11 @@ export default function WalletActivationInfo({
     icon: JSX.Element
   }>()
 
+  const status =
+    wallet?.credentialSubject[0].status === CredentialSubjectStatus.Active
+
   useEffect(() => {
-    if (status === 'active') {
+    if (status) {
       setCurrent({
         info: t('content.companyWallet.activate'),
         message: t('content.companyWallet.activateDescription'),
@@ -73,7 +80,7 @@ export default function WalletActivationInfo({
     <Box
       className="new-container"
       sx={{
-        border: status === 'active' ? '1px solid #00AA55' : '1px solid #FF532F',
+        border: status ? '1px solid #00AA55' : '1px solid #FF532F',
       }}
     >
       {current != null && (
@@ -83,7 +90,7 @@ export default function WalletActivationInfo({
             <Typography
               variant="body1"
               sx={{
-                color: status === 'active' ? '#00AA55' : '#FF532F',
+                color: status ? '#00AA55' : '#FF532F',
                 paddingLeft: '10px',
                 fontWeight: '600',
               }}

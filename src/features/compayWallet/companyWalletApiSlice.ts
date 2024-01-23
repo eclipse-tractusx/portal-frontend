@@ -25,6 +25,10 @@ export interface WalletSectionContent {
   content: WalletContent
 }
 
+export enum CredentialSubjectStatus {
+  Active = 'Active',
+}
+
 export enum CredentialSubjectType {
   SummaryCredential = 'SummaryCredential',
   MembershipCredential = 'MembershipCredential',

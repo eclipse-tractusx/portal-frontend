@@ -68,7 +68,7 @@ export default function CompanyWallet(): JSX.Element {
           </Trans>
         </div>
         <div className="container">
-          <WalletActivationInfo status={'active'} />
+          <WalletActivationInfo wallet={activeWallet[0]} />
         </div>
         <ComapnyWalletSubNavigationHeader />
         <div className="container">
