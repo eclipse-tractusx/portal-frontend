@@ -37,7 +37,7 @@ import appSubscriptionSlice from './appSubscription/slice'
 import adminBoardSlice from './adminBoard/slice'
 import modelsSlice from './semanticModels/slice'
 import updateCompanyRoleSlice from './companyRoles/slice'
-import { apiSlice as idpSlice } from './admin/idpApiSlice'
+import { apiSlice as idpApiSlice } from './admin/idpApiSlice'
 import userAddSlice, { apiSlice as userSlice } from './admin/userApiSlice'
 import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
 import { apiSlice as notificationSlice } from './notification/apiSlice'
@@ -91,7 +91,7 @@ export const reducers = {
   notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
   languageSlice: languageSlice.reducer,
-  [idpSlice.reducerPath]: idpSlice.reducer,
+  [idpApiSlice.reducerPath]: idpApiSlice.reducer,
   [userSlice.reducerPath]: userSlice.reducer,
   [serviceSlice.reducerPath]: serviceSlice.reducer,
   [notificationSlice.reducerPath]: notificationSlice.reducer,
@@ -125,7 +125,7 @@ export const store = configureStore({
   reducer: combineReducers(reducers),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false })
-      .concat(idpSlice.middleware)
+      .concat(idpApiSlice.middleware)
       .concat(userSlice.middleware)
       .concat(serviceSlice.middleware)
       .concat(notificationSlice.middleware)

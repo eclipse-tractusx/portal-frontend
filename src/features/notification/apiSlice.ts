@@ -61,6 +61,10 @@ export const apiSlice = createApi({
           fetchArgs?.args?.searchTypeIds
             ?.map((typeId: NotificationType) => `&searchTypeIds=${typeId}`)
             .join('') ?? ''
+        }${
+          fetchArgs?.args?.searchQuery
+            ? `&searchSemantic=OR&searchQuery=${fetchArgs?.args?.searchQuery}`
+            : ''
         }&sorting=${
           fetchArgs?.args?.sorting ?? NotificationSortingType.DateDesc
         }`,

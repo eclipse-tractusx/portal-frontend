@@ -183,7 +183,7 @@
       "name": "Alias",
       "hint": "The IdP alias is a generated value and cannot be changed"
     },
-    "type": {
+    "authType": {
       "name": "Authentication type",
       "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
     },

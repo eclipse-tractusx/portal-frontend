@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Notifications
+  - search also returns hits in content
+
 ## 1.8.0-RC1
 
 ### Change
@@ -24,6 +29,8 @@
 - Others
   - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
 - Introduction Page "Conformity Body" new content defined
+- Mobile version. Hamburger menu
+  - Show hamburger based on the browser resolution/width
 
 ### Feature
 
