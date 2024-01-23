@@ -143,10 +143,12 @@ export const UserInfo = ({
       )}
       <UserMenu
         open={menuOpen}
-        top={isMobile ? 0 : 60}
-        width={isMobile ? 280 : 256}
-        position={isMobile ? 'relative' : 'absolute'}
-        shadow={isMobile}
+        sx={{
+          top: isMobile ? '0px' : '60px',
+          width: isMobile ? '280px' : '256px',
+          position: isMobile ? 'relative' : 'absolute',
+        }}
+        shadow={!isMobile}
         userName={UserService.getName()}
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
