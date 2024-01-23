@@ -20,10 +20,10 @@
 
 import { createAction } from '@reduxjs/toolkit'
 import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
-import { type InitialNotificationType, name } from './types'
+import { type NotificationFetchType, name } from './types'
 
 const setNotification = createAction(
-  `${name}/setNotification`,
+  `${name}/control/setNotification`,
   function update(notification: PageNotificationsProps) {
     return {
       payload: {
@@ -36,8 +36,8 @@ const setNotification = createAction(
 const resetNotification = createAction(`${name}/resetNotification`)
 
 const resetInitialNotificationState = createAction(
-  `${name}/resetInitialNotificationState`,
-  function update(initialNotificationState: InitialNotificationType) {
+  `${name}/control/resetInitialNotificationState`,
+  function update(initialNotificationState: NotificationFetchType) {
     return {
       payload: {
         initialNotificationState,
