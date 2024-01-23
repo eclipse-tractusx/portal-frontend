@@ -58,7 +58,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
       </div>
       <UserMenu
         open={menuOpen}
-        top={60}
+        sx={{ top: '60px' }}
         userName={UserService.getName()}
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
