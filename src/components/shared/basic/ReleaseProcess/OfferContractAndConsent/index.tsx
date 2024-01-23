@@ -77,10 +77,15 @@ export default function OfferContractAndConsent() {
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchServiceStatus ?? undefined}
         getDocumentById={getDocumentById}
-        documentRequired={false}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={
           '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+        }
+        imageFieldLabel={
+          <>
+            {t('step3.uploadImageConformity')}
+            <span style={{ color: 'red' }}> *</span>
+          </>
         }
       />
     </div>

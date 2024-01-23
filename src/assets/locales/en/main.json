@@ -103,6 +103,22 @@
     "errorBar": "Something went wrong. Try again"
   },
   "content": {
+    "registration": {
+      "title": "Welcome to Catena-X",
+      "mainDescription": "Thank you for registering with us. You have started your registration process but a few things are still missing.",
+      "completeBtn": "Complete your registration",
+      "description": "At the current state of the registration you cannot access the portal. After completing all phases of the registration you will get limited access to the portal while your registration is being reviewed.",
+      "steps": {
+        "step1": "Verify your company data",
+        "step2": "Responsibilities & admin account",
+        "step3": "Role of your company",
+        "step4": "Upload IDs and certificates",
+        "step5": "Verify your entries",
+        "tooltipText": "Continue where you left"
+      },
+      "helpText": "If you have any questions regarding your registration please contact our Helpdesk:",
+      "email": "help@catena-x.com"
+    },
     "admin": {
       "registration-requests": {
         "columns": {
@@ -770,7 +786,7 @@
         "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
         "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully deleted",
-        "successDescription": "The user is successfully deleted and all rights are disabled.",
+        "successDescription": "The user got successfully deleted. All rights have been disabled. Please note that the user might still be able to use the application for the next 10 minutes. Latest in 10 minutes the user is automatically logged out and a new login attempt will get declined",
         "errorTitle": "Something went wrong",
         "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
       },

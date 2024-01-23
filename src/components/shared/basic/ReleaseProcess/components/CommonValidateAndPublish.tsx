@@ -287,6 +287,32 @@ export default function CommonValidateAndPublish({
     )
   }
 
+  const renderConformityDocuments = () => {
+    return statusData?.documents[
+      type === ReleaseProcessTypes.APP_RELEASE
+        ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+        : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
+    ].map((item: DocumentData) => (
+      <li key={item.documentId} className="document-list doc-list">
+        <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+        <button
+          className="document-button-link"
+          onClick={() => handleDownloadFn(item.documentId, item.documentName)}
+        >
+          {item.documentName}
+        </button>
+      </li>
+    ))
+  }
+
+  const renderDocuments = () => {
+    return statusData?.documents[
+      type === ReleaseProcessTypes.APP_RELEASE
+        ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
+        : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
+    ]
+  }
+
   return (
     <div className="validate-and-publish">
       {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
@@ -455,25 +481,13 @@ export default function CommonValidateAndPublish({
                 {defaultValues.conformityDocumentsDescription}
               </Typography>
             )}
-            {statusData?.documents &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ] &&
-              statusData.documents[
-                DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
-              ].map((item: DocumentData) => (
-                <li key={item.documentId} className="document-list doc-list">
-                  <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
-                  <button
-                    className="document-button-link"
-                    onClick={() =>
-                      handleDownloadFn(item.documentId, item.documentName)
-                    }
-                  >
-                    {item.documentName}
-                  </button>
-                </li>
-              ))}
+            {statusData?.documents && renderDocuments() ? (
+              renderConformityDocuments()
+            ) : (
+              <Typography variant="caption2" className="not-available">
+                {t('global.errors.noDocumentsAvailable')}
+              </Typography>
+            )}
             <Divider className="verify-validate-form-divider" />
           </>
         )}
