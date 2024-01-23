@@ -27,7 +27,7 @@ type Hash<T> = Record<string, T>
 export default function RuleCard({
   sections,
 }: {
-  sections: Hash<WalletContent[]>
+  readonly sections: Hash<WalletContent[]>
 }): JSX.Element {
   const keys = Object.keys(sections)
   return (

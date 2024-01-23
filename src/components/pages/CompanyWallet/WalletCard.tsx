@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next'
 export default function WalletCard({
   wallet,
 }: {
-  wallet: WalletContent
+  readonly wallet: WalletContent
 }): JSX.Element {
   const { t } = useTranslation()
   return (

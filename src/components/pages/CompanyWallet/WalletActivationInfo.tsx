@@ -28,7 +28,7 @@ import { Box } from '@mui/material'
 export default function WalletActivationInfo({
   status = 'active',
 }: {
-  status: string
+  readonly status: string
 }): JSX.Element {
   const { t } = useTranslation()
   const [current, setCurrent] = useState<{
