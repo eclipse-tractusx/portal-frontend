@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,7 +22,7 @@ import './CompanyWallet.scss'
 import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 
-type Hash<T> = Record<string, T>;
+type Hash<T> = Record<string, T>
 
 export default function RuleCard({
   sections,

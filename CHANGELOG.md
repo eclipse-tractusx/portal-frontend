@@ -24,6 +24,8 @@
 - Others
   - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
 - Introduction Page "Conformity Body" new content defined
+- Company Wallet
+  - Show Active wallet info along with other wallet types
 
 ### Feature
 
