@@ -20,6 +20,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiIdentityWalletQuery } from 'utils/rtkUtil'
 
+export interface WalletSectionContent {
+  name: string
+  content: WalletContent
+}
+
 export enum CredentialSubjectType {
   SummaryCredential = 'SummaryCredential',
   MembershipCredential = 'MembershipCredential',
@@ -32,6 +37,9 @@ export interface CredentialSubject {
   type: CredentialSubjectType
   contractTemplate: string
   items?: CredentialSubjectType[]
+  status?: string
+  memberOf?: string
+  startTime?: string
 }
 export interface WalletContent {
   issuanceDate: string

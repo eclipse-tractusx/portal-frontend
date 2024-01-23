@@ -20,17 +20,44 @@
 import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import smallLogo from '../../../assets/logo/cx-logo-short.svg'
+import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
+import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 
-export default function WalletCard(): JSX.Element {
+export default function WalletCard({
+  wallet,
+}: {
+  wallet: WalletContent
+}): JSX.Element {
+  const { t } = useTranslation()
   return (
-    <div className="main-card-container">
+    <div
+      style={{
+        backgroundColor:
+          wallet.credentialSubject[0].status === 'Active'
+            ? '#004f4b'
+            : '#EAEAEA',
+      }}
+      className="main-card-container"
+    >
       <div className="card-container">
         <div className="icon-text">
-          <div>
+          <div className="icon">
             <img src={smallLogo} alt="jhgasjg12i" />
+            {wallet.credentialSubject[0].status !== 'Active' && (
+              <div>
+                <Typography variant="body2">
+                  {t('content.companyWallet.inactive')}
+                </Typography>
+              </div>
+            )}
           </div>
-          <Typography variant="body2">QE1231</Typography>
-          <Typography variant="caption1">MKJHASDKHA</Typography>
+          <Typography variant="body2">
+            {wallet.credentialSubject[0].type}
+          </Typography>
+          <Typography variant="caption1">
+            {wallet.issuer?.split('.net:')[1]}
+          </Typography>
         </div>
         <div>
           <Typography
@@ -40,7 +67,7 @@ export default function WalletCard(): JSX.Element {
             }}
             variant="body2"
           >
-            dd.mm.yyyy
+            {dayjs(wallet.expirationDate).format('YYYY-MM-DD')}
           </Typography>
         </div>
       </div>

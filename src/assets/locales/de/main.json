@@ -1686,8 +1686,9 @@
       "inactiveDescription": "You have not activated your Catena-X wallet.",
       "subnavigation": {
         "title": "Wallet operations :",
-        "button1": "Connect a 3rd party wallet",
-        "button2": "Activate your Catena-X wallet"
+        "button1": "Request new Use Case Credential",
+        "button2": "Request new Company Credential",
+        "button3": "Get more details of VCs (coming soon)"
       }
     }
   },

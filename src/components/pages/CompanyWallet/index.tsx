@@ -20,17 +20,39 @@
 import { useTranslation, Trans } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
-import { useFetchCompanyWalletQuery } from 'features/compayWallet/companyWalletApiSlice'
+import {
+  type WalletContent,
+  useFetchCompanyWalletQuery,
+  CredentialSubjectType,
+} from 'features/compayWallet/companyWalletApiSlice'
 import WalletActivationInfo from './WalletActivationInfo'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
+import { useEffect, useState } from 'react'
+import { groupBy } from 'lodash'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
   const { data } = useFetchCompanyWalletQuery()
+  const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
 
-  console.log(data)
+  useEffect(() => {
+    const actives: WalletContent[] = []
+    data?.content.forEach((cont) => {
+      cont.credentialSubject.forEach((sub) => {
+        if (sub.type === CredentialSubjectType.MembershipCredential) {
+          actives.push(cont)
+        }
+      })
+    })
+    setActiveWallet(actives)
+  }, [data])
+
+  const groupedItems = groupBy(
+    data?.content,
+    (item: WalletContent) => item.credentialSubject[0].type
+  )
 
   return (
     <main className="companywallet-main">
@@ -50,8 +72,8 @@ export default function CompanyWallet(): JSX.Element {
         </div>
         <ComapnyWalletSubNavigationHeader />
         <div className="container">
-          <WalletCard />
-          <RuleCard />
+          <WalletCard wallet={activeWallet[0]} />
+          <RuleCard sections={groupedItems} />
         </div>
       </div>
     </main>

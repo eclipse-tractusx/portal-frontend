@@ -88,7 +88,6 @@
     margin: 34px auto 34px;
 
     .card-container {
-      background-color: #004f4b;
       height: 200px;
       width: 350px;
       border-radius: 32px;
@@ -112,16 +111,25 @@
           color: #ffffff;
         }
 
-        div {
-          width: 50px;
-          background-color: #ffffff;
-          border-radius: 100%;
+        .icon {
           height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          div {
+            background-color: #fee7e2;
+            height: 50px;
+            border-radius: 8px;
+            padding: 5px 10px;
 
+            p {
+              color: #ff532f;
+              padding-top: 8px !important;
+            }
+          }
           img {
             width: 30px;
             height: 30px;
-            margin: 10px;
           }
         }
       }
@@ -137,17 +145,20 @@
 
     .main-rule-card-container {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
 
       .rule-card-container {
         background-color: #deeeef;
         height: 204px;
-        width: 160px;
+        width: auto;
         border-radius: 30px;
         padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-left: 15px;
+        min-width: 180px;
+        max-width: 200px;
 
         .text {
           color: #111111;
@@ -225,11 +236,10 @@
     margin-top: 20px;
 
     .card-container {
-      background-color: #004f4b;
       height: 200px;
       width: 350px;
       border-radius: 32px;
-      padding: 20px;
+      padding: 20px 0px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -249,16 +259,25 @@
           color: #ffffff;
         }
 
-        div {
-          width: 50px;
-          background-color: #ffffff;
-          border-radius: 100%;
+        .icon {
           height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          div {
+            background-color: #fee7e2;
+            height: 50px;
+            border-radius: 8px;
+            padding: 5px 10px;
 
+            p {
+              color: #ff532f;
+              padding-top: 8px !important;
+            }
+          }
           img {
             width: 30px;
             height: 30px;
-            margin: 10px;
           }
         }
       }
@@ -274,17 +293,20 @@
 
     .main-rule-card-container {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
 
       .rule-card-container {
         background-color: #deeeef;
         height: 204px;
-        width: 160px;
+        width: auto;
         border-radius: 30px;
         padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-left: 15px;
+        min-width: 180px;
+        max-width: 200px;
 
         .text {
           color: #111111;
@@ -294,4 +316,8 @@
       }
     }
   }
+}
+
+.rule-card-container:first-child {
+  margin-left: 0px !important;
 }

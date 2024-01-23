@@ -21,9 +21,26 @@ import { useTranslation } from 'react-i18next'
 import { Typography, Button } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import EastIcon from '@mui/icons-material/East'
+import { useNavigate } from 'react-router'
 
 export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+
+  const links = [
+    {
+      title: t('content.companyWallet.subnavigation.button1'),
+      link: '/usecase-participation',
+    },
+    {
+      title: t('content.companyWallet.subnavigation.button2'),
+      link: '/company-role',
+    },
+    {
+      title: t('content.companyWallet.subnavigation.button3'),
+      link: '',
+    },
+  ]
 
   return (
     <div className="subnavigation">
@@ -37,34 +54,23 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
           {t('content.companyWallet.subnavigation.title')}
         </Typography>
       </div>
-      <Button
-        onClick={() => {
-          // do nothing
-        }}
-        color="secondary"
-        variant="text"
-        size="medium"
-        sx={{
-          fontSize: '16px',
-        }}
-      >
-        <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
-        {t('content.companyWallet.subnavigation.button1')}
-      </Button>
-      <Button
-        onClick={() => {
-          // do nothing
-        }}
-        color="secondary"
-        variant="text"
-        size="medium"
-        sx={{
-          fontSize: '16px',
-        }}
-      >
-        <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
-        {t('content.companyWallet.subnavigation.button2')}
-      </Button>
+      {links.map((nav) => (
+        <Button
+          key={nav.title}
+          onClick={() => {
+            if (nav.link !== '') navigate(nav.link)
+          }}
+          color="secondary"
+          variant="text"
+          size="medium"
+          sx={{
+            fontSize: '16px',
+          }}
+        >
+          <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
+          {nav.title}
+        </Button>
+      ))}
     </div>
   )
 }
