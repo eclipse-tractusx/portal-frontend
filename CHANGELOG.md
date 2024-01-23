@@ -1,9 +1,18 @@
 # Changelog
 
-## unreleased
+## 1.8.0-RC2
+
+### Change
 
 - Notifications
-  - search also returns hits in content
+  - extended search function to return hits on in content matches
+
+### BugFix
+
+- fixed styling of mobile version navigation element (profile section)
+- Notification Search
+  - fixed infinite loading icon at the end of the search result list
+- fixed IdP workflow/UI flow inside the overlay "Create IdP" depending on selected IdP type (managed vs own)
 
 ## 1.8.0-RC1
 
