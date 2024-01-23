@@ -143,6 +143,10 @@
     border-radius: 8px;
     margin: 0px auto 64px;
 
+    h4 {
+      margin-left: 0px;
+    }
+
     .main-rule-card-container {
       display: flex;
       justify-content: space-between;
@@ -226,6 +230,10 @@
       margin-left: 20px;
       margin-bottom: 10px;
     }
+
+    button {
+      text-align: left;
+    }
   }
 
   .main-card-container {
@@ -289,7 +297,12 @@
     text-align: center;
     padding: 10px 20px;
     border-radius: 8px;
-    margin: 0px auto 64px;
+    margin-bottom: 64px;
+    margin-top: 30px;
+
+    h4 {
+      margin-left: 0px;
+    }
 
     .main-rule-card-container {
       display: flex;
