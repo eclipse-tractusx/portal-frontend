@@ -22,8 +22,10 @@ import { combineReducers } from 'redux'
 import { slice as registration } from './registration/slice'
 import { slice as user } from './userDeprecated/slice'
 import { slice as userOwn } from './userOwn/slice'
+import { slice as idp } from './idpApiSlice'
 
 export default combineReducers({
+  idp: idp.reducer,
   user: user.reducer,
   registration: registration.reducer,
   userOwn: userOwn.reducer,
