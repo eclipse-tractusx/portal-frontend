@@ -36,7 +36,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 
 const isWellknownMetadata = (expr: string) =>
   (isURL(expr) || expr.startsWith('http://localhost')) &&

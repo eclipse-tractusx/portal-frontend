@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, CircleProgress } from '@catena-x/portal-shared-components'
+import { Button, CircleProgress } from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'

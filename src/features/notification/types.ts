@@ -19,45 +19,18 @@
  ********************************************************************************/
 
 import { initServicetNotifications } from 'types/MainTypes'
-import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type {
+  PageNotificationsProps,
+  PaginMeta,
+} from '@nidhi.garg/portal-shared-components'
 
-export const name = 'admin/notification'
-
-export const PAGE_SIZE = 10
-export const PAGE = 0
-export const SORT_OPTION = 'DateDesc'
+export const name = 'info/notification'
 
 export enum NOTIFICATION_TOPIC {
   ALL = 'ALL',
-  ACTION = 'ACTION',
-  INFO = 'INFO',
   OFFER = 'OFFER',
-}
-
-export type InitialNotificationType = {
-  page: number
-  size: number
-  args: {
-    notificationTopic: string
-    sorting: string
-  }
-}
-
-export interface ServiceAccountState {
-  notification: PageNotificationsProps
-  initialNotificationState: InitialNotificationType
-}
-
-export const initialState: ServiceAccountState = {
-  notification: initServicetNotifications,
-  initialNotificationState: {
-    page: PAGE,
-    size: PAGE_SIZE,
-    args: {
-      notificationTopic: NOTIFICATION_TOPIC.ALL,
-      sorting: SORT_OPTION,
-    },
-  },
+  INFO = 'INFO',
+  ACTION = 'ACTION',
 }
 
 export enum NotificationType {
@@ -70,36 +43,65 @@ export enum NotificationType {
   WELCOME_APP_MARKETPLACE = 'WELCOME_APP_MARKETPLACE',
   APP_SUBSCRIPTION_REQUEST = 'APP_SUBSCRIPTION_REQUEST',
   APP_SUBSCRIPTION_ACTIVATION = 'APP_SUBSCRIPTION_ACTIVATION',
-  APP_RELEASE_REQUEST = 'APP_RELEASE_REQUEST',
-  APP_RELEASE_APPROVAL = 'APP_RELEASE_APPROVAL',
-  TECHNICAL_USER_CREATION = 'TECHNICAL_USER_CREATION',
   CONNECTOR_REGISTERED = 'CONNECTOR_REGISTERED',
-  Welcome = 'Welcome',
-  WelcomeInvite = 'WelcomeInvite',
-  WelcomeUser = 'WelcomeUser',
-  WelcomeAppMarketplace = 'WelcomeAppMarketplace',
-  NoUseCase = 'NoUseCase',
-  NoConnector = 'NoConnector',
-  ConnectorRegistered = 'ConnectorRegistered',
-  PersonalMessage = 'PersonalMessage',
-  AppRecommendation = 'AppRecommendation',
-  AppRequestSubmitted = 'AppRequestSubmitted',
-  AppRequestReceived = 'AppRequestReceived',
-  AppRequestApproved = 'AppRequestApproved',
-  AppRequestRejected = 'AppRequestRejected',
-  AppSubscriptionSubmitted = 'AppSubscriptionSubmitted',
-  AppSubscriptionReceived = 'AppSubscriptionReceived',
-  AppSubscriptionApproved = 'AppSubscriptionApproved',
-  AppSubscriptionRejected = 'AppSubscriptionRejected',
-  APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
+  APP_RELEASE_REQUEST = 'APP_RELEASE_REQUEST',
+  TECHNICAL_USER_CREATION = 'TECHNICAL_USER_CREATION',
   SERVICE_REQUEST = 'SERVICE_REQUEST',
-  SERVICE_RELEASE_REQUEST = 'SERVICE_RELEASE_REQUEST',
-  ROLE_UPDATE_APP_OFFER = 'ROLE_UPDATE_APP_OFFER',
-  ROLE_UPDATE_CORE_OFFER = 'ROLE_UPDATE_CORE_OFFER',
-  CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
-  CREDENTIAL_APPROVAL = 'CREDENTIAL_APPROVAL',
-  SUBSCRIPTION_URL_UPDATE = 'SUBSCRIPTION_URL_UPDATE',
+  SERVICE_ACTIVATION = 'SERVICE_ACTIVATION',
   APP_ROLE_ADDED = 'APP_ROLE_ADDED',
+  APP_RELEASE_APPROVAL = 'APP_RELEASE_APPROVAL',
+  SERVICE_RELEASE_REQUEST = 'SERVICE_RELEASE_REQUEST',
+  SERVICE_RELEASE_APPROVAL = 'SERVICE_RELEASE_APPROVAL',
+  APP_RELEASE_REJECTION = 'APP_RELEASE_REJECTION',
+  SERVICE_RELEASE_REJECTION = 'SERVICE_RELEASE_REJECTION',
+  ROLE_UPDATE_CORE_OFFER = 'ROLE_UPDATE_CORE_OFFER',
+  ROLE_UPDATE_APP_OFFER = 'ROLE_UPDATE_APP_OFFER',
+  SUBSCRIPTION_URL_UPDATE = 'SUBSCRIPTION_URL_UPDATE',
+  CREDENTIAL_APPROVAL = 'CREDENTIAL_APPROVAL',
+  CREDENTIAL_REJECTED = 'CREDENTIAL_REJECTED',
+}
+
+export enum NotificationSortingType {
+  DateAsc = 'DateAsc',
+  DateDesc = 'DateDesc',
+  ReadStatusAsc = 'ReadStatusAsc',
+  ReadStatusDesc = 'ReadStatusDesc',
+}
+
+export type NotificationFetchType = {
+  page: number
+  size: number
+  args: {
+    notificationTopic: NOTIFICATION_TOPIC
+    searchQuery: string
+    searchTypeIds: Array<NotificationType>
+    sorting: NotificationSortingType
+  }
+}
+
+export const PAGE_SIZE = 10
+export const PAGE = 0
+export const SORT_OPTION = NotificationSortingType.DateDesc
+
+export const initialNotificationFetchType: NotificationFetchType = {
+  page: PAGE,
+  size: PAGE_SIZE,
+  args: {
+    notificationTopic: NOTIFICATION_TOPIC.ALL,
+    searchQuery: '',
+    searchTypeIds: [],
+    sorting: NotificationSortingType.DateDesc,
+  },
+}
+
+export interface NotificationState {
+  notification: PageNotificationsProps
+  fetch: NotificationFetchType
+}
+
+export const initialState: NotificationState = {
+  notification: initServicetNotifications,
+  fetch: initialNotificationFetchType,
 }
 
 export interface NotificationContent {
@@ -143,14 +145,7 @@ export type CXNotificationMeta = {
   actionRequired: number
 }
 
-export type CXNotificationPagination = {
-  contentSize: number
-  page: number
-  totalElements: number
-  totalPages: number
-}
-
 export type CXNotification = {
   content: CXNotificationContent[]
-  meta: CXNotificationPagination
+  meta: PaginMeta
 }

@@ -29,7 +29,7 @@ import {
   Tabs,
   Tab,
   TabPanel,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'

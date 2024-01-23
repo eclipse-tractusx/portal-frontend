@@ -19,24 +19,17 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
+import { useMediaQuery, useTheme } from '@mui/material'
 import {
-  Typography,
   Button,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogActions,
-  StatusTag,
-} from '@catena-x/portal-shared-components'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import LoopIcon from '@mui/icons-material/Loop'
-import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
-import {
-  type ApplicationChecklist,
-  useFetchApplicationsQuery,
-} from 'features/registration/registrationApiSlice'
+  Typography,
+} from '@nidhi.garg/portal-shared-components'
+import RegistrationReviewContent from './RegistrationReviewContent'
 import './RegistrationReview.scss'
-import uniqueId from 'lodash/uniqueId'
 
 export type StatusTagIcon = {
   type?: 'confirmed' | 'pending' | 'declined' | 'label'
@@ -52,46 +45,24 @@ const RegistrationReviewOverlay = ({
   handleOverlayClose,
 }: RegistrationReviewProps) => {
   const { t } = useTranslation()
-  const { data } = useFetchApplicationsQuery()
-  const companyData = data?.[0]
+  const theme = useTheme()
 
-  const renderStatus = (status: string) => {
-    if (status === 'TO_DO') {
-      return {
-        icon: <CheckCircleOutlineIcon />,
-        backgroundColor: '#F5F9EE',
-        color: '#00AA55',
-        iconColor: 'confirmed' as StatusTagIcon['type'],
-      }
-    } else if (status === 'FAILED') {
-      return {
-        icon: <LoopIcon />,
-        backgroundColor: '#F4FBFD',
-        color: '#0D61AE',
-        iconColor: 'label' as StatusTagIcon['type'],
-      }
-    } else {
-      return {
-        icon: <PendingOutlinedIcon />,
-        backgroundColor: '#FFF7EC',
-        color: '#975B27',
-        iconColor: 'pending' as StatusTagIcon['type'],
-      }
-    }
-  }
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    defaultMatches: true,
+  })
 
   return (
     <div className={'company-detail-overlay'}>
       <Dialog
         open={openDialog}
         additionalModalRootStyles={{
-          width: '50%',
+          width: isMobile ? '90%' : '50%',
         }}
       >
         <DialogHeader title={t('content.registrationInreview.title')} />
         <DialogContent
           sx={{
-            padding: '0 120px',
+            padding: isMobile ? '0 30px' : '0 120px',
             marginBottom: 5,
           }}
         >
@@ -101,48 +72,7 @@ const RegistrationReviewOverlay = ({
                 {t('content.registrationInreview.description')}
               </Typography>
             </Trans>
-            <Trans values={{ step: 3, date: '10-01-2024' }}>
-              <Typography variant="h5" className="stepTitle">
-                {t('content.registrationInreview.stageTitle')}
-              </Typography>
-              <Typography variant="caption3" className="lastUpdated">
-                {t('content.registrationInreview.lastUpdate')}
-              </Typography>
-            </Trans>
-            <ul className="statusList">
-              {companyData?.applicationChecklist.map(
-                (checklist: ApplicationChecklist) => (
-                  <li
-                    key={uniqueId(checklist.statusId)}
-                    style={{
-                      backgroundColor: renderStatus(checklist.statusId)
-                        .backgroundColor,
-                    }}
-                  >
-                    <div
-                      style={{ color: renderStatus(checklist.statusId).color }}
-                      className="icon"
-                    >
-                      {renderStatus(checklist.statusId).icon}
-                    </div>
-                    <div className="statusLabel">
-                      <Typography variant="label3">
-                        {t(
-                          `content.registrationInreview.steps.${checklist.typeId}`
-                        )}
-                      </Typography>
-                    </div>
-                    <StatusTag
-                      color={renderStatus(checklist.statusId).iconColor}
-                      label={t(
-                        `content.registrationInreview.status.${checklist.statusId}`
-                      )}
-                      size="small"
-                    />
-                  </li>
-                )
-              )}
-            </ul>
+            <RegistrationReviewContent />
           </div>
         </DialogContent>
         <DialogActions

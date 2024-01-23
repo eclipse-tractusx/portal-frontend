@@ -23,7 +23,7 @@ import {
   Typography,
   OrderStatusButton,
   paletteDefinitions,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
 import { userSelector } from 'features/user/slice'

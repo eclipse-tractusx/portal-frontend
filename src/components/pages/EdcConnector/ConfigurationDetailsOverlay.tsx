@@ -24,7 +24,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useFetchOperatorBpnQuery } from 'features/connector/connectorApiSlice'
 import {
   getCentralIdp,

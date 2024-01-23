@@ -25,7 +25,7 @@ import {
   SearchInput,
   Typography,
   ViewSelector,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTheme, CircularProgress, Box } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'

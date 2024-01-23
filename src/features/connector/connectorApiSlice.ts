@@ -23,7 +23,7 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 import type {
   PaginFetchArgs,
   PaginResult,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 
 export enum ConnectType {
   MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',

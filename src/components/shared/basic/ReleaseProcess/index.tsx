@@ -24,7 +24,7 @@ import {
   Typography,
   Button,
   ProcessList,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { Box } from '@mui/material'
 import './ReleaseProcess.scss'
 

@@ -22,7 +22,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppOverViewDetails from 'components/pages/AppOverview/AppOverViewDetails'
 import { closeOverlay } from 'features/control/overlay'

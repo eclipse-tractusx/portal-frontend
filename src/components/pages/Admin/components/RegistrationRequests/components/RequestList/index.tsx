@@ -21,7 +21,7 @@
 import {
   PageLoadingTable,
   type PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
@@ -36,6 +36,7 @@ import { RegistrationRequestsTableColumns } from '../../registrationTableColumns
 import type { GridCellParams } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
+import { isCompanyName } from 'types/Patterns'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -126,7 +127,7 @@ export const RequestList = ({
   }, [loaded])
 
   const onValidate = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
+    const validateExpr = isCompanyName(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }

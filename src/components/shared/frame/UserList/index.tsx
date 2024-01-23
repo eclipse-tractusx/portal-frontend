@@ -26,7 +26,7 @@ import {
   StatusTag,
   PageLoadingTable,
   type PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import type { TenantUser } from 'features/admin/userApiSlice'

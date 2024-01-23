@@ -29,7 +29,7 @@ import {
   Input,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -70,7 +70,7 @@ export const InviteForm = ({
     () =>
       debounce((expr: string[]) => {
         const check = [
-          /^.{2,60}$/i,
+          Patterns.COMPANY_NAME,
           Patterns.MAIL,
           Patterns.name,
           Patterns.name,

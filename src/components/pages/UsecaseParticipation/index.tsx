@@ -24,7 +24,7 @@ import {
   PageHeader,
   Tooltips,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import PixIcon from '@mui/icons-material/Pix'
 import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'
@@ -192,7 +192,10 @@ export default function UsecaseParticipation() {
                                 children={
                                   <Link
                                     to={credential.externalDetailData.template}
-                                    target="_blank"
+                                    target={
+                                      credential.externalDetailData.template &&
+                                      '_blank'
+                                    }
                                     className={`thirdSection ${
                                       !credential.externalDetailData.template &&
                                       'documentDisabled'

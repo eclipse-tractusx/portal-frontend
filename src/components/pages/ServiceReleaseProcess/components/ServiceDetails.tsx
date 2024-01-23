@@ -23,7 +23,7 @@ import {
   Typography,
   CardHorizontal,
   StaticTable,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import './ServiceDetail.scss'
 import 'components/styles/document.scss'
 import {
@@ -39,6 +39,8 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
 import { getAssetBase } from 'services/EnvironmentService'
+import { type DocumentData } from 'features/apps/apiSlice'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -159,26 +161,84 @@ export default function ServiceDetails() {
             </>
             <div className="margin-h-40">
               <Typography variant="h4" sx={{ mb: 4 }}>
+                {t('step4.conformityDocument')}
+              </Typography>
+              <Typography variant="body2" className="form-field">
+                {t('defaultValues.conformityDocumentsDescription')}
+              </Typography>
+              <ul>
+                {fetchServiceStatus?.documents &&
+                fetchServiceStatus?.documents[
+                  DocumentTypeId.CONFORMITY_APPROVAL_SERVICES
+                ] ? (
+                  fetchServiceStatus?.documents[
+                    DocumentTypeId.CONFORMITY_APPROVAL_SERVICES
+                  ].map((item: DocumentData) => (
+                    <li key={item.documentId} className="document-list">
+                      <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                      <button
+                        className="document-button-link"
+                        onClick={() => handleDownload(item)}
+                      >
+                        {item.documentName}
+                      </button>
+                    </li>
+                  ))
+                ) : (
+                  <Typography variant="label3" className="not-available">
+                    {t('adminboardDetail.noDocumentsAvailable')}
+                  </Typography>
+                )}
+              </ul>
+            </div>
+            <Divider className="verify-validate-form-divider" />
+
+            <div className="margin-h-40">
+              <Typography variant="h4" sx={{ mb: 4 }}>
                 {t('step4.documents')}
               </Typography>
               <Typography variant="body2" className="form-field">
                 {t('defaultValues.documentsDescription')}
               </Typography>
               <ul>
-                {fetchServiceStatus?.documents &&
-                  Object.keys(fetchServiceStatus.documents).map((item) => (
-                    <li key={item} className="document-list">
-                      <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
-                      <button
-                        className="document-button-link"
-                        onClick={() =>
-                          handleDownload(fetchServiceStatus.documents[item][0])
-                        }
-                      >
-                        {fetchServiceStatus.documents[item][0].documentName}
-                      </button>
-                    </li>
-                  ))}
+                {fetchServiceStatus?.documents.hasOwnProperty(
+                  DocumentTypeId.SERVICE_LEADIMAGE
+                ) ||
+                fetchServiceStatus?.documents.hasOwnProperty(
+                  DocumentTypeId.ADDITIONAL_DETAILS
+                ) ? (
+                  Object.keys(fetchServiceStatus?.documents).map(
+                    (document) =>
+                      (document === DocumentTypeId.SERVICE_LEADIMAGE ||
+                        document === DocumentTypeId.ADDITIONAL_DETAILS) && (
+                        <li key={document} className="document-list">
+                          <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                          <button
+                            onClick={() =>
+                              handleDownload({
+                                documentId:
+                                  fetchServiceStatus?.documents[document][0]
+                                    .documentId,
+                                documentName:
+                                  fetchServiceStatus?.documents[document][0]
+                                    .documentName,
+                              })
+                            }
+                            className="document-button-link"
+                          >
+                            {
+                              fetchServiceStatus?.documents[document][0]
+                                .documentName
+                            }
+                          </button>
+                        </li>
+                      )
+                  )
+                ) : (
+                  <Typography variant="label3" className="not-available">
+                    {t('adminboardDetail.noDocumentsAvailable')}
+                  </Typography>
+                )}
               </ul>
             </div>
             <Divider className="verify-validate-form-divider" />

@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   type TableType,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceProvider.scss'
 

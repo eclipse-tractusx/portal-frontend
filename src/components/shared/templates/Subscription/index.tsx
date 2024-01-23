@@ -30,7 +30,7 @@ import {
   SortOption,
   PageSnackbar,
   LoadMoreButton,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import type {
   AppFiltersResponse,
   SubscriptionContent,
@@ -43,6 +43,7 @@ import type { SubscriptionRequestType } from 'features/serviceSubscription/servi
 import type { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
 import SortImage from 'components/shared/frame/SortImage'
+import { isCompanyName } from 'types/Patterns'
 
 export enum SubscriptionTypes {
   APP_SUBSCRIPTION = 'app',
@@ -92,6 +93,7 @@ enum ActionKind {
   SET_PAGE_STATUS_SORTING_FETCH_ARGS = 'SET_PAGE_STATUS_SORTING_FETCH_ARGS',
   SET_APP_FILTERS = 'SET_APP_FILTERS',
   SET_ACTIVE_APP_FILTER = 'SET_ACTIVE_APP_FILTER',
+  SET_COMPANY_NAME = 'SET_COMPANY_NAME',
 }
 
 type State = {
@@ -108,6 +110,7 @@ type State = {
   subscriptions: SubscriptionContent[]
   appFilters: AppFiltersResponse[]
   activeAppFilter: string
+  companyName: string
 }
 
 type Action = {
@@ -131,16 +134,20 @@ const initialState: State = {
     page: 0,
     statusId: '',
     sortingType: SortType.COMPANY_NAME_DESC,
+    companyName: '',
   },
   subscriptions: [],
   appFilters: [],
   activeAppFilter: '',
+  companyName: '',
 }
 
 function reducer(state: State, { type, payload }: Action) {
   switch (type) {
     case ActionKind.SET_SEARCH_EXPR:
       return { ...state, searchExpr: payload }
+    case ActionKind.SET_COMPANY_NAME:
+      return { ...state, companyName: payload }
     case ActionKind.SET_SHOW_MODAL:
       return { ...state, showModal: payload }
     case ActionKind.SET_SELECTED:
@@ -338,7 +345,11 @@ export default function Subscription({
     resetCardsAndSetFetchArgs(status, ViewActionEnum.STATUSID)
   }
 
-  const resetCardsAndSetFetchArgs = (value: string, type: string) => {
+  const resetCardsAndSetFetchArgs = (
+    value: string,
+    type: string,
+    cp?: string
+  ) => {
     setState({
       type: ActionKind.SET_PAGE_STATUS_SORTING_FETCH_ARGS,
       payload: {
@@ -351,6 +362,7 @@ export default function Subscription({
           statusId: type === ViewActionEnum.STATUSID ? value : statusId,
           offerId: type === ViewActionEnum.OFFERID ? value : activeAppFilter,
           sortingType: type === ViewActionEnum.SORTOPTION ? value : sortingType,
+          companyName: cp,
         },
       },
     })
@@ -427,15 +439,7 @@ export default function Subscription({
   const debouncedFilter = useMemo(
     () =>
       debounce((expr: string) => {
-        subscriptions &&
-          setState({
-            type: ActionKind.SET_CARD_SUBSCRIPTION,
-            payload: expr
-              ? subscriptions?.filter((card: SubscriptionContent) =>
-                  card.offerName.toLowerCase().includes(expr.toLowerCase())
-                )
-              : subscriptions,
-          })
+        resetCardsAndSetFetchArgs('', '', expr)
       }, 300),
     [subscriptions]
   )
@@ -443,13 +447,13 @@ export default function Subscription({
   const searchDataFn = useCallback(
     (expr: string) => {
       setState({ type: ActionKind.SET_SEARCH_EXPR, payload: expr })
-      debouncedFilter(expr)
+      const isValidate = isCompanyName(expr)
+      if (isValidate || expr === '') debouncedFilter(expr)
     },
     [debouncedFilter]
   )
 
   const handleActiveAppFilter = (appId: string) => {
-    console.log('appId', appId)
     appId = activeAppFilter === appId ? '' : appId
     setState({
       type: ActionKind.SET_ACTIVE_APP_FILTER,

@@ -29,7 +29,7 @@ import {
   DropArea,
   type DropAreaProps,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'

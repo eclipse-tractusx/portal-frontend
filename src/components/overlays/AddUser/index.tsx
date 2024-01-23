@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CircleProgress } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  CircleProgress,
+  PageSnackbar,
+} from '@nidhi.garg/portal-shared-components'
 import {
   useFetchIDPListQuery,
   type IdentityProvider,
@@ -26,35 +30,78 @@ import {
 import { AddUserContent } from './AddUserContent'
 import { AddUserDeny } from './AddUserDeny'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { closeOverlay } from 'features/control/overlay'
+import { useDispatch } from 'react-redux'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export const AddUser = () => {
-  const { data, isFetching } = useFetchIDPListQuery()
+  const { refetch, data, isFetching, isError } = useFetchIDPListQuery()
   const [idps, setIdps] = useState<IdentityProvider[]>([])
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setIdps(data ? data.filter((idp: IdentityProvider) => idp.enabled) : [])
   }, [data])
 
-  return isFetching ? (
-    <div
-      style={{
-        width: '100%',
-        height: '500px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <CircleProgress
-        colorVariant="primary"
-        size={80}
-        thickness={8}
-        variant="indeterminate"
+  const renderAddUserContent = () => {
+    return isError ? (
+      <PageSnackbar
+        open={isError}
+        severity="error"
+        description={
+          <>
+            {t('content.usermanagement.addUsers.error')}
+            <Button
+              size="small"
+              sx={{ mt: 2, mb: 1, float: 'right' }}
+              onClick={() => refetch()}
+              endIcon={<ArrowForwardIcon />}
+            >
+              {t('error.tryAgain')}
+            </Button>
+          </>
+        }
+        showIcon={true}
+        autoClose={false}
+        onCloseNotification={() => dispatch(closeOverlay())}
       />
-    </div>
-  ) : idps.length === 1 ? (
-    <AddUserContent idp={idps[0]} />
-  ) : (
-    <AddUserDeny idps={idps} />
+    ) : (
+      renderAdduserMainContent()
+    )
+  }
+
+  const renderAdduserMainContent = () => {
+    return idps && idps.length === 1 ? (
+      <AddUserContent idp={idps[0]} />
+    ) : (
+      <AddUserDeny idps={idps} />
+    )
+  }
+
+  return (
+    <>
+      {isFetching ? (
+        <div
+          style={{
+            width: '100%',
+            height: '500px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircleProgress
+            colorVariant="primary"
+            size={80}
+            thickness={8}
+            variant="indeterminate"
+          />
+        </div>
+      ) : (
+        renderAddUserContent()
+      )}
+    </>
   )
 }

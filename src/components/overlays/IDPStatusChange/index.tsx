@@ -23,7 +23,7 @@ import {
   DialogActions,
   DialogHeader,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
 import i18next from 'i18next'
 import { useEnableIDPMutation } from 'features/admin/idpApiSlice'

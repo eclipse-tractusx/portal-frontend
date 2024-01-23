@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Stepper } from '@catena-x/portal-shared-components'
+import { Stepper } from '@nidhi.garg/portal-shared-components'
 
 export interface StepType {
   headline: string

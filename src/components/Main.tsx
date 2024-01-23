@@ -18,15 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Outlet, useSearchParams } from 'react-router-dom'
+import { CircleProgress } from '@nidhi.garg/portal-shared-components'
 import { Header } from './shared/frame/Header'
 import { Footer } from './shared/frame/Footer'
 import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
-import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
-import { useEffect } from 'react'
 import type { OVERLAYS } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
@@ -36,8 +37,8 @@ import {
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
 import './styles/main.scss'
-import { CircleProgress } from '@catena-x/portal-shared-components'
-import Registration from './pages/Registration'
+import RegistrationStatus from './pages/RegistrationStatus'
+import Logout from './pages/Logout'
 
 export default function Main() {
   document.title = useTranslation().t('title')
@@ -61,8 +62,14 @@ export default function Main() {
     return (
       <>
         <Header main={[]} user={AccessService.userMenuReg()} />
-        <Registration />
+        <MainSearchOverlay />
+        {window.location.pathname === '/logout' ? (
+          <Logout />
+        ) : (
+          <RegistrationStatus />
+        )}
         <Footer pages={AccessService.footerMenu()} />
+        <MenuInfo main={[]} />
       </>
     )
   }

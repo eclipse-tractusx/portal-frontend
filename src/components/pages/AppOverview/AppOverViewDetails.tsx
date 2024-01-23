@@ -23,7 +23,7 @@ import {
   LanguageSwitch,
   Typography,
   LogoGrayData,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {

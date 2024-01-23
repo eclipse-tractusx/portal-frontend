@@ -27,7 +27,7 @@ import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import { Radio, Typography } from '@catena-x/portal-shared-components'
+import { Radio, Typography } from '@nidhi.garg/portal-shared-components'
 import {
   type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,

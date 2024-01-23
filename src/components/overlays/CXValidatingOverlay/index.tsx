@@ -23,7 +23,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'

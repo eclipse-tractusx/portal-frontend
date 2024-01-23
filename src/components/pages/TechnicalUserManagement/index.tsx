@@ -22,7 +22,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import { OVERLAYS, PAGES } from 'types/Constants'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { Button, PageNotifications } from '@catena-x/portal-shared-components'
+import { Button, PageNotifications } from '@nidhi.garg/portal-shared-components'
 import { show } from 'features/control/overlay'
 import UserService from 'services/UserService'
 import { resetNotification } from 'features/notification/actions'
@@ -53,7 +53,7 @@ export default function TechnicalUserManagement() {
             <div className="content-technical-user-title">
               <SubHeaderTitle
                 title={'content.usermanagement.technicalUser.descriptionHeader'}
-                params={{ company: UserService.getCompany() }}
+                params={{ company: UserService.getCompany() as string }}
                 variant="h3"
               />
 

@@ -30,7 +30,7 @@ import {
   Cards,
   PageSnackbar,
   ErrorBar,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useTheme, CircularProgress, Box } from '@mui/material'
 import {
   appCardStatus,

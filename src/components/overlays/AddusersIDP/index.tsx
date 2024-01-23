@@ -33,7 +33,7 @@ import {
   Textarea,
   Typography,
   type DropAreaProps,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -417,8 +417,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       reader.onload = () => {
         if (!reader.result) return
-        const content = reader.result.toString()
-
+        const content = JSON.stringify(reader.result)
         Papa.parse(acceptedFile, {
           skipEmptyLines: true,
           complete: function (results) {

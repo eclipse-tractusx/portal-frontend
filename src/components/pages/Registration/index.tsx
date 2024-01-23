@@ -20,7 +20,11 @@
 
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Stepper, Typography } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  Stepper,
+  Typography,
+} from '@nidhi.garg/portal-shared-components'
 import './Registration.scss'
 import {
   ApplicationStatus,

@@ -27,7 +27,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 import {
   type CertificateResponse,
   type SSIDetailData,

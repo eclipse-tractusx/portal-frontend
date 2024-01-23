@@ -27,7 +27,7 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 import { type MenuType, type NotificationBadgeType } from '.'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { appearMenuSelector, setAppear } from 'features/control/appear'

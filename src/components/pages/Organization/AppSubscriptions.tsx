@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { SubscriptionStatus, type ImageType } from 'features/apps/apiSlice'
-import { Button, Image, LogoGrayData } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  Image,
+  LogoGrayData,
+} from '@nidhi.garg/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
 import './Organization.scss'
 import { useTranslation } from 'react-i18next'

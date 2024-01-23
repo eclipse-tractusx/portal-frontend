@@ -34,7 +34,7 @@ import {
   IconButton,
   PageHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import {
   currentUserRoleResp,
   setUserRoleResp,

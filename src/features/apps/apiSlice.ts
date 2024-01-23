@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { LogoGrayData } from '@catena-x/portal-shared-components'
+import { LogoGrayData } from '@nidhi.garg/portal-shared-components'
 import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import type { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
@@ -125,6 +125,7 @@ export enum DocumentTypeText {
   CONFORMITY_DOCUMENT = 'ConformityDocument',
   DOCUMENTS = 'Documents',
   CONFORMITY_APPROVAL_BUSINESS_APPS = 'CONFORMITY_APPROVAL_BUSINESS_APPS',
+  CONFORMITY_APPROVAL_SERVICES = 'CONFORMITY_APPROVAL_SERVICES',
 }
 
 export type DocumentData = {
@@ -288,6 +289,7 @@ export const apiSlice = createApi({
             src: subscriptionItem.image
               ? `${getApiBase()}/api/apps/${
                   subscriptionItem.offerId
+                  // eslint-disable-next-line
                 }/appDocuments/${subscriptionItem.image}`
               : LogoGrayData,
           }

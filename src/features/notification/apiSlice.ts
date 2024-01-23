@@ -21,18 +21,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import {
+  name,
+  NOTIFICATION_TOPIC,
+  type NotificationType,
   type CXNotification,
   type CXNotificationMeta,
-  NOTIFICATION_TOPIC,
+  type NotificationFetchType,
+  NotificationSortingType,
 } from './types'
-interface FetchArgs {
-  page: number
-  size: number
-  args?: {
-    notificationTopic: string
-    sorting: string
-  }
-}
+
 export interface NotificationArgsProps {
   sorting: string
   notificationTopic: string
@@ -44,7 +41,7 @@ export interface NotificationReadType {
 }
 
 export const apiSlice = createApi({
-  reducerPath: 'info/notifications',
+  reducerPath: `${name}/api`,
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     getNotificationCount: builder.query<number, boolean>({
@@ -53,22 +50,20 @@ export const apiSlice = createApi({
     getNotificationMeta: builder.query<CXNotificationMeta, null>({
       query: () => '/api/notification/count-details',
     }),
-    getNotifications: builder.query<CXNotification, FetchArgs>({
-      query: (fetchArgs) => {
-        let base = `/api/notification?page=${fetchArgs.page}&size=${fetchArgs.size}`
-        if (fetchArgs?.args?.sorting) {
-          base += `&sorting=${fetchArgs.args.sorting}`
-        }
-        if (
+    getNotifications: builder.query<CXNotification, NotificationFetchType>({
+      query: (fetchArgs) =>
+        `/api/notification?page=${fetchArgs?.page ?? 0}&size=${10}${
           fetchArgs?.args?.notificationTopic &&
           fetchArgs?.args?.notificationTopic !== NOTIFICATION_TOPIC.ALL
-        ) {
-          base += `&notificationTopicId=${fetchArgs?.args?.notificationTopic}`
-        }
-        return base
-      },
-      // configuration for an individual endpoint, overriding the api setting
-      keepUnusedDataFor: 10,
+            ? `&notificationTopicId=${fetchArgs?.args?.notificationTopic}`
+            : ''
+        }${
+          fetchArgs?.args?.searchTypeIds
+            ?.map((typeId: NotificationType) => `&searchTypeIds=${typeId}`)
+            .join('') ?? ''
+        }&sorting=${
+          fetchArgs?.args?.sorting ?? NotificationSortingType.DateDesc
+        }`,
     }),
     setNotificationRead: builder.mutation<void, NotificationReadType>({
       query: (obj) => ({

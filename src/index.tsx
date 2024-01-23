@@ -31,7 +31,7 @@ import AuthorizingRouter from 'components/AuthorizingRouter'
 import {
   SharedThemeProvider,
   SharedCssBaseline,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 
 I18nService.init()
 AccessService.init()

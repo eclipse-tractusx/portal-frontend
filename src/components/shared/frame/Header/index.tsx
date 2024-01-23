@@ -21,16 +21,17 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import SubjectIcon from '@mui/icons-material/Subject'
 import {
   Button,
   CustomAccordion,
   MainNavigation,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
@@ -46,6 +47,7 @@ import { UserInfo } from '../UserInfo'
 import { Logo } from '../Logo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './Header.scss'
+import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -75,6 +77,25 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
     )
 
   const menu = addTitle(main) ?? []
+
+  const renderFullText = () => {
+    return (
+      <div className="registration-review">
+        <RegistrationReviewContent />
+        <Trans>
+          <Typography variant="label3">
+            {t('content.registrationInreview.helpText')}
+          </Typography>
+          <Typography
+            variant="label3"
+            sx={{ color: '#0f71cb', paddingLeft: '5px' }}
+          >
+            {t('content.registrationInreview.email')}
+          </Typography>
+        </Trans>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -110,22 +131,41 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           </div>
         </MainNavigation>
         {headerNote && (
-          <div>
+          <div
+            style={{
+              margin: '20px',
+              border: '1px solid #FF7100',
+              boxShadow: '0px 20px 40px rgba(80, 80, 80, 0.3)',
+              borderRadius: '5px',
+            }}
+          >
             <CustomAccordion
               items={[
                 {
-                  children: <Typography>Content of the first item</Typography>,
+                  children: renderFullText(),
                   expanded: false,
                   icon: (
-                    <div>
-                      <SearchIcon />
-                      NOTE:
-                    </div>
+                    <Typography variant="label3" style={{ color: '#FF7100' }}>
+                      <SubjectIcon />
+                      {t('content.registrationInreview.note')}
+                    </Typography>
                   ),
                   id: 'panel-1',
-                  //onChange: function noRefCheck() { },
-                  title:
-                    'Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk: help@catena-x.com',
+                  title: '',
+                  titleElement: (
+                    <Trans>
+                      <Typography variant="label3">
+                        {t('content.registrationInreview.noteDetail')}
+                      </Typography>
+                      <Typography
+                        variant="label3"
+                        sx={{ color: '#0f71cb', paddingLeft: '5px' }}
+                      >
+                        {t('content.registrationInreview.email')}
+                      </Typography>
+                    </Trans>
+                  ),
+                  buttonText: t('global.actions.close'),
                 },
               ]}
             />

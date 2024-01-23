@@ -28,7 +28,7 @@ import {
   PageHeader,
   PageLoadingTable,
   type PaginResult,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
