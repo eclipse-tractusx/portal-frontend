@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Notifications
+  - search also returns hits in content
+
 ## 1.8.0-RC1
 
 ### Change
