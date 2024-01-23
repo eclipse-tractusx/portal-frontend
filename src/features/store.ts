@@ -151,7 +151,7 @@ export const store = configureStore({
       .concat(certificationApiSlice.middleware)
       .concat(userManagementApiSlice.middleware)
       .concat(usecaseApiSlice.middleware)
-      .concat(deleteCompanyApiSlice.middleware),
+      .concat(deleteCompanyApiSlice.middleware)
       .concat(registrationApiSlice.middleware),
 })
 
