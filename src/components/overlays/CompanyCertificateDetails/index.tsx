@@ -51,7 +51,11 @@ export enum StatusTag {
   COMPLETED = 'completed',
 }
 
-export default function CompanyCertificateDetails({ id }: { id: string }) {
+export default function CompanyCertificateDetails({
+  id,
+}: {
+  readonly id: string
+}) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const close = () => {
@@ -78,20 +82,18 @@ export default function CompanyCertificateDetails({ id }: { id: string }) {
   const flag = selected?.companyCertificateStatus === StatusTag.PENDING
 
   const getButtonStatusTag = (statusId: string) => {
-    switch (statusId) {
-      case ProgressStatus.IN_PROGRESS:
-        return 'label'
-      default:
-        return 'confirmed'
+    if (statusId === ProgressStatus.IN_PROGRESS) {
+      return 'label'
+    } else {
+      return 'confirmed'
     }
   }
 
   const getButtonStatusId = () => {
-    switch (selected?.companyCertificateStatus) {
-      case StatusTag.PENDING:
-        return ProgressStatus.IN_PROGRESS
-      default:
-        return ProgressStatus.DONE
+    if (selected?.companyCertificateStatus === StatusTag.PENDING) {
+      return ProgressStatus.IN_PROGRESS
+    } else {
+      return ProgressStatus.DONE
     }
   }
 
@@ -172,7 +174,14 @@ export default function CompanyCertificateDetails({ id }: { id: string }) {
               <Box className="verification-container">
                 <ProgressVerificationButton {...button} />
               </Box>
-              {pdf && <iframe src={pdf} width="100%" height="500px" />}
+              {pdf && (
+                <iframe
+                  title="certificate document"
+                  src={pdf}
+                  width="100%"
+                  height="500px"
+                />
+              )}
             </Box>
           </>
         ) : (
