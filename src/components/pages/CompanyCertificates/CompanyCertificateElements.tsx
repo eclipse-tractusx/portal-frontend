@@ -28,10 +28,10 @@ export default function CompanyCertificateElements({
   data,
 }: Readonly<{
   data: ComapnyCertificateData[]
-}>) {
+}>): JSX.Element {
   const { t } = useTranslation()
 
-  if (data && data.length === 0) {
+  if (data?.length === 0) {
     return (
       <Typography variant="body1" className="noData">
         {t('content.companyCertificate.noData')}

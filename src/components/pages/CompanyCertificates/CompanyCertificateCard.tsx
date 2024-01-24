@@ -29,7 +29,7 @@ export default function CompanyCertificateCard({
   item,
 }: Readonly<{
   item: ComapnyCertificateData
-}>) {
+}>): JSX.Element {
   const { t } = useTranslation()
   const [dotsMenu, setDotsMenu] = useState(false)
   return (

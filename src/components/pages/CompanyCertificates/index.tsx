@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useReducer } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 import {
   Typography,
@@ -31,8 +30,9 @@ import { ROLES } from 'types/Constants'
 import CompanyCertificateElements from './CompanyCertificateElements'
 import UserService from 'services/UserService'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
+import { useState } from 'react'
 
-type TabButtonsType = {
+interface TabButtonsType {
   buttonText: string
   buttonValue: FilterType
   onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
@@ -51,72 +51,17 @@ enum SortType {
   NAMEASC = 'NameAsc',
 }
 
-enum ActionKind {
-  SET_SHOW_MODAL = 'SET_SHOW_MODAL',
-  SET_SELECTED = 'SET_SELECTED',
-  SET_SORT_OPTION = 'SET_SORT_OPTION',
-  SET_SORTING_TYPE = 'SET_SORTING_TYPE',
-  SET_SORT_SHOW_MODAL = 'SET_SORT_SHOW_MODAL',
-}
-
-type State = {
-  searchExpr: string
-  showModal: boolean
-  selected: string
-  sortOption: string
-  sortingType: string
-}
-
-type Action = {
-  type: string
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  payload: any
-}
-
-const initialState: State = {
-  searchExpr: '',
-  showModal: false,
-  selected: FilterType.ALL,
-  sortOption: SortType.NEW,
-  sortingType: SortType.DATEDESC,
-}
-
-function reducer(state: State, { type, payload }: Action) {
-  switch (type) {
-    case ActionKind.SET_SHOW_MODAL:
-      return { ...state, showModal: payload }
-    case ActionKind.SET_SELECTED:
-      return { ...state, selected: payload }
-    case ActionKind.SET_SORT_OPTION:
-      return { ...state, sortOption: payload }
-    case ActionKind.SET_SORT_SHOW_MODAL:
-      return {
-        ...state,
-        sortOption: payload.sortOption,
-        showModal: payload.showModal,
-      }
-    default:
-      return state
-  }
-}
-
-export default function CompanyCertificates() {
+export default function CompanyCertificates(): JSX.Element {
   const { t } = useTranslation()
 
   const { data } = useFetchCertificatesQuery()
 
-  const [{ showModal, selected, sortOption }, setState] = useReducer(
-    reducer,
-    initialState
-  )
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [sortOption, setSortOption] = useState<string>(SortType.NEW)
+  const [filter, setFilter] = useState<string>(FilterType.ALL)
 
-  const setBtnView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setState({
-      type: ActionKind.SET_SORTING_TYPE,
-      payload: e.currentTarget.value,
-    })
-    setState({ type: ActionKind.SET_SELECTED, payload: e.currentTarget.value })
+  const setBtnView = (e: React.MouseEvent<HTMLInputElement>): void => {
+    setFilter(e.currentTarget.value)
   }
 
   const sortOptions = [
@@ -148,14 +93,8 @@ export default function CompanyCertificates() {
     },
   ]
 
-  const handleSortOption = (value: string) => {
-    setState({
-      type: ActionKind.SET_SORT_SHOW_MODAL,
-      payload: {
-        sortOption: value,
-        showModal: false,
-      },
-    })
+  const handleSortOption = (value: string): void => {
+    setSortOption(value)
   }
 
   return (
@@ -173,14 +112,11 @@ export default function CompanyCertificates() {
           <div className="mainContainer">
             <div
               onMouseLeave={() => {
-                setState({
-                  type: ActionKind.SET_SHOW_MODAL,
-                  payload: false,
-                })
+                setShowModal(false)
               }}
               className="filterSection"
             >
-              <ViewSelector views={tabButtons} activeView={selected} />
+              <ViewSelector views={tabButtons} activeView={filter} />
               <div
                 style={{
                   position: 'relative',
@@ -188,10 +124,7 @@ export default function CompanyCertificates() {
               >
                 <SortImage
                   onClick={() => {
-                    setState({
-                      type: ActionKind.SET_SHOW_MODAL,
-                      payload: true,
-                    })
+                    setShowModal(true)
                   }}
                   selected={showModal}
                 />
@@ -221,7 +154,7 @@ export default function CompanyCertificates() {
               </div>
             </div>
           </div>
-          {data && <CompanyCertificateElements data={data.content} />}
+          {data != null && <CompanyCertificateElements data={data.content} />}
         </div>
       </div>
     </main>
