@@ -36,9 +36,10 @@ import './UserInfo.scss'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Box } from '@mui/material'
+import { appearMenuSelector, setAppear } from 'features/control/appear'
 
 export const UserInfo = ({
   pages,
@@ -56,6 +57,7 @@ export const UserInfo = ({
   const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
   })
+  const visible = useSelector(appearMenuSelector)
   const [notificationInfo, setNotificationInfo] =
     useState<NotificationBadgeType>()
   const menu = pages.map((link) => ({
@@ -65,6 +67,7 @@ export const UserInfo = ({
 
   const openCloseMenu = () => {
     setMenuOpen((prevVal) => !prevVal)
+    if (menuOpen && isMobile) dispatch(setAppear({ MENU: !visible }))
   }
   const onClickAway = (e: MouseEvent | TouchEvent) => {
     if (!avatar.current?.contains(e.target as HTMLDivElement)) {
@@ -140,7 +143,12 @@ export const UserInfo = ({
       )}
       <UserMenu
         open={menuOpen}
-        top={60}
+        sx={{
+          top: isMobile ? '0px' : '60px',
+          width: isMobile ? '280px' : '256px',
+          position: isMobile ? 'relative' : 'absolute',
+        }}
+        shadow={!isMobile}
         userName={UserService.getName()}
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}

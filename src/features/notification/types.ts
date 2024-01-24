@@ -95,6 +95,7 @@ export const initialNotificationFetchType: NotificationFetchType = {
 }
 
 export interface NotificationState {
+  meta?: PaginMeta
   notification: PageNotificationsProps
   fetch: NotificationFetchType
 }

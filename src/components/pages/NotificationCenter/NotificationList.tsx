@@ -29,8 +29,8 @@ import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useGetNotificationsQuery } from 'features/notification/apiSlice'
 import './Notifications.scss'
-import { useSelector } from 'react-redux'
-import { notificationFetchSelector } from 'features/notification/slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { notificationFetchSelector, setMeta } from 'features/notification/slice'
 import NotificationPager from './NotificationPager'
 
 dayjs.extend(isToday)
@@ -54,10 +54,12 @@ const NotificationGroup = ({
   fetchArgs: NotificationFetchType
   page: number
 }) => {
+  const dispatch = useDispatch()
   const { data } = useGetNotificationsQuery({
     ...fetchArgs,
     page,
   })
+  if (data) dispatch(setMeta(data.meta))
   return (
     <ul className="group">
       <NotificationItems items={data?.content ?? []} />
