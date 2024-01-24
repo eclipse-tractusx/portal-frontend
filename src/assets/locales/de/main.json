@@ -62,7 +62,8 @@
     "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space",
-    "admin-credential": "Certification Mgmt"
+    "admin-credential": "Certification Mgmt",
+    "companyCertificate": "Company Certificates"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -1675,6 +1676,23 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+    },
+    "companyCertificate": {
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "tabs": {
+        "inactive": "Pending",
+        "active": " Active",
+        "all": "All"
+      },
+      "sort": {
+        "name": "Name",
+        "date": "Date"
+      },
+      "uploadCertificate": "Upload Certificate",
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
+      "validtill": "Valid Till",
+      "morelink": ">> More"
     }
   },
   "navigation": {

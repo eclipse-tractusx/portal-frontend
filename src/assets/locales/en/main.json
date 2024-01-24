@@ -61,7 +61,8 @@
     "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space",
-    "admin-credential": "Certification Mgmt"
+    "admin-credential": "Certification Mgmt",
+    "companyCertificate": "Company Certificates"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -1616,6 +1617,23 @@
         "status": "Status: "
       },
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above."
+    },
+    "companyCertificate": {
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "tabs": {
+        "inactive": "Pending",
+        "active": " Active",
+        "all": "All"
+      },
+      "sort": {
+        "name": "Name",
+        "date": "Date"
+      },
+      "uploadCertificate": "Upload Certificate",
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
+      "validtill": "Valid Till",
+      "morelink": ">> More"
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",

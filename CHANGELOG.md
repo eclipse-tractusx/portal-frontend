@@ -6,6 +6,9 @@
 
 - Notifications
   - extended search function to return hits on in content matches
+- Company Certificate
+  - Provide new link from user menu for the company certificate page
+  - UI components created to display filter, sort and company certificates
 
 ### BugFix
 
