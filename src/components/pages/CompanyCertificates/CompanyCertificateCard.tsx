@@ -26,35 +26,45 @@ import { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 export default function CompanyCertificateCard({
-    item,
+  item,
 }: Readonly<{
-    item: ComapnyCertificateData
+  item: ComapnyCertificateData
 }>) {
-    const { t } = useTranslation()
-    const [dotsMenu, setDotsMenu] = useState(false)
-    return (
-        <Box className='card-container'>
-            <Box className='first-container'>
-                <Logo />
-            </Box>
-            <Box className='second-container'>
-                <Box className='top-container'>
-                    <Typography variant="h4">{item.companyCertificateType}</Typography>
-                    <Box className='dots' onClick={() => {
-                        setDotsMenu(!dotsMenu)
-                    }}>
-                        <MoreVertIcon />
-                    </Box>
-                </Box>
-                <Box className='bottom-container'>
-                    <Typography variant="label3">{t('content.companyCertificate.validtill')} : {item.validTill}</Typography>
-                    <Box className='link' onClick={() => {
-                        // show overlay
-                    }}>
-                        <Typography variant='label3'>{t('content.companyCertificate.morelink')}</Typography>
-                    </Box>
-                </Box>
-            </Box>
+  const { t } = useTranslation()
+  const [dotsMenu, setDotsMenu] = useState(false)
+  return (
+    <Box className="card-container">
+      <Box className="first-container">
+        <Logo />
+      </Box>
+      <Box className="second-container">
+        <Box className="top-container">
+          <Typography variant="h4">{item.companyCertificateType}</Typography>
+          <Box
+            className="dots"
+            onClick={() => {
+              setDotsMenu(!dotsMenu)
+            }}
+          >
+            <MoreVertIcon />
+          </Box>
         </Box>
-    )
+        <Box className="bottom-container">
+          <Typography variant="label3">
+            {t('content.companyCertificate.validtill')} : {item.validTill}
+          </Typography>
+          <Box
+            className="link"
+            onClick={() => {
+              // show overlay
+            }}
+          >
+            <Typography variant="label3">
+              {t('content.companyCertificate.morelink')}
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  )
 }

@@ -41,7 +41,7 @@ type TabButtonsType = {
 enum FilterType {
   ALL = 'All',
   INACTIVE = 'Inactive',
-  ACTIVE = 'Active'
+  ACTIVE = 'Active',
 }
 
 enum SortType {
@@ -101,7 +101,6 @@ function reducer(state: State, { type, payload }: Action) {
   }
 }
 
-
 export default function CompanyCertificates() {
   const { t } = useTranslation()
 
@@ -146,7 +145,7 @@ export default function CompanyCertificates() {
       buttonText: t('content.companyCertificate.tabs.inactive'),
       buttonValue: FilterType.INACTIVE,
       onButtonClick: setBtnView,
-    }
+    },
   ]
 
   const handleSortOption = (value: string) => {
@@ -160,18 +159,18 @@ export default function CompanyCertificates() {
   }
 
   return (
-    <main className='company-certificate-main'>
-      <div className='company-certificate-section'>
-        <div className='container'>
-          <Typography variant='h2' className='heading'>
+    <main className="company-certificate-main">
+      <div className="company-certificate-section">
+        <div className="container">
+          <Typography variant="h2" className="heading">
             {t('content.companyCertificate.heading')}
           </Typography>
           <Trans>
-            <Typography variant='body1' className='description'>
+            <Typography variant="body1" className="description">
               {t('content.companyCertificate.description')}
             </Typography>
           </Trans>
-          <div className='mainContainer'>
+          <div className="mainContainer">
             <div
               onMouseLeave={() => {
                 setState({
@@ -179,12 +178,14 @@ export default function CompanyCertificates() {
                   payload: false,
                 })
               }}
-              className='filterSection'
+              className="filterSection"
             >
               <ViewSelector views={tabButtons} activeView={selected} />
-              <div style={{
-                position: 'relative'
-              }}>
+              <div
+                style={{
+                  position: 'relative',
+                }}
+              >
                 <SortImage
                   onClick={() => {
                     setState({
@@ -194,7 +195,7 @@ export default function CompanyCertificates() {
                   }}
                   selected={showModal}
                 />
-                <div className='sortSection'>
+                <div className="sortSection">
                   <SortOption
                     show={showModal}
                     sortOptions={sortOptions}
@@ -204,23 +205,23 @@ export default function CompanyCertificates() {
                 </div>
               </div>
             </div>
-            <div className='uploadBtn'>
+            <div className="uploadBtn">
               <div>
                 <Button
-                  size='small'
+                  size="small"
                   onClick={() => {
                     // no action
                   }}
-                  disabled={!UserService.hasRole(ROLES.UPLOAD_COMPANY_CERTIFICATE)}
+                  disabled={
+                    !UserService.hasRole(ROLES.UPLOAD_COMPANY_CERTIFICATE)
+                  }
                 >
                   {t('content.companyCertificate.uploadCertificate')}
                 </Button>
               </div>
             </div>
           </div>
-          {data && (
-            <CompanyCertificateElements data={data.content} />
-          )}
+          {data && <CompanyCertificateElements data={data.content} />}
         </div>
       </div>
     </main>

@@ -18,9 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type PaginationData = {
