@@ -537,7 +537,7 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.COMPANY_CERTIFICATE,
     role: ROLES.COMPANY_CERTIFICATE_VIEW,
     element: <CompanyCertificates />,
-  }
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [

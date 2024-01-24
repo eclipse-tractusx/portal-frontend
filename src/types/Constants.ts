@@ -101,7 +101,7 @@ export enum PAGES {
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
-  COMPANY_CERTIFICATE = 'companyCertificate'
+  COMPANY_CERTIFICATE = 'companyCertificate',
 }
 
 export enum OVERLAYS {
@@ -215,7 +215,7 @@ export enum ROLES {
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
   COMPANY_CERTIFICATE_VIEW = 'view_certificates',
-  UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates'
+  UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
 }
 
 export enum HINTS {
