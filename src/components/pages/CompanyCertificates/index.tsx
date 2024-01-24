@@ -31,6 +31,7 @@ import CompanyCertificateElements from './CompanyCertificateElements'
 import UserService from 'services/UserService'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
 import { useState } from 'react'
+import { Box } from '@mui/material'
 
 interface TabButtonsType {
   buttonText: string
@@ -99,8 +100,8 @@ export default function CompanyCertificates(): JSX.Element {
 
   return (
     <main className="company-certificate-main">
-      <div className="company-certificate-section">
-        <div className="container">
+      <Box className="company-certificate-section">
+        <Box className="container">
           <Typography variant="h2" className="heading">
             {t('content.companyCertificate.heading')}
           </Typography>
@@ -109,17 +110,16 @@ export default function CompanyCertificates(): JSX.Element {
               {t('content.companyCertificate.description')}
             </Typography>
           </Trans>
-          <div className="mainContainer">
-            <div
+          <Box className="mainContainer">
+            <Box
               onMouseLeave={() => {
                 setShowModal(false)
               }}
               className="filterSection"
-              role="button"
             >
               <ViewSelector views={tabButtons} activeView={filter} />
-              <div
-                style={{
+              <Box
+                sx={{
                   position: 'relative',
                 }}
               >
@@ -129,18 +129,18 @@ export default function CompanyCertificates(): JSX.Element {
                   }}
                   selected={showModal}
                 />
-                <div className="sortSection">
+                <Box className="sortSection">
                   <SortOption
                     show={showModal}
                     sortOptions={sortOptions}
                     selectedOption={sortOption}
                     setSortOption={handleSortOption}
                   />
-                </div>
-              </div>
-            </div>
-            <div className="uploadBtn">
-              <div>
+                </Box>
+              </Box>
+            </Box>
+            <Box className="uploadBtn">
+              <Box>
                 <Button
                   size="small"
                   onClick={() => {
@@ -152,12 +152,12 @@ export default function CompanyCertificates(): JSX.Element {
                 >
                   {t('content.companyCertificate.uploadCertificate')}
                 </Button>
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Box>
           {data != null && <CompanyCertificateElements data={data.content} />}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </main>
   )
 }
