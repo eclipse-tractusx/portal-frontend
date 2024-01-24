@@ -4,6 +4,9 @@
 
 - Notifications
   - search also returns hits in content
+- Company Certificate
+  - Provide new link from user menu for the company certificate page
+  - UI components created to display filter, sort and company certificates
 
 ## 1.8.0-RC1
 
