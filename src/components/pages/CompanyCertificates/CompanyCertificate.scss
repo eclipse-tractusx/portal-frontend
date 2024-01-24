@@ -119,9 +119,31 @@
         flex-direction: row;
         justify-content: space-between;
         padding: 0px 10px;
+        align-items: center;
+
+        h4 {
+          overflow: hidden;
+          width: 90%;
+        }
 
         .dots {
           cursor: pointer;
+
+          .more-container {
+            display: flex;
+            position: absolute;
+            background: #f9f9f9;
+            box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+            border-radius: 8px;
+            z-index: 9;
+            flex-direction: column;
+            width: 100px;
+            padding: 5px;
+
+            span {
+              padding: 5px 10px;
+            }
+          }
         }
       }
 

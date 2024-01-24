@@ -36,6 +36,9 @@ export default function CompanyCertificateCard({
   const { t } = useTranslation()
   const [dotsMenu, setDotsMenu] = useState(false)
   const dispatch = useDispatch()
+
+  const handleView = () =>
+    dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId))
   return (
     <Box className="card-container">
       <Box className="first-container">
@@ -51,20 +54,23 @@ export default function CompanyCertificateCard({
             }}
           >
             <MoreVertIcon />
+            {dotsMenu && (
+              <Box className="more-container">
+                <Typography variant="label3" onClick={handleView}>
+                  {t('content.companyCertificate.view')}{' '}
+                </Typography>
+                <Typography variant="label3">
+                  {t('content.companyCertificate.delete')}{' '}
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Box>
         <Box className="bottom-container">
           <Typography variant="label3">
             {t('content.companyCertificate.validtill')} : {item.validTill}
           </Typography>
-          <Box
-            className="link"
-            onClick={() => {
-              dispatch(
-                show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId)
-              )
-            }}
-          >
+          <Box className="link" onClick={handleView}>
             <Typography variant="label3">
               {t('content.companyCertificate.morelink')}
             </Typography>

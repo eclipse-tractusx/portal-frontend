@@ -120,7 +120,7 @@ export default function CompanyCertificateDetails({ id }: { id: string }) {
     ),
     label: flag
       ? t('content.companyCertificate.details.fileUpload')
-      : t('content.companyCertificate.details.varification'),
+      : t('content.companyCertificate.details.verification'),
     statusTag: getButtonStatusTag(
       flag ? ProgressStatus.DONE : ProgressStatus.IN_PROGRESS
     ),

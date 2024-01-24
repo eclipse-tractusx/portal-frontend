@@ -1641,7 +1641,9 @@
       "uploadCertificate": "Upload Certificate",
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
       "validtill": "Valid Till",
-      "morelink": ">> More"
+      "morelink": ">> More",
+      "view": "View",
+      "delete": "Delete"
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
