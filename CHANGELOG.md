@@ -9,6 +9,7 @@
 - Company Certificate
   - Provide new link from user menu for the company certificate page
   - UI components created to display filter, sort and company certificates
+  - Company Certificate Details overlay
 
 ### BugFix
 

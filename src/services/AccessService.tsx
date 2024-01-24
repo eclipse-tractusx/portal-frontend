@@ -71,6 +71,7 @@ import AddMultipleUser from 'components/overlays/AddMultipleUser'
 import { OSPRegister } from 'components/overlays/OSPRegister'
 import { OSPConsent } from 'components/overlays/OSPConsent'
 import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
+import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDetails'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -213,6 +214,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <EditUsecase id={overlay.id} title={overlay.title ?? ''} />
     case OVERLAYS.UPDATE_CERTIFICATE:
       return <UpdateCertificate id={overlay.id} />
+    case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:
+      return <CompanyCertificateDetails id={overlay.id} />
     default:
       return <NotFound />
   }

@@ -1630,6 +1630,14 @@
         "name": "Name",
         "date": "Date"
       },
+      "details": {
+        "type": "Type",
+        "validtill": "Valid Till",
+        "status": "Status",
+        "deletebutton": "Delete Certificate",
+        "fileUpload": "File Upload",
+        "verification": "Verification"
+      },
       "uploadCertificate": "Upload Certificate",
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
       "validtill": "Valid Till",

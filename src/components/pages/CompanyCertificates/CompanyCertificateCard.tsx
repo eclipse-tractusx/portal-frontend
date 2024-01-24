@@ -24,6 +24,9 @@ import { type ComapnyCertificateData } from 'features/companyCertification/compa
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay'
 
 export default function CompanyCertificateCard({
   item,
@@ -32,6 +35,7 @@ export default function CompanyCertificateCard({
 }>): JSX.Element {
   const { t } = useTranslation()
   const [dotsMenu, setDotsMenu] = useState(false)
+  const dispatch = useDispatch()
   return (
     <Box className="card-container">
       <Box className="first-container">
@@ -56,7 +60,9 @@ export default function CompanyCertificateCard({
           <Box
             className="link"
             onClick={() => {
-              // show overlay
+              dispatch(
+                show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId)
+              )
             }}
           >
             <Typography variant="label3">
