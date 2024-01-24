@@ -115,6 +115,9 @@ export default function CompanyCertificates(): JSX.Element {
                 setShowModal(false)
               }}
               className="filterSection"
+              onKeyDown={() => {
+                // do nothing
+              }}
             >
               <ViewSelector views={tabButtons} activeView={filter} />
               <div
