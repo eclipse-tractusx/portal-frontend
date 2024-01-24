@@ -59,17 +59,19 @@ export default function WalletCard({
             {wallet?.issuer?.split('.net:')[1]}
           </Typography>
         </div>
-        <div>
-          <Typography
-            sx={{
-              textAlign: 'left',
-              color: '#ffffff',
-            }}
-            variant="body2"
-          >
-            {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
-          </Typography>
-        </div>
+        {wallet?.expirationDate && (
+          <div>
+            <Typography
+              sx={{
+                textAlign: 'left',
+                color: '#ffffff',
+              }}
+              variant="body2"
+            >
+              {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
+            </Typography>
+          </div>
+        )}
       </div>
     </div>
   )
