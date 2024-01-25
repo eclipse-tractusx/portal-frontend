@@ -42,13 +42,13 @@ import {
   useUploadCertificateMutation,
 } from 'features/companyCertification/companyCertificateApiSlice'
 
-interface props {
-  handleClose: () => void
+interface UploadCompanyCertificateProps {
+  readonly handleClose: () => void
 }
 
 export default function UploadCompanyCertificate({
   handleClose,
-}: props): JSX.Element {
+}: UploadCompanyCertificateProps): JSX.Element {
   const { t } = useTranslation()
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [selectedCertificateType, setSelectedCertificateType] =
