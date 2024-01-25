@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Company Roles
+  - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
+
 ## 1.8.0-RC2
 
 ### Change

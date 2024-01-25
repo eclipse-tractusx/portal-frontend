@@ -1640,6 +1640,12 @@
       "declinedMessage": "Credential Request Declined successfully.",
       "errorMessage": "Something went wrong!"
     },
+    "standardLibraryTable": {
+      "version": "Version",
+      "capabilities": "Capabilities",
+      "title": "Title",
+      "download": "Download"
+    },
     "deleteCompany": {
       "title": "Delete Company Account",
       "description": "You have initiated the deletion of the company account {{companyName}} incl. your personal user account {{name}}. Please note that the deletion can not get reversed.",
