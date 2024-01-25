@@ -39,6 +39,8 @@ export default function CompanyCertificateCard({
 
   const handleView = (): unknown =>
     dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId))
+  const handleDelete = (): unknown =>
+    dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE, item.documentId))
   return (
     <Box className="card-container">
       <Box className="first-container">
@@ -59,7 +61,7 @@ export default function CompanyCertificateCard({
                 <Typography variant="label3" onClick={handleView}>
                   {t('content.companyCertificate.view')}{' '}
                 </Typography>
-                <Typography variant="label3">
+                <Typography variant="label3" onClick={handleDelete}>
                   {t('content.companyCertificate.delete')}{' '}
                 </Typography>
               </Box>

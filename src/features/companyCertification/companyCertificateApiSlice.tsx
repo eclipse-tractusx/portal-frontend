@@ -79,6 +79,15 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ['certificate'],
     }),
+    deleteCompanyCertificate: builder.mutation<void, string>({
+      query: (id) => {
+        return {
+          url: `/api/administration/companydata/companyCertificate/document/${id}`,
+          method: 'DELETE',
+        }
+      },
+      invalidatesTags: ['certificate'],
+    }),
   }),
 })
 
@@ -87,4 +96,5 @@ export const {
   useFetchDocumentQuery,
   useUploadCertificateMutation,
   useFetchCertificateTypesQuery,
+  useDeleteCompanyCertificateMutation,
 } = apiSlice

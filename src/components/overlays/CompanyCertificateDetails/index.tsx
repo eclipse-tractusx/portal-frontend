@@ -26,9 +26,8 @@ import {
   DialogContent,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { closeOverlay } from 'features/control/overlay'
+import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
-import { setOverlayCancel } from 'features/companyRoles/slice'
 import {
   type ComapnyCertificateData,
   useFetchCertificatesQuery,
@@ -44,6 +43,7 @@ import {
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useEffect, useState } from 'react'
+import { OVERLAYS } from 'types/Constants'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -59,7 +59,6 @@ export default function CompanyCertificateDetails({
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const close = () => {
-    dispatch(setOverlayCancel(true))
     dispatch(closeOverlay())
   }
 
@@ -163,7 +162,12 @@ export default function CompanyCertificateDetails({
                     startIcon={<DeleteIcon />}
                     variant="outlined"
                     size="small"
-                    onClick={close}
+                    onClick={() => {
+                      dispatch(closeOverlay())
+                      dispatch(
+                        show(OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE, id)
+                      )
+                    }}
                   >
                     {t('content.companyCertificate.details.deletebutton')}
                   </Button>

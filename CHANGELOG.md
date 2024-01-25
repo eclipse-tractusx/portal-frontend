@@ -11,6 +11,7 @@
   - UI components created to display filter, sort and company certificates
   - Company Certificate Details overlay
   - Upload new Company Certificate overlay
+  - Delete certificate screen
 
 ### BugFix
 
