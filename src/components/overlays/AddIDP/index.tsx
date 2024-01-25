@@ -30,7 +30,7 @@ import {
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
@@ -41,29 +41,25 @@ import {
   OIDCSignatureAlgorithm,
   useAddIDPMutation,
   useUpdateIDPMutation,
+  idpAddAuthTypeSelector,
+  idpAddProviderTypeSelector,
+  setProviderType,
+  setAuthType,
+  idpAddSelector,
+  setName,
 } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { ValidatingInput } from '../CXValidatingOverlay/ValidatingInput'
-import { isCompanyName } from 'types/Patterns'
+import { isName } from 'types/Patterns'
 import { getCentralIdp } from 'services/EnvironmentService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { success } from 'services/NotifyService'
 
-enum IDPType {
-  COMPANY = 'Company',
-  SHARED = 'Shared',
-}
-
-const SelectIdpProviderType = ({
-  onChange,
-  providerType = IDPProviderType.OWN,
-}: {
-  providerType?: IDPProviderType
-  onChange: (value: IDPProviderType) => void
-}) => {
+const SelectIdpProviderType = () => {
   const { t } = useTranslation('idp')
-  const [type, setType] = useState<IDPProviderType>(providerType)
+  const dispatch = useDispatch()
+  const providerType = useSelector(idpAddProviderTypeSelector)
 
   return (
     <div
@@ -90,38 +86,33 @@ const SelectIdpProviderType = ({
       <Radio
         name="radio-provider"
         label={`${IDPProviderType.OWN} - ${t('field.providerType.option.OWN')}`}
-        checked={type === IDPProviderType.OWN}
-        onChange={() => {
-          setType(IDPProviderType.OWN)
-          onChange(IDPProviderType.OWN)
-        }}
         value={IDPProviderType.OWN}
         inputProps={{ 'aria-label': IDPProviderType.OWN }}
+        checked={providerType === IDPProviderType.OWN}
+        onChange={() => {
+          dispatch(setProviderType(IDPProviderType.OWN))
+        }}
       />
       <Radio
         name="radio-provider"
         label={`${IDPProviderType.MANAGED} - ${t(
           'field.providerType.option.MANAGED'
         )}`}
-        checked={type === IDPProviderType.MANAGED}
-        onChange={() => {
-          setType(IDPProviderType.MANAGED)
-          onChange(IDPProviderType.MANAGED)
-        }}
         value={IDPProviderType.MANAGED}
         inputProps={{ 'aria-label': IDPProviderType.MANAGED }}
+        checked={providerType === IDPProviderType.MANAGED}
+        onChange={() => {
+          dispatch(setProviderType(IDPProviderType.MANAGED))
+        }}
       />
     </div>
   )
 }
 
-const SelectIdpAuthType = ({
-  onChange,
-}: {
-  onChange: (value: IDPAuthType) => void
-}) => {
+const SelectIdpAuthType = () => {
   const { t } = useTranslation('idp')
-  const [type, setType] = useState<IDPAuthType>(IDPAuthType.OIDC)
+  const dispatch = useDispatch()
+  const authType = useSelector(idpAddAuthTypeSelector)
 
   return (
     <div
@@ -129,7 +120,7 @@ const SelectIdpAuthType = ({
     >
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Typography sx={{ marginRight: '12px' }} variant="label3">
-          {t('field.type.name')}
+          {t('field.authType.name')}
         </Typography>
         <Tooltips
           additionalStyles={{
@@ -137,7 +128,7 @@ const SelectIdpAuthType = ({
             marginTop: '30px !important',
           }}
           tooltipPlacement="top-start"
-          tooltipText={t('field.type.hint')}
+          tooltipText={t('field.authType.hint')}
           children={
             <div>
               <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
@@ -146,53 +137,33 @@ const SelectIdpAuthType = ({
         />
       </div>
       <Radio
-        name="radio-auth"
+        name="radio-provider"
         label={IDPAuthType.OIDC}
-        checked={type === IDPAuthType.OIDC}
-        onChange={() => {
-          setType(IDPAuthType.OIDC)
-          onChange(IDPAuthType.OIDC)
-        }}
         value={IDPAuthType.OIDC}
         inputProps={{ 'aria-label': IDPAuthType.OIDC }}
+        checked={authType === IDPAuthType.OIDC}
+        onChange={() => {
+          dispatch(setAuthType(IDPAuthType.OIDC))
+        }}
       />
       <Radio
-        name="radio-auth"
         disabled={true}
+        name="radio-provider"
         label={IDPAuthType.SAML}
-        checked={type === IDPAuthType.SAML}
-        onChange={() => {
-          setType(IDPAuthType.SAML)
-          onChange(IDPAuthType.SAML)
-        }}
         value={IDPAuthType.SAML}
         inputProps={{ 'aria-label': IDPAuthType.SAML }}
+        checked={authType === IDPAuthType.SAML}
+        onChange={() => {
+          dispatch(setAuthType(IDPAuthType.SAML))
+        }}
       />
     </div>
   )
 }
 
-type AddIDPPrepareFormType = {
-  type: IDPType
-  providerType: IDPProviderType
-  authType: IDPAuthType
-  name: string
-}
-
-const AddIDPPrepareForm = ({
-  onChange,
-  providerType = IDPProviderType.OWN,
-}: {
-  providerType?: IDPProviderType
-  onChange: (value: AddIDPPrepareFormType) => void
-}) => {
+const AddIDPPrepareForm = () => {
   const { t } = useTranslation('idp')
-  const [formData, setFormData] = useState<AddIDPPrepareFormType>({
-    type: IDPType.COMPANY,
-    providerType,
-    authType: IDPAuthType.OIDC,
-    name: '',
-  })
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -200,13 +171,10 @@ const AddIDPPrepareForm = ({
         name="name"
         label={t('field.display.name')}
         tooltipMessage={t('field.display.hint')}
-        validate={isCompanyName}
+        validate={isName}
         onValid={(_name, value) => {
           if (!value) return
-          const currentData = { ...formData }
-          currentData.name = value
-          setFormData(currentData)
-          onChange(currentData)
+          dispatch(setName(value))
         }}
       />
       <div
@@ -216,44 +184,17 @@ const AddIDPPrepareForm = ({
           justifyContent: 'space-between',
         }}
       >
-        <SelectIdpAuthType
-          onChange={(value) => {
-            const currentData = {
-              ...formData,
-              authType: value,
-            }
-            setFormData(currentData)
-            onChange(currentData)
-          }}
-        />
-        <SelectIdpProviderType
-          onChange={(value) => {
-            const currentData = {
-              ...formData,
-              providerType: value,
-            }
-            setFormData(currentData)
-            onChange(currentData)
-          }}
-        />
+        <SelectIdpAuthType />
+        <SelectIdpProviderType />
       </div>
     </>
   )
 }
 
-export const AddIdp = ({
-  providerType = IDPProviderType.OWN,
-}: {
-  providerType?: IDPProviderType
-}) => {
+export const AddIdp = () => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const [formData, setFormData] = useState<AddIDPPrepareFormType>({
-    type: IDPType.COMPANY,
-    providerType,
-    authType: IDPAuthType.OIDC,
-    name: '',
-  })
+  const idpData = useSelector(idpAddSelector)
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
 
@@ -264,13 +205,13 @@ export const AddIdp = ({
     setLoading(true)
     try {
       const idp = await addIdp({
-        protocol: formData.authType,
-        identityProviderTypeId: formData.providerType,
+        protocol: idpData.authType,
+        identityProviderTypeId: idpData.providerType,
       }).unwrap()
       const idpUpdateData: IdentityProviderUpdate = {
         identityProviderId: idp.identityProviderId,
         body: {
-          displayName: formData.name,
+          displayName: idpData.name,
           oidc: {
             metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
@@ -282,7 +223,7 @@ export const AddIdp = ({
       }
       await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
-      success(t('add.success'))
+      success(t('add.success'), idpData.name)
     } catch (err) {
       setShowError(true)
     }
@@ -317,20 +258,18 @@ export const AddIdp = ({
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
           <Stepper
             list={
-              formData.providerType === IDPProviderType.MANAGED
+              idpData.providerType === IDPProviderType.MANAGED
                 ? AddStepsList.slice(0, 2)
                 : AddStepsList
             }
-            showSteps={
-              formData.providerType === IDPProviderType.MANAGED ? 2 : 3
-            }
+            showSteps={idpData.providerType === IDPProviderType.MANAGED ? 2 : 3}
             activeStep={1}
           />
         </div>
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>
         </Trans>
-        <AddIDPPrepareForm providerType={providerType} onChange={setFormData} />
+        <AddIDPPrepareForm />
         <Typography
           variant="label3"
           sx={{
@@ -392,7 +331,7 @@ export const AddIdp = ({
         ) : (
           <Button
             variant="contained"
-            disabled={!formData.name}
+            disabled={!idpData.name}
             onClick={() => doCreateIDP()}
           >
             {t('action.createIdp')}

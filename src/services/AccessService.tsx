@@ -34,6 +34,7 @@ import {
   footerMenuFull,
   mainMenuFullTree,
   userMenuFull,
+  userMenuRegistration,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
 import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
@@ -106,6 +107,8 @@ const accessToMenuTree = (menu: Tree[] | undefined): any =>
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
+
+const userMenuReg = () => accessToMenu(userMenuRegistration)
 
 const footerMenu = () => accessToMenu(footerMenuFull)
 
@@ -252,6 +255,7 @@ const AccessService = {
   permittedRoutes,
   mainMenuTree,
   userMenu,
+  userMenuReg,
   footerMenu,
 }
 

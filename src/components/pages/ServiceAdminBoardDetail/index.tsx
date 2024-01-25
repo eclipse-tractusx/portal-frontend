@@ -40,6 +40,8 @@ import { PAGES } from 'types/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
+import { DocumentTypeText } from 'features/apps/apiSlice'
+import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 enum TableData {
   SUCCESS = 'SUCCESS',
@@ -165,27 +167,75 @@ export default function ServiceAdminBoardDetail() {
               <div className="divider-height" />
             </div>
           ))}
+
+          <Typography variant="h3">
+            {t('adminboardDetail.ConformityDocument.heading')}
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 3 }}>
+            {t('adminboardDetail.ConformityDocument.message')}
+          </Typography>
+          {serviceData?.documents &&
+          serviceData?.documents[
+            DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
+          ] ? (
+            serviceData?.documents[
+              DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
+            ]?.map((document) => (
+              <li key={document.documentId} className="service-documents">
+                <ArrowForwardIcon fontSize="small" sx={{ mr: '12px' }} />
+                <button
+                  onClick={() =>
+                    onDownload({
+                      documentId: document.documentId,
+                      documentName: document.documentName,
+                    })
+                  }
+                  className="document-button-link"
+                >
+                  <Typography variant="label3">
+                    {document.documentName}
+                  </Typography>
+                </button>
+              </li>
+            ))
+          ) : (
+            <Typography variant="label3" className="not-available">
+              {t('adminboardDetail.noDocumentsAvailable')}
+            </Typography>
+          )}
+
+          <div className="divider-height" />
           <Typography variant="h3">
             {t('adminboardDetail.documents.heading')}
           </Typography>
           <Typography variant="body2" sx={{ mb: 3 }}>
             {t('adminboardDetail.documents.message')}
           </Typography>
-          {serviceData?.documents &&
-          Object.keys(serviceData.documents).length > 0 ? (
-            Object.keys(serviceData.documents).map((item) => (
-              <li key={item} className="service-documents">
-                <ArrowForwardIcon fontSize="small" sx={{ mr: '12px' }} />
-                <button
-                  onClick={() => onDownload(serviceData.documents[item][0])}
-                  className="document-button-link"
-                >
-                  <Typography variant="label3">
-                    {serviceData.documents[item][0]?.documentName}
-                  </Typography>
-                </button>
-              </li>
-            ))
+          {serviceData?.documents.hasOwnProperty(
+            DocumentTypeId.SERVICE_LEADIMAGE
+          ) ||
+          serviceData?.documents.hasOwnProperty(
+            DocumentTypeId.ADDITIONAL_DETAILS
+          ) ? (
+            serviceData?.documents &&
+            Object.keys(serviceData.documents).length > 0 &&
+            Object.keys(serviceData.documents).map(
+              (item) =>
+                (item === DocumentTypeId.SERVICE_LEADIMAGE ||
+                  item === DocumentTypeId.ADDITIONAL_DETAILS) && (
+                  <li key={item} className="service-documents">
+                    <ArrowForwardIcon fontSize="small" sx={{ mr: '12px' }} />
+                    <button
+                      onClick={() => onDownload(serviceData.documents[item][0])}
+                      className="document-button-link"
+                    >
+                      <Typography variant="label3">
+                        {serviceData.documents[item][0]?.documentName}
+                      </Typography>
+                    </button>
+                  </li>
+                )
+            )
           ) : (
             <Typography variant="label3" className="not-available">
               {t('adminboardDetail.noDocumentsAvailable')}

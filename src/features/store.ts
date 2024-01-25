@@ -37,7 +37,7 @@ import appSubscriptionSlice from './appSubscription/slice'
 import adminBoardSlice from './adminBoard/slice'
 import modelsSlice from './semanticModels/slice'
 import updateCompanyRoleSlice from './companyRoles/slice'
-import { apiSlice as idpSlice } from './admin/idpApiSlice'
+import { apiSlice as idpApiSlice } from './admin/idpApiSlice'
 import userAddSlice, { apiSlice as userSlice } from './admin/userApiSlice'
 import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
 import { apiSlice as notificationSlice } from './notification/apiSlice'
@@ -64,6 +64,7 @@ import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdmin
 import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSlice'
 import { apiSlice as certificationApiSlice } from './certification/certificationApiSlice'
 import { apiSlice as userManagementApiSlice } from './appManagement/userManagementApiSlice'
+import { apiSlice as registrationApiSlice } from './registration/registrationApiSlice'
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
@@ -90,7 +91,7 @@ export const reducers = {
   notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
   languageSlice: languageSlice.reducer,
-  [idpSlice.reducerPath]: idpSlice.reducer,
+  [idpApiSlice.reducerPath]: idpApiSlice.reducer,
   [userSlice.reducerPath]: userSlice.reducer,
   [serviceSlice.reducerPath]: serviceSlice.reducer,
   [notificationSlice.reducerPath]: notificationSlice.reducer,
@@ -117,13 +118,14 @@ export const reducers = {
   [certificationApiSlice.reducerPath]: certificationApiSlice.reducer,
   [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
+  [registrationApiSlice.reducerPath]: registrationApiSlice.reducer,
 }
 
 export const store = configureStore({
   reducer: combineReducers(reducers),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false })
-      .concat(idpSlice.middleware)
+      .concat(idpApiSlice.middleware)
       .concat(userSlice.middleware)
       .concat(serviceSlice.middleware)
       .concat(notificationSlice.middleware)
@@ -147,7 +149,8 @@ export const store = configureStore({
       .concat(companyRoleApiSlice.middleware)
       .concat(certificationApiSlice.middleware)
       .concat(userManagementApiSlice.middleware)
-      .concat(usecaseApiSlice.middleware),
+      .concat(usecaseApiSlice.middleware)
+      .concat(registrationApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

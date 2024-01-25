@@ -18,15 +18,40 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { combineReducers } from 'redux'
-import { slice as registration } from './registration/slice'
-import { slice as user } from './userDeprecated/slice'
-import { slice as userOwn } from './userOwn/slice'
-import { slice as idp } from './idpApiSlice'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { apiBaseQuery } from 'utils/rtkUtil'
 
-export default combineReducers({
-  idp: idp.reducer,
-  user: user.reducer,
-  registration: registration.reducer,
-  userOwn: userOwn.reducer,
+export enum ApplicationStatus {
+  CREATED = 'CREATED',
+  ADD_COMPANY_DATA = 'ADD_COMPANY_DATA',
+  INVITE_USER = 'INVITE_USER',
+  SELECT_COMPANY_ROLE = 'SELECT_COMPANY_ROLE',
+  UPLOAD_DOCUMENTS = 'UPLOAD_DOCUMENTS',
+  VERIFY = 'VERIFY',
+}
+
+export type ApplicationRank = {
+  CREATED: 1
+  ADD_COMPANY_DATA: 1
+  INVITE_USER: 2
+  SELECT_COMPANY_ROLE: 3
+  UPLOAD_DOCUMENTS: 4
+  VERIFY: 5
+}
+
+export type ApplicationResponse = {
+  applicationId: string
+  applicationStatus: ApplicationStatus
+}
+
+export const apiSlice = createApi({
+  reducerPath: 'rtk/registration',
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
+  endpoints: (builder) => ({
+    fetchApplications: builder.query<ApplicationResponse[], void>({
+      query: () => '/api/registration/applications',
+    }),
+  }),
 })
+
+export const { useFetchApplicationsQuery } = apiSlice

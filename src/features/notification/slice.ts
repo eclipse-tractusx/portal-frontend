@@ -21,7 +21,10 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
 import { initServicetNotifications } from 'types/MainTypes'
-import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type {
+  PageNotificationsProps,
+  PaginMeta,
+} from '@catena-x/portal-shared-components'
 import {
   type NotificationFetchType,
   type NOTIFICATION_TOPIC,
@@ -47,10 +50,22 @@ export const slice = createSlice({
       ...state,
       fetch: payload.initialNotificationState,
     }),
+    setMeta: (state, action: PayloadAction<PaginMeta>) => ({
+      ...state,
+      meta: action.payload,
+    }),
+    setPage: (state, action: PayloadAction<number>) => ({
+      ...state,
+      fetch: {
+        ...state.fetch,
+        page: action.payload,
+      },
+    }),
     setOrder: (state, action: PayloadAction<NotificationSortingType>) => ({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           sorting: action.payload,
@@ -61,8 +76,10 @@ export const slice = createSlice({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
+          searchQuery: action.payload,
           searchTypeIds: I18nService.searchNotifications(action.payload),
         },
       },
@@ -71,6 +88,7 @@ export const slice = createSlice({
       ...state,
       fetch: {
         ...state.fetch,
+        page: 0,
         args: {
           ...state.fetch.args,
           notificationTopic: action.payload,
@@ -79,6 +97,9 @@ export const slice = createSlice({
     }),
   },
 })
+
+export const metaSelector = (state: RootState): PaginMeta =>
+  state.notification.meta
 
 export const notificationSelector = (
   state: RootState
@@ -91,10 +112,12 @@ export const notificationFetchSelector = (
 export const {
   setNotification,
   resetNotification,
+  setMeta,
   setFetch,
   setTopic,
   setSearch,
   setOrder,
+  setPage,
 } = slice.actions
 
 export default slice
