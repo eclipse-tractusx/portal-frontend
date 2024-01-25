@@ -101,6 +101,7 @@ export enum PAGES {
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
+  DECLINE = 'decline',
 }
 
 export enum OVERLAYS {
