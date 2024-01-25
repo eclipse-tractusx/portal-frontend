@@ -21,11 +21,16 @@
 import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
 import { SearchInput } from '@catena-x/portal-shared-components'
+import type { SxProps, Theme } from '@mui/material'
 
 const DebouncedSearchInput = ({
+  sx = {},
+  placeholder = '',
   onSearch,
   debounceTime = 300,
 }: {
+  sx?: SxProps<Theme>
+  placeholder?: string
   onSearch: (expr: string) => void
   debounceTime?: number
 }) => {
@@ -43,6 +48,8 @@ const DebouncedSearchInput = ({
 
   return (
     <SearchInput
+      sx={sx}
+      placeholder={placeholder}
       value={searchExpr}
       onChange={(e) => {
         doSearch(e.target.value)

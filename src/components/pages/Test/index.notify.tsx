@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
+ * Copyright (c) 2021, 2024 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,28 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageSection from './components/StageSection'
-import AppListSection from './components/AppListSection'
-import SearchSection from './components/SearchSection'
-import HeaderSection from './components/HeaderSection'
-import { Box } from '@mui/material'
-import PageService from 'services/PageService'
-import { useRef } from 'react'
-import './AppMarketplace.scss'
+import { Button } from '@catena-x/portal-shared-components'
+import { error, success } from 'services/NotifyService'
 
-export default function AppMarketplace() {
-  const reference = PageService.registerReference('AppList', useRef(null))
+const checkDate = (date: number) => {
+  date % 2
+    ? success('current time', 'even', date)
+    : error('current time', 'odd ', date)
+}
 
+export default function TestNotify() {
   return (
-    <main className="app-store">
-      <StageSection />
-      <Box ref={reference} className="overview-section">
-        <section>
-          <HeaderSection />
-          <SearchSection />
-          <AppListSection />
-        </section>
-      </Box>
-    </main>
+    <section>
+      <Button
+        onClick={() => {
+          checkDate(Date.now())
+        }}
+      >
+        even time?
+      </Button>
+    </section>
   )
 }
