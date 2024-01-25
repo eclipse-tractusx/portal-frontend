@@ -1,11 +1,23 @@
 # Changelog
 
-## unrelease
+## unreleased
 
-- Notifications
-  - search also returns hits in content
 - Company Roles
   - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
+
+## 1.8.0-RC2
+
+### Change
+
+- Notifications
+  - extended search function to return hits on in content matches
+
+### BugFix
+
+- fixed styling of mobile version navigation element (profile section)
+- Notification Search
+  - fixed infinite loading icon at the end of the search result list
+- fixed IdP workflow/UI flow inside the overlay "Create IdP" depending on selected IdP type (managed vs own)
 
 ## 1.8.0-RC1
 
