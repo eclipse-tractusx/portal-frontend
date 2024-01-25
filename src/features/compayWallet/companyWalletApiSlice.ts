@@ -34,6 +34,8 @@ export enum CredentialSubjectType {
   MembershipCredential = 'MembershipCredential',
   BpnCredential = 'BpnCredential',
   VerifiableCredential = 'VerifiableCredential',
+  Framework = 'Framework',
+  CompanyRole = 'CompanyRole',
 }
 export interface CredentialSubject {
   holderIdentifier: string

@@ -51,7 +51,9 @@ export default function CompanyWallet(): JSX.Element {
 
   const groupedItems = groupBy(
     data?.content,
-    (item: WalletContent) => item.credentialSubject[0].type
+    (item: WalletContent) =>
+      item.credentialSubject[0].type === CredentialSubjectType.CompanyRole ||
+      item.credentialSubject[0].type === CredentialSubjectType.Framework
   )
 
   return (

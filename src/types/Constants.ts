@@ -214,7 +214,7 @@ export enum ROLES {
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
-  COMPANY_WALLET = 'CX Admin',
+  COMPANY_WALLET = 'view_wallet',
 }
 
 export enum HINTS {

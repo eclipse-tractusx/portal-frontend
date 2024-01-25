@@ -68,6 +68,7 @@ export default function WalletCard({
               }}
               variant="body2"
             >
+              {t('content.companyWallet.expiry')}
               {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
             </Typography>
           </div>

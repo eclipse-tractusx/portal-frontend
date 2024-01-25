@@ -21,6 +21,8 @@ import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
+import { Grid } from '@mui/material'
 
 type Hash<T> = Record<string, T>
 
@@ -29,6 +31,7 @@ export default function RuleCard({
 }: {
   readonly sections: Hash<WalletContent[]>
 }): JSX.Element {
+  const { t } = useTranslation()
   const keys = Object.keys(sections)
   return (
     <>
@@ -39,32 +42,51 @@ export default function RuleCard({
               color: '#111111',
               marginBottom: '30px',
               textAlign: 'left',
-              marginLeft: '20px',
+              marginLeft: '0px',
             }}
             variant="h4"
           >
-            {key}
+            {key === 'false' ? 'Others' : key}
           </Typography>
-          <div className="main-rule-card-container">
-            {sections[key]?.map((card: WalletContent) => (
-              <div key={card.id} className="rule-card-container">
-                <Typography className="text" variant="body2">
-                  {card?.credentialSubject[0].status ?? 'Inactive'}
-                </Typography>
-                <Typography className="text" variant="h4">
-                  {card.issuer?.split('.net:')[1]}
-                </Typography>
-                <div>
-                  <Typography className="text" variant="body3">
-                    {card?.credentialSubject[0].type}
+          <Grid
+            container
+            spacing={4}
+            sx={{
+              paddingLeft: '0px',
+            }}
+          >
+            {sections[key]?.map((item: WalletContent) => (
+              <Grid
+                item
+                xs={6}
+                sm={6}
+                md={6}
+                className="main-rule-card-container"
+                key={item.id}
+                sx={{
+                  paddingLeft: '20px !important',
+                }}
+              >
+                <div key={item.id} className="rule-card-container">
+                  <Typography className="text" variant="body2">
+                    {item?.credentialSubject[0].status ?? 'Inactive'}
                   </Typography>
-                  <Typography className="text" variant="body3">
-                    {dayjs(card.expirationDate).format('YYYY-MM-DD')}
+                  <Typography className="text" variant="h4">
+                    {item?.credentialSubject[0].type}
                   </Typography>
+                  <div>
+                    <Typography className="text" variant="body3">
+                      {item.issuer?.split('.net:')[1]}
+                    </Typography>
+                    <Typography className="text" variant="body3">
+                      {t('content.companyWallet.expiry')}
+                      {dayjs(item.expirationDate).format('YYYY-MM-DD')}
+                    </Typography>
+                  </div>
                 </div>
-              </div>
+              </Grid>
             ))}
-          </div>
+          </Grid>
         </div>
       ))}
     </>
