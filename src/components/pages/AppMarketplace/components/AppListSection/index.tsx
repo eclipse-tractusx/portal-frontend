@@ -25,11 +25,11 @@ import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { addItem, removeItem } from 'features/apps/favorites/actions'
 import {
-  addItem,
-  removeItem,
-} from 'features/apps/favorites/actions'
-import { useFetchActiveAppsQuery, useFetchFavoriteAppsQuery } from 'features/apps/apiSlice'
+  useFetchActiveAppsQuery,
+  useFetchFavoriteAppsQuery,
+} from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
 
@@ -48,7 +48,7 @@ export default function AppListSection() {
   // eslint-disable-next-line
   const [cards, setCards] = useState<any>([])
   console.log(data)
-  
+
   useEffect(() => {
     setCardsData(cards)
   }, [cards])
