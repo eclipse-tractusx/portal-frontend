@@ -24,6 +24,7 @@ import { Typography, StatusTag } from '@catena-x/portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
+import PendingIcon from '@mui/icons-material/Pending'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import {
   type ApplicationChecklist,
@@ -83,10 +84,10 @@ const RegistrationReviewContent = () => {
         }
       default:
         return {
-          icon: <ReportProblemIcon />,
+          icon: <PendingIcon />,
           backgroundColor: '#FFF6FF',
           color: '#D91E18',
-          iconColor: 'declined' as StatusTagIcon['type'],
+          iconColor: 'label' as StatusTagIcon['type'],
         }
     }
   }

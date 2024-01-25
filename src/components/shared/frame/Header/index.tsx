@@ -65,8 +65,6 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
 
   const [overlayOpen, setOverlayOpen] = useState(
     companyData?.applicationStatus === ApplicationStatus.SUBMITTED
-      ? true
-      : false
   )
   const [headerNote, setHeaderNote] = useState(false)
 
@@ -95,10 +93,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <Typography variant="label3">
               {t('content.registrationInreview.helpText')}
             </Typography>
-            <Typography
-              variant="label3"
-              sx={{ color: '#0f71cb', paddingLeft: '5px' }}
-            >
+            <Typography variant="label3" className="emailText">
               {t('content.registrationInreview.email')}
             </Typography>
           </Trans>
@@ -116,6 +111,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
           boxShadow: '0px 20px 40px rgba(80, 80, 80, 0.3)',
           borderRadius: '5px',
         }}
+        className="registrationReviewNoteSection"
       >
         <CustomAccordion
           items={[
@@ -123,14 +119,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               children: renderFullText(),
               expanded: false,
               icon: (
-                <Typography
-                  variant="label3"
-                  style={{
-                    color: '#FF7100',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
+                <Typography variant="label3" className="noteReviewText">
                   <SubjectIcon />
                   {isMobile
                     ? 'REGISTRATION IN REVIEW '
@@ -144,10 +133,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
                   <Typography variant="label3">
                     {t('content.registrationInreview.noteDetail')}
                   </Typography>
-                  <Typography
-                    variant="label3"
-                    sx={{ color: '#0f71cb', paddingLeft: '5px' }}
-                  >
+                  <Typography variant="label3" className="emailText">
                     {t('content.registrationInreview.email')}
                   </Typography>
                 </Trans>
@@ -175,7 +161,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
                 // do nothing
               }}
             >
-              <SearchIcon sx={{ color: '#0f71cb' }} />
+              <SearchIcon className="searchIcon" />
             </div>
             <Button
               size="small"
@@ -188,7 +174,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
                   'noreferrer'
                 )
               }}
-              sx={{ backgroundColor: 'white', marginRight: '16px' }}
+              className="documentation"
             >
               {t('pages.help')}
             </Button>
@@ -208,7 +194,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               // do nothing
             }}
           >
-            <SearchIcon sx={{ color: '#0f71cb' }} />
+            <SearchIcon className="searchIcon" />
           </div>
           <Box
             onClick={() => dispatch(setAppear({ MENU: !appearShow }))}
@@ -217,7 +203,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               // do nothing
             }}
           >
-            <MenuIcon sx={{ color: '#0f71cb' }} />
+            <MenuIcon className="searchIcon" />
           </Box>
         </div>
       </div>
