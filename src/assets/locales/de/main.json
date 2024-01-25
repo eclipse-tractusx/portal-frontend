@@ -1678,19 +1678,33 @@
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
     },
     "companyWallet": {
-      "heading": "My Company Wallet",
+      "heading": "Mein Firmen-Wallet",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
-      "activateDescription": "You have activated your Catena-X wallet.",
-      "inactive": "Not Connected",
-      "inactiveDescription": "You have not activated your Catena-X wallet.",
+      "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
+      "inactive": "Nicht verbunden",
+      "inactiveDescription": "Sie haben Ihr Catena-X-Wallet nicht aktiviert.",
       "subnavigation": {
-        "title": "Wallet operations :",
-        "button1": "Request new Use Case Credential",
-        "button2": "Request new Company Credential",
-        "button3": "Get more details of VCs (coming soon)"
+        "title": "Wallet-Operationen :",
+        "button1": "Fordern Sie neue Use-Case-Anmeldeinformationen an",
+        "button2": "Fordern Sie einen neuen Firmenausweis an",
+        "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
       },
-      "expiry": "Expiry: "
+      "expiry": "Ablauf: "
+    },
+    "deleteCompany": {
+      "title": "Delete Company Account",
+      "description": "You have initiated the deletion of the company account {{companyName}} incl. your personal user account {name}. Please note that the deletion can not get reversed.",
+      "heading1": "Company Account {name} is getting deleted",
+      "heading2": "All linked user accounts are getting deleted:",
+      "deleteBtn": "Delete my company",
+      "successTitle": "Company Account Deletion was successful.",
+      "successDescription": "The deletion was successful. You can now close this page. An email confirmation was send.",
+      "errorTitle": "Company Account Deletion was unsuccessful.",
+      "errorDescription": "The deletion was unsuccessful. Try it again or contact the platform administrator.",
+      "retryBtn": "Retry Deletion",
+      "notSupportedTitle": "Company account deletion is not supported. You registration is already submitted/closed. To unsubscribe you need to use the platform off-boarding process.",
+      "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
     }
   },
   "navigation": {

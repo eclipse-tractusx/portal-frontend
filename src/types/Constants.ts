@@ -102,6 +102,7 @@ export enum PAGES {
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
   COMPANY_WALLET = 'companyWallet',
+  DECLINE = 'decline',
 }
 
 export enum OVERLAYS {
