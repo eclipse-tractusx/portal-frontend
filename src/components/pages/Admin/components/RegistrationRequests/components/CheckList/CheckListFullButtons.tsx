@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import Box from '@mui/material/Box'
-import { Typography, StatusTag } from '@nidhi.garg/portal-shared-components'
+import { Typography, StatusTag } from '@catena-x/portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'

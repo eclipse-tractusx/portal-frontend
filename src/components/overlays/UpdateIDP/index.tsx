@@ -27,7 +27,7 @@ import {
   LoadingButton,
   Stepper,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'

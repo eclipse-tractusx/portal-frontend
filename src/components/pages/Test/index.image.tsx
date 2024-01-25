@@ -22,7 +22,7 @@ import {
   Image,
   LogoGrayData,
   TransparentPixel,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'

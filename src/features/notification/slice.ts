@@ -21,7 +21,7 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
 import { initServicetNotifications } from 'types/MainTypes'
-import type { PageNotificationsProps } from '@nidhi.garg/portal-shared-components'
+import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
 import {
   type NotificationFetchType,
   type NOTIFICATION_TOPIC,

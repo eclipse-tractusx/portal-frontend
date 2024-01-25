@@ -20,8 +20,11 @@
 .registration-review {
   text-align: center;
   .description {
-    border-bottom: 1px dashed #dcdcdc;
     padding-bottom: 35px;
+  }
+  .subDescription{
+    border-bottom: 1px dashed #dcdcdc;
+    padding-bottom: 30px;
   }
   .stepTitle {
     margin-top: 30px;
@@ -29,6 +32,7 @@
   .statusList {
     list-style: none;
     margin-top: 30px;
+    padding: 0;
     li {
       display: flex;
       margin: 15px 0;
@@ -41,6 +45,12 @@
         margin-left: 10px;
         margin-right: auto;
       }
+      .m-0{
+        margin: 0;
+      }
     }
+  }
+  .helpMain{
+    margin-top: 40px;
   }
 }

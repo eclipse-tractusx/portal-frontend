@@ -27,7 +27,7 @@ import {
   SelectList,
   Tooltips,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'

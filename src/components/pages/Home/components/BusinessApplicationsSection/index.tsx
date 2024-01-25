@@ -24,7 +24,7 @@ import {
   Typography,
   Carousel,
   Card,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'

@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Cards, CategoryDivider } from '@nidhi.garg/portal-shared-components'
+import { Cards, CategoryDivider } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
 import type { AppItem } from 'features/apps/apiSlice'
 

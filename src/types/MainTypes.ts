@@ -21,7 +21,7 @@
 import type {
   PageNotificationsProps,
   PaginMeta,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import type { ErrorServiceState } from 'features/error/types'
 
 export type Nullable<T> = T | null

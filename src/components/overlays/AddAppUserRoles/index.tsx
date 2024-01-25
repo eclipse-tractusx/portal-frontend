@@ -24,7 +24,7 @@ import {
   DialogHeader,
   Button,
   Stepper,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { AppRoles } from './AppRoles'

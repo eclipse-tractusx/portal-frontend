@@ -24,7 +24,7 @@ import { useParams } from 'react-router-dom'
 import {
   PageLoadingTable,
   StatusTag,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import type { GridRowId } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'

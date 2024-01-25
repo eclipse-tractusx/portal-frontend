@@ -21,7 +21,7 @@
 import {
   ParentSubNavigation,
   NewSubNavigation,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import '../Templates.scss'
 import { Box, useMediaQuery } from '@mui/material'
 import { type SubNavigationType } from 'services/CommonService'

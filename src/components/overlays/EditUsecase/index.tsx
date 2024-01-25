@@ -30,7 +30,7 @@ import {
   DropArea,
   type DropAreaProps,
   LoadingButton,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'

@@ -22,7 +22,7 @@ import {
   Typography,
   Card,
   Carousel,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'

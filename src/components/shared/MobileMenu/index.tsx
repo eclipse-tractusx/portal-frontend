@@ -22,7 +22,7 @@ import uniqueId from 'lodash/uniqueId'
 import { MenuItem, type MenuItemProps } from './MenuItem'
 import { UserInfo } from '../frame/UserInfo'
 import AccessService from 'services/AccessService'
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import HelpIcon from '@mui/icons-material/Help'
 import {
   ApplicationStatus,

@@ -29,7 +29,7 @@ import {
   CircleProgress,
   Checkbox,
   StaticTable,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 
 interface DeleteConfirmationOverlayProps {

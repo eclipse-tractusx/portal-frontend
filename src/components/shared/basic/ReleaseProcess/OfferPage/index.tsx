@@ -23,7 +23,7 @@ import {
   IconButton,
   type UploadFileStatus,
   UploadStatus,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'

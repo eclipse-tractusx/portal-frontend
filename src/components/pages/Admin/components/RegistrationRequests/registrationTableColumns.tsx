@@ -22,7 +22,7 @@ import {
   IconButton,
   StatusTag,
   Chip,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'

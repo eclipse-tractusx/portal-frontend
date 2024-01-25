@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { CircleProgress } from '@nidhi.garg/portal-shared-components'
+import { CircleProgress } from '@catena-x/portal-shared-components'
 import { notificationFetchSelector, setPage } from 'features/notification/slice'
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

@@ -23,7 +23,7 @@ import {
   Typography,
   CardHorizontal,
   StaticTable,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import './ServiceDetail.scss'
 import 'components/styles/document.scss'
 import {

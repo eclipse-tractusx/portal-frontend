@@ -27,7 +27,7 @@ import {
   DialogHeader,
   DialogActions,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import RegistrationReviewContent from './RegistrationReviewContent'
 import './RegistrationReview.scss'
 
@@ -56,7 +56,7 @@ const RegistrationReviewOverlay = ({
       <Dialog
         open={openDialog}
         additionalModalRootStyles={{
-          width: isMobile ? '90%' : '50%',
+          width: isMobile ? '80%' : '50%',
         }}
       >
         <DialogHeader title={t('content.registrationInreview.title')} />

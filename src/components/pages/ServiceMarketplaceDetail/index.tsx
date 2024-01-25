@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { Button } from '@nidhi.garg/portal-shared-components'
+import { Button } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
 import { useDispatch, useSelector } from 'react-redux'

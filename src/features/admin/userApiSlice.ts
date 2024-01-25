@@ -26,7 +26,7 @@ import UserService from 'services/UserService'
 import type {
   PaginResult,
   PaginFetchArgs,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 
 export interface UserAppRoles {

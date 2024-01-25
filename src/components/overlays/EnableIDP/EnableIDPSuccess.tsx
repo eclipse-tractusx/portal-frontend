@@ -27,7 +27,7 @@ import {
   DialogHeader,
   Stepper,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay, exec } from 'features/control/overlay'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'

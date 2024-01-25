@@ -36,7 +36,7 @@ import { name, type SearchItem } from './types'
 import type {
   CardItems,
   PaginResult,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { isUUID, Patterns } from 'types/Patterns'
 import type {
   BusinessPartner,

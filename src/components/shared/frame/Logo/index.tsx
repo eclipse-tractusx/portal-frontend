@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { NavLink } from 'react-router-dom'
-import { Image } from '@nidhi.garg/portal-shared-components'
+import { Image } from '@catena-x/portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 
 export const Logo = () => (

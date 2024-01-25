@@ -25,7 +25,7 @@ import {
   DialogContent,
   Button,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import './ComponentStyles.scss'

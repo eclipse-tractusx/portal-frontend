@@ -24,7 +24,7 @@ import {
   Button,
   Stepper,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import './Registration.scss'
 import {
   ApplicationStatus,

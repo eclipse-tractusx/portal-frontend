@@ -28,7 +28,7 @@ import {
   Typography,
   PageSnackbar,
   PageLoadingTable,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'

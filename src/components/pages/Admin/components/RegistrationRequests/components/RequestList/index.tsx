@@ -21,7 +21,7 @@
 import {
   PageLoadingTable,
   type PaginFetchArgs,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'

@@ -26,7 +26,7 @@ import {
   UserNav,
   type NotificationBadgeType,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'

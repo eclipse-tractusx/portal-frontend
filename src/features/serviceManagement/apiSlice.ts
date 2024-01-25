@@ -22,7 +22,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { ServiceStatusDataState } from './types'
-import type { PaginFetchArgs } from '@nidhi.garg/portal-shared-components'
+import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',

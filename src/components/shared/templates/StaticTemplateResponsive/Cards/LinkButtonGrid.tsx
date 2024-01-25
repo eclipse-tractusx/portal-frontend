@@ -20,7 +20,7 @@
 
 import type { ProviderProps, linkProps } from '../StaticTypes'
 import { Box } from '@mui/material'
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
 
 export default function LinkButtonGrid({

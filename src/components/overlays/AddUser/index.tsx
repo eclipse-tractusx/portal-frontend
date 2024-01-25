@@ -22,7 +22,7 @@ import {
   Button,
   CircleProgress,
   PageSnackbar,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   useFetchIDPListQuery,
   type IdentityProvider,

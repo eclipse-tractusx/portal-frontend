@@ -26,7 +26,7 @@ import {
   setSearch,
 } from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
-import { SortOption } from '@nidhi.garg/portal-shared-components'
+import { SortOption } from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import { NotificationSortingType } from 'features/notification/types'
 import { useState } from 'react'

@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
-import { ErrorBar, PageHeader } from '@nidhi.garg/portal-shared-components'
+import { ErrorBar, PageHeader } from '@catena-x/portal-shared-components'
 import {
   type AppMarketplaceApp,
   useFetchProvidedAppsQuery,

@@ -23,7 +23,7 @@ import {
   Button,
   Image,
   LogoGrayData,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
 import './Organization.scss'
 import { useTranslation } from 'react-i18next'

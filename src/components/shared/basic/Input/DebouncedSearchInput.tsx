@@ -20,7 +20,7 @@
 
 import debounce from 'lodash.debounce'
 import { useCallback, useMemo, useState } from 'react'
-import { SearchInput } from '@nidhi.garg/portal-shared-components'
+import { SearchInput } from '@catena-x/portal-shared-components'
 
 const DebouncedSearchInput = ({
   onSearch,

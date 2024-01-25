@@ -121,16 +121,17 @@
     },
     "registrationInreview": {
       "title": "Welcome to Catena-X",
-      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong><br /><br />At the current state of the review you already have limited access to the portal.",
-      "stageTitle": "Current review stage:  {{step}}/5",
+      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
+      "subDescription": "At the current state of the review you already have limited access to the portal.",
+      "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
       "lastUpdate": "Last process update: {{date}}",
       "steps": {
-        "REGISTRATION_VERIFICATION": "Verify your company data",
-        "IDENTITY_WALLET": "Identity Wallet creation",
-        "CLEARING_HOUSE": "Clearinghouse",
-        "SELF_DESCRIPTION_LP": "Self-Description",
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description",
         "APPLICATION_ACTIVATION": "Application Activation",
-        "BUSINESS_PARTNER_NUMBER": "BPN creation"
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation"
       },
       "status": {
         "TO_DO": "To Do",

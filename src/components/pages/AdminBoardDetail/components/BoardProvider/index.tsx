@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   type TableType,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/apiSlice'
 import './BoardProvider.scss'
 import { Box } from '@mui/material'

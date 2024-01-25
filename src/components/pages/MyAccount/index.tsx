@@ -24,7 +24,7 @@ import {
   UserAvatar,
   Typography,
   PageHeader,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import type { RootState } from 'features/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'

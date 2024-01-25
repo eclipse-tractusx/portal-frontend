@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import type { ProviderProps } from '../StaticTypes'
-import { IconButton, Typography } from '@nidhi.garg/portal-shared-components'
+import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
 import ReactPlayer from 'react-player'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'

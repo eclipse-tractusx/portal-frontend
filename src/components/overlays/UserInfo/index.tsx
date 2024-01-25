@@ -21,7 +21,7 @@
 import {
   DialogContent,
   DialogHeader,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { fetchAny } from 'features/admin/userOwn/actions'
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay'
