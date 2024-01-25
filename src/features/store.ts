@@ -64,6 +64,7 @@ import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdmin
 import { apiSlice as companyRoleApiSlice } from './companyRoles/companyRoleApiSlice'
 import { apiSlice as certificationApiSlice } from './certification/certificationApiSlice'
 import { apiSlice as userManagementApiSlice } from './appManagement/userManagementApiSlice'
+import { apiSlice as deleteCompanyApiSlice } from './deleteCompany/deleteCompanyApiSlice'
 import { apiSlice as registrationApiSlice } from './registration/registrationApiSlice'
 import { apiSlice as staticContentApiSlice } from './staticContent/staticContentApiSlice'
 
@@ -119,6 +120,7 @@ export const reducers = {
   [certificationApiSlice.reducerPath]: certificationApiSlice.reducer,
   [userManagementApiSlice.reducerPath]: userManagementApiSlice.reducer,
   [usecaseApiSlice.reducerPath]: usecaseApiSlice.reducer,
+  [deleteCompanyApiSlice.reducerPath]: deleteCompanyApiSlice.reducer,
   [registrationApiSlice.reducerPath]: registrationApiSlice.reducer,
   [staticContentApiSlice.reducerPath]: staticContentApiSlice.reducer,
 }
@@ -153,7 +155,9 @@ export const store = configureStore({
       .concat(userManagementApiSlice.middleware)
       .concat(usecaseApiSlice.middleware)
       .concat(registrationApiSlice.middleware)
-      .concat(staticContentApiSlice.middleware),
+      .concat(staticContentApiSlice.middleware)
+      .concat(deleteCompanyApiSlice.middleware)
+      .concat(registrationApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

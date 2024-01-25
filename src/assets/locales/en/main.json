@@ -1645,6 +1645,20 @@
       "capabilities": "Capabilities",
       "title": "Title",
       "download": "Download"
+    },
+    "deleteCompany": {
+      "title": "Delete Company Account",
+      "description": "You have initiated the deletion of the company account {{companyName}} incl. your personal user account {{name}}. Please note that the deletion can not get reversed.",
+      "heading1": "Company Account {{name}} is getting deleted",
+      "heading2": "All linked user accounts are getting deleted:",
+      "deleteBtn": "Delete my company",
+      "successTitle": "Company Account Deletion was successful.",
+      "successDescription": "The deletion was successful. You can now close this page. An email confirmation was send.",
+      "errorTitle": "Company Account Deletion was unsuccessful.",
+      "errorDescription": "The deletion was unsuccessful. Try it again or contact the platform administrator.",
+      "retryBtn": "Retry Deletion",
+      "notSupportedTitle": "Company account deletion is not supported. You registration is already submitted/closed. To unsubscribe you need to use the platform off-boarding process.",
+      "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
     }
   },
   "navigation": {
