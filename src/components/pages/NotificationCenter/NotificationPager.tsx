@@ -20,19 +20,26 @@
 
 import { Box } from '@mui/material'
 import { CircleProgress } from '@catena-x/portal-shared-components'
-import { notificationFetchSelector, setPage } from 'features/notification/slice'
+import {
+  metaSelector,
+  notificationFetchSelector,
+  setPage,
+} from 'features/notification/slice'
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useOnScreen from 'utils/useOnScreen'
 
 export default function NotificationPager() {
   const fetchArgs = useSelector(notificationFetchSelector)
+  const meta = useSelector(metaSelector)
   const dispatch = useDispatch()
   const ref = useRef<HTMLDivElement>(null)
   const isVisible = useOnScreen(ref)
+  const hasMore = fetchArgs.page < (meta?.totalPages ?? 1)
 
   const triggerLoad = () => {
-    setTimeout(() => dispatch(setPage(fetchArgs.page + 1)), 700)
+    if ((meta?.page ?? 0) === fetchArgs.page)
+      setTimeout(() => dispatch(setPage(fetchArgs.page + 1)), 700)
     return true
   }
 
@@ -47,7 +54,7 @@ export default function NotificationPager() {
       }}
     >
       {' '}
-      {isVisible && (
+      {isVisible && hasMore && (
         <CircleProgress
           size={40}
           step={1}
@@ -58,7 +65,7 @@ export default function NotificationPager() {
         />
       )}
       <div style={{ marginTop: 200 }} ref={ref}>
-        {isVisible && triggerLoad()}
+        {isVisible && hasMore && triggerLoad()}
       </div>
     </Box>
   )

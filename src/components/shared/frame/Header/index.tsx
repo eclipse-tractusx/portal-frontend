@@ -87,7 +87,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
     return (
       <div
         className="registration-review"
-        style={{ width: '40%', margin: '0 auto' }}
+        style={{ width: isMobile ? '100%' : '40%', margin: '0 auto' }}
       >
         <RegistrationReviewContent />
         <div className="helpMain">

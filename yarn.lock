@@ -1193,6 +1193,24 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@catena-x/portal-shared-components@^2.1.20":
+  version "2.1.20"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-2.1.20.tgz#cd8d39fbd1349f497e7abb6a4dc0819b5bd85336"
+  integrity sha512-lVilpGu40KC6L1Is8KbYPq4yXPcqPJCiQZVaBb1vh2PJVm4VYs8wdB9yDFNr0Hz+iMbw/1y3xYexFJKlzCSzTw==
+  dependencies:
+    "@mui/base" "^5.0.0-beta.3"
+    "@mui/system" "^5.13.2"
+    "@mui/x-data-grid" "^6.0.0"
+    "@mui/x-date-pickers" "^6.0.0"
+    autosuggest-highlight "^3.3.4"
+    date-fns "^2.30.0"
+    i18next "20.3.1"
+    jquery "^3.7.0"
+    react-i18next "^13.2.2"
+    react-player "^2.13.0"
+    react-slick "^0.29.0"
+    slick-carousel "^1.8.1"
+
 "@csstools/normalize.css@*":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"
@@ -1927,24 +1945,6 @@
   integrity sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==
   dependencies:
     eslint-scope "5.1.1"
-
-"@nidhi.garg/portal-shared-components@^2.1.19":
-  version "2.1.19"
-  resolved "https://registry.yarnpkg.com/@nidhi.garg/portal-shared-components/-/portal-shared-components-2.1.19.tgz#a2ba6df02e21552d58ffbefc4dab621f21e5984a"
-  integrity sha512-CcxpNHuoFSBhxApulwt0mxTqwv4zxwCIEIDD4DeZu8LhQK/R9lXT6VR8MYtxxcInbk6bnip1vSeDedEtKu79rA==
-  dependencies:
-    "@mui/base" "^5.0.0-beta.3"
-    "@mui/system" "^5.13.2"
-    "@mui/x-data-grid" "^6.0.0"
-    "@mui/x-date-pickers" "^6.0.0"
-    autosuggest-highlight "^3.3.4"
-    date-fns "^2.30.0"
-    i18next "20.3.1"
-    jquery "^3.7.0"
-    react-i18next "^13.2.2"
-    react-player "^2.13.0"
-    react-slick "^0.29.0"
-    slick-carousel "^1.8.1"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
