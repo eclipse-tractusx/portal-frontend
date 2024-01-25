@@ -46,7 +46,10 @@ const RegistrationReviewContent = () => {
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
 
-  const approvedSteps = companyData?.applicationChecklist.filter((checklist: ApplicationChecklist) => checklist.statusId === ProgressStatus.DONE).length
+  const approvedSteps = companyData?.applicationChecklist.filter(
+    (checklist: ApplicationChecklist) =>
+      checklist.statusId === ProgressStatus.DONE
+  ).length
 
   const renderStatus = (status: string) => {
     switch (status) {
@@ -93,7 +96,12 @@ const RegistrationReviewContent = () => {
       <Typography variant="body1" className="subDescription">
         {t('content.registrationInreview.subDescription')}
       </Typography>
-      <Trans values={{ step: approvedSteps, totalSteps: companyData?.applicationChecklist.length }}>
+      <Trans
+        values={{
+          step: approvedSteps,
+          totalSteps: companyData?.applicationChecklist.length,
+        }}
+      >
         <Typography variant="h5" className="stepTitle">
           {t('content.registrationInreview.stageTitle')}
         </Typography>
@@ -106,7 +114,7 @@ const RegistrationReviewContent = () => {
               style={{
                 backgroundColor: renderStatus(checklist.statusId)
                   .backgroundColor,
-                flexDirection: isMobile ? 'column-reverse' : 'unset'
+                flexDirection: isMobile ? 'column-reverse' : 'unset',
               }}
             >
               {!isMobile && (
@@ -120,7 +128,7 @@ const RegistrationReviewContent = () => {
               <div
                 className={`${isMobile ? 'm-0' : 'statusLabel'}`}
                 style={{
-                  margin: isMobile ? 0 : ''
+                  margin: isMobile ? 0 : '',
                 }}
               >
                 <Typography variant="label3">

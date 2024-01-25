@@ -21,11 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import {
-  Button,
-  Stepper,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { Button, Stepper, Typography } from '@catena-x/portal-shared-components'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,

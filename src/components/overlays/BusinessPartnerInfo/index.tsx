@@ -19,10 +19,7 @@
  ********************************************************************************/
 
 import BusinessPartnerDetail from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
-import {
-  DialogContent,
-  DialogHeader,
-} from '@catena-x/portal-shared-components'
+import { DialogContent, DialogHeader } from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

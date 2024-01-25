@@ -85,7 +85,10 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
 
   const renderFullText = () => {
     return (
-      <div className="registration-review" style={{width: '40%', margin: '0 auto'}} >
+      <div
+        className="registration-review"
+        style={{ width: '40%', margin: '0 auto' }}
+      >
         <RegistrationReviewContent />
         <div className="helpMain">
           <Trans>
@@ -106,46 +109,57 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
 
   const renderRegistrationNoteSection = () => {
     return (
-        <div
-          style={{
-            margin: isMobile ? '75px 10px 40px' : '20px',
-            border: '1px solid #FF7100',
-            boxShadow: '0px 20px 40px rgba(80, 80, 80, 0.3)',
-            borderRadius: '5px',
-          }}
-        >
-          <CustomAccordion
-            items={[
-              {
-                children: renderFullText(),
-                expanded: false,
-                icon: (
-                  <Typography variant="label3" style={{ color: '#FF7100', display: 'flex', alignItems: 'center' }}>
-                    <SubjectIcon />
-                    {isMobile ? 'REGISTRATION IN REVIEW ' : t('content.registrationInreview.note')}
+      <div
+        style={{
+          margin: isMobile ? '75px 10px 40px' : '20px',
+          border: '1px solid #FF7100',
+          boxShadow: '0px 20px 40px rgba(80, 80, 80, 0.3)',
+          borderRadius: '5px',
+        }}
+      >
+        <CustomAccordion
+          items={[
+            {
+              children: renderFullText(),
+              expanded: false,
+              icon: (
+                <Typography
+                  variant="label3"
+                  style={{
+                    color: '#FF7100',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <SubjectIcon />
+                  {isMobile
+                    ? 'REGISTRATION IN REVIEW '
+                    : t('content.registrationInreview.note')}
+                </Typography>
+              ),
+              id: 'panel-1',
+              title: '',
+              titleElement: !isMobile ? (
+                <Trans>
+                  <Typography variant="label3">
+                    {t('content.registrationInreview.noteDetail')}
                   </Typography>
-                ),
-                id: 'panel-1',
-                title: '',
-                titleElement: !isMobile ? (
-                  <Trans>
-                    <Typography variant="label3">
-                      {t('content.registrationInreview.noteDetail')}
-                    </Typography>
-                    <Typography
-                      variant="label3"
-                      sx={{ color: '#0f71cb', paddingLeft: '5px' }}
-                    >
-                      {t('content.registrationInreview.email')}
-                    </Typography>
-                  </Trans>
-                ) : <></>,
-                buttonText: t('global.actions.close'),
-              },
-            ]}
-          />
-        </div>
-      )
+                  <Typography
+                    variant="label3"
+                    sx={{ color: '#0f71cb', paddingLeft: '5px' }}
+                  >
+                    {t('content.registrationInreview.email')}
+                  </Typography>
+                </Trans>
+              ) : (
+                <></>
+              ),
+              buttonText: t('global.actions.close'),
+            },
+          ]}
+        />
+      </div>
+    )
   }
 
   return (
