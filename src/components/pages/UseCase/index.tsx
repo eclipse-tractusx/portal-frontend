@@ -22,27 +22,27 @@ import './UseCase.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useEffect, useState } from 'react'
-import CommonService, {
-  type SubNavigationType,
-  type UseCaseType,
-} from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
+import {
+  type SubNavigationType,
+  type UseCaseType,
+  useFetchUseCaseQuery,
+} from 'features/staticContent/staticContentApiSlice'
 
 export default function UseCase() {
   const [useCase, setUseCase] = useState<UseCaseType>()
   const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const [isTop, setIsTop] = useState<boolean>(false)
   const language = useSelector(languageSelector)
+  const { data } = useFetchUseCaseQuery()
 
   useEffect(() => {
-    CommonService.getUseCases((data: UseCaseType) => {
-      setUseCase(data)
-      setLinkArray(data.subNavigation)
-    })
-  }, [language])
+    if (data) setUseCase(data)
+    setLinkArray(data?.subNavigation)
+  }, [language, data])
 
   const onScroll = () => {
     setIsTop(window.scrollY > 500)

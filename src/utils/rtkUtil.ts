@@ -22,6 +22,7 @@ import {
   getApiBase,
   getBpdmApiBase,
   getManagedIdentityWalletsNewBase,
+  getAssetBase,
 } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 
@@ -47,4 +48,8 @@ export const apiIdentityWalletQuery = () => ({
     headers.set('authorization', `Bearer ${UserService.getToken()}`)
     return headers
   },
+})
+
+export const apiAssetQuery = () => ({
+  baseUrl: getAssetBase(),
 })
