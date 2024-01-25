@@ -37,7 +37,7 @@ export default function CompanyCertificateCard({
   const [dotsMenu, setDotsMenu] = useState(false)
   const dispatch = useDispatch()
 
-  const handleView = () =>
+  const handleView = (): unknown =>
     dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId))
   return (
     <Box className="card-container">
