@@ -82,6 +82,8 @@
 - Release Process (Apps & Services)
   - information message "no {object} available" getting displayed while content is available
 - App Release Process
+  - fixed automatic upscrolling in form pages
+  - Fixed help link, funky character display and the success message display in user role upload
   - fixed automatic up scrolling in form pages
 - Service Release Process
   - fixed automatic up scrolling in form pages
@@ -103,6 +105,7 @@
 ### Known Knowns
 
 - /registration url provided via the registration email is not directing the user to the registration form as expected; instead, the new registration status is displayed where the user can jump via hyperlink to the registration form
+
 
 ## 1.7.0
 

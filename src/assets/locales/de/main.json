@@ -1160,7 +1160,9 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
-        "roleUpdateError": "Error while updating roles"
+        "roleUpdateError": "Error while updating roles",
+        "encoding": "Encoding(select supported encoding)",
+        "encodingPlaceholder": "Select supported encoding"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
