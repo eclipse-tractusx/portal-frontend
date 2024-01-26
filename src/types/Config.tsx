@@ -82,6 +82,7 @@ import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
+import CompanyWallet from 'components/pages/CompanyWallet'
 
 /**
  * ALL_PAGES
@@ -536,6 +537,11 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.IDP_VIEW,
     element: <OSPManagement />,
   },
+  {
+    name: PAGES.COMPANY_WALLET,
+    role: ROLES.COMPANY_WALLET,
+    element: <CompanyWallet />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -773,6 +779,7 @@ export const userMenuFull = [
   PAGES.USECASE_PARTICIPATION,
   PAGES.CERTIFICATE_CREDENTIAL,
   PAGES.ADMIN_CREDENTIAL,
+  PAGES.COMPANY_WALLET,
   PAGES.LOGOUT,
 ]
 

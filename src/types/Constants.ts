@@ -101,6 +101,8 @@ export enum PAGES {
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
+  COMPANY_WALLET = 'companyWallet',
+  DECLINE = 'decline',
 }
 
 export enum OVERLAYS {
@@ -213,6 +215,7 @@ export enum ROLES {
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
+  COMPANY_WALLET = 'view_wallet',
 }
 
 export enum HINTS {
