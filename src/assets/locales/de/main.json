@@ -62,7 +62,8 @@
     "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space",
-    "admin-credential": "Certification Mgmt"
+    "admin-credential": "Certification Mgmt",
+    "companyWallet": "Company Wallet"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -1675,6 +1676,21 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+    },
+    "companyWallet": {
+      "heading": "Mein Firmen-Wallet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "activate": "Connected",
+      "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
+      "inactive": "Nicht verbunden",
+      "inactiveDescription": "Sie haben Ihr Catena-X-Wallet nicht aktiviert.",
+      "subnavigation": {
+        "title": "Wallet-Operationen :",
+        "button1": "Fordern Sie neue Use-Case-Anmeldeinformationen an",
+        "button2": "Fordern Sie einen neuen Firmenausweis an",
+        "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
+      },
+      "expiry": "Ablauf: "
     },
     "standardLibraryTable": {
       "version": "Version",
