@@ -83,6 +83,7 @@ import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
+import CompanyWallet from 'components/pages/CompanyWallet'
 
 /**
  * ALL_PAGES
@@ -108,6 +109,10 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.STORYBOOK,
     element: <Redirect path="_storybook" tab={'storybook'} />,
+  },
+  {
+    name: PAGES.REGISTRATION,
+    element: <Redirect path="registration" tab={'registration'} />,
   },
   {
     name: PAGES.MARKETPLACE,
@@ -538,6 +543,11 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.COMPANY_CERTIFICATE_VIEW,
     element: <CompanyCertificates />,
   },
+  {
+    name: PAGES.COMPANY_WALLET,
+    role: ROLES.COMPANY_WALLET,
+    element: <CompanyWallet />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -779,6 +789,7 @@ export const userMenuFull = [
   PAGES.CERTIFICATE_CREDENTIAL,
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
+  PAGES.COMPANY_WALLET,
   PAGES.LOGOUT,
 ]
 
