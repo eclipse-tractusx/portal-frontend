@@ -100,13 +100,13 @@ export default function TechnicalIntegration() {
   const [techUserProfiles, setTechUserProfiles] = useState<string[]>([])
   const [enableUserProfilesErrorMessage, setEnableUserProfilesErrorMessage] =
     useState(false)
-  const [selectedEncoding, setSelectedEncoding] = useState<string>('utf-8')
+  const [selectedEncoding, setSelectedEncoding] = useState<string>('UTF-8')
   const [uploadFileInfo, setUploadFileInfo] = useState<DropzoneFile[]>([])
   const unicodeSelectItems = [
     {
       id: 1,
-      title: 'utf-8',
-      value: 'utf-8',
+      title: 'UTF-8',
+      value: 'UTF-8',
     },
     {
       id: 2,
