@@ -1,4 +1,5 @@
 /********************************************************************************
+ * Copyright (c) 2021, 2023 BMW Group AG
  * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -17,30 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { store } from 'features/store'
-import UserService from './UserService'
-import { put } from 'features/images/slice'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
 
-export const fetchImageWithToken = async (
-  url: string
-): Promise<ArrayBuffer> => {
-  let buffer = store.getState().images?.[url]
-  if (!buffer) {
-    const response = await fetch(url, {
-      headers: {
-        authorization: `Bearer ${UserService.getToken()}`,
-      },
-    })
-    buffer = await response.arrayBuffer()
-    const newItem = new Map<string, ArrayBuffer>()
-    newItem.set(url, buffer)
-    store.dispatch(put(newItem))
-  }
-  return buffer
-}
+const name = 'images'
 
-const ImageService = {
-  fetchImageWithToken,
-}
+export type ImagesState = Map<string, ArrayBuffer>
 
-export default ImageService
+const initialState: ImagesState = new Map<string, ArrayBuffer>()
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    put: (state, action: PayloadAction<ImagesState>) => ({
+      ...state,
+      ...action.payload,
+    }),
+    delete: (state, action: PayloadAction<string>) => {
+      const copy = { ...state }
+      copy.delete(action.payload)
+      return copy
+    },
+  },
+})
+
+export const { put } = slice.actions
+
+export const imagesSelector = (state: RootState): ImagesState => state.images
+
+export default slice.reducer

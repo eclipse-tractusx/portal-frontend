@@ -29,6 +29,7 @@ import partnerNetworkSlice from './partnerNetwork/slice'
 import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
+import images from './images/slice'
 import managementSlice from './appManagement/slice'
 import serviceManagementSlice from './serviceManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
@@ -74,6 +75,7 @@ export const reducers = {
   apps,
   control,
   info,
+  images,
   management: managementSlice.reducer,
   serviceManagement: serviceManagementSlice.reducer,
   serviceMarketplace: serviceMarketplaceSlice.reducer,

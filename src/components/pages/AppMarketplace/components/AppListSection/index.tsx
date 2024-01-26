@@ -47,7 +47,6 @@ export default function AppListSection() {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const [cards, setCards] = useState<any>([])
-  console.log(data)
 
   useEffect(() => {
     setCardsData(cards)

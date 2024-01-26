@@ -17,12 +17,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import TestCards from './index.cards'
+import { Button } from '@catena-x/portal-shared-components'
+import { error, success } from 'services/NotifyService'
 
-export default function Test() {
+const checkDate = (date: number) => {
+  date % 2
+    ? success('current time', 'even', date)
+    : error('current time', 'odd ', date)
+}
+
+export default function TestNotify() {
   return (
-    <main style={{ padding: '100px' }}>
-      <TestCards />
-    </main>
+    <section>
+      <Button
+        onClick={() => {
+          checkDate(Date.now())
+        }}
+      >
+        even time?
+      </Button>
+    </section>
   )
 }
