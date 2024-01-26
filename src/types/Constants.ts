@@ -101,6 +101,7 @@ export enum PAGES {
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
+  COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
 }
@@ -215,6 +216,8 @@ export enum ROLES {
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
+  COMPANY_CERTIFICATE_VIEW = 'view_certificates',
+  UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
   COMPANY_WALLET = 'view_wallet',
 }
 

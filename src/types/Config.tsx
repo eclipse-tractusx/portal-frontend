@@ -82,6 +82,7 @@ import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
+import CompanyCertificates from 'components/pages/CompanyCertificates'
 import CompanyWallet from 'components/pages/CompanyWallet'
 
 /**
@@ -538,6 +539,11 @@ export const ALL_PAGES: IPage[] = [
     element: <OSPManagement />,
   },
   {
+    name: PAGES.COMPANY_CERTIFICATE,
+    role: ROLES.COMPANY_CERTIFICATE_VIEW,
+    element: <CompanyCertificates />,
+  },
+  {
     name: PAGES.COMPANY_WALLET,
     role: ROLES.COMPANY_WALLET,
     element: <CompanyWallet />,
@@ -779,6 +785,7 @@ export const userMenuFull = [
   PAGES.USECASE_PARTICIPATION,
   PAGES.CERTIFICATE_CREDENTIAL,
   PAGES.ADMIN_CREDENTIAL,
+  PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.LOGOUT,
 ]
