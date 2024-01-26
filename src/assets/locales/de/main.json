@@ -121,6 +121,30 @@
       "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:",
       "email": "help@catena-x.com"
     },
+    "registrationInreview": {
+      "title": "Welcome to Catena-X",
+      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
+      "subDescription": "At the current state of the review you already have limited access to the portal.",
+      "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
+      "lastUpdate": "Last process update: {{date}}",
+      "steps": {
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description",
+        "APPLICATION_ACTIVATION": "Application Activation",
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation"
+      },
+      "status": {
+        "TO_DO": "To Do",
+        "FAILED": "Failed"
+      },
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "note": "NOTE:",
+      "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
+      "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
+      "email": "help@catena-x.com"
+    },
     "admin": {
       "registration-requests": {
         "columns": {

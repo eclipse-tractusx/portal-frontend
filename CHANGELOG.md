@@ -1,9 +1,11 @@
 # Changelog
 
-## unreleased
+## unreleased 1.8.0-RC3
 
+- Portal login with registration in validation
 - Company Roles
   - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
+  - 
 
 ## 1.8.0-RC2
 
@@ -88,6 +90,10 @@
   - fixed document icon over function
 - App overview
   - api failing component appears with "no data available" and with error bar
+- Company Roles
+  - Fix typo error to fix conformity body issue
+- Fixed error message display when data is available issue
+- Portal Login with unfinished registration
 
 ### Known Knowns
 
