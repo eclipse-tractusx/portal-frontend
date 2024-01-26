@@ -168,7 +168,7 @@ export const AddTechnicalUser = () => {
           />
           <DialogContent>
             <Link
-              to="/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User"
+              to="/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User"
               target="_blank"
             >
               <Typography variant="body2" className="helpText">
