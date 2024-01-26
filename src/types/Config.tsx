@@ -701,6 +701,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.COMPANY_CERTIFICATE_DETAILS,
   },
+  {
+    name: OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

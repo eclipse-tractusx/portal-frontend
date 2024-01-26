@@ -1740,6 +1740,12 @@
         "dateplaceholder": "Enter a Date",
         "dateError": "Select a valid date"
       },
+      "confirm": {
+        "success": "Das Zertifikate {{name}} wurde erfolgreich gelöscht und unter 'Inaktiv' verschoben",
+        "error": "Die Löschung war nicht erfolgreich. System Message: {{error}}. Bitte kontaktieren sie einen Administrator.",
+        "title": "{{name}} Deletion",
+        "description": "Are you sure you want to delete the certificate. Please note that the certificate deletion is immediately active. A re-activation is not possible; but you can upload a new file under the same type whenever needed."
+      },
       "uploadCertificate": "Upload Certificate",
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
       "validtill": "Valid Till",

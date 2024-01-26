@@ -152,6 +152,7 @@ export enum OVERLAYS {
   EDIT_USECASE = 'edit_usecase',
   UPDATE_CERTIFICATE = 'update_certificate',
   COMPANY_CERTIFICATE_DETAILS = 'company_certificate_details',
+  COMPANY_CERTIFICATE_CONFIRM_DELETE = 'company_certificate_confirm_delete',
 }
 
 export enum ACTIONS {
