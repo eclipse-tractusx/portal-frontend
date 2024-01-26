@@ -32,6 +32,7 @@ import UserService from 'services/UserService'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
 import { useState } from 'react'
 import { Box } from '@mui/material'
+import UploadCompanyCertificate from './UploadCompanyCerificate'
 
 interface TabButtonsType {
   buttonText: string
@@ -60,6 +61,7 @@ export default function CompanyCertificates(): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [sortOption, setSortOption] = useState<string>(SortType.NEW)
   const [filter, setFilter] = useState<string>(FilterType.ALL)
+  const [uploadModal, setUploadModal] = useState<boolean>(false)
 
   const setBtnView = (e: React.MouseEvent<HTMLInputElement>): void => {
     setFilter(e.currentTarget.value)
@@ -144,7 +146,7 @@ export default function CompanyCertificates(): JSX.Element {
                 <Button
                   size="small"
                   onClick={() => {
-                    // no action
+                    setUploadModal(true)
                   }}
                   disabled={
                     !UserService.hasRole(ROLES.UPLOAD_COMPANY_CERTIFICATE)
@@ -156,6 +158,13 @@ export default function CompanyCertificates(): JSX.Element {
             </Box>
           </Box>
           {data != null && <CompanyCertificateElements data={data.content} />}
+          {uploadModal && (
+            <UploadCompanyCertificate
+              handleClose={() => {
+                setUploadModal(false)
+              }}
+            />
+          )}
         </Box>
       </Box>
     </main>

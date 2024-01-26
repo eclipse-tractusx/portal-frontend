@@ -39,20 +39,52 @@ export type CompanyCertificateResponse = {
   meta: PaginationData
 }
 
+export interface UploadDocumentType {
+  certificateType: string
+  document: File
+  id: string
+}
+
+export interface CertificateTypes {
+  certificateType: string
+  certificateVersion: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/companyCertificate',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   tagTypes: ['certificate'],
   endpoints: (builder) => ({
     fetchCertificates: builder.query<CompanyCertificateResponse, void>({
-      query: () => '/api/administration/companydata/companyCertificates ',
+      query: () => '/api/administration/companydata/companyCertificates',
       providesTags: ['certificate'],
+    }),
+    fetchCertificateTypes: builder.query<CertificateTypes[], void>({
+      query: () => '/api/administration/staticdata/certificateTypes',
     }),
     fetchDocument: builder.query<File, string>({
       query: (id: string) =>
         `/api/administration/companydata/companyCertificates/${id}`,
     }),
+    uploadCertificate: builder.mutation<void, UploadDocumentType>({
+      query: (body) => {
+        const formData = new FormData()
+        formData.append('credentialType', body.certificateType)
+        formData.append('document', body.document)
+        return {
+          url: `api/administration/companydata/companyCertificate/${body.id}/document`,
+          method: 'POST',
+          body: formData,
+        }
+      },
+      invalidatesTags: ['certificate'],
+    }),
   }),
 })
 
-export const { useFetchCertificatesQuery, useFetchDocumentQuery } = apiSlice
+export const {
+  useFetchCertificatesQuery,
+  useFetchDocumentQuery,
+  useUploadCertificateMutation,
+  useFetchCertificateTypesQuery,
+} = apiSlice

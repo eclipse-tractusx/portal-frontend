@@ -7,6 +7,7 @@
   - Provide new link from user menu for the company certificate page
   - UI components created to display filter, sort and company certificates
   - Company Certificate Details overlay
+  - Upload new Company Certificate overlay
 - Company Roles
   - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
 
