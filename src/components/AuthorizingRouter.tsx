@@ -24,6 +24,7 @@ import NotFound from 'components/pages/NotFound'
 import AccessService from 'services/AccessService'
 import ScrollToTop from '../utils/ScrollToTop'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
+import DeleteCompany from './pages/DeleteCompany'
 
 const AuthorizingRouter = () => {
   return (
@@ -35,6 +36,7 @@ const AuthorizingRouter = () => {
           {AccessService.permittedRoutes()}
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/decline" element={<DeleteCompany />} />
       </Routes>
     </BrowserRouter>
   )

@@ -102,6 +102,8 @@ export enum PAGES {
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
   COMPANY_CERTIFICATE = 'companyCertificate',
+  COMPANY_WALLET = 'companyWallet',
+  DECLINE = 'decline',
 }
 
 export enum OVERLAYS {
@@ -216,6 +218,7 @@ export enum ROLES {
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
   COMPANY_CERTIFICATE_VIEW = 'view_certificates',
   UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
+  COMPANY_WALLET = 'view_wallet',
 }
 
 export enum HINTS {
