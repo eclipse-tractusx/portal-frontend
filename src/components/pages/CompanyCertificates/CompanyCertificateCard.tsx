@@ -24,6 +24,9 @@ import { type ComapnyCertificateData } from 'features/companyCertification/compa
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { useDispatch } from 'react-redux'
+import { OVERLAYS } from 'types/Constants'
+import { show } from 'features/control/overlay'
 
 export default function CompanyCertificateCard({
   item,
@@ -32,6 +35,10 @@ export default function CompanyCertificateCard({
 }>): JSX.Element {
   const { t } = useTranslation()
   const [dotsMenu, setDotsMenu] = useState(false)
+  const dispatch = useDispatch()
+
+  const handleView = () =>
+    dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId))
   return (
     <Box className="card-container">
       <Box className="first-container">
@@ -47,18 +54,23 @@ export default function CompanyCertificateCard({
             }}
           >
             <MoreVertIcon />
+            {dotsMenu && (
+              <Box className="more-container">
+                <Typography variant="label3" onClick={handleView}>
+                  {t('content.companyCertificate.view')}{' '}
+                </Typography>
+                <Typography variant="label3">
+                  {t('content.companyCertificate.delete')}{' '}
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Box>
         <Box className="bottom-container">
           <Typography variant="label3">
             {t('content.companyCertificate.validtill')} : {item.validTill}
           </Typography>
-          <Box
-            className="link"
-            onClick={() => {
-              // show overlay
-            }}
-          >
+          <Box className="link" onClick={handleView}>
             <Typography variant="label3">
               {t('content.companyCertificate.morelink')}
             </Typography>

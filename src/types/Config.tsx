@@ -698,6 +698,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.UPDATE_CERTIFICATE,
   },
+  {
+    name: OVERLAYS.COMPANY_CERTIFICATE_DETAILS,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [

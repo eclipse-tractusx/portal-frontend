@@ -48,7 +48,11 @@ export const apiSlice = createApi({
       query: () => '/api/administration/companydata/companyCertificates ',
       providesTags: ['certificate'],
     }),
+    fetchDocument: builder.query<File, string>({
+      query: (id: string) =>
+        `/api/administration/companydata/companyCertificates/${id}`,
+    }),
   }),
 })
 
-export const { useFetchCertificatesQuery } = apiSlice
+export const { useFetchCertificatesQuery, useFetchDocumentQuery } = apiSlice
