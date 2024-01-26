@@ -24,7 +24,9 @@ import { ROLES } from 'types/Constants'
 import {
   getCentralIdp,
   getClientId,
+  getClientIdManagedIdentityWallets,
   getClientIdSemantic,
+  getManagedIdentityWalletsNewBase,
 } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
@@ -40,6 +42,12 @@ const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
   realm: 'CX-Central',
   clientId: getClientIdSemantic(),
+}
+
+const keycloakConfigMIW: Keycloak.KeycloakConfig = {
+  url: getManagedIdentityWalletsNewBase(),
+  realm: 'CX-Central',
+  clientId: getClientIdManagedIdentityWallets(),
 }
 
 // Add an ESLint exception until there is a solution
@@ -104,9 +112,13 @@ const getTenant = () => KC.tokenParsed?.tenant
 // Add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients
 const getRoles = (): Array<string> =>
-  KC.tokenParsed?.resource_access?.[keycloakConfig.clientId]?.roles.concat(
-    KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
-  ) ?? []
+  KC.tokenParsed?.resource_access?.[keycloakConfig.clientId]?.roles
+    .concat(
+      KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
+    )
+    .concat(
+      KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles
+    ) ?? []
 
 const hasRole = (role: string) => getRoles()?.includes(role)
 

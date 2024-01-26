@@ -22,43 +22,52 @@ import './CompanyRoles.scss'
 import { useEffect, useState } from 'react'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
-import CommonService, {
-  type SubNavigationType,
-  type CompanyRolesType,
-  type CompanyType,
-} from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
+import {
+  useFetchCompanyRolesQuery,
+  type SubNavigationType,
+  type CompanyType,
+  type StandardLibraryType,
+  useFetchStandardLibraryQuery,
+} from 'features/staticContent/staticContentApiSlice'
 
 export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<CompanyType>()
+  const [stdJson, setStdJson] = useState<StandardLibraryType>()
   const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const url = window.location.href
   const language = useSelector(languageSelector)
   const [topReached, setTopReached] = useState<boolean>(false)
+  const { data: companyRolesResponse } = useFetchCompanyRolesQuery()
+  const { data: standardLibraryResponse } = useFetchStandardLibraryQuery()
 
   useEffect(() => {
-    CommonService.getCompanyRoles((data: CompanyRolesType) => {
+    if (companyRolesResponse) {
       if (url.indexOf('companyrolesappprovider') > 1) {
-        setCompanyRoles(data.appProvider)
-        setLinkArray(data.appProvider.subNavigation)
+        setCompanyRoles(companyRolesResponse.appProvider)
+        setLinkArray(companyRolesResponse.appProvider.subNavigation)
       } else if (url.indexOf('companyrolesserviceprovider') > 1) {
-        setCompanyRoles(data.serviceProvider)
-        setLinkArray(data.serviceProvider.subNavigation)
+        setCompanyRoles(companyRolesResponse.serviceProvider)
+        setLinkArray(companyRolesResponse.serviceProvider.subNavigation)
       } else if (url.indexOf('companyrolesconformitybody') > 1) {
-        setCompanyRoles(data.conformity)
-        setLinkArray(data.conformity.subNavigation)
+        setCompanyRoles(companyRolesResponse.conformity)
+        setLinkArray(companyRolesResponse.conformity.subNavigation)
       } else if (url.indexOf('companyrolesonboardingserviceprovider') > 1) {
-        setCompanyRoles(data.ospProvider)
-        setLinkArray(data.ospProvider.subNavigation)
+        setCompanyRoles(companyRolesResponse.ospProvider)
+        setLinkArray(companyRolesResponse.ospProvider.subNavigation)
       } else {
-        setCompanyRoles(data.participant)
-        setLinkArray(data.participant.subNavigation)
+        setCompanyRoles(companyRolesResponse.participant)
+        setLinkArray(companyRolesResponse.participant.subNavigation)
       }
-    })
-  }, [url, language])
+    }
+  }, [url, language, companyRolesResponse])
+
+  useEffect(() => {
+    setStdJson(standardLibraryResponse)
+  }, [language, standardLibraryResponse])
 
   const scrollStarted = () => {
     setTopReached(window.scrollY > 500)
@@ -68,7 +77,7 @@ export default function CompanyRoles() {
 
   return (
     <main className="companyRoles">
-      {companyRoles && linkArray && (
+      {companyRoles && linkArray && stdJson && (
         <>
           <StageSection
             title={companyRoles.title}
@@ -80,6 +89,7 @@ export default function CompanyRoles() {
           <StaticTemplateResponsive
             sectionInfo={companyRoles.sections}
             baseUrl={getAssetBase()}
+            stdLibraries={stdJson}
           />
         </>
       )}
