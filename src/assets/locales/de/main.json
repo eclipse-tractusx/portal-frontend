@@ -522,9 +522,9 @@
           "title": "Below you can find the relevant details regarding all those values",
           "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
           "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "https://portal.int.demo.catena-x.net/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "https://portal.int.demo.catena-x.net/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "authorityBpn": "* authority bpn: {{bpn}}",
           "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
           "clickhere": "click here"
