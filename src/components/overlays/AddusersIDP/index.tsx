@@ -321,29 +321,33 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   )
 
   const csvcols2json = useCallback(
-    (cols: Array<string>): UserIdentityProviders => ({
-      companyUserId: cols[0],
-      firstName: cols[1],
-      lastName: cols[2],
-      email: cols[3],
-      identityProviders: [
-        {
-          identityProviderId: cols[4] ?? '',
-          userId: cols[5] ?? '',
-          userName: cols[6] ?? '',
-        },
-      ],
-    }),
+    (cols: Array<string>): UserIdentityProviders => {
+      return {
+        companyUserId: cols[0],
+        firstName: cols[1],
+        lastName: cols[2],
+        email: cols[3],
+        identityProviders: [
+          {
+            identityProviderId: cols[4] ?? '',
+            userId: cols[5] ?? '',
+            userName: cols[6] ?? '',
+          },
+        ],
+      }
+    },
     []
   )
 
   const csv2json = useCallback(
-    (users: string) =>
-      users
+    (users: string) => {
+      return users
         .trim()
-        .split('\n')
+        .split(/\\r\\n|\n/)
         .slice(1)
-        .map((row) => csvcols2json(row.split(',').map((col) => col.trim()))),
+        .filter((row) => row.length > 1)
+        .map((row) => csvcols2json(row.split(',').map((col) => col.trim())))
+    },
     [csvcols2json]
   )
 
@@ -456,7 +460,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   useEffect(() => {
     if (!userData) return
     storeData(JSON.stringify(userData))
-  }, [storeData, userData])
+  }, [userData])
 
   const renderDropArea = (props: DropAreaProps) => {
     return <DropArea {...props} size="small" />
