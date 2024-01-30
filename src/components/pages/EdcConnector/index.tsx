@@ -244,7 +244,7 @@ const EdcConnector = () => {
 
   const onHelpButtonClicked = () => {
     const url =
-      '/documentation/?path=docs%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md'
+      '/documentation/?path=user%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md'
     window.open(url, '_blank')
   }
 
