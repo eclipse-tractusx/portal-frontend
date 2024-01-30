@@ -18,12 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { type CardItems, Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addItem, removeItem } from 'features/apps/favorites/actions'
 import {
@@ -32,29 +32,19 @@ import {
 } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
+import { appsControlSelector } from 'features/apps/control'
 
 export const label = 'AppList'
 
 export default function AppListSection() {
   const { t } = useTranslation()
   const theme = useTheme()
-  const [cardsData, setCardsData] = useState<CardItems[]>([])
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
   const favoriteItems = useFetchFavoriteAppsQuery().data
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  const [cards, setCards] = useState<any>([])
-
-  useEffect(() => {
-    setCardsData(cards)
-  }, [cards])
-
-  useEffect(() => {
-    setCards(data?.map(CommonService.appToCard))
-  }, [data, setCards, CommonService.appToCard])
+  const control = useSelector(appsControlSelector)
 
   const checkIsFavorite = (appId: string) => favoriteItems?.includes(appId)
 
@@ -103,25 +93,35 @@ export default function AppListSection() {
     </div>
   )
 
-  const renderGroups = () => (
-    <AppListGroupView
-      items={cardsData.map((card) => ({
-        ...card,
-        onButtonClick: () => {
-          navigate(`/appdetail/${card.id}`)
-        },
-        onSecondaryButtonClick: (e: React.MouseEvent) => {
-          addOrRemoveFavorite(e, card.id!)
-        },
-        addButtonClicked: checkIsFavorite(card.id!),
-      }))}
-      groupKey={''}
-    />
-  )
+  const renderGroups = () =>
+    data ? (
+      <AppListGroupView
+        items={data
+          ?.filter(
+            (app) =>
+              app?.name?.toLowerCase().includes(control.search.toLowerCase()) ??
+              app?.title?.toLowerCase().includes(control.search.toLowerCase())
+          )
+          .map(CommonService.appToCard)
+          .map((card) => ({
+            ...card,
+            onButtonClick: () => {
+              navigate(`/appdetail/${card.id}`)
+            },
+            onSecondaryButtonClick: (e: React.MouseEvent) => {
+              addOrRemoveFavorite(e, card.id!)
+            },
+            addButtonClicked: checkIsFavorite(card.id!),
+          }))}
+        groupKey={control.group}
+      />
+    ) : (
+      <></>
+    )
 
   const renderList = () => {
-    if (!cardsData) return renderProgress()
-    if (!cardsData.length) return renderNoMatch()
+    if (!data) return renderProgress()
+    if (!data.length) return renderNoMatch()
     return renderGroups()
   }
 

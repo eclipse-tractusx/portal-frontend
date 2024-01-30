@@ -23,10 +23,8 @@ import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import {
-  type ActiveSubscriptionItem,
-  useFetchSubscriptionStatusQuery,
-} from 'features/apps/apiSlice'
+import { type ActiveSubscriptionItem } from 'features/apps/types'
+import { useFetchSubscriptionStatusQuery } from 'features/apps/apiSlice'
 import { fetchImageWithToken } from 'services/ImageService'
 
 export const AppArea = () => {

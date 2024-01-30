@@ -22,14 +22,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Cards, CategoryDivider } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
-import type { AppItem } from 'features/apps/apiSlice'
+import type { AppMarketplaceCard } from 'features/apps/types'
 
 export const AppListGroup = ({
   category,
   items,
 }: {
   category: string
-  items: AppItem[]
+  items: AppMarketplaceCard[]
 }) => {
   const { t } = useTranslation()
   const [itemsShown, setItemsShown] = useState('4')

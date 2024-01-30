@@ -47,7 +47,7 @@ import {
   hasAccessOverlay,
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
-import type { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { AppMarketplaceApp } from 'features/apps/types'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []

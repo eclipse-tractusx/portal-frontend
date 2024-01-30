@@ -46,7 +46,6 @@ import userRoleSlice, {
   apiSlice as appRolesSlice,
 } from './admin/appuserApiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
-import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
 import { apiSlice as serviceProviderApiSlice } from './serviceProvider/serviceProviderApiSlice'
@@ -103,7 +102,6 @@ export const reducers = {
   [notificationSlice.reducerPath]: notificationSlice.reducer,
   [appRolesSlice.reducerPath]: appRolesSlice.reducer,
   [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
-  [appMarketplaceSliceTest.reducerPath]: appMarketplaceSliceTest.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
   [serviceProviderApiSlice.reducerPath]: serviceProviderApiSlice.reducer,
@@ -141,7 +139,6 @@ export const store = configureStore({
       .concat(notificationSlice.middleware)
       .concat(appRolesSlice.middleware)
       .concat(appMarketplaceSlice.middleware)
-      .concat(appMarketplaceSliceTest.middleware)
       .concat(appManagementSlice.middleware)
       .concat(serviceMarketplaceApiSlice.middleware)
       .concat(serviceProviderApiSlice.middleware)

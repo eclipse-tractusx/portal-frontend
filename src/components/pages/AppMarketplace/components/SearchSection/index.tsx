@@ -20,31 +20,35 @@
 
 import { ViewSelector } from '@catena-x/portal-shared-components'
 import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
+import { setAppGroup, setAppSearch } from 'features/apps/control'
+import { AppGroup } from 'features/apps/types'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 export default function SearchSection() {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
-  const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    console.log('group', e.currentTarget.value)
+  const setGroup = (e: React.MouseEvent<HTMLInputElement>) => {
+    dispatch(setAppGroup(e.currentTarget.value as AppGroup))
   }
 
   const triggerSearch = (expr: string) => {
-    console.log(expr)
+    dispatch(setAppSearch(expr))
   }
 
   const categoryViews = [
     {
       buttonText: t('content.appstore.appOverviewSection.categoryViews.all'),
-      buttonValue: '',
-      onButtonClick: setView,
+      buttonValue: AppGroup.ALL,
+      onButtonClick: setGroup,
     },
     {
       buttonText: t(
         'content.appstore.appOverviewSection.categoryViews.useCases'
       ),
-      buttonValue: 'useCases',
-      onButtonClick: setView,
+      buttonValue: AppGroup.USE_CASES,
+      onButtonClick: setGroup,
     },
   ]
 

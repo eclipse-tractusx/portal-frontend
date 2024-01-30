@@ -26,14 +26,13 @@ import { useTranslation } from 'react-i18next'
 import { AppListGroup } from '../AppListGroup'
 import NoItems from 'components/pages/NoItems'
 import { fetchImageWithToken } from 'services/ImageService'
+import { AppGroup, type AppMarketplaceCard } from 'features/apps/types'
 
 export const AppListGroupView = ({
   items,
   groupKey,
 }: {
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  items: any[]
+  items: Array<AppMarketplaceCard>
   groupKey: string
 }) => {
   const { t } = useTranslation()
@@ -42,7 +41,7 @@ export const AppListGroupView = ({
     return <NoItems />
   }
 
-  if (!groupKey || groupKey === '') {
+  if (!groupKey || groupKey === AppGroup.ALL) {
     return (
       <Box>
         <Cards
@@ -60,7 +59,11 @@ export const AppListGroupView = ({
     )
   }
 
-  const group = multiMapBy(items, (item) => item[groupKey])
+  const group = multiMapBy(
+    items,
+    // eslint-disable-next-line
+    (item) => (item as Record<string, any>)[groupKey]
+  )
 
   return (
     <>

@@ -24,9 +24,9 @@ import type { RootState } from 'features/store'
 
 const name = 'images'
 
-export type ImagesState = Map<string, ArrayBuffer>
+export type ImagesState = Record<string, ArrayBuffer>
 
-const initialState: ImagesState = new Map<string, ArrayBuffer>()
+const initialState: ImagesState = {}
 
 export const slice = createSlice({
   name,
@@ -38,7 +38,9 @@ export const slice = createSlice({
     }),
     delete: (state, action: PayloadAction<string>) => {
       const copy = { ...state }
-      copy.delete(action.payload)
+      // Redux doesn't support Map type so we have to go with a generic Record
+      // eslint-disable-next-line
+      delete copy[action.payload]
       return copy
     },
   },

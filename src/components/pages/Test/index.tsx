@@ -17,12 +17,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import TestCards from './index.cards'
+import TestNotify from './index.notify'
 
 export default function Test() {
   return (
     <main style={{ padding: '100px' }}>
-      <TestCards />
+      <TestNotify />
     </main>
   )
 }

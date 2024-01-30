@@ -19,7 +19,7 @@
 
 import { store } from 'features/store'
 import UserService from './UserService'
-import { put } from 'features/images/slice'
+import { type ImagesState, put } from 'features/images/slice'
 
 export const fetchImageWithToken = async (
   url: string
@@ -32,8 +32,8 @@ export const fetchImageWithToken = async (
       },
     })
     buffer = await response.arrayBuffer()
-    const newItem = new Map<string, ArrayBuffer>()
-    newItem.set(url, buffer)
+    const newItem: ImagesState = {}
+    newItem[url] = buffer
     store.dispatch(put(newItem))
   }
   return buffer
