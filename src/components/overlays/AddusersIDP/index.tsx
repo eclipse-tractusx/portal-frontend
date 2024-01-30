@@ -341,7 +341,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     (users: string) =>
       users
         .trim()
-        .split(/\\r\\n|\n/)
+        .split(/\\r\\n|\\n|\n/)
         .slice(1)
         .filter((row) => row.length > 1)
         .map((row) => csvcols2json(row.split(',').map((col) => col.trim()))),
