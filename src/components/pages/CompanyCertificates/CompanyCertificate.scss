@@ -1,0 +1,183 @@
+/********************************************************************************
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+.company-certificate-main {
+  .company-certificate-section {
+    margin-top: 72px;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    .heading {
+      text-align: center;
+    }
+
+    .description {
+      text-align: center;
+      margin: 34px auto 64px;
+      width: 70%;
+    }
+
+    .mainContainer {
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 15px 0 15px !important;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .filterSection {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    .filterSection .chipContainer {
+      padding-left: 20px;
+    }
+
+    .sortSection {
+      position: absolute;
+      background: #f9f9f9;
+      box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+      border-radius: 16px;
+      z-index: 9;
+    }
+
+    .uploadBtn {
+      width: 20%;
+      margin: 0 auto;
+      margin-bottom: 80px;
+    }
+
+    .company-certificate-section {
+      margin: 0 -15px !important;
+      width: calc(100% + 30px) !important;
+
+      .company-certificate-card {
+        padding: 0 15px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .noData {
+    text-align: center;
+  }
+
+  .card-container {
+    background-color: #fff;
+    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+    max-width: 400px;
+    height: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px 0px;
+    border-radius: 8px;
+
+    .first-container {
+      width: 30%;
+
+      img {
+        width: auto;
+        height: auto;
+      }
+    }
+
+    .second-container {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      justify-content: space-between;
+
+      .top-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0px 10px;
+        align-items: center;
+
+        h4 {
+          overflow: hidden;
+          width: 90%;
+        }
+
+        .dots {
+          cursor: pointer;
+
+          .more-container {
+            display: flex;
+            position: absolute;
+            background: #f9f9f9;
+            box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+            border-radius: 8px;
+            z-index: 9;
+            flex-direction: column;
+            width: 100px;
+            padding: 5px;
+
+            span {
+              padding: 5px 10px;
+            }
+          }
+        }
+      }
+
+      .bottom-container {
+        padding: 0px 10px;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+
+        .link {
+          color: #0f71cb;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .company-certificate-main .container .mainContainer {
+    padding: 0px !important;
+  }
+
+  .company-certificate-main .container .uploadBtn {
+    width: 50%;
+  }
+}
+
+.upload-certificate {
+  .title {
+    margin-top: 20px;
+  }
+
+  .date-picker {
+    width: 100%;
+  }
+}

@@ -1,8 +1,16 @@
 # Changelog
 
-## 1.8.0-RC3
+## unreleased 1.8.0-RC3
 
 - Portal login with registration in validation
+- Company Certificate
+  - Provide new link from user menu for the company certificate page
+  - UI components created to display filter, sort and company certificates
+  - Company Certificate Details overlay
+  - Upload new Company Certificate overlay
+  - Delete certificate screen
+- Company Roles
+  - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
 
 ## 1.8.0-RC2
 
@@ -42,6 +50,8 @@
 - Others
   - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
 - Introduction Page "Conformity Body" new content defined
+- Company Wallet
+  - Show Active wallet info along with other wallet types
 - Mobile version. Hamburger menu
   - Show hamburger based on the browser resolution/width
 

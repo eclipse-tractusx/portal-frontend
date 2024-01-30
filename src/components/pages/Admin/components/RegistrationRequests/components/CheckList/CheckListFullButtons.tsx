@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import Box from '@mui/material/Box'
-import { Typography, StatusTag } from '@catena-x/portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
@@ -30,6 +29,7 @@ import {
 } from 'features/admin/applicationRequestApiSlice'
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { ProgressVerificationButton } from 'components/shared/basic/ProgressVerificationButton'
 
 interface CheckListFullButtonsProps {
   progressButtons?: Array<ProgressButtonsType>
@@ -143,58 +143,7 @@ export default function CheckListFullButtons({
       {checkListButtons && (
         <Box>
           {checkListButtons.map((button: ProgressButtonsType) => (
-            <Box
-              key={button.typeId}
-              sx={{
-                display: 'flex',
-                placeItems: 'center',
-                flexDirection: 'row',
-                margin: '0px 0px 20px 0px',
-                width: '100%',
-                height: '60px',
-                padding: '12px 8px',
-                borderRadius: '6px',
-                backgroundColor: button?.backgroundColor ?? '#fff',
-                color: '#111',
-                fontSize: '14px',
-                outlined: 'none',
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
-                  width: '100%',
-                }}
-              >
-                <Box
-                  sx={{
-                    paddingLeft: '5px',
-                    display: 'flex',
-                    placeItems: 'center',
-                    flexDirection: 'row',
-                  }}
-                >
-                  {button.icon}
-                  <Typography
-                    sx={{
-                      paddingLeft: '15px',
-                    }}
-                    variant="h4"
-                  >
-                    {' '}
-                    {button.label}
-                  </Typography>
-                </Box>
-                <Box>
-                  <StatusTag
-                    color={button.statusTag}
-                    label={button.statusLabel}
-                  />
-                </Box>
-              </Box>
-            </Box>
+            <ProgressVerificationButton key={button.typeId} {...button} />
           ))}
         </Box>
       )}

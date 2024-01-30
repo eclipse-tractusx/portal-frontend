@@ -24,7 +24,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import '../Templates.scss'
 import { Box, useMediaQuery } from '@mui/material'
-import { type SubNavigationType } from 'services/CommonService'
+import { type SubNavigationType } from 'features/staticContent/staticContentApiSlice'
 
 export const StageSubNavigation = ({
   linkArray,

@@ -21,27 +21,27 @@ import './UseCase.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useEffect, useState } from 'react'
-import CommonService, {
-  type SubNavigationType,
-  type DataSpaceType,
-} from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { StaticTemplateResponsive } from 'components/shared/templates/StaticTemplateResponsive'
 import { useSelector } from 'react-redux'
 import { languageSelector } from 'features/language/slice'
+import {
+  type DataSpaceType,
+  type SubNavigationType,
+  useFetchDataSpaceQuery,
+} from 'features/staticContent/staticContentApiSlice'
 
 export default function DataSpace() {
   const [dataSpace, setDataSpace] = useState<DataSpaceType>()
   const [linkArray, setLinkArray] = useState<SubNavigationType[]>()
   const [isTop, setIsTop] = useState<boolean>(false)
   const language = useSelector(languageSelector)
+  const { data } = useFetchDataSpaceQuery()
 
   useEffect(() => {
-    CommonService.getDataSpace((data: DataSpaceType) => {
-      setDataSpace(data)
-      setLinkArray(data.subNavigation)
-    })
-  }, [language])
+    if (data) setDataSpace(data)
+    setLinkArray(data?.subNavigation)
+  }, [language, data])
 
   const onScroll = () => {
     setIsTop(window.scrollY > 500)

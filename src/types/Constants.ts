@@ -101,6 +101,9 @@ export enum PAGES {
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
+  COMPANY_CERTIFICATE = 'companyCertificate',
+  COMPANY_WALLET = 'companyWallet',
+  DECLINE = 'decline',
 }
 
 export enum OVERLAYS {
@@ -148,6 +151,8 @@ export enum OVERLAYS {
   UPDATE_COMPANY_ROLE = 'update_company_role',
   EDIT_USECASE = 'edit_usecase',
   UPDATE_CERTIFICATE = 'update_certificate',
+  COMPANY_CERTIFICATE_DETAILS = 'company_certificate_details',
+  COMPANY_CERTIFICATE_CONFIRM_DELETE = 'company_certificate_confirm_delete',
 }
 
 export enum ACTIONS {
@@ -213,6 +218,9 @@ export enum ROLES {
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
+  COMPANY_CERTIFICATE_VIEW = 'view_certificates',
+  UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
+  COMPANY_WALLET = 'view_wallet',
 }
 
 export enum HINTS {
