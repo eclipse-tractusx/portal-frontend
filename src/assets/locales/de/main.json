@@ -64,7 +64,8 @@
     "dataspace": "Data Space",
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
-    "companyWallet": "Company Wallet"
+    "companyWallet": "Company Wallet",
+    "company-subscriptions": "Company Subscriptions"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -405,6 +406,9 @@
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
+    },
+    "companySubscriptions": {
+      "headertitle": "App & Service Subscriptions"
     },
     "appoverview": {
       "headerTitle": "Meine Applikationen",

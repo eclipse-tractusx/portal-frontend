@@ -19,12 +19,17 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { LogoGrayData } from '@catena-x/portal-shared-components'
+import {
+  LogoGrayData,
+  type PaginFetchArgs,
+  type PaginResult,
+} from '@catena-x/portal-shared-components'
 import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import type { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { PAGE_SIZE } from 'types/Constants'
 
 export type ImageType = {
   src: string
@@ -344,6 +349,18 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    fetchAppsData: builder.query<any, any>({
+      query: (appId) => `/api/apps/${appId}`,
+    }),
+
+    fetchSubscribedActiveAppsStatus: builder.query<
+      PaginResult<any>,
+      PaginFetchArgs
+    >({
+      query: (fetchArgs) => ({
+        url: `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
+      }),
+    }),
   }),
 })
 
@@ -361,4 +378,6 @@ export const {
   useFetchSubscribedActiveAppsQuery,
   useFetchSubscriptionAppQuery,
   useUnsubscribeAppMutation,
+  useFetchAppsDataQuery,
+  useFetchSubscribedActiveAppsStatusQuery,
 } = apiSlice

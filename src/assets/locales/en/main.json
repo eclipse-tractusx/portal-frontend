@@ -63,7 +63,8 @@
     "dataspace": "Data Space",
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
-    "companyWallet": "Company Wallet"
+    "companyWallet": "Company Wallet",
+    "company-subscriptions": "Company Subscriptions"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -403,6 +404,9 @@
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
         "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
       }
+    },
+    "companySubscriptions": {
+      "headertitle": "App & Service Subscriptions"
     },
     "datamanagement": {
       "message": "Contents of Data Management"
