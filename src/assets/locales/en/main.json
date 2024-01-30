@@ -61,7 +61,9 @@
     "certificate-credential": "Config - Certificates",
     "about": "About",
     "dataspace": "Data Space",
-    "admin-credential": "Certification Mgmt"
+    "admin-credential": "Certification Mgmt",
+    "companyCertificate": "Company Certificates",
+    "companyWallet": "Company Wallet"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -117,6 +119,30 @@
         "tooltipText": "Continue where you left"
       },
       "helpText": "If you have any questions regarding your registration please contact our Helpdesk:",
+      "email": "help@catena-x.com"
+    },
+    "registrationInreview": {
+      "title": "Welcome to Catena-X",
+      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
+      "subDescription": "At the current state of the review you already have limited access to the portal.",
+      "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
+      "lastUpdate": "Last process update: {{date}}",
+      "steps": {
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description",
+        "APPLICATION_ACTIVATION": "Application Activation",
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation"
+      },
+      "status": {
+        "TO_DO": "To Do",
+        "FAILED": "Failed"
+      },
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "note": "NOTE:",
+      "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
+      "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
       "email": "help@catena-x.com"
     },
     "admin": {
@@ -1617,6 +1643,57 @@
       },
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above."
     },
+    "companyCertificate": {
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "tabs": {
+        "inactive": "Pending",
+        "active": " Active",
+        "all": "All"
+      },
+      "sort": {
+        "name": "Name",
+        "date": "Date"
+      },
+      "details": {
+        "type": "Type",
+        "validtill": "Valid Till",
+        "status": "Status",
+        "deletebutton": "Delete Certificate",
+        "fileUpload": "File Upload",
+        "verification": "Verification"
+      },
+      "upload": {
+        "title": "Upload new certificate",
+        "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
+        "certificateTypeTitle": "Certificate Type",
+        "certificateTypeError": "",
+        "certificateTypeLabel": "",
+        "certificateTypePlaceholder": "Please select",
+        "certificateSiteTitle": "Certificate Site/Level",
+        "certificateSiteError": "",
+        "certificateSiteLabel": "",
+        "certificateSitePlaceholder": "Please select",
+        "uploadDocumentTitle": "Certificate file upload",
+        "note": "",
+        "comingsoon": "Coming soon",
+        "expiry": "Expiry Date",
+        "dateplaceholder": "Enter a Date",
+        "dateError": "Select a valid date"
+      },
+      "confirm": {
+        "success": "The certificate {{name}} has been successfully deleted and moved to 'Inactive'",
+        "error": "The deletion was not successful. System Message: {{error}} Please contact an administrator.",
+        "title": "{{name}} Deletion",
+        "description": "Are you sure you want to delete the certificate. Please note that the certificate deletion is immediately active. A re-activation is not possible; but you can upload a new file under the same type whenever needed."
+      },
+      "uploadCertificate": "Upload Certificate",
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
+      "validtill": "Valid Till",
+      "morelink": ">> More",
+      "view": "View",
+      "delete": "Delete"
+    },
     "adminCertificate": {
       "headline": "Credential Request Overview",
       "search": "...search for Company Name",
@@ -1639,6 +1716,41 @@
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
       "errorMessage": "Something went wrong!"
+    },
+    "companyWallet": {
+      "heading": "My Company Wallet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "activate": "Connected",
+      "activateDescription": "You have activated your Catena-X wallet.",
+      "inactive": "Not Connected",
+      "inactiveDescription": "You have not activated your Catena-X wallet.",
+      "subnavigation": {
+        "title": "Wallet operations :",
+        "button1": "Request new Use Case Credential",
+        "button2": "Request new Company Credential",
+        "button3": "Get more details of VCs (coming soon)"
+      },
+      "expiry": "Expiry: "
+    },
+    "standardLibraryTable": {
+      "version": "Version",
+      "capabilities": "Capabilities",
+      "title": "Title",
+      "download": "Download"
+    },
+    "deleteCompany": {
+      "title": "Delete Company Account",
+      "description": "You have initiated the deletion of the company account {{companyName}} incl. your personal user account {{name}}. Please note that the deletion can not get reversed.",
+      "heading1": "Company Account {{name}} is getting deleted",
+      "heading2": "All linked user accounts are getting deleted:",
+      "deleteBtn": "Delete my company",
+      "successTitle": "Company Account Deletion was successful.",
+      "successDescription": "The deletion was successful. You can now close this page. An email confirmation was send.",
+      "errorTitle": "Company Account Deletion was unsuccessful.",
+      "errorDescription": "The deletion was unsuccessful. Try it again or contact the platform administrator.",
+      "retryBtn": "Retry Deletion",
+      "notSupportedTitle": "Company account deletion is not supported. You registration is already submitted/closed. To unsubscribe you need to use the platform off-boarding process.",
+      "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
     }
   },
   "navigation": {

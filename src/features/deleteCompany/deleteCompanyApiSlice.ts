@@ -27,28 +27,31 @@ export enum ApplicationStatus {
   SELECT_COMPANY_ROLE = 'SELECT_COMPANY_ROLE',
   UPLOAD_DOCUMENTS = 'UPLOAD_DOCUMENTS',
   VERIFY = 'VERIFY',
-  SUBMITTED = 'SUBMITTED',
 }
 
-export type ApplicationChecklist = {
-  typeId: string
-  statusId: string
-}
-
-export type ApplicationResponse = {
+export type CompanyDataResponse = {
   applicationId: string
   applicationStatus: ApplicationStatus
-  applicationChecklist: ApplicationChecklist[]
+  companyName: string
+  user: string
+  users: string[]
 }
 
 export const apiSlice = createApi({
-  reducerPath: 'rtk/registration',
+  reducerPath: 'rtk/deleteCompany',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
-    fetchApplications: builder.query<ApplicationResponse[], void>({
-      query: () => '/api/registration/applications',
+    fetchDeclineData: builder.query<CompanyDataResponse[], void>({
+      query: () => '/api/registration/applications/declinedata',
+    }),
+    declineRegistration: builder.mutation<void, string>({
+      query: (applicationId) => ({
+        url: `/api/registration/application/${applicationId}/declineRegistration`,
+        method: 'POST',
+      }),
     }),
   }),
 })
 
-export const { useFetchApplicationsQuery } = apiSlice
+export const { useFetchDeclineDataQuery, useDeclineRegistrationMutation } =
+  apiSlice
