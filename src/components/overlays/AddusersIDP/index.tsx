@@ -321,19 +321,21 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   )
 
   const csvcols2json = useCallback(
-    (cols: Array<string>): UserIdentityProviders => ({
-      companyUserId: cols[0],
-      firstName: cols[1],
-      lastName: cols[2],
-      email: cols[3],
-      identityProviders: [
-        {
-          identityProviderId: cols[4] ?? '',
-          userId: cols[5] ?? '',
-          userName: cols[6] ?? '',
-        },
-      ],
-    }),
+    (cols: Array<string>): UserIdentityProviders => {
+      return ({
+        companyUserId: cols[0],
+        firstName: cols[1],
+        lastName: cols[2],
+        email: cols[3],
+        identityProviders: [
+          {
+            identityProviderId: cols[4] ?? '',
+            userId: cols[5] ?? '',
+            userName: cols[6].replace(/['"]+/g, '') ?? '',
+          },
+        ],
+      })
+    },
     []
   )
 
