@@ -127,7 +127,7 @@ const AddusersIDPResponse = ({
   const [tableErrorData, setTableErrorData] = useState<TableType>()
 
   useEffect(() => {
-    if (userResponse) {
+    if (userResponse?.error && !tableErrorData?.body.length) {
       const errorMsgs = userResponse.errors.map((error: ErrorResponse) => [
         `${csvData[error.line - 1].firstName} ${
           csvData[error.line - 1].lastName
@@ -322,7 +322,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
 
   const csvcols2json = useCallback(
     (cols: Array<string>): UserIdentityProviders => {
-      return ({
+      return {
         companyUserId: cols[0],
         firstName: cols[1],
         lastName: cols[2],
@@ -331,10 +331,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           {
             identityProviderId: cols[4] ?? '',
             userId: cols[5] ?? '',
-            userName: cols[6].replace(/['"]+/g, '') ?? '',
+            userName: cols[6]?.replace(/['"]+/g, '') ?? '',
           },
         ],
-      })
+      }
     },
     []
   )
