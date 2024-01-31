@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.8.0-RC3
+
+### Change
+
+- Company Roles Introduction Page(s)
+  - enhanced OSP page to fetch standard library data from standards.json and implemented table component to display the data inside the OSP page
+- User Management
+  - api structure updated (breaking change by backend) to display identity management table inside the user management screen
+- removed references to consortia environments
+- changed documentation/help links to updated directory structure in portal-assets
+
+### Feature
+
+- Portal information screen for registrations in validation added including notification bar
+- Company Certificate
+  - Provide new link from user menu for the company certificate page
+  - UI components created to display filter, sort and company certificates
+  - Company Certificate Details overlay
+  - Upload new Company Certificate overlay
+- Registration Decline function released for companies newly invited for registration
+
+### Bugfix
+
+- User migration as part of the IdP configuration
+  - fixed csv file upload: uploaded user file triggers the backend API to update existing user accounts with the new IdP connection and loads the providerID/userID into keycloak for each included user
+
+### Known Knowns
+
+- Company Roles Introduction Page(s)
+  - pre-filtering of the displayed standard documents
+  - update of headline & short section introduction
+- Decline registration backend API connection not working on the newly implemented screen
+- Company certificates currently only UI wise implemented; API connection outstanding
+
 ## 1.8.0-RC2
 
 ### Change
@@ -38,6 +72,8 @@
 - Others
   - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
 - Introduction Page "Conformity Body" new content defined
+- Company Wallet
+  - Show Active wallet info along with other wallet types
 - Mobile version. Hamburger menu
   - Show hamburger based on the browser resolution/width
 
@@ -83,11 +119,14 @@
   - fixed document icon over function
 - App overview
   - api failing component appears with "no data available" and with error bar
+- Company Roles
+  - Fix typo error to fix conformity body issue
+- Fixed error message display when data is available issue
+- Portal Login with unfinished registration
 
 ### Known Knowns
 
 - /registration url provided via the registration email is not directing the user to the registration form as expected; instead, the new registration status is displayed where the user can jump via hyperlink to the registration form
-
 
 ## 1.7.0
 

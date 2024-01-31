@@ -112,7 +112,7 @@ export const latestSelector = (state: RootState): CardItems[] =>
 export const subscribedStatusSelector = (state: RootState) =>
   state.apps.marketplace.subscribedApps
 
-export const subscribedAppsSelector = (state: RootState) =>
+export const subscribedAppsSelector = (state: RootState) => {
   state.apps.marketplace.items
     .filter((item: AppMarketplaceApp) => {
       return state.apps.marketplace.subscribedApps.find(
@@ -127,6 +127,7 @@ export const subscribedAppsSelector = (state: RootState) =>
       console.log('result', appToCard(result))
       return appToCard(result)
     })
+}
 
 const Slice = { slice }
 
