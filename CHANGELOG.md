@@ -11,6 +11,7 @@
   - Delete certificate screen
 - Company Roles
   - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
+- Fix Idp users CSV results empty after upload
 
 ## 1.8.0-RC2
 
