@@ -34,6 +34,11 @@ import GridImages from './Cards/GridImages'
 import { useState } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material'
 import TextImageSideBySideWithSections from './Cards/TextImageSideBySideWithSections'
+import { Table } from '@catena-x/portal-shared-components'
+import { uniqueId } from 'lodash'
+import TitleDescriptionAndSectionlink from './Cards/TitleDescriptionAndSectionlink'
+import { StandardLibrariesTableColumns } from './Cards/StandardLibrariesTableColumns'
+import { type StandardLibraryType } from 'features/staticContent/staticContentApiSlice'
 
 const TemplateConfig = ({
   provider,
@@ -228,15 +233,19 @@ const TemplateConfig = ({
 export const StaticTemplateResponsive = ({
   sectionInfo,
   baseUrl,
+  stdLibraries,
 }: {
   sectionInfo: ProviderProps[]
   baseUrl: string
+  stdLibraries?: StandardLibraryType
 }) => {
   const [showScroll, setShowScroll] = useState(false)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
   })
+
+  const columns = stdLibraries && StandardLibrariesTableColumns(stdLibraries)
 
   enum PageOffsetValue {
     MOBILE = 100,
@@ -272,12 +281,42 @@ export const StaticTemplateResponsive = ({
             id={`${provider.id}`}
           >
             <div className="sectionSubContainer">
-              <TemplateConfig
-                provider={provider}
-                baseUrl={baseUrl}
-                scrollTop={scrollTop}
-                showScroll={showScroll}
-              />
+              {provider.id !== 'std-libraries-id' ? (
+                <TemplateConfig
+                  provider={provider}
+                  baseUrl={baseUrl}
+                  scrollTop={scrollTop}
+                  showScroll={showScroll}
+                />
+              ) : (
+                <div className="table-compo">
+                  <TitleDescriptionAndSectionlink
+                    showScroll={showScroll}
+                    provider={provider}
+                    scrollTop={scrollTop}
+                  />
+                  {stdLibraries && (
+                    <Table
+                      rowsCount={2}
+                      hideFooter
+                      loading={false}
+                      disableRowSelectionOnClick={true}
+                      disableColumnFilter={false}
+                      disableColumnMenu={false}
+                      disableColumnSelector={false}
+                      disableDensitySelector={false}
+                      columnHeadersBackgroundColor={'#ecf0f4'}
+                      title={''}
+                      searchPlaceholder={''}
+                      toolbarVariant="ultimate"
+                      columns={columns ?? []}
+                      rows={stdLibraries.rows}
+                      getRowId={(row) => uniqueId(row.uid)}
+                      hasBorder={false}
+                    />
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )

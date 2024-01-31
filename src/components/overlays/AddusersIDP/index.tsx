@@ -127,7 +127,7 @@ const AddusersIDPResponse = ({
   const [tableErrorData, setTableErrorData] = useState<TableType>()
 
   useEffect(() => {
-    if (userResponse) {
+    if (userResponse?.error && !tableErrorData?.body.length) {
       const errorMsgs = userResponse.errors.map((error: ErrorResponse) => [
         `${csvData[error.line - 1].firstName} ${
           csvData[error.line - 1].lastName
@@ -321,19 +321,21 @@ export const AddusersIDP = ({ id }: { id: string }) => {
   )
 
   const csvcols2json = useCallback(
-    (cols: Array<string>): UserIdentityProviders => ({
-      companyUserId: cols[0],
-      firstName: cols[1],
-      lastName: cols[2],
-      email: cols[3],
-      identityProviders: [
-        {
-          identityProviderId: cols[4] ?? '',
-          userId: cols[5] ?? '',
-          userName: cols[6] ?? '',
-        },
-      ],
-    }),
+    (cols: Array<string>): UserIdentityProviders => {
+      return {
+        companyUserId: cols[0],
+        firstName: cols[1],
+        lastName: cols[2],
+        email: cols[3],
+        identityProviders: [
+          {
+            identityProviderId: cols[4] ?? '',
+            userId: cols[5] ?? '',
+            userName: cols[6]?.replace(/['"]+/g, '') ?? '',
+          },
+        ],
+      }
+    },
     []
   )
 
@@ -341,8 +343,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     (users: string) =>
       users
         .trim()
-        .split('\n')
+        .split(/\\r\\n|\\n|\n/)
         .slice(1)
+        .filter((row) => row.length > 1)
         .map((row) => csvcols2json(row.split(',').map((col) => col.trim()))),
     [csvcols2json]
   )
