@@ -28,6 +28,24 @@ header {
     justify-content: flex-end;
     align-items: center;
   }
+  .searchIcon {
+    color: #0f71cb;
+  }
+  .documentation {
+    background-color: 'white';
+    margin-right: 16px;
+  }
+}
+.registrationReviewNoteSection {
+  .noteReviewText {
+    color: #ff7100;
+    display: flex;
+    align-items: center;
+  }
+  .emailText {
+    color: #0f71cb;
+    padding-left: 5px;
+  }
 }
 @media (min-width: 1499px) {
   .mobileHeader,
@@ -81,5 +99,6 @@ header {
 
   .mobile-search-icon {
     margin-right: 10px;
+    color: #0f71cb;
   }
 }

@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -28,20 +27,18 @@ export enum ApplicationStatus {
   SELECT_COMPANY_ROLE = 'SELECT_COMPANY_ROLE',
   UPLOAD_DOCUMENTS = 'UPLOAD_DOCUMENTS',
   VERIFY = 'VERIFY',
+  SUBMITTED = 'SUBMITTED',
 }
 
-export type ApplicationRank = {
-  CREATED: 1
-  ADD_COMPANY_DATA: 1
-  INVITE_USER: 2
-  SELECT_COMPANY_ROLE: 3
-  UPLOAD_DOCUMENTS: 4
-  VERIFY: 5
+export type ApplicationChecklist = {
+  typeId: string
+  statusId: string
 }
 
 export type ApplicationResponse = {
   applicationId: string
   applicationStatus: ApplicationStatus
+  applicationChecklist: ApplicationChecklist[]
 }
 
 export const apiSlice = createApi({

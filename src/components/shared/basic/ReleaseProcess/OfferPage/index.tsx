@@ -420,7 +420,7 @@ export default function OfferPage({
         isValid={isValid}
         loader={loading}
         helpUrl={
-          '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process'
         }
       />
     </div>
