@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased 1.8.0-RC4
+- Service overview
+  - Add missing translations, fix duplicate error
+
 ## 1.8.0-RC3
 
 ### Change
