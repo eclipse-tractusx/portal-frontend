@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased 1.8.0-RC4
+
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
+
 ## 1.8.0-RC3
 
 ### Change
