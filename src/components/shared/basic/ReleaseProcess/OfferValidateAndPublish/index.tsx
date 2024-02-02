@@ -98,7 +98,7 @@ export default function OfferValidateAndPublish({
           values={defaultValues}
           serviceTypes={getServiceTypes()}
           helpUrl={
-            '/documentation/?path=docs%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+            '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process'
           }
           conformityDocument={t('step4.conformityDocument')}
         />

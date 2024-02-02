@@ -127,7 +127,7 @@ export default function BetaTest() {
           sx={{ mr: 1 }}
           onClick={() =>
             window.open(
-              '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process',
+              '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process',
               '_blank'
             )
           }
