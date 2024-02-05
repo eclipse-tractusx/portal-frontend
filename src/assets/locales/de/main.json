@@ -137,8 +137,8 @@
         "BUSINESS_PARTNER_NUMBER": "BPN Creation"
       },
       "status": {
-        "IN_PROGRESS": "Im Gange",
-        "TO_DO": "Machen",
+        "IN_PROGRESS": "In Bearbeitung",
+        "TO_DO": "Ausstehend",
         "DONE": "Erledigt",
         "FAILED": "Fehlgeschlagen"
       },
