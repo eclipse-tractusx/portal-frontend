@@ -11,6 +11,8 @@
   - Delete certificate screen
 - Company Roles
   - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
+- App Marketplace
+  - Fix image loading behavior on user interaction
 
 ## 1.8.0-RC2
 

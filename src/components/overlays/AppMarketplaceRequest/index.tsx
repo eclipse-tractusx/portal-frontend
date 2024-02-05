@@ -40,7 +40,7 @@ import { closeOverlay } from 'features/control/overlay'
 import './AppMarketplaceRequest.scss'
 import { error } from 'services/NotifyService'
 import { AgreementStatus } from '../UpdateCompanyRole'
-import type { AgreementRequest } from 'features/apps/types'
+import { type AgreementRequest } from 'features/apps/types'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
