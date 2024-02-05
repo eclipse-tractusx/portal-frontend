@@ -52,24 +52,6 @@ export default function AppListSection() {
     dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
   }
 
-  /*
-  const debouncedFilter = useMemo(
-    () =>
-      debounce((expr: string) => {
-        setCardsData(
-          expr && cards?.length > 0
-            ? cards.filter(
-                (card: { title: string; subtitle: string }) =>
-                  card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                  card?.subtitle?.toLowerCase().includes(expr.toLowerCase())
-              )
-            : cards
-        )
-      }, 300),
-    [cards]
-  )
-*/
-
   const renderProgress = () => (
     <div style={{ textAlign: 'center' }}>
       <CircularProgress
