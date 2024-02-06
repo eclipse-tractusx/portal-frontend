@@ -1,6 +1,6 @@
 # Changelog
 
-### 1.8.0-RC4
+## 1.8.0-RC4
 
 - Hamburger
   - Slide effect on click of hamburger

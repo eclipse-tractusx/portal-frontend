@@ -46,43 +46,41 @@ export const MenuInfo = ({ main }: { main: Tree[] }) => {
   const menu = addTitle(main) ?? []
 
   return (
-    <>
-      <Drawer
-        sx={{
+    <Drawer
+      sx={{
+        width: '280px',
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
           width: '280px',
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: '280px',
-            background: 'transparent',
-            borderColor: 'transparent',
-          },
+          background: 'transparent',
+          borderColor: 'transparent',
+        },
+      }}
+      variant="persistent"
+      anchor="right"
+      open={visible}
+    >
+      <ClickAwayListener
+        onClickAway={() => {
+          //do nothing
         }}
-        variant="persistent"
-        anchor="right"
-        open={visible}
       >
-        <ClickAwayListener
-          onClickAway={() => {
-            //do nothing
-          }}
-        >
-          <div className="MenuInfo">
-            <CloseIcon
-              onClick={() => dispatch(setAppear({ MENU: !visible }))}
-              sx={{
-                color: '#B6B6B6',
-              }}
-              className="closeIcon"
-            />
-            <MobileMenu
-              className="userMenuInfo"
-              component={Link}
-              divider
-              items={menu}
-            />
-          </div>
-        </ClickAwayListener>
-      </Drawer>
-    </>
+        <div className="MenuInfo">
+          <CloseIcon
+            onClick={() => dispatch(setAppear({ MENU: !visible }))}
+            sx={{
+              color: '#B6B6B6',
+            }}
+            className="closeIcon"
+          />
+          <MobileMenu
+            className="userMenuInfo"
+            component={Link}
+            divider
+            items={menu}
+          />
+        </div>
+      </ClickAwayListener>
+    </Drawer>
   )
 }
