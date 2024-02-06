@@ -24,12 +24,14 @@ export default function HeaderSection() {
   const { t } = useTranslation()
 
   return (
-    <Typography
-      sx={{ fontFamily: 'LibreFranklin-Light', fontSize: '25px' }}
-      variant="h3"
-      className="section-title"
-    >
-      {t('content.appstore.appOverviewSection.title')}
-    </Typography>
+    <section style={{ paddingBottom: 0, margin: '0 auto' }}>
+      <Typography
+        sx={{ fontFamily: 'LibreFranklin-Light', fontSize: '25px' }}
+        variant="h3"
+        className="section-title"
+      >
+        {t('content.appstore.appOverviewSection.title')}
+      </Typography>
+    </section>
   )
 }

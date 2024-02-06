@@ -19,14 +19,19 @@
 
 import { ViewSelector } from '@catena-x/portal-shared-components'
 import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
-import { setAppGroup, setAppSearch } from 'features/apps/control'
+import {
+  appsControlSelector,
+  setAppGroup,
+  setAppSearch,
+} from 'features/apps/control'
 import { AppGroup } from 'features/apps/types'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function SearchSection() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const control = useSelector(appsControlSelector)
 
   const setGroup = (e: React.MouseEvent<HTMLInputElement>) => {
     dispatch(setAppGroup(e.currentTarget.value as AppGroup))
@@ -52,17 +57,17 @@ export default function SearchSection() {
   ]
 
   return (
-    <>
-      <ViewSelector activeView={AppGroup.ALL} views={categoryViews} />
+    <section style={{ paddingTop: 0, paddingBottom: 0, margin: '0 auto' }}>
+      <ViewSelector activeView={control.group} views={categoryViews} />
 
       <div style={{ width: '100%', textAlign: 'center' }}>
         <DebouncedSearchInput
-          sx={{ minWidth: '544px', marginBottom: '50px' }}
+          sx={{ minWidth: '544px', marginBottom: '0px' }}
           placeholder={t('content.home.searchSection.inputPlaceholder')}
           debounceTime={500}
           onSearch={triggerSearch}
         />
       </div>
-    </>
+    </section>
   )
 }

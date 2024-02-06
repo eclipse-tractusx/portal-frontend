@@ -33,11 +33,9 @@ export default function AppMarketplace() {
     <main className="app-store">
       <StageSection />
       <Box ref={reference} className="overview-section">
-        <section>
-          <HeaderSection />
-          <SearchSection />
-          <AppListSection />
-        </section>
+        <HeaderSection />
+        <SearchSection />
+        <AppListSection />
       </Box>
     </main>
   )
