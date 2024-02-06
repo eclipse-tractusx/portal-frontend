@@ -53,7 +53,7 @@ export default function SearchSection() {
 
   return (
     <>
-      <ViewSelector activeView={''} views={categoryViews} />
+      <ViewSelector activeView={AppGroup.ALL} views={categoryViews} />
 
       <div style={{ width: '100%', textAlign: 'center' }}>
         <DebouncedSearchInput

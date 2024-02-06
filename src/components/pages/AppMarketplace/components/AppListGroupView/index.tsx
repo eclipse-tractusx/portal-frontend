@@ -60,6 +60,9 @@ export const AppListGroupView = ({
 
   const group = multiMapBy(
     items,
+    // Note: any here is necessary because the UseCaseType seems to be defined
+    // incorrectly as Object with id and label while the api returns an array of strings.
+    // Fix separately.
     // eslint-disable-next-line
     (item) => (item as Record<string, any>)[groupKey]
   )
