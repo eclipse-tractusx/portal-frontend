@@ -1,5 +1,12 @@
 # Changelog
 
+### 1.8.0-RC4
+
+- Hamburger
+  - Slide effect on click of hamburger
+- Subnavigation
+  - Show sub navigation button text in one line
+
 ## 1.8.0-RC3
 
 ### Change
