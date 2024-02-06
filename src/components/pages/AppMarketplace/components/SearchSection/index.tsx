@@ -64,6 +64,7 @@ export default function SearchSection() {
         <DebouncedSearchInput
           sx={{ minWidth: '544px', marginBottom: '0px' }}
           placeholder={t('content.home.searchSection.inputPlaceholder')}
+          value={control.search}
           debounceTime={500}
           onSearch={triggerSearch}
         />
