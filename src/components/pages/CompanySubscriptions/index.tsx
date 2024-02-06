@@ -27,7 +27,10 @@ import {
   Button,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import { useFetchSubscribedActiveAppsStatusQuery } from 'features/apps/apiSlice'
+import {
+  useFetchSubscribedActiveAppsStatusQuery,
+  useUnsubscribeAppMutation,
+} from 'features/apps/apiSlice'
 import { useEffect, useState } from 'react'
 import { isName } from 'types/Patterns'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,6 +41,8 @@ import { fetchImageWithToken } from 'services/ImageService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useNavigate } from 'react-router'
 import { PAGES } from 'types/Constants'
+import UnSubscribeOverlay from '../Organization/UnSubscribeOverlay'
+import { error, success } from 'services/NotifyService'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -55,6 +60,12 @@ export default function CompanySubscriptions() {
   const [filterStatus, setFilterStatus] = useState<string>('')
   const searchInputData = useSelector(updateApplicationRequestSelector)
   const [group, setGroup] = useState<string>('show all')
+  const [showUnsubscribeOverlay, setShowUnsubscribeOverlay] =
+    useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [appId, setAppId] = useState<string>('')
+  const [subscriptionId, setSubscriptionId] = useState<string>('')
+  const [unsubscribeMutation] = useUnsubscribeAppMutation()
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -91,7 +102,7 @@ export default function CompanySubscriptions() {
     // eslint-disable-next-line
   }, [filterStatus, searchExpr])
 
-  const onTableCellClick = (params) => {
+  const onTableCellClick = (params: any) => {
     if (params.field === 'detail') {
       console.log(params.field)
     }
@@ -103,8 +114,33 @@ export default function CompanySubscriptions() {
     return validateExpr
   }
 
+  const onUnsubscribeSubmit = async () => {
+    setLoading(true)
+    await unsubscribeMutation(subscriptionId)
+      .unwrap()
+      .then(() => {
+        success(t('content.organization.unsubscribe.unsubscribeSuccess'))
+      })
+      .catch(() => {
+        error(t('content.organization.unsubscribe.unsubscribeError'))
+      })
+    setLoading(false)
+    setShowUnsubscribeOverlay(false)
+  }
   return (
     <main className="page-main-container">
+      {showUnsubscribeOverlay && (
+        <UnSubscribeOverlay
+          openDialog={showUnsubscribeOverlay}
+          handleOverlayClose={() => {
+            setShowUnsubscribeOverlay(false)
+          }}
+          handleConfirmClick={() => onUnsubscribeSubmit()}
+          loading={loading}
+          appId={appId}
+          subscriptionId={subscriptionId}
+        />
+      )}
       <Typography
         className="subTitle"
         variant="h2"
@@ -249,8 +285,11 @@ export default function CompanySubscriptions() {
                     <Button
                       variant="contained"
                       size="small"
-                      onClick={() => {
-                        console.log('btn vlick')
+                      onClick={(e) => {
+                        setShowUnsubscribeOverlay(true)
+                        setAppId(row.offerId)
+                        setSubscriptionId(row.subscriptionId)
+                        e.stopPropagation()
                       }}
                     >
                       {'Unsubscribe'}

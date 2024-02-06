@@ -391,17 +391,20 @@
         "error": "Fehler - keine Daten gefunden"
       },
       "unsubscribe": {
-        "title": "Geschäftsanwendung Deaktivieren",
-        "description": "Möchten Sie sich die Geschäftsanwendung wirklich deaktivieren?",
-        "note": "Bitte beachten Sie: Alle möglicherweise verbundenen Objekte (siehe Details oben) werden ebenfalls deaktiviert. Die Abmeldung ist nicht rückgängig zu machen.",
+        "title": "Geschäftsanwendung/Dienst abbestellen",
+        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
+        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
         "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technischer User"
+          "app": "Anwendungs-/Diensttitel",
+          "status": "Aktueller Status:",
+          "connector": "Verbinder:",
+          "techUser": "Technischer Benutzer:"
         },
-        "checkBoxLabel": "Ja, ich stimme zu, dass ich die Auswirkungen der Abmeldung verstanden habe und mit dem Vorgang fortfahren möchte.",
-        "buttonText": "Abbestellen"
+        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
+        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "buttonText": "Abbestellen",
+        "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
+        "unsubscribeError": "Etwas ist schief gelaufen. Versuchen Sie es später noch einmal oder wenden Sie sich an den Administrator"
       }
     },
     "datamanagement": {

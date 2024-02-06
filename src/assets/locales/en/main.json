@@ -390,16 +390,17 @@
         "error": "error - no data found"
       },
       "unsubscribe": {
-        "title": "Unsubscribe Business Application",
-        "description": "Are you sure to unsubscribe from the business application?",
-        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
+        "title": "Unsubscribe Business Application / Service",
+        "descriptionNote": "Please Note: the unsubscription is not revertible",
+        "description": "all possibly connected objects(mentioned in below table) will get deactivated as well",
         "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technical User"
+          "app": "Application / Service title",
+          "status": "Current Status:",
+          "connector": "Connector:",
+          "techUser": "Technical User:"
         },
-        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
+        "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
+        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
         "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
