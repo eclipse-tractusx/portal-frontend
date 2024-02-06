@@ -43,31 +43,65 @@ export default function CompanyRoles() {
   const [topReached, setTopReached] = useState<boolean>(false)
   const { data: companyRolesResponse } = useFetchCompanyRolesQuery()
   const { data: standardLibraryResponse } = useFetchStandardLibraryQuery()
+  let filterd: StandardLibraryType = {
+    rows: [],
+    useCases: [],
+    capabilities: [],
+    roles: [],
+    status: [],
+    typesOfDocuments: [],
+  }
 
   useEffect(() => {
-    if (companyRolesResponse) {
+    if (companyRolesResponse && standardLibraryResponse) {
       if (url.indexOf('companyrolesappprovider') > 1) {
         setCompanyRoles(companyRolesResponse.appProvider)
         setLinkArray(companyRolesResponse.appProvider.subNavigation)
+        filterd = {
+          ...standardLibraryResponse,
+          rows: getFiltered(standardLibraryResponse, [3]),
+        }
       } else if (url.indexOf('companyrolesserviceprovider') > 1) {
         setCompanyRoles(companyRolesResponse.serviceProvider)
         setLinkArray(companyRolesResponse.serviceProvider.subNavigation)
+        filterd = {
+          ...standardLibraryResponse,
+          rows: getFiltered(standardLibraryResponse, [2]),
+        }
       } else if (url.indexOf('companyrolesconformitybody') > 1) {
         setCompanyRoles(companyRolesResponse.conformity)
         setLinkArray(companyRolesResponse.conformity.subNavigation)
+        filterd = {
+          ...standardLibraryResponse,
+          rows: getFiltered(standardLibraryResponse, []),
+        }
       } else if (url.indexOf('companyrolesonboardingserviceprovider') > 1) {
         setCompanyRoles(companyRolesResponse.ospProvider)
         setLinkArray(companyRolesResponse.ospProvider.subNavigation)
+        filterd = {
+          ...standardLibraryResponse,
+          rows: getFiltered(standardLibraryResponse, [15]),
+        }
       } else {
         setCompanyRoles(companyRolesResponse.participant)
         setLinkArray(companyRolesResponse.participant.subNavigation)
+        filterd = {
+          ...standardLibraryResponse,
+          rows: getFiltered(standardLibraryResponse, [6]),
+        }
       }
+      setStdJson(filterd)
     }
-  }, [url, language, companyRolesResponse])
+  }, [url, language, companyRolesResponse, standardLibraryResponse])
 
-  useEffect(() => {
-    setStdJson(standardLibraryResponse)
-  }, [language, standardLibraryResponse])
+  const intersect = (a: number[], b: number[]) =>
+    a.filter((value: number) => b.includes(value))
+
+  const getFiltered = (std: StandardLibraryType, cr: number[]) => {
+    return std.rows.filter(
+      (row: { roles: number[] }) => intersect(row.roles, cr).length > 0
+    )
+  }
 
   const scrollStarted = () => {
     setTopReached(window.scrollY > 500)

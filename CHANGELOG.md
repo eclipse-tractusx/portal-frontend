@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.0-RC4
+
+- Company roles
+  - Show standard library infomration based on the selected company role
+
 ## 1.8.0-RC3
 
 ### Change
