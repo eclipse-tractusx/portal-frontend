@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0-RC4 (unreleased)
+
+### Change
+
+- handle portal login navigation as per applicationType and applicationStatus
+
 ## 1.8.0-RC3
 
 ### Change

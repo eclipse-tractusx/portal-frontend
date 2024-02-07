@@ -18,68 +18,56 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { useMediaQuery, useTheme } from '@mui/material'
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogActions,
   Typography,
 } from '@catena-x/portal-shared-components'
-import RegistrationReviewContent from './RegistrationReviewContent'
-import './RegistrationReview.scss'
 
 export type StatusTagIcon = {
   type?: 'confirmed' | 'pending' | 'declined' | 'label'
 }
 
-export type RegistrationReviewProps = {
+export type RegistrationDeclinedProps = {
   openDialog: boolean
   handleOverlayClose: React.MouseEventHandler
 }
 
-const RegistrationReviewOverlay = ({
+const RegistrationDeclinedOverlay = ({
   openDialog,
   handleOverlayClose,
-}: RegistrationReviewProps) => {
+}: RegistrationDeclinedProps) => {
   const { t } = useTranslation()
-  const theme = useTheme()
-
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
-    defaultMatches: true,
-  })
 
   return (
     <Dialog
       open={openDialog}
       additionalModalRootStyles={{
-        width: isMobile ? '80%' : '50%',
+        width: '50%',
       }}
     >
-      <DialogHeader title={t('content.registrationInreview.title')} />
+      <DialogHeader title={t('content.registrationDeclined.title')} />
       <DialogContent
         sx={{
-          padding: isMobile ? '0 30px' : '0 120px',
+          padding: '0 120px',
           marginBottom: 5,
         }}
       >
         <div className="registration-review">
           <Trans>
-            <Typography variant="body1" className="description">
-              {t('content.registrationInreview.description')}
+            <Typography variant="body2">
+              {t('content.registrationDeclined.description')}
             </Typography>
           </Trans>
-          <RegistrationReviewContent />
         </div>
       </DialogContent>
-      <DialogActions helperText={t('content.registrationInreview.helperText')}>
-        <Button variant="contained" size="small" onClick={handleOverlayClose}>
-          {t('global.actions.close')}
-        </Button>
-      </DialogActions>
+      <DialogActions
+        helperText={t('content.registrationInreview.helperText')}
+      ></DialogActions>
     </Dialog>
   )
 }
 
-export default RegistrationReviewOverlay
+export default RegistrationDeclinedOverlay
