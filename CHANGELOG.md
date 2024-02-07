@@ -1,9 +1,13 @@
 # Changelog
 
-## unreleased (1.8.0-RC4)
+## unreleased 1.8.0-RC4
 
 - App Marketplace
   - reduce image flickering on user interaction
+- Service overview
+  - Add missing translations, fix duplicate error
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
 
 ## 1.8.0-RC3
 

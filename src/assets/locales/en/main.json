@@ -136,7 +136,9 @@
         "BUSINESS_PARTNER_NUMBER": "BPN Creation"
       },
       "status": {
+        "IN_PROGRESS": "In Progress",
         "TO_DO": "To Do",
+        "DONE": "Done",
         "FAILED": "Failed"
       },
       "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",

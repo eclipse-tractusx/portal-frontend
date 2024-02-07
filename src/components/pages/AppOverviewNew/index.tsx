@@ -31,8 +31,6 @@ export default function AppOverviewNew() {
   const { t } = useTranslation()
   const { data, refetch, isSuccess } = useFetchProvidedAppsQuery()
 
-  console.log('data', data)
-
   return (
     <main>
       <PageHeader
