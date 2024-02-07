@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.0-RC4
+
+- Company Name
+  - Update pattern in invite form and app release process
+
 ## 1.8.0-RC3
 
 ### Change
