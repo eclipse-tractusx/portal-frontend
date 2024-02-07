@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,9 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
-declare const ENV: any
+declare const ENV: Record<string, string>
 
 export const getApiBase = () =>
   typeof ENV === 'undefined' ? '' : ENV.PORTAL_BACKEND_URL
