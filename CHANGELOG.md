@@ -1,7 +1,11 @@
 # Changelog
 
-## 1.8.0-RC4
+## unreleased 1.8.0-RC4
 
+- Service overview
+  - Add missing translations, fix duplicate error
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
 - Company Name
   - Update pattern in invite form and app release process
 

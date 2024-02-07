@@ -106,10 +106,10 @@ type CommonConsentType = {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   getDocumentById?: (id: string) => any
-  documentRequired?: boolean
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   fetchFrameDocumentById?: (id: string) => any
+  onRefetch?: () => void
 }
 
 export default function CommonContractAndConsent({
@@ -130,9 +130,9 @@ export default function CommonContractAndConsent({
   updateDocumentUpload,
   fetchStatusData,
   getDocumentById,
-  documentRequired = true,
   fetchFrameDocumentById,
   helpUrl,
+  onRefetch,
 }: CommonConsentType) {
   const { t } = useTranslation()
   const [contractNotification, setContractNotification] = useState(false)
@@ -329,6 +329,7 @@ export default function CommonContractAndConsent({
       )
         .then(() => {
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_SUCCESS)
+          type === ReleaseProcessTypes.SERVICE_RELEASE && onRefetch?.()
         })
         .catch(() => {
           setFileStatus('uploadImageConformity', UploadStatus.UPLOAD_ERROR)
@@ -501,26 +502,24 @@ export default function CommonContractAndConsent({
             </Grid>
           </div>
         ))}
-        {documentRequired && (
-          <ConnectorFormInputFieldImage
-            {...{
-              control,
-              trigger,
-              errors,
-            }}
-            name="uploadImageConformity"
-            acceptFormat={{
-              'application/pdf': ['.pdf'],
-            }}
-            label={imageFieldLabel}
-            noteDescription={imageFieldNoDescription}
-            note={imageFieldNote}
-            requiredText={imageFieldRequiredText}
-            handleDownload={handleDownload}
-            handleDelete={(documentId: string) => deleteDocument(documentId)}
-            isRequired={documentRequired}
-          />
-        )}
+        <ConnectorFormInputFieldImage
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="uploadImageConformity"
+          acceptFormat={{
+            'application/pdf': ['.pdf'],
+          }}
+          label={imageFieldLabel}
+          noteDescription={imageFieldNoDescription}
+          note={imageFieldNote}
+          requiredText={imageFieldRequiredText}
+          handleDownload={handleDownload}
+          handleDelete={(documentId: string) => deleteDocument(documentId)}
+          isRequired={true}
+        />
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={contractNotification}

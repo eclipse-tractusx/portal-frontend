@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,7 +23,7 @@ import {
   TransparentPixel,
 } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
-import { getApiBase } from 'services/EnvironmentService'
+import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
 
 export default function ImageTest() {
@@ -33,9 +32,7 @@ export default function ImageTest() {
   const [data, setData] = useState<string>(TransparentPixel)
 
   useEffect(() => {
-    fetchImageWithToken(
-      'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.png'
-    )
+    fetchImageWithToken(`${getAssetBase()}/images/frame/Home.png`)
       .then((buffer) => {
         setData(URL.createObjectURL(new Blob([buffer], { type: 'image/png' })))
       })
@@ -61,16 +58,9 @@ export default function ImageTest() {
           }
           style={style}
         />
+        <Image src={'/assets/images/icons/book.svg'} style={style} />
         <Image
-          src={
-            'https://portal.dev.demo.catena-x.net/assets/images/icons/book.svg'
-          }
-          style={style}
-        />
-        <Image
-          src={
-            'https://portal.dev.demo.catena-x.net/assets/images/frame/Home.jpg'
-          }
+          src={`${getAssetBase()}/assets/images/frame/Home.jpg`}
           style={style}
         />
         <Image src={data} style={style} />
@@ -92,9 +82,7 @@ export default function ImageTest() {
           />
           <Image src={'data:image/svg+xml;base64,ertiouiertui'} style={style} />
           <Image
-            src={
-              'https://portal-backend.dev.demo.catena-x.net/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appDocuments/id_not_existing'
-            }
+            src={`${getApiBase()}/api/apps/d245d2fe-e567-44e4-9c15-5a0e4a733b9a/appDocuments/id_not_existing`}
             style={style}
           />
           <Image
