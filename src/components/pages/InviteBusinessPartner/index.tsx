@@ -78,6 +78,7 @@ export default function InviteBusinessPartner() {
         setFailureOverlayOpen(true)
         setInviteOverlayOpen(false)
       })
+    setProcessing(ProcessingType.INPUT)
   }
 
   return (
