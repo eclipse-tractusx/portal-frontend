@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,14 +21,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Cards, CategoryDivider } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
-import type { AppItem } from 'features/apps/apiSlice'
+import type { AppMarketplaceCard } from 'features/apps/types'
 
 export const AppListGroup = ({
   category,
   items,
 }: {
   category: string
-  items: AppItem[]
+  items: AppMarketplaceCard[]
 }) => {
   const { t } = useTranslation()
   const [itemsShown, setItemsShown] = useState('4')

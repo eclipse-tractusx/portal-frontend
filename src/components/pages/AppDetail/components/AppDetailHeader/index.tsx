@@ -32,10 +32,8 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import {
-  SubscriptionStatus,
-  useFetchDocumentByIdMutation,
-} from 'features/apps/apiSlice'
+import { SubscriptionStatus } from 'features/apps/types'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
 

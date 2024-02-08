@@ -28,7 +28,7 @@ import {
 import BoardHeader from './components/BoardHeader'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'
-import { type AppDetails, DocumentTypeText } from 'features/apps/apiSlice'
+import { type AppDetails, DocumentTypeText } from 'features/apps/types'
 import CommonService from 'services/CommonService'
 import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
