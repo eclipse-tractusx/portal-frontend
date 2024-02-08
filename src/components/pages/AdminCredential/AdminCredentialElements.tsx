@@ -33,7 +33,7 @@ import { download } from 'utils/downloadUtils'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
 import { uniqueId } from 'lodash'
-import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { SubscriptionStatus } from 'features/apps/types'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
 import {

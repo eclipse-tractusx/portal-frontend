@@ -48,6 +48,7 @@ import { Logo } from '../Logo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './Header.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
+import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -63,8 +64,11 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
 
-  const [overlayOpen, setOverlayOpen] = useState(
+  const [submittedOverlayOpen, setSubmittedOverlayOpen] = useState(
     companyData?.applicationStatus === ApplicationStatus.SUBMITTED
+  )
+  const [declinedOverlayOpen, setDeclinedOverlayOpen] = useState(
+    companyData?.applicationStatus === ApplicationStatus.DECLINED
   )
   const [headerNote, setHeaderNote] = useState(false)
 
@@ -209,9 +213,16 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
       </div>
       {headerNote && renderRegistrationNoteSection()}
       <RegistrationReviewOverlay
-        openDialog={overlayOpen}
+        openDialog={submittedOverlayOpen}
         handleOverlayClose={() => {
-          setOverlayOpen(false)
+          setSubmittedOverlayOpen(false)
+          setHeaderNote(true)
+        }}
+      />
+      <RegistrationDeclinedOverlay
+        openDialog={declinedOverlayOpen}
+        handleOverlayClose={() => {
+          setDeclinedOverlayOpen(false)
           setHeaderNote(true)
         }}
       />

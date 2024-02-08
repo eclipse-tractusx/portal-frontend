@@ -20,7 +20,7 @@
 
 import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
-import type { AppMarketplaceApp } from 'features/apps/apiSlice'
+import type { AppMarketplaceApp, AppMarketplaceCard } from 'features/apps/types'
 import type { ImageType } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from './ImageService'
 import type { RoleDescData } from 'components/pages/RoleDetails'
@@ -36,7 +36,7 @@ const onClick = (app: AppMarketplaceApp) =>
 const getPrice = (app: AppMarketplaceApp) =>
   app.price === 'ERROR' ? '' : app.price
 
-const appToCard = (app: AppMarketplaceApp) => ({
+const appToCard = (app: AppMarketplaceApp): AppMarketplaceCard => ({
   ...app,
   subtitle: app.provider,
   title: getName(app),

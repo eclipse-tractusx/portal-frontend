@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -26,14 +25,13 @@ import { useTranslation } from 'react-i18next'
 import { AppListGroup } from '../AppListGroup'
 import NoItems from 'components/pages/NoItems'
 import { fetchImageWithToken } from 'services/ImageService'
+import { AppGroup, type AppMarketplaceCard } from 'features/apps/types'
 
 export const AppListGroupView = ({
   items,
   groupKey,
 }: {
-  // Add an ESLint exception until there is a solution
-  // eslint-disable-next-line
-  items: any[]
+  items: Array<AppMarketplaceCard>
   groupKey: string
 }) => {
   const { t } = useTranslation()
@@ -42,7 +40,7 @@ export const AppListGroupView = ({
     return <NoItems />
   }
 
-  if (!groupKey || groupKey === '') {
+  if (!groupKey || groupKey === AppGroup.ALL) {
     return (
       <Box>
         <Cards
@@ -60,7 +58,14 @@ export const AppListGroupView = ({
     )
   }
 
-  const group = multiMapBy(items, (item) => item[groupKey])
+  const group = multiMapBy(
+    items,
+    // Note: any here is necessary because the UseCaseType seems to be defined
+    // incorrectly as Object with id and label while the api returns an array of strings.
+    // Fix separately.
+    // eslint-disable-next-line
+    (item) => (item as Record<string, any>)[groupKey]
+  )
 
   return (
     <>

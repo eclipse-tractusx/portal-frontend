@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,20 +17,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { getAssetBase } from 'services/EnvironmentService'
-import type { AppMarketplaceApp } from './apiSlice'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
+import { type AppsControlState, type AppGroup, initialState } from './types'
 
-export const apiSlice = createApi({
-  reducerPath: 'rtk/apps/marketplace/test',
-  baseQuery: fetchBaseQuery({
-    baseUrl: getAssetBase(),
-  }),
-  endpoints: (builder) => ({
-    fetchLatestApps: builder.query<AppMarketplaceApp[], void>({
-      query: () => '/api/apps/latest.json',
+export const slice = createSlice({
+  name: 'apps/control',
+  initialState,
+  reducers: {
+    setAppSearch: (state: AppsControlState, action: PayloadAction<string>) => ({
+      ...state,
+      search: action.payload,
     }),
-  }),
+    setAppGroup: (
+      state: AppsControlState,
+      action: PayloadAction<AppGroup>
+    ) => ({
+      ...state,
+      group: action.payload,
+    }),
+  },
 })
 
-export const { useFetchLatestAppsQuery } = apiSlice
+export const appsControlSelector = (state: RootState): AppsControlState =>
+  state.apps.control
+
+export const { setAppSearch, setAppGroup } = slice.actions
+
+export default slice

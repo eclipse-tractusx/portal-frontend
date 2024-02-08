@@ -557,7 +557,7 @@ export default function AppMarketCard() {
               name="provider"
               maxLength={30}
               minLength={3}
-              pattern={Patterns.appMarketCard.appProvider}
+              pattern={Patterns.COMPANY_NAME}
               label={
                 <>
                   {t('content.apprelease.appMarketCard.appProvider')}

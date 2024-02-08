@@ -260,5 +260,9 @@
   "retryOverlay": {
     "title": "Something went wrong",
     "description": "The data could not get loaded, please try it again or go back to the previous page."
+  },
+  "error": {
+    "tryAgain": "Versuchen Sie es erneut",
+    "errorBar": "Etwas ist schief gelaufen. Versuchen Sie es erneut"
   }
 }

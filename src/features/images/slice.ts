@@ -18,22 +18,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from '@catena-x/portal-shared-components'
-import type { AppDetails } from 'features/apps/types'
-import './AppDetailTags.scss'
-import '../../AppDetail.scss'
-import { useTranslation } from 'react-i18next'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
 
-export default function AppDetailTags({ item }: { item: AppDetails }) {
-  const { t } = useTranslation()
+const name = 'images'
 
-  const tags = item.tags
-  return (
-    <div id="tags" className="appdetail-tags">
-      <Typography variant="h3"> {t('content.appdetail.tags')}: </Typography>
-      {tags.map((tag, i) => (
-        <Chip key={i} label={tag} withIcon={false} type="plain" />
-      ))}
-    </div>
-  )
-}
+export type ImagesState = Record<string, ArrayBuffer>
+
+const initialState: ImagesState = {}
+
+export const slice = createSlice({
+  name,
+  initialState,
+  reducers: {
+    put: (state, action: PayloadAction<ImagesState>) => ({
+      ...state,
+      ...action.payload,
+    }),
+    delete: (state, action: PayloadAction<string>) => {
+      const copy = { ...state }
+      // Redux doesn't support Map type so we have to go with a generic Record
+      // eslint-disable-next-line
+      delete copy[action.payload]
+      return copy
+    },
+  },
+})
+
+export const { put } = slice.actions
+
+export const imagesSelector = (state: RootState): ImagesState => state.images
+
+export default slice.reducer
