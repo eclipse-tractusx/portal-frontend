@@ -12,6 +12,8 @@
   - fix loading button issue to invite multiple companies in succession
 - Company Name
   - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
 
 ## 1.8.0-RC3
 
