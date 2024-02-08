@@ -32,6 +32,7 @@ import { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
+import { isCompanyName } from 'types/Patterns'
 
 interface FetchHookArgsType {
   expr: string
@@ -58,7 +59,7 @@ export const InviteList = ({
   const searchInputData = useSelector(updateInviteSelector)
 
   const validateSearchText = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9]*$/.test(expr)
+    const validateExpr = isCompanyName(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }

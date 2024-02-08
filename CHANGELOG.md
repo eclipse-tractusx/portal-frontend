@@ -8,6 +8,10 @@
   - fixed conformity document deletion issue after uploading document
 - Company roles
   - Show standard library infomration based on the selected company role
+- Invite Business Partner
+  - fix loading button issue to invite multiple companies in succession
+- Company Name
+  - Update pattern in invite form and app release process
 
 ## 1.8.0-RC3
 
