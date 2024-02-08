@@ -2,6 +2,8 @@
 
 ## unreleased 1.8.0-RC4
 
+- App Marketplace
+  - reduce image flickering on user interaction
 - Service overview
   - Add missing translations, fix duplicate error
 - Service Release Process
@@ -10,6 +12,8 @@
   - fix loading button issue to invite multiple companies in succession
 - Company Name
   - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
 - App Management
   - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
 

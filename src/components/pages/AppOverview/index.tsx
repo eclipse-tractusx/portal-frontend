@@ -37,11 +37,8 @@ import {
   appCardRecentlyApps,
   appToCard,
 } from 'features/apps/mapper'
-import {
-  useFetchProvidedAppsQuery,
-  type AppInfo,
-  type AppMarketplaceApp,
-} from 'features/apps/apiSlice'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
+import { type AppInfo, type AppMarketplaceApp } from 'features/apps/types'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'

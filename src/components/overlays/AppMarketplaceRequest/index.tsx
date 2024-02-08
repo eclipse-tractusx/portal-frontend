@@ -31,7 +31,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import {
-  type AgreementRequest,
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
   useFetchAppDetailsQuery,
@@ -41,6 +40,7 @@ import { closeOverlay } from 'features/control/overlay'
 import './AppMarketplaceRequest.scss'
 import { error } from 'services/NotifyService'
 import { AgreementStatus } from '../UpdateCompanyRole'
+import { type AgreementRequest } from 'features/apps/types'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()

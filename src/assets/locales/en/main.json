@@ -147,6 +147,10 @@
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
       "email": "help@catena-x.com"
     },
+    "registrationDeclined": {
+      "title": "Registration Status",
+      "description": "<strong style='color: red'>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon."
+    },
     "admin": {
       "registration-requests": {
         "columns": {
@@ -298,8 +302,8 @@
           "real-timecontrol": "Real Time Control",
           "modularproduction": "Modular Production"
         },
-        "noMatch": "No Matches",
-        "for": "for"
+        "noMatch": "No Match",
+        "for": "for your search term"
       }
     },
     "semantichub": {
