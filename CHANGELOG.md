@@ -10,6 +10,8 @@
   - fix loading button issue to invite multiple companies in succession
 - Company Name
   - Update pattern in invite form and app release process
+- App Management
+  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
 
 ## 1.8.0-RC3
 
