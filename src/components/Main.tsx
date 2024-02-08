@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
 import { show } from 'features/control/overlay'
-import type { OVERLAYS } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
 import { MenuInfo } from './pages/Home/components/MenuInfo'
@@ -57,11 +57,14 @@ export default function Main() {
   if (
     companyData &&
     [
-      ApplicationStatus.SUBMITTED,
-      ApplicationStatus.DECLINED,
-      ApplicationStatus.APPROVED,
-    ].indexOf(companyData.applicationStatus) === -1 &&
-    Object.values(ApplicationStatus).includes(companyData.applicationStatus)
+      ApplicationStatus.CREATED,
+      ApplicationStatus.ADD_COMPANY_DATA,
+      ApplicationStatus.INVITE_USER,
+      ApplicationStatus.SELECT_COMPANY_ROLE,
+      ApplicationStatus.UPLOAD_DOCUMENTS,
+      ApplicationStatus.VERIFY,
+    ].includes(companyData.applicationStatus) &&
+    !location.search.includes('overlay=consent_osp')
   ) {
     if (companyData.applicationType === ApplicationType.INTERNAL) {
       return (
@@ -77,7 +80,7 @@ export default function Main() {
           <MenuInfo main={[]} />
         </>
       )
-    } else window.location.replace('/?overlay=consent_osp')
+    } else dispatch(show(OVERLAYS.CONSENT_OSP))
   }
 
   return (
