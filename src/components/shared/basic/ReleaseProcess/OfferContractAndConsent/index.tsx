@@ -43,9 +43,12 @@ export default function OfferContractAndConsent() {
   const fetchConsentData = useFetchServiceConsentDataQuery(serviceId ?? '').data
   const [updateAgreementConsents] = useUpdateServiceAgreementConsentsMutation()
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
-  const fetchServiceStatus = useFetchServiceStatusQuery(serviceId ?? '', {
-    refetchOnMountOrArgChange: true,
-  }).data
+  const { data: fetchServiceStatus, refetch } = useFetchServiceStatusQuery(
+    serviceId ?? ' ',
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  )
   const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
@@ -87,6 +90,7 @@ export default function OfferContractAndConsent() {
             <span style={{ color: 'red' }}> *</span>
           </>
         }
+        onRefetch={() => refetch()}
       />
     </div>
   )

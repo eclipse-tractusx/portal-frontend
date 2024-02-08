@@ -1,10 +1,17 @@
 # Changelog
 
-## 1.6.0-RC4 (unreleased)
+## unreleased 1.8.0-RC4
 
-### Change
-
-- handle portal login navigation as per applicationType and applicationStatus
+- Service overview
+  - Add missing translations, fix duplicate error
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
+- Invite Business Partner
+  - fix loading button issue to invite multiple companies in succession
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
 
 ## 1.8.0-RC3
 
