@@ -2,6 +2,8 @@
 
 ## unreleased 1.8.0-RC4
 
+- App Marketplace
+  - reduce image flickering on user interaction
 - Service overview
   - Add missing translations, fix duplicate error
 - Service Release Process

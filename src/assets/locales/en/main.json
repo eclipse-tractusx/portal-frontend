@@ -298,8 +298,8 @@
           "real-timecontrol": "Real Time Control",
           "modularproduction": "Modular Production"
         },
-        "noMatch": "No Matches",
-        "for": "for"
+        "noMatch": "No Match",
+        "for": "for your search term"
       }
     },
     "semantichub": {

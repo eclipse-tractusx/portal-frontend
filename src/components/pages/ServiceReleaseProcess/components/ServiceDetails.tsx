@@ -39,7 +39,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
 import { getAssetBase } from 'services/EnvironmentService'
-import { type DocumentData } from 'features/apps/apiSlice'
+import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 export default function ServiceDetails() {

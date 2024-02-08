@@ -24,7 +24,7 @@ import {
   StaticTable,
   type TableType,
 } from '@catena-x/portal-shared-components'
-import type { AppDetails } from 'features/apps/apiSlice'
+import type { AppDetails } from 'features/apps/types'
 import '../../AppDetail.scss'
 
 export default function AppDetailProvider({ item }: { item: AppDetails }) {

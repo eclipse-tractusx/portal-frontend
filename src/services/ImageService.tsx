@@ -17,17 +17,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { store } from 'features/store'
 import UserService from './UserService'
+import { type ImagesState, put } from 'features/images/slice'
 
 export const fetchImageWithToken = async (
   url: string
 ): Promise<ArrayBuffer> => {
-  const response = await fetch(url, {
-    headers: {
-      authorization: `Bearer ${UserService.getToken()}`,
-    },
-  })
-  return await response.arrayBuffer()
+  let buffer = store.getState().images?.[url]
+  if (!buffer) {
+    const response = await fetch(url, {
+      headers: {
+        authorization: `Bearer ${UserService.getToken()}`,
+      },
+    })
+    buffer = await response.arrayBuffer()
+    const newItem: ImagesState = {}
+    newItem[url] = buffer
+    store.dispatch(put(newItem))
+  }
+  return buffer
 }
 
 const ImageService = {

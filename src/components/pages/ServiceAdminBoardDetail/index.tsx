@@ -40,7 +40,7 @@ import { PAGES } from 'types/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
-import { DocumentTypeText } from 'features/apps/apiSlice'
+import { DocumentTypeText } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 enum TableData {
