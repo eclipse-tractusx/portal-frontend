@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,22 +17,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from '@catena-x/portal-shared-components'
-import type { AppDetails } from 'features/apps/types'
-import './AppDetailTags.scss'
-import '../../AppDetail.scss'
-import { useTranslation } from 'react-i18next'
+import { Button } from '@catena-x/portal-shared-components'
+import { error, success } from 'services/NotifyService'
 
-export default function AppDetailTags({ item }: { item: AppDetails }) {
-  const { t } = useTranslation()
+const checkDate = (date: number) => {
+  date % 2
+    ? success('current time', 'even', date)
+    : error('current time', 'odd ', date)
+}
 
-  const tags = item.tags
+export default function TestNotify() {
   return (
-    <div id="tags" className="appdetail-tags">
-      <Typography variant="h3"> {t('content.appdetail.tags')}: </Typography>
-      {tags.map((tag, i) => (
-        <Chip key={i} label={tag} withIcon={false} type="plain" />
-      ))}
-    </div>
+    <section>
+      <Button
+        onClick={() => {
+          checkDate(Date.now())
+        }}
+      >
+        even time?
+      </Button>
+    </section>
   )
 }
