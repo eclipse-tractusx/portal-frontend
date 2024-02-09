@@ -55,7 +55,8 @@ export default function Main() {
     overlay && dispatch(show(overlay[0] as OVERLAYS, overlay[1]))
   }, [dispatch, searchParams])
 
-  if(location.pathname === `/${PAGES.REGISTRATION}`) return <Redirect path="registration" />
+  if (location.pathname === `/${PAGES.REGISTRATION}`)
+    return <Redirect path="registration" />
 
   if (
     companyData &&
