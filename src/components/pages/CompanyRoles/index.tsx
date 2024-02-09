@@ -34,6 +34,13 @@ import {
   useFetchStandardLibraryQuery,
 } from 'features/staticContent/staticContentApiSlice'
 
+enum URLs {
+  companyrolesappprovider = 'companyrolesappprovider',
+  companyrolesserviceprovider = 'companyrolesserviceprovider',
+  companyrolesconformitybody = 'companyrolesconformitybody',
+  companyrolesonboardingserviceprovider = 'companyrolesonboardingserviceprovider',
+}
+
 export default function CompanyRoles() {
   const [companyRoles, setCompanyRoles] = useState<CompanyType>()
   const [stdJson, setStdJson] = useState<StandardLibraryType>()
@@ -43,65 +50,44 @@ export default function CompanyRoles() {
   const [topReached, setTopReached] = useState<boolean>(false)
   const { data: companyRolesResponse } = useFetchCompanyRolesQuery()
   const { data: standardLibraryResponse } = useFetchStandardLibraryQuery()
-  let filterd: StandardLibraryType = {
-    rows: [],
-    useCases: [],
-    capabilities: [],
-    roles: [],
-    status: [],
-    typesOfDocuments: [],
-  }
 
   useEffect(() => {
+    const roles = []
     if (companyRolesResponse && standardLibraryResponse) {
-      if (url.indexOf('companyrolesappprovider') > 1) {
+      if (url.includes(URLs.companyrolesappprovider)) {
         setCompanyRoles(companyRolesResponse.appProvider)
         setLinkArray(companyRolesResponse.appProvider.subNavigation)
-        filterd = {
-          ...standardLibraryResponse,
-          rows: getFiltered(standardLibraryResponse, [3]),
-        }
-      } else if (url.indexOf('companyrolesserviceprovider') > 1) {
+        roles.push(3)
+      } else if (url.includes(URLs.companyrolesserviceprovider)) {
         setCompanyRoles(companyRolesResponse.serviceProvider)
         setLinkArray(companyRolesResponse.serviceProvider.subNavigation)
-        filterd = {
-          ...standardLibraryResponse,
-          rows: getFiltered(standardLibraryResponse, [2]),
-        }
-      } else if (url.indexOf('companyrolesconformitybody') > 1) {
+        roles.push(2)
+      } else if (url.includes(URLs.companyrolesconformitybody)) {
         setCompanyRoles(companyRolesResponse.conformity)
         setLinkArray(companyRolesResponse.conformity.subNavigation)
-        filterd = {
-          ...standardLibraryResponse,
-          rows: getFiltered(standardLibraryResponse, []),
-        }
-      } else if (url.indexOf('companyrolesonboardingserviceprovider') > 1) {
+      } else if (url.includes(URLs.companyrolesonboardingserviceprovider)) {
         setCompanyRoles(companyRolesResponse.ospProvider)
         setLinkArray(companyRolesResponse.ospProvider.subNavigation)
-        filterd = {
-          ...standardLibraryResponse,
-          rows: getFiltered(standardLibraryResponse, [15]),
-        }
+        roles.push(15)
       } else {
         setCompanyRoles(companyRolesResponse.participant)
         setLinkArray(companyRolesResponse.participant.subNavigation)
-        filterd = {
-          ...standardLibraryResponse,
-          rows: getFiltered(standardLibraryResponse, [6]),
-        }
+        roles.push(6)
       }
-      setStdJson(filterd)
+      setStdJson({
+        ...standardLibraryResponse,
+        rows: getFiltered(standardLibraryResponse, roles),
+      })
     }
   }, [url, language, companyRolesResponse, standardLibraryResponse])
 
   const intersect = (a: number[], b: number[]) =>
     a.filter((value: number) => b.includes(value))
 
-  const getFiltered = (std: StandardLibraryType, cr: number[]) => {
-    return std.rows.filter(
+  const getFiltered = (std: StandardLibraryType, cr: number[]) =>
+    std.rows.filter(
       (row: { roles: number[] }) => intersect(row.roles, cr).length > 0
     )
-  }
 
   const scrollStarted = () => {
     setTopReached(window.scrollY > 500)
