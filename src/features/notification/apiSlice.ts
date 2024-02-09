@@ -40,15 +40,23 @@ export interface NotificationReadType {
   flag: boolean
 }
 
+enum TAG {
+  ITEMS = 'ITEMS',
+  META = 'META',
+}
+
 export const apiSlice = createApi({
   reducerPath: `${name}/api`,
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: [TAG.ITEMS, TAG.META],
   endpoints: (builder) => ({
     getNotificationCount: builder.query<number, boolean>({
       query: (read) => `/api/notification/count?isRead=${read}`,
+      providesTags: [TAG.ITEMS],
     }),
     getNotificationMeta: builder.query<CXNotificationMeta, null>({
       query: () => '/api/notification/count-details',
+      providesTags: [TAG.META],
     }),
     getNotifications: builder.query<CXNotification, NotificationFetchType>({
       query: (fetchArgs) =>
@@ -68,18 +76,21 @@ export const apiSlice = createApi({
         }&sorting=${
           fetchArgs?.args?.sorting ?? NotificationSortingType.DateDesc
         }`,
+      providesTags: [TAG.ITEMS],
     }),
     setNotificationRead: builder.mutation<void, NotificationReadType>({
       query: (obj) => ({
         url: `/api/notification/${obj.id}/read?isRead=${obj.flag}`,
         method: 'PUT',
       }),
+      invalidatesTags: [TAG.META],
     }),
     deleteNotification: builder.mutation<void, string>({
       query: (id) => ({
         url: `/api/notification/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: [TAG.ITEMS, TAG.META],
     }),
   }),
 })
