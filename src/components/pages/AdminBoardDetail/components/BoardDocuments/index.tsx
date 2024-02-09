@@ -26,8 +26,8 @@ import {
   type Documents,
   type DocumentData,
   DocumentTypeText,
-  useFetchDocumentByIdMutation,
-} from 'features/apps/apiSlice'
+} from 'features/apps/types'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 

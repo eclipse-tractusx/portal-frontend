@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.8.0-RC4
+
+### Change
+
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+  - handle navigation as per applicationType (new api property) and applicationStatus
+
+### Technical Support
+
+- Removed env specific urls from test files
+- Updated shared components package dependency
+
+### Bugfix
+
+- App Marketplace
+  - reduce image flickering on user interaction by using cache option
+- Service Overview
+  - Add missing translations, fix duplicate error
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
+- Invite Business Partner
+  - fix loading button issue to invite multiple companies in succession
+
 ## 1.8.0-RC3
 
 ### Change

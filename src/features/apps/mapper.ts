@@ -28,10 +28,10 @@ import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {
   type ActiveSubscription,
   type AppMarketplaceApp,
-  SubscriptionStatus,
   type SubscriptionStatusItem,
+  SubscriptionStatus,
   SubscriptionStatusText,
-} from './apiSlice'
+} from './types'
 
 const baseAssets = getAssetBase()
 

@@ -28,12 +28,13 @@ import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
 import { show } from 'features/control/overlay'
-import type { OVERLAYS } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
 import { MenuInfo } from './pages/Home/components/MenuInfo'
 import {
   ApplicationStatus,
+  ApplicationType,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
 import './styles/main.scss'
@@ -55,22 +56,31 @@ export default function Main() {
 
   if (
     companyData &&
-    companyData.applicationStatus !== ApplicationStatus.SUBMITTED &&
-    Object.values(ApplicationStatus).includes(companyData.applicationStatus)
+    [
+      ApplicationStatus.CREATED,
+      ApplicationStatus.ADD_COMPANY_DATA,
+      ApplicationStatus.INVITE_USER,
+      ApplicationStatus.SELECT_COMPANY_ROLE,
+      ApplicationStatus.UPLOAD_DOCUMENTS,
+      ApplicationStatus.VERIFY,
+    ].includes(companyData.applicationStatus) &&
+    !location.search.includes('overlay=consent_osp')
   ) {
-    return (
-      <>
-        <Header main={[]} user={AccessService.userMenuReg()} />
-        <MainSearchOverlay />
-        {window.location.pathname === '/logout' ? (
-          <Logout />
-        ) : (
-          <RegistrationStatus />
-        )}
-        <Footer pages={AccessService.footerMenu()} />
-        <MenuInfo main={[]} />
-      </>
-    )
+    if (companyData.applicationType === ApplicationType.INTERNAL) {
+      return (
+        <>
+          <Header main={[]} user={AccessService.userMenuReg()} />
+          <MainSearchOverlay />
+          {window.location.pathname === '/logout' ? (
+            <Logout />
+          ) : (
+            <RegistrationStatus />
+          )}
+          <Footer pages={AccessService.footerMenu()} />
+          <MenuInfo main={[]} />
+        </>
+      )
+    } else dispatch(show(OVERLAYS.CONSENT_OSP))
   }
 
   return (
