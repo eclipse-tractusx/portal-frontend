@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
 import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, PAGES } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
 import { MenuInfo } from './pages/Home/components/MenuInfo'
@@ -40,6 +40,7 @@ import {
 import './styles/main.scss'
 import RegistrationStatus from './pages/RegistrationStatus'
 import Logout from './pages/Logout'
+import Redirect from './actions/Redirect'
 
 export default function Main() {
   document.title = useTranslation().t('title')
@@ -53,6 +54,8 @@ export default function Main() {
     const overlay = searchParams.get('overlay')?.split(':')
     overlay && dispatch(show(overlay[0] as OVERLAYS, overlay[1]))
   }, [dispatch, searchParams])
+
+  if(location.pathname === `/${PAGES.REGISTRATION}`) return <Redirect path="registration" />
 
   if (
     companyData &&
