@@ -256,7 +256,7 @@ export default function NotificationItem({
 
   const toggleOpen = () => {
     const nextState = !open
-    if (nextState && !item.isRead) {
+    if (nextState && !userRead) {
       void setRead(true)
     }
     setOpen(nextState)
