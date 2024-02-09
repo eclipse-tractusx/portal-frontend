@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased 1.8.0-RC5
+
+- Notifications
+  - handle set read/unread correctly
+
 ## 1.8.0-RC4
 
 ### Change
