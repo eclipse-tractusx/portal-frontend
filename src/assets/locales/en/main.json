@@ -64,7 +64,9 @@
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
-    "company-subscriptions": "Company Subscriptions"
+    "company-subscriptions": "Company Subscriptions",
+    "mycompany": "My Company",
+    "mynotifications": "My Notifications"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
