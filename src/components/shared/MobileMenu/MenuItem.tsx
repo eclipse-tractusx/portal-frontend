@@ -25,13 +25,10 @@ import {
   useTheme,
   Box,
 } from '@mui/material'
-import { useState } from 'react'
-import { type MenuType, type NotificationBadgeType } from '.'
-import { Typography } from '@catena-x/portal-shared-components'
+import { type MenuType } from '.'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { useDispatch, useSelector } from 'react-redux'
+import { appearMenuSelector, setAppear } from 'features/control/appear'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -45,8 +42,7 @@ export interface MenuItemProps extends LinkItem {
   onClick?: React.MouseEventHandler
   Menu?: MenuType
   disable?: boolean
-  notificationInfo?: NotificationBadgeType
-  showNotificationCount?: boolean
+  onSelect?: (children: MenuItemProps[]) => void
 }
 
 export const MenuItem = ({
@@ -59,17 +55,12 @@ export const MenuItem = ({
   menuProps,
   onClick,
   Menu,
-  notificationInfo,
-  showNotificationCount,
+  onSelect,
   ...props
-}: MenuItemProps) => {
+}: MenuItemProps): JSX.Element => {
   const { spacing } = useTheme()
-  const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
-  const [open, setOpen] = useState(false)
-  const notificationColor = notificationInfo?.isNotificationAlert
-    ? '#FB6540'
-    : '#B3CB2D'
+  const visible = useSelector(appearMenuSelector)
 
   return (
     <ListItem
@@ -80,8 +71,8 @@ export const MenuItem = ({
         ...(onClick != null && { cursor: 'pointer' }),
       }}
       onClick={() => {
-        if (children != null) {
-          setOpen(!open)
+        if (children != null && onSelect != null) {
+          onSelect(children)
         } else {
           dispatch(setAppear({ MENU: !visible }))
         }
@@ -111,68 +102,10 @@ export const MenuItem = ({
         {...props}
       >
         {title}
-        {children != null && !open && (
+        {children != null && (
           <KeyboardArrowRightIcon sx={{ color: 'icon.icon02' }} />
         )}
-        {children != null && open && (
-          <KeyboardArrowDownIcon sx={{ color: 'icon.icon02' }} />
-        )}
-        {showNotificationCount &&
-          notificationInfo != null &&
-          notificationInfo.notificationCount > 0 && (
-            <Typography
-              sx={{
-                fontWeight: '500',
-                fontSize: '0.75rem',
-                minWidth: '20px',
-                padding: '2px 6px',
-                height: '20px',
-                borderRadius: '10px',
-                background: notificationColor,
-                color: 'white',
-              }}
-            >
-              {notificationInfo?.notificationCount}
-            </Typography>
-          )}
       </Link>
-      {Menu != null && open && (
-        <>
-          {children?.map((item) => (
-            <Link
-              component={component}
-              key={item.title}
-              sx={{
-                color: `${disable ? 'text.disabled' : 'text.primary'}`,
-                pointerEvents: `${disable ? 'none' : 'auto'}`,
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: spacing(hint ? 1.3 : 1.5, 2),
-                borderRadius: 3,
-                typography: 'label3',
-                textDecoration: 'none',
-                whiteSpace: 'nowrap',
-                marginLeft: '20px',
-                ':hover': {
-                  backgroundColor: 'selected.hover',
-                  color: 'primary.dark',
-                  '.MuiSvgIcon-root': {
-                    color: 'primary.dark',
-                  },
-                },
-              }}
-              onClick={() => {
-                setOpen(!open)
-                dispatch(setAppear({ MENU: !visible }))
-              }}
-              to={item.to}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </>
-      )}
       {divider && <Divider />}
     </ListItem>
   )

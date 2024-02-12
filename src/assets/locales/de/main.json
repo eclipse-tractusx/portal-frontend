@@ -64,7 +64,9 @@
     "dataspace": "Data Space",
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
-    "companyWallet": "Company Wallet"
+    "companyWallet": "Company Wallet",
+    "mycompany": "My Company",
+    "mynotifications": "My Notifications"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
