@@ -28,12 +28,8 @@ import {
 import {
   type CXNotificationContent,
   NotificationType,
-  PAGE,
-  PAGE_SIZE,
-  SORT_OPTION,
-  NOTIFICATION_TOPIC,
 } from 'features/notification/types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
@@ -45,8 +41,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DeleteNotificationConfirmOverlay from './DeleteNotificationConfirmOverlay'
-import { useDispatch } from 'react-redux'
-import { resetInitialNotificationState } from 'features/notification/actions'
 import { PAGES } from 'types/Constants'
 import DoneIcon from '@mui/icons-material/Done'
 import EmailIcon from '@mui/icons-material/Email'
@@ -243,31 +237,27 @@ export default function NotificationItem({
   const [deleteNotification] = useDeleteNotificationMutation()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
-  const dispatch = useDispatch()
-  const [userRead, setUserRead] = useState<boolean>(false)
+  const [userRead, setUserRead] = useState<boolean>(item.isRead ?? false)
 
   item = {
     ...item,
     contentParsed: JSON.parse(item.content ?? '{}'),
   }
 
-  const setRead = async (id: string, flag: boolean) => {
+  const setRead = async (flag: boolean) => {
     try {
-      await setNotificationRead({ id, flag })
+      await setNotificationRead({ id: item.id, flag }).unwrap()
+      item.isRead = flag
+      setUserRead(flag)
     } catch (error: unknown) {
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    setUserRead(item.userRead)
-  }, [item.userRead])
-
-  const toggle = () => {
+  const toggleOpen = () => {
     const nextState = !open
     if (nextState && !userRead) {
-      setUserRead(true)
-      void setRead(item.id, true)
+      void setRead(true)
     }
     setOpen(nextState)
   }
@@ -275,18 +265,6 @@ export default function NotificationItem({
   const onDelete = async () => {
     setLoading(true)
     await deleteNotification(item.id).unwrap()
-    dispatch(
-      resetInitialNotificationState({
-        page: PAGE,
-        size: PAGE_SIZE,
-        args: {
-          searchQuery: '',
-          searchTypeIds: [],
-          notificationTopic: NOTIFICATION_TOPIC.ALL,
-          sorting: SORT_OPTION,
-        },
-      })
-    )
     setShowDeleteModal(false)
   }
 
@@ -305,7 +283,9 @@ export default function NotificationItem({
         />
       )}
       <li
-        onClick={toggle}
+        onClick={() => {
+          toggleOpen()
+        }}
         onKeyDown={() => {
           // do nothing
         }}
@@ -388,9 +368,8 @@ export default function NotificationItem({
             <div
               className="padding-r-10"
               onClick={(e) => {
-                setUserRead(!userRead)
-                setRead(item.id, !userRead)
                 e.stopPropagation()
+                setRead(!userRead)
               }}
               onKeyDown={() => {
                 // do nothing

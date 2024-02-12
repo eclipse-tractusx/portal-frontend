@@ -4,6 +4,8 @@
 
 ### Bugfix
 
+- Notifications
+  - handle set read/unread correctly
 - IDP Management
   - Allow 6-36 alphanumeric characters for IDP extID
 
