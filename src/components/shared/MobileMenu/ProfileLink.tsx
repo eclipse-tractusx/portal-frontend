@@ -25,6 +25,7 @@ import './MobileMenu.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { t } from 'i18next'
+import { WraperLink } from './WraperLink'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -39,54 +40,28 @@ export const ProfileLink = ({
   const dispatch = useDispatch()
   const visible = useSelector(appearMenuSelector)
   return (
-    <Box
-      sx={{
-        margin: '10px 0px 5px 0px',
-      }}
+    <WraperLink
       onClick={() => {
         dispatch(setAppear({ MENU: !visible }))
       }}
     >
-      <ListItem>
-        <Link
-          className="titleBox"
+      <>
+        <AccountCircleIcon
           sx={{
-            color: 'text.primary',
-            pointerEvents: 'auto',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderRadius: 3,
-            typography: 'label3',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            ':hover': {
-              backgroundColor: 'selected.hover',
-              color: 'primary.dark',
-              '.MuiSvgIcon-root': {
-                color: 'primary.dark',
-              },
-            },
-            cursor: 'pointer',
+            color: '#0f71cb',
+            width: '30px',
+            height: '30px',
+            marginRight: '10px',
           }}
+        />
+        <LinkRouter
+          className="link-router-text"
+          to={props.to ?? '/'}
+          {...props}
         >
-          <AccountCircleIcon
-            sx={{
-              color: '#0f71cb',
-              width: '30px',
-              height: '30px',
-              marginRight: '10px',
-            }}
-          />
-          <LinkRouter
-            className="link-router-text"
-            to={props.to ?? '/'}
-            {...props}
-          >
-            {t('pages.account')}
-          </LinkRouter>
-        </Link>
-      </ListItem>
-    </Box>
+          {t('pages.account')}
+        </LinkRouter>
+      </>
+    </WraperLink>
   )
 }
