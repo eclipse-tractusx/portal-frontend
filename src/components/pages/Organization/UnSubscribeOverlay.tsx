@@ -42,6 +42,7 @@ interface UnSubscribeOverlayProps {
   loading?: boolean
   subscriptionId: string
   appId: string
+  enableErrorMessage: boolean
 }
 
 const UnSubscribeOverlay = ({
@@ -51,6 +52,7 @@ const UnSubscribeOverlay = ({
   loading,
   subscriptionId,
   appId,
+  enableErrorMessage,
 }: UnSubscribeOverlayProps) => {
   const { t } = useTranslation()
   const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
@@ -71,16 +73,21 @@ const UnSubscribeOverlay = ({
             intro={`For ${data?.name}`}
           />
           <DialogContent>
-            <Typography variant="body2">
-              {t('content.organization.unsubscribe.descriptionNote')}{' '}
+            <Typography variant="body3">
+              {t('content.organization.unsubscribe.descriptionNote')}
             </Typography>
-            <Typography variant="body2">
-              {t('content.organization.unsubscribe.description')}{' '}
+            <Typography variant="body3">
+              {t('content.organization.unsubscribe.description')}
             </Typography>
             <Box sx={{ mt: '20px' }}>
               <StaticTable
                 data={{
-                  head: ['List of connected objects:', ''],
+                  head: [
+                    t(
+                      'content.organization.unsubscribe.table.listOfConnectedObjects'
+                    ),
+                    '',
+                  ],
                   body: [
                     [
                       t('content.organization.unsubscribe.table.app'),
@@ -103,7 +110,13 @@ const UnSubscribeOverlay = ({
                 horizontal={false}
               />
             </Box>
-            <Box sx={{ alignContent: 'left', display: 'grid' }}>
+            <Box
+              sx={{
+                alignContent: 'left',
+                display: 'grid',
+                padding: '44px 0 12px 0',
+              }}
+            >
               <Checkbox
                 label={t('content.organization.unsubscribe.checkBoxLabel')}
                 checked={checkBoxSelected}
@@ -116,41 +129,50 @@ const UnSubscribeOverlay = ({
               </Typography>
             </Box>
           </DialogContent>
-          <DialogActions>
-            <Button
-              variant="outlined"
-              onClick={(e) => {
-                handleOverlayClose(e)
-              }}
-            >
-              {t('global.actions.cancel')}
-            </Button>
-            {!loading && (
+          <DialogActions sx={{ display: 'block', textAlign: 'center' }}>
+            {enableErrorMessage && (
+              <Typography variant="label3" sx={{ color: '#D91E18' }}>
+                {t('content.organization.unsubscribe.unsubscribeError')}
+              </Typography>
+            )}
+            <Box sx={{ mt: 2 }}>
               <Button
-                variant="contained"
-                disabled={!checkBoxSelected}
+                variant="outlined"
                 onClick={(e) => {
-                  handleConfirmClick(e)
+                  handleOverlayClose(e)
                 }}
               >
-                {t('content.organization.unsubscribe.buttonText')}
+                {t('global.actions.cancel')}
               </Button>
-            )}
-            {loading && (
-              <LoadingButton
-                color="primary"
-                helperText=""
-                helperTextColor="success"
-                label=""
-                loadIndicator={t('global.actions.loading')}
-                loading
-                size="medium"
-                onButtonClick={() => {
-                  // do nothing
-                }}
-                sx={{ marginLeft: '10px', textTransform: 'none' }}
-              />
-            )}
+              {!loading && (
+                <Button
+                  variant="contained"
+                  disabled={!checkBoxSelected}
+                  onClick={(e) => {
+                    handleConfirmClick(e)
+                  }}
+                >
+                  {t('content.organization.unsubscribe.buttonText')}
+                </Button>
+              )}
+              {loading && (
+                <LoadingButton
+                  color="primary"
+                  helperText=""
+                  helperTextColor="success"
+                  label=""
+                  loadIndicator={t(
+                    'content.organization.unsubscribe.unsubscriptionOnProgress'
+                  )}
+                  loading
+                  size="medium"
+                  onButtonClick={() => {
+                    // do nothing
+                  }}
+                  sx={{ marginLeft: '10px', textTransform: 'none' }}
+                />
+              )}
+            </Box>
           </DialogActions>
         </div>
       </Dialog>

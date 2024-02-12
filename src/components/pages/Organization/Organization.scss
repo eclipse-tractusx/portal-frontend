@@ -87,7 +87,22 @@
   }
 }
 
-.unsubscribeOverlay .MuiBox-root {
-  text-align: left !important;
-  padding-bottom: 24px;
+.unsubscribeOverlay {
+  .MuiBox-root:first-child {
+    padding-bottom: 0;
+  }
+
+  .MuiTypography-h4 {
+    text-align: left !important;
+    padding-bottom: 24px;
+  }
+
+  .MuiDialogTitle-root {
+    text-align: left !important;
+    padding-bottom: 12px;
+  }
+
+  table tr:nth-child(2) td:nth-child(2) > div > a {
+    color: #00aa55 !important;
+  }
 }

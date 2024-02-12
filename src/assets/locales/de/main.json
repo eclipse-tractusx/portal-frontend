@@ -395,7 +395,8 @@
         "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
         "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
         "table": {
-          "app": "Anwendungs-/Diensttitel",
+          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
+          "app": "Bewerbungs-/Diensttitel:",
           "status": "Aktueller Status:",
           "connector": "Verbinder:",
           "techUser": "Technischer Benutzer:"
@@ -404,14 +405,34 @@
         "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
         "buttonText": "Abbestellen",
         "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
-        "unsubscribeError": "Etwas ist schief gelaufen. Versuchen Sie es später noch einmal oder wenden Sie sich an den Administrator"
+        "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
+        "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
       }
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
     },
     "companySubscriptions": {
-      "headertitle": "App & Service Subscriptions"
+      "headertitle": "App- und Service-Abonnements",
+      "tableTitle": "Abonnierte Apps",
+      "subscribed": "Gezeichnet",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "connector": "Verbinder",
+      "technicalUser": "Technischer Benutzer",
+      "unsubscribe": "Abbestellen",
+      "table": {
+        "appIcon": "App-Symbol",
+        "appTitle": "App-Titel",
+        "status": "Status",
+        "details": "Einzelheiten",
+        "action": "Aktion"
+      },
+      "filter": {
+        "requested": "angefordert",
+        "active": "aktiv",
+        "showAll": "zeige alles"
+      }
     },
     "appoverview": {
       "headerTitle": "Meine Applikationen",

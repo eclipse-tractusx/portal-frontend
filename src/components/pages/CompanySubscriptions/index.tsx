@@ -23,11 +23,13 @@ import {
   PageLoadingTable,
   Typography,
   Image,
-  Chip,
   Button,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import {
+  CompanySubscriptionFilterType,
+  type SubscribedActiveApps,
+  SubscriptionStatus,
   useFetchSubscribedActiveAppsStatusQuery,
   useUnsubscribeAppMutation,
 } from 'features/apps/apiSlice'
@@ -42,7 +44,10 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useNavigate } from 'react-router'
 import { PAGES } from 'types/Constants'
 import UnSubscribeOverlay from '../Organization/UnSubscribeOverlay'
-import { error, success } from 'services/NotifyService'
+import { success } from 'services/NotifyService'
+import { Box } from '@mui/material'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import UnpublishedIcon from '@mui/icons-material/Unpublished'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -53,19 +58,21 @@ export default function CompanySubscriptions() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
   const [refresh, setRefresh] = useState(0)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [filterStatus, setFilterStatus] = useState<string>('')
   const searchInputData = useSelector(updateApplicationRequestSelector)
-  const [group, setGroup] = useState<string>('show all')
+  const [group, setGroup] = useState<string>(
+    t('content.companySubscriptions.filter.showAll')
+  )
   const [showUnsubscribeOverlay, setShowUnsubscribeOverlay] =
     useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [appId, setAppId] = useState<string>('')
   const [subscriptionId, setSubscriptionId] = useState<string>('')
   const [unsubscribeMutation] = useUnsubscribeAppMutation()
+  const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -76,18 +83,18 @@ export default function CompanySubscriptions() {
 
   const filterView = [
     {
-      buttonText: 'requested',
-      buttonValue: 'requested',
+      buttonText: t('content.companySubscriptions.filter.requested'),
+      buttonValue: CompanySubscriptionFilterType.REQUESTED,
       onButtonClick: setView,
     },
     {
-      buttonText: 'active',
-      buttonValue: 'active',
+      buttonText: t('content.companySubscriptions.filter.active'),
+      buttonValue: CompanySubscriptionFilterType.ACTIVE,
       onButtonClick: setView,
     },
     {
-      buttonText: 'show all',
-      buttonValue: 'show all',
+      buttonText: t('content.companySubscriptions.filter.showAll'),
+      buttonValue: CompanySubscriptionFilterType.SHOW_ALL,
       onButtonClick: setView,
     },
   ]
@@ -102,7 +109,7 @@ export default function CompanySubscriptions() {
     // eslint-disable-next-line
   }, [filterStatus, searchExpr])
 
-  const onTableCellClick = (params: any) => {
+  const onTableCellClick = (params: { field: string }) => {
     if (params.field === 'detail') {
       console.log(params.field)
     }
@@ -120,13 +127,15 @@ export default function CompanySubscriptions() {
       .unwrap()
       .then(() => {
         success(t('content.organization.unsubscribe.unsubscribeSuccess'))
+        setLoading(false)
+        setShowUnsubscribeOverlay(false)
       })
       .catch(() => {
-        error(t('content.organization.unsubscribe.unsubscribeError'))
+        setLoading(false)
+        setEnableErrorMessage(true)
       })
-    setLoading(false)
-    setShowUnsubscribeOverlay(false)
   }
+
   return (
     <main className="page-main-container">
       {showUnsubscribeOverlay && (
@@ -139,6 +148,7 @@ export default function CompanySubscriptions() {
           loading={loading}
           appId={appId}
           subscriptionId={subscriptionId}
+          enableErrorMessage={enableErrorMessage}
         />
       )}
       <Typography
@@ -148,11 +158,19 @@ export default function CompanySubscriptions() {
       >
         {t('content.companySubscriptions.headertitle')}
       </Typography>
+
       <div className={'table-container'}>
-        <PageLoadingTable<any, any>
+        <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
+          sx={{
+            '.MuiDataGrid-cell': {
+              alignContent: 'center !important',
+            },
+          }}
           searchExpr={searchExpr}
           alignCell="start"
           onCellClick={onTableCellClick}
+          defaultFilter={group}
+          filterViews={filterView}
           toolbarVariant={'searchAndFilter'}
           hasBorder={false}
           columnHeadersBackgroundColor={'transparent'}
@@ -164,7 +182,7 @@ export default function CompanySubscriptions() {
             setSearchExpr(expr)
           }}
           searchDebounce={1000}
-          title={t('content.admin.registration-requests.tabletitle')}
+          title={''}
           loadLabel={t('global.actions.more')}
           fetchHook={useFetchSubscribedActiveAppsStatusQuery}
           fetchHookArgs={fetchHookArgs}
@@ -173,9 +191,9 @@ export default function CompanySubscriptions() {
           columns={[
             {
               field: 'image',
-              headerName: 'App Icon',
+              headerName: t('content.companySubscriptions.table.appIcon'),
               flex: 2,
-              renderCell: ({ row }: { row: any }) => (
+              renderCell: ({ row }: { row: SubscribedActiveApps }) => (
                 <Image
                   src={
                     row.image
@@ -197,73 +215,63 @@ export default function CompanySubscriptions() {
             },
             {
               field: 'name',
-              headerName: 'App title',
-              flex: 2,
+              headerName: t('content.companySubscriptions.table.appTitle'),
+              flex: 3,
+              renderCell: ({ row }: { row: SubscribedActiveApps }) => (
+                <Box sx={{ display: 'grid' }}>
+                  <Typography variant="body3">{row.name}</Typography>
+                  <Typography variant="body3">{row.provider}</Typography>
+                </Box>
+              ),
             },
             {
               field: 'status',
-              headerName: 'Status',
+              headerName: t('content.companySubscriptions.table.status'),
               flex: 2,
-              renderCell: ({ row }: { row: any }) => {
-                return row.status === 'ACTIVE' ? (
-                  <Chip
-                    color="success"
-                    variant="outlined"
-                    label={'Subscribed'}
+              renderCell: ({ row }: { row: SubscribedActiveApps }) => {
+                return row.status === SubscriptionStatus.ACTIVE ? (
+                  <Button
+                    variant="text"
+                    startIcon={<CheckCircleOutlineIcon />}
+                    sx={{ color: '#B3CB2D', pointerEvents: 'none' }}
                     size="small"
-                    type="confirm"
-                    sx={{
-                      marginRight: '0 !important',
-                      margin: '0 auto',
-                      '.MuiChip-label': {
-                        fontSize: '14px',
-                        borderRadius: '50px',
-                      },
-                    }}
-                  />
-                ) : row.status === 'PENDING' ? (
-                  <Chip
-                    color="warning"
+                  >
+                    {t('content.companySubscriptions.subscribed')}
+                  </Button>
+                ) : row.status === SubscriptionStatus.PENDING ? (
+                  <Button
                     variant="outlined"
-                    label={'Requested'}
-                    size="small"
-                    withIcon={false}
                     sx={{
-                      marginRight: '0 !important',
-                      margin: '0 auto',
-                      '.MuiChip-label': {
-                        fontSize: '14px',
-                        borderRadius: '15px',
-                      },
+                      color: '#FFA600',
+                      borderColor: '#FFA600',
+                      pointerEvents: 'none',
+                      ml: 1,
                     }}
-                  />
+                    size="small"
+                  >
+                    {t('content.companySubscriptions.requested')}
+                  </Button>
                 ) : (
-                  <Chip
-                    color="error"
-                    variant="outlined"
-                    label={'Declined'}
+                  <Button
+                    variant="text"
+                    startIcon={<UnpublishedIcon />}
+                    sx={{ color: '#D91E18', pointerEvents: 'none' }}
                     size="small"
-                    type="decline"
-                    sx={{
-                      '.MuiChip-label': {
-                        fontSize: '14px',
-                        borderRadius: '15px',
-                      },
-                    }}
-                  />
+                  >
+                    {t('content.companySubscriptions.declined')}
+                  </Button>
                 )
               },
             },
             {
               field: 'details',
-              headerName: 'Details',
+              headerName: t('content.companySubscriptions.table.details'),
               flex: 2,
-              renderCell: ({ row }: { row: any }) => {
+              renderCell: ({ row }: { row: SubscribedActiveApps }) => {
                 return (
                   <IconButton
                     color="secondary"
-                    onClick={(data: any) => {
-                      console.log('row', row)
+                    onClick={() => {
                       navigate(
                         `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
                         { state: row }
@@ -277,11 +285,11 @@ export default function CompanySubscriptions() {
             },
             {
               field: 'action',
-              headerName: 'Action',
+              headerName: t('content.companySubscriptions.table.action'),
               flex: 2,
-              renderCell: ({ row }: { row: any }) => {
+              renderCell: ({ row }: { row: SubscribedActiveApps }) => {
                 return (
-                  row.status === 'INACTIVE' && (
+                  row.status === SubscriptionStatus.INACTIVE && (
                     <Button
                       variant="contained"
                       size="small"
@@ -292,15 +300,13 @@ export default function CompanySubscriptions() {
                         e.stopPropagation()
                       }}
                     >
-                      {'Unsubscribe'}
+                      {t('content.companySubscriptions.unsubscribe')}
                     </Button>
                   )
                 )
               },
             },
           ]}
-          defaultFilter={group}
-          filterViews={filterView}
         />
       </div>
     </main>

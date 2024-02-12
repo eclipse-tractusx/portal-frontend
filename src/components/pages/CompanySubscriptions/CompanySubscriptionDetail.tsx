@@ -24,6 +24,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
+  SubscriptionStatus,
   useFetchAppsDataQuery,
   useFetchDocumentByIdMutation,
   useFetchSubscriptionAppQuery,
@@ -31,13 +32,12 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import CommonService from 'services/CommonService'
-import { Box, Grid } from '@mui/material'
+import { Box } from '@mui/material'
+import { PAGES } from 'types/Constants'
+import './Companysubscriptions.scss'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import UnpublishedIcon from '@mui/icons-material/Unpublished'
 
-enum CardDetails {
-  LANGUAGE = 'language',
-  USECASE = 'useCase',
-  PRICE = 'price',
-}
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
   const { state } = useLocation()
@@ -51,8 +51,14 @@ export default function CompanySubscriptionDetail() {
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const tableData = {
-    head: ['connectorData', 'technicalUserData'],
-    body: [['connectorData'], ['technicalUserData']],
+    head: [
+      t('content.companySubscriptions.connector'),
+      t('content.companySubscriptions.technicalUser'),
+    ],
+    body: [
+      [data?.connectorData?.[0]?.name ?? ''],
+      [data?.technicalUserData?.[0]?.name ?? ''],
+    ],
   }
 
   useEffect(() => {
@@ -66,7 +72,7 @@ export default function CompanySubscriptionDetail() {
   const getImage = async (documentId: string) => {
     try {
       const response = await fetchDocumentById({
-        appId: fetchAppsData.id,
+        appId: fetchAppsData?.id??'',
         documentId,
       }).unwrap()
       const file = response.data
@@ -76,74 +82,91 @@ export default function CompanySubscriptionDetail() {
     }
   }
 
-  const getAppData = (field: string) => {
-    if (field === CardDetails.LANGUAGE)
-      return fetchAppsData?.languages.join(', ')
-    else if (field === CardDetails.USECASE)
-      return fetchAppsData?.useCases.join(', ')
-    else if (field === CardDetails.PRICE) return fetchAppsData?.price
+  const renderStatusButton = (status: string) => {
+    return status === SubscriptionStatus.ACTIVE ? (
+      <Button
+        startIcon={<CheckCircleOutlineIcon />}
+        sx={{
+          backgroundColor: '#B3CB2D',
+          pointerEvents: 'none',
+          float: 'right',
+        }}
+        size="small"
+      >
+        {t('content.companySubscriptions.subscribed')}
+      </Button>
+    ) : status === SubscriptionStatus.PENDING ? (
+      <Button
+        sx={{
+          backgroundColor: '#FFA600',
+          pointerEvents: 'none',
+          float: 'right',
+          borderColor: '#FFA600',
+        }}
+        size="small"
+      >
+        {t('content.companySubscriptions.requested')}
+      </Button>
+    ) : (
+      <Button
+        startIcon={<UnpublishedIcon />}
+        sx={{
+          backgroundColor: '#D91E18',
+          pointerEvents: 'none',
+          float: 'right',
+        }}
+        size="small"
+      >
+        {t('content.companySubscriptions.declined')}
+      </Button>
+    )
   }
 
   return (
-    <main className="adminboard-main">
-      <Button
-        color="secondary"
-        size="small"
-        onClick={() => {
-          navigate('/company-subscriptions')
-        }}
-      >
-        {t('global.actions.back')}
-      </Button>
+    <main className="company-subscription-detail">
+      <Box className="company-subscription-back">
+        <Button
+          color="secondary"
+          size="small"
+          onClick={() => {
+            navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
+          }}
+        >
+          {t('global.actions.back')}
+        </Button>
+      </Box>
       {data && fetchAppsData && (
-        <>
-          <div className="adminboard-header">
+        <Box className="company-subscription-content ">
+          <Box className="company-subscription-header">
             <div className="lead-image">
               <img src={image} alt={fetchAppsData.title} />
             </div>
             <div className="content">
-              <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
-                {fetchAppsData.provider}
-              </Typography>
-              <Typography variant="h2" sx={{ mb: 1.5, mt: 1.5 }}>
-                {fetchAppsData.title}
-              </Typography>
-              <Grid md={8}>
-                {[
-                  CardDetails.LANGUAGE,
-                  CardDetails.USECASE,
-                  CardDetails.PRICE,
-                ].map((field) => (
-                  <div
-                    style={{ display: 'flex', marginBottom: '5px' }}
-                    key={field}
-                  >
-                    <Typography variant="body2">
-                      {t(`content.apprelease.validateAndPublish.${field}`)}
-                      {getAppData(field)}
-                    </Typography>
-                  </div>
-                ))}
-              </Grid>
+              <Box sx={{ padding: '11px 12px' }}>
+                {renderStatusButton(fetchAppsData.isSubscribed)}
+                {/* <Button sx={{ float: 'right' }} size='small'>{'Subscribed'}</Button> */}
+                <Typography variant="h5" sx={{ color: '#888888' }}>
+                  {fetchAppsData.provider}
+                </Typography>
+                <Typography variant="h4" sx={{}}>
+                  {fetchAppsData.title}
+                </Typography>
+              </Box>
             </div>
-          </div>
-          <div className="divider-height" />
-          <div className="product-description">
-            <Typography variant="h3" style={{ whiteSpace: 'pre-line' }}>
-              {'Short description'}
+          </Box>
+          <Typography variant="h3" sx={{ whiteSpace: 'pre-line', mb: 4 }}>
+            {'Long description'}
+          </Typography>
+          <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+            {fetchAppsData.longDescription}
+          </Typography>
+          <Box sx={{ mt: '59px' }}>
+            <Typography variant="h3" sx={{ mb: 4 }}>
+              {'Technical Details'}
             </Typography>
-            <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-              {fetchAppsData.longDescription}
-            </Typography>
-          </div>
-          <div className="adminboard-provider">
-            <Box sx={{ mb: 4 }}>
-              <Typography variant="h3">{t('heading')}</Typography>
-              <Typography variant="body2">{t('message')}</Typography>
-            </Box>
             <StaticTable data={tableData} horizontal={true} />
-          </div>
-        </>
+          </Box>
+        </Box>
       )}
     </main>
   )

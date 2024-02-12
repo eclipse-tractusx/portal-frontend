@@ -394,7 +394,8 @@
         "descriptionNote": "Please Note: the unsubscription is not revertible",
         "description": "all possibly connected objects(mentioned in below table) will get deactivated as well",
         "table": {
-          "app": "Application / Service title",
+          "listOfConnectedObjects": "List of connected objects:",
+          "app": "Application / Service title:",
           "status": "Current Status:",
           "connector": "Connector:",
           "techUser": "Technical User:"
@@ -403,11 +404,31 @@
         "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
-        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
+        "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
+        "unsubscriptionOnProgress": "Unsubscription on progress"
       }
     },
     "companySubscriptions": {
-      "headertitle": "App & Service Subscriptions"
+      "headertitle": "App & Service Subscriptions",
+      "tableTitle": "Subscribed Apps",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "connector": "Connector",
+      "technicalUser": "Technical User",
+      "unsubscribe": "Unsubscribe",
+      "table": {
+        "appIcon": "App Icon",
+        "appTitle": "App title",
+        "status": "Status",
+        "details": "Details",
+        "action": "Action"
+      },
+      "filter": {
+        "requested": "requested",
+        "active": "active",
+        "showAll": "show all"
+      }
     },
     "datamanagement": {
       "message": "Contents of Data Management"

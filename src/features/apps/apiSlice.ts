@@ -79,7 +79,6 @@ export type AppMarketplaceApp = {
   leadPictureId?: string
   subscriptionStatus?: SubscriptionStatus
 }
-
 export interface ProvidedApps {
   meta: {
     contentSize: number
@@ -94,6 +93,12 @@ export enum SubscriptionStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
   INACTIVE = 'INACTIVE',
+}
+
+export enum CompanySubscriptionFilterType {
+  REQUESTED = 'requested',
+  ACTIVE = 'active',
+  SHOW_ALL = 'show all',
 }
 
 export enum SubscriptionStatusText {
@@ -241,6 +246,46 @@ interface FetchSubscriptionAppQueryType {
   appId: string
 }
 
+export interface SubscribedActiveApps {
+  offerId: string
+  name: string
+  provider: string
+  status: string
+  subscriptionId: string
+  image: string
+}
+export interface appsTypes {
+  id: string
+  title: string
+  leadPictureId: string
+  images: string[]
+  providerUri: string
+  provider: string
+  contactEmail: string
+  contactNumber: string
+  useCases: {
+    id: string
+    label: string
+  }[]
+  longDescription: string
+  licenseType: string
+  price: string
+  tags: string[]
+  isSubscribed: string
+  languages: string[]
+  documents: {
+    ADDITIONAL_DETAILS: Array<DocumentData>
+    APP_CONTRACT: Array<DocumentData>
+    APP_TECHNICAL_INFORMATION: Array<DocumentData>
+    CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
+  }
+  privacyPolicies: string[]
+  isSingleInstance: boolean
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -349,12 +394,12 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
-    fetchAppsData: builder.query<any, any>({
+    fetchAppsData: builder.query<appsTypes, string>({
       query: (appId) => `/api/apps/${appId}`,
     }),
 
     fetchSubscribedActiveAppsStatus: builder.query<
-      PaginResult<any>,
+      PaginResult<SubscribedActiveApps>,
       PaginFetchArgs
     >({
       query: (fetchArgs) => ({

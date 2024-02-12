@@ -1,0 +1,50 @@
+/********************************************************************************
+ * Copyright (c) 2021,2024 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, eith   er express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+.company-subscription-detail {
+  min-width: 1440px;
+  .company-subscription-back {
+    padding: 48px 256px 48px 160px;
+  }
+  .company-subscription-content {
+    margin: 0 auto;
+    width: 620px;
+    .company-subscription-header {
+      background-color: rgb(247, 247, 247);
+      border-radius: 6px;
+      padding: 12px 0px 5px 12px;
+      margin-bottom: 55px;
+      height: auto;
+      box-shadow: 2px 2px 0px #5050504d;
+      width: 606px;
+      display: flex;
+      flex-wrap: wrap;
+      .lead-image > img {
+        border-radius: 16px;
+        width: 107px !important;
+        height: 107px !important;
+      }
+      .content {
+        flex: 1 1 0%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
