@@ -34,7 +34,7 @@ import {
   useUpdateTenantUrlMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
-import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { SubscriptionStatus } from 'features/apps/types'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useState } from 'react'

@@ -22,11 +22,8 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import 'components/styles/document.scss'
-import {
-  type AppDetails,
-  type Documents,
-  useFetchDocumentByIdMutation,
-} from 'features/apps/apiSlice'
+import { type AppDetails, type Documents } from 'features/apps/types'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import '../../AppDetail.scss'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'

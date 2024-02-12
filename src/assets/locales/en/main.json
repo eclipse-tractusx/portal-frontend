@@ -138,7 +138,9 @@
         "BUSINESS_PARTNER_NUMBER": "BPN Creation"
       },
       "status": {
+        "IN_PROGRESS": "In Progress",
         "TO_DO": "To Do",
+        "DONE": "Done",
         "FAILED": "Failed"
       },
       "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
@@ -146,6 +148,10 @@
       "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
       "email": "help@catena-x.com"
+    },
+    "registrationDeclined": {
+      "title": "Registration Status",
+      "description": "<strong style='color: red'>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon."
     },
     "admin": {
       "registration-requests": {
@@ -298,8 +304,8 @@
           "real-timecontrol": "Real Time Control",
           "modularproduction": "Modular Production"
         },
-        "noMatch": "No Matches",
-        "for": "for"
+        "noMatch": "No Match",
+        "for": "for your search term"
       }
     },
     "semantichub": {
