@@ -42,6 +42,8 @@
   - Add missing translations, fix duplicate error
 - Service Release Process
   - fixed conformity document deletion issue after uploading document
+- Company roles
+  - Show standard library infomration based on the selected company role
 - Invite Business Partner
   - fix loading button issue to invite multiple companies in succession
 
