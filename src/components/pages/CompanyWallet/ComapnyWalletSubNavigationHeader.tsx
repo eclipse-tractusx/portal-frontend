@@ -34,7 +34,7 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
     },
     {
       title: t('content.companyWallet.subnavigation.button2'),
-      link: '/company-role',
+      link: '/certificate-credential',
     },
     {
       title: t('content.companyWallet.subnavigation.button3'),

@@ -69,7 +69,7 @@ export default function RuleCard({
               >
                 <div key={item.id} className="rule-card-container">
                   <Typography className="text" variant="body2">
-                    {item?.credentialSubject[0].status ?? 'Inactive'}
+                    {item?.credentialSubject[0].status ?? 'Unknown'}
                   </Typography>
                   <Typography className="text" variant="h4">
                     {item?.credentialSubject[0].type}
