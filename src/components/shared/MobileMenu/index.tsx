@@ -17,47 +17,69 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, type BoxProps, Divider, List, useTheme } from '@mui/material'
+import {
+  Box,
+  type BoxProps,
+  Divider,
+  List,
+  useTheme,
+  Link,
+} from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 import { MenuItem, type MenuItemProps } from './MenuItem'
-import { UserInfo } from '../frame/UserInfo'
 import AccessService from 'services/AccessService'
-import { Typography } from '@catena-x/portal-shared-components'
-import HelpIcon from '@mui/icons-material/Help'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
 import { useEffect, useState } from 'react'
-
-export interface NotificationBadgeType {
-  notificationCount: number
-  isNotificationAlert: boolean
-}
+import { appearMenuSelector, setAppear } from 'features/control/appear'
+import { useDispatch, useSelector } from 'react-redux'
+import { ProfileLink } from './ProfileLink'
+import { NotificationLink } from './NotificationLink'
+import { type CompanyMenuTypes, MyCompanyLink } from './MyCompanyLink'
+import { MenuSubItems } from './MenuChildren'
+import { MenuFooter } from './MenuFooter'
+import { t } from 'i18next'
 
 export interface MenuProps extends BoxProps {
   items: MenuItemProps[]
   component?: React.ElementType
   divider?: boolean
-  notificationInfo?: NotificationBadgeType
 }
 
 export const MobileMenu = ({
   items,
   divider,
-  component,
+  component = Link,
   onClick,
-  notificationInfo,
   ...props
-}: MenuProps) => {
+}: MenuProps): JSX.Element => {
+  const visible = useSelector(appearMenuSelector)
+  const dispatch = useDispatch()
   const { spacing } = useTheme()
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
-  const [userMenu, setUserMenu] = useState(AccessService.userMenu())
+  const [userMenu, setUserMenu] = useState<string[]>(
+    AccessService.userMenuComp()
+  )
+  const [children, setSelectedChildren] = useState<MenuItemProps[]>([])
+
+  const addTitle = (items: string[]): CompanyMenuTypes[] =>
+    items?.map((item: string) => ({
+      to: JSON.parse(JSON.stringify(item)),
+      title: t(`pages.${JSON.parse(JSON.stringify(item))}`),
+    }))
+
+  const companyMenu = addTitle(userMenu) ?? []
+
+  const onSelectItem = (item: MenuItemProps[]): void => {
+    setSelectedChildren(item)
+  }
 
   useEffect(() => {
     if (
-      companyData &&
+      companyData != null &&
       Object.values(ApplicationStatus).includes(companyData.applicationStatus)
     ) {
       setUserMenu(AccessService.userMenuReg())
@@ -66,52 +88,43 @@ export const MobileMenu = ({
 
   return (
     <Box {...props}>
-      <List sx={{ padding: 0 }}>
-        {items?.map((item) => (
-          <MenuItem
-            {...item}
-            component={component}
-            menuProps={props}
-            Menu={MobileMenu}
-            onClick={onClick}
-            key={uniqueId('Menu')}
-            showNotificationCount={item.to === 'notifications'}
-            notificationInfo={notificationInfo}
-          />
-        ))}
-      </List>
+      {children.length === 0 && (
+        <>
+          <List sx={{ padding: 0 }}>
+            {items?.map((item) => (
+              <MenuItem
+                {...item}
+                component={component}
+                menuProps={props}
+                Menu={MobileMenu}
+                onSelect={onSelectItem}
+                onClick={onClick}
+                key={uniqueId('Menu')}
+              />
+            ))}
+          </List>
+          {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
+          <ProfileLink to={'/account'} />
+          <NotificationLink to={'/notifications'} />
+          <MyCompanyLink companyMenu={companyMenu} onSelect={onSelectItem} />
+          {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
+        </>
+      )}
+      {children?.length > 0 && (
+        <MenuSubItems
+          onClick={() => {
+            dispatch(setAppear({ MENU: !visible }))
+          }}
+          onHide={() => {
+            setSelectedChildren([])
+          }}
+          component={component}
+        >
+          {children}
+        </MenuSubItems>
+      )}
       {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-      <Box>
-        <UserInfo pages={userMenu} title={'Profile'} isMobile={true} />
-      </Box>
-      <Box
-        className="titleBox"
-        onClick={() => {
-          window.open(
-            `${document.location.origin}/documentation/`,
-            'documentation',
-            'noreferrer'
-          )
-        }}
-      >
-        <div>
-          <HelpIcon
-            sx={{
-              color: '#0f71cb',
-              width: '30px',
-              height: '30px',
-            }}
-          />
-          <Typography
-            sx={{
-              paddingLeft: '10px',
-            }}
-            variant="body2"
-          >
-            {'Help'}
-          </Typography>
-        </div>
-      </Box>
+      <MenuFooter />
     </Box>
   )
 }
