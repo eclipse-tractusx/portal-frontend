@@ -145,7 +145,6 @@
 - App Release Process
   - fixed automatic upscrolling in form pages
   - Fixed help link, funky character display and the success message display in user role upload
-  - fixed automatic up scrolling in form pages
 - Service Release Process
   - fixed automatic up scrolling in form pages
 - User Management
