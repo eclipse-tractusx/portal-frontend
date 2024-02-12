@@ -1,21 +1,49 @@
 # Changelog
 
-## unreleased 1.8.0-RC4
+## unreleased 1.8.0-RC5
 
-- App Marketplace
-  - reduce image flickering on user interaction
-- Service overview
-  - Add missing translations, fix duplicate error
-- Service Release Process
-  - fixed conformity document deletion issue after uploading document
-- Invite Business Partner
-  - fix loading button issue to invite multiple companies in succession
+### Bugfix
+
+- Notifications
+  - handle set read/unread correctly
+- IDP Management
+  - Allow 6-36 alphanumeric characters for IDP extID
+- Hamburger
+  - Slide effect on click of hamburger
+  - New UI navigation when menu has sub sections
+- Subnavigation
+  - Show sub navigation button text in one line
 - Company Name
   - Update pattern in invite form and app release process
 - Portal login navigation
   - handle navigation as per applicationType and applicationStatus
 - App Management
   - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
+
+## 1.8.0-RC4
+
+### Change
+
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+  - handle navigation as per applicationType (new api property) and applicationStatus
+
+### Technical Support
+
+- Removed env specific urls from test files
+- Updated shared components package dependency
+
+### Bugfix
+
+- App Marketplace
+  - reduce image flickering on user interaction by using cache option
+- Service Overview
+  - Add missing translations, fix duplicate error
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
+- Invite Business Partner
+  - fix loading button issue to invite multiple companies in succession
 
 ## 1.8.0-RC3
 
@@ -123,7 +151,6 @@
 - App Release Process
   - fixed automatic upscrolling in form pages
   - Fixed help link, funky character display and the success message display in user role upload
-  - fixed automatic up scrolling in form pages
 - Service Release Process
   - fixed automatic up scrolling in form pages
 - User Management

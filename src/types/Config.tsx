@@ -111,10 +111,6 @@ export const ALL_PAGES: IPage[] = [
     element: <Redirect path="_storybook" tab={'storybook'} />,
   },
   {
-    name: PAGES.REGISTRATION,
-    element: <Redirect path="registration" tab={'registration'} />,
-  },
-  {
     name: PAGES.MARKETPLACE,
     role: ROLES.APPSTORE_VIEW,
     element: <AppMarketplace />,
@@ -797,6 +793,21 @@ export const userMenuFull = [
 ]
 
 export const userMenuRegistration = [PAGES.LOGOUT]
+
+export const userMenuCompany = [
+  PAGES.ORGANIZATION,
+  PAGES.USER_MANAGEMENT,
+  PAGES.IDP_MANAGEMENT,
+  PAGES.TECHNICAL_SETUP,
+  PAGES.APPLICATION_REQUESTS,
+  PAGES.INVITE,
+  PAGES.COMPANY_ROLE,
+  PAGES.USECASE_PARTICIPATION,
+  PAGES.CERTIFICATE_CREDENTIAL,
+  PAGES.ADMIN_CREDENTIAL,
+  PAGES.COMPANY_CERTIFICATE,
+  PAGES.COMPANY_WALLET,
+]
 
 /**
  * footerMenuFull
