@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Link, ListItem, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import type { MenuItemProps } from './MenuItem'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
@@ -28,6 +28,7 @@ import './MobileMenu.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { t } from 'i18next'
+import { WraperLink } from './WraperLink'
 
 interface NotificationBadgeType {
   notificationCount: number
@@ -75,63 +76,37 @@ export const NotificationLink = ({
     : theme.palette.brand.brand02
 
   return (
-    <Box
-      sx={{
-        margin: '5px 0px 10px 0px',
-      }}
+    <WraperLink
       onClick={() => {
         dispatch(setAppear({ MENU: !visible }))
       }}
     >
-      <ListItem>
-        <Link
-          className="titleBox"
-          sx={{
-            color: 'text.primary',
-            pointerEvents: 'auto',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderRadius: 3,
-            typography: 'label3',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            ':hover': {
-              backgroundColor: 'selected.hover',
-              color: 'primary.dark',
-              '.MuiSvgIcon-root': {
-                color: 'primary.dark',
-              },
-            },
-            cursor: 'pointer',
+      <>
+        <div
+          className="badgeBox"
+          style={{
+            marginRight: '12px',
+            marginLeft: '3px',
+            backgroundColor: notificationColor,
           }}
         >
-          <div
-            className="badgeBox"
-            style={{
-              marginRight: '12px',
-              marginLeft: '3px',
-              backgroundColor: notificationColor,
+          <Typography
+            sx={{
+              paddingRight: '12px',
             }}
+            variant="body2"
           >
-            <Typography
-              sx={{
-                paddingRight: '12px',
-              }}
-              variant="body2"
-            >
-              {notificationInfo?.notificationCount}
-            </Typography>
-          </div>
-          <LinkRouter
-            className="link-router-text"
-            to={props.to ?? '/'}
-            {...props}
-          >
-            {t('pages.mynotifications')}
-          </LinkRouter>
-        </Link>
-      </ListItem>
-    </Box>
+            {notificationInfo?.notificationCount}
+          </Typography>
+        </div>
+        <LinkRouter
+          className="link-router-text"
+          to={props.to ?? '/'}
+          {...props}
+        >
+          {t('pages.mynotifications')}
+        </LinkRouter>
+      </>
+    </WraperLink>
   )
 }
