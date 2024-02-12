@@ -195,7 +195,7 @@ const AddRolesOverlay = ({
             sx={{ mr: 2, mt: '5px', mb: 5, textAlign: 'center' }}
           >
             <a
-              href="../../app-provider-role-upload-example.csv"
+              href="../../template_app_role_upload.csv"
               style={{ textDecoration: 'none' }}
               download
             >
