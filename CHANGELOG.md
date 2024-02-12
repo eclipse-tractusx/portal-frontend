@@ -1,8 +1,14 @@
 # Changelog
 
-## 1.8.0-RC5 unreleased
+## unreleased 1.8.0-RC5
 
-- Hamburger
+### Bugfix
+
+- Notifications
+  - handle set read/unread correctly
+- IDP Management
+  - Allow 6-36 alphanumeric characters for IDP extID
+-  Hamburger
   - Slide effect on click of hamburger
   - New UI navigation when menu has sub sections
 - Subnavigation
