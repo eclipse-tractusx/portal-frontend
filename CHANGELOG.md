@@ -8,7 +8,7 @@
   - handle set read/unread correctly
 - IDP Management
   - Allow 6-36 alphanumeric characters for IDP extID
--  Hamburger
+- Hamburger
   - Slide effect on click of hamburger
   - New UI navigation when menu has sub sections
 - Subnavigation
