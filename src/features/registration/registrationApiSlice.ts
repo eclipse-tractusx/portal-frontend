@@ -28,6 +28,13 @@ export enum ApplicationStatus {
   UPLOAD_DOCUMENTS = 'UPLOAD_DOCUMENTS',
   VERIFY = 'VERIFY',
   SUBMITTED = 'SUBMITTED',
+  DECLINED = 'DECLINED',
+  CONFIRMED = 'CONFIRMED',
+}
+
+export enum ApplicationType {
+  INTERNAL = 'INTERNAL',
+  EXTERNAL = 'EXTERNAL',
 }
 
 export type ApplicationChecklist = {
@@ -39,6 +46,7 @@ export type ApplicationResponse = {
   applicationId: string
   applicationStatus: ApplicationStatus
   applicationChecklist: ApplicationChecklist[]
+  applicationType: ApplicationType
 }
 
 export const apiSlice = createApi({

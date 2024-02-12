@@ -50,7 +50,7 @@ import {
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
-import { DocumentTypeText } from 'features/apps/apiSlice'
+import { DocumentTypeText } from 'features/apps/types'
 import { download } from 'utils/downloadUtils'
 import {
   AppOverviewTypes,

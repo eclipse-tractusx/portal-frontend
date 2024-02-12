@@ -138,14 +138,20 @@
         "BUSINESS_PARTNER_NUMBER": "BPN Creation"
       },
       "status": {
-        "TO_DO": "To Do",
-        "FAILED": "Failed"
+        "IN_PROGRESS": "In Bearbeitung",
+        "TO_DO": "Ausstehend",
+        "DONE": "Erledigt",
+        "FAILED": "Fehlgeschlagen"
       },
       "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
       "note": "NOTE:",
       "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
       "email": "help@catena-x.com"
+    },
+    "registrationDeclined": {
+      "title": "Registration Status",
+      "description": "<strong>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon."
     },
     "admin": {
       "registration-requests": {
@@ -299,7 +305,7 @@
           "modularproduction": "Modular Production"
         },
         "noMatch": "Keine Treffer",
-        "for": "für"
+        "for": "zu Ihrem Suchausdruck"
       }
     },
     "semantichub": {
@@ -550,9 +556,9 @@
           "title": "Below you can find the relevant details regarding all those values",
           "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
           "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "https://portal.int.demo.catena-x.net/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "https://portal.int.demo.catena-x.net/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "authorityBpn": "* authority bpn: {{bpn}}",
           "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
           "clickhere": "click here"
@@ -1188,7 +1194,9 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
-        "roleUpdateError": "Error while updating roles"
+        "roleUpdateError": "Error while updating roles",
+        "encoding": "Encoding(select supported encoding)",
+        "encodingPlaceholder": "Select supported encoding"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

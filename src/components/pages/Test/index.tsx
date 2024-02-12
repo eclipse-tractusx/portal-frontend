@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,27 +17,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from '@catena-x/portal-shared-components'
-import { error, success } from 'services/NotifyService'
-
-const checkDate = (date: number) => {
-  date % 2
-    ? success('current time', 'even', date)
-    : error('current time', 'odd ', date)
-}
+import TestNotify from './index.notify'
 
 export default function Test() {
   return (
-    <main>
-      <section>
-        <Button
-          onClick={() => {
-            checkDate(Date.now())
-          }}
-        >
-          even time?
-        </Button>
-      </section>
+    <main style={{ padding: '100px' }}>
+      <TestNotify />
     </main>
   )
 }

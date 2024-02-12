@@ -29,6 +29,7 @@ import partnerNetworkSlice from './partnerNetwork/slice'
 import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
+import images from './images/slice'
 import managementSlice from './appManagement/slice'
 import serviceManagementSlice from './serviceManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
@@ -45,7 +46,6 @@ import userRoleSlice, {
   apiSlice as appRolesSlice,
 } from './admin/appuserApiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
-import { apiSlice as appMarketplaceSliceTest } from './apps/apiSliceTest'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
 import { apiSlice as serviceProviderApiSlice } from './serviceProvider/serviceProviderApiSlice'
@@ -78,6 +78,7 @@ export const reducers = {
   apps,
   control,
   info,
+  images,
   management: managementSlice.reducer,
   serviceManagement: serviceManagementSlice.reducer,
   serviceMarketplace: serviceMarketplaceSlice.reducer,
@@ -101,7 +102,6 @@ export const reducers = {
   [notificationSlice.reducerPath]: notificationSlice.reducer,
   [appRolesSlice.reducerPath]: appRolesSlice.reducer,
   [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
-  [appMarketplaceSliceTest.reducerPath]: appMarketplaceSliceTest.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
   [serviceProviderApiSlice.reducerPath]: serviceProviderApiSlice.reducer,
@@ -139,7 +139,6 @@ export const store = configureStore({
       .concat(notificationSlice.middleware)
       .concat(appRolesSlice.middleware)
       .concat(appMarketplaceSlice.middleware)
-      .concat(appMarketplaceSliceTest.middleware)
       .concat(appManagementSlice.middleware)
       .concat(serviceMarketplaceApiSlice.middleware)
       .concat(serviceProviderApiSlice.middleware)

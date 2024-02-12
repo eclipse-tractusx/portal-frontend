@@ -68,7 +68,7 @@ import { error } from 'services/NotifyService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 const HelpPageURL =
-  '/documentation/?path=docs%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
+  '/documentation/?path=user%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
 
 export default function AddMultipleUser() {
   const dispatch = useDispatch<typeof store.dispatch>()

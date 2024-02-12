@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -24,267 +23,26 @@ import {
   type PaginFetchArgs,
   type PaginResult,
 } from '@catena-x/portal-shared-components'
-import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
-import type { UseCaseType } from 'features/appManagement/types'
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
-
-export type ImageType = {
-  src: string
-  alt?: string
-}
-
-export interface AppInfo {
-  status: string
-  id: string | undefined
-  name: string | undefined
-}
-
-export type AppItem = {
-  addButtonClicked: boolean
-  description: string
-  id: string
-  image: ImageType
-  leadPictureId: string
-  licenseType: string
-  name: string
-  onButtonClick: () => void
-  onClick: () => void
-  onSecondaryButtonClick: () => void
-  price: string
-  provider: string
-  shortDescription: string
-  subtitle: string
-  title: string
-  useCases: string[]
-}
-
-export type AppMarketplaceApp = {
-  id: string
-  title: string
-  provider: string
-  leadPictureUri: string
-  shortDescription: string
-  useCases: UseCaseType[]
-  price: string
-  rating?: number
-  uri?: string
-  status?: SubscriptionStatus
-  image?: ImageType
-  name?: string
-  lastChanged?: string
-  timestamp?: number
-  leadPictureId?: string
-  subscriptionStatus?: SubscriptionStatus
-}
-export interface ProvidedApps {
-  meta: {
-    contentSize: number
-    page: number
-    totalElements: number
-    totalPages: number
-  }
-  content: AppMarketplaceApp[]
-}
-
-export enum SubscriptionStatus {
-  ACTIVE = 'ACTIVE',
-  PENDING = 'PENDING',
-  INACTIVE = 'INACTIVE',
-}
-
-export enum CompanySubscriptionFilterType {
-  REQUESTED = 'requested',
-  ACTIVE = 'active',
-  SHOW_ALL = 'show all',
-}
-
-export enum SubscriptionStatusText {
-  ACTIVE = 'Active',
-  PENDING = 'Pending',
-  INACTIVE = 'Inactive',
-  IN_REVIEW = 'In Review',
-  CREATED = 'In Progress',
-}
-
-export type ActiveSubscriptionItem = {
-  offerId: string
-  name: string
-  provider: string
-  image?: ImageType
-}
-
-export type SubscriptionStatusItem = {
-  offerId: string
-  status: SubscriptionStatus
-}
-
-export type SubscriptionStatusDuplicateItem = {
-  appId?: string
-  offerSubscriptionStatus?: SubscriptionStatus
-  name?: string
-  provider?: string
-  image?: ImageType
-  status?: SubscriptionStatus
-  offerId?: string
-}
-
-export enum DocumentTypeText {
-  CONFORMITY_DOCUMENT = 'ConformityDocument',
-  DOCUMENTS = 'Documents',
-  CONFORMITY_APPROVAL_BUSINESS_APPS = 'CONFORMITY_APPROVAL_BUSINESS_APPS',
-  CONFORMITY_APPROVAL_SERVICES = 'CONFORMITY_APPROVAL_SERVICES',
-}
-
-export type DocumentData = {
-  documentId: string
-  documentName: string
-}
-
-export type AppDetails = AppMarketplaceApp & {
-  providerUri: string
-  contactEmail: string
-  contactNumber: string
-  images: string[]
-  documents: Documents
-  longDescription: string
-  isSubscribed: string
-  tags: string[]
-  languages: string[]
-  leadPictureUri?: ImageType
-  privacyPolicies: PrivacyPolicyType[]
-  roles?: string[]
-  description?: {
-    languageCode: string
-    longDescription: string
-    shortDescription: string
-  }[]
-  technicalUserProfile?: {
-    [key: string]: string[] | null
-  }
-}
-
-export type Documents = {
-  ADDITIONAL_DETAILS: Array<DocumentData>
-  APP_CONTRACT: Array<DocumentData>
-  APP_TECHNICAL_INFORMATION: Array<DocumentData>
-  CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
-}
-
-export type AppDetailsState = {
-  item: AppDetails
-  loading: boolean
-  error: string
-}
-
-export type AgreementRequest = {
-  agreementId: string
-  name: string
-}
-
-export interface SubscriptionRequestBody {
-  agreementId: string
-  consentStatusId: string
-}
-
-export type SubscriptionAppRequest = {
-  appId: string
-  body: SubscriptionRequestBody[]
-}
-
-export type DocumentRequestData = {
-  appId: string
-  documentId: string
-}
-
-export type ActiveAppsData = {
-  id: string
-  name: string
-  shortDescription: string
-  provider: string
-  price: string
-  leadPictureId: string
-  useCases: string[]
-  status?: string
-}
-
-export interface ActiveSubscription {
-  offerId: string
-  name: string
-  provider: string
-  image: string
-  subscriptionId: string
-}
-
-export interface SubscribeTechnicalUserData {
-  id: string
-  name: string
-  permissions: Array<string>
-}
-
-export interface SubscribeConnectorData {
-  id: string
-  name: string
-  endpoint: string
-}
-
-export interface ActiveSubscriptionDetails {
-  offerId: string
-  name: string
-  provider: string
-  image: string
-  subscriptionId: string
-  offerSubscriptionStatus: string
-  technicalUserData: SubscribeTechnicalUserData[]
-  connectorData: SubscribeConnectorData[]
-}
-
-interface FetchSubscriptionAppQueryType {
-  subscriptionId: string
-  appId: string
-}
-
-export interface SubscribedActiveApps {
-  offerId: string
-  name: string
-  provider: string
-  status: string
-  subscriptionId: string
-  image: string
-}
-export interface appsTypes {
-  id: string
-  title: string
-  leadPictureId: string
-  images: string[]
-  providerUri: string
-  provider: string
-  contactEmail: string
-  contactNumber: string
-  useCases: {
-    id: string
-    label: string
-  }[]
-  longDescription: string
-  licenseType: string
-  price: string
-  tags: string[]
-  isSubscribed: string
-  languages: string[]
-  documents: {
-    ADDITIONAL_DETAILS: Array<DocumentData>
-    APP_CONTRACT: Array<DocumentData>
-    APP_TECHNICAL_INFORMATION: Array<DocumentData>
-    CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
-  }
-  privacyPolicies: string[]
-  isSingleInstance: boolean
-  technicalUserProfile?: {
-    [key: string]: string[] | null
-  }
-}
+import type {
+  AppDetails,
+  AppMarketplaceApp,
+  SubscriptionStatusItem,
+  SubscriptionStatusDuplicateItem,
+  ActiveSubscriptionItem,
+  ProvidedApps,
+  DocumentRequestData,
+  SubscriptionAppRequest,
+  AgreementRequest,
+  ActiveSubscription,
+  ActiveSubscriptionDetails,
+  FetchSubscriptionAppQueryType,
+  appsTypes,
+  SubscribedActiveApps,
+} from './types'
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',

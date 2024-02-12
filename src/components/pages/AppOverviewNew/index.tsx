@@ -21,10 +21,8 @@
 import { useTranslation } from 'react-i18next'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { ErrorBar, PageHeader } from '@catena-x/portal-shared-components'
-import {
-  type AppMarketplaceApp,
-  useFetchProvidedAppsQuery,
-} from 'features/apps/apiSlice'
+import { type AppMarketplaceApp } from 'features/apps/types'
+import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
 import NoItems from '../NoItems'
 import { AppOverviewList } from '../AppOverview/AppOverviewList'
 import { appToCard } from 'features/apps/mapper'
@@ -32,8 +30,6 @@ import { appToCard } from 'features/apps/mapper'
 export default function AppOverviewNew() {
   const { t } = useTranslation()
   const { data, refetch, isSuccess } = useFetchProvidedAppsQuery()
-
-  console.log('data', data)
 
   return (
     <main>
