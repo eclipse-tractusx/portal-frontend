@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Link, ListItem } from '@mui/material'
 import type { MenuItemProps } from './MenuItem'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Link as LinkRouter } from 'react-router-dom'
