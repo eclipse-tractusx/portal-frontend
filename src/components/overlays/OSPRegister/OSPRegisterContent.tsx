@@ -25,6 +25,7 @@ import {
   isCityName,
   isCompanyName,
   isCountryCode,
+  isExtID,
   isFirstName,
   isID,
   isLastName,
@@ -33,7 +34,6 @@ import {
   isRegionNameOrEmpty,
   isStreetName,
   isStreetNumberOrEmpty,
-  isUUID,
   isZipCodeOrEmpty,
 } from 'types/Patterns'
 import { useTranslation } from 'react-i18next'
@@ -103,7 +103,7 @@ const OSPRegisterForm = ({
         name={'extid'}
         label={t('field.extid.name')}
         hint={t('field.extid.hint')}
-        validate={isUUID}
+        validate={isExtID}
         onInvalid={invalidate}
         onValid={(_key, value: string) => {
           updateData({
