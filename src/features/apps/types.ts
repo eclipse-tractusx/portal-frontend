@@ -127,7 +127,6 @@ export type DocumentData = {
   documentId: string
   documentName: string
 }
-
 export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
@@ -194,7 +193,6 @@ export type ActiveAppsData = {
   useCases: string[]
   status?: string
 }
-
 export interface ActiveSubscription {
   offerId: string
   name: string
@@ -246,4 +244,51 @@ export type AppsControlState = {
 export const initialState: AppsControlState = {
   search: '',
   group: AppGroup.ALL,
+}
+
+export enum CompanySubscriptionFilterType {
+  REQUESTED = 'requested',
+  ACTIVE = 'active',
+  SHOW_ALL = 'show all',
+}
+
+export interface appsTypes {
+  id: string
+  title: string
+  leadPictureId: string
+  images: string[]
+  providerUri: string
+  provider: string
+  contactEmail: string
+  contactNumber: string
+  useCases: {
+    id: string
+    label: string
+  }[]
+  longDescription: string
+  licenseType: string
+  price: string
+  tags: string[]
+  isSubscribed: string
+  languages: string[]
+  documents: {
+    ADDITIONAL_DETAILS: Array<DocumentData>
+    APP_CONTRACT: Array<DocumentData>
+    APP_TECHNICAL_INFORMATION: Array<DocumentData>
+    CONFORMITY_APPROVAL_BUSINESS_APPS: Array<DocumentData>
+  }
+  privacyPolicies: string[]
+  isSingleInstance: boolean
+  technicalUserProfile?: {
+    [key: string]: string[] | null
+  }
+}
+
+export interface SubscribedActiveApps {
+  offerId: string
+  name: string
+  provider: string
+  status: string
+  subscriptionId: string
+  image: string
 }

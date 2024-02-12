@@ -27,9 +27,6 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import {
-  CompanySubscriptionFilterType,
-  type SubscribedActiveApps,
-  SubscriptionStatus,
   useFetchSubscribedActiveAppsStatusQuery,
   useUnsubscribeAppMutation,
 } from 'features/apps/apiSlice'
@@ -48,6 +45,11 @@ import { success } from 'services/NotifyService'
 import { Box } from '@mui/material'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
+import {
+  CompanySubscriptionFilterType,
+  type SubscribedActiveApps,
+  SubscriptionStatus,
+} from 'features/apps/types'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -134,6 +136,46 @@ export default function CompanySubscriptions() {
         setLoading(false)
         setEnableErrorMessage(true)
       })
+  }
+
+  const renderStatusButton = (status: string) => {
+    if (status === SubscriptionStatus.ACTIVE)
+      return (
+        <Button
+          variant="text"
+          startIcon={<CheckCircleOutlineIcon />}
+          sx={{ color: '#B3CB2D', pointerEvents: 'none' }}
+          size="small"
+        >
+          {t('content.companySubscriptions.subscribed')}
+        </Button>
+      )
+    else if (status === SubscriptionStatus.PENDING)
+      return (
+        <Button
+          variant="outlined"
+          sx={{
+            color: '#FFA600',
+            borderColor: '#FFA600',
+            pointerEvents: 'none',
+            ml: 1,
+          }}
+          size="small"
+        >
+          {t('content.companySubscriptions.requested')}
+        </Button>
+      )
+    else
+      return (
+        <Button
+          variant="text"
+          startIcon={<UnpublishedIcon />}
+          sx={{ color: '#D91E18', pointerEvents: 'none' }}
+          size="small"
+        >
+          {t('content.companySubscriptions.declined')}
+        </Button>
+      )
   }
 
   return (
@@ -229,38 +271,7 @@ export default function CompanySubscriptions() {
               headerName: t('content.companySubscriptions.table.status'),
               flex: 2,
               renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-                return row.status === SubscriptionStatus.ACTIVE ? (
-                  <Button
-                    variant="text"
-                    startIcon={<CheckCircleOutlineIcon />}
-                    sx={{ color: '#B3CB2D', pointerEvents: 'none' }}
-                    size="small"
-                  >
-                    {t('content.companySubscriptions.subscribed')}
-                  </Button>
-                ) : row.status === SubscriptionStatus.PENDING ? (
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      color: '#FFA600',
-                      borderColor: '#FFA600',
-                      pointerEvents: 'none',
-                      ml: 1,
-                    }}
-                    size="small"
-                  >
-                    {t('content.companySubscriptions.requested')}
-                  </Button>
-                ) : (
-                  <Button
-                    variant="text"
-                    startIcon={<UnpublishedIcon />}
-                    sx={{ color: '#D91E18', pointerEvents: 'none' }}
-                    size="small"
-                  >
-                    {t('content.companySubscriptions.declined')}
-                  </Button>
-                )
+                return renderStatusButton(row.status)
               },
             },
             {

@@ -24,7 +24,6 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
-  SubscriptionStatus,
   useFetchAppsDataQuery,
   useFetchDocumentByIdMutation,
   useFetchSubscriptionAppQuery,
@@ -37,6 +36,7 @@ import { PAGES } from 'types/Constants'
 import './Companysubscriptions.scss'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
+import { SubscriptionStatus } from 'features/apps/types'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
@@ -72,7 +72,7 @@ export default function CompanySubscriptionDetail() {
   const getImage = async (documentId: string) => {
     try {
       const response = await fetchDocumentById({
-        appId: fetchAppsData?.id??'',
+        appId: fetchAppsData?.id ?? '',
         documentId,
       }).unwrap()
       const file = response.data
@@ -83,43 +83,48 @@ export default function CompanySubscriptionDetail() {
   }
 
   const renderStatusButton = (status: string) => {
-    return status === SubscriptionStatus.ACTIVE ? (
-      <Button
-        startIcon={<CheckCircleOutlineIcon />}
-        sx={{
-          backgroundColor: '#B3CB2D',
-          pointerEvents: 'none',
-          float: 'right',
-        }}
-        size="small"
-      >
-        {t('content.companySubscriptions.subscribed')}
-      </Button>
-    ) : status === SubscriptionStatus.PENDING ? (
-      <Button
-        sx={{
-          backgroundColor: '#FFA600',
-          pointerEvents: 'none',
-          float: 'right',
-          borderColor: '#FFA600',
-        }}
-        size="small"
-      >
-        {t('content.companySubscriptions.requested')}
-      </Button>
-    ) : (
-      <Button
-        startIcon={<UnpublishedIcon />}
-        sx={{
-          backgroundColor: '#D91E18',
-          pointerEvents: 'none',
-          float: 'right',
-        }}
-        size="small"
-      >
-        {t('content.companySubscriptions.declined')}
-      </Button>
-    )
+    if (status === SubscriptionStatus.ACTIVE)
+      return (
+        <Button
+          startIcon={<CheckCircleOutlineIcon />}
+          sx={{
+            backgroundColor: '#B3CB2D',
+            pointerEvents: 'none',
+            float: 'right',
+          }}
+          size="small"
+        >
+          {t('content.companySubscriptions.subscribed')}
+        </Button>
+      )
+    else if (status === SubscriptionStatus.PENDING)
+      return (
+        <Button
+          sx={{
+            backgroundColor: '#FFA600',
+            pointerEvents: 'none',
+            float: 'right',
+            borderColor: '#FFA600',
+          }}
+          size="small"
+        >
+          {t('content.companySubscriptions.requested')}
+        </Button>
+      )
+    else
+      return (
+        <Button
+          startIcon={<UnpublishedIcon />}
+          sx={{
+            backgroundColor: '#D91E18',
+            pointerEvents: 'none',
+            float: 'right',
+          }}
+          size="small"
+        >
+          {t('content.companySubscriptions.declined')}
+        </Button>
+      )
   }
 
   return (
