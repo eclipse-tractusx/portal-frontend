@@ -40,7 +40,7 @@ import type {
   ActiveSubscription,
   ActiveSubscriptionDetails,
   FetchSubscriptionAppQueryType,
-  appsTypes,
+  AppsTypes,
   SubscribedActiveApps,
 } from './types'
 
@@ -152,7 +152,7 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
-    fetchAppsData: builder.query<appsTypes, string>({
+    fetchAppsData: builder.query<AppsTypes, string>({
       query: (appId) => `/api/apps/${appId}`,
     }),
 

@@ -127,6 +127,7 @@ export type DocumentData = {
   documentId: string
   documentName: string
 }
+
 export type AppDetails = AppMarketplaceApp & {
   providerUri: string
   contactEmail: string
@@ -193,6 +194,7 @@ export type ActiveAppsData = {
   useCases: string[]
   status?: string
 }
+
 export interface ActiveSubscription {
   offerId: string
   name: string
@@ -252,7 +254,7 @@ export enum CompanySubscriptionFilterType {
   SHOW_ALL = 'show all',
 }
 
-export interface appsTypes {
+export interface AppsTypes {
   id: string
   title: string
   leadPictureId: string

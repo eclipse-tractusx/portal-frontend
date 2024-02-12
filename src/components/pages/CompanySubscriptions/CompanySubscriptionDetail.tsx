@@ -77,9 +77,7 @@ export default function CompanySubscriptionDetail() {
       }).unwrap()
       const file = response.data
       setImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.log(error)
-    }
+    } catch (error) {}
   }
 
   const renderStatusButton = (status: string) => {

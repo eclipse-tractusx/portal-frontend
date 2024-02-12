@@ -108,14 +108,7 @@ export default function CompanySubscriptions() {
         expr: searchExpr,
       })
     }
-    // eslint-disable-next-line
   }, [filterStatus, searchExpr])
-
-  const onTableCellClick = (params: { field: string }) => {
-    if (params.field === 'detail') {
-      console.log(params.field)
-    }
-  }
 
   const onValidate = (expr: string) => {
     const validateExpr = isName(expr)
@@ -210,7 +203,6 @@ export default function CompanySubscriptions() {
           }}
           searchExpr={searchExpr}
           alignCell="start"
-          onCellClick={onTableCellClick}
           defaultFilter={group}
           filterViews={filterView}
           toolbarVariant={'searchAndFilter'}

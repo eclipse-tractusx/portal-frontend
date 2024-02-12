@@ -393,10 +393,6 @@
         "city": "City: ",
         "bpn": "BPN: "
       },
-      "subscriptions": {
-        "title": "App Subscriptions",
-        "error": "error - no data found"
-      },
       "unsubscribe": {
         "title": "Unsubscribe Business Application / Service",
         "descriptionNote": "Please Note: the unsubscription is not revertible",

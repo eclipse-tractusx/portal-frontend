@@ -394,10 +394,6 @@
         "city": "Stadt: ",
         "bpn": "BPN: "
       },
-      "subscriptions": {
-        "title": "App-Abonnements",
-        "error": "Fehler - keine Daten gefunden"
-      },
       "unsubscribe": {
         "title": "Geschäftsanwendung/Dienst abbestellen",
         "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
