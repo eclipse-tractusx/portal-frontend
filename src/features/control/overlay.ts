@@ -21,6 +21,7 @@
 import { createAction, createSlice } from '@reduxjs/toolkit'
 import { OVERLAYS } from 'types/Constants'
 import type { RootState } from 'features/store'
+import { type IdentityProvider } from 'features/admin/idpApiSlice'
 
 export const name = 'control/overlay'
 
@@ -31,6 +32,7 @@ export type OverlayState = {
   status?: boolean
   subTitle?: string
   roles?: string[]
+  idps?: IdentityProvider[]
 }
 
 const initialState = {
@@ -40,6 +42,7 @@ const initialState = {
   displayName: '',
   subTitle: '',
   roles: [],
+  idps: [],
 }
 
 const closeOverlay = createAction(`${name}/closeOverlay`, () => ({
@@ -57,7 +60,8 @@ const show = createAction(
     title?: string,
     status?: boolean,
     subTitle?: string,
-    roles?: string[]
+    roles?: string[],
+    idps?: IdentityProvider[]
   ) => ({
     payload: {
       type,
@@ -66,6 +70,7 @@ const show = createAction(
       status,
       subTitle,
       roles,
+      idps,
     },
   })
 )

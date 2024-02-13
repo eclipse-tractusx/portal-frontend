@@ -132,6 +132,7 @@ export enum OVERLAYS {
   DISABLE_IDP = 'disable_idp',
   DELETE_IDP = 'delete_idp',
   ADDUSERS_IDP = 'addusers_idp',
+  DENYUSERS_IDP = 'denyusers_idp',
   IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
   IDP_STATUS = 'idp_status',

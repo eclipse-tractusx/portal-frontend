@@ -46,10 +46,12 @@ const MenuItemOpenOverlay = ({
   overlay,
   id,
   label,
+  idps,
 }: {
   overlay: OVERLAYS
   id: string
   label: string
+  idps?: IdentityProvider[]
 }) => {
   const dispatch = useDispatch()
 
@@ -60,7 +62,7 @@ const MenuItemOpenOverlay = ({
   ) => {
     try {
       e.stopPropagation()
-      dispatch(show(overlay, id))
+      dispatch(show(overlay, id, '', false, '', [], idps))
     } catch (error) {
       console.log(error)
     }
@@ -138,6 +140,12 @@ export const IDPList = () => {
   }
 
   const renderMenu = (idp: IdentityProvider) => {
+    const isMultipleSharedOwn = idpsData?.filter(
+      (idp) =>
+        idp.identityProviderTypeId === IDPCategory.SHARED ||
+        idp.identityProviderTypeId === IDPCategory.OWN
+    ).length
+
     const menuItems = {
       configure: (
         <MenuItemOpenOverlay
@@ -146,11 +154,16 @@ export const IDPList = () => {
           label={ti('action.configure')}
         />
       ),
-      addUsers: (
+      addUsers: isMultipleSharedOwn && (
         <MenuItemOpenOverlay
-          overlay={OVERLAYS.ADDUSERS_IDP}
+          overlay={
+            isMultipleSharedOwn > 1
+              ? OVERLAYS.DENYUSERS_IDP
+              : OVERLAYS.ADDUSERS_IDP
+          }
           id={idp.identityProviderId}
           label={ti('action.users')}
+          idps={isMultipleSharedOwn > 1 ? idpsData : []}
         />
       ),
       delete: (

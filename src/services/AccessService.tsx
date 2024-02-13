@@ -74,6 +74,7 @@ import { OSPConsent } from 'components/overlays/OSPConsent'
 import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
 import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDetails'
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
+import { AddUserDeny } from 'components/overlays/AddUser/AddUserDeny'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -180,6 +181,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <DisableIDP id={overlay.id} />
     case OVERLAYS.ADDUSERS_IDP:
       return <AddusersIDP id={overlay.id} />
+    case OVERLAYS.DENYUSERS_IDP:
+      return <AddUserDeny idps={overlay.idps ?? []} />
     case OVERLAYS.DELETE_IDP:
       return <DeleteIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
