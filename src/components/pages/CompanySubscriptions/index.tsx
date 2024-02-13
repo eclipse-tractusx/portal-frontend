@@ -293,26 +293,21 @@ export default function CompanySubscriptions() {
               field: 'action',
               headerName: t('content.companySubscriptions.table.action'),
               flex: 2,
-              renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-                return (
-                  <>
-                    {row.status === SubscriptionStatus.INACTIVE && (
-                      <Button
-                        variant="contained"
-                        size="small"
-                        onClick={(e) => {
-                          setShowUnsubscribeOverlay(true)
-                          setAppId(row.offerId)
-                          setSubscriptionId(row.subscriptionId)
-                          e.stopPropagation()
-                        }}
-                      >
-                        {t('content.companySubscriptions.unsubscribe')}
-                      </Button>
-                    )}
-                  </>
-                )
-              },
+              renderCell: ({ row }: { row: SubscribedActiveApps }) =>
+                row.status === SubscriptionStatus.INACTIVE && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={(e) => {
+                      setShowUnsubscribeOverlay(true)
+                      setAppId(row.offerId)
+                      setSubscriptionId(row.subscriptionId)
+                      e.stopPropagation()
+                    }}
+                  >
+                    {t('content.companySubscriptions.unsubscribe')}
+                  </Button>
+                ),
             },
           ]}
         />
