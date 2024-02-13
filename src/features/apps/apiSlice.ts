@@ -40,7 +40,6 @@ import type {
   ActiveSubscription,
   ActiveSubscriptionDetails,
   FetchSubscriptionAppQueryType,
-  AppsTypes,
   SubscribedActiveApps,
 } from './types'
 

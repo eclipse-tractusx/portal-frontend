@@ -136,8 +136,9 @@ export default function CompanySubscriptionDetail() {
               <Image
                 src={
                   fetchAppsData?.id
-                    ? `${getApiBase()}/api/apps/${fetchAppsData.id
-                    }/appDocuments/${docId}`
+                    ? `${getApiBase()}/api/apps/${
+                        fetchAppsData.id
+                      }/appDocuments/${docId}`
                     : LogoGrayData
                 }
                 alt={fetchAppsData.title}
