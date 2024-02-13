@@ -19,6 +19,8 @@
   - handle navigation as per applicationType and applicationStatus
 - App Management
   - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
+- Subscription Management Board
+  - Create new page for company subscriptions and add subscription management functionality
 
 ## 1.8.0-RC4
 
