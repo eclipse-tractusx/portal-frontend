@@ -104,6 +104,7 @@ export enum PAGES {
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
+  CONSENT_OSP = 'consent_osp',
 }
 
 export enum OVERLAYS {

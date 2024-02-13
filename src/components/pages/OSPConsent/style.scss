@@ -18,15 +18,35 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-ul.roles {
-  list-style-type: none;
-  padding-inline-start: 0;
-}
+.ospMain {
+  .mainContainer {
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 15px 0 15px !important;
+    margin-right: auto;
+    margin-left: auto;
 
-ul.roles > li {
-  margin: 20px 0;
-}
-
-ul.agreements {
-  list-style-type: none;
+    .mainRow {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+  .heading {
+    margin: 67px 0 30px;
+    padding-bottom: 15px;
+    text-align: center;
+    position: relative;
+  }
+  .heading::after {
+    content: '';
+    width: 70px;
+    border-bottom: 2px solid;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .desc-message {
+    margin-bottom: 30px;
+  }
 }

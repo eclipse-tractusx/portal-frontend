@@ -1795,6 +1795,18 @@
       "retryBtn": "Retry Deletion",
       "notSupportedTitle": "Company account deletion is not supported. You registration is already submitted/closed. To unsubscribe you need to use the platform off-boarding process.",
       "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
+    },
+    "osp": {
+      "heading": "Registration Summary",
+      "descHeading": "Company Details",
+      "descMessage": "Below you can find your company registration details shared by your onboarding provider. Please review the details and proceed to the Company Role selection below before submitting your registration.",
+      "companyName": "Company Name",
+      "bmw": "BMW AG",
+      "street": "Street & Number",
+      "zip": "ZIP",
+      "city": "City",
+      "region": "Region",
+      "country": "Country"
     }
   },
   "navigation": {
