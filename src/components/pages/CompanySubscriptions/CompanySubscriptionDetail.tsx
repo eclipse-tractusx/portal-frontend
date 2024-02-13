@@ -26,7 +26,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
-  useFetchAppsDataQuery,
+  useFetchAppDetailsQuery,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
 import { useTranslation } from 'react-i18next'
@@ -49,7 +49,7 @@ export default function CompanySubscriptionDetail() {
   const appId = items.offerId ?? ''
   const subscriptionId = items.subscriptionId ?? ''
   const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
-  const fetchAppsData = useFetchAppsDataQuery(appId).data
+  const fetchAppsData = useFetchAppDetailsQuery(appId).data
   const [docId, setDocId] = useState('')
 
   const tableData = {
@@ -136,9 +136,8 @@ export default function CompanySubscriptionDetail() {
               <Image
                 src={
                   fetchAppsData?.id
-                    ? `${getApiBase()}/api/apps/${
-                        fetchAppsData.id
-                      }/appDocuments/${docId}`
+                    ? `${getApiBase()}/api/apps/${fetchAppsData.id
+                    }/appDocuments/${docId}`
                     : LogoGrayData
                 }
                 alt={fetchAppsData.title}
@@ -148,7 +147,6 @@ export default function CompanySubscriptionDetail() {
             <div className="content">
               <Box sx={{ padding: '11px 12px' }}>
                 {renderStatusButton(fetchAppsData.isSubscribed)}
-                {/* <Button sx={{ float: 'right' }} size='small'>{'Subscribed'}</Button> */}
                 <Typography variant="h5" sx={{ color: '#888888' }}>
                   {fetchAppsData.provider}
                 </Typography>

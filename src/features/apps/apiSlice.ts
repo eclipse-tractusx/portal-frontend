@@ -152,10 +152,6 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
-    fetchAppsData: builder.query<AppsTypes, string>({
-      query: (appId) => `/api/apps/${appId}`,
-    }),
-
     fetchSubscribedActiveAppsStatus: builder.query<
       PaginResult<SubscribedActiveApps>,
       PaginFetchArgs
@@ -181,6 +177,5 @@ export const {
   useFetchSubscribedActiveAppsQuery,
   useFetchSubscriptionAppQuery,
   useUnsubscribeAppMutation,
-  useFetchAppsDataQuery,
   useFetchSubscribedActiveAppsStatusQuery,
 } = apiSlice
