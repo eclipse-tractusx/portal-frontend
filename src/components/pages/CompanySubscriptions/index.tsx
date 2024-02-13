@@ -124,6 +124,7 @@ export default function CompanySubscriptions() {
         success(t('content.organization.unsubscribe.unsubscribeSuccess'))
         setLoading(false)
         setShowUnsubscribeOverlay(false)
+        setEnableErrorMessage(false)
       })
       .catch(() => {
         setLoading(false)
@@ -178,6 +179,8 @@ export default function CompanySubscriptions() {
           openDialog={showUnsubscribeOverlay}
           handleOverlayClose={() => {
             setShowUnsubscribeOverlay(false)
+            setLoading(false)
+            setEnableErrorMessage(false)
           }}
           handleConfirmClick={() => onUnsubscribeSubmit()}
           loading={loading}

@@ -131,11 +131,14 @@ const UnSubscribeOverlay = ({
           </DialogContent>
           <DialogActions sx={{ display: 'block', textAlign: 'center' }}>
             {enableErrorMessage && (
-              <Typography variant="label3" sx={{ color: '#D91E18' }}>
+              <Typography
+                variant="label3"
+                sx={{ color: '#D91E18', mb: 2, display: 'inline-block' }}
+              >
                 {t('content.organization.unsubscribe.unsubscribeError')}
               </Typography>
             )}
-            <Box sx={{ mt: 2 }}>
+            <Box>
               <Button
                 variant="outlined"
                 onClick={(e) => {
@@ -169,7 +172,6 @@ const UnSubscribeOverlay = ({
                   onButtonClick={() => {
                     // do nothing
                   }}
-                  sx={{ marginLeft: '10px', textTransform: 'none' }}
                 />
               )}
             </Box>

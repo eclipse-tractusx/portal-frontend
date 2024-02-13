@@ -19,13 +19,14 @@
 
 import {
   Button,
+  LogoGrayData,
   StaticTable,
   Typography,
+  Image,
 } from '@catena-x/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
   useFetchAppsDataQuery,
-  useFetchDocumentByIdMutation,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
 import { useTranslation } from 'react-i18next'
@@ -37,6 +38,8 @@ import './Companysubscriptions.scss'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
 import { SubscriptionStatus } from 'features/apps/types'
+import { fetchImageWithToken } from 'services/ImageService'
+import { getApiBase } from 'services/EnvironmentService'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
@@ -47,8 +50,7 @@ export default function CompanySubscriptionDetail() {
   const subscriptionId = items.subscriptionId ?? ''
   const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
   const fetchAppsData = useFetchAppsDataQuery(appId).data
-  const [image, setImage] = useState('')
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [docId, setDocId] = useState('')
 
   const tableData = {
     head: [
@@ -64,33 +66,22 @@ export default function CompanySubscriptionDetail() {
   useEffect(() => {
     if (fetchAppsData?.leadPictureId) {
       const id = CommonService.isValidPictureId(fetchAppsData?.leadPictureId)
-      void getImage(id)
+      setDocId(id)
     }
     // eslint-disable-next-line
   }, [fetchAppsData])
-
-  const getImage = async (documentId: string) => {
-    try {
-      const response = await fetchDocumentById({
-        appId: fetchAppsData?.id ?? '',
-        documentId,
-      }).unwrap()
-      const file = response.data
-      setImage(URL.createObjectURL(file))
-    } catch (error) {}
-  }
 
   const renderStatusButton = (status: string) => {
     if (status === SubscriptionStatus.ACTIVE)
       return (
         <Button
           startIcon={<CheckCircleOutlineIcon />}
+          size="small"
           sx={{
             backgroundColor: '#B3CB2D',
             pointerEvents: 'none',
             float: 'right',
           }}
-          size="small"
         >
           {t('content.companySubscriptions.subscribed')}
         </Button>
@@ -98,13 +89,13 @@ export default function CompanySubscriptionDetail() {
     else if (status === SubscriptionStatus.PENDING)
       return (
         <Button
+          size="small"
           sx={{
             backgroundColor: '#FFA600',
             pointerEvents: 'none',
             float: 'right',
             borderColor: '#FFA600',
           }}
-          size="small"
         >
           {t('content.companySubscriptions.requested')}
         </Button>
@@ -113,12 +104,12 @@ export default function CompanySubscriptionDetail() {
       return (
         <Button
           startIcon={<UnpublishedIcon />}
+          size="small"
           sx={{
             backgroundColor: '#D91E18',
             pointerEvents: 'none',
             float: 'right',
           }}
-          size="small"
         >
           {t('content.companySubscriptions.declined')}
         </Button>
@@ -142,7 +133,17 @@ export default function CompanySubscriptionDetail() {
         <Box className="company-subscription-content ">
           <Box className="company-subscription-header">
             <div className="lead-image">
-              <img src={image} alt={fetchAppsData.title} />
+              <Image
+                src={
+                  fetchAppsData?.id
+                    ? `${getApiBase()}/api/apps/${
+                        fetchAppsData.id
+                      }/appDocuments/${docId}`
+                    : LogoGrayData
+                }
+                alt={fetchAppsData.title}
+                loader={fetchImageWithToken}
+              />
             </div>
             <div className="content">
               <Box sx={{ padding: '11px 12px' }}>
