@@ -99,11 +99,11 @@ const UnSubscribeOverlay = ({
                     ],
                     [
                       t('content.organization.unsubscribe.table.connector'),
-                      data?.technicalUserData[0]?.name ?? '',
+                      data?.connectorData[0]?.name ?? '',
                     ],
                     [
                       t('content.organization.unsubscribe.table.techUser'),
-                      data?.connectorData[0]?.name ?? '',
+                      data?.technicalUserData[0]?.name ?? '',
                     ],
                   ],
                 }}
@@ -138,7 +138,7 @@ const UnSubscribeOverlay = ({
                 {t('content.organization.unsubscribe.unsubscribeError')}
               </Typography>
             )}
-            <Box>
+            <Box sx={{ display: loading ? 'inline-flex' : 'block' }}>
               <Button
                 variant="outlined"
                 onClick={(e) => {
@@ -172,6 +172,7 @@ const UnSubscribeOverlay = ({
                   onButtonClick={() => {
                     // do nothing
                   }}
+                  sx={{ ml: 2 }}
                 />
               )}
             </Box>
