@@ -2,6 +2,10 @@
 
 ## unreleased 1.8.0-RC5
 
+- Application Requests
+  - Fix filtering related issues
+  - Reset search list after clearing input text
+
 ### Bugfix
 
 - Notifications
