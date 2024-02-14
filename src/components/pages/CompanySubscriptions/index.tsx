@@ -125,6 +125,7 @@ export default function CompanySubscriptions() {
         setLoading(false)
         setShowUnsubscribeOverlay(false)
         setEnableErrorMessage(false)
+        setRefresh(Date.now())
       })
       .catch(() => {
         setLoading(false)
@@ -171,6 +172,92 @@ export default function CompanySubscriptions() {
         </Button>
       )
   }
+
+  const columns = [
+    {
+      field: 'image',
+      headerName: t('content.companySubscriptions.table.appIcon'),
+      flex: 2,
+      renderCell: ({ row }: { row: SubscribedActiveApps }) => (
+        <Image
+          src={
+            row.image
+              ? `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${
+                  row.image
+                }`
+              : LogoGrayData
+          }
+          loader={fetchImageWithToken}
+          style={{
+            objectFit: 'cover',
+            width: 30,
+            height: 30,
+            borderRadius: '50%',
+            marginRight: '5px',
+          }}
+        />
+      ),
+    },
+    {
+      field: 'name',
+      headerName: t('content.companySubscriptions.table.appTitle'),
+      flex: 3,
+      renderCell: ({ row }: { row: SubscribedActiveApps }) => (
+        <Box sx={{ display: 'grid' }}>
+          <Typography variant="body3">{row.name}</Typography>
+          <Typography variant="body3">{row.provider}</Typography>
+        </Box>
+      ),
+    },
+    {
+      field: 'status',
+      headerName: t('content.companySubscriptions.table.status'),
+      flex: 2,
+      renderCell: ({ row }: { row: SubscribedActiveApps }) => {
+        return renderStatusButton(row.status)
+      },
+    },
+    {
+      field: 'details',
+      headerName: t('content.companySubscriptions.table.details'),
+      flex: 2,
+      renderCell: ({ row }: { row: SubscribedActiveApps }) => {
+        return (
+          <IconButton
+            color="secondary"
+            onClick={() => {
+              navigate(
+                `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
+                { state: row }
+              )
+            }}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        )
+      },
+    },
+    {
+      field: 'action',
+      headerName: t('content.companySubscriptions.table.action'),
+      flex: 2,
+      renderCell: ({ row }: { row: SubscribedActiveApps }) =>
+        row.status === SubscriptionStatus.ACTIVE && (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={(e) => {
+              setShowUnsubscribeOverlay(true)
+              setAppId(row.offerId)
+              setSubscriptionId(row.subscriptionId)
+              e.stopPropagation()
+            }}
+          >
+            {t('content.companySubscriptions.unsubscribe')}
+          </Button>
+        ),
+    },
+  ]
 
   return (
     <main className="page-main-container">
@@ -225,91 +312,7 @@ export default function CompanySubscriptions() {
           fetchHookArgs={fetchHookArgs}
           fetchHookRefresh={refresh}
           getRowId={(row: { [key: string]: string }) => row.subscriptionId}
-          columns={[
-            {
-              field: 'image',
-              headerName: t('content.companySubscriptions.table.appIcon'),
-              flex: 2,
-              renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-                <Image
-                  src={
-                    row.image
-                      ? `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${
-                          row.image
-                        }`
-                      : LogoGrayData
-                  }
-                  loader={fetchImageWithToken}
-                  style={{
-                    objectFit: 'cover',
-                    width: 30,
-                    height: 30,
-                    borderRadius: '50%',
-                    marginRight: '5px',
-                  }}
-                />
-              ),
-            },
-            {
-              field: 'name',
-              headerName: t('content.companySubscriptions.table.appTitle'),
-              flex: 3,
-              renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-                <Box sx={{ display: 'grid' }}>
-                  <Typography variant="body3">{row.name}</Typography>
-                  <Typography variant="body3">{row.provider}</Typography>
-                </Box>
-              ),
-            },
-            {
-              field: 'status',
-              headerName: t('content.companySubscriptions.table.status'),
-              flex: 2,
-              renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-                return renderStatusButton(row.status)
-              },
-            },
-            {
-              field: 'details',
-              headerName: t('content.companySubscriptions.table.details'),
-              flex: 2,
-              renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-                return (
-                  <IconButton
-                    color="secondary"
-                    onClick={() => {
-                      navigate(
-                        `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
-                        { state: row }
-                      )
-                    }}
-                  >
-                    <ArrowForwardIcon />
-                  </IconButton>
-                )
-              },
-            },
-            {
-              field: 'action',
-              headerName: t('content.companySubscriptions.table.action'),
-              flex: 2,
-              renderCell: ({ row }: { row: SubscribedActiveApps }) =>
-                row.status === SubscriptionStatus.INACTIVE && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={(e) => {
-                      setShowUnsubscribeOverlay(true)
-                      setAppId(row.offerId)
-                      setSubscriptionId(row.subscriptionId)
-                      e.stopPropagation()
-                    }}
-                  >
-                    {t('content.companySubscriptions.unsubscribe')}
-                  </Button>
-                ),
-            },
-          ]}
+          columns={columns}
         />
       </div>
     </main>
