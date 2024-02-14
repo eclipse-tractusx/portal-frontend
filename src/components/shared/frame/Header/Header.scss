@@ -83,6 +83,9 @@ header {
     display: flex;
     align-items: center;
     margin-right: 10px;
+    position: relative;
+    right: 0px;
+    z-index: -9;
   }
 
   .mobileHeader {
@@ -100,5 +103,7 @@ header {
   .mobile-search-icon {
     margin-right: 10px;
     color: #0f71cb;
+    position: relative;
+    z-index: -9;
   }
 }

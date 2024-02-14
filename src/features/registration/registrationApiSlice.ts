@@ -29,7 +29,7 @@ export enum ApplicationStatus {
   VERIFY = 'VERIFY',
   SUBMITTED = 'SUBMITTED',
   DECLINED = 'DECLINED',
-  APPROVED = 'APPROVED',
+  CONFIRMED = 'CONFIRMED',
 }
 
 export enum ApplicationType {

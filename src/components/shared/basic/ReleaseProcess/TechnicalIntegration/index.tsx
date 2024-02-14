@@ -376,7 +376,7 @@ export default function TechnicalIntegration() {
 
         <Grid item xs={12} sx={{ mr: 2, mt: 4, mb: 5, textAlign: 'center' }}>
           <a
-            href="../../app-provider-role-upload-example.csv"
+            href="../../template_app_role_upload.csv"
             download
             style={{ textDecoration: 'none' }}
           >
