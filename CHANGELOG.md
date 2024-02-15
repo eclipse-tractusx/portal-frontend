@@ -1,26 +1,22 @@
 # Changelog
 
-## unreleased 1.8.0-RC5
+## unreleased 1.8.0-RC6
+
+- Subscription Management Board
+  - Create new page for company subscriptions and add subscription management functionality
+
+## 1.8.0-RC5
 
 ### Bugfix
 
-- Notifications
-  - handle set read/unread correctly
-- IDP Management
-  - Allow 6-36 alphanumeric characters for IDP extID
+- Notifications - fixed handling of setting read/unread correctly
+- IDP Management - updated extId input field error message to allow 6-36 alphanumeric characters
 - Hamburger
   - Slide effect on click of hamburger
   - New UI navigation when menu has sub sections
 - Subnavigation
   - Show sub navigation button text in one line
-- Company Name
-  - Update pattern in invite form and app release process
-- Portal login navigation
-  - handle navigation as per applicationType and applicationStatus
-- App Management
-  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
-- Subscription Management Board
-  - Create new page for company subscriptions and add subscription management functionality
+- App Release Process - app role template file encoding updated
 
 ## 1.8.0-RC4
 
