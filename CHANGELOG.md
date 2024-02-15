@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased 1.8.0-RC6
+
+- User Management
+  - Removed quotation marks from technical user details
+
 ## 1.8.0-RC5
 
 ### Bugfix
