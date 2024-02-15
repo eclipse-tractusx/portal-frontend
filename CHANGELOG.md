@@ -1,13 +1,11 @@
 # Changelog
 
-## unreleased 1.8.0-RC5
+## 1.8.0-RC5
 
 ### Bugfix
 
-- Notifications
-  - handle set read/unread correctly
-- IDP Management
-  - Allow 6-36 alphanumeric characters for IDP extID
+- Notifications - fixed handling of setting read/unread correctly
+- IDP Management - updated extId input field error message to allow 6-36 alphanumeric characters
 - Hamburger
   - Slide effect on click of hamburger
   - New UI navigation when menu has sub sections
@@ -21,6 +19,7 @@
   - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
 - Idp User Invite Logic
   - fix add user overlay issue
+- App Release Process - app role template file encoding updated
 
 ## 1.8.0-RC4
 
