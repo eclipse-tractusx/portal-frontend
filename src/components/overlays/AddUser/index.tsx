@@ -26,6 +26,7 @@ import {
 import {
   useFetchIDPListQuery,
   type IdentityProvider,
+  IDPCategory,
 } from 'features/admin/idpApiSlice'
 import { AddUserContent } from './AddUserContent'
 import { AddUserDeny } from './AddUserDeny'
@@ -73,7 +74,13 @@ export const AddUser = () => {
   }
 
   const renderAdduserMainContent = () => {
-    return idps && idps.length === 1 ? (
+    return idps &&
+      idps.filter(
+        (idp) =>
+          (idp.identityProviderTypeId === IDPCategory.SHARED ||
+            idp.identityProviderTypeId === IDPCategory.OWN) &&
+          idp.enabled
+      ).length === 1 ? (
       <AddUserContent idp={idps[0]} />
     ) : (
       <AddUserDeny idps={idps} />
