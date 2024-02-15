@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased 1.8.0-RC6
+
+### Bugfix
+
+- Idp User Invite Logic
+  - fix add user overlay issue
+
 ## 1.8.0-RC5
 
 ### Bugfix
@@ -17,8 +24,6 @@
   - handle navigation as per applicationType and applicationStatus
 - App Management
   - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
-- Idp User Invite Logic
-  - fix add user overlay issue
 - App Release Process - app role template file encoding updated
 
 ## 1.8.0-RC4
