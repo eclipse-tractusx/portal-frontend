@@ -5,7 +5,16 @@
 - User Management
   - Removed quotation marks from technical user details
 
+### Bugfix
+
+- Idp User Invite Logic
+  - fix add user overlay issue
+
 ## 1.8.0-RC5
+
+- Application Requests
+  - Fix filtering related issues
+  - Reset search list after clearing input text
 
 ### Bugfix
 
@@ -16,6 +25,12 @@
   - New UI navigation when menu has sub sections
 - Subnavigation
   - Show sub navigation button text in one line
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
+- App Management
+  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
 - App Release Process - app role template file encoding updated
 
 ## 1.8.0-RC4
