@@ -18,45 +18,62 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { StaticTable, type TableType, Typography } from '@catena-x/portal-shared-components'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import {
+  StaticTable,
+  type TableType,
+  Typography,
+} from '@catena-x/portal-shared-components'
+import {
+  type CompanyDetails,
+  useFetchApplicationsQuery,
+  useFetchCompanyDetailsWithAddressQuery,
+} from 'features/registration/registrationApiSlice'
 import './style.scss'
-import { useFetchApplicationsQuery } from 'features/registration/registrationApiSlice'
 
 export const OSPConsent = () => {
   const { t } = useTranslation()
 
-  const { data, isLoading } = useFetchApplicationsQuery()
-  const applicationData = data?.[0]
+  //const [companyDetails, setCompanyDetails] = useState<CompanyDetails>()
 
-  // if(applicationData) {
-  //   const {data: companyDetails} = 
-  // }
+  // const { data: applicationData } = useFetchApplicationsQuery()
+  // const applicationDetails = applicationData?.[0]
+
+  const { data: companyDetails } = useFetchCompanyDetailsWithAddressQuery()
+
+  console.log('companyDetails', companyDetails)
+
+  // useEffect(() => {
+  //   companyData && setCompanyDetails(companyData)
+  // },[applicationData])
 
   const tableData: TableType = {
     head: [t('content.osp.companyName'), t('content.osp.bmw')],
     body: [
       [
         t('content.osp.street'),
-        'test',
+        companyDetails?.streetName ? companyDetails?.streetName : 'N/A',
       ],
       [
         t('content.osp.zip'),
-        'qwe',
+        companyDetails?.zipCode ? companyDetails?.zipCode : 'N/A',
       ],
       [
         t('content.osp.city'),
-        'n/a',
+        companyDetails?.city ? companyDetails?.city : 'N/A',
       ],
       [
         t('content.osp.region'),
-        'erer',
+        companyDetails?.region ? companyDetails?.region : 'N/A',
       ],
       [
         t('content.osp.country'),
-        'erer',
+        companyDetails?.countryAlpha2Code
+          ? companyDetails?.countryAlpha2Code
+          : 'N/A',
       ],
-    ]
+    ],
   }
 
   return (
@@ -71,7 +88,7 @@ export const OSPConsent = () => {
         <Typography variant="body2" className="desc-message">
           {t('content.osp.descMessage')}
         </Typography>
-        <StaticTable data={tableData} horizontal={false} />
+        {companyDetails && <StaticTable data={tableData} horizontal={false} />}
       </div>
     </div>
   )

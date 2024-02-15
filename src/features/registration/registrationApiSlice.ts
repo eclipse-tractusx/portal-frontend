@@ -49,6 +49,33 @@ export type ApplicationResponse = {
   applicationType: ApplicationType
 }
 
+export type Identifier = {
+  type: string
+  value: string
+}
+
+export type UniqueIdentifier = {
+  id: number
+  label: string
+}
+
+export type CompanyDetails = {
+  companyId: string
+  bpn: string
+  name: string
+  shortName: string
+  city: string
+  region: string
+  streetAdditional: string
+  streetName: string
+  streetNumber: string
+  zipCode: string
+  countryAlpha2Code: string
+  taxId: string
+  uniqueIds: Identifier[]
+  uniqueIdentifier: UniqueIdentifier[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/registration',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -56,7 +83,22 @@ export const apiSlice = createApi({
     fetchApplications: builder.query<ApplicationResponse[], void>({
       query: () => '/api/registration/applications',
     }),
+    fetchCompanyDetailsWithAddress: builder.query<CompanyDetails, void>({
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const applications = await fetchWithBQ('/api/registration/applications')
+        if (applications.error) return { error: applications.error }
+        const data = applications.data as ApplicationResponse[]
+        const companyData = await fetchWithBQ(
+          `/api/registration/application/${data[0].applicationId}/companyDetailsWithAddress`
+        )
+        console.log('companyData', companyData.data)
+        return { data: companyData.data as CompanyDetails }
+      },
+    }),
   }),
 })
 
-export const { useFetchApplicationsQuery } = apiSlice
+export const {
+  useFetchApplicationsQuery,
+  useFetchCompanyDetailsWithAddressQuery,
+} = apiSlice
