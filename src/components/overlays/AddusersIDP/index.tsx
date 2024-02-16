@@ -139,7 +139,8 @@ const AddusersIDPResponse = ({
   useEffect(() => {
     if (userResponse?.error && !tableErrorData?.body.length) {
       const errorMsgs = userResponse.errors.map((error: ErrorResponse) => [
-        `${csvData[error.line - 1].firstName} ${csvData[error.line - 1].lastName
+        `${csvData[error.line - 1].firstName} ${
+          csvData[error.line - 1].lastName
         }, ${csvData[error.line - 1].email}`,
         error.message,
       ])
@@ -323,10 +324,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-            '',
+              '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-            '',
+              '',
           ].join(',')
         )
         .join('\n')}`,
