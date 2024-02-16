@@ -63,6 +63,16 @@ export type ErrorResponse = {
   message: string
 }
 
+export type FileData = {
+  ProviderAlias: string
+  ProviderUserId: string
+  ProviderUserName: string
+  UserId: string
+  email: string
+  firstName: string
+  lastName: string
+}
+
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
   SUCCESS_UPLOAD_USERS = 'SUCCESS_UPLOAD_USERS',
@@ -129,8 +139,7 @@ const AddusersIDPResponse = ({
   useEffect(() => {
     if (userResponse?.error && !tableErrorData?.body.length) {
       const errorMsgs = userResponse.errors.map((error: ErrorResponse) => [
-        `${csvData[error.line - 1].firstName} ${
-          csvData[error.line - 1].lastName
+        `${csvData[error.line - 1].firstName} ${csvData[error.line - 1].lastName
         }, ${csvData[error.line - 1].email}`,
         error.message,
       ])
@@ -235,10 +244,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     if (!idpData || !userContent?.data) return
     setLoading(true)
     const postdata = new FormData()
+    const fileBlob =
+      format === FileFormat.CSV
+        ? json2csv(store2data(userContent.data))
+        : JSON.stringify(userContent.data, null, pretty ? 2 : undefined)
     postdata.append(
       'document',
-      new Blob([json2csv(store2data(userContent.data))], {
-        type: 'text/csv',
+      new Blob([fileBlob], {
+        type: format === FileFormat.CSV ? 'text/csv' : 'application/json',
       })
     )
     fetch(
@@ -310,10 +323,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             idpData?.alias,
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userId) ??
-              '',
+            '',
             (user.identityProviders?.length > 0 &&
               user.identityProviders[0].userName) ??
-              '',
+            '',
           ].join(',')
         )
         .join('\n')}`,
@@ -363,9 +376,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
 
   const store2text = (content: string) => {
     if (!idpData) return content
-    let data = store2data(content)
+    const data = store2data(content)
+    let newData =
+      typeof data === 'string' ? JSON.parse(data) : store2data(content)
     if (unlinked)
-      data = data.filter(
+      newData = newData.filter(
         (item: UserIdentityProviders) =>
           !(
             item.identityProviders &&
@@ -373,7 +388,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             item.identityProviders[0].userId
           )
       )
-    return data2text(data)
+    return data2text(newData)
   }
 
   const storeResponse = (response: string) => {
@@ -420,29 +435,63 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       reader.onload = () => {
         if (!reader.result) return
+        if (!acceptedFile.type.includes(format.toLowerCase())) {
+          //checking selected format is similar to uploaded file format
+          error(t(`state.${IDPState.ERROR_INVALID_FORMAT}`))
+          setStatus(false)
+          setUploadedFile(undefined)
+          return
+        }
         const content = JSON.stringify(reader.result)
-        Papa.parse(acceptedFile, {
-          skipEmptyLines: true,
-          complete: function (results) {
-            const csvData: Array<Array<string>> = results.data as Array<
-              Array<string>
-            >
-            if (
-              !csvHeaderList.reduce(
-                (a, c, i) =>
-                  a && csvData[0][i].toLowerCase() === c.toLowerCase(),
-                true
-              )
-            ) {
-              error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-              setStatus(false)
-              setTimeout(() => {
-                setStatus(undefined)
-              }, 3000)
-              setUploadedFile(undefined)
-            }
-          },
-        })
+        if (format === FileFormat.JSON && typeof reader.result === 'string') {
+          //if file is JSON
+          const JSONData = JSON.parse(reader.result)
+          const jsonKeys = JSONData.reduce(
+            (keys: string[], obj: FileData) =>
+              keys.concat(
+                Object.keys(obj).filter((key) => keys.indexOf(key) === -1)
+              ),
+            []
+          )
+          if (
+            !csvHeaderList.reduce(
+              (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
+              true
+            )
+          ) {
+            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+            setStatus(false)
+            setTimeout(() => {
+              setStatus(undefined)
+            }, 3000)
+            setUploadedFile(undefined)
+            return
+          }
+        } else {
+          //if file is CSV
+          Papa.parse(acceptedFile, {
+            skipEmptyLines: true,
+            complete: function (results) {
+              const csvData: Array<Array<string>> = results.data as Array<
+                Array<string>
+              >
+              if (
+                !csvHeaderList.reduce(
+                  (a, c, i) =>
+                    a && csvData[0][i].toLowerCase() === c.toLowerCase(),
+                  true
+                )
+              ) {
+                error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+                setStatus(false)
+                setTimeout(() => {
+                  setStatus(undefined)
+                }, 3000)
+                setUploadedFile(undefined)
+              }
+            },
+          })
+        }
         setCsvData(csv2json(content))
         storeData(
           acceptedFile.type === 'text/csv'
@@ -453,7 +502,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       setUploadedFile(acceptedFile)
       reader.readAsText(acceptedFile)
     },
-    [csv2json, storeData, t]
+    [csv2json, storeData, t, format]
   )
 
   useEffect(() => {
