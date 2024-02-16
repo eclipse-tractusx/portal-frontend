@@ -245,10 +245,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     if (!idpData || !userContent?.data) return
     setLoading(true)
     const postdata = new FormData()
+    const prettyVal = pretty ? 2 : undefined
     const fileBlob =
       format === FileFormat.CSV
         ? json2csv(store2data(userContent.data))
-        : JSON.stringify(userContent.data, null, pretty ? 2 : undefined)
+        : JSON.stringify(userContent.data, null, prettyVal)
     postdata.append(
       'document',
       new Blob([fileBlob], {
@@ -447,13 +448,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         if (format === FileFormat.JSON && typeof reader.result === 'string') {
           //if file is JSON
           const JSONData = JSON.parse(reader.result)
-          const jsonKeys = JSONData.reduce(
-            (keys: string[], obj: FileData) =>
-              keys.concat(
-                Object.keys(obj).filter((key) => keys.indexOf(key) === -1)
-              ),
-            []
-          )
+          const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
           if (
             !csvHeaderList.reduce(
               (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
