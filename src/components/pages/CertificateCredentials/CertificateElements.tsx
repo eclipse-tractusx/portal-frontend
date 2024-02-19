@@ -41,21 +41,23 @@ export default function CertificateElements({
 
   return (
     <Grid container spacing={2} className="certificate-section">
-      {data?.map((item: CertificateResponse) => (
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={6}
-          className="certificate-card"
-          key={item.credentialType}
-        >
-          <CertificateCard
-            credentialType={item.credentialType}
-            ssiDetailData={item.ssiDetailData}
-          />
-        </Grid>
-      ))}
+      {data?.map((item: CertificateResponse) =>
+        item.ssiDetailData?.map((certificate) => (
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            className="certificate-card"
+            key={item.credentialType}
+          >
+            <CertificateCard
+              credentialType={item.credentialType}
+              ssiDetailData={certificate}
+            />
+          </Grid>
+        ))
+      )}
     </Grid>
   )
 }

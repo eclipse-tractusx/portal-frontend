@@ -11,6 +11,8 @@
   - fix add user overlay issue
 - Idp user upload
   - fix blank page issue while uploading json file
+- Certificate Crendentials
+  - fix certificate ui as per backend response
 
 ## 1.8.0-RC5
 
