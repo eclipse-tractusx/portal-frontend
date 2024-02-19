@@ -12,6 +12,10 @@
 - Idp user upload
   - fix blank page issue while uploading json file
 
+### Technical Support
+
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
+
 ## 1.8.0-RC5
 
 - Application Requests
