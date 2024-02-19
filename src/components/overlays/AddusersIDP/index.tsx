@@ -36,7 +36,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useFetchIDPDetailQuery,
   type UserIdentityProviders,
