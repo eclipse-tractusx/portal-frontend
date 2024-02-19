@@ -36,7 +36,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useFetchIDPDetailQuery,
   type UserIdentityProviders,
@@ -245,15 +245,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     if (!idpData || !userContent?.data) return
     setLoading(true)
     const postdata = new FormData()
-    const prettyVal = pretty ? 2 : undefined
-    const fileBlob =
-      format === FileFormat.CSV
-        ? json2csv(store2data(userContent.data))
-        : JSON.stringify(userContent.data, null, prettyVal)
     postdata.append(
       'document',
-      new Blob([fileBlob], {
-        type: format === FileFormat.CSV ? 'text/csv' : 'application/json',
+      new Blob([json2csv(store2data(userContent.data))], {
+        type: 'text/csv',
       })
     )
     fetch(
@@ -392,6 +387,18 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       )
     return data2text(newData)
   }
+  //   let data = store2data(content)
+  //   if (unlinked)
+  //     data = data.filter(
+  //       (item: UserIdentityProviders) =>
+  //         !(
+  //           item.identityProviders &&
+  //           item.identityProviders.length > 0 &&
+  //           item.identityProviders[0].userId
+  //         )
+  //     )
+  //   return data2text(data)
+  // }
 
   const storeResponse = (response: string) => {
     dispatch(
@@ -444,9 +451,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           setUploadedFile(undefined)
           return
         }
-        const content = JSON.stringify(reader.result)
         if (format === FileFormat.JSON && typeof reader.result === 'string') {
           //if file is JSON
+          const content = JSON.stringify(
+            Papa.unparse(JSON.parse(reader.result))
+          )
           const JSONData = JSON.parse(reader.result)
           const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
           if (
@@ -463,8 +472,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             setUploadedFile(undefined)
             return
           }
+          setCsvData(csv2json(content))
+          storeData(JSON.stringify(csv2json(content)))
         } else {
           //if file is CSV
+          const content = JSON.stringify(reader.result)
           Papa.parse(acceptedFile, {
             skipEmptyLines: true,
             complete: function (results) {
@@ -487,13 +499,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               }
             },
           })
+          setCsvData(csv2json(content))
+          storeData(JSON.stringify(csv2json(content)))
         }
-        setCsvData(csv2json(content))
-        storeData(
-          acceptedFile.type === 'text/csv'
-            ? JSON.stringify(csv2json(content))
-            : content
-        )
       }
       setUploadedFile(acceptedFile)
       reader.readAsText(acceptedFile)
