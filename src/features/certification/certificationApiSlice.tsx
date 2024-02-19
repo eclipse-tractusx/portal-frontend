@@ -41,7 +41,7 @@ export type SSIDetailData = {
 
 export type CertificateResponse = {
   credentialType: string
-  ssiDetailData: SSIDetailData | null
+  ssiDetailData: SSIDetailData[] | null
 }
 
 export type CertificateRequest = {
