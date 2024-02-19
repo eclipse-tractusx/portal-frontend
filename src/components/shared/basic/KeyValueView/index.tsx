@@ -20,7 +20,7 @@
 
 import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
-import { isValidElement, useState } from 'react'
+import { useState } from 'react'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 type DataValue = string | number | JSX.Element
@@ -46,7 +46,7 @@ const renderValue = (value: DataValue) => (
       wordBreak: 'break-all',
     }}
   >
-    {isValidElement(value) ? value : JSON.stringify(value)}
+    {value}
   </Typography>
 )
 
@@ -73,7 +73,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           }, 1000)
         }}
       >
-        {renderValue(JSON.stringify(item.value) ?? '')}
+        {renderValue(item.value ?? '')}
         <ContentCopyIcon
           sx={{
             marginLeft: '10px',

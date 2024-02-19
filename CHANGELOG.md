@@ -4,6 +4,8 @@
 
 - Subscription Management Board
   - Create new page for company subscriptions and add subscription management functionality
+- User Management
+  - Removed quotation marks from technical user details
 
 ### Bugfix
 
