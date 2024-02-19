@@ -387,18 +387,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       )
     return data2text(newData)
   }
-  //   let data = store2data(content)
-  //   if (unlinked)
-  //     data = data.filter(
-  //       (item: UserIdentityProviders) =>
-  //         !(
-  //           item.identityProviders &&
-  //           item.identityProviders.length > 0 &&
-  //           item.identityProviders[0].userId
-  //         )
-  //     )
-  //   return data2text(data)
-  // }
 
   const storeResponse = (response: string) => {
     dispatch(
