@@ -6,6 +6,8 @@
 
 - Idp User Invite Logic
   - fix add user overlay issue
+- Certificate Crendentials
+  - fix certificate ui as per backend response
 
 ## 1.8.0-RC5
 
