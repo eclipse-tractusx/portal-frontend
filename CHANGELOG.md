@@ -9,6 +9,8 @@
 
 - Idp User Invite Logic
   - fix add user overlay issue
+- Idp user upload
+  - fix blank page issue while uploading json file
 
 ## 1.8.0-RC5
 
