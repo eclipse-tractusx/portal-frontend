@@ -14,6 +14,10 @@
 - Certificate Crendentials
   - fix certificate ui as per backend response
 
+### Technical Support
+
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
+
 ## 1.8.0-RC5
 
 - Application Requests
