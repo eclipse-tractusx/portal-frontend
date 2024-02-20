@@ -449,9 +449,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
         }
         if (format === FileFormat.JSON && typeof reader.result === 'string') {
           //if file is JSON
-          const content = JSON.stringify(
-            Papa.unparse(JSON.parse(reader.result))
-          )
+          const content = JSON.stringify(json2csv(JSON.parse(reader.result)))
           const JSONData = JSON.parse(reader.result)
           const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
           if (
