@@ -1721,8 +1721,10 @@
         "all": "All"
       },
       "sort": {
-        "name": "Name",
-        "date": "Date"
+        "nameasc": "Certificate Asc",
+        "namedsc": "Certificate Dsc",
+        "dateasc": "Expiry Date Asc",
+        "datedsc": "Expiry Date Dsc"
       },
       "details": {
         "type": "Type",

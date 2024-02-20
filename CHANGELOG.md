@@ -6,6 +6,8 @@
   - Removed quotation marks from technical user details
 - Dataspace
   - Updated dataspace provider links with quick links
+- Company Certificate
+  - Connect listing page, upload certificate and details page to back end api
 
 ### Bugfix
 

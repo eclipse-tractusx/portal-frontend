@@ -27,6 +27,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
+import dayjs from 'dayjs'
 
 export default function CompanyCertificateCard({
   item,
@@ -40,7 +41,13 @@ export default function CompanyCertificateCard({
   const handleView = (): unknown =>
     dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_DETAILS, item.documentId))
   const handleDelete = (): unknown =>
-    dispatch(show(OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE, item.documentId))
+    dispatch(
+      show(
+        OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
+        item.documentId,
+        item.companyCertificateType
+      )
+    )
   return (
     <Box className="card-container">
       <Box className="first-container">
@@ -70,7 +77,8 @@ export default function CompanyCertificateCard({
         </Box>
         <Box className="bottom-container">
           <Typography variant="label3">
-            {t('content.companyCertificate.validtill')} : {item.validTill}
+            {t('content.companyCertificate.validtill')} :{' '}
+            {dayjs(item.validTill).format('YYYY-MM-DD')}
           </Typography>
           <Box className="link" onClick={handleView}>
             <Typography variant="label3">

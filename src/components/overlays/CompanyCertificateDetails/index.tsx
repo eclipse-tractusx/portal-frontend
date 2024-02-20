@@ -30,8 +30,8 @@ import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
 import {
   type ComapnyCertificateData,
-  useFetchCertificatesQuery,
-  useFetchDocumentQuery,
+  useFetchDocumentMutation,
+  useFetchCompanyCertificateQuery,
 } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
@@ -44,6 +44,9 @@ import {
 } from 'features/admin/applicationRequestApiSlice'
 import { useEffect, useState } from 'react'
 import { OVERLAYS } from 'types/Constants'
+import dayjs from 'dayjs'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -61,22 +64,30 @@ export default function CompanyCertificateDetails({
   const close = () => {
     dispatch(closeOverlay())
   }
+  const [getDocument] = useFetchDocumentMutation()
+  const { data: companyDetails, isFetching } = useFetchOwnCompanyDetailsQuery()
+  const { data } = useFetchCompanyCertificateQuery(companyDetails?.bpn ?? '')
 
-  const { data } = useFetchCertificatesQuery()
-  const { data: document } = useFetchDocumentQuery(id ?? '')
-
-  const companyData = data?.content.filter((cert) => cert.documentId === id)
+  const companyData = data?.filter((cert) => cert.documentId === id)
   const [selected, setSelected] = useState<ComapnyCertificateData>()
   const [pdf, setPdf] = useState<string>()
 
-  if (companyData && companyData?.length > 0) {
-    setSelected(companyData[0])
+  const getDoc = async () => {
+    const response = await getDocument(id).unwrap()
+    const file = response.data
+    const fileURL = URL.createObjectURL(file)
+    setPdf(fileURL)
   }
 
   useEffect(() => {
-    //set file here
-    setPdf('')
-  }, [document])
+    getDoc()
+  }, [])
+
+  useEffect(() => {
+    if (companyData && companyData?.length > 0) {
+      setSelected(companyData[0])
+    }
+  }, [companyData])
 
   const flag = selected?.companyCertificateStatus === StatusTag.PENDING
 
@@ -101,20 +112,20 @@ export default function CompanyCertificateDetails({
   const button: ProgressButtonsType = {
     statusId,
     typeId: '',
-    backgroundColor: flag ? '#F5F9EE' : '#EAF1FE',
+    backgroundColor: flag ? '#EAF1FE' : '#F5F9EE',
     icon: flag ? (
-      <CheckCircleOutlineIcon
-        style={{
-          color: '#00AA55',
-          height: '30px',
-          width: '20px',
-        }}
-      />
-    ) : (
       <PendingActionsIcon
         style={{
           color: '#0F71CB',
           height: '20px',
+          width: '20px',
+        }}
+      />
+    ) : (
+      <CheckCircleOutlineIcon
+        style={{
+          color: '#00AA55',
+          height: '30px',
           width: '20px',
         }}
       />
@@ -123,9 +134,25 @@ export default function CompanyCertificateDetails({
       ? t('content.companyCertificate.details.fileUpload')
       : t('content.companyCertificate.details.verification'),
     statusTag: getButtonStatusTag(
-      flag ? ProgressStatus.DONE : ProgressStatus.IN_PROGRESS
+      flag ? ProgressStatus.IN_PROGRESS : ProgressStatus.DONE
     ),
-    statusLabel: flag ? StatusTag.COMPLETED : StatusTag.PENDING,
+    statusLabel: flag ? StatusTag.PENDING : StatusTag.COMPLETED,
+  }
+
+  const showLoader = () => {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          alignContent: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '50px 0px',
+        }}
+      >
+        <LoadingProgress />
+      </Box>
+    )
   }
 
   return (
@@ -137,63 +164,65 @@ export default function CompanyCertificateDetails({
         },
       }}
     >
-      <DialogContent>
-        {selected ? (
-          <>
-            <Box className="box-container">
-              <Box className="header-container">
-                <Box className="flex-container">
-                  <Typography variant="label3">
-                    {t('content.companyCertificate.details.type')} :{' '}
-                    {selected.companyCertificateType}
-                  </Typography>
-                  <Typography variant="h5">{selected.documentId}</Typography>
-                  <Typography variant="label4">
-                    {t('content.companyCertificate.details.validtill')} :{' '}
-                    {selected.validTill}
-                  </Typography>
-                  <Typography variant="label4">
-                    {t('content.companyCertificate.details.status')} :{' '}
-                    {selected.companyCertificateStatus}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button
-                    startIcon={<DeleteIcon />}
-                    variant="outlined"
-                    size="small"
-                    onClick={() => {
-                      dispatch(closeOverlay())
-                      dispatch(
-                        show(OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE, id)
+      {!isFetching && selected ? (
+        <DialogContent>
+          <Box className="box-container">
+            <Box className="header-container">
+              <Box className="flex-container">
+                <Typography variant="label3">
+                  {t('content.companyCertificate.details.type')} :{' '}
+                  {selected.companyCertificateType}
+                </Typography>
+                <Typography variant="h5">{selected.documentId}</Typography>
+                <Typography variant="label4">
+                  {t('content.companyCertificate.details.validtill')} :{' '}
+                  {dayjs(selected.validTill).format('YYYY-MM-DD')}
+                </Typography>
+                <Typography variant="label4">
+                  {t('content.companyCertificate.details.status')} :{' '}
+                  {selected.companyCertificateStatus}
+                </Typography>
+              </Box>
+              <Box>
+                <Button
+                  startIcon={<DeleteIcon />}
+                  variant="outlined"
+                  size="small"
+                  onClick={() => {
+                    dispatch(closeOverlay())
+                    dispatch(
+                      show(
+                        OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
+                        id,
+                        selected.companyCertificateType
                       )
-                    }}
-                  >
-                    {t('content.companyCertificate.details.deletebutton')}
-                  </Button>
-                </Box>
+                    )
+                  }}
+                >
+                  {t('content.companyCertificate.details.deletebutton')}
+                </Button>
               </Box>
             </Box>
-            <Box className="iframe-container">
-              <Box className="verification-container">
-                <ProgressVerificationButton {...button} />
-              </Box>
-              {pdf && (
-                <iframe
-                  title="certificate document"
-                  src={pdf}
-                  width="100%"
-                  height="500px"
-                />
-              )}
+          </Box>
+          <Box className="iframe-container">
+            <Box className="verification-container">
+              <ProgressVerificationButton {...button} />
             </Box>
-          </>
-        ) : (
-          <Typography variant="body1">
-            {t('content.companyCertificate.noData')}
-          </Typography>
-        )}
-      </DialogContent>
+            {pdf ? (
+              <iframe
+                title="certificate document"
+                src={pdf}
+                width="100%"
+                height="500px"
+              />
+            ) : (
+              showLoader()
+            )}
+          </Box>
+        </DialogContent>
+      ) : (
+        showLoader()
+      )}
 
       <DialogActions>
         <Button variant="outlined" onClick={close}>

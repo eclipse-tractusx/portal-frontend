@@ -17,38 +17,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyCertificate.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import CompanyCertificateCard from './CompanyCertificateCard'
-
 export default function CompanyCertificateElements({
   data,
 }: Readonly<{
   data: ComapnyCertificateData[]
 }>): JSX.Element {
-  const { t } = useTranslation()
-
-  if (data?.length === 0) {
-    return (
-      <Typography variant="body1" className="noData">
-        {t('content.companyCertificate.noData')}
-      </Typography>
-    )
-  }
-
   return (
     <Grid container spacing={2} className="company-certificate-section">
-      {data?.map((item: ComapnyCertificateData) => (
+      {data?.map((item: ComapnyCertificateData, index) => (
         <Grid
           item
           xs={12}
           sm={6}
           md={6}
           className="company-certificate-card"
-          key={item.companyCertificateType}
+          key={item.companyCertificateType + index}
         >
           <CompanyCertificateCard item={item} />
         </Grid>
