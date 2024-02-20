@@ -4,6 +4,8 @@
 
 - User Management
   - Removed quotation marks from technical user details
+- Delete ownuser Redirect URL
+  - fixed logout redirect url issue
 
 ### Bugfix
 
