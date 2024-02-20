@@ -67,9 +67,6 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const [submittedOverlayOpen, setSubmittedOverlayOpen] = useState(
     companyData?.applicationStatus === ApplicationStatus.SUBMITTED
   )
-  const [declinedOverlayOpen, setDeclinedOverlayOpen] = useState(
-    companyData?.applicationStatus === ApplicationStatus.DECLINED
-  )
   const [headerNote, setHeaderNote] = useState(false)
 
   const addTitle = (items: Tree[] | undefined) =>
@@ -220,11 +217,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         }}
       />
       <RegistrationDeclinedOverlay
-        openDialog={declinedOverlayOpen}
-        handleOverlayClose={() => {
-          setDeclinedOverlayOpen(false)
-          setHeaderNote(true)
-        }}
+        openDialog={companyData?.applicationStatus === ApplicationStatus.DECLINED}
       />
     </>
   )

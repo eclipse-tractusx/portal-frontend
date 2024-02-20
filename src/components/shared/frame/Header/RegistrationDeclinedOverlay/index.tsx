@@ -24,22 +24,23 @@ import {
   DialogHeader,
   DialogActions,
   Typography,
+  Button,
 } from '@catena-x/portal-shared-components'
+import { useDispatch } from 'react-redux'
+import { exec } from 'features/control/overlay'
+import { ACTIONS } from 'types/Constants'
 
 export type StatusTagIcon = {
   type?: 'confirmed' | 'pending' | 'declined' | 'label'
 }
 
-export type RegistrationDeclinedProps = {
-  openDialog: boolean
-  handleOverlayClose: React.MouseEventHandler
-}
-
 const RegistrationDeclinedOverlay = ({
   openDialog,
-  handleOverlayClose,
-}: RegistrationDeclinedProps) => {
+}: {
+  openDialog: boolean
+}) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   return (
     <Dialog
@@ -65,7 +66,14 @@ const RegistrationDeclinedOverlay = ({
       </DialogContent>
       <DialogActions
         helperText={t('content.registrationInreview.helperText')}
-      ></DialogActions>
+      >
+        <Button
+          variant="contained"
+          onClick={() => dispatch(exec(ACTIONS.SIGNOUT))}
+        >
+          {t('content.registrationDeclined.close')}
+        </Button>
+      </DialogActions>
     </Dialog>
   )
 }
