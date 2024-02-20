@@ -42,7 +42,7 @@ export interface MenuItemProps extends LinkItem {
   onClick?: React.MouseEventHandler
   Menu?: MenuType
   disable?: boolean
-  onSelect?: (children: MenuItemProps[]) => void
+  onSelect?: (title: string, children: MenuItemProps[]) => void
 }
 
 export const MenuItem = ({
@@ -72,7 +72,7 @@ export const MenuItem = ({
       }}
       onClick={() => {
         if (children != null && onSelect != null) {
-          onSelect(children)
+          onSelect(title, children)
         } else {
           dispatch(setAppear({ MENU: !visible }))
         }

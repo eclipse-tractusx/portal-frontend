@@ -4,6 +4,8 @@
 
 - User Management
   - Removed quotation marks from technical user details
+- Dataspace
+  - Updated dataspace provider links with quick links
 
 ### Bugfix
 
