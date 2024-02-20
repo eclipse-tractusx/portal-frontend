@@ -64,6 +64,7 @@ export const MobileMenu = ({
     AccessService.userMenuComp()
   )
   const [children, setSelectedChildren] = useState<MenuItemProps[]>([])
+  const [selectedSection, setSelectedSection] = useState<string>('')
 
   const addTitle = (items: string[]): CompanyMenuTypes[] =>
     items?.map((item: string) => ({
@@ -73,8 +74,9 @@ export const MobileMenu = ({
 
   const companyMenu = addTitle(userMenu) ?? []
 
-  const onSelectItem = (item: MenuItemProps[]): void => {
+  const onSelectItem = (title: string, item: MenuItemProps[]): void => {
     setSelectedChildren(item)
+    setSelectedSection(title)
   }
 
   useEffect(() => {
@@ -112,6 +114,7 @@ export const MobileMenu = ({
       )}
       {children?.length > 0 && (
         <MenuSubItems
+          title={selectedSection}
           onClick={() => {
             dispatch(setAppear({ MENU: !visible }))
           }}
