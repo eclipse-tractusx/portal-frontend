@@ -4,6 +4,8 @@
 
 - User Management
   - Removed quotation marks from technical user details
+- Decline Status
+  - added button in overlay to logout deom portal
 - Dataspace
   - Updated dataspace provider links with quick links
 - Delete ownuser Redirect URL
