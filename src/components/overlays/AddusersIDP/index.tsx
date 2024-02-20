@@ -228,6 +228,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     'ProviderUserName',
   ]
 
+  const jsonHeaderList = [
+    'companyUserId',
+    'firstName',
+    'lastName',
+    'email',
+    'identityProviders',
+  ]
+
   const CSV_COLUMNS = useMemo(
     () => [
       { name: 'UserId', width: 37 },
@@ -447,7 +455,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           const JSONData = JSON.parse(reader.result)
           const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
           if (
-            !csvHeaderList.reduce(
+            !jsonHeaderList.reduce(
               (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
               true
             )
