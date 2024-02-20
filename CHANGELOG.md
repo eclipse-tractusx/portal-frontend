@@ -6,6 +6,8 @@
   - Removed quotation marks from technical user details
 - Dataspace
   - Updated dataspace provider links with quick links
+- Delete ownuser Redirect URL
+  - fixed logout redirect url issue
 
 ### Bugfix
 
