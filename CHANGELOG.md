@@ -4,10 +4,14 @@
 
 - User Management
   - Removed quotation marks from technical user details
+- Decline Status
+  - added button in overlay to logout deom portal
 - Dataspace
   - Updated dataspace provider links with quick links
 - Company Certificate
   - Connect listing page, upload certificate and details page to back end api
+- Delete ownuser Redirect URL
+  - fixed logout redirect url issue
 
 ### Bugfix
 
