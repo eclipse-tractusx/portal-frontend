@@ -30,6 +30,7 @@ export interface MenuSubItemsProps extends LinkItem {
   onHide: () => void
   children: MenuItemProps[]
   component: React.ElementType
+  title: string
 }
 
 export const MenuSubItems = ({
@@ -37,6 +38,7 @@ export const MenuSubItems = ({
   onHide,
   children,
   component = Link,
+  title,
 }: MenuSubItemsProps): JSX.Element => {
   const { spacing } = useTheme()
   return (
@@ -59,6 +61,23 @@ export const MenuSubItems = ({
           variant="body2"
         >
           back
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          borderBottom: '1px solid #e3e3e3',
+          paddingLeft: '25px',
+          paddingBottom: '10px',
+          paddingTop: '15px',
+        }}
+      >
+        <Typography
+          variant="label2"
+          sx={{
+            fontWeight: '600',
+          }}
+        >
+          {title}
         </Typography>
       </Box>
       {children?.map((item) => (
