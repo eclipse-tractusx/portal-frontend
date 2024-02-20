@@ -64,9 +64,7 @@ const RegistrationDeclinedOverlay = ({
           </Trans>
         </div>
       </DialogContent>
-      <DialogActions
-        helperText={t('content.registrationInreview.helperText')}
-      >
+      <DialogActions helperText={t('content.registrationInreview.helperText')}>
         <Button
           variant="contained"
           onClick={() => dispatch(exec(ACTIONS.SIGNOUT))}

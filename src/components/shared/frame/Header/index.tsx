@@ -217,7 +217,9 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         }}
       />
       <RegistrationDeclinedOverlay
-        openDialog={companyData?.applicationStatus === ApplicationStatus.DECLINED}
+        openDialog={
+          companyData?.applicationStatus === ApplicationStatus.DECLINED
+        }
       />
     </>
   )
