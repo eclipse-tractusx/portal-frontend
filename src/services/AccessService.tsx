@@ -35,6 +35,7 @@ import {
   mainMenuFullTree,
   userMenuFull,
   userMenuRegistration,
+  userMenuCompany,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
 import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
@@ -111,6 +112,8 @@ const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 const userMenu = () => accessToMenu(userMenuFull)
 
 const userMenuReg = () => accessToMenu(userMenuRegistration)
+
+const userMenuComp = () => accessToMenu(userMenuCompany)
 
 const footerMenu = () => accessToMenu(footerMenuFull)
 
@@ -218,7 +221,12 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:
       return <CompanyCertificateDetails id={overlay.id} />
     case OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE:
-      return <DeleteCompanyCertificateConfirmationOverlay id={overlay.id} />
+      return (
+        <DeleteCompanyCertificateConfirmationOverlay
+          id={overlay.id}
+          title={overlay.title ?? ''}
+        />
+      )
     default:
       return <NotFound />
   }
@@ -263,6 +271,7 @@ const AccessService = {
   userMenu,
   userMenuReg,
   footerMenu,
+  userMenuComp,
 }
 
 export default AccessService

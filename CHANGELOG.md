@@ -1,13 +1,53 @@
 # Changelog
 
-## unreleased 1.8.0-RC5
+## unreleased 1.8.0-RC6
+
+- User Management
+  - Removed quotation marks from technical user details
+- Decline Status
+  - added button in overlay to logout deom portal
+- Dataspace
+  - Updated dataspace provider links with quick links
+- Company Certificate
+  - Connect listing page, upload certificate and details page to back end api
+- Delete ownuser Redirect URL
+  - fixed logout redirect url issue
 
 ### Bugfix
 
-- Notifications
-  - handle set read/unread correctly
-- IDP Management
-  - Allow 6-36 alphanumeric characters for IDP extID
+- Idp User Invite Logic
+  - fix add user overlay issue
+- Idp user upload
+  - fix blank page issue while uploading json file
+- Certificate Crendentials
+  - fix certificate ui as per backend response
+
+### Technical Support
+
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
+
+## 1.8.0-RC5
+
+- Application Requests
+  - Fix filtering related issues
+  - Reset search list after clearing input text
+
+### Bugfix
+
+- Notifications - fixed handling of setting read/unread correctly
+- IDP Management - updated extId input field error message to allow 6-36 alphanumeric characters
+- Hamburger
+  - Slide effect on click of hamburger
+  - New UI navigation when menu has sub sections
+- Subnavigation
+  - Show sub navigation button text in one line
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
+- App Management
+  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previos template
+- App Release Process - app role template file encoding updated
 
 ## 1.8.0-RC4
 
@@ -31,6 +71,8 @@
   - Add missing translations, fix duplicate error
 - Service Release Process
   - fixed conformity document deletion issue after uploading document
+- Company roles
+  - Show standard library infomration based on the selected company role
 - Invite Business Partner
   - fix loading button issue to invite multiple companies in succession
 
@@ -140,7 +182,6 @@
 - App Release Process
   - fixed automatic upscrolling in form pages
   - Fixed help link, funky character display and the success message display in user role upload
-  - fixed automatic up scrolling in form pages
 - Service Release Process
   - fixed automatic up scrolling in form pages
 - User Management

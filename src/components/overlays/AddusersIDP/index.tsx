@@ -63,6 +63,16 @@ export type ErrorResponse = {
   message: string
 }
 
+export type FileData = {
+  ProviderAlias: string
+  ProviderUserId: string
+  ProviderUserName: string
+  UserId: string
+  email: string
+  firstName: string
+  lastName: string
+}
+
 enum IDPState {
   SUCCESS_VALID_FORMAT = 'SUCCESS_VALID_FORMAT',
   SUCCESS_UPLOAD_USERS = 'SUCCESS_UPLOAD_USERS',
@@ -218,6 +228,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     'ProviderUserName',
   ]
 
+  const jsonHeaderList = [
+    'companyUserId',
+    'firstName',
+    'lastName',
+    'email',
+    'identityProviders',
+  ]
+
   const CSV_COLUMNS = useMemo(
     () => [
       { name: 'UserId', width: 37 },
@@ -363,9 +381,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
 
   const store2text = (content: string) => {
     if (!idpData) return content
-    let data = store2data(content)
+    const data = store2data(content)
+    let newData =
+      typeof data === 'string' ? JSON.parse(data) : store2data(content)
     if (unlinked)
-      data = data.filter(
+      newData = newData.filter(
         (item: UserIdentityProviders) =>
           !(
             item.identityProviders &&
@@ -373,7 +393,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             item.identityProviders[0].userId
           )
       )
-    return data2text(data)
+    return data2text(newData)
   }
 
   const storeResponse = (response: string) => {
@@ -420,40 +440,67 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       reader.onload = () => {
         if (!reader.result) return
-        const content = JSON.stringify(reader.result)
-        Papa.parse(acceptedFile, {
-          skipEmptyLines: true,
-          complete: function (results) {
-            const csvData: Array<Array<string>> = results.data as Array<
-              Array<string>
-            >
-            if (
-              !csvHeaderList.reduce(
-                (a, c, i) =>
-                  a && csvData[0][i].toLowerCase() === c.toLowerCase(),
-                true
-              )
-            ) {
-              error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-              setStatus(false)
-              setTimeout(() => {
-                setStatus(undefined)
-              }, 3000)
-              setUploadedFile(undefined)
-            }
-          },
-        })
-        setCsvData(csv2json(content))
-        storeData(
-          acceptedFile.type === 'text/csv'
-            ? JSON.stringify(csv2json(content))
-            : content
-        )
+        if (!acceptedFile.type.includes(format.toLowerCase())) {
+          //checking selected format is similar to uploaded file format
+          error(t(`state.${IDPState.ERROR_INVALID_FORMAT}`))
+          setStatus(false)
+          setUploadedFile(undefined)
+          return
+        }
+        if (format === FileFormat.JSON && typeof reader.result === 'string') {
+          //if file is JSON
+          const content = JSON.stringify(json2csv(JSON.parse(reader.result)))
+          const JSONData = JSON.parse(reader.result)
+          const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
+          if (
+            !jsonHeaderList.reduce(
+              (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
+              true
+            )
+          ) {
+            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+            setStatus(false)
+            setTimeout(() => {
+              setStatus(undefined)
+            }, 3000)
+            setUploadedFile(undefined)
+            return
+          }
+          setCsvData(csv2json(content))
+          storeData(JSON.stringify(csv2json(content)))
+        } else {
+          //if file is CSV
+          const content = JSON.stringify(reader.result)
+          Papa.parse(acceptedFile, {
+            skipEmptyLines: true,
+            complete: function (results) {
+              const csvData: Array<Array<string>> = results.data as Array<
+                Array<string>
+              >
+              if (
+                !csvHeaderList.reduce(
+                  (a, c, i) =>
+                    a && csvData[0][i].toLowerCase() === c.toLowerCase(),
+                  true
+                )
+              ) {
+                error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+                setStatus(false)
+                setTimeout(() => {
+                  setStatus(undefined)
+                }, 3000)
+                setUploadedFile(undefined)
+              }
+            },
+          })
+          setCsvData(csv2json(content))
+          storeData(JSON.stringify(csv2json(content)))
+        }
       }
       setUploadedFile(acceptedFile)
       reader.readAsText(acceptedFile)
     },
-    [csv2json, storeData, t]
+    [csv2json, storeData, t, format]
   )
 
   useEffect(() => {

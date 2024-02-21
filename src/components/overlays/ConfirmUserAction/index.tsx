@@ -28,11 +28,12 @@ import {
   useDeleteMyUserMutation,
 } from 'features/admin/userApiSlice'
 import { Typography } from '@catena-x/portal-shared-components'
-import { closeOverlay } from 'features/control/overlay'
+import { closeOverlay, exec } from 'features/control/overlay'
 import { useNavigate } from 'react-router-dom'
 import UserService from 'services/UserService'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { ServerResponseOverlay } from '../ServerResponse'
+import { ACTIONS } from 'types/Constants'
 
 export const ConfirmUserAction = ({
   id,
@@ -185,7 +186,7 @@ export const ConfirmUserAction = ({
     showLoading(false)
     if (title === 'ownUser') {
       setTimeout(() => {
-        UserService.doLogout({ redirectUri: `${document.location.origin} /` })
+        dispatch(exec(ACTIONS.SIGNOUT))
       }, 5000)
     }
   }

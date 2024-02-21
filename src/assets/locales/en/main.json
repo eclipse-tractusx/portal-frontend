@@ -63,7 +63,9 @@
     "dataspace": "Data Space",
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
-    "companyWallet": "Company Wallet"
+    "companyWallet": "Company Wallet",
+    "mycompany": "My Company",
+    "mynotifications": "My Notifications"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -149,7 +151,8 @@
     },
     "registrationDeclined": {
       "title": "Registration Status",
-      "description": "<strong style='color: red'>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon."
+      "description": "<strong style='color: red'>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon.",
+      "close": "Close the Page"
     },
     "admin": {
       "registration-requests": {
@@ -1660,8 +1663,10 @@
         "all": "All"
       },
       "sort": {
-        "name": "Name",
-        "date": "Date"
+        "nameasc": "Certificate Asc",
+        "namedsc": "Certificate Dsc",
+        "dateasc": "Expiry Date Asc",
+        "datedsc": "Expiry Date Dsc"
       },
       "details": {
         "type": "Type",
