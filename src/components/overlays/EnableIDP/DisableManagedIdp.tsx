@@ -42,26 +42,16 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
   const [enableIDP] = useEnableIDPMutation()
   const [loading, setLoading] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
-  const enabled = data?.enabled
 
-  useEffect(() => {
-    refetch()
-  }, [])
-
-  const handleEnableDisable = async (
-    e: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
+  const handleEnableDisable = async () => {
     setLoading(true)
     try {
-      data && (await enableIDP({ id, enabled: !enabled }))
-      dispatch(closeOverlay())
-      success(
-        enabled
-          ? t('disableManagedIdp.disableSuccess')
-          : t('disableManagedIdp.enableSuccess')
-      )
+      data && (await enableIDP({ id, enabled: false }).unwrap())
+      success(t('disableManagedIdp.disableSuccess'))
       setEnableErrorMessage(false)
       refetch()
+      dispatch(closeOverlay())
+      setLoading(false)
     } catch (err) {
       setLoading(false)
       setEnableErrorMessage(true)
@@ -142,7 +132,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
           />
         ) : (
           <Button variant="contained" onClick={handleEnableDisable}>
-            {enabled ? t('action.disable') : t('action.enable')}
+            {t('action.disable')}
           </Button>
         )}
       </DialogActions>

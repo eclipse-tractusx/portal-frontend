@@ -258,6 +258,10 @@ export const apiSlice = createApi({
       query: (useridp: UserIdentityProvider) =>
         `/api/administration/identityprovider/owncompany/users/${useridp.companyUserId}/identityprovider/${useridp.identityProviderId}`,
     }),
+    fetchManagedIDPNetwork: builder.query<Array<any>, string>({
+      query: (id: string) =>
+        `/api/administration/identityprovider/network/identityproviders/managed/${id}`,
+    }),
   }),
 })
 
@@ -273,6 +277,7 @@ export const {
   useRemoveIDPMutation,
   useEnableIDPMutation,
   useUpdateUserIDPMutation,
+  useFetchManagedIDPNetworkQuery,
 } = apiSlice
 
 export default slice

@@ -43,10 +43,10 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
   const [loadingButton, setLoadingButton] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
 
-  const handleDelete = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleDelete = async () => {
     setLoadingButton(true)
     try {
-      await removeIDP(id)
+      await removeIDP(id).unwrap()
       setLoadingButton(false)
       dispatch(closeOverlay())
       success(t('deleteManagedIdp.success'))

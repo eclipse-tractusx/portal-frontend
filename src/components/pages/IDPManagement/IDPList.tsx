@@ -203,37 +203,38 @@ export const IDPList = () => {
           label={ti('action.consent')}
         />
       ),
-      enableToggle: isManaged ? (
-        <MenuItemOpenOverlay
-          overlay={OVERLAYS.DISABLE_MANAGED_IDP}
-          id={idp.identityProviderId}
-          label={idp.enabled ? ti('action.disable') : ti('action.enable')}
-        />
-      ) : (
-        <MenuItem
-          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-            !disableLoading && doEnableDisableToggle(e, idp)
-          }
-          sx={{
-            color: disableLoading ? '#b6b6b6' : '#111111',
-          }}
-          disabled={
-            data &&
-            idp.enabled &&
-            data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
-          }
-        >
-          {idp.enabled ? ti('action.disable') : ti('action.enable')}
-          {disableLoading && (
-            <CircularProgress
-              size={15}
-              sx={{
-                marginLeft: '5px',
-              }}
-            />
-          )}
-        </MenuItem>
-      ),
+      enableToggle:
+        isManaged && idp.enabled ? (
+          <MenuItemOpenOverlay
+            overlay={OVERLAYS.DISABLE_MANAGED_IDP}
+            id={idp.identityProviderId}
+            label={ti('action.disable')}
+          />
+        ) : (
+          <MenuItem
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
+            sx={{
+              color: disableLoading ? '#b6b6b6' : '#111111',
+            }}
+            disabled={
+              data &&
+              idp.enabled &&
+              data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
+            }
+          >
+            {idp.enabled ? ti('action.disable') : ti('action.enable')}
+            {disableLoading && (
+              <CircularProgress
+                size={15}
+                sx={{
+                  marginLeft: '5px',
+                }}
+              />
+            )}
+          </MenuItem>
+        ),
     }
 
     return (
