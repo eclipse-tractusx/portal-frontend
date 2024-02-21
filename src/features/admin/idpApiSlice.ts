@@ -258,13 +258,6 @@ export const apiSlice = createApi({
       query: (useridp: UserIdentityProvider) =>
         `/api/administration/identityprovider/owncompany/users/${useridp.companyUserId}/identityprovider/${useridp.identityProviderId}`,
     }),
-    disableIDP: builder.mutation<IdentityProvider, IDPStatus>({
-      query: (status: IDPStatus) => ({
-        url: `/api/administration/identityprovider/owncompany/identityproviders/${status.id}/status?enabled=${status.enabled}`,
-        method: 'POST',
-      }),
-      invalidatesTags: [TAGS.IDP],
-    }),
   }),
 })
 
@@ -280,7 +273,6 @@ export const {
   useRemoveIDPMutation,
   useEnableIDPMutation,
   useUpdateUserIDPMutation,
-  useDisableIDPMutation,
 } = apiSlice
 
 export default slice

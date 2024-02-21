@@ -29,7 +29,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import {
-  useDisableIDPMutation,
+  useEnableIDPMutation,
   useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
 import { success } from 'services/NotifyService'
@@ -39,7 +39,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const { data, refetch } = useFetchIDPDetailQuery(id)
-  const [disableIDP] = useDisableIDPMutation()
+  const [enableIDP] = useEnableIDPMutation()
   const [loading, setLoading] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
   const enabled = data?.enabled
@@ -53,7 +53,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
   ) => {
     setLoading(true)
     try {
-      data && (await disableIDP({ id, enabled: !enabled }))
+      data && (await enableIDP({ id, enabled: !enabled }))
       dispatch(closeOverlay())
       success(
         enabled
