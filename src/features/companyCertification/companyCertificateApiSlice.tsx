@@ -41,8 +41,7 @@ export type CompanyCertificateResponse = {
 export interface UploadDocumentType {
   certificateType: string
   document: File
-  // eslint-disable-next-line
-  expiryDate: any
+  expiryDate: string | undefined
 }
 
 export interface CertificateTypes {
@@ -72,7 +71,7 @@ export const apiSlice = createApi({
     fetchCertificateTypes: builder.query<CertificateTypes[], void>({
       query: () => '/api/administration/staticdata/certificateTypes',
     }),
-    fetchDocument: builder.mutation({
+    fetchDocument: builder.query({
       query: (documentId) => ({
         url: `/api/administration/documents/${documentId}`,
         responseHandler: async (response) => ({
@@ -86,7 +85,7 @@ export const apiSlice = createApi({
         const formData = new FormData()
         formData.append('CertificateType', body.certificateType)
         formData.append('Document', body.document)
-        formData.append('ExpiryDate', body.expiryDate)
+        formData.append('ExpiryDate', body.expiryDate ?? '')
         return {
           url: 'api/administration/companydata/companyCertificate',
           method: 'POST',
@@ -116,7 +115,7 @@ export const apiSlice = createApi({
 
 export const {
   useFetchCertificatesQuery,
-  useFetchDocumentMutation,
+  useFetchDocumentQuery,
   useUploadCertificateMutation,
   useFetchCertificateTypesQuery,
   useDeleteCompanyCertificateMutation,

@@ -78,7 +78,6 @@ export default function UploadCompanyCertificate({
           document: uploadedFile,
           expiryDate: date?.toISOString(),
         }
-        console.log(data)
         await uploadCertificate(data).unwrap()
         handleClose()
       }

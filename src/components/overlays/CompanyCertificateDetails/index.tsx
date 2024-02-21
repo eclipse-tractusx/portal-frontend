@@ -29,8 +29,7 @@ import {
 import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
 import {
-  type ComapnyCertificateData,
-  useFetchDocumentMutation,
+  useFetchDocumentQuery,
   useFetchCompanyCertificateQuery,
 } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box } from '@mui/material'
@@ -64,30 +63,21 @@ export default function CompanyCertificateDetails({
   const close = () => {
     dispatch(closeOverlay())
   }
-  const [getDocument] = useFetchDocumentMutation()
+  const { data: document } = useFetchDocumentQuery(id)
   const { data: companyDetails, isFetching } = useFetchOwnCompanyDetailsQuery()
   const { data } = useFetchCompanyCertificateQuery(companyDetails?.bpn ?? '')
 
   const companyData = data?.filter((cert) => cert.documentId === id)
-  const [selected, setSelected] = useState<ComapnyCertificateData>()
+  const selected = companyData?.[0]
   const [pdf, setPdf] = useState<string>()
 
-  const getDoc = async () => {
-    const response = await getDocument(id).unwrap()
-    const file = response.data
-    const fileURL = URL.createObjectURL(file)
-    setPdf(fileURL)
-  }
-
   useEffect(() => {
-    getDoc()
-  }, [])
-
-  useEffect(() => {
-    if (companyData && companyData?.length > 0) {
-      setSelected(companyData[0])
+    if (document) {
+      const file = document.data
+      const fileURL = URL.createObjectURL(file)
+      setPdf(fileURL)
     }
-  }, [companyData])
+  }, [document])
 
   const flag = selected?.companyCertificateStatus === StatusTag.PENDING
 
