@@ -41,7 +41,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
   const { data } = useFetchIDPDetailQuery(id)
   const [disableIDP] = useDisableIDPMutation()
   const [loading, setLoading] = useState(false)
-  const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(true)
+  const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
 
   const doDisable = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setLoading(true)
@@ -59,9 +59,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
   return (
     <>
       <DialogHeader
-        title={t('disableManagedIdp.title', {
-          idp: data?.displayName,
-        })}
+        title={t('disableManagedIdp.title')}
         closeWithIcon={false}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />

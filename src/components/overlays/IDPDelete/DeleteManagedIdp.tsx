@@ -41,73 +41,64 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
   const { data } = useFetchIDPDetailQuery(id)
   const [removeIDP] = useRemoveIDPMutation()
   const [loading, setLoading] = useState(false)
-  const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(true)
+  const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setLoading(true)
     try {
       await removeIDP(id)
+      setLoading(false)
       dispatch(closeOverlay())
       success(t('deleteManagedIdp.success'))
-      setLoading(false)
       setEnableErrorMessage(false)
     } catch (err) {
-      setLoading(false)
       setEnableErrorMessage(true)
+      setLoading(false)
     }
   }
 
   return (
     <>
       <DialogHeader
-        title={t('deleteManagedIdp.title', {
-          idp: data?.displayName,
-        })}
+        title={t('deleteManagedIdp.title')}
         closeWithIcon={false}
         onCloseWithIcon={() => dispatch(closeOverlay())}
       />
       <DialogContent sx={{ padding: '0 110px 32px 110px' }}>
         <Typography
           variant="body2"
-          textAlign={'center'}
-          sx={{ lineHeight: '20px' }}
+          sx={{ textAlign: 'center', lineHeight: '20px' }}
         >
           {t('deleteManagedIdp.desc1')}
         </Typography>
         <Typography
           variant="body2"
-          textAlign={'center'}
-          sx={{ lineHeight: '20px', mb: 6 }}
+          sx={{ lineHeight: '20px', mb: 6, textAlign: 'center' }}
         >
           {t('deleteManagedIdp.desc2')}
         </Typography>
         <Typography
           variant="body2"
-          textAlign={'center'}
-          sx={{ lineHeight: '20px' }}
+          sx={{ lineHeight: '20px', textAlign: 'center' }}
         >
           {t('deleteManagedIdp.connectedCompanies')}
         </Typography>
         <Typography
           variant="body2"
-          textAlign={'center'}
-          sx={{ lineHeight: '20px', mb: 3 }}
+          sx={{ textAlign: 'center', lineHeight: '20px', mb: 3 }}
         >
-          {' '}
           {data?.displayName} - {data?.alias}
         </Typography>
         <Typography
           variant="body2"
-          textAlign={'center'}
-          sx={{ lineHeight: '20px' }}
+          sx={{ lineHeight: '20px', textAlign: 'center' }}
         >
           {t('deleteManagedIdp.desc3')}
         </Typography>
         {enableErrorMessage && (
           <Typography
             variant="body2"
-            sx={{ color: '#D91E18', mb: 2, mt: 2 }}
-            textAlign={'center'}
+            sx={{ textAlign: 'center', color: '#D91E18', mb: 2, mt: 2 }}
           >
             {t('deleteManagedIdp.error')}
           </Typography>
