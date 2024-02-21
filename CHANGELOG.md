@@ -15,8 +15,7 @@
 - Consent Pop-Up after registration
   - fix reappear overlay on every page even after consent updated
 - OSP IDP
-  - add disable & delete sub-menu's to managed IdPs
-
+  - add disable, enable & delete sub-menu's to managed IdPs
 
 ### Bugfix
 

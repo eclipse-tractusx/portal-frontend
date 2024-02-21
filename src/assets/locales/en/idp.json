@@ -133,8 +133,9 @@
     "desc2": "With the deactivation of the identity provider - all data will remain, however the access will be blocked. Please ensure to not lock out yourself/your organization. Below list gives an overview all all organizations registered at the IdP connection.",
     "connectedCompanies": "Connected/Linked companies:",
     "desc3": "The customer(s) will be informed of the deactivation. Communication of the planned deactivation from the IdP owner side is still strongly recommended.",
-    "success": "Managed IdP got disabled",
-    "error": "Something went wrong. Managed IdP did got not disabled."
+    "disableSuccess": "Managed IdP disabled successfully",
+    "enableSuccess": "Managed IdP enabled successfully",
+    "error": "Something went wrong. Managed IdP disable is not successful."
   },
   "deleteManagedIdp": {
     "title": "Delete Identity Provider",
@@ -142,7 +143,7 @@
     "desc2": "With the deletion of the identity provider - connected companies will get deleted or/and set to deleted. Validate the list of connected companies carefully and ensure that those are informed before proceeding.",
     "connectedCompanies": "Connected/Linked companies:",
     "desc3": "The process cannot be reversed.",
-    "success": "Managed IdP got disabled",
+    "success": "Managed IdP deleted successfully",
     "error": "Something went wrong. Managed IdP delete is not successful"
   },
   "users": {

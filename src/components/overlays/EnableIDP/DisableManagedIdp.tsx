@@ -33,23 +33,35 @@ import {
   useFetchIDPDetailQuery,
 } from 'features/admin/idpApiSlice'
 import { success } from 'services/NotifyService'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const DisableManagedIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const { data } = useFetchIDPDetailQuery(id)
+  const { data, refetch } = useFetchIDPDetailQuery(id)
   const [disableIDP] = useDisableIDPMutation()
   const [loading, setLoading] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
+  const enabled = data?.enabled
 
-  const doDisable = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  useEffect(() => {
+    refetch()
+  }, [])
+
+  const handleEnableDisable = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     setLoading(true)
     try {
-      await disableIDP({ id, enabled: false })
+      data && (await disableIDP({ id, enabled: !enabled }))
       dispatch(closeOverlay())
-      success(t('disableManagedIdp.success'))
+      success(
+        enabled
+          ? t('disableManagedIdp.disableSuccess')
+          : t('disableManagedIdp.enableSuccess')
+      )
       setEnableErrorMessage(false)
+      refetch()
     } catch (err) {
       setLoading(false)
       setEnableErrorMessage(true)
@@ -90,7 +102,6 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
           textAlign={'center'}
           sx={{ lineHeight: '20px', mb: 3 }}
         >
-          {' '}
           {data?.displayName}
         </Typography>
         <Typography
@@ -111,7 +122,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
           {t('action.cancel')}
         </Button>
 
@@ -130,8 +141,8 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" onClick={doDisable}>
-            {t('action.disable')}
+          <Button variant="contained" onClick={handleEnableDisable}>
+            {enabled ? t('action.disable') : t('action.enable')}
           </Button>
         )}
       </DialogActions>

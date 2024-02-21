@@ -40,20 +40,20 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
   const dispatch = useDispatch()
   const { data } = useFetchIDPDetailQuery(id)
   const [removeIDP] = useRemoveIDPMutation()
-  const [loading, setLoading] = useState(false)
+  const [loadingButton, setLoadingButton] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setLoading(true)
+    setLoadingButton(true)
     try {
       await removeIDP(id)
-      setLoading(false)
+      setLoadingButton(false)
       dispatch(closeOverlay())
       success(t('deleteManagedIdp.success'))
       setEnableErrorMessage(false)
     } catch (err) {
       setEnableErrorMessage(true)
-      setLoading(false)
+      setLoadingButton(false)
     }
   }
 
@@ -113,19 +113,19 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
         <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
           {t('action.cancel')}
         </Button>
-        {loading ? (
+        {loadingButton ? (
           <LoadingButton
-            loading
             color="primary"
-            helperText=""
             label=""
             helperTextColor="success"
-            loadIndicator={t('action.loading')}
             size="medium"
             sx={{ marginLeft: '10px' }}
             onButtonClick={() => {
               // do nothing
             }}
+            loadIndicator={t('action.loading')}
+            helperText=""
+            loading={loadingButton}
           />
         ) : (
           <Button variant="contained" onClick={handleDelete}>
