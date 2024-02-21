@@ -91,7 +91,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
           sx={{ lineHeight: '20px', mb: 3 }}
         >
           {' '}
-          {data?.displayName} - {data?.alias}
+          {data?.displayName}
         </Typography>
         <Typography
           variant="body2"
@@ -102,8 +102,8 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
         </Typography>
         {enableErrorMessage && (
           <Typography
-            variant="body2"
-            sx={{ color: '#D91E18', mb: 2, mt: 2 }}
+            variant="label3"
+            sx={{ color: '#D91E18', display: 'block', mt: 3 }}
             textAlign={'center'}
           >
             {t('disableManagedIdp.error')}

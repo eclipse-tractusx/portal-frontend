@@ -87,7 +87,7 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
           variant="body2"
           sx={{ textAlign: 'center', lineHeight: '20px', mb: 3 }}
         >
-          {data?.displayName} - {data?.alias}
+          {data?.displayName}
         </Typography>
         <Typography
           variant="body2"
@@ -97,31 +97,35 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
         </Typography>
         {enableErrorMessage && (
           <Typography
-            variant="body2"
-            sx={{ textAlign: 'center', color: '#D91E18', mb: 2, mt: 2 }}
+            variant="label3"
+            sx={{
+              textAlign: 'center',
+              color: '#D91E18',
+              mt: 3,
+              display: 'block',
+            }}
           >
             {t('deleteManagedIdp.error')}
           </Typography>
         )}
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
           {t('action.cancel')}
         </Button>
-
         {loading ? (
           <LoadingButton
+            loading
             color="primary"
             helperText=""
-            helperTextColor="success"
             label=""
+            helperTextColor="success"
             loadIndicator={t('action.loading')}
-            loading
             size="medium"
+            sx={{ marginLeft: '10px' }}
             onButtonClick={() => {
               // do nothing
             }}
-            sx={{ marginLeft: '10px' }}
           />
         ) : (
           <Button variant="contained" onClick={handleDelete}>
