@@ -29,10 +29,14 @@ import './CompanyCertificate.scss'
 import { ROLES } from 'types/Constants'
 import CompanyCertificateElements from './CompanyCertificateElements'
 import UserService from 'services/UserService'
-import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
-import { useState } from 'react'
+import {
+  type ComapnyCertificateData,
+  useFetchCertificatesQuery,
+} from 'features/companyCertification/companyCertificateApiSlice'
+import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import UploadCompanyCertificate from './UploadCompanyCerificate'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 interface TabButtonsType {
   buttonText: string
@@ -42,39 +46,56 @@ interface TabButtonsType {
 
 enum FilterType {
   ALL = 'All',
-  INACTIVE = 'Inactive',
-  ACTIVE = 'Active',
+  INACTIVE = 'INACTVIE',
+  ACTIVE = 'ACTIVE',
 }
 
 enum SortType {
-  NEW = 'new',
-  DATEDESC = 'DateDesc',
-  TITLE = 'title',
-  NAMEASC = 'NameAsc',
+  CertificateTypeAsc = 'CertificateTypeAsc',
+  CertificateTypeDesc = 'CertificateTypeDesc',
+  ExpiryDateAsc = 'ExpiryDateAsc',
+  ExpiryDateDesc = 'ExpiryDateDesc',
 }
 
 export default function CompanyCertificates(): JSX.Element {
   const { t } = useTranslation()
-
-  const { data } = useFetchCertificatesQuery()
-
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [sortOption, setSortOption] = useState<string>(SortType.NEW)
+  const [sortOption, setSortOption] = useState<string>(
+    SortType.CertificateTypeAsc
+  )
   const [filter, setFilter] = useState<string>(FilterType.ALL)
   const [uploadModal, setUploadModal] = useState<boolean>(false)
-
+  const { data, isFetching } = useFetchCertificatesQuery({
+    filter: filter === FilterType.ALL ? '' : filter,
+    sortOption,
+    page: 0,
+  })
+  const [elements, setElements] = useState<ComapnyCertificateData[]>([])
   const setBtnView = (e: React.MouseEvent<HTMLInputElement>): void => {
+    setElements([])
     setFilter(e.currentTarget.value)
   }
 
+  useEffect(() => {
+    if (data) setElements(data?.content)
+  }, [data])
+
   const sortOptions = [
     {
-      label: t('content.companyCertificate.sort.name'),
-      value: SortType.NEW,
+      label: t('content.companyCertificate.sort.nameasc'),
+      value: SortType.CertificateTypeAsc,
     },
     {
-      label: t('content.companyCertificate.sort.date'),
-      value: SortType.TITLE,
+      label: t('content.companyCertificate.sort.namedsc'),
+      value: SortType.CertificateTypeDesc,
+    },
+    {
+      label: t('content.companyCertificate.sort.dateasc'),
+      value: SortType.ExpiryDateAsc,
+    },
+    {
+      label: t('content.companyCertificate.sort.datedsc'),
+      value: SortType.ExpiryDateDesc,
     },
   ]
 
@@ -97,6 +118,7 @@ export default function CompanyCertificates(): JSX.Element {
   ]
 
   const handleSortOption = (value: string): void => {
+    setElements([])
     setSortOption(value)
   }
 
@@ -157,7 +179,26 @@ export default function CompanyCertificates(): JSX.Element {
               </Box>
             </Box>
           </Box>
-          {data != null && <CompanyCertificateElements data={data.content} />}
+          {isFetching && (
+            <Box
+              sx={{
+                display: 'flex',
+                alignContent: 'center',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <LoadingProgress />
+            </Box>
+          )}
+          {!isFetching && elements.length === 0 && (
+            <Typography variant="body1" className="noData">
+              {t('content.companyCertificate.noData')}
+            </Typography>
+          )}
+          {elements.length > 0 && (
+            <CompanyCertificateElements data={elements} />
+          )}
           {uploadModal && (
             <UploadCompanyCertificate
               handleClose={() => {

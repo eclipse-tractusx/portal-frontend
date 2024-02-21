@@ -53,6 +53,7 @@ export default function UploadCompanyCertificate({
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [selectedCertificateType, setSelectedCertificateType] =
     useState<CertificateTypes>()
+  const [date, setDate] = useState<DateType>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [dateError, setDateError] = useState<boolean>(false)
   const [uploadCertificate] = useUploadCertificateMutation()
@@ -73,12 +74,9 @@ export default function UploadCompanyCertificate({
     try {
       if (uploadedFile != null) {
         const data = {
-          certificateType:
-            selectedCertificateType != null
-              ? selectedCertificateType.certificateType
-              : '',
+          certificateType: selectedCertificateType?.certificateType ?? '',
           document: uploadedFile,
-          id: '',
+          expiryDate: date?.toISOString(),
         }
         await uploadCertificate(data).unwrap()
         handleClose()
@@ -189,6 +187,7 @@ export default function UploadCompanyCertificate({
               if (items != null && items < new Date()) {
                 setDateError(true)
               } else {
+                setDate(items)
                 setDateError(false)
               }
             }}

@@ -228,6 +228,14 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     'ProviderUserName',
   ]
 
+  const jsonHeaderList = [
+    'companyUserId',
+    'firstName',
+    'lastName',
+    'email',
+    'identityProviders',
+  ]
+
   const CSV_COLUMNS = useMemo(
     () => [
       { name: 'UserId', width: 37 },
@@ -245,15 +253,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
     if (!idpData || !userContent?.data) return
     setLoading(true)
     const postdata = new FormData()
-    const prettyVal = pretty ? 2 : undefined
-    const fileBlob =
-      format === FileFormat.CSV
-        ? json2csv(store2data(userContent.data))
-        : JSON.stringify(userContent.data, null, prettyVal)
     postdata.append(
       'document',
-      new Blob([fileBlob], {
-        type: format === FileFormat.CSV ? 'text/csv' : 'application/json',
+      new Blob([json2csv(store2data(userContent.data))], {
+        type: 'text/csv',
       })
     )
     fetch(
@@ -444,13 +447,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
           setUploadedFile(undefined)
           return
         }
-        const content = JSON.stringify(reader.result)
         if (format === FileFormat.JSON && typeof reader.result === 'string') {
           //if file is JSON
+          const content = JSON.stringify(json2csv(JSON.parse(reader.result)))
           const JSONData = JSON.parse(reader.result)
           const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
           if (
-            !csvHeaderList.reduce(
+            !jsonHeaderList.reduce(
               (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
               true
             )
@@ -463,8 +466,11 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             setUploadedFile(undefined)
             return
           }
+          setCsvData(csv2json(content))
+          storeData(JSON.stringify(csv2json(content)))
         } else {
           //if file is CSV
+          const content = JSON.stringify(reader.result)
           Papa.parse(acceptedFile, {
             skipEmptyLines: true,
             complete: function (results) {
@@ -487,13 +493,9 @@ export const AddusersIDP = ({ id }: { id: string }) => {
               }
             },
           })
+          setCsvData(csv2json(content))
+          storeData(JSON.stringify(csv2json(content)))
         }
-        setCsvData(csv2json(content))
-        storeData(
-          acceptedFile.type === 'text/csv'
-            ? JSON.stringify(csv2json(content))
-            : content
-        )
       }
       setUploadedFile(acceptedFile)
       reader.readAsText(acceptedFile)
