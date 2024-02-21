@@ -12,6 +12,8 @@
   - Connect listing page, upload certificate and details page to back end api
 - Delete ownuser Redirect URL
   - fixed logout redirect url issue
+- Consent Pop-Up after registration
+  - fix reappear overlay on every page even after consent updated
 
 ### Bugfix
 
