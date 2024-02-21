@@ -12,6 +12,8 @@
   - Connect listing page, upload certificate and details page to back end api
 - Delete ownuser Redirect URL
   - fixed logout redirect url issue
+- OSP IDP
+  - add disable & delete sub-menu's to managed IdPs
 
 ### Bugfix
 
