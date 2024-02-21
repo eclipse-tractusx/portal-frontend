@@ -49,6 +49,7 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
           variant="h6"
           sx={{
             fontSize: '18px',
+            textTransform: 'lowercase',
           }}
         >
           {t('content.companyWallet.subnavigation.title')}
@@ -65,6 +66,7 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
           size="medium"
           sx={{
             fontSize: '16px',
+            textTransform: 'lowercase',
           }}
         >
           <EastIcon sx={{ marginRight: '16px', fontSize: '15px' }} />
