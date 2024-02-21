@@ -32,8 +32,10 @@ import { useDeleteCompanyCertificateMutation } from 'features/companyCertificati
 
 export default function DeleteCompanyCertificateConfirmationOverlay({
   id,
+  title,
 }: {
   readonly id: string
+  readonly title: string
 }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -67,13 +69,18 @@ export default function DeleteCompanyCertificateConfirmationOverlay({
           },
         }}
       >
-        <DialogHeader title={t('content.companyCertificate.confirm.title')} />
+        <DialogHeader
+          title={t('content.companyCertificate.confirm.title').replace(
+            '{{name}}',
+            title
+          )}
+        />
         <DialogContent>
           {!success &&
             !error &&
             t('content.companyCertificate.confirm.description')}
           {success && t('content.companyCertificate.confirm.success')}
-          {error && t('content.companyCertificate.confirm.descerrorription')}
+          {error && t('content.companyCertificate.confirm.error')}
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={close}>
