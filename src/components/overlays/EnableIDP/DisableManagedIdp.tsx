@@ -30,15 +30,15 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import {
   useEnableIDPMutation,
-  useFetchIDPDetailQuery,
+  useFetchManagedIDPNetworkQuery,
 } from 'features/admin/idpApiSlice'
 import { success } from 'services/NotifyService'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export const DisableManagedIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const { data, refetch } = useFetchIDPDetailQuery(id)
+  const { data, refetch } = useFetchManagedIDPNetworkQuery(id)
   const [enableIDP] = useEnableIDPMutation()
   const [loading, setLoading] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
@@ -92,7 +92,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
           textAlign={'center'}
           sx={{ lineHeight: '20px', mb: 3 }}
         >
-          {data?.displayName}
+          {data?.connectedCompanies?.map((item) => item.companyName).join(', ')}
         </Typography>
         <Typography
           variant="body2"

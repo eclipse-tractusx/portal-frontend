@@ -159,6 +159,22 @@ const initialState: AddIDPStep1Type = {
   providerType: IDPProviderType.OWN,
 }
 
+export interface ManagedIDPNetworkType {
+  identityProviderId: string
+  alias: string
+  identityProviderCategoryId: string
+  identityProviderTypeId: string
+  displayName: string
+  redirectUrl: string
+  enabled: boolean
+  connectedCompanies?:
+    | {
+        companyId: string
+        companyName: string
+      }[]
+    | null
+}
+
 enum TAGS {
   IDP = 'idp',
 }
@@ -258,7 +274,7 @@ export const apiSlice = createApi({
       query: (useridp: UserIdentityProvider) =>
         `/api/administration/identityprovider/owncompany/users/${useridp.companyUserId}/identityprovider/${useridp.identityProviderId}`,
     }),
-    fetchManagedIDPNetwork: builder.query<Array<any>, string>({
+    fetchManagedIDPNetwork: builder.query<ManagedIDPNetworkType, string>({
       query: (id: string) =>
         `/api/administration/identityprovider/network/identityproviders/managed/${id}`,
     }),

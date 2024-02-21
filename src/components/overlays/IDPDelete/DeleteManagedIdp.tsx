@@ -29,7 +29,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import {
-  useFetchIDPDetailQuery,
+  useFetchManagedIDPNetworkQuery,
   useRemoveIDPMutation,
 } from 'features/admin/idpApiSlice'
 import { success } from 'services/NotifyService'
@@ -38,7 +38,7 @@ import { useState } from 'react'
 export const DeleteManagedIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
-  const { data } = useFetchIDPDetailQuery(id)
+  const { data } = useFetchManagedIDPNetworkQuery(id)
   const [removeIDP] = useRemoveIDPMutation()
   const [loadingButton, setLoadingButton] = useState(false)
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
@@ -87,7 +87,7 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
           variant="body2"
           sx={{ textAlign: 'center', lineHeight: '20px', mb: 3 }}
         >
-          {data?.displayName}
+          {data?.connectedCompanies?.map((item) => item.companyName).join(', ')}
         </Typography>
         <Typography
           variant="body2"
