@@ -276,7 +276,7 @@
     },
     "register": {
       "title": "Register Partner",
-      "desc": "{Description of the Register Partner process}",
+      "desc": "Please Note: This registration form only serves as a mock, that allows to register partners. In the future this functionality is not planned to exist further. The partner registration will then happen utilizing a technical user.",
       "error": "Error submitting registration",
       "success": "Registration successful"
     },
