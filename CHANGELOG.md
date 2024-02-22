@@ -14,6 +14,8 @@
   - fixed logout redirect url issue
 - Consent Pop-Up after registration
   - fix reappear overlay on every page even after consent updated
+- App Subscription
+  - fixed help links in configuration overlay
 
 ### Bugfix
 
