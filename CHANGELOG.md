@@ -4,6 +4,7 @@
 
 - User Management
   - Removed quotation marks from technical user details
+  - Removed quotation marks when technical user details is copied
 - Decline Status
   - added button in overlay to logout deom portal
 - Dataspace
@@ -16,6 +17,8 @@
   - fix reappear overlay on every page even after consent updated
 - App Subscription
   - fixed help links in configuration overlay
+- OSP IDP
+  - add disable, enable & delete sub-menu's to managed IdPs
 
 ### Bugfix
 
