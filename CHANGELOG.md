@@ -15,6 +15,8 @@
   - fixed logout redirect url issue
 - Consent Pop-Up after registration
   - fix reappear overlay on every page even after consent updated
+- OSP IDP
+  - add disable, enable & delete sub-menu's to managed IdPs
 
 ### Bugfix
 
