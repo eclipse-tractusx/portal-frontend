@@ -4,6 +4,7 @@
 
 - User Management
   - Removed quotation marks from technical user details
+  - Removed quotation marks when technical user details is copied
 - Decline Status
   - added button in overlay to logout deom portal
 - Dataspace
