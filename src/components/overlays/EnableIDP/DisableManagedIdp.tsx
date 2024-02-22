@@ -92,7 +92,9 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
           textAlign={'center'}
           sx={{ lineHeight: '20px', mb: 3 }}
         >
-          {data?.connectedCompanies?.map((item) => item.companyName).join(', ')}
+          {data?.connectedCompanies && data.connectedCompanies.length > 0
+            ? data.connectedCompanies.map((item) => item.companyName).join(', ')
+            : t('disableManagedIdp.none')}
         </Typography>
         <Typography
           variant="body2"

@@ -132,6 +132,7 @@
     "desc1": "Sie sind dabei, diesen IdP zu deaktivieren",
     "desc2": "Bei der Deaktivierung des Identitätsanbieters bleiben alle Daten erhalten, der Zugriff wird jedoch gesperrt. Bitte achten Sie darauf, sich selbst bzw. Ihre Organisation nicht auszusperren. Die folgende Liste gibt einen Überblick über alle Organisationen, die bei der IdP-Verbindung registriert sind.",
     "connectedCompanies": "Verbundene/verknüpfte Unternehmen:",
+    "none": "keiner",
     "desc3": "Die Kunden werden über die Deaktivierung informiert. Eine Kommunikation der geplanten Deaktivierung von der IdP Owner Seite wird trotzdem stark empfohlen.",
     "disableSuccess": "Verwalteter IdP erfolgreich deaktiviert",
     "enableSuccess": "VVerwalteter IdP erfolgreich aktiviert",
@@ -142,6 +143,7 @@
     "desc1": "Sie sind dabei, diesen IdP zu löschen. Mit der Löschung des Identity Providers werden verbundene Unternehmen gelöscht bzw. auf gelöscht gesetzt. Überprüfen Sie die Liste der verbundenen Unternehmen sorgfältig und stellen Sie sicher, dass diese informiert sind, bevor Sie fortfahren.",
     "desc2": "Mit der Löschung des Identity Providers werden verbundene Unternehmen gelöscht bzw. auf gelöscht gesetzt. Überprüfen Sie die Liste der verbundenen Unternehmen sorgfältig und stellen Sie sicher, dass diese informiert sind, bevor Sie fortfahren.",
     "connectedCompanies": "Verbundene/verknüpfte Unternehmen:",
+    "none": "keiner",
     "desc3": "Der Vorgang kann nicht rückgängig gemacht werden.",
     "success": "Verwalteter IdP erfolgreich gelöscht",
     "error": "Etwas ist schief gelaufen. Das Löschen des verwalteten IdP ist nicht erfolgreich."

@@ -87,7 +87,9 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
           variant="body2"
           sx={{ textAlign: 'center', lineHeight: '20px', mb: 3 }}
         >
-          {data?.connectedCompanies?.map((item) => item.companyName).join(', ')}
+          {data?.connectedCompanies && data.connectedCompanies.length > 0
+            ? data.connectedCompanies.map((item) => item.companyName).join(', ')
+            : t('disableManagedIdp.none')}
         </Typography>
         <Typography
           variant="body2"
