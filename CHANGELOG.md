@@ -6,11 +6,32 @@
   - Create new page for company subscriptions and add subscription management functionality
 - User Management
   - Removed quotation marks from technical user details
+  - Removed quotation marks when technical user details is copied
+- Decline Status
+  - added button in overlay to logout deom portal
+- Dataspace
+  - Updated dataspace provider links with quick links
+- Company Certificate
+  - Connect listing page, upload certificate and details page to back end api
+- Delete ownuser Redirect URL
+  - fixed logout redirect url issue
+- Consent Pop-Up after registration
+  - fix reappear overlay on every page even after consent updated
+- OSP IDP
+  - add disable, enable & delete sub-menu's to managed IdPs
 
 ### Bugfix
 
 - Idp User Invite Logic
   - fix add user overlay issue
+- Idp user upload
+  - fix blank page issue while uploading json file
+- Certificate Crendentials
+  - fix certificate ui as per backend response
+
+### Technical Support
+
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
 
 ## 1.8.0-RC5
 

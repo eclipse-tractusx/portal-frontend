@@ -655,11 +655,19 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_SETUP,
   },
   {
+    name: OVERLAYS.DISABLE_MANAGED_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
     name: OVERLAYS.ENABLE_IDP_SUCCESS,
     role: ROLES.IDP_SETUP,
   },
   {
     name: OVERLAYS.DELETE_IDP,
+    role: ROLES.IDP_DELETE,
+  },
+  {
+    name: OVERLAYS.DELETE_MANAGED_IDP,
     role: ROLES.IDP_DELETE,
   },
   {

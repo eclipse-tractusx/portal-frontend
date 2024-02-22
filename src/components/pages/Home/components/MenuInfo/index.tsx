@@ -62,7 +62,7 @@ export const MenuInfo = ({ main }: { main: Tree[] }) => {
     >
       <ClickAwayListener
         onClickAway={() => {
-          //do nothing
+          // visible && dispatch(setAppear({ MENU: !visible }))
         }}
       >
         <div className="MenuInfo">

@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -42,7 +41,7 @@ export type CompanyCertificateResponse = {
 export interface UploadDocumentType {
   certificateType: string
   document: File
-  id: string
+  expiryDate: string | undefined
 }
 
 export interface CertificateTypes {
@@ -50,29 +49,45 @@ export interface CertificateTypes {
   certificateVersion: string
 }
 
+export interface CertificateRequestType {
+  filter: string
+  sortOption: string
+  page: number
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/companyCertificate',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   tagTypes: ['certificate'],
   endpoints: (builder) => ({
-    fetchCertificates: builder.query<CompanyCertificateResponse, void>({
-      query: () => '/api/administration/companydata/companyCertificates',
+    fetchCertificates: builder.query<
+      CompanyCertificateResponse,
+      CertificateRequestType
+    >({
+      query: ({ filter, sortOption, page }) =>
+        `/api/administration/companydata/companyCertificates?page=${page}&certificateStatus=${filter}&sorting=${sortOption}`,
       providesTags: ['certificate'],
     }),
     fetchCertificateTypes: builder.query<CertificateTypes[], void>({
       query: () => '/api/administration/staticdata/certificateTypes',
     }),
-    fetchDocument: builder.query<File, string>({
-      query: (id: string) =>
-        `/api/administration/companydata/companyCertificates/${id}`,
+    fetchDocument: builder.query({
+      query: (documentId) => ({
+        url: `/api/administration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
     }),
     uploadCertificate: builder.mutation<void, UploadDocumentType>({
       query: (body) => {
         const formData = new FormData()
-        formData.append('credentialType', body.certificateType)
-        formData.append('document', body.document)
+        formData.append('CertificateType', body.certificateType)
+        formData.append('Document', body.document)
+        formData.append('ExpiryDate', body.expiryDate ?? '')
         return {
-          url: `api/administration/companydata/companyCertificate/${body.id}/document`,
+          url: 'api/administration/companydata/companyCertificate',
           method: 'POST',
           body: formData,
         }
@@ -88,6 +103,13 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ['certificate'],
     }),
+    fetchCompanyCertificate: builder.query<
+      Array<ComapnyCertificateData>,
+      string
+    >({
+      query: (bpn: string) =>
+        `/api/administration/companydata/company/${bpn}/companyCertificates`,
+    }),
   }),
 })
 
@@ -97,4 +119,5 @@ export const {
   useUploadCertificateMutation,
   useFetchCertificateTypesQuery,
   useDeleteCompanyCertificateMutation,
+  useFetchCompanyCertificateQuery,
 } = apiSlice
