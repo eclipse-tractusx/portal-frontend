@@ -29,7 +29,6 @@ import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import { Typography } from '@catena-x/portal-shared-components'
 import {
-  type CertificateResponse,
   type SSIDetailData,
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
@@ -52,7 +51,7 @@ export interface CertificateData {
 export const CertificateCard = ({
   credentialType,
   ssiDetailData,
-}: CertificateResponse) => {
+}: CertificateData) => {
   const { t } = useTranslation()
   const boxRef = useRef<HTMLDivElement>(null)
 

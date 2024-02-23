@@ -28,7 +28,7 @@ export interface CompanyMenuTypes {
 }
 
 interface MyCompanyLinkProps {
-  onSelect: (children: CompanyMenuTypes[]) => void
+  onSelect: (title: string, children: CompanyMenuTypes[]) => void
   companyMenu: CompanyMenuTypes[]
 }
 
@@ -43,7 +43,7 @@ export const MyCompanyLink = ({
         margin: '5px 0px',
       }}
       onClick={() => {
-        onSelect(companyMenu)
+        onSelect(t('pages.mycompany'), companyMenu)
       }}
     >
       <ListItem>

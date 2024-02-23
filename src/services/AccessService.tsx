@@ -74,6 +74,8 @@ import { OSPConsent } from 'components/overlays/OSPConsent'
 import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
 import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDetails'
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
+import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
+import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -178,10 +180,14 @@ export const getOverlay = (overlay: OverlayState) => {
       return <EnableIDPSuccess id={overlay.id} />
     case OVERLAYS.DISABLE_IDP:
       return <DisableIDP id={overlay.id} />
+    case OVERLAYS.DISABLE_MANAGED_IDP:
+      return <DisableManagedIDP id={overlay.id} />
     case OVERLAYS.ADDUSERS_IDP:
       return <AddusersIDP id={overlay.id} />
     case OVERLAYS.DELETE_IDP:
       return <DeleteIDP id={overlay.id} />
+    case OVERLAYS.DELETE_MANAGED_IDP:
+      return <DeleteManagedIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
       return <IDPTestRun />
     case OVERLAYS.REGISTER_OSP:
@@ -221,7 +227,12 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:
       return <CompanyCertificateDetails id={overlay.id} />
     case OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE:
-      return <DeleteCompanyCertificateConfirmationOverlay id={overlay.id} />
+      return (
+        <DeleteCompanyCertificateConfirmationOverlay
+          id={overlay.id}
+          title={overlay.title ?? ''}
+        />
+      )
     default:
       return <NotFound />
   }

@@ -1,6 +1,45 @@
 # Changelog
 
+## 1.8.0-RC6
+
+### Change
+
+- Registration Decline Status
+  - added button inside the overlay to enable user logout
+- Dataspace
+  - updated dataspace provider links with quick links
+
+### Feature
+
+- OSP Function - Identity Management
+  - added disable, enable & delete sub-menu's to managed IdPs
+- Company Certificate
+  - connected listing page, upload certificate and details page to back end api
+
+### Technical Support
+
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
+
+### Bugfix
+
+- IdP User Invite Logic
+  - fixed add user overlay issue
+- IdP user upload
+  - fixed blank page issue while uploading json file
+- Company Certificate for Credentials
+  - fixed certificate ui as per backend response
+- User Management - Technical User
+  - Removed quotation marks from technical user details
+- Delete OwnUser Redirect URL
+  - fixed logout redirect url
+- Consent Pop-Up after registration
+  - fixed reappear overlay on every page even after consent updated
+
 ## 1.8.0-RC5
+
+- Application Requests
+  - Fix filtering related issues
+  - Reset search list after clearing input text
 
 ### Bugfix
 
@@ -11,6 +50,12 @@
   - New UI navigation when menu has sub sections
 - Subnavigation
   - Show sub navigation button text in one line
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
+- App Management
+  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previous template
 - App Release Process - app role template file encoding updated
 
 ## 1.8.0-RC4
@@ -36,7 +81,7 @@
 - Service Release Process
   - fixed conformity document deletion issue after uploading document
 - Company roles
-  - Show standard library infomration based on the selected company role
+  - Show standard library information based on the selected company role
 - Invite Business Partner
   - fix loading button issue to invite multiple companies in succession
 
