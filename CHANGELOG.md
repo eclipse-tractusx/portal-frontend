@@ -17,6 +17,8 @@
   - fix reappear overlay on every page even after consent updated
 - OSP IDP
   - add disable, enable & delete sub-menu's to managed IdPs
+- Service subscription
+  - Changed 'Active Service Subscription' overlay section header for 'Technical User Details'
 
 ### Bugfix
 
