@@ -127,6 +127,27 @@
     "success": "IdP got disabled",
     "error": "Something went wrong. IdP got not disabled."
   },
+  "disableManagedIdp": {
+    "title": "Disable Identity Provider",
+    "desc1": "Your are about to disable this IdP",
+    "desc2": "With the deactivation of the identity provider - all data will remain, however the access will be blocked. Please ensure to not lock out yourself/your organization. Below list gives an overview all all organizations registered at the IdP connection.",
+    "connectedCompanies": "Connected/Linked companies :",
+    "none": "none",
+    "desc3": "The customer(s) will be informed of the deactivation. Communication of the planned deactivation from the IdP owner side is still strongly recommended.",
+    "disableSuccess": "Managed IdP disabled successfully",
+    "enableSuccess": "Managed IdP enabled successfully",
+    "error": "Something went wrong. Managed IdP disable is not successful."
+  },
+  "deleteManagedIdp": {
+    "title": "Delete Identity Provider",
+    "desc1": "Your are about to delete this IdP",
+    "desc2": "With the deletion of the identity provider - connected companies will get deleted or/and set to deleted. Validate the list of connected companies carefully and ensure that those are informed before proceeding.",
+    "connectedCompanies": "Connected/Linked companies :",
+    "none": "none",
+    "desc3": "The process cannot be reversed.",
+    "success": "Managed IdP deleted successfully",
+    "error": "Something went wrong. Managed IdP delete is not successful"
+  },
   "users": {
     "title": "Update/Migrate User Accounts",
     "subtitle": "Make sure users can continue working",
@@ -276,7 +297,7 @@
     },
     "register": {
       "title": "Register Partner",
-      "desc": "{Description of the Register Partner process}",
+      "desc": "Please Note: This registration form only serves as a mock, that allows to register partners. In the future this functionality is not planned to exist further. The partner registration will then happen utilizing a technical user.",
       "error": "Error submitting registration",
       "success": "Registration successful"
     },

@@ -29,7 +29,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { OSPConsentContent } from './OSPConsentContent'
 import { error, success } from 'services/NotifyService'
 import {
@@ -39,6 +39,7 @@ import {
   emptyPartnerRegistrationConsent,
   useFetchRegistrationApplicationsQuery,
   useFetchRegistrationApplicationDataQuery,
+  REGISTRATION_APPLICATION_STATUS,
 } from 'features/admin/networkApiSlice'
 
 export const OSPApplicationConsent = ({ id }: { id: string }) => {
@@ -130,7 +131,21 @@ export const OSPApplicationConsent = ({ id }: { id: string }) => {
 }
 
 export const OSPConsent = () => {
-  const applications = useFetchRegistrationApplicationsQuery().data
+  const dispatch = useDispatch()
+  const { data: applications, refetch } =
+    useFetchRegistrationApplicationsQuery()
+
+  useEffect(() => {
+    refetch()
+    if (
+      applications &&
+      applications?.length > 0 &&
+      applications[0].applicationStatus ===
+        REGISTRATION_APPLICATION_STATUS.SUBMITTED
+    )
+      dispatch(closeOverlay())
+  }, [refetch, applications])
+
   return applications && applications.length > 0 ? (
     <OSPApplicationConsent id={applications[0].applicationId} />
   ) : (
