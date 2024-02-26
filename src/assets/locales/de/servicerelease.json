@@ -177,6 +177,7 @@
       "subtitle": "for ",
       "description": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Activate the service subscription request.<br />2. Customer will be informed about the successfully activation<br />",
       "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Activate the service subscription request.<br />2. System - technical user (if needed) will get generated and credentials getting shared.<br />3. Configure your service with the specific technical user to ensure that the service is fully usable",
+      "technicalUserDetails": "Technische Benutzerdetails",
       "sectionHeader": "Technischer User Profil",
       "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
       "close": "Close",

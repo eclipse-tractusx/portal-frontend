@@ -2,6 +2,14 @@
 
 ## unreleased
 
+### Bugfix
+
+- Service subscription
+  - Changed 'Active Service Subscription' overlay section header for 'Technical User Details'
+- App Subscription
+  - fixed help links in configuration overlay
+- Notification
+  - fixed help link
 - Unhelpful scroll
   - fixed auto focus issue which was resulted in unhelpful scroll in Partner Network and Application Request page
 

@@ -229,7 +229,7 @@ export default function ActivateserviceSubscription({
                     }}
                   >
                     <Typography variant="h4" sx={{ marginBottom: '20px' }}>
-                      {t('serviceSubscription.register.sectionHeader')}
+                      {t('serviceSubscription.register.technicalUserDetails')}
                     </Typography>
 
                     <Typography variant="body2">
