@@ -1,5 +1,13 @@
 # Changelog
 
+## unreleased
+
+### Bugfix
+- App Subscription
+  - fixed help links in configuration overlay
+- Notification
+  - fixed help link
+
 ## 1.8.0-RC6
 
 ### Change
