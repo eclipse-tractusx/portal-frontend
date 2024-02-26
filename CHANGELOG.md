@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Unhelpful scroll
+  - fixed auto focus issue which was resulted in unhelpful scroll in Partner Network and Application Request page
+
 ## 1.8.0-RC6
 
 ### Change

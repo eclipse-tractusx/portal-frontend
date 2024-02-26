@@ -133,6 +133,7 @@ export const RequestList = ({
   return (
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
+        autoFocus={false}
         searchExpr={searchExpr}
         rowHeight={group !== AppFilterType.CLOSED ? 160 : 110}
         alignCell="start"

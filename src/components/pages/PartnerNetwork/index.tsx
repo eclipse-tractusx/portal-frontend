@@ -91,6 +91,7 @@ const PartnerNetwork = () => {
 
       <section id="identity-management-id">
         <PageLoadingTable<BusinessPartner, { expr: string }>
+          autoFocus={false}
           searchExpr={expr}
           toolbarVariant={'ultimate'}
           hasBorder={false}
