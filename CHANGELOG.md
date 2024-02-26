@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+### Bugfix
+
+- Service subscription
+  - Changed 'Active Service Subscription' overlay section header for 'Technical User Details'
+
 ## 1.8.0-RC6
 
 ### Change
