@@ -3,6 +3,7 @@
 ## unreleased
 
 ### Bugfix
+
 - App Subscription
   - fixed help links in configuration overlay
 - Notification
