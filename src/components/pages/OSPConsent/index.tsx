@@ -187,9 +187,7 @@ export const OSPConsent = () => {
                             agreement.name
                           )
                         }}
-                        onKeyDown={() => {
-                          // do nothing
-                        }}
+                        role="button"
                       >
                         {agreement.name}
                       </span>{' '}

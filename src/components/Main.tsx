@@ -51,6 +51,14 @@ export default function Main() {
   const { data, isLoading } = useFetchApplicationsQuery()
   const companyData = data?.[0]
 
+  const renderSection = () => {
+    return companyData?.applicationType === ApplicationType.INTERNAL ? (
+      <RegistrationStatus />
+    ) : (
+      <OSPConsent />
+    )
+  }
+
   useEffect(() => {
     const overlay = searchParams.get('overlay')?.split(':')
     overlay && dispatch(show(overlay[0] as OVERLAYS, overlay[1]))
@@ -75,13 +83,7 @@ export default function Main() {
       <>
         <Header main={[]} user={AccessService.userMenuReg()} />
         <MainSearchOverlay />
-        {location.pathname === '/logout' ? (
-          <Logout />
-        ) : companyData.applicationType === ApplicationType.INTERNAL ? (
-          <RegistrationStatus />
-        ) : (
-          <OSPConsent />
-        )}
+        {location.pathname === '/logout' ? <Logout /> : renderSection()}
         <Footer pages={AccessService.footerMenu()} />
         <MenuInfo main={[]} />
       </>
