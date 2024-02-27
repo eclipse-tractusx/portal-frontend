@@ -25,6 +25,11 @@ export type PaginationData = {
   page: number
 }
 
+export enum CompanyCertificateStatusEnum {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
 export type ComapnyCertificateData = {
   companyCertificateType: string
   companyCertificateStatus: string
@@ -109,6 +114,7 @@ export const apiSlice = createApi({
     >({
       query: (bpn: string) =>
         `/api/administration/companydata/company/${bpn}/companyCertificates`,
+      keepUnusedDataFor: 5,
     }),
   }),
 })

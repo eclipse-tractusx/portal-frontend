@@ -26,6 +26,13 @@ import type {
   BusinessPartner,
 } from 'features/partnerNetwork/types'
 import DetailGridRow from './DetailGridRow'
+import {
+  useFetchCompanyCertificateQuery,
+  useFetchDocumentQuery,
+} from 'features/companyCertification/companyCertificateApiSlice'
+import ArticleIcon from '@mui/icons-material/Article'
+import { useEffect, useState } from 'react'
+import { download } from 'utils/downloadUtils'
 
 const BusinessPartnerDetailContent = ({
   selectedRowBPN,
@@ -35,6 +42,22 @@ const BusinessPartnerDetailContent = ({
   const { t } = useTranslation()
   const theme = useTheme()
   const { spacing } = theme
+  const { data: certificates } = useFetchCompanyCertificateQuery(
+    selectedRowBPN.bpnl
+  )
+  const [documentId, setDocumentId] = useState<string>('')
+  const { data: document } = useFetchDocumentQuery(documentId, {
+    skip: documentId === '',
+  })
+
+  useEffect(() => {
+    if (document) {
+      const file = document.data
+      const fileType = document.headers.get('content-type')
+      download(file, fileType, documentId)
+    }
+  }, [document])
+
   return (
     <>
       {selectedRowBPN && (
@@ -133,6 +156,50 @@ const BusinessPartnerDetailContent = ({
                       value: identifier.value,
                     }}
                   />
+                )
+              }
+            )}
+            <Grid
+              xs={12}
+              item
+              style={{
+                backgroundColor: theme.palette.grey['100'],
+                padding: spacing(2),
+              }}
+            >
+              <Typography variant="h5">Certificates</Typography>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1} style={{ marginTop: 10 }}>
+            {certificates?.map(
+              (certificate: {
+                documentId: string
+                companyCertificateStatus: string
+                companyCertificateType: string
+              }) => {
+                return (
+                  <Grid item xs={6}>
+                    <Box
+                      key={certificate.documentId}
+                      onClick={() => {
+                        setDocumentId(certificate.documentId)
+                      }}
+                    >
+                      <Typography variant="body1">
+                        {certificate.companyCertificateType}
+                      </Typography>
+                      <ArticleIcon
+                        sx={{
+                          fontSize: '100px',
+                          cursor: 'pointer',
+                          color: '#CCCCCC',
+                          ':hover': {
+                            color: '#0f71cb',
+                          },
+                        }}
+                      />
+                    </Box>
+                  </Grid>
                 )
               }
             )}

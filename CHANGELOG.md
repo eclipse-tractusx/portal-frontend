@@ -17,6 +17,9 @@
   - fix reappear overlay on every page even after consent updated
 - OSP IDP
   - add disable, enable & delete sub-menu's to managed IdPs
+- Business Partner Details
+  - Show certificate information which are associated with the bpn number.
+  - Activate on hover and click action to download the corresponding certificate
 
 ### Bugfix
 
