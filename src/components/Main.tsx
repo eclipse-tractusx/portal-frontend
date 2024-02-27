@@ -75,12 +75,10 @@ export default function Main() {
       <>
         <Header main={[]} user={AccessService.userMenuReg()} />
         <MainSearchOverlay />
-        {companyData.applicationType === ApplicationType.INTERNAL ? (
-          window.location.pathname === '/logout' ? (
-            <Logout />
-          ) : (
-            <RegistrationStatus />
-          )
+        {location.pathname === '/logout' ? (
+          <Logout />
+        ) : companyData.applicationType === ApplicationType.INTERNAL ? (
+          <RegistrationStatus />
         ) : (
           <OSPConsent />
         )}
@@ -88,23 +86,6 @@ export default function Main() {
         <MenuInfo main={[]} />
       </>
     )
-    // if (companyData.applicationType === ApplicationType.INTERNAL) {
-    //   return (
-    //     <>
-    //       <Header main={[]} user={AccessService.userMenuReg()} />
-    //       <MainSearchOverlay />
-    //       {window.location.pathname === '/logout' ? (
-    //         <Logout />
-    //       ) : (
-    //         <RegistrationStatus />
-    //       )}
-    //       <Footer pages={AccessService.footerMenu()} />
-    //       <MenuInfo main={[]} />
-    //     </>
-    //   )
-    // } else return (
-    //   <OSPConsent />
-    // )
   }
 
   return (

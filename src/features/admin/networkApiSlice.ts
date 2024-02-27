@@ -167,21 +167,6 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [TAGS.PARTNER_REGISTRATION],
     }),
-    fetchRegistrationApplications: builder.query<
-      Array<RegistrationApplication>,
-      void
-    >({
-      query: () => '/api/registration/applications',
-      providesTags: [TAGS.REGISTRATION],
-    }),
-    fetchRegistrationApplicationData: builder.query<
-      PartnerRegistration,
-      string
-    >({
-      query: (applicationId: string) =>
-        `/api/registration/application/${applicationId}/registrationData`,
-      providesTags: [TAGS.REGISTRATION],
-    }),
     fetchCompanyRoleAgreementData: builder.query<
       CompanyRoleAgreementData,
       void
@@ -189,21 +174,10 @@ export const apiSlice = createApi({
       query: () => '/api/registration/companyRoleAgreementData',
       providesTags: [TAGS.REGISTRATION],
     }),
-    registerPartnerConsent: builder.mutation<void, PartnerRegistrationConsent>({
-      query: (data: PartnerRegistrationConsent) => ({
-        url: '/api/registration/Network/partnerRegistration/submit',
-        method: 'POST',
-        body: data,
-      }),
-      invalidatesTags: [TAGS.REGISTRATION],
-    }),
   }),
 })
 
 export const {
   useRegisterPartnerMutation,
-  useFetchRegistrationApplicationsQuery,
-  useFetchRegistrationApplicationDataQuery,
   useFetchCompanyRoleAgreementDataQuery,
-  useRegisterPartnerConsentMutation,
 } = apiSlice

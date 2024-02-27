@@ -76,6 +76,46 @@ export type CompanyDetails = {
   uniqueIdentifier: UniqueIdentifier[]
 }
 
+export type CompanyRoleData = {
+  companyRole: string
+  descriptions: {
+    de: string
+    en: string
+  }
+  agreementIds: string[]
+}
+
+export type AgreementData = {
+  agreementId: string
+  name: string
+  agreementLink: string
+  documentId: string
+}
+
+export type AgreementResponse = {
+  companyRoles: CompanyRoleData[]
+  agreements: AgreementData[]
+}
+
+export type AgreementConsents = {
+  companyRoles: string[]
+  agreements: {
+    agreementId: string
+    consentStatus: string
+  }[]
+}
+
+export type companyRole = {
+  companyRole: string
+  agreementIds: string[]
+  descriptions: { de: string; en: string }
+}
+
+export enum CONSENT_STATUS {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/registration',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -83,17 +123,23 @@ export const apiSlice = createApi({
     fetchApplications: builder.query<ApplicationResponse[], void>({
       query: () => '/api/registration/applications',
     }),
-    fetchCompanyDetailsWithAddress: builder.query<CompanyDetails, void>({
-      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
-        const applications = await fetchWithBQ('/api/registration/applications')
-        if (applications.error) return { error: applications.error }
-        const data = applications.data as ApplicationResponse[]
-        const companyData = await fetchWithBQ(
-          `/api/registration/application/${data[0].applicationId}/companyDetailsWithAddress`
-        )
-        console.log('companyData', companyData.data)
-        return { data: companyData.data as CompanyDetails }
-      },
+    fetchCompanyDetailsWithAddress: builder.query<CompanyDetails, string>({
+      query: (applicationId) =>
+        `/api/registration/application/${applicationId}/companyDetailsWithAddress`,
+    }),
+    fetchAgreementData: builder.query<AgreementResponse, void>({
+      query: () => '/api/registration/companyRoleAgreementData',
+    }),
+    fetchAgreementConsents: builder.query<AgreementConsents, string>({
+      query: (applicationId) =>
+        `/api/registration/application/${applicationId}/companyRoleAgreementConsents`,
+    }),
+    updateAgreementConsents: builder.mutation<void, AgreementConsents>({
+      query: (data) => ({
+        url: '/api/registration/Network/partnerRegistration/submit123',
+        method: 'POST',
+        body: data,
+      }),
     }),
   }),
 })
@@ -101,4 +147,7 @@ export const apiSlice = createApi({
 export const {
   useFetchApplicationsQuery,
   useFetchCompanyDetailsWithAddressQuery,
+  useFetchAgreementDataQuery,
+  useFetchAgreementConsentsQuery,
+  useUpdateAgreementConsentsMutation,
 } = apiSlice
