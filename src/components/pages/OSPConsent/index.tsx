@@ -39,12 +39,13 @@ import {
   useFetchAgreementConsentsQuery,
   useUpdateAgreementConsentsMutation,
   CONSENT_STATUS,
+  type AgreementData,
 } from 'features/registration/registrationApiSlice'
+import RegistrationStatusList from 'components/shared/frame/Header/RegistrationReviewOverlay/RegistrationReviewContent/RegistrationStatusList'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { download } from 'utils/downloadUtils'
 import './style.scss'
-import RegistrationStatusList from 'components/shared/frame/Header/RegistrationReviewOverlay/RegistrationReviewContent/RegistrationStatusList'
 
 export const OSPConsent = () => {
   const tm = useTranslation().t
@@ -154,6 +155,26 @@ export const OSPConsent = () => {
     }
   }
 
+  const renderTermsText = (agreement: AgreementData) => {
+    return (
+      <>
+        <b>{t('osp.companyRole.TermsAndCondSpan1')} </b>
+        <span
+          className={agreement.documentId ? 'agreement-span' : ''}
+          onClick={() => {
+            handleDownloadClick(agreement.documentId, agreement.name)
+          }}
+          onKeyDown={() => {
+            // do nothing
+          }}
+        >
+          {agreement.name}
+        </span>{' '}
+        <b>{t('osp.companyRole.TermsAndCondSpan3')}</b>
+      </>
+    )
+  }
+
   const renderTermsSection = (role: companyRole) => {
     if (role.agreementIds.length === 0) return null
     return (
@@ -176,26 +197,9 @@ export const OSPConsent = () => {
                   className="agreement-text"
                   key={agreement.agreementId}
                 >
-                  {agreement.documentId ? (
-                    <>
-                      <b>{t('osp.companyRole.TermsAndCondSpan1')} </b>
-                      <span
-                        className={agreement.documentId ? 'agreement-span' : ''}
-                        onClick={() => {
-                          handleDownloadClick(
-                            agreement.documentId,
-                            agreement.name
-                          )
-                        }}
-                        role="button"
-                      >
-                        {agreement.name}
-                      </span>{' '}
-                      <b>{t('osp.companyRole.TermsAndCondSpan3')}</b>
-                    </>
-                  ) : (
-                    agreement.name
-                  )}
+                  {agreement.documentId
+                    ? renderTermsText(agreement)
+                    : agreement.name}
                 </Typography>
               ))}
           </li>
