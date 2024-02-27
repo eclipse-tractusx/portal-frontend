@@ -167,6 +167,7 @@ export const OSPConsent = () => {
           onKeyDown={() => {
             // do nothing
           }}
+          role='presentation'
         >
           {agreement.name}
         </span>{' '}
