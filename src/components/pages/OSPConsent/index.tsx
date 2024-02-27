@@ -167,7 +167,6 @@ export const OSPConsent = () => {
           onKeyDown={() => {
             // do nothing
           }}
-          role='presentation'
         >
           {agreement.name}
         </span>{' '}
@@ -197,6 +196,7 @@ export const OSPConsent = () => {
                   variant={isMobile ? 'body3' : 'body2'}
                   className="agreement-text"
                   key={agreement.agreementId}
+                  role='presentation'
                 >
                   {agreement.documentId
                     ? renderTermsText(agreement)
