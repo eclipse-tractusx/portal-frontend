@@ -65,9 +65,9 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           },
         }}
         onClick={async () => {
-          const value = JSON.stringify(item.value) ?? ''
-          await navigator.clipboard.writeText(value)
-          setCopied(value)
+          const value = item.value ?? ''
+          await navigator.clipboard.writeText(value as string)
+          setCopied(value as string)
           setTimeout(() => {
             setCopied('')
           }, 1000)
