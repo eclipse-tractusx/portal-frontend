@@ -158,8 +158,9 @@ export const OSPConsent = () => {
   const renderTermsText = (agreement: AgreementData) => {
     return (
       <>
-        <b>{t('osp.companyRole.TermsAndCondSpan1')} </b>
-        <span
+        <strong>{t('osp.companyRole.TermsAndCondSpan1')} </strong>
+        <Typography
+          variant={isMobile ? 'body3' : 'body2'}
           className={agreement.documentId ? 'agreement-span' : ''}
           onClick={() => {
             handleDownloadClick(agreement.documentId, agreement.name)
@@ -169,8 +170,8 @@ export const OSPConsent = () => {
           }}
         >
           {agreement.name}
-        </span>{' '}
-        <b>{t('osp.companyRole.TermsAndCondSpan3')}</b>
+        </Typography>{' '}
+        <strong>{t('osp.companyRole.TermsAndCondSpan3')}</strong>
       </>
     )
   }
@@ -196,7 +197,6 @@ export const OSPConsent = () => {
                   variant={isMobile ? 'body3' : 'body2'}
                   className="agreement-text"
                   key={agreement.agreementId}
-                  role='presentation'
                 >
                   {agreement.documentId
                     ? renderTermsText(agreement)

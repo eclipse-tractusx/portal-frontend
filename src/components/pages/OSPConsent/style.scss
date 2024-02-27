@@ -104,14 +104,14 @@
           .agreement-li {
             list-style: none;
             font-size: 1rem;
-
+            display: flex;
+            .agreement-text {
+              display: flex;
+              margin-top: 10px;
+            }
             .agreement-check {
               margin-right: 10px;
             }
-          }
-
-          .agreement-text {
-            display: inline;
           }
 
           .agreement-span {
@@ -154,9 +154,11 @@
         margin: 75px 0 0;
         text-align: left;
       }
-
       .heading::after {
         display: none;
+      }
+      .agreement-text {
+        display: inline !important;
       }
       .registration-confirmation {
         text-align: left;
