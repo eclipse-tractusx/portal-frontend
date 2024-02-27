@@ -10,6 +10,8 @@
   - fixed help links in configuration overlay
 - Notification
   - fixed help link
+- Unhelpful scroll
+  - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
 
 ## 1.8.0-RC6
 
