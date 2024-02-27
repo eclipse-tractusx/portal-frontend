@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- Quick links
+  - updated package for shared components and removed unused code for quick links
+
 ### Bugfix
 
 - Service subscription

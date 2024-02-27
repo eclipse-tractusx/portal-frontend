@@ -21,7 +21,6 @@
 import type { ProviderProps } from '../StaticTypes'
 import { QuickLinks } from '@catena-x/portal-shared-components'
 import '../StaticTemplate.scss'
-import { Box } from '@mui/material'
 
 export default function LinkButtonGrid({
   provider,
@@ -32,9 +31,5 @@ export default function LinkButtonGrid({
 }) {
   const QuickLinksdata = provider.linksRow1.concat(provider.linksRow2)
 
-  return (
-    <Box sx={{ textAlign: 'center' }}>
-      <QuickLinks items={QuickLinksdata} />
-    </Box>
-  )
+  return <QuickLinks items={QuickLinksdata} alignButtons="center" />
 }
