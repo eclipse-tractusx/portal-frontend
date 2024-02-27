@@ -178,7 +178,7 @@ const BusinessPartnerDetailContent = ({
                 companyCertificateType: string
               }) => {
                 return (
-                  <Grid item xs={6}>
+                  <Grid item xs={6} key={certificate.documentId}>
                     <Box
                       key={certificate.documentId}
                       onClick={() => {
