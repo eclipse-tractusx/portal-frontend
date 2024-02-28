@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { ProviderProps } from '../StaticTypes'
 import { QuickLinks } from '@catena-x/portal-shared-components'
+import type { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 
 export default function LinkButtonGrid({
