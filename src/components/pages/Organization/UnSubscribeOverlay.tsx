@@ -152,19 +152,7 @@ const UnSubscribeOverlay = ({
               >
                 {t('global.actions.cancel')}
               </Button>
-              {!loading && (
-                <Button
-                  variant="contained"
-                  disabled={!checkBoxSelected}
-                  onClick={(e) => {
-                    handleConfirmClick(e)
-                  }}
-                  sx={{ textTransform: 'none' }}
-                >
-                  {t('content.organization.unsubscribe.buttonText')}
-                </Button>
-              )}
-              {loading && (
+              {loading ? (
                 <LoadingButton
                   color="primary"
                   helperText=""
@@ -180,6 +168,17 @@ const UnSubscribeOverlay = ({
                   }}
                   sx={{ ml: 2, textTransform: 'none' }}
                 />
+              ) : (
+                <Button
+                  variant="contained"
+                  disabled={!checkBoxSelected}
+                  onClick={(e) => {
+                    handleConfirmClick(e)
+                  }}
+                  sx={{ textTransform: 'none' }}
+                >
+                  {t('content.organization.unsubscribe.buttonText')}
+                </Button>
               )}
             </Box>
           </DialogActions>
