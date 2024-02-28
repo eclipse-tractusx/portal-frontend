@@ -39,6 +39,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import type i18next from 'i18next'
 import { Box } from '@mui/material'
+import './CompanySubscriptions.scss'
 
 export const CompanySubscriptionsTableColumns = (
   t: typeof i18next.t,
@@ -52,11 +53,8 @@ export const CompanySubscriptionsTableColumns = (
         <Button
           variant="text"
           startIcon={<CheckCircleOutlineIcon />}
-          sx={{
-            textTransform: 'none',
-            color: '#B3CB2D',
-            pointerEvents: 'none',
-          }}
+          sx={{ color: '#B3CB2D' }}
+          className="statusButton"
           size="small"
         >
           {t('content.companySubscriptions.subscribed')}
@@ -66,13 +64,10 @@ export const CompanySubscriptionsTableColumns = (
       return (
         <Button
           startIcon={<HourglassEmptyIcon />}
-          sx={{
-            textTransform: 'none',
-            color: '#FFA600',
-            pointerEvents: 'none',
-          }}
+          sx={{ color: '#FFA600' }}
           size="small"
           variant="text"
+          className="statusButton"
         >
           {t('content.companySubscriptions.requested')}
         </Button>
@@ -82,12 +77,9 @@ export const CompanySubscriptionsTableColumns = (
         <Button
           variant="text"
           startIcon={<UnpublishedIcon />}
-          sx={{
-            textTransform: 'none',
-            color: '#D91E18',
-            pointerEvents: 'none',
-          }}
+          sx={{ color: '#D91E18' }}
           size="small"
+          className="statusButton"
         >
           {t('content.companySubscriptions.declined')}
         </Button>
@@ -145,6 +137,8 @@ export const CompanySubscriptionsTableColumns = (
       field: 'details',
       headerName: t('content.companySubscriptions.table.details'),
       flex: 1,
+      disableColumnMenu: true,
+      sortable: false,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => {
         return (
           <IconButton
@@ -165,6 +159,8 @@ export const CompanySubscriptionsTableColumns = (
       field: 'action',
       headerName: t('content.companySubscriptions.table.action'),
       flex: 2,
+      disableColumnMenu: true,
+      sortable: false,
       renderCell: ({ row }: { row: SubscribedActiveApps }) =>
         row.status === SubscriptionStatus.ACTIVE && (
           <Button

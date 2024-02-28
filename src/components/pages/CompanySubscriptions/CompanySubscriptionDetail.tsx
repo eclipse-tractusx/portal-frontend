@@ -34,13 +34,13 @@ import { useEffect, useState } from 'react'
 import CommonService from 'services/CommonService'
 import { Box } from '@mui/material'
 import { PAGES } from 'types/Constants'
-import './Companysubscriptions.scss'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import { SubscriptionStatus } from 'features/apps/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { getApiBase } from 'services/EnvironmentService'
+import './CompanySubscriptions.scss'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
