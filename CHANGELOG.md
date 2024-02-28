@@ -15,6 +15,9 @@
   - fixed help link
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
+- Business Partner Details
+  - Show certificate information which are associated with the bpn number.
+  - Activate on hover and click action to download the corresponding certificate
 
 ## 1.8.0-RC6
 
