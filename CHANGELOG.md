@@ -12,6 +12,8 @@
   - fixed help link
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
+- App User
+  - fixed roles display issue
 
 ## 1.8.0-RC6
 
