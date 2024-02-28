@@ -151,7 +151,6 @@ export const UpdateIDPContent = ({
 
   const checkData = (key: string, value: string | undefined): boolean => {
     const current: IHashMap<string> = { ...formData }
-    console.log('current', current)
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
     const formValid =
@@ -160,8 +159,6 @@ export const UpdateIDPContent = ({
       current.clientId &&
       current.secret &&
       current.clientAuthMethod
-
-    console.log('formValid', formValid)
     onValid(
       formValid
         ? {
