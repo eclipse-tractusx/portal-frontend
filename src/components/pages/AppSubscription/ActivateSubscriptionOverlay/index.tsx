@@ -48,9 +48,9 @@ import { Link } from 'react-router-dom'
 import { closeOverlay } from 'features/control/overlay'
 
 const TentantHelpURL =
-  '/documentation/?path=user%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
+  '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F04.+Subscription+Activation+%28App+Provider%29.md'
 const ProfileHelpURL =
-  '/documentation/?path=user%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
+  '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F04.+Subscription+Activation+%28App+Provider%29.md'
 
 interface ActivateSubscriptionProps {
   openDialog: boolean

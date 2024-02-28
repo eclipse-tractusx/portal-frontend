@@ -4,8 +4,14 @@
 
 ### Bugfix
 
-- Subscription Management Board
-  - Create new page for company subscriptions and add subscription management functionality
+- Service subscription
+  - Changed 'Active Service Subscription' overlay section header for 'Technical User Details'
+- App Subscription
+  - fixed help links in configuration overlay
+- Notification
+  - fixed help link
+- Unhelpful scroll
+  - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
 
 ## 1.8.0-RC6
 
