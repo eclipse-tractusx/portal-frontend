@@ -11,6 +11,11 @@
 - Notification
   - fixed help link
 
+### Feature
+
+- IDP Config
+  - Implementation of displaying metadata details
+
 ## 1.8.0-RC6
 
 ### Change

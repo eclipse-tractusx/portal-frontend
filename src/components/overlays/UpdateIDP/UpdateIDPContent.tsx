@@ -98,6 +98,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="metadataUrl"
           label={t('field.metadata.name')}
+          value={idp.oidc?.metadataUrl}
           validate={(expr) => isWellknownMetadata(expr)}
           hint={t('field.metadata.hint')}
           debounceTime={0}
@@ -108,6 +109,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="clientId"
           label={t('field.clientId.name')}
+          value={idp.oidc?.clientId}
           hint={t('field.clientId.hint')}
           validate={isIDPClientID}
           onValid={onChange}
@@ -117,6 +119,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="secret"
           label={t('field.clientSecret.name')}
+          value={idp.oidc?.hasClientSecret ? '******' : ''}
           hint={t('field.clientSecret.hint')}
           type={InputType.password}
           validate={isIDPClientSecret}
@@ -148,6 +151,7 @@ export const UpdateIDPContent = ({
 
   const checkData = (key: string, value: string | undefined): boolean => {
     const current: IHashMap<string> = { ...formData }
+    console.log('current', current)
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
     const formValid =
@@ -156,6 +160,8 @@ export const UpdateIDPContent = ({
       current.clientId &&
       current.secret &&
       current.clientAuthMethod
+
+    console.log('formValid', formValid)
     onValid(
       formValid
         ? {
