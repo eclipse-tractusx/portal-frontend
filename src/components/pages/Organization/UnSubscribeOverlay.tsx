@@ -34,6 +34,7 @@ import {
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
 import './Organization.scss'
+import { SubscriptionStatus } from 'features/apps/types'
 
 interface UnSubscribeOverlayProps {
   openDialog?: boolean
@@ -95,7 +96,10 @@ const UnSubscribeOverlay = ({
                     ],
                     [
                       t('content.organization.unsubscribe.table.status'),
-                      data?.offerSubscriptionStatus ?? '',
+                      data?.offerSubscriptionStatus ===
+                      SubscriptionStatus.ACTIVE
+                        ? t('content.organization.unsubscribe.subscribed')
+                        : '',
                     ],
                     [
                       t('content.organization.unsubscribe.table.connector'),

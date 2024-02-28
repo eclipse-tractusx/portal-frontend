@@ -405,6 +405,7 @@
           "connector": "Connector:",
           "techUser": "Technical User:"
         },
+        "subscribed": "Subscribed",
         "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
         "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
         "buttonText": "Unsubscribe",

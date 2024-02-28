@@ -406,6 +406,7 @@
           "connector": "Verbinder:",
           "techUser": "Technischer Benutzer:"
         },
+        "subscribed": "Gezeichnet",
         "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
         "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
         "buttonText": "Abbestellen",
