@@ -1,47 +1,47 @@
 {
   "osp": {
-    "heading": "Registration Summary",
-    "companyHeading": "Company Details",
-    "companyMessage": "Below you can find your company registration details shared by your onboarding provider. Please review the details and proceed to the Company Role selection below before submitting your registration.",
-    "companyName": "Company Name",
+    "heading": "Registrierungszusammenfassung",
+    "companyHeading": "Firmendetails",
+    "companyMessage": "Unten finden Sie die Registrierungsdaten Ihres Unternehmens, die Ihnen von Ihrem Onboarding-Anbieter mitgeteilt wurden. Bitte überprüfen Sie die Details und fahren Sie mit der Auswahl der Unternehmensrolle unten fort, bevor Sie Ihre Registrierung absenden.",
+    "companyName": "Name der Firma",
     "bmw": "BMW AG",
-    "street": "Street & Number",
-    "zip": "ZIP",
-    "city": "City",
+    "street": "Hausnummer",
+    "zip": "Reißverschluss",
+    "city": "Stadt",
     "region": "Region",
-    "country": "Country",
+    "country": "Land",
     "companyRole": {
-      "title": "Role Selection",
-      "subTitle": "Note: Please select at least one role and accept the associated terms and conditions.",
-      "TermsAndCondSpan1": "Yes, I agree to the",
-      "TermsAndCondSpan2": "terms and conditions",
-      "TermsAndCondSpan3": "of the selected role.",
-      "TermsAndCond2Span1": "Yes, I agree to the",
-      "TermsAndCond2Span2": "security regulations",
-      "TermsAndCond2Span3": "of the selected role.",
-      "ACTIVE_PARTICIPANT": "Active Participant",
-      "APP_PROVIDER": "App Provider",
-      "SERVICE_PROVIDER": "Service Provider",
-      "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
-      "NoRolesError1": "An error occured. No roles found.",
-      "NoRolesError2": " or contact the system administrator.",
-      "NoRolesError": "An error occured. No roles found. Please {{ retry }} or contact the system administrator.",
-      "Please": "Please",
-      "Retry": "retry"
+      "title": "Rollenauswahl",
+      "subTitle": "Hinweis: Bitte wählen Sie mindestens eine Rolle aus und akzeptieren Sie die zugehörigen Geschäftsbedingungen.",
+      "TermsAndCondSpan1": "Ja, ich stimme dem zu",
+      "TermsAndCondSpan2": "Geschäftsbedingungen",
+      "TermsAndCondSpan3": "der ausgewählten Rolle.",
+      "TermsAndCond2Span1": "Ja, ich stimme dem zu",
+      "TermsAndCond2Span2": "Sicherheitsvorschriften",
+      "TermsAndCond2Span3": "der ausgewählten Rolle.",
+      "ACTIVE_PARTICIPANT": "Aktiver Teilnehmer",
+      "APP_PROVIDER": "App-Anbieter",
+      "SERVICE_PROVIDER": "Dienstleister",
+      "ONBOARDING_SERVICE_PROVIDER": "Onboarding-Dienstleister",
+      "NoRolesError1": "Es ist ein Fehler aufgetreten. Keine Rollen gefunden.",
+      "NoRolesError2": " oder wenden Sie sich an den Systemadministrator.",
+      "NoRolesError": "Es ist ein Fehler aufgetreten. Keine Rollen gefunden. Bitte {{ retry }} oder wenden Sie sich an den Systemadministrator.",
+      "Please": "Bitte",
+      "Retry": "wiederholen"
     },
     "success": {
-      "heading": "Congratulations, your registration  has been successfull!",
-      "description": "We will now validate your registration.<br/> The process might take a couple of hours, in the meantime you might wanna check <br/> out some introduction pages already, but note that the complete dataspace <br/> functions will only be available as soon as the registration is successfully finished. <br/> If you are corrious about the registration state, you can find the current status<br/>below.",
+      "heading": "Herzlichen Glückwunsch, Ihre Registrierung war erfolgreich!",
+      "description": "Wir werden Ihre Registrierung nun validieren.<br/> Der Vorgang kann ein paar Stunden dauern. In der Zwischenzeit sollten Sie sich vielleicht bereits einige Einführungsseiten <br/> ansehen, beachten Sie jedoch, dass der gesamte Datenbereich nur <br/> funktioniert verfügbar, sobald die Registrierung erfolgreich abgeschlossen wurde. <br/> Wenn Sie Fragen zum Registrierungsstatus haben, finden Sie den aktuellen Status<br/>unten.",
       "stepTitle": "Status:",
-      "homepage": "Get to home"
+      "homepage": "Komm nach Hause"
     },
     "error": {
-      "heading": "Error 500 : Server Error",
-      "description": "Something went wrong on our side. We’re experiencing technical difficulities.<br/>Please try the call once again in a couple of moments. If the problem persists, feel<br/>free to reach out to our support team for assistance.<br/><br/>All details and possible retriggers are shared below:",
-      "retry": "Retry confirmation",
-      "back": "Back to previous page"
+      "heading": "Fehler 500: Serverfehler",
+      "description": "Auf unserer Seite ist etwas schief gelaufen. Es liegen technische Schwierigkeiten vor.<br/>Bitte versuchen Sie es in ein paar Augenblicken noch einmal. Wenn das Problem weiterhin besteht, wenden Sie sich bitte an unser Support-Team.<br/><br/>Alle Details und mögliche erneute Auslöser finden Sie unten:",
+      "retry": "Bestätigung erneut versuchen",
+      "back": "zurück zur vorherigen Seite"
     },
-    "submitError": "Please agree to all Terms & Conditions of the selected company role(s) before proceeding to the next step.",
-    "helpText": "If you have any questions regarding your registration please contact our helpdesk:<br /> help@catena-x.com <br /> or contact the platform administrator: <br />“xxx.xxxx@catena-x-operator.net"
+    "submitError": "Bitte stimmen Sie allen Geschäftsbedingungen der ausgewählten Unternehmensrolle(n) zu, bevor Sie mit dem nächsten Schritt fortfahren.",
+    "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:<br /> help@catena-x.com <br /> oder an den Plattformadministrator: <br />“xxx.xxxx@catena-x-operator.net"
   }
 }

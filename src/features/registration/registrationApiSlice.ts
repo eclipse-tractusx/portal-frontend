@@ -136,7 +136,7 @@ export const apiSlice = createApi({
     }),
     updateAgreementConsents: builder.mutation<void, AgreementConsents>({
       query: (data) => ({
-        url: '/api/registration/Network/partnerRegistration/submit123',
+        url: '/api/registration/Network/partnerRegistration/submit',
         method: 'POST',
         body: data,
       }),
