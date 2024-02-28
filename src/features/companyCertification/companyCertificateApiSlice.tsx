@@ -25,11 +25,6 @@ export type PaginationData = {
   page: number
 }
 
-export enum CompanyCertificateStatusEnum {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-}
-
 export type ComapnyCertificateData = {
   companyCertificateType: string
   companyCertificateStatus: string
