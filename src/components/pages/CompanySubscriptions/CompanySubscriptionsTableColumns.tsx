@@ -36,6 +36,7 @@ import { useNavigate } from 'react-router'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import type i18next from 'i18next'
 import { Box } from '@mui/material'
 
@@ -51,7 +52,11 @@ export const CompanySubscriptionsTableColumns = (
         <Button
           variant="text"
           startIcon={<CheckCircleOutlineIcon />}
-          sx={{ color: '#B3CB2D', pointerEvents: 'none' }}
+          sx={{
+            textTransform: 'none',
+            color: '#B3CB2D',
+            pointerEvents: 'none',
+          }}
           size="small"
         >
           {t('content.companySubscriptions.subscribed')}
@@ -60,14 +65,14 @@ export const CompanySubscriptionsTableColumns = (
     else if (status === SubscriptionStatus.PENDING)
       return (
         <Button
-          variant="outlined"
+          startIcon={<HourglassEmptyIcon />}
           sx={{
+            textTransform: 'none',
             color: '#FFA600',
-            borderColor: '#FFA600',
             pointerEvents: 'none',
-            ml: 1,
           }}
           size="small"
+          variant="text"
         >
           {t('content.companySubscriptions.requested')}
         </Button>
@@ -77,7 +82,11 @@ export const CompanySubscriptionsTableColumns = (
         <Button
           variant="text"
           startIcon={<UnpublishedIcon />}
-          sx={{ color: '#D91E18', pointerEvents: 'none' }}
+          sx={{
+            textTransform: 'none',
+            color: '#D91E18',
+            pointerEvents: 'none',
+          }}
           size="small"
         >
           {t('content.companySubscriptions.declined')}
@@ -89,7 +98,10 @@ export const CompanySubscriptionsTableColumns = (
     {
       field: 'image',
       headerName: t('content.companySubscriptions.table.appIcon'),
-      flex: 2,
+      flex: 1,
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
         <Image
           src={
@@ -132,7 +144,7 @@ export const CompanySubscriptionsTableColumns = (
     {
       field: 'details',
       headerName: t('content.companySubscriptions.table.details'),
-      flex: 2,
+      flex: 1,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => {
         return (
           <IconButton
@@ -158,6 +170,7 @@ export const CompanySubscriptionsTableColumns = (
           <Button
             variant="contained"
             size="small"
+            sx={{ textTransform: 'none' }}
             onClick={(e) => {
               handleOverlay?.(row, true)
               console.log('row.offerId', row.offerId)

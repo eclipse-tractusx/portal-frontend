@@ -37,6 +37,7 @@ import { PAGES } from 'types/Constants'
 import './Companysubscriptions.scss'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import { SubscriptionStatus } from 'features/apps/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { getApiBase } from 'services/EnvironmentService'
@@ -81,6 +82,7 @@ export default function CompanySubscriptionDetail() {
             backgroundColor: '#B3CB2D',
             pointerEvents: 'none',
             float: 'right',
+            textTransform: 'none',
           }}
         >
           {t('content.companySubscriptions.subscribed')}
@@ -95,7 +97,9 @@ export default function CompanySubscriptionDetail() {
             pointerEvents: 'none',
             float: 'right',
             borderColor: '#FFA600',
+            textTransform: 'none',
           }}
+          startIcon={<HourglassEmptyIcon />}
         >
           {t('content.companySubscriptions.requested')}
         </Button>
@@ -109,6 +113,7 @@ export default function CompanySubscriptionDetail() {
             backgroundColor: '#D91E18',
             pointerEvents: 'none',
             float: 'right',
+            textTransform: 'none',
           }}
         >
           {t('content.companySubscriptions.declined')}

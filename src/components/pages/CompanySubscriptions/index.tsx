@@ -125,7 +125,7 @@ export default function CompanySubscriptions() {
     setShowUnsubscribeOverlay(enable)
     setSubscriptionId(row.subscriptionId)
   }
-  
+
   const companySubscriptionsCols = CompanySubscriptionsTableColumns(
     t,
     handleOverlay
