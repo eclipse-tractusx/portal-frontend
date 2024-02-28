@@ -18,10 +18,15 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { LogoGrayData } from '@catena-x/portal-shared-components'
+import {
+  LogoGrayData,
+  type PaginFetchArgs,
+  type PaginResult,
+} from '@catena-x/portal-shared-components'
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
+import { PAGE_SIZE } from 'types/Constants'
 import type {
   AppDetails,
   AppMarketplaceApp,
@@ -35,6 +40,7 @@ import type {
   ActiveSubscription,
   ActiveSubscriptionDetails,
   FetchSubscriptionAppQueryType,
+  SubscribedActiveApps,
 } from './types'
 
 export const apiSlice = createApi({
@@ -145,6 +151,14 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    fetchSubscribedActiveAppsStatus: builder.query<
+      PaginResult<SubscribedActiveApps>,
+      PaginFetchArgs
+    >({
+      query: (fetchArgs) => ({
+        url: `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
+      }),
+    }),
   }),
 })
 
@@ -162,4 +176,5 @@ export const {
   useFetchSubscribedActiveAppsQuery,
   useFetchSubscriptionAppQuery,
   useUnsubscribeAppMutation,
+  useFetchSubscribedActiveAppsStatusQuery,
 } = apiSlice

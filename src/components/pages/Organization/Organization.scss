@@ -42,14 +42,6 @@
       justify-content: center;
       height: 50vh;
     }
-    .organization-subscriptions {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 15px;
-      border-bottom: 1px solid rgb(220, 220, 220);
-    }
     .organization-error {
       padding: 10px;
     }
@@ -87,16 +79,22 @@
   }
 }
 
-.noteBox {
-  margin: 0px 50px;
-  border: 1px solid #e3e3e3;
-  background: #e3e3e3;
-}
+.unsubscribeOverlay {
+  .MuiBox-root:first-child {
+    padding-bottom: 0;
+  }
 
-.noteText {
-  padding: 20px;
-}
+  .MuiTypography-h4 {
+    text-align: left !important;
+    padding-bottom: 24px;
+  }
 
-.detailsTable {
-  margin: 50px 50px;
+  .MuiDialogTitle-root {
+    text-align: left !important;
+    padding-bottom: 12px;
+  }
+
+  table tr:nth-child(2) td:nth-child(2) > div > a {
+    color: #00aa55 !important;
+  }
 }
