@@ -148,6 +148,7 @@ const UnSubscribeOverlay = ({
                 onClick={(e) => {
                   handleOverlayClose(e)
                 }}
+                sx={{ textTransform: 'none' }}
               >
                 {t('global.actions.cancel')}
               </Button>
@@ -158,6 +159,7 @@ const UnSubscribeOverlay = ({
                   onClick={(e) => {
                     handleConfirmClick(e)
                   }}
+                  sx={{ textTransform: 'none' }}
                 >
                   {t('content.organization.unsubscribe.buttonText')}
                 </Button>
@@ -176,7 +178,7 @@ const UnSubscribeOverlay = ({
                   onButtonClick={() => {
                     // do nothing
                   }}
-                  sx={{ ml: 2 }}
+                  sx={{ ml: 2, textTransform: 'none' }}
                 />
               )}
             </Box>
