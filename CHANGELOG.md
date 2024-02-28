@@ -14,6 +14,9 @@
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
 - IDP Config
   - fixed textual changes in enable success screen
+- Business Partner Details
+  - Show certificate information which are associated with the bpn number.
+  - Activate on hover and click action to download the corresponding certificate
 
 ## 1.8.0-RC6
 
