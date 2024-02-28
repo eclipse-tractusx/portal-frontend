@@ -18,12 +18,8 @@
  ********************************************************************************/
 
 import {
-  IconButton,
-  LogoGrayData,
   PageLoadingTable,
   Typography,
-  Image,
-  Button,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import {
@@ -35,21 +31,13 @@ import { isName } from 'types/Patterns'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updates'
-import { getApiBase } from 'services/EnvironmentService'
-import { fetchImageWithToken } from 'services/ImageService'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { useNavigate } from 'react-router'
-import { PAGES } from 'types/Constants'
 import UnSubscribeOverlay from '../Organization/UnSubscribeOverlay'
 import { success } from 'services/NotifyService'
-import { Box } from '@mui/material'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import UnpublishedIcon from '@mui/icons-material/Unpublished'
 import {
   CompanySubscriptionFilterType,
   type SubscribedActiveApps,
-  SubscriptionStatus,
 } from 'features/apps/types'
+import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -59,7 +47,6 @@ interface FetchHookArgsType {
 export default function CompanySubscriptions() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [refresh, setRefresh] = useState(0)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
@@ -133,131 +120,16 @@ export default function CompanySubscriptions() {
       })
   }
 
-  const renderStatusButton = (status: string) => {
-    if (status === SubscriptionStatus.ACTIVE)
-      return (
-        <Button
-          variant="text"
-          startIcon={<CheckCircleOutlineIcon />}
-          sx={{ color: '#B3CB2D', pointerEvents: 'none' }}
-          size="small"
-        >
-          {t('content.companySubscriptions.subscribed')}
-        </Button>
-      )
-    else if (status === SubscriptionStatus.PENDING)
-      return (
-        <Button
-          variant="outlined"
-          sx={{
-            color: '#FFA600',
-            borderColor: '#FFA600',
-            pointerEvents: 'none',
-            ml: 1,
-          }}
-          size="small"
-        >
-          {t('content.companySubscriptions.requested')}
-        </Button>
-      )
-    else
-      return (
-        <Button
-          variant="text"
-          startIcon={<UnpublishedIcon />}
-          sx={{ color: '#D91E18', pointerEvents: 'none' }}
-          size="small"
-        >
-          {t('content.companySubscriptions.declined')}
-        </Button>
-      )
+  const handleOverlay = (row: SubscribedActiveApps, enable: boolean) => {
+    setAppId(row.offerId)
+    setShowUnsubscribeOverlay(enable)
+    setSubscriptionId(row.subscriptionId)
   }
-
-  const columns = [
-    {
-      field: 'image',
-      headerName: t('content.companySubscriptions.table.appIcon'),
-      flex: 2,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-        <Image
-          src={
-            row.image
-              ? `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${
-                  row.image
-                }`
-              : LogoGrayData
-          }
-          loader={fetchImageWithToken}
-          style={{
-            objectFit: 'cover',
-            width: 30,
-            height: 30,
-            borderRadius: '50%',
-            marginRight: '5px',
-          }}
-        />
-      ),
-    },
-    {
-      field: 'name',
-      headerName: t('content.companySubscriptions.table.appTitle'),
-      flex: 3,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-        <Box sx={{ display: 'grid' }}>
-          <Typography variant="body3">{row.name}</Typography>
-          <Typography variant="body3">{row.provider}</Typography>
-        </Box>
-      ),
-    },
-    {
-      field: 'status',
-      headerName: t('content.companySubscriptions.table.status'),
-      flex: 2,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-        return renderStatusButton(row.status)
-      },
-    },
-    {
-      field: 'details',
-      headerName: t('content.companySubscriptions.table.details'),
-      flex: 2,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-        return (
-          <IconButton
-            color="secondary"
-            onClick={() => {
-              navigate(
-                `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
-                { state: row }
-              )
-            }}
-          >
-            <ArrowForwardIcon />
-          </IconButton>
-        )
-      },
-    },
-    {
-      field: 'action',
-      headerName: t('content.companySubscriptions.table.action'),
-      flex: 2,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) =>
-        row.status === SubscriptionStatus.ACTIVE && (
-          <Button
-            variant="contained"
-            size="small"
-            onClick={(e) => {
-              setShowUnsubscribeOverlay(true)
-              setAppId(row.offerId)
-              setSubscriptionId(row.subscriptionId)
-              e.stopPropagation()
-            }}
-          >
-            {t('content.companySubscriptions.unsubscribe')}
-          </Button>
-        ),
-    },
-  ]
+  
+  const companySubscriptionsCols = CompanySubscriptionsTableColumns(
+    t,
+    handleOverlay
+  )
 
   return (
     <main className="page-main-container">
@@ -312,7 +184,7 @@ export default function CompanySubscriptions() {
           fetchHookArgs={fetchHookArgs}
           fetchHookRefresh={refresh}
           getRowId={(row: { [key: string]: string }) => row.subscriptionId}
-          columns={columns}
+          columns={companySubscriptionsCols}
         />
       </div>
     </main>

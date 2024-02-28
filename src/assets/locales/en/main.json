@@ -396,8 +396,8 @@
       },
       "unsubscribe": {
         "title": "Unsubscribe Business Application / Service",
-        "descriptionNote": "Please Note: the unsubscription is not revertible",
-        "description": "all possibly connected objects(mentioned in below table) will get deactivated as well",
+        "descriptionNote": "Please note: the unsubscription is not revertible",
+        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
         "table": {
           "listOfConnectedObjects": "List of connected objects:",
           "app": "Application / Service title:",

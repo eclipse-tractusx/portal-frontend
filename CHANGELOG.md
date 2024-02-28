@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- Subscription Management Board
+  - Create new page for company subscriptions and add subscription management functionality
+
 ### Bugfix
 
 - Service subscription
