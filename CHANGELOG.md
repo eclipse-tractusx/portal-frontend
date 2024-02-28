@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- Quick links
+  - update props for quick links and updated shared components package
+
 ### Bugfix
 
 - Service subscription
