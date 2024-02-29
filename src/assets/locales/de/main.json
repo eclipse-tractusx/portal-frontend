@@ -65,6 +65,7 @@
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
+    "company-subscriptions": "Firmenabonnements",
     "mycompany": "My Company",
     "mynotifications": "My Notifications"
   },
@@ -394,26 +395,50 @@
         "city": "Stadt: ",
         "bpn": "BPN: "
       },
-      "subscriptions": {
-        "title": "App-Abonnements",
-        "error": "Fehler - keine Daten gefunden"
-      },
       "unsubscribe": {
-        "title": "Geschäftsanwendung Deaktivieren",
-        "description": "Möchten Sie sich die Geschäftsanwendung wirklich deaktivieren?",
-        "note": "Bitte beachten Sie: Alle möglicherweise verbundenen Objekte (siehe Details oben) werden ebenfalls deaktiviert. Die Abmeldung ist nicht rückgängig zu machen.",
+        "title": "Geschäftsanwendung/Dienst abbestellen",
+        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
+        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
         "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technischer User"
+          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
+          "app": "Bewerbungs-/Diensttitel:",
+          "status": "Aktueller Status:",
+          "connector": "Verbinder:",
+          "techUser": "Technischer Benutzer:"
         },
-        "checkBoxLabel": "Ja, ich stimme zu, dass ich die Auswirkungen der Abmeldung verstanden habe und mit dem Vorgang fortfahren möchte.",
-        "buttonText": "Abbestellen"
+        "subscribed": "Gezeichnet",
+        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
+        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "buttonText": "Abbestellen",
+        "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
+        "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
+        "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
       }
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
+    },
+    "companySubscriptions": {
+      "headertitle": "App- und Service-Abonnements",
+      "tableTitle": "Abonnierte Apps",
+      "subscribed": "Gezeichnet",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "connector": "Verbinder",
+      "technicalUser": "Technischer Benutzer",
+      "unsubscribe": "Abbestellen",
+      "table": {
+        "appIcon": "App-Symbol",
+        "appTitle": "App-Titel",
+        "status": "Status",
+        "details": "Einzelheiten",
+        "action": "Aktion"
+      },
+      "filter": {
+        "requested": "angefordert",
+        "active": "aktiv",
+        "showAll": "zeige alles"
+      }
     },
     "appoverview": {
       "headerTitle": "Meine Applikationen",

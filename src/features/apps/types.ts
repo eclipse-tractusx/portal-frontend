@@ -247,3 +247,18 @@ export const initialState: AppsControlState = {
   search: '',
   group: AppGroup.ALL,
 }
+
+export enum CompanySubscriptionFilterType {
+  REQUESTED = 'requested',
+  ACTIVE = 'active',
+  SHOW_ALL = 'show all',
+}
+
+export interface SubscribedActiveApps {
+  offerId: string
+  name: string
+  provider: string
+  status: string
+  subscriptionId: string
+  image: string
+}

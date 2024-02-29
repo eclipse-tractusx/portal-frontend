@@ -77,14 +77,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const newSelectedRoles = data
     ? data.filter(
-      (role) => roles.includes(role.companyRoles) && !role.companyRolesActive
-    )
+        (role) => roles.includes(role.companyRoles) && !role.companyRolesActive
+      )
     : []
 
   const newDeselectedRoles = data
     ? data.filter(
-      (role) => !roles.includes(role.companyRoles) && role.companyRolesActive
-    )
+        (role) => !roles.includes(role.companyRoles) && role.companyRolesActive
+      )
     : []
 
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
@@ -279,17 +279,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 {t('content.companyRolesUpdate.overlay.rolesAddedHeading')}
               </Typography>
               {newSelectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray?.[
-                    role.companyRoles as keyof RolesData
-                  ]?.selected.roles ?
-                    dataArray[
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.selected.roles
+                  ? dataArray[
                       role.companyRoles as keyof RolesData
                     ].selected.roles.map((sampleRole: RoleFeatureData) => {
                       return getRolesFeaturesList(sampleRole)
                     })
-                    : t('content.companyRolesUpdate.overlay.noChange')
-                )
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}
@@ -301,17 +298,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 {t('content.companyRolesUpdate.overlay.rolesNoLongerHeading')}
               </Typography>
               {newDeselectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray?.[
-                    role.companyRoles as keyof RolesData
-                  ]?.deselected.roles ?
-                    dataArray[
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.deselected.roles
+                  ? dataArray[
                       role.companyRoles as keyof RolesData
                     ].deselected.roles.map((sampleRole: RoleFeatureData) => {
                       return getRolesFeaturesList(sampleRole)
                     })
-                    : t('content.companyRolesUpdate.overlay.noChange')
-                )
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}
@@ -323,17 +317,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 {t('content.companyRolesUpdate.overlay.featuresAddedHeading')}
               </Typography>
               {newSelectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray?.[
-                    role.companyRoles as keyof RolesData
-                  ]?.selected.features ?
-                    dataArray[
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.selected.features
+                  ? dataArray[
                       role.companyRoles as keyof RolesData
                     ].selected.features.map((sampleRole: RoleFeatureData) => {
                       return getRolesFeaturesList(sampleRole)
                     })
-                    : t('content.companyRolesUpdate.overlay.noChange')
-                )
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}
@@ -347,17 +338,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 )}
               </Typography>
               {newDeselectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray?.[
-                    role.companyRoles as keyof RolesData
-                  ]?.deselected.features ?
-                    dataArray[
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.deselected.features
+                  ? dataArray[
                       role.companyRoles as keyof RolesData
                     ].deselected.features.map((sampleRole: RoleFeatureData) => {
                       return getRolesFeaturesList(sampleRole)
                     })
-                    : t('content.companyRolesUpdate.overlay.noChange')
-                )
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}

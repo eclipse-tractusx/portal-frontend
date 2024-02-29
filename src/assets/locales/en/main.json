@@ -64,6 +64,7 @@
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
+    "company-subscriptions": "Company Subscriptions",
     "mycompany": "My Company",
     "mynotifications": "My Notifications"
   },
@@ -393,24 +394,46 @@
         "city": "City: ",
         "bpn": "BPN: "
       },
-      "subscriptions": {
-        "title": "App Subscriptions",
-        "error": "error - no data found"
-      },
       "unsubscribe": {
-        "title": "Unsubscribe Business Application",
-        "description": "Are you sure to unsubscribe from the business application?",
-        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
+        "title": "Unsubscribe Business Application / Service",
+        "descriptionNote": "Please note: the unsubscription is not revertible",
+        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
         "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technical User"
+          "listOfConnectedObjects": "List of connected objects:",
+          "app": "Application / Service title:",
+          "status": "Current Status:",
+          "connector": "Connector:",
+          "techUser": "Technical User:"
         },
-        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
+        "subscribed": "Subscribed",
+        "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
+        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
-        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
+        "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
+        "unsubscriptionOnProgress": "Unsubscription on progress"
+      }
+    },
+    "companySubscriptions": {
+      "headertitle": "App & Service Subscriptions",
+      "tableTitle": "Subscribed Apps",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "connector": "Connector",
+      "technicalUser": "Technical User",
+      "unsubscribe": "Unsubscribe",
+      "table": {
+        "appIcon": "App Icon",
+        "appTitle": "App title",
+        "status": "Status",
+        "details": "Details",
+        "action": "Action"
+      },
+      "filter": {
+        "requested": "requested",
+        "active": "active",
+        "showAll": "show all"
       }
     },
     "datamanagement": {
