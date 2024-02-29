@@ -89,45 +89,57 @@ export const MobileMenu = ({
   }, [companyData])
 
   return (
-    <Box {...props}>
-      {children.length === 0 && (
-        <>
-          <List sx={{ padding: 0 }}>
-            {items?.map((item) => (
-              <MenuItem
-                {...item}
-                component={component}
-                menuProps={props}
-                Menu={MobileMenu}
-                onSelect={onSelectItem}
-                onClick={onClick}
-                key={uniqueId('Menu')}
-              />
-            ))}
-          </List>
-          {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-          <ProfileLink to={'/account'} />
-          <NotificationLink to={'/notifications'} />
-          <MyCompanyLink companyMenu={companyMenu} onSelect={onSelectItem} />
-          {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-        </>
-      )}
-      {children?.length > 0 && (
-        <MenuSubItems
-          title={selectedSection}
-          onClick={() => {
-            dispatch(setAppear({ MENU: !visible }))
-          }}
-          onHide={() => {
-            setSelectedChildren([])
-          }}
-          component={component}
-        >
-          {children}
-        </MenuSubItems>
-      )}
-      {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-      <MenuFooter />
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        justifyContent: 'space-between',
+      }}
+      {...props}
+    >
+      <Box>
+        {children.length === 0 && (
+          <>
+            <List sx={{ padding: 0 }}>
+              {items?.map((item) => (
+                <MenuItem
+                  {...item}
+                  component={component}
+                  menuProps={props}
+                  Menu={MobileMenu}
+                  onSelect={onSelectItem}
+                  onClick={onClick}
+                  key={uniqueId('Menu')}
+                />
+              ))}
+            </List>
+            {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
+            <ProfileLink to={'/account'} />
+            <NotificationLink to={'/notifications'} />
+            <MyCompanyLink companyMenu={companyMenu} onSelect={onSelectItem} />
+            {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
+          </>
+        )}
+        {children?.length > 0 && (
+          <MenuSubItems
+            title={selectedSection}
+            onClick={() => {
+              dispatch(setAppear({ MENU: !visible }))
+            }}
+            onHide={() => {
+              setSelectedChildren([])
+            }}
+            component={component}
+          >
+            {children}
+          </MenuSubItems>
+        )}
+      </Box>
+      <Box>
+        {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
+        <MenuFooter />
+      </Box>
     </Box>
   )
 }
