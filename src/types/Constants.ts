@@ -105,6 +105,8 @@ export enum PAGES {
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
   CONSENT_OSP = 'consent_osp',
+  COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
+  COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
 }
 
 export enum OVERLAYS {
@@ -224,6 +226,7 @@ export enum ROLES {
   COMPANY_CERTIFICATE_VIEW = 'view_certificates',
   UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
   COMPANY_WALLET = 'view_wallet',
+  VIEW_SUBSCRIPTION = 'view_subscription',
 }
 
 export enum HINTS {
