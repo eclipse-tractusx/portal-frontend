@@ -84,6 +84,8 @@ import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
 import CompanyWallet from 'components/pages/CompanyWallet'
+import CompanySubscriptions from 'components/pages/CompanySubscriptions'
+import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 
 /**
  * ALL_PAGES
@@ -544,6 +546,25 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.COMPANY_WALLET,
     element: <CompanyWallet />,
   },
+  {
+    name: PAGES.COMPANY_SUBSCRIPTIONS,
+    role: ROLES.VIEW_SUBSCRIPTION,
+    element: <CompanySubscriptions />,
+  },
+  {
+    name: PAGES.COMPANY_SUBSCRIPTIONS_DETAIL,
+    role: ROLES.VIEW_SUBSCRIPTION,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}
+        path={PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}
+        element={<CompanySubscriptionDetail />}
+      >
+        <Route path=":appId" element={<CompanySubscriptionDetail />} />
+      </Route>
+    ),
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -785,6 +806,7 @@ export const mainMenuFullTree = [
 export const userMenuFull = [
   PAGES.ACCOUNT,
   PAGES.ORGANIZATION,
+  PAGES.COMPANY_SUBSCRIPTIONS,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,

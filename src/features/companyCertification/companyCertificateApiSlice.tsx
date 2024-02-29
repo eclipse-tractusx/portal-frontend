@@ -109,6 +109,7 @@ export const apiSlice = createApi({
     >({
       query: (bpn: string) =>
         `/api/administration/companydata/company/${bpn}/companyCertificates`,
+      keepUnusedDataFor: 5,
     }),
   }),
 })
