@@ -54,6 +54,7 @@ export type RolesData = {
   ACTIVE_PARTICIPANT: SampleRoleData
   APP_PROVIDER: SampleRoleData
   SERVICE_PROVIDER: SampleRoleData
+  ONBOARDING_SERVICE_PROVIDER: SampleRoleData
 }
 
 export type AgreementsDataRequest = {
