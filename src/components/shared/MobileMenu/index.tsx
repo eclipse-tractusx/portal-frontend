@@ -41,6 +41,7 @@ import { type CompanyMenuTypes, MyCompanyLink } from './MyCompanyLink'
 import { MenuSubItems } from './MenuChildren'
 import { MenuFooter } from './MenuFooter'
 import { t } from 'i18next'
+import { PAGES } from 'types/Constants'
 
 export interface MenuProps extends BoxProps {
   items: MenuItemProps[]
@@ -115,8 +116,8 @@ export const MobileMenu = ({
               ))}
             </List>
             {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-            <ProfileLink to={'/account'} />
-            <NotificationLink to={'/notifications'} />
+            <ProfileLink to={PAGES.ACCOUNT} />
+            <NotificationLink to={PAGES.NOTIFICATIONS} />
             <MyCompanyLink companyMenu={companyMenu} onSelect={onSelectItem} />
             {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
           </>
