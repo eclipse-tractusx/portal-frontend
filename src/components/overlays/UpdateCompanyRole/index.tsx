@@ -109,10 +109,6 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
     dispatch(setCompanyRoleError(false))
   }, [dispatch])
 
-  console.log('dataArray', dataArray)
-  console.log('newSelecltedRoles', newSelectedRoles)
-  console.log('newDeselecltedRoles', newDeselectedRoles)
-
   const getRolesFeaturesList = (data: RoleFeatureData) => {
     return (
       <div className="role-list" key={uniqueId(data.title)}>
