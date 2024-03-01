@@ -17,6 +17,8 @@
   - fixed help link
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
+- App User
+  - fixed roles display issue
 - IDP Config
   - fixed textual changes in enable success screen
 - Business Partner Details
