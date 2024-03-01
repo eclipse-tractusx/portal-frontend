@@ -22,6 +22,8 @@
 - Business Partner Details
   - Show certificate information which are associated with the bpn number.
   - Activate on hover and click action to download the corresponding certificate
+- Certificate Elements
+  - fixed code smell error
 
 ## 1.8.0-RC6
 
