@@ -1758,7 +1758,8 @@
         "status": "Status",
         "deletebutton": "Delete Certificate",
         "fileUpload": "File Upload",
-        "verification": "Verification"
+        "verification": "Verification",
+        "nocertificate": "Kein aktives Zertifikat verfügbar"
       },
       "upload": {
         "title": "Upload new certificate",
