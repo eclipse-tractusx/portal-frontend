@@ -119,7 +119,6 @@ export const MobileMenu = ({
             <ProfileLink to={PAGES.ACCOUNT} />
             <NotificationLink to={PAGES.NOTIFICATIONS} />
             <MyCompanyLink companyMenu={companyMenu} onSelect={onSelectItem} />
-            {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
           </>
         )}
         {children?.length > 0 && (
@@ -137,7 +136,14 @@ export const MobileMenu = ({
           </MenuSubItems>
         )}
       </Box>
-      <Box>
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: '0px',
+          background: '#fff',
+          width: '280px',
+        }}
+      >
         {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
         <MenuFooter />
       </Box>
