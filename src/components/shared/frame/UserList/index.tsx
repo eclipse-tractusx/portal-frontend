@@ -143,11 +143,11 @@ export const UserList = ({
             flex: 4,
             renderCell: ({ value: roles }) =>
               roles.length
-                ? roles.map((role: RoleType) => (
+                ? roles.map((role: RoleType | string) => (
                     <StatusTag
-                      key={role.roleId}
+                      key={typeof role === 'string' ? role : role.roleId}
                       color="label"
-                      label={role.roleName}
+                      label={typeof role === 'string' ? role : role.roleName}
                       className="statusTag"
                     />
                   ))

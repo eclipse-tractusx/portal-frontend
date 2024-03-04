@@ -17,6 +17,8 @@
   - fixed help link
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
+- App User
+  - fixed roles display issue
 - IDP Config
   - fixed textual changes in enable success screen
 - Business Partner Details
@@ -24,6 +26,19 @@
   - Activate on hover and click action to download the corresponding certificate
 - Certificate Elements
   - fixed code smell error
+- Hamburger
+  - Full height user menu
+  - Click outside to close menu
+
+### Feature
+
+- IDP Config
+  - Implementation of displaying metadata details
+
+### Feature
+
+- Onboarding Service Provider
+  - created new UI
 
 ## 1.8.0-RC6
 
