@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { Button } from '@catena-x/portal-shared-components'
+import { BackButton } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { t } from 'i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -46,17 +46,15 @@ export default function ServiceMarketplaceDetail() {
 
   return (
     <main className="marketplace-main">
-      <Box className="service-back">
-        <Button
-          color="secondary"
-          size="small"
-          onClick={() => {
+      <Box className="service-back app-back">
+        <BackButton
+          backButtonLabel={t('global.actions.back')}
+          backButtonVariant="text"
+          onBackButtonClick={() => {
             dispatch(setSuccessType(false))
             navigate('/servicemarketplace')
           }}
-        >
-          {t('global.actions.back')}
-        </Button>
+        />
       </Box>
       {data && (
         <Box className="service-marketplace-content">

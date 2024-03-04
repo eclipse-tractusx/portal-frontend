@@ -18,8 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from '@catena-x/portal-shared-components'
+import { BackButton } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Box } from '@mui/material'
 import { t } from 'i18next'
 import { useFetchBoardAppDetailsQuery } from 'features/adminBoard/adminBoardApiSlice'
 import BoardContentDetails from './BoardContentDetails'
@@ -32,15 +33,15 @@ export default function AdminBoardDetail() {
 
   return (
     <main className="adminboard-main">
-      <Button
-        color="secondary"
-        size="small"
-        onClick={() => {
-          navigate('/adminboard')
-        }}
-      >
-        {t('global.actions.back')}
-      </Button>
+      <Box className="app-back">
+        <BackButton
+          backButtonLabel={t('global.actions.back')}
+          backButtonVariant="text"
+          onBackButtonClick={() => {
+            navigate('/adminboard')
+          }}
+        />
+      </Box>
       {data && <BoardContentDetails item={data} />}
     </main>
   )

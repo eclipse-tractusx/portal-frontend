@@ -6,6 +6,8 @@
   - Create new page for company subscriptions and add subscription management functionality
 - Quick links
   - update props for quick links and updated shared components package
+- App Detail Pages
+  - UI updates of order status button and back button
 
 ### Bugfix
 
