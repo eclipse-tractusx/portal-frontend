@@ -24,6 +24,7 @@ import { Box } from '@mui/material'
 import { t } from 'i18next'
 import { useFetchBoardAppDetailsQuery } from 'features/adminBoard/adminBoardApiSlice'
 import BoardContentDetails from './BoardContentDetails'
+import { PAGES } from 'types/Constants'
 import './AdminBoardDetail.scss'
 
 export default function AdminBoardDetail() {
@@ -38,7 +39,7 @@ export default function AdminBoardDetail() {
           backButtonLabel={t('global.actions.back')}
           backButtonVariant="text"
           onBackButtonClick={() => {
-            navigate('/adminboard')
+            navigate(`/${PAGES.ADMINBOARD}`)
           }}
         />
       </Box>

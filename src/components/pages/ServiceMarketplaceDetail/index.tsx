@@ -19,17 +19,18 @@
  ********************************************************************************/
 import { BackButton } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Box } from '@mui/material'
 import { t } from 'i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import MarketplaceContentDetails from './MarketplaceContentDetails'
-import './Marketplace.scss'
 import { useFetchServiceQuery } from 'features/serviceMarketplace/serviceApiSlice'
 import {
   currentSuccessType,
   setSuccessType,
 } from 'features/serviceMarketplace/slice'
-import { Box } from '@mui/material'
+import { PAGES } from 'types/Constants'
+import './Marketplace.scss'
 
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()
@@ -52,7 +53,7 @@ export default function ServiceMarketplaceDetail() {
           backButtonVariant="text"
           onBackButtonClick={() => {
             dispatch(setSuccessType(false))
-            navigate('/servicemarketplace')
+            navigate(`/${PAGES.SERVICE_MARKETPLACE}`)
           }}
         />
       </Box>
