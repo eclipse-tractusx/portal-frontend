@@ -227,6 +227,7 @@ export enum ROLES {
   UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
   COMPANY_WALLET = 'view_wallet',
   VIEW_SUBSCRIPTION = 'view_subscription',
+  DELETE_CERTIFICATES = 'delete_certificates',
 }
 
 export enum HINTS {
