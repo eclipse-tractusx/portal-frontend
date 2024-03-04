@@ -42,7 +42,11 @@ export const MenuSubItems = ({
 }: MenuSubItemsProps): JSX.Element => {
   const { spacing } = useTheme()
   return (
-    <Box>
+    <Box
+      sx={{
+        marginBottom: '55px',
+      }}
+    >
       <Box
         sx={{
           display: 'flex',

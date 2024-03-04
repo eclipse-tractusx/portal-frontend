@@ -24,6 +24,9 @@
 - Business Partner Details
   - Show certificate information which are associated with the bpn number.
   - Activate on hover and click action to download the corresponding certificate
+- Hamburger
+  - Full height user menu
+  - Click outside to close menu
 
 ### Feature
 

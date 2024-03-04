@@ -52,17 +52,22 @@ export const MenuInfo = ({ main }: { main: Tree[] }) => {
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: '280px',
-          background: 'transparent',
           borderColor: 'transparent',
+          boxShadow: '0px 0px 30px 1px rgb(0 0 0 / 40%)',
+        },
+        '& .MuiBackdrop-root': {
+          backgroundColor: 'transparent',
         },
       }}
-      variant="persistent"
       anchor="right"
       open={visible}
+      onClose={() => {
+        dispatch(setAppear({ MENU: !visible }))
+      }}
     >
       <ClickAwayListener
         onClickAway={() => {
-          // visible && dispatch(setAppear({ MENU: !visible }))
+          // do nothing
         }}
       >
         <div className="MenuInfo">
