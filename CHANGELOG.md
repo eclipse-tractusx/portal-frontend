@@ -25,6 +25,11 @@
   - Show certificate information which are associated with the bpn number.
   - Activate on hover and click action to download the corresponding certificate
 
+### Feature
+
+- IDP Config
+  - Implementation of displaying metadata details
+
 ## 1.8.0-RC6
 
 ### Change
