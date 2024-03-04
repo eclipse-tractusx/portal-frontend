@@ -29,28 +29,29 @@
   .stepTitle {
     margin-top: 30px;
   }
-  .statusList {
-    list-style: none;
-    margin-top: 30px;
-    padding: 0;
-    li {
-      display: flex;
-      margin: 15px 0;
-      padding: 10px;
-      align-items: center;
-      .icon {
-        display: flex;
-      }
-      .statusLabel {
-        margin-left: 10px;
-        margin-right: auto;
-      }
-      .m-0 {
-        margin: 0;
-      }
-    }
-  }
   .helpMain {
     margin-top: 40px;
+  }
+}
+
+.statusList {
+  list-style: none;
+  margin-top: 30px;
+  padding: 0;
+  li {
+    display: flex;
+    margin: 15px 0;
+    padding: 10px;
+    align-items: center;
+    .icon {
+      display: flex;
+    }
+    .statusLabel {
+      margin-left: 10px;
+      margin-right: auto;
+    }
+    .m-0 {
+      margin: 0;
+    }
   }
 }

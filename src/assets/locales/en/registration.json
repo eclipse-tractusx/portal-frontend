@@ -1,0 +1,47 @@
+{
+  "osp": {
+    "heading": "Registration Summary",
+    "companyHeading": "Company Details",
+    "companyMessage": "Below you can find your company registration details shared by your onboarding provider. Please review the details and proceed to the Company Role selection below before submitting your registration.",
+    "companyName": "Company Name",
+    "bmw": "BMW AG",
+    "street": "Street & Number",
+    "zip": "ZIP",
+    "city": "City",
+    "region": "Region",
+    "country": "Country",
+    "companyRole": {
+      "title": "Role Selection",
+      "subTitle": "Note: Please select at least one role and accept the associated terms and conditions.",
+      "TermsAndCondSpan1": "Yes, I agree to the",
+      "TermsAndCondSpan2": "terms and conditions",
+      "TermsAndCondSpan3": "of the selected role.",
+      "TermsAndCond2Span1": "Yes, I agree to the",
+      "TermsAndCond2Span2": "security regulations",
+      "TermsAndCond2Span3": "of the selected role.",
+      "ACTIVE_PARTICIPANT": "Active Participant",
+      "APP_PROVIDER": "App Provider",
+      "SERVICE_PROVIDER": "Service Provider",
+      "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
+      "NoRolesError1": "An error occured. No roles found.",
+      "NoRolesError2": " or contact the system administrator.",
+      "NoRolesError": "An error occured. No roles found. Please {{ retry }} or contact the system administrator.",
+      "Please": "Please",
+      "Retry": "retry"
+    },
+    "success": {
+      "heading": "Congratulations, your registration  has been successfull!",
+      "description": "We will now validate your registration.<br/> The process might take a couple of hours, in the meantime you might wanna check <br/> out some introduction pages already, but note that the complete dataspace <br/> functions will only be available as soon as the registration is successfully finished. <br/> If you are corrious about the registration state, you can find the current status<br/>below.",
+      "stepTitle": "Status:",
+      "homepage": "Get to home"
+    },
+    "error": {
+      "heading": "Error 500 : Server Error",
+      "description": "Something went wrong on our side. We’re experiencing technical difficulities.<br/>Please try the call once again in a couple of moments. If the problem persists, feel<br/>free to reach out to our support team for assistance.<br/><br/>All details and possible retriggers are shared below:",
+      "retry": "Retry confirmation",
+      "back": "Back to previous page"
+    },
+    "submitError": "Please agree to all Terms & Conditions of the selected company role(s) before proceeding to the next step.",
+    "helpText": "If you have any questions regarding your registration please contact our helpdesk:<br /> help@catena-x.com <br /> or contact the platform administrator: <br />“xxx.xxxx@catena-x-operator.net"
+  }
+}
