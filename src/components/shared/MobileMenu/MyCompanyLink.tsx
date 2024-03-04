@@ -40,7 +40,7 @@ export const MyCompanyLink = ({
   return (
     <Box
       sx={{
-        margin: '5px 0px',
+        margin: '5px 0px 55px 0px',
       }}
       onClick={() => {
         onSelect(t('pages.mycompany'), companyMenu)

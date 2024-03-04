@@ -1644,6 +1644,7 @@
         "termsHeading": "Please agree to the following terms & conditions for new role profile:",
         "TermsAndCondSpan1": "Yes, I agree to the",
         "TermsAndCondSpan2": "of the selected role.",
+        "noChange": "Keine Änderungsauswirkun",
         "submit": "Commence role change"
       }
     },

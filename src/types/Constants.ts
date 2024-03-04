@@ -104,6 +104,7 @@ export enum PAGES {
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
+  CONSENT_OSP = 'consent_osp',
   COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
 }

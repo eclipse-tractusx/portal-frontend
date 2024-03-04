@@ -84,6 +84,7 @@ import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
 import CompanyWallet from 'components/pages/CompanyWallet'
+import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 
@@ -547,6 +548,10 @@ export const ALL_PAGES: IPage[] = [
     element: <CompanyWallet />,
   },
   {
+    name: PAGES.CONSENT_OSP,
+    element: <OSPConsent />,
+  },
+  {
     name: PAGES.COMPANY_SUBSCRIPTIONS,
     role: ROLES.VIEW_SUBSCRIPTION,
     element: <CompanySubscriptions />,
@@ -685,9 +690,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.REGISTER_NEXT_OSP,
     role: ROLES.IDP_SETUP,
-  },
-  {
-    name: OVERLAYS.CONSENT_OSP,
   },
   {
     name: OVERLAYS.APP_OVERVIEW_CONFIRM,

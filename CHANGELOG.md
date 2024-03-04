@@ -8,6 +8,8 @@
   - update props for quick links and updated shared components package
 - Company Certificates
   - Connect delete certificate to back end api
+- App Detail Pages
+  - UI updates of order status button and back button
 
 ### Bugfix
 
@@ -26,6 +28,23 @@
 - Business Partner Details
   - Show certificate information which are associated with the bpn number.
   - Activate on hover and click action to download the corresponding certificate
+- Company Role
+  - handle roles and features data
+- Certificate Elements
+  - fixed code smell error
+- Hamburger
+  - Full height user menu
+  - Click outside to close menu
+
+### Feature
+
+- IDP Config
+  - Implementation of displaying metadata details
+
+### Feature
+
+- Onboarding Service Provider
+  - created new UI
 
 ## 1.8.0-RC6
 
