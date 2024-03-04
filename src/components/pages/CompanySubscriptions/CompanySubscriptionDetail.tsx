@@ -23,6 +23,7 @@ import {
   StaticTable,
   Typography,
   Image,
+  BackButton,
 } from '@catena-x/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
@@ -123,16 +124,14 @@ export default function CompanySubscriptionDetail() {
 
   return (
     <main className="company-subscription-detail">
-      <Box className="company-subscription-back">
-        <Button
-          color="secondary"
-          size="small"
-          onClick={() => {
+      <Box className="company-subscription-back app-back">
+        <BackButton
+          backButtonLabel={t('global.actions.back')}
+          backButtonVariant="text"
+          onBackButtonClick={() => {
             navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
           }}
-        >
-          {t('global.actions.back')}
-        </Button>
+        />
       </Box>
       {data && fetchAppsData && (
         <Box className="company-subscription-content ">

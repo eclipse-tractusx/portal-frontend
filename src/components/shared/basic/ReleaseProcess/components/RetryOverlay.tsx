@@ -25,6 +25,7 @@ import {
   DialogContent,
   Button,
   Typography,
+  BackButton,
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -71,15 +72,14 @@ const RetryOverlay = ({
           <Typography variant="body1" className="descriptionText">
             {description}
           </Typography>
-          <Box className="buttonSection">
-            <Button
-              variant="text"
-              onClick={(e) => {
+          <Box className="buttonSection app-back">
+            <BackButton
+              backButtonLabel={t('global.actions.back')}
+              backButtonVariant="text"
+              onBackButtonClick={(e) => {
                 handleOverlayClose(e)
               }}
-            >
-              {t('global.actions.back')}
-            </Button>
+            />
             <Button
               variant="contained"
               color="success"
