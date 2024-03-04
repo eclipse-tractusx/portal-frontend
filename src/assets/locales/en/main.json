@@ -1606,6 +1606,7 @@
         "termsHeading": "Please agree to the following terms & conditions for the new company role profile:",
         "TermsAndCondSpan1": "Yes, I agree to the",
         "TermsAndCondSpan2": "of the selected role.",
+        "noChange": "No change impact",
         "submit": "Submit role change"
       }
     },

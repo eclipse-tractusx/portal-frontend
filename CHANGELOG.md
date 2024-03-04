@@ -24,6 +24,8 @@
 - Business Partner Details
   - Show certificate information which are associated with the bpn number.
   - Activate on hover and click action to download the corresponding certificate
+- Company Role
+  - handle roles and features data
 - Certificate Elements
   - fixed code smell error
 - Hamburger
