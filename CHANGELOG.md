@@ -26,6 +26,8 @@
   - Activate on hover and click action to download the corresponding certificate
 - Company Role
   - handle roles and features data
+- Certificate Elements
+  - fixed code smell error
 - Hamburger
   - Full height user menu
   - Click outside to close menu
