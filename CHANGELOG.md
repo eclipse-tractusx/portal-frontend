@@ -33,6 +33,11 @@
 - IDP Config
   - Implementation of displaying metadata details
 
+### Feature
+
+- Onboarding Service Provider
+  - created new UI
+
 ## 1.8.0-RC6
 
 ### Change
