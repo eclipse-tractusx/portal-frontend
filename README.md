@@ -8,9 +8,10 @@ The Portal application consists of
 
 - [portal-frontend](https://github.com/eclipse-tractusx/portal-frontend),
 - [portal-frontend-registration](https://github.com/eclipse-tractusx/portal-frontend-registration),
-- [portal-shared-components](https://github.com/eclipse-tractusx/portal-shared-components),
 - [portal-assets](https://github.com/eclipse-tractusx/portal-assets) and
 - [portal-backend](https://github.com/eclipse-tractusx/portal-backend).
+
+The Portal maintains and uses the [portal-shared-components library](https://github.com/eclipse-tractusx/portal-shared-components).
 
 The helm chart for installing the Portal is available in the [portal](https://github.com/eclipse-tractusx/portal) repository.
 
