@@ -111,8 +111,8 @@
     "subHeading2": "You have completed the setup process of your new IdP.",
     "nextStepHeading": "Your NEXT Steps:",
     "nextStepSubHeading": "To test the new IdP, please do the following:",
-    "step1Heading": "“Test new IdP login” by clicking the button below",
-    "step2Heading": "“Sign in” again with your IdP “smoke test jj01” and <br /> user “julia.jeroch@bmw.de”",
+    "step1Heading": "Click on the “Sign Out” button, to logout from your current account",
+    "step2Heading": "Afterwards select on the login page the newly created identity provider login “{{idpDisplayname}}”. And login with your personal credentials used for this IdP.",
     "note": "Please note:",
     "or": "OR",
     "successText": "If the test succeeds, <br />... commence user migration <br />... deactivate old IdP",
@@ -127,8 +127,29 @@
     "success": "IdP got disabled",
     "error": "Something went wrong. IdP got not disabled."
   },
+  "disableManagedIdp": {
+    "title": "Disable Identity Provider",
+    "desc1": "Your are about to disable this IdP",
+    "desc2": "With the deactivation of the identity provider - all data will remain, however the access will be blocked. Please ensure to not lock out yourself/your organization. Below list gives an overview all all organizations registered at the IdP connection.",
+    "connectedCompanies": "Connected/Linked companies :",
+    "none": "none",
+    "desc3": "The customer(s) will be informed of the deactivation. Communication of the planned deactivation from the IdP owner side is still strongly recommended.",
+    "disableSuccess": "Managed IdP disabled successfully",
+    "enableSuccess": "Managed IdP enabled successfully",
+    "error": "Something went wrong. Managed IdP disable is not successful."
+  },
+  "deleteManagedIdp": {
+    "title": "Delete Identity Provider",
+    "desc1": "Your are about to delete this IdP",
+    "desc2": "With the deletion of the identity provider - connected companies will get deleted or/and set to deleted. Validate the list of connected companies carefully and ensure that those are informed before proceeding.",
+    "connectedCompanies": "Connected/Linked companies :",
+    "none": "none",
+    "desc3": "The process cannot be reversed.",
+    "success": "Managed IdP deleted successfully",
+    "error": "Something went wrong. Managed IdP delete is not successful"
+  },
   "users": {
-    "title": "Link existing users to new IdP",
+    "title": "Update/Migrate User Accounts",
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
     "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
@@ -276,7 +297,7 @@
     },
     "register": {
       "title": "Register Partner",
-      "desc": "{Description of the Register Partner process}",
+      "desc": "Please Note: This registration form only serves as a mock, that allows to register partners. In the future this functionality is not planned to exist further. The partner registration will then happen utilizing a technical user.",
       "error": "Error submitting registration",
       "success": "Registration successful"
     },

@@ -37,7 +37,7 @@ import {
   useFetchUsecaseQuery,
 } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
-import { SubscriptionStatus } from 'features/apps/apiSlice'
+import { SubscriptionStatus } from 'features/apps/types'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 

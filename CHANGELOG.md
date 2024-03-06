@@ -2,8 +2,147 @@
 
 ## unreleased
 
-- Company Roles
-  - Fetch the standard library data from standards.json and implement Table component to display it in the company roles section.
+- Subscription Management Board
+  - Create new page for company subscriptions and add subscription management functionality
+- Quick links
+  - update props for quick links and updated shared components package
+
+### Bugfix
+
+- Service subscription
+  - Changed 'Active Service Subscription' overlay section header for 'Technical User Details'
+- App Subscription
+  - fixed help links in configuration overlay
+- Notification
+  - fixed help link
+- Unhelpful scroll
+  - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
+- App User
+  - fixed roles display issue
+- IDP Config
+  - fixed textual changes in enable success screen
+- Business Partner Details
+  - Show certificate information which are associated with the bpn number.
+  - Activate on hover and click action to download the corresponding certificate
+
+## 1.8.0-RC6
+
+### Change
+
+- Registration Decline Status
+  - added button inside the overlay to enable user logout
+- Dataspace
+  - updated dataspace provider links with quick links
+
+### Feature
+
+- OSP Function - Identity Management
+  - added disable, enable & delete sub-menu's to managed IdPs
+- Company Certificate
+  - connected listing page, upload certificate and details page to back end api
+
+### Technical Support
+
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
+
+### Bugfix
+
+- IdP User Invite Logic
+  - fixed add user overlay issue
+- IdP user upload
+  - fixed blank page issue while uploading json file
+- Company Certificate for Credentials
+  - fixed certificate ui as per backend response
+- User Management - Technical User
+  - Removed quotation marks from technical user details
+- Delete OwnUser Redirect URL
+  - fixed logout redirect url
+- Consent Pop-Up after registration
+  - fixed reappear overlay on every page even after consent updated
+
+## 1.8.0-RC5
+
+- Application Requests
+  - Fix filtering related issues
+  - Reset search list after clearing input text
+
+### Bugfix
+
+- Notifications - fixed handling of setting read/unread correctly
+- IDP Management - updated extId input field error message to allow 6-36 alphanumeric characters
+- Hamburger
+  - Slide effect on click of hamburger
+  - New UI navigation when menu has sub sections
+- Subnavigation
+  - Show sub navigation button text in one line
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation
+  - handle navigation as per applicationType and applicationStatus
+- App Management
+  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previous template
+- App Release Process - app role template file encoding updated
+
+## 1.8.0-RC4
+
+### Change
+
+- Company Name
+  - Update pattern in invite form and app release process
+- Portal login navigation ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+  - handle navigation as per applicationType (new api property) and applicationStatus
+
+### Technical Support
+
+- Removed env specific urls from test files
+- Updated shared components package dependency
+
+### Bugfix
+
+- App Marketplace
+  - reduce image flickering on user interaction by using cache option
+- Service Overview
+  - Add missing translations, fix duplicate error
+- Service Release Process
+  - fixed conformity document deletion issue after uploading document
+- Company roles
+  - Show standard library information based on the selected company role
+- Invite Business Partner
+  - fix loading button issue to invite multiple companies in succession
+
+## 1.8.0-RC3
+
+### Change
+
+- Company Roles Introduction Page(s)
+  - enhanced OSP page to fetch standard library data from standards.json and implemented table component to display the data inside the OSP page
+- User Management
+  - api structure updated (breaking change by backend) to display identity management table inside the user management screen
+- removed references to consortia environments
+- changed documentation/help links to updated directory structure in portal-assets
+
+### Feature
+
+- Portal information screen for registrations in validation added including notification bar
+- Company Certificate
+  - Provide new link from user menu for the company certificate page
+  - UI components created to display filter, sort and company certificates
+  - Company Certificate Details overlay
+  - Upload new Company Certificate overlay
+- Registration Decline function released for companies newly invited for registration
+
+### Bugfix
+
+- User migration as part of the IdP configuration
+  - fixed csv file upload: uploaded user file triggers the backend API to update existing user accounts with the new IdP connection and loads the providerID/userID into keycloak for each included user
+
+### Known Knowns
+
+- Company Roles Introduction Page(s)
+  - pre-filtering of the displayed standard documents
+  - update of headline & short section introduction
+- Decline registration backend API connection not working on the newly implemented screen
+- Company certificates currently only UI wise implemented; API connection outstanding
 
 ## 1.8.0-RC2
 
@@ -75,7 +214,8 @@
 - Release Process (Apps & Services)
   - information message "no {object} available" getting displayed while content is available
 - App Release Process
-  - fixed automatic up scrolling in form pages
+  - fixed automatic upscrolling in form pages
+  - Fixed help link, funky character display and the success message display in user role upload
 - Service Release Process
   - fixed automatic up scrolling in form pages
 - User Management
@@ -88,6 +228,10 @@
   - fixed document icon over function
 - App overview
   - api failing component appears with "no data available" and with error bar
+- Company Roles
+  - Fix typo error to fix conformity body issue
+- Fixed error message display when data is available issue
+- Portal Login with unfinished registration
 
 ### Known Knowns
 

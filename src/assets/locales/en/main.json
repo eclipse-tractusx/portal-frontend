@@ -62,7 +62,11 @@
     "about": "About",
     "dataspace": "Data Space",
     "admin-credential": "Certification Mgmt",
-    "companyWallet": "Company Wallet"
+    "companyCertificate": "Company Certificates",
+    "companyWallet": "Company Wallet",
+    "company-subscriptions": "Company Subscriptions",
+    "mycompany": "My Company",
+    "mynotifications": "My Notifications"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -119,6 +123,37 @@
       },
       "helpText": "If you have any questions regarding your registration please contact our Helpdesk:",
       "email": "help@catena-x.com"
+    },
+    "registrationInreview": {
+      "title": "Welcome to Catena-X",
+      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
+      "subDescription": "At the current state of the review you already have limited access to the portal.",
+      "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
+      "lastUpdate": "Last process update: {{date}}",
+      "steps": {
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description",
+        "APPLICATION_ACTIVATION": "Application Activation",
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation"
+      },
+      "status": {
+        "IN_PROGRESS": "In Progress",
+        "TO_DO": "To Do",
+        "DONE": "Done",
+        "FAILED": "Failed"
+      },
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "note": "NOTE:",
+      "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
+      "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
+      "email": "help@catena-x.com"
+    },
+    "registrationDeclined": {
+      "title": "Registration Status",
+      "description": "<strong style='color: red'>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon.",
+      "close": "Close the Page"
     },
     "admin": {
       "registration-requests": {
@@ -271,8 +306,8 @@
           "real-timecontrol": "Real Time Control",
           "modularproduction": "Modular Production"
         },
-        "noMatch": "No Matches",
-        "for": "for"
+        "noMatch": "No Match",
+        "for": "for your search term"
       }
     },
     "semantichub": {
@@ -359,24 +394,46 @@
         "city": "City: ",
         "bpn": "BPN: "
       },
-      "subscriptions": {
-        "title": "App Subscriptions",
-        "error": "error - no data found"
-      },
       "unsubscribe": {
-        "title": "Unsubscribe Business Application",
-        "description": "Are you sure to unsubscribe from the business application?",
-        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
+        "title": "Unsubscribe Business Application / Service",
+        "descriptionNote": "Please note: the unsubscription is not revertible",
+        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
         "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technical User"
+          "listOfConnectedObjects": "List of connected objects:",
+          "app": "Application / Service title:",
+          "status": "Current Status:",
+          "connector": "Connector:",
+          "techUser": "Technical User:"
         },
-        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
+        "subscribed": "Subscribed",
+        "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
+        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
-        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
+        "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
+        "unsubscriptionOnProgress": "Unsubscription on progress"
+      }
+    },
+    "companySubscriptions": {
+      "headertitle": "App & Service Subscriptions",
+      "tableTitle": "Subscribed Apps",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "connector": "Connector",
+      "technicalUser": "Technical User",
+      "unsubscribe": "Unsubscribe",
+      "table": {
+        "appIcon": "App Icon",
+        "appTitle": "App title",
+        "status": "Status",
+        "details": "Details",
+        "action": "Action"
+      },
+      "filter": {
+        "requested": "requested",
+        "active": "active",
+        "showAll": "show all"
       }
     },
     "datamanagement": {
@@ -498,9 +555,9 @@
           "title": "Below you can find the relevant details regarding all those values",
           "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
           "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "https://portal.int.demo.catena-x.net/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "https://portal.int.demo.catena-x.net/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "authorityBpn": "* authority bpn: {{bpn}}",
           "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
           "clickhere": "click here"
@@ -1099,7 +1156,9 @@
         "technicalUserSetupMandatory": "Please select at least one technical user setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
-        "roleUpdateError": "Error while updating roles"
+        "roleUpdateError": "Error while updating roles",
+        "encoding": "Encoding(select supported encoding)",
+        "encodingPlaceholder": "Select supported encoding"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1517,8 +1576,8 @@
       "headerTitle": "Roles",
       "heading": "Change Company Role",
       "description": "Below you can manage the roles your company takes in Catena-X.",
-      "step1": "You can change your current role by deselecting it and selecting another role.",
-      "step2": "If you already have more than one role for your company, you can deselect roles. At least one role must always be assigned to your company.",
+      "step1": "You can change your current role by selecting and deselecting the resepctive available roles.",
+      "step2": "If you already have more than one role to your company assigned, you can deselect roles. At least one role must always be assigned to your company.",
       "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
       "note": "Please note: ",
       "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
@@ -1526,28 +1585,28 @@
       "APP_PROVIDER": "App Provider",
       "SERVICE_PROVIDER": "Service Provider",
       "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
-      "roleDescDownTitle": "Full role description",
+      "roleDescDownTitle": "Expand role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",
       "errorDescription": "Something went wrong. Please try it later again.",
       "overlay": {
         "title": "Do you really want to change your company's role(s) within Cantena-X?",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "description": "The section below provides a brief explanation of how your selected changes in your company role may impact your views; functions and individual user rights.",
         "selectedRolesTitle": "You have selected the following changes to your company's role profile:",
         "role": "Role",
         "added": "Added",
         "deselected": "Deselected",
-        "expandLabel": "full role description",
-        "expandedLabel": "close role description",
-        "changeRolesHeading": "The change of your role has the following consequences:",
+        "expandLabel": "Expand role description",
+        "expandedLabel": "Close role description",
+        "changeRolesHeading": "The change of your company role has the following consequences:",
         "rolesAddedHeading": "User roles added",
         "rolesNoLongerHeading": "User roles no longer available",
         "featuresAddedHeading": "Features added",
         "featuresNoLongerHeading": "Features no longer available",
-        "termsHeading": "Please agree to the following terms & conditions for new role profile:",
+        "termsHeading": "Please agree to the following terms & conditions for the new company role profile:",
         "TermsAndCondSpan1": "Yes, I agree to the",
         "TermsAndCondSpan2": "of the selected role.",
-        "submit": "Commence role change"
+        "submit": "Submit role change"
       }
     },
     "usecaseParticipation": {
@@ -1617,6 +1676,59 @@
         "status": "Status: "
       },
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above."
+    },
+    "companyCertificate": {
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "tabs": {
+        "inactive": "Pending",
+        "active": " Active",
+        "all": "All"
+      },
+      "sort": {
+        "nameasc": "Certificate Asc",
+        "namedsc": "Certificate Dsc",
+        "dateasc": "Expiry Date Asc",
+        "datedsc": "Expiry Date Dsc"
+      },
+      "details": {
+        "type": "Type",
+        "validtill": "Valid Till",
+        "status": "Status",
+        "deletebutton": "Delete Certificate",
+        "fileUpload": "File Upload",
+        "verification": "Verification"
+      },
+      "upload": {
+        "title": "Upload new certificate",
+        "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
+        "certificateTypeTitle": "Certificate Type",
+        "certificateTypeError": "",
+        "certificateTypeLabel": "",
+        "certificateTypePlaceholder": "Please select",
+        "certificateSiteTitle": "Certificate Site/Level",
+        "certificateSiteError": "",
+        "certificateSiteLabel": "",
+        "certificateSitePlaceholder": "Please select",
+        "uploadDocumentTitle": "Certificate file upload",
+        "note": "",
+        "comingsoon": "Coming soon",
+        "expiry": "Expiry Date",
+        "dateplaceholder": "Enter a Date",
+        "dateError": "Select a valid date"
+      },
+      "confirm": {
+        "success": "The certificate {{name}} has been successfully deleted and moved to 'Inactive'",
+        "error": "The deletion was not successful. System Message: {{error}} Please contact an administrator.",
+        "title": "{{name}} Deletion",
+        "description": "Are you sure you want to delete the certificate. Please note that the certificate deletion is immediately active. A re-activation is not possible; but you can upload a new file under the same type whenever needed."
+      },
+      "uploadCertificate": "Upload Certificate",
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
+      "validtill": "Valid Till",
+      "morelink": ">> More",
+      "view": "View",
+      "delete": "Delete"
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",

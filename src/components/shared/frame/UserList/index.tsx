@@ -42,6 +42,12 @@ interface FetchHookArgsType {
   addUserResponse?: boolean
 }
 
+interface RoleType {
+  roleId: string
+  clientId: string
+  roleName: string
+}
+
 export const UserList = ({
   sectionTitle,
   addButtonLabel,
@@ -137,11 +143,11 @@ export const UserList = ({
             flex: 4,
             renderCell: ({ value: roles }) =>
               roles.length
-                ? roles.map((role: string) => (
+                ? roles.map((role: RoleType | string) => (
                     <StatusTag
-                      key={role}
+                      key={typeof role === 'string' ? role : role.roleId}
                       color="label"
-                      label={role}
+                      label={typeof role === 'string' ? role : role.roleName}
                       className="statusTag"
                     />
                   ))

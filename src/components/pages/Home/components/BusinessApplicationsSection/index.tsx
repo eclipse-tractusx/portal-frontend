@@ -24,10 +24,8 @@ import { Typography, Carousel, Card } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
-import {
-  type AppMarketplaceApp,
-  useFetchBusinessAppsQuery,
-} from 'features/apps/apiSlice'
+import { type AppMarketplaceApp } from 'features/apps/types'
+import { useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
 

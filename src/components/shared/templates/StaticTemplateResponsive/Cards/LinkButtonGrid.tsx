@@ -18,9 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { ProviderProps, linkProps } from '../StaticTypes'
-import { Box } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
+import { QuickLinks } from '@catena-x/portal-shared-components'
+import type { ProviderProps } from '../StaticTypes'
 import '../StaticTemplate.scss'
 
 export default function LinkButtonGrid({
@@ -30,57 +29,7 @@ export default function LinkButtonGrid({
   provider: ProviderProps
   grid: number
 }) {
-  return (
-    <>
-      {provider.linksRow1 && (
-        <Box
-          className={'linkGridContainer'}
-          sx={{
-            gridTemplateColumns: `repeat(${grid}, 1fr)`,
-          }}
-        >
-          {provider.linksRow1.map((link: linkProps) => (
-            <Box
-              key={link.title}
-              className={'linkBox'}
-              sx={{
-                backgroundColor: link.background,
-                width: `${100 / grid}%`,
-              }}
-              onClick={() => {
-                window.open(link.navigate, '_blank')
-              }}
-            >
-              <Typography variant="h5">{link.title}</Typography>
-            </Box>
-          ))}
-        </Box>
-      )}
-      {provider.linksRow2 && (
-        <Box
-          className={'linkGridContainer'}
-          sx={{
-            gridTemplateColumns: `repeat(${grid}, 1fr)`,
-            marginTop: '30px',
-          }}
-        >
-          {provider.linksRow2.map((link: linkProps) => (
-            <Box
-              key={link.title}
-              className={'linkBox'}
-              sx={{
-                backgroundColor: link.background,
-                width: `${100 / grid}%`,
-              }}
-              onClick={() => {
-                window.open(link.navigate, '_blank')
-              }}
-            >
-              <Typography variant="h5">{link.title}</Typography>
-            </Box>
-          ))}
-        </Box>
-      )}
-    </>
-  )
+  const QuickLinksdata = provider.linksRow1.concat(provider.linksRow2)
+
+  return <QuickLinks items={QuickLinksdata} alignButtons="center" />
 }

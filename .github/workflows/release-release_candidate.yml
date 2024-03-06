@@ -45,6 +45,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup Node
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
       - name: Get npm version
         id: npm-tag
         uses: martinbeentjes/npm-get-version-action@v1.3.1
@@ -145,7 +151,7 @@ jobs:
         run: |
           curl -v \
             --request POST \
-            --url https://api.github.com/repos/eclipse-tractusx/portal-cd/actions/workflows/portal-image-update.yml/dispatches \
+            --url https://api.github.com/repos/eclipse-tractusx/portal/actions/workflows/portal-image-update.yml/dispatches \
             --header "authorization: Bearer $TOKEN" \
             --header "Accept: application/vnd.github.v3+json" \
             --data '{"ref":"release-candidate", "inputs": { "new-image":"${{ env.REF_NAME }}" }}' \

@@ -42,7 +42,7 @@ import {
 import { Link } from 'react-router-dom'
 
 const ProfileHelpURL =
-  '/documentation/?path=docs%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
+  '/documentation/?path=user%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
 
 export default function ActivateserviceSubscription({
   offerId,
@@ -229,7 +229,7 @@ export default function ActivateserviceSubscription({
                     }}
                   >
                     <Typography variant="h4" sx={{ marginBottom: '20px' }}>
-                      {t('serviceSubscription.register.sectionHeader')}
+                      {t('serviceSubscription.register.technicalUserDetails')}
                     </Typography>
 
                     <Typography variant="body2">

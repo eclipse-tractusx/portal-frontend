@@ -83,6 +83,9 @@ import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
 import CompanyWallet from 'components/pages/CompanyWallet'
+import CompanyCertificates from 'components/pages/CompanyCertificates'
+import CompanySubscriptions from 'components/pages/CompanySubscriptions'
+import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 
 /**
  * ALL_PAGES
@@ -534,9 +537,33 @@ export const ALL_PAGES: IPage[] = [
     element: <OSPManagement />,
   },
   {
+    name: PAGES.COMPANY_CERTIFICATE,
+    role: ROLES.COMPANY_CERTIFICATE_VIEW,
+    element: <CompanyCertificates />,
+  },
+  {
     name: PAGES.COMPANY_WALLET,
     role: ROLES.COMPANY_WALLET,
     element: <CompanyWallet />,
+  },
+  {
+    name: PAGES.COMPANY_SUBSCRIPTIONS,
+    role: ROLES.VIEW_SUBSCRIPTION,
+    element: <CompanySubscriptions />,
+  },
+  {
+    name: PAGES.COMPANY_SUBSCRIPTIONS_DETAIL,
+    role: ROLES.VIEW_SUBSCRIPTION,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}
+        path={PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}
+        element={<CompanySubscriptionDetail />}
+      >
+        <Route path=":appId" element={<CompanySubscriptionDetail />} />
+      </Route>
+    ),
   },
 ]
 
@@ -628,11 +655,19 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_SETUP,
   },
   {
+    name: OVERLAYS.DISABLE_MANAGED_IDP,
+    role: ROLES.IDP_SETUP,
+  },
+  {
     name: OVERLAYS.ENABLE_IDP_SUCCESS,
     role: ROLES.IDP_SETUP,
   },
   {
     name: OVERLAYS.DELETE_IDP,
+    role: ROLES.IDP_DELETE,
+  },
+  {
+    name: OVERLAYS.DELETE_MANAGED_IDP,
     role: ROLES.IDP_DELETE,
   },
   {
@@ -687,6 +722,12 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.UPDATE_CERTIFICATE,
+  },
+  {
+    name: OVERLAYS.COMPANY_CERTIFICATE_DETAILS,
+  },
+  {
+    name: OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
   },
 ]
 
@@ -765,6 +806,7 @@ export const mainMenuFullTree = [
 export const userMenuFull = [
   PAGES.ACCOUNT,
   PAGES.ORGANIZATION,
+  PAGES.COMPANY_SUBSCRIPTIONS,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,
@@ -775,11 +817,27 @@ export const userMenuFull = [
   PAGES.USECASE_PARTICIPATION,
   PAGES.CERTIFICATE_CREDENTIAL,
   PAGES.ADMIN_CREDENTIAL,
+  PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.LOGOUT,
 ]
 
 export const userMenuRegistration = [PAGES.LOGOUT]
+
+export const userMenuCompany = [
+  PAGES.ORGANIZATION,
+  PAGES.USER_MANAGEMENT,
+  PAGES.IDP_MANAGEMENT,
+  PAGES.TECHNICAL_SETUP,
+  PAGES.APPLICATION_REQUESTS,
+  PAGES.INVITE,
+  PAGES.COMPANY_ROLE,
+  PAGES.USECASE_PARTICIPATION,
+  PAGES.CERTIFICATE_CREDENTIAL,
+  PAGES.ADMIN_CREDENTIAL,
+  PAGES.COMPANY_CERTIFICATE,
+  PAGES.COMPANY_WALLET,
+]
 
 /**
  * footerMenuFull

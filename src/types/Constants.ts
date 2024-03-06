@@ -101,8 +101,11 @@ export enum PAGES {
   DATA_SPACE = 'dataspace',
   ADMIN_CREDENTIAL = 'admin-credential',
   ONBOARDING_SERVICEPROVIDER = 'onboarding-serviceprovider',
+  COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
+  COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
+  COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
 }
 
 export enum OVERLAYS {
@@ -129,7 +132,9 @@ export enum OVERLAYS {
   UPDATE_IDP_SUCCESS = 'update_idp_success',
   ENABLE_IDP = 'enable_idp',
   DISABLE_IDP = 'disable_idp',
+  DISABLE_MANAGED_IDP = 'disable_managed_idp',
   DELETE_IDP = 'delete_idp',
+  DELETE_MANAGED_IDP = 'delete_managed_idp',
   ADDUSERS_IDP = 'addusers_idp',
   IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
@@ -150,6 +155,8 @@ export enum OVERLAYS {
   UPDATE_COMPANY_ROLE = 'update_company_role',
   EDIT_USECASE = 'edit_usecase',
   UPDATE_CERTIFICATE = 'update_certificate',
+  COMPANY_CERTIFICATE_DETAILS = 'company_certificate_details',
+  COMPANY_CERTIFICATE_CONFIRM_DELETE = 'company_certificate_confirm_delete',
 }
 
 export enum ACTIONS {
@@ -216,6 +223,9 @@ export enum ROLES {
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
   COMPANY_WALLET = 'view_wallet',
+  COMPANY_CERTIFICATE_VIEW = 'view_certificates',
+  UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
+  VIEW_SUBSCRIPTION = 'view_subscription',
 }
 
 export enum HINTS {

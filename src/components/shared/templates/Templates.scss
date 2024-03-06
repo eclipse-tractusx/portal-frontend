@@ -28,7 +28,7 @@
   width: 100%;
   justify-content: flex-start;
   padding-left: 160px;
-  padding-right: 80px;
+  padding-right: 160px;
 
   h4 {
     font-size: 16px;
@@ -37,8 +37,9 @@
 }
 
 .subNavigationContainer button {
-  margin-right: 20px;
-  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .customHeight {

@@ -195,7 +195,7 @@ const AddRolesOverlay = ({
             sx={{ mr: 2, mt: '5px', mb: 5, textAlign: 'center' }}
           >
             <a
-              href="../../app-provider-role-upload-example.csv"
+              href="../../template_app_role_upload.csv"
               style={{ textDecoration: 'none' }}
               download
             >
@@ -215,7 +215,7 @@ const AddRolesOverlay = ({
               variant="contained"
               onClick={() =>
                 window.open(
-                  '/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
+                  '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F04.+Technical+Integration.md',
                   '_blank',
                   'noopener'
                 )

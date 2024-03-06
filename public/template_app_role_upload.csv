@@ -1,4 +1,4 @@
-roles;description
+﻿roles;description
 Administrator;Administrator are able to configure the application as per the costumer need
 Commercial Specialist;Commercial Specialist can approve commercial request and send them for the manager review
 Commercial Manager;Commercial Specialist can do the final approval of commercial request and trigger the payout.

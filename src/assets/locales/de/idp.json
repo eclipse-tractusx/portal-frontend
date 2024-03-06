@@ -111,9 +111,8 @@
     "subHeading2": "You have completed the setup process of your new IdP.",
     "nextStepHeading": "Your NEXT Steps:",
     "nextStepSubHeading": "To test the new IdP, please do the following:",
-    "step1Heading": "“Test new IdP login” by clicking the button below",
-    "step2Heading": "“Sign in” again with your IdP “smoke test jj01” and <br /> user “julia.jeroch@bmw.de”",
-    "note": "Please note:",
+    "step1Heading": "Klicken Sie auf die Schaltfläche „Abmelden“, um sich von Ihrem aktuellen Konto abzumelden",
+    "step2Heading": "Anschließend wählen Sie auf der Login-Seite den neu erstellten Identity-Provider-Login „{{idpDisplayname}}“ aus. Und melden Sie sich mit Ihren persönlichen Zugangsdaten an, die Sie für diesen IdP verwendet haben.",
     "or": "OR",
     "successText": "If the test succeeds, <br />... commence user migration <br />... deactivate old IdP",
     "failText": "If the test fails,<br />please “sign in” with your “old” <br />Catena-X user and check the settings <br />of your new IdP. "
@@ -127,8 +126,29 @@
     "success": "IdP got disabled",
     "error": "Something went wrong. IdP got not disabled."
   },
+  "disableManagedIdp": {
+    "title": "Deaktivieren Sie den Identitätsanbieter",
+    "desc1": "Sie sind dabei, diesen IdP zu deaktivieren",
+    "desc2": "Bei der Deaktivierung des Identitätsanbieters bleiben alle Daten erhalten, der Zugriff wird jedoch gesperrt. Bitte achten Sie darauf, sich selbst bzw. Ihre Organisation nicht auszusperren. Die folgende Liste gibt einen Überblick über alle Organisationen, die bei der IdP-Verbindung registriert sind.",
+    "connectedCompanies": "Verbundene/verknüpfte Unternehmen:",
+    "none": "keiner",
+    "desc3": "Die Kunden werden über die Deaktivierung informiert. Eine Kommunikation der geplanten Deaktivierung von der IdP Owner Seite wird trotzdem stark empfohlen.",
+    "disableSuccess": "Verwalteter IdP erfolgreich deaktiviert",
+    "enableSuccess": "VVerwalteter IdP erfolgreich aktiviert",
+    "error": "Etwas ist schief gelaufen. Die Deaktivierung des verwalteten IdP war nicht erfolgreich."
+  },
+  "deleteManagedIdp": {
+    "title": "Identitätsanbieter löschen",
+    "desc1": "Sie sind dabei, diesen IdP zu löschen. Mit der Löschung des Identity Providers werden verbundene Unternehmen gelöscht bzw. auf gelöscht gesetzt. Überprüfen Sie die Liste der verbundenen Unternehmen sorgfältig und stellen Sie sicher, dass diese informiert sind, bevor Sie fortfahren.",
+    "desc2": "Mit der Löschung des Identity Providers werden verbundene Unternehmen gelöscht bzw. auf gelöscht gesetzt. Überprüfen Sie die Liste der verbundenen Unternehmen sorgfältig und stellen Sie sicher, dass diese informiert sind, bevor Sie fortfahren.",
+    "connectedCompanies": "Verbundene/verknüpfte Unternehmen:",
+    "none": "keiner",
+    "desc3": "Der Vorgang kann nicht rückgängig gemacht werden.",
+    "success": "Verwalteter IdP erfolgreich gelöscht",
+    "error": "Etwas ist schief gelaufen. Das Löschen des verwalteten IdP ist nicht erfolgreich."
+  },
   "users": {
-    "title": "Link existing users to new IdP",
+    "title": "Update/Migrate User Accounts",
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
     "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",

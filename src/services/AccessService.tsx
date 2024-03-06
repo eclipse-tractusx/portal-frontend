@@ -35,6 +35,7 @@ import {
   mainMenuFullTree,
   userMenuFull,
   userMenuRegistration,
+  userMenuCompany,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
 import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
@@ -71,6 +72,10 @@ import AddMultipleUser from 'components/overlays/AddMultipleUser'
 import { OSPRegister } from 'components/overlays/OSPRegister'
 import { OSPConsent } from 'components/overlays/OSPConsent'
 import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
+import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDetails'
+import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
+import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
+import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -109,6 +114,8 @@ const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 const userMenu = () => accessToMenu(userMenuFull)
 
 const userMenuReg = () => accessToMenu(userMenuRegistration)
+
+const userMenuComp = () => accessToMenu(userMenuCompany)
 
 const footerMenu = () => accessToMenu(footerMenuFull)
 
@@ -173,10 +180,14 @@ export const getOverlay = (overlay: OverlayState) => {
       return <EnableIDPSuccess id={overlay.id} />
     case OVERLAYS.DISABLE_IDP:
       return <DisableIDP id={overlay.id} />
+    case OVERLAYS.DISABLE_MANAGED_IDP:
+      return <DisableManagedIDP id={overlay.id} />
     case OVERLAYS.ADDUSERS_IDP:
       return <AddusersIDP id={overlay.id} />
     case OVERLAYS.DELETE_IDP:
       return <DeleteIDP id={overlay.id} />
+    case OVERLAYS.DELETE_MANAGED_IDP:
+      return <DeleteManagedIDP id={overlay.id} />
     case OVERLAYS.IDP_TEST_RUN:
       return <IDPTestRun />
     case OVERLAYS.REGISTER_OSP:
@@ -213,6 +224,15 @@ export const getOverlay = (overlay: OverlayState) => {
       return <EditUsecase id={overlay.id} title={overlay.title ?? ''} />
     case OVERLAYS.UPDATE_CERTIFICATE:
       return <UpdateCertificate id={overlay.id} />
+    case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:
+      return <CompanyCertificateDetails id={overlay.id} />
+    case OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE:
+      return (
+        <DeleteCompanyCertificateConfirmationOverlay
+          id={overlay.id}
+          title={overlay.title ?? ''}
+        />
+      )
     default:
       return <NotFound />
   }
@@ -257,6 +277,7 @@ const AccessService = {
   userMenu,
   userMenuReg,
   footerMenu,
+  userMenuComp,
 }
 
 export default AccessService

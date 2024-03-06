@@ -24,6 +24,7 @@ import {
   Chip,
   CustomAccordion,
   LoadingButton,
+  SelectList,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -38,7 +39,7 @@ import {
   decrement,
   increment,
 } from 'features/appManagement/slice'
-import { Dropzone } from 'components/shared/basic/Dropzone'
+import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import {
   type rolesType,
@@ -99,6 +100,39 @@ export default function TechnicalIntegration() {
   const [techUserProfiles, setTechUserProfiles] = useState<string[]>([])
   const [enableUserProfilesErrorMessage, setEnableUserProfilesErrorMessage] =
     useState(false)
+  const [selectedEncoding, setSelectedEncoding] = useState<string>('UTF-8')
+  const [uploadFileInfo, setUploadFileInfo] = useState<DropzoneFile[]>([])
+  const unicodeSelectItems = [
+    {
+      id: 1,
+      title: 'UTF-8',
+      value: 'UTF-8',
+    },
+    {
+      id: 2,
+      title: 'ISO-8859-1',
+      value: 'ISO-8859-1',
+    },
+    {
+      id: 3,
+      title: 'ISO-8859-4',
+      value: 'ISO-8859-4',
+    },
+    {
+      id: 4,
+      title: 'ISO-8859-5',
+      value: 'ISO-8859-5',
+    },
+    {
+      id: 5,
+      title: 'US-ASCII',
+      value: 'US-ASCII',
+    },
+  ]
+
+  useEffect(() => {
+    csvPreview(uploadFileInfo)
+  }, [selectedEncoding])
 
   const userProfiles = useMemo(
     () =>
@@ -248,7 +282,7 @@ export default function TechnicalIntegration() {
             setUploadCSVError(true)
           }
         }
-        reader.readAsText(file)
+        reader.readAsText(file, selectedEncoding)
       })
   }
 
@@ -342,7 +376,7 @@ export default function TechnicalIntegration() {
 
         <Grid item xs={12} sx={{ mr: 2, mt: 4, mb: 5, textAlign: 'center' }}>
           <a
-            href="../../app-provider-role-upload-example.csv"
+            href="../../template_app_role_upload.csv"
             download
             style={{ textDecoration: 'none' }}
           >
@@ -362,7 +396,7 @@ export default function TechnicalIntegration() {
             color="secondary"
             onClick={() =>
               window.open(
-                'https://portal.dev.demo.catena-x.net/documentation/?path=docs%2F04.+App%28s%29%2FRelease-Process%2FApp+Release+Workflow.md',
+                '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F04.+Technical+Integration.md',
                 '_blank',
                 'noopener'
               )
@@ -385,6 +419,7 @@ export default function TechnicalIntegration() {
                 reactHookFormOnChange(files[0]?.name)
                 trigger('uploadAppRoles')
                 csvPreview(files)
+                setUploadFileInfo(files)
               }}
               acceptFormat={{ 'text/csv': ['.csv'] }}
               maxFilesToUpload={1}
@@ -421,9 +456,32 @@ export default function TechnicalIntegration() {
               borderRadius: '24px',
             }}
           >
-            <Typography variant="h4" mb={5} textAlign="center">
-              {t('content.apprelease.technicalIntegration.rolesPreview')}
-            </Typography>
+            <Box>
+              <Typography variant="h4" textAlign="center">
+                {t('content.apprelease.technicalIntegration.rolesPreview')}
+              </Typography>
+              <Grid item container xs={12}>
+                <Grid item md={6} xs={12} sx={{ pl: 2, pr: 2, pb: 2 }}>
+                  <SelectList
+                    sx={{ mb: 2 }}
+                    defaultValue={unicodeSelectItems[0]}
+                    value={selectedEncoding}
+                    placeholder={t(
+                      'content.apprelease.technicalIntegration.encodingPlaceholder'
+                    )}
+                    items={unicodeSelectItems}
+                    label={t(
+                      'content.apprelease.technicalIntegration.encoding'
+                    )}
+                    onChangeItem={(e) => {
+                      setSelectedEncoding(e.value)
+                    }}
+                    keyTitle={'title'}
+                    disableClearable={true}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
             <Grid item mb={5} container xs={12}>
               {rolesPreviews?.map((role: string, index) => (
                 <Grid
@@ -494,61 +552,62 @@ export default function TechnicalIntegration() {
           </Box>
         )}
         <Box>
-          <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
-            {t(
-              'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
-            )}
-          </Typography>
-
           {data && data.length > 0 ? (
-            <Grid item container xs={12}>
-              {data?.map((role: rolesType, index) => (
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                  key={role.roleId}
-                  sx={{
-                    pl: !isMobile && index % 2 === 0 ? 0 : 1,
-                    pr: !isMobile && index % 2 === 0 ? 1 : 0,
-                  }}
-                >
-                  <CustomAccordion
-                    items={[
-                      {
-                        expanded: false,
-                        id: role.roleId,
-                        title: '',
-                        titleElement: (
-                          <Chip
-                            key={role.roleId}
-                            label={role.role}
-                            withIcon={true}
-                            type="delete"
-                            variant="filled"
-                            color="info"
-                            sx={{
-                              '.MuiChip-label': {
-                                fontSize: '14px',
-                              },
-                            }}
-                            handleDelete={() => {
-                              onChipDelete(role.roleId)
-                            }}
-                          />
-                        ),
-                        color: 'white',
-                        children: (
-                          <Typography variant="caption3">
-                            {role.description}
-                          </Typography>
-                        ),
-                      },
-                    ]}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+            <>
+              <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
+                {t(
+                  'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
+                )}
+              </Typography>
+              <Grid item container xs={12}>
+                {data?.map((role: rolesType, index) => (
+                  <Grid
+                    item
+                    md={6}
+                    xs={12}
+                    key={role.roleId}
+                    sx={{
+                      pl: !isMobile && index % 2 === 0 ? 0 : 1,
+                      pr: !isMobile && index % 2 === 0 ? 1 : 0,
+                    }}
+                  >
+                    <CustomAccordion
+                      items={[
+                        {
+                          expanded: false,
+                          id: role.roleId,
+                          title: '',
+                          titleElement: (
+                            <Chip
+                              key={role.roleId}
+                              label={role.role}
+                              withIcon={true}
+                              type="delete"
+                              variant="filled"
+                              color="info"
+                              sx={{
+                                '.MuiChip-label': {
+                                  fontSize: '14px',
+                                },
+                              }}
+                              handleDelete={() => {
+                                onChipDelete(role.roleId)
+                              }}
+                            />
+                          ),
+                          color: 'white',
+                          children: (
+                            <Typography variant="caption3">
+                              {role.description}
+                            </Typography>
+                          ),
+                        },
+                      ]}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </>
           ) : (
             <Box className="no-roles-box">
               <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
@@ -614,7 +673,7 @@ export default function TechnicalIntegration() {
           description: t('content.apprelease.appReleaseForm.error.message'),
         }}
         helpUrl={
-          '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
         }
         isValid={data && data?.length > 0 && techUserProfiles?.length > 0}
         loader={loading}

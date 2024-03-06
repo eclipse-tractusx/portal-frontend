@@ -238,47 +238,51 @@ export default function ServiceListOverview() {
                 showButton={true}
               />
             )}
-            {items && items.length > 0 && isSuccess ? (
-              <div className="desc-card">
-                <Cards
-                  items={items}
-                  columns={4}
-                  buttonText="Details"
-                  variant="minimal"
-                  filledBackground={false}
-                  imageSize={'small'}
-                  imageLoader={fetchImageWithToken}
-                  showAddNewCard={false}
-                  newButtonText={t('serviceoverview.addbtn')}
-                  onNewCardButton={onNewServiceCardClick}
-                  onCardClick={(item: CardItems) => {
-                    // TODO: workaround - fix CardItems type
-                    const cardItem: CardItemsInterface = item
-                    if (
-                      cardItem.status === ProvidedServiceStatusEnum.PENDING ||
-                      cardItem.status === ProvidedServiceStatusEnum.CREATED
-                    ) {
-                      dispatch(setServiceId(item.id ?? ''))
-                      navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
-                    } else {
-                      navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
-                    }
-                  }}
-                  subMenu={true}
-                  submenuOptions={submenuOptions}
-                  submenuClick={(sortMenu: string, id: string | undefined) => {
-                    sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                      navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
-                        state: items,
-                      })
-                    return undefined
-                  }}
-                  tooltipText={t('serviceoverview.submenuNotAvailable')}
-                />
-              </div>
-            ) : (
-              <NoItems />
-            )}
+            {isSuccess &&
+              (items && items.length > 0 ? (
+                <div className="desc-card">
+                  <Cards
+                    items={items}
+                    columns={4}
+                    buttonText="Details"
+                    variant="minimal"
+                    filledBackground={false}
+                    imageSize={'small'}
+                    imageLoader={fetchImageWithToken}
+                    showAddNewCard={false}
+                    newButtonText={t('serviceoverview.addbtn')}
+                    onNewCardButton={onNewServiceCardClick}
+                    onCardClick={(item: CardItems) => {
+                      // TODO: workaround - fix CardItems type
+                      const cardItem: CardItemsInterface = item
+                      if (
+                        cardItem.status === ProvidedServiceStatusEnum.PENDING ||
+                        cardItem.status === ProvidedServiceStatusEnum.CREATED
+                      ) {
+                        dispatch(setServiceId(item.id ?? ''))
+                        navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                      } else {
+                        navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
+                      }
+                    }}
+                    subMenu={true}
+                    submenuOptions={submenuOptions}
+                    submenuClick={(
+                      sortMenu: string,
+                      id: string | undefined
+                    ) => {
+                      sortMenu === ServiceSubMenuItems.DEACTIVATE &&
+                        navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
+                          state: items,
+                        })
+                      return undefined
+                    }}
+                    tooltipText={t('serviceoverview.submenuNotAvailable')}
+                  />
+                </div>
+              ) : (
+                <NoItems />
+              ))}
           </>
         )}
       </section>

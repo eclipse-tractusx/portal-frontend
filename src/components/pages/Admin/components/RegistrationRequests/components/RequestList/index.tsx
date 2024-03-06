@@ -83,12 +83,10 @@ export const RequestList = ({
   }
 
   useEffect(() => {
-    if (onValidate(searchExpr)) {
-      setFetchHookArgs({
-        statusFilter: filterStatus,
-        expr: searchExpr,
-      })
-    }
+    setFetchHookArgs({
+      statusFilter: filterStatus,
+      expr: onValidate(searchExpr) ? searchExpr : '',
+    })
     // eslint-disable-next-line
   }, [filterStatus, searchExpr])
 
@@ -135,8 +133,9 @@ export const RequestList = ({
   return (
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
+        autoFocus={false}
         searchExpr={searchExpr}
-        rowHeight={group !== AppFilterType.CLOSED ? 160 : 80}
+        rowHeight={group !== AppFilterType.CLOSED ? 160 : 110}
         alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}
@@ -145,7 +144,7 @@ export const RequestList = ({
         searchPlaceholder={t('global.table.searchName')}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (!onValidate(expr)) return
+          if (expr !== '' && !onValidate(expr)) return
           setRefresh(Date.now())
           setSearchExpr(expr)
         }}

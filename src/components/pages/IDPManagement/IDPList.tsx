@@ -138,6 +138,8 @@ export const IDPList = () => {
   }
 
   const renderMenu = (idp: IdentityProvider) => {
+    const isManaged = idp.identityProviderTypeId === IDPCategory.MANAGED
+
     const menuItems = {
       configure: (
         <MenuItemOpenOverlay
@@ -153,7 +155,13 @@ export const IDPList = () => {
           label={ti('action.users')}
         />
       ),
-      delete: (
+      delete: isManaged ? (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.DELETE_MANAGED_IDP}
+          id={idp.identityProviderId}
+          label={ti('action.delete')}
+        />
+      ) : (
         <MenuItem
           onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
             !deleteLoading && doDelete(e, idp)
@@ -195,42 +203,48 @@ export const IDPList = () => {
           label={ti('action.consent')}
         />
       ),
-      enableToggle: (
-        <MenuItem
-          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-            !disableLoading && doEnableDisableToggle(e, idp)
-          }
-          sx={{
-            color: disableLoading ? '#b6b6b6' : '#111111',
-          }}
-          disabled={
-            data &&
-            idp.enabled &&
-            data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
-          }
-        >
-          {idp.enabled ? ti('action.disable') : ti('action.enable')}
-          {disableLoading && (
-            <CircularProgress
-              size={15}
-              sx={{
-                marginLeft: '5px',
-              }}
-            />
-          )}
-        </MenuItem>
-      ),
+      enableToggle:
+        isManaged && idp.enabled ? (
+          <MenuItemOpenOverlay
+            overlay={OVERLAYS.DISABLE_MANAGED_IDP}
+            id={idp.identityProviderId}
+            label={ti('action.disable')}
+          />
+        ) : (
+          <MenuItem
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
+            sx={{
+              color: disableLoading ? '#b6b6b6' : '#111111',
+            }}
+            disabled={
+              data &&
+              idp.enabled &&
+              data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
+            }
+          >
+            {idp.enabled ? ti('action.disable') : ti('action.enable')}
+            {disableLoading && (
+              <CircularProgress
+                size={15}
+                sx={{
+                  marginLeft: '5px',
+                }}
+              />
+            )}
+          </MenuItem>
+        ),
     }
-
-    const isManaged = idp.identityProviderTypeId === IDPCategory.MANAGED
 
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
           {menuItems.configure}
           {isManaged && idp.enabled && menuItems.register}
-          {!isManaged && idp.oidc?.clientId && menuItems.enableToggle}
+          {idp.oidc?.clientId && menuItems.enableToggle}
           {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}
+          {isManaged && !idp.enabled && idp.oidc?.clientId && menuItems.delete}
         </DropdownMenu>
       </div>
     )

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Chip, Typography } from '@catena-x/portal-shared-components'
-import type { AppDetails } from 'features/apps/apiSlice'
+import type { AppDetails } from 'features/apps/types'
 import './AppDetailTags.scss'
 import '../../AppDetail.scss'
 import { useTranslation } from 'react-i18next'

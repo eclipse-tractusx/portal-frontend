@@ -26,6 +26,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import CloseIcon from '@mui/icons-material/Close'
 import { MobileMenu } from 'components/shared/MobileMenu'
+import { Drawer } from '@mui/material'
 
 export const MenuInfo = ({ main }: { main: Tree[] }) => {
   const { t } = useTranslation()
@@ -45,28 +46,41 @@ export const MenuInfo = ({ main }: { main: Tree[] }) => {
   const menu = addTitle(main) ?? []
 
   return (
-    <>
-      {visible && (
-        <ClickAwayListener
-          onClickAway={() => dispatch(setAppear({ MENU: !visible }))}
-        >
-          <div className="MenuInfo">
-            <CloseIcon
-              onClick={() => dispatch(setAppear({ MENU: !visible }))}
-              sx={{
-                color: '#B6B6B6',
-              }}
-              className="closeIcon"
-            />
-            <MobileMenu
-              className="userMenuInfo"
-              component={Link}
-              divider
-              items={menu}
-            />
-          </div>
-        </ClickAwayListener>
-      )}
-    </>
+    <Drawer
+      sx={{
+        width: '280px',
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: '280px',
+          background: 'transparent',
+          borderColor: 'transparent',
+        },
+      }}
+      variant="persistent"
+      anchor="right"
+      open={visible}
+    >
+      <ClickAwayListener
+        onClickAway={() => {
+          // visible && dispatch(setAppear({ MENU: !visible }))
+        }}
+      >
+        <div className="MenuInfo">
+          <CloseIcon
+            onClick={() => dispatch(setAppear({ MENU: !visible }))}
+            sx={{
+              color: '#B6B6B6',
+            }}
+            className="closeIcon"
+          />
+          <MobileMenu
+            className="userMenuInfo"
+            component={Link}
+            divider
+            items={menu}
+          />
+        </div>
+      </ClickAwayListener>
+    </Drawer>
   )
 }

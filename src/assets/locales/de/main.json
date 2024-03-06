@@ -63,7 +63,11 @@
     "about": "About",
     "dataspace": "Data Space",
     "admin-credential": "Certification Mgmt",
-    "companyWallet": "Company Wallet"
+    "companyCertificate": "Company Certificates",
+    "companyWallet": "Company Wallet",
+    "company-subscriptions": "Firmenabonnements",
+    "mycompany": "My Company",
+    "mynotifications": "My Notifications"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -120,6 +124,37 @@
       },
       "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:",
       "email": "help@catena-x.com"
+    },
+    "registrationInreview": {
+      "title": "Welcome to Catena-X",
+      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
+      "subDescription": "At the current state of the review you already have limited access to the portal.",
+      "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
+      "lastUpdate": "Last process update: {{date}}",
+      "steps": {
+        "REGISTRATION_VERIFICATION": "Data Validation",
+        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "CLEARING_HOUSE": "Clearing House",
+        "SELF_DESCRIPTION_LP": "Self Description",
+        "APPLICATION_ACTIVATION": "Application Activation",
+        "BUSINESS_PARTNER_NUMBER": "BPN Creation"
+      },
+      "status": {
+        "IN_PROGRESS": "In Bearbeitung",
+        "TO_DO": "Ausstehend",
+        "DONE": "Erledigt",
+        "FAILED": "Fehlgeschlagen"
+      },
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "note": "NOTE:",
+      "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
+      "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
+      "email": "help@catena-x.com"
+    },
+    "registrationDeclined": {
+      "title": "Registration Status",
+      "description": "<strong>After careful consideration, we regret to inform you that we are unable to approve your registration at this time.</strong><br /><br />Details/reasons for the cancellation have been provided via email.Your account will get disabled soon.",
+      "close": "Close the Page"
     },
     "admin": {
       "registration-requests": {
@@ -273,7 +308,7 @@
           "modularproduction": "Modular Production"
         },
         "noMatch": "Keine Treffer",
-        "for": "für"
+        "for": "zu Ihrem Suchausdruck"
       }
     },
     "semantichub": {
@@ -360,26 +395,50 @@
         "city": "Stadt: ",
         "bpn": "BPN: "
       },
-      "subscriptions": {
-        "title": "App-Abonnements",
-        "error": "Fehler - keine Daten gefunden"
-      },
       "unsubscribe": {
-        "title": "Geschäftsanwendung Deaktivieren",
-        "description": "Möchten Sie sich die Geschäftsanwendung wirklich deaktivieren?",
-        "note": "Bitte beachten Sie: Alle möglicherweise verbundenen Objekte (siehe Details oben) werden ebenfalls deaktiviert. Die Abmeldung ist nicht rückgängig zu machen.",
+        "title": "Geschäftsanwendung/Dienst abbestellen",
+        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
+        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
         "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technischer User"
+          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
+          "app": "Bewerbungs-/Diensttitel:",
+          "status": "Aktueller Status:",
+          "connector": "Verbinder:",
+          "techUser": "Technischer Benutzer:"
         },
-        "checkBoxLabel": "Ja, ich stimme zu, dass ich die Auswirkungen der Abmeldung verstanden habe und mit dem Vorgang fortfahren möchte.",
-        "buttonText": "Abbestellen"
+        "subscribed": "Gezeichnet",
+        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
+        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "buttonText": "Abbestellen",
+        "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
+        "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
+        "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
       }
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
+    },
+    "companySubscriptions": {
+      "headertitle": "App- und Service-Abonnements",
+      "tableTitle": "Abonnierte Apps",
+      "subscribed": "Gezeichnet",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "connector": "Verbinder",
+      "technicalUser": "Technischer Benutzer",
+      "unsubscribe": "Abbestellen",
+      "table": {
+        "appIcon": "App-Symbol",
+        "appTitle": "App-Titel",
+        "status": "Status",
+        "details": "Einzelheiten",
+        "action": "Aktion"
+      },
+      "filter": {
+        "requested": "angefordert",
+        "active": "aktiv",
+        "showAll": "zeige alles"
+      }
     },
     "appoverview": {
       "headerTitle": "Meine Applikationen",
@@ -497,9 +556,9 @@
           "title": "Below you can find the relevant details regarding all those values",
           "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
           "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "https://portal.int.demo.catena-x.net/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "https://portal.int.demo.catena-x.net/documentation/?path=docs%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
+          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
           "authorityBpn": "* authority bpn: {{bpn}}",
           "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
           "clickhere": "click here"
@@ -1135,7 +1194,9 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
-        "roleUpdateError": "Error while updating roles"
+        "roleUpdateError": "Error while updating roles",
+        "encoding": "Encoding(select supported encoding)",
+        "encodingPlaceholder": "Select supported encoding"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1676,6 +1737,59 @@
         "status": "Status: "
       },
       "noData": "Derzeit bestehen keine Zertifikate für das Unternehmen. Sie können mit dem Hochladen eines Zertifikats beginnen, indem Sie oben auf die Schaltfläche „Zertifikat hochladen“ klicken."
+    },
+    "companyCertificate": {
+      "heading": "Company Certificates",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "tabs": {
+        "inactive": "Pending",
+        "active": " Active",
+        "all": "All"
+      },
+      "sort": {
+        "nameasc": "Certificate Asc",
+        "namedsc": "Certificate Dsc",
+        "dateasc": "Expiry Date Asc",
+        "datedsc": "Expiry Date Dsc"
+      },
+      "details": {
+        "type": "Type",
+        "validtill": "Valid Till",
+        "status": "Status",
+        "deletebutton": "Delete Certificate",
+        "fileUpload": "File Upload",
+        "verification": "Verification"
+      },
+      "upload": {
+        "title": "Upload new certificate",
+        "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
+        "certificateTypeTitle": "Certificate Type",
+        "certificateTypeError": "",
+        "certificateTypeLabel": "",
+        "certificateTypePlaceholder": "Please select",
+        "certificateSiteTitle": "Certificate Site/Level",
+        "certificateSiteError": "",
+        "certificateSiteLabel": "",
+        "certificateSitePlaceholder": "Please select",
+        "uploadDocumentTitle": "Certificate file upload",
+        "note": "",
+        "comingsoon": "Coming soon",
+        "expiry": "Expiry Date",
+        "dateplaceholder": "Enter a Date",
+        "dateError": "Select a valid date"
+      },
+      "confirm": {
+        "success": "Das Zertifikate {{name}} wurde erfolgreich gelöscht und unter 'Inaktiv' verschoben",
+        "error": "Die Löschung war nicht erfolgreich. System Message: {{error}}. Bitte kontaktieren sie einen Administrator.",
+        "title": "{{name}} Deletion",
+        "description": "Are you sure you want to delete the certificate. Please note that the certificate deletion is immediately active. A re-activation is not possible; but you can upload a new file under the same type whenever needed."
+      },
+      "uploadCertificate": "Upload Certificate",
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
+      "validtill": "Valid Till",
+      "view": "View",
+      "delete": "Delete",
+      "morelink": ">> More"
     },
     "companyWallet": {
       "heading": "Mein Firmen-Wallet",

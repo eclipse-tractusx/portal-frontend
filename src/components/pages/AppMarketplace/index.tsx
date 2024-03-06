@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,13 +19,24 @@
 
 import StageSection from './components/StageSection'
 import AppListSection from './components/AppListSection'
+import SearchSection from './components/SearchSection'
+import HeaderSection from './components/HeaderSection'
+import { Box } from '@mui/material'
+import PageService from 'services/PageService'
+import { useRef } from 'react'
 import './AppMarketplace.scss'
 
 export default function AppMarketplace() {
+  const reference = PageService.registerReference('AppList', useRef(null))
+
   return (
     <main className="app-store">
       <StageSection />
-      <AppListSection />
+      <Box ref={reference} className="overview-section">
+        <HeaderSection />
+        <SearchSection />
+        <AppListSection />
+      </Box>
     </main>
   )
 }

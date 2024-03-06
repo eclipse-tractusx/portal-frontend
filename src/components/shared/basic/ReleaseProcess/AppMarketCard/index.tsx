@@ -557,7 +557,7 @@ export default function AppMarketCard() {
               name="provider"
               maxLength={30}
               minLength={3}
-              pattern={Patterns.appMarketCard.appProvider}
+              pattern={Patterns.COMPANY_NAME}
               label={
                 <>
                   {t('content.apprelease.appMarketCard.appProvider')}
@@ -854,7 +854,7 @@ export default function AppMarketCard() {
         isValid={isValid}
         loader={loading}
         helpUrl={
-          '/documentation/?path=docs%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
         }
       />
       <PageSnackbar
