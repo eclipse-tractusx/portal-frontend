@@ -33,6 +33,8 @@ import notificationDE from '../assets/locales/de/notification.json'
 import notificationEN from '../assets/locales/en/notification.json'
 import servicereleaseDE from '../assets/locales/de/servicerelease.json'
 import servicereleaseEN from '../assets/locales/en/servicerelease.json'
+import registrationDE from '../assets/locales/de/registration.json'
+import registrationEN from '../assets/locales/en/registration.json'
 import type { NotificationType } from 'features/notification/types'
 
 const resources = {
@@ -43,6 +45,7 @@ const resources = {
     idp: idpDE,
     notification: notificationDE,
     servicerelease: servicereleaseDE,
+    registration: registrationDE,
   },
   en: {
     translation: mainEN,
@@ -51,6 +54,7 @@ const resources = {
     idp: idpEN,
     notification: notificationEN,
     servicerelease: servicereleaseEN,
+    registration: registrationEN,
   },
 }
 

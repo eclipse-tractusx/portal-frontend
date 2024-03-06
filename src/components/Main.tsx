@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
 import { show } from 'features/control/overlay'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { type OVERLAYS, PAGES } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
 import { MenuInfo } from './pages/Home/components/MenuInfo'
@@ -41,6 +41,7 @@ import './styles/main.scss'
 import RegistrationStatus from './pages/RegistrationStatus'
 import Logout from './pages/Logout'
 import Redirect from './actions/Redirect'
+import { OSPConsent } from './pages/OSPConsent'
 
 export default function Main() {
   document.title = useTranslation().t('title')
@@ -49,6 +50,14 @@ export default function Main() {
 
   const { data, isLoading } = useFetchApplicationsQuery()
   const companyData = data?.[0]
+
+  const renderSection = () => {
+    return companyData?.applicationType === ApplicationType.INTERNAL ? (
+      <RegistrationStatus />
+    ) : (
+      <OSPConsent />
+    )
+  }
 
   useEffect(() => {
     const overlay = searchParams.get('overlay')?.split(':')
@@ -70,21 +79,15 @@ export default function Main() {
     ].includes(companyData.applicationStatus) &&
     !location.search.includes('overlay=consent_osp')
   ) {
-    if (companyData.applicationType === ApplicationType.INTERNAL) {
-      return (
-        <>
-          <Header main={[]} user={AccessService.userMenuReg()} />
-          <MainSearchOverlay />
-          {window.location.pathname === '/logout' ? (
-            <Logout />
-          ) : (
-            <RegistrationStatus />
-          )}
-          <Footer pages={AccessService.footerMenu()} />
-          <MenuInfo main={[]} />
-        </>
-      )
-    } else dispatch(show(OVERLAYS.CONSENT_OSP))
+    return (
+      <>
+        <Header main={[]} user={AccessService.userMenuReg()} />
+        <MainSearchOverlay />
+        {location.pathname === '/logout' ? <Logout /> : renderSection()}
+        <Footer pages={AccessService.footerMenu()} />
+        <MenuInfo main={[]} />
+      </>
+    )
   }
 
   return (

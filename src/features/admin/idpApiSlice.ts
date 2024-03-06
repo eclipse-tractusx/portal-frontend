@@ -77,20 +77,21 @@ export interface IDPMapper {
   config: IDPMapperConfig
 }
 
-interface BaseAuthType {
-  authorizationUrl?: string
-  clientId: string
-}
-export interface OIDCType extends BaseAuthType {
-  clientAuthMethod: OIDCAuthMethod
-  signatureAlgorithm?: OIDCSignatureAlgorithm
-  metadataUrl?: string
+export interface OIDCType {
   secret?: string
+  authorizationUrl?: string
+  clientAuthMethod: OIDCAuthMethod
+  clientId: string
+  hasClientSecret?: boolean
+  logoutUrl?: string
+  metadataUrl: string
+  signatureAlgorithm?: OIDCSignatureAlgorithm
+  tokenUrl?: string
 }
 
-export interface SAMLType extends BaseAuthType {
-  clientAuthMethod: SAMLAuthMethod
-  signatureAlgorithm?: string
+export interface SAMLType {
+  serviceProviderEntityId: string
+  singleSignOnServiceUrl: string
 }
 
 export interface AddIDPRequest {
@@ -136,15 +137,16 @@ export interface UserIdentityProviders {
 }
 
 export interface IdentityProvider {
-  identityProviderId: string
   alias: string
-  identityProviderTypeId: IDPCategory
   displayName?: string
-  redirectUrl: string
   enabled: boolean
+  identityProviderCategoryId: string
+  identityProviderId: string
+  identityProviderTypeId: IDPCategory
+  redirectUrl: string
   mappers: Array<IDPMapper>
   oidc?: OIDCType
-  saml?: OIDCType
+  saml?: SAMLType
 }
 
 export type AddIDPStep1Type = {

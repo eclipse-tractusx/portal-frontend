@@ -25,9 +25,10 @@ import { Box } from '@mui/material'
 import { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useDispatch } from 'react-redux'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import dayjs from 'dayjs'
+import UserService from 'services/UserService'
 
 export default function CompanyCertificateCard({
   item,
@@ -68,9 +69,11 @@ export default function CompanyCertificateCard({
                 <Typography variant="label3" onClick={handleView}>
                   {t('content.companyCertificate.view')}{' '}
                 </Typography>
-                <Typography variant="label3" onClick={handleDelete}>
-                  {t('content.companyCertificate.delete')}{' '}
-                </Typography>
+                {UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE) && (
+                  <Typography variant="label3" onClick={handleDelete}>
+                    {t('content.companyCertificate.delete')}{' '}
+                  </Typography>
+                )}
               </Box>
             )}
           </Box>

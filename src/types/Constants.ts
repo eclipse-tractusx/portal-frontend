@@ -104,6 +104,7 @@ export enum PAGES {
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
+  CONSENT_OSP = 'consent_osp',
   COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
 }
@@ -226,6 +227,7 @@ export enum ROLES {
   COMPANY_CERTIFICATE_VIEW = 'view_certificates',
   UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
   VIEW_SUBSCRIPTION = 'view_subscription',
+  DELETE_CERTIFICATES = 'delete_certificates',
 }
 
 export enum HINTS {

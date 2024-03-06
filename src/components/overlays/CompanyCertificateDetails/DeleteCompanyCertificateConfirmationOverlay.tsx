@@ -25,6 +25,7 @@ import {
   Button,
   DialogActions,
   DialogHeader,
+  LoadingButton,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -42,6 +43,8 @@ export default function DeleteCompanyCertificateConfirmationOverlay({
   const [deleteCertificate] = useDeleteCompanyCertificateMutation()
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
 
   const close = () => {
     dispatch(closeOverlay())
@@ -50,14 +53,17 @@ export default function DeleteCompanyCertificateConfirmationOverlay({
   }
 
   const onDelete = async () => {
+    setLoading(true)
     await deleteCertificate(id)
       .unwrap()
       .then(() => {
         setSuccess(true)
       })
-      .catch(() => {
+      .catch((error) => {
+        setErrorMessage(error?.data?.title)
         setError(true)
       })
+    setLoading(false)
   }
   return (
     <div>
@@ -79,16 +85,48 @@ export default function DeleteCompanyCertificateConfirmationOverlay({
           {!success &&
             !error &&
             t('content.companyCertificate.confirm.description')}
-          {success && t('content.companyCertificate.confirm.success')}
-          {error && t('content.companyCertificate.confirm.error')}
+          {success &&
+            t('content.companyCertificate.confirm.success').replace(
+              '{{name}}',
+              title
+            )}
+          {error &&
+            t('content.companyCertificate.confirm.error').replace(
+              '{{error}}',
+              errorMessage
+            )}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={close}>
-            {t('global.actions.cancel')}
-          </Button>
-          <Button variant="contained" onClick={onDelete}>
-            {t('global.actions.confirm')}
-          </Button>
+          {!success && !error ? (
+            <>
+              <Button variant="outlined" onClick={close}>
+                {t('global.actions.cancel')}
+              </Button>
+              {loading ? (
+                <LoadingButton
+                  color="primary"
+                  helperText=""
+                  helperTextColor="success"
+                  label=""
+                  loadIndicator="Loading ..."
+                  loading
+                  size="medium"
+                  onButtonClick={() => {
+                    // do nothing
+                  }}
+                  sx={{ marginLeft: '10px' }}
+                />
+              ) : (
+                <Button variant="contained" onClick={onDelete}>
+                  {t('global.actions.confirm')}
+                </Button>
+              )}
+            </>
+          ) : (
+            <Button variant="outlined" onClick={close}>
+              {t('global.actions.close')}
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </div>

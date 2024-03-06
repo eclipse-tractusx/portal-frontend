@@ -42,10 +42,11 @@ import {
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useEffect, useState } from 'react'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import dayjs from 'dayjs'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import UserService from 'services/UserService'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -64,7 +65,11 @@ export default function CompanyCertificateDetails({
     dispatch(closeOverlay())
   }
   const { data: document } = useFetchDocumentQuery(id)
-  const { data: companyDetails, isFetching } = useFetchOwnCompanyDetailsQuery()
+  const {
+    data: companyDetails,
+    isFetching,
+    isSuccess,
+  } = useFetchOwnCompanyDetailsQuery()
   const { data } = useFetchCompanyCertificateQuery(companyDetails?.bpn ?? '')
 
   const companyData = data?.filter((cert) => cert.documentId === id)
@@ -145,6 +150,24 @@ export default function CompanyCertificateDetails({
     )
   }
 
+  const showNoCertificateMsg = () => {
+    return (
+      <DialogContent>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '50px 50px 20px 50px',
+          }}
+        >
+          <Typography variant="h4">
+            {t('content.companyCertificate.details.nocertificate')}
+          </Typography>
+        </Box>
+      </DialogContent>
+    )
+  }
+
   return (
     <Dialog
       open={true}
@@ -175,6 +198,9 @@ export default function CompanyCertificateDetails({
               </Box>
               <Box>
                 <Button
+                  disabled={
+                    !UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
+                  }
                   startIcon={<DeleteIcon />}
                   variant="outlined"
                   size="small"
@@ -211,7 +237,7 @@ export default function CompanyCertificateDetails({
           </Box>
         </DialogContent>
       ) : (
-        showLoader()
+        <>{!isFetching && isSuccess ? showNoCertificateMsg() : showLoader()}</>
       )}
 
       <DialogActions>

@@ -32,8 +32,9 @@ import { type AppDetails, DocumentTypeText } from 'features/apps/types'
 import CommonService from 'services/CommonService'
 import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
-import './AdminBoardDetail.scss'
 import BoardTechnicalUserSetup from './components/BoardTechnicalUserSetup'
+import { PAGES } from 'types/Constants'
+import './AdminBoardDetail.scss'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -95,7 +96,7 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
           color="secondary"
           size="small"
           onClick={() => {
-            navigate('/adminboard')
+            navigate(`/${PAGES.ADMINBOARD}`)
           }}
         >
           {t('content.adminboardDetail.backToBoard')}
