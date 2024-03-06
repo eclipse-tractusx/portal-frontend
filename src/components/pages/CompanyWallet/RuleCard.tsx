@@ -22,9 +22,15 @@ import './CompanyWallet.scss'
 import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
+import smallLogo from '../../../assets/logo/logo_tractus-x.svg'
 
 type Hash<T> = Record<string, T>
+
+enum StatusType {
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
+}
 
 export default function RuleCard({
   sections,
@@ -33,6 +39,16 @@ export default function RuleCard({
 }): JSX.Element {
   const { t } = useTranslation()
   const keys = Object.keys(sections)
+  const getBgColor = (item: WalletContent) => {
+    if (item?.credentialSubject[0].status === StatusType.ACTIVE) {
+      return '#004F4B'
+    } else if (item?.credentialSubject[0].status === StatusType.INACTIVE) {
+      return '#FFA600'
+    } else {
+      return '#F0F5D5'
+    }
+  }
+
   return (
     <>
       {keys.map((key) => (
@@ -40,9 +56,10 @@ export default function RuleCard({
           <Typography
             sx={{
               color: '#111111',
-              marginBottom: '30px',
+              marginBottom: '0px',
               textAlign: 'left',
               marginLeft: '0px',
+              marginTop: '10px',
             }}
             variant="h4"
           >
@@ -50,40 +67,55 @@ export default function RuleCard({
           </Typography>
           <Grid
             container
-            spacing={4}
+            spacing={2}
             sx={{
               paddingLeft: '0px',
             }}
+            className="grid-layout"
           >
             {sections[key]?.map((item: WalletContent) => (
               <Grid
                 item
-                xs={6}
-                sm={6}
-                md={6}
+                xs={4}
+                sm={4}
+                md={4}
                 className="main-rule-card-container"
                 key={item.id}
                 sx={{
                   paddingLeft: '20px !important',
                 }}
               >
-                <div key={item.id} className="rule-card-container">
-                  <Typography className="text" variant="body2">
-                    {item?.credentialSubject[0].status ?? 'Unknown'}
-                  </Typography>
-                  <Typography className="text" variant="h4">
-                    {item?.credentialSubject[0].type}
-                  </Typography>
-                  <div>
-                    <Typography className="text" variant="body3">
-                      {item.issuer?.split('.net:')[1]}
+                <Box className="dumm">
+                  <Box key={item.id} className="rule-card-container">
+                    <Box className="circle-container">
+                      <Typography
+                        sx={{
+                          color: item?.credentialSubject[0].status
+                            ? '#fff !important'
+                            : '#428C5B !important',
+                          backgroundColor: getBgColor(item),
+                        }}
+                        className="text"
+                        variant="body2"
+                      >
+                        {item?.credentialSubject[0].status ?? 'Unknown'}
+                      </Typography>
+                      <img src={smallLogo} alt={'icon'} />
+                    </Box>
+                    <Typography className="text" variant="h4">
+                      {item?.credentialSubject[0].type}
                     </Typography>
-                    <Typography className="text" variant="body3">
-                      {t('content.companyWallet.expiry')}
-                      {dayjs(item.expirationDate).format('YYYY-MM-DD')}
-                    </Typography>
-                  </div>
-                </div>
+                    <div>
+                      <Typography className="text" variant="body3">
+                        {item.issuer?.split('.net:')[1]}
+                      </Typography>
+                      <Typography className="text" variant="body3">
+                        {t('content.companyWallet.expiry')}
+                        {dayjs(item.expirationDate).format('YYYY-MM-DD')}
+                      </Typography>
+                    </div>
+                  </Box>
+                </Box>
               </Grid>
             ))}
           </Grid>
