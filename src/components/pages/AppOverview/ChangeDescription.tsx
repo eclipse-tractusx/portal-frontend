@@ -57,10 +57,18 @@ export default function ChangeDescription() {
 
   const defaultValues = useMemo(() => {
     return {
-      longDescriptionEN: description?.[0]?.longDescription ?? '',
-      longDescriptionDE: description?.[1]?.longDescription ?? '',
-      shortDescriptionEN: description?.[0]?.shortDescription ?? '',
-      shortDescriptionDE: description?.[1]?.shortDescription ?? '',
+      longDescriptionEN:
+        description?.find((desc) => desc.languageCode === 'en')
+          ?.longDescription ?? '',
+      longDescriptionDE:
+        description?.find((desc) => desc.languageCode === 'de')
+          ?.longDescription ?? '',
+      shortDescriptionEN:
+        description?.find((desc) => desc.languageCode === 'en')
+          ?.shortDescription ?? '',
+      shortDescriptionDE:
+        description?.find((desc) => desc.languageCode === 'de')
+          ?.shortDescription ?? '',
     }
   }, [description])
 
