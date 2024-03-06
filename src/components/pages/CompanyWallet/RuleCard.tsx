@@ -85,7 +85,7 @@ export default function RuleCard({
                   paddingLeft: '20px !important',
                 }}
               >
-                <Box className="dumm">
+                <Box className="gradient-container">
                   <Box key={item.id} className="rule-card-container">
                     <Box className="circle-container">
                       <Typography

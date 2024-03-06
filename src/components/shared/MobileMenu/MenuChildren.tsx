@@ -54,13 +54,17 @@ export const MenuSubItems = ({
           marginLeft: '20px',
           cursor: 'pointer',
           marginBottom: '20px',
+          alignItems: 'center',
         }}
         onClick={onHide}
       >
         <KeyboardArrowLeftIcon sx={{ color: 'icon.icon02' }} />
         <Typography
           sx={{
-            paddingLeft: '10px',
+            paddingLeft: '5px',
+            fontSize: '12px',
+            fontFamily:
+              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
           }}
           variant="body2"
         >
@@ -69,7 +73,6 @@ export const MenuSubItems = ({
       </Box>
       <Box
         sx={{
-          borderBottom: '1px solid #e3e3e3',
           paddingLeft: '25px',
           paddingBottom: '10px',
           paddingTop: '15px',
@@ -79,6 +82,7 @@ export const MenuSubItems = ({
           variant="label2"
           sx={{
             fontWeight: '600',
+            fontSize: '14px',
           }}
         >
           {title}
@@ -100,8 +104,11 @@ export const MenuSubItems = ({
             textDecoration: 'none',
             whiteSpace: 'nowrap',
             marginLeft: '10px',
+            fontSize: '14px',
+            fontFamily:
+              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
             ':hover': {
-              backgroundColor: 'selected.hover',
+              backgroundColor: 'rgba(15, 113, 203, 0.05)',
               color: 'primary.dark',
               '.MuiSvgIcon-root': {
                 color: 'primary.dark',

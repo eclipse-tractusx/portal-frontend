@@ -57,6 +57,9 @@ export const MenuFooter = (): JSX.Element => {
         <Typography
           sx={{
             paddingLeft: '10px',
+            fontSize: '14px',
+            fontFamily:
+              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
           }}
           variant="body2"
         >
@@ -74,6 +77,9 @@ export const MenuFooter = (): JSX.Element => {
         <Typography
           sx={{
             paddingLeft: '10px',
+            fontSize: '14px',
+            fontFamily:
+              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
           }}
           variant="body2"
         >

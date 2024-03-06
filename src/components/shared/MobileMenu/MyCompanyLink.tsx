@@ -40,13 +40,21 @@ export const MyCompanyLink = ({
   return (
     <Box
       sx={{
-        margin: '5px 0px 55px 0px',
+        margin: '5px 0px 10px 10px',
+        borderRadius: '16px',
+        ':hover': {
+          backgroundColor: 'rgba(15, 113, 203, 0.05)',
+        },
       }}
       onClick={() => {
         onSelect(t('pages.mycompany'), companyMenu)
       }}
     >
-      <ListItem>
+      <ListItem
+        sx={{
+          paddingLeft: '10px',
+        }}
+      >
         <Link
           className="titleBox"
           sx={{
@@ -60,8 +68,10 @@ export const MyCompanyLink = ({
             typography: 'label3',
             textDecoration: 'none',
             whiteSpace: 'nowrap',
+            fontSize: '14px',
+            fontFamily:
+              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
             ':hover': {
-              backgroundColor: 'selected.hover',
               color: 'primary.dark',
               '.MuiSvgIcon-root': {
                 color: 'primary.dark',
