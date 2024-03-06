@@ -131,13 +131,13 @@ export default function RoleDetails() {
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
             <Image
-              src={`${getAssetBase()}/images/docs/PortalRoleAndPermissionMatrix.png`}
+              src={`${getAssetBase()}/images/content/PortalRoleAndPermissionMatrix.png`}
               style={{
                 width: '100%',
               }}
             />
             <Image
-              src={`${getAssetBase()}/images/docs/RegistrationRoleAndPermissionMatrix.png`}
+              src={`${getAssetBase()}/images/content/RegistrationRoleAndPermissionMatrix.png`}
               style={{
                 width: '100%',
               }}
