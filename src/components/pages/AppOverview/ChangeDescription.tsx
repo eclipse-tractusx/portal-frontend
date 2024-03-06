@@ -54,21 +54,19 @@ export default function ChangeDescription() {
   const longDescriptionMaxLength = 2000
   const { data: description, refetch } = useFetchDescriptionQuery(appId ?? '')
   const [saveDescription] = useSaveDescriptionMutation()
+  const defaultDescriptionEN = description?.find(
+    (desc) => desc.languageCode === 'en'
+  )
+  const defaultDescriptionDE = description?.find(
+    (desc) => desc.languageCode === 'de'
+  )
 
   const defaultValues = useMemo(() => {
     return {
-      longDescriptionEN:
-        description?.find((desc) => desc.languageCode === 'en')
-          ?.longDescription ?? '',
-      longDescriptionDE:
-        description?.find((desc) => desc.languageCode === 'de')
-          ?.longDescription ?? '',
-      shortDescriptionEN:
-        description?.find((desc) => desc.languageCode === 'en')
-          ?.shortDescription ?? '',
-      shortDescriptionDE:
-        description?.find((desc) => desc.languageCode === 'de')
-          ?.shortDescription ?? '',
+      longDescriptionEN: defaultDescriptionEN?.longDescription ?? '',
+      longDescriptionDE: defaultDescriptionDE?.longDescription ?? '',
+      shortDescriptionEN: defaultDescriptionEN?.shortDescription ?? '',
+      shortDescriptionDE: defaultDescriptionDE?.shortDescription ?? '',
     }
   }, [description])
 
