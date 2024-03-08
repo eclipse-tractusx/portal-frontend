@@ -26,7 +26,9 @@ export interface WalletSectionContent {
 }
 
 export enum CredentialSubjectStatus {
-  Active = 'Active',
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
+  UNKNOWN = 'Unknown',
 }
 
 export enum CredentialSubjectType {

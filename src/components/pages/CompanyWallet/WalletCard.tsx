@@ -40,14 +40,15 @@ export default function WalletCard({
   }
 
   const status =
-    wallet?.credentialSubject[0].status === CredentialSubjectStatus.Active
+    wallet?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE
 
   return (
     <div className="wrapper-container">
       <div
         style={{
           backgroundColor:
-            wallet?.credentialSubject[0].status === 'Active'
+            wallet?.credentialSubject[0].status ===
+            CredentialSubjectStatus.ACTIVE
               ? '#004f4b'
               : '#EAEAEA',
         }}
@@ -57,7 +58,8 @@ export default function WalletCard({
           <div className="icon-text">
             <div className="icon">
               <img src={smallLogo} alt="jhgasjg12i" />
-              {wallet?.credentialSubject[0].status !== 'Active' && (
+              {wallet?.credentialSubject[0].status !==
+                CredentialSubjectStatus.ACTIVE && (
                 <div>
                   <Typography variant="body2">
                     {t('content.companyWallet.inactive')}

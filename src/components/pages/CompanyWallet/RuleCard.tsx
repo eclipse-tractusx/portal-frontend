@@ -19,18 +19,16 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
-import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
+import {
+  CredentialSubjectStatus,
+  type WalletContent,
+} from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
 import smallLogo from '../../../assets/logo/logo_tractus-x.svg'
 
 type Hash<T> = Record<string, T>
-
-enum StatusType {
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive',
-}
 
 export default function RuleCard({
   sections,
@@ -40,9 +38,11 @@ export default function RuleCard({
   const { t } = useTranslation()
   const keys = Object.keys(sections)
   const getBgColor = (item: WalletContent) => {
-    if (item?.credentialSubject[0].status === StatusType.ACTIVE) {
+    if (item?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE) {
       return '#004F4B'
-    } else if (item?.credentialSubject[0].status === StatusType.INACTIVE) {
+    } else if (
+      item?.credentialSubject[0].status === CredentialSubjectStatus.INACTIVE
+    ) {
       return '#FFA600'
     } else {
       return '#F0F5D5'
@@ -98,7 +98,8 @@ export default function RuleCard({
                         className="text"
                         variant="body2"
                       >
-                        {item?.credentialSubject[0].status ?? 'Unknown'}
+                        {item?.credentialSubject[0].status ??
+                          CredentialSubjectStatus.UNKNOWN}
                       </Typography>
                       <img src={smallLogo} alt={'icon'} />
                     </Box>

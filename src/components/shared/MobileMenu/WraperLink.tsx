@@ -47,24 +47,12 @@ export const WraperLink = ({
           className="titleBox"
           sx={{
             color: 'text.primary',
-            pointerEvents: 'auto',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderRadius: 3,
-            typography: 'label3',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontSize: '14px',
-            fontFamily:
-              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
             ':hover': {
               color: 'primary.dark',
               '.MuiSvgIcon-root': {
                 color: 'primary.dark',
               },
             },
-            cursor: 'pointer',
           }}
         >
           {children}
