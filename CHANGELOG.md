@@ -35,6 +35,8 @@
 - Hamburger
   - Full height user menu
   - Click outside to close menu
+- App Change Description
+  - fixed display of the description correctly
 
 ### Feature
 
