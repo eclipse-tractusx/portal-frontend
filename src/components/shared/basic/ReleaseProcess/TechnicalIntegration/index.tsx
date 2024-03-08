@@ -200,6 +200,16 @@ export default function TechnicalIntegration() {
     else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
   }
 
+  const handleSaveAndProceed = (buttonLabel: string) => {
+    return (
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+      ((techUserProfiles.length === userProfiles.length &&
+        techUserProfiles.every((item) => userProfiles?.includes(item))) ||
+        (fetchTechnicalUserProfiles?.length === 0 &&
+          techUserProfiles?.[0] === technicalUserNone))
+    )
+  }
+
   const onIntegrationSubmit = async (
     submitData: unknown,
     buttonLabel: string
@@ -210,14 +220,7 @@ export default function TechnicalIntegration() {
     ) {
       data?.length === 0 && setEnableErrorMessage(true)
       techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)
-    } else if (
-      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
-      ((techUserProfiles.length === userProfiles.length &&
-        techUserProfiles.every((item) => userProfiles?.includes(item))) ||
-        (fetchTechnicalUserProfiles?.length === 0 &&
-          techUserProfiles?.[0] === technicalUserNone))
-    )
-      dispatch(increment())
+    } else if (handleSaveAndProceed(buttonLabel)) dispatch(increment())
     else if (
       !(
         techUserProfiles.length === userProfiles.length &&
@@ -651,7 +654,7 @@ export default function TechnicalIntegration() {
         </Typography>
         <Grid container spacing={1.5} item>
           {fetchUserRoles?.map((item) => (
-            <Grid item md={12} className="userRoles">
+            <Grid item md={12} className="userRoles" key={item.roleId}>
               <Checkbox
                 label={`${item.roleName} (${
                   item.roleDescription === null ? '' : item.roleDescription
