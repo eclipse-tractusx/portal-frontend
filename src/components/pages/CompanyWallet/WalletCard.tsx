@@ -57,7 +57,7 @@ export default function WalletCard({
         <div className="card-container">
           <div className="icon-text">
             <div className="icon">
-              <img src={smallLogo} alt="jhgasjg12i" />
+              <img src={smallLogo} alt="icon" />
               {wallet?.credentialSubject[0].status !==
                 CredentialSubjectStatus.ACTIVE && (
                 <div>
