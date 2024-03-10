@@ -1704,6 +1704,8 @@
       "upload": {
         "title": "Upload new certificate",
         "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
+        "successTitle": "Certificate successfully uploaded.",
+        "successDescription": "The upload was successful. The document is now available under your company certificate management page as well as shared with all dataspace providers.",
         "certificateTypeTitle": "Certificate Type",
         "certificateTypeError": "",
         "certificateTypeLabel": "",
