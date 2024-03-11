@@ -206,7 +206,7 @@ export default function UploadCompanyCertificate({
                   : ''
               }
               readOnly={false}
-              inputFormat={'dd-MM-yyyy'}
+              inputFormat={'yyyy-MM-dd'}
               onChangeItem={(items: DateType) => {
                 if (items != null && items < new Date()) {
                   setDateError(true)
