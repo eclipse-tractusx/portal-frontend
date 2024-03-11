@@ -35,6 +35,8 @@
 - Hamburger
   - Full height user menu
   - Click outside to close menu
+- Company Wallet
+  - Card style updates for Active, Inactive and Unknown status
 - App Change Description
   - fixed display of the description correctly
 

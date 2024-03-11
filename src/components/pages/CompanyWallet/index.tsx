@@ -25,7 +25,6 @@ import {
   useFetchCompanyWalletQuery,
   CredentialSubjectType,
 } from 'features/compayWallet/companyWalletApiSlice'
-import WalletActivationInfo from './WalletActivationInfo'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
@@ -34,7 +33,7 @@ import { groupBy } from 'lodash'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
-  const { data } = useFetchCompanyWalletQuery()
+  const { data, isSuccess } = useFetchCompanyWalletQuery()
   const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
 
   useEffect(() => {
@@ -69,14 +68,19 @@ export default function CompanyWallet(): JSX.Element {
             </Typography>
           </Trans>
         </div>
-        <div className="container">
-          <WalletActivationInfo wallet={activeWallet[0]} />
-        </div>
-        <ComapnyWalletSubNavigationHeader />
-        <div className="container">
-          <WalletCard wallet={activeWallet[0]} />
-          <RuleCard sections={groupedItems} />
-        </div>
+        {isSuccess ? (
+          <>
+            <div className="container">
+              <WalletCard wallet={activeWallet[0]} />
+            </div>
+            <ComapnyWalletSubNavigationHeader />
+            <div className="container">
+              <RuleCard sections={groupedItems} />
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </main>
   )
