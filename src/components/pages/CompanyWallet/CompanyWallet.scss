@@ -43,30 +43,6 @@
     }
   }
 
-  .new-container {
-    max-width: 55%;
-    text-align: center;
-    border: 1px solid #00aa55;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin: 34px auto 64px;
-
-    .status-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: auto;
-      width: auto;
-
-      .info {
-        min-width: 25%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-  }
-
   .subnavigation {
     background-color: rgba(15, 113, 203, 0.05);
     width: 100%;
@@ -85,7 +61,7 @@
     text-align: center;
     padding: 10px 20px;
     border-radius: 30px;
-    margin: 34px auto 34px;
+    margin: 0px auto 0px auto;
 
     .card-container {
       height: 200px;
@@ -116,6 +92,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+
           div {
             background-color: #fee7e2;
             height: 50px;
@@ -127,6 +104,7 @@
               padding-top: 8px !important;
             }
           }
+
           img {
             width: 30px;
             height: 30px;
@@ -137,22 +115,22 @@
   }
 
   .rulecard {
-    max-width: 400px;
     text-align: center;
     padding: 10px 20px;
     border-radius: 8px;
     margin: 0px auto 64px;
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
 
     h4 {
       margin-left: 0px;
     }
 
     .main-rule-card-container {
-      display: flex;
-      justify-content: space-between;
-
       .rule-card-container {
-        background-color: #deeeef;
         height: 204px;
         width: auto;
         border-radius: 30px;
@@ -160,16 +138,35 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-left: 15px;
-        min-width: 180px;
-        max-width: 200px;
+        min-width: 300px;
+        max-width: 300px;
+        margin-top: 0px;
+        background-color: #deeeef;
 
         .text {
           color: #111111;
           font-size: 12px !important;
           text-align: left;
         }
+
+        h4.text {
+          font-size: 18px !important;
+        }
       }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .rulecard {
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 0px auto 64px;
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   }
 }
@@ -202,29 +199,6 @@
     }
   }
 
-  .new-container {
-    max-width: 100%;
-    text-align: center;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 34px auto 64px;
-
-    .status-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin: auto;
-      width: auto;
-
-      .info {
-        min-width: 35%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-  }
-
   .subnavigation {
     .title {
       margin-left: 20px;
@@ -240,7 +214,7 @@
     max-width: 400px;
     text-align: center;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 30px;
     margin-top: 20px;
 
     .card-container {
@@ -272,6 +246,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+
           div {
             background-color: #fee7e2;
             height: 50px;
@@ -283,6 +258,7 @@
               padding-top: 8px !important;
             }
           }
+
           img {
             width: 30px;
             height: 30px;
@@ -293,20 +269,25 @@
   }
 
   .rulecard {
-    max-width: 400px;
     text-align: center;
     padding: 10px 20px;
     border-radius: 8px;
     margin-bottom: 64px;
     margin-top: 30px;
 
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
     h4 {
       margin-left: 0px;
     }
 
     .main-rule-card-container {
+      max-width: 300px;
+
       .rule-card-container {
-        background-color: #deeeef;
         height: 204px;
         width: auto;
         border-radius: 30px;
@@ -314,14 +295,18 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-left: 15px;
-        min-width: 180px;
-        max-width: 200px;
+        min-width: 300px;
+        max-width: 300px;
+        background-color: #deeeef;
 
         .text {
           color: #111111;
           font-size: 14px !important;
           text-align: left;
+        }
+
+        h4.text {
+          font-size: 18px !important;
         }
       }
     }
@@ -330,4 +315,59 @@
 
 .rule-card-container:first-child {
   margin-left: 0px !important;
+}
+
+.circle-container {
+  height: 30px;
+  border-radius: 200px;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    padding: 5px;
+    text-align: center !important;
+    border-radius: 100px;
+    width: 80px;
+  }
+
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+
+.wrapper-container {
+  background-color: #00aa55;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 30px;
+  margin: 0px auto 64px auto;
+}
+
+.status-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: auto;
+  padding: 10px 15px;
+  align-items: center;
+
+  .info {
+    p {
+      font-size: 16px;
+      color: #fff;
+    }
+  }
+  p {
+    font-size: 11px;
+    color: #fff;
+  }
+}
+
+.gradient-container {
+  margin-top: 30px;
+  min-width: 302px;
+  border-radius: 30px;
+  padding: 1px;
+  background: linear-gradient(180deg, #033430, #76babb);
 }
