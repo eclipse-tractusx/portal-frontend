@@ -18,12 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Checkbox } from '@catena-x/portal-shared-components'
+import { Typography, Checkbox, Radio } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
 import {
-  type serviceUserRolesType,
   ServiceTypeIdsEnum,
   useFetchServiceStatusQuery,
   useFetchServiceTechnicalUserProfilesQuery,
@@ -65,6 +64,7 @@ export default function OfferTechnicalIntegration() {
     useState<boolean>(false)
   const [saveServiceTechnicalUserProfiles] =
     useSaveServiceTechnicalUserProfilesMutation()
+  const serviceTechnicalUserNone = 'NONE'
 
   const userProfiles = useMemo(
     () => data?.[0]?.userRoles.map((i: { roleId: string }) => i.roleId) ?? [],
@@ -84,15 +84,56 @@ export default function OfferTechnicalIntegration() {
     mode: 'onChange',
   })
 
-  const handleUserProfiles = (checked: boolean, item: serviceUserRolesType) => {
-    const isSelected = serviceTechUserProfiles?.includes(item.roleId)
-    if (!isSelected && checked) {
-      setServiceTechUserProfiles([...serviceTechUserProfiles, item.roleId])
-    } else if (isSelected && !checked) {
-      const oldTechUserProfiles = [...serviceTechUserProfiles]
-      oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
-      setServiceTechUserProfiles([...oldTechUserProfiles])
+  // const handleUserProfiles = (checked: boolean, item: serviceUserRolesType) => {
+  //   const isSelected = serviceTechUserProfiles?.includes(item.roleId)
+  //   if (!isSelected && checked) {
+  //     setServiceTechUserProfiles([...serviceTechUserProfiles, item.roleId])
+  //   } else if (isSelected && !checked) {
+  //     const oldTechUserProfiles = [...serviceTechUserProfiles]
+  //     oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
+  //     setServiceTechUserProfiles([...oldTechUserProfiles])
+  //   }
+  // }
+
+  const handleUserProfiles = (item: string, checked: boolean) => {
+    if (
+      serviceTechUserProfiles &&
+      serviceTechUserProfiles[0] === serviceTechnicalUserNone
+    ) {
+      setServiceTechUserProfiles([...[], item])
+    } else {
+      const isSelected = serviceTechUserProfiles?.includes(item)
+      let selectedProfiles: string[] = []
+      if (!isSelected && checked) {
+        selectedProfiles = [...serviceTechUserProfiles, item]
+      } else if (isSelected && !checked) {
+        const oldTechUserProfiles = [...serviceTechUserProfiles]
+        oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item), 1)
+        selectedProfiles = [...oldTechUserProfiles]
+      }
+      setErrorMessage(selectedProfiles?.length === 0)
+      setServiceTechUserProfiles(selectedProfiles)
     }
+  }
+
+  const selectProfiles = (type: string, checked: boolean, item: string) => {
+    if (type === 'radio') {
+      setServiceTechUserProfiles([...[], item])
+    } else if (type === 'checkbox') {
+      handleUserProfiles(item, checked)
+    }
+  }
+
+  const handleSaveAndProceed = (buttonLabel: string) => {
+    return (
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+      ((serviceTechUserProfiles.length === userProfiles.length &&
+        serviceTechUserProfiles.every((item) =>
+          userProfiles?.includes(item)
+        )) ||
+        (data?.length === 0 &&
+          serviceTechUserProfiles?.[0] === serviceTechnicalUserNone))
+    )
   }
 
   const onSubmit = async (submitData: unknown, buttonLabel: string) => {
@@ -103,13 +144,9 @@ export default function OfferTechnicalIntegration() {
       serviceTechUserProfiles.length === 0
     ) {
       setErrorMessage(true)
-    } else if (
-      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
-      serviceTechUserProfiles.length === userProfiles.length &&
-      serviceTechUserProfiles.every((item) => userProfiles?.includes(item))
-    ) {
+    } else if (handleSaveAndProceed(buttonLabel))
       dispatch(serviceReleaseStepIncrement())
-    } else if (
+    else if (
       !(
         serviceTechUserProfiles.length === userProfiles.length &&
         serviceTechUserProfiles.every((item) => userProfiles?.includes(item))
@@ -121,7 +158,11 @@ export default function OfferTechnicalIntegration() {
         body: [
           {
             technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
-            userRoleIds: serviceTechUserProfiles,
+            userRoleIds:
+              serviceTechUserProfiles &&
+              serviceTechUserProfiles[0] === serviceTechnicalUserNone
+                ? []
+                : serviceTechUserProfiles,
           },
         ],
       }
@@ -161,9 +202,9 @@ export default function OfferTechnicalIntegration() {
       </Grid>
 
       <form className="header-description">
-        {fetchServiceUserRoles?.map((item) => (
-          <Grid container spacing={1.5} key={item.roleId}>
-            <Grid item md={12} className="userRoles">
+        <Grid container spacing={1.5} item>
+          {fetchServiceUserRoles?.map((item) => (
+            <Grid item md={12} className="userRoles" key={item.roleId}>
               <Checkbox
                 label={`${item.roleName} (${
                   item.roleDescription === null ? '' : item.roleDescription
@@ -172,13 +213,31 @@ export default function OfferTechnicalIntegration() {
                   (role) => item.roleId === role
                 )}
                 onChange={(e) => {
-                  handleUserProfiles(e.target.checked, item)
+                  selectProfiles('checkbox', e.target.checked, item.roleId)
                 }}
                 size="small"
               />
             </Grid>
+          ))}
+          <Grid item md={12} className="userRoles">
+            <Radio
+              name="radio-buttons"
+              size="small"
+              checked={
+                serviceTechUserProfiles &&
+                serviceTechUserProfiles[0] === serviceTechnicalUserNone
+              }
+              label={`${t('technicalIntegration.noneOption')}`}
+              onChange={(e) => {
+                selectProfiles(
+                  'radio',
+                  e.target.checked,
+                  serviceTechnicalUserNone
+                )
+              }}
+            />
           </Grid>
-        ))}
+        </Grid>
 
         {errorMessage && (
           <Typography variant="body2" className="file-error-msg">
