@@ -82,7 +82,7 @@ const RegistrationReviewOverlay = ({
           helperText={
             <Trans
               i18nKey={t('content.registrationInreview.helperText')}
-              components={[<span style={{ color: '#0f71cb' }}></span>]}
+              components={[<span style={{ color: '#0f71cb' }} key="0"></span>]}
             ></Trans>
           }
         >
