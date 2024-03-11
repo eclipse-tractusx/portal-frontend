@@ -44,6 +44,8 @@
 
 - IDP Config
   - Implementation of displaying metadata details
+- Company certificate
+  - Create upload certificate success overlay
 
 ### Feature
 
