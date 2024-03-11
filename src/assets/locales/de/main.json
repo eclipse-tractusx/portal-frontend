@@ -145,7 +145,7 @@
         "DONE": "Erledigt",
         "FAILED": "Fehlgeschlagen"
       },
-      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@catena-x.com.</0>",
       "note": "NOTE:",
       "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",

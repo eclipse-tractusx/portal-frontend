@@ -10,6 +10,8 @@
   - Connect delete certificate to back end api
 - App Detail Pages
   - UI updates of order status button and back button
+- Portal Login Navigation
+  - UI updates as per figma
 
 ### Bugfix
 
