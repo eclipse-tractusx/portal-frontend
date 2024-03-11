@@ -84,17 +84,6 @@ export default function OfferTechnicalIntegration() {
     mode: 'onChange',
   })
 
-  // const handleUserProfiles = (checked: boolean, item: serviceUserRolesType) => {
-  //   const isSelected = serviceTechUserProfiles?.includes(item.roleId)
-  //   if (!isSelected && checked) {
-  //     setServiceTechUserProfiles([...serviceTechUserProfiles, item.roleId])
-  //   } else if (isSelected && !checked) {
-  //     const oldTechUserProfiles = [...serviceTechUserProfiles]
-  //     oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item.roleId), 1)
-  //     setServiceTechUserProfiles([...oldTechUserProfiles])
-  //   }
-  // }
-
   const handleUserProfiles = (item: string, checked: boolean) => {
     if (
       serviceTechUserProfiles &&
