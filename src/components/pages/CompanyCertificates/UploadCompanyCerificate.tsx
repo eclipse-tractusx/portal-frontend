@@ -41,6 +41,7 @@ import {
   useFetchCertificateTypesQuery,
   useUploadCertificateMutation,
 } from 'features/companyCertification/companyCertificateApiSlice'
+import i18n from 'i18next'
 
 interface UploadCompanyCertificateProps {
   readonly handleClose: () => void
@@ -198,7 +199,7 @@ export default function UploadCompanyCertificate({
               placeholder={t(
                 'content.companyCertificate.upload.dateplaceholder'
               )}
-              locale="en"
+              locale={i18n.language as ('en' | 'de')}
               error={dateError}
               helperText={
                 dateError
