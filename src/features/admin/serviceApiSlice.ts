@@ -79,6 +79,7 @@ export type AppRoleCreate = {
 
 export enum ServiceAccountStatusFilter {
   ALL = 'ALL',
+  INACTIVE = 'INACTIVE',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
 }
@@ -132,6 +133,12 @@ export const apiSlice = createApi({
           fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
+        } else if (
+          !isFetchArgs &&
+          fetchArgs.args.statusFilter &&
+          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.INACTIVE
+        ) {
+          return `${url}&filterForInactive=true`
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&

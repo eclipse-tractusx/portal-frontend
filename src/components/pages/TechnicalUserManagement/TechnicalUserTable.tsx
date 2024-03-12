@@ -51,6 +51,7 @@ export const TechnicalUserTable = () => {
   const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ALL)
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
+    console.log('viewValue', viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
   }
@@ -67,6 +68,11 @@ export const TechnicalUserTable = () => {
   }, [group, expr])
 
   const filterButtons = [
+    {
+      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
+      buttonValue: ServiceAccountStatusFilter.INACTIVE,
+      onButtonClick: setView,
+    },
     {
       buttonText: t('content.usermanagement.technicalUser.tabs.all'),
       buttonValue: ServiceAccountStatusFilter.ALL,

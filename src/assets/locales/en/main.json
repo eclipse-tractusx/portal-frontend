@@ -832,6 +832,7 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
+          "inactive": "Inactive",
           "all": "All",
           "managed": "Managed",
           "owned": "Owned"

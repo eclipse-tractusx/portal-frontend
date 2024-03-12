@@ -10,6 +10,8 @@
   - Connect delete certificate to back end api
 - App Detail Pages
   - UI updates of order status button and back button
+- Technical User Management
+  - Enable inactive users list
 
 ### Bugfix
 
