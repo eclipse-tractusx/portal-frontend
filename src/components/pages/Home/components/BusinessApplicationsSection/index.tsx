@@ -24,7 +24,6 @@ import {
   Typography,
   Carousel,
   Card,
-  Button,
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
