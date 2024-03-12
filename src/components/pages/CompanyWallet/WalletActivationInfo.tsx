@@ -42,7 +42,7 @@ export default function WalletActivationInfo({
   }>()
 
   const status =
-    wallet?.credentialSubject[0].status === CredentialSubjectStatus.Active
+    wallet?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE
 
   useEffect(() => {
     if (status) {

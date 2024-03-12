@@ -20,7 +20,7 @@
 
 import DownloadIcon from '@mui/icons-material/Download'
 import { Button, Typography } from '@catena-x/portal-shared-components'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
@@ -31,86 +31,73 @@ interface DownloadLinkProps {
   title?: string
   fileName?: string
 }
+
 const DownloadLink = ({ urn, type, title, fileName }: DownloadLinkProps) => {
   const { t } = useTranslation()
-  const [file, setFile] = useState<string>('')
   const [error, setError] = useState<string>('')
 
-  const openFile = () => {
-    if (urn) {
+  const openFile = async () => {
+    try {
       const encodedUrn = encodeURIComponent(urn)
       let url = ''
       switch (type) {
-        case 'diagram': {
+        case 'diagram':
           url = 'diagram'
           break
-        }
-        case 'ttl': {
+        case 'ttl':
           url = 'file'
           break
-        }
-        case 'json': {
+        case 'json':
           url = 'json-schema'
           break
-        }
-        case 'payload': {
+        case 'payload':
           url = 'example-payload'
           break
-        }
-        case 'docu': {
+        case 'docu':
           url = 'documentation'
           break
-        }
-        case 'aasAasx': {
+        case 'aasAasx':
           url = 'aas?aasFormat=FILE'
           break
-        }
-        case 'aasXml': {
+        case 'aasXml':
           url = 'aas?aasFormat=XML'
-        }
+          break
+        default:
+          setError(t('content.semantichub.detail.fileError'))
+          return
       }
-      fetch(
+
+      const response = await fetch(
         `${getSemanticApiBase()}/hub/api/v1/models/${encodedUrn}/${url}`,
         getHeaders()
       )
-        .then((response) => {
-          if (!response.ok) {
-            setError(t('content.semantichub.detail.fileError'))
-          } else {
-            return response.blob()
-          }
-        })
-        .then((result) => {
-          if (result) {
-            setFile(URL.createObjectURL(result))
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }
 
-  const openFileInNewTab = (f: string) => {
-    if (f.length > 0) {
-      if (f.includes('documentation')) {
-        window.open(f, '_blank')
+      if (!response.ok) {
+        setError(t('content.semantichub.detail.fileError'))
+        return
+      }
+
+      const result = await response.blob()
+
+      const link = document.createElement('a')
+      link.href = URL.createObjectURL(result)
+
+      if (fileName) {
+        link.setAttribute('download', fileName)
       } else {
-        const link = document.createElement('a')
-        if (fileName) link.download = fileName
-        link.href = window.encodeURIComponent(f)
         link.target = '_blank'
-        link.click()
+      }
+
+      link.click()
+      URL.revokeObjectURL(link.href)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message)
+      } else {
+        setError('content.semantichub.detail.fileError')
       }
     }
   }
-
-  useEffect(() => {
-    if (file.length > 0) {
-      openFileInNewTab(file)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [file])
 
   return (
     <>

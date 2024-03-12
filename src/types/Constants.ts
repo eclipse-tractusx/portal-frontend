@@ -223,9 +223,9 @@ export enum ROLES {
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
+  COMPANY_WALLET = 'view_wallet',
   COMPANY_CERTIFICATE_VIEW = 'view_certificates',
   UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
-  COMPANY_WALLET = 'view_wallet',
   VIEW_SUBSCRIPTION = 'view_subscription',
   DELETE_CERTIFICATES = 'delete_certificates',
 }
