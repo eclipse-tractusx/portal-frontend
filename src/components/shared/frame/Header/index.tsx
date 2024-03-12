@@ -25,7 +25,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import SubjectIcon from '@mui/icons-material/Subject'
+import SortIcon from '@mui/icons-material/Sort'
 import {
   Button,
   CustomAccordion,
@@ -121,7 +121,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               expanded: false,
               icon: (
                 <Typography variant="label3" className="noteReviewText">
-                  <SubjectIcon />
+                  <SortIcon className="subjectIcon" />
                   {isMobile
                     ? 'REGISTRATION IN REVIEW '
                     : t('content.registrationInreview.note')}
@@ -130,14 +130,16 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               id: 'panel-1',
               title: '',
               titleElement: !isMobile ? (
-                <Trans>
-                  <Typography variant="label3">
-                    {t('content.registrationInreview.noteDetail')}
-                  </Typography>
-                  <Typography variant="label3" className="emailText">
-                    {t('content.registrationInreview.email')}
-                  </Typography>
-                </Trans>
+                <div>
+                  <Trans>
+                    <Typography variant="label3">
+                      {t('content.registrationInreview.noteDetail')}
+                    </Typography>
+                    <Typography variant="label3" className="emailText">
+                      {t('content.registrationInreview.email')}
+                    </Typography>
+                  </Trans>
+                </div>
               ) : (
                 <></>
               ),
