@@ -20,7 +20,12 @@
 
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Carousel, Card } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  Carousel,
+  Card,
+  Button,
+} from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
@@ -61,6 +66,18 @@ export default function BusinessApplicationsSection() {
   const { data } = useFetchBusinessAppsQuery()
   const reference = PageService.registerReference(label, useRef(null))
 
+  const placeholder: AppMarketplaceApp[] = [
+    {
+      id: '...',
+      title: '...',
+      provider: '',
+      leadPictureUri: '',
+      shortDescription: '...',
+      useCases: [],
+      price: '',
+    },
+  ]
+
   return (
     <div ref={reference} className="orange-background-home">
       <section className="business-applications-section">
@@ -76,25 +93,20 @@ export default function BusinessApplicationsSection() {
         </Typography>
 
         <Carousel gapToDots={5}>
-          {data
-            ?.map((app: AppMarketplaceApp) => {
-              const card = appToCard(app)
-              return card
-            })
-            .map((item) => (
-              <Card
-                {...item}
-                key={uniqueId(item.title)}
-                buttonText="Details"
-                imageSize="small"
-                imageShape="round"
-                variant="minimal"
-                expandOnHover={false}
-                filledBackground={true}
-                onClick={item.onClick}
-                imageLoader={fetchImageWithToken}
-              />
-            ))}
+          {(data ?? placeholder).map(appToCard).map((item) => (
+            <Card
+              {...item}
+              key={uniqueId(item.title)}
+              buttonText="Details"
+              imageSize="small"
+              imageShape="round"
+              variant="minimal"
+              expandOnHover={false}
+              filledBackground={true}
+              onClick={item.onClick}
+              imageLoader={fetchImageWithToken}
+            />
+          ))}
           {data &&
             data.length < 4 &&
             new Array(4 - data.length)

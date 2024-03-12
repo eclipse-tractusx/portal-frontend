@@ -70,7 +70,6 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',
-    enableLogging: true,
   })
     .then((authenticated: boolean) => {
       if (authenticated) {
