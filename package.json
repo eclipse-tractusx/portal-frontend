@@ -40,7 +40,7 @@
     "dayjs": "^1.11.8",
     "i18next": "^22.5.1",
     "i18next-browser-languagedetector": "^7.0.2",
-    "keycloak-js": "^21.1.1",
+    "keycloak-js": "^23.0.7",
     "lodash.debounce": "^4.0.8",
     "lodash.uniq": "^4.5.0",
     "nanoid": "^4.0.2",
