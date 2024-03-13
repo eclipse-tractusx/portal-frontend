@@ -199,7 +199,7 @@ export default function UploadCompanyCertificate({
               placeholder={t(
                 'content.companyCertificate.upload.dateplaceholder'
               )}
-              locale={i18n.language as ('en' | 'de')}
+              locale={i18n.language as 'en' | 'de'}
               error={dateError}
               helperText={
                 dateError
