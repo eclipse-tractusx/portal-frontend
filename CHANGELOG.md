@@ -14,6 +14,8 @@
   - Enable inactive users list
 - Portal Login Navigation
   - UI updates as per figma
+- UI Cleanups
+  - Removed unused overlays
 
 ### Bugfix
 
