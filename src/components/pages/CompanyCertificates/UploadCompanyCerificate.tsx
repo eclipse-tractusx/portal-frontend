@@ -41,6 +41,7 @@ import {
   useFetchCertificateTypesQuery,
   useUploadCertificateMutation,
 } from 'features/companyCertification/companyCertificateApiSlice'
+import i18n from 'i18next'
 
 interface UploadCompanyCertificateProps {
   readonly handleClose: () => void
@@ -58,6 +59,7 @@ export default function UploadCompanyCertificate({
   const [dateError, setDateError] = useState<boolean>(false)
   const [uploadCertificate] = useUploadCertificateMutation()
   const { data: certificateTypes } = useFetchCertificateTypesQuery()
+  const [uploaded, setUploaded] = useState<boolean>(false)
 
   useEffect(() => {
     if (certificateTypes != null && certificateTypes?.length > 0) {
@@ -79,7 +81,7 @@ export default function UploadCompanyCertificate({
           expiryDate: date?.toISOString(),
         }
         await uploadCertificate(data).unwrap()
-        handleClose()
+        setUploaded(true)
       }
       // Add an ESLint exception until there is a solution
       // eslint-disable-next-line
@@ -98,166 +100,203 @@ export default function UploadCompanyCertificate({
     <Dialog open={true}>
       <DialogHeader
         {...{
-          title: t('content.companyCertificate.upload.title'),
-          intro: t('content.companyCertificate.upload.description'),
+          title: uploaded
+            ? t('content.companyCertificate.upload.successTitle')
+            : t('content.companyCertificate.upload.title'),
+          intro: uploaded
+            ? ''
+            : t('content.companyCertificate.upload.description'),
           closeWithIcon: true,
           onCloseWithIcon: () => {
             handleClose()
           },
         }}
       />
-
-      <DialogContent>
-        <div className="upload-certificate">
-          <Typography variant="h4" className="title">
-            {t('content.companyCertificate.upload.certificateTypeTitle')}
-          </Typography>
-          <SelectList
-            error={selectedCertificateType == null}
-            helperText={t(
-              'content.companyCertificate.upload.certificateTypeError'
-            )}
-            defaultValue={certificateTypes?.[0]}
-            items={certificateTypes ?? []}
-            label={t('content.companyCertificate.upload.certificateTypeLabel')}
-            placeholder={
-              certificateTypes?.length === 1
-                ? certificateTypes[0].certificateType
-                : t(
-                    'content.companyCertificate.upload.certificateTypePlaceholder'
-                  )
-            }
-            onChangeItem={(e: CertificateTypes) => {
-              setSelectedCertificateType(e)
-            }}
-            keyTitle={'certificateType'}
-            disabled={certificateTypes?.length === 1}
-          />
-          <Typography variant="h4" className="title">
-            {t('content.companyCertificate.upload.certificateSiteTitle')}
-          </Typography>
-          <Tooltips
-            additionalStyles={{
-              display: 'block',
-            }}
-            tooltipPlacement="bottom-end"
-            tooltipText={t('content.companyCertificate.upload.comingsoon')}
-          >
-            <span>
-              <SelectList
-                error={false}
-                helperText={t(
-                  'content.companyCertificate.upload.certificateSiteError'
-                )}
-                defaultValue={{}}
-                items={[]}
-                label={t(
-                  'content.companyCertificate.upload.certificateSiteLabel'
-                )}
-                placeholder={t(
-                  'content.companyCertificate.upload.certificateSitePlaceholder'
-                )}
-                onChangeItem={(e) => {
-                  // do nothing
-                }}
-                keyTitle={'certificateSite'}
-                disabled={true}
-              />
-            </span>
-          </Tooltips>
-          <Typography
-            variant="h4"
-            className="title"
-            sx={{
-              marginBottom: '20px',
+      {uploaded ? (
+        <DialogContent>
+          <div
+            style={{
+              marginBottom: '30px',
+              textAlign: 'center',
             }}
           >
-            {t('content.companyCertificate.upload.expiry')}
-          </Typography>
-          <Datepicker
-            placeholder={t('content.companyCertificate.upload.dateplaceholder')}
-            locale="en"
-            error={dateError}
-            helperText={
-              dateError ? t('content.companyCertificate.upload.dateError') : ''
-            }
-            readOnly={false}
-            inputFormat={'dd-MM-yyyy'}
-            onChangeItem={(items: DateType) => {
-              if (items != null && items < new Date()) {
-                setDateError(true)
-              } else {
-                setDate(items)
-                setDateError(false)
-              }
-            }}
-            label={''}
-          />
-          <Typography
-            variant="h4"
-            className="title"
-            sx={{
-              marginBottom: '20px',
-            }}
-          >
-            {t('content.companyCertificate.upload.uploadDocumentTitle')}
-          </Typography>
-          <Dropzone
-            acceptFormat={{ 'application/pdf': [] }}
-            maxFilesToUpload={1}
-            maxFileSize={2097152}
-            onChange={([file]) => {
-              setUploadedFile(file)
-            }}
-            errorText={t(
-              'content.usecaseParticipation.editUsecase.fileSizeError'
-            )}
-            DropStatusHeader={false}
-            DropArea={renderDropArea}
-          />
-          <div className="note">
-            <Typography variant="label2">
-              {t('content.companyCertificate.upload.note')}
+            <Typography variant="label1" className="title">
+              {t('content.companyCertificate.upload.successDescription')}
             </Typography>
           </div>
-        </div>
-      </DialogContent>
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            handleClose()
-          }}
-        >
-          {t('global.actions.close')}
-        </Button>
-
-        {loading ? (
-          <LoadingButton
-            color="primary"
-            helperText=""
-            helperTextColor="success"
-            label=""
-            loadIndicator="Loading ..."
-            loading
-            size="medium"
-            onButtonClick={() => {
-              // do nothing
-            }}
-            sx={{ marginLeft: '10px' }}
-          />
-        ) : (
+        </DialogContent>
+      ) : (
+        <DialogContent>
+          <div className="upload-certificate">
+            <Typography variant="h4" className="title">
+              {t('content.companyCertificate.upload.certificateTypeTitle')}
+            </Typography>
+            <SelectList
+              error={selectedCertificateType == null}
+              helperText={t(
+                'content.companyCertificate.upload.certificateTypeError'
+              )}
+              defaultValue={certificateTypes?.[0]}
+              items={certificateTypes ?? []}
+              label={t(
+                'content.companyCertificate.upload.certificateTypeLabel'
+              )}
+              placeholder={
+                certificateTypes?.length === 1
+                  ? certificateTypes[0].certificateType
+                  : t(
+                      'content.companyCertificate.upload.certificateTypePlaceholder'
+                    )
+              }
+              onChangeItem={(e: CertificateTypes) => {
+                setSelectedCertificateType(e)
+              }}
+              keyTitle={'certificateType'}
+              disabled={certificateTypes?.length === 1}
+            />
+            <Typography variant="h4" className="title">
+              {t('content.companyCertificate.upload.certificateSiteTitle')}
+            </Typography>
+            <Tooltips
+              additionalStyles={{
+                display: 'block',
+              }}
+              tooltipPlacement="bottom-end"
+              tooltipText={t('content.companyCertificate.upload.comingsoon')}
+            >
+              <span>
+                <SelectList
+                  error={false}
+                  helperText={t(
+                    'content.companyCertificate.upload.certificateSiteError'
+                  )}
+                  defaultValue={{}}
+                  items={[]}
+                  label={t(
+                    'content.companyCertificate.upload.certificateSiteLabel'
+                  )}
+                  placeholder={t(
+                    'content.companyCertificate.upload.certificateSitePlaceholder'
+                  )}
+                  onChangeItem={(e) => {
+                    // do nothing
+                  }}
+                  keyTitle={'certificateSite'}
+                  disabled={true}
+                />
+              </span>
+            </Tooltips>
+            <Typography
+              variant="h4"
+              className="title"
+              sx={{
+                marginBottom: '20px',
+              }}
+            >
+              {t('content.companyCertificate.upload.expiry')}
+            </Typography>
+            <Datepicker
+              placeholder={t(
+                'content.companyCertificate.upload.dateplaceholder'
+              )}
+              locale={i18n.language as ('en' | 'de')}
+              error={dateError}
+              helperText={
+                dateError
+                  ? t('content.companyCertificate.upload.dateError')
+                  : ''
+              }
+              readOnly={false}
+              inputFormat={'yyyy-MM-dd'}
+              onChangeItem={(items: DateType) => {
+                if (items != null && items < new Date()) {
+                  setDateError(true)
+                } else {
+                  setDate(items)
+                  setDateError(false)
+                }
+              }}
+              label={''}
+            />
+            <Typography
+              variant="h4"
+              className="title"
+              sx={{
+                marginBottom: '20px',
+              }}
+            >
+              {t('content.companyCertificate.upload.uploadDocumentTitle')}
+            </Typography>
+            <Dropzone
+              acceptFormat={{ 'application/pdf': [] }}
+              maxFilesToUpload={1}
+              maxFileSize={2097152}
+              onChange={([file]) => {
+                setUploadedFile(file)
+              }}
+              errorText={t(
+                'content.usecaseParticipation.editUsecase.fileSizeError'
+              )}
+              DropStatusHeader={false}
+              DropArea={renderDropArea}
+            />
+            <div className="note">
+              <Typography variant="label2">
+                {t('content.companyCertificate.upload.note')}
+              </Typography>
+            </div>
+          </div>
+        </DialogContent>
+      )}
+      {uploaded ? (
+        <DialogActions>
           <Button
-            variant="contained"
-            onClick={handleSubmit}
-            disabled={
-              uploadedFile === undefined || selectedCertificateType == null
-            }
+            variant="outlined"
+            onClick={() => {
+              handleClose()
+            }}
           >
-            {t('global.actions.submit')}
+            {t('global.actions.close')}
           </Button>
-        )}
-      </DialogActions>
+        </DialogActions>
+      ) : (
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              handleClose()
+            }}
+          >
+            {t('global.actions.close')}
+          </Button>
+
+          {loading ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator="Loading ..."
+              loading
+              size="medium"
+              onButtonClick={() => {
+                // do nothing
+              }}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              disabled={
+                uploadedFile === undefined || selectedCertificateType == null
+              }
+            >
+              {t('global.actions.submit')}
+            </Button>
+          )}
+        </DialogActions>
+      )}
     </Dialog>
   )
 }

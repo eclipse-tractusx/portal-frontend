@@ -56,11 +56,17 @@ export default function ChangeDescription() {
   const [saveDescription] = useSaveDescriptionMutation()
 
   const defaultValues = useMemo(() => {
+    const defaultDescriptionEN = description?.find(
+      (desc) => desc.languageCode === 'en'
+    )
+    const defaultDescriptionDE = description?.find(
+      (desc) => desc.languageCode === 'de'
+    )
     return {
-      longDescriptionEN: description?.[0]?.longDescription ?? '',
-      longDescriptionDE: description?.[1]?.longDescription ?? '',
-      shortDescriptionEN: description?.[0]?.shortDescription ?? '',
-      shortDescriptionDE: description?.[1]?.shortDescription ?? '',
+      longDescriptionEN: defaultDescriptionEN?.longDescription ?? '',
+      longDescriptionDE: defaultDescriptionDE?.longDescription ?? '',
+      shortDescriptionEN: defaultDescriptionEN?.shortDescription ?? '',
+      shortDescriptionDE: defaultDescriptionDE?.shortDescription ?? '',
     }
   }, [description])
 

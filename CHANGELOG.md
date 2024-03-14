@@ -10,6 +10,8 @@
   - Connect delete certificate to back end api
 - App Detail Pages
   - UI updates of order status button and back button
+- Portal Login Navigation
+  - UI updates as per figma
 
 ### Bugfix
 
@@ -35,184 +37,78 @@
 - Hamburger
   - Full height user menu
   - Click outside to close menu
+- Company Wallet
+  - Card style updates for Active, Inactive and Unknown status
+- App Change Description
+  - fixed display of the description correctly
 
 ### Feature
 
 - IDP Config
   - Implementation of displaying metadata details
+- Company certificate
+  - Create upload certificate success overlay
 
 ### Feature
 
 - Onboarding Service Provider
   - created new UI
 
-## 1.8.0-RC6
-
-### Change
-
-- Registration Decline Status
-  - added button inside the overlay to enable user logout
-- Dataspace
-  - updated dataspace provider links with quick links
-
-### Feature
-
-- OSP Function - Identity Management
-  - added disable, enable & delete sub-menu's to managed IdPs
-- Company Certificate
-  - connected listing page, upload certificate and details page to back end api
-
-### Technical Support
-
-- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
-
-### Bugfix
-
-- IdP User Invite Logic
-  - fixed add user overlay issue
-- IdP user upload
-  - fixed blank page issue while uploading json file
-- Company Certificate for Credentials
-  - fixed certificate ui as per backend response
-- User Management - Technical User
-  - Removed quotation marks from technical user details
-- Delete OwnUser Redirect URL
-  - fixed logout redirect url
-- Consent Pop-Up after registration
-  - fixed reappear overlay on every page even after consent updated
-
-## 1.8.0-RC5
-
-- Application Requests
-  - Fix filtering related issues
-  - Reset search list after clearing input text
-
-### Bugfix
-
-- Notifications - fixed handling of setting read/unread correctly
-- IDP Management - updated extId input field error message to allow 6-36 alphanumeric characters
-- Hamburger
-  - Slide effect on click of hamburger
-  - New UI navigation when menu has sub sections
-- Subnavigation
-  - Show sub navigation button text in one line
-- Company Name
-  - Update pattern in invite form and app release process
-- Portal login navigation
-  - handle navigation as per applicationType and applicationStatus
-- App Management
-  - Template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previous template
-- App Release Process - app role template file encoding updated
-
-## 1.8.0-RC4
-
-### Change
-
-- Company Name
-  - Update pattern in invite form and app release process
-- Portal login navigation ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
-  - handle navigation as per applicationType (new api property) and applicationStatus
-
-### Technical Support
-
-- Removed env specific urls from test files
-- Updated shared components package dependency
-
-### Bugfix
-
-- App Marketplace
-  - reduce image flickering on user interaction by using cache option
-- Service Overview
-  - Add missing translations, fix duplicate error
-- Service Release Process
-  - fixed conformity document deletion issue after uploading document
-- Company roles
-  - Show standard library information based on the selected company role
-- Invite Business Partner
-  - fix loading button issue to invite multiple companies in succession
-
-## 1.8.0-RC3
-
-### Change
-
-- Company Roles Introduction Page(s)
-  - enhanced OSP page to fetch standard library data from standards.json and implemented table component to display the data inside the OSP page
-- User Management
-  - api structure updated (breaking change by backend) to display identity management table inside the user management screen
-- removed references to consortia environments
-- changed documentation/help links to updated directory structure in portal-assets
-
-### Feature
-
-- Portal information screen for registrations in validation added including notification bar
-- Company Certificate
-  - Provide new link from user menu for the company certificate page
-  - UI components created to display filter, sort and company certificates
-  - Company Certificate Details overlay
-  - Upload new Company Certificate overlay
-- Registration Decline function released for companies newly invited for registration
-
-### Bugfix
-
-- User migration as part of the IdP configuration
-  - fixed csv file upload: uploaded user file triggers the backend API to update existing user accounts with the new IdP connection and loads the providerID/userID into keycloak for each included user
-
-### Known Knowns
-
-- Company Roles Introduction Page(s)
-  - pre-filtering of the displayed standard documents
-  - update of headline & short section introduction
-- Decline registration backend API connection not working on the newly implemented screen
-- Company certificates currently only UI wise implemented; API connection outstanding
-
-## 1.8.0-RC2
+## 1.8.0
 
 ### Change
 
 - Notifications
-  - extended search function to return hits on in content matches
-
-### BugFix
-
-- fixed styling of mobile version navigation element (profile section)
-- Notification Search
-  - fixed infinite loading icon at the end of the search result list
-- fixed IdP workflow/UI flow inside the overlay "Create IdP" depending on selected IdP type (managed vs own)
-
-## 1.8.0-RC1
-
-### Change
-
-- Notifications
-  - search enabled
-  - enable automatic page loading and sorting for notifications
+  - search functionality enabled, with an extension that allows for in-content match results
+  - implemented automatic page loading and sorting capabilities for managing notifications
 - App Subscription Management
-  - enabled company search under company name pattern
+  - enabled company search feature based on company name patterns
 - Service Subscription Management
-  - enabled company search under company name pattern
+  - enabled company search feature based on company name patterns
 - Invite Business Partner
-  - added company name pattern to the invite form
+  - enabled company search feature based on company name patterns
 - Application Request Management
-  - update company name pattern in application requests section search
-- Multi Device Support
-  - Navigation element - multi device size support implemented by using burger menu depending on content and browser width
-  - Sub Navigation updated to support multi device sizes with direct impact to (Company Roles, Use Case, Data Space pages)
+  - enabled company search feature based on company name patterns
 - User Management
-  - improved user deletion success info messages by adding details of the deletion activation
-  - reworked user role assignment flow to improve the user accessibility
+  - improved user deletion success info messages by adding details of the deletion action process
+  - reworked the user role assignment process to enhance accessibility for users
+  - updated API structure (note: this is a breaking change by the backend) to integrate the identity management table within the user management interface.
+- Information Pages - Company Roles Introduction Pages:
+  - updated the "Conformity Body" content to provide a more accurate description.
+  - improved the OSP page by fetching standard library data from standards.json and displaying it using a new table component
+- Information Pages - Dataspace:
+  - updated dataspace provider links to include quick access links.
+- Login Navigation ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+  - user navigation on login managed based on the users company application status. FE logic uses the applicationType and applicationStatus
+- UseCase Participation UI
+  - enhanced the handling of elements; if the backend does not provide a document template URL, the link will be disabled.
 - Others
-  - action button in multiple overlays got renamed from "Cancel" to "Close" wherever the user can not cancel but close the overlay only
-- Introduction Page "Conformity Body" new content defined
-- Company Wallet
-  - Show Active wallet info along with other wallet types
-- Mobile version. Hamburger menu
-  - Show hamburger based on the browser resolution/width
+  - renamed the action button in multiple overlays from "Cancel" to "Close" to accurately reflect the action when users can only close the overlay, not cancel an operation.
+  - removed all references to consortia environments
+  - updated all documentation and help links to reflect the new directory structure in portal-assets.
 
 ### Feature
 
-- Registration started but not completed: in case of login into portal the user gets redirected accordingly
+- User Login Redirection
+  - Enhanced user experience for incomplete registrations: users attempting to log in are seamlessly redirected to complete the registration process
+  - Introduced an informative screen on the portal for registrations awaiting validation, complete with a notification bar
 - Service Release Process
-  - enabled service conformity check as part of the service release flow and subsequent service summary pages
+  - Integrated a service conformity check within the service release workflow, enriching the service summary pages with compliance verification
+- Company Certificate Management
+  - added a convenient link in the user menu for direct access to the company certificate page
+  - developed UI components to facilitate filtering, sorting, and viewing of company certificates
+  - implemented a detailed overlay for viewing company certificate specifics
+  - created an overlay for uploading new company certificates
+  - established a connection between the listing page, certificate upload, and details page with the backend API for streamlined operations
+- Registration Decline Feature
+  - released a new function allowing the decline of registration invitations for companies, enhancing administrative control
+- OSP Function - Managed IdP Management
+  - expanded the Identity Management capabilities within OSP Function by adding sub-menus for enabling, disabling, and deleting managed Identity Providers (IdPs)
+- Company Wallet UI
+  - established the wallet user interface; displaying owned credentials, status, expiry date and authority
+- Multi Device Support
+  - refined navigation elements to support multiple device sizes, incorporating a responsive burger menu that adapts to content width and browser dimensions
+  - updated the sub-navigation design to ensure compatibility across various device sizes, impacting the user interface on the Company Roles, Use Case, and Data Space pages
 
 ### Technical Support
 
@@ -229,34 +125,63 @@
 - added build check at pull request
 - updated file header template
 - added additional image tags of type semver to release workflows
+- Removed env specific urls from test files
+- Updated shared components package dependency
+- upgraded portal-shared-components package due to CVE-2023-42282 in node-ip package
+- Changed portal-cd references to portal due to repository renaming
+- Updated README.md
+  - mentioned `docs` folder in portal-assets repository
+  - referenced docker notice files in notice section instead of duplicating the content
 
 ### Bugfix
 
-- Release Process (Apps & Services)
-  - information message "no {object} available" getting displayed while content is available
+- App Overview
+  - api failing component appears with "no data available" and with error bar
 - App Release Process
   - fixed automatic upscrolling in form pages
-  - Fixed help link, funky character display and the success message display in user role upload
+  - fixed help link, funky character displayed and the success message in user role upload
+  - upload app role template file encoding updated
+  - fixed incorrectly displayed information message "no {object} available" getting displayed while content is available
+- App Management
+  - template file encoding updated for 'technical integration' and 'add roles overlay' and deleted previous template
+- Service Overview
+  - add missing translations, fix duplicate error
+  - fixed incorrectly displayed information message "no {object} available" getting displayed while content is available
 - Service Release Process
   - fixed automatic up scrolling in form pages
+  - fixed conformity document deletion issue after uploading document
 - User Management
   - create user account(s) - added api error handling component (snackbar) for the FE flow when calling GET /company/identityproviders
-- Use Case FrameAgreement Credential request
-  - Enhance the element handling, if no document template url is provided by the backend, then link will be disabled
+  - technical user - removed quotation marks from technical user details
 - Business Partner Invite
-  - fixed auto page reload/refresh with successful BP invite
+  - fixed loading button issue to invite multiple companies in succession
 - Credential Request Overview
-  - fixed document icon over function
-- App overview
-  - api failing component appears with "no data available" and with error bar
-- Company Roles
-  - Fix typo error to fix conformity body issue
-- Fixed error message display when data is available issue
-- Portal Login with unfinished registration
+  - fixed document icon hover design used
+- IdP Management
+  - fixed IdP workflow/UI flow inside the overlay "Create IdP" depending on selected IdP type (managed vs own)
+  - Network Registration mock UI - fixed extId input field pattern to allow 6-36 alphanumeric characters
+  - user migration overlay - fixed csv file upload; uploaded user file triggers the backend API to update existing user accounts with the new IdP connection and loads the providerID/userID into Keycloak for each included user
+- App Marketplace
+  - reduce image flickering on user interaction by using cache option
+- Application Requests Management Board
+  - fixed filter behavior when filtering for 'closed' or 'in review' registrations
+  - reset search list after clearing input text
 
 ### Known Knowns
 
-- /registration url provided via the registration email is not directing the user to the registration form as expected; instead, the new registration status is displayed where the user can jump via hyperlink to the registration form
+- Registration Decline Feature - missing backend API connection for actual trigger of the decline
+- Company Certificate - delete function missing; backend integration outstanding
+- Semantic Models - overlay diagram cannot get displayed due to semantic model backend external dependency error - function temporarily deactivated
+- Partner Network - automatic upscrolling when clicking on "more" button
+- Admin Board Application Requests - automatic upscrolling when clicking at any button on the page
+- Own IdP Config Flow - incorrect text values and user email are displayed on the last overlay screen (confirmation screen of own user id connection and suggestion of running a test login)
+- Broken chip card element
+- App User View - not showing assigned roles
+- App Release Process - selected use cases not displayed
+- App Change Process 'Change App Role(s)' - roles not showing
+- App Subscription Request Configuration Overlay - _Help_ hyperlink incorrectly configured
+- App Change Process 'Change App Description' - description change displays the new description in the incorrect language field
+- App Release Process - entering a use case value in the input field results in a blank/white page
 
 ## 1.7.0
 

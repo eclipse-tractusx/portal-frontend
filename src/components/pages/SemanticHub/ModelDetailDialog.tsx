@@ -98,7 +98,16 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         })
         .then((result) => {
           if (result) {
-            setDiagram(URL.createObjectURL(result))
+            const reader = new FileReader()
+            reader.onload = function () {
+              const svgString = reader.result as string
+              if (svgString) {
+                setDiagram(svgString)
+              } else {
+                setDiagramError('content.semantichub.detail.fileError')
+              }
+            }
+            reader.readAsText(result)
           }
         })
         .catch((err) => {
@@ -194,7 +203,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                 <img
                   style={{ marginBottom: '32px' }}
                   width="100%"
-                  src={window.encodeURIComponent(diagram)}
+                  src={`data:image/svg+xml;utf8,${encodeURIComponent(diagram)}`}
                   alt={t('content.semantichub.detail.imgAlt')}
                 />
               ) : (

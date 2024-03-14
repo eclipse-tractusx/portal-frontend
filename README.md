@@ -1,54 +1,53 @@
-# Catena-X Portal Frontend
+[![LeadingRepository](https://img.shields.io/badge/Leading_Repository-Portal-blue)](https://github.com/eclipse-tractusx/portal)
 
-This repository contains the frontend code for the Catena-X Portal written in React and Typescript.
+# Portal Frontend
 
-The Catena-X Portal application consists of
+This repository contains the frontend code for the Portal written in React and Typescript.
+
+The Portal application consists of
 
 - [portal-frontend](https://github.com/eclipse-tractusx/portal-frontend),
 - [portal-frontend-registration](https://github.com/eclipse-tractusx/portal-frontend-registration),
-- [portal-shared-components](https://github.com/eclipse-tractusx/portal-shared-components),
 - [portal-assets](https://github.com/eclipse-tractusx/portal-assets) and
 - [portal-backend](https://github.com/eclipse-tractusx/portal-backend).
 
-![Tag](https://img.shields.io/static/v1?label=&message=LeadingRepository&color=green&style=flat) The helm chart for installing the Catena-X Portal is available in the [portal](https://github.com/eclipse-tractusx/portal) repository.
+The Portal maintains and uses the [portal-shared-components library](https://github.com/eclipse-tractusx/portal-shared-components).
 
-The Catena-X Portal is designed to work with the [Catena-X IAM](https://github.com/eclipse-tractusx/portal-iam).
+The helm chart for installing the Portal is available in the [portal](https://github.com/eclipse-tractusx/portal) repository.
 
-## Run locally
+Please refer to the `docs` directory of the [portal-assets](https://github.com/eclipse-tractusx/portal-assets) repository for the overarching user and developer documentation of the Portal application.
 
-Here are three ways to run the application locally on http://localhost:3001/
+The Portal is designed to work with the [IAM](https://github.com/eclipse-tractusx/portal-iam).
 
-Note: if you'd like to run the complete frontend application, follow the 'Run frontend on localhost' guide available within the developer documentation of [portal-assets](https://github.com/eclipse-tractusx/portal-assets).
+## Local build and run
 
-### Local build & run
+Steps for running the application on your machine on http://localhost:3001/
 
-    yarn
-    yarn build
-    yarn start
+1. Install dependencies
 
-### Local docker build & run & publish
+```
+yarn
+```
 
-    yarn build:docker
-    yarn publish:docker
-    yarn start:docker
+2. Build
 
-### Running the image from GitHub container registry
+```
+yarn build
+```
 
-    export IMAGE=tractusx/portal-frontend:latest
-    docker pull $IMAGE
-    docker run --rm -d -p 3001:8080 --name cx-portal-frontend $IMAGE
+3. Run
+
+```
+yarn start
+```
+
+Note: if you'd like to run the complete frontend application, follow the `Run frontend on localhost.md` guide available within the technical documentation of [portal-assets](https://github.com/eclipse-tractusx/portal-assets).
 
 ## Notice for Docker image
 
 This application provides container images for demonstration purposes.
 
-DockerHub: https://hub.docker.com/r/tractusx/portal-frontend
-
-Base image: nginxinc/nginx-unprivileged:alpine
-
-- Dockerfile: [nginxinc/nginx-unprivileged:alpine](https://github.com/nginxinc/docker-nginx-unprivileged/blob/main/Dockerfile-alpine.template)
-- GitHub project: [https://github.com/nginxinc/docker-nginx-unprivileged](https://github.com/nginxinc/docker-nginx-unprivileged)
-- DockerHub: [https://hub.docker.com/r/nginxinc/nginx-unprivileged](https://hub.docker.com/r/nginxinc/nginx-unprivileged)
+See [Docker notice](.conf/notice-portal.md) for more information.
 
 ## License
 

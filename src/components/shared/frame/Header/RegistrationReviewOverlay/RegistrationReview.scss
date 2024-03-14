@@ -16,7 +16,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
+.dialog-header-main {
+  padding: 56px 30px !important;
+}
+.actions-main {
+  padding: 32px 30px !important;
+}
 .registration-review {
   text-align: center;
   .description {
@@ -40,11 +45,15 @@
   padding: 0;
   li {
     display: flex;
-    margin: 15px 0;
-    padding: 10px;
+    margin: 10px 0;
+    padding: 14px;
     align-items: center;
     .icon {
       display: flex;
+    }
+    .iconMobile {
+      display: flex;
+      font-size: 12px;
     }
     .statusLabel {
       margin-left: 10px;
