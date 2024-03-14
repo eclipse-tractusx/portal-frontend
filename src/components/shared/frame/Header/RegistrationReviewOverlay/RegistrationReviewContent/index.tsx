@@ -50,10 +50,7 @@ const RegistrationReviewContent = () => {
 
   return (
     <>
-      <Typography
-        variant={isMobile ? 'body2' : 'body1'}
-        className="subDescription"
-      >
+      <Typography variant="body3" className="subDescription">
         {t('content.registrationInreview.subDescription')}
       </Typography>
       <Trans

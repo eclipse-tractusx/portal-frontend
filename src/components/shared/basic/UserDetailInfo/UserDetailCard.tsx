@@ -102,7 +102,17 @@ export const UserDetailCard = ({
       </span>
       <span>
         {userId && value?.label === 'BPN' && (
-          <EditIcon style={{ cursor: 'pointer' }} onClick={openEditOverlay} />
+          <EditIcon
+            onClick={openEditOverlay}
+            sx={{
+              cursor: 'pointer',
+              color: '#0F71CB',
+              '&:hover': {
+                backgroundColor: 'rgb(176 206 235 / 40%)',
+                borderRadius: '20px',
+              },
+            }}
+          />
         )}
       </span>
       <span>

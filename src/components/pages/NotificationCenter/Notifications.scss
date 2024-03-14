@@ -193,6 +193,13 @@
 
   .searchContainer .MuiBox-root {
     width: 40%;
+    svg {
+      color: #0f71cb;
+    }
+  }
+  .searchContainer .MuiBox-root svg:hover {
+    background-color: rgb(176 206 235 / 40%);
+    border-radius: 20px;
   }
 
   .searchContainer .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {

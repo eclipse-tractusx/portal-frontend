@@ -186,8 +186,11 @@ export default function AdminCredentialElements() {
       flex: 1.5,
       renderCell: ({ row }: { row: CredentialData }) => (
         <ArticleOutlinedIcon
-          className="document-icon"
+          className={`${
+            row.document.documentId ? 'document-icon' : 'document-disabled'
+          }`}
           onClick={() =>
+            row.document.documentId &&
             handleDownloadClick(
               row.document.documentId,
               row.document.documentName
@@ -262,6 +265,7 @@ export default function AdminCredentialElements() {
   return (
     <div className="recommended-main">
       <PageLoadingTable<CredentialResponse[], FetchHookArgsType>
+        autoFocus={false}
         searchExpr={searchExpr}
         alignCell="start"
         toolbarVariant={'searchAndFilter'}

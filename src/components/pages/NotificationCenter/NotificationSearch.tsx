@@ -18,21 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
 import { useDispatch, useSelector } from 'react-redux'
+import type { Dispatch, SetStateAction } from 'react'
+import { useTranslation } from 'react-i18next'
+import { SortOption } from '@catena-x/portal-shared-components'
 import {
   notificationFetchSelector,
   setOrder,
   setSearch,
 } from 'features/notification/slice'
-import { useTranslation } from 'react-i18next'
-import { SortOption } from '@catena-x/portal-shared-components'
+import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
 import SortImage from 'components/shared/frame/SortImage'
 import { NotificationSortingType } from 'features/notification/types'
-import { useState } from 'react'
 
-export default function NotificationSearch() {
-  const [showOrder, setShowOrder] = useState<boolean>(false)
+export interface NotificationProps {
+  showOrder: boolean
+  setShowOrder: Dispatch<SetStateAction<boolean>>
+}
+
+export default function NotificationSearch({
+  showOrder,
+  setShowOrder,
+}: NotificationProps) {
   const order = useSelector(notificationFetchSelector).args.sorting
   const dispatch = useDispatch()
   const { t } = useTranslation('notification')
@@ -60,8 +67,9 @@ export default function NotificationSearch() {
       />
       <div>
         <SortImage
-          onClick={() => {
-            setShowOrder(true)
+          onClick={(e) => {
+            e.stopPropagation()
+            setShowOrder(!showOrder)
           }}
           selected={showOrder}
         />
