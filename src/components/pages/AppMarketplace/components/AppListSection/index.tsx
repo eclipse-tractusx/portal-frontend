@@ -42,14 +42,14 @@ export default function AppListSection() {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
-  const favoriteItems = useFetchFavoriteAppsQuery().data
+  const { data: favoriteItems, refetch } = useFetchFavoriteAppsQuery()
   const control = useSelector(appsControlSelector)
 
   const checkIsFavorite = (appId: string) => favoriteItems?.includes(appId)
 
   const addOrRemoveFavorite = (event: React.MouseEvent, appId: string) => {
     event?.stopPropagation()
-    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
+    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId)) 
   }
 
   const renderProgress = () => (
@@ -91,6 +91,7 @@ export default function AppListSection() {
             },
             onSecondaryButtonClick: (e: React.MouseEvent) => {
               addOrRemoveFavorite(e, card.id!)
+              refetch()
             },
             addButtonClicked: checkIsFavorite(card.id!),
           }))}
