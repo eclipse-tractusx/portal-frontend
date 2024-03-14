@@ -45,8 +45,6 @@
   - Card style updates for Active, Inactive and Unknown status
 - App Change Description
   - fixed display of the description correctly
-- App Marketplace
-  - Change fav icon on add/remove item from favourite list
 
 ### Feature
 
