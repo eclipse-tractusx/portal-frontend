@@ -74,6 +74,7 @@ export enum PAGES {
   CHANGE_DESCRIPTION = 'changedescription',
   ADD_ROLES = 'addroles',
   CHANGE_DOCUMENTS = 'changedocuments',
+  VIEW_DETAILS = 'viewDetails',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',

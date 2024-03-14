@@ -458,12 +458,13 @@
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
         "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)"
+        "changeDocuments": "Change Document(s)",
+        "viewDetails": "View Details"
       },
       "addbtn": "Register your App",
       "confirmModal": {
         "title": "Change app {appName}",
-        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+        "description": "Dear user, you have selected an application that's currently in the “In Creation” status. Would you like to access the app release management form for this app? This will allow you to modify and update the data and information associated with the application before it's released."
       },
       "details": {
         "longDescription": "Long Description",

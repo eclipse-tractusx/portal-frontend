@@ -494,6 +494,19 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
+    name: PAGES.VIEW_DETAILS,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.VIEW_DETAILS}
+        path={PAGES.VIEW_DETAILS}
+        element={<AppDetail />}
+      >
+        <Route path=":appId" element={<AppDetail />} />
+      </Route>
+    ),
+  },
+  {
     name: PAGES.ROLE_DETAILS,
     element: <RoleDetails />,
   },
