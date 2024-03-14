@@ -22,7 +22,7 @@
 # Define custom variable
 custom_env_vars='{PORTAL_ASSETS_URL:"'$PORTAL_ASSETS_URL'",PORTAL_BACKEND_URL:"'$PORTAL_BACKEND_URL'",CENTRALIDP_URL:"'$CENTRALIDP_URL'",BPDM_API_URL:"'$BPDM_API_URL'",SEMANTICS_URL:"'$SEMANTICS_URL'",MANAGED_IDENTITY_WALLETS_NEW_URL:"'$MANAGED_IDENTITY_WALLETS_NEW_URL'"}'
 # Define anchor variable
-custom_env_vars_anchor='{PORTAL_ASSETS_URL:"http://localhost:3000/assets",PORTAL_BACKEND_URL:"https://portal-backend.example.org",CENTRALIDP_URL:"https://centralidp.example.org/auth",BPDM_API_URL:"https://business-partners.example.org/pool/api",SEMANTICS_URL:"https://semantics.example.org",MANAGED_IDENTITY_WALLETS_NEW_URL:"https://managed-identity-wallets-new.example.org"}'
+custom_env_vars_anchor='{PORTAL_ASSETS_URL:"http://localhost:3000/assets",PORTAL_BACKEND_URL:"https://portal-backend.example.org",CENTRALIDP_URL:"https://centralidp.example.org/auth",BPDM_API_URL:"https://business-partners.example.org/pool/api",SEMANTICS_URL:"https://semantics.example.org",MANAGED_IDENTITY_WALLETS_NEW_URL:"https://managed-identity-wallets-new.example.org",REALM:"Keycloak-Realm",CLIENT_ID:"Client-ID-Portal",CLIENT_ID_SEMANTIC:"Client-ID-Semantic",CLIENT_ID_MIW:"Client-ID-MIW"}'
 # Read content of the reference index.html file into the index_html_reference variable
 index_html_reference=`cat /usr/share/nginx/html/index.html.reference`
 # Replace the anchor variable with the custom variable in the index.html file 
