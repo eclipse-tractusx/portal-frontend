@@ -48,10 +48,9 @@ export const TechnicalUserTable = () => {
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ALL)
+  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ACTIVE)
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
-    console.log('viewValue', viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
   }
@@ -69,13 +68,13 @@ export const TechnicalUserTable = () => {
 
   const filterButtons = [
     {
-      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
-      buttonValue: ServiceAccountStatusFilter.INACTIVE,
+      buttonText: t('content.usermanagement.technicalUser.tabs.active'),
+      buttonValue: ServiceAccountStatusFilter.ACTIVE,
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.usermanagement.technicalUser.tabs.all'),
-      buttonValue: ServiceAccountStatusFilter.ALL,
+      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
+      buttonValue: ServiceAccountStatusFilter.INACTIVE,
       onButtonClick: setView,
     },
     {

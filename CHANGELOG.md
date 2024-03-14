@@ -12,6 +12,8 @@
   - UI updates of order status button and back button
 - Technical User Management
   - Enable inactive users list
+- Portal Login Navigation
+  - UI updates as per figma
 
 ### Bugfix
 
@@ -46,6 +48,8 @@
 
 - IDP Config
   - Implementation of displaying metadata details
+- Company certificate
+  - Create upload certificate success overlay
 
 ### Feature
 

@@ -78,7 +78,7 @@ export type AppRoleCreate = {
 }
 
 export enum ServiceAccountStatusFilter {
-  ALL = 'ALL',
+  ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
@@ -124,13 +124,13 @@ export const apiSlice = createApi({
         if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ALL
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}&isOwner=${isOwner}`
         } else if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ALL
+          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ACTIVE
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
         } else if (
@@ -142,7 +142,7 @@ export const apiSlice = createApi({
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ALL
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
         ) {
           return `${url}&isOwner=${isOwner}`
         } else {

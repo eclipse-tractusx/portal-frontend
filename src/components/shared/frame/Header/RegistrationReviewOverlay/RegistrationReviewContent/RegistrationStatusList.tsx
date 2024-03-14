@@ -93,6 +93,7 @@ const RegistrationStatusList = ({
           style={{
             backgroundColor: renderStatus(checklist.statusId).backgroundColor,
             flexDirection: isMobile ? 'column-reverse' : 'unset',
+            borderRadius: '6px',
           }}
         >
           {!isMobile && (
@@ -109,7 +110,12 @@ const RegistrationStatusList = ({
               margin: isMobile ? 0 : '',
             }}
           >
-            <Typography variant="label3">
+            <Typography
+              variant="label3"
+              sx={{
+                fontSize: isMobile ? '12px' : '',
+              }}
+            >
               {t(`content.registrationInreview.steps.${checklist.typeId}`)}
             </Typography>
           </div>
@@ -119,6 +125,9 @@ const RegistrationStatusList = ({
               `content.registrationInreview.status.${checklist.statusId}`
             )}
             size="small"
+            sx={{
+              fontSize: isMobile ? '12px' : '',
+            }}
           />
         </li>
       ))}
