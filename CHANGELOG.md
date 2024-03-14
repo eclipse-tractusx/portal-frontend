@@ -12,6 +12,8 @@
   - UI updates of order status button and back button
 - Portal Login Navigation
   - UI updates as per figma
+- UI Cleanups
+  - Removed unused overlays
 
 ### Bugfix
 
