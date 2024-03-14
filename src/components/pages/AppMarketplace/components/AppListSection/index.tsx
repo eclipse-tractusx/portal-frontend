@@ -49,7 +49,7 @@ export default function AppListSection() {
 
   const addOrRemoveFavorite = (event: React.MouseEvent, appId: string) => {
     event?.stopPropagation()
-    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId)) 
+    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
   }
 
   const renderProgress = () => (
