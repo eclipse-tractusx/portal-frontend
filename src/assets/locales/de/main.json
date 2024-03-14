@@ -833,10 +833,10 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "active": "Active",
-          "inactive": "Inactive",
-          "managed": "Managed",
-          "owned": "Owned"
+          "active": "Aktiv",
+          "inactive": "Inaktiv",
+          "managed": "Gelang es",
+          "owned": "Besessen"
         },
         "searchText": "Search by client Id"
       },
