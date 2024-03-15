@@ -12,6 +12,12 @@
   - UI updates of order status button and back button
 - Service Release Process
   - Updated technicalUserProfile by allowing 'none' for dataspace services
+- Technical User Management
+  - Enable inactive users list
+- Portal Login Navigation
+  - UI updates as per figma
+- UI Cleanups
+  - Removed unused overlays
 
 ### Bugfix
 
@@ -37,6 +43,8 @@
 - Hamburger
   - Full height user menu
   - Click outside to close menu
+- Company Wallet
+  - Card style updates for Active, Inactive and Unknown status
 - App Change Description
   - fixed display of the description correctly
 
@@ -44,6 +52,8 @@
 
 - IDP Config
   - Implementation of displaying metadata details
+- Company certificate
+  - Create upload certificate success overlay
 
 ### Feature
 
