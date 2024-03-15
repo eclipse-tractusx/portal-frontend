@@ -145,7 +145,7 @@
         "DONE": "Erledigt",
         "FAILED": "Fehlgeschlagen"
       },
-      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@catena-x.com.</0>",
       "note": "NOTE:",
       "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
@@ -833,9 +833,10 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "all": "All",
-          "managed": "Managed",
-          "owned": "Owned"
+          "active": "Aktiv",
+          "inactive": "Inaktiv",
+          "managed": "Gelang es",
+          "owned": "Besessen"
         },
         "searchText": "Search by client Id"
       },
@@ -1766,6 +1767,8 @@
       "upload": {
         "title": "Upload new certificate",
         "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
+        "successTitle": "Certificate successfully uploaded.",
+        "successDescription": "The upload was successful. The document is now available under your company certificate management page as well as shared with all dataspace providers.",
         "certificateTypeTitle": "Certificate Type",
         "certificateTypeError": "",
         "certificateTypeLabel": "",

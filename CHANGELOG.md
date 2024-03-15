@@ -12,6 +12,12 @@
   - UI updates of order status button and back button
 - App Release Process
   - Updated technicalUserProfile by allowing 'none'
+- Technical User Management
+  - Enable inactive users list
+- Portal Login Navigation
+  - UI updates as per figma
+- UI Cleanups
+  - Removed unused overlays
 
 ### Bugfix
 
@@ -37,11 +43,17 @@
 - Hamburger
   - Full height user menu
   - Click outside to close menu
+- Company Wallet
+  - Card style updates for Active, Inactive and Unknown status
+- App Change Description
+  - fixed display of the description correctly
 
 ### Feature
 
 - IDP Config
   - Implementation of displaying metadata details
+- Company certificate
+  - Create upload certificate success overlay
 
 ### Feature
 

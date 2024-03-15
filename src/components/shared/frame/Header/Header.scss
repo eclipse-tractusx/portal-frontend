@@ -41,6 +41,9 @@ header {
     color: #ff7100;
     display: flex;
     align-items: center;
+    .subjectIcon {
+      margin-right: 10px;
+    }
   }
   .emailText {
     color: #0f71cb;
