@@ -95,7 +95,7 @@ export default function ContractAndConsent() {
         getDocumentById={getDocumentById}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={
-          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F03.+Terms%26Conditions.md'
         }
       />
     </div>
