@@ -27,6 +27,8 @@
   - fixed help links in configuration overlay
 - Notification
   - fixed help link
+- Release Process
+  - fixed help links in app release process and service release process
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
 - App User

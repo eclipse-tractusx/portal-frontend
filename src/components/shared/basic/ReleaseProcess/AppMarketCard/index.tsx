@@ -854,7 +854,7 @@ export default function AppMarketCard() {
         isValid={isValid}
         loader={loading}
         helpUrl={
-          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F01.+App+Card.md'
         }
       />
       <PageSnackbar

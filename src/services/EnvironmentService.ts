@@ -19,40 +19,37 @@
 
 declare const ENV: Record<string, string>
 
-export const getApiBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.PORTAL_BACKEND_URL
+export const getRealm = () => ENV.REALM ?? ''
 
-export const getAssetBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.PORTAL_ASSETS_URL
+export const getClientId = () => ENV.CLIENT_ID ?? ''
 
-export const getCentralIdp = () =>
-  typeof ENV === 'undefined' ? '' : ENV.CENTRALIDP_URL
+export const getClientIdSemantic = () => ENV.CLIENT_ID_SEMANTIC ?? ''
 
-export const getClientId = () => 'Cl2-CX-Portal'
+export const getClientIdMiw = () => ENV.CLIENT_ID_MIW ?? ''
 
-export const getBpdmApiBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.BPDM_API_URL
+export const getCentralIdp = () => ENV.CENTRALIDP_URL ?? ''
 
-export const getSemanticApiBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.SEMANTICS_URL
+export const getApiBase = () => ENV.PORTAL_BACKEND_URL ?? ''
 
-export const getClientIdSemantic = () => 'Cl3-CX-Semantic'
+export const getAssetBase = () => ENV.PORTAL_ASSETS_URL ?? ''
 
-export const getManagedIdentityWalletsNewBase = () =>
-  typeof ENV === 'undefined' ? '' : ENV.MANAGED_IDENTITY_WALLETS_NEW_URL
+export const getBpdmApiBase = () => ENV.BPDM_API_URL ?? ''
 
-export const getClientIdManagedIdentityWallets = () => 'Cl5-CX-Custodian'
+export const getSemanticApiBase = () => ENV.SEMANTICS_URL ?? ''
+
+export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 
 const EnvironmentService = {
+  getRealm,
+  getClientId,
+  getClientIdSemantic,
+  getClientIdMiw,
+  getCentralIdp,
   getApiBase,
   getAssetBase,
   getBpdmApiBase,
-  getCentralIdp,
   getSemanticApiBase,
-  getClientId,
-  getClientIdSemantic,
-  getManagedIdentityWalletsNewBase,
-  getClientIdManagedIdentityWallets,
+  getMiwBase,
 }
 
 export default EnvironmentService
