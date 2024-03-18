@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useDispatch, useSelector } from 'react-redux'
-import type { Dispatch, SetStateAction } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SortOption } from '@catena-x/portal-shared-components'
 import {
@@ -31,18 +31,12 @@ import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchI
 import SortImage from 'components/shared/frame/SortImage'
 import { NotificationSortingType } from 'features/notification/types'
 
-export interface NotificationProps {
-  showOrder: boolean
-  setShowOrder: Dispatch<SetStateAction<boolean>>
-}
-
-export default function NotificationSearch({
-  showOrder,
-  setShowOrder,
-}: NotificationProps) {
+export default function NotificationSearch() {
   const order = useSelector(notificationFetchSelector).args.sorting
   const dispatch = useDispatch()
   const { t } = useTranslation('notification')
+
+  const [showOrder, setShowOrder] = useState<boolean>(false)
 
   const sortOptions = [
     {
@@ -65,7 +59,11 @@ export default function NotificationSearch({
         debounceTime={500}
         onSearch={(expr: string) => dispatch(setSearch(expr))}
       />
-      <div>
+      <div
+        onMouseLeave={() => {
+          setShowOrder(false)
+        }}
+      >
         <SortImage
           onClick={(e) => {
             e.stopPropagation()

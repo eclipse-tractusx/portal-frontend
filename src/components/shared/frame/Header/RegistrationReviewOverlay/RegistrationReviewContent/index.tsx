@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { useMediaQuery, useTheme } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import {
   type ApplicationChecklist,
@@ -35,10 +34,6 @@ export type StatusTagIcon = {
 
 const RegistrationReviewContent = () => {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
-    defaultMatches: true,
-  })
 
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]

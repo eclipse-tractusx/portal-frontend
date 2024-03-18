@@ -83,38 +83,49 @@ export const UserDetailCard = ({
     param: string
   ) => (
     <>
-      <strong>{value?.label}:</strong>&nbsp;
-      <span
-        style={{
-          marginLeft: variant === 'wide' ? 'auto' : '',
-          display: 'inline-grid',
-          fontSize: '14px',
-        }}
-      >
-        {Array.isArray(value?.value)
-          ? value?.value.map((bpn, i) => (
-              <span key={i}>
-                {bpn}
-                <br />
-              </span>
-            ))
-          : value?.value}
-      </span>
-      <span>
-        {userId && value?.label === 'BPN' && (
+      <strong style={{ marginRight: '5px' }}>{value?.label}:</strong>
+      {value?.value && value?.value.length > 0 && (
+        <span
+          style={{
+            marginLeft: variant === 'wide' ? 'auto' : '',
+            display: 'inline-grid',
+            fontSize: '14px',
+          }}
+        >
+          {Array.isArray(value?.value)
+            ? value?.value.map((bpn, i) => (
+                <span key={i}>
+                  {bpn}
+                  <br />
+                </span>
+              ))
+            : value?.value}
+        </span>
+      )}
+      {userId && value?.label === 'BPN' && (
+        <Box
+          sx={{
+            borderRadius: '50%',
+            width: '35px',
+            height: '35px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: '5px',
+            '&:hover': {
+              backgroundColor: 'rgba(176, 206, 235, 0.4)',
+            },
+          }}
+        >
           <EditIcon
             onClick={openEditOverlay}
             sx={{
               cursor: 'pointer',
               color: '#0F71CB',
-              '&:hover': {
-                backgroundColor: 'rgb(176 206 235 / 40%)',
-                borderRadius: '20px',
-              },
             }}
           />
-        )}
-      </span>
+        </Box>
+      )}
       <span>
         {param === 'clientSecret' && (
           <ContentCopyIcon
@@ -186,8 +197,6 @@ export const UserDetailCard = ({
               color: 'rgb(136, 136, 136)',
               fontFamily: 'LibreFranklin-Light',
               padding: k === 'status' ? '14.5px 20px' : '20px',
-              justifyContent: k === 'bpn' ? 'space-between' : '',
-              display: variant === 'wide' ? 'flex' : 'block',
               fontSize: '14px',
             }}
           >

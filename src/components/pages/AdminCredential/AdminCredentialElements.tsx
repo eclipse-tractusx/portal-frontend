@@ -185,18 +185,20 @@ export default function AdminCredentialElements() {
       headerName: t('content.adminCertificate.table.document'),
       flex: 1.5,
       renderCell: ({ row }: { row: CredentialData }) => (
-        <ArticleOutlinedIcon
-          className={`${
-            row.document.documentId ? 'document-icon' : 'document-disabled'
-          }`}
-          onClick={() =>
-            row.document.documentId &&
-            handleDownloadClick(
-              row.document.documentId,
-              row.document.documentName
-            )
-          }
-        />
+        <div className="documenticon-main">
+          <ArticleOutlinedIcon
+            className={`${
+              row.document.documentId ? 'document-icon' : 'document-disabled'
+            }`}
+            onClick={() =>
+              row.document.documentId &&
+              handleDownloadClick(
+                row.document.documentId,
+                row.document.documentName
+              )
+            }
+          />
+        </div>
       ),
     },
     {

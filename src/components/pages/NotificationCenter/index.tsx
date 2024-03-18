@@ -24,19 +24,12 @@ import { useTranslation } from 'react-i18next'
 import NotificationFilter from './NotificationFilter'
 import NotificationSearch from './NotificationSearch'
 import './Notifications.scss'
-import { useState } from 'react'
 
 export default function NotificationCenter() {
   const { t } = useTranslation('notification')
-  const [showOrder, setShowOrder] = useState<boolean>(false)
 
   return (
-    <main
-      className="notifications"
-      onClick={() => {
-        setShowOrder(false)
-      }}
-    >
+    <main className="notifications">
       <SectionHeader
         title={t('header.title')}
         subTitle={t('header.subtitle')}
@@ -44,7 +37,7 @@ export default function NotificationCenter() {
         link={t('header.link')}
       />
       <section>
-        <NotificationSearch showOrder={showOrder} setShowOrder={setShowOrder} />
+        <NotificationSearch />
         <NotificationFilter />
         <NotificationList />
       </section>
