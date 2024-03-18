@@ -126,7 +126,7 @@ export default function ValidateAndPublish({
         values={defaultValues}
         rolesData={data}
         helpUrl={
-          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F05.+Verify+%26+Submit.md'
         }
       />
     </div>

@@ -39,8 +39,7 @@ import {
 } from '@catena-x/portal-shared-components'
 
 const isWellknownMetadata = (expr: string) =>
-  (isURL(expr) || expr.startsWith('http://localhost')) &&
-  expr.endsWith('.well-known/openid-configuration')
+  isURL(expr) && expr.endsWith('.well-known/openid-configuration')
 
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}

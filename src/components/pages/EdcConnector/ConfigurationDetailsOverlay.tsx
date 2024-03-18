@@ -26,10 +26,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useFetchOperatorBpnQuery } from 'features/connector/connectorApiSlice'
-import {
-  getCentralIdp,
-  getManagedIdentityWalletsNewBase,
-} from 'services/EnvironmentService'
+import { getCentralIdp, getMiwBase } from 'services/EnvironmentService'
 import './EdcConnector.scss'
 
 interface ConfigurationDetailsOverlayProps {
@@ -144,9 +141,7 @@ const ConfigurationDetailsOverlay = ({
           )}
           <Trans
             values={{
-              managedIdentityWalletApiBase: t(
-                getManagedIdentityWalletsNewBase()
-              ),
+              managedIdentityWalletApiBase: t(getMiwBase()),
             }}
           >
             <Typography variant="body2" className="detailsBodyText">
