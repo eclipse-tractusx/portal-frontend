@@ -10,8 +10,16 @@
   - Connect delete certificate to back end api
 - App Detail Pages
   - UI updates of order status button and back button
+- Technical User Management
+  - Enable inactive users list
 - Portal Login Navigation
   - UI updates as per figma
+- UI Cleanups
+  - Removed unused overlays
+- UI Improvements
+  - Add background on hover effect
+  - Fix notifications sorting dropdown closing issue
+  - Make buttons in sync
 
 ### Bugfix
 
@@ -21,6 +29,8 @@
   - fixed help links in configuration overlay
 - Notification
   - fixed help link
+- Release Process
+  - fixed help links in app release process and service release process
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
 - App User

@@ -24,9 +24,10 @@ import { ROLES } from 'types/Constants'
 import {
   getCentralIdp,
   getClientId,
-  getClientIdManagedIdentityWallets,
+  getClientIdMiw,
   getClientIdSemantic,
-  getManagedIdentityWalletsNewBase,
+  getMiwBase,
+  getRealm,
 } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
@@ -34,20 +35,20 @@ import { setLoggedUser } from 'features/user/slice'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
-  realm: 'CX-Central',
+  realm: getRealm(),
   clientId: getClientId(),
 }
 
 const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
-  realm: 'CX-Central',
+  realm: getRealm(),
   clientId: getClientIdSemantic(),
 }
 
 const keycloakConfigMIW: Keycloak.KeycloakConfig = {
-  url: getManagedIdentityWalletsNewBase(),
-  realm: 'CX-Central',
-  clientId: getClientIdManagedIdentityWallets(),
+  url: getMiwBase(),
+  realm: getRealm(),
+  clientId: getClientIdMiw(),
 }
 
 // Add an ESLint exception until there is a solution
@@ -70,7 +71,6 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',
-    enableLogging: true,
   })
     .then((authenticated: boolean) => {
       if (authenticated) {
