@@ -63,6 +63,7 @@ export default function NotificationSearch() {
         onMouseLeave={() => {
           setShowOrder(false)
         }}
+        role="button"
       >
         <SortImage
           onClick={(e) => {
