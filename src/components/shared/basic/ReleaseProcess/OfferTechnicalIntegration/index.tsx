@@ -113,18 +113,6 @@ export default function OfferTechnicalIntegration() {
     }
   }
 
-  const handleSaveAndProceed = (buttonLabel: string) => {
-    return (
-      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
-      ((serviceTechUserProfiles.length === userProfiles.length &&
-        serviceTechUserProfiles.every((item) =>
-          userProfiles?.includes(item)
-        )) ||
-        (data?.length === 0 &&
-          serviceTechUserProfiles?.[0] === serviceTechnicalUserNone))
-    )
-  }
-
   const onSubmit = async (submitData: unknown, buttonLabel: string) => {
     if (
       !fetchServiceStatus?.serviceTypeIds.every((item) =>
@@ -133,9 +121,17 @@ export default function OfferTechnicalIntegration() {
       serviceTechUserProfiles.length === 0
     ) {
       setErrorMessage(true)
-    } else if (handleSaveAndProceed(buttonLabel))
-      dispatch(serviceReleaseStepIncrement())
-    else if (
+    } else if (
+      (serviceTechUserProfiles.length === userProfiles.length &&
+        serviceTechUserProfiles.every((item) =>
+          userProfiles?.includes(item)
+        )) ||
+      (data?.length === 0 &&
+        serviceTechUserProfiles?.[0] === serviceTechnicalUserNone)
+    ) {
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
+        dispatch(serviceReleaseStepIncrement())
+    } else if (
       !(
         serviceTechUserProfiles.length === userProfiles.length &&
         serviceTechUserProfiles.every((item) => userProfiles?.includes(item))
