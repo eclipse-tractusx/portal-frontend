@@ -92,10 +92,13 @@ export default function AddRoles() {
     )
   }, [data])
 
-  const appRolesData = appRoles.map((item, i) => ({
-    establishedRoles: item[0],
-    id: i,
-  }))
+  const appRolesData =
+    data && data.length > 0
+      ? appRoles.map((item, i) => ({
+          establishedRoles: item[0],
+          id: i,
+        }))
+      : []
 
   const columns = [
     {

@@ -47,6 +47,8 @@
   - Card style updates for Active, Inactive and Unknown status
 - App Change Description
   - fixed display of the description correctly
+- Add Roles
+  - fixed empty chip display for additional roles in app overview active apps
 
 ### Feature
 
