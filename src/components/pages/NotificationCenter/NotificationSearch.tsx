@@ -21,6 +21,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Box } from '@mui/material'
 import { SortOption } from '@catena-x/portal-shared-components'
 import {
   notificationFetchSelector,
@@ -59,11 +60,11 @@ export default function NotificationSearch() {
         debounceTime={500}
         onSearch={(expr: string) => dispatch(setSearch(expr))}
       />
-      <div
+      <Box
         onMouseLeave={() => {
           setShowOrder(false)
         }}
-        role="button"
+        className="sortingMain"
       >
         <SortImage
           onClick={(e) => {
@@ -83,7 +84,7 @@ export default function NotificationSearch() {
             sortOptions={sortOptions}
           />
         </div>
-      </div>
+      </Box>
     </div>
   )
 }

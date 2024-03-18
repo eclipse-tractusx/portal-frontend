@@ -260,14 +260,17 @@
     padding-top: 4px;
   }
 
-  .sortSection {
-    position: absolute;
-    left: 61%;
-    margin-top: 0%;
-    background: #f9f9f9;
-    box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
-    border-radius: 16px;
-    z-index: 9;
+  .sortingMain{
+    width: 10% !important;
+    .sortSection {
+      position: absolute;
+      left: 61%;
+      margin-top: 0%;
+      background: #f9f9f9;
+      box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
+      border-radius: 16px;
+      z-index: 9;
+    }
   }
 
   .sortSection .MuiBox-root {
