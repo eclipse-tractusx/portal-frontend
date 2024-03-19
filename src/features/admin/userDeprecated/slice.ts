@@ -65,7 +65,7 @@ export const slice = createSlice({
     builder.addCase(addTenantUsers.rejected, (state, action) => ({
       ...state,
       addRequest: RequestState.ERROR,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
     builder.addCase(fetchTenantUsers.pending, (state) => ({
       ...state,
@@ -83,7 +83,7 @@ export const slice = createSlice({
       ...state,
       tenantUsers: [],
       getRequest: RequestState.ERROR,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
   },
 })

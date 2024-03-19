@@ -174,8 +174,7 @@ export default function ServiceAdminBoardDetail() {
           <Typography variant="body2" sx={{ mb: 3 }}>
             {t('adminboardDetail.ConformityDocument.message')}
           </Typography>
-          {serviceData?.documents &&
-          serviceData?.documents[
+          {serviceData?.documents?.[
             DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
           ] ? (
             serviceData?.documents[

@@ -63,7 +63,7 @@ export default function ServiceDeactivate() {
           state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS,
         })
       })
-      .catch((error) => {
+      .catch(() => {
         navigate(`/${PAGES.SERVICEOVERVIEW}`, {
           state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_ERROR,
         })

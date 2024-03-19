@@ -577,7 +577,7 @@ export default function AppPage() {
           'uploadDataPrerequisits',
           'uploadTechnicalGuide',
           'uploadAppContract',
-        ].map((item: string, i) => (
+        ].map((item: string) => (
           <div key={item}>
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <div className="form-field" key={item}>

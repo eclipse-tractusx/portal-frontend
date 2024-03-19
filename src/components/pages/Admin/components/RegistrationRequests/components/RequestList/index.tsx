@@ -87,7 +87,6 @@ export const RequestList = ({
       statusFilter: filterStatus,
       expr: onValidate(searchExpr) ? searchExpr : '',
     })
-    // eslint-disable-next-line
   }, [filterStatus, searchExpr])
 
   useEffect(() => {

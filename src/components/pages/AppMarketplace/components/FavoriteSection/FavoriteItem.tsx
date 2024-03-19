@@ -55,7 +55,6 @@ export default function FavoriteItem({
     if (item?.leadPictureId) {
       void fetchImage(item?.leadPictureId)
     }
-    // eslint-disable-next-line
   }, [])
 
   const fetchImage = async (documentId: string) => {

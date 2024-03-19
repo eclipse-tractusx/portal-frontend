@@ -65,7 +65,7 @@ export default function MyAccount() {
           <Button
             color="secondary"
             onClick={async () => {
-              await navigator.clipboard.writeText(token)
+              await navigator.clipboard.writeText(token ?? '')
               success(t('content.account.copy_to_clipboard_success'))
             }}
             size="small"

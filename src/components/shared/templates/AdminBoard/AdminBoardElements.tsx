@@ -98,14 +98,14 @@ export default function AdminBoardElements({
         .then(() => {
           dispatch(setSuccessType(true))
         })
-        .catch((error) => dispatch(setErrorType(true)))
+        .catch(() => dispatch(setErrorType(true)))
     } else {
       await approveRequest(appId)
         .unwrap()
         .then(() => {
           dispatch(setSuccessType(true))
         })
-        .catch((error) => dispatch(setErrorType(true)))
+        .catch(() => dispatch(setErrorType(true)))
     }
   }
 

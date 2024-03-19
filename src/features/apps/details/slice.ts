@@ -47,7 +47,7 @@ export const slice = createSlice({
     builder.addCase(fetch.rejected, (state, action) => {
       state.item = AppDetailInitial
       state.loading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
   },
 })

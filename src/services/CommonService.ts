@@ -95,8 +95,8 @@ const getCompanyRoleUpdateData = (callback: (data: RolesData) => void) => {
     .then((data) => {
       callback(data)
     })
-    .catch((error) => {
-      console.log('Fetching Company Roles Data Failed')
+    .catch((error: unknown) => {
+      console.log('Fetching Company Roles Data Failed', error)
     })
 }
 

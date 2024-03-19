@@ -24,10 +24,8 @@ import '../StaticTemplate.scss'
 
 export default function LinkButtonGrid({
   provider,
-  grid = 3,
 }: {
   provider: ProviderProps
-  grid: number
 }) {
   const QuickLinksdata = provider.linksRow1.concat(provider.linksRow2)
 

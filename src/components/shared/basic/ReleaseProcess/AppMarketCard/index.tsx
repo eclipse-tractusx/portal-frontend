@@ -236,7 +236,6 @@ export default function AppMarketCard() {
         }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList, appStatusData])
 
   const onSalesManagerChange = (sales: string | null) => {
@@ -260,17 +259,13 @@ export default function AppMarketCard() {
   }, [cardImageData])
 
   useEffect(() => {
-    if (
-      appStatusData?.documents?.APP_LEADIMAGE &&
-      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
-    ) {
+    if (appStatusData?.documents?.APP_LEADIMAGE?.[0].documentId) {
       void fetchCardImage(
         appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
         appStatusData?.documents?.APP_LEADIMAGE[0].documentName
       )
     }
     reset(defaultValues)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatusData])
 
   const setFileStatus = (
@@ -341,7 +336,7 @@ export default function AppMarketCard() {
 
   const handleUploadDocument = (
     appId: string,
-    buttonLabel: string,
+    _buttonLabel: string,
     uploadImageValue: DropzoneFile
   ) => {
     const setFileStatus = (status: UploadFileStatus) => {
@@ -586,7 +581,7 @@ export default function AppMarketCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string, i) => (
+                (item: string) => (
                   <div key={item}>
                     <ConnectorFormInputFieldShortAndLongDescription
                       {...{

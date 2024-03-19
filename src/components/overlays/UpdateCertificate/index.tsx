@@ -51,7 +51,7 @@ export type CertificateType = {
   title: string
 }
 
-export default function UpdateCertificate({ id }: { id: string }) {
+export default function UpdateCertificate() {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [uploadedFile, setUploadedFile] = useState<File>()

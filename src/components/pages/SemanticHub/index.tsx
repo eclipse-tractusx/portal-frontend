@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-/* eslint-disable react-hooks/exhaustive-deps */
 import StageHeader from 'components/shared/frame/StageHeader'
 import {
   Button,
