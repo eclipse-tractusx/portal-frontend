@@ -12,6 +12,8 @@
   - UI updates of order status button and back button
 - Service Release Process
   - Updated technicalUserProfile by allowing 'none' for dataspace services
+- App Release Process
+  - Updated technicalUserProfile by allowing 'none'
 - Technical User Management
   - Enable inactive users list
 - Portal Login Navigation
