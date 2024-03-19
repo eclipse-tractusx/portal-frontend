@@ -63,7 +63,8 @@
     "headerTitle": "Technical Integration",
     "headerDescription": "Setup the technical profile of a technical user/service account of needed permissions to be able to run the application inside the dataspace. Select minimum one permission, the selected permission(s) will be stored as service technical user profile and used to create technical users for subscription activations.",
     "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
-    "technicalUserProfileError": "Error while updating technical user profiles"
+    "technicalUserProfileError": "Error while updating technical user profiles",
+    "noneOption": "none (no technical user needed to run the app/service)"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
