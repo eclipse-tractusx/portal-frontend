@@ -174,9 +174,10 @@ export default function CommonContractAndConsent({
 
   const deleteDocument = async (documentId: string) => {
     documentId &&
-      (await (type === ReleaseProcessTypes.APP_RELEASE
-        ? deleteAppReleaseDocument(documentId)
-        : deleteServiceReleaseDocument(documentId)
+      (await (
+        type === ReleaseProcessTypes.APP_RELEASE
+          ? deleteAppReleaseDocument(documentId)
+          : deleteServiceReleaseDocument(documentId)
       )
         .unwrap()
         .then(() => {
