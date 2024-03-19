@@ -22,7 +22,7 @@ import Sort from '@mui/icons-material/Sort'
 import { Box } from '@mui/material'
 
 interface SortIconProps {
-  onClick: () => void
+  onClick: React.MouseEventHandler
   selected?: boolean
 }
 

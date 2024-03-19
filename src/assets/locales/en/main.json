@@ -1159,7 +1159,8 @@
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
-        "encodingPlaceholder": "Select supported encoding"
+        "encodingPlaceholder": "Select supported encoding",
+        "noneOption": "none (no technical user needed to run the app/service)"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

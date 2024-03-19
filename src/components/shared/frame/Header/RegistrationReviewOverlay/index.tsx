@@ -56,7 +56,8 @@ const RegistrationReviewOverlay = ({
         open={openDialog}
         additionalModalRootStyles={{
           width: isMobile ? '100%' : '50%',
-          margin: isMobile ? '0' : '',
+          margin: isMobile ? '80px 0 0' : '',
+          borderRadius: '32px 32px 0px 0px',
         }}
       >
         <DialogHeader title={t('content.registrationInreview.title')} />
