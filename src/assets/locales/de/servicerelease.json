@@ -63,7 +63,8 @@
     "headerTitle": "Technical Integration",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
-    "technicalUserProfileError": "Error while updating technical user profiles"
+    "technicalUserProfileError": "Error while updating technical user profiles",
+    "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
   },
   "step4": {
     "headerTitle": "Validate & Publish",

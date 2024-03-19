@@ -1198,7 +1198,8 @@
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
-        "encodingPlaceholder": "Select supported encoding"
+        "encodingPlaceholder": "Select supported encoding",
+        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
