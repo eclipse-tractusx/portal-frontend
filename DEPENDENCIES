@@ -498,7 +498,7 @@ npm/npmjs/-/jest/27.5.1, MIT, approved, clearlydefined
 npm/npmjs/-/jiti/1.20.0, MIT, approved, clearlydefined
 npm/npmjs/-/jquery/3.7.1, MIT, approved, clearlydefined
 npm/npmjs/-/js-sdsl/4.4.2, MIT, approved, #7722
-npm/npmjs/-/js-sha256/0.9.0, MIT, approved, clearlydefined
+npm/npmjs/-/js-sha256/0.10.1, MIT, approved, clearlydefined
 npm/npmjs/-/js-tokens/4.0.0, MIT, approved, #2401
 npm/npmjs/-/js-yaml/3.14.1, MIT, approved, clearlydefined
 npm/npmjs/-/js-yaml/4.1.0, MIT, approved, clearlydefined
@@ -518,7 +518,8 @@ npm/npmjs/-/jsonfile/6.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/jsonpath/1.1.1, BSD-2-Clause AND MIT AND MIT, approved, #10974
 npm/npmjs/-/jsonpointer/5.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/jsx-ast-utils/3.3.5, MIT, approved, #9209
-npm/npmjs/-/keycloak-js/21.1.2, Apache-2.0 AND MIT, approved, #9145
+npm/npmjs/-/jwt-decode/4.0.0, MIT, approved, clearlydefined
+npm/npmjs/-/keycloak-js/23.0.7, Apache-2.0 AND MIT AND EPL-1.0 AND LicenseRef-scancode-oasis-ws-security-spec AND W3C AND LicenseRef-scancode-ws-policy-specification AND W3C AND W3C-19980720 AND (AFL-2.1 OR LGPL-2.0-only) AND (Apache-2.0 AND MIT) AND (Apache-2.0 AND MIT), approved, #11737
 npm/npmjs/-/keyv/4.5.4, MIT, approved, #4674
 npm/npmjs/-/kind-of/6.0.3, MIT, approved, clearlydefined
 npm/npmjs/-/kleur/3.0.3, MIT, approved, clearlydefined
@@ -1156,7 +1157,7 @@ npm/npmjs/@babel/traverse/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD
 npm/npmjs/@babel/types/7.23.0, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11521
 npm/npmjs/@babel/types/7.23.3, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #11521
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/2.1.39, Apache-2.0 AND CC-BY-4.0, approved, #10502
+npm/npmjs/@catena-x/portal-shared-components/2.1.41, Apache-2.0 AND CC-BY-4.0, approved, #10502
 npm/npmjs/@csstools/normalize.css/12.0.0, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-cascade-layers/1.1.1, CC0-1.0, approved, clearlydefined
 npm/npmjs/@csstools/postcss-color-function/1.1.1, CC0-1.0 AND (MIT AND W3C-20150513) AND W3C-20150513 AND MIT, approved, #3022

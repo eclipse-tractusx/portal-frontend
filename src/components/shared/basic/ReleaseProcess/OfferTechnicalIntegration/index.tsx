@@ -206,7 +206,7 @@ export default function OfferTechnicalIntegration() {
         isValid={serviceTechUserProfiles?.length > 0}
         loader={loading}
         helpUrl={
-          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process%2F04.+Technical+Integration.md'
         }
       />
     </>
