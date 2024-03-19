@@ -18,24 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Box } from '@mui/material'
+import { SortOption } from '@catena-x/portal-shared-components'
 import {
   notificationFetchSelector,
   setOrder,
   setSearch,
 } from 'features/notification/slice'
-import { useTranslation } from 'react-i18next'
-import { SortOption } from '@catena-x/portal-shared-components'
+import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
 import SortImage from 'components/shared/frame/SortImage'
 import { NotificationSortingType } from 'features/notification/types'
-import { useState } from 'react'
 
 export default function NotificationSearch() {
-  const [showOrder, setShowOrder] = useState<boolean>(false)
   const order = useSelector(notificationFetchSelector).args.sorting
   const dispatch = useDispatch()
   const { t } = useTranslation('notification')
+
+  const [showOrder, setShowOrder] = useState<boolean>(false)
 
   const sortOptions = [
     {
@@ -58,10 +60,16 @@ export default function NotificationSearch() {
         debounceTime={500}
         onSearch={(expr: string) => dispatch(setSearch(expr))}
       />
-      <div>
+      <Box
+        onMouseLeave={() => {
+          setShowOrder(false)
+        }}
+        className="sortingMain"
+      >
         <SortImage
-          onClick={() => {
-            setShowOrder(true)
+          onClick={(e) => {
+            e.stopPropagation()
+            setShowOrder(!showOrder)
           }}
           selected={showOrder}
         />
@@ -76,7 +84,7 @@ export default function NotificationSearch() {
             sortOptions={sortOptions}
           />
         </div>
-      </div>
+      </Box>
     </div>
   )
 }
