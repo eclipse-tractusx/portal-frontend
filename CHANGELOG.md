@@ -16,6 +16,8 @@
   - UI updates as per figma
 - UI Cleanups
   - Removed unused overlays
+- API cleanups
+  - Remove duplicate api end points
 
 ### Bugfix
 

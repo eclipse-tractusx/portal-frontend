@@ -229,24 +229,6 @@ export const apiSlice = createApi({
         }
       },
     }),
-    fetchDocumentById: builder.mutation({
-      query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
-    fetchNewDocumentById: builder.mutation({
-      query: (documentId) => ({
-        url: `/api/administration/registration/documents/${documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
     updateBPN: builder.mutation<boolean, UpdateBpnReuestType>({
       query: (args) => ({
         url: `/api/administration/registration/application/${args.applicationId}/${args.bpn}/bpn`,
@@ -284,11 +266,9 @@ export const {
   useApproveRequestMutation,
   useDeclineRequestMutation,
   useFetchCompanySearchQuery,
-  useFetchDocumentByIdMutation,
   useUpdateBPNMutation,
   useFetchCheckListDetailsQuery,
   useApproveChecklistMutation,
   useDeclineChecklistMutation,
   useRetriggerProcessMutation,
-  useFetchNewDocumentByIdMutation,
 } = apiSlice

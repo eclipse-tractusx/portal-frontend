@@ -28,7 +28,6 @@ import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
   ConsentStatusEnum,
-  useFetchDocumentByIdMutation,
   useFetchRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
@@ -38,6 +37,7 @@ import {
   type AppStatusDataState,
 } from 'features/appManagement/types'
 import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 export default function AppOverViewDetails({
   item,
