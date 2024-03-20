@@ -103,7 +103,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          readme-filepath: ".conf/notice-portal.md"
+          readme-filepath: ".conf/docker-notice-portal.md"
 
   auth-and-dispatch:
     needs: build-and-push-image
