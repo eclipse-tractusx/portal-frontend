@@ -247,24 +247,6 @@ export const apiSlice = createApi({
           : { error: response.error }
       },
     }),
-    fetchNewDocumentById: builder.mutation({
-      query: (documentId) => ({
-        url: `/api/administration/documents/${documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
-    fetchFrameDocumentById: builder.mutation({
-      query: (documentId) => ({
-        url: `/api/administration/documents/frameDocuments/${documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
     submitService: builder.mutation<void, string>({
       query: (id) => ({
         url: `/api/services/serviceRelease/${id}/submit`,
@@ -348,9 +330,7 @@ export const {
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
-  useFetchNewDocumentByIdMutation,
   useSubmitServiceMutation,
-  useFetchFrameDocumentByIdMutation,
   useFetchDocumentMutation,
   useFetchProvidedServicesQuery,
   useDeleteDocumentMutation,

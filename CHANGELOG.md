@@ -20,6 +20,8 @@
   - UI updates as per figma
 - UI Cleanups
   - Removed unused overlays
+- API cleanups
+  - Remove duplicate api end points
 - UI Improvements
   - Add background on hover effect
   - Fix notifications sorting dropdown closing issue

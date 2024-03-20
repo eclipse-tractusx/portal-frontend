@@ -39,11 +39,11 @@ import {
   type ApplicationRequest,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
-  useFetchNewDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getTitle } from './CompanyDetailsHelper'
+import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean

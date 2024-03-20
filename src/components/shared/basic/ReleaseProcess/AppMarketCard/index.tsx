@@ -43,7 +43,6 @@ import {
   type salesManagerType,
   useSaveAppMutation,
   useFetchAppStatusQuery,
-  useFetchDocumentByIdMutation,
   DocumentTypeId,
   useDeleteAppReleaseDocumentMutation,
   type appLanguagesItem,
@@ -74,6 +73,7 @@ import {
   type LanguageStatusType,
   type UseCaseType,
 } from 'features/appManagement/types'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 type FormDataType = {
   title: string

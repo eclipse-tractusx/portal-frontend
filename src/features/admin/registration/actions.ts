@@ -58,28 +58,6 @@ const fetchPage = createAsyncThunk(
   }
 )
 
-const approveRequest = createAsyncThunk(
-  `${name}/approveRequest`,
-  async (applicationId: string) => {
-    try {
-      await Api.getInstance().approveRegistrationRequest(applicationId)
-    } catch (error: unknown) {
-      throw Error(`${name}/approveRequest error`)
-    }
-  }
-)
-
-const declineRequest = createAsyncThunk(
-  `${name}/declineRequest`,
-  async (applicationId: string) => {
-    try {
-      await Api.getInstance().declineRegistrationRequest(applicationId)
-    } catch (error: unknown) {
-      throw Error(`${name}/declineRequest error`)
-    }
-  }
-)
-
 const refreshApplicationRequest = createAction(
   `${name}/refreshApplicationRequest`,
   (refresh: number) => ({ payload: { refresh } })
@@ -89,7 +67,5 @@ export {
   fetchCompanyDetail,
   fetchRegistrationRequests,
   fetchPage,
-  approveRequest,
-  declineRequest,
   refreshApplicationRequest,
 }
