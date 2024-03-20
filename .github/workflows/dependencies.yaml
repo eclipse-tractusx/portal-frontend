@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate Dependencies file
-        run: java -jar ./scripts/download/org.eclipse.dash.licenses-1.0.2.jar yarn.lock -project automotive.tractusx -summary DEPENDENCIES || true
+        run: java -jar ./scripts/download/org.eclipse.dash.licenses-1.1.1.jar yarn.lock -project automotive.tractusx -summary DEPENDENCIES || true
 
       - name: Check if dependencies were changed
         id: dependencies-changed
