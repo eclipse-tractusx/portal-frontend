@@ -26,13 +26,13 @@ import { appIdSelector } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   useFetchAppStatusQuery,
-  useFetchDocumentByIdMutation,
   useFetchRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonValidateAndPublish from '../components/CommonValidateAndPublish'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 export default function ValidateAndPublish({
   showSubmitPage,

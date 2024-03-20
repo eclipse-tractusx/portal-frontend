@@ -32,15 +32,13 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
-import {
-  useFetchDocumentByIdMutation,
-  useUpdateImageDataMutation,
-} from 'features/appManagement/apiSlice'
+import { useUpdateImageDataMutation } from 'features/appManagement/apiSlice'
 import ConnectorFormInputFieldImage from 'components/shared/basic/ReleaseProcess/components/ConnectorFormInputFieldImage'
 import { useForm } from 'react-hook-form'
 import type { DropzoneFile } from 'components/shared/basic/Dropzone'
 import { error, success } from 'services/NotifyService'
 import type { ItemType } from './AddRoles'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 export default function ChangeImage() {
   const { t } = useTranslation()
