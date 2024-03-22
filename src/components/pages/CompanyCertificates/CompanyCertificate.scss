@@ -52,6 +52,13 @@
       align-items: center;
       margin-top: 30px;
       margin-bottom: 20px;
+      svg {
+        color: #0f71cb;
+      }
+    }
+    .filterSection svg:hover {
+      background-color: rgb(176 206 235 / 40%);
+      border-radius: 20px;
     }
 
     .filterSection .chipContainer {
@@ -128,7 +135,7 @@
 
         .dots {
           cursor: pointer;
-
+          color: #0f71cb;
           .more-container {
             display: flex;
             position: absolute;
@@ -146,6 +153,10 @@
           }
         }
       }
+      .dots svg:hover {
+        background-color: rgb(176 206 235 / 40%);
+        border-radius: 20px;
+      }
 
       .bottom-container {
         padding: 0px 10px;
@@ -156,6 +167,13 @@
         .link {
           color: #0f71cb;
           cursor: pointer;
+          span {
+            padding: 2px 8px;
+          }
+        }
+        .link span:hover {
+          background-color: rgb(176 206 235 / 40%);
+          border-radius: 20px;
         }
       }
     }

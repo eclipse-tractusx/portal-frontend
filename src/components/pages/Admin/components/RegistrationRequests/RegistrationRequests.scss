@@ -75,6 +75,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
+  padding: 2px 8px;
 
   .document-cell-line {
     display: flex;
@@ -97,6 +98,12 @@
     cursor: pointer;
     font-size: 14px;
   }
+}
+
+.document-cell-container:hover {
+  background-color: rgb(176 206 235 / 40%);
+  border-radius: 20px;
+  display: inline-block;
 }
 
 .state-cell-container {
