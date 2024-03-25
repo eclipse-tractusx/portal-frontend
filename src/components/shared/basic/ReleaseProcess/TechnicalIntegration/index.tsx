@@ -200,6 +200,15 @@ export default function TechnicalIntegration() {
     else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
   }
 
+  const handleSaveAndProceed = () => {
+    return (
+      (techUserProfiles.length === userProfiles.length &&
+        techUserProfiles.every((item) => userProfiles?.includes(item))) ||
+      (fetchTechnicalUserProfiles?.length === 0 &&
+        techUserProfiles?.[0] === technicalUserNone)
+    )
+  }
+
   const onIntegrationSubmit = async (
     _submitData: unknown,
     buttonLabel: string
@@ -210,12 +219,7 @@ export default function TechnicalIntegration() {
     ) {
       data?.length === 0 && setEnableErrorMessage(true)
       techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)
-    } else if (
-      (techUserProfiles.length === userProfiles.length &&
-        techUserProfiles.every((item) => userProfiles?.includes(item))) ||
-      (fetchTechnicalUserProfiles?.length === 0 &&
-        techUserProfiles?.[0] === technicalUserNone)
-    ) {
+    } else if (handleSaveAndProceed()) {
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
     } else if (
       !(
