@@ -200,16 +200,6 @@ export default function TechnicalIntegration() {
     else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
   }
 
-  const handleSaveAndProceed = (buttonLabel: string) => {
-    return (
-      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
-      ((techUserProfiles.length === userProfiles.length &&
-        techUserProfiles.every((item) => userProfiles?.includes(item))) ||
-        (fetchTechnicalUserProfiles?.length === 0 &&
-          techUserProfiles?.[0] === technicalUserNone))
-    )
-  }
-
   const onIntegrationSubmit = async (
     submitData: unknown,
     buttonLabel: string
@@ -220,8 +210,14 @@ export default function TechnicalIntegration() {
     ) {
       data?.length === 0 && setEnableErrorMessage(true)
       techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)
-    } else if (handleSaveAndProceed(buttonLabel)) dispatch(increment())
-    else if (
+    } else if (
+      (techUserProfiles.length === userProfiles.length &&
+        techUserProfiles.every((item) => userProfiles?.includes(item))) ||
+      (fetchTechnicalUserProfiles?.length === 0 &&
+        techUserProfiles?.[0] === technicalUserNone)
+    ) {
+      buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
+    } else if (
       !(
         techUserProfiles.length === userProfiles.length &&
         techUserProfiles.every((item) => userProfiles?.includes(item))
@@ -710,7 +706,12 @@ export default function TechnicalIntegration() {
         helpUrl={
           '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F04.+Technical+Integration.md'
         }
-        isValid={data && data?.length > 0 && techUserProfiles?.length > 0}
+        isValid={
+          data !== undefined &&
+          data &&
+          data?.length > 0 &&
+          techUserProfiles?.length > 0
+        }
         loader={loading}
       />
     </>

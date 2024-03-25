@@ -13,7 +13,7 @@
 - Service Release Process
   - Updated technicalUserProfile by allowing 'none' for dataspace services
 - App Release Process
-  - Updated technicalUserProfile by allowing 'none'
+  - Updated technicalUserProfile by allowing 'none' for technical integration
 - Technical User Management
   - Enable inactive users list
 - Portal Login Navigation
