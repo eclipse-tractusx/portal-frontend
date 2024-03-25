@@ -466,7 +466,7 @@ export default function CommonContractAndConsent({
                     type: 'checkbox',
                     rules: {
                       required: {
-                        value: item.mandatory ? true : false,
+                        value: item.mandatory,
                         message: `${item.name} ${checkBoxMandatoryText}`,
                       },
                     },
