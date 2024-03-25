@@ -70,6 +70,7 @@ type AgreementDataType = {
   name: string
   consentStatus?: ConsentStatusEnum
   documentId: string
+  mandatory: boolean
 }[]
 
 type CommonConsentType = {
@@ -463,7 +464,7 @@ export default function CommonContractAndConsent({
                     type: 'checkbox',
                     rules: {
                       required: {
-                        value: true,
+                        value: item.mandatory ? true : false,
                         message: `${item.name} ${checkBoxMandatoryText}`,
                       },
                     },
