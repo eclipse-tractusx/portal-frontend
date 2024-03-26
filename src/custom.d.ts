@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,26 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { MemoryRouter } from 'react-router-dom'
-import { Logo } from '.'
-
-export default {
-  title: 'frame/Logo',
-  component: Logo,
-  parameters: {
-    layout: 'fullscreen',
-  },
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
-  styles: ['./components/App.css'],
-} as ComponentMeta<typeof Logo>
-
-const Template: ComponentStory<typeof Logo> = () => <Logo />
-
-export const Standard = Template.bind({})
+declare module '*.svg' {
+  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>
+  export default content
+}

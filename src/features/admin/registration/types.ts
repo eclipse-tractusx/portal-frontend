@@ -94,6 +94,7 @@ export interface AdminRegistrationState {
   request: RequestState
   data: PaginResult<InvitesDataGrid>
   paginationData: PaginationData
+  refresh?: boolean
 }
 
 export const initialState: AdminRegistrationState = {

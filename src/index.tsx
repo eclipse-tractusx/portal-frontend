@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from 'features/store'
 import AccessService from 'services/AccessService'
@@ -27,7 +27,6 @@ import I18nService from 'services/I18nService'
 import UserService from 'services/UserService'
 import { AuthProvider } from 'components/AuthProvider'
 import AuthorizingRouter from 'components/AuthorizingRouter'
-
 import {
   SharedThemeProvider,
   SharedCssBaseline,
@@ -37,8 +36,8 @@ I18nService.init()
 AccessService.init()
 
 UserService.init((user) => {
-  ReactDOM.render(
-    <React.StrictMode>
+  createRoot(document.getElementById('app')!).render(
+    <StrictMode>
       <SharedCssBaseline />
       <Provider store={store}>
         <SharedThemeProvider>
@@ -47,7 +46,6 @@ UserService.init((user) => {
           </AuthProvider>
         </SharedThemeProvider>
       </Provider>
-    </React.StrictMode>,
-    document.getElementById('app')
+    </StrictMode>
   )
 })

@@ -50,7 +50,7 @@ export default function AppDeclineAdminboard({ id }: { id: string }) {
       .then(() => {
         dispatch(setSuccessType(true))
       })
-      .catch((error) => dispatch(setErrorType(true)))
+      .catch(() => dispatch(setErrorType(true)))
     dispatch(closeOverlay())
   }
 

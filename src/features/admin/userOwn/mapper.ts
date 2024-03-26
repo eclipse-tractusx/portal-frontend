@@ -18,11 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import type { KeycloakTokenParsed } from 'keycloak-js'
 import type { AdminData, UserDetail } from './types'
 
 export const userDetailsToCards = (
   user: UserDetail,
-  parsedToken?: { organisation: string }
+  parsedToken?: KeycloakTokenParsed
 ) => [
   {
     cardCategory: 'Personal Information',

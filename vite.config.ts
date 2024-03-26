@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,23 +17,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom/extend-expect'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
+import svgr from 'vite-plugin-svgr'
 
-// https://github.com/akiran/react-slick/issues/742#issuecomment-298992238
-window.matchMedia =
-  window.matchMedia ||
-  function () {
-    return {
-      matches: false,
-      addListener: function () {
-        // do nothing
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), svgr(), tsconfigPaths()],
+  optimizeDeps: { exclude: ['fsevents'] },
+  build: {
+    outDir: 'build',
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo?.name?.split('.').at(1)
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType ?? '')) {
+            extType = 'img'
+          }
+          return `static/${extType}/[name]-[hash][extname]`
+        },
+        chunkFileNames: 'static/js/[name]-[hash].js',
+        entryFileNames: 'static/js/[name]-[hash].js',
       },
-      removeListener: function () {
-        // do nothing
-      },
-    }
-  }
+    },
+  },
+})

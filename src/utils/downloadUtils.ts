@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export function download(file: Blob, fileType: string, fileName: string) {
+export function download(file: Blob, _fileType: string, fileName: string) {
   const url = URL.createObjectURL(file)
   const a = document.createElement('a')
   a.href = url

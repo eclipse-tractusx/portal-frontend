@@ -152,7 +152,7 @@ export const ReleaseProcess = ({
             </Box>
             <div className="marketplace-requirements">
               <ul>
-                {requirements?.map((req: RequerementStepType, index) => (
+                {requirements?.map((req: RequerementStepType) => (
                   <li key={req.index}>
                     <Button color="secondary" size="small" className="neu-btn">
                       {req.neuButton}

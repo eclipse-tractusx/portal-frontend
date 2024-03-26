@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -192,7 +192,7 @@ const ConfirmaCancelOverlay = ({
               </span>
             )}
             {!loading && (
-              <Button variant="contained" onClick={(e) => onDecline(text)}>
+              <Button variant="contained" onClick={() => onDecline(text)}>
                 {t('global.actions.confirm')}
               </Button>
             )}

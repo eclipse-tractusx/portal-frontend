@@ -64,7 +64,7 @@ const connectorSlice = createSlice({
       state.paginationData = {} as PaginationData
       state.connectorList = []
       state.loading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
     builder.addCase(createConnector.pending, (state) => {
       state.loading = true
@@ -74,7 +74,7 @@ const connectorSlice = createSlice({
     })
     builder.addCase(createConnector.rejected, (state, action) => {
       state.loading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
   },
 })

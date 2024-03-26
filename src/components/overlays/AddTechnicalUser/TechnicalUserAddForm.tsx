@@ -96,7 +96,7 @@ const TechnicalUserAddFormSelect = ({
 
   return (
     <Controller
-      render={({ field: { onChange, value } }) => (
+      render={({ field: { onChange } }) => (
         <Box className="technicalUserForm">
           <InputLabel
             error={!!errors[name as keyof Object]}
