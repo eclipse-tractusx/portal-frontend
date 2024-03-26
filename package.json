@@ -98,7 +98,6 @@
   },
   "scripts": {
     "prepare": "husky",
-    "build:sources": "zip -r portal-frontend.zip src package.json yarn.lock -x '*.stories.*' -x '*.test.*' -x '*.css' -x '*.scss' -x '*.svg' -x '*.jpg' -x '*.png' -x '*.webp' -x '*.ttf'",
     "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
     "lint": "eslint \"./src/**/*.{ts,tsx,js,jsx}\" --report-unused-disable-directives --max-warnings 0",
     "start": "vite --host --port 3001",
