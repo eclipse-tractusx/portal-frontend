@@ -20,7 +20,7 @@
 ---
 version: 2
 updates:
-  # NuGet
+  # NPM
   -
     package-ecosystem: "npm"
     target-branch: dev
@@ -30,6 +30,10 @@ updates:
       - "dependencies"
     schedule:
       interval: "weekly"
+    # restrict to patch updates (due to the big amount of dependencies)
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   # Github Actions
   -
