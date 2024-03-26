@@ -296,15 +296,6 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
-    fetchDocumentById: builder.mutation({
-      query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
     deleteAppReleaseDocument: builder.mutation<void, string>({
       query: (documentId) => ({
         url: `/api/apps/appreleaseprocess/documents/${documentId}`,
@@ -455,7 +446,6 @@ export const {
   useUpdateAgreementConsentsMutation,
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
-  useFetchDocumentByIdMutation,
   useDeleteAppReleaseDocumentMutation,
   useFetchRolesDataQuery,
   useUpdateRoleDataMutation,
