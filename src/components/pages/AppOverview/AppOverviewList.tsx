@@ -31,6 +31,7 @@ enum AppSubMenuItems {
   CHANGE_DESCRIPTION = 'changeDescription',
   ADD_ROLES = 'addRoles',
   CHANGE_DOCUMENTS = 'changeDocuments',
+  VIEW_DETAILS = 'viewDetails',
 }
 
 export const AppOverviewList = ({
@@ -67,6 +68,11 @@ export const AppOverviewList = ({
     {
       label: t('content.appoverview.sortOptions.changeDocuments'),
       value: AppSubMenuItems.CHANGE_DOCUMENTS,
+      url: '',
+    },
+    {
+      label: t('content.appoverview.sortOptions.viewDetails'),
+      value: AppSubMenuItems.VIEW_DETAILS,
       url: '',
     },
   ]
@@ -110,6 +116,10 @@ export const AppOverviewList = ({
             })
           sortMenu === AppSubMenuItems.CHANGE_DOCUMENTS &&
             navigate(`/${PAGES.CHANGE_DOCUMENTS}/${id}`, {
+              state: filterItem,
+            })
+          sortMenu === AppSubMenuItems.VIEW_DETAILS &&
+            navigate(`/${PAGES.VIEW_DETAILS}/${id}`, {
               state: filterItem,
             })
           return undefined
