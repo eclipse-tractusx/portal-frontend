@@ -20,8 +20,8 @@
 
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Outlet, useSearchParams } from 'react-router-dom'
-import { CircleProgress } from '@catena-x/portal-shared-components'
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom'
+import { CircleProgress, ErrorPage } from '@catena-x/portal-shared-components'
 import { Header } from './shared/frame/Header'
 import { Footer } from './shared/frame/Footer'
 import { useTranslation } from 'react-i18next'
@@ -44,11 +44,24 @@ import Redirect from './actions/Redirect'
 import { OSPConsent } from './pages/OSPConsent'
 
 export default function Main() {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
   document.title = useTranslation().t('title')
   const [searchParams] = useSearchParams()
   const dispatch = useDispatch()
 
-  const { data, isLoading } = useFetchApplicationsQuery()
+  const { data, isLoading, error } = useFetchApplicationsQuery()
+  if (error)
+    return (
+      <ErrorPage
+        header={t('error.tryAgain')}
+        title={t('error.deleteTechUserNotificationErrorDescription')}
+        reloadButtonTitle={t('error.tryAgain')}
+        onReloadClick={() => {
+          navigate('/')
+        }}
+      />
+    )
   const companyData = data?.[0]
 
   const renderSection = () => {

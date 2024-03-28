@@ -28,6 +28,7 @@
   - Add background on hover effect
   - Fix notifications sorting dropdown closing issue
   - Make buttons in sync
+- Add ErrorHandling in Main file
 
 ### Bugfix
 
