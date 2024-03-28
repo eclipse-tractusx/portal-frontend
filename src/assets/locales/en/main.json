@@ -14,7 +14,7 @@
     "partnernetwork": "Partner Network",
     "connector": "Connector",
     "account": "My CX Account",
-    "organization": "My Organization",
+    "organization": "My Company",
     "notifications": "Notifications",
     "usermanagement": "User Management",
     "idpmanagement": "Identity Provider Config",
@@ -386,33 +386,20 @@
       }
     },
     "organization": {
-      "company": {
+      "companyDetails": {
         "title": "Company Details",
-        "error": "error - no data found",
-        "name": "Company Name: ",
-        "address": "Address: ",
-        "city": "City: ",
-        "bpn": "BPN: "
+        "companyName": "Company Name",
+        "bpn": "BPN",
+        "street": "Street & House Number",
+        "postal": "Postal Code & City",
+        "region": "Country Code & Region"
       },
-      "unsubscribe": {
-        "title": "Unsubscribe Business Application / Service",
-        "descriptionNote": "Please note: the unsubscription is not revertible",
-        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
-        "table": {
-          "listOfConnectedObjects": "List of connected objects:",
-          "app": "Application / Service title:",
-          "status": "Current Status:",
-          "connector": "Connector:",
-          "techUser": "Technical User:"
-        },
-        "subscribed": "Subscribed",
-        "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
-        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
-        "buttonText": "Unsubscribe",
-        "unsubscribeSuccess": "Unsubscribe subscription is successful",
-        "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
-        "unsubscriptionOnProgress": "Unsubscription on progress"
-      }
+      "companyRoles": {
+        "title": "Company Roles in Catena-X",
+        "RoleName": "Active Participant"
+      },
+      "deleteAccount": "Delete Account",
+      "certificates": "Certificates/Documents"
     },
     "companySubscriptions": {
       "headertitle": "App & Service Subscriptions",
@@ -1587,6 +1574,7 @@
       "APP_PROVIDER": "App Provider",
       "SERVICE_PROVIDER": "Service Provider",
       "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
+      "OPERATOR": "Operator",
       "roleDescDownTitle": "Expand role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",

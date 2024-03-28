@@ -18,10 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
-import { useState } from 'react'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 
 type DataValue = string | number | JSX.Element
 
@@ -35,6 +37,7 @@ interface KeyValueViewProps {
   cols: number
   title: string
   items: ValueItem | Array<ValueItem>
+  editLink?: string
 }
 
 const renderValue = (value: DataValue) => (
@@ -50,7 +53,12 @@ const renderValue = (value: DataValue) => (
   </Typography>
 )
 
-export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
+export const KeyValueView = ({
+  cols,
+  title,
+  items,
+  editLink,
+}: KeyValueViewProps) => {
   const [copied, setCopied] = useState<string>('')
 
   const renderValueItem = (item: ValueItem) =>
@@ -91,7 +99,7 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
       sx={{
         width: `${cols * 349 + (cols - 1) * 31}px`,
         marginRight: '31px',
-        marginBottom: '92px',
+        marginBottom: '70px',
         '@media (max-width: 1200px)': {
           width: '100%',
         },
@@ -103,11 +111,38 @@ export const KeyValueView = ({ cols, title, items }: KeyValueViewProps) => {
           width: '100%',
           backgroundColor: '#EDF0F4',
           padding: '18px 24px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
         <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>
           {title}
         </Typography>
+        {editLink && (
+          <Box
+            sx={{
+              display: 'flex',
+              width: '40px',
+              height: '40px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              ':hover': {
+                backgroundColor: 'rgba(176, 206, 235, 0.4)',
+                borderRadius: '20px',
+              },
+            }}
+          >
+            <Link to={editLink} target="_blank" style={{ display: 'flex' }}>
+              <EditOutlinedIcon
+                sx={{
+                  color: '#0f71cb',
+                  cursor: 'pointer',
+                }}
+              />
+            </Link>
+          </Box>
+        )}
       </Box>
       <Box>
         {Array.isArray(items) ? (

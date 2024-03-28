@@ -44,13 +44,13 @@ interface TabButtonsType {
   onButtonClick: (e: React.MouseEvent<HTMLInputElement>) => void
 }
 
-enum FilterType {
+export enum FilterType {
   ALL = 'All',
   INACTIVE = 'INACTVIE',
   ACTIVE = 'ACTIVE',
 }
 
-enum SortType {
+export enum SortType {
   CertificateTypeAsc = 'CertificateTypeAsc',
   CertificateTypeDesc = 'CertificateTypeDesc',
   ExpiryDateAsc = 'ExpiryDateAsc',

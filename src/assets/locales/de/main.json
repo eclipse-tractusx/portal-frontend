@@ -14,7 +14,7 @@
     "connector": "Konnektor",
     "partnernetwork": "Partner Network",
     "account": "Mein CX Account",
-    "organization": "Meine Organisation",
+    "organization": "Meine Company",
     "notifications": "Benachrichtigungen",
     "usermanagement": "Benutzerverwaltung",
     "idpmanagement": "Identitätsprovider (IDP)",
@@ -387,33 +387,20 @@
       }
     },
     "organization": {
-      "company": {
-        "title": "Firmendetails",
-        "error": "Fehler - keine Daten gefunden",
-        "name": "Name der Firma: ",
-        "address": "Adresse: ",
-        "city": "Stadt: ",
-        "bpn": "BPN: "
+      "companyDetails": {
+        "title": "Company Details",
+        "companyName": "Company Name",
+        "bpn": "BPN",
+        "street": "Street & House Number",
+        "postal": "Postal Code & City",
+        "region": "Country Code & Region"
       },
-      "unsubscribe": {
-        "title": "Geschäftsanwendung/Dienst abbestellen",
-        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
-        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
-        "table": {
-          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
-          "app": "Bewerbungs-/Diensttitel:",
-          "status": "Aktueller Status:",
-          "connector": "Verbinder:",
-          "techUser": "Technischer Benutzer:"
-        },
-        "subscribed": "Gezeichnet",
-        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
-        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
-        "buttonText": "Abbestellen",
-        "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
-        "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
-        "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
-      }
+      "companyRoles": {
+        "title": "Company Roles in Catena-X",
+        "RoleName": "Active Participant"
+      },
+      "deleteAccount": "Delete Account",
+      "certificates": "Certificates/Documents"
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
@@ -1625,6 +1612,7 @@
       "APP_PROVIDER": "App-Anbieter",
       "SERVICE_PROVIDER": "Dienstleister",
       "ONBOARDING_SERVICE_PROVIDER": "Onboarding-Dienstleister",
+      "OPERATOR": "Operator",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",
