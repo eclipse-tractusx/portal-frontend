@@ -142,21 +142,18 @@ const BasicInput = ({
           }}
         />
         <div className={'actions'}>
-          {
-            // eslint-disable-next-line
-            (type === InputType.password || toggleHide) &&
-              (hidden ? (
-                <VisibilityIcon
-                  style={{ marginLeft: '8px', color: Colors.secondary }}
-                  onClick={toggleHidden}
-                />
-              ) : (
-                <VisibilityOffIcon
-                  style={{ marginLeft: '8px', color: Colors.secondary }}
-                  onClick={toggleHidden}
-                />
-              ))
-          }
+          {(type === InputType.password || toggleHide) &&
+            (hidden ? (
+              <VisibilityIcon
+                style={{ marginLeft: '8px', color: Colors.secondary }}
+                onClick={toggleHidden}
+              />
+            ) : (
+              <VisibilityOffIcon
+                style={{ marginLeft: '8px', color: Colors.secondary }}
+                onClick={toggleHidden}
+              />
+            ))}
           {errorMessage && (
             <ErrorOutlineIcon
               style={{ marginLeft: '8px', color: Colors.error }}

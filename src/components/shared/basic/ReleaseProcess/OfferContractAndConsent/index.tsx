@@ -24,16 +24,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { serviceIdSelector } from 'features/serviceManagement/slice'
 import {
   useUpdateServiceAgreementConsentsMutation,
-  useFetchNewDocumentByIdMutation,
   useFetchServiceStatusQuery,
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
-  useFetchFrameDocumentByIdMutation,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
+import {
+  useFetchFrameDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
+} from 'features/appManagement/apiSlice'
 
 export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')

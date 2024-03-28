@@ -31,7 +31,6 @@ import {
   useApproveRequestMutation,
   useDeclineChecklistMutation,
   useFetchCompanySearchQuery,
-  useFetchNewDocumentByIdMutation,
   useUpdateBPNMutation,
   type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
@@ -43,6 +42,7 @@ import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
+import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -122,7 +122,7 @@ export default function RegistrationRequests() {
   }
 
   const handleDownloadClick = async (
-    appId: string,
+    _appId: string,
     documentId: string,
     documentType: string
   ) => {
@@ -142,12 +142,12 @@ export default function RegistrationRequests() {
     setIsLoading(true)
     await updateBpn({ bpn, applicationId: selectedRequestId })
       .unwrap()
-      .then((payload) => {
+      .then(() => {
         setEnableBpnInput(false)
         setSuccessOverlay(true)
         setLoaded(Date.now())
       })
-      .catch((error) => {
+      .catch(() => {
         setEnableBpnInput(false)
         setErrorOverlay(true)
       })

@@ -145,7 +145,7 @@ export interface BusinessPartner {
         technicalKey: string
         name: string
       }
-    }
+    },
   ]
   classifications: [
     {
@@ -155,7 +155,7 @@ export interface BusinessPartner {
         technicalKey: string
         name: string
       }
-    }
+    },
   ]
   relations: Array<BpdmTypeRelation>
   currentness: string
@@ -281,7 +281,7 @@ export interface BpdmLegalAddressObject {
         technicalKey: string
         name: string
       }
-    }
+    },
   ]
   physicalPostalAddress: PhysicalPostalAddressType
   alternativePostalAddress: AlternatePostalAddressType

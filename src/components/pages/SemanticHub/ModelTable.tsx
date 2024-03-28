@@ -86,7 +86,6 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       }),
     }
     dispatch(fetchSemanticModels({ filter }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, pageNumber])
 
   useEffect(() => {
@@ -110,7 +109,6 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     } else {
       setModels(modelList.items)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelList])
 
   const onFilterReset = () => {

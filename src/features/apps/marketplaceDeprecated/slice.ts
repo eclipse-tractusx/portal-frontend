@@ -56,7 +56,7 @@ export const slice = createSlice({
       ...state,
       items: [],
       loading: false,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
     builder.addCase(fetchLatest.pending, (state) => ({
       ...state,
@@ -74,7 +74,7 @@ export const slice = createSlice({
       ...state,
       latest: [],
       loading: false,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
     builder.addCase(fetchSubscriptionStatus.pending, (state) => ({
       ...state,
@@ -95,7 +95,7 @@ export const slice = createSlice({
       ...state,
       subscribedApps: [],
       loading: false,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
   },
 })

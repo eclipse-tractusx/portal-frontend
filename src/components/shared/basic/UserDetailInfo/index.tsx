@@ -24,6 +24,7 @@ import { userDetailsToCards } from 'features/admin/userOwn/mapper'
 import type { TenantUserDetails } from 'features/admin/userApiSlice'
 import { AppPermissions } from 'components/shared/frame/AppPermissions'
 import { UserRoles } from '../UserRoles'
+import type { KeycloakTokenParsed } from 'keycloak-js'
 
 export const UserDetailInfo = ({
   user,
@@ -31,12 +32,15 @@ export const UserDetailInfo = ({
   isUserDetail,
 }: {
   user: TenantUserDetails
-  parsedToken?: { organisation: string }
+  parsedToken?: KeycloakTokenParsed
   isUserDetail?: boolean
 }) => {
   const { spacing } = useTheme()
 
-  const userDetailsCards = userDetailsToCards(user, parsedToken)
+  const userDetailsCards = userDetailsToCards(
+    user,
+    parsedToken ?? { organisation: '' }
+  )
   const columns = 3
 
   return (

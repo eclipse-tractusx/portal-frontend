@@ -24,9 +24,9 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { removeItem } from 'features/apps/favorites/actions'
 import { useDispatch } from 'react-redux'
-import { useFetchDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 interface FavoriteItemProps {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
@@ -55,7 +55,6 @@ export default function FavoriteItem({
     if (item?.leadPictureId) {
       void fetchImage(item?.leadPictureId)
     }
-    // eslint-disable-next-line
   }, [])
 
   const fetchImage = async (documentId: string) => {

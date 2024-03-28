@@ -113,7 +113,7 @@ export default function OfferTechnicalIntegration() {
     }
   }
 
-  const onSubmit = async (submitData: unknown, buttonLabel: string) => {
+  const onSubmit = async (_submitData: unknown, buttonLabel: string) => {
     if (
       !fetchServiceStatus?.serviceTypeIds.every((item) =>
         [`${ServiceTypeIdsEnum.CONSULTANCY_SERVICE}`]?.includes(item)
@@ -191,9 +191,7 @@ export default function OfferTechnicalIntegration() {
           {fetchServiceUserRoles?.map((item) => (
             <Grid item md={12} className="userRoles" key={item.roleId}>
               <Checkbox
-                label={`${item.roleName} (${
-                  item.roleDescription === null ? '' : item.roleDescription
-                })`}
+                label={`${item.roleName} (${item.roleDescription ?? ''})`}
                 checked={serviceTechUserProfiles.some(
                   (role) => item.roleId === role
                 )}

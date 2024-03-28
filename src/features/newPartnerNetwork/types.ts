@@ -42,7 +42,7 @@ export interface BusinessPartner {
         technicalKey: string
         name: string
       }
-    }
+    },
   ]
   classifications: [
     {
@@ -52,7 +52,7 @@ export interface BusinessPartner {
         technicalKey: string
         name: string
       }
-    }
+    },
   ]
   relations: Array<BpdmTypeRelation>
   currentness: string

@@ -211,7 +211,7 @@ export default function TechnicalIntegration() {
   }
 
   const onIntegrationSubmit = async (
-    submitData: unknown,
+    _submitData: unknown,
     buttonLabel: string
   ) => {
     if (
@@ -430,7 +430,7 @@ export default function TechnicalIntegration() {
           control={control}
           render={({ field: { onChange: reactHookFormOnChange } }) => (
             <Dropzone
-              onChange={(files, addedFiles, deletedFiles) => {
+              onChange={(files, _addedFiles, deletedFiles) => {
                 if (deletedFiles?.length) {
                   setRolesPreviews([])
                   setRolesDescription([])
@@ -656,9 +656,7 @@ export default function TechnicalIntegration() {
           {fetchUserRoles?.map((item) => (
             <Grid item md={12} className="userRoles" key={item.roleId}>
               <Checkbox
-                label={`${item.roleName} (${
-                  item.roleDescription === null ? '' : item.roleDescription
-                })`}
+                label={`${item.roleName} (${item.roleDescription ?? ''})`}
                 checked={techUserProfiles.some((role) => item.roleId === role)}
                 onChange={(e) => {
                   selectUserProfiles('checkbox', e.target.checked, item.roleId)

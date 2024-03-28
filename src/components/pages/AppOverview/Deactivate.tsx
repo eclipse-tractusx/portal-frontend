@@ -58,7 +58,7 @@ export default function Deactivate() {
           state: 'deactivate-success',
         })
       })
-      .catch((error) => {
+      .catch(() => {
         navigate('/appoverview', {
           state: 'deactivate-error',
         })

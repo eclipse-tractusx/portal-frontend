@@ -78,15 +78,6 @@ export const apiSlice = createApi({
         }
       },
     }),
-    fetchDocumentById: builder.mutation({
-      query: (documentId: string) => ({
-        url: `/api/administration/documents/frameDocuments/${documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
     updateCompanyRoles: builder.mutation<void, CompanyRoleRequest[]>({
       query: (data: CompanyRoleRequest[]) => ({
         url: '/api/administration/companydata/companyRolesAndConsents',
@@ -97,8 +88,4 @@ export const apiSlice = createApi({
   }),
 })
 
-export const {
-  useFetchRolesQuery,
-  useFetchDocumentByIdMutation,
-  useUpdateCompanyRolesMutation,
-} = apiSlice
+export const { useFetchRolesQuery, useUpdateCompanyRolesMutation } = apiSlice

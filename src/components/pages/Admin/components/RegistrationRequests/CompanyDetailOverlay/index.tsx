@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect, useRef, type SyntheticEvent } from 'react'
+import { useState, useEffect, useRef, type SyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -39,11 +39,11 @@ import {
   type ApplicationRequest,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
-  useFetchNewDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getTitle } from './CompanyDetailsHelper'
+import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -128,7 +128,7 @@ const CompanyDetailOverlay = ({
   }
 
   const handleChange = (
-    event: SyntheticEvent<Element, Event>,
+    _event: SyntheticEvent<Element, Event>,
     newValue: number
   ) => {
     setHeight(
@@ -252,7 +252,7 @@ const CompanyDetailOverlay = ({
                       <DetailGridRow
                         key={id.type}
                         {...{
-                          variableName: getUniqueIdName(id) as string,
+                          variableName: getUniqueIdName(id)!,
                           value: id.value ?? '',
                         }}
                       />
