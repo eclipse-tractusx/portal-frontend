@@ -1,11 +1,11 @@
 {
-  "ignorePatterns": ["*.test.tsx", "*.stories.tsx"],
+  "ignorePatterns": ["*.config.ts", "*.test.tsx", "*.stories.tsx"],
   "env": {
     "browser": true,
     "es2021": true
   },
   "extends": [
-    "standard-with-typescript",
+    "love",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -32,7 +32,9 @@
         "@typescript-eslint/comma-dangle": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
         "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-duplicate-enum-values": 0,
         "@typescript-eslint/no-unsafe-argument": 0,
+        "@typescript-eslint/no-unsafe-enum-comparison": 0,
         "@typescript-eslint/no-unsafe-assignment": 0,
         "@typescript-eslint/no-unsafe-call": 0,
         "@typescript-eslint/no-unsafe-member-access": 0,
@@ -48,6 +50,7 @@
         "@typescript-eslint/no-misused-promises": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
         "@typescript-eslint/no-unnecessary-type-assertion": 0,
+        "@typescript-eslint/no-redundant-type-constituents": 0,
         "@typescript-eslint/prefer-includes": 0,
         "@typescript-eslint/promise-function-async": 0,
         "@typescript-eslint/restrict-plus-operands": 0,

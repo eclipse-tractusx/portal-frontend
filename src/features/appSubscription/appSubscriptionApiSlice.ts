@@ -169,13 +169,6 @@ export const apiSlice = createApi({
       query: (body) =>
         `/api/apps/${body.appId}/subscription/${body.subscriptionId}/provider`,
     }),
-    fetchTechnicalProfiles: builder.query<TechnicalProfilesResponse[], string>({
-      query: (appId) => {
-        return {
-          url: `/api/apps/appreleaseprocess/${appId}/technical-user-profiles`,
-        }
-      },
-    }),
     addUserSubscribtion: builder.mutation<
       SubscriptionActivationResponse,
       SubscriptionStoreRequest
@@ -206,7 +199,6 @@ export const {
   useFetchSubscriptionsQuery,
   useFetchAppFiltersQuery,
   useFetchSubscriptionDetailQuery,
-  useFetchTechnicalProfilesQuery,
   useAddUserSubscribtionMutation,
   useUpdateTenantUrlMutation,
   useActivateSubscriptionMutation,

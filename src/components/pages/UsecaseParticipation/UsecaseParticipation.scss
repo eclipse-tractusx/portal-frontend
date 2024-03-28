@@ -109,6 +109,12 @@
               cursor: pointer;
               .framework {
                 display: flex;
+                padding: 2px 8px;
+              }
+              .framework:hover {
+                background-color: rgb(176 206 235 / 40%);
+                border-radius: 20px;
+                width: 85%;
               }
               svg {
                 font-size: 15px;

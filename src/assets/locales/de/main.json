@@ -833,9 +833,10 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "all": "All",
-          "managed": "Managed",
-          "owned": "Owned"
+          "active": "Aktiv",
+          "inactive": "Inaktiv",
+          "managed": "Gelang es",
+          "owned": "Besessen"
         },
         "searchText": "Search by client Id"
       },
@@ -1196,7 +1197,8 @@
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
-        "encodingPlaceholder": "Select supported encoding"
+        "encodingPlaceholder": "Select supported encoding",
+        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

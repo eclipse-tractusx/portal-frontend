@@ -239,7 +239,6 @@ const EdcConnector = () => {
       setNotificationMessage(t('content.edcconnector.snackbar.errormessage'))
       setNotificationOpen(true)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const onHelpButtonClicked = () => {

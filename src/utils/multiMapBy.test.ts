@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { multiMapBy } from './multiMapBy'
-import type { Dictionary } from '@reduxjs/toolkit'
 import { forEach, groupBy, keys, union, uniq, values } from 'lodash'
 
 describe('multiMapBy', () => {
@@ -35,7 +34,7 @@ describe('multiMapBy', () => {
     { name: 'RORY', favoriteColors: [] },
     { name: 'GABY' },
   ]
-  const peopleMap: Dictionary<person> = {}
+  const peopleMap: Record<string, person> = {}
 
   forEach(people, (someone) => {
     peopleMap[someone.name] = someone

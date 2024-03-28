@@ -57,7 +57,7 @@ const managementSlice = createSlice({
 })
 
 export const appManagementSelector = (state: RootState): SearchInputState =>
-  state.management
+  state.management.searchInput
 
 export const currentActiveStep = (state: RootState): number =>
   state.management.currentActiveStep

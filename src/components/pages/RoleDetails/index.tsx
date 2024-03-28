@@ -52,7 +52,7 @@ export default function RoleDetails() {
   const [activeTab, setActiveTab] = useState<number>(0)
 
   const handleChange = (
-    event: SyntheticEvent<Element, Event>,
+    _event: SyntheticEvent<Element, Event>,
     newValue: number
   ) => {
     setActiveTab(newValue)

@@ -86,7 +86,6 @@ export default function ItemProcessor({
 
   useEffect(() => {
     if (autostart) void processNextItem()
-    // eslint-disable-next-line
   }, [queueItems])
 
   useEffect(() => {
@@ -96,7 +95,6 @@ export default function ItemProcessor({
         ...queueItems.filter((item) => !processed.includes(item)),
       ]),
     ])
-    // eslint-disable-next-line
   }, [items])
 
   // Add an ESLint exception until there is a solution

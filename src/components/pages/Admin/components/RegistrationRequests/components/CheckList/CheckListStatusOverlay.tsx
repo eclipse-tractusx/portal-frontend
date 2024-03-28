@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import MuiDialog from '@mui/material/Dialog'
 import MuiDialogContent from '@mui/material/DialogContent'
 import {
@@ -255,7 +255,7 @@ const CheckListStatusOverlay = ({
         }
         await retriggerProcess(args)
           .unwrap()
-          .then((payload) => {
+          .then(() => {
             setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: false })
             dispatch(refreshApplicationRequest(Date.now()))
           })

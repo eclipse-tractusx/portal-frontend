@@ -167,8 +167,7 @@ export default function ServiceDetails() {
                 {t('defaultValues.conformityDocumentsDescription')}
               </Typography>
               <ul>
-                {fetchServiceStatus?.documents &&
-                fetchServiceStatus?.documents[
+                {fetchServiceStatus?.documents?.[
                   DocumentTypeId.CONFORMITY_APPROVAL_SERVICES
                 ] ? (
                   fetchServiceStatus?.documents[

@@ -41,7 +41,6 @@ import {
   type CompanyRolesResponse,
   type RoleFeatureData,
   type RolesData,
-  useFetchDocumentByIdMutation,
   useFetchRolesQuery,
   useUpdateCompanyRolesMutation,
 } from 'features/companyRoles/companyRoleApiSlice'
@@ -53,6 +52,7 @@ import {
   setCompanyRoleSuccess,
   setOverlayCancel,
 } from 'features/companyRoles/slice'
+import { useFetchFrameDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 export enum AgreementStatus {
   ACTIVE = 'ACTIVE',
@@ -71,7 +71,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const [agreements, setAgreements] = useState<AgreementsData[]>([])
   const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
 
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [getDocumentById] = useFetchFrameDocumentByIdMutation()
   const { data } = useFetchRolesQuery()
   const [updateCompanyRoles] = useUpdateCompanyRolesMutation()
 

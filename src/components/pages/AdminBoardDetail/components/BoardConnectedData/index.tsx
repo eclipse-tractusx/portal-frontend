@@ -24,10 +24,9 @@ import {
   StaticTable,
   type TableType,
 } from '@catena-x/portal-shared-components'
-import type { AppDetails } from 'features/apps/types'
 import './BoardConnectedData.scss'
 
-export default function BoardConnectedData({ item }: { item: AppDetails }) {
+export default function BoardConnectedData() {
   const { t } = useTranslation('', {
     keyPrefix: 'content.adminboardDetail.connectedData',
   })

@@ -577,7 +577,7 @@ export default function AppPage() {
           'uploadDataPrerequisits',
           'uploadTechnicalGuide',
           'uploadAppContract',
-        ].map((item: string, i) => (
+        ].map((item: string) => (
           <div key={item}>
             <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
             <div className="form-field" key={item}>
@@ -746,7 +746,7 @@ export default function AppPage() {
         isValid={isValid && selectedPrivacyPolicies.length > 0}
         loader={loading}
         helpUrl={
-          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F02.+App+Detail+Page.md'
         }
       />
       <PageSnackbar

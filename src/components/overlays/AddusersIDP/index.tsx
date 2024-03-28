@@ -278,7 +278,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       })
       .catch((err) => {
         setLoading(false)
-        error(t(`state.${IDPState.ERROR_UPLOAD_USERS}`, '', err))
+        error(t(`state.${IDPState.ERROR_UPLOAD_USERS}`, '', err) as string)
         setStatus(false)
       })
     setTimeout(() => {

@@ -178,7 +178,7 @@ export default function UploadCompanyCertificate({
                   placeholder={t(
                     'content.companyCertificate.upload.certificateSitePlaceholder'
                   )}
-                  onChangeItem={(e) => {
+                  onChangeItem={() => {
                     // do nothing
                   }}
                   keyTitle={'certificateSite'}

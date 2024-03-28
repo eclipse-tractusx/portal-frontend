@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- Migrate from Create React App to Vite Framework
+  - The old base is deprecated so we switch to a new framework for build scripts and development server
 - Subscription Management Board
   - Create new page for company subscriptions and add subscription management functionality
 - Quick links
@@ -10,8 +12,22 @@
   - Connect delete certificate to back end api
 - App Detail Pages
   - UI updates of order status button and back button
+- Service Release Process
+  - Updated technicalUserProfile by allowing 'none' for dataspace services
+- App Release Process
+  - Updated technicalUserProfile by allowing 'none'
+- Technical User Management
+  - Enable inactive users list
 - Portal Login Navigation
   - UI updates as per figma
+- UI Cleanups
+  - Removed unused overlays
+- API cleanups
+  - Remove duplicate api end points
+- UI Improvements
+  - Add background on hover effect
+  - Fix notifications sorting dropdown closing issue
+  - Make buttons in sync
 
 ### Bugfix
 
@@ -21,6 +37,8 @@
   - fixed help links in configuration overlay
 - Notification
   - fixed help link
+- Release Process
+  - fixed help links in app release process and service release process
 - Unhelpful scroll
   - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
 - App User
@@ -43,6 +61,8 @@
   - fixed display of the description correctly
 - App Marketplace
   - Change fav icon on add/remove item from favourite list
+- Add Roles
+  - fixed empty chip display for additional roles in app overview active apps
 
 ### Feature
 

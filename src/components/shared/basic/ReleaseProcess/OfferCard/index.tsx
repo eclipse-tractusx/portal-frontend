@@ -179,10 +179,7 @@ export default function OfferCard() {
   )
 
   useEffect(() => {
-    if (
-      serviceStatusData?.documents?.SERVICE_LEADIMAGE &&
-      serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentId
-    ) {
+    if (serviceStatusData?.documents?.SERVICE_LEADIMAGE?.[0].documentId) {
       fetchCardImage(
         serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentId,
         serviceStatusData?.documents?.SERVICE_LEADIMAGE[0].documentName
@@ -438,7 +435,7 @@ export default function OfferCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (desc: string, i) => (
+                (desc: string) => (
                   <div key={desc}>
                     <ConnectorFormInputFieldShortAndLongDescription
                       {...{
@@ -542,7 +539,7 @@ export default function OfferCard() {
         isValid={isValid}
         loader={loading}
         helpUrl={
-          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process%2F01.+Service+Card.md'
         }
       />
     </div>

@@ -24,16 +24,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { serviceIdSelector } from 'features/serviceManagement/slice'
 import {
   useUpdateServiceAgreementConsentsMutation,
-  useFetchNewDocumentByIdMutation,
   useFetchServiceStatusQuery,
   useFetchServiceAgreementDataQuery,
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
-  useFetchFrameDocumentByIdMutation,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
+import {
+  useFetchFrameDocumentByIdMutation,
+  useFetchNewDocumentByIdMutation,
+} from 'features/appManagement/apiSlice'
 
 export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
@@ -82,7 +84,7 @@ export default function OfferContractAndConsent() {
         getDocumentById={getDocumentById}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={
-          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process'
+          '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process%2F03.+Terms%26Conditions.md'
         }
         imageFieldLabel={
           <>
