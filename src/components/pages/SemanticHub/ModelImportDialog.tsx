@@ -72,7 +72,6 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     if (uploadedModel !== null) {
       onClose()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadedModel])
 
   const uploadModel = () => {

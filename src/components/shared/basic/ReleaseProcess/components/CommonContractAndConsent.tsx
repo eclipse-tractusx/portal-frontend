@@ -126,7 +126,6 @@ export default function CommonContractAndConsent({
   imageFieldRequiredText,
   id,
   fetchAgreementData,
-  fetchConsentData,
   updateAgreementConsents,
   updateDocumentUpload,
   fetchStatusData,
@@ -176,9 +175,10 @@ export default function CommonContractAndConsent({
 
   const deleteDocument = async (documentId: string) => {
     documentId &&
-      (await (type === ReleaseProcessTypes.APP_RELEASE
-        ? deleteAppReleaseDocument(documentId)
-        : deleteServiceReleaseDocument(documentId)
+      (await (
+        type === ReleaseProcessTypes.APP_RELEASE
+          ? deleteAppReleaseDocument(documentId)
+          : deleteServiceReleaseDocument(documentId)
       )
         .unwrap()
         .then(() => {
@@ -249,12 +249,10 @@ export default function CommonContractAndConsent({
   }, [dispatch, fetchStatusData])
 
   const loadData = useCallback(() => {
-    const fetchConsent =
-      fetchStatusData?.agreements &&
-      fetchStatusData?.agreements.map((item) => ({
-        ...item,
-        consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
-      }))
+    const fetchConsent = fetchStatusData?.agreements?.map((item) => ({
+      ...item,
+      consentStatus: item.consentStatus === ConsentStatusEnum.ACTIVE,
+    }))
     // Add an ESLint exception until there is a solution
     // eslint-disable-next-line
     const consentAgreementData: any =
@@ -364,7 +362,7 @@ export default function CommonContractAndConsent({
   ) => {
     setLoading(true)
     const filteredData = Object.fromEntries(
-      Object.entries(data).filter(([i, item]) => typeof item === 'boolean')
+      Object.entries(data).filter(([_i, item]) => typeof item === 'boolean')
     )
 
     const updateAgreementData = Object.entries(filteredData).map((entry) =>

@@ -95,7 +95,6 @@ export default function AppOverview() {
       const itemCards = appCardStatus(cards)
       setItemCards(itemCards)
     }
-    // eslint-disable-next-line
   }, [cards])
 
   useEffect(() => {
@@ -105,7 +104,6 @@ export default function AppOverview() {
       dispatch(setAppId(''))
       dispatch(setAppStatus(initialState.appStatusData))
     }
-    // eslint-disable-next-line
   }, [itemCards])
 
   useEffect(() => {
@@ -152,7 +150,7 @@ export default function AppOverview() {
         }
         dispatch(setCurrentActiveStep())
       }, 400),
-    // eslint-disable-next-line
+
     [dispatch, filterItem, group]
   )
 

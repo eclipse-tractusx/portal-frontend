@@ -46,7 +46,7 @@ export const slice = createSlice({
       ...state,
       items: [],
       request: RequestState.ERROR,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
   },
 })

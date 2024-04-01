@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- Migrate from Create React App to Vite Framework
+  - The old base is deprecated so we switch to a new framework for build scripts and development server
 - Subscription Management Board
   - Create new page for company subscriptions and add subscription management functionality
 - Quick links

@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-/* eslint-disable react-hooks/exhaustive-deps */
 import { DetailGrid } from 'components/shared/basic/DetailGrid'
 import {
   Dialog,

@@ -28,7 +28,7 @@ import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (
   bpResponse: BusinessPartnerResponse,
-  membershipData: string[]
+  _membershipData: string[]
 ): Array<BusinessPartner> => {
   return bpResponse?.content?.map((bp: BusinessPartner) => {
     return bp

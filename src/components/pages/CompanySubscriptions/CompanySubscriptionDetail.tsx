@@ -70,7 +70,6 @@ export default function CompanySubscriptionDetail() {
       const id = CommonService.isValidPictureId(fetchAppsData?.leadPictureId)
       setDocId(id)
     }
-    // eslint-disable-next-line
   }, [fetchAppsData])
 
   const renderStatusButton = (status: string) => {

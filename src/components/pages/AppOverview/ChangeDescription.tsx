@@ -162,7 +162,7 @@ export default function ChangeDescription() {
         <div className="main-row">
           <Tabs
             value={activeTab}
-            onChange={(e, newValue: number) => {
+            onChange={(_e, newValue: number) => {
               setActiveTab(newValue)
             }}
             centered
@@ -346,7 +346,7 @@ export default function ChangeDescription() {
                 disabled={!(isDirty && isValid)}
                 size="small"
                 variant="contained"
-                onClick={handleSubmit((data) => handleSave())}
+                onClick={handleSubmit(handleSave)}
               >
                 {t('global.actions.save')}
               </Button>

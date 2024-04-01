@@ -229,7 +229,7 @@ const AddRolesOverlay = ({
             name={'uploadAppRoles'}
             render={({ field: { onChange: reactHookFormOnChange } }) => (
               <Dropzone
-                onChange={(files, addedFiles, deletedFiles) => {
+                onChange={(files, _addedFiles, deletedFiles) => {
                   if (deletedFiles?.length) {
                     setRolesDescription([])
                     setUploadCSVError(false)
