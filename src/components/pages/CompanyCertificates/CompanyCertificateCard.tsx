@@ -38,6 +38,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
+import { type JSX } from 'react/jsx-runtime'
 
 enum CompanyCertificateStatus {
   INACTIVE = 'INACTIVE',
@@ -68,7 +69,11 @@ export default function CompanyCertificateCard({
   const today = dayjs()
   const isWarning = dayjs(item.validTill).diff(today, 'days') < 30
 
-  const PendingIcon = () => {
+  const IconButtonComponent = (props: {
+    children: JSX.Element
+    tooltipMessage: string
+    color: string
+  }) => {
     return (
       <Tooltips
         additionalStyles={{
@@ -76,20 +81,20 @@ export default function CompanyCertificateCard({
           marginTop: '30px !important',
         }}
         tooltipPlacement="bottom-start"
-        tooltipText={t('content.companyCertificate.tooltips.pending')}
+        tooltipText={props.tooltipMessage}
         children={
           <IconButton
             size="small"
             sx={{
               width: '48px',
               height: '36px',
-              backgroundColor: '#FFECBD',
+              backgroundColor: props.color,
               borderRadius: '74px',
-              color: '#FFECBD',
+              color: props.color,
               ':hover': {
-                backgroundColor: '#FFECBD',
-                borderColor: '#FFECBD',
-                color: '#FFECBD',
+                backgroundColor: props.color,
+                borderColor: props.color,
+                color: props.color,
               },
               ':active': {
                 boxShadow: 'none',
@@ -99,103 +104,58 @@ export default function CompanyCertificateCard({
               },
             }}
           >
-            <AccessTimeOutlinedIcon
-              style={{
-                color: '#975B27',
-                height: '20px',
-              }}
-            />
+            {props.children}
           </IconButton>
         }
       />
+    )
+  }
+
+  const PendingIcon = () => {
+    return (
+      <IconButtonComponent
+        tooltipMessage={t('content.companyCertificate.tooltips.pending')}
+        color="#FFECBD"
+      >
+        <AccessTimeOutlinedIcon
+          style={{
+            color: '#975B27',
+            height: '20px',
+          }}
+        />
+      </IconButtonComponent>
     )
   }
 
   const InactiveIcon = () => {
     return (
-      <Tooltips
-        additionalStyles={{
-          cursor: 'pointer',
-          marginTop: '30px !important',
-        }}
-        tooltipPlacement="bottom-start"
-        tooltipText={t('content.companyCertificate.tooltips.inactive')}
-        children={
-          <IconButton
-            size="small"
-            sx={{
-              width: '48px',
-              height: '36px',
-              marginLeft: '10px',
-              backgroundColor: '#FEE7E2',
-              borderRadius: '74px',
-              color: '#FEE7E2',
-              ':hover': {
-                backgroundColor: '#FEE7E2',
-                borderColor: '#FEE7E2',
-                color: '#FEE7E2',
-              },
-              ':active': {
-                boxShadow: 'none',
-              },
-              ':focus': {
-                boxShadow: 'none',
-              },
-            }}
-          >
-            <CancelRoundedIcon
-              style={{
-                color: '#FF532F',
-                height: '20px',
-              }}
-            />
-          </IconButton>
-        }
-      />
+      <IconButtonComponent
+        tooltipMessage={t('content.companyCertificate.tooltips.inactive')}
+        color="#FEE7E2"
+      >
+        <CancelRoundedIcon
+          style={{
+            color: '#FF532F',
+            height: '20px',
+          }}
+        />
+      </IconButtonComponent>
     )
   }
 
   const ActiveIcon = () => {
     return (
-      <Tooltips
-        additionalStyles={{
-          cursor: 'pointer',
-          marginTop: '30px !important',
-        }}
-        tooltipPlacement="bottom-start"
-        tooltipText={t('content.companyCertificate.tooltips.active')}
-        children={
-          <IconButton
-            size="small"
-            sx={{
-              width: '48px',
-              height: '36px',
-              marginLeft: '10px',
-              backgroundColor: '#E2F6C7',
-              borderRadius: '74px',
-              color: '#E2F6C7',
-              ':hover': {
-                backgroundColor: '#E2F6C7',
-                borderColor: '#E2F6C7',
-                color: '#E2F6C7',
-              },
-              ':active': {
-                boxShadow: 'none',
-              },
-              ':focus': {
-                boxShadow: 'none',
-              },
-            }}
-          >
-            <CheckCircleRoundedIcon
-              style={{
-                color: '#5C8D45',
-                height: '20px',
-              }}
-            />
-          </IconButton>
-        }
-      />
+      <IconButtonComponent
+        tooltipMessage={t('content.companyCertificate.tooltips.active')}
+        color="#E2F6C7"
+      >
+        <CheckCircleRoundedIcon
+          style={{
+            color: '#5C8D45',
+            height: '20px',
+          }}
+        />
+      </IconButtonComponent>
     )
   }
 
