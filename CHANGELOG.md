@@ -33,6 +33,7 @@
   - Show error icon on certificate deletion error scenario
   - Update API Endpoint for Fetching Certificate Document
   - Use listing page api to fetch certificates in details page
+- Add ErrorHandling in Main file
 
 ### Bugfix
 
