@@ -80,7 +80,7 @@ const partnerNetworkSlice = createSlice({
       state.paginationData = {} as PaginationData
       state.mappedPartnerList = []
       state.loading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
     builder.addCase(fetchBusinessPartners.pending, (state) => {
       state.loading = true
@@ -107,9 +107,9 @@ const partnerNetworkSlice = createSlice({
     })
     builder.addCase(fetchBusinessPartners.rejected, (state, action) => {
       state.loading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
-    builder.addCase(fetchMemberCompaniesData.pending, (state, action) => {
+    builder.addCase(fetchMemberCompaniesData.pending, (state) => {
       state.membershipData = []
       state.membershipError = ''
     })
@@ -122,7 +122,7 @@ const partnerNetworkSlice = createSlice({
     )
     builder.addCase(fetchMemberCompaniesData.rejected, (state, action) => {
       state.membershipData = []
-      state.membershipError = action.error.message as string
+      state.membershipError = action.error.message!
     })
   },
 })

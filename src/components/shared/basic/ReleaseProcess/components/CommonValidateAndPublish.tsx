@@ -175,22 +175,13 @@ export default function CommonValidateAndPublish({
   })
 
   useEffect(() => {
-    if (
-      statusData?.documents?.APP_LEADIMAGE &&
-      statusData?.documents?.APP_LEADIMAGE[0].documentId
-    ) {
+    if (statusData?.documents?.APP_LEADIMAGE?.[0].documentId) {
       fetchImage(statusData?.documents?.APP_LEADIMAGE[0].documentId)
     }
-    if (
-      statusData?.documents?.SERVICE_LEADIMAGE &&
-      statusData?.documents?.SERVICE_LEADIMAGE[0].documentId
-    ) {
+    if (statusData?.documents?.SERVICE_LEADIMAGE?.[0].documentId) {
       fetchImage(statusData?.documents?.SERVICE_LEADIMAGE[0].documentId)
     }
-    if (
-      statusData?.documents?.APP_IMAGE &&
-      statusData?.documents?.APP_IMAGE[0].documentId
-    ) {
+    if (statusData?.documents?.APP_IMAGE?.[0].documentId) {
       setMultipleImages(
         CommonService.imagesAndAppidToImageType(
           statusData?.documents?.APP_IMAGE,
@@ -236,15 +227,11 @@ export default function CommonValidateAndPublish({
 
   const getAppData = (item: string) => {
     if (item === 'language')
-      return (
-        statusData?.supportedLanguageCodes &&
-        statusData?.supportedLanguageCodes.join(', ')
-      )
+      return statusData?.supportedLanguageCodes?.join(', ')
     else if (item === 'useCase')
-      return (
-        statusData?.useCase &&
-        statusData?.useCase?.map((item: UseCaseType) => item.label).join(', ')
-      )
+      return statusData?.useCase
+        ?.map((item: UseCaseType) => item.label)
+        .join(', ')
     else if (item === 'price') return statusData?.price
   }
 
@@ -361,7 +348,7 @@ export default function CommonValidateAndPublish({
             </Grid>
 
             <Grid item sx={{ paddingLeft: '71px', marginTop: '22%' }} md={8}>
-              {['language', 'useCase', 'price'].map((item, i) => (
+              {['language', 'useCase', 'price'].map((item) => (
                 <div
                   style={{ display: 'flex', marginBottom: '5px' }}
                   key={item}
@@ -395,7 +382,7 @@ export default function CommonValidateAndPublish({
         <Typography variant="h4" sx={{ mb: 4 }}>
           {detailsText}
         </Typography>
-        {['longDescriptionEN', 'longDescriptionDE'].map((item, i) => (
+        {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
           <div key={item}>
             {item === 'longDescriptionEN' ? (
               <Typography
@@ -449,8 +436,7 @@ export default function CommonValidateAndPublish({
                   {t('content.appdetail.privacy.message')}
                 </Typography>
               </div>
-              {statusData?.privacyPolicies &&
-              statusData?.privacyPolicies.length ? (
+              {statusData?.privacyPolicies?.length ? (
                 <div className="policies-list app-policies">
                   {statusData?.privacyPolicies?.map((policy: string) => (
                     <Typography
@@ -591,19 +577,18 @@ export default function CommonValidateAndPublish({
           {consentTitle}
         </Typography>
         <div className="form-field">
-          {statusData?.agreements &&
-            statusData?.agreements?.map(
-              (item: { name: string; consentStatus: ConsentStatusEnum }) => (
-                <div key={item.name}>
-                  <Checkbox
-                    key={item.name}
-                    label={item.name}
-                    checked={item.consentStatus === ConsentStatusEnum.ACTIVE}
-                    disabled
-                  />
-                </div>
-              )
-            )}
+          {statusData?.agreements?.map(
+            (item: { name: string; consentStatus: ConsentStatusEnum }) => (
+              <div key={item.name}>
+                <Checkbox
+                  key={item.name}
+                  label={item.name}
+                  checked={item.consentStatus === ConsentStatusEnum.ACTIVE}
+                  disabled
+                />
+              </div>
+            )
+          )}
         </div>
 
         {cxTestRunsTitle && (

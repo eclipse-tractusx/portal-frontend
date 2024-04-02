@@ -91,7 +91,7 @@ export const slice = createSlice({
     builder.addCase(putBusinessPartnerNumber.rejected, (state, action) => ({
       ...state,
       request: RequestState.ERROR,
-      error: action.error.message as string,
+      error: action.error.message!,
     }))
     builder.addCase(deleteUserBpn.fulfilled, (state, action) => {
       state.request = RequestState.OK

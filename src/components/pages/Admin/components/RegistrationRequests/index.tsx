@@ -122,7 +122,7 @@ export default function RegistrationRequests() {
   }
 
   const handleDownloadClick = async (
-    appId: string,
+    _appId: string,
     documentId: string,
     documentType: string
   ) => {
@@ -142,12 +142,12 @@ export default function RegistrationRequests() {
     setIsLoading(true)
     await updateBpn({ bpn, applicationId: selectedRequestId })
       .unwrap()
-      .then((payload) => {
+      .then(() => {
         setEnableBpnInput(false)
         setSuccessOverlay(true)
         setLoaded(Date.now())
       })
-      .catch((error) => {
+      .catch(() => {
         setEnableBpnInput(false)
         setErrorOverlay(true)
       })

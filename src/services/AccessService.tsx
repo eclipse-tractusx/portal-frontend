@@ -202,7 +202,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.EDIT_USECASE:
       return <EditUsecase id={overlay.id} title={overlay.title ?? ''} />
     case OVERLAYS.UPDATE_CERTIFICATE:
-      return <UpdateCertificate id={overlay.id} />
+      return <UpdateCertificate />
     case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:
       return <CompanyCertificateDetails id={overlay.id} />
     case OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE:

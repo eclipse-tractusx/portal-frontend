@@ -52,7 +52,7 @@ const keycloakConfigMIW: Keycloak.KeycloakConfig = {
 }
 
 // Add an ESLint exception until there is a solution
-// eslint-disable-next-line
+
 const KC = new Keycloak(keycloakConfig)
 
 const update = () => {

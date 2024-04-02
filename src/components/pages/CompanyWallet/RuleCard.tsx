@@ -26,7 +26,7 @@ import {
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
-import smallLogo from '../../../assets/logo/logo_tractus-x.svg'
+import SmallLogo from 'assets/logo/logo_tractus-x.svg'
 
 type Hash<T> = Record<string, T>
 
@@ -101,7 +101,7 @@ export default function RuleCard({
                         {item?.credentialSubject[0].status ??
                           CredentialSubjectStatus.UNKNOWN}
                       </Typography>
-                      <img src={smallLogo} alt={'icon'} />
+                      <SmallLogo />
                     </Box>
                     <Typography className="text" variant="h4">
                       {item?.credentialSubject[0].type}

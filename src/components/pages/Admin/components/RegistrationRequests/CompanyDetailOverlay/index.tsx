@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect, useRef, type SyntheticEvent } from 'react'
+import { useState, useEffect, useRef, type SyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -128,7 +128,7 @@ const CompanyDetailOverlay = ({
   }
 
   const handleChange = (
-    event: SyntheticEvent<Element, Event>,
+    _event: SyntheticEvent<Element, Event>,
     newValue: number
   ) => {
     setHeight(
@@ -252,7 +252,7 @@ const CompanyDetailOverlay = ({
                       <DetailGridRow
                         key={id.type}
                         {...{
-                          variableName: getUniqueIdName(id) as string,
+                          variableName: getUniqueIdName(id)!,
                           value: id.value ?? '',
                         }}
                       />

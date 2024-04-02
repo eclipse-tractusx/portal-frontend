@@ -90,7 +90,7 @@ const ConnectorTypeSelection = ({
                   disabled={checkBox.disable}
                   label={checkBox.title}
                   checked={checkBox.id === selectedCheckBox.id}
-                  onChange={(e) => {
+                  onChange={() => {
                     setSelectedCheckBox(checkBox)
                     selectedServiceCallback(checkBox)
                   }}

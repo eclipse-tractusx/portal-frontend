@@ -96,7 +96,7 @@ any) => {
             name={name}
             control={control}
             rules={rules}
-            render={({ field: { onChange, value } }) => (
+            render={({ field: { onChange } }) => (
               <Dropzone
                 acceptFormat={dropzoneProps.accept}
                 maxFilesToUpload={1}
@@ -190,7 +190,7 @@ any) => {
             />
           </div>
           <Controller
-            render={({ field: { onChange, value } }) => {
+            render={({ field: { onChange } }) => {
               return (
                 <SelectList
                   error={!!errors[name]}
@@ -217,7 +217,7 @@ any) => {
 }
 
 // Pass Regex useless escape
-/* eslint-disable no-useless-escape */
+
 const ConnectorInsertForm = ({
   handleSubmit,
   errors,

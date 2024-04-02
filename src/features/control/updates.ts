@@ -66,13 +66,13 @@ export const updateSubscribedAppsSelector = (state: RootState): number =>
   state.control.update[UPDATES.APPS_SUBSCRIBED_LIST]
 
 export const updateInviteSelector = (state: RootState): SearchInputState =>
-  state.management
+  state.management.searchInput
 
 export const updateApplicationRequestSelector = (
   state: RootState
-): SearchInputState => state.management
+): SearchInputState => state.management.searchInput
 
 export const updatePartnerSelector = (state: RootState): SearchInputState =>
-  state.management
+  state.management.searchInput
 
 export default slice.reducer

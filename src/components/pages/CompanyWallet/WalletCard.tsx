@@ -17,15 +17,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import SmallLogo from 'assets/logo/cx-logo-short.svg'
 import { Typography } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
-import smallLogo from '../../../assets/logo/cx-logo-short.svg'
 import {
   CredentialSubjectStatus,
   type WalletContent,
 } from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
+import './CompanyWallet.scss'
 
 export default function WalletCard({
   wallet,
@@ -57,7 +57,7 @@ export default function WalletCard({
         <div className="card-container">
           <div className="icon-text">
             <div className="icon">
-              <img src={smallLogo} alt="icon" />
+              <SmallLogo />
               {wallet?.credentialSubject[0].status !==
                 CredentialSubjectStatus.ACTIVE && (
                 <div>

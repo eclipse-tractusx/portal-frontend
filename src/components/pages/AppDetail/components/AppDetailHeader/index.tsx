@@ -156,7 +156,6 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       const id = CommonService.isValidPictureId(item?.leadPictureId)
       void getImage(id)
     }
-    // eslint-disable-next-line
   }, [])
 
   const getImage = async (documentId: string) => {

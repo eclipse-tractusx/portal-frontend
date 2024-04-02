@@ -19,7 +19,7 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import React from 'react'
+
 import './FramedSelector.scss'
 
 export interface Buttons {

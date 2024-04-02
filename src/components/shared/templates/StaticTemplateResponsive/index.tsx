@@ -169,7 +169,7 @@ const TemplateConfig = ({
             scrollTop={scrollTop}
             showScroll={showScroll}
           />
-          <LinkButtonGrid provider={provider} grid={provider.grid} />
+          <LinkButtonGrid provider={provider} />
         </>
       )
     //Combination of Text center aligned component with images in a row
@@ -204,7 +204,7 @@ const TemplateConfig = ({
     case TemplateNames.LinkButtonGrid:
       return (
         <>
-          <LinkButtonGrid provider={provider} grid={provider.grid} />
+          <LinkButtonGrid provider={provider} />
         </>
       )
     //Text in the left and image in the right side with sub sections

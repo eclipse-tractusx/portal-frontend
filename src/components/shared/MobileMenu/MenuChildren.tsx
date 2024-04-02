@@ -21,7 +21,7 @@ import { Box, Link, useTheme } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import type { MenuItemProps } from './MenuItem'
-import React from 'react'
+
 import './MobileMenu.scss'
 import { t } from 'i18next'
 
