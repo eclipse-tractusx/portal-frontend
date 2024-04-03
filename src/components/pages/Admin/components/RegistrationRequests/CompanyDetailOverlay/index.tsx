@@ -80,7 +80,8 @@ const CompanyDetailOverlay = ({
     console.log('data', data)
     if (data) {
       const selected = data?.content?.filter(
-        (company: { bpn: string }) => !company.bpn || selectedCompany.bpn === company.bpn
+        (company: { bpn: string }) =>
+          !company.bpn || selectedCompany.bpn === company.bpn
       )
       console.log('selected[0]', selected[0])
       setCompany(selected[0])
@@ -329,11 +330,13 @@ const CompanyDetailOverlay = ({
                                 ':hover': {
                                   backgroundColor: 'rgb(176 206 235 / 40%)',
                                   borderRadius: '20px',
-                                }
+                                },
                               }}
                             >
                               <>
-                                <ArticleOutlinedIcon sx={{color: '#0f71cb'}}/>
+                                <ArticleOutlinedIcon
+                                  sx={{ color: '#0f71cb' }}
+                                />
                                 <button
                                   style={{
                                     textDecoration: 'underline',
@@ -342,7 +345,7 @@ const CompanyDetailOverlay = ({
                                     border: 'none',
                                     background: 'transparent',
                                     paddingLeft: '10px',
-                                    color: '#0f71cb'
+                                    color: '#0f71cb',
                                   }}
                                   onClick={() => {
                                     void downloadDocument(
