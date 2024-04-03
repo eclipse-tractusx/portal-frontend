@@ -30,7 +30,7 @@ import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
 import {
   useFetchDocumentQuery,
-  useFetchCompanyCertificateQuery,
+  useFetchCertificatesQuery,
 } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
@@ -45,8 +45,8 @@ import { useEffect, useState } from 'react'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import dayjs from 'dayjs'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import UserService from 'services/UserService'
+import { FilterType, SortType } from 'components/pages/CompanyCertificates'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -65,14 +65,14 @@ export default function CompanyCertificateDetails({
     dispatch(closeOverlay())
   }
   const { data: document } = useFetchDocumentQuery(id)
-  const {
-    data: companyDetails,
-    isFetching,
-    isSuccess,
-  } = useFetchOwnCompanyDetailsQuery()
-  const { data } = useFetchCompanyCertificateQuery(companyDetails?.bpn ?? '')
 
-  const companyData = data?.filter((cert) => cert.documentId === id)
+  const { data, isFetching, isSuccess } = useFetchCertificatesQuery({
+    filter: FilterType.ACTIVE,
+    sortOption: SortType.CertificateTypeAsc,
+    page: 0,
+  })
+
+  const companyData = data?.content.filter((cert) => cert.documentId === id)
   const selected = companyData?.[0]
   const [pdf, setPdf] = useState<string>()
 
