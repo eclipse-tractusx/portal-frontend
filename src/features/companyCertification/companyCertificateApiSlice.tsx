@@ -23,6 +23,7 @@ import { apiBaseQuery } from 'utils/rtkUtil'
 export type PaginationData = {
   totalElements: number
   page: number
+  totalPages: number
 }
 
 export type ComapnyCertificateData = {
@@ -73,7 +74,7 @@ export const apiSlice = createApi({
     }),
     fetchDocument: builder.query({
       query: (documentId) => ({
-        url: `/api/administration/documents/${documentId}`,
+        url: `/api/administration/companydata/companyCertificates/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),
@@ -101,7 +102,6 @@ export const apiSlice = createApi({
           method: 'DELETE',
         }
       },
-      invalidatesTags: ['certificate'],
     }),
     fetchCompanyCertificate: builder.query<
       Array<ComapnyCertificateData>,
