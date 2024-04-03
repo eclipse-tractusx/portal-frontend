@@ -28,6 +28,8 @@
   - Add background on hover effect
   - Fix notifications sorting dropdown closing issue
   - Make buttons in sync
+- Marketplace
+  - New UI for Favourite icon
 
 ### Bugfix
 
