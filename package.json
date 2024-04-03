@@ -68,7 +68,7 @@
     "@types/lodash.uniq": "^4.5.9",
     "@types/node": "^20.11.30",
     "@types/papaparse": "^5.3.14",
-    "@types/qs": "^6.9.13",
+    "@types/qs": "^6.9.14",
     "@types/react": "^18.2.71",
     "@types/react-dom": "^18.2.22",
     "@types/react-redux": "^7.1.33",
