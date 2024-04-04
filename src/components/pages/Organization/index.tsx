@@ -27,7 +27,7 @@ import {
   Typography,
   BackButton,
   StatusTag,
-  //ContentCard,
+  ContentCard,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
 import { PAGES, ROLES } from 'types/Constants'
@@ -159,20 +159,18 @@ export default function Organization() {
             {t('content.organization.certificates')}
           </Typography>
           <div className="certificate-items">
-            {
-              // certificates?.map(certificate=> (
-              //   <div key={certificate.companyCertificateType}>
-              //     {
-              //       <ContentCard
-              //         title={certificate.companyCertificateType}
-              //         chipText={certificate.companyCertificateType}
-              //         bpnHeading= 'Business Partner Level: '
-              //         bpnDetails='N/A'
-              //       />
-              //     }
-              //   </div>
-              // ))
-            }
+            {certificates?.map((certificate) => (
+              <div key={certificate.companyCertificateType}>
+                {
+                  <ContentCard
+                    title={certificate.companyCertificateType}
+                    chipText={certificate.companyCertificateType}
+                    heading="Business Partner Level: "
+                    detail="N/A"
+                  />
+                }
+              </div>
+            ))}
           </div>
         </div>
       </div>
