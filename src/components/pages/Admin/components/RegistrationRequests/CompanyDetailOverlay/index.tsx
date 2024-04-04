@@ -77,13 +77,11 @@ const CompanyDetailOverlay = ({
   })
 
   useEffect(() => {
-    console.log('data', data)
     if (data) {
       const selected = data?.content?.filter(
         (company: { bpn: string }) =>
           !company.bpn || selectedCompany.bpn === company.bpn
       )
-      console.log('selected[0]', selected[0])
       setCompany(selected[0])
     }
   }, [data, selectedCompany])
@@ -141,8 +139,6 @@ const CompanyDetailOverlay = ({
     )
     setActiveTab(newValue)
   }
-
-  console.log('****', company)
 
   return (
     <div className={'company-detail-overlay'}>
