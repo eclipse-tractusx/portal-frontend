@@ -28,12 +28,8 @@
   - Add background on hover effect
   - Fix notifications sorting dropdown closing issue
   - Make buttons in sync
-- Company Certificates
-  - Implementation of New UI Design for Company Certificates
-  - Show error icon on certificate deletion error scenario
-  - Update API Endpoint for Fetching Certificate Document
-  - Use listing page api to fetch certificates in details page
-- Add ErrorHandling in Main file
+- Application Request
+  - Fix empty document issue in detail overlay
 
 ### Bugfix
 
