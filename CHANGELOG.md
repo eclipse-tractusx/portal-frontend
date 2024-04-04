@@ -14,8 +14,10 @@
   - UI updates of order status button and back button
 - Service Release Process
   - Updated technicalUserProfile by allowing 'none' for dataspace services
+  - Support optional terms for contract and consent
 - App Release Process
   - Updated technicalUserProfile by allowing 'none'
+  - Support optional terms for contract and consent
 - Technical User Management
   - Enable inactive users list
 - Portal Login Navigation
@@ -28,6 +30,12 @@
   - Add background on hover effect
   - Fix notifications sorting dropdown closing issue
   - Make buttons in sync
+- Company Certificates
+  - Implementation of New UI Design for Company Certificates
+  - Show error icon on certificate deletion error scenario
+  - Update API Endpoint for Fetching Certificate Document
+  - Use listing page api to fetch certificates in details page
+- Add ErrorHandling in Main file
 - Application Request
   - Fix empty document issue in detail overlay
 
