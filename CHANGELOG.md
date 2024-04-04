@@ -30,6 +30,7 @@
   - Make buttons in sync
 - Marketplace
   - New UI for Favourite icon
+  - Change Favourite icon on add/remove item from favourite list
 - Company Certificates
   - Implementation of New UI Design for Company Certificates
   - Show error icon on certificate deletion error scenario
@@ -67,8 +68,6 @@
   - Card style updates for Active, Inactive and Unknown status
 - App Change Description
   - fixed display of the description correctly
-- App Marketplace
-  - Change fav icon on add/remove item from favourite list
 - Add Roles
   - fixed empty chip display for additional roles in app overview active apps
 
