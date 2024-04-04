@@ -37,6 +37,7 @@ import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import UploadCompanyCertificate from './UploadCompanyCerificate'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
+import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 
 interface TabButtonsType {
   buttonText: string
@@ -46,7 +47,7 @@ interface TabButtonsType {
 
 export enum FilterType {
   ALL = 'All',
-  INACTIVE = 'INACTVIE',
+  INACTIVE = 'INACTIVE',
   ACTIVE = 'ACTIVE',
 }
 
@@ -63,12 +64,13 @@ export default function CompanyCertificates(): JSX.Element {
   const [sortOption, setSortOption] = useState<string>(
     SortType.CertificateTypeAsc
   )
+  const [page, setPage] = useState<number>(0)
   const [filter, setFilter] = useState<string>(FilterType.ALL)
   const [uploadModal, setUploadModal] = useState<boolean>(false)
   const { data, isFetching } = useFetchCertificatesQuery({
     filter: filter === FilterType.ALL ? '' : filter,
     sortOption,
-    page: 0,
+    page,
   })
   const [elements, setElements] = useState<ComapnyCertificateData[]>([])
   const setBtnView = (e: React.MouseEvent<HTMLInputElement>): void => {
@@ -77,8 +79,17 @@ export default function CompanyCertificates(): JSX.Element {
   }
 
   useEffect(() => {
-    if (data) setElements(data?.content)
+    if (data)
+      setElements(page > 0 ? (i) => i.concat(data?.content) : data.content)
   }, [data])
+
+  const loadMore = (val: number) => {
+    setPage(val)
+  }
+
+  useEffect(() => {
+    setPage(0)
+  }, [])
 
   const sortOptions = [
     {
@@ -166,6 +177,7 @@ export default function CompanyCertificates(): JSX.Element {
             <Box className="uploadBtn">
               <Box>
                 <Button
+                  startIcon={<FileUploadOutlinedIcon />}
                   size="small"
                   onClick={() => {
                     setUploadModal(true)
@@ -205,6 +217,26 @@ export default function CompanyCertificates(): JSX.Element {
                 setUploadModal(false)
               }}
             />
+          )}
+          {data && data.meta.totalPages > page + 1 && (
+            <Box
+              sx={{
+                display: 'flex',
+                alignContent: 'center',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => {
+                  loadMore(page + 1)
+                }}
+              >
+                {t('global.actions.more')}
+              </Button>
+            </Box>
           )}
         </Box>
       </Box>

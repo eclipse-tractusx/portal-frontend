@@ -289,7 +289,9 @@ export default function UploadCompanyCertificate({
               variant="contained"
               onClick={handleSubmit}
               disabled={
-                uploadedFile === undefined || selectedCertificateType == null
+                uploadedFile === undefined ||
+                selectedCertificateType == null ||
+                dateError
               }
             >
               {t('global.actions.submit')}
