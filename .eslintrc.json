@@ -67,7 +67,8 @@
         "react/no-children-prop": 0,
         "react/no-deprecated": 0,
         "react/no-unescaped-entities": 0,
-        "spaced-comment": 0
+        "spaced-comment": 0,
+        "react/prop-types": 0
       }
     }
   ],
