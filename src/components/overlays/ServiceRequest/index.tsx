@@ -32,9 +32,7 @@ import {
   type AgreementRequest,
   useAddSubscribeServiceMutation,
   useFetchAgreementsQuery,
-  useFetchServiceQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
-import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay'
 import './ServiceRequest.scss'
 import { error } from 'services/NotifyService'
@@ -47,15 +45,12 @@ export default function ServiceRequest({ id }: { id: string }) {
   const [selectedAgreementsIds, setSelectedAgreementsIds] = useState<string[]>(
     []
   )
-
-  const { data } = useFetchServiceQuery(id ?? '')
   const { data: serviceAgreements } = useFetchAgreementsQuery(id ?? '')
-  const [addSubscribeService, { isSuccess }] = useAddSubscribeServiceMutation()
-
-  if (isSuccess) {
-    dispatch(setSuccessType(true))
-    dispatch(closeOverlay())
-  }
+  const [addSubscribeService] = useAddSubscribeServiceMutation()
+  const [serviceSubscriptionOverlay, setServiceSubscriptionOverlay] =
+    useState<boolean>(true)
+  const [serviceSuccessOverlay, setServiceSuccessOverlay] =
+    useState<boolean>(false)
 
   const handleConfirmService = async (id: string) => {
     const subscriptionData = serviceAgreements?.map((agreement) => {
@@ -69,6 +64,10 @@ export default function ServiceRequest({ id }: { id: string }) {
     subscriptionData &&
       (await addSubscribeService({ serviceId: id, body: subscriptionData })
         .unwrap()
+        .then(() => {
+          setServiceSuccessOverlay(true)
+          setServiceSubscriptionOverlay(false)
+        })
         .catch((err) => {
           error(t('content.serviceMarketplace.errorMessage'), '', err as object)
         }))
@@ -95,55 +94,103 @@ export default function ServiceRequest({ id }: { id: string }) {
 
   return (
     <>
-      <DialogHeader
-        title={t('content.serviceMarketplace.headline')}
-        intro={''}
-        closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(closeOverlay())}
-      />
+      <div className="subscription-overlay-header">
+        <DialogHeader
+          title={t('content.serviceMarketplace.headline')}
+          intro={''}
+          closeWithIcon={true}
+          onCloseWithIcon={() => dispatch(closeOverlay())}
+        />
+      </div>
 
-      <DialogContent className="marketplace-overlay-content">
-        <Typography className="service-description" variant="body1">
-          {data &&
-            t('content.serviceMarketplace.description').replace(
-              '{serviceName}',
-              data.title
+      {serviceSubscriptionOverlay && (
+        <>
+          <DialogContent className="marketplace-overlay-content">
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.serviceMarketplace.desc1')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.serviceMarketplace.desc2')}
+            </Typography>
+            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+              {t('content.serviceMarketplace.desc3')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.serviceMarketplace.desc4')}
+            </Typography>
+            <Typography variant="h5">
+              {t('content.serviceMarketplace.termsHeading')}
+            </Typography>
+            {serviceAgreements && serviceAgreements.length > 0 ? (
+              <ul className="agreements-list">
+                {serviceAgreements?.map((agreement, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      label={`${agreement.name} ${agreement.mandatory ? ' *' : ''} `}
+                      onChange={(e) => {
+                        handleSelectedAgreement(e.target.checked, agreement)
+                      }}
+                      onFocusVisible={function noRefCheck() {
+                        // do nothing
+                      }}
+                      size="small"
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <Typography variant="body2" sx={{ mb: '20px' }}>
+                {t('content.serviceMarketplace.noTermsAvailable')}
+              </Typography>
             )}
-        </Typography>
-        <ul className="agreements-list">
-          {serviceAgreements?.map((agreement, index) => (
-            <li key={index}>
-              <Checkbox
-                label={agreement.name}
-                onChange={(e) => {
-                  handleSelectedAgreement(e.target.checked, agreement)
-                }}
-                onFocusVisible={function noRefCheck() {
-                  // do nothing
-                }}
-              />
-            </li>
-          ))}
-        </ul>
-      </DialogContent>
-
-      <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => handleConfirmService(id)}
-          disabled={
-            selectedAgreementsIds.length > 0 ||
-            (serviceAgreements && serviceAgreements.length <= 0)
-              ? false
-              : true
-          }
-        >
-          {t('global.actions.confirm')}
-        </Button>
-      </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('global.actions.cancel')}
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => handleConfirmService(id)}
+              disabled={
+                serviceAgreements && serviceAgreements.length > 0
+                  ? !serviceAgreements
+                      ?.filter((data) => data.mandatory && data.agreementId)
+                      .map((item) => item.agreementId)
+                      .every((value) => selectedAgreementsIds.includes(value))
+                  : false
+              }
+            >
+              {t('global.actions.confirm')}
+            </Button>
+          </DialogActions>
+        </>
+      )}
+      {serviceSuccessOverlay && (
+        <>
+          <DialogContent className="marketplace-overlay-content">
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.serviceMarketplace.desc5')}
+            </Typography>
+            <Typography variant="body2">
+              {t('content.serviceMarketplace.desc6')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.serviceMarketplace.desc7')}
+            </Typography>
+            <Typography variant="body2" sx={{ mt: 3, mb: '20px' }}>
+              {t('content.serviceMarketplace.desc8')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.serviceMarketplace.desc9')}
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('global.actions.close')}
+            </Button>
+          </DialogActions>
+        </>
+      )}
     </>
   )
 }

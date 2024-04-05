@@ -38,6 +38,8 @@
 - Add ErrorHandling in Main file
 - App Marketplace
   - Updated subscription request overlay
+- Service Marketplace
+  - Updated subscription request overlay
 
 ### Bugfix
 
