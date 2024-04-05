@@ -167,6 +167,7 @@ export type AppDetailsState = {
 export type AgreementRequest = {
   agreementId: string
   name: string
+  mandatory: boolean
 }
 
 export interface SubscriptionRequestBody {
