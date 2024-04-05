@@ -98,24 +98,24 @@ export default function ServiceRequest({ id }: { id: string }) {
         <DialogHeader
           title={t('content.serviceMarketplace.headline')}
           intro={''}
-          closeWithIcon={true}
           onCloseWithIcon={() => dispatch(closeOverlay())}
+          closeWithIcon={true}
         />
       </div>
 
       {serviceSubscriptionOverlay && (
         <>
           <DialogContent className="marketplace-overlay-content">
-            <Typography variant="body2" sx={{ mb: '20px' }}>
+            <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc1')}
             </Typography>
-            <Typography variant="body2" sx={{ mb: '20px' }}>
+            <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc2')}
             </Typography>
-            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+            <Typography sx={{ fontWeight: 'bold' }} variant="body2">
               {t('content.serviceMarketplace.desc3')}
             </Typography>
-            <Typography variant="body2" sx={{ mb: '20px' }}>
+            <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc4')}
             </Typography>
             <Typography variant="h5">
@@ -126,31 +126,31 @@ export default function ServiceRequest({ id }: { id: string }) {
                 {serviceAgreements?.map((agreement, index) => (
                   <li key={index}>
                     <Checkbox
-                      label={`${agreement.name} ${agreement.mandatory ? ' *' : ''} `}
                       onChange={(e) => {
                         handleSelectedAgreement(e.target.checked, agreement)
                       }}
+                      label={`${agreement.name} ${agreement.mandatory ? ' *' : ''} `}
+                      size="small"
                       onFocusVisible={function noRefCheck() {
                         // do nothing
                       }}
-                      size="small"
                     />
                   </li>
                 ))}
               </ul>
             ) : (
-              <Typography variant="body2" sx={{ mb: '20px' }}>
+              <Typography sx={{ mb: '20px' }} variant="body2">
                 {t('content.serviceMarketplace.noTermsAvailable')}
               </Typography>
             )}
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
               {t('global.actions.cancel')}
             </Button>
             <Button
-              variant="contained"
               onClick={() => handleConfirmService(id)}
+              variant="contained"
               disabled={
                 serviceAgreements && serviceAgreements.length > 0
                   ? !serviceAgreements
@@ -168,24 +168,24 @@ export default function ServiceRequest({ id }: { id: string }) {
       {serviceSuccessOverlay && (
         <>
           <DialogContent className="marketplace-overlay-content">
-            <Typography variant="body2" sx={{ mb: '20px' }}>
+            <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc5')}
             </Typography>
             <Typography variant="body2">
               {t('content.serviceMarketplace.desc6')}
             </Typography>
-            <Typography variant="body2" sx={{ mb: '20px' }}>
+            <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc7')}
             </Typography>
-            <Typography variant="body2" sx={{ mt: 3, mb: '20px' }}>
+            <Typography variant="body2" sx={{ mb: '20px', mt: 3 }}>
               {t('content.serviceMarketplace.desc8')}
             </Typography>
-            <Typography variant="body2" sx={{ mb: '20px' }}>
+            <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc9')}
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
               {t('global.actions.close')}
             </Button>
           </DialogActions>
