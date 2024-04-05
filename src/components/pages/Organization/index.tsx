@@ -82,6 +82,7 @@ export default function Organization() {
         <>
           {companyDetails?.companyRole.map((item: string) => (
             <StatusTag
+              key={item}
               color="label"
               label={t(`content.companyRolesUpdate.${item}`)}
             />
