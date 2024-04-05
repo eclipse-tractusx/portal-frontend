@@ -59,13 +59,15 @@ export default function Organization() {
     },
     {
       key: t('content.organization.companyDetails.street'),
-      value:
-        companyDetails?.streetName + ' ' + companyDetails?.streetNumber ??
-        'N/A',
+      value: companyDetails
+        ? companyDetails.streetName + ' ' + companyDetails.streetNumber
+        : 'N/A',
     },
     {
       key: t('content.organization.companyDetails.postal'),
-      value: companyDetails?.zipCode + ' ' + companyDetails?.city ?? 'N/A',
+      value: companyDetails
+        ? companyDetails.zipCode + ' ' + companyDetails.city
+        : 'N/A',
     },
     {
       key: t('content.organization.companyDetails.region'),
