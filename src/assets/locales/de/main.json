@@ -1744,11 +1744,11 @@
     },
     "companyCertificate": {
       "heading": "Company Certificates",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "description": "Verwalten und organisieren Sie Ihre Unternehmenszertifikate einfach und effizient. Diese Seite bietet eine benutzerfreundliche Oberfläche zum Anzeigen, Hinzufügen, Bearbeiten und Löschen von Unternehmenszertifikaten. Behalten Sie den Überblick über Ihren Zertifikatsverwaltungsprozess und stellen Sie mühelos die Einhaltung sicher.",
       "tabs": {
-        "inactive": "Pending",
+        "inactive": "Inactive",
         "active": " Active",
-        "all": "All"
+        "all": "All certificates"
       },
       "sort": {
         "nameasc": "Certificate Asc",
@@ -1796,7 +1796,13 @@
       "validtill": "Valid Till",
       "view": "View",
       "delete": "Delete",
-      "morelink": ">> More"
+      "morelink": ">> More",
+      "tooltips": {
+        "pending": "Certificate is Pending",
+        "active": "Certificate is Active",
+        "inactive": "Certificate is Inactive",
+        "warning": "Certificate is exprired or about to expire"
+      }
     },
     "companyWallet": {
       "heading": "Mein Firmen-Wallet",

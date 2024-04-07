@@ -1683,11 +1683,11 @@
     },
     "companyCertificate": {
       "heading": "Company Certificates",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "description": "Efficiently manage and organize your company certificates with ease. This page provides a user-friendly interface to view, add, edit, and delete company certificates. Stay on top of your certificate management process and ensure compliance effortlessly.",
       "tabs": {
-        "inactive": "Pending",
+        "inactive": "Inactive",
         "active": " Active",
-        "all": "All"
+        "all": "All certificates"
       },
       "sort": {
         "nameasc": "Certificate Asc",
@@ -1735,7 +1735,13 @@
       "validtill": "Valid Till",
       "morelink": ">> More",
       "view": "View",
-      "delete": "Delete"
+      "delete": "Delete",
+      "tooltips": {
+        "pending": "Certificate is Pending",
+        "active": "Certificate is Active",
+        "inactive": "Certificate is Inactive",
+        "warning": "Certificate is exprired or about to expire"
+      }
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
