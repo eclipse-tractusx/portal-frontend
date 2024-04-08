@@ -77,7 +77,7 @@ export const apiSlice = createApi({
     }),
     fetchAppRoles: builder.query<AppRole[], string>({
       query: (appId: string) =>
-        `/api/administration/user/app/${appId}/roles?lang=${i18next.language}`,
+        `/api/administration/user/owncompany/roles/apps/${appId}?lang=${i18next.language}`,
     }),
     fetchAppUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
       query: (fetchArgs) =>
@@ -101,7 +101,7 @@ export const apiSlice = createApi({
     ),
     addUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
       query: (data: UserRoleRequest) => ({
-        url: `/api/administration/user/app/${data.appId}/roles`,
+        url: `/api/administration/user/owncompany/users/${data.companyUserId}/apps/${data.appId}/roles`,
         method: 'POST',
         body: data.body,
       }),
