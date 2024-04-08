@@ -40,6 +40,8 @@
   - Updated subscription request overlay
 - Service Marketplace
   - Updated subscription request overlay
+- Application Request
+  - Fix empty document issue in detail overlay
 - App management
   - Updated active and inactive apps menus. Also, updated overlay content for 'in progress' apps
 
