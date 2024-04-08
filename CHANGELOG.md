@@ -16,7 +16,7 @@
   - Updated technicalUserProfile by allowing 'none' for dataspace services
   - Support optional terms for contract and consent
 - App Release Process
-  - Updated technicalUserProfile by allowing 'none'
+  - Updated technicalUserProfile by allowing 'none' for technical integration
   - Support optional terms for contract and consent
 - Technical User Management
   - Enable inactive users list
