@@ -764,7 +764,7 @@
         },
         "editRoles": {
           "title": "Manage roles for ",
-          "subtitle": "The user cannot enter his account until he has set a new password."
+          "subtitle": "Please select additional roles for the app or unselect any role which should get unassigned."
         }
       },
       "addUsers": {
