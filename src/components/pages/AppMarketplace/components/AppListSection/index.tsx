@@ -31,6 +31,9 @@ import {
 import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
 import { appsControlSelector } from 'features/apps/control'
+import { type AppMarketplaceApp } from 'features/apps/types'
+import { useEffect, useState } from 'react'
+import { cloneDeep } from 'lodash'
 
 export const label = 'AppList'
 
@@ -41,15 +44,42 @@ export default function AppListSection() {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
-  const favoriteItems = useFetchFavoriteAppsQuery().data
+  const { data: favoriteItems } = useFetchFavoriteAppsQuery()
   const control = useSelector(appsControlSelector)
+  const [list, setList] = useState<AppMarketplaceApp[]>([])
+  const [favList, setFavlist] = useState<string[]>([])
 
-  const checkIsFavorite = (appId: string) => favoriteItems?.includes(appId)
+  const checkIsFavorite = (appId: string) => favList?.includes(appId)
 
   const addOrRemoveFavorite = (event: React.MouseEvent, appId: string) => {
+    const favs = cloneDeep(favList)
     event?.stopPropagation()
-    dispatch(checkIsFavorite(appId) ? removeItem(appId) : addItem(appId))
+    if (checkIsFavorite(appId)) {
+      dispatch(removeItem(appId))
+      const indexVal = favs?.indexOf(appId)
+      favs.splice(indexVal, 1)
+      arrangeDataList(list, favs)
+    } else {
+      dispatch(addItem(appId))
+      favs?.push(appId)
+      arrangeDataList(list, favs)
+    }
   }
+
+  const arrangeDataList = (d: AppMarketplaceApp[], favs: string[]) => {
+    d?.forEach((i: AppMarketplaceApp) => {
+      i.addButtonClicked = favs?.includes(i.id)
+    })
+    setList(d)
+    setFavlist(favs)
+  }
+
+  useEffect(() => {
+    if (data && favoriteItems) {
+      const d = cloneDeep(data)
+      arrangeDataList(d, favoriteItems)
+    }
+  }, [data, favoriteItems])
 
   const renderProgress = () => (
     <div style={{ textAlign: 'center' }}>
@@ -74,9 +104,9 @@ export default function AppListSection() {
   )
 
   const renderGroups = () =>
-    data ? (
+    list ? (
       <AppListGroupView
-        items={data
+        items={list
           ?.filter(
             (app) =>
               app?.name?.toLowerCase().includes(control.search.toLowerCase()) ??
@@ -91,7 +121,8 @@ export default function AppListSection() {
             onSecondaryButtonClick: (e: React.MouseEvent) => {
               addOrRemoveFavorite(e, card.id!)
             },
-            addButtonClicked: checkIsFavorite(card.id!),
+            addButtonClicked: card.addButtonClicked,
+            description: card.description,
           }))}
         groupKey={control.group}
       />

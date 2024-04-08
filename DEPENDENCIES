@@ -601,7 +601,7 @@ npm/npmjs/@babel/template/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@babel/traverse/7.24.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #13926
 npm/npmjs/@babel/types/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/2.1.44, Apache-2.0 AND CC-BY-4.0, approved, #10502
+npm/npmjs/@catena-x/portal-shared-components/2.1.45, Apache-2.0 AND CC-BY-4.0, approved, #10502
 npm/npmjs/@cspotcode/source-map-support/0.8.1, MIT, approved, clearlydefined
 npm/npmjs/@emotion/babel-plugin/11.11.0, MIT, approved, #8386
 npm/npmjs/@emotion/cache/11.11.0, MIT, approved, #8401

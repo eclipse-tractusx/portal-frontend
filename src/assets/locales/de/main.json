@@ -446,12 +446,15 @@
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
         "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)"
+        "changeDocuments": "Change Document(s)",
+        "viewDetails": "Details anzeigen",
+        "activate": "aktivieren Sie",
+        "delete": "Löschen"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
         "title": "Appbeschreibung '{appName}' öffnen",
-        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+        "description": "Sehr geehrter Benutzer, Sie haben eine Anwendung ausgewählt, die sich derzeit im Status „In Erstellung“ befindet. Möchten Sie auf das App-Release-Management-Formular für diese App zugreifen? Auf diese Weise können Sie die mit der Anwendung verknüpften Daten und Informationen vor der Veröffentlichung ändern und aktualisieren."
       },
       "details": {
         "longDescription": "Detailbeschreibung",
@@ -461,7 +464,7 @@
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
-      "submenuNotAvail": "Sub-Menu is not available for not active apps."
+      "submenuNotAvail": "Untermenü ist nicht verfügbar."
     },
     "deactivate": {
       "headerTitle": "Deaktivierung Business-App",
@@ -749,7 +752,7 @@
         },
         "editRoles": {
           "title": "Manage roles for ",
-          "subtitle": "The user cannot enter his account until he has set a new password."
+          "subtitle": "Please select additional roles for the app or unselect any role which should get unassigned."
         }
       },
       "addUsers": {
@@ -1257,7 +1260,17 @@
     },
     "serviceMarketplace": {
       "headline": "Purchase Service Request",
-      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "desc1": "Wenn Sie unten „Bestätigen“ auswählen, benachrichtigen Sie den App-Anbieter umgehend über Ihr Interesse an seinem Dienst und er beginnt mit dem Abonnementverfahren. Sollte der Anbieter weitere Einzelheiten benötigen, um fortzufahren, wird er sich direkt an Sie wenden.",
+      "desc2": "Sobald alle notwendigen Informationen bestätigt und alle Fragen geklärt sind, wird der App-Anbieter mit der Aktivierung Ihres App-Mandanten fortfahren. Sie erhalten eine Benachrichtigung, die Sie durch alle weiteren Schritte führt, die Ihrerseits erforderlich sind.",
+      "desc3": "WICHTIGER HINWEIS:WICHTIGER HINWEIS:",
+      "desc4": "Mit der Bestätigung der Abonnementanfrage autorisieren Sie die Übermittlung Ihrer Geschäftspartnerdaten, zu denen Ihr Firmenname, Ihre Geschäftspartnernummer (BPN), Ihre Adresse usw. gehören, an den App-Anbieter. Darüber hinaus wird Ihre E-Mail-Adresse weitergegeben, um die Kommunikation zu erleichtern, falls weitere Informationen benötigt werden.",
+      "termsHeading": "Besondere Geschäftsbedingungen:",
+      "noTermsAvailable": "keine besonderen Geschäftsbedingungen",
+      "desc5": "Lieber Kunde,",
+      "desc6": "Wir freuen uns, Ihnen mitteilen zu können, dass der Abonnementvorgang erfolgreich ausgelöst wurde.",
+      "desc7": "Der Anbieter wird über Ihr Interesse informiert und kann sich in Kürze mit Ihnen in Verbindung setzen.",
+      "desc8": "Der gesamte Vorgang wird voraussichtlich innerhalb von 5 Werktagen abgeschlossen sein.",
+      "desc9": "Vielen Dank, dass Sie sich für den Service entschieden haben.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -1281,11 +1294,18 @@
     },
     "appMarketplace": {
       "headline": "Geschäftsanwednung abonnieren",
-      "desc1": "Möchten Sie eine Anfrage zur Nutzung für die App {appName} erstellen?",
-      "desc2": "Wenn Sie unten auf „Bestätigen“ klicken, wird der App-Anbieter automatisch über Ihre Anfrage informiert und startet den Abonnementvorgang. Sollten weitere Informationen benötigt werden, wird sich der Anbieter direkt mit Ihnen in Verbindung setzen. Der Vorgang kann bis zu 5 Tage dauern.",
-      "desc3": "Sobald alle Fragen geklärt sind, kann der App-Anbieter Ihren App-Mandanten freischalten und Sie werden automatisch über die weiteren Schritte informiert.",
-      "desc4": "Bitte beachten Sie: Mit der Bestätigung der App-Abonnementanfrage erhält der App-Anbieter die in Ihrem Datenbereich verfügbaren Geschäftspartnerdaten (Firmenname, BPN, Adresse usw.) sowie Ihre E-Mail-Adresse, falls zusätzliche Informationen benötigt werden.",
+      "desc1": "Wenn Sie unten „Bestätigen“ auswählen, benachrichtigen Sie den App-Anbieter umgehend über Ihr Interesse an seinem Dienst und er beginnt mit dem Abonnementverfahren. Sollte der Anbieter weitere Einzelheiten benötigen, um fortzufahren, wird er sich direkt an Sie wenden.",
+      "desc2": "Sobald alle notwendigen Informationen bestätigt und alle Fragen geklärt sind, wird der App-Anbieter mit der Aktivierung Ihres App-Mandanten fortfahren. Sie erhalten eine Benachrichtigung, die Sie durch alle weiteren Schritte führt, die Ihrerseits erforderlich sind.",
+      "desc3": "WICHTIGER HINWEIS:WICHTIGER HINWEIS:",
+      "desc4": "Mit der Bestätigung der Abonnementanfrage autorisieren Sie die Übermittlung Ihrer Geschäftspartnerdaten, zu denen Ihr Firmenname, Ihre Geschäftspartnernummer (BPN), Ihre Adresse usw. gehören, an den App-Anbieter. Darüber hinaus wird Ihre E-Mail-Adresse weitergegeben, um die Kommunikation zu erleichtern, falls weitere Informationen benötigt werden.",
+      "termsHeading": "Besondere Geschäftsbedingungen:",
+      "noTermsAvailable": "keine besonderen Geschäftsbedingungen",
+      "desc5": "Lieber Kunde,",
+      "desc6": "Wir freuen uns, Ihnen mitteilen zu können, dass der Abonnementvorgang erfolgreich ausgelöst wurde.",
+      "desc7": "Der Anbieter wird über Ihr Interesse informiert und kann sich in Kürze mit Ihnen in Verbindung setzen.",
       "statusHeading": "Für eine bessere Transparenz wird die Abonnementstatusleiste auf der App-Detailseite verfügbar sein. Sie können den Abonnementstatus überprüfen, wenn Sie die App-Detailseite über den App-Marktplatz öffnen.",
+      "desc8": "Der gesamte Vorgang wird voraussichtlich innerhalb von 5 Werktagen abgeschlossen sein.",
+      "desc9": "Vielen Dank, dass Sie sich für den Service entschieden haben.",
       "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator."
     },
     "techUser": {
