@@ -70,6 +70,7 @@ type AgreementDataType = {
   name: string
   consentStatus?: ConsentStatusEnum
   documentId: string
+  mandatory: boolean
 }[]
 
 type CommonConsentType = {
@@ -463,7 +464,7 @@ export default function CommonContractAndConsent({
                     type: 'checkbox',
                     rules: {
                       required: {
-                        value: true,
+                        value: item.mandatory,
                         message: `${item.name} ${checkBoxMandatoryText}`,
                       },
                     },
@@ -472,19 +473,29 @@ export default function CommonContractAndConsent({
               </Grid>
               <Grid item md={11} sx={{ marginTop: '8px' }}>
                 {item.documentId ? (
-                  <span
-                    className={item.documentId ? 'agreement-span' : ''}
-                    onClick={() =>
-                      handleFrameDocumentDownload(item.name, item.documentId)
-                    }
-                    onKeyDown={() => {
-                      // do nothing
-                    }}
-                  >
-                    {item.name}
-                  </span>
+                  <>
+                    <span
+                      className={item.documentId ? 'agreement-span' : ''}
+                      onClick={() =>
+                        handleFrameDocumentDownload(item.name, item.documentId)
+                      }
+                      onKeyDown={() => {
+                        // do nothing
+                      }}
+                    >
+                      {item.name}
+                    </span>
+                    <span style={{ color: 'red' }}>
+                      {item.mandatory ? ' *' : ''}
+                    </span>
+                  </>
                 ) : (
-                  <span>{item.name}</span>
+                  <>
+                    <span>{item.name}</span>
+                    <span style={{ color: 'red' }}>
+                      {item.mandatory ? ' *' : ''}
+                    </span>
+                  </>
                 )}
 
                 <ErrorMessage

@@ -458,12 +458,15 @@
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
         "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)"
+        "changeDocuments": "Change Document(s)",
+        "viewDetails": "View Details",
+        "activate": "Activate",
+        "delete": "Delete"
       },
       "addbtn": "Register your App",
       "confirmModal": {
         "title": "Change app {appName}",
-        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+        "description": "Dear user, you have selected an application that's currently in the “In Creation” status. Would you like to access the app release management form for this app? This will allow you to modify and update the data and information associated with the application before it's released."
       },
       "details": {
         "longDescription": "Long Description",
@@ -473,7 +476,7 @@
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
-      "submenuNotAvail": "Sub-Menu is not available for inactive apps."
+      "submenuNotAvail": "Sub-Menu is not available"
     },
     "deactivate": {
       "headerTitle": "Deactivate Business App",
@@ -761,7 +764,7 @@
         },
         "editRoles": {
           "title": "Manage roles for ",
-          "subtitle": "The user cannot enter his account until he has set a new password."
+          "subtitle": "Please select additional roles for the app or unselect any role which should get unassigned."
         }
       },
       "addUsers": {
@@ -1232,7 +1235,17 @@
     },
     "serviceMarketplace": {
       "headline": "Purchase Service Request",
-      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
+      "desc3": "IMPORTANT NOTICE:",
+      "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the app provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
+      "termsHeading": "Specific Terms and Conditions:",
+      "noTermsAvailable": "no specific terms and conditions",
+      "desc5": "Dear customer,",
+      "desc6": "We are pleased to inform you that the subscription process got successfully triggered.",
+      "desc7": "The provider is informed about your interest and may contact you shortly.",
+      "desc8": "The entire process is expected to complete within 5 business days.",
+      "desc9": "Thank you for choosing the service.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -1256,11 +1269,18 @@
     },
     "appMarketplace": {
       "headline": "Business Application Subscription",
-      "desc1": "Do you want to trigger a subscription request for app {appName}?",
-      "desc2": "With click on 'Confirm' below, the app provider will get automatically informed about your request and start the subscription process. If additional informations are needed, the provider will contact you directly. The process may take up to 5 days.",
-      "desc3": "As soon as all queries are clarified, the app provider will be able to activate your app tenant and you will get automatically informed to take further steps.",
-      "desc4": "Please note: with confirming the app subscription request, the app provider will receive your dataspace available business partner data (company name, bpn, address, etc.) as well as your email address in case additional information are needed.",
+      "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
+      "desc3": "IMPORTANT NOTICE:",
+      "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the app provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
+      "termsHeading": "Specific Terms and Conditions:",
+      "noTermsAvailable": "no specific terms and conditions",
+      "desc5": "Dear customer,",
+      "desc6": "We are pleased to inform you that the subscription process got successfully triggered.",
+      "desc7": "The provider is informed about your interest and may contact you shortly.",
       "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace.",
+      "desc8": "The entire process is expected to complete within 5 business days.",
+      "desc9": "Thank you for choosing the service.",
       "errorMessage": "The subscription was unsuccessful; please contact your administrator."
     },
     "techUser": {
