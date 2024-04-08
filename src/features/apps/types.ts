@@ -68,6 +68,7 @@ export type AppMarketplaceApp = {
   timestamp?: number
   leadPictureId?: string
   subscriptionStatus?: SubscriptionStatus
+  addButtonClicked?: boolean
 }
 
 export interface ProvidedApps {

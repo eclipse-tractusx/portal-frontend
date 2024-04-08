@@ -30,6 +30,9 @@
   - Add background on hover effect
   - Fix notifications sorting dropdown closing issue
   - Make buttons in sync
+- Marketplace
+  - New UI for Favourite icon
+  - Change Favourite icon on add/remove item from favourite list
 - Company Certificates
   - Implementation of New UI Design for Company Certificates
   - Show error icon on certificate deletion error scenario
