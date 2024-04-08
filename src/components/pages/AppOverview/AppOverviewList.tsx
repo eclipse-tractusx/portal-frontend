@@ -34,7 +34,7 @@ enum AppSubMenuItems {
   VIEW_DETAILS = 'viewDetails',
   ACTIVATE = 'activate',
   DELETE = 'delete',
-  VIEW_INACTIVE_APP_DETAILS = 'viewDetails',
+  VIEW_INACTIVE_APP_DETAILS = 'viewInactiveAppDetails',
 }
 
 export const AppOverviewList = ({
