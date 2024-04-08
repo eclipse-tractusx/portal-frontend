@@ -32,6 +32,7 @@ import { useState } from 'react'
 import { getHeaders } from 'services/RequestService'
 import { getApiBase } from 'services/EnvironmentService'
 import './style.scss'
+import { download } from 'utils/downloadUtils'
 
 const DocumentDownloadLink = ({ id, name }: { id: string; name: string }) => {
   const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -40,15 +41,13 @@ const DocumentDownloadLink = ({ id, name }: { id: string; name: string }) => {
       `${getApiBase()}/api/administration/registration/documents/${id}`,
       getHeaders()
     )
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(new Blob([blob]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', `${name}.pdf`)
-        document.body.appendChild(link)
-        link.click()
-        link.parentNode!.removeChild(link)
+      .then(async (res) => {
+        const fileType = res.headers.get('content-type') ?? ''
+        const file = await res.blob()
+        download(file, fileType, name)
+      })
+      .catch((error) => {
+        console.log(error)
       })
   }
 
