@@ -16,7 +16,7 @@
   - Updated technicalUserProfile by allowing 'none' for dataspace services
   - Support optional terms for contract and consent
 - App Release Process
-  - Updated technicalUserProfile by allowing 'none'
+  - Updated technicalUserProfile by allowing 'none' for technical integration
   - Support optional terms for contract and consent
 - Technical User Management
   - Enable inactive users list
@@ -40,6 +40,8 @@
   - Updated subscription request overlay
 - Service Marketplace
   - Updated subscription request overlay
+- App management
+  - Updated active and inactive apps menus. Also, updated overlay content for 'in progress' apps
 
 ### Bugfix
 
