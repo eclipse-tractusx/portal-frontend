@@ -65,6 +65,7 @@ export default function AppOverViewConfirm({
         sx={{
           width: '90%',
           margin: 'auto',
+          padding: '0 0 56px',
           textAlign: 'center',
         }}
       >
