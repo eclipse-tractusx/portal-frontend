@@ -26,7 +26,7 @@ import { useSelector } from 'react-redux'
 import { currentSuccessType } from 'features/serviceMarketplace/slice'
 import { useEffect } from 'react'
 
-export default function AppDetail({ navigate }: { navigate: string }) {
+export default function AppDetail({ navigate }: { readonly navigate: string }) {
   const { appId } = useParams()
   const { data, refetch } = useFetchAppDetailsQuery(appId ?? '')
 
