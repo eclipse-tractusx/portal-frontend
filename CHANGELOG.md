@@ -39,6 +39,8 @@
   - Update API Endpoint for Fetching Certificate Document
   - Use listing page api to fetch certificates in details page
 - Add ErrorHandling in Main file
+- Organization
+  - Redesign of page
 - App Marketplace
   - Updated subscription request overlay
 - Service Marketplace
