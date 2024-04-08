@@ -32,6 +32,9 @@ enum AppSubMenuItems {
   ADD_ROLES = 'addRoles',
   CHANGE_DOCUMENTS = 'changeDocuments',
   VIEW_DETAILS = 'viewDetails',
+  ACTIVATE = 'activate',
+  DELETE = 'delete',
+  VIEW_INACTIVE_APP_DETAILS = 'viewDetails',
 }
 
 export const AppOverviewList = ({
@@ -44,36 +47,47 @@ export const AppOverviewList = ({
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const submenuOptions = [
+  const activeSubmenuOptions = [
     {
       label: t('content.appoverview.sortOptions.deactivate'),
       value: AppSubMenuItems.DEACTIVATE,
-      url: '',
     },
     {
       label: t('content.appoverview.sortOptions.changeImage'),
       value: AppSubMenuItems.CHANGE_IMAGE,
-      url: '',
     },
     {
       label: t('content.appoverview.sortOptions.changeDescription'),
       value: AppSubMenuItems.CHANGE_DESCRIPTION,
-      url: '',
     },
     {
       label: t('content.appoverview.sortOptions.addRoles'),
       value: AppSubMenuItems.ADD_ROLES,
-      url: '',
     },
     {
       label: t('content.appoverview.sortOptions.changeDocuments'),
       value: AppSubMenuItems.CHANGE_DOCUMENTS,
-      url: '',
     },
     {
       label: t('content.appoverview.sortOptions.viewDetails'),
       value: AppSubMenuItems.VIEW_DETAILS,
-      url: '',
+    },
+  ]
+
+  const inactiveSubmenuOptions = [
+    {
+      label: t('content.appoverview.sortOptions.activate'),
+      value: AppSubMenuItems.ACTIVATE,
+      disabled: true,
+    },
+    {
+      label: t('content.appoverview.sortOptions.delete'),
+      value: AppSubMenuItems.DELETE,
+      disabled: true,
+    },
+    {
+      label: t('content.appoverview.sortOptions.viewDetails'),
+      value: AppSubMenuItems.VIEW_INACTIVE_APP_DETAILS,
     },
   ]
 
@@ -96,7 +110,8 @@ export const AppOverviewList = ({
           showOverlay(item as AppInfo)
         }}
         subMenu={true}
-        submenuOptions={submenuOptions}
+        activeSubmenuOptions={activeSubmenuOptions}
+        inactiveSubmenuOptions={inactiveSubmenuOptions}
         submenuClick={(sortMenu: string, id: string | undefined) => {
           sortMenu === AppSubMenuItems.DEACTIVATE &&
             navigate(`/${PAGES.DEACTIVATE}/${id}`, {
@@ -119,6 +134,10 @@ export const AppOverviewList = ({
               state: filterItem,
             })
           sortMenu === AppSubMenuItems.VIEW_DETAILS &&
+            navigate(`/${PAGES.VIEW_DETAILS}/${id}`, {
+              state: filterItem,
+            })
+          sortMenu === AppSubMenuItems.VIEW_INACTIVE_APP_DETAILS &&
             navigate(`/${PAGES.VIEW_DETAILS}/${id}`, {
               state: filterItem,
             })

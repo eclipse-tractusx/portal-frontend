@@ -459,7 +459,9 @@
         "changeDescription": "Change Description",
         "addRoles": "Add Roles",
         "changeDocuments": "Change Document(s)",
-        "viewDetails": "View Details"
+        "viewDetails": "View Details",
+        "activate": "Activate",
+        "delete": "Delete"
       },
       "addbtn": "Register your App",
       "confirmModal": {
@@ -474,7 +476,7 @@
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
-      "submenuNotAvail": "Sub-Menu is not available for inactive apps."
+      "submenuNotAvail": "Sub-Menu is not available"
     },
     "deactivate": {
       "headerTitle": "Deactivate Business App",
