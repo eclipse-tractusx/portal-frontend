@@ -129,9 +129,10 @@
       "wip": "WIP"
     },
     "addbtn": "Register your Service",
-    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "submenuNotAvailable": "Sub-Menu is not available.",
     "sortOptions": {
-      "deactivate": "Deactivate"
+      "deactivate": "Deactivate",
+      "activate": "Activate"
     },
     "serviceDeactivate": {
       "headerTitle": "Deactivate Service",

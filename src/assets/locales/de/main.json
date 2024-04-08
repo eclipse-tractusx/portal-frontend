@@ -459,12 +459,15 @@
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
         "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)"
+        "changeDocuments": "Change Document(s)",
+        "viewDetails": "Details anzeigen",
+        "activate": "aktivieren Sie",
+        "delete": "Löschen"
       },
       "addbtn": "Registrieren Sie Ihre App",
       "confirmModal": {
         "title": "Appbeschreibung '{appName}' öffnen",
-        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+        "description": "Sehr geehrter Benutzer, Sie haben eine Anwendung ausgewählt, die sich derzeit im Status „In Erstellung“ befindet. Möchten Sie auf das App-Release-Management-Formular für diese App zugreifen? Auf diese Weise können Sie die mit der Anwendung verknüpften Daten und Informationen vor der Veröffentlichung ändern und aktualisieren."
       },
       "details": {
         "longDescription": "Detailbeschreibung",
@@ -474,7 +477,7 @@
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
-      "submenuNotAvail": "Sub-Menu is not available for not active apps."
+      "submenuNotAvail": "Untermenü ist nicht verfügbar."
     },
     "deactivate": {
       "headerTitle": "Deaktivierung Business-App",
@@ -762,7 +765,7 @@
         },
         "editRoles": {
           "title": "Manage roles for ",
-          "subtitle": "The user cannot enter his account until he has set a new password."
+          "subtitle": "Please select additional roles for the app or unselect any role which should get unassigned."
         }
       },
       "addUsers": {
