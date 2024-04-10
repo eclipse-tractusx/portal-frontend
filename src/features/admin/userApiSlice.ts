@@ -101,7 +101,7 @@ export interface CompanyDetails {
   streetNumber: string
   taxId: string
   zipCode: string
-  companyRole: CompanyRoleEnum
+  companyRole: Array<string>
 }
 
 export const apiSlice = createApi({

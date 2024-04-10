@@ -473,19 +473,29 @@ export default function CommonContractAndConsent({
               </Grid>
               <Grid item md={11} sx={{ marginTop: '8px' }}>
                 {item.documentId ? (
-                  <span
-                    className={item.documentId ? 'agreement-span' : ''}
-                    onClick={() =>
-                      handleFrameDocumentDownload(item.name, item.documentId)
-                    }
-                    onKeyDown={() => {
-                      // do nothing
-                    }}
-                  >
-                    {item.name}
-                  </span>
+                  <>
+                    <span
+                      className={item.documentId ? 'agreement-span' : ''}
+                      onClick={() =>
+                        handleFrameDocumentDownload(item.name, item.documentId)
+                      }
+                      onKeyDown={() => {
+                        // do nothing
+                      }}
+                    >
+                      {item.name}
+                    </span>
+                    <span style={{ color: 'red' }}>
+                      {item.mandatory ? ' *' : ''}
+                    </span>
+                  </>
                 ) : (
-                  <span>{item.name}</span>
+                  <>
+                    <span>{item.name}</span>
+                    <span style={{ color: 'red' }}>
+                      {item.mandatory ? ' *' : ''}
+                    </span>
+                  </>
                 )}
 
                 <ErrorMessage

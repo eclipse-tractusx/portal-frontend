@@ -33,9 +33,7 @@ import { useState } from 'react'
 import {
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
-  useFetchAppDetailsQuery,
 } from 'features/apps/apiSlice'
-import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { closeOverlay } from 'features/control/overlay'
 import './AppMarketplaceRequest.scss'
 import { error } from 'services/NotifyService'
@@ -45,17 +43,12 @@ import { type AgreementRequest } from 'features/apps/types'
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
-  const { data } = useFetchAppDetailsQuery(id ?? '')
   const { data: agreements } = useFetchAgreementsQuery(id ?? '')
-  const [addSubscribeApp, { isSuccess }] = useAddSubscribeAppMutation()
+  const [addSubscribeApp] = useAddSubscribeAppMutation()
 
   const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
-
-  if (isSuccess) {
-    dispatch(setSuccessType(true))
-    dispatch(closeOverlay())
-  }
+  const [subscriptionOverlay, setSubscriptionOverlay] = useState<boolean>(true)
+  const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
 
   const OrderStatusButtonData = [
     {
@@ -90,6 +83,10 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
     data &&
       (await addSubscribeApp({ appId: id, body: data })
         .unwrap()
+        .then(() => {
+          setSuccessOverlay(true)
+          setSubscriptionOverlay(false)
+        })
         .catch((err) => {
           error(t('content.appMarketplace.errorMessage'), '', err as object)
         }))
@@ -125,66 +122,104 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
         />
       </div>
 
-      <DialogContent className="app-overlay-content">
-        <Typography className="app-description" variant="h5">
-          {data &&
-            t('content.appMarketplace.desc1').replace('{appName}', data.title)}
-        </Typography>
-        <Typography className="app-description" variant="body1">
-          {data &&
-            t('content.appMarketplace.desc2').replace('{appName}', data.title)}
-        </Typography>
-        <Typography className="app-description" variant="body1">
-          {data &&
-            t('content.appMarketplace.desc3').replace('{appName}', data.title)}
-        </Typography>
-        <Typography className="app-description" variant="body1">
-          {data &&
-            t('content.appMarketplace.desc4').replace('{appName}', data.title)}
-        </Typography>
-        <ul className="agreements-list">
-          {agreements?.map((agreement, index) => (
-            <li key={index}>
-              <Checkbox
-                label={agreement.name}
-                onChange={(e) => {
-                  handleCheckedAgreement(e.target.checked, agreement)
-                }}
-                onFocusVisible={function noRefCheck() {
-                  // do nothing
-                }}
-              />
-            </li>
-          ))}
-        </ul>
-        <Typography variant="body2" sx={{ marginBottom: '15px' }}>
-          {t('content.appMarketplace.statusHeading')}
-        </Typography>
-        <OrderStatusButton
-          color={'primary'}
-          label={t('content.appdetail.subscribe')}
-          buttonData={OrderStatusButtonData}
-          selectable={false}
-        />
-      </DialogContent>
+      {subscriptionOverlay && (
+        <>
+          <DialogContent className="app-overlay-content">
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.appMarketplace.desc1')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.appMarketplace.desc2')}
+            </Typography>
+            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+              {t('content.appMarketplace.desc3')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.appMarketplace.desc4')}
+            </Typography>
+            <Typography variant="h5">
+              {t('content.appMarketplace.termsHeading')}
+            </Typography>
+            {agreements && agreements.length > 0 ? (
+              <ul className="agreements-list">
+                {agreements?.map((agreement, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      label={`${agreement.name} ${agreement.mandatory ? ' *' : ''} `}
+                      onChange={(e) => {
+                        handleCheckedAgreement(e.target.checked, agreement)
+                      }}
+                      onFocusVisible={function noRefCheck() {
+                        // do nothing
+                      }}
+                      size="small"
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <Typography variant="body2" sx={{ mb: '20px' }}>
+                {t('content.appMarketplace.noTermsAvailable')}
+              </Typography>
+            )}
+          </DialogContent>
 
-      <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
-          {t('global.actions.cancel')}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => handleConfirmApp(id)}
-          disabled={
-            checkedAgreementsIds.length > 0 ||
-            (agreements && agreements.length <= 0)
-              ? false
-              : true
-          }
-        >
-          {t('global.actions.confirm')}
-        </Button>
-      </DialogActions>
+          <DialogActions>
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('global.actions.cancel')}
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => handleConfirmApp(id)}
+              disabled={
+                agreements && agreements.length > 0
+                  ? !agreements
+                      ?.filter((data) => data.mandatory && data.agreementId)
+                      .map((item) => item.agreementId)
+                      .every((value) => checkedAgreementsIds.includes(value))
+                  : false
+              }
+            >
+              {t('global.actions.confirm')}
+            </Button>
+          </DialogActions>
+        </>
+      )}
+      {successOverlay && (
+        <>
+          <DialogContent className="app-overlay-content">
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.appMarketplace.desc5')}
+            </Typography>
+            <Typography variant="body2">
+              {t('content.appMarketplace.desc6')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.appMarketplace.desc7')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 3 }}>
+              {t('content.appMarketplace.statusHeading')}
+            </Typography>
+            <OrderStatusButton
+              color={'primary'}
+              label={t('content.appdetail.subscribe')}
+              buttonData={OrderStatusButtonData}
+              selectable={false}
+            />
+            <Typography variant="body2" sx={{ mt: 3, mb: '20px' }}>
+              {t('content.appMarketplace.desc8')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: '20px' }}>
+              {t('content.appMarketplace.desc9')}
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+              {t('global.actions.close')}
+            </Button>
+          </DialogActions>{' '}
+        </>
+      )}
     </>
   )
 }

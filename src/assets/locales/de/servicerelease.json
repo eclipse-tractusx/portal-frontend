@@ -129,9 +129,10 @@
     "headerTitle": "Service Overview - Own managed service offers",
     "inputPlaceholder": "Suchen Sie nach Services",
     "addbtn": "Registrieren Sie Ihre Services",
-    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "submenuNotAvailable": "Untermenü ist nicht verfügbar.",
     "sortOptions": {
-      "deactivate": "Deactivate"
+      "deactivate": "Deaktivieren",
+      "activate": "aktivieren Sie"
     },
     "serviceDeactivate": {
       "headerTitle": "Dienst deaktivieren",
