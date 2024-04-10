@@ -71,6 +71,7 @@ export const InviteList = ({
   return (
     <section id="identity-management-id">
       <PageLoadingTable<CompanyInvite, FetchHookArgsType>
+        autoFocus={false}
         searchExpr={searchExpr}
         toolbarVariant="premium"
         searchPlaceholder={t('global.table.searchName')}
