@@ -83,6 +83,7 @@
   - fixed display of the description correctly
 - Add Roles
   - fixed empty chip display for additional roles in app overview active apps
+- Fixed Automatic Up-Scrolling when Clicking on "More" Button in multiple pages
 
 ### Feature
 
