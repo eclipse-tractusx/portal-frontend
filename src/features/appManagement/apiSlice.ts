@@ -304,8 +304,7 @@ export const apiSlice = createApi({
       invalidatesTags: [Tags.APP],
     }),
     fetchRolesData: builder.query<rolesType[], string>({
-      query: (appId: string) =>
-        `/api/administration/user/owncompany/roles/apps/${appId}`,
+      query: (appId: string) => `/api/apps/${appId}/roles`,
     }),
     updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
       query: (data) => ({
@@ -390,8 +389,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchAppRoles: builder.query<RolesTypes[], string>({
-      query: (appId) =>
-        `/api/administration/user/owncompany/roles/apps/${appId}`,
+      query: (appId) => `/api/apps/${appId}/roles`,
     }),
     updateActiveApp: builder.mutation<
       postRolesResponseType[],
