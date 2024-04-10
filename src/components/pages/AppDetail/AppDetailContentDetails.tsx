@@ -42,9 +42,11 @@ import { PAGES } from 'types/Constants'
 export default function AppDetailContentDetails({
   item,
   showBack = true,
+  nav,
 }: {
   item: AppDetails
   showBack?: boolean
+  nav?: string
 }) {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -91,7 +93,9 @@ export default function AppDetailContentDetails({
                 backButtonLabel={t('global.actions.back')}
                 backButtonVariant="text"
                 onBackButtonClick={() => {
-                  navigate(`/${PAGES.APP_MARKETPLACE}`)
+                  nav === 'marketplace'
+                    ? navigate(`/${PAGES.APP_MARKETPLACE}`)
+                    : navigate(`/${PAGES.APPOVERVIEW}`)
                 }}
               />
             </Box>
