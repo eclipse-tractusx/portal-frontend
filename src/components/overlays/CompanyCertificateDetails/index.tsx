@@ -31,6 +31,7 @@ import './style.scss'
 import {
   useFetchDocumentQuery,
   useFetchCertificatesQuery,
+  type ComapnyCertificateData,
 } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
@@ -46,7 +47,7 @@ import { OVERLAYS, ROLES } from 'types/Constants'
 import dayjs from 'dayjs'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import UserService from 'services/UserService'
-import { FilterType, SortType } from 'components/pages/CompanyCertificates'
+import { SortType } from 'components/pages/CompanyCertificates'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -65,16 +66,25 @@ export default function CompanyCertificateDetails({
     dispatch(closeOverlay())
   }
   const { data: document } = useFetchDocumentQuery(id)
-
+  const [elements, setElements] = useState<ComapnyCertificateData[]>([])
+  const [page, setPage] = useState<number>(0)
   const { data, isFetching, isSuccess } = useFetchCertificatesQuery({
-    filter: FilterType.ACTIVE,
+    filter: '',
     sortOption: SortType.CertificateTypeAsc,
-    page: 0,
+    page,
   })
-
-  const companyData = data?.content.filter((cert) => cert.documentId === id)
+  const companyData = elements.filter((cert) => cert.documentId === id)
   const selected = companyData?.[0]
   const [pdf, setPdf] = useState<string>()
+
+  useEffect(() => {
+    if (data) {
+      setElements(page > 0 ? (i) => i.concat(data?.content) : data.content)
+      if (data?.meta?.totalPages > page + 1) {
+        setPage(page + 1)
+      }
+    }
+  }, [data, page])
 
   useEffect(() => {
     if (document) {

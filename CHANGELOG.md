@@ -69,6 +69,8 @@
   - fixed display of the description correctly
 - Add Roles
   - fixed empty chip display for additional roles in app overview active apps
+- Company Certificate
+  - Show inactive certificate information in details overlay
 
 ### Feature
 
