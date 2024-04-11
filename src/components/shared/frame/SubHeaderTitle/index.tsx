@@ -19,10 +19,10 @@
  ********************************************************************************/
 
 import { Typography } from '@catena-x/portal-shared-components'
-import type { TypographyProps } from '@mui/material/Typography'
+import type { TypographyProps } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-interface ComponentProps {
+interface ComponentProps extends TypographyProps {
   title: string
   params?: Record<string, string>
 }
@@ -31,12 +31,13 @@ export default function SubHeaderTitle({
   title,
   params,
   variant = 'body1',
-}: ComponentProps & TypographyProps) {
+}: ComponentProps) {
   const { t } = useTranslation()
 
   return (
     <Typography
       sx={{ fontFamily: 'LibreFranklin-Light' }}
+      // @ts-expect-error upgraded typescript version
       variant={variant}
       className="section-title"
     >

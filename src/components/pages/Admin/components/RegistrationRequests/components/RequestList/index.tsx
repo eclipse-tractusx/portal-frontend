@@ -33,7 +33,7 @@ import {
   type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
-import type { GridCellParams } from '@mui/x-data-grid'
+import { type GridEventListener } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
 import { isCompanyName } from 'types/Patterns'
@@ -53,7 +53,7 @@ export const RequestList = ({
   onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => void
-  onTableCellClick: (params: GridCellParams) => void
+  onTableCellClick: GridEventListener<'cellClick'>
   loaded: number
   handleDownloadDocument: (
     appId: string,
