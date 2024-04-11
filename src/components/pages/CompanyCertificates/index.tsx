@@ -75,6 +75,7 @@ export default function CompanyCertificates(): JSX.Element {
   const [elements, setElements] = useState<ComapnyCertificateData[]>([])
   const setBtnView = (e: React.MouseEvent<HTMLInputElement>): void => {
     setElements([])
+    setPage(0)
     setFilter(e.currentTarget.value)
   }
 
