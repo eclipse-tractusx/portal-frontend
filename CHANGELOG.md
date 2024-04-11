@@ -3,13 +3,12 @@
 ## unreleased
 
 - Migrate from Create React App to Vite Framework
-  - The old base is deprecated so we switch to a new framework for build scripts and development server
+  - Switch from deperecated CRA to a new framework for build scripts and development server
+  - Upgrade to Portal Shared Components 3.x based on Vite
 - Subscription Management Board
   - Create new page for company subscriptions and add subscription management functionality
 - Quick links
   - update props for quick links and updated shared components package
-- Company Certificates
-  - Connect delete certificate to back end api
 - App Detail Pages
   - UI updates of order status button and back button
 - Service Release Process
@@ -34,11 +33,12 @@
   - New UI for Favourite icon
   - Change Favourite icon on add/remove item from favourite list
 - Company Certificates
+  - Connect delete certificate to back end api
   - Implementation of New UI Design for Company Certificates
   - Show error icon on certificate deletion error scenario
   - Update API Endpoint for Fetching Certificate Document
   - Use listing page api to fetch certificates in details page
-- Add ErrorHandling in Main file
+- Improve ErrorHandling in Main file
 - Organization
   - Redesign of page
 - App Marketplace

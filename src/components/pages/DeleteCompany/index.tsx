@@ -19,11 +19,15 @@
 
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { CircularProgress, Typography } from '@mui/material'
+import { CircularProgress } from '@mui/material'
 import { uniqueId } from 'lodash'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import { getAssetBase } from 'services/EnvironmentService'
-import { Button, LoadingButton } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  LoadingButton,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import {
   ApplicationStatus,
   useDeclineRegistrationMutation,
