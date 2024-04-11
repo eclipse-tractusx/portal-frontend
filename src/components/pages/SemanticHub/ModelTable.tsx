@@ -153,6 +153,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   return (
     <section>
       <Table
+        autoFocus={false}
         rowsCount={modelList.totalItems}
         hideFooter
         loading={loadingModelList}
