@@ -23,8 +23,8 @@ import type { TypographyProps } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 interface ComponentProps extends TypographyProps {
-  title: string
-  params?: Record<string, string>
+  readonly title: string
+  readonly params?: Record<string, string>
 }
 
 export default function SubHeaderTitle({
