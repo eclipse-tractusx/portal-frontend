@@ -85,6 +85,7 @@
   - fixed empty chip display for additional roles in app overview active apps
 - Company Certificate
   - Show inactive certificate information in details overlay
+- Fixed Automatic Up-Scrolling when Clicking on "More" Button in multiple pages
 
 ### Feature
 
