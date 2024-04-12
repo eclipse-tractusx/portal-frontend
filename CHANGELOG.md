@@ -1,105 +1,119 @@
 # Changelog
 
-## unreleased
+## 2.0.0-RC1
 
-- Migrate from Create React App to Vite Framework
-  - Switch from deperecated CRA to a new framework for build scripts and development server
-  - Upgrade to Portal Shared Components 3.x based on Vite
-- Subscription Management Board
-  - Create new page for company subscriptions and add subscription management functionality
-- Quick links
-  - update props for quick links and updated shared components package
-- App Detail Pages
-  - UI updates of order status button and back button
-- Service Release Process
-  - Updated technicalUserProfile by allowing 'none' for dataspace services
-  - Support optional terms for contract and consent
+### Change
+
+- Enhanced the IdP Config Overlay details by adding metadata of
+  - clientId: string
+  - hasClientSecret?: boolean
+  - logoutUrl?: string
+  - metadataUrl: string
+- Menu for reduced screen sizes
+  - updated the small version of the navigation menu to full display height
+- Sub Navigation Header
+  - updated styling and reduced custom style
+- Onboarding Service Provider Customer Registration - Updated UI design of the existing prototype screens
+  - Customer Consent & Company Data Page
+  - Error Overlay & Page
+  - Success Page
+  - introduced mobile version support
+- Extended company role change flow by adding logic and response in case of the role change has no impact on the company rights/features used in the portal
+- Wallet UI
+  - updated main active card style according to new design
+  - added differentiation of wallet card based on status - active, inactive and unknown
+- app marketplace card updated with new styling and elements
+- App Change Process
+  - enabled inactive app sub-menus
+  - update overlay content for 'in progress' apps
+- Shared Components
+  - updated props for quick links
+- migrate from create react app to vite framework
+  - switched from deprecated create react app to a new framework for build scripts and development server
+  - upgraded to Portal Shared Components 3.x based on Vite
+  - upgraded dependencies
+- upgraded keycloak-js dependency to v23.0.7
+- fixed code smells regarding length of "certificateTypes" always greater or equal to zero
+- disabled unwanted console logs
+- removed home page warning
+- code clean-ups
+  - removed unused overlays
+  - remove duplicate api endpoints
+- removed appendchild from the code and replace it with alternative code
+
+### Feature
+
+- Company Certificates (enhancement)
+  - added company certificates inside the partner network company details overlay (incl. download function)
+  - enabled certificate deletion
+  - added success message for certificate upload function
+  - implementation of New UI Design for Company Certificates
+  - enabled error icon on certificate deletion error scenario
+  - updated API Endpoint for fetching Certificate Document
+  - changed listing page api to fetch certificates in details page
+- Company Subscription Management
+  - released company subscriptions management
+  - enabled unsubscribe function of subscriptions
+  - enabled customer subscription detail view with linked objects such as technical user, connector, etc.
+- Technical User Accounts
+  - added "Inactive" view
 - App Release Process
-  - Updated technicalUserProfile by allowing 'none' for technical integration
-  - Support optional terms for contract and consent
-- Technical User Management
-  - Enable inactive users list
-- Portal Login Navigation
-  - UI updates as per figma
-- UI Cleanups
-  - Removed unused overlays
-- API cleanups
-  - Remove duplicate api end points
-- UI Improvements
-  - Add background on hover effect
-  - Fix notifications sorting dropdown closing issue
-  - Make buttons in sync
-- Marketplace
-  - New UI for Favourite icon
-  - Change Favourite icon on add/remove item from favourite list
-- Company Certificates
-  - Connect delete certificate to back end api
-  - Implementation of New UI Design for Company Certificates
-  - Show error icon on certificate deletion error scenario
-  - Update API Endpoint for Fetching Certificate Document
-  - Use listing page api to fetch certificates in details page
-- Improve ErrorHandling in Main file
-- Organization
-  - Redesign of page
-- App Marketplace
-  - Updated subscription request overlay
-- Service Marketplace
-  - Updated subscription request overlay
-- OSP Consent Sanitize input fix
-- Application Request
-  - Fix empty document issue in detail overlay
-- App management
-  - Updated active and inactive apps menus. Also, updated overlay content for 'in progress' apps
+  - enhanced the technical integration configuration form by adding the technical user option "none" and updating frontend logic to manage api payloads
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
+- Service Release Process
+  - enhanced the technical integration configuration form (for type dataspace services) by adding the technical user option "none" and updating frontend logic to manage api payloads
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
+- Company Data/Organization
+  - redesign of company data
+  - added "Company Delete" button in inactive state
+  - added owned and active company certificates
+
+### Technical Support
+
+- introduced codeql scan
+- removed veracode workflow
+- renamed docker notice file
+- CONTRIBUTING.md: linked to contribution details
+- updated eclipse dash tool for dependencies check
+- added dependabot.yml file
+- upgraded gh actions and change to pinned actions full length commit sha
+- removed warnings from log and dev server
 
 ### Bugfix
 
-- Service subscription
-  - Changed 'Active Service Subscription' overlay section header for 'Technical User Details'
-- App Subscription
-  - fixed help links in configuration overlay
-- Notification
-  - fixed help link
-- Release Process
-  - fixed help links in app release process and service release process
-- Unhelpful scroll
-  - fixed auto focus issue which resulted in unhelpful scroll in Partner Network and Application Request page
-- App User
-  - fixed roles display issue
-- IDP Config
-  - fixed textual changes in enable success screen
-- Business Partner Details
-  - Show certificate information which are associated with the bpn number.
-  - Activate on hover and click action to download the corresponding certificate
-- Company Role
-  - handle roles and features data
-- Certificate Elements
-  - fixed code smell error
-- Hamburger
-  - Full height user menu
-  - Click outside to close menu
-- Company Wallet
-  - Card style updates for Active, Inactive and Unknown status
-- App Change Description
-  - fixed display of the description correctly
-- Add Roles
-  - fixed empty chip display for additional roles in app overview active apps
+- inner page upscrolling removed for
+  - Partner Network
+  - Application Request page
+  - Company Subscriptions
+  - Invite Business Partner
+  - Semantic Hub
+  - Technical User Management
+- User Management - fixed user roles displayed in chip cards
+- App release process form - fixed user roles displayed in chip cards
+- Locale file content update
+  - company role change overlay descriptions
+- Wording update in several sections (e.g. 'Active Service Subscription' overlay section header for 'Technical User Details', IdP config - Add IdP | Wrong and confusing information on enable success screen)
+- Help Links fixed
+  - Notification page
+  - App Subscription Activation Overlay
+  - App release process
+  - Service release process
+- switched back button type on app detail page
+- App Change - Description
+  - fixed description displaying logic
+- Semantic Hub overlay of displaying semantic model diagrams fixed
+- Fixed several pages and elements regarding the styling, effects and used typo/sizing
+  - added background on hover effect
+  - fixed notifications sorting dropdown closing issue
+  - button sync
+- Fixed inactive company certificate not being displayed
 - App Roles
-  - update administration app roles api's
-- Company Certificate
-  - Show inactive certificate information in details overlay
-- Fixed Automatic Up-Scrolling when Clicking on "More" Button in multiple pages
+  - updated administration app roles api's
 
-### Feature
+### Known Knowns
 
-- IDP Config
-  - Implementation of displaying metadata details
-- Company certificate
-  - Create upload certificate success overlay
-
-### Feature
-
-- Onboarding Service Provider
-  - created new UI
+- Technical User Accounts - displaying inactive tech user details result into white page due to missing backend enablement.
+- Assign & view app user roles not working (due to backend api integration issue)
 
 ## 1.8.0
 
