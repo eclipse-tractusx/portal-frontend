@@ -24,7 +24,7 @@ import {
   type DropPreviewFileProps,
   type DropStatusHeaderProps,
   type UploadFile,
-  type deleteConfirmOverlayTranslation,
+  type DeleteConfirmOverlayTranslation,
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
   UploadStatus,
@@ -52,7 +52,7 @@ export interface DropzoneProps {
   DropPreviewFile?: FunctionComponent<DropPreviewFileProps> | false
   enableDeleteIcon?: boolean
   enableDeleteOverlay?: boolean
-  deleteOverlayTranslation?: deleteConfirmOverlayTranslation
+  deleteOverlayTranslation?: DeleteConfirmOverlayTranslation
   handleDownload?: () => void
   handleDelete?: (documentId: string) => void
   errorText?: string
@@ -183,7 +183,7 @@ export const Dropzone = ({
           placeholder: t('shared.dropzone.placeholder'),
           uploadError: t('shared.dropzone.uploadError'),
           uploadSuccess: t('shared.dropzone.uploadSuccess'),
-          uploadProgess: t('shared.dropzone.uploadProgess'),
+          uploadProgress: t('shared.dropzone.uploadProgess'),
         }}
         enableDeleteIcon={enableDeleteIcon}
         enableDeleteOverlay={enableDeleteOverlay}

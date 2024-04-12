@@ -24,6 +24,7 @@ import {
   DialogHeader,
   Button,
   Stepper,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
@@ -44,7 +45,7 @@ import {
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { useState } from 'react'
 
 export default function AddAppUserRoles() {
