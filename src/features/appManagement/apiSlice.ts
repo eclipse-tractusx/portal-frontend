@@ -306,7 +306,7 @@ export const apiSlice = createApi({
     }),
     fetchRolesData: builder.query<rolesType[], string>({
       query: (appId: string) =>
-        `/api/administration/user/owncompany/roles/apps/${appId}`,
+        `/api/administration/user/owncompany/roles/apps/${appId}?languageShortName=${i18next.language}`,
     }),
     updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
       query: (data) => ({
