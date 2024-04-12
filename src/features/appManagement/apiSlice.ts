@@ -21,6 +21,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { AppStatusDataState } from './types'
+import i18next from 'i18next'
 
 export type useCasesItem = {
   useCaseId: string
@@ -390,7 +391,8 @@ export const apiSlice = createApi({
       }),
     }),
     fetchAppRoles: builder.query<RolesTypes[], string>({
-      query: (appId) => `/api/apps/AppChange/${appId}/roles`,
+      query: (appId) =>
+        `/api/apps/AppChange/${appId}/roles?languageShortName=${i18next.language}`,
     }),
     updateActiveApp: builder.mutation<
       postRolesResponseType[],
