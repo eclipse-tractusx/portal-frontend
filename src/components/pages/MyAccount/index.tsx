@@ -33,6 +33,7 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined'
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
@@ -64,7 +65,7 @@ export default function MyAccount() {
           <Button
             color="secondary"
             onClick={async () => {
-              await navigator.clipboard.writeText(token)
+              await navigator.clipboard.writeText(token ?? '')
               success(t('content.account.copy_to_clipboard_success'))
             }}
             size="small"
@@ -79,6 +80,7 @@ export default function MyAccount() {
             onClick={handleDeleteUser}
             size="small"
             variant="outlined"
+            startIcon={<CancelOutlinedIcon />}
           >
             {t('content.account.deleteAccount')}
           </Button>

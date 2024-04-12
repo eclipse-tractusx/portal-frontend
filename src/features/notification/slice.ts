@@ -20,7 +20,7 @@
 
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
-import { initServicetNotifications } from 'types/MainTypes'
+import { initServicetNotifications, initialPaginMeta } from 'types/MainTypes'
 import type {
   PageNotificationsProps,
   PaginMeta,
@@ -99,7 +99,7 @@ export const slice = createSlice({
 })
 
 export const metaSelector = (state: RootState): PaginMeta =>
-  state.notification.meta
+  state.notification.meta ?? initialPaginMeta
 
 export const notificationSelector = (
   state: RootState

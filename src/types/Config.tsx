@@ -82,8 +82,11 @@ import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import OSPManagement from 'components/pages/OSPManagement'
-import CompanyCertificates from 'components/pages/CompanyCertificates'
 import CompanyWallet from 'components/pages/CompanyWallet'
+import CompanyCertificates from 'components/pages/CompanyCertificates'
+import { OSPConsent } from 'components/pages/OSPConsent'
+import CompanySubscriptions from 'components/pages/CompanySubscriptions'
+import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 
 /**
  * ALL_PAGES
@@ -148,10 +151,10 @@ export const ALL_PAGES: IPage[] = [
       <Route
         key={PAGES.APP_DETAIL}
         path={PAGES.APP_DETAIL}
-        element={<AppDetail />}
+        element={<AppDetail navigate={'marketplace'} />}
       >
         <Route index element={null} />
-        <Route path=":appId" element={<AppDetail />} />
+        <Route path=":appId" element={<AppDetail navigate={'marketplace'} />} />
       </Route>
     ),
   },
@@ -491,6 +494,19 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
+    name: PAGES.VIEW_DETAILS,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.VIEW_DETAILS}
+        path={PAGES.VIEW_DETAILS}
+        element={<AppDetail navigate={'appoverview'} />}
+      >
+        <Route path=":appId" element={<AppDetail navigate={'appoverview'} />} />
+      </Route>
+    ),
+  },
+  {
     name: PAGES.ROLE_DETAILS,
     element: <RoleDetails />,
   },
@@ -544,6 +560,29 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.COMPANY_WALLET,
     element: <CompanyWallet />,
   },
+  {
+    name: PAGES.CONSENT_OSP,
+    element: <OSPConsent />,
+  },
+  {
+    name: PAGES.COMPANY_SUBSCRIPTIONS,
+    role: ROLES.VIEW_SUBSCRIPTION,
+    element: <CompanySubscriptions />,
+  },
+  {
+    name: PAGES.COMPANY_SUBSCRIPTIONS_DETAIL,
+    role: ROLES.VIEW_SUBSCRIPTION,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}
+        path={PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}
+        element={<CompanySubscriptionDetail />}
+      >
+        <Route path=":appId" element={<CompanySubscriptionDetail />} />
+      </Route>
+    ),
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -586,10 +625,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.USERMANAGEMENT_VIEW,
   },
   {
-    name: OVERLAYS.TECHUSER,
-    role: ROLES.TECHUSER_VIEW,
-  },
-  {
     name: OVERLAYS.SERVICE_REQUEST,
     role: ROLES.APPSTORE_VIEW_SERVICES,
   },
@@ -608,10 +643,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.IDP_CONFIRM,
     role: ROLES.IDP_DELETE,
-  },
-  {
-    name: OVERLAYS.IDP_STATUS,
-    role: ROLES.IDP_DISABLE,
   },
   {
     name: OVERLAYS.ADD_IDP,
@@ -642,20 +673,12 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_SETUP,
   },
   {
-    name: OVERLAYS.DELETE_IDP,
-    role: ROLES.IDP_DELETE,
-  },
-  {
     name: OVERLAYS.DELETE_MANAGED_IDP,
     role: ROLES.IDP_DELETE,
   },
   {
     name: OVERLAYS.ADDUSERS_IDP,
     role: ROLES.IDP_SETUP,
-  },
-  {
-    name: OVERLAYS.IDP_TEST_RUN,
-    role: ROLES.IDP_ADD,
   },
   {
     name: OVERLAYS.REGISTER_OSP,
@@ -666,9 +689,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.IDP_SETUP,
   },
   {
-    name: OVERLAYS.CONSENT_OSP,
-  },
-  {
     name: OVERLAYS.APP_OVERVIEW_CONFIRM,
     role: ROLES.APPOVERVIEW_VIEW,
   },
@@ -677,9 +697,6 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.CONFIRM_USER_ACTION,
-  },
-  {
-    name: OVERLAYS.SAMPLE_FORM,
   },
   {
     name: OVERLAYS.ADD_SERVICE_PROVIDER,
@@ -785,6 +802,7 @@ export const mainMenuFullTree = [
 export const userMenuFull = [
   PAGES.ACCOUNT,
   PAGES.ORGANIZATION,
+  PAGES.COMPANY_SUBSCRIPTIONS,
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,

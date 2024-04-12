@@ -14,7 +14,7 @@
     "partnernetwork": "Partner Network",
     "connector": "Connector",
     "account": "My CX Account",
-    "organization": "My Organization",
+    "organization": "My Company",
     "notifications": "Notifications",
     "usermanagement": "User Management",
     "idpmanagement": "Identity Provider Config",
@@ -64,6 +64,7 @@
     "admin-credential": "Certification Mgmt",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
+    "company-subscriptions": "Company Subscriptions",
     "mycompany": "My Company",
     "mynotifications": "My Notifications"
   },
@@ -143,7 +144,7 @@
         "DONE": "Done",
         "FAILED": "Failed"
       },
-      "helperText": "If you have any questions regarding your registration please contact our helpdesk: help@catena-x.com.",
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@catena-x.com.</0>",
       "note": "NOTE:",
       "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
@@ -385,32 +386,41 @@
       }
     },
     "organization": {
-      "company": {
+      "companyDetails": {
         "title": "Company Details",
-        "error": "error - no data found",
-        "name": "Company Name: ",
-        "address": "Address: ",
-        "city": "City: ",
-        "bpn": "BPN: "
+        "companyName": "Company Name",
+        "bpn": "BPN",
+        "street": "Street & House Number",
+        "postal": "Postal Code & City",
+        "region": "Country Code & Region"
       },
-      "subscriptions": {
-        "title": "App Subscriptions",
-        "error": "error - no data found"
+      "companyRoles": {
+        "title": "Company Roles in Catena-X",
+        "RoleName": "Active Participant"
       },
-      "unsubscribe": {
-        "title": "Unsubscribe Business Application",
-        "description": "Are you sure to unsubscribe from the business application?",
-        "note": "Please Note: all possibly connected objects (see details above) will get deactivated as well.The unsubscription is not revertible.",
-        "table": {
-          "app": "App",
-          "status": "Status",
-          "connector": "Connector",
-          "techUser": "Technical User"
-        },
-        "checkBoxLabel": "Yes I agree that I understood the unsubscribe impact and want to proceed with the process.",
-        "buttonText": "Unsubscribe",
-        "unsubscribeSuccess": "Unsubscribe subscription is successful",
-        "unsubscribeError": "Something went wrong. Try again after sometime or contact administrator"
+      "deleteAccount": "Delete Account",
+      "certificates": "Certificates/Documents"
+    },
+    "companySubscriptions": {
+      "headertitle": "App & Service Subscriptions",
+      "tableTitle": "Subscribed Apps",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "connector": "Connector",
+      "technicalUser": "Technical User",
+      "unsubscribe": "Unsubscribe",
+      "table": {
+        "appIcon": "App Icon",
+        "appTitle": "App title",
+        "status": "Status",
+        "details": "Details",
+        "action": "Action"
+      },
+      "filter": {
+        "requested": "requested",
+        "active": "active",
+        "showAll": "show all"
       }
     },
     "datamanagement": {
@@ -435,12 +445,15 @@
         "changeImage": "Change Image",
         "changeDescription": "Change Description",
         "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)"
+        "changeDocuments": "Change Document(s)",
+        "viewDetails": "View Details",
+        "activate": "Activate",
+        "delete": "Delete"
       },
       "addbtn": "Register your App",
       "confirmModal": {
         "title": "Change app {appName}",
-        "description": "The app configuration is currently 'work in progress'. Do you want to open the app release process for {appName} and further enhance the app details? Please note you do not need to finish the app release configuration. You can use the save button and proceed later if wanted."
+        "description": "Dear user, you have selected an application that's currently in the “In Creation” status. Would you like to access the app release management form for this app? This will allow you to modify and update the data and information associated with the application before it's released."
       },
       "details": {
         "longDescription": "Long Description",
@@ -450,7 +463,7 @@
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
-      "submenuNotAvail": "Sub-Menu is not available for inactive apps."
+      "submenuNotAvail": "Sub-Menu is not available"
     },
     "deactivate": {
       "headerTitle": "Deactivate Business App",
@@ -738,7 +751,7 @@
         },
         "editRoles": {
           "title": "Manage roles for ",
-          "subtitle": "The user cannot enter his account until he has set a new password."
+          "subtitle": "Please select additional roles for the app or unselect any role which should get unassigned."
         }
       },
       "addUsers": {
@@ -809,7 +822,8 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "all": "All",
+          "active": "Active",
+          "inactive": "Inactive",
           "managed": "Managed",
           "owned": "Owned"
         },
@@ -1135,7 +1149,8 @@
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
-        "encodingPlaceholder": "Select supported encoding"
+        "encodingPlaceholder": "Select supported encoding",
+        "noneOption": "none (no technical user needed to run the app/service)"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1207,7 +1222,17 @@
     },
     "serviceMarketplace": {
       "headline": "Purchase Service Request",
-      "description": "Dear user, you have requested service {serviceName}. Please find below the Terms and Conditions. Please check the terms and conditions carefully before proceeding. As soon as the terms & conditions are approved, the services provider will start to build up the service.",
+      "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
+      "desc3": "IMPORTANT NOTICE:",
+      "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the app provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
+      "termsHeading": "Specific Terms and Conditions:",
+      "noTermsAvailable": "no specific terms and conditions",
+      "desc5": "Dear customer,",
+      "desc6": "We are pleased to inform you that the subscription process got successfully triggered.",
+      "desc7": "The provider is informed about your interest and may contact you shortly.",
+      "desc8": "The entire process is expected to complete within 5 business days.",
+      "desc9": "Thank you for choosing the service.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -1231,11 +1256,18 @@
     },
     "appMarketplace": {
       "headline": "Business Application Subscription",
-      "desc1": "Do you want to trigger a subscription request for app {appName}?",
-      "desc2": "With click on 'Confirm' below, the app provider will get automatically informed about your request and start the subscription process. If additional informations are needed, the provider will contact you directly. The process may take up to 5 days.",
-      "desc3": "As soon as all queries are clarified, the app provider will be able to activate your app tenant and you will get automatically informed to take further steps.",
-      "desc4": "Please note: with confirming the app subscription request, the app provider will receive your dataspace available business partner data (company name, bpn, address, etc.) as well as your email address in case additional information are needed.",
+      "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
+      "desc3": "IMPORTANT NOTICE:",
+      "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the app provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
+      "termsHeading": "Specific Terms and Conditions:",
+      "noTermsAvailable": "no specific terms and conditions",
+      "desc5": "Dear customer,",
+      "desc6": "We are pleased to inform you that the subscription process got successfully triggered.",
+      "desc7": "The provider is informed about your interest and may contact you shortly.",
       "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace.",
+      "desc8": "The entire process is expected to complete within 5 business days.",
+      "desc9": "Thank you for choosing the service.",
       "errorMessage": "The subscription was unsuccessful; please contact your administrator."
     },
     "techUser": {
@@ -1553,8 +1585,8 @@
       "headerTitle": "Roles",
       "heading": "Change Company Role",
       "description": "Below you can manage the roles your company takes in Catena-X.",
-      "step1": "You can change your current role by deselecting it and selecting another role.",
-      "step2": "If you already have more than one role for your company, you can deselect roles. At least one role must always be assigned to your company.",
+      "step1": "You can change your current role by selecting and deselecting the resepctive available roles.",
+      "step2": "If you already have more than one role to your company assigned, you can deselect roles. At least one role must always be assigned to your company.",
       "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
       "note": "Please note: ",
       "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
@@ -1562,28 +1594,30 @@
       "APP_PROVIDER": "App Provider",
       "SERVICE_PROVIDER": "Service Provider",
       "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
-      "roleDescDownTitle": "Full role description",
+      "OPERATOR": "Operator",
+      "roleDescDownTitle": "Expand role description",
       "roleDescUpTitle": "Close role description",
       "successDescription": "Company Roles successfully updated.",
       "errorDescription": "Something went wrong. Please try it later again.",
       "overlay": {
         "title": "Do you really want to change your company's role(s) within Cantena-X?",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "description": "The section below provides a brief explanation of how your selected changes in your company role may impact your views; functions and individual user rights.",
         "selectedRolesTitle": "You have selected the following changes to your company's role profile:",
         "role": "Role",
         "added": "Added",
         "deselected": "Deselected",
-        "expandLabel": "full role description",
-        "expandedLabel": "close role description",
-        "changeRolesHeading": "The change of your role has the following consequences:",
+        "expandLabel": "Expand role description",
+        "expandedLabel": "Close role description",
+        "changeRolesHeading": "The change of your company role has the following consequences:",
         "rolesAddedHeading": "User roles added",
         "rolesNoLongerHeading": "User roles no longer available",
         "featuresAddedHeading": "Features added",
         "featuresNoLongerHeading": "Features no longer available",
-        "termsHeading": "Please agree to the following terms & conditions for new role profile:",
+        "termsHeading": "Please agree to the following terms & conditions for the new company role profile:",
         "TermsAndCondSpan1": "Yes, I agree to the",
         "TermsAndCondSpan2": "of the selected role.",
-        "submit": "Commence role change"
+        "noChange": "No change impact",
+        "submit": "Submit role change"
       }
     },
     "usecaseParticipation": {
@@ -1656,11 +1690,11 @@
     },
     "companyCertificate": {
       "heading": "Company Certificates",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "description": "Efficiently manage and organize your company certificates with ease. This page provides a user-friendly interface to view, add, edit, and delete company certificates. Stay on top of your certificate management process and ensure compliance effortlessly.",
       "tabs": {
-        "inactive": "Pending",
+        "inactive": "Inactive",
         "active": " Active",
-        "all": "All"
+        "all": "All certificates"
       },
       "sort": {
         "nameasc": "Certificate Asc",
@@ -1674,11 +1708,14 @@
         "status": "Status",
         "deletebutton": "Delete Certificate",
         "fileUpload": "File Upload",
-        "verification": "Verification"
+        "verification": "Verification",
+        "nocertificate": "No active certificate available"
       },
       "upload": {
         "title": "Upload new certificate",
         "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
+        "successTitle": "Certificate successfully uploaded.",
+        "successDescription": "The upload was successful. The document is now available under your company certificate management page as well as shared with all dataspace providers.",
         "certificateTypeTitle": "Certificate Type",
         "certificateTypeError": "",
         "certificateTypeLabel": "",
@@ -1705,7 +1742,13 @@
       "validtill": "Valid Till",
       "morelink": ">> More",
       "view": "View",
-      "delete": "Delete"
+      "delete": "Delete",
+      "tooltips": {
+        "pending": "Certificate is Pending",
+        "active": "Certificate is Active",
+        "inactive": "Certificate is Inactive",
+        "warning": "Certificate is exprired or about to expire"
+      }
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",

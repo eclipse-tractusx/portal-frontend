@@ -38,7 +38,6 @@ import {
   userMenuCompany,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
-import TechnicalUserInfo from 'components/overlays/TechnicalUserInfo'
 import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
@@ -47,16 +46,12 @@ import ServiceRequest from 'components/overlays/ServiceRequest'
 import NotFound from 'components/overlays/NotFound'
 import BusinessPartnerInfo from 'components/overlays/BusinessPartnerInfo'
 import IDPDelete from 'components/overlays/IDPDelete'
-import IDPStatusChange from 'components/overlays/IDPStatusChange'
-import IDPTestRun from 'components/overlays/IDPTestRun'
 import AppOverViewConfirm from 'components/overlays/AppOverViewConfirm'
 import AppDetailsOverlay from 'components/overlays/AppOverViewConfirm/AppDetailsOverlay'
 import { ConfirmUserAction } from 'components/overlays/ConfirmUserAction'
 import AppMarketplaceSubscribeRequest from 'components/overlays/AppMarketplaceRequest'
 import { AddIdp } from 'components/overlays/AddIDP'
-import { SampleForm } from 'components/overlays/SampleForm'
 import { UpdateIDP } from 'components/overlays/UpdateIDP'
-import { DeleteIDP } from 'components/overlays/DeleteIDP'
 import { EnableIDP } from 'components/overlays/EnableIDP'
 import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess'
 import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
@@ -138,8 +133,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddMultipleUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
-    case OVERLAYS.TECHUSER:
-      return <TechnicalUserInfo id={overlay.id} />
     case OVERLAYS.ADD_TECHUSER:
       return <AddTechnicalUser />
     case OVERLAYS.DELETE_TECHUSER:
@@ -162,14 +155,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AppMarketplaceSubscribeRequest id={overlay.id} />
     case OVERLAYS.IDP_CONFIRM:
       return <IDPDelete id={overlay.id} title={overlay.title} />
-    case OVERLAYS.IDP_STATUS:
-      return (
-        <IDPStatusChange
-          id={overlay.id}
-          title={overlay.title}
-          idpStatus={overlay.status}
-        />
-      )
     case OVERLAYS.ADD_IDP:
       return <AddIdp />
     case OVERLAYS.UPDATE_IDP:
@@ -184,12 +169,8 @@ export const getOverlay = (overlay: OverlayState) => {
       return <DisableManagedIDP id={overlay.id} />
     case OVERLAYS.ADDUSERS_IDP:
       return <AddusersIDP id={overlay.id} />
-    case OVERLAYS.DELETE_IDP:
-      return <DeleteIDP id={overlay.id} />
     case OVERLAYS.DELETE_MANAGED_IDP:
       return <DeleteManagedIDP id={overlay.id} />
-    case OVERLAYS.IDP_TEST_RUN:
-      return <IDPTestRun />
     case OVERLAYS.REGISTER_OSP:
       return <OSPRegister id={overlay.id} />
     case OVERLAYS.REGISTER_NEXT_OSP:
@@ -208,8 +189,6 @@ export const getOverlay = (overlay: OverlayState) => {
           subTitle={overlay.subTitle}
         />
       )
-    case OVERLAYS.SAMPLE_FORM:
-      return <SampleForm />
     case OVERLAYS.ADD_SERVICE_PROVIDER:
       return <AddServiceProvider />
     case OVERLAYS.SERVICE_DECLINE_ADMINBOARD:
@@ -223,7 +202,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.EDIT_USECASE:
       return <EditUsecase id={overlay.id} title={overlay.title ?? ''} />
     case OVERLAYS.UPDATE_CERTIFICATE:
-      return <UpdateCertificate id={overlay.id} />
+      return <UpdateCertificate />
     case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:
       return <CompanyCertificateDetails id={overlay.id} />
     case OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE:

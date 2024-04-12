@@ -21,6 +21,7 @@ import { Box, Link, ListItem } from '@mui/material'
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { t } from 'i18next'
+import './MobileMenu.scss'
 
 export interface CompanyMenuTypes {
   to: string
@@ -40,34 +41,32 @@ export const MyCompanyLink = ({
   return (
     <Box
       sx={{
-        margin: '5px 0px',
+        margin: '5px 0px 10px 10px',
+        borderRadius: '16px',
+        ':hover': {
+          backgroundColor: 'rgba(15, 113, 203, 0.05)',
+        },
       }}
       onClick={() => {
         onSelect(t('pages.mycompany'), companyMenu)
       }}
     >
-      <ListItem>
+      <ListItem
+        sx={{
+          paddingLeft: '10px',
+        }}
+      >
         <Link
           className="titleBox"
           sx={{
             width: '100%',
             color: 'text.primary',
-            pointerEvents: 'auto',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderRadius: 3,
-            typography: 'label3',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
             ':hover': {
-              backgroundColor: 'selected.hover',
               color: 'primary.dark',
               '.MuiSvgIcon-root': {
                 color: 'primary.dark',
               },
             },
-            cursor: 'pointer',
           }}
           {...props}
         >

@@ -26,13 +26,13 @@ import { appIdSelector } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   useFetchAppStatusQuery,
-  useFetchDocumentByIdMutation,
   useFetchRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonValidateAndPublish from '../components/CommonValidateAndPublish'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 export default function ValidateAndPublish({
   showSubmitPage,
@@ -126,7 +126,7 @@ export default function ValidateAndPublish({
         values={defaultValues}
         rolesData={data}
         helpUrl={
-          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F05.+Verify+%26+Submit.md'
         }
       />
     </div>

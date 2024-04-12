@@ -74,6 +74,7 @@ export enum PAGES {
   CHANGE_DESCRIPTION = 'changedescription',
   ADD_ROLES = 'addroles',
   CHANGE_DOCUMENTS = 'changedocuments',
+  VIEW_DETAILS = 'viewDetails',
   APPRELEASEPROCESS = 'appreleaseprocess',
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   INTRODUCTION = 'companyroles',
@@ -104,6 +105,9 @@ export enum PAGES {
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
+  CONSENT_OSP = 'consent_osp',
+  COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
+  COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
 }
 
 export enum OVERLAYS {
@@ -114,7 +118,6 @@ export enum OVERLAYS {
   ADD_APP_USER_ROLES = 'add_app_user_roles',
   EDIT_APP_USER_ROLES = 'edit_app_user_roles',
   USER = 'user',
-  TECHUSER = 'techuser',
   ADD_TECHUSER = 'add_techuser',
   DELETE_TECHUSER = 'delete_techuser',
   NEWS = 'news',
@@ -131,13 +134,10 @@ export enum OVERLAYS {
   ENABLE_IDP = 'enable_idp',
   DISABLE_IDP = 'disable_idp',
   DISABLE_MANAGED_IDP = 'disable_managed_idp',
-  DELETE_IDP = 'delete_idp',
   DELETE_MANAGED_IDP = 'delete_managed_idp',
   ADDUSERS_IDP = 'addusers_idp',
   IDP_DETAILS = 'idp_details',
   IDP_CONFIRM = 'idp_confirm',
-  IDP_STATUS = 'idp_status',
-  IDP_TEST_RUN = 'idp_test_run',
   ENABLE_IDP_SUCCESS = 'enable_idp_success',
   REGISTER_OSP = 'register_osp',
   REGISTER_NEXT_OSP = 'register_next_osp',
@@ -145,7 +145,6 @@ export enum OVERLAYS {
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',
-  SAMPLE_FORM = 'sample_form',
   ADD_SERVICE_PROVIDER = 'add_service_provider',
   APP_DECLINE_ADMINBOARD = 'app_decline_adminboard',
   EDIT_PORTAL_ROLES = 'edit_portal_roles',
@@ -220,9 +219,11 @@ export enum ROLES {
   SUBMITTED_APPLICATION = 'view_submitted_applications',
   REQUEST_SSICREDENTIAL = 'request_ssicredential',
   DECISION_SSICREDENTIAL = 'decision_ssicredential',
+  COMPANY_WALLET = 'view_wallet',
   COMPANY_CERTIFICATE_VIEW = 'view_certificates',
   UPLOAD_COMPANY_CERTIFICATE = 'upload_certificates',
-  COMPANY_WALLET = 'view_wallet',
+  VIEW_SUBSCRIPTION = 'view_subscription',
+  DELETE_CERTIFICATES = 'delete_certificates',
 }
 
 export enum HINTS {

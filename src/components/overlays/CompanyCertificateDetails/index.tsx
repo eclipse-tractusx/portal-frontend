@@ -30,7 +30,8 @@ import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
 import {
   useFetchDocumentQuery,
-  useFetchCompanyCertificateQuery,
+  useFetchCertificatesQuery,
+  type ComapnyCertificateData,
 } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
@@ -42,10 +43,11 @@ import {
   ProgressStatus,
 } from 'features/admin/applicationRequestApiSlice'
 import { useEffect, useState } from 'react'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import dayjs from 'dayjs'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import UserService from 'services/UserService'
+import { SortType } from 'components/pages/CompanyCertificates'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -64,12 +66,25 @@ export default function CompanyCertificateDetails({
     dispatch(closeOverlay())
   }
   const { data: document } = useFetchDocumentQuery(id)
-  const { data: companyDetails, isFetching } = useFetchOwnCompanyDetailsQuery()
-  const { data } = useFetchCompanyCertificateQuery(companyDetails?.bpn ?? '')
-
-  const companyData = data?.filter((cert) => cert.documentId === id)
+  const [elements, setElements] = useState<ComapnyCertificateData[]>([])
+  const [page, setPage] = useState<number>(0)
+  const { data, isFetching, isSuccess } = useFetchCertificatesQuery({
+    filter: '',
+    sortOption: SortType.CertificateTypeAsc,
+    page,
+  })
+  const companyData = elements.filter((cert) => cert.documentId === id)
   const selected = companyData?.[0]
   const [pdf, setPdf] = useState<string>()
+
+  useEffect(() => {
+    if (data) {
+      setElements(page > 0 ? (i) => i.concat(data?.content) : data.content)
+      if (data?.meta?.totalPages > page + 1) {
+        setPage(page + 1)
+      }
+    }
+  }, [data, page])
 
   useEffect(() => {
     if (document) {
@@ -145,6 +160,24 @@ export default function CompanyCertificateDetails({
     )
   }
 
+  const showNoCertificateMsg = () => {
+    return (
+      <DialogContent>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '50px 50px 20px 50px',
+          }}
+        >
+          <Typography variant="h4">
+            {t('content.companyCertificate.details.nocertificate')}
+          </Typography>
+        </Box>
+      </DialogContent>
+    )
+  }
+
   return (
     <Dialog
       open={true}
@@ -175,6 +208,9 @@ export default function CompanyCertificateDetails({
               </Box>
               <Box>
                 <Button
+                  disabled={
+                    !UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
+                  }
                   startIcon={<DeleteIcon />}
                   variant="outlined"
                   size="small"
@@ -211,7 +247,7 @@ export default function CompanyCertificateDetails({
           </Box>
         </DialogContent>
       ) : (
-        showLoader()
+        <>{!isFetching && isSuccess ? showNoCertificateMsg() : showLoader()}</>
       )}
 
       <DialogActions>

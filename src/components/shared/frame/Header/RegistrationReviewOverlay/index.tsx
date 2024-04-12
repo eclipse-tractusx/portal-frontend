@@ -51,34 +51,48 @@ const RegistrationReviewOverlay = ({
   })
 
   return (
-    <Dialog
-      open={openDialog}
-      additionalModalRootStyles={{
-        width: isMobile ? '80%' : '50%',
-      }}
-    >
-      <DialogHeader title={t('content.registrationInreview.title')} />
-      <DialogContent
-        sx={{
-          padding: isMobile ? '0 30px' : '0 120px',
-          marginBottom: 5,
+    <div className="registration-review-dialog-main">
+      <Dialog
+        open={openDialog}
+        additionalModalRootStyles={{
+          width: isMobile ? '100%' : '50%',
+          margin: isMobile ? '80px 0 0' : '',
+          borderRadius: '32px 32px 0px 0px',
         }}
       >
-        <div className="registration-review">
-          <Trans>
-            <Typography variant="body1" className="description">
-              {t('content.registrationInreview.description')}
-            </Typography>
-          </Trans>
-          <RegistrationReviewContent />
-        </div>
-      </DialogContent>
-      <DialogActions helperText={t('content.registrationInreview.helperText')}>
-        <Button variant="contained" size="small" onClick={handleOverlayClose}>
-          {t('global.actions.close')}
-        </Button>
-      </DialogActions>
-    </Dialog>
+        <DialogHeader title={t('content.registrationInreview.title')} />
+        <DialogContent
+          sx={{
+            padding: isMobile ? '0 20px' : '0 120px',
+            marginBottom: '20px',
+          }}
+        >
+          <div className="registration-review">
+            <Trans>
+              <Typography
+                variant={isMobile ? 'body2' : 'body1'}
+                className="description"
+              >
+                {t('content.registrationInreview.description')}
+              </Typography>
+            </Trans>
+            <RegistrationReviewContent />
+          </div>
+        </DialogContent>
+        <DialogActions
+          helperText={
+            <Trans
+              i18nKey={t('content.registrationInreview.helperText')}
+              components={[<span style={{ color: '#0f71cb' }} key="0"></span>]}
+            ></Trans>
+          }
+        >
+          <Button variant="contained" size="small" onClick={handleOverlayClose}>
+            {t('global.actions.close')}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   )
 }
 

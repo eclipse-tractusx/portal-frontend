@@ -17,12 +17,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import SmallLogo from 'assets/logo/cx-logo-short.svg'
 import { Typography } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
-import smallLogo from '../../../assets/logo/cx-logo-short.svg'
-import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
+import {
+  CredentialSubjectStatus,
+  type WalletContent,
+} from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
+import './CompanyWallet.scss'
 
 export default function WalletCard({
   wallet,
@@ -30,50 +33,80 @@ export default function WalletCard({
   readonly wallet: WalletContent
 }): JSX.Element {
   const { t } = useTranslation()
+
+  const current = {
+    info: t('content.companyWallet.activate'),
+    message: t('content.companyWallet.activateDescription'),
+  }
+
+  const status =
+    wallet?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE
+
   return (
-    <div
-      style={{
-        backgroundColor:
-          wallet?.credentialSubject[0].status === 'Active'
-            ? '#004f4b'
-            : '#EAEAEA',
-      }}
-      className="main-card-container"
-    >
-      <div className="card-container">
-        <div className="icon-text">
-          <div className="icon">
-            <img src={smallLogo} alt="jhgasjg12i" />
-            {wallet?.credentialSubject[0].status !== 'Active' && (
-              <div>
-                <Typography variant="body2">
-                  {t('content.companyWallet.inactive')}
-                </Typography>
-              </div>
-            )}
-          </div>
-          <Typography variant="body2">
-            {wallet?.credentialSubject[0].type}
-          </Typography>
-          <Typography variant="caption1">
-            {wallet?.issuer?.split('.net:')[1]}
-          </Typography>
-        </div>
-        {wallet?.expirationDate && (
-          <div>
-            <Typography
-              sx={{
-                textAlign: 'left',
-                color: '#ffffff',
-              }}
-              variant="body2"
-            >
-              {t('content.companyWallet.expiry')}
-              {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
+    <div className="wrapper-container">
+      <div
+        style={{
+          backgroundColor:
+            wallet?.credentialSubject[0].status ===
+            CredentialSubjectStatus.ACTIVE
+              ? '#004f4b'
+              : '#EAEAEA',
+        }}
+        className="main-card-container"
+      >
+        <div className="card-container">
+          <div className="icon-text">
+            <div className="icon">
+              <SmallLogo />
+              {wallet?.credentialSubject[0].status !==
+                CredentialSubjectStatus.ACTIVE && (
+                <div>
+                  <Typography variant="body2">
+                    {t('content.companyWallet.inactive')}
+                  </Typography>
+                </div>
+              )}
+            </div>
+            <Typography variant="body2">
+              {wallet?.credentialSubject[0].type}
+            </Typography>
+            <Typography variant="caption1">
+              {wallet?.issuer?.split('.net:')[1]}
             </Typography>
           </div>
-        )}
+          {wallet?.expirationDate && (
+            <div>
+              <Typography
+                sx={{
+                  textAlign: 'left',
+                  color: '#ffffff',
+                }}
+                variant="body2"
+              >
+                {t('content.companyWallet.expiry')}
+                {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
+              </Typography>
+            </div>
+          )}
+        </div>
       </div>
+      {status && (
+        <div className="status-container">
+          <div className="info">
+            <Typography
+              variant="body1"
+              sx={{
+                color: status ? '#00AA55' : '#FF532F',
+                paddingLeft: '10px',
+                fontWeight: '600',
+              }}
+            >
+              {current.info}
+            </Typography>
+          </div>
+          <Typography variant="body1">{current.message}</Typography>
+        </div>
+      )}
     </div>
   )
 }

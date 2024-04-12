@@ -57,6 +57,7 @@ import { initialState } from 'features/serviceManagement/types'
 
 enum ServiceSubMenuItems {
   DEACTIVATE = 'deactivate',
+  ACTIVATE = 'activate',
 }
 interface CardItemsInterface extends CardItems {
   status?: ProvidedServiceStatusEnum
@@ -82,11 +83,18 @@ export default function ServiceListOverview() {
   const dispatch = useDispatch()
   const theme = useTheme()
 
-  const submenuOptions = [
+  const activeSubmenuOptions = [
     {
       label: t('serviceoverview.sortOptions.deactivate'),
       value: ServiceSubMenuItems.DEACTIVATE,
-      url: '',
+    },
+  ]
+
+  const inactiveSubmenuOptions = [
+    {
+      label: t('serviceoverview.sortOptions.activate'),
+      value: ServiceSubMenuItems.ACTIVATE,
+      disabled: true,
     },
   ]
 
@@ -266,7 +274,8 @@ export default function ServiceListOverview() {
                       }
                     }}
                     subMenu={true}
-                    submenuOptions={submenuOptions}
+                    activeSubmenuOptions={activeSubmenuOptions}
+                    inactiveSubmenuOptions={inactiveSubmenuOptions}
                     submenuClick={(
                       sortMenu: string,
                       id: string | undefined

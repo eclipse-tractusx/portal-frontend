@@ -83,7 +83,7 @@ export const slice = createSlice({
     builder.addCase(fetchRegistrationRequests.rejected, (state, action) => {
       state.paginationData = {} as PaginationData
       state.loading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
     builder.addCase(fetchCompanyDetail.pending, (state) => {
       state.detailLoading = true
@@ -98,7 +98,7 @@ export const slice = createSlice({
     builder.addCase(fetchCompanyDetail.rejected, (state, action) => {
       state.companyDetail = {} as CompanyDetail
       state.detailLoading = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
     builder.addCase(fetchPage.pending, (state) => {
       state.data = initialPaginResult
@@ -113,7 +113,7 @@ export const slice = createSlice({
     builder.addCase(fetchPage.rejected, (state, action) => {
       state.data = initialPaginResult
       state.request = RequestState.ERROR
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
   },
 })

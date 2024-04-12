@@ -77,6 +77,7 @@ export type ServiceRequestAPIResponse = {
 export type AgreementRequest = {
   agreementId: string
   name: string
+  mandatory: boolean
 }
 
 export interface SubscriptionRequestBody {
@@ -132,15 +133,6 @@ export const apiSlice = createApi({
     fetchAgreements: builder.query<AgreementRequest[], string>({
       query: (serviceId) => `/api/services/serviceAgreementData/${serviceId}`,
     }),
-    fetchDocumentById: builder.mutation({
-      query: (data: DocumentRequestData) => ({
-        url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
-        responseHandler: async (response) => ({
-          headers: response.headers,
-          data: await response.blob(),
-        }),
-      }),
-    }),
   }),
 })
 
@@ -150,5 +142,4 @@ export const {
   useAddSubscribeServiceMutation,
   useFetchSubscriptionQuery,
   useFetchAgreementsQuery,
-  useFetchDocumentByIdMutation,
 } = apiSlice

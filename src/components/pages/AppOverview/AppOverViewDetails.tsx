@@ -28,7 +28,6 @@ import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
   ConsentStatusEnum,
-  useFetchDocumentByIdMutation,
   useFetchRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
@@ -38,6 +37,7 @@ import {
   type AppStatusDataState,
 } from 'features/appManagement/types'
 import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 export default function AppOverViewDetails({
   item,
@@ -108,10 +108,7 @@ export default function AppOverViewDetails({
   )
 
   useEffect(() => {
-    if (
-      item?.documents?.APP_LEADIMAGE &&
-      item?.documents?.APP_LEADIMAGE[0].documentId
-    ) {
+    if (item?.documents?.APP_LEADIMAGE?.[0].documentId) {
       fetchImage(item?.documents?.APP_LEADIMAGE[0].documentId)
     }
   }, [item, fetchImage])
@@ -160,30 +157,29 @@ export default function AppOverViewDetails({
                 }}
               />
             </div>
-            {item?.useCase &&
-              item?.useCase?.map((newCase) => {
-                return (
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
+            {item?.useCase?.map((newCase) => {
+              return (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography variant="h5">
+                    {t('content.appoverview.details.useCase')}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      padding: '0px 10px',
                     }}
+                    variant="body2"
                   >
-                    <Typography variant="h5">
-                      {t('content.appoverview.details.useCase')}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        padding: '0px 10px',
-                      }}
-                      variant="body2"
-                    >
-                      {newCase.label}
-                    </Typography>
-                  </div>
-                )
-              })}
+                    {newCase.label}
+                  </Typography>
+                </div>
+              )
+            })}
             <div
               style={{
                 display: 'flex',

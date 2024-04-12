@@ -23,7 +23,7 @@ import {
   Typography,
   Navigation,
   ImageGallery,
-  Button,
+  BackButton,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
@@ -42,9 +42,11 @@ import { PAGES } from 'types/Constants'
 export default function AppDetailContentDetails({
   item,
   showBack = true,
+  nav,
 }: {
   item: AppDetails
   showBack?: boolean
+  nav?: string
 }) {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -87,15 +89,15 @@ export default function AppDetailContentDetails({
         <div className="app-marketplace-main">
           {showBack && (
             <Box className="app-back">
-              <Button
-                color="secondary"
-                size="small"
-                onClick={() => {
-                  navigate(`/${PAGES.APP_MARKETPLACE}`)
+              <BackButton
+                backButtonLabel={t('global.actions.back')}
+                backButtonVariant="text"
+                onBackButtonClick={() => {
+                  nav === 'marketplace'
+                    ? navigate(`/${PAGES.APP_MARKETPLACE}`)
+                    : navigate(`/${PAGES.APPOVERVIEW}`)
                 }}
-              >
-                {t('global.actions.back')}
-              </Button>
+              />
             </Box>
           )}
 

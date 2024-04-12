@@ -21,7 +21,9 @@ import { Box, Link, useTheme } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import type { MenuItemProps } from './MenuItem'
-import React from 'react'
+
+import './MobileMenu.scss'
+import { t } from 'i18next'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -42,7 +44,11 @@ export const MenuSubItems = ({
 }: MenuSubItemsProps): JSX.Element => {
   const { spacing } = useTheme()
   return (
-    <Box>
+    <Box
+      sx={{
+        marginBottom: '55px',
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -50,22 +56,25 @@ export const MenuSubItems = ({
           marginLeft: '20px',
           cursor: 'pointer',
           marginBottom: '20px',
+          alignItems: 'center',
         }}
         onClick={onHide}
       >
         <KeyboardArrowLeftIcon sx={{ color: 'icon.icon02' }} />
         <Typography
+          className="font-libre"
           sx={{
-            paddingLeft: '10px',
+            paddingLeft: '5px',
+            fontSize: '12px',
+            textTransform: 'lowercase',
           }}
           variant="body2"
         >
-          back
+          {t('global.actions.back')}
         </Typography>
       </Box>
       <Box
         sx={{
-          borderBottom: '1px solid #e3e3e3',
           paddingLeft: '25px',
           paddingBottom: '10px',
           paddingTop: '15px',
@@ -75,6 +84,7 @@ export const MenuSubItems = ({
           variant="label2"
           sx={{
             fontWeight: '600',
+            fontSize: '14px',
           }}
         >
           {title}
@@ -84,20 +94,14 @@ export const MenuSubItems = ({
         <Link
           component={component}
           key={item.title}
+          className="titleBox"
           sx={{
             color: 'text.primary',
-            pointerEvents: 'auto',
-            display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
             padding: spacing(1.5, 2),
-            borderRadius: 3,
-            typography: 'label3',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
             marginLeft: '10px',
             ':hover': {
-              backgroundColor: 'selected.hover',
+              backgroundColor: 'rgba(15, 113, 203, 0.05)',
               color: 'primary.dark',
               '.MuiSvgIcon-root': {
                 color: 'primary.dark',

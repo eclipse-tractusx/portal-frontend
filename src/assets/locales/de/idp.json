@@ -111,9 +111,8 @@
     "subHeading2": "You have completed the setup process of your new IdP.",
     "nextStepHeading": "Your NEXT Steps:",
     "nextStepSubHeading": "To test the new IdP, please do the following:",
-    "step1Heading": "“Test new IdP login” by clicking the button below",
-    "step2Heading": "“Sign in” again with your IdP “smoke test jj01” and <br /> user “julia.jeroch@bmw.de”",
-    "note": "Please note:",
+    "step1Heading": "Klicken Sie auf die Schaltfläche „Abmelden“, um sich von Ihrem aktuellen Konto abzumelden",
+    "step2Heading": "Anschließend wählen Sie auf der Login-Seite den neu erstellten Identity-Provider-Login „{{idpDisplayname}}“ aus. Und melden Sie sich mit Ihren persönlichen Zugangsdaten an, die Sie für diesen IdP verwendet haben.",
     "or": "OR",
     "successText": "If the test succeeds, <br />... commence user migration <br />... deactivate old IdP",
     "failText": "If the test fails,<br />please “sign in” with your “old” <br />Catena-X user and check the settings <br />of your new IdP. "

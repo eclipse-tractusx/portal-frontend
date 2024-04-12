@@ -53,6 +53,7 @@ export const AppListGroupView = ({
           expandOnHover={true}
           imageLoader={fetchImageWithToken}
           boxClickable={true}
+          showFavIcon={true}
         />
       </Box>
     )

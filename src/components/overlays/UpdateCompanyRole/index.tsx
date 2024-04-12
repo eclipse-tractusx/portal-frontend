@@ -41,7 +41,6 @@ import {
   type CompanyRolesResponse,
   type RoleFeatureData,
   type RolesData,
-  useFetchDocumentByIdMutation,
   useFetchRolesQuery,
   useUpdateCompanyRolesMutation,
 } from 'features/companyRoles/companyRoleApiSlice'
@@ -53,6 +52,7 @@ import {
   setCompanyRoleSuccess,
   setOverlayCancel,
 } from 'features/companyRoles/slice'
+import { useFetchFrameDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 export enum AgreementStatus {
   ACTIVE = 'ACTIVE',
@@ -71,7 +71,7 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const [agreements, setAgreements] = useState<AgreementsData[]>([])
   const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
 
-  const [getDocumentById] = useFetchDocumentByIdMutation()
+  const [getDocumentById] = useFetchFrameDocumentByIdMutation()
   const { data } = useFetchRolesQuery()
   const [updateCompanyRoles] = useUpdateCompanyRolesMutation()
 
@@ -275,14 +275,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 {t('content.companyRolesUpdate.overlay.rolesAddedHeading')}
               </Typography>
               {newSelectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray &&
-                  dataArray[
-                    role.companyRoles as keyof RolesData
-                  ]?.selected.roles.map((sampleRole: RoleFeatureData) => {
-                    return getRolesFeaturesList(sampleRole)
-                  })
-                )
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.selected.roles
+                  ? dataArray[
+                      role.companyRoles as keyof RolesData
+                    ].selected.roles.map((sampleRole: RoleFeatureData) => {
+                      return getRolesFeaturesList(sampleRole)
+                    })
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}
@@ -294,14 +294,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 {t('content.companyRolesUpdate.overlay.rolesNoLongerHeading')}
               </Typography>
               {newDeselectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray &&
-                  dataArray[
-                    role.companyRoles as keyof RolesData
-                  ]?.deselected.roles.map((sampleRole: RoleFeatureData) => {
-                    return getRolesFeaturesList(sampleRole)
-                  })
-                )
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.deselected.roles
+                  ? dataArray[
+                      role.companyRoles as keyof RolesData
+                    ].deselected.roles.map((sampleRole: RoleFeatureData) => {
+                      return getRolesFeaturesList(sampleRole)
+                    })
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}
@@ -313,14 +313,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 {t('content.companyRolesUpdate.overlay.featuresAddedHeading')}
               </Typography>
               {newSelectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray &&
-                  dataArray[
-                    role.companyRoles as keyof RolesData
-                  ]?.selected.features.map((sampleRole: RoleFeatureData) => {
-                    return getRolesFeaturesList(sampleRole)
-                  })
-                )
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.selected.features
+                  ? dataArray[
+                      role.companyRoles as keyof RolesData
+                    ].selected.features.map((sampleRole: RoleFeatureData) => {
+                      return getRolesFeaturesList(sampleRole)
+                    })
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}
@@ -334,14 +334,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                 )}
               </Typography>
               {newDeselectedRoles?.map((role: CompanyRolesResponse) => {
-                return (
-                  dataArray &&
-                  dataArray[
-                    role.companyRoles as keyof RolesData
-                  ]?.selected.features.map((sampleRole: RoleFeatureData) => {
-                    return getRolesFeaturesList(sampleRole)
-                  })
-                )
+                return dataArray?.[role.companyRoles as keyof RolesData]
+                  ?.deselected.features
+                  ? dataArray[
+                      role.companyRoles as keyof RolesData
+                    ].deselected.features.map((sampleRole: RoleFeatureData) => {
+                      return getRolesFeaturesList(sampleRole)
+                    })
+                  : t('content.companyRolesUpdate.overlay.noChange')
               })}
             </div>
           )}

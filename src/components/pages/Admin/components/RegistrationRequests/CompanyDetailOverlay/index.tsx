@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import React, { useState, useEffect, useRef, type SyntheticEvent } from 'react'
+import { useState, useEffect, useRef, type SyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -39,11 +39,11 @@ import {
   type ApplicationRequest,
   useFetchCheckListDetailsQuery,
   useFetchCompanySearchQuery,
-  useFetchNewDocumentByIdMutation,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getTitle } from './CompanyDetailsHelper'
+import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -79,7 +79,8 @@ const CompanyDetailOverlay = ({
   useEffect(() => {
     if (data) {
       const selected = data?.content?.filter(
-        (company: { bpn: string }) => selectedCompany.bpn === company.bpn
+        (company: { bpn: string }) =>
+          !company.bpn || selectedCompany.bpn === company.bpn
       )
       setCompany(selected[0])
     }
@@ -128,7 +129,7 @@ const CompanyDetailOverlay = ({
   }
 
   const handleChange = (
-    event: SyntheticEvent<Element, Event>,
+    _event: SyntheticEvent<Element, Event>,
     newValue: number
   ) => {
     setHeight(
@@ -252,7 +253,7 @@ const CompanyDetailOverlay = ({
                       <DetailGridRow
                         key={id.type}
                         {...{
-                          variableName: getUniqueIdName(id) as string,
+                          variableName: getUniqueIdName(id)!,
                           value: id.value ?? '',
                         }}
                       />
@@ -315,16 +316,23 @@ const CompanyDetailOverlay = ({
                             documentId: string
                             documentType: string
                           }) => (
-                            <div
+                            <Box
                               key={contract.documentId}
-                              style={{
+                              sx={{
                                 display: 'flex',
-                                padding: '20px',
+                                padding: '5px',
+                                margin: '20px',
                                 alignItems: 'center',
+                                ':hover': {
+                                  backgroundColor: 'rgb(176 206 235 / 40%)',
+                                  borderRadius: '20px',
+                                },
                               }}
                             >
                               <>
-                                <ArticleOutlinedIcon />
+                                <ArticleOutlinedIcon
+                                  sx={{ color: '#0f71cb' }}
+                                />
                                 <button
                                   style={{
                                     textDecoration: 'underline',
@@ -333,6 +341,7 @@ const CompanyDetailOverlay = ({
                                     border: 'none',
                                     background: 'transparent',
                                     paddingLeft: '10px',
+                                    color: '#0f71cb',
                                   }}
                                   onClick={() => {
                                     void downloadDocument(
@@ -344,7 +353,7 @@ const CompanyDetailOverlay = ({
                                   {contract?.documentType}
                                 </button>
                               </>
-                            </div>
+                            </Box>
                           )
                         )}
                       </>

@@ -146,9 +146,8 @@ export const appCardStatus = (apps: AppMarketplaceApp[]): CardItems[] => {
       const status = app.status?.toLocaleLowerCase() as
         | SubscriptionStatus
         | undefined
-      const statusText =
-        SubscriptionStatusText[app.status as SubscriptionStatus] || app.status
-      const title = app.name as string
+      const statusText = SubscriptionStatusText[app.status!] || app.status
+      const title = app.name!
       return { ...app, title, status, statusText }
     })
     .filter((e) => e.status)
@@ -159,7 +158,7 @@ export const appCardRecentlyApps = (apps: AppMarketplaceApp[]): CardItems[] => {
   const recentlyData = apps
     .filter((e) => e.lastChanged)
     .map((e) => {
-      const timestamp = new Date(e.lastChanged as string).getTime()
+      const timestamp = new Date(e.lastChanged!).getTime()
       return { ...e, timestamp }
     })
     .sort((a, b) => b.timestamp - a.timestamp)

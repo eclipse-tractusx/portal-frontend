@@ -240,7 +240,7 @@ export default function CertificateCredentials() {
                 <Tooltips
                   additionalStyles={{
                     cursor: 'pointer',
-                    display: certificateTypes.length >= 0 ? 'none' : 'block',
+                    display: certificateTypes.length ? 'none' : 'block',
                   }}
                   tooltipPlacement="top-start"
                   tooltipText={t('content.certificates.noUploadMessage')}

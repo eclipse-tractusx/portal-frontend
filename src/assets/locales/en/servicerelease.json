@@ -63,7 +63,8 @@
     "headerTitle": "Technical Integration",
     "headerDescription": "Setup the technical profile of a technical user/service account of needed permissions to be able to run the application inside the dataspace. Select minimum one permission, the selected permission(s) will be stored as service technical user profile and used to create technical users for subscription activations.",
     "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
-    "technicalUserProfileError": "Error while updating technical user profiles"
+    "technicalUserProfileError": "Error while updating technical user profiles",
+    "noneOption": "none (no technical user needed to run the app/service)"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
@@ -128,9 +129,10 @@
       "wip": "WIP"
     },
     "addbtn": "Register your Service",
-    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "submenuNotAvailable": "Sub-Menu is not available.",
     "sortOptions": {
-      "deactivate": "Deactivate"
+      "deactivate": "Deactivate",
+      "activate": "Activate"
     },
     "serviceDeactivate": {
       "headerTitle": "Deactivate Service",
@@ -177,6 +179,7 @@
       "subtitle": "for ",
       "description": "In order to activate the subscription of {{company}}, follow these steps below, <br /> <br />1. Activate the service subscription request.<br />2. Customer will be informed about the successfully activation<br />",
       "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /> <br />1. Activate the service subscription request.<br />2. System - technical user (if needed) will get generated and credentials getting shared.<br />3. Configure your service with the specific technical user to ensure that the service is fully usable",
+      "technicalUserDetails": "Technical User Details",
       "sectionHeader": "Technical User Profile",
       "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
       "close": "Close",

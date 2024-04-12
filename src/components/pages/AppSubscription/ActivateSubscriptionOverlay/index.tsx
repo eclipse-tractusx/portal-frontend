@@ -37,7 +37,6 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
 import {
   type SubscriptionActivationResponse,
   useAddUserSubscribtionMutation,
-  useFetchTechnicalProfilesQuery,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -46,11 +45,12 @@ import type { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
 import { closeOverlay } from 'features/control/overlay'
+import { useFetchTechnicalUserProfilesQuery } from 'features/appManagement/apiSlice'
 
 const TentantHelpURL =
-  '/documentation/?path=user%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
+  '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F04.+Subscription+Activation+%28App+Provider%29.md'
 const ProfileHelpURL =
-  '/documentation/?path=user%2F04.App%28s%29%2F05.+App-Subscription%2F04.+Subscription+Activation%28App+Provider%29.md'
+  '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F04.+Subscription+Activation+%28App+Provider%29.md'
 
 interface ActivateSubscriptionProps {
   openDialog: boolean
@@ -80,7 +80,7 @@ const ActivateSubscriptionOverlay = ({
     useState<SubscriptionActivationResponse>()
 
   const [addUserSubscribtion] = useAddUserSubscribtionMutation()
-  const { data } = useFetchTechnicalProfilesQuery(appId)
+  const { data } = useFetchTechnicalUserProfilesQuery(appId)
 
   const addInputURL = (value: string) => {
     setInputURL(value)

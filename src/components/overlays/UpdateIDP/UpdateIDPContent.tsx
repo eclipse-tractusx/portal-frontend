@@ -39,8 +39,7 @@ import {
 } from '@catena-x/portal-shared-components'
 
 const isWellknownMetadata = (expr: string) =>
-  (isURL(expr) || expr.startsWith('http://localhost')) &&
-  expr.endsWith('.well-known/openid-configuration')
+  isURL(expr) && expr.endsWith('.well-known/openid-configuration')
 
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
@@ -98,6 +97,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="metadataUrl"
           label={t('field.metadata.name')}
+          value={idp.oidc?.metadataUrl}
           validate={(expr) => isWellknownMetadata(expr)}
           hint={t('field.metadata.hint')}
           debounceTime={0}
@@ -108,6 +108,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="clientId"
           label={t('field.clientId.name')}
+          value={idp.oidc?.clientId}
           hint={t('field.clientId.hint')}
           validate={isIDPClientID}
           onValid={onChange}
@@ -117,6 +118,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="secret"
           label={t('field.clientSecret.name')}
+          value={idp.oidc?.hasClientSecret ? '******' : ''}
           hint={t('field.clientSecret.hint')}
           type={InputType.password}
           validate={isIDPClientSecret}

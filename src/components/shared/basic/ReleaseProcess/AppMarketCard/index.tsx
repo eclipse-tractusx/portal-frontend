@@ -43,7 +43,6 @@ import {
   type salesManagerType,
   useSaveAppMutation,
   useFetchAppStatusQuery,
-  useFetchDocumentByIdMutation,
   DocumentTypeId,
   useDeleteAppReleaseDocumentMutation,
   type appLanguagesItem,
@@ -74,6 +73,7 @@ import {
   type LanguageStatusType,
   type UseCaseType,
 } from 'features/appManagement/types'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 type FormDataType = {
   title: string
@@ -236,7 +236,6 @@ export default function AppMarketCard() {
         }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [salesManagerList, appStatusData])
 
   const onSalesManagerChange = (sales: string | null) => {
@@ -260,17 +259,13 @@ export default function AppMarketCard() {
   }, [cardImageData])
 
   useEffect(() => {
-    if (
-      appStatusData?.documents?.APP_LEADIMAGE &&
-      appStatusData?.documents?.APP_LEADIMAGE[0].documentId
-    ) {
+    if (appStatusData?.documents?.APP_LEADIMAGE?.[0].documentId) {
       void fetchCardImage(
         appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
         appStatusData?.documents?.APP_LEADIMAGE[0].documentName
       )
     }
     reset(defaultValues)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatusData])
 
   const setFileStatus = (
@@ -341,7 +336,7 @@ export default function AppMarketCard() {
 
   const handleUploadDocument = (
     appId: string,
-    buttonLabel: string,
+    _buttonLabel: string,
     uploadImageValue: DropzoneFile
   ) => {
     const setFileStatus = (status: UploadFileStatus) => {
@@ -586,7 +581,7 @@ export default function AppMarketCard() {
 
             <div className="form-field">
               {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string, i) => (
+                (item: string) => (
                   <div key={item}>
                     <ConnectorFormInputFieldShortAndLongDescription
                       {...{
@@ -854,7 +849,7 @@ export default function AppMarketCard() {
         isValid={isValid}
         loader={loading}
         helpUrl={
-          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process'
+          '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F01.+App+Card.md'
         }
       />
       <PageSnackbar

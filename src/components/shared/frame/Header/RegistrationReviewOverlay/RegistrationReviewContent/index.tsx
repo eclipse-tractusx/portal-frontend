@@ -19,20 +19,14 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { useMediaQuery, useTheme } from '@mui/material'
-import { Typography, StatusTag } from '@catena-x/portal-shared-components'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import LoopIcon from '@mui/icons-material/Loop'
-import PendingActionsIcon from '@mui/icons-material/PendingActions'
-import PendingIcon from '@mui/icons-material/Pending'
-import ReportProblemIcon from '@mui/icons-material/ReportProblem'
+import { Typography } from '@catena-x/portal-shared-components'
 import {
   type ApplicationChecklist,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
-import uniqueId from 'lodash/uniqueId'
 import '../RegistrationReview.scss'
 import { ProgressStatus } from 'features/admin/applicationRequestApiSlice'
+import RegistrationStatusList from './RegistrationStatusList'
 
 export type StatusTagIcon = {
   type?: 'confirmed' | 'pending' | 'declined' | 'label'
@@ -40,10 +34,7 @@ export type StatusTagIcon = {
 
 const RegistrationReviewContent = () => {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
-    defaultMatches: true,
-  })
+
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
 
@@ -52,49 +43,9 @@ const RegistrationReviewContent = () => {
       checklist.statusId === ProgressStatus.DONE
   ).length
 
-  const renderStatus = (status: string) => {
-    switch (status) {
-      case ProgressStatus.IN_PROGRESS:
-        return {
-          icon: <LoopIcon />,
-          backgroundColor: '#EAF1FE',
-          color: '#0F71CB',
-          iconColor: 'label' as StatusTagIcon['type'],
-        }
-      case ProgressStatus.TO_DO:
-        return {
-          icon: <PendingActionsIcon />,
-          backgroundColor: '#EAF1FE',
-          color: '#0F71CB',
-          iconColor: 'label' as StatusTagIcon['type'],
-        }
-      case ProgressStatus.DONE:
-        return {
-          icon: <CheckCircleOutlineIcon />,
-          backgroundColor: '#F5F9EE',
-          color: '#00AA55',
-          iconColor: 'confirmed' as StatusTagIcon['type'],
-        }
-      case ProgressStatus.FAILED:
-        return {
-          icon: <ReportProblemIcon />,
-          backgroundColor: '#FFF6FF',
-          color: '#D91E18',
-          iconColor: 'declined' as StatusTagIcon['type'],
-        }
-      default:
-        return {
-          icon: <PendingIcon />,
-          backgroundColor: '#FFF6FF',
-          color: '#D91E18',
-          iconColor: 'label' as StatusTagIcon['type'],
-        }
-    }
-  }
-
   return (
     <>
-      <Typography variant="body1" className="subDescription">
+      <Typography variant="body3" className="subDescription">
         {t('content.registrationInreview.subDescription')}
       </Typography>
       <Trans
@@ -107,46 +58,9 @@ const RegistrationReviewContent = () => {
           {t('content.registrationInreview.stageTitle')}
         </Typography>
       </Trans>
-      <ul className="statusList">
-        {companyData?.applicationChecklist.map(
-          (checklist: ApplicationChecklist) => (
-            <li
-              key={uniqueId(checklist.statusId)}
-              style={{
-                backgroundColor: renderStatus(checklist.statusId)
-                  .backgroundColor,
-                flexDirection: isMobile ? 'column-reverse' : 'unset',
-              }}
-            >
-              {!isMobile && (
-                <div
-                  style={{ color: renderStatus(checklist.statusId).color }}
-                  className="icon"
-                >
-                  {renderStatus(checklist.statusId).icon}
-                </div>
-              )}
-              <div
-                className={`${isMobile ? 'm-0' : 'statusLabel'}`}
-                style={{
-                  margin: isMobile ? 0 : '',
-                }}
-              >
-                <Typography variant="label3">
-                  {t(`content.registrationInreview.steps.${checklist.typeId}`)}
-                </Typography>
-              </div>
-              <StatusTag
-                color={renderStatus(checklist.statusId).iconColor}
-                label={t(
-                  `content.registrationInreview.status.${checklist.statusId}`
-                )}
-                size="small"
-              />
-            </li>
-          )
-        )}
-      </ul>
+      {companyData?.applicationChecklist && (
+        <RegistrationStatusList checklist={companyData.applicationChecklist} />
+      )}
     </>
   )
 }

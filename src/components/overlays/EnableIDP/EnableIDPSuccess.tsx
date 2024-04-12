@@ -32,10 +32,13 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay, exec } from 'features/control/overlay'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { ACTIONS } from 'types/Constants'
+import { useFetchIDPDetailQuery } from 'features/admin/idpApiSlice'
 
 export const EnableIDPSuccess = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
+
+  const { data } = useFetchIDPDetailQuery(id)
 
   const stepsList = [
     {
@@ -140,7 +143,11 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
             >
               2
             </Typography>
-            <Trans>
+            <Trans
+              values={{
+                idpDisplayname: data?.displayName,
+              }}
+            >
               <Typography variant="label2">
                 {t('enablesuccess.step2Heading')}
               </Typography>

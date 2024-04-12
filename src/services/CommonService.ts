@@ -44,9 +44,7 @@ const appToCard = (app: AppMarketplaceApp): AppMarketplaceCard => ({
   price: getPrice(app),
   onClick: onClick(app),
   image: {
-    src: `${getApiBase()}/api/apps/${app.id}/appDocuments/${isValidPictureId(
-      app.leadPictureId ?? ''
-    )}`,
+    src: getPictureURL(app.id, app.leadPictureId ?? ''),
     alt: app.title,
   },
 })
@@ -58,12 +56,15 @@ const imagesAndAppidToImageType = (
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   images?.map((image: any) => ({
-    url: `${getApiBase()}/api/apps/${appId}/appDocuments/${isValidPictureId(
-      image.documentId ?? image
-    )}`,
+    url: getPictureURL(appId, image.documentId),
     text: 'Catena-X',
     loader: fetchImageWithToken,
   }))
+
+const getPictureURL = (appId: string, docId: string) =>
+  docId === '00000000-0000-0000-0000-000000000000'
+    ? ''
+    : `${getApiBase()}/api/apps/${appId}/appDocuments/${docId}`
 
 const isValidPictureId = (id: string) => {
   return id === '00000000-0000-0000-0000-000000000000'
@@ -94,8 +95,8 @@ const getCompanyRoleUpdateData = (callback: (data: RolesData) => void) => {
     .then((data) => {
       callback(data)
     })
-    .catch((error) => {
-      console.log('Fetching Company Roles Data Failed')
+    .catch((error: unknown) => {
+      console.log('Fetching Company Roles Data Failed', error)
     })
 }
 

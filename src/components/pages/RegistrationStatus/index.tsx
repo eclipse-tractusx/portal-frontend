@@ -90,15 +90,12 @@ export default function RegistrationStatus() {
   })
 
   return (
-    <div className="container registration-main mobile-left">
+    <div className="container registration-main">
       <div className="text-center">
-        <Typography variant="h2" className="text-center mb-35 title">
+        <Typography variant="h2" className="mb-35 title">
           {t('content.registration.title')}
         </Typography>
-        <Typography
-          variant="body1"
-          className="mainDescription text-center mb-35"
-        >
+        <Typography variant="body1" className="mainDescription mb-35">
           {t('content.registration.mainDescription')}
         </Typography>
         <Button
@@ -111,7 +108,7 @@ export default function RegistrationStatus() {
         >
           {t('content.registration.completeBtn')}
         </Button>
-        <Typography variant="body3" className="description text-center">
+        <Typography variant="body3" className="description">
           {t('content.registration.description')}
         </Typography>
         <Stepper

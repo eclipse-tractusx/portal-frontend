@@ -21,11 +21,10 @@
   padding: 56px 112px 30px;
 }
 .app-overlay-content {
-  min-width: auto;
-  .app-description {
-    text-align: center;
-  }
   .agreements-list {
     list-style: none;
+    .MuiTypography-root {
+      font-size: 14px !important;
+    }
   }
 }

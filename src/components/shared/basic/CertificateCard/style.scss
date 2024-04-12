@@ -65,6 +65,11 @@
       .deleteIcon {
         margin-left: 20px;
         color: #0f71cb;
+        cursor: pointer;
+      }
+      .deleteIcon:hover {
+        background-color: rgb(176 206 235 / 40%);
+        border-radius: 50%;
       }
     }
     .type {

@@ -63,7 +63,8 @@
     "headerTitle": "Technical Integration",
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
-    "technicalUserProfileError": "Error while updating technical user profiles"
+    "technicalUserProfileError": "Error while updating technical user profiles",
+    "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
@@ -128,9 +129,10 @@
     "headerTitle": "Service Overview - Own managed service offers",
     "inputPlaceholder": "Suchen Sie nach Services",
     "addbtn": "Registrieren Sie Ihre Services",
-    "submenuNotAvailable": "Sub-Menu is not available for not active apps.",
+    "submenuNotAvailable": "Untermenü ist nicht verfügbar.",
     "sortOptions": {
-      "deactivate": "Deactivate"
+      "deactivate": "Deaktivieren",
+      "activate": "aktivieren Sie"
     },
     "serviceDeactivate": {
       "headerTitle": "Dienst deaktivieren",
@@ -177,6 +179,7 @@
       "subtitle": "for ",
       "description": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Activate the service subscription request.<br />2. Customer will be informed about the successfully activation<br />",
       "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Activate the service subscription request.<br />2. System - technical user (if needed) will get generated and credentials getting shared.<br />3. Configure your service with the specific technical user to ensure that the service is fully usable",
+      "technicalUserDetails": "Technische Benutzerdetails",
       "sectionHeader": "Technischer User Profil",
       "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
       "close": "Close",

@@ -74,7 +74,7 @@ const modelsSlice = createSlice({
     builder.addCase(fetchSemanticModels.rejected, (state, action) => {
       state.modelList = defaultModels
       state.loadingModelList = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
     builder.addCase(fetchSemanticModelById.pending, (state) => {
       state.model = null
@@ -89,7 +89,7 @@ const modelsSlice = createSlice({
     builder.addCase(fetchSemanticModelById.rejected, (state, action) => {
       state.model = null
       state.loadingModel = false
-      state.error = action.error.message as string
+      state.error = action.error.message!
     })
     builder.addCase(postSemanticModel.pending, (state) => {
       state.uploading = true
@@ -104,7 +104,7 @@ const modelsSlice = createSlice({
     builder.addCase(postSemanticModel.rejected, (state, action) => {
       state.uploading = false
       state.uploadedModel = null
-      state.uploadError = action.error.message as string
+      state.uploadError = action.error.message!
     })
     builder.addCase(changeOpenApiUrl.fulfilled, (state, action) => {
       state.openApiLink = URL.createObjectURL(action.payload)
@@ -112,7 +112,7 @@ const modelsSlice = createSlice({
     })
     builder.addCase(changeOpenApiUrl.rejected, (state, action) => {
       state.openApiLink = ''
-      state.openApiError = action.error.message as string
+      state.openApiError = action.error.message!
     })
     builder.addCase(deleteSemanticModelById.fulfilled, (state, { payload }) => {
       state.deleteModelId = payload
@@ -120,7 +120,7 @@ const modelsSlice = createSlice({
     })
     builder.addCase(deleteSemanticModelById.rejected, (state, action) => {
       state.deleteModelId = ''
-      state.deleteError = action.error.message as string
+      state.deleteError = action.error.message!
     })
   },
 })

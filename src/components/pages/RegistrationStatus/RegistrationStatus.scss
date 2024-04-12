@@ -26,6 +26,7 @@
 
   .text-center {
     text-align: center;
+    padding: 0 15px;
   }
 
   .mb-35 {
@@ -58,7 +59,8 @@
 
   .description {
     max-width: 600px;
-    margin-bottom: 35px;
+    margin: 0 auto 35px;
+    text-align: center;
   }
 
   .completeBtn {

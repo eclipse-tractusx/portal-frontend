@@ -86,6 +86,8 @@ export const Header = ({
             )}
             {buttonText && (
               <Button
+                variant="contained"
+                color="secondary"
                 onClick={() => {
                   handleClick()
                 }}

@@ -48,7 +48,7 @@ export const TechnicalUserTable = () => {
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ALL)
+  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ACTIVE)
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
@@ -68,8 +68,13 @@ export const TechnicalUserTable = () => {
 
   const filterButtons = [
     {
-      buttonText: t('content.usermanagement.technicalUser.tabs.all'),
-      buttonValue: ServiceAccountStatusFilter.ALL,
+      buttonText: t('content.usermanagement.technicalUser.tabs.active'),
+      buttonValue: ServiceAccountStatusFilter.ACTIVE,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
+      buttonValue: ServiceAccountStatusFilter.INACTIVE,
       onButtonClick: setView,
     },
     {
@@ -87,6 +92,7 @@ export const TechnicalUserTable = () => {
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry, FetchHookArgsType>
+        autoFocus={false}
         searchExpr={expr}
         hasBorder={false}
         rowHeight={80}
