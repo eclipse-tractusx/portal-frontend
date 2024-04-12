@@ -77,7 +77,7 @@ export const apiSlice = createApi({
     }),
     fetchAppRoles: builder.query<AppRole[], string>({
       query: (appId: string) =>
-        `/api/apps/${appId}/roles?lang=${i18next.language}`,
+        `/api/administration/user/owncompany/roles/apps/${appId}?languageShortName=${i18next.language}`,
     }),
     fetchAppUsers: builder.query<PaginResult<TenantUser>, PaginFetchArgs>({
       query: (fetchArgs) =>
