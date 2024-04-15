@@ -735,12 +735,14 @@
         "userRoleErrorMsg": "Roles have not got updated.",
         "header": {
           "title": "App Roles",
-          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
+          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area.",
+          "noRoles": "No app roles are currently existing. No assignment possible."
         },
         "table": {
           "headline": "Identity Management",
           "title": "App Users",
           "add": "Add Role",
+          "buttonTooltip": "Function disabled since no app roles are available",
           "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {

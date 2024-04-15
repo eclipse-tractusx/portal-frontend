@@ -87,6 +87,9 @@ export default function Organization() {
               key={item}
               color="label"
               label={t(`content.companyRolesUpdate.${item}`)}
+              sx={{
+                marginRight: '8px',
+              }}
             />
           ))}
         </>

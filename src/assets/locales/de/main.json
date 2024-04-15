@@ -736,12 +736,14 @@
         "userRoleErrorMsg": "Etwas ist schief gelaufen. Benutzerrollen wurden nicht aktualisiert.",
         "header": {
           "title": "App Rollen",
-          "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
+          "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen",
+          "noRoles": "Derzeit sind keine App-Rollen vorhanden. Keine Zuordnung möglich."
         },
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
           "add": "Benutzerrolle hinzufügen",
+          "buttonTooltip": "Funktion deaktiviert, da keine App-Rollen verfügbar sind",
           "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {
