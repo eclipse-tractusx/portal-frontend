@@ -4,6 +4,14 @@
 
 ### Change
 
+- Sticky header
+  - Disable focus effect on button
+
+
+## 2.0.0-RC1
+
+### Change
+
 - Enhanced the IdP Config Overlay details by adding metadata of
   - clientId: string
   - hasClientSecret?: boolean
