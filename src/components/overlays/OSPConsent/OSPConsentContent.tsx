@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Checkbox } from '@catena-x/portal-shared-components'
-import { Typography } from '@mui/material'
+import { Checkbox, Typography } from '@catena-x/portal-shared-components'
 import {
   CONSENT_STATUS,
   type CompanyRole,

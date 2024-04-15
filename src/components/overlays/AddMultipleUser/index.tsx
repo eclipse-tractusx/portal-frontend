@@ -22,7 +22,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { store } from 'features/store'
-import { Typography } from '@mui/material'
 import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
@@ -38,6 +37,7 @@ import {
   StaticTable,
   CircleProgress,
   PageSnackbar,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'

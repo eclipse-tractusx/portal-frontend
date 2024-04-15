@@ -92,6 +92,7 @@ export const TechnicalUserTable = () => {
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry, FetchHookArgsType>
+        autoFocus={false}
         searchExpr={expr}
         hasBorder={false}
         rowHeight={80}

@@ -100,6 +100,7 @@ export const UserList = ({
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
       <PageLoadingTable<TenantUser, FetchHookArgsType>
+        autoFocus={false}
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
         buttonDisabled={addButtonDisabled}

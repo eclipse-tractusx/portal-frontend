@@ -163,6 +163,7 @@ export default function CompanySubscriptions() {
               alignContent: 'center !important',
             },
           }}
+          autoFocus={false}
           searchExpr={searchExpr}
           alignCell="start"
           defaultFilter={group}
