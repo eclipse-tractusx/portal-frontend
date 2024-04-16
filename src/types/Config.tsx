@@ -185,7 +185,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ACCOUNT,
-    role: ROLES.MY_USER_ACCOUNT,
+    role: ROLES.MY_ACCOUNT,
     element: <MyAccount />,
   },
   {

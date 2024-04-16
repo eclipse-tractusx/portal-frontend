@@ -6,7 +6,8 @@
 
 - Sticky header
   - Disable focus effect on button
-
+- My Account
+  - Change account page access role
 
 ## 2.0.0-RC1
 
