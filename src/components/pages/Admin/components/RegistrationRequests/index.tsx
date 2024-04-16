@@ -28,6 +28,7 @@ import type { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
 import {
+  type ApplicationRequest,
   useApproveRequestMutation,
   useDeclineChecklistMutation,
   useFetchCompanySearchQuery,
@@ -54,6 +55,7 @@ export default function RegistrationRequests() {
   const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false)
 
   const [selectedRequestId, setSelectedRequestId] = useState<string>()
+  const [selectedRequest, setSelectedRequest] = useState<ApplicationRequest>()
   const [actionType, setActionType] = useState<string>('approve')
 
   const [approveRequest] = useApproveRequestMutation()
@@ -83,6 +85,7 @@ export default function RegistrationRequests() {
     // Show overlay only when detail field clicked
     if (params.field === 'detail') {
       setSelectedRequestId(params.row.applicationId)
+      setSelectedRequest(params.row)
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
     }
@@ -181,6 +184,7 @@ export default function RegistrationRequests() {
         <CompanyDetailOverlay
           {...{
             openDialog: overlayOpen,
+            selectedRequest,
             selectedRequestId,
             handleOverlayClose: () => {
               setOverlayOpen(false)

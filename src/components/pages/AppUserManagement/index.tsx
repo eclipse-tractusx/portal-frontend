@@ -82,13 +82,11 @@ export default function AppUserManagement() {
       >
         <PageBreadcrumb />
       </PageHeader>
-      {data && (
-        <AppUserDetailsHeader
-          roles={data}
-          error={isError ? JSON.stringify(data) : ''}
-        />
-      )}
-      <AppUserDetailsTable userRoleResponse={userRoleResponse} />
+      <AppUserDetailsHeader
+        roles={data}
+        error={isError ? JSON.stringify(data) : ''}
+      />
+      <AppUserDetailsTable roles={data} userRoleResponse={userRoleResponse} />
       {/* success or error dialog/overlay */}
       {userRoleResponse && (
         <Dialog

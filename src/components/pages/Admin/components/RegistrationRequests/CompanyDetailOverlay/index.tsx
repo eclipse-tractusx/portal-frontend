@@ -38,7 +38,6 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   type ApplicationRequest,
   useFetchCheckListDetailsQuery,
-  useFetchCompanySearchQuery,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
@@ -47,12 +46,14 @@ import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
+  selectedRequest?: ApplicationRequest
   selectedRequestId?: string
   handleOverlayClose: React.MouseEventHandler
 }
 
 const CompanyDetailOverlay = ({
   openDialog = false,
+  selectedRequest,
   selectedRequestId,
   handleOverlayClose,
 }: CompanyDetailOverlayProps) => {
@@ -69,22 +70,10 @@ const CompanyDetailOverlay = ({
   const [height, setHeight] = useState<string>('')
   const { data: checklistData } =
     useFetchCheckListDetailsQuery(selectedRequestId)
-  const { data } = useFetchCompanySearchQuery({
-    page: 0,
-    args: {
-      expr: selectedCompany?.name,
-    },
-  })
 
   useEffect(() => {
-    if (data) {
-      const selected = data?.content?.filter(
-        (company: { bpn: string }) =>
-          !company.bpn || selectedCompany.bpn === company.bpn
-      )
-      setCompany(selected[0])
-    }
-  }, [data, selectedCompany])
+    if (selectedRequest) setCompany(selectedRequest)
+  }, [selectedRequest])
 
   const getLocaleStr = (str: string) => {
     if (str === 'ACTIVE_PARTICIPANT') {

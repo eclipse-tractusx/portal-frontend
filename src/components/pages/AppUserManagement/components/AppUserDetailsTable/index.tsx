@@ -24,14 +24,21 @@ import { useState } from 'react'
 import { UserList } from 'components/shared/frame/UserList'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
+import {
+  type AppRole,
+  useFetchAppUsersSearchQuery,
+} from 'features/admin/appuserApiSlice'
 import type { TenantUser } from 'features/admin/userApiSlice'
+import { useTranslation } from 'react-i18next'
 
 export const AppUserDetailsTable = ({
+  roles,
   userRoleResponse,
 }: {
+  roles?: AppRole[]
   userRoleResponse: string
 }) => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { appId } = useParams()
   const [expr, setExpr] = useState<string>('')
@@ -41,6 +48,12 @@ export const AppUserDetailsTable = ({
       sectionTitle={'content.usermanagement.appUserDetails.subheadline'}
       addButtonLabel={'content.usermanagement.appUserDetails.table.add'}
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
+      addButtonDisabled={!roles}
+      addButtonTooltip={
+        !roles
+          ? t('content.usermanagement.appUserDetails.table.buttonTooltip')
+          : ''
+      }
       tableLabel={'content.usermanagement.appUserDetails.table.title'}
       fetchHook={useFetchAppUsersSearchQuery}
       fetchHookArgs={{ appId, expr, userRoleResponse, role: true }}
