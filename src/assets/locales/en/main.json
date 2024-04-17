@@ -386,6 +386,25 @@
       }
     },
     "organization": {
+      "unsubscribe": {
+        "title": "Unsubscribe Business Application / Service",
+        "descriptionNote": "Please note: the unsubscription is not revertible",
+        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
+        "table": {
+          "listOfConnectedObjects": "List of connected objects:",
+          "app": "Application / Service title:",
+          "status": "Current Status:",
+          "connector": "Connector:",
+          "techUser": "Technical User:"
+        },
+        "subscribed": "Subscribed",
+        "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
+        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
+        "buttonText": "Unsubscribe",
+        "unsubscribeSuccess": "Unsubscribe subscription is successful",
+        "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
+        "unsubscriptionOnProgress": "Unsubscription on progress"
+      },
       "companyDetails": {
         "title": "Company Details",
         "companyName": "Company Name",
