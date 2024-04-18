@@ -398,7 +398,7 @@
           "techUser": "Technical User:"
         },
         "subscribed": "Subscribed",
-        "checkBoxLabel": "Yes, I agree to unsubscribe from this applocation / service.",
+        "checkBoxLabel": "Yes, I agree to unsubscribe from this application / service.",
         "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
