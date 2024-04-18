@@ -606,7 +606,7 @@
             "patternError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
           },
           "url": {
-            "label": "Connector Catalogue Endpoint *",
+            "label": "Connector Catalogue Endpoint*",
             "placeholder": "Connector URL",
             "mandatoryError": "Connector URL is mandatory.",
             "patternError": "Enter a valid url - eg: https://catena-x.net",
@@ -1122,7 +1122,7 @@
         "images": "Images",
         "note": "Note:",
         "maxThreeImages": "Max.3 Images are supported",
-        "uploadDataPrerequisits": "Upload “Data Prerequisits",
+        "uploadDataPrerequisits": "Upload “Data Prerequisits”",
         "uploadTechnicalGuide": "Upload “Technical Guide”",
         "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",

@@ -594,19 +594,23 @@
         },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
+        "technicalUser": "Technischer Benutzer",
+        "connectorRegistrationDetails": "Details zur Connector-Registrierung",
+        "connectAlreadyExistingTechnicalUser": "Verbinden Sie einen bereits vorhandenen technischen Benutzer",
+        "createNewTechnicalUser": "Erstellen Sie einen neuen technischen Benutzer",
         "insertform": {
           "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
-            "mandatoryError": "Connector name is mandatory.",
-            "tooltipMsg": "Own selected connector name for verification",
-            "patternError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
+            "mandatoryError": "Der Connector-Name ist obligatorisch.",
+            "tooltipMsg": "Eigener ausgewählter Connector-Name zur Überprüfung",
+            "patternError": "Der Connector-Name darf nicht mit Sonderzeichen oder Leerzeichen beginnen. Erlaubte Sonderzeichen sind @_:;%&?,'!."
           },
           "url": {
-            "label": "Connector Catalogue Endpoint *",
+            "label": "Connector-Katalog-Endpunkt*",
             "placeholder": "Connector URL",
-            "mandatoryError": "Connector URL is mandatory.",
-            "patternError": "Enter a valid url - eg: https://catena-x.net",
+            "mandatoryError": "Die Connector-URL ist obligatorisch.",
+            "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
           },
           "bpn": {
@@ -618,8 +622,8 @@
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
-            "mandatoryError": "Location is mandatory",
-            "patternError": "Valid code eg: DE, US",
+            "mandatoryError": "Der Standort ist obligatorisch",
+            "patternError": "Gültiger Code zB: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
@@ -634,25 +638,27 @@
             "error": "Customer link is mandatory"
           },
           "technicalUser": {
-            "label": "Technical User*",
-            "placeholder": "Select existing technical user",
-            "tooltipMsg": "Select existing technical user",
-            "error": "Technical User is mandatory"
+            "label": "Technischer Benutzer*",
+            "placeholder": "Wählen Sie den vorhandenen technischen Benutzer aus",
+            "tooltipMsg": "Wählen Sie den vorhandenen technischen Benutzer aus",
+            "error": "Technischer Benutzer ist obligatorisch"
           },
           "UserName": {
-            "label": "Username*",
-            "placeholder": "Username",
-            "tooltipMsg": "Username for new technical user",
-            "mandatoryError": "Username is mandatory",
-            "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
+            "label": "Nutzername*",
+            "placeholder": "Nutzername",
+            "tooltipMsg": "Benutzername für neuen technischen Benutzer",
+            "mandatoryError": "Der Benutzername ist obligatorisch",
+            "patternError": "Der Benutzername sollte mit einem Buchstaben beginnen. Zulässige Sonderzeichen sind #. '!=()&“ zusammen mit Zahlen und Leerzeichen"
           },
           "description": {
-            "label": "Description*",
-            "placeholder": "Description",
-            "tooltipMsg": "Description for new technical user",
-            "mandatoryError": "Description is mandatory",
-            "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
-          }
+            "label": "Beschreibung*",
+            "placeholder": "Beschreibung",
+            "tooltipMsg": "Beschreibung für neue technische Benutzer",
+            "mandatoryError": "Beschreibung ist obligatorisch",
+            "patternError": "Der Benutzername sollte mit einem Buchstaben beginnen. Zulässige Sonderzeichen sind #. '!=()&“ zusammen mit Zahlen und Leerzeichen"
+          },
+          "minLength": "Minlength ist",
+          "maxLength": "Maxlength ist"
         },
         "create": {
           "successTitle": "Create connector successfully completed",
