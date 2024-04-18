@@ -189,7 +189,7 @@ const EdcConnector = () => {
           showOverlay(true)
         })
         .catch(() => {
-          showOverlay(false)
+          !setNewUserSuccess && showOverlay(false)
         })
     }
   }
