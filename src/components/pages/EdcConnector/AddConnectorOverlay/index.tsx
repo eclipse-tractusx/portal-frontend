@@ -129,6 +129,35 @@ const AddConnectorOverlay = ({
     setSelected(service)
   }
 
+  const getTitle = () => {
+    if (connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR')
+      return t('content.edcconnector.modal.managed.title')
+    else if (
+      connectorStep === 1 &&
+      selected.type === ConnectType.COMPANY_CONNECTOR
+    ) {
+      return t('content.edcconnector.modal.company.title')
+    } else return t('content.edcconnector.modal.title')
+  }
+  const getIntro = () => {
+    if (
+      connectorStep === 1 &&
+      selected.type === ConnectType.MANAGED_CONNECTOR
+    ) {
+      return t('content.edcconnector.modal.managed.intro')
+    } else if (
+      connectorStep === 1 &&
+      selected.type === ConnectType.COMPANY_CONNECTOR
+    ) {
+      return (
+        <Typography variant="body1">
+          {t('content.edcconnector.modal.company.intro')}
+        </Typography>
+      )
+    } else {
+      return t('content.edcconnector.modal.intro')
+    }
+  }
   return (
     <div>
       <Dialog
@@ -142,27 +171,8 @@ const AddConnectorOverlay = ({
         }}
       >
         <DialogHeader
-          title={
-            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
-              ? t('content.edcconnector.modal.managed.title')
-              : connectorStep === 1 &&
-                  selected.type === ConnectType.COMPANY_CONNECTOR
-                ? t('content.edcconnector.modal.company.title')
-                : t('content.edcconnector.modal.title')
-          }
-          intro={
-            connectorStep === 1 &&
-            selected.type === ConnectType.MANAGED_CONNECTOR ? (
-              t('content.edcconnector.modal.managed.intro')
-            ) : connectorStep === 1 &&
-              selected.type === ConnectType.COMPANY_CONNECTOR ? (
-              <Typography variant="body1">
-                {t('content.edcconnector.modal.company.intro')}
-              </Typography>
-            ) : (
-              t('content.edcconnector.modal.intro')
-            )
-          }
+          title={getTitle()}
+          intro={getIntro()}
           closeWithIcon={true}
           onCloseWithIcon={() => {
             setSelected({})
