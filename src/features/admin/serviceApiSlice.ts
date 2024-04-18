@@ -29,7 +29,6 @@ import type {
 
 export enum ServiceAccountType {
   SECRET = 'SECRET',
-  JWT = 'JWT',
 }
 
 export enum Tags {

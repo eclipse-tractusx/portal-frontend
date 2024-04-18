@@ -50,10 +50,13 @@ const ConnectorFormInput = ({
   tooltipMsg,
   type,
   dropzoneProps,
-  patternError,
   defaultSelectValue,
   items,
   keyTitle,
+  minLength,
+  maxLength,
+  pattern,
+  disable = false,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -121,17 +124,6 @@ any) => {
         <>
           <Controller
             render={({ field: { onChange, value } }) => {
-              let errortext = helperText
-              if (rules.pattern.test(value)) {
-                errortext = ''
-              } else if (
-                (value.length <= 2 || value.length > 20) &&
-                patternError
-              ) {
-                errortext = patternError.lengthError
-              } else if (!rules.pattern.test(value) && patternError) {
-                errortext = patternError.otherError
-              }
               return (
                 <Input
                   tooltipMessage={tooltipMsg}
@@ -139,7 +131,7 @@ any) => {
                     paddingTop: '10px',
                   }}
                   error={!!errors[name]}
-                  helperText={errortext}
+                  helperText={errors?.[name]?.message}
                   label={label}
                   placeholder={placeholder}
                   onChange={(event) => {
@@ -147,12 +139,30 @@ any) => {
                     onChange(event)
                   }}
                   value={value}
+                  disabled={disable}
                 />
               )
             }}
             name={name}
             control={control}
-            rules={rules}
+            rules={{
+              required: {
+                value: true,
+                message: rules.required,
+              },
+              minLength: {
+                value: minLength,
+                message: rules.minLength,
+              },
+              pattern: {
+                value: pattern,
+                message: rules.pattern,
+              },
+              maxLength: {
+                value: maxLength,
+                message: rules.maxLength,
+              },
+            }}
           />
         </>
       )}
@@ -207,7 +217,7 @@ any) => {
                   onChangeItem={(e) => {
                     onChange(
                       name === 'ConnectorTechnicalUser'
-                        ? e.clientId
+                        ? e.serviceAccountId
                         : e.subscriptionId
                     )
                   }}
@@ -238,6 +248,7 @@ const ConnectorInsertForm = ({
   setNewTechnicalUSer,
   onFormSubmitt,
   newUserLoading,
+  newUserSuccess,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -271,9 +282,12 @@ any) => {
             <Button
               variant="contained"
               sx={{ textTransform: 'none' }}
-              onClick={onFormSubmitt}
+              onClick={!newUserSuccess && onFormSubmitt}
+              color={newUserSuccess ? 'success' : 'primary'}
             >
-              {t('global.actions.submit')}
+              {newUserSuccess
+                ? t('global.actions.success')
+                : t('global.actions.submit')}
             </Button>
           </Box>
         )
@@ -281,13 +295,13 @@ any) => {
   }
 
   return (
-    <Box sx={{ width: '100%' }} className="connector-insert-form">
+    <Box sx={{ width: '100%' }}>
       <form onSubmit={handleSubmit}>
         {selectedService.type === ConnectType.COMPANY_CONNECTOR && (
           <>
             <Box
               className="stepNumber"
-              sx={{ margin: '8px auto', color: '#0f71cb' }}
+              sx={{ margin: '8px auto 16px', color: '#0f71cb' }}
             >
               <Typography variant="h5" sx={{ color: '#0f71cb' }}>
                 1
@@ -295,7 +309,7 @@ any) => {
             </Box>
             <Typography
               variant="h5"
-              sx={{ margin: 'auto', textAlign: 'center' }}
+              sx={{ margin: 'auto', textAlign: 'center', mb: 1 }}
             >
               {t('content.edcconnector.modal.technicalUser')}
             </Typography>
@@ -385,19 +399,21 @@ any) => {
                     errors,
                     type: 'input',
                     name: 'TechnicalUserName',
+                    minLength: 2,
+                    maxLength: 80,
+                    pattern: Patterns.connectors.TECHNICAL_USER_NAME,
                     rules: {
-                      required: true,
-                      pattern: Patterns.connectors.NAME,
-                    },
-                    helperText: t(
-                      'content.edcconnector.modal.insertform.UserName.error'
-                    ),
-                    patternError: {
-                      lengthError: t(
-                        'content.edcconnector.modal.insertform.UserName.patternError.lengthError'
+                      required: t(
+                        'content.edcconnector.modal.insertform.UserName.mandatoryError'
                       ),
-                      otherError: t(
-                        'content.edcconnector.modal.insertform.UserName.patternError.otherError'
+                      minLength:
+                        t('content.edcconnector.modal.insertform.minLength') +
+                        ' 2',
+                      maxLength:
+                        t('content.edcconnector.modal.insertform.maxLength') +
+                        ' 80',
+                      pattern: t(
+                        'content.edcconnector.modal.insertform.UserName.patternError'
                       ),
                     },
                     label: t(
@@ -409,6 +425,7 @@ any) => {
                     tooltipMsg: t(
                       'content.edcconnector.modal.insertform.UserName.tooltipMsg'
                     ),
+                    disable: newUserSuccess ?? false,
                   }}
                 />
                 <ConnectorFormInput
@@ -418,19 +435,21 @@ any) => {
                     errors,
                     type: 'input',
                     name: 'TechnicalUserDescription',
+                    minLength: 2,
+                    maxLength: 120,
+                    pattern: Patterns.connectors.TECHNICAL_USER_DESCRIPTION,
                     rules: {
-                      required: true,
-                      pattern: Patterns.connectors.NAME,
-                    },
-                    helperText: t(
-                      'content.edcconnector.modal.insertform.description.error'
-                    ),
-                    patternError: {
-                      lengthError: t(
-                        'content.edcconnector.modal.insertform.description.patternError.lengthError'
+                      required: t(
+                        'content.edcconnector.modal.insertform.description.mandatoryError'
                       ),
-                      otherError: t(
-                        'content.edcconnector.modal.insertform.description.patternError.otherError'
+                      minLength:
+                        t('content.edcconnector.modal.insertform.minLength') +
+                        ' 2',
+                      maxLength:
+                        t('content.edcconnector.modal.insertform.maxLength') +
+                        ' 120',
+                      pattern: t(
+                        'content.edcconnector.modal.insertform.UserName.patternError'
                       ),
                     },
                     label: t(
@@ -442,6 +461,7 @@ any) => {
                     tooltipMsg: t(
                       'content.edcconnector.modal.insertform.description.tooltipMsg'
                     ),
+                    disable: newUserSuccess ?? false,
                   }}
                 />
               </>
@@ -449,7 +469,7 @@ any) => {
             {handleTechnicalUserSubmit()}
             <Box
               className="stepNumber"
-              sx={{ margin: '16px auto 8px', color: '#0f71cb' }}
+              sx={{ margin: '16px auto', color: '#0f71cb' }}
             >
               <Typography variant="h5" sx={{ color: '#0f71cb' }}>
                 2
@@ -457,7 +477,7 @@ any) => {
             </Box>
             <Typography
               variant="h5"
-              sx={{ margin: 'auto', textAlign: 'center' }}
+              sx={{ margin: 'auto', textAlign: 'center', mb: 1 }}
             >
               {t('content.edcconnector.modal.connectorRegistrationDetails')}
             </Typography>
@@ -470,17 +490,19 @@ any) => {
             errors,
             type: 'input',
             name: 'ConnectorName',
+            minLength: 2,
+            maxLength: 20,
+            pattern: Patterns.connectors.NAME,
             rules: {
-              required: true,
-              pattern: Patterns.connectors.NAME,
-            },
-            helperText: t('content.edcconnector.modal.insertform.name.error'),
-            patternError: {
-              lengthError: t(
-                'content.edcconnector.modal.insertform.name.patternError.lengthError'
+              required: t(
+                'content.edcconnector.modal.insertform.name.mandatoryError'
               ),
-              otherError: t(
-                'content.edcconnector.modal.insertform.name.patternError.otherError'
+              minLength:
+                t('content.edcconnector.modal.insertform.minLength') + ' 2',
+              maxLength:
+                t('content.edcconnector.modal.insertform.maxLength') + ' 20',
+              pattern: t(
+                'content.edcconnector.modal.insertform.name.patternError'
               ),
             },
             label: t('content.edcconnector.modal.insertform.name.label'),
@@ -499,11 +521,15 @@ any) => {
             errors,
             type: 'input',
             name: 'ConnectorURL',
+            pattern: Patterns.URL,
             rules: {
-              required: true,
-              pattern: Patterns.URL,
+              required: t(
+                'content.edcconnector.modal.insertform.url.mandatoryError'
+              ),
+              pattern: t(
+                'content.edcconnector.modal.insertform.url.patternError'
+              ),
             },
-            helperText: t('content.edcconnector.modal.insertform.url.error'),
             label: t('content.edcconnector.modal.insertform.url.label'),
             placeholder: t(
               'content.edcconnector.modal.insertform.url.placeholder'
@@ -520,13 +546,15 @@ any) => {
             errors,
             type: 'input',
             name: 'ConnectorLocation',
+            pattern: Patterns.connectors.COUNTRY,
             rules: {
-              required: true,
-              pattern: Patterns.connectors.COUNTRY,
+              required: t(
+                'content.edcconnector.modal.insertform.country.mandatoryError'
+              ),
+              pattern: t(
+                'content.edcconnector.modal.insertform.country.patternError'
+              ),
             },
-            helperText: t(
-              'content.edcconnector.modal.insertform.country.error'
-            ),
             label: t('content.edcconnector.modal.insertform.country.label'),
             placeholder: t(
               'content.edcconnector.modal.insertform.country.placeholder'

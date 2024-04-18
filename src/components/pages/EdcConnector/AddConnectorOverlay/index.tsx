@@ -51,6 +51,7 @@ interface AddCollectorOverlayProps {
   onStepChange: () => void
   onSubmitClick: (data: FormFieldsType) => void
   newUserLoading?: boolean
+  newUserSuccess?: boolean
 }
 
 export type FormFieldsType = {
@@ -83,6 +84,7 @@ const AddConnectorOverlay = ({
   onStepChange,
   onSubmitClick,
   newUserLoading,
+  newUserSuccess,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
   const { data } = useFetchOfferSubscriptionsQuery()
@@ -109,17 +111,18 @@ const AddConnectorOverlay = ({
   }, [openDialog, reset])
 
   const onFormSubmit = async () => {
-    const validateFields = newTechnicalUSer
-      ? await trigger(['TechnicalUserName', 'TechnicalUserDescription'])
-      : await trigger([
-          'ConnectorName',
-          'ConnectorURL',
-          'ConnectorLocation',
-          'ConnectorSubscriptionId',
-          'ConnectorTechnicalUser',
-        ])
+    const validateFields =
+      newTechnicalUSer && !newUserSuccess
+        ? await trigger(['TechnicalUserName', 'TechnicalUserDescription'])
+        : await trigger([
+            'ConnectorName',
+            'ConnectorURL',
+            'ConnectorLocation',
+            'ConnectorSubscriptionId',
+            'ConnectorTechnicalUser',
+          ])
     if (validateFields) {
-      newTechnicalUSer
+      newTechnicalUSer && !newUserSuccess
         ? onSubmitClick(getValues() as FormFieldsType)
         : onFormConfirmClick(getValues() as FormFieldsType)
     }
@@ -198,9 +201,10 @@ const AddConnectorOverlay = ({
                 selectedService={selected}
                 fetchServiceAccountUsers={fetchServiceAccountUsers}
                 onFormSubmitt={onFormSubmit}
-                {...{ handleSubmit, control, errors, trigger }}
                 setNewTechnicalUSer={setNewTechnicalUSer}
                 newUserLoading={newUserLoading}
+                newUserSuccess={newUserSuccess}
+                {...{ handleSubmit, control, errors, trigger }}
               />
             </>
           )}

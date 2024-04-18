@@ -598,17 +598,15 @@
           "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
-            "patternError": {
-              "lengthError": "Connector name length should be between 2 and 20.",
-              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
-            },
-            "error": "Connector name is mandatory.",
-            "tooltipMsg": "Own selected connector name for verification"
+            "mandatoryError": "Connector name is mandatory.",
+            "tooltipMsg": "Own selected connector name for verification",
+            "patternError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
           },
           "url": {
             "label": "Connector Catalogue Endpoint *",
             "placeholder": "Connector URL",
-            "error": "Enter a valid url - eg: https://catena-x.net",
+            "mandatoryError": "Connector URL is mandatory.",
+            "patternError": "Enter a valid url - eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
           },
           "bpn": {
@@ -620,7 +618,8 @@
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
-            "error": "Valid code eg: DE, US",
+            "mandatoryError": "Location is mandatory",
+            "patternError": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
@@ -633,6 +632,26 @@
             "placeholder": "Select the related subscription",
             "tooltipMsg": "Select the related subscription",
             "error": "Customer link is mandatory"
+          },
+          "technicalUser": {
+            "label": "Technical User*",
+            "placeholder": "Select existing technical user",
+            "tooltipMsg": "Select existing technical user",
+            "error": "Technical User is mandatory"
+          },
+          "UserName": {
+            "label": "Username*",
+            "placeholder": "Username",
+            "tooltipMsg": "Username for new technical user",
+            "mandatoryError": "Username is mandatory",
+            "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
+          },
+          "description": {
+            "label": "Description*",
+            "placeholder": "Description",
+            "tooltipMsg": "Description for new technical user",
+            "mandatoryError": "Description is mandatory",
+            "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
           }
         },
         "create": {

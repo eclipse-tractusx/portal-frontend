@@ -107,6 +107,8 @@ const EdcConnector = () => {
   const roles = useFetchServiceAccountRolesQuery().data
   const [role, setRole] = useState('')
   const [newUserLoading, setNewUserLoading] = useState<boolean>(false)
+  const [newUserSuccess, setNewUserSuccess] = useState<boolean>(false)
+  const [serviceAccId, setServiceAccId] = useState('')
 
   useEffect(() => {
     if (roles && roles.length > 0)
@@ -165,7 +167,10 @@ const EdcConnector = () => {
     body.append('Status', ConnectorStatusType.PENDING)
     setLoading(true)
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
-      body.append('TechnicalUserId', data.ConnectorTechnicalUser)
+      body.append(
+        'TechnicalUserId',
+        serviceAccId === '' ? data.ConnectorTechnicalUser : serviceAccId
+      )
       await createConnector(body)
         .unwrap()
         .then(() => {
@@ -193,18 +198,19 @@ const EdcConnector = () => {
     const body = new FormData()
     body.append('name', data.TechnicalUserName)
     body.append('description', data.TechnicalUserDescription)
-    body.append('authenticationType', 'JWT')
+    body.append('authenticationType', ServiceAccountType.SECRET)
     body.append('roleIds', role)
     setNewUserLoading(true)
     await addServiceAccount({
       name: data.TechnicalUserName,
       description: data.TechnicalUserDescription,
-      authenticationType: ServiceAccountType.JWT,
+      authenticationType: ServiceAccountType.SECRET,
       roleIds: [role],
     })
       .unwrap()
-      .then(() => {
-        showOverlay(true)
+      .then((res) => {
+        setServiceAccId(res.serviceAccountId)
+        setNewUserSuccess(true)
       })
       .catch(() => {
         showOverlay(false)
@@ -316,6 +322,7 @@ const EdcConnector = () => {
         onSubmitClick={(data) => void onSubmitClick(data)}
         loading={loading}
         newUserLoading={newUserLoading}
+        newUserSuccess={newUserSuccess}
         onStepChange={onStepChange}
       />
       <ConfigurationDetailsOverlay
