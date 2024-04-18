@@ -1,5 +1,10 @@
 # Changelog
 
+# Unreleased
+
+- Technical Integration
+  - Updated connector registration overlay
+
 ## 2.0.0-RC1
 
 ### Change

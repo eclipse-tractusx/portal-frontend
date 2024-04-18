@@ -579,9 +579,11 @@
         }
       },
       "modal": {
+        "title": "Connect company connector",
+        "intro": "Registration of a company connector which is implemented in your own company network.",
         "company": {
-          "title": "Connect company connector",
-          "intro": "Registration of a company connector which is implemented in your own company network.",
+          "title": "Register Connector",
+          "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is a asynchrony process and might take up to 5 minutes.",
           "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /company-role"
         },
         "managed": {
@@ -591,6 +593,10 @@
         },
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
+        "technicalUser": "Technical User",
+        "connectorRegistrationDetails": "Connector Registration Details",
+        "connectAlreadyExistingTechnicalUser": "Connect an already existing technical user",
+        "createNewTechnicalUser": "Create a new technical user",
         "insertform": {
           "name": {
             "label": "Name*",
@@ -603,7 +609,7 @@
             "tooltipMsg": "Own selected connector name for verification"
           },
           "url": {
-            "label": "Connector URL/Endpoint*",
+            "label": "Connector Catalogue Endpoint *",
             "placeholder": "Connector URL",
             "error": "Enter a valid url - eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
@@ -630,6 +636,32 @@
             "placeholder": "Select the related subscription",
             "tooltipMsg": "Select the related subscription",
             "error": "Customer link is mandatory"
+          },
+          "technicalUser": {
+            "label": "Technical User*",
+            "placeholder": "Select existing technical user",
+            "tooltipMsg": "Select existing technical user",
+            "error": "Technical User is mandatory"
+          },
+          "UserName": {
+            "label": "Username*",
+            "placeholder": "Username",
+            "tooltipMsg": "Username for new technical user",
+            "error": "Username is mandatory",
+            "patternError": {
+              "lengthError": "Connector name length should be between 2 and 20.",
+              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
+            }
+          },
+          "description": {
+            "label": "Description*",
+            "placeholder": "Description",
+            "tooltipMsg": "Description for new technical user",
+            "error": "Description is mandatory",
+            "patternError": {
+              "lengthError": "Connector name length should be between 2 and 20.",
+              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
+            }
           }
         },
         "create": {

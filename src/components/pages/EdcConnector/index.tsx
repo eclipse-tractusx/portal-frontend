@@ -52,6 +52,11 @@ import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { ManagedConnectorTableColumns } from './edcManagedConnectorTableColumns'
 import { OwnConnectorTableColumns } from './edcOwnConnectorTableColumns'
 import ConfigurationDetailsOverlay from './ConfigurationDetailsOverlay'
+import {
+  ServiceAccountType,
+  useAddServiceAccountMutation,
+  useFetchServiceAccountRolesQuery,
+} from 'features/admin/serviceApiSlice'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -98,6 +103,18 @@ const EdcConnector = () => {
     viewConfigurationDetailsOverlayOpen,
     setViewConfigurationDetailsOverlayOpen,
   ] = useState<boolean>(false)
+  const [addServiceAccount] = useAddServiceAccountMutation()
+  const roles = useFetchServiceAccountRolesQuery().data
+  const [role, setRole] = useState('')
+  const [newUserLoading, setNewUserLoading] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (roles && roles.length > 0)
+      setRole(
+        roles?.filter((i) => i.roleName === 'Identity Wallet Management')[0]
+          .roleId
+      )
+  }, [roles])
 
   const onStepChange = () => {
     setAddConnectorOverlayCurrentStep(0)
@@ -148,6 +165,7 @@ const EdcConnector = () => {
     body.append('Status', ConnectorStatusType.PENDING)
     setLoading(true)
     if (selectedService.type === ConnectType.COMPANY_CONNECTOR) {
+      body.append('TechnicalUserId', data.ConnectorTechnicalUser)
       await createConnector(body)
         .unwrap()
         .then(() => {
@@ -169,6 +187,29 @@ const EdcConnector = () => {
           showOverlay(false)
         })
     }
+  }
+
+  const onSubmitClick = async (data: FormFieldsType) => {
+    const body = new FormData()
+    body.append('name', data.TechnicalUserName)
+    body.append('description', data.TechnicalUserDescription)
+    body.append('authenticationType', 'JWT')
+    body.append('roleIds', role)
+    setNewUserLoading(true)
+    await addServiceAccount({
+      name: data.TechnicalUserName,
+      description: data.TechnicalUserDescription,
+      authenticationType: ServiceAccountType.JWT,
+      roleIds: [role],
+    })
+      .unwrap()
+      .then(() => {
+        showOverlay(true)
+      })
+      .catch(() => {
+        showOverlay(false)
+      })
+    setNewUserLoading(false)
   }
 
   const showOverlay = (result: boolean) => {
@@ -272,7 +313,9 @@ const EdcConnector = () => {
         connectorStep={addConnectorOverlayCurrentStep}
         handleConfirmClick={onConfirmClick}
         onFormConfirmClick={(data) => void onFormSubmit(data)}
+        onSubmitClick={(data) => void onSubmitClick(data)}
         loading={loading}
+        newUserLoading={newUserLoading}
         onStepChange={onStepChange}
       />
       <ConfigurationDetailsOverlay
