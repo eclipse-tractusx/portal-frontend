@@ -5,6 +5,11 @@
 - Technical Integration
   - Updated connector registration overlay
 
+### Bugfix
+
+- Company Subscriptions
+  - Added missing translations in main.json files
+
 ## 2.0.0-RC1
 
 ### Change

@@ -387,6 +387,25 @@
       }
     },
     "organization": {
+      "unsubscribe": {
+        "title": "Geschäftsanwendung/Dienst abbestellen",
+        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
+        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
+        "table": {
+          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
+          "app": "Bewerbungs-/Diensttitel:",
+          "status": "Aktueller Status:",
+          "connector": "Verbinder:",
+          "techUser": "Technischer Benutzer:"
+        },
+        "subscribed": "Gezeichnet",
+        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
+        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "buttonText": "Abbestellen",
+        "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
+        "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
+        "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
+      },
       "companyDetails": {
         "title": "Company Details",
         "companyName": "Company Name",
