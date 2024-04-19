@@ -2,6 +2,9 @@
 
 # Unreleased
 
+- Technical Integration
+  - Updated connector registration overlay
+
 ### Bugfix
 
 - Company Subscriptions
