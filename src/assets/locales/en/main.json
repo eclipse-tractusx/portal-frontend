@@ -674,7 +674,9 @@
             "tooltipMsg": "Description for new technical user",
             "mandatoryError": "Description is mandatory",
             "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
-          }
+          },
+          "minLength": "Minlength is",
+          "maxLength": "Maxlength is"
         },
         "create": {
           "successTitle": "Create connector successfully completed",
@@ -687,9 +689,7 @@
           "successDescription": "Delete connector successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
-        },
-        "minLength": "Minlength is",
-        "maxLength": "Maxlength is"
+        }
       }
     },
     "partnernetwork": {

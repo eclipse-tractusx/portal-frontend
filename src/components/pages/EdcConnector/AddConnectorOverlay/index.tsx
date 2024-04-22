@@ -141,11 +141,9 @@ const AddConnectorOverlay = ({
   }
 
   const getTypeKey = (type: ConnectType | undefined) => {
-    return connectorStep === 1
-      ? type === ConnectType.MANAGED_CONNECTOR
-        ? 'managed.'
-        : 'company.'
-      : ''
+    if (connectorStep === 1) {
+      return type === ConnectType.MANAGED_CONNECTOR ? 'managed.' : 'company.'
+    } else return ''
   }
 
   return (
