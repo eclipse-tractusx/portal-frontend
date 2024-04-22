@@ -72,9 +72,6 @@ const ConfigurationDetailsOverlay = ({
             )}
             <span
               className="detailsBodyLink"
-              onKeyUp={() => {
-                // do nothing
-              }}
             >
               {data?.decentralIdentityManagementAuthUrl}
             </span>
@@ -137,9 +134,6 @@ const ConfigurationDetailsOverlay = ({
             )}
             <span
               className="detailsBodyLink"
-              onKeyUp={() => {
-                // do nothing
-              }}
             >
               {data?.decentralIdentityManagementServiceUrl}
             </span>
