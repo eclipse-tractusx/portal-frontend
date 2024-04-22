@@ -27,6 +27,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
+import { PAGES } from 'types/Constants'
 
 interface ConfigurationDetailsOverlayProps {
   openDialog: boolean
@@ -70,9 +71,7 @@ const ConfigurationDetailsOverlay = ({
             {t(
               'content.edcconnector.configurationDetails.section.part1.description'
             )}
-            <span
-              className="detailsBodyLink"
-            >
+            <span className="detailsBodyLink">
               {data?.decentralIdentityManagementAuthUrl}
             </span>
           </Typography>
@@ -90,7 +89,7 @@ const ConfigurationDetailsOverlay = ({
               style={{
                 textDecoration: 'underline',
               }}
-              onClick={() => window.open('/technicaluser', '_blank')}
+              onClick={() => window.open(PAGES.TECHUSER_MANAGEMENT, '_blank')}
               onKeyUp={() => {
                 // do nothing
               }}
@@ -115,7 +114,7 @@ const ConfigurationDetailsOverlay = ({
               style={{
                 textDecoration: 'underline',
               }}
-              onClick={() => window.open('/technicaluser', '_blank')}
+              onClick={() => window.open(PAGES.TECHUSER_MANAGEMENT, '_blank')}
               onKeyUp={() => {
                 // do nothing
               }}
@@ -132,9 +131,7 @@ const ConfigurationDetailsOverlay = ({
             {t(
               'content.edcconnector.configurationDetails.section.part4.description'
             )}
-            <span
-              className="detailsBodyLink"
-            >
+            <span className="detailsBodyLink">
               {data?.decentralIdentityManagementServiceUrl}
             </span>
           </Typography>
