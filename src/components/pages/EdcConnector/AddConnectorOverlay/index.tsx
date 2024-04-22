@@ -74,6 +74,14 @@ const formFields = {
   TechnicalUserDescription: '',
 }
 
+export enum ConnectorFormFields {
+  ConnectorSubscriptionId = 'ConnectorSubscriptionId',
+  ConnectorTechnicalUser = 'ConnectorTechnicalUser',
+  ConnectorLocation = 'ConnectorLocation',
+  ConnectorURL = 'ConnectorURL',
+  ConnectorName = 'ConnectorName',
+}
+
 const AddConnectorOverlay = ({
   openDialog = false,
   connectorStep,
@@ -115,11 +123,11 @@ const AddConnectorOverlay = ({
       newTechnicalUSer && !newUserSuccess
         ? await trigger(['TechnicalUserName', 'TechnicalUserDescription'])
         : await trigger([
-            'ConnectorName',
-            'ConnectorURL',
-            'ConnectorLocation',
-            'ConnectorSubscriptionId',
-            'ConnectorTechnicalUser',
+            ConnectorFormFields.ConnectorName,
+            ConnectorFormFields.ConnectorURL,
+            ConnectorFormFields.ConnectorLocation,
+            ConnectorFormFields.ConnectorSubscriptionId,
+            ConnectorFormFields.ConnectorTechnicalUser,
           ])
     if (validateFields) {
       newTechnicalUSer && !newUserSuccess
@@ -132,35 +140,14 @@ const AddConnectorOverlay = ({
     setSelected(service)
   }
 
-  const getTitle = () => {
-    if (connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR')
-      return t('content.edcconnector.modal.managed.title')
-    else if (
-      connectorStep === 1 &&
-      selected.type === ConnectType.COMPANY_CONNECTOR
-    ) {
-      return t('content.edcconnector.modal.company.title')
-    } else return t('content.edcconnector.modal.title')
+  const getTypeKey = (type: ConnectType | undefined) => {
+    return connectorStep === 1
+      ? type === ConnectType.MANAGED_CONNECTOR
+        ? 'managed.'
+        : 'company.'
+      : ''
   }
-  const getIntro = () => {
-    if (
-      connectorStep === 1 &&
-      selected.type === ConnectType.MANAGED_CONNECTOR
-    ) {
-      return t('content.edcconnector.modal.managed.intro')
-    } else if (
-      connectorStep === 1 &&
-      selected.type === ConnectType.COMPANY_CONNECTOR
-    ) {
-      return (
-        <Typography variant="body1">
-          {t('content.edcconnector.modal.company.intro')}
-        </Typography>
-      )
-    } else {
-      return t('content.edcconnector.modal.intro')
-    }
-  }
+
   return (
     <div>
       <Dialog
@@ -174,8 +161,21 @@ const AddConnectorOverlay = ({
         }}
       >
         <DialogHeader
-          title={getTitle()}
-          intro={getIntro()}
+          title={t(
+            `content.edcconnector.modal.${getTypeKey(selected.type)}title`
+          )}
+          intro={
+            connectorStep === 1 &&
+            selected.type === ConnectType.COMPANY_CONNECTOR ? (
+              <Typography variant="body1">
+                {t(
+                  `content.edcconnector.modal.${getTypeKey(selected.type)}intro`
+                )}
+              </Typography>
+            ) : (
+              t(`content.edcconnector.modal.${getTypeKey(selected.type)}intro`)
+            )
+          }
           closeWithIcon={true}
           onCloseWithIcon={() => {
             setSelected({})
