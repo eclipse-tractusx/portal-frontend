@@ -5,7 +5,7 @@
 - Technical Integration
   - Updated connector registration overlay
 - Connector overlay
-  - Update Overlay for "How to Configure Your Connector"
+  - Update Overlay content with dynamic data
 
 ### Bugfix
 
