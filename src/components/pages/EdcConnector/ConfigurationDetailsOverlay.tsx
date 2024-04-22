@@ -18,15 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { useFetchOperatorBpnQuery } from 'features/connector/connectorApiSlice'
-import { getCentralIdp, getMiwBase } from 'services/EnvironmentService'
+import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
 
 interface ConfigurationDetailsOverlayProps {
@@ -39,7 +38,7 @@ const ConfigurationDetailsOverlay = ({
   handleOverlayClose,
 }: ConfigurationDetailsOverlayProps) => {
   const { t } = useTranslation()
-  const { data } = useFetchOperatorBpnQuery()
+  const { data } = useFetchDecentralIdentityUrlsQuery()
 
   return (
     <div className="detailsOverlay">
@@ -62,92 +61,89 @@ const ConfigurationDetailsOverlay = ({
             padding: '0px 120px 40px 120px',
           }}
         >
-          <Typography
-            variant="body1"
-            sx={{
-              marginBottom: '10px',
-            }}
-          >
-            {t('content.edcconnector.configurationDetails.orderList.title')}
-          </Typography>
-          <Trans
-            values={{
-              env: t(getCentralIdp()),
-            }}
-          >
-            <Typography variant="body2" className="detailsBodyText">
-              {t(
-                'content.edcconnector.configurationDetails.orderList.centralAuth'
-              )}
-            </Typography>
-          </Trans>
-
           <Typography variant="body2" className="detailsBodyText">
-            {t('content.edcconnector.configurationDetails.orderList.clientId')}{' '}
-            <span
-              className="detailsBodyLink"
-              onClick={() =>
-                window.open(
-                  t(
-                    'content.edcconnector.configurationDetails.orderList.clientSecretLink'
-                  ),
-                  '_blank'
-                )
-              }
-              onKeyUp={() => {
-                // do nothing
-              }}
-            >
+            <b>
               {t(
-                'content.edcconnector.configurationDetails.orderList.clickhere'
+                'content.edcconnector.configurationDetails.section.part1.title'
               )}
-            </span>
-          </Typography>
-          <Typography variant="body2" className="detailsBodyText">
+            </b>
             {t(
-              'content.edcconnector.configurationDetails.orderList.clientSecret'
-            )}{' '}
+              'content.edcconnector.configurationDetails.section.part1.description'
+            )}
             <span
               className="detailsBodyLink"
-              onClick={() =>
-                window.open(
-                  t(
-                    'content.edcconnector.configurationDetails.orderList.clientSecretLink'
-                  ),
-                  '_blank'
-                )
-              }
               onKeyUp={() => {
                 // do nothing
               }}
             >
-              {t(
-                'content.edcconnector.configurationDetails.orderList.clickhere'
-              )}
+              {data?.decentralIdentityManagementAuthUrl}
             </span>
           </Typography>
-          {data && (
-            <Trans
-              values={{
-                bpn: data[0]?.bpn,
+          <Typography variant="body2" className="detailsBodyText">
+            <b>
+              {t(
+                'content.edcconnector.configurationDetails.section.part2.title'
+              )}
+            </b>
+            {t(
+              'content.edcconnector.configurationDetails.section.part2.description1'
+            )}
+            <span
+              className="detailsBodyLink"
+              style={{
+                textDecoration: 'underline',
+              }}
+              onClick={() => window.open('/technicaluser', '_blank')}
+              onKeyUp={() => {
+                // do nothing
               }}
             >
-              <Typography variant="body2" className="detailsBodyText">
-                {t(
-                  'content.edcconnector.configurationDetails.orderList.authorityBpn'
-                )}
-              </Typography>
-            </Trans>
-          )}
-          <Trans
-            values={{
-              managedIdentityWalletApiBase: t(getMiwBase()),
-            }}
-          >
-            <Typography variant="body2" className="detailsBodyText">
-              {t('content.edcconnector.configurationDetails.orderList.miwUrl')}
-            </Typography>
-          </Trans>
+              {t('content.edcconnector.configurationDetails.section.part2.key')}
+            </span>
+            {t(
+              'content.edcconnector.configurationDetails.section.part2.description2'
+            )}
+          </Typography>
+          <Typography variant="body2" className="detailsBodyText">
+            <b>
+              {t(
+                'content.edcconnector.configurationDetails.section.part3.title'
+              )}
+            </b>
+            {t(
+              'content.edcconnector.configurationDetails.section.part3.description'
+            )}
+            <span
+              className="detailsBodyLink"
+              style={{
+                textDecoration: 'underline',
+              }}
+              onClick={() => window.open('/technicaluser', '_blank')}
+              onKeyUp={() => {
+                // do nothing
+              }}
+            >
+              {t('content.edcconnector.configurationDetails.section.part3.key')}
+            </span>
+          </Typography>
+          <Typography variant="body2" className="detailsBodyText">
+            <b>
+              {t(
+                'content.edcconnector.configurationDetails.section.part4.title'
+              )}
+            </b>
+            {t(
+              'content.edcconnector.configurationDetails.section.part4.description'
+            )}
+            <span
+              className="detailsBodyLink"
+              onKeyUp={() => {
+                // do nothing
+              }}
+            >
+              {data?.decentralIdentityManagementServiceUrl}
+            </span>
+          </Typography>
         </DialogContent>
       </Dialog>
     </div>
