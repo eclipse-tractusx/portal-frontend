@@ -19,11 +19,14 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Box, Grid, useTheme } from '@mui/material'
+import { Box } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import {
+  Button,
   DropArea,
   Input,
+  LoadingButton,
+  Radio,
   SelectList,
   Tooltips,
   Typography,
@@ -32,6 +35,8 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'
 import { Dropzone } from '../../../../shared/basic/Dropzone'
+import { useState } from 'react'
+import './EdcComponentStyles.scss'
 
 const ConnectorFormInput = ({
   control,
@@ -45,10 +50,13 @@ const ConnectorFormInput = ({
   tooltipMsg,
   type,
   dropzoneProps,
-  patternError,
   defaultSelectValue,
   items,
   keyTitle,
+  minLength,
+  maxLength,
+  pattern,
+  disable = false,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -116,17 +124,6 @@ any) => {
         <>
           <Controller
             render={({ field: { onChange, value } }) => {
-              let errortext = helperText
-              if (rules.pattern.test(value)) {
-                errortext = ''
-              } else if (
-                (value.length <= 2 || value.length > 20) &&
-                patternError
-              ) {
-                errortext = patternError.lengthError
-              } else if (!rules.pattern.test(value) && patternError) {
-                errortext = patternError.otherError
-              }
               return (
                 <Input
                   tooltipMessage={tooltipMsg}
@@ -134,7 +131,7 @@ any) => {
                     paddingTop: '10px',
                   }}
                   error={!!errors[name]}
-                  helperText={errortext}
+                  helperText={errors?.[name]?.message}
                   label={label}
                   placeholder={placeholder}
                   onChange={(event) => {
@@ -142,12 +139,30 @@ any) => {
                     onChange(event)
                   }}
                   value={value}
+                  disabled={disable}
                 />
               )
             }}
             name={name}
             control={control}
-            rules={rules}
+            rules={{
+              required: {
+                value: true,
+                message: rules.required,
+              },
+              minLength: {
+                value: minLength,
+                message: rules.minLength,
+              },
+              pattern: {
+                value: pattern,
+                message: rules.pattern,
+              },
+              maxLength: {
+                value: maxLength,
+                message: rules.maxLength,
+              },
+            }}
           />
         </>
       )}
@@ -200,7 +215,11 @@ any) => {
                   label={''}
                   placeholder={placeholder}
                   onChangeItem={(e) => {
-                    onChange(e ? e.subscriptionId : '')
+                    onChange(
+                      name === 'ConnectorTechnicalUser'
+                        ? e.serviceAccountId
+                        : e.subscriptionId
+                    )
                   }}
                   keyTitle={keyTitle}
                 />
@@ -225,149 +244,357 @@ const ConnectorInsertForm = ({
   trigger,
   selectedService,
   subscriptions,
+  fetchServiceAccountUsers,
+  setNewTechnicalUSer,
+  onFormSubmitt,
+  newUserLoading,
+  newUserSuccess,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const { spacing } = theme
+  const [selectedValue, setSelectedValue] = useState<string>()
+
+  const handleTechnicalUserSubmit = () => {
+    if (
+      selectedValue === t('content.edcconnector.modal.createNewTechnicalUser')
+    ) {
+      if (newUserLoading) {
+        return (
+          <Box sx={{ textAlign: 'right', mt: '20px' }}>
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator="Processing"
+              loading
+              onButtonClick={() => {
+                // do nothing
+              }}
+              sx={{ marginLeft: '10px', textTransform: 'none' }}
+            />
+          </Box>
+        )
+      } else
+        return (
+          <Box sx={{ textAlign: 'right', mt: '20px' }}>
+            <Button
+              variant="contained"
+              sx={{ textTransform: 'none' }}
+              onClick={!newUserSuccess && onFormSubmitt}
+              color={newUserSuccess ? 'success' : 'primary'}
+            >
+              {newUserSuccess
+                ? t('global.actions.success')
+                : t('global.actions.submit')}
+            </Button>
+          </Box>
+        )
+    }
+  }
 
   return (
-    <Box sx={{ width: '100%' }} className="connector-insert-form">
-      <Grid container spacing={1.5} style={{ marginTop: '-60px' }}>
-        <Grid
-          xs={12}
-          item
-          style={{
-            padding: spacing(2),
-          }}
-        >
-          <form onSubmit={handleSubmit} className="form">
-            <div
-              className="form-input"
-              style={{
-                paddingTop: '20px',
-              }}
+    <Box sx={{ width: '100%' }}>
+      <form onSubmit={handleSubmit}>
+        {selectedService.type === ConnectType.COMPANY_CONNECTOR && (
+          <>
+            <Box
+              className="stepNumber"
+              sx={{ margin: '8px auto 16px', color: '#0f71cb' }}
             >
-              <ConnectorFormInput
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  type: 'input',
-                  name: 'ConnectorName',
-                  rules: {
-                    required: true,
-                    pattern: Patterns.connectors.NAME,
-                  },
-                  helperText: t(
-                    'content.edcconnector.modal.insertform.name.error'
-                  ),
-                  patternError: {
-                    lengthError: t(
-                      'content.edcconnector.modal.insertform.name.patternError.lengthError'
-                    ),
-                    otherError: t(
-                      'content.edcconnector.modal.insertform.name.patternError.otherError'
-                    ),
-                  },
-                  label: t('content.edcconnector.modal.insertform.name.label'),
-                  placeholder: t(
-                    'content.edcconnector.modal.insertform.name.placeholder'
-                  ),
-                  tooltipMsg: t(
-                    'content.edcconnector.modal.insertform.name.tooltipMsg'
-                  ),
+              <Typography variant="h5" sx={{ color: '#0f71cb' }}>
+                1
+              </Typography>
+            </Box>
+            <Typography
+              variant="h5"
+              sx={{ margin: 'auto', textAlign: 'center', mb: 1 }}
+            >
+              {t('content.edcconnector.modal.technicalUser')}
+            </Typography>
+
+            <Box>
+              <Radio
+                name="radio-buttons"
+                label={t(
+                  'content.edcconnector.modal.connectAlreadyExistingTechnicalUser'
+                )}
+                checked={
+                  selectedValue ===
+                  t(
+                    'content.edcconnector.modal.connectAlreadyExistingTechnicalUser'
+                  )
+                }
+                value={t(
+                  'content.edcconnector.modal.connectAlreadyExistingTechnicalUser'
+                )}
+                onChange={(event) => {
+                  setSelectedValue(event.target.value)
+                }}
+                size="small"
+                sx={{
+                  display: 'flex !important',
                 }}
               />
-            </div>
-            <div className="form-input">
+            </Box>
+            {selectedValue ===
+              t(
+                'content.edcconnector.modal.connectAlreadyExistingTechnicalUser'
+              ) && (
               <ConnectorFormInput
                 {...{
                   control,
                   trigger,
                   errors,
-                  type: 'input',
-                  name: 'ConnectorURL',
+                  type: 'select',
+                  name: 'ConnectorTechnicalUser',
                   rules: {
                     required: true,
-                    pattern: Patterns.URL,
                   },
-                  helperText: t(
-                    'content.edcconnector.modal.insertform.url.error'
-                  ),
-                  label: t('content.edcconnector.modal.insertform.url.label'),
-                  placeholder: t(
-                    'content.edcconnector.modal.insertform.url.placeholder'
-                  ),
-                  tooltipMsg: t(
-                    'content.edcconnector.modal.insertform.url.tooltipMsg'
-                  ),
-                }}
-              />
-            </div>
-            <div className="form-input">
-              <ConnectorFormInput
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  type: 'input',
-                  name: 'ConnectorLocation',
-                  rules: {
-                    required: true,
-                    pattern: Patterns.connectors.COUNTRY,
-                  },
-                  helperText: t(
-                    'content.edcconnector.modal.insertform.country.error'
-                  ),
                   label: t(
-                    'content.edcconnector.modal.insertform.country.label'
+                    'content.edcconnector.modal.insertform.technicalUser.label'
                   ),
                   placeholder: t(
-                    'content.edcconnector.modal.insertform.country.placeholder'
+                    'content.edcconnector.modal.insertform.technicalUser.placeholder'
                   ),
                   tooltipMsg: t(
-                    'content.edcconnector.modal.insertform.country.tooltipMsg'
+                    'content.edcconnector.modal.insertform.technicalUser.tooltipMsg'
                   ),
+                  helperText: t(
+                    'content.edcconnector.modal.insertform.technicalUser.error'
+                  ),
+                  items: fetchServiceAccountUsers?.content,
+                  defaultSelectValue: {},
+                  keyTitle: 'clientId',
                 }}
               />
-            </div>
-            {selectedService &&
-              selectedService.type === ConnectType.MANAGED_CONNECTOR && (
-                <div className="form-input">
-                  <ConnectorFormInput
-                    {...{
-                      control,
-                      trigger,
-                      errors,
-                      type: 'select',
-                      name: 'ConnectorSubscriptionId',
-                      rules: {
-                        required: true,
-                      },
-                      label: t(
-                        'content.edcconnector.modal.insertform.subscription.label'
+            )}
+            <Box sx={{ mt: 2 }}>
+              <Radio
+                name="radio-buttons"
+                label={t('content.edcconnector.modal.createNewTechnicalUser')}
+                checked={
+                  selectedValue ===
+                  t('content.edcconnector.modal.createNewTechnicalUser')
+                }
+                value={t('content.edcconnector.modal.createNewTechnicalUser')}
+                onChange={(event) => {
+                  setSelectedValue(event.target.value)
+                  setNewTechnicalUSer(true)
+                }}
+                size="small"
+                sx={{
+                  display: 'flex !important',
+                }}
+              />
+            </Box>
+            {selectedValue ===
+              t('content.edcconnector.modal.createNewTechnicalUser') && (
+              <>
+                <ConnectorFormInput
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                    type: 'input',
+                    name: 'TechnicalUserName',
+                    minLength: 2,
+                    maxLength: 80,
+                    pattern: Patterns.connectors.TECHNICAL_USER_NAME,
+                    rules: {
+                      required: t(
+                        'content.edcconnector.modal.insertform.UserName.mandatoryError'
                       ),
-                      placeholder: t(
-                        'content.edcconnector.modal.insertform.subscription.placeholder'
+                      minLength:
+                        t('content.edcconnector.modal.insertform.minLength') +
+                        ' 2',
+                      maxLength:
+                        t('content.edcconnector.modal.insertform.maxLength') +
+                        ' 80',
+                      pattern: t(
+                        'content.edcconnector.modal.insertform.UserName.patternError'
                       ),
-                      tooltipMsg: t(
-                        'content.edcconnector.modal.insertform.subscription.tooltipMsg'
+                    },
+                    label: t(
+                      'content.edcconnector.modal.insertform.UserName.label'
+                    ),
+                    placeholder: t(
+                      'content.edcconnector.modal.insertform.UserName.placeholder'
+                    ),
+                    tooltipMsg: t(
+                      'content.edcconnector.modal.insertform.UserName.tooltipMsg'
+                    ),
+                    disable: newUserSuccess ?? false,
+                  }}
+                />
+                <ConnectorFormInput
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                    type: 'input',
+                    name: 'TechnicalUserDescription',
+                    minLength: 2,
+                    maxLength: 120,
+                    pattern: Patterns.connectors.TECHNICAL_USER_DESCRIPTION,
+                    rules: {
+                      required: t(
+                        'content.edcconnector.modal.insertform.description.mandatoryError'
                       ),
-                      helperText: t(
-                        'content.edcconnector.modal.insertform.subscription.error'
+                      minLength:
+                        t('content.edcconnector.modal.insertform.minLength') +
+                        ' 2',
+                      maxLength:
+                        t('content.edcconnector.modal.insertform.maxLength') +
+                        ' 120',
+                      pattern: t(
+                        'content.edcconnector.modal.insertform.UserName.patternError'
                       ),
-                      items: subscriptions,
-                      defaultSelectValue: {},
-                      keyTitle: 'name',
-                    }}
-                  />
-                </div>
-              )}
-          </form>
-        </Grid>
-      </Grid>
+                    },
+                    label: t(
+                      'content.edcconnector.modal.insertform.description.label'
+                    ),
+                    placeholder: t(
+                      'content.edcconnector.modal.insertform.description.placeholder'
+                    ),
+                    tooltipMsg: t(
+                      'content.edcconnector.modal.insertform.description.tooltipMsg'
+                    ),
+                    disable: newUserSuccess ?? false,
+                  }}
+                />
+              </>
+            )}
+            {handleTechnicalUserSubmit()}
+            <Box
+              className="stepNumber"
+              sx={{ margin: '16px auto', color: '#0f71cb' }}
+            >
+              <Typography variant="h5" sx={{ color: '#0f71cb' }}>
+                2
+              </Typography>
+            </Box>
+            <Typography
+              variant="h5"
+              sx={{ margin: 'auto', textAlign: 'center', mb: 1 }}
+            >
+              {t('content.edcconnector.modal.connectorRegistrationDetails')}
+            </Typography>
+          </>
+        )}
+        <ConnectorFormInput
+          {...{
+            control,
+            trigger,
+            errors,
+            type: 'input',
+            name: 'ConnectorName',
+            minLength: 2,
+            maxLength: 20,
+            pattern: Patterns.connectors.NAME,
+            rules: {
+              required: t(
+                'content.edcconnector.modal.insertform.name.mandatoryError'
+              ),
+              minLength:
+                t('content.edcconnector.modal.insertform.minLength') + ' 2',
+              maxLength:
+                t('content.edcconnector.modal.insertform.maxLength') + ' 20',
+              pattern: t(
+                'content.edcconnector.modal.insertform.name.patternError'
+              ),
+            },
+            label: t('content.edcconnector.modal.insertform.name.label'),
+            placeholder: t(
+              'content.edcconnector.modal.insertform.name.placeholder'
+            ),
+            tooltipMsg: t(
+              'content.edcconnector.modal.insertform.name.tooltipMsg'
+            ),
+          }}
+        />
+        <ConnectorFormInput
+          {...{
+            control,
+            trigger,
+            errors,
+            type: 'input',
+            name: 'ConnectorURL',
+            pattern: Patterns.URL,
+            rules: {
+              required: t(
+                'content.edcconnector.modal.insertform.url.mandatoryError'
+              ),
+              pattern: t(
+                'content.edcconnector.modal.insertform.url.patternError'
+              ),
+            },
+            label: t('content.edcconnector.modal.insertform.url.label'),
+            placeholder: t(
+              'content.edcconnector.modal.insertform.url.placeholder'
+            ),
+            tooltipMsg: t(
+              'content.edcconnector.modal.insertform.url.tooltipMsg'
+            ),
+          }}
+        />
+        <ConnectorFormInput
+          {...{
+            control,
+            trigger,
+            errors,
+            type: 'input',
+            name: 'ConnectorLocation',
+            pattern: Patterns.connectors.COUNTRY,
+            rules: {
+              required: t(
+                'content.edcconnector.modal.insertform.country.mandatoryError'
+              ),
+              pattern: t(
+                'content.edcconnector.modal.insertform.country.patternError'
+              ),
+            },
+            label: t('content.edcconnector.modal.insertform.country.label'),
+            placeholder: t(
+              'content.edcconnector.modal.insertform.country.placeholder'
+            ),
+            tooltipMsg: t(
+              'content.edcconnector.modal.insertform.country.tooltipMsg'
+            ),
+          }}
+        />
+        {selectedService &&
+          selectedService.type === ConnectType.MANAGED_CONNECTOR && (
+            <ConnectorFormInput
+              {...{
+                control,
+                trigger,
+                errors,
+                type: 'select',
+                name: 'ConnectorSubscriptionId',
+                rules: {
+                  required: true,
+                },
+                label: t(
+                  'content.edcconnector.modal.insertform.subscription.label'
+                ),
+                placeholder: t(
+                  'content.edcconnector.modal.insertform.subscription.placeholder'
+                ),
+                tooltipMsg: t(
+                  'content.edcconnector.modal.insertform.subscription.tooltipMsg'
+                ),
+                helperText: t(
+                  'content.edcconnector.modal.insertform.subscription.error'
+                ),
+                items: subscriptions,
+                defaultSelectValue: {},
+                keyTitle: 'name',
+              }}
+            />
+          )}
+      </form>
     </Box>
   )
 }

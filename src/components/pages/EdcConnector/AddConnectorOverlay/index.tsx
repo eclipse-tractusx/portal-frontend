@@ -27,6 +27,7 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import ConnectorTypeSelection from './components/ConnectorTypeSelection'
 import ConnectorInsertForm from './components/ConnectorInsertForm'
@@ -34,9 +35,11 @@ import { useForm } from 'react-hook-form'
 import {
   type ConnectorType,
   useFetchOfferSubscriptionsQuery,
+  ConnectType,
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { useFetchServiceAccountUsersQuery } from 'features/admin/serviceApiSlice'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -46,6 +49,9 @@ interface AddCollectorOverlayProps {
   onFormConfirmClick: (data: FormFieldsType) => void
   loading?: boolean
   onStepChange: () => void
+  onSubmitClick: (data: FormFieldsType) => void
+  newUserLoading?: boolean
+  newUserSuccess?: boolean
 }
 
 export type FormFieldsType = {
@@ -53,6 +59,9 @@ export type FormFieldsType = {
   ConnectorURL: string
   ConnectorSubscriptionId: string
   ConnectorLocation: string
+  ConnectorTechnicalUser: string
+  TechnicalUserName: string
+  TechnicalUserDescription: string
 }
 
 const formFields = {
@@ -60,6 +69,9 @@ const formFields = {
   ConnectorURL: '',
   ConnectorLocation: '',
   ConnectorSubscriptionId: '',
+  ConnectorTechnicalUser: '',
+  TechnicalUserName: '',
+  TechnicalUserDescription: '',
 }
 
 const AddConnectorOverlay = ({
@@ -70,10 +82,16 @@ const AddConnectorOverlay = ({
   onFormConfirmClick,
   loading,
   onStepChange,
+  onSubmitClick,
+  newUserLoading,
+  newUserSuccess,
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
   const { data } = useFetchOfferSubscriptionsQuery()
   const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery()
+  const fetchServiceAccountUsers = useFetchServiceAccountUsersQuery().data
+  const [newTechnicalUSer, setNewTechnicalUSer] = useState(false)
+
   const {
     handleSubmit,
     getValues,
@@ -93,14 +111,20 @@ const AddConnectorOverlay = ({
   }, [openDialog, reset])
 
   const onFormSubmit = async () => {
-    const validateFields = await trigger([
-      'ConnectorName',
-      'ConnectorURL',
-      'ConnectorLocation',
-      'ConnectorSubscriptionId',
-    ])
+    const validateFields =
+      newTechnicalUSer && !newUserSuccess
+        ? await trigger(['TechnicalUserName', 'TechnicalUserDescription'])
+        : await trigger([
+            'ConnectorName',
+            'ConnectorURL',
+            'ConnectorLocation',
+            'ConnectorSubscriptionId',
+            'ConnectorTechnicalUser',
+          ])
     if (validateFields) {
-      onFormConfirmClick(getValues() as FormFieldsType)
+      newTechnicalUSer && !newUserSuccess
+        ? onSubmitClick(getValues() as FormFieldsType)
+        : onFormConfirmClick(getValues() as FormFieldsType)
     }
   }
 
@@ -108,25 +132,50 @@ const AddConnectorOverlay = ({
     setSelected(service)
   }
 
+  const getTitle = () => {
+    if (connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR')
+      return t('content.edcconnector.modal.managed.title')
+    else if (
+      connectorStep === 1 &&
+      selected.type === ConnectType.COMPANY_CONNECTOR
+    ) {
+      return t('content.edcconnector.modal.company.title')
+    } else return t('content.edcconnector.modal.title')
+  }
+  const getIntro = () => {
+    if (
+      connectorStep === 1 &&
+      selected.type === ConnectType.MANAGED_CONNECTOR
+    ) {
+      return t('content.edcconnector.modal.managed.intro')
+    } else if (
+      connectorStep === 1 &&
+      selected.type === ConnectType.COMPANY_CONNECTOR
+    ) {
+      return (
+        <Typography variant="body1">
+          {t('content.edcconnector.modal.company.intro')}
+        </Typography>
+      )
+    } else {
+      return t('content.edcconnector.modal.intro')
+    }
+  }
   return (
     <div>
       <Dialog
         open={openDialog}
         additionalModalRootStyles={{
-          width: '45%',
+          width:
+            connectorStep === 1 &&
+            selected.type === ConnectType.COMPANY_CONNECTOR
+              ? '65%'
+              : '45%',
         }}
       >
         <DialogHeader
-          title={
-            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
-              ? t('content.edcconnector.modal.managed.title')
-              : t('content.edcconnector.modal.company.title')
-          }
-          intro={
-            connectorStep === 1 && selected.type === 'MANAGED_CONNECTOR'
-              ? t('content.edcconnector.modal.managed.intro')
-              : t('content.edcconnector.modal.company.intro')
-          }
+          title={getTitle()}
+          intro={getIntro()}
           closeWithIcon={true}
           onCloseWithIcon={() => {
             setSelected({})
@@ -150,6 +199,11 @@ const AddConnectorOverlay = ({
               <ConnectorInsertForm
                 subscriptions={data}
                 selectedService={selected}
+                fetchServiceAccountUsers={fetchServiceAccountUsers}
+                onFormSubmitt={onFormSubmit}
+                setNewTechnicalUSer={setNewTechnicalUSer}
+                newUserLoading={newUserLoading}
+                newUserSuccess={newUserSuccess}
                 {...{ handleSubmit, control, errors, trigger }}
               />
             </>
