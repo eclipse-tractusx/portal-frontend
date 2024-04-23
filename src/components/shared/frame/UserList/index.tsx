@@ -52,6 +52,8 @@ export const UserList = ({
   sectionTitle,
   addButtonLabel,
   addButtonClick,
+  addButtonDisabled,
+  addButtonTooltip,
   addMultipleButtonLabel,
   onMultipleButtonClick,
   tableLabel,
@@ -65,6 +67,8 @@ export const UserList = ({
   sectionTitle: string
   addButtonLabel: string
   addButtonClick: () => void
+  addButtonDisabled?: boolean
+  addButtonTooltip?: string
   addMultipleButtonLabel?: string
   onMultipleButtonClick?: () => void
   tableLabel: string
@@ -99,6 +103,8 @@ export const UserList = ({
         autoFocus={false}
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}
+        buttonDisabled={addButtonDisabled}
+        buttonTooltip={addButtonTooltip}
         secondButtonLabel={addMultipleButtonLabel && t(addMultipleButtonLabel)}
         onSecondButtonClick={onMultipleButtonClick}
         toolbarVariant="premium"

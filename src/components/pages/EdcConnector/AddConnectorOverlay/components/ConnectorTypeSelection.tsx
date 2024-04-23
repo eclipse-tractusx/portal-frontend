@@ -26,6 +26,8 @@ import {
   type CompanyDetails,
   CompanyRoleEnum,
 } from 'features/admin/userApiSlice'
+import { ConnectType } from 'features/connector/connectorApiSlice'
+
 // Static content
 // Add Connector Button action modal first step content
 const ConnectorTypeSelection = ({
@@ -41,8 +43,8 @@ const ConnectorTypeSelection = ({
   const checkBoxSelector = [
     {
       title: t('content.edcconnector.modal.companyconnectorlabel'),
-      type: 'COMPANY_CONNECTOR',
-      descritpion: t('content.edcconnector.modal.company.intro'),
+      type: ConnectType.COMPANY_CONNECTOR,
+      descritpion: t('content.edcconnector.modal.intro'),
       id: 1,
       disable:
         !ownCompanyDetails?.companyRole ||
@@ -53,7 +55,7 @@ const ConnectorTypeSelection = ({
     },
     {
       title: t('content.edcconnector.modal.connectorasaservice'),
-      type: 'MANAGED_CONNECTOR',
+      type: ConnectType.MANAGED_CONNECTOR,
       descritpion: t('content.edcconnector.modal.managed.intro'),
       id: 2,
       disable:

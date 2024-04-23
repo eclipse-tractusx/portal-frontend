@@ -387,6 +387,25 @@
       }
     },
     "organization": {
+      "unsubscribe": {
+        "title": "Geschäftsanwendung/Dienst abbestellen",
+        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
+        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
+        "table": {
+          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
+          "app": "Bewerbungs-/Diensttitel:",
+          "status": "Aktueller Status:",
+          "connector": "Verbinder:",
+          "techUser": "Technischer Benutzer:"
+        },
+        "subscribed": "Gezeichnet",
+        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
+        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "buttonText": "Abbestellen",
+        "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
+        "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
+        "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
+      },
       "companyDetails": {
         "title": "Company Details",
         "companyName": "Company Name",
@@ -540,18 +559,28 @@
         "managed": "Managed"
       },
       "configurationDetails": {
-        "title": "Connector Configuration for authentication flow",
-        "description": "Your edc instance need to get connected to the catena-x identity provider for the technical user authentication flow to fetch the user token and authenticate against the MIW. Additionally the MIW endpoint, authority BPN and your technical user need to get configured/set to ensure that the connection works correctly.",
-        "orderList": {
-          "title": "Below you can find the relevant details regarding all those values",
-          "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
-          "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
-          "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
-          "authorityBpn": "* authority bpn: {{bpn}}",
-          "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
-          "clickhere": "click here"
+        "title": "How to Configure Your Connector",
+        "description": "Dies Beschreibung bietet schrittweise Anweisungen zur Konfiguration Ihres Connectors. Bitte befolgen Sie die unten stehenden Anweisungen, um die erforderlichen Konfigurationswerte einzustellen. Stellen Sie sicher, dass Sie die richtigen Werte für jede Konfigurationseinstellung eingeben. Sobald Sie diese Werte eingestellt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+        "section": {
+          "part1": {
+            "title": "iatp.sts.oauth.token_url: ",
+            "description": "Der Token-Endpunkt der dezentralen Identitätsverwaltungsinstanz ist "
+          },
+          "part2": {
+            "title": "iatp.sts.oauth.client.id: ",
+            "description1": "Technische Benutzer-Client-ID Ihres technischen Benutzers für den spezifischen Connector. Stellen Sie sicher, dass Sie die technischen Benutzer trennen – jeder Connector ist ein technischer Benutzer. Technische Benutzer können im gefunden und angefragt werden ",
+            "key": "technical user self-service.",
+            "description2": " Sie können den technischen Benutzer auch im Rahmen der Connector-Registrierung erstellen."
+          },
+          "part3": {
+            "title": "iatp.sts.oauth.client.secret_alias: ",
+            "description": "Alias, unter dem Sie Ihr DIM-Client-Geheimnis im Tresor gespeichert haben. Im Tresor sollte das Geheimnis des oben definierten technischen Benutzers gespeichert werden. Sie können das Geheimnis im Inneren sehen ",
+            "key": "technical user self-service."
+          },
+          "part4": {
+            "title": "iatp.sts.dim.url: ",
+            "description": "Base-URL Ihrer dezentralen Identitätsverwaltungsinstanz. Bitte verwenden Sie die folgenden Angaben für Connectors, die unter Ihrer Firmenidentität laufen: "
+          }
         }
       },
       "helpText": "Get some help",
@@ -580,9 +609,11 @@
         }
       },
       "modal": {
+        "title": "Firmenstecker anschließen",
+        "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
         "company": {
-          "title": "Connect company connector",
-          "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
+          "title": "Connector registrieren",
+          "intro": "Um mit Ihrem Connector innerhalb des Datenraums kommunizieren zu können, muss der Connector-Endpunkt registriert werden. Für den Connector ist zwingend ein technischer Benutzer erforderlich. Dieser Benutzer wird verwendet, um die Kommunikation zwischen Ihrem Connector und dem Firmen-Wallet (Identitätsmanagement) zu ermöglichen. Wenn der technische Benutzer noch nicht erstellt wurde, erstellen Sie bitte zuerst den technischen Benutzer und fahren Sie anschließend mit der Connector-Registrierung fort. Beachten Sie, dass die technische Benutzererstellung ein asynchroner Prozess ist und bis zu 5 Minuten dauern kann.",
           "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen aktiver Teilnehmer ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
         "managed": {
@@ -592,21 +623,23 @@
         },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
+        "technicalUser": "Technischer Benutzer",
+        "connectorRegistrationDetails": "Details zur Connector-Registrierung",
+        "connectAlreadyExistingTechnicalUser": "Verbinden Sie einen bereits vorhandenen technischen Benutzer",
+        "createNewTechnicalUser": "Erstellen Sie einen neuen technischen Benutzer",
         "insertform": {
           "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
-            "patternError": {
-              "lengthError": "Connector name length should be between 2 and 20.",
-              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
-            },
-            "error": "Connector name is mandatory.",
-            "tooltipMsg": "Own selected connector name for verification"
+            "mandatoryError": "Der Connector-Name ist obligatorisch.",
+            "tooltipMsg": "Eigener ausgewählter Connector-Name zur Überprüfung",
+            "patternError": "Der Connector-Name darf nicht mit Sonderzeichen oder Leerzeichen beginnen. Erlaubte Sonderzeichen sind @_:;%&?,'!."
           },
           "url": {
-            "label": "Connector URL*",
+            "label": "Connector-Katalog-Endpunkt*",
             "placeholder": "Connector URL",
-            "error": "Enter a valid url - eg: https://catena-x.net",
+            "mandatoryError": "Die Connector-URL ist obligatorisch.",
+            "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
           },
           "bpn": {
@@ -618,7 +651,8 @@
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
-            "error": "Valid code eg: DE, US",
+            "mandatoryError": "Der Standort ist obligatorisch",
+            "patternError": "Gültiger Code zB: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
@@ -631,7 +665,29 @@
             "placeholder": "Select the related subscription",
             "tooltipMsg": "Select the related subscription",
             "error": "Customer link is mandatory"
-          }
+          },
+          "technicalUser": {
+            "label": "Technischer Benutzer*",
+            "placeholder": "Wählen Sie den vorhandenen technischen Benutzer aus",
+            "tooltipMsg": "Wählen Sie den vorhandenen technischen Benutzer aus",
+            "error": "Technischer Benutzer ist obligatorisch"
+          },
+          "UserName": {
+            "label": "Nutzername*",
+            "placeholder": "Nutzername",
+            "tooltipMsg": "Benutzername für neuen technischen Benutzer",
+            "mandatoryError": "Der Benutzername ist obligatorisch",
+            "patternError": "Der Benutzername sollte mit einem Buchstaben beginnen. Zulässige Sonderzeichen sind #. '!=()&“ zusammen mit Zahlen und Leerzeichen"
+          },
+          "description": {
+            "label": "Beschreibung*",
+            "placeholder": "Beschreibung",
+            "tooltipMsg": "Beschreibung für neue technische Benutzer",
+            "mandatoryError": "Beschreibung ist obligatorisch",
+            "patternError": "Der Benutzername sollte mit einem Buchstaben beginnen. Zulässige Sonderzeichen sind #. '!=()&“ zusammen mit Zahlen und Leerzeichen"
+          },
+          "minLength": "Minlength ist",
+          "maxLength": "Maxlength ist"
         },
         "create": {
           "successTitle": "Create connector successfully completed",
@@ -736,12 +792,14 @@
         "userRoleErrorMsg": "Etwas ist schief gelaufen. Benutzerrollen wurden nicht aktualisiert.",
         "header": {
           "title": "App Rollen",
-          "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen"
+          "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen",
+          "noRoles": "Derzeit sind keine App-Rollen vorhanden. Keine Zuordnung möglich."
         },
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
           "add": "Benutzerrolle hinzufügen",
+          "buttonTooltip": "Funktion deaktiviert, da keine App-Rollen verfügbar sind",
           "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {

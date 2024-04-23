@@ -50,6 +50,12 @@
 
 .subNavigationContainer button:hover {
   background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.subNavigationContainer button:focus {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 //tab layout
