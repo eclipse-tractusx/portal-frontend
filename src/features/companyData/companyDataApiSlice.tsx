@@ -58,12 +58,15 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   tagTypes: [Tags.companydata],
   endpoints: (builder) => ({
-    fetchCompanyData: builder.query<any, CompanyDataRequestType>({
+    fetchCompanyData: builder.query<
+      CompanyDataAddressType,
+      CompanyDataRequestType
+    >({
       query: ({ page }) =>
         `/v6/input/business-partners/search?page=${page}&size=30`,
       providesTags: [Tags.companydata],
     }),
-    fetchCompanyDetail: builder.query<any, string>({
+    fetchCompanyDetail: builder.query<CompanyDataAddressType, string>({
       query: (id) => `/v6/input/business-partners/${id}/search?`,
       providesTags: [Tags.companydata],
     }),

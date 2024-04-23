@@ -17,9 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  PageLoadingTable,
-} from '@catena-x/portal-shared-components'
+import { PageLoadingTable } from '@catena-x/portal-shared-components'
 import { appManagementSelector } from 'features/appManagement/slice'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -41,6 +39,7 @@ export const CompanyAddressList = ({
   const args = {}
   return (
     <Box>
+      {/* eslint-disable-next-line */}
       <PageLoadingTable<any, any>
         autoFocus={false}
         onButtonClick={handleButtonClick}
@@ -53,8 +52,8 @@ export const CompanyAddressList = ({
         searchInputData={searchInputData}
         searchExpr={searchExpr}
         onSearch={(expr: string) => {
-            setSearchExpr(expr)
-            setRefresh(1)
+          setSearchExpr(expr)
+          setRefresh(1)
         }}
         searchDebounce={1000}
         noRowsMsg={t('content.companyData.table.noRowsMsg')}

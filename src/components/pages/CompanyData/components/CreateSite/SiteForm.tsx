@@ -45,7 +45,7 @@ const responseToForm = (data: CompanyDataSiteType) => {
   return form
 }
 
-const formToUpdate = (form: IHashMap<string>): any => ({
+const formToUpdate = (form: IHashMap<string>) => ({
   siteName: form.siteName,
   street: form.street,
   postalCode: form.postalCode,
@@ -60,7 +60,7 @@ const UpdateForm = ({
   data,
   onChange,
 }: {
-  data: any
+  data: CompanyDataSiteType
   onChange: (key: string, value: string | undefined) => boolean
 }) => {
   const { t } = useTranslation()
