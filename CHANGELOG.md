@@ -1,25 +1,23 @@
 # Changelog
 
-# Unreleased
-
-- Technical Integration
-  - Updated connector registration overlay
-- Connector overlay
-  - Update Overlay content with dynamic data
-
-### Bugfix
-
-- Company Subscriptions
-  - Added missing translations in main.json files
-
-## 2.0.0-RC1
+## 2.0.0-RC2
 
 ### Change
 
+- Technical Integration: updated connector registration overlay
+
+  ### Bugfix
+
+- Company Subscriptions
+  - added missing translations
+- Connector overlay
+  - updated overlay content with dynamic data
 - Sticky header
-  - Disable focus effect on button
+  - disabled focus effect on button
+- User Management
+  - fixed app roles section
 - My Account
-  - Change account page access role
+  - changed account page access role
 
 ## 2.0.0-RC1
 
