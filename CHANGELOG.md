@@ -4,6 +4,8 @@
 
 - Technical Integration
   - Updated connector registration overlay
+- Connector overlay
+  - Update Overlay content with dynamic data
 
 ### Bugfix
 

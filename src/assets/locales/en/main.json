@@ -558,18 +558,28 @@
         "managed": "Managed"
       },
       "configurationDetails": {
-        "title": "Connector Configuration for authentication flow",
-        "description": "Your edc instance need to get connected to the catena-x identity provider for the technical user authentication flow to fetch the user token and authenticate against the MIW. Additionally the MIW endpoint, authority BPN and your technical user need to get configured/set to ensure that the connection works correctly.",
-        "orderList": {
-          "title": "Below you can find the relevant details regarding all those values",
-          "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
-          "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
-          "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
-          "authorityBpn": "* authority bpn: {{bpn}}",
-          "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
-          "clickhere": "click here"
+        "title": "How to Configure Your Connector",
+        "description": "This description provides step-by-step instructions on how to configure your connector. Please follow the instructions below to set the necessary configuration values. Please ensure that you enter the correct values for each configuration setting. Once you have set these values, your connector will be properly configured and ready to use.",
+        "section": {
+          "part1": {
+            "title": "iatp.sts.oauth.token_url: ",
+            "description": "the token endpoint of the decentral identity management instance is: "
+          },
+          "part2": {
+            "title": "iatp.sts.oauth.client.id: ",
+            "description1": "technical user client ID of your technical user for the specific connector. Ensure you separate the technical users - each connector one technical user. Technical users can get found and requested inside the ",
+            "key": "technical user self-service.",
+            "description2": " You can also create the technical user as part of the connector registration."
+          },
+          "part3": {
+            "title": "iatp.sts.oauth.client.secret_alias: ",
+            "description": "alias under which you saved your DIM client secret in the vault. Inside the vault the secret of the technical user defined above should be stored. You can view the secret inside the ",
+            "key": "technical user self-service."
+          },
+          "part4": {
+            "title": "iatp.sts.dim.url: ",
+            "description": "base url of you decentral identity management instance. Please use the following details for connectors running under your company identity: "
+          }
         }
       },
       "helpText": "Get some help",
