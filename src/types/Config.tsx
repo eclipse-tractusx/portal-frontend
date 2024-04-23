@@ -87,6 +87,7 @@ import CompanyCertificates from 'components/pages/CompanyCertificates'
 import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
+import CompanyData from 'components/pages/CompanyData'
 
 /**
  * ALL_PAGES
@@ -583,6 +584,11 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  {
+    name: PAGES.COMPANY_DATA,
+    role: ROLES.COMPANY_DATA,
+    element: <CompanyData />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -815,6 +821,7 @@ export const userMenuFull = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
   PAGES.LOGOUT,
 ]
 
@@ -833,6 +840,7 @@ export const userMenuCompany = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
 ]
 
 /**

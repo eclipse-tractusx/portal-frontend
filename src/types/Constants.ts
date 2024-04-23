@@ -108,6 +108,7 @@ export enum PAGES {
   CONSENT_OSP = 'consent_osp',
   COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
+  COMPANY_DATA = 'company_data',
 }
 
 export enum OVERLAYS {
@@ -225,6 +226,7 @@ export enum ROLES {
   VIEW_SUBSCRIPTION = 'view_subscription',
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
+  COMPANY_DATA = 'view_company_data',
 }
 
 export enum HINTS {
