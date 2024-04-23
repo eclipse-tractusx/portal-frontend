@@ -66,7 +66,8 @@
     "companyWallet": "Company Wallet",
     "company-subscriptions": "Company Subscriptions",
     "mycompany": "My Company",
-    "mynotifications": "My Notifications"
+    "mynotifications": "My Notifications",
+    "company_data": "Company Data"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -1807,6 +1808,97 @@
       "retryBtn": "Retry Deletion",
       "notSupportedTitle": "Company account deletion is not supported. You registration is already submitted/closed. To unsubscribe you need to use the platform off-boarding process.",
       "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
+    },
+    "companyData": {
+      "table": {
+        "title": "Sites and addresses",
+        "buttonSite": "add site",
+        "buttonAddress": "add address",
+        "site": "Site Name",
+        "location": "Location",
+        "search": "search address / site",
+        "noRowsMsg": "No Data yet"
+      },
+      "site": {
+        "title": "Create new site",
+        "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+        "form": {
+          "site": {
+            "name": "Site Name",
+            "hint": "Site Name",
+            "error": "Please enter valid Site Name"
+          },
+          "street": {
+            "name": "Street with House Number",
+            "hint": "Street with House Number",
+            "error": "Please enter valid Street with House Number"
+          },
+          "postal": {
+            "name": "Postal Code",
+            "hint": "Postal Code",
+            "error": "Please enter valid Postal Code"
+          },
+          "city": {
+            "name": "City",
+            "hint": "City",
+            "error": "Please enter valid City"
+          },
+          "countryCode": {
+            "name": "Country Code",
+            "hint": "Country Code",
+            "error": "Please enter valid Country Code"
+          },
+          "countryIdentifier": {
+            "name": "Country Identifier",
+            "hint": "Country Identifier",
+            "error": "Please enter valid Country Identifier"
+          },
+          "identifierNumber": {
+            "name": "Identifier Number",
+            "hint": "Identifier Number",
+            "error": "Please enter valid Identifier Number"
+          }
+        }
+      },
+      "address": {
+        "title": "Create new address",
+        "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+        "form": {
+          "companySite": {
+            "name": "Select company / site",
+            "hint": "Select company / site",
+            "error": "Please enter valid company / site"
+          },
+          "addressTitle": {
+            "name": "Address Title",
+            "hint": "Address Title",
+            "error": "Please enter valid Address Title"
+          },
+          "street": {
+            "name": "Street with House Number",
+            "hint": "Street with House Number",
+            "error": "Please enter valid Street with House Number"
+          },
+          "postal": {
+            "name": "Postal Code",
+            "hint": "Postal Code",
+            "error": "Please enter valid Postal Code"
+          },
+          "city": {
+            "name": "City",
+            "hint": "City",
+            "error": "Please enter valid City"
+          }
+        }
+      },
+      "success": {
+        "title": "Create {name}",
+        "description": "The changes have been successfully saved"
+      },
+      "error": {
+        "title": "Create {name}",
+        "description": "The changes could not be saved. Please try again"
+      }
     }
   },
   "navigation": {
