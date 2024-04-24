@@ -31,6 +31,8 @@ export const getCentralIdp = () => ENV.CENTRALIDP_URL ?? ''
 
 export const getApiBase = () => ENV.PORTAL_BACKEND_URL ?? ''
 
+export const getSsiBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
+
 export const getAssetBase = () => ENV.PORTAL_ASSETS_URL ?? ''
 
 export const getBpdmApiBase = () => ENV.BPDM_API_URL ?? ''
