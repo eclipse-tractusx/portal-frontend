@@ -51,11 +51,12 @@ const ValidatingInput = ({
 }: ValidatingInputProps) => {
   const [color, setColor] = useState<Colors>(Colors.secondary)
   const [currentValue, setCurrentValue] = useState<string>(value)
-
+  const [valid, setValid] = useState<boolean>(false)
   const immediateValidate = useCallback(
     (expr: string) => {
-      const isValid = validate ? validate(expr) : true
+      const isValid = validate && validate(expr) ? true : false
       setColor(isValid ? Colors.success : Colors.error)
+      setValid(isValid)
       if (isValid && onValid) onValid(name, expr)
       else if (!isValid && onInvalid) onInvalid(name, expr)
     },
@@ -82,11 +83,12 @@ const ValidatingInput = ({
   return (
     <BasicInput
       {...{ name, label, hint, value, onValue, type, toggleHide, errorMessage }}
-      {...(color === Colors.error ? { errorMessage: hint } : {})}
+      {...(color === Colors.error ? { errorMessage } : {})}
       style={{
         ...style,
         borderBottom: `2px solid ${color}`,
       }}
+      valid={valid}
       onValue={doValidate}
     />
   )
