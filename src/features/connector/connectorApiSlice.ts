@@ -74,6 +74,11 @@ export interface OperatorBpnType {
   bpn: string
 }
 
+export interface DecentralIdentityUrlsType {
+  decentralIdentityManagementServiceUrl: string
+  decentralIdentityManagementAuthUrl: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -126,8 +131,8 @@ export const apiSlice = createApi({
         return obj
       },
     }),
-    fetchOperatorBpn: builder.query<OperatorBpnType[], void>({
-      query: () => '/api/administration/staticdata/operator-bpn',
+    fetchDecentralIdentityUrls: builder.query<DecentralIdentityUrlsType, void>({
+      query: () => 'api/administration/companydata/decentralidentity/urls',
     }),
   }),
 })
@@ -139,5 +144,5 @@ export const {
   useFetchConnectorsQuery,
   useFetchManagedConnectorsQuery,
   useFetchOfferSubscriptionsQuery,
-  useFetchOperatorBpnQuery,
+  useFetchDecentralIdentityUrlsQuery,
 } = apiSlice
