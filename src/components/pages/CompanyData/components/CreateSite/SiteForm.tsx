@@ -20,11 +20,12 @@
 
 import { useState } from 'react'
 import {
-  isCityName,
+  isCity,
+  isCountry,
   isCountryCode,
   isName,
-  isStreetName,
-  isZipCode,
+  isPostal,
+  isStreet,
 } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
@@ -74,7 +75,7 @@ const UpdateForm = ({
           value={data.siteName}
           validate={(expr) => isName(expr)}
           hint={t('content.companyData.site.form.site.hint')}
-          debounceTime={0}
+          errorMessage={t('content.companyData.site.form.site.error')}
           onValid={onChange}
         />
       </div>
@@ -84,8 +85,9 @@ const UpdateForm = ({
           label={t('content.companyData.site.form.street.name')}
           value={data.street}
           hint={t('content.companyData.site.form.street.hint')}
-          validate={(expr) => isStreetName(expr)}
+          validate={(expr) => isStreet(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.site.form.street.error')}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -94,8 +96,9 @@ const UpdateForm = ({
           label={t('content.companyData.site.form.city.name')}
           value={data.city}
           hint={t('content.companyData.site.form.city.hint')}
-          validate={(expr) => isCityName(expr)}
+          validate={(expr) => isCity(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.site.form.city.error')}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -104,8 +107,9 @@ const UpdateForm = ({
           label={t('content.companyData.site.form.countryCode.name')}
           value={data.countryCode}
           hint={t('content.companyData.site.form.countryCode.hint')}
-          validate={(expr) => isCountryCode(expr)}
+          validate={(expr) => isCountry(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.site.form.countryCode.error')}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -114,8 +118,9 @@ const UpdateForm = ({
           label={t('content.companyData.site.form.postal.name')}
           value={data.postalCode}
           hint={t('content.companyData.site.form.postal.hint')}
-          validate={(expr) => isZipCode(expr)}
+          validate={(expr) => isPostal(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.site.form.postal.error')}
         />
       </div>
       <div
@@ -145,6 +150,9 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.identifierNumber.hint')}
           validate={(expr) => isCountryCode(expr)}
           onValid={onChange}
+          errorMessage={t(
+            'content.companyData.site.form.identifierNumber.error'
+          )}
         />
       </div>
     </>

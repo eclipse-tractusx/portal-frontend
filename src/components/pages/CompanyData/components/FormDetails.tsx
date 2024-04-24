@@ -32,7 +32,7 @@ import { SiteForm } from './CreateSite/SiteForm'
 import { AddressForm } from './CreateAddress/AddressForm'
 
 interface FormDetailsProps {
-  readonly id: string
+  readonly id?: string
   readonly open: boolean
   readonly title: string
   readonly description: string
@@ -53,14 +53,15 @@ export default function FormDetails({
   const [loading, setLoading] = useState<boolean>(false)
   const handleSubmit = () => {
     setLoading(true)
-    // if(isAddress) {
-    //     // api call to create new
-    // } else {
-    //     // api call to create new
-    // }
+    if (isAddress) {
+      // api call to create new
+    } else {
+      // api call to create new
+    }
     setLoading(false)
     handleConfirm()
   }
+  console.log(id)
   return (
     <Box>
       <Dialog open={open}>
@@ -68,7 +69,7 @@ export default function FormDetails({
           title={title}
           intro={description}
           closeWithIcon={true}
-          onCloseWithIcon={() => {}}
+          onCloseWithIcon={handleClose}
         />
         <DialogContent>
           {isAddress ? (

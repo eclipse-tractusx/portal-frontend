@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useState } from 'react'
-import { isCityName, isName, isStreetName, isZipCode } from 'types/Patterns'
+import { isCity, isName, isPostal, isStreet } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
@@ -61,6 +61,7 @@ const UpdateForm = ({
           value={data.companySite}
           validate={(expr) => isName(expr)}
           hint={t('content.companyData.address.form.companySite.hint')}
+          errorMessage={t('content.companyData.address.form.companySite.hint')}
           debounceTime={0}
           onValid={onChange}
         />
@@ -71,8 +72,9 @@ const UpdateForm = ({
           label={t('content.companyData.address.form.addressTitle.name')}
           value={data.addressTitle}
           hint={t('content.companyData.address.form.addressTitle.hint')}
-          validate={(expr) => isStreetName(expr)}
+          validate={(expr) => isName(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.address.form.addressTitle.hint')}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -81,8 +83,9 @@ const UpdateForm = ({
           label={t('content.companyData.address.form.street.name')}
           value={data.street}
           hint={t('content.companyData.address.form.street.hint')}
-          validate={(expr) => isZipCode(expr)}
+          validate={(expr) => isStreet(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.address.form.street.hint')}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -91,8 +94,9 @@ const UpdateForm = ({
           label={t('content.companyData.address.form.postal.name')}
           value={data.postalCode}
           hint={t('content.companyData.address.form.postal.hint')}
-          validate={(expr) => isZipCode(expr)}
+          validate={(expr) => isPostal(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.address.form.postal.hint')}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -101,8 +105,9 @@ const UpdateForm = ({
           label={t('content.companyData.address.form.city.name')}
           value={data.city}
           hint={t('content.companyData.address.form.city.hint')}
-          validate={(expr) => isCityName(expr)}
+          validate={(expr) => isCity(expr)}
           onValid={onChange}
+          errorMessage={t('content.companyData.address.form.city.hint')}
         />
       </div>
     </>
