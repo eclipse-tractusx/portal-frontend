@@ -90,16 +90,6 @@ const UpdateForm = ({
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
-          name="postal"
-          label={t('content.companyData.site.form.postal.name')}
-          value={data.postalCode}
-          hint={t('content.companyData.site.form.postal.hint')}
-          validate={(expr) => isZipCode(expr)}
-          onValid={onChange}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
           name="city"
           label={t('content.companyData.site.form.city.name')}
           value={data.city}
@@ -115,6 +105,16 @@ const UpdateForm = ({
           value={data.countryCode}
           hint={t('content.companyData.site.form.countryCode.hint')}
           validate={(expr) => isCountryCode(expr)}
+          onValid={onChange}
+        />
+      </div>
+      <div style={{ margin: '12px 0' }}>
+        <ValidatingInput
+          name="postalCode"
+          label={t('content.companyData.site.form.postal.name')}
+          value={data.postalCode}
+          hint={t('content.companyData.site.form.postal.hint')}
+          validate={(expr) => isZipCode(expr)}
           onValid={onChange}
         />
       </div>

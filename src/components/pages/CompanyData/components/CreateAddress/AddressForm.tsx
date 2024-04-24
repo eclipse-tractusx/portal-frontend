@@ -87,7 +87,7 @@ const UpdateForm = ({
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
-          name="postal"
+          name="postalCode"
           label={t('content.companyData.address.form.postal.name')}
           value={data.postalCode}
           hint={t('content.companyData.address.form.postal.hint')}

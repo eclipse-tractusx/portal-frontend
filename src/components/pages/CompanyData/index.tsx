@@ -23,15 +23,13 @@ import { Box } from '@mui/material'
 import {
   Typography,
   BackButton,
-  StatusTag,
 } from '@catena-x/portal-shared-components'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { CompanyAddressList } from './components/CompanyAddressList'
 import { useState } from 'react'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import FormDetails from './components/FormDetails'
+import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
 
 export default function CompanyData() {
   const navigate = useNavigate()
@@ -42,53 +40,6 @@ export default function CompanyData() {
     success: false,
     error: false,
   })
-  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()
-
-  const companyData = [
-    {
-      key: t('content.organization.companyDetails.companyName'),
-      value: companyDetails?.shortName ?? 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.bpn'),
-      value: companyDetails?.bpn ?? 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.street'),
-      value: companyDetails
-        ? companyDetails.streetName + ' ' + companyDetails.streetNumber
-        : 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.postal'),
-      value: companyDetails
-        ? companyDetails.zipCode + ' ' + companyDetails.city
-        : 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.region'),
-      value:
-        companyDetails?.countryAlpha2Code +
-        (companyDetails?.region ? ', ' + companyDetails?.region : ''),
-    },
-  ]
-
-  const companyRoleData = [
-    {
-      key: '',
-      value: (
-        <>
-          {companyDetails?.companyRole.map((item: string) => (
-            <StatusTag
-              key={item}
-              color="label"
-              label={t(`content.companyRolesUpdate.${item}`)}
-            />
-          ))}
-        </>
-      ),
-    },
-  ]
 
   return (
     <main className="organization-main">
@@ -102,41 +53,7 @@ export default function CompanyData() {
         />
       </Box>
       <div className="organization-section">
-        <Typography variant="h2" className="main-title">
-          {t('pages.company_data')}
-        </Typography>
-        <div className="table-section">
-          <Box
-            sx={{
-              width: '50%',
-              '@media (max-width: 1200px)': {
-                order: 1,
-                width: '50%',
-              },
-            }}
-          >
-            <KeyValueView
-              cols={1.5}
-              title={t('content.organization.companyDetails.title')}
-              items={companyData}
-            />
-          </Box>
-          <Box
-            sx={{
-              width: '50%',
-              '@media (max-width: 1200px)': {
-                order: 1,
-                width: '50%',
-              },
-            }}
-          >
-            <KeyValueView
-              cols={1.5}
-              title={t('content.organization.companyRoles.title')}
-              items={companyRoleData}
-            />
-          </Box>
-        </div>
+        <MyCompanyInfoComponent editable={false} />
       </div>
       <CompanyAddressList
         handleButtonClick={() => {
@@ -155,7 +72,8 @@ export default function CompanyData() {
       {showOverlay.address && (
         <FormDetails
           isAddress={true}
-          id={''}
+          // change id based on response
+          id={'abcd'}
           title={t('content.companyData.address.title')}
           description={t('content.companyData.address.description')}
           handleClose={() => {
@@ -176,7 +94,8 @@ export default function CompanyData() {
       )}
       {showOverlay.site && (
         <FormDetails
-          id={''}
+          // change id based on response
+          id={'abcd'}
           title={t('content.companyData.site.title')}
           description={t('content.companyData.site.description')}
           handleClose={() => {

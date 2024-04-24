@@ -58,6 +58,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   tagTypes: [Tags.companydata],
   endpoints: (builder) => ({
+    //change type here based on response
     fetchCompanyData: builder.query<
       CompanyDataAddressType,
       CompanyDataRequestType
@@ -66,6 +67,7 @@ export const apiSlice = createApi({
         `/v6/input/business-partners/search?page=${page}&size=30`,
       providesTags: [Tags.companydata],
     }),
+    //change type here based on response
     fetchCompanyDetail: builder.query<CompanyDataAddressType, string>({
       query: (id) => `/v6/input/business-partners/${id}/search?`,
       providesTags: [Tags.companydata],
