@@ -1,5 +1,12 @@
 # Changelog
 
+# Unreleased
+
+### Bugfix
+
+- Technical Setup
+  - fixed white page issue on connector registration with "Existing Technical User" selection
+
 ## 2.0.0-RC2
 
 ### Change
