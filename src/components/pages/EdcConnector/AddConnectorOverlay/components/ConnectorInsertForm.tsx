@@ -35,7 +35,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import { ConnectType } from 'features/connector/connectorApiSlice'
 import { Dropzone } from '../../../../shared/basic/Dropzone'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './EdcComponentStyles.scss'
 
 const ConnectorFormInput = ({
@@ -254,6 +254,16 @@ const ConnectorInsertForm = ({
 any) => {
   const { t } = useTranslation()
   const [selectedValue, setSelectedValue] = useState<string>()
+  const [serviceAccountUsers, setServiceAccountUsers] = useState([])
+
+  useEffect(() => {
+    if (fetchServiceAccountUsers?.content)
+      setServiceAccountUsers(
+        fetchServiceAccountUsers.content?.filter(
+          (item: { name: string }) => item.name
+        )
+      )
+  }, [fetchServiceAccountUsers])
 
   const handleTechnicalUserSubmit = () => {
     if (
@@ -364,9 +374,9 @@ any) => {
                   helperText: t(
                     'content.edcconnector.modal.insertform.technicalUser.error'
                   ),
-                  items: fetchServiceAccountUsers?.content,
+                  items: serviceAccountUsers,
                   defaultSelectValue: {},
-                  keyTitle: 'clientId',
+                  keyTitle: 'name',
                 }}
               />
             )}

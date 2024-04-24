@@ -165,9 +165,9 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
-    fetchServiceAccountUsers: builder.query<ServiceAccountRole[], void>({
+    fetchServiceAccountUsers: builder.query<ServiceAccountListEntry[], void>({
       query: () =>
-        '/api/administration/serviceaccount/owncompany/serviceaccounts?page=0&size=10&filterForInactive=false',
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=0&size=${PAGE_SIZE}&filterForInactive=false`,
     }),
   }),
 })
