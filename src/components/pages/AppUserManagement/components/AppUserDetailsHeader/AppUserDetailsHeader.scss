@@ -30,6 +30,11 @@
   max-width: 1200px;
   height: max-content;
   margin: 80px auto 0px auto;
+  .no-roles {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 .app-user-details-header-role {

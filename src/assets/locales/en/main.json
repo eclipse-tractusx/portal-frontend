@@ -386,6 +386,25 @@
       }
     },
     "organization": {
+      "unsubscribe": {
+        "title": "Unsubscribe Business Application / Service",
+        "descriptionNote": "Please note: the unsubscription is not revertible",
+        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
+        "table": {
+          "listOfConnectedObjects": "List of connected objects:",
+          "app": "Application / Service title:",
+          "status": "Current Status:",
+          "connector": "Connector:",
+          "techUser": "Technical User:"
+        },
+        "subscribed": "Subscribed",
+        "checkBoxLabel": "Yes, I agree to unsubscribe from this application / service.",
+        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
+        "buttonText": "Unsubscribe",
+        "unsubscribeSuccess": "Unsubscribe subscription is successful",
+        "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
+        "unsubscriptionOnProgress": "Unsubscription on progress"
+      },
       "companyDetails": {
         "title": "Company Details",
         "companyName": "Company Name",
@@ -539,18 +558,28 @@
         "managed": "Managed"
       },
       "configurationDetails": {
-        "title": "Connector Configuration for authentication flow",
-        "description": "Your edc instance need to get connected to the catena-x identity provider for the technical user authentication flow to fetch the user token and authenticate against the MIW. Additionally the MIW endpoint, authority BPN and your technical user need to get configured/set to ensure that the connection works correctly.",
-        "orderList": {
-          "title": "Below you can find the relevant details regarding all those values",
-          "centralAuth": "* central auth url: https:{{env}}/realms/CX-Central/protocol/openid-connect/token",
-          "clientId": "* client id: client id of your existing or newly created tech user - details how to: ",
-          "clientIdLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
-          "clientSecret": "* client secret: client id of your existing or newly created tech user - details how to: ",
-          "clientSecretLink": "/documentation/?path=user%2F03.+User+Management%2F03.+Technical+User%2F02.+Create+Technical+User.md",
-          "authorityBpn": "* authority bpn: {{bpn}}",
-          "miwUrl": "* miw url: https:{{managedIdentityWalletApiBase}}",
-          "clickhere": "click here"
+        "title": "How to Configure Your Connector",
+        "description": "This description provides step-by-step instructions on how to configure your connector. Please follow the instructions below to set the necessary configuration values. Please ensure that you enter the correct values for each configuration setting. Once you have set these values, your connector will be properly configured and ready to use.",
+        "section": {
+          "part1": {
+            "title": "iatp.sts.oauth.token_url: ",
+            "description": "the token endpoint of the decentral identity management instance is: "
+          },
+          "part2": {
+            "title": "iatp.sts.oauth.client.id: ",
+            "description1": "technical user client ID of your technical user for the specific connector. Ensure you separate the technical users - each connector one technical user. Technical users can get found and requested inside the ",
+            "key": "technical user self-service.",
+            "description2": " You can also create the technical user as part of the connector registration."
+          },
+          "part3": {
+            "title": "iatp.sts.oauth.client.secret_alias: ",
+            "description": "alias under which you saved your DIM client secret in the vault. Inside the vault the secret of the technical user defined above should be stored. You can view the secret inside the ",
+            "key": "technical user self-service."
+          },
+          "part4": {
+            "title": "iatp.sts.dim.url: ",
+            "description": "base url of you decentral identity management instance. Please use the following details for connectors running under your company identity: "
+          }
         }
       },
       "helpText": "Get some help",
@@ -579,9 +608,11 @@
         }
       },
       "modal": {
+        "title": "Connect company connector",
+        "intro": "Registration of a company connector which is implemented in your own company network.",
         "company": {
-          "title": "Connect company connector",
-          "intro": "Registration of a company connector which is implemented in your own company network.",
+          "title": "Register Connector",
+          "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is a asynchrony process and might take up to 5 minutes.",
           "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /company-role"
         },
         "managed": {
@@ -591,21 +622,23 @@
         },
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
+        "technicalUser": "Technical User",
+        "connectorRegistrationDetails": "Connector Registration Details",
+        "connectAlreadyExistingTechnicalUser": "Connect an already existing technical user",
+        "createNewTechnicalUser": "Create a new technical user",
         "insertform": {
           "name": {
             "label": "Name*",
             "placeholder": "Connector Name",
-            "patternError": {
-              "lengthError": "Connector name length should be between 2 and 20.",
-              "otherError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
-            },
-            "error": "Connector name is mandatory.",
-            "tooltipMsg": "Own selected connector name for verification"
+            "mandatoryError": "Connector name is mandatory.",
+            "tooltipMsg": "Own selected connector name for verification",
+            "patternError": "Connector name can not start with special character or empty space. Allowed special characters are @_:;.-%&?,'!."
           },
           "url": {
-            "label": "Connector URL/Endpoint*",
+            "label": "Connector Catalogue Endpoint*",
             "placeholder": "Connector URL",
-            "error": "Enter a valid url - eg: https://catena-x.net",
+            "mandatoryError": "Connector URL is mandatory.",
+            "patternError": "Enter a valid url - eg: https://catena-x.net",
             "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
           },
           "bpn": {
@@ -617,7 +650,8 @@
           "country": {
             "label": "Location*",
             "placeholder": "Two digit country code",
-            "error": "Valid code eg: DE, US",
+            "mandatoryError": "Location is mandatory",
+            "patternError": "Valid code eg: DE, US",
             "tooltipMsg": "Connector Location Country Code - e.g. DE, US, etc."
           },
           "doc": {
@@ -630,6 +664,26 @@
             "placeholder": "Select the related subscription",
             "tooltipMsg": "Select the related subscription",
             "error": "Customer link is mandatory"
+          },
+          "technicalUser": {
+            "label": "Technical User*",
+            "placeholder": "Select existing technical user",
+            "tooltipMsg": "Select existing technical user",
+            "error": "Technical User is mandatory"
+          },
+          "UserName": {
+            "label": "Username*",
+            "placeholder": "Username",
+            "tooltipMsg": "Username for new technical user",
+            "mandatoryError": "Username is mandatory",
+            "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
+          },
+          "description": {
+            "label": "Description*",
+            "placeholder": "Description",
+            "tooltipMsg": "Description for new technical user",
+            "mandatoryError": "Description is mandatory",
+            "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
           }
         },
         "create": {
@@ -643,7 +697,9 @@
           "successDescription": "Delete connector successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
-        }
+        },
+        "minLength": "Minlength is",
+        "maxLength": "Maxlength is"
       }
     },
     "partnernetwork": {
@@ -735,12 +791,14 @@
         "userRoleErrorMsg": "Roles have not got updated.",
         "header": {
           "title": "App Roles",
-          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area."
+          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area.",
+          "noRoles": "No app roles are currently existing. No assignment possible."
         },
         "table": {
           "headline": "Identity Management",
           "title": "App Users",
           "add": "Add Role",
+          "buttonTooltip": "Function disabled since no app roles are available",
           "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
         "roles": {

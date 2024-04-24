@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.0.0-RC3
+
+### Bugfix
+
+- Technical Setup
+  - fixed white page issue on connector registration with "Existing Technical User" selection
+
+## 2.0.0-RC2
+
+### Change
+
+- Technical Integration: updated connector registration overlay
+
+  ### Bugfix
+
+- Company Subscriptions
+  - added missing translations
+- Connector overlay
+  - updated overlay content with dynamic data
+- Sticky header
+  - disabled focus effect on button
+- User Management
+  - fixed app roles section
+- My Account
+  - changed account page access role
+
 ## 2.0.0-RC1
 
 ### Change
