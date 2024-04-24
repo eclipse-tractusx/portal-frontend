@@ -9,7 +9,7 @@ import { ROLES, PAGES } from 'types/Constants'
 export default function MyCompanyInfoComponent({
   editable = true,
 }: {
-  editable?: boolean
+  readonly editable?: boolean
 }) {
   const { t } = useTranslation()
   const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()

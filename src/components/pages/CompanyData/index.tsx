@@ -20,10 +20,7 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
-import {
-  Typography,
-  BackButton,
-} from '@catena-x/portal-shared-components'
+import { Typography, BackButton } from '@catena-x/portal-shared-components'
 import { CompanyAddressList } from './components/CompanyAddressList'
 import { useState } from 'react'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'

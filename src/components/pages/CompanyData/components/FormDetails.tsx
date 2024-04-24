@@ -31,6 +31,16 @@ import { useState } from 'react'
 import { SiteForm } from './CreateSite/SiteForm'
 import { AddressForm } from './CreateAddress/AddressForm'
 
+interface FormDetailsProps {
+  readonly id: string
+  readonly open: boolean
+  readonly title: string
+  readonly description: string
+  readonly handleClose: () => void
+  readonly isAddress?: boolean
+  readonly handleConfirm: () => void
+}
+
 export default function FormDetails({
   id,
   open,
@@ -39,15 +49,7 @@ export default function FormDetails({
   handleClose,
   isAddress = false,
   handleConfirm,
-}: {
-  id: string
-  open: boolean
-  title: string
-  description: string
-  handleClose: () => void
-  isAddress?: boolean
-  handleConfirm: () => void
-}) {
+}: FormDetailsProps) {
   const [loading, setLoading] = useState<boolean>(false)
   const handleSubmit = () => {
     setLoading(true)
