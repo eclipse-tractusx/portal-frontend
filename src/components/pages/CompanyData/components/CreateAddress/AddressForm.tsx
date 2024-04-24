@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useState } from 'react'
-import { isCity, isName, isPostal, isStreet } from 'types/Patterns'
+import { isCity, isName, isZipCode, isStreet } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
@@ -94,7 +94,7 @@ const UpdateForm = ({
           label={t('content.companyData.address.form.postal.name')}
           value={data.postalCode}
           hint={t('content.companyData.address.form.postal.hint')}
-          validate={(expr) => isPostal(expr)}
+          validate={(expr) => isZipCode(expr)}
           onValid={onChange}
           errorMessage={t('content.companyData.address.form.postal.hint')}
         />

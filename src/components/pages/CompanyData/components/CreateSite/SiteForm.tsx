@@ -24,8 +24,8 @@ import {
   isCountry,
   isCountryCode,
   isName,
-  isPostal,
   isStreet,
+  isZipCode,
 } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
@@ -118,7 +118,7 @@ const UpdateForm = ({
           label={t('content.companyData.site.form.postal.name')}
           value={data.postalCode}
           hint={t('content.companyData.site.form.postal.hint')}
-          validate={(expr) => isPostal(expr)}
+          validate={(expr) => isZipCode(expr)}
           onValid={onChange}
           errorMessage={t('content.companyData.site.form.postal.error')}
         />
