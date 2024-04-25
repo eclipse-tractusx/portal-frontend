@@ -46,7 +46,7 @@ import {
   type rolesType,
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
-  useFetchRolesDataQuery,
+  useFetchAppRolesDataQuery,
   useFetchTechnicalUserProfilesQuery,
   useFetchUserRolesQuery,
   useSaveTechnicalUserProfilesMutation,
@@ -73,7 +73,7 @@ export default function TechnicalIntegration() {
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const { data, refetch: refetchRolesData } = useFetchRolesDataQuery(
+  const { data, refetch: refetchRolesData } = useFetchAppRolesDataQuery(
     appId ?? '',
     {
       refetchOnMountOrArgChange: true,

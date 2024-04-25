@@ -26,7 +26,7 @@ import { appIdSelector } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   useFetchAppStatusQuery,
-  useFetchRolesDataQuery,
+  useFetchAppRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
@@ -48,7 +48,7 @@ export default function ValidateAndPublish({
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
-  const { data } = useFetchRolesDataQuery(appId ?? '')
+  const { data } = useFetchAppRolesDataQuery(appId ?? '')
 
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))

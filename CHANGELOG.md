@@ -6,6 +6,8 @@
 
 - Technical Setup
   - fixed white page issue on connector registration with "Existing Technical User" selection
+- App Release Process
+  - Updated roles endpoint to get roles
 
 ## 2.0.0-RC2
 

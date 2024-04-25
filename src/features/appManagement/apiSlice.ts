@@ -304,9 +304,8 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [Tags.APP],
     }),
-    fetchRolesData: builder.query<rolesType[], string>({
-      query: (appId: string) =>
-        `/api/administration/user/owncompany/roles/apps/${appId}?languageShortName=${i18next.language}`,
+    fetchAppRolesData: builder.query<rolesType[], string>({
+      query: (appId: string) => `/api/apps/AppReleaseProcess/${appId}/roles`,
     }),
     updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
       query: (data) => ({
@@ -449,7 +448,7 @@ export const {
   useFetchSalesManagerDataQuery,
   useSaveAppMutation,
   useDeleteAppReleaseDocumentMutation,
-  useFetchRolesDataQuery,
+  useFetchAppRolesDataQuery,
   useUpdateRoleDataMutation,
   useDeleteRolesMutation,
   useFetchNewDocumentByIdMutation,
