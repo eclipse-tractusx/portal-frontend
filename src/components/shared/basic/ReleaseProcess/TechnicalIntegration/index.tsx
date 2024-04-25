@@ -43,7 +43,6 @@ import {
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
 import {
-  type rolesType,
   useDeleteRolesMutation,
   useFetchAppStatusQuery,
   useFetchAppRolesDataQuery,
@@ -51,6 +50,7 @@ import {
   useFetchUserRolesQuery,
   useSaveTechnicalUserProfilesMutation,
   useUpdateRoleDataMutation,
+  type updateRolePayload,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
@@ -580,12 +580,12 @@ export default function TechnicalIntegration() {
                 )}
               </Typography>
               <Grid item container xs={12}>
-                {data?.map((role: rolesType, index) => (
+                {data?.map((role: updateRolePayload, index) => (
                   <Grid
                     item
                     md={6}
                     xs={12}
-                    key={role.roleId}
+                    key={role.role}
                     sx={{
                       pl: !isMobile && index % 2 === 0 ? 0 : 1,
                       pr: !isMobile && index % 2 === 0 ? 1 : 0,
@@ -595,11 +595,11 @@ export default function TechnicalIntegration() {
                       items={[
                         {
                           expanded: false,
-                          id: role.roleId,
+                          id: role.role,
                           title: '',
                           titleElement: (
                             <Chip
-                              key={role.roleId}
+                              key={role.role}
                               label={role.role}
                               withIcon={true}
                               type="delete"
@@ -611,14 +611,14 @@ export default function TechnicalIntegration() {
                                 },
                               }}
                               handleDelete={() => {
-                                onChipDelete(role.roleId)
+                                onChipDelete(role.role)
                               }}
                             />
                           ),
                           color: 'white',
                           children: (
                             <Typography variant="caption3">
-                              {role.description}
+                              {role.descriptions?.[0].description}
                             </Typography>
                           ),
                         },

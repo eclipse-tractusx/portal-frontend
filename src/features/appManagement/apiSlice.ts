@@ -304,7 +304,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [Tags.APP],
     }),
-    fetchAppRolesData: builder.query<rolesType[], string>({
+    fetchAppRolesData: builder.query<updateRolePayload[], string>({
       query: (appId: string) => `/api/apps/AppReleaseProcess/${appId}/roles`,
     }),
     updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
