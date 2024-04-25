@@ -45,7 +45,7 @@ import {
   ConsentStatusEnum,
   type DocumentData,
   DocumentTypeId,
-  type rolesType,
+  type updateRolePayload,
 } from 'features/appManagement/apiSlice'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import CommonService from 'services/CommonService'
@@ -110,7 +110,7 @@ interface CommonValidateAndPublishType {
     | ReleaseProcessTypes.SERVICE_RELEASE
     | AppOverviewTypes.APP_OVERVIEW_DETAILS
   serviceTypes?: string
-  rolesData?: rolesType[]
+  rolesData?: updateRolePayload[]
 }
 
 export default function CommonValidateAndPublish({
@@ -532,9 +532,11 @@ export default function CommonValidateAndPublish({
             {rolesData.length > 0 ? (
               <Grid container spacing={2} sx={{ margin: '0px' }}>
                 {rolesData?.map((role) => (
-                  <Grid item xs={6} key={role.roleId} className="roles-data">
+                  <Grid item xs={6} key={role.role} className="roles-data">
                     <Typography variant="label2">{role.role}</Typography>
-                    <Typography variant="body3">{role.description}</Typography>
+                    <Typography variant="body3">
+                      {role.descriptions?.[0].description}
+                    </Typography>
                   </Grid>
                 ))}
               </Grid>

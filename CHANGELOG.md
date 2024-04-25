@@ -4,6 +4,8 @@
 
 ### Change
 
+- App Release Process
+  - Updated roles endpoint to get roles
 - Connect Credential Management UI with new Issuer Component
 
 ## 2.0.0-RC3
