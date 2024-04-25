@@ -7,6 +7,8 @@
 - App Release Process
   - Updated roles endpoint to get roles
 - Connect Credential Management UI with new Issuer Component
+- Company Role
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 
 ## 2.0.0-RC3
 
