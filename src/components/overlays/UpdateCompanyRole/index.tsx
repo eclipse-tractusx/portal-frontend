@@ -91,14 +91,19 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
 
   useEffect(() => {
+    const handleAgreement = (agreement: AgreementsData) => {
+      setAgreements((oldArray: AgreementsData[]) =>
+        uniq([...oldArray, agreement])
+      )
+    }
+
     newSelectedRoles?.map((role: CompanyRolesResponse) =>
       role.agreements.map((agreement: AgreementsData) => {
-        setAgreements((oldArray: AgreementsData[]) =>
-          uniq([...oldArray, agreement])
-        )
+        handleAgreement(agreement)
         return null
       })
     )
+
     dispatch(setOverlayCancel(false))
   }, [])
 
@@ -440,14 +445,15 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             variant="contained"
             onClick={() => handleSubmit()}
             disabled={
-              checkedAgreementsIds.length >=
-                agreements.filter((agreement) => agreement.mandatory).length &&
-              agreements
-                .filter((item) => item.mandatory)
-                .map((i) => i.agreementId)
-                .every((value) => checkedAgreementsIds.includes(value))
-                ? false
-                : true
+              !(
+                checkedAgreementsIds.length >=
+                  agreements.filter((agreement) => agreement.mandatory)
+                    .length &&
+                agreements
+                  .filter((item) => item.mandatory)
+                  .map((i) => i.agreementId)
+                  .every((value) => checkedAgreementsIds.includes(value))
+              )
             }
           >
             {`${t('content.companyRolesUpdate.overlay.submit')}`}
