@@ -23,11 +23,20 @@ import {
   getBpdmApiBase,
   getMiwBase,
   getAssetBase,
+  getSsiBase,
 } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 
 export const apiBaseQuery = () => ({
   baseUrl: getApiBase(),
+  prepareHeaders: (headers: Headers) => {
+    headers.set('authorization', `Bearer ${UserService.getToken()}`)
+    return headers
+  },
+})
+
+export const apiSsiCredentialQuery = () => ({
+  baseUrl: getSsiBase(),
   prepareHeaders: (headers: Headers) => {
     headers.set('authorization', `Bearer ${UserService.getToken()}`)
     return headers

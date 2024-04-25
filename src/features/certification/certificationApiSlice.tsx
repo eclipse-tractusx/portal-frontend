@@ -20,6 +20,7 @@
 
 import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getSsiBase } from 'services/EnvironmentService'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
@@ -105,11 +106,9 @@ export const apiSlice = createApi({
     fetchCredentialsSearch: builder.query<CredentialResponse[], PaginFetchArgs>(
       {
         query: (fetchArgs) => ({
-          url: `api/administration/companydata/credentials?page=${
+          url: `${getSsiBase()}/api/issuer?page=${
             fetchArgs.page
-          }&size=${PAGE_SIZE}&companyName=${
-            fetchArgs.args.expr ?? ''
-          }&companySsiDetailStatusId=${fetchArgs.args.filterType ?? ''}`,
+          }&size=${PAGE_SIZE}`,
         }),
       }
     ),
