@@ -123,11 +123,10 @@ const getRoles = (): Array<string> =>
     .concat(
       KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
     )
+    .concat(KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles)
     .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles
-    )
-    .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigSsiCredential.clientId]?.roles
+      KC.tokenParsed?.resource_access[keycloakConfigSsiCredential.clientId]
+        ?.roles
     ) ?? []
 
 const hasRole = (role: string) => getRoles()?.includes(role)
