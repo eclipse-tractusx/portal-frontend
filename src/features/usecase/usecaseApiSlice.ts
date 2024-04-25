@@ -18,6 +18,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getSsiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export type VerifiedCredentialsData = {
@@ -59,7 +60,7 @@ export const apiSlice = createApi({
   tagTypes: ['usecase'],
   endpoints: (builder) => ({
     fetchUsecase: builder.query<UsecaseResponse[], void>({
-      query: () => '/api/administration/companydata/useCaseParticipation',
+      query: () => `${getSsiBase()}/api/issuer/useCaseParticipation`,
       providesTags: ['usecase'],
     }),
     addUsecase: builder.mutation<void, UsecaseRequest>({

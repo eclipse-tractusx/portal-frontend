@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-RC4
+
+### Change
+
+- Connect Credential Management UI with new Issuer Component
+
 ## 2.0.0-RC3
 
 ### Bugfix
