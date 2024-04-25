@@ -27,6 +27,8 @@ export const getClientIdSemantic = () => ENV.CLIENT_ID_SEMANTIC ?? ''
 
 export const getClientIdMiw = () => ENV.CLIENT_ID_MIW ?? ''
 
+export const getClientIdSsiCredential = () => ENV.CLIENT_ID_SSI_CREDENTIAL ?? ''
+
 export const getCentralIdp = () => ENV.CENTRALIDP_URL ?? ''
 
 export const getApiBase = () => ENV.PORTAL_BACKEND_URL ?? ''
@@ -46,6 +48,7 @@ const EnvironmentService = {
   getClientId,
   getClientIdSemantic,
   getClientIdMiw,
+  getClientIdSsiCredential,
   getCentralIdp,
   getApiBase,
   getAssetBase,
