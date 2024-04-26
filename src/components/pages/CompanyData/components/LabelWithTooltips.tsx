@@ -26,9 +26,9 @@ export default function LabelWithTooltips({
   label,
   value,
 }: {
-  tooltipMsg?: string
-  label: string
-  value: string | undefined
+  readonly tooltipMsg?: string
+  readonly label: string
+  readonly value: string | undefined
 }) {
   return (
     <Box

@@ -52,13 +52,6 @@ export default function EditForm({
 }: FormDetailsProps) {
   const [loading, setLoading] = useState<boolean>(false)
   const handleSubmit = () => {
-    setLoading(true)
-    if (isAddress) {
-      // api call to create new
-    } else {
-      // api call to create new
-    }
-    setLoading(false)
     handleConfirm()
   }
   console.log(id)

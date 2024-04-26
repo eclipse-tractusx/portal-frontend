@@ -40,6 +40,7 @@ interface FormDetailsProps {
 }
 
 export default function DetailsOverlay({
+  id,
   open,
   title,
   description,
@@ -47,10 +48,11 @@ export default function DetailsOverlay({
   isAddress = false,
   handleConfirm,
 }: FormDetailsProps) {
-  const [edit, setEdit] = useState<boolean>(false)
+  const [edit, setEdit] = useState<boolean>(!open)
   const onEdit = () => {
     setEdit(true)
   }
+  console.log(id)
   return (
     <Box>
       {edit && (

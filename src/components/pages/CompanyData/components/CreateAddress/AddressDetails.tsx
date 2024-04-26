@@ -22,7 +22,7 @@ import CompanyInfo from '../CompanyInfo'
 import { useTranslation } from 'react-i18next'
 import { Button, Typography } from '@catena-x/portal-shared-components'
 
-export default function AddressDetails({ onEdit }: { onEdit: () => void }) {
+export default function AddressDetails({ onEdit }: { readonly onEdit: () => void }) {
   const { t } = useTranslation()
   const addressData = [
     {
