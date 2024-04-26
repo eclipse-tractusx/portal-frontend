@@ -2,11 +2,14 @@
 
 ## 2.0.0-RC4
 
-### Change
+### Feature
+
+- Connected Credential Management UI with new Issuer Component
+
+  ### Bugfix
 
 - App Release Process
-  - Updated roles endpoint to get roles
-- Connect Credential Management UI with new Issuer Component
+  - updated roles endpoint to get roles
 
 ## 2.0.0-RC3
 
