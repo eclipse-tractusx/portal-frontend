@@ -25,8 +25,8 @@ import { CompanyAddressList } from './components/CompanyAddressList'
 import { useState } from 'react'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
-import FormDetails from './components/FormDetails'
 import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
+import DetailsOverlay from './components/DetailsOverlay'
 
 export default function CompanyData() {
   const navigate = useNavigate()
@@ -67,12 +67,9 @@ export default function CompanyData() {
         }}
       />
       {showOverlay.address && (
-        <FormDetails
+        <DetailsOverlay
           isAddress={true}
-          // change id based on response
-          id={'abcd'}
-          title={t('content.companyData.address.title')}
-          description={t('content.companyData.address.description')}
+          title={t('content.companyData.label')}
           handleClose={() => {
             setShowOverlay((old) => {
               old.address = false
@@ -90,11 +87,8 @@ export default function CompanyData() {
         />
       )}
       {showOverlay.site && (
-        <FormDetails
-          // change id based on response
-          id={'abcd'}
-          title={t('content.companyData.site.title')}
-          description={t('content.companyData.site.description')}
+        <DetailsOverlay
+          title={t('content.companyData.label')}
           handleClose={() => {
             setShowOverlay((old) => {
               old.site = false

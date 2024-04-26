@@ -21,28 +21,25 @@ import {
   Dialog,
   DialogHeader,
   DialogContent,
-  DialogActions,
-  Button,
-  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import { t } from 'i18next'
+import AddressDetails from './CreateAddress/AddressDetails'
+import SiteDetails from './CreateSite/SiteDetails'
 import { useState } from 'react'
-import { SiteForm } from './CreateSite/SiteForm'
-import { AddressForm } from './CreateAddress/AddressForm'
+import EditForm from './EditForm'
+import { t } from 'i18next'
 
 interface FormDetailsProps {
   readonly id?: string
   readonly open: boolean
   readonly title: string
-  readonly description: string
+  readonly description?: string
   readonly handleClose: () => void
   readonly isAddress?: boolean
   readonly handleConfirm: () => void
 }
 
-export default function FormDetails({
-  id,
+export default function DetailsOverlay({
   open,
   title,
   description,
@@ -50,21 +47,28 @@ export default function FormDetails({
   isAddress = false,
   handleConfirm,
 }: FormDetailsProps) {
-  const [loading, setLoading] = useState<boolean>(false)
-  const handleSubmit = () => {
-    setLoading(true)
-    if (isAddress) {
-      // api call to create new
-    } else {
-      // api call to create new
-    }
-    setLoading(false)
-    handleConfirm()
+  const [edit, setEdit] = useState<boolean>(false)
+  const onEdit = () => {
+    setEdit(true)
   }
-  console.log(id)
   return (
     <Box>
-      <Dialog open={open}>
+      {edit && (
+        <EditForm
+          isAddress={isAddress}
+          open={true}
+          id={'abcd'}
+          title={
+            isAddress
+              ? t('content.companyData.address.title')
+              : t('content.companyData.site.title')
+          }
+          description={t('content.companyData.address.description')}
+          handleClose={handleClose}
+          handleConfirm={handleConfirm}
+        />
+      )}
+      <Dialog open={!edit}>
         <DialogHeader
           title={title}
           intro={description}
@@ -73,39 +77,11 @@ export default function FormDetails({
         />
         <DialogContent>
           {isAddress ? (
-            <AddressForm onValid={console.log} />
+            <AddressDetails onEdit={onEdit} />
           ) : (
-            <SiteForm onValid={console.log} />
+            <SiteDetails onEdit={onEdit} />
           )}
         </DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>
-            {t('global.actions.cancel')}
-          </Button>
-          {!loading && (
-            <Button variant="contained" onClick={handleSubmit}>
-              {t('global.actions.confirm')}
-            </Button>
-          )}
-          {loading && (
-            <Box
-              sx={{
-                width: '110px',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <CircleProgress
-                size={40}
-                step={1}
-                interval={0.1}
-                colorVariant={'primary'}
-                variant={'indeterminate'}
-                thickness={8}
-              />
-            </Box>
-          )}
-        </DialogActions>
       </Dialog>
     </Box>
   )

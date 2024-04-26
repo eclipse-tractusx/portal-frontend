@@ -1906,6 +1906,16 @@
       "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
     },
     "companyData": {
+      "label": "Company Data",
+      "companyInfo": {
+        "title": "Company Name",
+        "legalEntityName": "Legal Entity Name",
+        "legalEntityNumber": "Legal Entity Number",
+        "legalEntityNameTooltip": "Legal Entity Name",
+        "legalEntityNumberTooltip": "Legal Entity Number",
+        "addressTitle": "Address",
+        "siteTitle": "Site"
+      },
       "table": {
         "title": "Sites and addresses",
         "buttonSite": "add site",
@@ -2095,7 +2105,8 @@
       "retry": "Retry",
       "exit": "exit",
       "loading": "Loading...",
-      "unsubscribe": "Unsubscribe"
+      "unsubscribe": "Unsubscribe",
+      "edit": "Edit"
     },
     "state": {
       "enabled": "aktiv",
