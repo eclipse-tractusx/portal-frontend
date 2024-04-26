@@ -47,7 +47,7 @@ export default function AddressDetails({ onEdit }: { onEdit: () => void }) {
     },
   ]
   return (
-    <Box>
+    <div>
       <CompanyInfo />
       <Divider
         sx={{
@@ -118,6 +118,6 @@ export default function AddressDetails({ onEdit }: { onEdit: () => void }) {
           {t('global.actions.edit')}
         </Button>
       </Box>
-    </Box>
+    </div>
   )
 }

@@ -26,24 +26,24 @@ export default function SiteDetails({ onEdit }: { onEdit: () => void }) {
   const { t } = useTranslation()
   const siteData = [
     {
-      key: t('content.companyData.site.form.site.name'),
-      value: '',
+      attr: t('content.companyData.site.form.site.name'),
+      val: '',
     },
     {
-      key: t('content.companyData.site.form.street.name'),
-      value: '',
+      attr: t('content.companyData.site.form.street.name'),
+      val: '',
     },
     {
-      key: t('content.companyData.site.form.postal.name'),
-      value: '',
+      attr: t('content.companyData.site.form.postal.name'),
+      val: '',
     },
     {
-      key: t('content.companyData.site.form.city.name'),
-      value: '',
+      attr: t('content.companyData.site.form.city.name'),
+      val: '',
     },
     {
-      key: t('content.companyData.site.form.countryCode.name'),
-      value: '',
+      attr: t('content.companyData.site.form.countryCode.name'),
+      val: '',
     },
   ]
   return (
@@ -72,7 +72,7 @@ export default function SiteDetails({ onEdit }: { onEdit: () => void }) {
       >
         {siteData.map((item) => (
           <Box
-            key={item.key}
+            key={item.attr}
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -88,7 +88,7 @@ export default function SiteDetails({ onEdit }: { onEdit: () => void }) {
                 fontSize: '18px',
               }}
             >
-              {item.key}
+              {item.attr}
             </Typography>
 
             <Typography
@@ -97,7 +97,7 @@ export default function SiteDetails({ onEdit }: { onEdit: () => void }) {
                 fontSize: '18px',
               }}
             >
-              {item.value}
+              {item.val}
             </Typography>
           </Box>
         ))}
