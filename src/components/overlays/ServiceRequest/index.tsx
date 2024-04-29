@@ -112,7 +112,7 @@ export default function ServiceRequest({ id }: { id: string }) {
             <Typography sx={{ mb: '20px' }} variant="body2">
               {t('content.serviceMarketplace.desc2')}
             </Typography>
-            <Typography sx={{ fontWeight: 'bold' }} variant="body2">
+            <Typography variant="h5">
               {t('content.serviceMarketplace.desc3')}
             </Typography>
             <Typography sx={{ mb: '20px' }} variant="body2">
