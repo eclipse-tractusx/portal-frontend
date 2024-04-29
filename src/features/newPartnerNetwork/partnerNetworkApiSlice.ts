@@ -28,6 +28,11 @@ import type { BusinessPartner } from './types'
 import Patterns from 'types/Patterns'
 import type { BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
 
+export interface BusinessPartnerRequest {
+  bpnLs: string[]
+  legalName: string
+}
+
 const checkIfBPNLNumber = (text: string): boolean =>
   Patterns.BPN.test(text.trim())
 
@@ -37,12 +42,12 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartnerAddressResponse>,
-      string[]
+      BusinessPartnerRequest
     >({
-      query: (arry) => ({
-        url: '/catena/legal-entities/legal-addresses/search',
+      query: (body) => ({
+        url: '/legal-entities/search?page=0&size=30',
         method: 'POST',
-        body: arry,
+        body,
       }),
     }),
     fetchBusinessPartners: builder.query<
@@ -51,13 +56,13 @@ export const apiSlice = createApi({
     >({
       query: (fetchArgs) => {
         if (fetchArgs.args.expr && !checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/catena/legal-entities?page=${
+          return `/legal-entities?page=${
             fetchArgs.page
           }&size=10&legalName=${fetchArgs.args!.expr}`
         } else if (checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/catena/legal-entities/${fetchArgs.args!.expr}`
+          return `/legal-entities/${fetchArgs.args!.expr}`
         } else {
-          return `/catena/legal-entities?page=${fetchArgs.page}&size=10`
+          return `/legal-entities?page=${fetchArgs.page}&size=10`
         }
       },
       // Add an ESLint exception until there is a solution

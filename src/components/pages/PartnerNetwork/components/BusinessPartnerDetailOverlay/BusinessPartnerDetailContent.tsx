@@ -18,14 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Grid, useTheme } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import type {
   BpdmTypeUUIDKeyPair,
   BusinessPartner,
 } from 'features/partnerNetwork/types'
-import DetailGridRow from './DetailGridRow'
 import {
   useFetchCompanyCertificateQuery,
   useFetchDocumentQuery,
@@ -33,6 +32,7 @@ import {
 import ArticleIcon from '@mui/icons-material/Article'
 import { useEffect, useState } from 'react'
 import { download } from 'utils/downloadUtils'
+import { KeyValueView } from 'components/shared/basic/KeyValueView'
 
 const BusinessPartnerDetailContent = ({
   selectedRowBPN,
@@ -40,8 +40,6 @@ const BusinessPartnerDetailContent = ({
   selectedRowBPN: BusinessPartner
 }) => {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const { spacing } = theme
   const { data: certificates } = useFetchCompanyCertificateQuery(
     selectedRowBPN.bpnl
   )
@@ -58,119 +56,73 @@ const BusinessPartnerDetailContent = ({
     }
   }, [document])
 
+  const companyData = [
+    {
+      key: t('content.partnernetwork.columns.name'),
+      value: selectedRowBPN.legalName ?? '',
+    },
+    {
+      key: t('content.partnernetwork.columns.bpn'),
+      value: selectedRowBPN.bpnl ?? '',
+    },
+    {
+      key: t('content.partnernetwork.overlay.legalform'),
+      value: selectedRowBPN.legalForm?.name ?? '',
+    },
+    {
+      key: t('content.partnernetwork.columns.street'),
+      value: selectedRowBPN.legalAddress?.physicalPostalAddress?.street?.name,
+    },
+    {
+      key: t('content.partnernetwork.columns.city'),
+      value: `${selectedRowBPN.legalAddress?.physicalPostalAddress?.postalCode} ${selectedRowBPN.legalAddress?.physicalPostalAddress?.city}`,
+    },
+    {
+      key: t('content.partnernetwork.columns.country'),
+      value:
+        selectedRowBPN.legalAddress?.physicalPostalAddress?.country?.name ?? '',
+    },
+  ]
+
+  const identifierData = selectedRowBPN.identifiers?.map(
+    (identifier: BpdmTypeUUIDKeyPair) => {
+      return {
+        key: identifier.type?.name || identifier.type?.technicalKey,
+        value: identifier.value,
+      }
+    }
+  )
+
   return (
     <>
       {selectedRowBPN && (
-        <Box sx={{ width: '100%' }}>
-          <Grid container spacing={1.5} style={{ marginTop: 0 }}>
-            <Grid
-              xs={12}
-              item
-              style={{
-                backgroundColor: theme.palette.grey['100'],
-                padding: spacing(2),
-              }}
-            >
-              <Typography variant="h5">
-                {t('content.partnernetwork.overlay.companydatatitle')}
-              </Typography>
-            </Grid>
-            <DetailGridRow
-              key={t('content.partnernetwork.columns.name') as string}
-              {...{
-                variableName: `${t('content.partnernetwork.columns.name')}`,
-                value: selectedRowBPN.legalName ?? '',
-              }}
-            />
-            <DetailGridRow
-              key={t('content.partnernetwork.columns.bpn') as string}
-              {...{
-                variableName: `${t('content.partnernetwork.columns.bpn')}`,
-                value: selectedRowBPN.bpnl,
-              }}
-            />
-            {selectedRowBPN.legalForm && (
-              <DetailGridRow
-                key={t('content.partnernetwork.overlay.legalform') as string}
-                {...{
-                  variableName: `${t(
-                    'content.partnernetwork.overlay.legalform'
-                  )}`,
-                  value: selectedRowBPN.legalForm?.name ?? '',
-                }}
-              />
-            )}
-            <Grid
-              xs={12}
-              item
-              style={{
-                backgroundColor: theme.palette.grey['100'],
-                padding: spacing(2),
-              }}
-            >
-              <Typography variant="h5">Address</Typography>
-            </Grid>
-            <DetailGridRow
-              key="Street"
-              {...{
-                variableName: 'Street',
-                value:
-                  selectedRowBPN.legalAddress?.physicalPostalAddress?.street
-                    ?.name,
-              }}
-            />
-            <DetailGridRow
-              key="PLZ / City"
-              {...{
-                variableName: 'PLZ / City',
-                value: `${selectedRowBPN.legalAddress?.physicalPostalAddress?.postalCode} ${selectedRowBPN.legalAddress?.physicalPostalAddress?.city}`,
-              }}
-            />
-            <DetailGridRow
-              key="Country"
-              {...{
-                variableName: 'Country',
-                value:
-                  selectedRowBPN.legalAddress?.physicalPostalAddress?.country
-                    ?.name ?? '',
-              }}
-            />
-            <Grid
-              xs={12}
-              item
-              style={{
-                backgroundColor: theme.palette.grey['100'],
-                padding: spacing(2),
-              }}
-            >
-              <Typography variant="h5">Identifiers</Typography>
-            </Grid>
-            {selectedRowBPN.identifiers?.map(
-              (identifier: BpdmTypeUUIDKeyPair) => {
-                return (
-                  <DetailGridRow
-                    key={identifier.type?.name}
-                    {...{
-                      variableName:
-                        identifier.type?.name || identifier.type?.technicalKey,
-                      value: identifier.value,
-                    }}
-                  />
-                )
-              }
-            )}
-            <Grid
-              xs={12}
-              item
-              style={{
-                backgroundColor: theme.palette.grey['100'],
-                padding: spacing(2),
-              }}
-            >
-              <Typography variant="h5">Certificates</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={1} style={{ marginTop: 10 }}>
+        <Box sx={{ width: '100%', marginBottom: '50px' }}>
+          <KeyValueView
+            cols={2.3}
+            title={t('content.partnernetwork.overlay.companydatatitle')}
+            items={companyData}
+          />
+          <KeyValueView
+            cols={2.3}
+            title={t('content.partnernetwork.overlay.identifiers')}
+            items={
+              identifierData.length
+                ? identifierData
+                : { key: '', value: t('content.partnernetwork.overlay.noData') }
+            }
+          />
+          <KeyValueView
+            cols={2.3}
+            title={t('content.partnernetwork.overlay.documents')}
+            items={{
+              key: '',
+              value:
+                certificates && certificates.length > 0
+                  ? ''
+                  : t('content.partnernetwork.overlay.noData'),
+            }}
+          />
+          <Grid container spacing={1} style={{ margin: '-95px 0 0 20px' }}>
             {certificates?.map(
               (certificate: {
                 documentId: string
@@ -185,7 +137,13 @@ const BusinessPartnerDetailContent = ({
                         setDocumentId(certificate.documentId)
                       }}
                     >
-                      <Typography variant="body1">
+                      <Typography
+                        sx={{
+                          fontSize: '14px',
+                          fontWeight: 'bold',
+                          marginRight: '20px',
+                        }}
+                      >
                         {certificate.companyCertificateType}
                       </Typography>
                       <ArticleIcon
