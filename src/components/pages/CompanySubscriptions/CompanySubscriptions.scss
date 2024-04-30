@@ -50,7 +50,7 @@
 }
 
 .statusButton {
-  text-transform: none;
-  pointer-events: 'none';
-  padding-left: 0;
+  text-transform: none !important;
+  pointer-events: none !important;
+  padding-left: 0 !important;
 }

@@ -684,7 +684,9 @@
             "tooltipMsg": "Description for new technical user",
             "mandatoryError": "Description is mandatory",
             "patternError": "Username should start with a letter. Allowed special characters are #. '!=()&” along with numbers and spaces"
-          }
+          },
+          "minLength": "Minlength is",
+          "maxLength": "Maxlength is"
         },
         "create": {
           "successTitle": "Create connector successfully completed",
@@ -697,9 +699,7 @@
           "successDescription": "Delete connector successfully completed.",
           "errorTitle": "Something went wrong",
           "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
-        },
-        "minLength": "Minlength is",
-        "maxLength": "Maxlength is"
+        }
       }
     },
     "partnernetwork": {
@@ -1282,7 +1282,7 @@
       }
     },
     "serviceMarketplace": {
-      "headline": "Purchase Service Request",
+      "headline": "Service Subscription",
       "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
       "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
       "desc3": "IMPORTANT NOTICE:",
