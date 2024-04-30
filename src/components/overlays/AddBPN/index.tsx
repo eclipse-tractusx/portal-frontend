@@ -24,7 +24,7 @@ import {
   DialogContent,
   DialogHeader,
   Input,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   deleteUserBpn,
   fetchAny,

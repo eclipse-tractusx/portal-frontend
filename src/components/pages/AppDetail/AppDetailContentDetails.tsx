@@ -24,7 +24,7 @@ import {
   Navigation,
   ImageGallery,
   BackButton,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailPrivacy from './components/AppDetailPrivacy'

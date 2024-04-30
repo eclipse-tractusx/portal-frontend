@@ -27,7 +27,7 @@ import {
   Button,
   LoadingButton,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   ApplicationStatus,
   useDeclineRegistrationMutation,

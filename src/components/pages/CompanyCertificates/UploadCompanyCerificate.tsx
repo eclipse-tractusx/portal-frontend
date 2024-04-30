@@ -33,7 +33,7 @@ import {
   Tooltips,
   Datepicker,
   type DateType,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { error } from 'services/NotifyService'
 import {

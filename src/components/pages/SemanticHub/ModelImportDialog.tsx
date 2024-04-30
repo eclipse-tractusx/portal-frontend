@@ -27,7 +27,7 @@ import {
   Typography,
   Input,
   theme,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'

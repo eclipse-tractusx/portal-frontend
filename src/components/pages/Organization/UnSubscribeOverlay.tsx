@@ -30,7 +30,7 @@ import {
   Checkbox,
   StaticTable,
   LoadingButton,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
 import './Organization.scss'

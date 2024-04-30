@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Button } from '@nidhi.garg/portal-shared-components'
+import { Typography, Button } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import './PictureWithText.scss'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'

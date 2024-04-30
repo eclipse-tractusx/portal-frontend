@@ -31,7 +31,7 @@ import {
   CustomAccordion,
   MainNavigation,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import { getAssetBase } from 'services/EnvironmentService'
 import {

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { CardItems } from '@nidhi.garg/portal-shared-components'
+import type { CardItems } from '@catena-x/portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 import { HttpClient } from 'utils/HttpClient'
 

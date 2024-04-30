@@ -29,7 +29,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { PAGES } from 'types/Constants'
 import { Box, Grid } from '@mui/material'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useEffect } from 'react'
-import { SubNavigation } from '@nidhi.garg/portal-shared-components'
+import { SubNavigation } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 

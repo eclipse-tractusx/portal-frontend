@@ -25,7 +25,7 @@ import {
   DialogActions,
   DialogContent,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
 import {

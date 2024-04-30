@@ -21,7 +21,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Outlet, useNavigate, useSearchParams } from 'react-router-dom'
-import { CircleProgress, ErrorPage } from '@nidhi.garg/portal-shared-components'
+import { CircleProgress, ErrorPage } from '@catena-x/portal-shared-components'
 import { Header } from './shared/frame/Header'
 import { Footer } from './shared/frame/Footer'
 import { useTranslation } from 'react-i18next'

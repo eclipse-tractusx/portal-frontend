@@ -36,7 +36,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 const isWellknownMetadata = (expr: string) =>
   isURL(expr) && expr.endsWith('.well-known/openid-configuration')

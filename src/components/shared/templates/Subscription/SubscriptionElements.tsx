@@ -27,7 +27,7 @@ import {
   Tooltips,
   Chip,
   ErrorBar,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   type CompanySubscriptionData,
   ProcessStep,

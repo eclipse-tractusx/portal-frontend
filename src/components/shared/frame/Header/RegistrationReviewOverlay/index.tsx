@@ -26,7 +26,7 @@ import {
   DialogHeader,
   DialogActions,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import RegistrationReviewContent from './RegistrationReviewContent'
 import './RegistrationReview.scss'
 

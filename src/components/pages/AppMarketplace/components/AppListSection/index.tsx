@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'

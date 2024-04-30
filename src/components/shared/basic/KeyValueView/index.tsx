@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 

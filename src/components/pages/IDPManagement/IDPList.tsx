@@ -29,7 +29,7 @@ import {
   StatusTag,
   Table,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'

@@ -42,7 +42,7 @@ import {
   Checkbox,
   SelectList,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   type PartnerRegistration,
   type CompanyRoleAgreementData,

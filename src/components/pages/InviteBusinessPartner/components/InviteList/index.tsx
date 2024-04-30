@@ -22,7 +22,7 @@ import {
   IconButton,
   PageLoadingTable,
   type PaginFetchArgs,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { CompanyInvite } from 'features/admin/inviteApiSlice'

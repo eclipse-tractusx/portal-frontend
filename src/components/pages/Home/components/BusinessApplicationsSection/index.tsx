@@ -20,11 +20,7 @@
 
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Typography,
-  Carousel,
-  Card,
-} from '@nidhi.garg/portal-shared-components'
+import { Typography, Carousel, Card } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'

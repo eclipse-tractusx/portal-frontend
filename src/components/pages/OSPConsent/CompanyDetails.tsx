@@ -28,7 +28,7 @@ import {
   Button,
   Checkbox,
   LoadingButton,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import {
   useFetchCompanyDetailsWithAddressQuery,
   useFetchAgreementDataQuery,

@@ -25,7 +25,7 @@ import {
   Chip,
   IconButton,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'

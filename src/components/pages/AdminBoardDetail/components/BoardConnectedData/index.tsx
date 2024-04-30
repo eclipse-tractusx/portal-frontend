@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   type TableType,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import './BoardConnectedData.scss'
 
 export default function BoardConnectedData() {

@@ -23,7 +23,7 @@ import {
   ViewSelector,
   SortOption,
   Button,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './CompanyCertificate.scss'
 import { ROLES } from 'types/Constants'

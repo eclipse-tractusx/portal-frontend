@@ -23,7 +23,7 @@ import {
   MainHeader,
   PageHeader,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useCallback, useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import ReleaseStepper, {

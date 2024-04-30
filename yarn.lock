@@ -336,6 +336,30 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@catena-x/portal-shared-components@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.0.6.tgz#d7f20da22d57e7841191dbfc357ce6d330856e40"
+  integrity sha512-7BHbpeSxgJdaIaE00DvLT9tYAo76PLDiBQaCqH88O6v4T2N1fwPlNnADj82S4ppwk/ITdeCFbFXSSwxWJS1DEg==
+  dependencies:
+    "@date-io/date-fns" "^3.0.0"
+    "@emotion/react" "^11.11.4"
+    "@emotion/styled" "^11.11.0"
+    "@mui/icons-material" "^5.11.16"
+    "@mui/material" "^5.13.2"
+    "@mui/system" "^5.15.14"
+    "@mui/x-data-grid" "^6.19.8"
+    "@mui/x-date-pickers" "^6.19.8"
+    autosuggest-highlight "^3.3.4"
+    date-fns "^3.6.0"
+    i18next "^23.10.1"
+    jquery "^3.7.1"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    react-i18next "^14.1.0"
+    react-player "^2.15.1"
+    react-slick "^0.30.2"
+    slick-carousel "^1.8.1"
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1"
@@ -1066,30 +1090,6 @@
     clsx "^2.0.0"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
-
-"@nidhi.garg/portal-shared-components@^3.0.7":
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/@nidhi.garg/portal-shared-components/-/portal-shared-components-3.0.7.tgz#11e40903447df1b3a09aae8925757e018ad32370"
-  integrity sha512-9iso4KJSKPkVphQAJm808k40FPzjbHutyu5psYWu/108rEe2Ah5kbBwRHRWKnoFROs9RbPDfCjKewx3u0RmszQ==
-  dependencies:
-    "@date-io/date-fns" "^3.0.0"
-    "@emotion/react" "^11.11.4"
-    "@emotion/styled" "^11.11.0"
-    "@mui/icons-material" "^5.11.16"
-    "@mui/material" "^5.13.2"
-    "@mui/system" "^5.15.14"
-    "@mui/x-data-grid" "^6.19.8"
-    "@mui/x-date-pickers" "^6.19.8"
-    autosuggest-highlight "^3.3.4"
-    date-fns "^3.6.0"
-    i18next "^23.10.1"
-    jquery "^3.7.1"
-    react "^18.2.0"
-    react-dom "^18.2.0"
-    react-i18next "^14.1.0"
-    react-player "^2.15.1"
-    react-slick "^0.30.2"
-    slick-carousel "^1.8.1"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

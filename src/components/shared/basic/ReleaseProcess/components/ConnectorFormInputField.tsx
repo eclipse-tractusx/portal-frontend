@@ -26,7 +26,7 @@ import {
   Checkbox,
   DropArea,
   type DropAreaProps,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 export const ConnectorFormInputField = ({
   control,

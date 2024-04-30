@@ -22,7 +22,7 @@ import {
   IconButton,
   Tooltips,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import './CompanyCertificate.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box, ClickAwayListener } from '@mui/material'

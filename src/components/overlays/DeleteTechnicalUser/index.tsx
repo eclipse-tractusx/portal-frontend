@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PageNotificationsProps } from '@nidhi.garg/portal-shared-components'
+import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import {
   useFetchServiceAccountDetailQuery,

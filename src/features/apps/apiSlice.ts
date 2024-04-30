@@ -22,7 +22,7 @@ import {
   LogoGrayData,
   type PaginFetchArgs,
   type PaginResult,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'

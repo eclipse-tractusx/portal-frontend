@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CircleProgress } from '@nidhi.garg/portal-shared-components'
+import { CircleProgress } from '@catena-x/portal-shared-components'
 
 export default function LoadingProgress() {
   return (

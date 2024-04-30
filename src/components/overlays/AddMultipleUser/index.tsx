@@ -38,7 +38,7 @@ import {
   CircleProgress,
   PageSnackbar,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'

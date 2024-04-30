@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography, Button } from '@nidhi.garg/portal-shared-components'
+import { Typography, Button } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import EastIcon from '@mui/icons-material/East'
 import { useNavigate } from 'react-router'

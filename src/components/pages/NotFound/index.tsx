@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ErrorPage } from '@nidhi.garg/portal-shared-components'
+import { ErrorPage } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 

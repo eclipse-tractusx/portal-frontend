@@ -24,7 +24,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
 import { PAGES } from 'types/Constants'

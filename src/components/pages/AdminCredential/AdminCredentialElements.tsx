@@ -39,7 +39,7 @@ import { useDispatch } from 'react-redux'
 import {
   CircleProgress,
   PageLoadingTable,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 
 interface FetchHookArgsType {
   filterType: string

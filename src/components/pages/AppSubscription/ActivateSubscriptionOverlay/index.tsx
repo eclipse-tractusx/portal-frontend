@@ -29,7 +29,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
-} from '@nidhi.garg/portal-shared-components'
+} from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
 import { isKeycloakURL } from 'types/Patterns'

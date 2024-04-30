@@ -24,7 +24,7 @@ import Divider from '@mui/material/Divider'
 import type { SearchItem } from 'features/info/search/types'
 import { SearchResultItem } from '../SearchResultItem'
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@nidhi.garg/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useState } from 'react'
 import './SearchResultGroup.scss'
 
