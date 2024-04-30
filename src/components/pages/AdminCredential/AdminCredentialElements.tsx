@@ -207,7 +207,7 @@ export default function AdminCredentialElements() {
       renderCell: ({ row }: { row: CredentialData }) =>
         row.documents.map((document) => {
           return (
-            <div className="documenticon-main">
+            <div className="documenticon-main" key={document.documentId}>
               <ArticleOutlinedIcon
                 className={`${
                   document.documentId ? 'document-icon' : 'document-disabled'
