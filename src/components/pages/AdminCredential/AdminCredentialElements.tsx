@@ -205,7 +205,7 @@ export default function AdminCredentialElements() {
       headerName: t('content.adminCertificate.table.document'),
       flex: 1.5,
       renderCell: ({ row }: { row: CredentialData }) =>
-        row.documents.map((document) => {
+        row.documents?.map((document) => {
           return (
             <div className="documenticon-main" key={document.documentId}>
               <ArticleOutlinedIcon

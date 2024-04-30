@@ -106,18 +106,18 @@ export const apiSlice = createApi({
     fetchCredentialsSearch: builder.query<CredentialResponse[], PaginFetchArgs>(
       {
         query: (fetchArgs) => {
-          if(fetchArgs.args.filterType && fetchArgs.args.sortingType){
+          if (fetchArgs.args.filterType && fetchArgs.args.sortingType) {
             return `${getSsiBase()}/api/issuer?page=${
-                  fetchArgs.page
-                }&size=${PAGE_SIZE}&sorting=${
-                  fetchArgs.args.sortingType ?? ''
-                }&companySsiDetailStatusId=${fetchArgs.args.filterType}`
-          }else{
+              fetchArgs.page
+            }&size=${PAGE_SIZE}&sorting=${
+              fetchArgs.args.sortingType ?? ''
+            }&companySsiDetailStatusId=${fetchArgs.args.filterType}`
+          } else {
             return `${getSsiBase()}/api/issuer?page=${
               fetchArgs.page
             }&size=${PAGE_SIZE}`
           }
-        }
+        },
       }
     ),
     approveCredential: builder.mutation<boolean, string>({
