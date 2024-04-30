@@ -25,7 +25,7 @@ import {
   DialogActions,
   Typography,
   Button,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { exec } from 'features/control/overlay'
 import { ACTIONS } from 'types/Constants'

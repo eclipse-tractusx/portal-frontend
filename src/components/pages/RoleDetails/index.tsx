@@ -27,7 +27,7 @@ import {
   Tab,
   TabPanel,
   Image,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { uniqueId } from 'lodash'

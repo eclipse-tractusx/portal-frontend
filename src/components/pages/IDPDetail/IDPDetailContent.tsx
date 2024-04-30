@@ -24,7 +24,7 @@ import {
   DialogActions,
   IconButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import type { IdentityProvider } from 'features/admin/idpApiSlice'
 import CloseIcon from '@mui/icons-material/Close'
 import Box from '@mui/material/Box'

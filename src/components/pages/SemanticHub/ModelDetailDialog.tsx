@@ -28,7 +28,7 @@ import {
   Input,
   Button,
   DialogActions,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import {

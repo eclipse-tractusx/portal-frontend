@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ImageItem } from '@catena-x/portal-shared-components'
+import { ImageItem } from '@nidhi.garg/portal-shared-components'
 import { useMediaQuery } from '@mui/material'
 import '../StaticTemplate.scss'
 import { type SxProps } from '@mui/system'

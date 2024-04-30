@@ -1813,13 +1813,14 @@
       "search": "...search for Company Name",
       "tabs": {
         "all": "All",
-        "open": "Open",
-        "confirmed": "Confirmed",
-        "declined": "Declined"
+        "pending": "Pending",
+        "active": "Active",
+        "inactive": "Inactive",
+        "revoked": "Revoked"
       },
-      "sortOptions": {
-        "name": "By Name",
-        "date": "By Date"
+      "sort": {
+        "bpnlasc": "Business Partner Asc",
+        "bpnldesc": "Business Partner Desc"
       },
       "table": {
         "crendentialType": "Type",

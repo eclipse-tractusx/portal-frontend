@@ -27,7 +27,7 @@ import {
   IconButton,
   Input,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import CheckList from '.'
 import {
   EndUrlMap,

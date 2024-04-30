@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { CardItems } from '@catena-x/portal-shared-components'
+import type { CardItems } from '@nidhi.garg/portal-shared-components'
 import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import type { UseCaseType } from 'features/appManagement/types'
 

@@ -25,7 +25,7 @@ import {
   DialogHeader,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import {

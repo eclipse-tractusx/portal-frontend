@@ -25,7 +25,7 @@ import { PAGE_SIZE } from 'types/Constants'
 import type {
   PaginFetchArgs,
   PaginResult,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 
 export enum ServiceAccountType {
   SECRET = 'SECRET',

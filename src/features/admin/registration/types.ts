@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@nidhi.garg/portal-shared-components'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
 
 export const name = 'admin/registration'

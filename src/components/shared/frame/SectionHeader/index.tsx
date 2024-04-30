@@ -19,7 +19,7 @@
 
 import { Box } from '@mui/material'
 import './SectionHeader.scss'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 export interface SectionHeaderProps {

@@ -25,7 +25,7 @@ import {
   Button,
   Typography,
   BackButton,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import Box from '@mui/material/Box'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import './ComponentStyles.scss'

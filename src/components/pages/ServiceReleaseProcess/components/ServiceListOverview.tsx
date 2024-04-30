@@ -30,7 +30,7 @@ import {
   type CardItems,
   PageSnackbar,
   ErrorBar,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
 import {

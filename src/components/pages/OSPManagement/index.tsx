@@ -20,7 +20,7 @@
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { OVERLAYS } from 'types/Constants'
-import { Button, Image, Typography } from '@catena-x/portal-shared-components'
+import { Button, Image, Typography } from '@nidhi.garg/portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'

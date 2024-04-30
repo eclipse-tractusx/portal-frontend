@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { StatusTag, Typography } from '@catena-x/portal-shared-components'
+import { StatusTag, Typography } from '@nidhi.garg/portal-shared-components'
 import { Box } from '@mui/material'
 import { type ProgressButtonsType } from 'features/admin/applicationRequestApiSlice'
 

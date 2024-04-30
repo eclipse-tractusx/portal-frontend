@@ -20,7 +20,7 @@
 
 import SmallLogo from 'assets/logo/cx-logo-short.svg'
 import type { GridColDef } from '@mui/x-data-grid'
-import { IconButton } from '@catena-x/portal-shared-components'
+import { IconButton } from '@nidhi.garg/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { Box } from '@mui/material'

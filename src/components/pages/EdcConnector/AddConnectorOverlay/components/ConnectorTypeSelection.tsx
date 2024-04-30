@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Checkbox } from '@catena-x/portal-shared-components'
+import { Typography, Checkbox } from '@nidhi.garg/portal-shared-components'
 import { Box, Grid } from '@mui/material'
 import {
   type CompanyDetails,

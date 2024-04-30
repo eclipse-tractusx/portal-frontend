@@ -33,7 +33,7 @@ import {
   Expand,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import {
   type AgreementsData,

@@ -1742,13 +1742,14 @@
       "search": "Suchen via Name der Firma",
       "tabs": {
         "all": "Alle",
-        "open": "Offen",
-        "confirmed": "Bestätigt",
-        "declined": "Abgelehnt"
+        "pending": "Ausstehend",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "revoked": "Widerrufen"
       },
-      "sortOptions": {
-        "name": "Company Name",
-        "date": "Date"
+      "sort": {
+        "bpnlasc": "Business Partner Asc",
+        "bpnldesc": "Business Partner Desc"
       },
       "table": {
         "crendentialType": "Type",

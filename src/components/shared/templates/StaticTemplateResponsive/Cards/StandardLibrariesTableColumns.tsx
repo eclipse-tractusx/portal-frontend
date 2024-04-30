@@ -19,7 +19,7 @@
 
 import type { GridColDef } from '@mui/x-data-grid'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
-import { IconButton } from '@catena-x/portal-shared-components'
+import { IconButton } from '@nidhi.garg/portal-shared-components'
 import {
   type StandardLibraryType,
   type StdRows,

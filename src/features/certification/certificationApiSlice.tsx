@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
+import type { PaginFetchArgs } from '@nidhi.garg/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getSsiBase } from 'services/EnvironmentService'
 import { PAGE_SIZE } from 'types/Constants'
@@ -108,7 +108,9 @@ export const apiSlice = createApi({
         query: (fetchArgs) => ({
           url: `${getSsiBase()}/api/issuer?page=${
             fetchArgs.page
-          }&size=${PAGE_SIZE}`,
+          }&size=${PAGE_SIZE}&sorting=${
+            fetchArgs.args.sortingType ?? ''
+          }${fetchArgs.args.filterType && `&companySsiDetailStatusId=${fetchArgs.args.filterType}`}`,
         }),
       }
     ),

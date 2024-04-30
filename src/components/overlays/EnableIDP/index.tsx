@@ -27,7 +27,7 @@ import {
   LoadingButton,
   Stepper,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'

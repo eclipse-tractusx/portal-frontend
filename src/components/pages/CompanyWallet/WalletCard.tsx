@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import SmallLogo from 'assets/logo/cx-logo-short.svg'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 import {
   CredentialSubjectStatus,
   type WalletContent,

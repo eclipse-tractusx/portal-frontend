@@ -39,23 +39,30 @@ import { useDispatch } from 'react-redux'
 import {
   CircleProgress,
   PageLoadingTable,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 
 interface FetchHookArgsType {
   filterType: string
+  sortingType?: string
   expr: string
 }
 
 enum FilterType {
-  ALL = 'all',
-  OPEN = 'open',
-  CONFIRMED = 'confirmed',
-  DECLINED = 'declined',
+  ALL = '',
+  PENDING = 'PENDING',
+  ACTIVE = 'ACTIVE',
+  REVOKED = 'REVOKED',
+  INACTIVE = 'INACTIVE',
 }
 
 enum StatusType {
   APPROVE = 'approve',
   DECLINE = 'decline',
+}
+
+enum SortType {
+  BPNLASC = 'BpnlAsc',
+  BPNLDESC = 'BpnlDesc',
 }
 
 export default function AdminCredentialElements() {
@@ -64,6 +71,7 @@ export default function AdminCredentialElements() {
 
   const [refresh, setRefresh] = useState<number>(0)
   const [group, setGroup] = useState<string>(FilterType.ALL)
+  const [sortOption, setSortOption] = useState<string>(SortType.BPNLASC)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [filterValueAPI, setFilterValueAPI] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
@@ -76,23 +84,19 @@ export default function AdminCredentialElements() {
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
-    if (viewValue === FilterType.OPEN)
-      setFilterValueAPI(SubscriptionStatus.PENDING)
-    else if (viewValue === FilterType.CONFIRMED)
-      setFilterValueAPI(SubscriptionStatus.ACTIVE)
-    else if (viewValue === FilterType.DECLINED)
-      setFilterValueAPI(SubscriptionStatus.INACTIVE)
-    else setFilterValueAPI('')
+    setFilterValueAPI(viewValue)
     setGroup(viewValue)
     setRefresh(Date.now())
   }
 
   useEffect(() => {
+    console.log('sortOption', sortOption)
     setFetchHookArgs({
       filterType: filterValueAPI,
+      sortingType: sortOption,
       expr: searchExpr,
     })
-  }, [filterValueAPI, searchExpr])
+  }, [filterValueAPI, sortOption, searchExpr])
 
   const onValidate = (expr: string) => {
     const validateExpr = /^[ A-Za-z0-9]{1,1000}$/.test(expr)
@@ -145,19 +149,35 @@ export default function AdminCredentialElements() {
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.adminCertificate.tabs.open'),
-      buttonValue: FilterType.OPEN,
+      buttonText: t('content.adminCertificate.tabs.pending'),
+      buttonValue: FilterType.PENDING,
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.adminCertificate.tabs.confirmed'),
-      buttonValue: FilterType.CONFIRMED,
+      buttonText: t('content.adminCertificate.tabs.active'),
+      buttonValue: FilterType.ACTIVE,
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.adminCertificate.tabs.declined'),
-      buttonValue: FilterType.DECLINED,
+      buttonText: t('content.adminCertificate.tabs.revoked'),
+      buttonValue: FilterType.REVOKED,
       onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.adminCertificate.tabs.inactive'),
+      buttonValue: FilterType.INACTIVE,
+      onButtonClick: setView,
+    },
+  ]
+
+  const sortOptions = [
+    {
+      label: t('content.adminCertificate.sort.bpnlasc'),
+      value: SortType.BPNLASC,
+    },
+    {
+      label: t('content.adminCertificate.sort.bpnldesc'),
+      value: SortType.BPNLDESC,
     },
   ]
 
@@ -293,6 +313,11 @@ export default function AdminCredentialElements() {
         columns={columns}
         defaultFilter={group}
         filterViews={filterButtons}
+        defaultSortOption={sortOption}
+        sortOptions={sortOptions}
+        onSortClick={(value) => {
+          setSortOption(value)
+        }}
       />
     </div>
   )

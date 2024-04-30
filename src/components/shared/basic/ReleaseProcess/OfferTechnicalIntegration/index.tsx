@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Checkbox, Radio } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  Checkbox,
+  Radio,
+} from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'

@@ -22,7 +22,7 @@ import {
   Button,
   StaticTable,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../AdminBoardDetail/AdminBoardDetail.scss'
 import { getAssetBase } from 'services/EnvironmentService'

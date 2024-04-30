@@ -24,7 +24,7 @@ import {
   Button,
   ImageGallery,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import BoardHeader from './components/BoardHeader'
 import BoardDocuments from './components/BoardDocuments'
 import BoardProvider from './components/BoardProvider'

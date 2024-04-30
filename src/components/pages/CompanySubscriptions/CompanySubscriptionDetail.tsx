@@ -24,7 +24,7 @@ import {
   Typography,
   Image,
   BackButton,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
   useFetchAppDetailsQuery,

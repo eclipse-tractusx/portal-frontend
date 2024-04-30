@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, MainHeader } from '@catena-x/portal-shared-components'
+import { Button, MainHeader } from '@nidhi.garg/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import PageService from 'services/PageService'
 import { label as AppList } from '../AppListSection'

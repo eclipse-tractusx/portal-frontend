@@ -28,7 +28,7 @@ import {
   BackButton,
   StatusTag,
   ContentCard,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import UserService from 'services/UserService'
 import { PAGES, ROLES } from 'types/Constants'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'

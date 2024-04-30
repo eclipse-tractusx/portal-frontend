@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@nidhi.garg/portal-shared-components'
 import { Grid } from '@mui/material'
 import { uniqueId } from 'lodash'
 import type { AppDetails } from 'features/apps/types'

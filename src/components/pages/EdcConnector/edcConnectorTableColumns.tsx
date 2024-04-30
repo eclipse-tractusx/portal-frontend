@@ -23,7 +23,7 @@ import {
   StatusTag,
   Tooltips,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import Box from '@mui/material/Box'

@@ -30,7 +30,7 @@ import {
   SortOption,
   PageSnackbar,
   LoadMoreButton,
-} from '@catena-x/portal-shared-components'
+} from '@nidhi.garg/portal-shared-components'
 import type {
   AppFiltersResponse,
   SubscriptionContent,

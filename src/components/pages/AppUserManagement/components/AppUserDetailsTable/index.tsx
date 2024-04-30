@@ -35,7 +35,7 @@ export const AppUserDetailsTable = ({
   roles,
   userRoleResponse,
 }: {
-  roles?: AppRole[]
+  roles: AppRole[] | undefined
   userRoleResponse: string
 }) => {
   const { t } = useTranslation()
@@ -48,9 +48,9 @@ export const AppUserDetailsTable = ({
       sectionTitle={'content.usermanagement.appUserDetails.subheadline'}
       addButtonLabel={'content.usermanagement.appUserDetails.table.add'}
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
-      addButtonDisabled={!roles}
+      addButtonDisabled={roles && roles?.length <= 0}
       addButtonTooltip={
-        !roles
+        roles && roles?.length <= 0
           ? t('content.usermanagement.appUserDetails.table.buttonTooltip')
           : ''
       }
