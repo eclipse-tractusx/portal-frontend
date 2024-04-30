@@ -728,9 +728,12 @@
       "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
       "searchbuttonlabel": "Suche",
       "overlay": {
-        "title": "Firmendetails",
+        "title": "Details zu Geschäftspartnerdaten",
         "companydatatitle": "Firmen Data",
-        "legalform": "Rechtsform"
+        "legalform": "Rechtsform",
+        "identifiers": "Identifiers",
+        "documents": "Documents",
+        "noData": "No data available"
       }
     },
     "invite": {

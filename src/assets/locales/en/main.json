@@ -727,9 +727,12 @@
       "membershipnotificationtitle": "Membership flag cannot be fetched.",
       "membershipnotificationdescription": "Please note that the membership information might be incorrect.",
       "overlay": {
-        "title": "Company Detail",
+        "title": "Business Partner Data Details",
         "companydatatitle": "Company Data",
-        "legalform": "Legal Form"
+        "legalform": "Legal Form",
+        "identifiers": "Identifiers",
+        "documents": "Documents",
+        "noData": "No data available"
       }
     },
     "invite": {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-RC5
+
+### Feature
+
+- Partner Network - Improve Overlay of Company Data
+
 ## 2.0.0-RC4
 
 ### Feature
