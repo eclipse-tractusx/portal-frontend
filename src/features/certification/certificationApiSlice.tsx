@@ -62,10 +62,10 @@ export type CredentialData = {
   useCase: string
   participantStatus: string
   expiryDate: string
-  document: {
+  documents: Array<{
     documentId: string
     documentName: string
-  }
+  }>
   externalTypeDetail: {
     id: string
     verifiedCredentialExternalTypeId: string
