@@ -113,7 +113,7 @@ const BusinessPartnerDetailContent = ({
           />
           <KeyValueView
             cols={2.3}
-            title={t('content.partnernetwork.overlay.documents')}
+            title={t('content.partnernetwork.overlay.certificates')}
             items={{
               key: '',
               value:
