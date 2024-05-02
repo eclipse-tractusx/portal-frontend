@@ -37,6 +37,7 @@ import { ConnectType } from 'features/connector/connectorApiSlice'
 import { Dropzone } from '../../../../shared/basic/Dropzone'
 import { useEffect, useState } from 'react'
 import './EdcComponentStyles.scss'
+import { ConnectorFormFields } from '..'
 
 const ConnectorFormInput = ({
   control,
@@ -216,7 +217,7 @@ any) => {
                   placeholder={placeholder}
                   onChangeItem={(e) => {
                     onChange(
-                      name === 'ConnectorTechnicalUser'
+                      name === ConnectorFormFields.ConnectorTechnicalUser
                         ? e.serviceAccountId
                         : e.subscriptionId
                     )
@@ -358,7 +359,7 @@ any) => {
                   trigger,
                   errors,
                   type: 'select',
-                  name: 'ConnectorTechnicalUser',
+                  name: ConnectorFormFields.ConnectorTechnicalUser,
                   rules: {
                     required: true,
                   },
@@ -499,7 +500,7 @@ any) => {
             trigger,
             errors,
             type: 'input',
-            name: 'ConnectorName',
+            name: ConnectorFormFields.ConnectorName,
             minLength: 2,
             maxLength: 20,
             pattern: Patterns.connectors.NAME,
@@ -530,7 +531,7 @@ any) => {
             trigger,
             errors,
             type: 'input',
-            name: 'ConnectorURL',
+            name: ConnectorFormFields.ConnectorURL,
             pattern: Patterns.URL,
             rules: {
               required: t(
@@ -555,7 +556,7 @@ any) => {
             trigger,
             errors,
             type: 'input',
-            name: 'ConnectorLocation',
+            name: ConnectorFormFields.ConnectorLocation,
             pattern: Patterns.connectors.COUNTRY,
             rules: {
               required: t(
@@ -582,7 +583,7 @@ any) => {
                 trigger,
                 errors,
                 type: 'select',
-                name: 'ConnectorSubscriptionId',
+                name: ConnectorFormFields.ConnectorSubscriptionId,
                 rules: {
                   required: true,
                 },

@@ -455,7 +455,7 @@ npm/npmjs/-/safe-regex-test/1.0.3, MIT, approved, clearlydefined
 npm/npmjs/-/safer-buffer/2.1.2, MIT, approved, clearlydefined
 npm/npmjs/-/sass/1.72.0, MIT, approved, clearlydefined
 npm/npmjs/-/saxes/6.0.0, ISC, approved, clearlydefined
-npm/npmjs/-/scheduler/0.23.0, MIT, approved, clearlydefined
+npm/npmjs/-/scheduler/0.23.0, MIT, approved, #14589
 npm/npmjs/-/semver/6.3.1, ISC, approved, clearlydefined
 npm/npmjs/-/semver/7.6.0, ISC, approved, clearlydefined
 npm/npmjs/-/set-function-length/1.2.2, MIT, approved, #12772
@@ -599,7 +599,7 @@ npm/npmjs/@babel/template/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@babel/traverse/7.24.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #13926
 npm/npmjs/@babel/types/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/3.0.4, Apache-2.0 AND CC-BY-4.0 AND OFL-1.1, approved, #14247
+npm/npmjs/@catena-x/portal-shared-components/3.0.7, Apache-2.0 AND CC-BY-4.0 AND OFL-1.1, approved, #14247
 npm/npmjs/@cspotcode/source-map-support/0.8.1, MIT, approved, clearlydefined
 npm/npmjs/@date-io/core/3.0.0, MIT, approved, clearlydefined
 npm/npmjs/@date-io/date-fns/3.0.0, MIT, approved, #14023
