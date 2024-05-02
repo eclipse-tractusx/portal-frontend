@@ -4,12 +4,14 @@
 
 ### Feature
 
-- Partner Network - Improve Overlay of Company Data
+- Partner Network - improved overlay of Company Data
+- Technical Setup - improved Connector Registration overlay
+- Credential Management - adjusted document data and sorting
 
 ### Bugfix
 
 - Application Requests
-  - Company data overlay wrong role chipcard
+  - fixed displaying of incorrect company roles in case of requester company with role "Onboarding Service Provider"
 
 ## 2.0.0-RC4
 
