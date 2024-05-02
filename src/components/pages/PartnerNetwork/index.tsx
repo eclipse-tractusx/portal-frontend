@@ -63,15 +63,16 @@ const PartnerNetwork = () => {
       setAllItems([])
       return
     }
+
     const result = cData.content.map((x: BusinessPartner) => x.bpnl)
-    await mutationRequest(result)
+    await mutationRequest({ bpnLs: result, legalName: '' })
       .unwrap()
       .then((payload: PaginResult<BusinessPartnerAddressResponse>) => {
         //new country attribute && member attributes based on the response
         let finalObj = JSON.parse(JSON.stringify(cData?.content))
         finalObj = addCountryAttribute(
           finalObj,
-          payload as unknown as BusinessPartnerAddressResponse[]
+          payload.content as unknown as BusinessPartnerAddressResponse[]
         )
         finalObj = addMemberAttribute(finalObj, data)
         setAllItems(finalObj)

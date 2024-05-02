@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.0-RC5
+
+### Feature
+
+- Partner Network - Improve Overlay of Company Data
+
+### Bugfix
+
+- Application Requests
+  - Company data overlay wrong role chipcard
+
 ## 2.0.0-RC4
 
 ### Feature

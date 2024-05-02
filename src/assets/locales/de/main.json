@@ -190,6 +190,7 @@
           "roles": "Company Role(s)",
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
+          "onboardingProvider": "Onboarding Service Anbieter",
           "serviceProvider": "Service Anbieter",
           "noinfo": "no data available",
           "commercialRegisterNumber": "Handelsregisternummer",
@@ -728,9 +729,12 @@
       "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
       "searchbuttonlabel": "Suche",
       "overlay": {
-        "title": "Firmendetails",
+        "title": "Details zu Geschäftspartnerdaten",
         "companydatatitle": "Firmen Data",
-        "legalform": "Rechtsform"
+        "legalform": "Rechtsform",
+        "identifiers": "Identifiers",
+        "certificates": "Firmenzertifikate",
+        "noData": "No data available"
       }
     },
     "invite": {
@@ -1317,7 +1321,7 @@
       }
     },
     "serviceMarketplace": {
-      "headline": "Purchase Service Request",
+      "headline": "Service-Abonnement",
       "desc1": "Wenn Sie unten „Bestätigen“ auswählen, benachrichtigen Sie den App-Anbieter umgehend über Ihr Interesse an seinem Dienst und er beginnt mit dem Abonnementverfahren. Sollte der Anbieter weitere Einzelheiten benötigen, um fortzufahren, wird er sich direkt an Sie wenden.",
       "desc2": "Sobald alle notwendigen Informationen bestätigt und alle Fragen geklärt sind, wird der App-Anbieter mit der Aktivierung Ihres App-Mandanten fortfahren. Sie erhalten eine Benachrichtigung, die Sie durch alle weiteren Schritte führt, die Ihrerseits erforderlich sind.",
       "desc3": "WICHTIGER HINWEIS:WICHTIGER HINWEIS:",
