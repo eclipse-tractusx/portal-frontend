@@ -62,10 +62,10 @@ export type CredentialData = {
   useCase: string
   participantStatus: string
   expiryDate: string
-  document: {
+  documents: Array<{
     documentId: string
     documentName: string
-  }
+  }>
   externalTypeDetail: {
     id: string
     verifiedCredentialExternalTypeId: string
@@ -105,11 +105,19 @@ export const apiSlice = createApi({
     }),
     fetchCredentialsSearch: builder.query<CredentialResponse[], PaginFetchArgs>(
       {
-        query: (fetchArgs) => ({
-          url: `${getSsiBase()}/api/issuer?page=${
-            fetchArgs.page
-          }&size=${PAGE_SIZE}`,
-        }),
+        query: (fetchArgs) => {
+          if (fetchArgs.args.filterType && fetchArgs.args.sortingType) {
+            return `${getSsiBase()}/api/issuer?page=${
+              fetchArgs.page
+            }&size=${PAGE_SIZE}&sorting=${
+              fetchArgs.args.sortingType ?? ''
+            }&companySsiDetailStatusId=${fetchArgs.args.filterType}`
+          } else {
+            return `${getSsiBase()}/api/issuer?page=${
+              fetchArgs.page
+            }&size=${PAGE_SIZE}`
+          }
+        },
       }
     ),
     approveCredential: builder.mutation<boolean, string>({

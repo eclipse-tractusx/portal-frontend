@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.0-RC5
+
+### Feature
+
+- Partner Network - improved overlay of Company Data
+- Technical Setup - improved Connector Registration overlay
+- Credential Management - adjusted document data and sorting
+
+### Bugfix
+
+- Application Requests
+  - fixed displaying of incorrect company roles in case of requester company with role "Onboarding Service Provider"
+
 ## 2.0.0-RC4
 
 ### Feature

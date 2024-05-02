@@ -176,7 +176,6 @@ export const KeyValueView = ({
             key={JSON.stringify(items.value)}
             sx={{
               padding: '18px 24px',
-              borderBottom: '1px solid #EDF0F4',
             }}
           >
             {renderValueItem(items)}
