@@ -189,6 +189,7 @@
           "roles": "Company Role(s)",
           "activeParticipation": "Participant",
           "appProvider": "App Provider",
+          "onboardingProvider": "Onboarding Service Provider",
           "serviceProvider": "Service Provider",
           "noinfo": "no data available",
           "commercialRegisterNumber": "Commercial Register Number",

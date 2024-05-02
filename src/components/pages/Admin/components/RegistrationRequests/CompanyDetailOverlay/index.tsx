@@ -82,6 +82,8 @@ const CompanyDetailOverlay = ({
       )
     } else if (str === 'APP_PROVIDER') {
       return t('content.admin.registration-requests.overlay.appProvider')
+    } else if (str === 'ONBOARDING_SERVICE_PROVIDER') {
+      return t('content.admin.registration-requests.overlay.onboardingProvider')
     } else {
       return t('content.admin.registration-requests.overlay.serviceProvider')
     }
