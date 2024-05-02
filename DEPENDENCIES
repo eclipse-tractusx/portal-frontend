@@ -599,7 +599,7 @@ npm/npmjs/@babel/template/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@babel/traverse/7.24.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #13926
 npm/npmjs/@babel/types/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/3.0.6, Apache-2.0 AND CC-BY-4.0 AND OFL-1.1, approved, #14247
+npm/npmjs/@catena-x/portal-shared-components/3.0.7, Apache-2.0 AND CC-BY-4.0 AND OFL-1.1, approved, #14247
 npm/npmjs/@cspotcode/source-map-support/0.8.1, MIT, approved, clearlydefined
 npm/npmjs/@date-io/core/3.0.0, MIT, approved, clearlydefined
 npm/npmjs/@date-io/date-fns/3.0.0, MIT, approved, #14023
