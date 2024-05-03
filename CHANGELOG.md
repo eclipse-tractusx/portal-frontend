@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-RC6
+
+### Bugfix
+
+- Display error page when backend not available
+
 ## 2.0.0-RC5
 
 ### Feature
