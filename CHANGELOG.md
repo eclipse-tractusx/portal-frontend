@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0-RC6
+
+### Bugfix
+
+- Partner Network
+  - Fix white page blank issue
+
 ## 2.0.0-RC5
 
 ### Feature
