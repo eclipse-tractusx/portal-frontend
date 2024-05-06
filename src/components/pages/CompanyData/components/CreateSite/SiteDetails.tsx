@@ -18,43 +18,42 @@
  ********************************************************************************/
 
 import { Box, Divider } from '@mui/material'
-import CompanyInfo from '../CompanyInfo'
 import { useTranslation } from 'react-i18next'
 import { Button, Typography } from '@catena-x/portal-shared-components'
+import { companyDataSelector } from 'features/companyData/slice'
+import { useSelector } from 'react-redux'
 
-export default function SiteDetails({ onEdit }: {readonly onEdit: () => void }) {
+export default function SiteDetails({
+  onEdit,
+}: {
+  readonly onEdit: () => void
+}) {
   const { t } = useTranslation()
+  const companySiteData = useSelector(companyDataSelector)
   const siteData = [
     {
       attr: t('content.companyData.site.form.site.name'),
-      val: '',
+      val: companySiteData.site.name ?? '',
     },
     {
       attr: t('content.companyData.site.form.street.name'),
-      val: '',
+      val: companySiteData.address.physicalPostalAddress.street.name ?? '',
     },
     {
       attr: t('content.companyData.site.form.postal.name'),
-      val: '',
+      val: companySiteData.address.physicalPostalAddress.postalCode ?? '',
     },
     {
       attr: t('content.companyData.site.form.city.name'),
-      val: '',
+      val: companySiteData.address.physicalPostalAddress.city ?? '',
     },
     {
       attr: t('content.companyData.site.form.countryCode.name'),
-      val: '',
+      val: companySiteData.address.physicalPostalAddress.country ?? '',
     },
   ]
   return (
     <Box>
-      <CompanyInfo />
-      <Divider
-        sx={{
-          borderColor: '#111111',
-          margin: '0px 5%',
-        }}
-      />
       <Typography
         variant="h2"
         sx={{
@@ -75,7 +74,7 @@ export default function SiteDetails({ onEdit }: {readonly onEdit: () => void }) 
             key={item.attr}
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-start',
               alignItems: 'flex-start',
               marginBottom: '30px',
               marginTop: '30px',
@@ -86,6 +85,7 @@ export default function SiteDetails({ onEdit }: {readonly onEdit: () => void }) 
               variant="body1"
               sx={{
                 fontSize: '18px',
+                width: '200px',
               }}
             >
               {item.attr}
@@ -95,6 +95,7 @@ export default function SiteDetails({ onEdit }: {readonly onEdit: () => void }) 
               variant="body1"
               sx={{
                 fontSize: '18px',
+                marginLeft: '20%',
               }}
             >
               {item.val}

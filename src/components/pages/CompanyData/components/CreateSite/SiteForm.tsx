@@ -31,6 +31,8 @@ import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { SelectList } from '@catena-x/portal-shared-components'
 import { type CompanyDataSiteType } from 'features/companyData/companyDataApiSlice'
+import { useSelector } from 'react-redux'
+import { companyDataSelector } from 'features/companyData/slice'
 
 const responseToForm = (data: CompanyDataSiteType) => {
   const form: IHashMap<string> = {}
@@ -38,7 +40,6 @@ const responseToForm = (data: CompanyDataSiteType) => {
   form.street = data.street ?? ''
   form.postalCode = data.postalCode ?? ''
   form.city = data.city ?? ''
-  form.region = data.region ?? ''
   form.countryCode = data.countryCode ?? ''
   form.countryIdentifier = data.countryIdentifier ?? ''
   form.identifierNumber = data.identifierNumber ?? ''
@@ -50,7 +51,6 @@ const formToUpdate = (form: IHashMap<string>) => ({
   street: form.street,
   postalCode: form.postalCode,
   city: form.city,
-  region: form.region,
   countryCode: form.countryCode,
   countryIdentifier: form.countryIdentifier,
   identifierNumber: form.identifierNumber,
@@ -76,6 +76,7 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.site.hint')}
           errorMessage={t('content.companyData.site.form.site.error')}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -86,6 +87,7 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.street.hint')}
           validate={(expr) => isStreet(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.site.form.street.error')}
         />
       </div>
@@ -97,6 +99,7 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.city.hint')}
           validate={(expr) => isCity(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.site.form.city.error')}
         />
       </div>
@@ -108,6 +111,7 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.countryCode.hint')}
           validate={(expr) => isCountry(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.site.form.countryCode.error')}
         />
       </div>
@@ -119,6 +123,7 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.postal.hint')}
           validate={(expr) => isZipCode(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.site.form.postal.error')}
         />
       </div>
@@ -149,6 +154,7 @@ const UpdateForm = ({
           hint={t('content.companyData.site.form.identifierNumber.hint')}
           validate={(expr) => isCountryCode(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t(
             'content.companyData.site.form.identifierNumber.error'
           )}
@@ -160,18 +166,23 @@ const UpdateForm = ({
 
 export const SiteForm = ({
   onValid,
+  newForm,
 }: {
   onValid: (form: { body: CompanyDataSiteType } | undefined) => void
+  newForm: boolean
 }) => {
+  const siteData = useSelector(companyDataSelector)
+
   const data: CompanyDataSiteType = {
-    siteName: '',
-    street: '',
-    postalCode: '',
-    city: '',
-    region: '',
-    countryCode: '',
-    countryIdentifier: '',
-    identifierNumber: '',
+    siteName: newForm ? '' : siteData.site.name,
+    street: newForm ? '' : siteData.address.physicalPostalAddress.street.name,
+    postalCode: newForm
+      ? ''
+      : siteData.address.physicalPostalAddress.postalCode,
+    city: newForm ? '' : siteData.address.physicalPostalAddress.city,
+    countryCode: newForm ? '' : siteData.address.physicalPostalAddress.country,
+    countryIdentifier: newForm ? '' : '',
+    identifierNumber: newForm ? '' : '',
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)
@@ -188,8 +199,7 @@ export const SiteForm = ({
       current.postalCode &&
       current.countryCode &&
       current.countryIdentifier &&
-      current.identifierNumber &&
-      current.region
+      current.identifierNumber
     onValid(
       formValid
         ? {
@@ -197,7 +207,7 @@ export const SiteForm = ({
           }
         : undefined
     )
-    return true
+    return false
   }
 
   return <UpdateForm data={data} onChange={checkData} />

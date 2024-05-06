@@ -19,13 +19,17 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { statusSelector } from 'features/companyData/slice'
 import { useTranslation } from 'react-i18next'
-import LabelWithTooltips from './LabelWithTooltips'
+import { useSelector } from 'react-redux'
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import { SharingStateStatusType } from 'features/companyData/companyDataApiSlice'
 
-export default function CompanyInfo() {
-  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()
+export default function StatusInformation() {
   const { t } = useTranslation()
+  const status = useSelector(statusSelector)
 
   return (
     <Box
@@ -33,9 +37,8 @@ export default function CompanyInfo() {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        marginBottom: '30px',
+        marginBottom: '50px',
         padding: '0px 10%',
-        marginTop: '50px',
       }}
     >
       <Typography
@@ -45,23 +48,26 @@ export default function CompanyInfo() {
           width: '200px',
         }}
       >
-        {t('content.companyData.companyInfo.title')}
+        {t('content.companyData.statusInfo.title')}
       </Typography>
       <Box
         sx={{
+          display: 'flex',
+          alignItems: 'center',
           marginLeft: '20%',
         }}
       >
-        <LabelWithTooltips
-          value={companyDetails?.shortName}
-          label={t('content.companyData.companyInfo.legalEntityNameTooltip')}
-          tooltipMsg={t('content.companyData.companyInfo.legalEntityName')}
-        />
-        <LabelWithTooltips
-          value={companyDetails?.bpn}
-          label={t('content.companyData.companyInfo.legalEntityNumberTooltip')}
-          tooltipMsg={t('content.companyData.companyInfo.legalEntityNumber')}
-        />
+        {status === SharingStateStatusType.Success && <CheckCircleIcon />}
+        {status === SharingStateStatusType.Pending && <HourglassBottomIcon />}
+        {status === SharingStateStatusType.Ready && <WarningAmberIcon />}
+        <Typography
+          sx={{
+            marginLeft: '10px',
+          }}
+          variant="body1"
+        >
+          {status}
+        </Typography>
       </Box>
     </Box>
   )

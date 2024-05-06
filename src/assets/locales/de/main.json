@@ -1907,6 +1907,9 @@
     },
     "companyData": {
       "label": "Company Data",
+      "statusInfo": {
+        "title": "Status Information"
+      },
       "companyInfo": {
         "title": "Company Name",
         "legalEntityName": "Legal Entity Name",

@@ -22,54 +22,39 @@ import {
   DialogHeader,
   DialogContent,
 } from '@catena-x/portal-shared-components'
-import { Box } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import AddressDetails from './CreateAddress/AddressDetails'
 import SiteDetails from './CreateSite/SiteDetails'
 import { useState } from 'react'
+import StatusInformation from './StatusInformation'
+import CompanyInfo from './CompanyInfo'
+import { companyDataSelector } from 'features/companyData/slice'
+import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 interface FormDetailsProps {
-  readonly id?: string
   readonly open: boolean
   readonly title: string
   readonly description?: string
   readonly handleClose: () => void
-  readonly isAddress?: boolean
-  readonly handleConfirm: () => void
 }
 
 export default function DetailsOverlay({
-  id,
   open,
   title,
   description,
   handleClose,
-  isAddress = false,
-  handleConfirm,
 }: FormDetailsProps) {
+  const { t } = useTranslation()
   const [edit, setEdit] = useState<boolean>(!open)
   const onEdit = () => {
     setEdit(true)
   }
-  console.log(id)
+  const companyData = useSelector(companyDataSelector)
+  const isSite = companyData.site.siteBpn
   return (
     <Box>
-      {edit && (
-        <EditForm
-          isAddress={isAddress}
-          open={true}
-          id={'abcd'}
-          title={
-            isAddress
-              ? t('content.companyData.address.title')
-              : t('content.companyData.site.title')
-          }
-          description={t('content.companyData.address.description')}
-          handleClose={handleClose}
-          handleConfirm={handleConfirm}
-        />
-      )}
       <Dialog open={!edit}>
         <DialogHeader
           title={title}
@@ -78,13 +63,41 @@ export default function DetailsOverlay({
           onCloseWithIcon={handleClose}
         />
         <DialogContent>
-          {isAddress ? (
-            <AddressDetails onEdit={onEdit} />
-          ) : (
+          <StatusInformation />
+          <Divider
+            sx={{
+              borderColor: '#111111',
+              margin: '0px 5%',
+            }}
+          />
+          <CompanyInfo />
+          <Divider
+            sx={{
+              borderColor: '#111111',
+              margin: '0px 5%',
+            }}
+          />
+          {isSite || isSite !== '' ? (
             <SiteDetails onEdit={onEdit} />
+          ) : (
+            <AddressDetails onEdit={onEdit} />
           )}
         </DialogContent>
       </Dialog>
+      {edit && (
+        <EditForm
+          isAddress={!isSite}
+          title={
+            !isSite
+              ? t('content.companyData.address.title')
+              : t('content.companyData.site.title')
+          }
+          description={''}
+          handleClose={handleClose}
+          open={edit}
+          handleConfirm={handleClose}
+        />
+      )}
     </Box>
   )
 }

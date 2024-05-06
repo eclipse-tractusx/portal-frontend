@@ -26,36 +26,55 @@ import {
   CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import { t } from 'i18next'
 import { useState } from 'react'
 import { SiteForm } from './CreateSite/SiteForm'
 import { AddressForm } from './CreateAddress/AddressForm'
+import { useTranslation } from 'react-i18next'
+import {
+  type CompanyDataAddressType,
+  type CompanyDataSiteType,
+} from 'features/companyData/companyDataApiSlice'
 
 interface FormDetailsProps {
-  readonly id?: string
   readonly open: boolean
   readonly title: string
-  readonly description: string
+  readonly description?: string
   readonly handleClose: () => void
   readonly isAddress?: boolean
   readonly handleConfirm: () => void
+  readonly newForm?: boolean
 }
 
 export default function EditForm({
-  id,
   open,
   title,
   description,
   handleClose,
   isAddress = false,
   handleConfirm,
+  newForm = false,
 }: FormDetailsProps) {
+  const { t } = useTranslation()
   const [loading, setLoading] = useState<boolean>(false)
+  const [isValid, setValid] = useState<boolean>(false)
   const handleSubmit = () => {
+    setLoading(false)
     handleConfirm()
   }
-  console.log(id)
-  console.log(isAddress)
+  const handleSiteValidation = (
+    form: { body: CompanyDataSiteType } | undefined
+  ) => {
+    console.log(form)
+    setValid(form ? true : false)
+  }
+
+  const handleAddressValidation = (
+    form: { body: CompanyDataAddressType } | undefined
+  ) => {
+    console.log(form)
+    setValid(form ? true : false)
+  }
+
   return (
     <Box>
       <Dialog open={open}>
@@ -67,9 +86,9 @@ export default function EditForm({
         />
         <DialogContent>
           {isAddress ? (
-            <AddressForm onValid={console.log} />
+            <AddressForm newForm={newForm} onValid={handleAddressValidation} />
           ) : (
-            <SiteForm onValid={console.log} />
+            <SiteForm newForm={newForm} onValid={handleSiteValidation} />
           )}
         </DialogContent>
         <DialogActions>
@@ -77,7 +96,11 @@ export default function EditForm({
             {t('global.actions.cancel')}
           </Button>
           {!loading && (
-            <Button variant="contained" onClick={handleSubmit}>
+            <Button
+              disabled={!isValid}
+              variant="contained"
+              onClick={handleSubmit}
+            >
               {t('global.actions.confirm')}
             </Button>
           )}

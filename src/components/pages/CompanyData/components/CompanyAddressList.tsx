@@ -17,13 +17,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageLoadingTable } from '@catena-x/portal-shared-components'
+import { Table, Typography } from '@catena-x/portal-shared-components'
 import { appManagementSelector } from 'features/appManagement/slice'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useFetchUsersSearchQuery } from 'features/admin/userApiSlice'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import {
+  type CompanyDataType,
+  SharingStateStatusType,
+  useFetchInputCompanyBusinessPartnersMutation,
+  useFetchOutputCompanyBusinessPartnersMutation,
+  useFetchSharingStateQuery,
+} from 'features/companyData/companyDataApiSlice'
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { type GridCellParams } from '@mui/x-data-grid'
+import DetailsOverlay from './DetailsOverlay'
+import {
+  setSelectedCompanyData,
+  setSelectedCompanyStatus,
+} from 'features/companyData/slice'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -35,14 +51,67 @@ export const CompanyAddressList = ({
   const { t } = useTranslation()
   const searchInputData = useSelector(appManagementSelector)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [refresh, setRefresh] = useState<number>(0)
-  const args = {}
+  const { data } = useFetchSharingStateQuery()
+  const sharingStates = data?.content
+  const [outputRequest] = useFetchOutputCompanyBusinessPartnersMutation()
+  const [inputRequest] = useFetchInputCompanyBusinessPartnersMutation()
+  const [outputs, setOutputs] = useState<CompanyDataType[]>([])
+  const [inputs, setInputs] = useState<CompanyDataType[]>([])
+  const [details, setDetails] = useState<boolean>(false)
+  const dispatch = useDispatch()
+
+  const getInputItems = async () => {
+    const params = sharingStates
+      ?.filter(
+        (state) => state.sharingStateType === SharingStateStatusType.Pending
+      )
+      .map((state) => state.externalId)
+
+    if (params && params?.length > 0)
+      await inputRequest(params)
+        .unwrap()
+        .then((payload) => {
+          setOutputs(payload.content)
+        })
+  }
+
+  const getOutputItems = async () => {
+    const params = sharingStates
+      ?.filter(
+        (state) => state.sharingStateType === SharingStateStatusType.Success
+      )
+      .map((state) => state.externalId)
+    if (params && params?.length > 0)
+      await outputRequest(params)
+        .unwrap()
+        .then((payload) => {
+          setInputs(payload.content)
+        })
+  }
+
+  useEffect(() => {
+    getInputItems()
+    getOutputItems()
+  }, [sharingStates])
+
+  const getStatus = (id: string) => {
+    return sharingStates?.filter((state) => id === state.externalId)[0]
+      .sharingStateType
+  }
+
+  const onRowClick = (params: GridCellParams) => {
+    const status = getStatus(params.row.externalId)
+    setDetails(true)
+    dispatch(setSelectedCompanyStatus(status))
+    dispatch(setSelectedCompanyData(params.row))
+  }
+
   return (
-    <Box>
-      {/* eslint-disable-next-line */}
-      <PageLoadingTable<any, any>
+    <>
+      <Table
         autoFocus={false}
         onButtonClick={handleButtonClick}
+        rowsCount={inputs.length + outputs.length}
         buttonLabel={t('content.companyData.table.buttonAddress')}
         secondButtonLabel={t('content.companyData.table.buttonSite')}
         onSecondButtonClick={handleSecondButtonClick}
@@ -53,30 +122,93 @@ export const CompanyAddressList = ({
         searchExpr={searchExpr}
         onSearch={(expr: string) => {
           setSearchExpr(expr)
-          setRefresh(1)
         }}
         searchDebounce={1000}
         noRowsMsg={t('content.companyData.table.noRowsMsg')}
         title={t('content.companyData.table.title')}
-        loadLabel={t('global.actions.more')}
-        fetchHook={useFetchUsersSearchQuery}
-        fetchHookArgs={args}
-        fetchHookRefresh={refresh}
-        getRowId={(row: { [key: string]: string }) => row.companyUserId}
+        getRowId={(row: { [key: string]: string }) => row.externalId}
+        rows={inputs.concat(outputs)}
+        onCellClick={onRowClick}
         columns={[
           {
             field: 'site',
+            headerAlign: 'center',
+            align: 'center',
             headerName: t('content.companyData.table.site'),
-            flex: 3,
+            flex: 1,
+            valueGetter: ({ row }: { row: CompanyDataType }) => row.site.name,
           },
           {
-            field: 'location',
+            field: 'address',
+            headerAlign: 'center',
+            align: 'center',
             headerName: t('content.companyData.table.location'),
-            flex: 3,
+            flex: 2,
+            valueGetter: ({ row }: { row: CompanyDataType }) =>
+              `${row.address.name},${row.address.physicalPostalAddress.street.name},${row.address.physicalPostalAddress.street.houseNumber},${row.address.physicalPostalAddress.city},${row.address.physicalPostalAddress.postalCode},${row.address.physicalPostalAddress.country}`,
+          },
+          {
+            field: 'status',
+            headerName: '',
+            align: 'center',
+            flex: 1,
+            renderCell: ({ row }: { row: CompanyDataType }) => {
+              const status = getStatus(row.externalId)
+              return (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  {status === SharingStateStatusType.Success && (
+                    <CheckCircleIcon />
+                  )}
+                  {status === SharingStateStatusType.Pending && (
+                    <HourglassBottomIcon />
+                  )}
+                  {status === SharingStateStatusType.Ready && (
+                    <WarningAmberIcon />
+                  )}
+                  <Typography
+                    sx={{
+                      marginLeft: '10px',
+                    }}
+                    variant="body3"
+                  >
+                    {status}
+                  </Typography>
+                </Box>
+              )
+            },
+          },
+          {
+            field: 'details',
+            headerName: '',
+            align: 'center',
+            flex: 0.5,
+            renderCell: () => {
+              return (
+                <ArrowForwardIcon
+                  sx={{
+                    cursor: 'pointer',
+                  }}
+                />
+              )
+            },
           },
         ]}
         disableColumnMenu
       />
-    </Box>
+      {details && (
+        <DetailsOverlay
+          title={t('content.companyData.label')}
+          handleClose={() => {
+            setDetails(false)
+          }}
+          open={details}
+        />
+      )}
+    </>
   )
 }

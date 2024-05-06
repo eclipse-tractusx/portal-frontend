@@ -18,43 +18,42 @@
  ********************************************************************************/
 
 import { Box, Divider } from '@mui/material'
-import CompanyInfo from '../CompanyInfo'
 import { useTranslation } from 'react-i18next'
 import { Button, Typography } from '@catena-x/portal-shared-components'
+import { companyDataSelector } from 'features/companyData/slice'
+import { useSelector } from 'react-redux'
 
-export default function AddressDetails({ onEdit }: { readonly onEdit: () => void }) {
+export default function AddressDetails({
+  onEdit,
+}: {
+  readonly onEdit: () => void
+}) {
   const { t } = useTranslation()
+  const companyAddressData = useSelector(companyDataSelector)
   const addressData = [
     {
       key: t('content.companyData.address.form.companySite.name'),
-      value: '',
+      value: companyAddressData.site.name ?? '',
     },
     {
       key: t('content.companyData.address.form.addressTitle.name'),
-      value: '',
+      value: companyAddressData.address.name ?? '',
     },
     {
       key: t('content.companyData.address.form.street.name'),
-      value: '',
+      value: companyAddressData.address.physicalPostalAddress.street.name ?? '',
     },
     {
       key: t('content.companyData.address.form.postal.name'),
-      value: '',
+      value: companyAddressData.address.physicalPostalAddress.postalCode ?? '',
     },
     {
       key: t('content.companyData.address.form.city.name'),
-      value: '',
+      value: companyAddressData.address.physicalPostalAddress.city ?? '',
     },
   ]
   return (
-    <div>
-      <CompanyInfo />
-      <Divider
-        sx={{
-          borderColor: '#111111',
-          margin: '0px 5%',
-        }}
-      />
+    <Box>
       <Typography
         variant="h2"
         sx={{
@@ -75,7 +74,7 @@ export default function AddressDetails({ onEdit }: { readonly onEdit: () => void
             key={data.key}
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-start',
               alignItems: 'flex-start',
               marginBottom: '30px',
               marginTop: '30px',
@@ -86,6 +85,7 @@ export default function AddressDetails({ onEdit }: { readonly onEdit: () => void
               variant="body1"
               sx={{
                 fontSize: '18px',
+                width: '200px',
               }}
             >
               {data.key}
@@ -95,6 +95,7 @@ export default function AddressDetails({ onEdit }: { readonly onEdit: () => void
               variant="body1"
               sx={{
                 fontSize: '18px',
+                marginLeft: '20%',
               }}
             >
               {data.value}
@@ -118,6 +119,6 @@ export default function AddressDetails({ onEdit }: { readonly onEdit: () => void
           {t('global.actions.edit')}
         </Button>
       </Box>
-    </div>
+    </Box>
   )
 }

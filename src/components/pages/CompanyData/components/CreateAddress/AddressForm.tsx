@@ -23,6 +23,8 @@ import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { type CompanyDataAddressType } from 'features/companyData/companyDataApiSlice'
+import { useSelector } from 'react-redux'
+import { companyDataSelector } from 'features/companyData/slice'
 
 const responseToForm = (data: CompanyDataAddressType) => {
   const form: IHashMap<string> = {}
@@ -63,6 +65,7 @@ const UpdateForm = ({
           errorMessage={t('content.companyData.address.form.companySite.hint')}
           debounceTime={0}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -73,6 +76,7 @@ const UpdateForm = ({
           hint={t('content.companyData.address.form.addressTitle.hint')}
           validate={(expr) => isName(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.address.form.addressTitle.hint')}
         />
       </div>
@@ -84,6 +88,7 @@ const UpdateForm = ({
           hint={t('content.companyData.address.form.street.hint')}
           validate={(expr) => isStreet(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.address.form.street.hint')}
         />
       </div>
@@ -95,6 +100,7 @@ const UpdateForm = ({
           hint={t('content.companyData.address.form.postal.hint')}
           validate={(expr) => isZipCode(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.address.form.postal.hint')}
         />
       </div>
@@ -106,6 +112,7 @@ const UpdateForm = ({
           hint={t('content.companyData.address.form.city.hint')}
           validate={(expr) => isCity(expr)}
           onValid={onChange}
+          onInvalid={onChange}
           errorMessage={t('content.companyData.address.form.city.hint')}
         />
       </div>
@@ -115,15 +122,23 @@ const UpdateForm = ({
 
 export const AddressForm = ({
   onValid,
+  newForm,
 }: {
   onValid: (form: { body: CompanyDataAddressType } | undefined) => void
+  newForm: boolean
 }) => {
+  const companyData = useSelector(companyDataSelector)
+
   const data: CompanyDataAddressType = {
-    companySite: '',
-    street: '',
-    postalCode: '',
-    city: '',
-    addressTitle: '',
+    companySite: newForm ? '' : companyData.site.name,
+    street: newForm
+      ? ''
+      : companyData.address.physicalPostalAddress.street.name,
+    postalCode: newForm
+      ? ''
+      : companyData.address.physicalPostalAddress.postalCode,
+    city: newForm ? '' : companyData.address.physicalPostalAddress.city,
+    addressTitle: newForm ? '' : companyData.address.name,
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)
@@ -146,7 +161,7 @@ export const AddressForm = ({
           }
         : undefined
     )
-    return true
+    return false
   }
 
   return <UpdateForm data={data} onChange={checkData} />

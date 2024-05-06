@@ -26,7 +26,7 @@ import { useState } from 'react'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
-import DetailsOverlay from './components/DetailsOverlay'
+import EditForm from './components/EditForm'
 
 export default function CompanyData() {
   const navigate = useNavigate()
@@ -37,6 +37,14 @@ export default function CompanyData() {
     success: false,
     error: false,
   })
+
+  const updateOverlay = () => {
+    setShowOverlay((old) => {
+      old.address = false
+      old.site = false
+      return { ...old }
+    })
+  }
 
   return (
     <main className="organization-main">
@@ -66,45 +74,22 @@ export default function CompanyData() {
           })
         }}
       />
-      {showOverlay.address && (
-        <DetailsOverlay
-          isAddress={true}
-          title={t('content.companyData.label')}
-          handleClose={() => {
-            setShowOverlay((old) => {
-              old.address = false
-              return { ...old }
-            })
-          }}
-          open={showOverlay.address}
-          handleConfirm={() => {
-            setShowOverlay((old) => {
-              old.address = false
-              old.error = true
-              return { ...old }
-            })
-          }}
-        />
-      )}
-      {showOverlay.site && (
-        <DetailsOverlay
-          title={t('content.companyData.label')}
-          handleClose={() => {
-            setShowOverlay((old) => {
-              old.site = false
-              return { ...old }
-            })
-          }}
-          open={showOverlay.site}
-          handleConfirm={() => {
-            setShowOverlay((old) => {
-              old.site = false
-              old.success = true
-              return { ...old }
-            })
-          }}
-        />
-      )}
+      <EditForm
+        newForm={true}
+        isAddress={showOverlay.address}
+        title={
+          showOverlay.address
+            ? t('content.companyData.address.title')
+            : t('content.companyData.site.title')
+        }
+        handleClose={() => {
+          updateOverlay()
+        }}
+        open={showOverlay.address || showOverlay.site}
+        handleConfirm={() => {
+          updateOverlay()
+        }}
+      />
       {showOverlay.success && (
         <ServerResponseOverlay
           title={
