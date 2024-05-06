@@ -181,8 +181,8 @@ export const SiteForm = ({
       : siteData.address.physicalPostalAddress.postalCode,
     city: newForm ? '' : siteData.address.physicalPostalAddress.city,
     countryCode: newForm ? '' : siteData.address.physicalPostalAddress.country,
-    countryIdentifier: newForm ? '' : '',
-    identifierNumber: newForm ? '' : '',
+    countryIdentifier: '',
+    identifierNumber: '',
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)

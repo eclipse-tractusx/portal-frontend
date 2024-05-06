@@ -106,13 +106,13 @@ const UpdateForm = ({
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
-          name="city"
+          name="cityName"
           label={t('content.companyData.address.form.city.name')}
           value={data.city}
+          onInvalid={onChange}
           hint={t('content.companyData.address.form.city.hint')}
           validate={(expr) => isCity(expr)}
           onValid={onChange}
-          onInvalid={onChange}
           errorMessage={t('content.companyData.address.form.city.hint')}
         />
       </div>
