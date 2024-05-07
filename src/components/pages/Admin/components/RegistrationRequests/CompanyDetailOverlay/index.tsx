@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useState, useEffect, useRef, type SyntheticEvent } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
@@ -43,6 +43,7 @@ import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getTitle } from './CompanyDetailsHelper'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { KeyValueView } from 'components/shared/basic/KeyValueView'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -131,6 +132,36 @@ const CompanyDetailOverlay = ({
     setActiveTab(newValue)
   }
 
+  const getStepIcon = (step: string) => {
+    return (
+      <Typography
+        variant="label3"
+        sx={{
+          background: '#0f71cb',
+          color: 'white',
+          flex: '0',
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          minWidth: '20px',
+          textAlign: 'center',
+          lineHeight: '20px',
+          marginRight: '20px',
+          position: 'relative',
+        }}
+      >
+        {step}
+      </Typography>
+    )
+  }
+
+  const companyData = [
+    {
+      key: t('content.partnernetwork.columns.name'),
+      value: selectedCompany?.name ?? '',
+    },
+  ]
+
   return (
     <div className={'company-detail-overlay'}>
       <Dialog
@@ -148,36 +179,59 @@ const CompanyDetailOverlay = ({
             onCloseWithIcon: handleOverlayClose,
           }}
         >
-          <Box
-            sx={{
-              marginLeft: '20px',
-            }}
-          >
-            <Tabs value={activeTab} onChange={handleChange}>
-              <Tab
-                sx={{
-                  fontSize: '18px',
-                  '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb',
-                  },
+          <>
+            {activeTab === 0 && (
+              <Trans
+                i18nKey={t(
+                  'content.admin.registration-requests.overlay.tab1SubTitle'
+                )}
+                values={{
+                  status: 'in progress',
                 }}
-                label={t('content.admin.registration-requests.overlay.tab1')}
-                id={`simple-tab-${activeTab}`}
-                aria-controls={`simple-tabpanel-${activeTab}`}
-              />
-              <Tab
-                sx={{
-                  fontSize: '18px',
-                  '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb',
-                  },
-                }}
-                label={t('content.admin.registration-requests.overlay.tab2')}
-                id={`simple-tab-${activeTab}`}
-                aria-controls={`simple-tabpanel-${activeTab}`}
-              />
-            </Tabs>
-          </Box>
+              >
+                <Typography variant="h6">
+                  {t(
+                    'content.admin.registration-requests.overlay.tab1SubTitle'
+                  )}
+                </Typography>
+              </Trans>
+            )}
+            <Box
+              sx={{
+                marginLeft: '60px',
+              }}
+            >
+              <Tabs value={activeTab} onChange={handleChange}>
+                <Tab
+                  icon={getStepIcon('1')}
+                  iconPosition="start"
+                  sx={{
+                    fontSize: '18px',
+                    width: '50%',
+                    '&.Mui-selected': {
+                      borderBottom: '3px solid #0f71cb',
+                    },
+                  }}
+                  label={t('content.admin.registration-requests.overlay.tab1')}
+                  id={`simple-tab-${activeTab}`}
+                  aria-controls={`simple-tabpanel-${activeTab}`}
+                />
+                <Tab
+                  icon={getStepIcon('2')}
+                  iconPosition="start"
+                  sx={{
+                    fontSize: '18px',
+                    '&.Mui-selected': {
+                      borderBottom: '3px solid #0f71cb',
+                    },
+                  }}
+                  label={t('content.admin.registration-requests.overlay.tab2')}
+                  id={`simple-tab-${activeTab}`}
+                  aria-controls={`simple-tabpanel-${activeTab}`}
+                />
+              </Tabs>
+            </Box>
+          </>
         </DialogHeader>
 
         {detailLoading ? (
@@ -205,6 +259,15 @@ const CompanyDetailOverlay = ({
             }}
           >
             <TabPanel value={activeTab} index={0}>
+              <Box sx={{ width: '100%', marginBottom: '50px' }}>
+                <KeyValueView
+                  cols={2.3}
+                  title={t(
+                    'content.admin.registration-requests.overlay.companydatatitle'
+                  )}
+                  items={companyData}
+                />
+              </Box>
               <Box ref={modalElement} sx={{ width: '100%' }}>
                 <Grid container spacing={1.5} style={{ marginTop: 0 }}>
                   <Grid

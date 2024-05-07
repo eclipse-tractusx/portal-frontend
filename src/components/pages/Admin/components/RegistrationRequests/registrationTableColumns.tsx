@@ -21,9 +21,7 @@
 import { IconButton, StatusTag, Chip } from '@catena-x/portal-shared-components'
 import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import dayjs from 'dayjs'
-import uniqueId from 'lodash/uniqueId'
 import type {
   ApplicationRequest,
   ProgressButtonsType,
@@ -36,96 +34,114 @@ import type i18next from 'i18next'
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
   t: typeof i18next.t,
-  handleDownloadDocument: (
-    appId: string,
-    documentId: string,
-    documentType: string
-  ) => void,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void,
   onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 ): Array<GridColDef> => {
   return [
     {
-      field: 'dateCreated',
-      headerName: t('content.admin.registration-requests.columns.date'),
-      flex: 1.5,
-      disableColumnMenu: true,
-      valueGetter: ({ row }: { row: ApplicationRequest }) =>
-        dayjs(row.dateCreated).format('YYYY-MM-DD'),
-    },
-
-    {
       field: 'companyInfo',
       headerName: t('content.admin.registration-requests.columns.companyinfo'),
-      flex: 2.5,
+      flex: 2,
       sortable: false,
       disableColumnMenu: true,
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <div>
           <p style={{ margin: '3px 0' }}>{row.companyName}</p>
-          <p style={{ margin: '3px 0' }}>{row.email}</p>
-          <div className="bpn-edit-flex">
-            <span
-              style={{
-                marginRight: '30px',
-              }}
-            >
-              {row.bpn}
-            </span>
-            {row.applicationStatus === 'SUBMITTED' && !row.bpn && (
-              <span
-                style={{
-                  paddingTop: '2px',
-                }}
-                onClick={() => {
-                  if (showConfirmOverlay) {
-                    showConfirmOverlay(row.applicationId)
-                  }
-                }}
-                onKeyDown={() => {
-                  // do nothing
-                }}
-              >
-                <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
-              </span>
-            )}
-          </div>
         </div>
       ),
     },
     {
-      field: 'documents',
-      headerName: t('content.admin.registration-requests.columns.documents'),
+      field: 'email',
+      headerName: t('content.admin.registration-requests.columns.contact'),
       flex: 2,
       sortable: false,
       disableColumnMenu: true,
-      cellClassName: 'documents-column--cell',
       renderCell: ({ row }: { row: ApplicationRequest }) => (
-        <div className="document-cell-container">
-          {row.documents.map((contract) => (
-            <div
-              className="document-cell-line"
-              key={uniqueId(contract?.documentId)}
+        <p style={{ margin: '3px 0' }}>{row.email}</p>
+      ),
+    },
+    {
+      field: 'bpn',
+      headerName: t('content.admin.registration-requests.columns.bpn'),
+      flex: 2,
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: ({ row }: { row: ApplicationRequest }) => (
+        <div className="bpn-edit-flex">
+          <span
+            style={{
+              marginRight: '30px',
+            }}
+          >
+            {row.bpn}
+          </span>
+          {row.applicationStatus === 'SUBMITTED' && !row.bpn && (
+            <span
+              style={{
+                paddingTop: '2px',
+              }}
+              onClick={() => {
+                if (showConfirmOverlay) {
+                  showConfirmOverlay(row.applicationId)
+                }
+              }}
+              onKeyDown={() => {
+                // do nothing
+              }}
             >
-              <ArticleOutlinedIcon />
-              <button
-                className="document-button-link"
-                onClick={() => {
-                  handleDownloadDocument(
-                    row.applicationId,
-                    contract.documentId,
-                    contract.documentType
-                  )
-                }}
-              >
-                {contract?.documentType}
-              </button>
-            </div>
-          ))}
+              <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
+            </span>
+          )}
         </div>
       ),
     },
+    {
+      field: 'dateCreated',
+      headerName: t('content.admin.registration-requests.columns.age'),
+      flex: 1,
+      disableColumnMenu: true,
+      valueGetter: ({ row }: { row: ApplicationRequest }) => {
+        const date1 = dayjs(row.dateCreated).format('YYYY-MM-DD')
+        const date2 = dayjs()
+        const days = date2.diff(date1, 'days')
+        return (
+          days + ` ${t('content.admin.registration-requests.columns.days')}`
+        )
+      },
+    },
+    // {
+    //   field: 'documents',
+    //   headerName: t('content.admin.registration-requests.columns.documents'),
+    //   flex: 2,
+    //   sortable: false,
+    //   disableColumnMenu: true,
+    //   cellClassName: 'documents-column--cell',
+    //   renderCell: ({ row }: { row: ApplicationRequest }) => (
+    //     <div className="document-cell-container">
+    //       {row.documents.map((contract) => (
+    //         <div
+    //           className="document-cell-line"
+    //           key={uniqueId(contract?.documentId)}
+    //         >
+    //           <ArticleOutlinedIcon />
+    //           <button
+    //             className="document-button-link"
+    //             onClick={() => {
+    //               handleDownloadDocument(
+    //                 row.applicationId,
+    //                 contract.documentId,
+    //                 contract.documentType
+    //               )
+    //             }}
+    //           >
+    //             {contract?.documentType}
+    //           </button>
+    //         </div>
+    //       ))}
+    //     </div>
+    //   ),
+    // },
     {
       field: 'detail',
       headerName: t('content.admin.registration-requests.columns.details'),
@@ -142,7 +158,7 @@ export const RegistrationRequestsTableColumns = (
     },
     {
       field: 'status',
-      headerName: t('content.admin.registration-requests.columns.state'),
+      headerName: t('content.admin.registration-requests.columns.status'),
       align: 'center',
       headerAlign: 'center',
       disableColumnMenu: true,

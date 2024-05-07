@@ -44,6 +44,7 @@ import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverla
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { Test } from './Test'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -170,6 +171,13 @@ export default function RegistrationRequests() {
     setStatusConfirmationOverlay(true)
   }
 
+  const items = {
+    NONE: 5,
+    PROGRESS: 4,
+    SUCCESS: 3,
+    FAIL: 2,
+  }
+
   return (
     <main className="page-main-container">
       <PageSnackbar
@@ -277,6 +285,8 @@ export default function RegistrationRequests() {
           {t('content.admin.registration-requests.headersubtitle')}
         </Typography>
       </div>
+
+      <Test items={items} />
 
       {/* Table component */}
       <div className={'table-container'}>

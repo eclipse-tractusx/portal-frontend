@@ -159,11 +159,14 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "date": "Datum",
           "companyinfo": "Bewerbungsinformationen des Unternehmens",
+          "contact": "Kontakt",
+          "bpn": "BPN",
+          "age": "Alter",
+          "days": "tage",
           "documents": "Unterlagen",
           "details": "Einzelheiten",
-          "state": "Zustand"
+          "status": "Status"
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
@@ -182,7 +185,7 @@
         "cancel": "Cancel Process",
         "overlay": {
           "title": "Company Registration Details",
-          "companydatatitle": "Overview",
+          "companydatatitle": "Company Details",
           "companydatadescription": "Below you can find the details of the company registration",
           "taxid": "Steuernummer",
           "address": "Address",
@@ -201,6 +204,7 @@
           "tab1": "Company Data",
           "tab2": "Registration Process",
           "tab1Title": "Company Data",
+          "tab1SubTitle": "Registration Status: {{status}}",
           "tab2Title": "Confirmation {{status}}",
           "statusComplete": "[complete]",
           "statusIncomplete": "[incomplete]",

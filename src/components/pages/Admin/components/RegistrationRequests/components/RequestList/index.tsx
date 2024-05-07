@@ -113,7 +113,6 @@ export const RequestList = ({
 
   const columns = RegistrationRequestsTableColumns(
     t,
-    handleDownloadDocument,
     showConfirmOverlay,
     onConfirmationCancel,
     onChipButtonSelect
