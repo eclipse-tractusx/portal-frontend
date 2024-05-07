@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.0.0-RC5
+
+### Feature
+
+- Partner Network - improved overlay of Company Data
+- Technical Setup - improved Connector Registration overlay
+- Credential Management - adjusted document data and sorting
+
+### Bugfix
+
+- Application Requests
+  - fixed displaying of incorrect company roles in case of requester company with role "Onboarding Service Provider"
+
+## 2.0.0-RC4
+
+### Feature
+
+- Connected Credential Management UI with new Issuer Component
+
+  ### Bugfix
+
+- App Release Process
+  - updated roles endpoint to get roles
+
+## 2.0.0-RC3
+
+### Bugfix
+
+- Technical Setup
+  - fixed white page issue on connector registration with "Existing Technical User" selection
+
 ## 2.0.0-RC2
 
 ### Change

@@ -1,6 +1,6 @@
 {
   "name": "@catena-x/portal-frontend",
-  "version": "v2.0.0-RC2",
+  "version": "v2.0.0-RC5",
   "description": "Catena-X Portal Frontend",
   "author": "Catena-X Contributors",
   "license": "Apache-2.0",
@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^3.0.4",
+    "@catena-x/portal-shared-components": "^3.0.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@hookform/error-message": "^2.0.1",

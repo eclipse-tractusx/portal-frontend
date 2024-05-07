@@ -28,6 +28,11 @@ import type { BusinessPartner } from './types'
 import Patterns from 'types/Patterns'
 import type { BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
 
+export interface BusinessPartnerRequest {
+  bpnLs: string[]
+  legalName: string
+}
+
 const checkIfBPNLNumber = (text: string): boolean =>
   Patterns.BPN.test(text.trim())
 
@@ -37,12 +42,12 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartnerAddressResponse>,
-      string[]
+      BusinessPartnerRequest
     >({
-      query: (arry) => ({
+      query: (body) => ({
         url: '/pool/api/catena/legal-entities/legal-addresses/search',
         method: 'POST',
-        body: arry,
+        body,
       }),
     }),
     fetchBusinessPartners: builder.query<

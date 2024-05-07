@@ -20,6 +20,7 @@
 
 import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getSsiBase } from 'services/EnvironmentService'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
@@ -61,10 +62,10 @@ export type CredentialData = {
   useCase: string
   participantStatus: string
   expiryDate: string
-  document: {
+  documents: Array<{
     documentId: string
     documentName: string
-  }
+  }>
   externalTypeDetail: {
     id: string
     verifiedCredentialExternalTypeId: string
@@ -104,13 +105,19 @@ export const apiSlice = createApi({
     }),
     fetchCredentialsSearch: builder.query<CredentialResponse[], PaginFetchArgs>(
       {
-        query: (fetchArgs) => ({
-          url: `api/administration/companydata/credentials?page=${
-            fetchArgs.page
-          }&size=${PAGE_SIZE}&companyName=${
-            fetchArgs.args.expr ?? ''
-          }&companySsiDetailStatusId=${fetchArgs.args.filterType ?? ''}`,
-        }),
+        query: (fetchArgs) => {
+          if (fetchArgs.args.filterType && fetchArgs.args.sortingType) {
+            return `${getSsiBase()}/api/issuer?page=${
+              fetchArgs.page
+            }&size=${PAGE_SIZE}&sorting=${
+              fetchArgs.args.sortingType ?? ''
+            }&companySsiDetailStatusId=${fetchArgs.args.filterType}`
+          } else {
+            return `${getSsiBase()}/api/issuer?page=${
+              fetchArgs.page
+            }&size=${PAGE_SIZE}`
+          }
+        },
       }
     ),
     approveCredential: builder.mutation<boolean, string>({

@@ -25,6 +25,7 @@ import {
   getCentralIdp,
   getClientId,
   getClientIdMiw,
+  getClientIdSsiCredential,
   getClientIdSemantic,
   getMiwBase,
   getRealm,
@@ -49,6 +50,12 @@ const keycloakConfigMIW: Keycloak.KeycloakConfig = {
   url: getMiwBase(),
   realm: getRealm(),
   clientId: getClientIdMiw(),
+}
+
+const keycloakConfigSsiCredential: Keycloak.KeycloakConfig = {
+  url: getMiwBase(),
+  realm: getRealm(),
+  clientId: getClientIdSsiCredential(),
 }
 
 // Add an ESLint exception until there is a solution
@@ -116,8 +123,10 @@ const getRoles = (): Array<string> =>
     .concat(
       KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
     )
+    .concat(KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles)
     .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles
+      KC.tokenParsed?.resource_access[keycloakConfigSsiCredential.clientId]
+        ?.roles
     ) ?? []
 
 const hasRole = (role: string) => getRoles()?.includes(role)

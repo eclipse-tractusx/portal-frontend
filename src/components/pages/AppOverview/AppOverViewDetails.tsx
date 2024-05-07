@@ -28,7 +28,7 @@ import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
   ConsentStatusEnum,
-  useFetchRolesDataQuery,
+  useFetchAppRolesDataQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -50,7 +50,7 @@ export default function AppOverViewDetails({
   const [cardImage, setCardImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardLanguage, setCardLanguage] = useState<string>('en')
-  const { data } = useFetchRolesDataQuery(id ?? '')
+  const { data } = useFetchAppRolesDataQuery(id ?? '')
   const [submitapp] = useSubmitappMutation()
 
   const defaultValues = useMemo(() => {

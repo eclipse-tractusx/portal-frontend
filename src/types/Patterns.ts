@@ -88,8 +88,9 @@ export const Patterns = {
   connectors: {
     NAME: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{1,19}$/,
     COUNTRY: /^[A-Z]{2}$/,
-    TECHNICAL_USER_NAME: /^[A-Za-z]+[a-zA-Z0-9 =.!&#'"()]{2,80}$/,
-    TECHNICAL_USER_DESCRIPTION: /^[A-Za-z]+[a-zA-Z0-9 =.!&#'"()]{2,120}$/,
+    TECHNICAL_USER_NAME: /^[A-Za-z][a-zA-ZÀ-ÿ0-9 !&#'"()_\-=/.,;:]{1,80}$/,
+    TECHNICAL_USER_DESCRIPTION:
+      /^[A-Za-z][a-zA-ZÀ-ÿ0-9 !@&#'"()_\-=/*.,;:]{1,120}$/,
   },
   CANCEL_INPUT: /^[a-z0-9 ?*%$#@!-](?=)/i,
   techuser: {
