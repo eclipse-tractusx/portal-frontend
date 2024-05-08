@@ -6,6 +6,8 @@
 
 - Partner Network
   - Fix white page blank issue
+- Admin Credential
+  - Change API endpoints for approval and decline request
 
 ## 2.0.0-RC5
 
