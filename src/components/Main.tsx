@@ -51,17 +51,6 @@ export default function Main() {
   const dispatch = useDispatch()
 
   const { data, isLoading, error } = useFetchApplicationsQuery()
-  if (error)
-    return (
-      <ErrorPage
-        header={t('error.tryAgain')}
-        title={t('error.deleteTechUserNotificationErrorDescription')}
-        reloadButtonTitle={t('error.tryAgain')}
-        onReloadClick={() => {
-          navigate('/')
-        }}
-      />
-    )
   const companyData = data?.[0]
 
   const renderSection = () => {
@@ -102,6 +91,20 @@ export default function Main() {
       </>
     )
   }
+
+  if (error)
+    return (
+      <ErrorPage
+        header=""
+        title={t('error.title')}
+        description={t('error.description')}
+        additionalDescription={t('error.additionalDescription')}
+        reloadButtonTitle={t('error.reloadBtn')}
+        onReloadClick={() => {
+          navigate('/')
+        }}
+      />
+    )
 
   return (
     <>

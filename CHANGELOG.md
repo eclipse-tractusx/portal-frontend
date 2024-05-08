@@ -4,6 +4,7 @@
 
 ### Bugfix
 
+- Display error page when backend not available
 - Partner Network
   - Fix white page blank issue
 - Admin Credential
