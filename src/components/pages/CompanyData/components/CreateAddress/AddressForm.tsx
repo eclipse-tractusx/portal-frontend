@@ -63,7 +63,6 @@ const UpdateForm = ({
           validate={(expr) => isName(expr)}
           hint={t('content.companyData.address.form.companySite.hint')}
           errorMessage={t('content.companyData.address.form.companySite.hint')}
-          debounceTime={0}
           onValid={onChange}
           onInvalid={onChange}
         />

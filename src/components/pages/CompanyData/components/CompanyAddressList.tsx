@@ -40,6 +40,7 @@ import {
   setSelectedCompanyData,
   setSelectedCompanyStatus,
 } from 'features/companyData/slice'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -94,10 +95,9 @@ export const CompanyAddressList = ({
     getOutputItems()
   }, [sharingStates])
 
-  const getStatus = (id: string) => {
-    return sharingStates?.filter((state) => id === state.externalId)[0]
+  const getStatus = (id: string) =>
+    sharingStates?.filter((state) => id === state.externalId)[0]
       .sharingStateType
-  }
 
   const onRowClick = (params: GridCellParams) => {
     const status = getStatus(params.row.externalId)
@@ -108,98 +108,109 @@ export const CompanyAddressList = ({
 
   return (
     <>
-      <Table
-        autoFocus={false}
-        onButtonClick={handleButtonClick}
-        rowsCount={inputs.length + outputs.length}
-        buttonLabel={t('content.companyData.table.buttonAddress')}
-        secondButtonLabel={t('content.companyData.table.buttonSite')}
-        onSecondButtonClick={handleSecondButtonClick}
-        toolbarVariant="premium"
-        searchPlaceholder={t('content.companyData.table.search')}
-        columnHeadersBackgroundColor={'#FFFFFF'}
-        searchInputData={searchInputData}
-        searchExpr={searchExpr}
-        onSearch={(expr: string) => {
-          setSearchExpr(expr)
-        }}
-        searchDebounce={1000}
-        noRowsMsg={t('content.companyData.table.noRowsMsg')}
-        title={t('content.companyData.table.title')}
-        getRowId={(row: { [key: string]: string }) => row.externalId}
-        rows={inputs.concat(outputs)}
-        onCellClick={onRowClick}
-        columns={[
-          {
-            field: 'site',
-            headerAlign: 'center',
-            align: 'center',
-            headerName: t('content.companyData.table.site'),
-            flex: 1,
-            valueGetter: ({ row }: { row: CompanyDataType }) => row.site.name,
-          },
-          {
-            field: 'address',
-            headerAlign: 'center',
-            align: 'center',
-            headerName: t('content.companyData.table.location'),
-            flex: 2,
-            valueGetter: ({ row }: { row: CompanyDataType }) =>
-              `${row.address.name},${row.address.physicalPostalAddress.street.name},${row.address.physicalPostalAddress.street.houseNumber},${row.address.physicalPostalAddress.city},${row.address.physicalPostalAddress.postalCode},${row.address.physicalPostalAddress.country}`,
-          },
-          {
-            field: 'status',
-            headerName: '',
-            align: 'center',
-            flex: 1,
-            renderCell: ({ row }: { row: CompanyDataType }) => {
-              const status = getStatus(row.externalId)
-              return (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  {status === SharingStateStatusType.Success && (
-                    <CheckCircleIcon />
-                  )}
-                  {status === SharingStateStatusType.Pending && (
-                    <HourglassBottomIcon />
-                  )}
-                  {status === SharingStateStatusType.Ready && (
-                    <WarningAmberIcon />
-                  )}
-                  <Typography
+      {inputs.length > 0 || outputs.length > 0 ? (
+        <Table
+          autoFocus={false}
+          onButtonClick={handleButtonClick}
+          rowsCount={inputs.length + outputs.length}
+          buttonLabel={t('content.companyData.table.buttonAddress')}
+          secondButtonLabel={t('content.companyData.table.buttonSite')}
+          onSecondButtonClick={handleSecondButtonClick}
+          toolbarVariant="premium"
+          searchPlaceholder={t('content.companyData.table.search')}
+          columnHeadersBackgroundColor={'#FFFFFF'}
+          searchInputData={searchInputData}
+          searchExpr={searchExpr}
+          onSearch={(expr: string) => {
+            setSearchExpr(expr)
+          }}
+          searchDebounce={1000}
+          noRowsMsg={t('content.companyData.table.noRowsMsg')}
+          title={t('content.companyData.table.title')}
+          getRowId={(row: { [key: string]: string }) => row.externalId}
+          rows={inputs.concat(outputs)}
+          onCellClick={onRowClick}
+          columns={[
+            {
+              field: 'site',
+              headerAlign: 'center',
+              align: 'center',
+              headerName: t('content.companyData.table.site'),
+              flex: 1,
+              valueGetter: ({ row }: { row: CompanyDataType }) => row.site.name,
+            },
+            {
+              field: 'address',
+              headerAlign: 'center',
+              align: 'center',
+              headerName: t('content.companyData.table.location'),
+              flex: 2,
+              valueGetter: ({ row }: { row: CompanyDataType }) =>
+                `${row.address.name},${row.address.physicalPostalAddress.street.name},${row.address.physicalPostalAddress.street.houseNumber},${row.address.physicalPostalAddress.city},${row.address.physicalPostalAddress.postalCode},${row.address.physicalPostalAddress.country}`,
+            },
+            {
+              field: 'status',
+              headerName: '',
+              align: 'center',
+              flex: 1,
+              renderCell: ({ row }: { row: CompanyDataType }) => {
+                const status = getStatus(row.externalId)
+                return (
+                  <Box
                     sx={{
-                      marginLeft: '10px',
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
-                    variant="body3"
                   >
-                    {status}
-                  </Typography>
-                </Box>
-              )
+                    {status === SharingStateStatusType.Success && (
+                      <CheckCircleIcon />
+                    )}
+                    {status === SharingStateStatusType.Pending && (
+                      <HourglassBottomIcon />
+                    )}
+                    {status === SharingStateStatusType.Ready && (
+                      <WarningAmberIcon />
+                    )}
+                    <Typography
+                      sx={{
+                        marginLeft: '10px',
+                      }}
+                      variant="body3"
+                    >
+                      {status}
+                    </Typography>
+                  </Box>
+                )
+              },
             },
-          },
-          {
-            field: 'details',
-            headerName: '',
-            align: 'center',
-            flex: 0.5,
-            renderCell: () => {
-              return (
-                <ArrowForwardIcon
-                  sx={{
-                    cursor: 'pointer',
-                  }}
-                />
-              )
+            {
+              field: 'details',
+              headerName: '',
+              align: 'center',
+              flex: 0.5,
+              renderCell: () => {
+                return (
+                  <ArrowForwardIcon
+                    sx={{
+                      cursor: 'pointer',
+                    }}
+                  />
+                )
+              },
             },
-          },
-        ]}
-        disableColumnMenu
-      />
+          ]}
+          disableColumnMenu
+        />
+      ) : (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <LoadingProgress />
+        </Box>
+      )}
       {details && (
         <DetailsOverlay
           title={t('content.companyData.label')}

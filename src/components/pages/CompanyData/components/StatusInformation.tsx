@@ -25,11 +25,18 @@ import { useSelector } from 'react-redux'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import { SharingStateStatusType } from 'features/companyData/companyDataApiSlice'
 
 export default function StatusInformation() {
   const { t } = useTranslation()
   const status = useSelector(statusSelector)
+
+  const statusIcon: Record<string, JSX.Element> = {
+    Success: <CheckCircleIcon />,
+    Pending: <HourglassBottomIcon />,
+    Ready: <WarningAmberIcon />,
+    Initial: <WarningAmberIcon />,
+    Error: <WarningAmberIcon />,
+  }
 
   return (
     <Box
@@ -57,9 +64,7 @@ export default function StatusInformation() {
           marginLeft: '20%',
         }}
       >
-        {status === SharingStateStatusType.Success && <CheckCircleIcon />}
-        {status === SharingStateStatusType.Pending && <HourglassBottomIcon />}
-        {status === SharingStateStatusType.Ready && <WarningAmberIcon />}
+        {statusIcon[status]}
         <Typography
           sx={{
             marginLeft: '10px',
