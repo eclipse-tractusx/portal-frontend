@@ -1,17 +1,18 @@
-enum ProgressType {
-  NONE = 'NONE',
-  PROGRESS = 'PROGRESS',
-  SUCCESS = 'SUCCESS',
-  FAIL = 'FAIL',
-}
+import { type ProgressStatus } from 'features/admin/applicationRequestApiSlice'
 
-type ProgressItems = Record<ProgressType, number>
+type ProgressItems = Record<ProgressStatus, number>
 
-export const Test = ({ items }: { items: ProgressItems }) => {
-  const total = Object.values(items).reduce((a, c) => a + c)
-  const red = (items.FAIL / total) * 360
-  const green = (items.SUCCESS / total) * 360 + red
-  const yellow = (items.PROGRESS / total) * 360 + green
+export const Progress = ({
+  items,
+  totalItems,
+}: {
+  items: ProgressItems
+  totalItems: number
+}) => {
+  //const total = Object.values(items).reduce((a, c) => a + c)
+  const red = (items.FAILED / totalItems) * 360
+  const green = (items.DONE / totalItems) * 360 + red
+  const yellow = (items.IN_PROGRESS / totalItems) * 360 + green
 
   return (
     <div
@@ -38,7 +39,7 @@ export const Test = ({ items }: { items: ProgressItems }) => {
           verticalAlign: 'middle',
         }}
       >
-        {items.SUCCESS}/{total}
+        {items.DONE}/{totalItems}
       </div>
     </div>
   )

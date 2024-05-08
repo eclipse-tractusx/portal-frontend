@@ -18,18 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, StatusTag, Chip } from '@catena-x/portal-shared-components'
+import { IconButton } from '@catena-x/portal-shared-components'
 import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
-import type {
-  ApplicationRequest,
-  ProgressButtonsType,
+import {
+  ProgressStatus,
+  type ApplicationRequest,
+  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import './RegistrationRequests.scss'
 import CheckList from './components/CheckList'
 import type i18next from 'i18next'
+import { Progress } from 'components/shared/basic/Progress'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
@@ -38,6 +40,36 @@ export const RegistrationRequestsTableColumns = (
   onConfirmationCancel?: (applicationId: string, name: string) => void,
   onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 ): Array<GridColDef> => {
+  const getStatusProgress = (row: ApplicationRequest) => {
+    const todoItems = row.applicationChecklist.filter(
+      (checklist: ProgressButtonsType) =>
+        checklist.statusId === ProgressStatus.TO_DO
+    ).length
+    const inprogressItems = row.applicationChecklist.filter(
+      (checklist: ProgressButtonsType) =>
+        checklist.statusId === ProgressStatus.IN_PROGRESS
+    ).length
+    const doneItems = row.applicationChecklist.filter(
+      (checklist: ProgressButtonsType) =>
+        checklist.statusId === ProgressStatus.DONE
+    ).length
+    const failedItems = row.applicationChecklist.filter(
+      (checklist: ProgressButtonsType) =>
+        checklist.statusId === ProgressStatus.DONE
+    ).length
+
+    const items = {
+      TO_DO: todoItems,
+      IN_PROGRESS: inprogressItems,
+      DONE: doneItems,
+      FAILED: failedItems,
+    }
+
+    return (
+      <Progress items={items} totalItems={row.applicationChecklist.length} />
+    )
+  }
+
   return [
     {
       field: 'companyInfo',
@@ -110,38 +142,6 @@ export const RegistrationRequestsTableColumns = (
         )
       },
     },
-    // {
-    //   field: 'documents',
-    //   headerName: t('content.admin.registration-requests.columns.documents'),
-    //   flex: 2,
-    //   sortable: false,
-    //   disableColumnMenu: true,
-    //   cellClassName: 'documents-column--cell',
-    //   renderCell: ({ row }: { row: ApplicationRequest }) => (
-    //     <div className="document-cell-container">
-    //       {row.documents.map((contract) => (
-    //         <div
-    //           className="document-cell-line"
-    //           key={uniqueId(contract?.documentId)}
-    //         >
-    //           <ArticleOutlinedIcon />
-    //           <button
-    //             className="document-button-link"
-    //             onClick={() => {
-    //               handleDownloadDocument(
-    //                 row.applicationId,
-    //                 contract.documentId,
-    //                 contract.documentType
-    //               )
-    //             }}
-    //           >
-    //             {contract?.documentType}
-    //           </button>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   ),
-    // },
     {
       field: 'detail',
       headerName: t('content.admin.registration-requests.columns.details'),
@@ -165,42 +165,43 @@ export const RegistrationRequestsTableColumns = (
       flex: 1,
       sortable: false,
       renderCell: ({ row }: { row: ApplicationRequest }) => {
-        if (row.applicationStatus === 'SUBMITTED')
-          return (
-            <div className="state-cell-container">
-              {row.applicationStatus === 'SUBMITTED' && (
-                <Chip
-                  {...{
-                    color: 'info',
-                    variant: 'filled',
-                    label: t(
-                      'content.admin.registration-requests.buttonprogress'
-                    ),
-                    type: 'progress',
-                    onClick: () => {
-                      // do nothing
-                    },
-                    withIcon: true,
-                  }}
-                />
-              )}
-            </div>
-          )
-        else
-          return (
-            <div className="state-cell-container">
-              <StatusTag
-                color={
-                  row.applicationStatus === 'CONFIRMED'
-                    ? 'confirmed'
-                    : 'declined'
-                }
-                label={t(
-                  `content.admin.registration-requests.cell${row.applicationStatus.toLowerCase()}`
-                )}
-              />
-            </div>
-          )
+        return getStatusProgress(row)
+        // if (row.applicationStatus === 'SUBMITTED')
+        //   return (
+        //     <div className="state-cell-container">
+        //       {row.applicationStatus === 'SUBMITTED' && (
+        //         <Chip
+        //           {...{
+        //             color: 'info',
+        //             variant: 'filled',
+        //             label: t(
+        //               'content.admin.registration-requests.buttonprogress'
+        //             ),
+        //             type: 'progress',
+        //             onClick: () => {
+        //               // do nothing
+        //             },
+        //             withIcon: true,
+        //           }}
+        //         />
+        //       )}
+        //     </div>
+        //   )
+        // else
+        //   return (
+        //     <div className="state-cell-container">
+        //       <StatusTag
+        //         color={
+        //           row.applicationStatus === 'CONFIRMED'
+        //             ? 'confirmed'
+        //             : 'declined'
+        //         }
+        //         label={t(
+        //           `content.admin.registration-requests.cell${row.applicationStatus.toLowerCase()}`
+        //         )}
+        //       />
+        //     </div>
+        //   )
       },
     },
     {

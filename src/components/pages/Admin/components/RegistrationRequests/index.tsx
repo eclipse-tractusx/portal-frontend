@@ -36,15 +36,12 @@ import {
   type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
-import { download } from 'utils/downloadUtils'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
-import { Test } from './Test'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -61,7 +58,6 @@ export default function RegistrationRequests() {
 
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineChecklistMutation()
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   const [updateBpn] = useUpdateBPNMutation()
 
@@ -125,23 +121,6 @@ export default function RegistrationRequests() {
     setIsLoading(false)
   }
 
-  const handleDownloadClick = async (
-    _appId: string,
-    documentId: string,
-    documentType: string
-  ) => {
-    try {
-      const response = await getDocumentById(documentId).unwrap()
-
-      const fileType = response.headers.get('content-type')
-      const file = response.data
-
-      download(file, fileType, documentType)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-    }
-  }
-
   const onUpdateBpn = async (bpn: string) => {
     setIsLoading(true)
     await updateBpn({ bpn, applicationId: selectedRequestId })
@@ -169,13 +148,6 @@ export default function RegistrationRequests() {
     setSelectedButton(selected)
     setSelectedRequestId(id)
     setStatusConfirmationOverlay(true)
-  }
-
-  const items = {
-    NONE: 5,
-    PROGRESS: 4,
-    SUCCESS: 3,
-    FAIL: 2,
   }
 
   return (
@@ -286,17 +258,12 @@ export default function RegistrationRequests() {
         </Typography>
       </div>
 
-      <Test items={items} />
-
       {/* Table component */}
       <div className={'table-container'}>
         <RequestList
           fetchHook={useFetchCompanySearchQuery}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
-          handleDownloadDocument={(appId, documentId, documentType) =>
-            void handleDownloadClick(appId, documentId, documentType)
-          }
           showConfirmOverlay={(id: string) => {
             setSelectedRequestId(id)
             setEnableBpnInput(true)
