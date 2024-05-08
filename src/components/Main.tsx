@@ -95,9 +95,11 @@ export default function Main() {
   if (error)
     return (
       <ErrorPage
-        header={t('error.tryAgain')}
-        title={t('error.deleteTechUserNotificationErrorDescription')}
-        reloadButtonTitle={t('error.tryAgain')}
+        header=""
+        title={t('error.title')}
+        description={t('error.description')}
+        additionalDescription={t('error.additionalDescription')}
+        reloadButtonTitle={t('error.reloadBtn')}
         onReloadClick={() => {
           navigate('/')
         }}

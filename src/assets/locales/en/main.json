@@ -105,7 +105,11 @@
   "error": {
     "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
     "tryAgain": "Try Again",
-    "errorBar": "Something went wrong. Try again"
+    "errorBar": "Something went wrong. Try again",
+    "title": "Oops, Something went wrong.",
+    "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
+    "additionalDescription": "Please contact your admin.",
+    "reloadBtn": "Reload Page"
   },
   "content": {
     "registration": {
