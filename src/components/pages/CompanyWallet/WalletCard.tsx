@@ -37,24 +37,46 @@ export default function WalletCard({
 
   const status = wallet?.status === CredentialSubjectStatus.ACTIVE
 
-  const current = isError
-    ? {
+  const getMessge = () => {
+    if (isError) {
+      return {
         info: t('content.companyWallet.error'),
         message: t('content.companyWallet.errorDescription'),
       }
-    : status
-      ? {
-          info: t('content.companyWallet.activate'),
-          message: t('content.companyWallet.activateDescription'),
-        }
-      : {
-          info: '',
-          message: '',
-        }
+    } else {
+      return status
+        ? {
+            info: t('content.companyWallet.activate'),
+            message: t('content.companyWallet.activateDescription'),
+          }
+        : {
+            info: '',
+            message: '',
+          }
+    }
+  }
 
-  const bgColor = isError ? '#EBC6C6' : status ? '#004f4b' : '#EAEAEA'
+  const current = getMessge()
 
-  const textColor = isError ? '#FFFFFF' : status ? '#00AA55' : '#FF532F'
+  const getBgColor = () => {
+    if (isError) {
+      return '#EBC6C6'
+    } else {
+      return status ? '#004f4b' : '#EAEAEA'
+    }
+  }
+
+  const bgColor = getBgColor()
+
+  const getTextColor = () => {
+    if (isError) {
+      return '#FFFFFF'
+    } else {
+      return status ? '#00AA55' : '#FF532F'
+    }
+  }
+
+  const textColor = getTextColor()
 
   const type = isError ? 'Unknown' : wallet?.credentialType
 
@@ -111,10 +133,10 @@ export default function WalletCard({
               fontWeight: '600',
             }}
           >
-            {current.info}
+            {current?.info}
           </Typography>
         </div>
-        <Typography variant="body1">{current.message}</Typography>
+        <Typography variant="body1">{current?.message}</Typography>
       </div>
     </div>
   )
