@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiSSICredentialQuery } from 'utils/rtkUtil'
+import { apiSsiCredentialQuery } from 'utils/rtkUtil'
 
 export interface WalletSectionContent {
   name: string
@@ -52,7 +52,7 @@ export interface WalletContent {
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyWallet',
-  baseQuery: fetchBaseQuery(apiSSICredentialQuery()),
+  baseQuery: fetchBaseQuery(apiSsiCredentialQuery()),
   endpoints: (builder) => ({
     fetchCompanyWallet: builder.query<WalletContent[], void>({
       query: () => {

@@ -24,7 +24,6 @@ import {
   type WalletContent,
   useFetchCompanyWalletQuery,
   CredentialType,
-  CredentialSubjectStatus,
 } from 'features/compayWallet/companyWalletApiSlice'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
