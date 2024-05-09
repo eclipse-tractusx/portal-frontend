@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBpdmQuery } from 'utils/rtkUtil'
+import { apiBpdmPoolQuery } from 'utils/rtkUtil'
 import type {
   PaginResult,
   PaginFetchArgs,
@@ -38,14 +38,14 @@ const checkIfBPNLNumber = (text: string): boolean =>
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',
-  baseQuery: fetchBaseQuery(apiBpdmQuery()),
+  baseQuery: fetchBaseQuery(apiBpdmPoolQuery()),
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartnerAddressResponse>,
       BusinessPartnerRequest
     >({
       query: (body) => ({
-        url: '/pool/v6/legal-entities/search?page=0&size=30',
+        url: '/legal-entities/search?page=0&size=30',
         method: 'POST',
         body,
       }),
@@ -56,13 +56,13 @@ export const apiSlice = createApi({
     >({
       query: (fetchArgs) => {
         if (fetchArgs.args.expr && !checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/pool/v6/legal-entities?page=${
+          return `/legal-entities?page=${
             fetchArgs.page
           }&size=10&legalName=${fetchArgs.args!.expr}`
         } else if (checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/pool/v6/legal-entities/${fetchArgs.args!.expr}`
+          return `/legal-entities/${fetchArgs.args!.expr}`
         } else {
-          return `/pool/v6/legal-entities?page=${fetchArgs.page}&size=10`
+          return `/legal-entities?page=${fetchArgs.page}&size=10`
         }
       },
       // Add an ESLint exception until there is a solution

@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBpdmQuery } from 'utils/rtkUtil'
+import { apiBpdmGateQuery } from 'utils/rtkUtil'
 
 export type PaginationData = {
   totalElements: number
@@ -214,11 +214,11 @@ export enum SharingStateStatusType {
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyData',
-  baseQuery: fetchBaseQuery(apiBpdmQuery()),
+  baseQuery: fetchBaseQuery(apiBpdmGateQuery()),
   endpoints: (builder) => ({
     fetchSharingState: builder.query<SharingStateResponse, void>({
       query: () => ({
-        url: '/companies/test-company/v6/sharing-state',
+        url: '/sharing-state',
       }),
     }),
     fetchInputCompanyBusinessPartners: builder.mutation<
@@ -226,7 +226,7 @@ export const apiSlice = createApi({
       string[] | void
     >({
       query: (val) => ({
-        url: '/companies/test-company/v6/input/business-partners/search?page=0&size=100',
+        url: '/input/business-partners/search?page=0&size=100',
         method: 'POST',
         body: val,
       }),
@@ -236,7 +236,7 @@ export const apiSlice = createApi({
       string[] | void
     >({
       query: (val) => ({
-        url: '/companies/test-company/v6/output/business-partners/search?page=0&size=100',
+        url: '/output/business-partners/search?page=0&size=100',
         method: 'POST',
         body: val,
       }),
