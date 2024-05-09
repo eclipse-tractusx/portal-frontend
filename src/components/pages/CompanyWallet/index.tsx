@@ -24,6 +24,7 @@ import {
   type WalletContent,
   useFetchCompanyWalletQuery,
   CredentialType,
+  CredentialSubjectStatus,
 } from 'features/compayWallet/companyWalletApiSlice'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
@@ -46,11 +47,13 @@ export default function CompanyWallet(): JSX.Element {
     setActiveWallet(actives)
   }, [data])
 
-  const groupedItems = groupBy(
-    data,
-    (item: WalletContent) =>
-      item.credentialType === CredentialType.TRACEABILITY_FRAMEWORK
+  const groupedItems = groupBy(data, (item: WalletContent) =>
+    item.credentialType === CredentialType.TRACEABILITY_FRAMEWORK
+      ? item.credentialType
+      : 'Others'
   )
+
+  console.log(groupedItems)
 
   return (
     <main className="companywallet-main">

@@ -66,7 +66,7 @@ export default function RuleCard({
             }}
             variant="h4"
           >
-            {key === 'false' ? 'Others' : key}
+            {key.split('_').join(' ')}
           </Typography>
           <Grid
             container
