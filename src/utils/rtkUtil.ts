@@ -24,6 +24,7 @@ import {
   getMiwBase,
   getAssetBase,
   getSsiBase,
+  getSSICredentialBase,
 } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 
@@ -53,6 +54,14 @@ export const apiBpdmQuery = () => ({
 
 export const apiIdentityWalletQuery = () => ({
   baseUrl: getMiwBase(),
+  prepareHeaders: (headers: Headers) => {
+    headers.set('authorization', `Bearer ${UserService.getToken()}`)
+    return headers
+  },
+})
+
+export const apiSSICredentialQuery = () => ({
+  baseUrl: getSSICredentialBase(),
   prepareHeaders: (headers: Headers) => {
     headers.set('authorization', `Bearer ${UserService.getToken()}`)
     return headers

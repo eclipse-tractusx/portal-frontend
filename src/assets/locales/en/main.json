@@ -1841,6 +1841,8 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
       "activateDescription": "You have activated your Catena-X wallet.",
+      "error": "Not Connected",
+      "errorDescription": "Wallet tenant not found.",
       "inactive": "Not Connected",
       "inactiveDescription": "You have not activated your Catena-X wallet.",
       "subnavigation": {

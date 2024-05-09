@@ -23,7 +23,7 @@ import './CompanyWallet.scss'
 import {
   type WalletContent,
   useFetchCompanyWalletQuery,
-  CredentialSubjectType,
+  CredentialType,
 } from 'features/compayWallet/companyWalletApiSlice'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
@@ -33,26 +33,23 @@ import { groupBy } from 'lodash'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
-  const { data, isSuccess } = useFetchCompanyWalletQuery()
+  const { data, isSuccess, isError } = useFetchCompanyWalletQuery()
   const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
 
   useEffect(() => {
     const actives: WalletContent[] = []
-    data?.content.forEach((cont) => {
-      cont.credentialSubject.forEach((sub) => {
-        if (sub.type === CredentialSubjectType.MembershipCredential) {
-          actives.push(cont)
-        }
-      })
+    data?.forEach((cont) => {
+      if (cont.credentialType === CredentialType.MEMBERSHIP) {
+        actives.push(cont)
+      }
     })
     setActiveWallet(actives)
   }, [data])
 
   const groupedItems = groupBy(
-    data?.content,
+    data,
     (item: WalletContent) =>
-      item.credentialSubject[0].type === CredentialSubjectType.CompanyRole ||
-      item.credentialSubject[0].type === CredentialSubjectType.Framework
+      item.credentialType === CredentialType.TRACEABILITY_FRAMEWORK
   )
 
   return (
@@ -68,15 +65,22 @@ export default function CompanyWallet(): JSX.Element {
             </Typography>
           </Trans>
         </div>
-        {isSuccess ? (
+        {isSuccess || isError ? (
           <>
             <div className="container">
-              <WalletCard wallet={activeWallet[0]} />
+              <WalletCard
+                isError={activeWallet.length === 0 || isError}
+                wallet={activeWallet[0]}
+              />
             </div>
-            <ComapnyWalletSubNavigationHeader />
-            <div className="container">
-              <RuleCard sections={groupedItems} />
-            </div>
+            {isSuccess && (
+              <>
+                <ComapnyWalletSubNavigationHeader />
+                <div className="container">
+                  <RuleCard sections={groupedItems} />
+                </div>
+              </>
+            )}
           </>
         ) : (
           <></>

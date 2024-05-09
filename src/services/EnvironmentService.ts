@@ -43,6 +43,8 @@ export const getSemanticApiBase = () => ENV.SEMANTICS_URL ?? ''
 
 export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 
+export const getSSICredentialBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
+
 const EnvironmentService = {
   getRealm,
   getClientId,
@@ -55,6 +57,7 @@ const EnvironmentService = {
   getBpdmApiBase,
   getSemanticApiBase,
   getMiwBase,
+  getSSICredentialBase,
 }
 
 export default EnvironmentService

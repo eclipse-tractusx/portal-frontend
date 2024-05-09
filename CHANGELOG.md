@@ -7,6 +7,10 @@
 - Partner Network
   - Fix white page blank issue
 
+### Feature
+
+- Company Wallet - Add new end point and update the response schema. Handle error and not valid membership wallet case in the UI.
+
 ## 2.0.0-RC5
 
 ### Feature

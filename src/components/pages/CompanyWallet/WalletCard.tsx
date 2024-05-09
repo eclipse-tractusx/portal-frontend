@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import SmallLogo from 'assets/logo/cx-logo-short.svg'
 import { Typography } from '@catena-x/portal-shared-components'
 import {
   CredentialSubjectStatus,
@@ -29,52 +28,64 @@ import './CompanyWallet.scss'
 
 export default function WalletCard({
   wallet,
+  isError,
 }: {
   readonly wallet: WalletContent
+  readonly isError: boolean
 }): JSX.Element {
   const { t } = useTranslation()
 
-  const current = {
-    info: t('content.companyWallet.activate'),
-    message: t('content.companyWallet.activateDescription'),
-  }
+  const status = wallet?.status === CredentialSubjectStatus.ACTIVE
 
-  const status =
-    wallet?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE
+  const current = isError
+    ? {
+        info: t('content.companyWallet.error'),
+        message: t('content.companyWallet.errorDescription'),
+      }
+    : status
+      ? {
+          info: t('content.companyWallet.activate'),
+          message: t('content.companyWallet.activateDescription'),
+        }
+      : {
+          info: '',
+          message: '',
+        }
+
+  const bgColor = isError ? '#EBC6C6' : status ? '#004f4b' : '#EAEAEA'
+
+  const textColor = isError ? '#FFFFFF' : status ? '#00AA55' : '#FF532F'
+
+  const type = isError ? 'Unknown' : wallet?.credentialType
 
   return (
-    <div className="wrapper-container">
+    <div
+      className="wrapper-container"
+      style={{
+        backgroundColor: isError ? 'red' : '#00aa55',
+      }}
+    >
       <div
         style={{
-          backgroundColor:
-            wallet?.credentialSubject[0].status ===
-            CredentialSubjectStatus.ACTIVE
-              ? '#004f4b'
-              : '#EAEAEA',
+          backgroundColor: bgColor,
         }}
         className="main-card-container"
       >
         <div className="card-container">
           <div className="icon-text">
             <div className="icon">
-              <SmallLogo />
-              {wallet?.credentialSubject[0].status !==
-                CredentialSubjectStatus.ACTIVE && (
-                <div>
-                  <Typography variant="body2">
-                    {t('content.companyWallet.inactive')}
-                  </Typography>
-                </div>
-              )}
+              <img
+                src="/cx-logo.svg"
+                alt="cx logo"
+                style={{
+                  width: 40,
+                }}
+              />
             </div>
-            <Typography variant="body2">
-              {wallet?.credentialSubject[0].type}
-            </Typography>
-            <Typography variant="caption1">
-              {wallet?.issuer?.split('.net:')[1]}
-            </Typography>
+            <Typography variant="body2">{type}</Typography>
+            <Typography variant="caption1">{wallet?.authority}</Typography>
           </div>
-          {wallet?.expirationDate && (
+          {wallet?.expiryDate && (
             <div>
               <Typography
                 sx={{
@@ -84,29 +95,27 @@ export default function WalletCard({
                 variant="body2"
               >
                 {t('content.companyWallet.expiry')}
-                {dayjs(wallet?.expirationDate).format('YYYY-MM-DD')}
+                {dayjs(wallet?.expiryDate).format('YYYY-MM-DD')}
               </Typography>
             </div>
           )}
         </div>
       </div>
-      {status && (
-        <div className="status-container">
-          <div className="info">
-            <Typography
-              variant="body1"
-              sx={{
-                color: status ? '#00AA55' : '#FF532F',
-                paddingLeft: '10px',
-                fontWeight: '600',
-              }}
-            >
-              {current.info}
-            </Typography>
-          </div>
-          <Typography variant="body1">{current.message}</Typography>
+      <div className="status-container">
+        <div className="info">
+          <Typography
+            variant="body1"
+            sx={{
+              color: textColor,
+              paddingLeft: '10px',
+              fontWeight: '600',
+            }}
+          >
+            {current.info}
+          </Typography>
         </div>
-      )}
+        <Typography variant="body1">{current.message}</Typography>
+      </div>
     </div>
   )
 }
