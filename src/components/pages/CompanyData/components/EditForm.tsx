@@ -64,14 +64,12 @@ export default function EditForm({
   const handleSiteValidation = (
     form: { body: CompanyDataSiteType } | undefined
   ) => {
-    console.log(form)
     setValid(form ? true : false)
   }
 
   const handleAddressValidation = (
     form: { body: CompanyDataAddressType } | undefined
   ) => {
-    console.log(form)
     setValid(form ? true : false)
   }
 
