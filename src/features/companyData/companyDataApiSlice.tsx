@@ -241,6 +241,16 @@ export const apiSlice = createApi({
         body: val,
       }),
     }),
+    updateCompanySiteAndAddress: builder.mutation<
+      CompanyDataResponse,
+      CompanyDataType[]
+    >({
+      query: (data: CompanyDataType[]) => ({
+        url: '/input/business-partners',
+        method: 'PUT',
+        body: data,
+      }),
+    }),
   }),
 })
 
@@ -248,4 +258,5 @@ export const {
   useFetchSharingStateQuery,
   useFetchInputCompanyBusinessPartnersMutation,
   useFetchOutputCompanyBusinessPartnersMutation,
+  useUpdateCompanySiteAndAddressMutation,
 } = apiSlice

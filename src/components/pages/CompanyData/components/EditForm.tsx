@@ -24,6 +24,7 @@ import {
   DialogActions,
   Button,
   CircleProgress,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useState } from 'react'
@@ -31,9 +32,15 @@ import { SiteForm } from './CreateSite/SiteForm'
 import { AddressForm } from './CreateAddress/AddressForm'
 import { useTranslation } from 'react-i18next'
 import {
+  type CompanyDataType,
+  useUpdateCompanySiteAndAddressMutation,
   type CompanyDataAddressType,
   type CompanyDataSiteType,
 } from 'features/companyData/companyDataApiSlice'
+import { useSelector } from 'react-redux'
+import { companyDataSelector } from 'features/companyData/slice'
+import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
 interface FormDetailsProps {
   readonly open: boolean
@@ -57,6 +64,10 @@ export default function EditForm({
   const { t } = useTranslation()
   const [loading, setLoading] = useState<boolean>(false)
   const [isValid, setIsValid] = useState<boolean>(false)
+  const [updateData] = useUpdateCompanySiteAndAddressMutation()
+  const companyData = useSelector(companyDataSelector)
+  const [success, setSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const handleSubmit = () => {
     setLoading(false)
     handleConfirm()
@@ -65,12 +76,35 @@ export default function EditForm({
     form: { body: CompanyDataSiteType } | undefined
   ) => {
     setIsValid(form !== undefined)
+    if (form) {
+      const input = {
+        ...companyData,
+      }
+      handleCreation(input)
+    }
   }
 
   const handleAddressValidation = (
     form: { body: CompanyDataAddressType } | undefined
   ) => {
     setIsValid(form !== undefined)
+    if (form) {
+      const inputData = {
+        ...companyData,
+      }
+      handleCreation(inputData)
+    }
+  }
+
+  const handleCreation = async (inputData: CompanyDataType) => {
+    await updateData([inputData])
+      .unwrap()
+      .then(() => {
+        setSuccess(true)
+      })
+      .then(() => {
+        setError(true)
+      })
   }
 
   return (
@@ -122,6 +156,43 @@ export default function EditForm({
           )}
         </DialogActions>
       </Dialog>
+      {success && (
+        <ServerResponseOverlay
+          title={
+            isAddress
+              ? t('content.companyData.error.title').replace(
+                  '{name}',
+                  'address'
+                )
+              : t('content.companyData.error.title').replace('{name}', 'site')
+          }
+          intro={t('content.companyData.error.description')}
+          dialogOpen={true}
+          handleCallback={() => {}}
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
+      {error && (
+        <ServerResponseOverlay
+          title={
+            isAddress
+              ? t('content.companyData.error.title').replace(
+                  '{name}',
+                  'address'
+                )
+              : t('content.companyData.error.title').replace('{name}', 'site')
+          }
+          intro={t('content.companyData.error.description')}
+          dialogOpen={true}
+          iconComponent={
+            <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
+          }
+          handleCallback={() => {}}
+        >
+          <Typography variant="body2"></Typography>
+        </ServerResponseOverlay>
+      )}
     </Box>
   )
 }

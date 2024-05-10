@@ -20,11 +20,9 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { Typography, BackButton } from '@catena-x/portal-shared-components'
+import { BackButton } from '@catena-x/portal-shared-components'
 import { CompanyAddressList } from './components/CompanyAddressList'
 import { useState } from 'react'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
 import EditForm from './components/EditForm'
 
@@ -34,8 +32,6 @@ export default function CompanyData() {
   const [showOverlay, setShowOverlay] = useState({
     address: false,
     site: false,
-    success: false,
-    error: false,
   })
 
   const updateOverlay = () => {
@@ -90,43 +86,6 @@ export default function CompanyData() {
           updateOverlay()
         }}
       />
-      {showOverlay.success && (
-        <ServerResponseOverlay
-          title={
-            showOverlay.address
-              ? t('content.companyData.error.title').replace(
-                  '{name}',
-                  'address'
-                )
-              : t('content.companyData.error.title').replace('{name}', 'site')
-          }
-          intro={t('content.companyData.error.description')}
-          dialogOpen={true}
-          handleCallback={() => {}}
-        >
-          <Typography variant="body2"></Typography>
-        </ServerResponseOverlay>
-      )}
-      {showOverlay.error && (
-        <ServerResponseOverlay
-          title={
-            showOverlay.address
-              ? t('content.companyData.error.title').replace(
-                  '{name}',
-                  'address'
-                )
-              : t('content.companyData.error.title').replace('{name}', 'site')
-          }
-          intro={t('content.companyData.error.description')}
-          dialogOpen={true}
-          iconComponent={
-            <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
-          }
-          handleCallback={() => {}}
-        >
-          <Typography variant="body2"></Typography>
-        </ServerResponseOverlay>
-      )}
     </main>
   )
 }

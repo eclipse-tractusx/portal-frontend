@@ -29,7 +29,7 @@ import BasicInput, {
 export type ValidatingInputProps = BasicInputProps & {
   name: string
   debounceTime?: number
-  validate?: (expr: string) => boolean
+  validate: (expr: string) => boolean
   onValid?: (name: string, value: string) => void
   onInvalid?: (name: string, value: string) => void
 }
@@ -54,7 +54,7 @@ const ValidatingInput = ({
   const [valid, setValid] = useState<boolean>(false)
   const immediateValidate = useCallback(
     (expr: string) => {
-      const isValid = validate?.(expr) ? true : false
+      const isValid = validate(expr)
       setColor(isValid ? Colors.success : Colors.error)
       setValid(isValid)
       if (isValid && onValid) onValid(name, expr)
