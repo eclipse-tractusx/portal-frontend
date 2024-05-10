@@ -56,7 +56,7 @@ export default function EditForm({
 }: FormDetailsProps) {
   const { t } = useTranslation()
   const [loading, setLoading] = useState<boolean>(false)
-  const [isValid, setValid] = useState<boolean>(false)
+  const [isValid, setIsValid] = useState<boolean>(false)
   const handleSubmit = () => {
     setLoading(false)
     handleConfirm()
@@ -64,13 +64,13 @@ export default function EditForm({
   const handleSiteValidation = (
     form: { body: CompanyDataSiteType } | undefined
   ) => {
-    setValid(form ? true : false)
+    setIsValid(form !== undefined)
   }
 
   const handleAddressValidation = (
     form: { body: CompanyDataAddressType } | undefined
   ) => {
-    setValid(form ? true : false)
+    setIsValid(form !== undefined)
   }
 
   return (
