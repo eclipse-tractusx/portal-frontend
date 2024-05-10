@@ -1889,7 +1889,8 @@
         "button2": "Fordern Sie einen neuen Firmenausweis an",
         "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
       },
-      "expiry": "Ablauf: "
+      "expiry": "Ablauf: ",
+      "others": "Others"
     },
     "standardLibraryTable": {
       "version": "Version",
