@@ -49,7 +49,6 @@ export const RequestList = ({
   loaded,
   showConfirmOverlay,
   onConfirmationCancel,
-  onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => void
   onTableCellClick: GridEventListener<'cellClick'>
@@ -108,8 +107,7 @@ export const RequestList = ({
   const columns = RegistrationRequestsTableColumns(
     t,
     showConfirmOverlay,
-    onConfirmationCancel,
-    onChipButtonSelect
+    onConfirmationCancel
   )
 
   useEffect(() => {

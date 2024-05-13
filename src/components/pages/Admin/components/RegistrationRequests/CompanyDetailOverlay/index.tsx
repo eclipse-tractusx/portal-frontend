@@ -176,10 +176,11 @@ const CompanyDetailOverlay = ({
     },
     {
       key: t('content.partnernetwork.columns.uniqueid'),
-      value: selectedCompany?.uniqueIds?.map(
-        (uniqueId: UniqueIdType) =>
-          getUniqueIdName(uniqueId) + ' - ' + uniqueId.value
-      ),
+      value:
+        selectedCompany?.uniqueIds?.map(
+          (uniqueId: UniqueIdType) =>
+            getUniqueIdName(uniqueId) + ' - ' + uniqueId.value
+        ) ?? [],
     },
   ]
 

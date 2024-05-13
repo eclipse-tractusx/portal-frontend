@@ -215,7 +215,7 @@ export const RegistrationRequestsTableColumns = (
     {
       field: 'dateCreated',
       headerName: t('content.admin.registration-requests.columns.age'),
-      flex: 1,
+      flex: 1.1,
       disableColumnMenu: true,
       valueGetter: ({ row }: { row: ApplicationRequest }) => {
         const date1 = dayjs(row.dateCreated).format('YYYY-MM-DD')
@@ -229,7 +229,7 @@ export const RegistrationRequestsTableColumns = (
     {
       field: 'detail',
       headerName: t('content.admin.registration-requests.columns.details'),
-      flex: 1,
+      flex: 1.1,
       align: 'center',
       headerAlign: 'center',
       disableColumnMenu: true,

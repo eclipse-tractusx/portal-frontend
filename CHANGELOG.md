@@ -2,6 +2,11 @@
 
 ## 2.0.0-RC6
 
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
+
 ### Bugfix
 
 - Display error page when backend not available
