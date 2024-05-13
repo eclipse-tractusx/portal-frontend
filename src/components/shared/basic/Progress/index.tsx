@@ -1,18 +1,29 @@
-import { type ProgressStatus } from 'features/admin/applicationRequestApiSlice'
+import {
+  ApplicationRequestStatus,
+  type ProgressStatus,
+} from 'features/admin/applicationRequestApiSlice'
 
 type ProgressItems = Record<ProgressStatus, number>
 
 export const Progress = ({
+  applicationStatus,
   items,
   totalItems,
 }: {
+  applicationStatus?: ApplicationRequestStatus
   items: ProgressItems
   totalItems: number
 }) => {
-  //const total = Object.values(items).reduce((a, c) => a + c)
-  const red = (items.FAILED / totalItems) * 360
-  const green = (items.DONE / totalItems) * 360 + red
+  const green = (items.DONE / totalItems) * 360
   const yellow = (items.IN_PROGRESS / totalItems) * 360 + green
+  const red = (items.FAILED / totalItems) * 360 + yellow
+
+  let progressStepBgColor = '#ffffff'
+
+  if (applicationStatus === ApplicationRequestStatus.CONFIRMED)
+    progressStepBgColor = '#e2f6c7'
+  else if (applicationStatus === ApplicationRequestStatus.DECLINED)
+    progressStepBgColor = '#fee7e2'
 
   return (
     <div
@@ -20,18 +31,18 @@ export const Progress = ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '40px',
-        height: '40px',
+        width: '30px',
+        height: '30px',
         borderRadius: '50%',
-        background: `conic-gradient(red ${red}deg, green ${red}deg ${green}deg, yellow ${green}deg ${yellow}deg, white ${yellow}deg 360deg)`,
+        background: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
       }}
     >
       <div
         style={{
-          background: 'white',
-          width: '30px',
-          height: '30px',
-          lineHeight: '30px',
+          background: progressStepBgColor,
+          width: '22px',
+          height: '22px',
+          lineHeight: '22px',
           fontSize: '9px',
           fontWeight: 'bold',
           borderRadius: '50%',
@@ -39,7 +50,8 @@ export const Progress = ({
           verticalAlign: 'middle',
         }}
       >
-        {items.DONE}/{totalItems}
+        {applicationStatus !== ApplicationRequestStatus.DECLINED &&
+          `${items.DONE}/${totalItems}`}
       </div>
     </div>
   )

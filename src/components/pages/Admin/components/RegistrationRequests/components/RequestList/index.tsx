@@ -127,7 +127,7 @@ export const RequestList = ({
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
         autoFocus={false}
         searchExpr={searchExpr}
-        rowHeight={group !== AppFilterType.CLOSED ? 160 : 110}
+        rowHeight={90}
         alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}

@@ -18,27 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton } from '@catena-x/portal-shared-components'
+import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
 import {
+  ApplicationRequestStatus,
   ProgressStatus,
   type ApplicationRequest,
   type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
-import './RegistrationRequests.scss'
-import CheckList from './components/CheckList'
 import type i18next from 'i18next'
 import { Progress } from 'components/shared/basic/Progress'
+import './RegistrationRequests.scss'
 
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
   t: typeof i18next.t,
   showConfirmOverlay?: (applicationId: string) => void,
-  onConfirmationCancel?: (applicationId: string, name: string) => void,
-  onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
+  onConfirmationCancel?: (applicationId: string, name: string) => void
 ): Array<GridColDef> => {
   const getStatusProgress = (row: ApplicationRequest) => {
     const todoItems = row.applicationChecklist.filter(
@@ -55,19 +54,103 @@ export const RegistrationRequestsTableColumns = (
     ).length
     const failedItems = row.applicationChecklist.filter(
       (checklist: ProgressButtonsType) =>
-        checklist.statusId === ProgressStatus.DONE
+        checklist.statusId === ProgressStatus.FAILED
     ).length
 
-    const items = {
+    let items = {
       TO_DO: todoItems,
       IN_PROGRESS: inprogressItems,
       DONE: doneItems,
       FAILED: failedItems,
     }
 
-    return (
-      <Progress items={items} totalItems={row.applicationChecklist.length} />
-    )
+    const getProgressStatus = (
+      style: React.CSSProperties,
+      row: ApplicationRequest,
+      statusText: string
+    ) => {
+      return (
+        <div
+          className="progressMain"
+          style={{
+            border: `2px solid ${style.border}`,
+            background: style.background,
+          }}
+        >
+          <Progress
+            applicationStatus={row.applicationStatus}
+            items={items}
+            totalItems={row.applicationChecklist.length}
+          />
+          <Typography
+            variant="body2"
+            className="statusText"
+            sx={{ color: style.color }}
+          >
+            {statusText}
+          </Typography>
+        </div>
+      )
+    }
+
+    if (row.applicationStatus === ApplicationRequestStatus.SUBMITTED) {
+      const style = {
+        border: items.FAILED ? '#d91e18' : '#EAF1FE',
+        color: items.FAILED ? '#d91e18' : '#000',
+      }
+      return (
+        <div className="statusMain">
+          {getProgressStatus(
+            style,
+            row,
+            items.FAILED
+              ? t('content.admin.registration-requests.buttonerror')
+              : t('content.admin.registration-requests.buttonprogress')
+          )}
+          <Typography
+            variant="body2"
+            className="cancelBtn"
+            onClick={() =>
+              onConfirmationCancel?.(row.applicationId, row.companyName)
+            }
+          >
+            {t('content.admin.registration-requests.cancel')}
+          </Typography>
+        </div>
+      )
+    } else if (
+      row.applicationStatus === ApplicationRequestStatus.DECLINED ||
+      row.applicationStatus === ApplicationRequestStatus.CANCELLED_BY_CUSTOMER
+    ) {
+      items = {
+        TO_DO: 0,
+        IN_PROGRESS: 0,
+        DONE: 0,
+        FAILED: row.applicationChecklist.length,
+      }
+
+      const style = {
+        border: '#d91e18',
+        color: '#d91e18',
+        background: '#fee7e2',
+      }
+      return getProgressStatus(
+        style,
+        row,
+        t('content.admin.registration-requests.buttonrejected')
+      )
+    } else if (row.applicationStatus === ApplicationRequestStatus.CONFIRMED) {
+      const style = {
+        border: '#00AA55',
+        color: '#00AA55',
+        background: '#e2f6c7',
+      }
+      return getProgressStatus(
+        style,
+        row,
+        t('content.admin.registration-requests.buttoncompleted')
+      )
+    }
   }
 
   return [
@@ -108,23 +191,24 @@ export const RegistrationRequestsTableColumns = (
           >
             {row.bpn}
           </span>
-          {row.applicationStatus === 'SUBMITTED' && !row.bpn && (
-            <span
-              style={{
-                paddingTop: '2px',
-              }}
-              onClick={() => {
-                if (showConfirmOverlay) {
-                  showConfirmOverlay(row.applicationId)
-                }
-              }}
-              onKeyDown={() => {
-                // do nothing
-              }}
-            >
-              <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
-            </span>
-          )}
+          {row.applicationStatus === ApplicationRequestStatus.SUBMITTED &&
+            !row.bpn && (
+              <span
+                style={{
+                  paddingTop: '2px',
+                }}
+                onClick={() => {
+                  if (showConfirmOverlay) {
+                    showConfirmOverlay(row.applicationId)
+                  }
+                }}
+                onKeyDown={() => {
+                  // do nothing
+                }}
+              >
+                <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
+              </span>
+            )}
         </div>
       ),
     },
@@ -162,85 +246,10 @@ export const RegistrationRequestsTableColumns = (
       align: 'center',
       headerAlign: 'center',
       disableColumnMenu: true,
-      flex: 1,
+      flex: 2,
       sortable: false,
-      renderCell: ({ row }: { row: ApplicationRequest }) => {
-        return getStatusProgress(row)
-        // if (row.applicationStatus === 'SUBMITTED')
-        //   return (
-        //     <div className="state-cell-container">
-        //       {row.applicationStatus === 'SUBMITTED' && (
-        //         <Chip
-        //           {...{
-        //             color: 'info',
-        //             variant: 'filled',
-        //             label: t(
-        //               'content.admin.registration-requests.buttonprogress'
-        //             ),
-        //             type: 'progress',
-        //             onClick: () => {
-        //               // do nothing
-        //             },
-        //             withIcon: true,
-        //           }}
-        //         />
-        //       )}
-        //     </div>
-        //   )
-        // else
-        //   return (
-        //     <div className="state-cell-container">
-        //       <StatusTag
-        //         color={
-        //           row.applicationStatus === 'CONFIRMED'
-        //             ? 'confirmed'
-        //             : 'declined'
-        //         }
-        //         label={t(
-        //           `content.admin.registration-requests.cell${row.applicationStatus.toLowerCase()}`
-        //         )}
-        //       />
-        //     </div>
-        //   )
-      },
-    },
-    {
-      field: 'applicationChecklist',
-      headerName: '',
-      disableColumnMenu: true,
-      flex: 0,
-      renderCell: ({ row }: { row: ApplicationRequest }) => (
-        <div
-          style={{
-            position: 'absolute',
-            left: '-35px',
-            marginTop: '90px',
-            width: '100%',
-          }}
-        >
-          {row.applicationChecklist &&
-          row.applicationChecklist.length > 0 &&
-          row.applicationStatus === 'SUBMITTED' ? (
-            <CheckList
-              headerText={t('content.admin.registration-requests.progress')}
-              progressButtons={row.applicationChecklist}
-              showCancel={row.applicationStatus === 'SUBMITTED'}
-              cancelText={t('content.admin.registration-requests.cancel')}
-              alignRow="center"
-              onButtonClick={(button) => {
-                if (onChipButtonSelect) {
-                  onChipButtonSelect(button, row.applicationId)
-                }
-              }}
-              onCancel={() => {
-                if (onConfirmationCancel) {
-                  onConfirmationCancel(row.applicationId, row.companyName)
-                }
-              }}
-            />
-          ) : null}
-        </div>
-      ),
+      renderCell: ({ row }: { row: ApplicationRequest }) =>
+        getStatusProgress(row),
     },
   ]
 }

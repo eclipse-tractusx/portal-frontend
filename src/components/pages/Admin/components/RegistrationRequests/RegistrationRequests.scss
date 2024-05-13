@@ -180,3 +180,26 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.statusMain {
+  text-align: center;
+
+  .cancelBtn {
+    margin-top: 2px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.progressMain {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+  width: 140px;
+
+  .statusText {
+    margin: 0 auto;
+    padding: 0 5px;
+  }
+}

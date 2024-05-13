@@ -31,6 +31,7 @@ export enum ApplicationRequestStatus {
   CONFIRMED = 'CONFIRMED',
   DECLINED = 'DECLINED',
   SUBMITTED = 'SUBMITTED',
+  CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER',
 }
 
 export enum AppFilterType {
