@@ -1,15 +1,27 @@
 # Changelog
 
+## 2.0.0-RC6
+
+### Bugfix
+
+- Display error page when backend not available
+- Partner Network
+  - Fix white page blank issue
+- Admin Credential
+  - Change API endpoints for approval and decline request
+
 ## 2.0.0-RC5
 
 ### Feature
 
-- Partner Network - Improve Overlay of Company Data
+- Partner Network - improved overlay of Company Data
+- Technical Setup - improved Connector Registration overlay
+- Credential Management - adjusted document data and sorting
 
 ### Bugfix
 
 - Application Requests
-  - Company data overlay wrong role chipcard
+  - fixed displaying of incorrect company roles in case of requester company with role "Onboarding Service Provider"
 
 ## 2.0.0-RC4
 

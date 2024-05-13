@@ -106,7 +106,11 @@
   "error": {
     "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
     "tryAgain": "Try Again",
-    "errorBar": "Something went wrong. Try again"
+    "errorBar": "Something went wrong. Try again",
+    "title": "Hoppla! Etwas ist schiefgelaufen.",
+    "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
+    "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
+    "reloadBtn": "Seite neuladen"
   },
   "content": {
     "registration": {
