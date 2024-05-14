@@ -18,12 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import SmallLogo from 'assets/logo/cx-logo-short.svg'
 import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
-import { Box } from '@mui/material'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
@@ -57,16 +55,13 @@ export const PartnerNetworksTableColumns = (
       sortable: false,
       renderCell: (params) =>
         params?.row?.member ? (
-          <Box
-            component="img"
-            padding=".5rem"
-            alt="membershipFlag"
-            sx={{
+          <img
+            src="/cx-logo.svg"
+            alt="cx logo"
+            style={{
               width: 40,
             }}
-          >
-            <SmallLogo />
-          </Box>
+          />
         ) : (
           ''
         ),
