@@ -71,6 +71,11 @@
     max-width: 850px;
     width: 100%;
     margin: 0 auto 50px;
+    .progress-main {
+      height: 100px;
+      text-align: center;
+      padding: 30px;
+    }
     ul {
       list-style: none;
       .seperation {

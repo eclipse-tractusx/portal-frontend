@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0-RC6
+
+### Bugfix
+
+- Partner Network - fix white page blank issue
+- Admin Credential - changed API endpoints for approval and decline request
+- Use Case Participation - add loader until response is generated
+- Error Handling - fixed forwarding to an error page when backend not available
+
 ## 2.0.0-RC5
 
 ### Feature

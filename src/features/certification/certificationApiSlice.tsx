@@ -122,13 +122,13 @@ export const apiSlice = createApi({
     ),
     approveCredential: builder.mutation<boolean, string>({
       query: (credentialId) => ({
-        url: `api/administration/companydata/credentials/${credentialId}/approval`,
+        url: `${getSsiBase()}/api/issuer/${credentialId}/approval`,
         method: 'PUT',
       }),
     }),
     declineCredential: builder.mutation<boolean, string>({
       query: (credentialDetailId) => ({
-        url: `api/administration/companydata/credentials/${credentialDetailId}/reject`,
+        url: `${getSsiBase()}/api/issuer/${credentialDetailId}/reject`,
         method: 'PUT',
       }),
     }),
