@@ -30,6 +30,8 @@ import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
 import { useEffect, useState } from 'react'
 import { groupBy } from 'lodash'
+import { Box } from '@mui/material'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
@@ -83,7 +85,17 @@ export default function CompanyWallet(): JSX.Element {
             )}
           </>
         ) : (
-          <></>
+          <Box
+            sx={{
+              display: 'flex',
+              alignContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '50px 0px',
+            }}
+          >
+            <LoadingProgress />
+          </Box>
         )}
       </div>
     </main>

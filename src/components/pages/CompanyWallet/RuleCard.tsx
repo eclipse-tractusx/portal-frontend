@@ -44,13 +44,10 @@ export default function RuleCard({
     }
   }
 
-  const getStatus = (status: string) => {
-    if (status === CredentialSubjectStatus.REVOKED) {
-      return CredentialSubjectStatus.INACTIVE
-    } else {
-      return status
-    }
-  }
+  const getStatus = (status: string) =>
+    status === CredentialSubjectStatus.REVOKED
+      ? CredentialSubjectStatus.INACTIVE
+      : status
 
   return (
     <>
