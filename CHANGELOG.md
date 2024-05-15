@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0-RC7
+
+### Bugfix
+
+- Usecase Participation
+  - Framework Agreement Request Page - Status missing
+
 ## 2.0.0-RC6
 
 ### Bugfix
