@@ -23,36 +23,35 @@ import './CompanyWallet.scss'
 import {
   type WalletContent,
   useFetchCompanyWalletQuery,
-  CredentialSubjectType,
+  CredentialType,
 } from 'features/compayWallet/companyWalletApiSlice'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
 import { useEffect, useState } from 'react'
 import { groupBy } from 'lodash'
+import { Box } from '@mui/material'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
-  const { data, isSuccess } = useFetchCompanyWalletQuery()
+  const { data, isSuccess, isError } = useFetchCompanyWalletQuery()
   const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
 
   useEffect(() => {
     const actives: WalletContent[] = []
-    data?.content.forEach((cont) => {
-      cont.credentialSubject.forEach((sub) => {
-        if (sub.type === CredentialSubjectType.MembershipCredential) {
-          actives.push(cont)
-        }
-      })
+    data?.forEach((cont) => {
+      if (cont.credentialType === CredentialType.MEMBERSHIP) {
+        actives.push(cont)
+      }
     })
     setActiveWallet(actives)
   }, [data])
 
-  const groupedItems = groupBy(
-    data?.content,
-    (item: WalletContent) =>
-      item.credentialSubject[0].type === CredentialSubjectType.CompanyRole ||
-      item.credentialSubject[0].type === CredentialSubjectType.Framework
+  const groupedItems = groupBy(data, (item: WalletContent) =>
+    item.credentialType === CredentialType.TRACEABILITY_FRAMEWORK
+      ? item.credentialType
+      : t('content.companyWallet.others')
   )
 
   return (
@@ -68,18 +67,35 @@ export default function CompanyWallet(): JSX.Element {
             </Typography>
           </Trans>
         </div>
-        {isSuccess ? (
+        {isSuccess || isError ? (
           <>
             <div className="container">
-              <WalletCard wallet={activeWallet[0]} />
+              <WalletCard
+                isError={activeWallet.length === 0 || isError}
+                wallet={activeWallet[0]}
+              />
             </div>
-            <ComapnyWalletSubNavigationHeader />
-            <div className="container">
-              <RuleCard sections={groupedItems} />
-            </div>
+            {isSuccess && (
+              <>
+                <ComapnyWalletSubNavigationHeader />
+                <div className="container">
+                  <RuleCard sections={groupedItems} />
+                </div>
+              </>
+            )}
           </>
         ) : (
-          <></>
+          <Box
+            sx={{
+              display: 'flex',
+              alignContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '50px 0px',
+            }}
+          >
+            <LoadingProgress />
+          </Box>
         )}
       </div>
     </main>

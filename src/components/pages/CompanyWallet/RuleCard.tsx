@@ -26,7 +26,6 @@ import {
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
-import SmallLogo from 'assets/logo/logo_tractus-x.svg'
 
 type Hash<T> = Record<string, T>
 
@@ -38,16 +37,17 @@ export default function RuleCard({
   const { t } = useTranslation()
   const keys = Object.keys(sections)
   const getBgColor = (item: WalletContent) => {
-    if (item?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE) {
+    if (item?.status === CredentialSubjectStatus.ACTIVE) {
       return '#004F4B'
-    } else if (
-      item?.credentialSubject[0].status === CredentialSubjectStatus.INACTIVE
-    ) {
-      return '#FFA600'
     } else {
-      return '#F0F5D5'
+      return '#FFA600'
     }
   }
+
+  const getStatus = (status: string) =>
+    status === CredentialSubjectStatus.REVOKED
+      ? CredentialSubjectStatus.INACTIVE
+      : status
 
   return (
     <>
@@ -63,7 +63,7 @@ export default function RuleCard({
             }}
             variant="h4"
           >
-            {key === 'false' ? 'Others' : key}
+            {key.split('_').join(' ')}
           </Typography>
           <Grid
             container
@@ -80,17 +80,17 @@ export default function RuleCard({
                 sm={4}
                 md={4}
                 className="main-rule-card-container"
-                key={item.id}
+                key={item.expiryDate}
                 sx={{
                   paddingLeft: '20px !important',
                 }}
               >
                 <Box className="gradient-container">
-                  <Box key={item.id} className="rule-card-container">
+                  <Box key={item.expiryDate} className="rule-card-container">
                     <Box className="circle-container">
                       <Typography
                         sx={{
-                          color: item?.credentialSubject[0].status
+                          color: item?.status
                             ? '#fff !important'
                             : '#428C5B !important',
                           backgroundColor: getBgColor(item),
@@ -98,21 +98,26 @@ export default function RuleCard({
                         className="text"
                         variant="body2"
                       >
-                        {item?.credentialSubject[0].status ??
-                          CredentialSubjectStatus.UNKNOWN}
+                        {getStatus(item?.status)}
                       </Typography>
-                      <SmallLogo />
+                      <img
+                        src="/assets/images/logos/logo_tractus-x.svg"
+                        alt="tractus x logo"
+                        style={{
+                          width: 40,
+                        }}
+                      />
                     </Box>
                     <Typography className="text" variant="h4">
-                      {item?.credentialSubject[0].type}
+                      {item?.credentialType.split('_').join(' ')}
                     </Typography>
                     <div>
                       <Typography className="text" variant="body3">
-                        {item.issuer?.split('.net:')[1]}
+                        {item.authority}
                       </Typography>
                       <Typography className="text" variant="body3">
                         {t('content.companyWallet.expiry')}
-                        {dayjs(item.expirationDate).format('YYYY-MM-DD')}
+                        {dayjs(item.expiryDate).format('YYYY-MM-DD')}
                       </Typography>
                     </div>
                   </Box>

@@ -225,6 +225,7 @@ export enum ROLES {
   VIEW_SUBSCRIPTION = 'view_subscription',
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
+  CREDENTIAL_REQUESTS = 'view_credential_requests',
 }
 
 export enum HINTS {

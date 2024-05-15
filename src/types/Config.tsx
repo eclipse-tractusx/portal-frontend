@@ -557,7 +557,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.COMPANY_WALLET,
-    role: ROLES.COMPANY_WALLET,
+    role: ROLES.CREDENTIAL_REQUESTS,
     element: <CompanyWallet />,
   },
   {
