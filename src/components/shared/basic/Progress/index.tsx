@@ -18,12 +18,16 @@ export const Progress = ({
   const yellow = (items.IN_PROGRESS / totalItems) * 360 + green
   const red = (items.FAILED / totalItems) * 360 + yellow
 
-  let progressStepBgColor = '#ffffff'
-
-  if (applicationStatus === ApplicationRequestStatus.CONFIRMED)
-    progressStepBgColor = '#e2f6c7'
-  else if (applicationStatus === ApplicationRequestStatus.DECLINED)
-    progressStepBgColor = '#fee7e2'
+  const progressStepBgColor = () => {
+    switch (applicationStatus) {
+      case ApplicationRequestStatus.CONFIRMED:
+        return '#e2f6c7'
+      case ApplicationRequestStatus.DECLINED:
+        return '#fee7e2'
+      default:
+        return '#ffffff'
+    }
+  }
 
   return (
     <div
@@ -39,7 +43,7 @@ export const Progress = ({
     >
       <div
         style={{
-          background: progressStepBgColor,
+          background: progressStepBgColor(),
           width: '22px',
           height: '22px',
           lineHeight: '22px',

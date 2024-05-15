@@ -22,11 +22,12 @@ import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
+import _ from 'lodash'
 import {
   ApplicationRequestStatus,
-  ProgressStatus,
   type ApplicationRequest,
-  type ProgressButtonsType,
+  type ProgressType,
+  initialProgressValue,
 } from 'features/admin/applicationRequestApiSlice'
 import EditIcon from '@mui/icons-material/Edit'
 import type i18next from 'i18next'
@@ -40,29 +41,14 @@ export const RegistrationRequestsTableColumns = (
   onConfirmationCancel?: (applicationId: string, name: string) => void
 ): Array<GridColDef> => {
   const getStatusProgress = (row: ApplicationRequest) => {
-    const todoItems = row.applicationChecklist.filter(
-      (checklist: ProgressButtonsType) =>
-        checklist.statusId === ProgressStatus.TO_DO
-    ).length
-    const inprogressItems = row.applicationChecklist.filter(
-      (checklist: ProgressButtonsType) =>
-        checklist.statusId === ProgressStatus.IN_PROGRESS
-    ).length
-    const doneItems = row.applicationChecklist.filter(
-      (checklist: ProgressButtonsType) =>
-        checklist.statusId === ProgressStatus.DONE
-    ).length
-    const failedItems = row.applicationChecklist.filter(
-      (checklist: ProgressButtonsType) =>
-        checklist.statusId === ProgressStatus.FAILED
-    ).length
-
-    let items = {
-      TO_DO: todoItems,
-      IN_PROGRESS: inprogressItems,
-      DONE: doneItems,
-      FAILED: failedItems,
-    }
+    const items: ProgressType = _.chain(row.applicationChecklist)
+      .groupBy('statusId')
+      .map((value, key) => ({ key, value: value.length }))
+      .value()
+      .reduce(
+        (obj, item) => Object.assign(obj, { [item.key]: item.value }),
+        initialProgressValue
+      )
 
     const getProgressStatus = (
       style: React.CSSProperties,
@@ -103,9 +89,9 @@ export const RegistrationRequestsTableColumns = (
           {getProgressStatus(
             style,
             row,
-            items.FAILED
-              ? t('content.admin.registration-requests.buttonerror')
-              : t('content.admin.registration-requests.buttonprogress')
+            t(
+              `content.admin.registration-requests.${items.FAILED ? 'buttonerror' : 'buttonprogress'}`
+            )
           )}
           <Typography
             variant="body2"
@@ -122,13 +108,6 @@ export const RegistrationRequestsTableColumns = (
       row.applicationStatus === ApplicationRequestStatus.DECLINED ||
       row.applicationStatus === ApplicationRequestStatus.CANCELLED_BY_CUSTOMER
     ) {
-      items = {
-        TO_DO: 0,
-        IN_PROGRESS: 0,
-        DONE: 0,
-        FAILED: row.applicationChecklist.length,
-      }
-
       const style = {
         border: '#d91e18',
         color: '#d91e18',

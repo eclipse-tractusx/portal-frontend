@@ -172,7 +172,7 @@ const CompanyDetailOverlay = ({
     },
     {
       key: t('content.partnernetwork.columns.contact'),
-      value: selectedCompany?.companyUser?.[0].email ?? '',
+      value: selectedCompany?.companyUser?.[0]?.email ?? '',
     },
     {
       key: t('content.partnernetwork.columns.uniqueid'),

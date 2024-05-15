@@ -57,6 +57,20 @@ export enum ProgressStatus {
   FAILED = 'FAILED',
 }
 
+export type ProgressType = {
+  TO_DO: number
+  DONE: number
+  FAILED: number
+  IN_PROGRESS: number
+}
+
+export const initialProgressValue: ProgressType = {
+  TO_DO: 0,
+  DONE: 0,
+  FAILED: 0,
+  IN_PROGRESS: 0,
+}
+
 export enum StatusType {
   REGISTRATION_VERIFICATION = 'REGISTRATION_VERIFICATION',
   BUSINESS_PARTNER_NUMBER = 'BUSINESS_PARTNER_NUMBER',
