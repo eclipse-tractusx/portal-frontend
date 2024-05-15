@@ -18,6 +18,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type SSIDetailData } from 'features/certification/certificationApiSlice'
 import { getSsiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
@@ -30,15 +31,7 @@ export type VerifiedCredentialsData = {
     validFrom: string
     expiry: string
   }
-  ssiDetailData: {
-    credentialId: string
-    participationStatus: string
-    expiryDate: string
-    document: {
-      documentId: string
-      documentName: string
-    }
-  }
+  ssiDetailData: SSIDetailData[]
 }
 
 export type UsecaseResponse = {

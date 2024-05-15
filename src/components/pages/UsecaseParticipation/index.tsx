@@ -22,9 +22,12 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
 import { CircularProgress, useTheme } from '@mui/material'
+import dayjs from 'dayjs'
 import {
   Chip,
+  CustomAccordion,
   PageHeader,
+  StatusTag,
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -35,12 +38,15 @@ import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
+  useFetchUsecaseQuery,
   type UsecaseResponse,
   type VerifiedCredentialsData,
-  useFetchUsecaseQuery,
 } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
-import { SubscriptionStatus } from 'features/apps/types'
+import {
+  type SSIDetailData,
+  StatusEnum,
+} from 'features/certification/certificationApiSlice'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
@@ -53,42 +59,84 @@ export default function UsecaseParticipation() {
     refetch()
   }, [refetch])
 
-  const renderStatus = (
+  const renderCredentialData = (
     item: UsecaseResponse,
     credential: VerifiedCredentialsData
   ) => {
-    const status = credential.ssiDetailData?.participationStatus
-    if (
-      status === SubscriptionStatus.PENDING ||
-      status === SubscriptionStatus.ACTIVE
-    ) {
-      return (
-        <Typography
-          variant="caption3"
-          className={status === SubscriptionStatus.PENDING ? 'grey' : 'green'}
-        >
-          {status}
+    const todayDate = dayjs(dayjs().format('YYYY-MM-DD'))
+    const expiryDate = dayjs(
+      dayjs(credential.externalDetailData.expiry).format('YYYY-MM-DD')
+    )
+    return (
+      <div className="credential-list-item">
+        <Typography variant="body3" className="firstSection">
+          {credential.externalDetailData.verifiedCredentialExternalTypeId}
         </Typography>
-      )
-    } else {
-      return (
-        <Chip
-          color="secondary"
-          label="Edit"
-          onClick={() =>
-            dispatch(
-              show(
-                OVERLAYS.EDIT_USECASE,
-                credential.externalDetailData.id,
-                item.credentialType
-              )
-            )
+        <Trans
+          values={{
+            version: credential.externalDetailData.version,
+          }}
+        >
+          <Typography variant="body3" className="secondSection">
+            {t('content.usecaseParticipation.version')}
+          </Typography>
+        </Trans>
+        <Tooltips
+          tooltipPlacement="top-start"
+          tooltipText={
+            !credential.externalDetailData.template
+              ? t('content.usecaseParticipation.nodocument')
+              : ''
           }
-          withIcon={false}
-          type="plain"
+          children={
+            <Link
+              to={credential.externalDetailData.template}
+              target={credential.externalDetailData.template && '_blank'}
+              className={`thirdSection ${
+                !credential.externalDetailData.template && 'documentDisabled'
+              }`}
+            >
+              <Typography variant="body3" className="framework">
+                <LaunchIcon />
+                {t('content.usecaseParticipation.framework')}
+              </Typography>
+            </Link>
+          }
         />
-      )
-    }
+        <Trans
+          values={{
+            expiry: credential.externalDetailData.expiry
+              ? credential.externalDetailData.expiry.split('T')[0]
+              : '',
+          }}
+        >
+          <Typography variant="body3" className="forthSection">
+            {credential.externalDetailData.expiry
+              ? t('content.usecaseParticipation.expiry')
+              : 'N/A'}
+          </Typography>
+        </Trans>
+        {expiryDate.diff(todayDate, 'day') > 0 && (
+          <Typography variant="body3" className="fifthSection">
+            <Chip
+              color="secondary"
+              label={t('content.usecaseParticipation.request')}
+              onClick={() =>
+                dispatch(
+                  show(
+                    OVERLAYS.EDIT_USECASE,
+                    credential.externalDetailData.id,
+                    item.credentialType
+                  )
+                )
+              }
+              withIcon={false}
+              type="plain"
+            />
+          </Typography>
+        )}
+      </div>
+    )
   }
 
   return (
@@ -172,96 +220,96 @@ export default function UsecaseParticipation() {
                       <ul className="credential-list">
                         {item.verifiedCredentials.map((credential) => {
                           return (
-                            <>
+                            <div key={credential.externalDetailData.id}>
                               <hr className="seperation" />
-                              <li className="credential-list-item">
-                                <Typography
-                                  variant="body3"
-                                  className="firstSection"
-                                >
-                                  {
-                                    credential.externalDetailData
-                                      .verifiedCredentialExternalTypeId
-                                  }
-                                </Typography>
-                                <Trans
-                                  values={{
-                                    version:
-                                      credential.externalDetailData.version,
-                                  }}
-                                >
-                                  <Typography
-                                    variant="body3"
-                                    className="secondSection"
-                                  >
-                                    {t('content.usecaseParticipation.version')}
-                                  </Typography>
-                                </Trans>
-                                <Tooltips
-                                  tooltipPlacement="top-start"
-                                  tooltipText={
-                                    !credential.externalDetailData.template
-                                      ? t(
-                                          'content.usecaseParticipation.nodocument'
-                                        )
-                                      : ''
-                                  }
-                                  children={
-                                    <Link
-                                      to={
-                                        credential.externalDetailData.template
-                                      }
-                                      target={
-                                        credential.externalDetailData
-                                          .template && '_blank'
-                                      }
-                                      className={`thirdSection ${
-                                        !credential.externalDetailData
-                                          .template && 'documentDisabled'
-                                      }`}
-                                    >
-                                      <Typography
-                                        variant="body3"
-                                        className="framework"
-                                      >
-                                        <LaunchIcon />
-                                        {t(
-                                          'content.usecaseParticipation.framework'
-                                        )}
-                                      </Typography>
-                                    </Link>
-                                  }
-                                />
-                                <Trans
-                                  values={{
-                                    expiry: credential.externalDetailData.expiry
-                                      ? credential.externalDetailData.expiry.split(
-                                          'T'
-                                        )[0]
-                                      : '',
-                                  }}
-                                >
-                                  <Typography
-                                    variant="body3"
-                                    className="forthSection"
-                                  >
-                                    {credential.externalDetailData.expiry
-                                      ? t('content.usecaseParticipation.expiry')
-                                      : 'N/A'}
-                                  </Typography>
-                                </Trans>
-                                <Typography
-                                  variant="body3"
-                                  className="fifthSection"
-                                >
-                                  {renderStatus(item, credential)}
-                                </Typography>
-                              </li>
-                            </>
+                              {credential.ssiDetailData.length ? (
+                                <div style={{ width: '105%' }}>
+                                  <CustomAccordion
+                                    items={[
+                                      {
+                                        expanded: false,
+                                        id: credential.externalDetailData.id,
+                                        title: '',
+                                        titleElement: renderCredentialData(
+                                          item,
+                                          credential
+                                        ),
+                                        color: 'white',
+                                        children: (
+                                          <>
+                                            {credential.ssiDetailData.map(
+                                              (ssidata: SSIDetailData) => (
+                                                <div
+                                                  className="credential-list-item"
+                                                  style={{
+                                                    width: '82%',
+                                                    textAlign: 'center',
+                                                  }}
+                                                  key={ssidata.credentialId}
+                                                >
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="firstSection font-12"
+                                                  >
+                                                    {
+                                                      credential
+                                                        .externalDetailData
+                                                        .verifiedCredentialExternalTypeId
+                                                    }
+                                                  </Typography>
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="secondSection font-12"
+                                                  >
+                                                    {
+                                                      credential
+                                                        .externalDetailData
+                                                        .version
+                                                    }
+                                                  </Typography>
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="thirdSection font-12"
+                                                  >
+                                                    <StatusTag
+                                                      color={
+                                                        ssidata.participationStatus ===
+                                                        StatusEnum.PENDING
+                                                          ? 'pending'
+                                                          : 'label'
+                                                      }
+                                                      label={
+                                                        ssidata.participationStatus
+                                                      }
+                                                      variant="filled"
+                                                    />
+                                                  </Typography>
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="forthSection font-12"
+                                                  >
+                                                    {ssidata.expiryDate
+                                                      ? ssidata.expiryDate.split(
+                                                          'T'
+                                                        )[0]
+                                                      : ''}
+                                                  </Typography>
+                                                </div>
+                                              )
+                                            )}
+                                          </>
+                                        ),
+                                      },
+                                    ]}
+                                  />
+                                </div>
+                              ) : (
+                                renderCredentialData(item, credential)
+                              )}
+                            </div>
                           )
                         })}
                       </ul>
-                      <hr className="seperation" />
                     </div>
                   )
                 })

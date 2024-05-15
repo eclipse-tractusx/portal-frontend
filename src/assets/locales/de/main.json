@@ -1736,6 +1736,7 @@
       "framework": "Framework",
       "nodocument": "Kein Dokument vorhanden",
       "expiry": "Expiry: {{expiry}}",
+      "request": "Request",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
