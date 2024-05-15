@@ -1883,6 +1883,8 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
       "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
+      "error": "Nicht verbunden",
+      "errorDescription": "Wallet-Mandant konnte nicht gefunden werden.",
       "inactive": "Nicht verbunden",
       "inactiveDescription": "Sie haben Ihr Catena-X-Wallet nicht aktiviert.",
       "subnavigation": {
@@ -1891,7 +1893,8 @@
         "button2": "Fordern Sie einen neuen Firmenausweis an",
         "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
       },
-      "expiry": "Ablauf: "
+      "expiry": "Ablauf: ",
+      "others": "Others"
     },
     "standardLibraryTable": {
       "version": "Version",

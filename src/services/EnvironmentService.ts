@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -43,6 +43,8 @@ export const getSemanticApiBase = () => ENV.SEMANTICS_URL ?? ''
 
 export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 
+export const getSSICredentialBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
+
 const EnvironmentService = {
   getRealm,
   getClientId,
@@ -55,6 +57,7 @@ const EnvironmentService = {
   getBpdmApiBase,
   getSemanticApiBase,
   getMiwBase,
+  getSSICredentialBase,
 }
 
 export default EnvironmentService
