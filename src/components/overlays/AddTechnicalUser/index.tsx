@@ -48,7 +48,7 @@ import './TechnicalUserAddForm.scss'
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [response, setResponse] = useState<ServiceAccountDetail>()
+  const [response, setResponse] = useState<ServiceAccountDetail[]>()
   const [error, setError] = useState<boolean>(false)
 
   const [addServiceAccount] = useAddServiceAccountMutation()
@@ -120,27 +120,31 @@ export const AddTechnicalUser = () => {
           dialogOpen={true}
           handleCallback={handleDispatch}
         >
-          <UserDetailCard
-            cardContentItems={{
-              clientId: {
-                label: t('content.techUser.details.clientId'),
-                value: response.clientId,
-              },
-              userName: {
-                label: t('content.techUser.details.username'),
-                value: response.name,
-              },
-              authType: {
-                label: t('content.techUser.details.authType'),
-                value: response.authenticationType,
-              },
-              clientSecret: {
-                label: t('content.techUser.details.clientSercret'),
-                value: response.secret,
-              },
-            }}
-            variant="wide"
-          />
+          {response.map((data) => {
+            return (
+              <UserDetailCard
+                cardContentItems={{
+                  clientId: {
+                    label: t('content.techUser.details.clientId'),
+                    value: data.clientId,
+                  },
+                  userName: {
+                    label: t('content.techUser.details.username'),
+                    value: data.name,
+                  },
+                  authType: {
+                    label: t('content.techUser.details.authType'),
+                    value: data.authenticationType,
+                  },
+                  clientSecret: {
+                    label: t('content.techUser.details.clientSercret'),
+                    value: data.secret,
+                  },
+                }}
+                variant="wide"
+              />
+            )
+          })}
         </ServerResponseOverlay>
       )}
 

@@ -209,7 +209,7 @@ const EdcConnector = () => {
     })
       .unwrap()
       .then((res) => {
-        setServiceAccId(res.serviceAccountId)
+        setServiceAccId(res[0].serviceAccountId)
         setNewUserSuccess(true)
       })
       .catch(() => {

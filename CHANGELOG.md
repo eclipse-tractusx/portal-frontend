@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-RC7
+
+### Feature
+
+- Technical User Creation - API Response Changes
+
 ## 2.0.0-RC6
 
 ### Bugfix
