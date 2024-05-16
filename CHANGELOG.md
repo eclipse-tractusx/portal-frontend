@@ -1,11 +1,29 @@
 # Changelog
 
-## 2.0.0-RC7
+## 2.0.0-RC8
 
 ### Bugfix
 
 - Usecase Participation
   - Framework Agreement Request Page - Status missing
+
+## 2.0.0-RC7
+
+### Change
+
+- upgraded vite package
+
+### Feature
+
+- Company Wallet - added new endpoint, updated the response schema as well as handled errors and not valid membership wallet case
+
+### Bugfix
+
+- fixed sonar finding: added initial reduce value
+
+### Technical Support
+
+- Dependabot - introduced grouping of pull request for version updates
 
 ## 2.0.0-RC6
 
