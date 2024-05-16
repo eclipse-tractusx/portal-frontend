@@ -75,6 +75,10 @@ export interface OperatorBpnType {
 }
 
 export interface DecentralIdentityUrlsType {
+  trusted_issuer: string
+  participant_id: string
+  iatp_id: string
+  did_resolver: string
   decentralIdentityManagementServiceUrl: string
   decentralIdentityManagementAuthUrl: string
 }
