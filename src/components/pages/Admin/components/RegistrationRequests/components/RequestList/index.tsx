@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -47,19 +47,12 @@ export const RequestList = ({
   fetchHook,
   onTableCellClick,
   loaded,
-  handleDownloadDocument,
   showConfirmOverlay,
   onConfirmationCancel,
-  onChipButtonSelect,
 }: {
   fetchHook: (paginArgs: PaginFetchArgs) => void
   onTableCellClick: GridEventListener<'cellClick'>
   loaded: number
-  handleDownloadDocument: (
-    appId: string,
-    documentId: string,
-    documentType: string
-  ) => void
   showConfirmOverlay?: (applicationId: string) => void
   onConfirmationCancel?: (applicationId: string, name: string) => void
   onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
@@ -113,10 +106,8 @@ export const RequestList = ({
 
   const columns = RegistrationRequestsTableColumns(
     t,
-    handleDownloadDocument,
     showConfirmOverlay,
-    onConfirmationCancel,
-    onChipButtonSelect
+    onConfirmationCancel
   )
 
   useEffect(() => {
@@ -134,7 +125,7 @@ export const RequestList = ({
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
         autoFocus={false}
         searchExpr={searchExpr}
-        rowHeight={group !== AppFilterType.CLOSED ? 160 : 110}
+        rowHeight={90}
         alignCell="start"
         onCellClick={onTableCellClick}
         toolbarVariant={'searchAndFilter'}

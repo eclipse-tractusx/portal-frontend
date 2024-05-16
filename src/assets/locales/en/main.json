@@ -162,11 +162,14 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "date": "Date",
           "companyinfo": "Company Application Info",
+          "contact": "Contact",
+          "bpn": "BPN",
+          "age": "Age",
+          "days": "days",
           "documents": "Documents",
           "details": "Details",
-          "state": "State"
+          "status": "Status"
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
@@ -179,18 +182,21 @@
         "buttonconfirm": "confirm",
         "buttondecline": "decline",
         "buttonprogress": "in progress",
+        "buttonrejected": "rejected",
+        "buttoncompleted": "completed",
+        "buttonerror": "error",
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
         "progress": "Confirmation in progress: ",
-        "cancel": "Cancel Process",
+        "cancel": "Cancel",
         "overlay": {
           "title": "Company Registration Details",
-          "companydatatitle": "Overview",
+          "companydatatitle": "Company Details",
           "companydatadescription": "Below you can find the details of the company registration",
           "taxid": "Tax ID",
           "address": "Address",
           "docs": "Document(s)",
-          "roles": "Company Role(s)",
+          "roles": "Company Role(s) in Catena-X",
           "activeParticipation": "Participant",
           "appProvider": "App Provider",
           "onboardingProvider": "Onboarding Service Provider",
@@ -204,6 +210,7 @@
           "tab1": "Company Data",
           "tab2": "Registration Process",
           "tab1Title": "Company Data",
+          "tab1SubTitle": "Registration Status: {{status}}",
           "tab2Title": "Confirmation {{status}}",
           "statusComplete": "[complete]",
           "statusIncomplete": "[incomplete]",
@@ -714,7 +721,9 @@
         "bpn": "BPN",
         "name": "Company Name",
         "country": "Country",
-        "street": "Street",
+        "street": "Street & House Number",
+        "contact": "Admin Contact",
+        "uniqueid": "Unique ID",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
         "cxparticipant": "CX Member",
@@ -1698,6 +1707,7 @@
       "framework": "Framework",
       "nodocument": "No document available",
       "expiry": "Expiry: {{expiry}}",
+      "request": "Request",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
@@ -1845,6 +1855,8 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
       "activateDescription": "You have activated your Catena-X wallet.",
+      "error": "Not Connected",
+      "errorDescription": "Wallet tenant not found.",
       "inactive": "Not Connected",
       "inactiveDescription": "You have not activated your Catena-X wallet.",
       "subnavigation": {
@@ -1853,7 +1865,8 @@
         "button2": "Request new Company Credential",
         "button3": "Get more details of VCs (coming soon)"
       },
-      "expiry": "Expiry: "
+      "expiry": "Expiry: ",
+      "others": "Others"
     },
     "standardLibraryTable": {
       "version": "Version",
