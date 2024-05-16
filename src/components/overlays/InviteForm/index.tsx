@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -75,7 +75,7 @@ export const InviteForm = ({
           Patterns.name,
           Patterns.name,
         ].map((p, i) => !p.test(expr[i]))
-        check.push(check.reduce((all, valid) => all || valid))
+        check.push(check.reduce((all, valid) => all || valid, false))
         setInpValid(check)
       }, 300),
     [setInpValid]
