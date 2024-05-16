@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0-RC8
+
+### Change
+
+### Bugfix
+
+- Side menu - Mobile version shows up all the menu in My company section
+
 ## 2.0.0-RC7
 
 ### Change
