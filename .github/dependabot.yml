@@ -51,10 +51,8 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      production-dependencies:
+      dependencies:
         dependency-type: "production"
-      development-dependencies:
-        dependency-type: "development"
 
   # Docker
   -
@@ -67,7 +65,5 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      production-dependencies:
+      dependencies:
         dependency-type: "production"
-      development-dependencies:
-        dependency-type: "development"

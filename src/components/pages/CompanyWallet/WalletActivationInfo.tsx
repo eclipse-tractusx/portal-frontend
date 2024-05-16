@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -41,8 +41,7 @@ export default function WalletActivationInfo({
     icon: JSX.Element
   }>()
 
-  const status =
-    wallet?.credentialSubject[0].status === CredentialSubjectStatus.ACTIVE
+  const status = wallet?.status === CredentialSubjectStatus.ACTIVE
 
   useEffect(() => {
     if (status) {
