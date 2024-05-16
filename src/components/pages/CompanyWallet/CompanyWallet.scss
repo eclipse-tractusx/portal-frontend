@@ -133,7 +133,7 @@
       .rule-card-container {
         height: 204px;
         width: auto;
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -141,7 +141,6 @@
         min-width: 300px;
         max-width: 300px;
         margin-top: 0px;
-        background-color: #deeeef;
 
         .text {
           color: #111111;
@@ -290,14 +289,13 @@
       .rule-card-container {
         height: 204px;
         width: auto;
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-width: 300px;
         max-width: 300px;
-        background-color: #deeeef;
 
         .text {
           color: #111111;
@@ -366,7 +364,7 @@
 .gradient-container {
   margin-top: 30px;
   min-width: 302px;
-  border-radius: 30px;
+  border-radius: 20px;
   padding: 1px;
-  background: linear-gradient(180deg, #033430, #76babb);
+  // background: linear-gradient(360deg, #033430, #76babb); Enable when gradient is needed
 }
