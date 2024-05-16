@@ -6,6 +6,8 @@
 
 - Technical Setup
   - updated overlay styling for connector configuration
+- Identity Provider Config
+  - Added links on click of 'learn more'
 
 ## 2.0.0-RC7
 
