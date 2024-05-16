@@ -27,6 +27,11 @@
 
 ## 2.0.0-RC6
 
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
+
 ### Bugfix
 
 - Partner Network - fix white page blank issue
