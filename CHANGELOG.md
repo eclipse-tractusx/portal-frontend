@@ -6,6 +6,13 @@
 
 - Technical User Creation - API Response Changes
 
+### Change
+
+- Technical Setup
+  - updated overlay styling for connector configuration
+- Identity Provider Config
+  - Added links on click of 'learn more'
+
 ### Bugfix
 
 - Usecase Participation
