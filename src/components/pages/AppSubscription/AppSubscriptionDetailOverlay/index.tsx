@@ -30,6 +30,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import {
   ProcessStep,
+  type TechnicalUserData,
   useFetchSubscriptionDetailQuery,
   useUpdateTenantUrlMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
@@ -119,15 +120,24 @@ const AppSubscriptionDetailOverlay = ({
     else return `${t('content.appSubscription.detailOverlay.serviceTitle')}`
   }
 
+  const getSubscriptionStatus = () => {
+    if (isAppSubscription) return getStatus()
+    else return getValue(data?.offerSubscriptionStatus)
+  }
+
+  const getTechnicalValue = () => {
+    if (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING)
+      return 'N/A'
+    else return ''
+  }
+
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [getTitle(), getValue(data?.name)],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        isAppSubscription
-          ? getStatus()
-          : getValue(data?.offerSubscriptionStatus),
+        getSubscriptionStatus(),
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
@@ -147,17 +157,19 @@ const AppSubscriptionDetailOverlay = ({
   const bodyData = [
     [
       `${t('content.appSubscription.detailOverlay.technicalName')}`,
-      data?.technicalUserData?.[0]?.name ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+      data?.technicalUserData.length
+        ? data?.technicalUserData
+            .map((userdata: TechnicalUserData) => userdata.name)
+            .toString()
+        : getTechnicalValue(),
     ],
     [
       `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-      data?.technicalUserData?.[0]?.permissions.toString() ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+      data?.technicalUserData.length
+        ? data?.technicalUserData
+            .map((userdata: TechnicalUserData) => userdata.permissions)
+            .toString()
+        : getTechnicalValue(),
     ],
   ]
 
@@ -169,10 +181,7 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.appId')}`,
-        data?.appInstanceId ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
+        data?.appInstanceId ?? getTechnicalValue(),
       ]
     )
   }
