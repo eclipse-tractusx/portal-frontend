@@ -30,6 +30,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import {
   ProcessStep,
+  type TechnicalUserData,
   useFetchSubscriptionDetailQuery,
   useUpdateTenantUrlMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
@@ -147,17 +148,23 @@ const AppSubscriptionDetailOverlay = ({
   const bodyData = [
     [
       `${t('content.appSubscription.detailOverlay.technicalName')}`,
-      data?.technicalUserData?.[0]?.name ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+      data?.technicalUserData.length
+        ? data?.technicalUserData
+            .map((userdata: TechnicalUserData) => userdata.name)
+            .toString()
+        : data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
           ? 'N/A'
-          : ''),
+          : '',
     ],
     [
       `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-      data?.technicalUserData?.[0]?.permissions.toString() ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
+      data?.technicalUserData.length
+        ? data?.technicalUserData
+            .map((userdata: TechnicalUserData) => userdata.permissions)
+            .toString()
+        : data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
           ? 'N/A'
-          : ''),
+          : '',
     ],
   ]
 
