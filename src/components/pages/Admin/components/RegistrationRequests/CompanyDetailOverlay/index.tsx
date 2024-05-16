@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useState, useEffect, useRef, type SyntheticEvent } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
@@ -29,12 +29,14 @@ import {
   Tabs,
   Tab,
   TabPanel,
+  StatusTag,
+  DropPreviewFile,
+  UploadStatus,
+  DialogActions,
 } from '@catena-x/portal-shared-components'
-import { Box, Grid, useTheme, CircularProgress } from '@mui/material'
+import { Box, useTheme, CircularProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
-import DetailGridRow from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/DetailGridRow'
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
   type ApplicationRequest,
   useFetchCheckListDetailsQuery,
@@ -43,6 +45,8 @@ import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getTitle } from './CompanyDetailsHelper'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { KeyValueView } from 'components/shared/basic/KeyValueView'
+import { type UniqueIdType } from 'features/admin/registration/types'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -60,7 +64,6 @@ const CompanyDetailOverlay = ({
   const modalElement = useRef<HTMLInputElement>()
   const { t } = useTranslation()
   const theme = useTheme()
-  const { spacing } = theme
   const { detailLoading, companyDetail: selectedCompany } = useSelector(
     adminRegistrationSelector
   )
@@ -131,6 +134,126 @@ const CompanyDetailOverlay = ({
     setActiveTab(newValue)
   }
 
+  const getStepIcon = (step: string) => {
+    return (
+      <Typography
+        variant="label3"
+        sx={{
+          background: '#0f71cb',
+          color: 'white',
+          flex: '0',
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          minWidth: '20px',
+          textAlign: 'center',
+          lineHeight: '20px',
+          marginRight: '20px',
+          position: 'relative',
+        }}
+      >
+        {step}
+      </Typography>
+    )
+  }
+
+  const companyData = [
+    {
+      key: t('content.partnernetwork.columns.name'),
+      value: selectedCompany?.name ?? '',
+    },
+    {
+      key: t('content.partnernetwork.columns.bpn'),
+      value: selectedCompany?.bpn ?? '',
+    },
+    {
+      key: t('content.partnernetwork.columns.street'),
+      value: selectedCompany?.streetName + ' ' + selectedCompany?.streetNumber,
+    },
+    {
+      key: t('content.partnernetwork.columns.contact'),
+      value: selectedCompany?.companyUser?.[0]?.email ?? '',
+    },
+    {
+      key: t('content.partnernetwork.columns.uniqueid'),
+      value:
+        selectedCompany?.uniqueIds?.map(
+          (uniqueId: UniqueIdType) =>
+            getUniqueIdName(uniqueId) + ' - ' + uniqueId.value
+        ) ?? [],
+    },
+  ]
+
+  const documentData = [
+    {
+      key: '',
+      value: (
+        <>
+          {company?.documents && company.documents.length > 0 ? (
+            <>
+              {company.documents.map(
+                (contract: { documentId: string; documentType: string }) => (
+                  <Box key={contract.documentId}>
+                    <DropPreviewFile
+                      uploadFile={{
+                        name: contract?.documentType,
+                        status: UploadStatus.UPLOAD_SUCCESS,
+                      }}
+                      translations={{
+                        placeholder: '',
+                        uploadProgress: '',
+                        uploadSuccess: '',
+                        uploadError: '',
+                      }}
+                      onDownload={() => {
+                        void downloadDocument(
+                          contract.documentId,
+                          contract.documentType
+                        )
+                      }}
+                      enableDeleteIcon={false}
+                    />
+                  </Box>
+                )
+              )}
+            </>
+          ) : (
+            <Typography
+              sx={{
+                padding: '20px',
+              }}
+              variant="body1"
+            >
+              {t('content.admin.registration-requests.overlay.noinfo')}
+            </Typography>
+          )}
+        </>
+      ),
+    },
+  ]
+
+  const companyRoleData = [
+    {
+      key: '',
+      value: (
+        <>
+          {selectedCompany?.companyRoles?.map(
+            (role: { companyRole: string }) => (
+              <StatusTag
+                key={role.companyRole}
+                color="label"
+                label={getLocaleStr(role.companyRole)}
+                sx={{
+                  marginRight: '8px',
+                }}
+              />
+            )
+          )}
+        </>
+      ),
+    },
+  ]
+
   return (
     <div className={'company-detail-overlay'}>
       <Dialog
@@ -148,36 +271,59 @@ const CompanyDetailOverlay = ({
             onCloseWithIcon: handleOverlayClose,
           }}
         >
-          <Box
-            sx={{
-              marginLeft: '20px',
-            }}
-          >
-            <Tabs value={activeTab} onChange={handleChange}>
-              <Tab
-                sx={{
-                  fontSize: '18px',
-                  '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb',
-                  },
+          <>
+            {activeTab === 0 && (
+              <Trans
+                i18nKey={t(
+                  'content.admin.registration-requests.overlay.tab1SubTitle'
+                )}
+                values={{
+                  status: 'in progress',
                 }}
-                label={t('content.admin.registration-requests.overlay.tab1')}
-                id={`simple-tab-${activeTab}`}
-                aria-controls={`simple-tabpanel-${activeTab}`}
-              />
-              <Tab
-                sx={{
-                  fontSize: '18px',
-                  '&.Mui-selected': {
-                    borderBottom: '3px solid #0f71cb',
-                  },
-                }}
-                label={t('content.admin.registration-requests.overlay.tab2')}
-                id={`simple-tab-${activeTab}`}
-                aria-controls={`simple-tabpanel-${activeTab}`}
-              />
-            </Tabs>
-          </Box>
+              >
+                <Typography variant="h6">
+                  {t(
+                    'content.admin.registration-requests.overlay.tab1SubTitle'
+                  )}
+                </Typography>
+              </Trans>
+            )}
+            <Box
+              sx={{
+                marginLeft: '60px',
+              }}
+            >
+              <Tabs value={activeTab} onChange={handleChange}>
+                <Tab
+                  icon={getStepIcon('1')}
+                  iconPosition="start"
+                  sx={{
+                    fontSize: '18px',
+                    width: '50%',
+                    '&.Mui-selected': {
+                      borderBottom: '3px solid #0f71cb',
+                    },
+                  }}
+                  label={t('content.admin.registration-requests.overlay.tab1')}
+                  id={`simple-tab-${activeTab}`}
+                  aria-controls={`simple-tabpanel-${activeTab}`}
+                />
+                <Tab
+                  icon={getStepIcon('2')}
+                  iconPosition="start"
+                  sx={{
+                    fontSize: '18px',
+                    '&.Mui-selected': {
+                      borderBottom: '3px solid #0f71cb',
+                    },
+                  }}
+                  label={t('content.admin.registration-requests.overlay.tab2')}
+                  id={`simple-tab-${activeTab}`}
+                  aria-controls={`simple-tabpanel-${activeTab}`}
+                />
+              </Tabs>
+            </Box>
+          </>
         </DialogHeader>
 
         {detailLoading ? (
@@ -205,225 +351,26 @@ const CompanyDetailOverlay = ({
             }}
           >
             <TabPanel value={activeTab} index={0}>
-              <Box ref={modalElement} sx={{ width: '100%' }}>
-                <Grid container spacing={1.5} style={{ marginTop: 0 }}>
-                  <Grid
-                    xs={12}
-                    item
-                    style={{
-                      backgroundColor: theme.palette.grey['100'],
-                      padding: spacing(2),
-                    }}
-                  >
-                    <Typography variant="h5">
-                      {t(
-                        'content.admin.registration-requests.overlay.companydatatitle'
-                      )}
-                    </Typography>
-                  </Grid>
-                  <DetailGridRow
-                    key={t('content.partnernetwork.columns.name') as string}
-                    {...{
-                      variableName: `${t(
-                        'content.partnernetwork.columns.name'
-                      )}`,
-                      value: selectedCompany?.name,
-                    }}
-                  />
-                  <DetailGridRow
-                    key={t('content.partnernetwork.columns.bpn') as string}
-                    {...{
-                      variableName: `${t(
-                        'content.partnernetwork.columns.bpn'
-                      )}`,
-                      value: selectedCompany?.bpn,
-                    }}
-                  />
-                  {selectedCompany?.uniqueIds?.map(
-                    (id: { type: string; value: string }) => (
-                      <DetailGridRow
-                        key={id.type}
-                        {...{
-                          variableName: getUniqueIdName(id)!,
-                          value: id.value ?? '',
-                        }}
-                      />
-                    )
+              <Box sx={{ width: '100%', marginBottom: '50px' }}>
+                <KeyValueView
+                  cols={2.3}
+                  title={t(
+                    'content.admin.registration-requests.overlay.companydatatitle'
                   )}
-                  <Grid
-                    xs={12}
-                    item
-                    style={{
-                      backgroundColor: theme.palette.grey['100'],
-                      padding: spacing(2),
-                    }}
-                  >
-                    <Typography variant="h5">
-                      {t('content.admin.registration-requests.overlay.address')}
-                    </Typography>
-                  </Grid>
-                  <DetailGridRow
-                    key="Street"
-                    {...{
-                      variableName: 'Street',
-                      value: `${selectedCompany?.streetName ?? ''} ${
-                        selectedCompany?.streetNumber ?? ''
-                      }`,
-                    }}
-                  />
-                  <DetailGridRow
-                    key="PLZ / City"
-                    {...{
-                      variableName: 'PLZ / City',
-                      value: `${selectedCompany?.zipCode ?? ''} ${
-                        selectedCompany?.city ?? ''
-                      }`,
-                    }}
-                  />
-                  <DetailGridRow
-                    key="Country"
-                    {...{
-                      variableName: 'Country',
-                      value: selectedCompany?.countryAlpha2Code ?? '',
-                    }}
-                  />
-                  <>
-                    <Grid
-                      xs={12}
-                      item
-                      style={{
-                        backgroundColor: theme.palette.grey['100'],
-                        padding: spacing(2),
-                      }}
-                    >
-                      <Typography variant="h5">
-                        {t('content.admin.registration-requests.overlay.docs')}
-                      </Typography>
-                    </Grid>
-                    {company?.documents && company.documents.length > 0 ? (
-                      <>
-                        {company.documents.map(
-                          (contract: {
-                            documentId: string
-                            documentType: string
-                          }) => (
-                            <Box
-                              key={contract.documentId}
-                              sx={{
-                                display: 'flex',
-                                padding: '5px',
-                                margin: '20px',
-                                alignItems: 'center',
-                                ':hover': {
-                                  backgroundColor: 'rgb(176 206 235 / 40%)',
-                                  borderRadius: '20px',
-                                },
-                              }}
-                            >
-                              <>
-                                <ArticleOutlinedIcon
-                                  sx={{ color: '#0f71cb' }}
-                                />
-                                <button
-                                  style={{
-                                    textDecoration: 'underline',
-                                    cursor: 'pointer',
-                                    fontSize: '14px',
-                                    border: 'none',
-                                    background: 'transparent',
-                                    paddingLeft: '10px',
-                                    color: '#0f71cb',
-                                  }}
-                                  onClick={() => {
-                                    void downloadDocument(
-                                      contract.documentId,
-                                      contract.documentType
-                                    )
-                                  }}
-                                >
-                                  {contract?.documentType}
-                                </button>
-                              </>
-                            </Box>
-                          )
-                        )}
-                      </>
-                    ) : (
-                      <Typography
-                        sx={{
-                          padding: '20px',
-                        }}
-                        variant="body1"
-                      >
-                        {t(
-                          'content.admin.registration-requests.overlay.noinfo'
-                        )}
-                      </Typography>
-                    )}
-                  </>
-                  <>
-                    <Grid
-                      xs={12}
-                      item
-                      style={{
-                        backgroundColor: theme.palette.grey['100'],
-                        padding: spacing(2),
-                      }}
-                    >
-                      <Typography variant="h5">
-                        {t('content.admin.registration-requests.overlay.roles')}
-                      </Typography>
-                    </Grid>
-                    {selectedCompany?.companyRoles &&
-                    selectedCompany?.companyRoles.length > 0 ? (
-                      <>
-                        {selectedCompany?.companyRoles.map(
-                          (role: { companyRole: string }) => (
-                            <div
-                              key={role.companyRole}
-                              style={{
-                                display: 'flex',
-                                padding: '20px 10px 10px 10px',
-                                alignItems: 'center',
-                                flexDirection: 'row',
-                              }}
-                            >
-                              <Button
-                                color="secondary"
-                                sx={{
-                                  borderRadius: '6px',
-                                  margin: '0px 10px',
-                                  cursor: 'auto',
-                                }}
-                                onClick={function noRefCheck() {
-                                  // do nothing
-                                }}
-                                onFocusVisible={function noRefCheck() {
-                                  // do nothing
-                                }}
-                                size="small"
-                                variant="contained"
-                              >
-                                {getLocaleStr(role.companyRole)}
-                              </Button>
-                            </div>
-                          )
-                        )}
-                      </>
-                    ) : (
-                      <Typography
-                        sx={{
-                          padding: '20px',
-                        }}
-                        variant="body1"
-                      >
-                        {t(
-                          'content.admin.registration-requests.overlay.noinfo'
-                        )}
-                      </Typography>
-                    )}
-                  </>
-                </Grid>
+                  items={companyData}
+                />
+              </Box>
+              <Box ref={modalElement} sx={{ width: '100%' }}>
+                <KeyValueView
+                  cols={2.3}
+                  title={t('content.admin.registration-requests.overlay.docs')}
+                  items={documentData}
+                />
+                <KeyValueView
+                  cols={2.3}
+                  title={t('content.admin.registration-requests.overlay.roles')}
+                  items={companyRoleData}
+                />
               </Box>
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
@@ -433,6 +380,11 @@ const CompanyDetailOverlay = ({
             </TabPanel>
           </DialogContent>
         )}
+        <DialogActions>
+          <Button variant="contained" onClick={handleOverlayClose}>
+            {t('global.actions.close')}
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   )

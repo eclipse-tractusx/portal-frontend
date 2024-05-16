@@ -2,10 +2,10 @@
 
 ## 2.0.0-RC8
 
-### Change
-
 ### Bugfix
 
+- Usecase Participation
+  - Framework Agreement Request Page - Status missing
 - Side menu - Mobile version shows up all the menu in My company section
 
 ## 2.0.0-RC7
@@ -27,6 +27,11 @@
 - Dependabot - introduced grouping of pull request for version updates
 
 ## 2.0.0-RC6
+
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
 
 ### Bugfix
 

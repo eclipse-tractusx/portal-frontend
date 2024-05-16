@@ -31,6 +31,7 @@ export enum ApplicationRequestStatus {
   CONFIRMED = 'CONFIRMED',
   DECLINED = 'DECLINED',
   SUBMITTED = 'SUBMITTED',
+  CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER',
 }
 
 export enum AppFilterType {
@@ -54,6 +55,20 @@ export enum ProgressStatus {
   TO_DO = 'TO_DO',
   DONE = 'DONE',
   FAILED = 'FAILED',
+}
+
+export type ProgressType = {
+  TO_DO: number
+  DONE: number
+  FAILED: number
+  IN_PROGRESS: number
+}
+
+export const initialProgressValue: ProgressType = {
+  TO_DO: 0,
+  DONE: 0,
+  FAILED: 0,
+  IN_PROGRESS: 0,
 }
 
 export enum StatusType {
