@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -36,6 +36,18 @@ export type RegistrationRequestAPIResponse = {
   meta: PaginationData
 }
 
+export type CompanyUserDetails = {
+  email: string
+  firstName: string
+  lastName: string
+  userId: string
+}
+
+export type UniqueIdType = {
+  type: string
+  value: string
+}
+
 export type CompanyDetail = {
   companyId: string
   name: string
@@ -47,8 +59,9 @@ export type CompanyDetail = {
   city: string
   countryDe: string
   companyRoles: []
-  uniqueIds?: []
+  uniqueIds?: Array<UniqueIdType>
   countryAlpha2Code?: string
+  companyUser: Array<CompanyUserDetails>
 }
 
 export type RegistrationRequestDocument = {

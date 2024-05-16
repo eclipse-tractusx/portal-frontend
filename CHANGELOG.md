@@ -1,11 +1,43 @@
 # Changelog
 
-## 2.0.0-RC6
+## 2.0.0-RC8
 
 ### Bugfix
 
-- Partner Network
-  - Fix white page blank issue
+- Usecase Participation
+  - Framework Agreement Request Page - Status missing
+
+## 2.0.0-RC7
+
+### Change
+
+- upgraded vite package
+
+### Feature
+
+- Company Wallet - added new endpoint, updated the response schema as well as handled errors and not valid membership wallet case
+
+### Bugfix
+
+- fixed sonar finding: added initial reduce value
+
+### Technical Support
+
+- Dependabot - introduced grouping of pull request for version updates
+
+## 2.0.0-RC6
+
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
+
+### Bugfix
+
+- Partner Network - fix white page blank issue
+- Admin Credential - changed API endpoints for approval and decline request
+- Use Case Participation - add loader until response is generated
+- Error Handling - fixed forwarding to an error page when backend not available
 
 ### Feature
 

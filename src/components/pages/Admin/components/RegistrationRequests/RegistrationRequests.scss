@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -179,4 +179,27 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.statusMain {
+  text-align: center;
+
+  .cancelBtn {
+    margin-top: 2px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.progressMain {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+  width: 140px;
+
+  .statusText {
+    margin: 0 auto;
+    padding: 0 5px;
+  }
 }
