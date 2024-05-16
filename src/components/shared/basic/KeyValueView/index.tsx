@@ -25,7 +25,7 @@ import { Typography } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 
-type DataValue = string | number | JSX.Element
+type DataValue = string | number | JSX.Element | string[]
 
 interface ValueItem {
   key?: DataValue

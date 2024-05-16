@@ -4,6 +4,8 @@
 
 ### Bugfix
 
+- Usecase Participation
+  - Framework Agreement Request Page - Status missing
 - App marketplace
   - fixed display of images in app detail page
 
@@ -26,6 +28,11 @@
 - Dependabot - introduced grouping of pull request for version updates
 
 ## 2.0.0-RC6
+
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
 
 ### Bugfix
 

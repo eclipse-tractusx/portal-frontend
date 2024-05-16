@@ -36,6 +36,18 @@ export type RegistrationRequestAPIResponse = {
   meta: PaginationData
 }
 
+export type CompanyUserDetails = {
+  email: string
+  firstName: string
+  lastName: string
+  userId: string
+}
+
+export type UniqueIdType = {
+  type: string
+  value: string
+}
+
 export type CompanyDetail = {
   companyId: string
   name: string
@@ -47,8 +59,9 @@ export type CompanyDetail = {
   city: string
   countryDe: string
   companyRoles: []
-  uniqueIds?: []
+  uniqueIds?: Array<UniqueIdType>
   countryAlpha2Code?: string
+  companyUser: Array<CompanyUserDetails>
 }
 
 export type RegistrationRequestDocument = {

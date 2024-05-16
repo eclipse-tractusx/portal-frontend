@@ -33,17 +33,14 @@ import {
   useDeclineChecklistMutation,
   useFetchCompanySearchQuery,
   useUpdateBPNMutation,
-  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { RequestList } from './components/RequestList'
-import { download } from 'utils/downloadUtils'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -60,7 +57,6 @@ export default function RegistrationRequests() {
 
   const [approveRequest] = useApproveRequestMutation()
   const [declineRequest] = useDeclineChecklistMutation()
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
 
   const [updateBpn] = useUpdateBPNMutation()
 
@@ -75,7 +71,6 @@ export default function RegistrationRequests() {
   const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
   const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
 
-  const [selectedButton, setSelectedButton] = useState<ProgressButtonsType>()
   const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
     useState<boolean>(false)
   const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
@@ -124,23 +119,6 @@ export default function RegistrationRequests() {
     setIsLoading(false)
   }
 
-  const handleDownloadClick = async (
-    _appId: string,
-    documentId: string,
-    documentType: string
-  ) => {
-    try {
-      const response = await getDocumentById(documentId).unwrap()
-
-      const fileType = response.headers.get('content-type')
-      const file = response.data
-
-      download(file, fileType, documentType)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-    }
-  }
-
   const onUpdateBpn = async (bpn: string) => {
     setIsLoading(true)
     await updateBpn({ bpn, applicationId: selectedRequestId })
@@ -162,12 +140,6 @@ export default function RegistrationRequests() {
     setActionType('decline')
     setSelectedRequestId(id)
     setConfirmCancelModalOpen(true)
-  }
-
-  const onChipButtonSelect = (selected: ProgressButtonsType, id: string) => {
-    setSelectedButton(selected)
-    setSelectedRequestId(id)
-    setStatusConfirmationOverlay(true)
   }
 
   return (
@@ -245,7 +217,6 @@ export default function RegistrationRequests() {
           handleOverlayClose={() => {
             setStatusConfirmationOverlay(false)
           }}
-          selectedButton={selectedButton}
           selectedRequestId={selectedRequestId}
         />
       )}
@@ -284,9 +255,6 @@ export default function RegistrationRequests() {
           fetchHook={useFetchCompanySearchQuery}
           onTableCellClick={onTableCellClick}
           loaded={loaded}
-          handleDownloadDocument={(appId, documentId, documentType) =>
-            void handleDownloadClick(appId, documentId, documentType)
-          }
           showConfirmOverlay={(id: string) => {
             setSelectedRequestId(id)
             setEnableBpnInput(true)
@@ -296,9 +264,6 @@ export default function RegistrationRequests() {
           }}
           onConfirmationCancel={(id: string, name: string) => {
             onConfirmationCancel(id, name)
-          }}
-          onChipButtonSelect={(selected: ProgressButtonsType, id: string) => {
-            onChipButtonSelect(selected, id)
           }}
         />
       </div>

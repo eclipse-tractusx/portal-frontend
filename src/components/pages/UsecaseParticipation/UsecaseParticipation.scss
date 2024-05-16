@@ -100,8 +100,12 @@
         .credential-list {
           list-style: none;
           .credential-list-item {
-            margin-bottom: 10px;
+            width: 100%;
+            margin-bottom: 0;
             display: flex;
+            .font-12 {
+              font-size: 12px;
+            }
             .firstSection {
               width: 60%;
             }
@@ -112,6 +116,9 @@
               width: 30%;
               color: #0f71cb;
               cursor: pointer;
+              > div {
+                height: 25px;
+              }
               .framework {
                 display: flex;
                 padding: 2px 8px;
@@ -134,7 +141,7 @@
               width: 35%;
             }
             .fifthSection {
-              width: 30%;
+              width: 20%;
             }
           }
         }
