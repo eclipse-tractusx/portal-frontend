@@ -142,6 +142,7 @@ export const AddTechnicalUser = () => {
                   },
                 }}
                 variant="wide"
+                key={data.clientId}
               />
             )
           })}
