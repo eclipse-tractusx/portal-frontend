@@ -2,11 +2,20 @@
 
 ## 2.0.0-RC8
 
+### Change
+
+- Technical Setup
+  - updated overlay styling for connector configuration
+- Identity Provider Config
+  - Added links on click of 'learn more'
+  - 
 ### Bugfix
 
 - Usecase Participation
   - Framework Agreement Request Page - Status missing
 - Side menu - Mobile version shows up all the menu in My company section
+- App marketplace
+  - fixed display of images in app detail page
 
 ## 2.0.0-RC7
 

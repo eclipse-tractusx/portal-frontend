@@ -56,7 +56,7 @@ const imagesAndAppidToImageType = (
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   images?.map((image: any) => ({
-    url: getPictureURL(appId, image.documentId),
+    url: getPictureURL(appId, image.documentId ?? image),
     text: 'Catena-X',
     loader: fetchImageWithToken,
   }))
