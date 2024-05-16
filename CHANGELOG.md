@@ -8,6 +8,11 @@
   - updated overlay styling for connector configuration
 - Identity Provider Config
   - Added links on click of 'learn more'
+  - 
+### Bugfix
+
+- Usecase Participation
+  - Framework Agreement Request Page - Status missing
 
 ## 2.0.0-RC7
 
@@ -28,6 +33,11 @@
 - Dependabot - introduced grouping of pull request for version updates
 
 ## 2.0.0-RC6
+
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
 
 ### Bugfix
 
