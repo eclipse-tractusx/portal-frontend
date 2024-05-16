@@ -13,6 +13,8 @@
 
 - Usecase Participation
   - Framework Agreement Request Page - Status missing
+- App marketplace
+  - fixed display of images in app detail page
 
 ## 2.0.0-RC7
 
