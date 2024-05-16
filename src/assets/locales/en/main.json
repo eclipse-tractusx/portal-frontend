@@ -571,27 +571,20 @@
       },
       "configurationDetails": {
         "title": "How to Configure Your Connector",
-        "description": "This description provides step-by-step instructions on how to configure your connector. Please follow the instructions below to set the necessary configuration values. Please ensure that you enter the correct values for each configuration setting. Once you have set these values, your connector will be properly configured and ready to use.",
+        "description1": "This description provides step-by-step instructions on how to configure your connector.",
+        "description2": "Please follow the instructions below to set the necessary configuration values.",
+        "description3": "Ensure that you enter the correct values for each configuration setting.",
+        "description4": "Once you have set these values, your connector will be properly configured and ready to use.",
+        "learnMore": "learn more",
+        "clientId": "Client ID of your technical user",
+        "secret": "Secret",
         "section": {
-          "part1": {
-            "title": "iatp.sts.oauth.token_url: ",
-            "description": "the token endpoint of the decentral identity management instance is: "
-          },
-          "part2": {
-            "title": "iatp.sts.oauth.client.id: ",
-            "description1": "technical user client ID of your technical user for the specific connector. Ensure you separate the technical users - each connector one technical user. Technical users can get found and requested inside the ",
-            "key": "technical user self-service.",
-            "description2": " You can also create the technical user as part of the connector registration."
-          },
-          "part3": {
-            "title": "iatp.sts.oauth.client.secret_alias: ",
-            "description": "alias under which you saved your DIM client secret in the vault. Inside the vault the secret of the technical user defined above should be stored. You can view the secret inside the ",
-            "key": "technical user self-service."
-          },
-          "part4": {
-            "title": "iatp.sts.dim.url: ",
-            "description": "base url of you decentral identity management instance. Please use the following details for connectors running under your company identity: "
-          }
+          "text1": "*iatp.sts.oauth.token_url: the token endpoint of the decentral identity management instance.",
+          "text2": "*iatp.sts.oauth.client.id: technical user client ID of your technical user for the specific connector.",
+          "text3": "Ensure you separate the technical users - each connector one technical user.",
+          "text4": "*iatp.sts.oauth.client.secret_alias: alias under which you saved your DIM client",
+          "text5": "secret in the vault. Inside the vault the secret of the technical user defined above should be stored.",
+          "text6": "*iatp.sts.dim.url: base url of you decentral identity management instance."
         }
       },
       "helpText": "Get some help",
