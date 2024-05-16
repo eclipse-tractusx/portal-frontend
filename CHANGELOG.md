@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0-RC8
+
+### Bugfix
+
+- App marketplace
+  - fixed display of images in app detail page
+
 ## 2.0.0-RC7
 
 ### Change
