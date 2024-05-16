@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0-RC8
+
+### Change
+
+- Technical Setup
+  - updated overlay styling for connector configuration
+
 ## 2.0.0-RC7
 
 ### Change
