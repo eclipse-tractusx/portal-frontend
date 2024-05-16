@@ -17,6 +17,7 @@
 
 - Usecase Participation
   - Framework Agreement Request Page - Status missing
+- Side menu - Mobile version shows up all the menu in My company section
 - App marketplace
   - fixed display of images in app detail page
 
