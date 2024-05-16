@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0-RC7
+## 2.0.0-RC8
 
 ### Feature
 
