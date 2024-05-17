@@ -40,7 +40,7 @@ export const AppListGroup = ({
     })
   }
 
-  const CollapseItemsShown = () => {
+  const collapseItemsShown = () => {
     setItemsShown(() => {
       return (4).toString()
     })
@@ -62,7 +62,7 @@ export const AppListGroup = ({
         disabled={items.length <= 4}
         onButtonClick={
           itemsToShow.length >= items.length
-            ? CollapseItemsShown
+            ? collapseItemsShown
             : increaseItemsShown
         }
       />
