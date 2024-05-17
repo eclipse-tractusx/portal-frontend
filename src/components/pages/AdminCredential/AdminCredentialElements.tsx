@@ -19,7 +19,6 @@
  ********************************************************************************/
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import './AdminCredential.scss'
 import {
@@ -27,19 +26,31 @@ import {
   type CredentialResponse,
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
+  useRevokeCredentialMutation,
   useFetchCredentialsSearchQuery,
+  StatusEnum,
 } from 'features/certification/certificationApiSlice'
 import { download } from 'utils/downloadUtils'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
 import { uniqueId } from 'lodash'
-import { SubscriptionStatus } from 'features/apps/types'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
 import {
   CircleProgress,
+  Button,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
   PageLoadingTable,
+  LoadingButton,
+  StatusTag,
 } from '@catena-x/portal-shared-components'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/Constants'
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 
 interface FetchHookArgsType {
   filterType: string
@@ -77,10 +88,14 @@ export default function AdminCredentialElements() {
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [approveLoading, setApproveLoading] = useState<string>()
   const [declineLoading, setDeclineLoading] = useState<string>()
+  const [openRevokeOverlay, setOpenRevokeOverlay] = useState<boolean>(false)
+  const [credentialData, setCredentialData] = useState<CredentialData>()
+  const [revokeLoading, setRevokeLoading] = useState<boolean>(false)
 
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
   const [declineCredential] = useDeclineCredentialMutation()
+  const [revokeCredential] = useRevokeCredentialMutation()
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -90,7 +105,6 @@ export default function AdminCredentialElements() {
   }
 
   useEffect(() => {
-    console.log('sortOption', sortOption)
     setFetchHookArgs({
       filterType: filterValueAPI,
       sortingType: sortOption,
@@ -181,6 +195,69 @@ export default function AdminCredentialElements() {
     },
   ]
 
+  const renderStatus = (row: CredentialData) => {
+    if (row.participantStatus === StatusEnum.PENDING) {
+      return (
+        <>
+          <Button
+            size="small"
+            color="error"
+            variant="contained"
+            className="statusBtn"
+            endIcon={
+              declineLoading === row.credentialDetailId && (
+                <CircleProgress
+                  thickness={5}
+                  size={20}
+                  variant="indeterminate"
+                  colorVariant="secondary"
+                />
+              )
+            }
+            onClick={() =>
+              handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
+            }
+          >
+            {t('global.actions.decline')}
+          </Button>
+          <Button
+            size="small"
+            color="success"
+            variant="contained"
+            className="statusBtn ml-10"
+            endIcon={
+              approveLoading === row.credentialDetailId && (
+                <CircleProgress
+                  thickness={5}
+                  size={20}
+                  variant="indeterminate"
+                  colorVariant="secondary"
+                />
+              )
+            }
+            onClick={() =>
+              handleApproveDecline(row.credentialDetailId, StatusType.APPROVE)
+            }
+          >
+            {t('global.actions.confirm')}
+          </Button>
+        </>
+      )
+    } else {
+      return (
+        <StatusTag
+          color={
+            row.participantStatus === StatusEnum.INACTIVE ? 'declined' : 'label'
+          }
+          label={row.participantStatus}
+          sx={{
+            height: '25px',
+          }}
+        />
+      )
+    }
+  }
+
   const columns = [
     {
       field: 'credentialType',
@@ -228,97 +305,132 @@ export default function AdminCredentialElements() {
       field: 'credentialDetailId',
       headerName: '',
       flex: 2.5,
+      renderCell: ({ row }: { row: CredentialData }) => renderStatus(row),
+    },
+    {
+      field: '',
+      headerName: '',
+      flex: 1.5,
       renderCell: ({ row }: { row: CredentialData }) => (
         <>
-          {row.participantStatus === SubscriptionStatus.PENDING && (
-            <>
-              <Button
-                size="small"
-                color="error"
-                variant="contained"
-                className="statusBtn"
-                endIcon={
-                  declineLoading === row.credentialDetailId && (
-                    <CircleProgress
-                      thickness={5}
-                      size={20}
-                      variant="indeterminate"
-                      colorVariant="secondary"
-                    />
-                  )
-                }
-                onClick={() =>
-                  handleApproveDecline(
-                    row.credentialDetailId,
-                    StatusType.DECLINE
-                  )
-                }
-              >
-                {t('global.actions.decline')}
-              </Button>
-              <Button
-                size="small"
-                color="success"
-                variant="contained"
-                className="statusBtn ml-10"
-                endIcon={
-                  approveLoading === row.credentialDetailId && (
-                    <CircleProgress
-                      thickness={5}
-                      size={20}
-                      variant="indeterminate"
-                      colorVariant="secondary"
-                    />
-                  )
-                }
-                onClick={() =>
-                  handleApproveDecline(
-                    row.credentialDetailId,
-                    StatusType.APPROVE
-                  )
-                }
-              >
-                {t('global.actions.confirm')}
-              </Button>
-            </>
+          {UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) && (
+            <SettingsBackupRestoreIcon
+              className="revokeBtn"
+              onClick={() => {
+                setOpenRevokeOverlay(true)
+                setCredentialData(row)
+              }}
+            />
           )}
         </>
       ),
     },
   ]
 
+  const handleRevokeConfirm = async (credentialId: string) => {
+    setRevokeLoading(true)
+    try {
+      await revokeCredential(credentialId).unwrap()
+      success(t('content.adminCertificate.revokeOverlay.success'))
+    } catch (err) {
+      error(t('content.adminCertificate.revokeOverlay.error'))
+    }
+    setRevokeLoading(false)
+  }
+
   return (
-    <div className="recommended-main">
-      <PageLoadingTable<CredentialResponse[], FetchHookArgsType>
-        autoFocus={false}
-        searchExpr={searchExpr}
-        alignCell="start"
-        toolbarVariant={'searchAndFilter'}
-        hasBorder={false}
-        columnHeadersBackgroundColor={'transparent'}
-        searchPlaceholder={t('content.adminCertificate.search')}
-        //searchInputData={searchInputData}
-        onSearch={(expr: string) => {
-          if (!onValidate(expr)) return
-          setRefresh(Date.now())
-          setSearchExpr(expr)
+    <>
+      <Dialog
+        open={openRevokeOverlay}
+        sx={{
+          '.MuiDialog-paper': {
+            maxWidth: '45%',
+          },
         }}
-        searchDebounce={1000}
-        title=""
-        loadLabel={t('global.actions.more')}
-        fetchHook={useFetchCredentialsSearchQuery}
-        fetchHookArgs={fetchHookArgs}
-        fetchHookRefresh={refresh}
-        getRowId={(row: { [key: string]: string }) => uniqueId(row.companyId)}
-        columns={columns}
-        defaultFilter={group}
-        filterViews={filterButtons}
-        defaultSortOption={sortOption}
-        sortOptions={sortOptions}
-        onSortClick={(value) => {
-          setSortOption(value)
-        }}
-      />
-    </div>
+      >
+        <DialogHeader
+          title={t('content.adminCertificate.revokeOverlay.title')}
+        />
+        <DialogContent>
+          <div className="revokeOverlay">
+            <Typography variant="body2" className="description">
+              {t('content.adminCertificate.revokeOverlay.description')}
+            </Typography>
+            <Typography variant="body3" className="subDesc">
+              {t('content.adminCertificate.revokeOverlay.subDesc')}
+            </Typography>
+            <Typography variant="body3">
+              {`${credentialData?.credentialType} ${credentialData?.externalTypeDetail ? credentialData?.externalTypeDetail.version : ''}`}
+            </Typography>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setOpenRevokeOverlay(false)
+            }}
+          >
+            {t('global.actions.close')}
+          </Button>
+          {revokeLoading ? (
+            <LoadingButton
+              color="primary"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loadIndicator={t('global.actions.loading')}
+              loading
+              size="medium"
+              onButtonClick={() => {
+                // do nothing
+              }}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
+            <Button
+              variant="contained"
+              onClick={() =>
+                handleRevokeConfirm(credentialData?.credentialDetailId ?? '')
+              }
+            >
+              {t('global.actions.confirm')}
+            </Button>
+          )}
+        </DialogActions>
+      </Dialog>
+      <div className="recommended-main">
+        <PageLoadingTable<CredentialResponse[], FetchHookArgsType>
+          autoFocus={false}
+          searchExpr={searchExpr}
+          alignCell="start"
+          toolbarVariant={'searchAndFilter'}
+          hasBorder={false}
+          columnHeadersBackgroundColor={'transparent'}
+          searchPlaceholder={t('content.adminCertificate.search')}
+          //searchInputData={searchInputData}
+          onSearch={(expr: string) => {
+            if (!onValidate(expr)) return
+            setRefresh(Date.now())
+            setSearchExpr(expr)
+          }}
+          searchDebounce={1000}
+          title=""
+          loadLabel={t('global.actions.more')}
+          fetchHook={useFetchCredentialsSearchQuery}
+          fetchHookArgs={fetchHookArgs}
+          fetchHookRefresh={refresh}
+          getRowId={(row: { [key: string]: string }) => uniqueId(row.companyId)}
+          columns={columns}
+          defaultFilter={group}
+          filterViews={filterButtons}
+          defaultSortOption={sortOption}
+          sortOptions={sortOptions}
+          onSortClick={(value) => {
+            setSortOption(value)
+          }}
+        />
+      </div>
+    </>
   )
 }
