@@ -43,7 +43,7 @@ export default function RuleCard({
       item?.status === CredentialSubjectStatus.INACTIVE ||
       item?.status === CredentialSubjectStatus.REVOKED
     ) {
-      return '#F0F5D5'
+      return '#FEE7E2'
     } else {
       return '#FFA600'
     }
@@ -109,7 +109,7 @@ export default function RuleCard({
                             item?.status !== CredentialSubjectStatus.INACTIVE &&
                             item?.status !== CredentialSubjectStatus.REVOKED
                               ? '#fff !important'
-                              : 'red !important',
+                              : '#FF532F !important',
                           backgroundColor: getBgColor(item),
                         }}
                         className="text"
