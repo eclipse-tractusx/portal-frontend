@@ -41,7 +41,7 @@ export default function RuleCard({
       return '#004F4B'
     } else if (
       item?.status === CredentialSubjectStatus.INACTIVE ||
-      CredentialSubjectStatus.REVOKED
+      item?.status === CredentialSubjectStatus.REVOKED
     ) {
       return '#F0F5D5'
     } else {

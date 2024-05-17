@@ -170,7 +170,7 @@ export const apiSlice = createApi({
         `/api/apps/${body.appId}/subscription/${body.subscriptionId}/provider`,
     }),
     addUserSubscribtion: builder.mutation<
-      SubscriptionActivationResponse,
+      SubscriptionActivationResponse[],
       SubscriptionStoreRequest
     >({
       query: (data: SubscriptionStoreRequest) => ({
