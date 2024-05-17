@@ -90,7 +90,7 @@ export const apiSlice = createApi({
   tagTypes: [Tags.SERVICEACCOUNTS],
   endpoints: (builder) => ({
     addServiceAccount: builder.mutation<
-      ServiceAccountDetail,
+      ServiceAccountDetail[],
       ServiceAccountCreate
     >({
       query: (body: ServiceAccountCreate) => ({

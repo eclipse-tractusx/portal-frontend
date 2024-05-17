@@ -133,6 +133,13 @@ export const UpdateIDP = ({ id }: { id: string }) => {
             textDecoration: 'underline',
             marginTop: '30px',
           }}
+          onClick={() =>
+            window.open(
+              '/documentation/?path=user%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md',
+              '_blank',
+              'noopener'
+            )
+          }
         >
           <HelpOutlineIcon
             sx={{

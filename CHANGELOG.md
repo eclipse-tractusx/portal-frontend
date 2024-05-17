@@ -2,10 +2,26 @@
 
 ## 2.0.0-RC8
 
+### Feature
+
+- Technical User Creation - API Response Changes
+- AppSubscription, Service Subscription, Company Subscription
+  - Validation of Technical User UIs for multiple tech user support
+
+### Change
+
+- Technical Setup
+  - updated overlay styling for connector configuration
+- Identity Provider Config
+  - Added links on click of 'learn more'
+
 ### Bugfix
 
 - Usecase Participation
   - Framework Agreement Request Page - Status missing
+- Side menu - Mobile version shows up all the menu in My company section
+- App marketplace
+  - fixed display of images in app detail page
 
 ## 2.0.0-RC7
 
@@ -27,12 +43,21 @@
 
 ## 2.0.0-RC6
 
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
+
 ### Bugfix
 
 - Partner Network - fix white page blank issue
 - Admin Credential - changed API endpoints for approval and decline request
 - Use Case Participation - add loader until response is generated
 - Error Handling - fixed forwarding to an error page when backend not available
+
+### Feature
+
+- Company Wallet - Add new end point and update the response schema. Handle error and not valid membership wallet case in the UI.
 
 ## 2.0.0-RC5
 
