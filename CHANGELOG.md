@@ -14,6 +14,8 @@
   - updated overlay styling for connector configuration
 - Identity Provider Config
   - Added links on click of 'learn more'
+- App marketplace
+  - Add more and collapse button to category view
 
 ### Bugfix
 
