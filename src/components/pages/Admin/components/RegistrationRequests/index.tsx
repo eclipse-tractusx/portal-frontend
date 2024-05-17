@@ -76,13 +76,15 @@ export default function RegistrationRequests() {
   const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
     useState<boolean>(false)
   const [selectedRequestName, setSelectedRequestName] = useState<string>('')
+  const [selectedActiveTab, setSelectedActiveTab] = useState<number>(0)
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (params.field === 'detail') {
+    if (params.field === 'detail' || params.field === 'status') {
       setSelectedRequestId(params.row.applicationId)
       setSelectedRequest(params.row)
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
+      setSelectedActiveTab(params.field === 'detail' ? 0 : 1)
     }
   }
 
@@ -158,6 +160,7 @@ export default function RegistrationRequests() {
             openDialog: overlayOpen,
             selectedRequest,
             selectedRequestId,
+            selectedActiveTab,
             handleOverlayClose: () => {
               setOverlayOpen(false)
             },

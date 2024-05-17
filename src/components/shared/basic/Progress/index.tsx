@@ -18,14 +18,24 @@ export const Progress = ({
   const yellow = (items.IN_PROGRESS / totalItems) * 360 + green
   const red = (items.FAILED / totalItems) * 360 + yellow
 
-  const progressStepBgColor = () => {
+  const progressColor = () => {
     switch (applicationStatus) {
       case ApplicationRequestStatus.CONFIRMED:
-        return '#e2f6c7'
+        return {
+          progressBg: '#e2f6c7',
+          progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
+        }
       case ApplicationRequestStatus.DECLINED:
-        return '#fee7e2'
+      case ApplicationRequestStatus.CANCELLED_BY_CUSTOMER:
+        return {
+          progressBg: '#fee7e2',
+          progressColor: 'conic-gradient(#d91e18 360deg 360deg)',
+        }
       default:
-        return '#ffffff'
+        return {
+          progressBg: '#ffffff',
+          progressColor: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
+        }
     }
   }
 
@@ -38,12 +48,12 @@ export const Progress = ({
         width: '30px',
         height: '30px',
         borderRadius: '50%',
-        background: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
+        background: progressColor().progressColor,
       }}
     >
       <div
         style={{
-          background: progressStepBgColor(),
+          background: progressColor().progressBg,
           width: '22px',
           height: '22px',
           lineHeight: '22px',

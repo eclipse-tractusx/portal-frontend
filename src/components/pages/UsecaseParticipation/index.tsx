@@ -222,7 +222,7 @@ export default function UsecaseParticipation() {
                           return (
                             <div key={credential.externalDetailData.id}>
                               <hr className="seperation" />
-                              {credential.ssiDetailData.length ? (
+                              {credential.ssiDetailData?.length ? (
                                 <div style={{ width: '105%' }}>
                                   <CustomAccordion
                                     items={[
@@ -244,6 +244,7 @@ export default function UsecaseParticipation() {
                                                   style={{
                                                     width: '82%',
                                                     textAlign: 'center',
+                                                    margin: '0 0 10px',
                                                   }}
                                                   key={ssidata.credentialId}
                                                 >
@@ -269,7 +270,7 @@ export default function UsecaseParticipation() {
                                                   </Typography>
                                                   <Typography
                                                     variant="caption3"
-                                                    className="thirdSection font-12"
+                                                    className="thirdSection statustag font-12"
                                                   >
                                                     <StatusTag
                                                       color={
@@ -282,6 +283,10 @@ export default function UsecaseParticipation() {
                                                         ssidata.participationStatus
                                                       }
                                                       variant="filled"
+                                                      sx={{
+                                                        height: '22px',
+                                                      }}
+                                                      size="small"
                                                     />
                                                   </Typography>
                                                   <Typography
