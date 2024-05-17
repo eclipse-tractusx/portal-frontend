@@ -245,6 +245,10 @@ export const IDPList = () => {
           {idp.oidc?.clientId && menuItems.enableToggle}
           {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}
           {isManaged && !idp.enabled && idp.oidc?.clientId && menuItems.delete}
+          {isManaged &&
+            idp.oidc?.clientId === null &&
+            idp.oidc?.hasClientSecret === false &&
+            menuItems.delete}
         </DropdownMenu>
       </div>
     )
