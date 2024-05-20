@@ -34,16 +34,15 @@ export const AppListGroup = ({
   const [itemsShown, setItemsShown] = useState('4')
   const itemsToShow = items.slice(0, Number(itemsShown))
 
-  const increaseItemsShown = () => {
-    setItemsShown(() => {
-      return items.length.toString()
-    })
-  }
-
-  const collapseItemsShown = () => {
-    setItemsShown(() => {
-      return (4).toString()
-    })
+  const handleMoreAndCollapse = () => {
+    if (itemsToShow.length >= items.length) {
+      setItemsShown(() => {
+        return (4).toString()
+      })
+    } else
+      setItemsShown(() => {
+        return items.length.toString()
+      })
   }
 
   return (
@@ -60,11 +59,7 @@ export const AppListGroup = ({
             category.replace(/\s+/g, '').toLowerCase()
         )}
         disabled={items.length <= 4}
-        onButtonClick={
-          itemsToShow.length >= items.length
-            ? collapseItemsShown
-            : increaseItemsShown
-        }
+        onButtonClick={handleMoreAndCollapse}
       />
       <Cards
         buttonText={t('global.actions.details')}
