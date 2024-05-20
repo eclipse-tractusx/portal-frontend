@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.0.0-RC7
+
+### Change
+
+- upgraded vite package
+
+### Feature
+
+- Company Wallet - added new endpoint, updated the response schema as well as handled errors and not valid membership wallet case
+
+### Bugfix
+
+- fixed sonar finding: added initial reduce value
+
+### Technical Support
+
+- Dependabot - introduced grouping of pull request for version updates
+
+## 2.0.0-RC6
+
+### Bugfix
+
+- Partner Network - fix white page blank issue
+- Admin Credential - changed API endpoints for approval and decline request
+- Use Case Participation - add loader until response is generated
+- Error Handling - fixed forwarding to an error page when backend not available
+
 ## 2.0.0-RC5
 
 ### Feature

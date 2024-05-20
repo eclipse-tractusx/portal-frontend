@@ -1,6 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -122,13 +122,13 @@ export const apiSlice = createApi({
     ),
     approveCredential: builder.mutation<boolean, string>({
       query: (credentialId) => ({
-        url: `api/administration/companydata/credentials/${credentialId}/approval`,
+        url: `${getSsiBase()}/api/issuer/${credentialId}/approval`,
         method: 'PUT',
       }),
     }),
     declineCredential: builder.mutation<boolean, string>({
       query: (credentialDetailId) => ({
-        url: `api/administration/companydata/credentials/${credentialDetailId}/reject`,
+        url: `${getSsiBase()}/api/issuer/${credentialDetailId}/reject`,
         method: 'PUT',
       }),
     }),

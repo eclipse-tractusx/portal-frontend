@@ -1,6 +1,6 @@
 /********************************************************************************
- * 2021, 2023 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 Mercedes-Benz Group AG and BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,12 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import SmallLogo from 'assets/logo/cx-logo-short.svg'
 import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
-import { Box } from '@mui/material'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'
@@ -57,16 +55,13 @@ export const PartnerNetworksTableColumns = (
       sortable: false,
       renderCell: (params) =>
         params?.row?.member ? (
-          <Box
-            component="img"
-            padding=".5rem"
-            alt="membershipFlag"
-            sx={{
+          <img
+            src="/cx-logo.svg"
+            alt="cx logo"
+            style={{
               width: 40,
             }}
-          >
-            <SmallLogo />
-          </Box>
+          />
         ) : (
           ''
         ),

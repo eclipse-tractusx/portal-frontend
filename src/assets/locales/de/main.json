@@ -107,7 +107,11 @@
   "error": {
     "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
     "tryAgain": "Try Again",
-    "errorBar": "Something went wrong. Try again"
+    "errorBar": "Something went wrong. Try again",
+    "title": "Hoppla! Etwas ist schiefgelaufen.",
+    "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
+    "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
+    "reloadBtn": "Seite neuladen"
   },
   "content": {
     "registration": {
@@ -1880,6 +1884,8 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
       "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
+      "error": "Nicht verbunden",
+      "errorDescription": "Wallet-Mandant konnte nicht gefunden werden.",
       "inactive": "Nicht verbunden",
       "inactiveDescription": "Sie haben Ihr Catena-X-Wallet nicht aktiviert.",
       "subnavigation": {
@@ -1888,7 +1894,8 @@
         "button2": "Fordern Sie einen neuen Firmenausweis an",
         "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
       },
-      "expiry": "Ablauf: "
+      "expiry": "Ablauf: ",
+      "others": "Others"
     },
     "standardLibraryTable": {
       "version": "Version",

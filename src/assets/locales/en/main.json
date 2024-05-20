@@ -106,7 +106,11 @@
   "error": {
     "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
     "tryAgain": "Try Again",
-    "errorBar": "Something went wrong. Try again"
+    "errorBar": "Something went wrong. Try again",
+    "title": "Oops, Something went wrong.",
+    "description": "The server encountered an internal error or misconfiguration and was unable to complete your request.",
+    "additionalDescription": "Please contact your admin.",
+    "reloadBtn": "Reload Page"
   },
   "content": {
     "registration": {
@@ -1842,6 +1846,8 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
       "activateDescription": "You have activated your Catena-X wallet.",
+      "error": "Not Connected",
+      "errorDescription": "Wallet tenant not found.",
       "inactive": "Not Connected",
       "inactiveDescription": "You have not activated your Catena-X wallet.",
       "subnavigation": {
@@ -1850,7 +1856,8 @@
         "button2": "Request new Company Credential",
         "button3": "Get more details of VCs (coming soon)"
       },
-      "expiry": "Expiry: "
+      "expiry": "Expiry: ",
+      "others": "Others"
     },
     "standardLibraryTable": {
       "version": "Version",

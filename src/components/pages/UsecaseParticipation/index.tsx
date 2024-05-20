@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -17,8 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
+import { CircularProgress, useTheme } from '@mui/material'
 import {
   Chip,
   PageHeader,
@@ -38,14 +41,13 @@ import {
 } from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
 import { SubscriptionStatus } from 'features/apps/types'
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
+  const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data, refetch } = useFetchUsecaseQuery()
+  const { data, refetch, isLoading } = useFetchUsecaseQuery()
 
   useEffect(() => {
     refetch()
@@ -136,116 +138,134 @@ export default function UsecaseParticipation() {
           </div>
           <div className="usecase-list-main">
             <ul>
-              {data?.map((item) => {
-                return (
-                  <div className="usecase-list" key={uniqueId(item.useCase)}>
-                    <li className="usecase-list-item">
-                      <div className="usecase-detail">
-                        <PixIcon />
-                        <div>
-                          <Typography variant="body1" className="usecase-title">
-                            {item.useCase}
-                          </Typography>
-                          <Typography variant="body2">
-                            {item.description}
-                          </Typography>
+              {isLoading ? (
+                <div className="progress-main">
+                  <CircularProgress
+                    size={35}
+                    sx={{
+                      color: theme.palette.primary.main,
+                      zIndex: 1,
+                      position: 'absolute',
+                    }}
+                  />
+                </div>
+              ) : (
+                data?.map((item) => {
+                  return (
+                    <div className="usecase-list" key={uniqueId(item.useCase)}>
+                      <li className="usecase-list-item">
+                        <div className="usecase-detail">
+                          <PixIcon />
+                          <div>
+                            <Typography
+                              variant="body1"
+                              className="usecase-title"
+                            >
+                              {item.useCase}
+                            </Typography>
+                            <Typography variant="body2">
+                              {item.description}
+                            </Typography>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <ul className="credential-list">
-                      {item.verifiedCredentials.map((credential) => {
-                        return (
-                          <>
-                            <hr className="seperation" />
-                            <li className="credential-list-item">
-                              <Typography
-                                variant="body3"
-                                className="firstSection"
-                              >
-                                {
-                                  credential.externalDetailData
-                                    .verifiedCredentialExternalTypeId
-                                }
-                              </Typography>
-                              <Trans
-                                values={{
-                                  version:
-                                    credential.externalDetailData.version,
-                                }}
-                              >
+                      </li>
+                      <ul className="credential-list">
+                        {item.verifiedCredentials.map((credential) => {
+                          return (
+                            <>
+                              <hr className="seperation" />
+                              <li className="credential-list-item">
                                 <Typography
                                   variant="body3"
-                                  className="secondSection"
+                                  className="firstSection"
                                 >
-                                  {t('content.usecaseParticipation.version')}
+                                  {
+                                    credential.externalDetailData
+                                      .verifiedCredentialExternalTypeId
+                                  }
                                 </Typography>
-                              </Trans>
-                              <Tooltips
-                                tooltipPlacement="top-start"
-                                tooltipText={
-                                  !credential.externalDetailData.template
-                                    ? t(
-                                        'content.usecaseParticipation.nodocument'
-                                      )
-                                    : ''
-                                }
-                                children={
-                                  <Link
-                                    to={credential.externalDetailData.template}
-                                    target={
-                                      credential.externalDetailData.template &&
-                                      '_blank'
-                                    }
-                                    className={`thirdSection ${
-                                      !credential.externalDetailData.template &&
-                                      'documentDisabled'
-                                    }`}
+                                <Trans
+                                  values={{
+                                    version:
+                                      credential.externalDetailData.version,
+                                  }}
+                                >
+                                  <Typography
+                                    variant="body3"
+                                    className="secondSection"
                                   >
-                                    <Typography
-                                      variant="body3"
-                                      className="framework"
+                                    {t('content.usecaseParticipation.version')}
+                                  </Typography>
+                                </Trans>
+                                <Tooltips
+                                  tooltipPlacement="top-start"
+                                  tooltipText={
+                                    !credential.externalDetailData.template
+                                      ? t(
+                                          'content.usecaseParticipation.nodocument'
+                                        )
+                                      : ''
+                                  }
+                                  children={
+                                    <Link
+                                      to={
+                                        credential.externalDetailData.template
+                                      }
+                                      target={
+                                        credential.externalDetailData
+                                          .template && '_blank'
+                                      }
+                                      className={`thirdSection ${
+                                        !credential.externalDetailData
+                                          .template && 'documentDisabled'
+                                      }`}
                                     >
-                                      <LaunchIcon />
-                                      {t(
-                                        'content.usecaseParticipation.framework'
-                                      )}
-                                    </Typography>
-                                  </Link>
-                                }
-                              />
-                              <Trans
-                                values={{
-                                  expiry: credential.externalDetailData.expiry
-                                    ? credential.externalDetailData.expiry.split(
-                                        'T'
-                                      )[0]
-                                    : '',
-                                }}
-                              >
+                                      <Typography
+                                        variant="body3"
+                                        className="framework"
+                                      >
+                                        <LaunchIcon />
+                                        {t(
+                                          'content.usecaseParticipation.framework'
+                                        )}
+                                      </Typography>
+                                    </Link>
+                                  }
+                                />
+                                <Trans
+                                  values={{
+                                    expiry: credential.externalDetailData.expiry
+                                      ? credential.externalDetailData.expiry.split(
+                                          'T'
+                                        )[0]
+                                      : '',
+                                  }}
+                                >
+                                  <Typography
+                                    variant="body3"
+                                    className="forthSection"
+                                  >
+                                    {credential.externalDetailData.expiry
+                                      ? t('content.usecaseParticipation.expiry')
+                                      : 'N/A'}
+                                  </Typography>
+                                </Trans>
                                 <Typography
                                   variant="body3"
-                                  className="forthSection"
+                                  className="fifthSection"
                                 >
-                                  {credential.externalDetailData.expiry
-                                    ? t('content.usecaseParticipation.expiry')
-                                    : 'N/A'}
+                                  {renderStatus(item, credential)}
                                 </Typography>
-                              </Trans>
-                              <Typography
-                                variant="body3"
-                                className="fifthSection"
-                              >
-                                {renderStatus(item, credential)}
-                              </Typography>
-                            </li>
-                          </>
-                        )
-                      })}
-                    </ul>
-                    <hr className="seperation" />
-                  </div>
-                )
-              })}
+                              </li>
+                            </>
+                          )
+                        })}
+                      </ul>
+                      <hr className="seperation" />
+                    </div>
+                  )
+                })
+              )}
             </ul>
           </div>
         </div>

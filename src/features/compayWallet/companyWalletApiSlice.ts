@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiIdentityWalletQuery } from 'utils/rtkUtil'
+import { apiSsiCredentialQuery } from 'utils/rtkUtil'
 
 export interface WalletSectionContent {
   name: string
@@ -26,82 +26,38 @@ export interface WalletSectionContent {
 }
 
 export enum CredentialSubjectStatus {
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive',
-  UNKNOWN = 'Unknown',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  REVOKED = 'REVOKED',
 }
 
-export enum CredentialSubjectType {
-  SummaryCredential = 'SummaryCredential',
-  MembershipCredential = 'MembershipCredential',
-  BpnCredential = 'BpnCredential',
-  VerifiableCredential = 'VerifiableCredential',
-  Framework = 'Framework',
-  CompanyRole = 'CompanyRole',
-}
-export interface CredentialSubject {
-  holderIdentifier: string
-  id: string
-  type: CredentialSubjectType
-  contractTemplate: string
-  items?: CredentialSubjectType[]
-  status?: string
-  memberOf?: string
-  startTime?: string
+export enum CredentialType {
+  TRACEABILITY_FRAMEWORK = 'TRACEABILITY_FRAMEWORK',
+  PCF_FRAMEWORK = 'PCF_FRAMEWORK',
+  BEHAVIOR_TWIN_FRAMEWORK = 'BEHAVIOR_TWIN_FRAMEWORK',
+  DISMANTLER_CERTIFICATE = 'DISMANTLER_CERTIFICATE',
+  CIRCULAR_ECONOMY = 'CIRCULAR_ECONOMY',
+  BUSINESS_PARTNER_NUMBER = 'BUSINESS_PARTNER_NUMBER',
+  DEMAND_AND_CAPACITY_MANAGEMENT = 'DEMAND_AND_CAPACITY_MANAGEMENT',
+  DEMAND_AND_CAPACITY_MANAGEMENT_PURIS = 'DEMAND_AND_CAPACITY_MANAGEMENT_PURIS',
+  BUSINESS_PARTNER_DATA_MANAGEMENT = 'BUSINESS_PARTNER_DATA_MANAGEMENT',
+  MEMBERSHIP = 'MEMBERSHIP',
 }
 export interface WalletContent {
-  issuanceDate: string
-  credentialSubject: CredentialSubject[]
-  id: string
-  proof: {
-    proofPurpose: string
-    type: string
-    verificationMethod: string
-    created: string
-    jws: string
-  }
-  type: CredentialSubjectType[]
-  '@context': string[]
-  issuer: string
-  expirationDate: string
-}
-export interface CompanyWalletType {
-  content: WalletContent[]
-  pageable: {
-    sort: {
-      unsorted: boolean
-      sorted: boolean
-      empty: boolean
-    }
-    pageSize: number
-    pageNumber: number
-    offset: number
-    paged: boolean
-    unpaged: boolean
-  }
-  totalPages: number
-  totalElements: number
-  last: boolean
-  first: boolean
-  numberOfElements: number
-  size: number
-  number: number
-  sort: {
-    unsorted: boolean
-    sorted: boolean
-    empty: boolean
-  }
-  empty: boolean
+  credentialType: CredentialType
+  status: CredentialSubjectStatus
+  expiryDate: string
+  authority: string
 }
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyWallet',
-  baseQuery: fetchBaseQuery(apiIdentityWalletQuery()),
+  baseQuery: fetchBaseQuery(apiSsiCredentialQuery()),
   endpoints: (builder) => ({
-    fetchCompanyWallet: builder.query<CompanyWalletType, void>({
+    fetchCompanyWallet: builder.query<WalletContent[], void>({
       query: () => {
         return {
-          url: '/api/credentials',
+          url: '/api/issuer/owned-credentials',
         }
       },
     }),

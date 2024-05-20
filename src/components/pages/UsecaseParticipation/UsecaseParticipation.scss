@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -71,6 +71,11 @@
     max-width: 850px;
     width: 100%;
     margin: 0 auto 50px;
+    .progress-main {
+      height: 100px;
+      text-align: center;
+      padding: 30px;
+    }
     ul {
       list-style: none;
       .seperation {
