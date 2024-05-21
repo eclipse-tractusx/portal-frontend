@@ -39,8 +39,11 @@ export default function RuleCard({
   const getBgColor = (item: WalletContent) => {
     if (item?.status === CredentialSubjectStatus.ACTIVE) {
       return '#004F4B'
-    } else if (item?.status === CredentialSubjectStatus.INACTIVE) {
-      return '#F0F5D5'
+    } else if (
+      item?.status === CredentialSubjectStatus.INACTIVE ||
+      item?.status === CredentialSubjectStatus.REVOKED
+    ) {
+      return '#FEE7E2'
     } else {
       return '#FFA600'
     }
@@ -93,7 +96,8 @@ export default function RuleCard({
                     className="rule-card-container"
                     sx={{
                       backgroundColor:
-                        item?.status === CredentialSubjectStatus.INACTIVE
+                        item?.status === CredentialSubjectStatus.INACTIVE ||
+                        item?.status === CredentialSubjectStatus.REVOKED
                           ? '#EAEAEA'
                           : '#deeeef',
                     }}
@@ -102,9 +106,10 @@ export default function RuleCard({
                       <Typography
                         sx={{
                           color:
-                            item?.status !== CredentialSubjectStatus.INACTIVE
+                            item?.status !== CredentialSubjectStatus.INACTIVE &&
+                            item?.status !== CredentialSubjectStatus.REVOKED
                               ? '#fff !important'
-                              : '#428C5B !important',
+                              : '#FF532F !important',
                           backgroundColor: getBgColor(item),
                         }}
                         className="text"
