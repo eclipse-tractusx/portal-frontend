@@ -18,9 +18,30 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { getRequireHttpsUrlPattern } from 'services/EnvironmentService'
+
+// check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
+const requireHttpsUrlPattern = getRequireHttpsUrlPattern() === 'true'
+if (requireHttpsUrlPattern) {
+  console.log('HTTPS in URL patterns is required.')
+} else {
+  console.log('HTTPS in URL patterns is not required.')
+}
+
 const DOMAIN =
   /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
+// construct regex patterns for URL based on the REQUIRE_HTTPS_URL_PATTERN environment variable
+const urlPattern = requireHttpsUrlPattern
+  ? new RegExp(
+      `^(https)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
+      'i'
+    )
+  : new RegExp(
+      `^(https?)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
+      'i'
+    )
+const prefixUrlPattern = requireHttpsUrlPattern ? /^https:/i : /^https?:/i
 
 export const Patterns = {
   ID: /^[a-z0-9_.@-]{1,80}$/i,
@@ -29,10 +50,7 @@ export const Patterns = {
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*))@(([a-z0-9-]+\.)+[a-z]{2,})$/,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
-  URL: new RegExp(
-    `^(https)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
-    'i'
-  ),
+  URL: urlPattern,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
@@ -43,7 +61,7 @@ export const Patterns = {
   regionName: /^[0-9A-Za-z- ]{2,20}$/,
   prefix: {
     BPN: /^BPNL/i,
-    URL: /^https:/i,
+    URL: prefixUrlPattern,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
