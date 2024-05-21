@@ -37,7 +37,6 @@ import { uniqueId } from 'lodash'
 import { setSearchInput } from 'features/appManagement/actions'
 import { useDispatch } from 'react-redux'
 import {
-  CircleProgress,
   Button,
   Typography,
   Dialog,
@@ -144,9 +143,11 @@ export default function AdminCredentialElements() {
     await APIRequest(credentialId)
       .unwrap()
       .then(() => {
-        status === StatusType.APPROVE
-          ? success(t('content.adminCertificate.approvedMessage'))
-          : error(t('content.adminCertificate.declinedMessage'))
+        success(
+          t(
+            `content.adminCertificate.${status === StatusType.APPROVE ? 'approvedMessage' : 'declinedMessage'}`
+          )
+        )
         setRefresh(Date.now())
       })
       .catch(() => {
@@ -195,7 +196,7 @@ export default function AdminCredentialElements() {
     },
   ]
 
-  const renderStatus = (row: CredentialData) => {
+  const renderApproveDeclineBtn = (row: CredentialData) => {
     if (row.participantStatus === StatusEnum.PENDING) {
       return (
         <>
@@ -204,16 +205,7 @@ export default function AdminCredentialElements() {
             color="error"
             variant="contained"
             className="statusBtn"
-            endIcon={
-              declineLoading === row.credentialDetailId && (
-                <CircleProgress
-                  thickness={5}
-                  size={20}
-                  variant="indeterminate"
-                  colorVariant="secondary"
-                />
-              )
-            }
+            disabled={declineLoading === row.credentialDetailId}
             onClick={() =>
               handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
             }
@@ -225,16 +217,7 @@ export default function AdminCredentialElements() {
             color="success"
             variant="contained"
             className="statusBtn ml-10"
-            endIcon={
-              approveLoading === row.credentialDetailId && (
-                <CircleProgress
-                  thickness={5}
-                  size={20}
-                  variant="indeterminate"
-                  colorVariant="secondary"
-                />
-              )
-            }
+            disabled={approveLoading === row.credentialDetailId}
             onClick={() =>
               handleApproveDecline(row.credentialDetailId, StatusType.APPROVE)
             }
@@ -242,18 +225,6 @@ export default function AdminCredentialElements() {
             {t('global.actions.confirm')}
           </Button>
         </>
-      )
-    } else {
-      return (
-        <StatusTag
-          color={
-            row.participantStatus === StatusEnum.INACTIVE ? 'declined' : 'label'
-          }
-          label={row.participantStatus}
-          sx={{
-            height: '25px',
-          }}
-        />
       )
     }
   }
@@ -304,24 +275,43 @@ export default function AdminCredentialElements() {
     {
       field: 'credentialDetailId',
       headerName: '',
+      flex: 2,
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <StatusTag
+          color={
+            row.participantStatus === StatusEnum.INACTIVE ? 'declined' : 'label'
+          }
+          label={row.participantStatus}
+          sx={{
+            height: '25px',
+          }}
+          size="small"
+        />
+      ),
+    },
+    {
+      field: 'approveDecline',
+      headerName: '',
       flex: 2.5,
-      renderCell: ({ row }: { row: CredentialData }) => renderStatus(row),
+      renderCell: ({ row }: { row: CredentialData }) =>
+        renderApproveDeclineBtn(row),
     },
     {
       field: '',
       headerName: '',
-      flex: 1.5,
+      flex: 1,
       renderCell: ({ row }: { row: CredentialData }) => (
         <>
-          {UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) && (
-            <SettingsBackupRestoreIcon
-              className="revokeBtn"
-              onClick={() => {
-                setOpenRevokeOverlay(true)
-                setCredentialData(row)
-              }}
-            />
-          )}
+          {UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+            row.participantStatus === StatusEnum.ACTIVE && (
+              <SettingsBackupRestoreIcon
+                className="revokeBtn"
+                onClick={() => {
+                  setOpenRevokeOverlay(true)
+                  setCredentialData(row)
+                }}
+              />
+            )}
         </>
       ),
     },
