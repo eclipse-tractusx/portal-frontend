@@ -31,19 +31,8 @@ export const AppListGroup = ({
   items: AppMarketplaceCard[]
 }) => {
   const { t } = useTranslation()
-  const [itemsShown, setItemsShown] = useState('4')
+  const [itemsShown, setItemsShown] = useState(4)
   const itemsToShow = items.slice(0, Number(itemsShown))
-
-  const handleMoreAndCollapse = () => {
-    if (itemsToShow.length >= items.length) {
-      setItemsShown(() => {
-        return (4).toString()
-      })
-    } else
-      setItemsShown(() => {
-        return items.length.toString()
-      })
-  }
 
   return (
     <>
@@ -59,7 +48,9 @@ export const AppListGroup = ({
             category.replace(/\s+/g, '').toLowerCase()
         )}
         disabled={items.length <= 4}
-        onButtonClick={handleMoreAndCollapse}
+        onButtonClick={() => {
+          setItemsShown(itemsToShow.length >= items.length ? 4 : items.length)
+        }}
       />
       <Cards
         buttonText={t('global.actions.details')}
