@@ -375,7 +375,10 @@ const CompanyDetailOverlay = ({
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <Box sx={{ width: '100%', height }}>
-                <CheckListFullButtons progressButtons={checklistData} />
+                <CheckListFullButtons
+                  progressButtons={checklistData}
+                  selectedRequestId={selectedRequestId}
+                />
               </Box>
             </TabPanel>
           </DialogContent>
