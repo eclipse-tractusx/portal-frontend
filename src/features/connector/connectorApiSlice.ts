@@ -96,6 +96,13 @@ export interface ConnectorDetailsType {
   selfDescriptionDocumentId?: string | null
 }
 
+export type updateConnectorUrlType = {
+  connectorId: string
+  body: {
+    connectorUrl: string
+  }
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -154,6 +161,13 @@ export const apiSlice = createApi({
     fetchDecentralIdentityUrls: builder.query<DecentralIdentityUrlsType, void>({
       query: () => 'api/administration/companydata/decentralidentity/urls',
     }),
+    updateConnectorUrl: builder.mutation<void, updateConnectorUrlType>({
+      query: (data) => ({
+        url: `/api/administration/Connectors/${data.connectorId}/connectorUrl`,
+        method: 'PUT',
+        body: data.body,
+      }),
+    }),
   }),
 })
 
@@ -166,4 +180,5 @@ export const {
   useFetchManagedConnectorsQuery,
   useFetchOfferSubscriptionsQuery,
   useFetchDecentralIdentityUrlsQuery,
+  useUpdateConnectorUrlMutation,
 } = apiSlice

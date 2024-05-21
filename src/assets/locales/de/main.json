@@ -589,7 +589,11 @@
         "learnMore": "Learn More",
         "noDocumentAvailable": "Kein Dokument verfügbar",
         "selfDescriptionDocument": "Selbstbeschreibungsdokument",
-        "deleteConnector": "Connector löschen"
+        "deleteConnector": "Connector löschen",
+        "urlUpdatedSuccessfully": "URL erfolgreich aktualisiert",
+        "note": "Bitte beachten Sie:",
+        "noteDesc": "Wenn Sie die URL des Connectors ändern, wird das aktuelle SD-Dokument ungültig und vom System wird automatisch ein neues erstellt",
+        "urlErrorMessage": "Ein Fehler ist aufgetreten. Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut oder kommen Sie später wieder"
       },
       "rowValue": {
         "owned": "Owned",

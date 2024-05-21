@@ -588,7 +588,11 @@
         "learnMore": "Learn More",
         "noDocumentAvailable": "No Document available",
         "selfDescriptionDocument": "Self Description Document",
-        "deleteConnector": "Delete Connector"
+        "deleteConnector": "Delete Connector",
+        "urlUpdatedSuccessfully": "URL updated successfully",
+        "note": "Please Note:",
+        "noteDesc": "If you change the URL of the connector, the current SD document becomes invalid and a new one will be created automatically by the system",
+        "urlErrorMessage": "An error has occured. The changes could not be saved. Please try again or come back later"
       },
       "rowValue": {
         "owned": "Owned",
@@ -620,7 +624,6 @@
       "subDesc2": "https://bpnl00000003crhk-catena-x.authentication.eu10.hana.ondemand.com/oauth/token",
       "subDesc3": "https://dis-integration-service-prod.eu10.dim.cloud.sap/api/v2.0.0/iatp/catena-x-portal",
       "subDesc4": "Did:web:xxxxxxxxx",
-
       "subheadertitle": "Connector",
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",

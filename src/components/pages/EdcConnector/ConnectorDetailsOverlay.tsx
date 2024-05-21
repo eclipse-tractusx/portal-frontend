@@ -27,15 +27,17 @@ import {
   Typography,
   Checkbox,
   CircleProgress,
+  LoadingButton,
 } from '@catena-x/portal-shared-components'
 import {
   type ConnectorDetailsType,
   useDeleteConnectorMutation,
+  useUpdateConnectorUrlMutation,
 } from 'features/connector/connectorApiSlice'
 import { Box, Divider, Grid } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import { useState } from 'react'
-import { error } from 'services/NotifyService'
+import { useEffect, useState } from 'react'
+import { error, success } from 'services/NotifyService'
 import EditIcon from '@mui/icons-material/Edit'
 
 interface DeleteConfirmationOverlayProps {
@@ -55,7 +57,14 @@ const ConnectorDetailsOverlay = ({
   const [deleteConnector] = useDeleteConnectorMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [enableConnectorUrl, setEnableConnectorUrl] = useState(true)
-  const [enableConnectorName, setEnableConnectorName] = useState(true)
+  const [updateConnectorUrl] = useUpdateConnectorUrlMutation()
+  const [isLoading, setIsLoading] = useState(false)
+  const [urlErrorMessage, setUrlErrorMessage] = useState(false)
+  const [connectorUrlValue, setConnectorUrlValue] = useState('')
+
+  useEffect(() => {
+    setConnectorUrlValue(overlayData?.connectorUrl ?? '')
+  }, [overlayData])
 
   const detailsData = [
     {
@@ -106,6 +115,30 @@ const ConnectorDetailsOverlay = ({
           err
         )
       })
+  }
+
+  const handleUrlSubmit = async () => {
+    setIsLoading(true)
+
+    if (overlayData?.id) {
+      const saveData = {
+        connectorId: overlayData.id,
+        body: {
+          connectorUrl: connectorUrlValue,
+        },
+      }
+
+      await updateConnectorUrl(saveData)
+        .unwrap()
+        .then(() => {
+          success(t('content.edcconnector.details.urlUpdatedSuccessfully'))
+          setEnableConnectorUrl(true)
+        })
+        .catch(() => {
+          setUrlErrorMessage(true)
+        })
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -217,8 +250,8 @@ const ConnectorDetailsOverlay = ({
               {t('content.edcconnector.details.learnMore')}
             </Button>
           </Box>
-          <Grid container spacing={2} sx={{ margin: '0px', padding: 0 }}>
-            <Grid xs={11}>
+          <Grid container spacing={2}>
+            <Grid xs={12}>
               <Input
                 label={
                   <Typography variant="body2">
@@ -226,20 +259,8 @@ const ConnectorDetailsOverlay = ({
                   </Typography>
                 }
                 value={overlayData?.name ?? ''}
-                disabled={enableConnectorName}
+                disabled={true}
                 sx={{ marginBottom: '20px' }}
-              />
-            </Grid>
-            <Grid xs={1}>
-              <EditIcon
-                sx={{
-                  color: '#0f71cb',
-                  cursor: 'pointer',
-                  mt: 8,
-                }}
-                onClick={() => {
-                  setEnableConnectorName(false)
-                }}
               />
             </Grid>
             <Grid xs={11}>
@@ -249,9 +270,12 @@ const ConnectorDetailsOverlay = ({
                     {t('content.edcconnector.details.url')}
                   </Typography>
                 }
-                value={overlayData?.connectorUrl ?? ''}
+                value={connectorUrlValue}
                 disabled={enableConnectorUrl}
                 sx={{ marginBottom: '20px' }}
+                onChange={(e) => {
+                  setConnectorUrlValue(e.target.value)
+                }}
               />
             </Grid>
             <Grid xs={1}>
@@ -263,10 +287,70 @@ const ConnectorDetailsOverlay = ({
                 }}
                 onClick={() => {
                   setEnableConnectorUrl(false)
+                  setUrlErrorMessage(false)
                 }}
               />
             </Grid>
+            {!enableConnectorUrl && (
+              <>
+                <Typography variant="label3">
+                  {t('content.edcconnector.details.note')}
+                </Typography>
+                <Typography variant="caption3">
+                  {t('content.edcconnector.details.noteDesc')}
+                </Typography>
+                <Box
+                  sx={{
+                    textAlign: 'center',
+                    margin: '16px auto',
+                    display: 'flex',
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                      setEnableConnectorUrl(true)
+                      setConnectorUrlValue(overlayData?.connectorUrl ?? '')
+                    }}
+                    size="small"
+                    sx={{ mr: 2 }}
+                  >
+                    {t('global.actions.cancel')}
+                  </Button>
+                  {isLoading ? (
+                    <LoadingButton
+                      size="small"
+                      variant="contained"
+                      onButtonClick={() => {
+                        // do nothing
+                      }}
+                      loading={isLoading}
+                      label={`${t('global.actions.confirm')}`}
+                      loadIndicator="Loading..."
+                    />
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      onClick={handleUrlSubmit}
+                      size="small"
+                    >
+                      {t('global.actions.submit')}
+                    </Button>
+                  )}
+                </Box>
+              </>
+            )}
           </Grid>
+          {urlErrorMessage && (
+            <Typography
+              variant="label3"
+              sx={{
+                color: '#d32f2f',
+              }}
+            >
+              {t('content.edcconnector.details.urlErrorMessage')}
+            </Typography>
+          )}
           <Divider sx={{ margin: '20px auto', color: 'black' }} />
 
           {detailsData.map((item) => {
@@ -286,7 +370,7 @@ const ConnectorDetailsOverlay = ({
                 t('content.edcconnector.details.SdRegistration') ? (
                   <Grid item sx={{ ml: 0, mr: 0, float: 'left' }} xs={1}>
                     <Checkbox
-                      checked={item.value === null}
+                      checked={item.value !== null}
                       disabled={item.value === null}
                     />
                   </Grid>
