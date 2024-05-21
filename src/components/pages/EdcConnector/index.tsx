@@ -314,6 +314,30 @@ const EdcConnector = () => {
     setActiveTab(newValue)
   }
 
+  const getTabIcon = (step: number) => {
+    return (
+      <Typography
+        sx={{
+          background: activeTab + 1 === step ? '#0f71cb' : 'white',
+          color: activeTab + 1 === step ? 'white' : '#0f71cb',
+          outline: '2px solid #0f71cb',
+          flex: '0',
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          minWidth: '20px',
+          textAlign: 'center',
+          lineHeight: '20px',
+          marginRight: '20px',
+          position: 'relative',
+        }}
+        variant="label3"
+      >
+        {step}
+      </Typography>
+    )
+  }
+
   return (
     <main className="connector-page-container">
       <PageSnackbar
@@ -430,6 +454,8 @@ const EdcConnector = () => {
           sx={{ mb: 1 }}
         >
           <Tab
+            icon={getTabIcon(1)}
+            iconPosition="start"
             sx={{
               width: '100%',
               maxWidth: '550px',
@@ -444,6 +470,8 @@ const EdcConnector = () => {
             aria-controls={`simple-tabpanel-${activeTab}`}
           />
           <Tab
+            icon={getTabIcon(2)}
+            iconPosition="start"
             sx={{
               width: '100%',
               maxWidth: '550px',

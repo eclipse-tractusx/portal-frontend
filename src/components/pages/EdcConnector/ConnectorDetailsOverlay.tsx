@@ -83,7 +83,7 @@ const ConnectorDetailsOverlay = ({
     },
     {
       key: t('content.edcconnector.details.SdRegistration'),
-      value: overlayData?.selfDescriptionDocumentId === null ? false : true,
+      value: overlayData?.selfDescriptionDocumentId,
     },
   ]
 
@@ -286,8 +286,8 @@ const ConnectorDetailsOverlay = ({
                 t('content.edcconnector.details.SdRegistration') ? (
                   <Grid item sx={{ ml: 0, mr: 0, float: 'left' }} xs={1}>
                     <Checkbox
-                      checked={item.value !== null}
-                      disabled={!item.value}
+                      checked={item.value === null}
+                      disabled={item.value === null}
                     />
                   </Grid>
                 ) : (
