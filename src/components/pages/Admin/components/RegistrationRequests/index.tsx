@@ -38,7 +38,6 @@ import { RequestList } from './components/RequestList'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
-import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
 
@@ -71,8 +70,6 @@ export default function RegistrationRequests() {
   const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
   const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
 
-  const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
-    useState<boolean>(false)
   const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
     useState<boolean>(false)
   const [selectedRequestName, setSelectedRequestName] = useState<string>('')
@@ -211,15 +208,6 @@ export default function RegistrationRequests() {
         companyName={selectedRequestName}
         selectedRequestId={selectedRequestId}
       />
-      {statusConfirmationOverlay && selectedRequestId && (
-        <CheckListStatusOverlay
-          openDialog={statusConfirmationOverlay}
-          handleOverlayClose={() => {
-            setStatusConfirmationOverlay(false)
-          }}
-          selectedRequestId={selectedRequestId}
-        />
-      )}
       <AddBpnOveraly
         openDialog={enableBpnInput}
         isLoading={isLoading}

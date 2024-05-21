@@ -7,6 +7,8 @@
 - Technical User Creation - API Response Changes
 - AppSubscription, Service Subscription, Company Subscription
   - Validation of Technical User UIs for multiple tech user support
+- Application Request
+  - Implement Expandable Status Detail Overlay
 
 ### Change
 
