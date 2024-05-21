@@ -39,7 +39,7 @@ import { useEffect, useState } from 'react'
 import './EdcComponentStyles.scss'
 import { ConnectorFormFields } from '..'
 
-const ConnectorFormInput = ({
+export const ConnectorFormInput = ({
   control,
   trigger,
   errors,

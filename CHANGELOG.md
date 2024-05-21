@@ -7,6 +7,8 @@
 - Technical User Creation - API Response Changes
 - AppSubscription, Service Subscription, Company Subscription
   - Validation of Technical User UIs for multiple tech user support
+- Connector Management
+  - Updated main page UI and added details overlay and functionality
 
 ### Change
 

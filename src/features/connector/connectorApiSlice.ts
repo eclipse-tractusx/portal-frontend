@@ -83,6 +83,19 @@ export interface DecentralIdentityUrlsType {
   decentralIdentityManagementAuthUrl: string
 }
 
+export interface ConnectorDetailsType {
+  name: string
+  location: string
+  id: string
+  type: string
+  status: string
+  hostId: string
+  hostCompanyName: string
+  connectorUrl: string
+  technicalUser: string
+  selfDescriptionDocumentId?: string | null
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -100,6 +113,9 @@ export const apiSlice = createApi({
         method: 'POST',
         body,
       }),
+    }),
+    fetchConnectorDetails: builder.query<ConnectorDetailsType, string>({
+      query: (connectorID) => `/api/administration/Connectors/${connectorID}`,
     }),
     deleteConnector: builder.mutation<void, string>({
       query: (connectorID) => ({
@@ -144,6 +160,7 @@ export const apiSlice = createApi({
 export const {
   useCreateConnectorMutation,
   useCreateManagedConnectorMutation,
+  useFetchConnectorDetailsQuery,
   useDeleteConnectorMutation,
   useFetchConnectorsQuery,
   useFetchManagedConnectorsQuery,
