@@ -406,6 +406,7 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.TECHNICAL_SETUP_VIEW,
     element: <EdcConnector />,
   },
+  // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
   {
     name: PAGES.TECHNICAL_SETUP,
     role: ROLES.TECHNICAL_SETUP_VIEW,
