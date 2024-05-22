@@ -42,7 +42,7 @@ npm/npmjs/-/base64-js/1.5.1, MIT, approved, clearlydefined
 npm/npmjs/-/binary-extensions/2.3.0, MIT, approved, #13867
 npm/npmjs/-/brace-expansion/1.1.11, MIT, approved, clearlydefined
 npm/npmjs/-/brace-expansion/2.0.1, MIT, approved, clearlydefined
-npm/npmjs/-/braces/3.0.2, MIT, approved, clearlydefined
+npm/npmjs/-/braces/3.0.2, MIT, approved, #14866
 npm/npmjs/-/browserslist/4.23.0, MIT, approved, clearlydefined
 npm/npmjs/-/bs-logger/0.2.6, MIT, approved, clearlydefined
 npm/npmjs/-/bser/2.1.1, Apache-2.0, approved, clearlydefined
