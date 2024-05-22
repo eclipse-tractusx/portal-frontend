@@ -28,6 +28,7 @@ export enum StatusEnum {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
   PENDING = 'PENDING',
+  REVOKED = 'REVOKED',
 }
 
 export type SSIDetailData = {
@@ -60,7 +61,7 @@ export type CredentialData = {
   companyId: string
   credentialType: string
   useCase: string
-  participantStatus: string
+  participantStatus: StatusEnum
   expiryDate: string
   documents: Array<{
     documentId: string
@@ -135,6 +136,12 @@ export const apiSlice = createApi({
     fetchCertificateTypes: builder.query<string[], void>({
       query: () => '/api/administration/companydata/certificateTypes',
     }),
+    revokeCredential: builder.mutation<string, string>({
+      query: (credentialId) => ({
+        url: `${getSsiBase()}/api/revocation/issuer/credentials/${credentialId}`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
@@ -145,4 +152,5 @@ export const {
   useApproveCredentialMutation,
   useDeclineCredentialMutation,
   useFetchCertificateTypesQuery,
+  useRevokeCredentialMutation,
 } = apiSlice

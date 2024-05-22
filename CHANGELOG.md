@@ -7,6 +7,9 @@
 - Technical User Creation - API Response Changes
 - AppSubscription, Service Subscription, Company Subscription
   - Validation of Technical User UIs for multiple tech user support
+- Admin Credential
+  - Implement Credential Revocation Feature
+  - Add Credential Status
 
 ### Change
 
