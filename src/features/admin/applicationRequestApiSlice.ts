@@ -120,6 +120,7 @@ export type ProgressButtonsType = {
   retriggerableProcessSteps?: string[]
   status?: string
   type?: string
+  selectedRequestId?: string
 }
 
 export const progressMapper = {
