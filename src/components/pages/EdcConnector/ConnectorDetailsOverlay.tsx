@@ -40,6 +40,8 @@ import { useEffect, useState } from 'react'
 import { error, success } from 'services/NotifyService'
 import EditIcon from '@mui/icons-material/Edit'
 import Patterns from 'types/Patterns'
+import { useFetchDocumentMutation } from 'features/serviceManagement/apiSlice'
+import { download } from 'utils/downloadUtils'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
@@ -53,6 +55,7 @@ const ConnectorDetailsOverlay = ({
   overlayData,
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
+  const [fetchDocumentById] = useFetchDocumentMutation()
   const [openDeleteConnector, setOpenDeleteConnector] = useState(false)
   const [deleteConnectorSuccess, setDeleteConnectorSuccess] = useState(false)
   const [deleteConnector] = useDeleteConnectorMutation()
@@ -97,6 +100,23 @@ const ConnectorDetailsOverlay = ({
       value: overlayData?.selfDescriptionDocumentId,
     },
   ]
+
+  const handleDownloadFn = async (documentId: string, documentName: string) => {
+    if (overlayData?.id) {
+      try {
+        const response = await fetchDocumentById({
+          appId: overlayData.id,
+          documentId,
+        }).unwrap()
+
+        const fileType = response.headers.get('content-type')
+        const file = response.data
+        download(file, fileType, documentName)
+      } catch (err) {
+        error(t('content.edcconnector.details.errormessage'), '', '')
+      }
+    }
+  }
 
   const handleDeleteConnector = async () => {
     setLoading(true)
@@ -418,7 +438,16 @@ const ConnectorDetailsOverlay = ({
                 ) : (
                   <>
                     <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
-                    <button className="document-button-link" onClick={() => {}}>
+                    <button
+                      className="document-button-link"
+                      onClick={() =>
+                        overlayData?.selfDescriptionDocumentId &&
+                        handleDownloadFn(
+                          overlayData?.selfDescriptionDocumentId,
+                          t('content.edcconnector.details.SdDocument')
+                        )
+                      }
+                    >
                       {t(
                         'content.edcconnector.details.selfDescriptionDocument'
                       )}
