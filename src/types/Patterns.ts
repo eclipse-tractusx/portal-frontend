@@ -20,20 +20,19 @@
 
 import { getRequireHttpsUrlPattern } from 'services/EnvironmentService'
 
-// check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
-const requireHttpsUrlPattern = getRequireHttpsUrlPattern() === 'true'
+// check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to !== 'false' if not set
+const requireHttpsUrlPattern = getRequireHttpsUrlPattern() !== 'false'
 
 const DOMAIN =
   /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
 // construct regex patterns for URL based on the REQUIRE_HTTPS_URL_PATTERN environment variable
+const urlProtocol = requireHttpsUrlPattern ? 'https' : 'https?'
 const urlPattern = new RegExp(
-  `^(http${requireHttpsUrlPattern ? 's' : 's?'})://(${
-    DOMAIN.source
-  })(:\\d{1,5})?(${URLPATH.source})?$`,
+  `^(${urlProtocol})://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
   'i'
 )
-const prefixUrlPattern = requireHttpsUrlPattern ? /^https:/i : /^https?:/i
+const prefixUrlPattern = new RegExp(`^${urlProtocol}:`, 'i')
 
 export const Patterns = {
   ID: /^[a-z0-9_.@-]{1,80}$/i,
