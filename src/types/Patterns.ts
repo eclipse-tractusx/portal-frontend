@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getRequireHttpsUrlPattern } from 'services/EnvironmentService'
+import { getRequireHttpsUrlPattern } from '../services/EnvironmentService'
 
 // check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to !== 'false' if not set
 const requireHttpsUrlPattern = getRequireHttpsUrlPattern() !== 'false'
