@@ -96,9 +96,10 @@ export const RegistrationRequestsTableColumns = (
           <Typography
             variant="body2"
             className="cancelBtn"
-            onClick={() =>
+            onClick={(e) => {
+              e.stopPropagation()
               onConfirmationCancel?.(row.applicationId, row.companyName)
-            }
+            }}
           >
             {t('content.admin.registration-requests.cancel')}
           </Typography>

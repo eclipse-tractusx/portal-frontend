@@ -24,6 +24,8 @@
 - Side menu - Mobile version shows up all the menu in My company section
 - App marketplace
   - fixed display of images in app detail page
+- Identity Provider Config
+  - Added delete option for newly created "Managed IdPs"
 
 ## 2.0.0-RC7
 
