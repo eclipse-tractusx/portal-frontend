@@ -19,6 +19,10 @@
 
 declare const ENV: Record<string, string>
 
+// get the value of REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
+export const getRequireHttpsUrlPattern = () =>
+  typeof ENV === 'undefined' ? 'true' : ENV.REQUIRE_HTTPS_URL_PATTERN
+
 export const getApiBase = () =>
   typeof ENV === 'undefined' ? '' : ENV.PORTAL_BACKEND_URL
 
@@ -44,6 +48,7 @@ export const getManagedIdentityWalletsNewBase = () =>
 export const getClientIdManagedIdentityWallets = () => 'Cl5-CX-Custodian'
 
 const EnvironmentService = {
+  getRequireHttpsUrlPattern,
   getApiBase,
   getAssetBase,
   getBpdmApiBase,
