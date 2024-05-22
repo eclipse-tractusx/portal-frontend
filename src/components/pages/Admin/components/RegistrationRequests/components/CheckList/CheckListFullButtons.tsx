@@ -33,10 +33,12 @@ import { ProgressVerificationButton } from 'components/shared/basic/ProgressVeri
 
 interface CheckListFullButtonsProps {
   progressButtons?: Array<ProgressButtonsType>
+  selectedRequestId?: string
 }
 
 export default function CheckListFullButtons({
   progressButtons,
+  selectedRequestId,
 }: CheckListFullButtonsProps) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] =
@@ -143,7 +145,11 @@ export default function CheckListFullButtons({
       {checkListButtons && (
         <Box>
           {checkListButtons.map((button: ProgressButtonsType) => (
-            <ProgressVerificationButton key={button.typeId} {...button} />
+            <ProgressVerificationButton
+              key={button.typeId}
+              {...button}
+              selectedRequestId={selectedRequestId}
+            />
           ))}
         </Box>
       )}

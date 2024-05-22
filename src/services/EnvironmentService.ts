@@ -19,6 +19,10 @@
 
 declare const ENV: Record<string, string>
 
+// get the value of REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
+export const getRequireHttpsUrlPattern = () =>
+  ENV.REQUIRE_HTTPS_URL_PATTERN ?? 'true'
+
 export const getRealm = () => ENV.REALM ?? ''
 
 export const getClientId = () => ENV.CLIENT_ID ?? ''
@@ -46,6 +50,7 @@ export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 export const getSSICredentialBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
 
 const EnvironmentService = {
+  getRequireHttpsUrlPattern,
   getRealm,
   getClientId,
   getClientIdSemantic,

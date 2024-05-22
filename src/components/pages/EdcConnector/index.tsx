@@ -18,18 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, useEffect } from 'react'
+import { type SyntheticEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
 import type { GridCellParams, GridColDef } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import {
-  PageHeader,
   Typography,
   PageSnackbar,
   PageLoadingTable,
+  Button,
+  IconButton,
+  Tabs,
+  Tab,
+  TabPanel,
 } from '@catena-x/portal-shared-components'
-import PictureWithText from 'components/shared/frame/PictureWithText'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
 import './EdcConnector.scss'
@@ -45,6 +48,7 @@ import {
   useFetchConnectorsQuery,
   type ConnectorResponseBody,
   useFetchManagedConnectorsQuery,
+  type ConnectorDetailsType,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -57,6 +61,10 @@ import {
   useAddServiceAccountMutation,
   useFetchServiceAccountRolesQuery,
 } from 'features/admin/serviceApiSlice'
+import ConnectorDetailsOverlay from './ConnectorDetailsOverlay'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { Box } from '@mui/material'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -109,6 +117,9 @@ const EdcConnector = () => {
   const [newUserLoading, setNewUserLoading] = useState<boolean>(false)
   const [newUserSuccess, setNewUserSuccess] = useState<boolean>(false)
   const [serviceAccId, setServiceAccId] = useState('')
+  const [openDetailsOverlay, setOpenDetailsOverlay] = useState(false)
+  const [overlayData, setOverlayData] = useState<ConnectorDetailsType>()
+  const [activeTab, setActiveTab] = useState<number>(0)
 
   useEffect(() => {
     if (roles && roles.length > 0)
@@ -147,8 +158,16 @@ const EdcConnector = () => {
     setAddConnectorOverlayOpen(false)
   }
 
-  const onTableCellClick = (params: GridCellParams) => {
+  const onTableCellClick = (params: GridCellParams, title: string) => {
     // Show overlay only when detail field clicked
+    if (
+      params.field === 'details' &&
+      title === t('content.edcconnector.tabletitle')
+    ) {
+      setOpenDetailsOverlay(true)
+      setOverlayData(params.row)
+    }
+
     setSelectedConnector(params.row as ConnectorContentAPIResponse)
   }
 
@@ -288,10 +307,35 @@ const EdcConnector = () => {
     }
   }, [])
 
-  const onHelpButtonClicked = () => {
-    const url =
-      '/documentation/?path=user%2F02.+Technical+Integration%2F01.+Connector+Registration%2F02.+Connector+Registration.md'
-    window.open(url, '_blank')
+  const handleChange = (
+    _event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => {
+    setActiveTab(newValue)
+  }
+
+  const getTabIcon = (step: number) => {
+    return (
+      <Typography
+        sx={{
+          background: activeTab + 1 === step ? '#0f71cb' : 'white',
+          color: activeTab + 1 === step ? 'white' : '#0f71cb',
+          outline: '2px solid #0f71cb',
+          flex: '0',
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          minWidth: '20px',
+          textAlign: 'center',
+          lineHeight: '20px',
+          marginRight: '20px',
+          position: 'relative',
+        }}
+        variant="label3"
+      >
+        {step}
+      </Typography>
+    )
   }
 
   return (
@@ -303,6 +347,13 @@ const EdcConnector = () => {
         }}
         severity={notificationType}
         open={notificationOpen}
+      />
+      <ConnectorDetailsOverlay
+        openDialog={openDetailsOverlay}
+        handleOverlayClose={() => {
+          setOpenDetailsOverlay(false)
+        }}
+        overlayData={overlayData}
       />
       <DeleteConfirmationOverlay
         openDialog={deleteConnectorConfirmModalOpen}
@@ -331,54 +382,147 @@ const EdcConnector = () => {
           setViewConfigurationDetailsOverlayOpen(false)
         }}
       />
-      <PageHeader
-        title={t('content.edcconnector.headertitle')}
-        topPage={false}
-        headerHeight={200}
-      />
-      <section className={'picture-with-text-section'}>
-        <PictureWithText
-          text={'content.edcconnector.imagetext'}
-          onHelpButtonClicked={() => {
-            onHelpButtonClicked()
-          }}
-          onButtonClicked={() => {
-            setAddConnectorOverlayOpen(true)
-          }}
-          onNewHelpButtonClicked={() => {
-            setViewConfigurationDetailsOverlayOpen(true)
-          }}
-        />
+      <section>
+        <div className="edc-connector-header">
+          <Typography variant="h2" className="edc-connector-title">
+            {t('content.edcconnector.headertitle')}
+          </Typography>
+          <Typography variant="body2" className="edc-connector-desc">
+            {t('content.edcconnector.desc')}
+          </Typography>
+          <Box
+            sx={{
+              position: 'relative',
+              height: '100%',
+              width: '90%',
+              background: '#F4FBFD',
+              margin: 'auto',
+            }}
+          >
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="body3">
+                {t('content.edcconnector.subDesc1')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.subDesc2')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.subDesc3')}
+              </Typography>
+              <Typography variant="body3">
+                {' '}
+                {t('content.edcconnector.subDesc4')}{' '}
+              </Typography>
+            </Box>
+            <IconButton
+              aria-label="close"
+              onClick={() => {
+                setViewConfigurationDetailsOverlayOpen(true)
+              }}
+              sx={{
+                right: '0',
+                position: 'absolute',
+                top: '50%',
+                msTransform: 'translateY(-50%)',
+                transform: 'translateY(-50%)',
+              }}
+            >
+              <ArrowForwardIcon />
+            </IconButton>
+          </Box>
+
+          <div>
+            <Button
+              size="small"
+              startIcon={<AddCircleOutlineIcon />}
+              onClick={() => {
+                setAddConnectorOverlayOpen(true)
+              }}
+              className="add-idp-btn"
+            >
+              {t('content.edcconnector.addconnectorbutton')}
+            </Button>
+          </div>
+        </div>
       </section>
-      <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody, unknown>
-          toolbarVariant="premium"
-          title={t('content.edcconnector.tabletitle')}
-          loadLabel={t('global.actions.more')}
-          fetchHook={useFetchConnectorsQuery}
-          fetchHookRefresh={refresh}
-          getRowId={(row: { [key: string]: string }) => row.id}
-          columns={ownConnectorCols}
-          onCellClick={(params: GridCellParams) => {
-            onTableCellClick(params)
-          }}
-        />
-      </div>
-      <div className="connector-table-container">
-        <PageLoadingTable<ConnectorResponseBody, unknown>
-          toolbarVariant="premium"
-          title={t('content.edcconnector.managedtabletitle')}
-          loadLabel={t('global.actions.more')}
-          fetchHook={useFetchManagedConnectorsQuery}
-          fetchHookRefresh={refresh}
-          getRowId={(row: { [key: string]: string }) => row.id}
-          columns={managedConnectorCols}
-          noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
-          onCellClick={(params: GridCellParams) => {
-            onTableCellClick(params)
-          }}
-        />
-      </div>
+
+      <Box>
+        <Tabs
+          value={activeTab}
+          onChange={handleChange}
+          className="connector-table-container"
+          sx={{ mb: 1 }}
+        >
+          <Tab
+            icon={getTabIcon(1)}
+            iconPosition="start"
+            sx={{
+              width: '100%',
+              maxWidth: '550px',
+              '&.Mui-selected': {
+                borderBottom: '3px solid #0f71cb',
+              },
+              textTransform: 'none',
+              display: 'inline-flex',
+            }}
+            label={t('content.edcconnector.tabletitle')}
+            id={`simple-tab-${activeTab}`}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+          />
+          <Tab
+            icon={getTabIcon(2)}
+            iconPosition="start"
+            sx={{
+              width: '100%',
+              maxWidth: '550px',
+              '&.Mui-selected': {
+                borderBottom: '3px solid #0f71cb',
+              },
+              textTransform: 'none',
+              display: 'inline-flex',
+            }}
+            label={t('content.edcconnector.managedtabletitle')}
+            id={`simple-tab-${activeTab}`}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+          />
+        </Tabs>
+        <TabPanel value={activeTab} index={0}>
+          <div className="connector-table-container">
+            <PageLoadingTable<ConnectorResponseBody, unknown>
+              toolbarVariant="premium"
+              title={t('content.edcconnector.tabletitle')}
+              loadLabel={t('global.actions.more')}
+              fetchHook={useFetchConnectorsQuery}
+              fetchHookRefresh={refresh}
+              getRowId={(row: { [key: string]: string }) => row.id}
+              columns={ownConnectorCols}
+              onCellClick={(params: GridCellParams) => {
+                onTableCellClick(params, t('content.edcconnector.tabletitle'))
+              }}
+            />
+          </div>
+        </TabPanel>
+        <TabPanel value={activeTab} index={1}>
+          <div className="connector-table-container">
+            <PageLoadingTable<ConnectorResponseBody, unknown>
+              toolbarVariant="premium"
+              title={t('content.edcconnector.managedtabletitle')}
+              loadLabel={t('global.actions.more')}
+              fetchHook={useFetchManagedConnectorsQuery}
+              fetchHookRefresh={refresh}
+              getRowId={(row: { [key: string]: string }) => row.id}
+              columns={managedConnectorCols}
+              noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
+              onCellClick={(params: GridCellParams) => {
+                onTableCellClick(
+                  params,
+                  t('content.edcconnector.managedtabletitle')
+                )
+              }}
+            />
+          </div>
+        </TabPanel>
+      </Box>
       {response && (
         <ServerResponseOverlay
           title={getSuccessTitle()}
