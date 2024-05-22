@@ -4,31 +4,35 @@
 
 ### Feature
 
-- Technical User Creation - API Response Changes
-- AppSubscription, Service Subscription, Company Subscription
-  - Validation of Technical User UIs for multiple tech user support
+- Technical User Creation
+  - implemented API response changes
+- Technical User UIs
+  - introduced support for multiple technical users
 - Application Request
-  - Implement Expandable Status Detail Overlay
+  - implemented expandable status detail overlay
 - Admin Credential
-  - Implement Credential Revocation Feature
-  - Add Credential Status
+  - implemented credential revocation feature
+  - added credential status
 - Connector Management
-  - Updated main page UI and added details overlay and functionality
+  - updated main page UI and added details overlay and functionality
 
 ### Change
 
 - Technical Setup
   - updated overlay styling for connector configuration
 - Identity Provider Config
-  - Added links on click of 'learn more'
+  - added links on click of 'learn more'
+- URL Pattern validation
+  - made HTTPS in URL patterns configurable: enabled by default, HTTP can be configured by setting the introduced environment variable to false
 
 ### Bugfix
 
 - Usecase Participation
-  - Framework Agreement Request Page - Status missing
-- Side menu - Mobile version shows up all the menu in My company section
+  - fixed missing status in framework agreement request page
+- Side menu
+  - fixed missing "My company" section in mobile version
 - App marketplace
-  - fixed display of images in app detail page
+  - fixed displaying of images in app detail page
 - Identity Provider Config
   - Added delete option for newly created "Managed IdPs"
 
