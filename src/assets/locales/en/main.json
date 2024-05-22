@@ -592,7 +592,8 @@
         "urlUpdatedSuccessfully": "URL updated successfully",
         "note": "Please Note:",
         "noteDesc": "If you change the URL of the connector, the current SD document becomes invalid and a new one will be created automatically by the system",
-        "urlErrorMessage": "An error has occured. The changes could not be saved. Please try again or come back later"
+        "urlErrorMessage": "An error has occured. The changes could not be saved. Please try again or come back later",
+        "pleaseEnterValidURL": "Please enter a valid URL"
       },
       "rowValue": {
         "owned": "Owned",

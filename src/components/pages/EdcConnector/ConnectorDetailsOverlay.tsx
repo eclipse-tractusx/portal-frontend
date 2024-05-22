@@ -39,6 +39,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useEffect, useState } from 'react'
 import { error, success } from 'services/NotifyService'
 import EditIcon from '@mui/icons-material/Edit'
+import Patterns from 'types/Patterns'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
@@ -59,7 +60,8 @@ const ConnectorDetailsOverlay = ({
   const [enableConnectorUrl, setEnableConnectorUrl] = useState(true)
   const [updateConnectorUrl] = useUpdateConnectorUrlMutation()
   const [isLoading, setIsLoading] = useState(false)
-  const [urlErrorMessage, setUrlErrorMessage] = useState(false)
+  const [enableUrlApiErrorMsg, setEnableUrlApiErrorMsg] = useState(false)
+  const [urlErrorMsg, setUrlErrorMsg] = useState('')
   const [connectorUrlValue, setConnectorUrlValue] = useState('')
 
   useEffect(() => {
@@ -135,9 +137,18 @@ const ConnectorDetailsOverlay = ({
           setEnableConnectorUrl(true)
         })
         .catch(() => {
-          setUrlErrorMessage(true)
+          setEnableUrlApiErrorMsg(true)
         })
       setIsLoading(false)
+    }
+  }
+
+  const validateURL = (value: string) => {
+    setConnectorUrlValue(value)
+    if (!Patterns.URL.test(value.trim())) {
+      setUrlErrorMsg(t('content.edcconnector.details.pleaseEnterValidURL'))
+    } else {
+      setUrlErrorMsg('')
     }
   }
 
@@ -260,7 +271,7 @@ const ConnectorDetailsOverlay = ({
                 }
                 value={overlayData?.name ?? ''}
                 disabled={true}
-                sx={{ marginBottom: '20px' }}
+                sx={{ mb: 2 }}
               />
             </Grid>
             <Grid xs={11}>
@@ -272,11 +283,20 @@ const ConnectorDetailsOverlay = ({
                 }
                 value={connectorUrlValue}
                 disabled={enableConnectorUrl}
-                sx={{ marginBottom: '20px' }}
                 onChange={(e) => {
-                  setConnectorUrlValue(e.target.value)
+                  validateURL(e.target.value)
                 }}
               />
+              <Typography
+                variant="label3"
+                sx={{
+                  color: '#d32f2f',
+                  mb: 2,
+                  float: 'left',
+                }}
+              >
+                {urlErrorMsg}
+              </Typography>
             </Grid>
             <Grid xs={1}>
               <EditIcon
@@ -287,7 +307,7 @@ const ConnectorDetailsOverlay = ({
                 }}
                 onClick={() => {
                   setEnableConnectorUrl(false)
-                  setUrlErrorMessage(false)
+                  setEnableUrlApiErrorMsg(false)
                 }}
               />
             </Grid>
@@ -296,7 +316,7 @@ const ConnectorDetailsOverlay = ({
                 <Typography variant="label3">
                   {t('content.edcconnector.details.note')}
                 </Typography>
-                <Typography variant="caption3">
+                <Typography variant="caption3" sx={{ textAlign: 'left' }}>
                   {t('content.edcconnector.details.noteDesc')}
                 </Typography>
                 <Box
@@ -341,7 +361,7 @@ const ConnectorDetailsOverlay = ({
               </>
             )}
           </Grid>
-          {urlErrorMessage && (
+          {enableUrlApiErrorMsg && (
             <Typography
               variant="label3"
               sx={{

@@ -123,13 +123,11 @@ export const ConnectorTableColumns = (
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
-      renderCell: () => {
-        return (
-          <IconButton color="secondary">
-            <ArrowForwardIcon />
-          </IconButton>
-        )
-      },
+      renderCell: () => (
+        <IconButton color="secondary">
+          <ArrowForwardIcon />
+        </IconButton>
+      ),
     },
     {
       field: 'status',
