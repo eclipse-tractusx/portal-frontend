@@ -46,6 +46,7 @@ export enum PAGES {
   PARTNER_NETWORK = 'partnernetwork',
   USER_MANAGEMENT = 'usermanagement',
   TECHNICAL_SETUP = 'technicalsetup',
+  CONNECTOR_MANAGEMENT = 'connectormanagement',
   TECHUSER_MANAGEMENT = 'technicaluser',
   TECHUSER_DETAILS = 'techuserdetails',
   IDP_MANAGEMENT = 'idpmanagement',

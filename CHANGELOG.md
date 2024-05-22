@@ -12,6 +12,8 @@
 - Admin Credential
   - Implement Credential Revocation Feature
   - Add Credential Status
+- Connector Management
+  - Updated main page UI and added details overlay and functionality
 
 ### Change
 
