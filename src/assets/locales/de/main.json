@@ -1799,7 +1799,14 @@
       },
       "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
       "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
-      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator."
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator.",
+      "revokeOverlay": {
+        "title": "Revoke Credential",
+        "description": "Revoking a credential cannot be undone.",
+        "subDesc": "Do you want to revoke the credential:",
+        "success": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird.",
+        "error": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuche Sie es später erneut."
+      }
     },
     "certificates": {
       "heading": "Zertifikate",

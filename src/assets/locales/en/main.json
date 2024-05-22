@@ -1875,7 +1875,14 @@
       },
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
-      "errorMessage": "Something went wrong!"
+      "errorMessage": "Something went wrong!",
+      "revokeOverlay": {
+        "title": "Revoke Credential",
+        "description": "Revoking a credential cannot be undone.",
+        "subDesc": "Do you want to revoke the credential:",
+        "success": "The customer credential revocation has been successfully processed. With the successful revocation the credential is no longer valid. Note once a credential is revoked, the action cannot be undone, and the credential will no longer be recognized as valid.",
+        "error": "The revocation of the credential was unsuccessful. An error occurred. Please try again. If the problem persists, contact the site administrator"
+      }
     },
     "companyWallet": {
       "heading": "My Company Wallet",

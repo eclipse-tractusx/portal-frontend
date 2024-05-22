@@ -227,6 +227,7 @@ export enum ROLES {
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
+  REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
 }
 
 export enum HINTS {
