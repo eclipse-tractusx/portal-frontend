@@ -33,12 +33,14 @@ import { useTranslation } from 'react-i18next'
 import {
   AddressType,
   type CompanyDataType,
-  companyDataInitialData,
   useUpdateCompanySiteAndAddressMutation,
   type CompanyDataFieldsType,
 } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
-import { companyDataSelector } from 'features/companyData/slice'
+import {
+  companyDataInitialData,
+  companyDataSelector,
+} from 'features/companyData/slice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { cloneDeep } from 'lodash'

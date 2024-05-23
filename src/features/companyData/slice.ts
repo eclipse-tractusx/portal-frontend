@@ -29,134 +29,136 @@ export interface CompanyDataState {
   status: string
 }
 
-export const initialState: CompanyDataState = {
-  status: '',
-  row: {
-    externalId: '',
-    nameParts: [''],
-    identifiers: [
-      {
-        type: '',
-        value: '',
-        issuingBody: '',
-      },
-    ],
+export const companyDataInitialData: CompanyDataType = {
+  externalId: '',
+  nameParts: [''],
+  identifiers: [
+    {
+      type: null,
+      value: null,
+      issuingBody: null,
+    },
+  ],
+  states: [
+    {
+      validFrom: null,
+      validTo: null,
+      type: 'ACTIVE',
+    },
+  ],
+  roles: ['SUPPLIER'],
+  isOwnCompanyData: false,
+  legalEntity: {
+    legalEntityBpn: '',
+    legalName: '',
+    shortName: '',
+    legalForm: '',
+    confidenceCriteria: {
+      sharedByOwner: false,
+      checkedByExternalDataSource: false,
+      numberOfSharingMembers: 0,
+      lastConfidenceCheckAt: '',
+      nextConfidenceCheckAt: '',
+      confidenceLevel: 0,
+    },
     states: [
       {
-        validFrom: '',
-        validTo: '',
-        type: '',
+        validFrom: null,
+        validTo: null,
+        type: 'ACTIVE',
       },
     ],
-    roles: [],
-    isOwnCompanyData: false,
-    legalEntity: {
-      legalEntityBpn: '',
-      legalName: '',
-      shortName: '',
-      legalForm: '',
-      confidenceCriteria: {
-        sharedByOwner: false,
-        checkedByExternalDataSource: false,
-        numberOfSharingMembers: 0,
-        lastConfidenceCheckAt: '',
-        nextConfidenceCheckAt: '',
-        confidenceLevel: 0,
-      },
-      states: [
-        {
-          validFrom: '',
-          validTo: '',
-          type: '',
-        },
-      ],
-    },
-    site: {
-      siteBpn: '',
-      name: '',
-      confidenceCriteria: {
-        sharedByOwner: false,
-        checkedByExternalDataSource: false,
-        numberOfSharingMembers: 0,
-        lastConfidenceCheckAt: '',
-        nextConfidenceCheckAt: '',
-        confidenceLevel: 0,
-      },
-      states: [
-        {
-          validFrom: '',
-          validTo: '',
-          type: '',
-        },
-      ],
-    },
-    address: {
-      addressBpn: '',
-      name: '',
-      addressType: '',
-      physicalPostalAddress: {
-        geographicCoordinates: {
-          longitude: 0,
-          latitude: 0,
-          altitude: 0,
-        },
-        country: '',
-        administrativeAreaLevel1: '',
-        administrativeAreaLevel2: '',
-        administrativeAreaLevel3: '',
-        postalCode: '',
-        city: '',
-        district: '',
-        street: {
-          namePrefix: '',
-          additionalNamePrefix: '',
-          name: '',
-          nameSuffix: '',
-          additionalNameSuffix: '',
-          houseNumber: '',
-          houseNumberSupplement: '',
-          milestone: '',
-          direction: '',
-        },
-        companyPostalCode: '',
-        industrialZone: '',
-        building: '',
-        floor: '',
-        door: '',
-      },
-      alternativePostalAddress: {
-        geographicCoordinates: {
-          longitude: 0,
-          latitude: 0,
-          altitude: 0,
-        },
-        country: '',
-        administrativeAreaLevel1: '',
-        postalCode: '',
-        city: '',
-        deliveryServiceType: '',
-        deliveryServiceQualifier: '',
-        deliveryServiceNumber: '',
-      },
-      confidenceCriteria: {
-        sharedByOwner: true,
-        checkedByExternalDataSource: true,
-        numberOfSharingMembers: 0,
-        lastConfidenceCheckAt: '',
-        nextConfidenceCheckAt: '',
-        confidenceLevel: 0,
-      },
-      states: [
-        {
-          validFrom: '',
-          validTo: '',
-          type: '',
-        },
-      ],
-    },
-    createdAt: '',
-    updatedAt: '',
   },
+  site: {
+    siteBpn: '',
+    name: '',
+    confidenceCriteria: {
+      sharedByOwner: false,
+      checkedByExternalDataSource: false,
+      numberOfSharingMembers: 0,
+      lastConfidenceCheckAt: '',
+      nextConfidenceCheckAt: '',
+      confidenceLevel: 0,
+    },
+    states: [
+      {
+        validFrom: null,
+        validTo: null,
+        type: 'ACTIVE',
+      },
+    ],
+  },
+  address: {
+    addressBpn: '',
+    name: '',
+    addressType: '',
+    physicalPostalAddress: {
+      geographicCoordinates: {
+        longitude: 0,
+        latitude: 0,
+        altitude: 0,
+      },
+      country: '',
+      administrativeAreaLevel1: '',
+      administrativeAreaLevel2: '',
+      administrativeAreaLevel3: '',
+      postalCode: '',
+      city: '',
+      district: '',
+      street: {
+        namePrefix: '',
+        additionalNamePrefix: '',
+        name: '',
+        nameSuffix: '',
+        additionalNameSuffix: '',
+        houseNumber: '',
+        houseNumberSupplement: '',
+        milestone: '',
+        direction: '',
+      },
+      companyPostalCode: '',
+      industrialZone: '',
+      building: '',
+      floor: '',
+      door: '',
+    },
+    alternativePostalAddress: {
+      geographicCoordinates: {
+        longitude: 0,
+        latitude: 0,
+        altitude: 0,
+      },
+      country: null,
+      administrativeAreaLevel1: null,
+      postalCode: null,
+      city: null,
+      deliveryServiceType: null,
+      deliveryServiceQualifier: null,
+      deliveryServiceNumber: null,
+    },
+    confidenceCriteria: {
+      sharedByOwner: true,
+      checkedByExternalDataSource: true,
+      numberOfSharingMembers: 0,
+      lastConfidenceCheckAt: null,
+      nextConfidenceCheckAt: null,
+      confidenceLevel: 0,
+    },
+    states: [
+      {
+        validFrom: null,
+        validTo: null,
+        type: 'ACTIVE',
+      },
+    ],
+  },
+  createdAt: '',
+  updatedAt: '',
+}
+
+export const initialState: CompanyDataState = {
+  status: '',
+  row: companyDataInitialData,
 }
 
 const companyDataSlice = createSlice({

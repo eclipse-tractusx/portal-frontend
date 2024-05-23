@@ -166,7 +166,7 @@ export const CompanyAddressList = ({
               headerAlign: 'left',
               align: 'left',
               headerName: t('content.companyData.table.site'),
-              flex: 2,
+              flex: 1.5,
               valueGetter: ({ row }: { row: CompanyDataType }) =>
                 row.site?.name ?? '',
             },
@@ -175,7 +175,7 @@ export const CompanyAddressList = ({
               headerAlign: 'left',
               align: 'left',
               headerName: t('content.companyData.table.location'),
-              flex: 2,
+              flex: 2.5,
               valueGetter: ({ row }: { row: CompanyDataType }) =>
                 row.address
                   ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''} ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.country ?? ''}`
