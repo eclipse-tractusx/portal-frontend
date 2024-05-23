@@ -104,6 +104,11 @@ export interface CompanyDetails {
   companyRole: Array<string>
 }
 
+export type UniqueIdentifier = {
+  id: number
+  label: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/users',
   baseQuery: fetchBaseQuery({
@@ -158,7 +163,7 @@ export const apiSlice = createApi({
     fetchOwnUserDetails: builder.query<TenantUserDetails, void>({
       query: () => '/api/administration/user/ownUser',
     }),
-    fetchOwnCompanyDetails: builder.query<CompanyDetails, void>({
+    fetchOwnCompanyDetails: builder.query<CompanyDetails, string>({
       query: () => '/api/administration/companydata/ownCompanyDetails',
     }),
     deleteMyUser: builder.mutation<void, string>({
@@ -171,6 +176,11 @@ export const apiSlice = createApi({
       query: (id: string) => ({
         url: `/api/administration/user/ownCompany/users/${id}/resetPassword`,
         method: 'PUT',
+      }),
+    }),
+    fetchUniqueIdentifier: builder.query<UniqueIdentifier[], string>({
+      query: (alpha2Code) => ({
+        url: `/api/registration/company/country/${alpha2Code}/uniqueidentifiers`,
       }),
     }),
   }),
@@ -189,6 +199,7 @@ export const {
   useFetchOwnCompanyDetailsQuery,
   useDeleteMyUserMutation,
   useResetPasswordMutation,
+  useFetchUniqueIdentifierQuery,
 } = apiSlice
 
 const name = 'admin/user/add'

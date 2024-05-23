@@ -96,7 +96,7 @@ const AddConnectorOverlay = ({
 }: AddCollectorOverlayProps) => {
   const { t } = useTranslation()
   const { data } = useFetchOfferSubscriptionsQuery()
-  const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery()
+  const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery('')
   const fetchServiceAccountUsers = useFetchServiceAccountUsersQuery().data
   const [newTechnicalUSer, setNewTechnicalUSer] = useState(false)
 

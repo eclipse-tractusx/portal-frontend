@@ -92,6 +92,12 @@ const BasicInput = ({
     setFocus(document.activeElement === ref.current)
   }, [value])
 
+  useEffect(() => {
+    if (value !== '') {
+      onValue?.(value)
+    }
+  }, [value])
+
   return (
     <div style={{ width: '100%' }}>
       <div style={{ display: 'flex', marginTop: '12px' }}>

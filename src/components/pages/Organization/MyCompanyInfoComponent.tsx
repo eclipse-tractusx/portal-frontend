@@ -12,7 +12,7 @@ export default function MyCompanyInfoComponent({
   readonly editable?: boolean
 }) {
   const { t } = useTranslation()
-  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()
+  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
 
   const companyData = [
     {

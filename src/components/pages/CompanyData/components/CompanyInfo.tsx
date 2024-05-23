@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next'
 import LabelWithTooltips from './LabelWithTooltips'
 
 export default function CompanyInfo() {
-  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()
+  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
   const { t } = useTranslation()
 
   return (

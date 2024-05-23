@@ -23,8 +23,6 @@ import {
   DialogContent,
 } from '@catena-x/portal-shared-components'
 import { Box, Divider } from '@mui/material'
-import AddressDetails from './CreateAddress/AddressDetails'
-import SiteDetails from './CreateSite/SiteDetails'
 import { useState } from 'react'
 import StatusInformation from './StatusInformation'
 import CompanyInfo from './CompanyInfo'
@@ -32,12 +30,16 @@ import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
 import { useTranslation } from 'react-i18next'
+import { AddressType } from 'features/companyData/companyDataApiSlice'
+import SiteDetails from './SiteDetails'
+import AddressDetails from './AddressDetails'
 
 interface FormDetailsProps {
   readonly open: boolean
   readonly title: string
   readonly description?: string
   readonly handleClose: () => void
+  readonly handleConfirm: () => void
 }
 
 export default function DetailsOverlay({
@@ -45,6 +47,7 @@ export default function DetailsOverlay({
   title,
   description,
   handleClose,
+  handleConfirm,
 }: FormDetailsProps) {
   const { t } = useTranslation()
   const [edit, setEdit] = useState<boolean>(!open)
@@ -52,7 +55,7 @@ export default function DetailsOverlay({
     setEdit(true)
   }
   const companyData = useSelector(companyDataSelector)
-  const isSite = companyData.site.siteBpn
+  const isSite = companyData.address.addressType === AddressType.SiteMainAddress
   return (
     <Box>
       <Dialog open={!edit}>
@@ -77,7 +80,7 @@ export default function DetailsOverlay({
               margin: '0px 5%',
             }}
           />
-          {isSite || isSite !== '' ? (
+          {isSite ? (
             <SiteDetails onEdit={onEdit} />
           ) : (
             <AddressDetails onEdit={onEdit} />
@@ -95,7 +98,7 @@ export default function DetailsOverlay({
           description={''}
           handleClose={handleClose}
           open={edit}
-          handleConfirm={handleClose}
+          handleConfirm={handleConfirm}
         />
       )}
     </Box>

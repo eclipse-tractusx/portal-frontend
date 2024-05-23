@@ -28,23 +28,25 @@ import {
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useState } from 'react'
-import { SiteForm } from './CreateSite/SiteForm'
-import { AddressForm } from './CreateAddress/AddressForm'
+import { FormFields } from './FormFields'
 import { useTranslation } from 'react-i18next'
 import {
+  AddressType,
   type CompanyDataType,
+  companyDataInitialData,
   useUpdateCompanySiteAndAddressMutation,
-  type CompanyDataAddressType,
-  type CompanyDataSiteType,
+  type CompanyDataFieldsType,
 } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
 import { companyDataSelector } from 'features/companyData/slice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { cloneDeep } from 'lodash'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 
 interface FormDetailsProps {
   readonly open: boolean
-  readonly title: string
+  readonly title?: string
   readonly description?: string
   readonly handleClose: () => void
   readonly isAddress?: boolean
@@ -54,12 +56,11 @@ interface FormDetailsProps {
 
 export default function EditForm({
   open,
-  title,
   description,
   handleClose,
   isAddress = false,
-  handleConfirm,
   newForm = false,
+  handleConfirm,
 }: FormDetailsProps) {
   const { t } = useTranslation()
   const [loading, setLoading] = useState<boolean>(false)
@@ -69,59 +70,100 @@ export default function EditForm({
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const handleSubmit = () => {
-    setLoading(false)
-    handleConfirm()
+    setLoading(true)
+    handleCreation()
   }
+  const { data: companyInfo } = useFetchOwnCompanyDetailsQuery('', {
+    skip: !newForm,
+  })
+  const [input, setInput] = useState<CompanyDataType>(companyDataInitialData)
+  const inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
+  if (companyInfo) {
+    inputParams.externalId =
+      `${companyInfo?.bpn}_${new Date().toISOString()}` ?? ''
+    inputParams.legalEntity.legalEntityBpn = companyInfo?.bpn
+    inputParams.legalEntity.legalName = companyInfo?.name
+    inputParams.legalEntity.shortName = companyInfo?.shortName
+  }
+  const getFilledData = (form: { body: CompanyDataFieldsType }) => {
+    inputParams.address.physicalPostalAddress.postalCode = form.body.postalCode
+    inputParams.address.physicalPostalAddress.city = form.body.city
+    inputParams.address.physicalPostalAddress.country = form.body.countryCode
+    inputParams.address.physicalPostalAddress.street.name = form.body.street
+    inputParams.identifiers.push({
+      type: form.body.countryIdentifier,
+      value: form.body.identifierNumber,
+      issuingBody: null,
+    })
+    setInput(inputParams)
+  }
+
   const handleSiteValidation = (
-    form: { body: CompanyDataSiteType } | undefined
+    form: { body: CompanyDataFieldsType } | undefined
   ) => {
     setIsValid(form !== undefined)
     if (form) {
-      const input = {
-        ...companyData,
-      }
-      handleCreation(input)
+      inputParams.site.name = form.body.siteName
+      inputParams.address.addressType = AddressType.SiteMainAddress
+      getFilledData(form)
     }
   }
 
   const handleAddressValidation = (
-    form: { body: CompanyDataAddressType } | undefined
+    form: { body: CompanyDataFieldsType } | undefined
   ) => {
     setIsValid(form !== undefined)
     if (form) {
-      const inputData = {
-        ...companyData,
-      }
-      handleCreation(inputData)
+      inputParams.site.name = form.body.siteName
+      inputParams.address.name = form.body.addressTitle
+      inputParams.address.addressType = AddressType.AdditionalAddress
+      getFilledData(form)
     }
   }
 
-  const handleCreation = async (inputData: CompanyDataType) => {
-    await updateData([inputData])
-      .unwrap()
-      .then(() => {
-        setSuccess(true)
-      })
-      .then(() => {
-        setError(true)
-      })
+  const handleCreation = async () => {
+    try {
+      await updateData([input])
+        .unwrap()
+        .then(() => {
+          setSuccess(true)
+        })
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
+  }
+
+  const getTitle = () => {
+    if (newForm) {
+      return isAddress
+        ? t('content.companyData.address.title')
+        : t('content.companyData.site.title')
+    } else {
+      return isAddress
+        ? t('content.companyData.address.editTitle')
+        : t('content.companyData.site.editTitle')
+    }
   }
 
   return (
     <Box>
       <Dialog open={open}>
         <DialogHeader
-          title={title}
+          title={getTitle()}
           intro={description}
           closeWithIcon={true}
           onCloseWithIcon={handleClose}
         />
         <DialogContent>
-          {isAddress ? (
-            <AddressForm newForm={newForm} onValid={handleAddressValidation} />
-          ) : (
-            <SiteForm newForm={newForm} onValid={handleSiteValidation} />
-          )}
+          <FormFields
+            newForm={newForm}
+            onValid={(form: { body: CompanyDataFieldsType } | undefined) => {
+              isAddress
+                ? handleAddressValidation(form)
+                : handleSiteValidation(form)
+            }}
+          />
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose}>
@@ -160,15 +202,19 @@ export default function EditForm({
         <ServerResponseOverlay
           title={
             isAddress
-              ? t('content.companyData.error.title').replace(
+              ? t('content.companyData.success.title').replace(
                   '{name}',
                   'address'
                 )
-              : t('content.companyData.error.title').replace('{name}', 'site')
+              : t('content.companyData.success.title').replace('{name}', 'site')
           }
-          intro={t('content.companyData.error.description')}
+          intro={t('content.companyData.success.description')}
           dialogOpen={true}
-          handleCallback={() => {}}
+          handleCallback={() => {
+            handleConfirm()
+            setSuccess(false)
+            handleClose()
+          }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
@@ -188,7 +234,9 @@ export default function EditForm({
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
           }
-          handleCallback={() => {}}
+          handleCallback={() => {
+            setError(false)
+          }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>

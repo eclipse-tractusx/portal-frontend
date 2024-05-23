@@ -33,6 +33,7 @@ export default function CompanyData() {
     address: false,
     site: false,
   })
+  const [refetch, setRefetch] = useState<number>(0)
 
   const updateOverlay = () => {
     setShowOverlay((old) => {
@@ -69,21 +70,20 @@ export default function CompanyData() {
             return { ...old }
           })
         }}
+        refetch={refetch !== 0}
+        handleConfirm={() => {
+          setRefetch(Date.now())
+        }}
       />
       <EditForm
         newForm={true}
         isAddress={showOverlay.address}
-        title={
-          showOverlay.address
-            ? t('content.companyData.address.title')
-            : t('content.companyData.site.title')
-        }
         handleClose={() => {
           updateOverlay()
         }}
         open={showOverlay.address || showOverlay.site}
         handleConfirm={() => {
-          updateOverlay()
+          setRefetch(Date.now())
         }}
       />
     </main>

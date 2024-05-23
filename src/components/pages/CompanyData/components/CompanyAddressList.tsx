@@ -17,10 +17,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Table, Typography } from '@catena-x/portal-shared-components'
-import { appManagementSelector } from 'features/appManagement/slice'
+import { Chip, IconButton, Table } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
@@ -29,6 +28,7 @@ import {
   useFetchInputCompanyBusinessPartnersMutation,
   useFetchOutputCompanyBusinessPartnersMutation,
   useFetchSharingStateQuery,
+  AddressType,
 } from 'features/companyData/companyDataApiSlice'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -45,14 +45,16 @@ import LoadingProgress from 'components/shared/basic/LoadingProgress'
 export const CompanyAddressList = ({
   handleButtonClick,
   handleSecondButtonClick,
+  refetch = false,
+  handleConfirm,
 }: {
   handleButtonClick: () => void
   handleSecondButtonClick: () => void
+  refetch: boolean
+  handleConfirm: () => void
 }) => {
   const { t } = useTranslation()
-  const searchInputData = useSelector(appManagementSelector)
-  const [searchExpr, setSearchExpr] = useState<string>('')
-  const { data } = useFetchSharingStateQuery()
+  const { data, refetch: refreshSharingData } = useFetchSharingStateQuery()
   const sharingStates = data?.content
   const [outputRequest] = useFetchOutputCompanyBusinessPartnersMutation()
   const [inputRequest] = useFetchInputCompanyBusinessPartnersMutation()
@@ -64,7 +66,9 @@ export const CompanyAddressList = ({
   const getInputItems = async () => {
     const params = sharingStates
       ?.filter(
-        (state) => state.sharingStateType === SharingStateStatusType.Pending
+        (state) =>
+          state.sharingStateType === SharingStateStatusType.Pending ||
+          state.sharingStateType === SharingStateStatusType.Initial
       )
       .map((state) => state.externalId)
 
@@ -91,9 +95,14 @@ export const CompanyAddressList = ({
   }
 
   useEffect(() => {
+    if (refetch) {
+      refreshSharingData()
+      setInputs([])
+      setOutputs([])
+    }
     getInputItems()
     getOutputItems()
-  }, [sharingStates])
+  }, [sharingStates, refetch])
 
   const getStatus = (id: string) =>
     sharingStates?.filter((state) => id === state.externalId)[0]
@@ -104,6 +113,32 @@ export const CompanyAddressList = ({
     setDetails(true)
     dispatch(setSelectedCompanyStatus(status))
     dispatch(setSelectedCompanyData(params.row))
+  }
+
+  const renderIcon = (status: string | undefined) => {
+    if (status === SharingStateStatusType.Success) {
+      return <CheckCircleIcon />
+    } else if (
+      status === SharingStateStatusType.Pending ||
+      status === SharingStateStatusType.Initial
+    ) {
+      return <HourglassBottomIcon />
+    } else {
+      return <WarningAmberIcon />
+    }
+  }
+
+  const getStatusColor = (status: string | undefined) => {
+    if (status === SharingStateStatusType.Success) {
+      return 'success'
+    } else if (
+      status === SharingStateStatusType.Pending ||
+      status === SharingStateStatusType.Initial
+    ) {
+      return 'warning'
+    } else {
+      return 'error'
+    }
   }
 
   return (
@@ -119,39 +154,48 @@ export const CompanyAddressList = ({
           toolbarVariant="premium"
           searchPlaceholder={t('content.companyData.table.search')}
           columnHeadersBackgroundColor={'#FFFFFF'}
-          searchInputData={searchInputData}
-          searchExpr={searchExpr}
-          onSearch={(expr: string) => {
-            setSearchExpr(expr)
-          }}
           searchDebounce={1000}
           noRowsMsg={t('content.companyData.table.noRowsMsg')}
           title={t('content.companyData.table.title')}
-          getRowId={(row: { [key: string]: string }) => row.externalId}
+          getRowId={(row: { [key: string]: string }) => row.createdAt}
           rows={inputs.concat(outputs)}
           onCellClick={onRowClick}
           columns={[
             {
               field: 'site',
-              headerAlign: 'center',
-              align: 'center',
+              headerAlign: 'left',
+              align: 'left',
               headerName: t('content.companyData.table.site'),
-              flex: 1,
-              valueGetter: ({ row }: { row: CompanyDataType }) => row.site.name,
+              flex: 2,
+              valueGetter: ({ row }: { row: CompanyDataType }) =>
+                row.site?.name ?? '',
             },
             {
               field: 'address',
-              headerAlign: 'center',
-              align: 'center',
+              headerAlign: 'left',
+              align: 'left',
               headerName: t('content.companyData.table.location'),
               flex: 2,
               valueGetter: ({ row }: { row: CompanyDataType }) =>
-                `${row.address.name},${row.address.physicalPostalAddress.street.name},${row.address.physicalPostalAddress.street.houseNumber},${row.address.physicalPostalAddress.city},${row.address.physicalPostalAddress.postalCode},${row.address.physicalPostalAddress.country}`,
+                row.address
+                  ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''} ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.country ?? ''}`
+                  : '',
+            },
+            {
+              field: 'type',
+              headerAlign: 'left',
+              align: 'left',
+              headerName: t('content.companyData.table.type'),
+              flex: 1,
+              valueGetter: ({ row }: { row: CompanyDataType }) =>
+                row.address.addressType === AddressType.SiteMainAddress
+                  ? 'S'
+                  : 'A',
             },
             {
               field: 'status',
               headerName: '',
-              align: 'center',
+              align: 'left',
               flex: 1,
               renderCell: ({ row }: { row: CompanyDataType }) => {
                 const status = getStatus(row.externalId)
@@ -162,23 +206,20 @@ export const CompanyAddressList = ({
                       alignItems: 'center',
                     }}
                   >
-                    {status === SharingStateStatusType.Success && (
-                      <CheckCircleIcon />
-                    )}
-                    {status === SharingStateStatusType.Pending && (
-                      <HourglassBottomIcon />
-                    )}
-                    {status === SharingStateStatusType.Ready && (
-                      <WarningAmberIcon />
-                    )}
-                    <Typography
+                    <Chip
+                      icon={renderIcon(status)}
+                      color={getStatusColor(status)}
+                      variant="filled"
+                      label={status}
+                      size="medium"
+                      withIcon={true}
                       sx={{
-                        marginLeft: '10px',
+                        marginRight: '0 !important',
+                        margin: '0 auto',
+                        width: '100px',
+                        maxWidth: '100px',
                       }}
-                      variant="body3"
-                    >
-                      {status}
-                    </Typography>
+                    />
                   </Box>
                 )
               },
@@ -186,15 +227,18 @@ export const CompanyAddressList = ({
             {
               field: 'details',
               headerName: '',
-              align: 'center',
+              align: 'left',
               flex: 0.5,
               renderCell: () => {
                 return (
-                  <ArrowForwardIcon
-                    sx={{
-                      cursor: 'pointer',
+                  <IconButton
+                    color="secondary"
+                    onClick={() => {
+                      // do nothing
                     }}
-                  />
+                  >
+                    <ArrowForwardIcon />
+                  </IconButton>
                 )
               },
             },
@@ -218,6 +262,7 @@ export const CompanyAddressList = ({
             setDetails(false)
           }}
           open={details}
+          handleConfirm={handleConfirm}
         />
       )}
     </>

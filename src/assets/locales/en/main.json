@@ -1900,10 +1900,12 @@
         "site": "Site Name",
         "location": "Location",
         "search": "search address / site",
-        "noRowsMsg": "No Data yet"
+        "noRowsMsg": "No Data yet",
+        "type": "Type"
       },
       "site": {
         "title": "Create new site",
+        "editTitle": "Edit Site",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
           "site": {
@@ -1945,6 +1947,7 @@
       },
       "address": {
         "title": "Create new address",
+        "editTitle": "Edit Address",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
           "companySite": {

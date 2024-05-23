@@ -37,7 +37,7 @@ export default function SiteDetails({
     },
     {
       attr: t('content.companyData.site.form.street.name'),
-      val: companySiteData.address.physicalPostalAddress.street.name ?? '',
+      val: companySiteData.address.physicalPostalAddress.street?.name ?? '',
     },
     {
       attr: t('content.companyData.site.form.postal.name'),

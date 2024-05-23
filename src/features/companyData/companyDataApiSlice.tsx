@@ -26,22 +26,22 @@ export type PaginationData = {
   totalPages: number
 }
 
-export type CompanyDataSiteType = {
-  siteName: string
-  street: string
-  postalCode: string
-  city: string
-  countryCode: string
-  countryIdentifier: string
-  identifierNumber: string
+export enum AddressType {
+  LegalAndSiteMainAddress = 'LegalAndSiteMainAddress',
+  LegalAddress = 'LegalAddress',
+  SiteMainAddress = 'SiteMainAddress',
+  AdditionalAddress = 'AdditionalAddress',
 }
 
-export type CompanyDataAddressType = {
-  companySite: string
-  street: string
-  postalCode: string
-  city: string
-  addressTitle: string
+export type CompanyDataFieldsType = {
+  siteName: string | undefined | null
+  street: string | undefined | null
+  postalCode: string | undefined | null
+  city: string | undefined | null
+  countryCode: string | undefined | null
+  countryIdentifier: string | undefined | null
+  identifierNumber: string | undefined | null
+  addressTitle: string | undefined | null
 }
 
 export interface CompanyDataRequestType {
@@ -65,93 +65,93 @@ export interface CompanyDataType {
   nameParts: [string]
   identifiers: [
     {
-      type: string
-      value: string
-      issuingBody: string
+      type: string | undefined | null
+      value: string | undefined | null
+      issuingBody: string | undefined | null
     },
   ]
   states: [
     {
-      validFrom: string
-      validTo: string
-      type: string
+      validFrom: string | undefined | null
+      validTo: string | undefined | null
+      type: 'ACTIVE' | 'INACTIVE'
     },
   ]
   roles: string[]
   isOwnCompanyData: boolean
   legalEntity: {
-    legalEntityBpn: string
-    legalName: string
-    shortName: string
-    legalForm: string
+    legalEntityBpn: string | undefined | null
+    legalName: string | undefined | null
+    shortName: string | undefined | null
+    legalForm: string | undefined | null
     confidenceCriteria: {
       sharedByOwner: boolean
       checkedByExternalDataSource: boolean
       numberOfSharingMembers: number
-      lastConfidenceCheckAt: string
-      nextConfidenceCheckAt: string
+      lastConfidenceCheckAt: string | undefined | null
+      nextConfidenceCheckAt: string | undefined | null
       confidenceLevel: number
     }
     states: [
       {
-        validFrom: string
-        validTo: string
-        type: string
+        validFrom: string | undefined | null
+        validTo: string | undefined | null
+        type: 'ACTIVE' | 'INACTIVE'
       },
     ]
   }
   site: {
-    siteBpn: string
-    name: string
+    siteBpn: string | undefined | null
+    name: string | undefined | null
     confidenceCriteria: {
       sharedByOwner: boolean
       checkedByExternalDataSource: boolean
       numberOfSharingMembers: number
-      lastConfidenceCheckAt: string
-      nextConfidenceCheckAt: string
+      lastConfidenceCheckAt: string | undefined | null
+      nextConfidenceCheckAt: string | undefined | null
       confidenceLevel: number
     }
     states: [
       {
-        validFrom: string
-        validTo: string
-        type: string
+        validFrom: string | undefined | null
+        validTo: string | undefined | null
+        type: 'ACTIVE' | 'INACTIVE'
       },
     ]
   }
   address: {
-    addressBpn: string
-    name: string
-    addressType: string
+    addressBpn: string | undefined | null
+    name: string | undefined | null
+    addressType: string | undefined | null
     physicalPostalAddress: {
       geographicCoordinates: {
         longitude: number
         latitude: number
         altitude: number
       }
-      country: string
-      administrativeAreaLevel1: string
-      administrativeAreaLevel2: string
-      administrativeAreaLevel3: string
-      postalCode: string
-      city: string
-      district: string
+      country: string | undefined | null
+      administrativeAreaLevel1: string | undefined | null
+      administrativeAreaLevel2: string | undefined | null
+      administrativeAreaLevel3: string | undefined | null
+      postalCode: string | undefined | null
+      city: string | undefined | null
+      district: string | undefined | null
       street: {
-        namePrefix: string
-        additionalNamePrefix: string
-        name: string
-        nameSuffix: string
-        additionalNameSuffix: string
-        houseNumber: string
-        houseNumberSupplement: string
-        milestone: string
-        direction: string
+        namePrefix: string | undefined | null
+        additionalNamePrefix: string | undefined | null
+        name: string | undefined | null
+        nameSuffix: string | undefined | null
+        additionalNameSuffix: string | undefined | null
+        houseNumber: string | undefined | null
+        houseNumberSupplement: string | undefined | null
+        milestone: string | undefined | null
+        direction: string | undefined | null
       }
-      companyPostalCode: string
-      industrialZone: string
-      building: string
-      floor: string
-      door: string
+      companyPostalCode: string | undefined | null
+      industrialZone: string | undefined | null
+      building: string | undefined | null
+      floor: string | undefined | null
+      door: string | undefined | null
     }
     alternativePostalAddress: {
       geographicCoordinates: {
@@ -159,41 +159,41 @@ export interface CompanyDataType {
         latitude: 0
         altitude: 0
       }
-      country: string
-      administrativeAreaLevel1: string
-      postalCode: string
-      city: string
-      deliveryServiceType: string
-      deliveryServiceQualifier: string
-      deliveryServiceNumber: string
+      country: string | undefined | null
+      administrativeAreaLevel1: string | undefined | null
+      postalCode: string | undefined | null
+      city: string | undefined | null
+      deliveryServiceType: string | undefined | null
+      deliveryServiceQualifier: string | undefined | null
+      deliveryServiceNumber: string | undefined | null
     }
     confidenceCriteria: {
       sharedByOwner: true
       checkedByExternalDataSource: true
       numberOfSharingMembers: 0
-      lastConfidenceCheckAt: string
-      nextConfidenceCheckAt: string
+      lastConfidenceCheckAt: string | undefined | null
+      nextConfidenceCheckAt: string | undefined | null
       confidenceLevel: number
     }
     states: [
       {
-        validFrom: string
-        validTo: string
-        type: string
+        validFrom: string | undefined | null
+        validTo: string | undefined | null
+        type: 'ACTIVE' | 'INACTIVE'
       },
     ]
   }
-  createdAt: string
-  updatedAt: string
+  createdAt: string | undefined | null
+  updatedAt: string | undefined | null
 }
 
 export interface SharingStateType {
   externalId: string
   sharingStateType: string
-  sharingErrorCode: string | null | undefined
-  sharingErrorMessage: string | null | undefined
-  sharingProcessStarted: string | null | undefined
-  taskId: string | null | undefined
+  sharingErrorCode: string | undefined | null
+  sharingErrorMessage: string | undefined | null
+  sharingProcessStarted: string | undefined | null
+  taskId: string | undefined | null
 }
 
 export interface SharingStateResponse {
@@ -212,13 +212,140 @@ export enum SharingStateStatusType {
   Initial = 'Initial',
 }
 
+export const companyDataInitialData: CompanyDataType = {
+  externalId: '',
+  nameParts: [''],
+  identifiers: [
+    {
+      type: null,
+      value: null,
+      issuingBody: null,
+    },
+  ],
+  states: [
+    {
+      validFrom: null,
+      validTo: null,
+      type: 'ACTIVE',
+    },
+  ],
+  roles: ['SUPPLIER'],
+  isOwnCompanyData: false,
+  legalEntity: {
+    legalEntityBpn: '',
+    legalName: '',
+    shortName: '',
+    legalForm: '',
+    confidenceCriteria: {
+      sharedByOwner: false,
+      checkedByExternalDataSource: false,
+      numberOfSharingMembers: 0,
+      lastConfidenceCheckAt: '',
+      nextConfidenceCheckAt: '',
+      confidenceLevel: 0,
+    },
+    states: [
+      {
+        validFrom: null,
+        validTo: null,
+        type: 'ACTIVE',
+      },
+    ],
+  },
+  site: {
+    siteBpn: '',
+    name: '',
+    confidenceCriteria: {
+      sharedByOwner: false,
+      checkedByExternalDataSource: false,
+      numberOfSharingMembers: 0,
+      lastConfidenceCheckAt: '',
+      nextConfidenceCheckAt: '',
+      confidenceLevel: 0,
+    },
+    states: [
+      {
+        validFrom: null,
+        validTo: null,
+        type: 'ACTIVE',
+      },
+    ],
+  },
+  address: {
+    addressBpn: '',
+    name: '',
+    addressType: '',
+    physicalPostalAddress: {
+      geographicCoordinates: {
+        longitude: 0,
+        latitude: 0,
+        altitude: 0,
+      },
+      country: '',
+      administrativeAreaLevel1: '',
+      administrativeAreaLevel2: '',
+      administrativeAreaLevel3: '',
+      postalCode: '',
+      city: '',
+      district: '',
+      street: {
+        namePrefix: '',
+        additionalNamePrefix: '',
+        name: '',
+        nameSuffix: '',
+        additionalNameSuffix: '',
+        houseNumber: '',
+        houseNumberSupplement: '',
+        milestone: '',
+        direction: '',
+      },
+      companyPostalCode: '',
+      industrialZone: '',
+      building: '',
+      floor: '',
+      door: '',
+    },
+    alternativePostalAddress: {
+      geographicCoordinates: {
+        longitude: 0,
+        latitude: 0,
+        altitude: 0,
+      },
+      country: null,
+      administrativeAreaLevel1: null,
+      postalCode: null,
+      city: null,
+      deliveryServiceType: null,
+      deliveryServiceQualifier: null,
+      deliveryServiceNumber: null,
+    },
+    confidenceCriteria: {
+      sharedByOwner: true,
+      checkedByExternalDataSource: true,
+      numberOfSharingMembers: 0,
+      lastConfidenceCheckAt: null,
+      nextConfidenceCheckAt: null,
+      confidenceLevel: 0,
+    },
+    states: [
+      {
+        validFrom: null,
+        validTo: null,
+        type: 'ACTIVE',
+      },
+    ],
+  },
+  createdAt: '',
+  updatedAt: '',
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyData',
   baseQuery: fetchBaseQuery(apiBpdmGateQuery()),
   endpoints: (builder) => ({
     fetchSharingState: builder.query<SharingStateResponse, void>({
       query: () => ({
-        url: '/sharing-state',
+        url: '/sharing-state?page=0&size=100',
       }),
     }),
     fetchInputCompanyBusinessPartners: builder.mutation<
