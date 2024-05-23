@@ -39,6 +39,11 @@ export default function RuleCard({
   const getBgColor = (item: WalletContent) => {
     if (item?.status === CredentialSubjectStatus.ACTIVE) {
       return '#004F4B'
+    } else if (
+      item?.status === CredentialSubjectStatus.INACTIVE ||
+      item?.status === CredentialSubjectStatus.REVOKED
+    ) {
+      return '#FEE7E2'
     } else {
       return '#FFA600'
     }
@@ -86,13 +91,25 @@ export default function RuleCard({
                 }}
               >
                 <Box className="gradient-container">
-                  <Box key={item.expiryDate} className="rule-card-container">
+                  <Box
+                    key={item.expiryDate}
+                    className="rule-card-container"
+                    sx={{
+                      backgroundColor:
+                        item?.status === CredentialSubjectStatus.INACTIVE ||
+                        item?.status === CredentialSubjectStatus.REVOKED
+                          ? '#EAEAEA'
+                          : '#deeeef',
+                    }}
+                  >
                     <Box className="circle-container">
                       <Typography
                         sx={{
-                          color: item?.status
-                            ? '#fff !important'
-                            : '#428C5B !important',
+                          color:
+                            item?.status !== CredentialSubjectStatus.INACTIVE &&
+                            item?.status !== CredentialSubjectStatus.REVOKED
+                              ? '#fff !important'
+                              : '#FF532F !important',
                           backgroundColor: getBgColor(item),
                         }}
                         className="text"
@@ -101,7 +118,7 @@ export default function RuleCard({
                         {getStatus(item?.status)}
                       </Typography>
                       <img
-                        src="/assets/images/logos/logo_tractus-x.svg"
+                        src="/logo_tractus-x.svg"
                         alt="tractus x logo"
                         style={{
                           width: 40,

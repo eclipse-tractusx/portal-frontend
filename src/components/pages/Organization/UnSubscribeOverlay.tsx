@@ -34,7 +34,10 @@ import {
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
 import './Organization.scss'
-import { SubscriptionStatus } from 'features/apps/types'
+import {
+  type SubscribeTechnicalUserData,
+  SubscriptionStatus,
+} from 'features/apps/types'
 
 interface UnSubscribeOverlayProps {
   openDialog?: boolean
@@ -107,7 +110,12 @@ const UnSubscribeOverlay = ({
                     ],
                     [
                       t('content.organization.unsubscribe.table.techUser'),
-                      data?.technicalUserData[0]?.name ?? '',
+                      data?.technicalUserData
+                        ?.map(
+                          (userdata: SubscribeTechnicalUserData) =>
+                            userdata.name
+                        )
+                        .toString() ?? '',
                     ],
                   ],
                 }}

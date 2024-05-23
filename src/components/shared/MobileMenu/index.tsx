@@ -83,7 +83,14 @@ export const MobileMenu = ({
   useEffect(() => {
     if (
       companyData != null &&
-      Object.values(ApplicationStatus).includes(companyData.applicationStatus)
+      Object.values([
+        ApplicationStatus.CREATED,
+        ApplicationStatus.ADD_COMPANY_DATA,
+        ApplicationStatus.INVITE_USER,
+        ApplicationStatus.SELECT_COMPANY_ROLE,
+        ApplicationStatus.UPLOAD_DOCUMENTS,
+        ApplicationStatus.VERIFY,
+      ]).includes(companyData.applicationStatus)
     ) {
       setUserMenu(AccessService.userMenuReg())
     }

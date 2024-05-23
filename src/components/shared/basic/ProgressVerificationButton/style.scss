@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,18 +17,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.picture-with-text-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex: 1;
-  align-items: center;
+.progress-verification {
+  .MuiAccordion-root {
+    margin-bottom: 20px !important;
 
-  .text-with-button-wrapper {
-    padding-left: 100px;
-    flex-direction: column;
-    display: flex;
-    align-items: flex-start;
-    text-align: left;
+    .MuiAccordionSummary-content {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      > div {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .MuiAccordion-root::before {
+    display: none;
   }
 }
