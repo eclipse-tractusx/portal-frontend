@@ -31,6 +31,8 @@
   - fixed display of images in app detail page
 - Identity Provider Config
   - Added delete option for newly created "Managed IdPs"
+- App Subscription
+  - Blank Page fix on autosetup call
 
 ## 2.0.0-RC7
 
