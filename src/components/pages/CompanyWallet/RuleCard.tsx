@@ -155,7 +155,7 @@ export default function RuleCard({
                           tooltipPlacement="top-start"
                           tooltipText={t('content.companyWallet.revokeHint')}
                           children={
-                            <div
+                            <Box
                               onClick={() => {
                                 handleRevoke(item.credentialDetailId)
                               }}
@@ -166,7 +166,7 @@ export default function RuleCard({
                                   cursor: 'pointer',
                                 }}
                               />
-                            </div>
+                            </Box>
                           }
                         />
                       )}
