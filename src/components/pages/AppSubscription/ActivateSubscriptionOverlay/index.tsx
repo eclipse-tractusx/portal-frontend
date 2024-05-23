@@ -123,15 +123,15 @@ const ActivateSubscriptionOverlay = ({
     ?.map((userdata) => [
       [
         t('content.appSubscription.activation.technicalClientId'),
-        `${userdata?.technicalClientId}` ?? 'N/A',
+        `${userdata?.technicalClientId}`,
       ],
       [
         t('content.appSubscription.activation.technicalSecret'),
-        `${userdata?.technicalUserSecret}` ?? 'N/A',
+        `${userdata?.technicalUserSecret}`,
       ],
       [
         t('content.appSubscription.activation.technicalPermission'),
-        `${userdata?.technicalUserPermissions?.toString()}` ?? 'N/A',
+        `${userdata?.technicalUserPermissions?.toString()}`,
       ],
     ])
     .flat(1)
