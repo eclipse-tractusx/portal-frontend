@@ -48,7 +48,6 @@ import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 
 interface FormDetailsProps {
   readonly open: boolean
-  readonly title?: string
   readonly description?: string
   readonly handleClose: () => void
   readonly isAddress?: boolean
@@ -81,8 +80,7 @@ export default function EditForm({
   const [input, setInput] = useState<CompanyDataType>(companyDataInitialData)
   const inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
   if (companyInfo) {
-    inputParams.externalId =
-      `${companyInfo?.bpn}_${new Date().toISOString()}` ?? ''
+    inputParams.externalId = `${companyInfo?.bpn}_${new Date().toISOString()}`
     inputParams.legalEntity.legalEntityBpn = companyInfo?.bpn
     inputParams.legalEntity.legalName = companyInfo?.name
     inputParams.legalEntity.shortName = companyInfo?.shortName

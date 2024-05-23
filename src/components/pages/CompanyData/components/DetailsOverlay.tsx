@@ -29,14 +29,13 @@ import CompanyInfo from './CompanyInfo'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
-import { useTranslation } from 'react-i18next'
 import { AddressType } from 'features/companyData/companyDataApiSlice'
 import SiteDetails from './SiteDetails'
 import AddressDetails from './AddressDetails'
 
 interface FormDetailsProps {
   readonly open: boolean
-  readonly title: string
+  readonly title?: string
   readonly description?: string
   readonly handleClose: () => void
   readonly handleConfirm: () => void
@@ -49,7 +48,6 @@ export default function DetailsOverlay({
   handleClose,
   handleConfirm,
 }: FormDetailsProps) {
-  const { t } = useTranslation()
   const [edit, setEdit] = useState<boolean>(!open)
   const onEdit = () => {
     setEdit(true)
@@ -90,12 +88,6 @@ export default function DetailsOverlay({
       {edit && (
         <EditForm
           isAddress={!isSite}
-          title={
-            !isSite
-              ? t('content.companyData.address.title')
-              : t('content.companyData.site.title')
-          }
-          description={''}
           handleClose={handleClose}
           open={edit}
           handleConfirm={handleConfirm}
