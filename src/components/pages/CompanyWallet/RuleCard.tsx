@@ -156,9 +156,9 @@ export default function RuleCard({
                           tooltipText={t('content.companyWallet.revokeHint')}
                           children={
                             <div
-                              onClick={() =>
+                              onClick={() => {
                                 handleRevoke(item.credentialDetailId)
-                              }
+                              }}
                             >
                               <SettingsBackupRestoreIcon
                                 sx={{

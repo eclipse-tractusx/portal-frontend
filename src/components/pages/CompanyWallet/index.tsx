@@ -104,7 +104,9 @@ export default function CompanyWallet(): JSX.Element {
                 <ComapnyWalletSubNavigationHeader />
                 <div className="container">
                   <RuleCard
-                    handleRevoke={(id) => setCredentialId(id)}
+                    handleRevoke={(id) => {
+                      setCredentialId(id)
+                    }}
                     sections={groupedItems}
                   />
                 </div>
@@ -129,7 +131,9 @@ export default function CompanyWallet(): JSX.Element {
             title={t('content.companyWallet.confirmOverlay.title')}
             description={t('content.companyWallet.confirmOverlay.description')}
             handleConfirmClick={handleRevocation}
-            handleOverlayClose={() => setCredentialId('')}
+            handleOverlayClose={() => {
+              setCredentialId('')
+            }}
             loading={loading}
             openDialog={credentialId !== ''}
           />
