@@ -99,11 +99,10 @@ const ActivateSubscriptionOverlay = ({
         offerUrl: inputURL,
       }).unwrap()
       setActivationResponse(subscriptionData)
-      setLoading(false)
     } catch (error) {
-      setLoading(false)
       console.log(error)
     }
+    setLoading(false)
   }
 
   const closeActivationOverlay = () => {
