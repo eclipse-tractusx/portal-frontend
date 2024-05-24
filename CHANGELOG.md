@@ -11,6 +11,8 @@
 
 - App Subscription
   - Blank Page fix on autosetup call
+- App Subscription Detail
+  - fix opening the correct technical user by ID
 
 ## 2.0.0-RC8
 
