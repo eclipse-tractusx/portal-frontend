@@ -336,10 +336,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@catena-x/portal-shared-components@^3.0.12":
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.0.15.tgz#b6d47384bfeb08825902a96b28db60bfe620d1f8"
-  integrity sha512-3mKBeJJCKDBAEBM0zE1pONbTsrsmf4HTpgJ/PFJgRw+1Ihcu9sPx4URrTWj8n9f70SYAk9RqEHsd6QHijHc4eQ==
+"@catena-x/portal-shared-components@^3.0.16":
+  version "3.0.16"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.0.16.tgz#1a397ca1038ebbec08b01bd554c39c50aa430964"
+  integrity sha512-yUsuC7LFjKZdAmX3qLqMKPhAa9lafLRWjJLQ2Yujt1rZDcKX1jo52j/IA0fQb1H2olEWPmMsbCCeoFe9g26oFg==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     "@emotion/react" "^11.11.4"

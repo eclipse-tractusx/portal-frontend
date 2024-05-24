@@ -41,8 +41,8 @@ import {
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
 import { SubscriptionStatus } from 'features/apps/types'
-// import UserService from 'services/UserService'
-// import { ROLES } from 'types/Constants'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/Constants'
 import { useState } from 'react'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { isURL } from 'types/Patterns'
@@ -211,10 +211,29 @@ const AppSubscriptionDetailOverlay = ({
     </>
   )
 
+  const renderTenantUrl = (url: string) => {
+    if (
+      isAppSubscription &&
+      UserService.hasRole(ROLES.APPSTORE_EDIT) &&
+      data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
+    ) {
+      return (
+        <EditField
+          value={url ?? ''}
+          isValid={(value: string) => isURL(value)}
+          handleEdit={(url: string | number | boolean) =>
+            handleSaveURL(url as string)
+          }
+          errorMessage={t('content.appSubscription.pleaseEnterValidURL')}
+        />
+      )
+    } else return url
+  }
+
   const bodyData: TableCellType[][] = [
     [
       renderTooltipText(
-        `${t('content.appSubscription.detailOverlay.technicalName')}`,
+        t('content.appSubscription.detailOverlay.technicalName'),
         t('content.appSubscription.detailOverlay.technicalNameInfo')
       ),
       data?.technicalUserData.length
@@ -223,7 +242,7 @@ const AppSubscriptionDetailOverlay = ({
     ],
     [
       renderTooltipText(
-        `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
+        t('content.appSubscription.detailOverlay.technicalPermission'),
         t('content.appSubscription.detailOverlay.technicalPermissionInfo')
       ),
       data?.technicalUserData.length
@@ -237,32 +256,18 @@ const AppSubscriptionDetailOverlay = ({
   if (isAppSubscription) {
     bodyData.unshift(
       [
-        `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
-        (
-          <EditField
-            value={data?.tenantUrl ?? ''}
-            isValid={(value: string) => isURL(value)}
-            handleEdit={(url: string | number | boolean) =>
-              handleSaveURL(url as string)
-            }
-            errorMessage={t('content.appSubscription.pleaseEnterValidURL')}
-          />
-        ) ?? '',
+        t('content.appSubscription.detailOverlay.appTenantUrl'),
+        renderTenantUrl(data?.tenantUrl ?? ''),
       ],
       [
         renderTooltipText(
-          `${t('content.appSubscription.detailOverlay.appId')}`,
+          t('content.appSubscription.detailOverlay.appId'),
           t('content.appSubscription.detailOverlay.appIdInfo')
         ),
         data?.appInstanceId ?? getTechnicalValue(),
       ]
     )
   }
-
-  // const getTechnicalName = () => {
-  //   if (isAppSubscription) return ''
-  //   else return t('content.appSubscription.detailOverlay.technicalNameInfo')
-  // }
 
   const technicalDetails: VerticalTableType = {
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
