@@ -614,11 +614,11 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.ADD_APP_USER_ROLES,
-    role: ROLES.USERMANAGEMENT_ADD,
+    role: ROLES.MODIFY_USER_ACCOUNT,
   },
   {
     name: OVERLAYS.EDIT_APP_USER_ROLES,
-    role: ROLES.USERMANAGEMENT_ADD,
+    role: ROLES.MODIFY_USER_ACCOUNT,
   },
   { name: OVERLAYS.APP, role: ROLES.APPSTORE_VIEW },
   { name: OVERLAYS.NEWS },
