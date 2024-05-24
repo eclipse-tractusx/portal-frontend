@@ -2,6 +2,11 @@
 
 ## 2.0.0-RC9
 
+### Feature
+
+- Company Wallet
+  - Revoke credential
+
 ### Bugfix
 
 - App Subscription
