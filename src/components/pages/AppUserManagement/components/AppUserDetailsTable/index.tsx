@@ -63,8 +63,11 @@ export const AppUserDetailsTable = ({
       fetchHook={useFetchAppUsersSearchQuery}
       fetchHookArgs={{ appId, expr, userRoleResponse, role: true }}
       onSearch={setExpr}
-      onDetailsClick={(row: TenantUser) =>
-        dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
+      onDetailsClick={
+        UserService.hasRole(ROLES.MODIFY_USER_ACCOUNT)
+          ? (row: TenantUser) =>
+              dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
+          : undefined
       }
     />
   )
