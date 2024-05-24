@@ -196,6 +196,7 @@ const AppSubscriptionDetailOverlay = ({
           style={{
             textDecoration: 'none',
           }}
+          key={data.id}
         >
           <Typography
             variant="body3"
