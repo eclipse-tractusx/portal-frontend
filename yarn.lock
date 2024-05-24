@@ -337,9 +337,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@catena-x/portal-shared-components@^3.0.12":
-  version "3.0.12"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.0.12.tgz#c8dbfe05c4adab19a9ca06e3ba60142b4d03a3a8"
-  integrity sha512-t6hcg/+koQgVYz6GsgPfCs9MbS1pR/i96JgTjlI3zbbFmttbZr/jTwTvJxg0Jb4igjSATL3tBuT5Dk6hNQQFAg==
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.0.15.tgz#b6d47384bfeb08825902a96b28db60bfe620d1f8"
+  integrity sha512-3mKBeJJCKDBAEBM0zE1pONbTsrsmf4HTpgJ/PFJgRw+1Ihcu9sPx4URrTWj8n9f70SYAk9RqEHsd6QHijHc4eQ==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     "@emotion/react" "^11.11.4"
