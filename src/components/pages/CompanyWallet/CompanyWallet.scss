@@ -368,3 +368,9 @@
   padding: 1px;
   // background: linear-gradient(360deg, #033430, #76babb); Enable when gradient is needed
 }
+
+.revoke-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

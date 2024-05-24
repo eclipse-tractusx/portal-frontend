@@ -1901,7 +1901,20 @@
         "button3": "Get more details of VCs (coming soon)"
       },
       "expiry": "Expiry: ",
-      "others": "Others"
+      "others": "Others",
+      "revokeHint": "Revoke Credential",
+      "confirmOverlay": {
+        "title": "Confirm Revoke",
+        "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
+      },
+      "successOverlay": {
+        "title": "Revoke Credential",
+        "description": "You credential revocation has been successfully processed. With the successful revocation the credential is no longer valid. Note once a credential is revoked, the action cannot be undone, and the credential will no longer be recognized as valid. If you want to request the credential again, please initiate a new credential request."
+      },
+      "errorOverlay": {
+        "title": "Revoke Credential",
+        "description": "The revocation of the credential was unsuccessful. Please contact the administrator or try again later."
+      }
     },
     "standardLibraryTable": {
       "version": "Version",
