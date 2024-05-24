@@ -47,56 +47,54 @@ const Overlay = ({
   const { t } = useTranslation()
 
   return (
-    <div>
-      <Dialog
-        open={openDialog}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: '45%',
-          },
-        }}
-      >
-        <DialogHeader title={title} />
-        <DialogContent>{description}</DialogContent>
-        <DialogActions>
+    <Dialog
+      open={openDialog}
+      sx={{
+        '.MuiDialog-paper': {
+          maxWidth: '45%',
+        },
+      }}
+    >
+      <DialogHeader title={title} />
+      <DialogContent>{description}</DialogContent>
+      <DialogActions>
+        <Button
+          variant="outlined"
+          onClick={(e) => {
+            handleOverlayClose(e)
+          }}
+        >
+          {t('global.actions.cancel')}
+        </Button>
+        {!loading ? (
           <Button
-            variant="outlined"
+            variant="contained"
             onClick={(e) => {
-              handleOverlayClose(e)
+              handleConfirmClick(e)
             }}
           >
-            {t('global.actions.cancel')}
+            {t('global.actions.confirm')}
           </Button>
-          {!loading ? (
-            <Button
-              variant="contained"
-              onClick={(e) => {
-                handleConfirmClick(e)
-              }}
-            >
-              {t('global.actions.confirm')}
-            </Button>
-          ) : (
-            <Box
-              sx={{
-                width: '110px',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <CircleProgress
-                size={40}
-                step={1}
-                interval={0.1}
-                colorVariant={'primary'}
-                variant={'indeterminate'}
-                thickness={8}
-              />
-            </Box>
-          )}
-        </DialogActions>
-      </Dialog>
-    </div>
+        ) : (
+          <Box
+            sx={{
+              width: '110px',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <CircleProgress
+              size={40}
+              step={1}
+              interval={0.1}
+              colorVariant={'primary'}
+              variant={'indeterminate'}
+              thickness={8}
+            />
+          </Box>
+        )}
+      </DialogActions>
+    </Dialog>
   )
 }
 
