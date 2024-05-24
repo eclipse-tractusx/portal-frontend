@@ -109,12 +109,12 @@ export type SubscriptionStoreRequest = {
 }
 
 export type SubscriptionActivationResponse = {
-  technicalUserInfo: {
+  technicalUserInfo: Array<{
     technicalUserId: string
     technicalUserSecret: string
     technicalClientId: string
     technicalUserPermissions: string[]
-  }
+  }>
   clientInfo: {
     clientId: string
     clientUrl: string
@@ -170,7 +170,7 @@ export const apiSlice = createApi({
         `/api/apps/${body.appId}/subscription/${body.subscriptionId}/provider`,
     }),
     addUserSubscribtion: builder.mutation<
-      SubscriptionActivationResponse[],
+      SubscriptionActivationResponse,
       SubscriptionStoreRequest
     >({
       query: (data: SubscriptionStoreRequest) => ({
