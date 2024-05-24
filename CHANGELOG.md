@@ -7,6 +7,11 @@
 - Company Wallet
   - Revoke credential
 
+### Bugfix
+
+- App Subscription
+  - Blank Page fix on autosetup call
+
 ## 2.0.0-RC8
 
 ### Feature
