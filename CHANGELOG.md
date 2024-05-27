@@ -5,22 +5,28 @@
 ### Feature
 
 - Company Wallet
-  - Revoke credential
+  - added option to revoke credential
 
 ### Bugfix
 
 - App Subscription
-  - Blank Page fix on autosetup call
+  - fixed blank page on autosetup call
 - App Subscription Detail
-  - fix opening the correct technical user by ID
+  - fixed opening the correct technical user by ID
 - Decline company
-  - Api url typo fix
+  - fixed api url typos
 - App Access Management
-  - Fix carousel element issue
+  - fixed carousel element
 - Connectors
-  - Fetch all service accounts and show them in the auto complete list
+  - fetched all service accounts and show them in the auto complete list
 - Admin Credential
-  - Change document download endpoint
+  - changed document download endpoint
+- Application request
+  - made changes in progress bar calculation
+- App user role overlay
+  - changed required role to `modify_user_account`
+- Onboarding Service Provider
+  - preset partner unique id type
 
 ## 2.0.0-RC8
 
