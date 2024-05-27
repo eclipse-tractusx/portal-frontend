@@ -39,7 +39,7 @@ import {
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
-import { useFetchServiceAccountUsersQuery } from 'features/admin/serviceApiSlice'
+import { type ServiceAccountListEntry, useFetchServiceAccountUsersQuery } from 'features/admin/serviceApiSlice'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -97,8 +97,10 @@ const AddConnectorOverlay = ({
   const { t } = useTranslation()
   const { data } = useFetchOfferSubscriptionsQuery()
   const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery()
-  const fetchServiceAccountUsers = useFetchServiceAccountUsersQuery().data
+  const [page, setPage] = useState<number>(0)
+  const { data: serviceAccounts } = useFetchServiceAccountUsersQuery(page)
   const [newTechnicalUSer, setNewTechnicalUSer] = useState(false)
+  const [allAccounts, setAllAccounts] = useState<ServiceAccountListEntry[]>([])
 
   const {
     handleSubmit,
@@ -117,6 +119,13 @@ const AddConnectorOverlay = ({
   useEffect(() => {
     if (openDialog) reset(formFields)
   }, [openDialog, reset])
+
+  useEffect(() => {
+    if (serviceAccounts && serviceAccounts?.meta?.totalPages > page) {
+      setPage((pre) => pre + 1)
+      setAllAccounts((i: ServiceAccountListEntry[]) => i.concat(serviceAccounts?.content))
+    }
+  }, [serviceAccounts])
 
   const onFormSubmit = async () => {
     const validateFields =
@@ -197,7 +206,7 @@ const AddConnectorOverlay = ({
               <ConnectorInsertForm
                 subscriptions={data}
                 selectedService={selected}
-                fetchServiceAccountUsers={fetchServiceAccountUsers}
+                fetchServiceAccountUsers={allAccounts}
                 onFormSubmitt={onFormSubmit}
                 setNewTechnicalUSer={setNewTechnicalUSer}
                 newUserLoading={newUserLoading}
