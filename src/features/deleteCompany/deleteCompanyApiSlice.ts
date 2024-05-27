@@ -46,7 +46,7 @@ export const apiSlice = createApi({
     }),
     declineRegistration: builder.mutation<void, string>({
       query: (applicationId) => ({
-        url: `/api/registration/applications/${applicationId}/declineRegistration`,
+        url: `/api/registration/applications/${applicationId}/declineregistration`,
         method: 'POST',
       }),
     }),
