@@ -11,6 +11,8 @@
 
 - App Subscription
   - Blank Page fix on autosetup call
+- App Access Management
+  - Fix carousel element issue
 
 ## 2.0.0-RC8
 
