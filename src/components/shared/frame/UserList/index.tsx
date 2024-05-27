@@ -72,7 +72,7 @@ export const UserList = ({
   addMultipleButtonLabel?: string
   onMultipleButtonClick?: () => void
   tableLabel: string
-  onDetailsClick: (row: TenantUser) => void
+  onDetailsClick?: (row: TenantUser) => void
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   fetchHook: (paginArgs: PaginFetchArgs) => any
@@ -168,9 +168,10 @@ export const UserList = ({
             flex: 2,
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton
+                disabled={onDetailsClick === undefined}
                 color="secondary"
                 onClick={() => {
-                  onDetailsClick(row)
+                  onDetailsClick?.(row)
                 }}
               >
                 <ArrowForwardIcon />

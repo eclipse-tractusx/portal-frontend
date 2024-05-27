@@ -11,6 +11,10 @@
 
 - App Subscription
   - Blank Page fix on autosetup call
+- App Subscription Detail
+  - fix opening the correct technical user by ID
+- Decline company
+  - Api url typo fix
 - App Access Management
   - Fix carousel element issue
 
