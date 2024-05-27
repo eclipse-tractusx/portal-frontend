@@ -17,6 +17,8 @@
   - Api url typo fix
 - App Access Management
   - Fix carousel element issue
+- Admin Credential
+  - Change document download endpoint
 
 ## 2.0.0-RC8
 
