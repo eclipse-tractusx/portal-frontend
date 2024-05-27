@@ -41,6 +41,7 @@ export const AppArea = () => {
         />
       </div>
       <Carousel
+        infinite={false}
         gapToDots={5}
         position={cards && cards.length > 0 ? 'relative' : ''}
       >

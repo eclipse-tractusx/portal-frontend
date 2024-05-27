@@ -15,6 +15,8 @@
   - fix opening the correct technical user by ID
 - Decline company
   - Api url typo fix
+- App Access Management
+  - Fix carousel element issue
 
 ## 2.0.0-RC8
 
