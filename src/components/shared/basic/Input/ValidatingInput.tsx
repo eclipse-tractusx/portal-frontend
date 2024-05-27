@@ -41,6 +41,7 @@ const ValidatingInput = ({
   value = '',
   onValue,
   type = InputType.text,
+  disabled = false,
   toggleHide = false,
   errorMessage,
   style,
@@ -81,7 +82,17 @@ const ValidatingInput = ({
 
   return (
     <BasicInput
-      {...{ name, label, hint, value, onValue, type, toggleHide, errorMessage }}
+      {...{
+        name,
+        label,
+        hint,
+        value,
+        onValue,
+        type,
+        disabled,
+        toggleHide,
+        errorMessage,
+      }}
       {...(color === Colors.error ? { errorMessage: hint } : {})}
       style={{
         ...style,
