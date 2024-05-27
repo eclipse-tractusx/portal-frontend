@@ -77,6 +77,16 @@ export type AppRoleCreate = {
   roles: string[]
 }
 
+export interface ServiceAccountsResponseType {
+  content: ServiceAccountListEntry[]
+  meta: {
+    contentSize: number
+    page: number
+    totalElements: number
+    totalPages: number
+  }
+}
+
 export enum ServiceAccountStatusFilter {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
@@ -165,9 +175,12 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
-    fetchServiceAccountUsers: builder.query<ServiceAccountListEntry[], void>({
-      query: () =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=0&size=${PAGE_SIZE}&filterForInactive=false`,
+    fetchServiceAccountUsers: builder.query<
+      ServiceAccountsResponseType,
+      number
+    >({
+      query: (page) =>
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false`,
     }),
   }),
 })

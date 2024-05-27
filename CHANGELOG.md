@@ -17,6 +17,8 @@
   - Api url typo fix
 - App Access Management
   - Fix carousel element issue
+- Connectors
+  - Fetch all service accounts and show them in the auto complete list
 - Admin Credential
   - Change document download endpoint
 
