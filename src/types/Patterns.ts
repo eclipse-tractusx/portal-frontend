@@ -107,6 +107,7 @@ export const Patterns = {
   },
 }
 
+export const isEmpty = (expr: string) => !expr || expr.trim() === ''
 export const isID = (expr: string) => Patterns.ID.test(expr)
 export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)

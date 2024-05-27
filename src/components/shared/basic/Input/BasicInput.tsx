@@ -45,6 +45,7 @@ export type BasicInputProps = {
   value?: string
   onValue?: (value: string) => void
   type?: InputType
+  disabled?: boolean
   toggleHide?: boolean
   errorMessage?: string
   style?: React.CSSProperties
@@ -72,6 +73,7 @@ const BasicInput = ({
   value = '',
   onValue,
   type = InputType.text,
+  disabled = false,
   toggleHide = false,
   errorMessage,
   style,
@@ -92,7 +94,7 @@ const BasicInput = ({
 
   return (
     <div style={{ width: '100%' }}>
-      <div style={{ display: 'flex', marginTop: '12px' }}>
+      <div style={{ display: 'flex', marginTop: '12px', minHeight: '27px' }}>
         {label && (
           <Typography
             variant="label3"
@@ -131,6 +133,7 @@ const BasicInput = ({
           name={name}
           type={hidden ? InputType.password : InputType.text}
           defaultValue={value}
+          disabled={disabled}
           onKeyUp={() => {
             onValue?.(ref.current?.value ?? '')
           }}

@@ -341,14 +341,12 @@ const OSPRegisterForm = ({
             onChangeItem: (value: ItemType): void => {
               updateData({
                 ...data,
-                uniqueIds: value
-                  ? [
-                      {
-                        ...data.uniqueIds[0],
-                        type: value.id as UNIQUE_ID_TYPE,
-                      },
-                    ]
-                  : [],
+                uniqueIds: [
+                  {
+                    ...data.uniqueIds[0],
+                    type: value.id as UNIQUE_ID_TYPE,
+                  },
+                ],
               })
             },
           }}
@@ -460,56 +458,23 @@ export const OSPRegisterContent = ({
   companyRoleAgreementData: CompanyRoleAgreementData
   onValid: (form: PartnerRegistration | undefined) => void
 }) => {
-  const initialData: PartnerRegistration = {
-    ...emptyPartnerRegistration,
-    userDetails: [
-      {
-        ...emptyPartnerRegistration.userDetails[0],
-        identityProviderId: idp.identityProviderId,
-      },
-    ],
-  }
-  const [formData, setFormData] = useState<string>(
-    JSON.stringify(initialData, null, 2)
-  )
-  const [debug, setDebug] = useState<boolean>(false)
-  const toggleDebug = () => {
-    setDebug(!debug)
-  }
-
   const doCheckForm = (
     partnerRegistration: PartnerRegistration | undefined
   ) => {
     const valid =
       partnerRegistration &&
       partnerRegistration.companyRoles.length > 0 &&
-      partnerRegistration?.uniqueIds.length > 0
+      partnerRegistration?.uniqueIds.length > 0 &&
+      isPartnerUniqueID(partnerRegistration?.uniqueIds[0].value)
     onValid(valid ? partnerRegistration : undefined)
-    setFormData(
-      valid ? JSON.stringify(partnerRegistration, null, 2) : '# data invalid'
-    )
     return !!valid
   }
 
   return (
-    <>
-      <OSPRegisterForm
-        idp={idp}
-        companyRoleAgreementData={companyRoleAgreementData}
-        onChange={doCheckForm}
-      />
-      <pre
-        style={{
-          fontSize: '10px',
-          backgroundColor: '#eeeeee',
-          cursor: 'pointer',
-        }}
-        onClick={toggleDebug}
-        onKeyUp={toggleDebug}
-      >
-        {debug ? formData : '{...}'}
-      </pre>
-      ,
-    </>
+    <OSPRegisterForm
+      idp={idp}
+      companyRoleAgreementData={companyRoleAgreementData}
+      onChange={doCheckForm}
+    />
   )
 }

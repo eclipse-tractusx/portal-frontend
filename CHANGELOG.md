@@ -19,6 +19,8 @@
   - Fix carousel element issue
 - Connectors
   - Fetch all service accounts and show them in the auto complete list
+- Admin Credential
+  - Change document download endpoint
 
 ## 2.0.0-RC8
 
