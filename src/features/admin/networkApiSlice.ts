@@ -137,7 +137,12 @@ export const emptyPartnerRegistration: PartnerRegistration = {
   zipCode: '',
   region: '',
   countryAlpha2Code: '',
-  uniqueIds: [],
+  uniqueIds: [
+    {
+      type: UNIQUE_ID_TYPE.COMMERCIAL_REG_NUMBER,
+      value: '',
+    },
+  ],
   userDetails: [
     {
       identityProviderId: '',
