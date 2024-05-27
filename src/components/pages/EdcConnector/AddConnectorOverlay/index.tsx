@@ -39,7 +39,10 @@ import {
 } from 'features/connector/connectorApiSlice'
 import Box from '@mui/material/Box'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
-import { type ServiceAccountListEntry, useFetchServiceAccountUsersQuery } from 'features/admin/serviceApiSlice'
+import {
+  type ServiceAccountListEntry,
+  useFetchServiceAccountUsersQuery,
+} from 'features/admin/serviceApiSlice'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -123,7 +126,9 @@ const AddConnectorOverlay = ({
   useEffect(() => {
     if (serviceAccounts && serviceAccounts?.meta?.totalPages > page) {
       setPage((pre) => pre + 1)
-      setAllAccounts((i: ServiceAccountListEntry[]) => i.concat(serviceAccounts?.content))
+      setAllAccounts((i: ServiceAccountListEntry[]) =>
+        i.concat(serviceAccounts?.content)
+      )
     }
   }, [serviceAccounts])
 
