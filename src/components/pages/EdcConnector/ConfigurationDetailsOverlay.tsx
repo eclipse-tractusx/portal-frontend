@@ -126,11 +126,7 @@ const ConfigurationDetailsOverlay = ({
         }}
       >
         <DialogHeader
-          title={
-            <Typography variant="h3">
-              {t('content.edcconnector.configurationDetails.title')}
-            </Typography>
-          }
+          title={t('content.edcconnector.configurationDetails.title')}
           intro={
             <Box
               sx={{
