@@ -312,15 +312,13 @@ export default function AdminCredentialElements() {
                 tooltipPlacement="top-start"
                 tooltipText={t('content.adminCertificate.table.revoke')}
                 children={
-                  <div>
-                    <SettingsBackupRestoreIcon
-                      className="revokeBtn"
-                      onClick={() => {
-                        setOpenRevokeOverlay(true)
-                        setCredentialData(row)
-                      }}
-                    />
-                  </div>
+                  <SettingsBackupRestoreIcon
+                    className="revokeBtn"
+                    onClick={() => {
+                      setOpenRevokeOverlay(true)
+                      setCredentialData(row)
+                    }}
+                  />
                 }
               />
             )}
