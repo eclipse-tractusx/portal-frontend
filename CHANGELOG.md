@@ -6,6 +6,8 @@
 
 - Admin Credential
   - Credential Request Management Board Improvements
+- Company Wallet
+  - Use appropriate path to display logo on cards
 
 ## 2.0.0-RC9
 
