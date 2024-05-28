@@ -1872,7 +1872,17 @@
         "crendentialType": "Type",
         "companyInfo": "Company Info",
         "certificate": "Certificate",
-        "document": "Document"
+        "document": "Document",
+        "type": {
+          "TRACEABILITY_FRAMEWORK": "Traceability",
+          "PCF_FRAMEWORK": "PCF Framework",
+          "BEHAVIOR_TWIN_FRAMEWORK": "Behaviour Twin Framework",
+          "DISMANTLER_CERTIFICATE": "Dismantler Certificate",
+          "SUSTAINABILITY_FRAMEWORK": "Sustainability Framework",
+          "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
+          "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
+        },
+        "revoke": "Revoke"
       },
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
