@@ -26,10 +26,16 @@ import {
   PageSnackbar,
   StaticTable,
   type TableType,
+  type VerticalTableType,
   Typography,
+  VerticalTableNew,
+  EditField,
+  type TableCellType,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import {
   ProcessStep,
+  type TechnicalUserData,
   useFetchSubscriptionDetailQuery,
   useUpdateTenantUrlMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
@@ -42,6 +48,8 @@ import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { isURL } from 'types/Patterns'
 import { SubscriptionTypes } from 'components/shared/templates/Subscription'
 import { useFetchServiceSubDetailQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { Link } from 'react-router-dom'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
@@ -119,15 +127,24 @@ const AppSubscriptionDetailOverlay = ({
     else return `${t('content.appSubscription.detailOverlay.serviceTitle')}`
   }
 
+  const getSubscriptionStatus = () => {
+    if (isAppSubscription) return getStatus()
+    else return getValue(data?.offerSubscriptionStatus)
+  }
+
+  const getTechnicalValue = () => {
+    if (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING)
+      return 'N/A'
+    else return ''
+  }
+
   const subscriptionDetails: TableType = {
     head: [t('content.appSubscription.detailOverlay.subscriptionDetails'), ''],
     body: [
       [getTitle(), getValue(data?.name)],
       [
         `${t('content.appSubscription.detailOverlay.status')}`,
-        isAppSubscription
-          ? getStatus()
-          : getValue(data?.offerSubscriptionStatus),
+        getSubscriptionStatus(),
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
@@ -144,102 +161,118 @@ const AppSubscriptionDetailOverlay = ({
     ],
   }
 
-  const bodyData = [
+  const renderTooltipText = (value: string, tooltipText: string) => {
+    return (
+      <span style={{ display: 'flex', flexDirection: 'row' }}>
+        <Typography variant="body3">{value}</Typography>
+        <Tooltips
+          color="dark"
+          tooltipPlacement="bottom-start"
+          tooltipText={tooltipText}
+        >
+          <HelpOutlineIcon
+            sx={{
+              width: '2em',
+              fontSize: '19px',
+              color: '#888888',
+              cursor: 'pointer',
+              paddingTop: '2px',
+              '&:hover': {
+                color: '#0088CC',
+              },
+            }}
+          />
+        </Tooltips>
+      </span>
+    )
+  }
+
+  const renderTechnicalName = (technicalData: TechnicalUserData[]) => (
+    <>
+      {technicalData.map((data) => (
+        <Link
+          target="_blank"
+          to={`/techuserdetails/${data.id}`}
+          style={{
+            textDecoration: 'none',
+          }}
+          key={data.id}
+        >
+          <Typography
+            variant="body3"
+            sx={{
+              color: '#0088CC',
+              cursor: 'pointer',
+            }}
+          >
+            {data.name}
+          </Typography>
+        </Link>
+      ))}
+    </>
+  )
+
+  const renderTenantUrl = (url: string) => {
+    if (
+      isAppSubscription &&
+      UserService.hasRole(ROLES.APPSTORE_EDIT) &&
+      data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
+    ) {
+      return (
+        <EditField
+          value={url ?? ''}
+          isValid={(value: string) => isURL(value)}
+          handleEdit={(url: string | number | boolean) =>
+            handleSaveURL(url as string)
+          }
+          errorMessage={t('content.appSubscription.pleaseEnterValidURL')}
+        />
+      )
+    } else return url
+  }
+
+  const bodyData: TableCellType[][] = [
     [
-      `${t('content.appSubscription.detailOverlay.technicalName')}`,
-      data?.technicalUserData?.[0]?.name ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+      renderTooltipText(
+        t('content.appSubscription.detailOverlay.technicalName'),
+        t('content.appSubscription.detailOverlay.technicalNameInfo')
+      ),
+      data?.technicalUserData.length
+        ? renderTechnicalName(data?.technicalUserData)
+        : getTechnicalValue(),
     ],
     [
-      `${t('content.appSubscription.detailOverlay.technicalPermission')}`,
-      data?.technicalUserData?.[0]?.permissions.toString() ??
-        (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-          ? 'N/A'
-          : ''),
+      renderTooltipText(
+        t('content.appSubscription.detailOverlay.technicalPermission'),
+        t('content.appSubscription.detailOverlay.technicalPermissionInfo')
+      ),
+      data?.technicalUserData.length
+        ? data?.technicalUserData
+            .map((userdata: TechnicalUserData) => userdata.permissions)
+            .toString()
+        : getTechnicalValue(),
     ],
   ]
 
   if (isAppSubscription) {
     bodyData.unshift(
       [
-        `${t('content.appSubscription.detailOverlay.appTenantUrl')}`,
-        data?.tenantUrl ?? '',
+        t('content.appSubscription.detailOverlay.appTenantUrl'),
+        renderTenantUrl(data?.tenantUrl ?? ''),
       ],
       [
-        `${t('content.appSubscription.detailOverlay.appId')}`,
-        data?.appInstanceId ??
-          (data?.offerSubscriptionStatus !== SubscriptionStatus.PENDING
-            ? 'N/A'
-            : ''),
+        renderTooltipText(
+          t('content.appSubscription.detailOverlay.appId'),
+          t('content.appSubscription.detailOverlay.appIdInfo')
+        ),
+        data?.appInstanceId ?? getTechnicalValue(),
       ]
     )
   }
 
-  const getTechnicalName = () => {
-    if (isAppSubscription) return ''
-    else return t('content.appSubscription.detailOverlay.technicalNameInfo')
-  }
-
-  const technicalDetails: TableType = {
+  const technicalDetails: VerticalTableType = {
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
     body: bodyData,
-    edit: [
-      [
-        {
-          icon: !isAppSubscription,
-          inputValue: getTechnicalName(),
-        },
-        {
-          icon:
-            isAppSubscription &&
-            UserService.hasRole(ROLES.APPSTORE_EDIT) &&
-            data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE,
-          inputValue: data?.tenantUrl ?? '',
-          isValid: (value: string) => isURL(value),
-          errorMessage: t('content.appSubscription.pleaseEnterValidURL'),
-        },
-      ],
-      [
-        {
-          icon: true,
-          inputValue: isAppSubscription
-            ? t('content.appSubscription.detailOverlay.appIdInfo')
-            : t(
-                'content.appSubscription.detailOverlay.technicalPermissionInfo'
-              ),
-        },
-        {
-          icon: false,
-        },
-      ],
-      [
-        {
-          icon: true,
-          inputValue: t(
-            'content.appSubscription.detailOverlay.technicalNameInfo'
-          ),
-        },
-        {
-          icon: false,
-          clickableLink: data?.technicalUserData[0]?.id
-            ? `/techuserdetails/${data?.technicalUserData[0]?.id}`
-            : undefined,
-        },
-      ],
-      [
-        {
-          icon: true,
-          inputValue: t(
-            'content.appSubscription.detailOverlay.technicalPermissionInfo'
-          ),
-        },
-        {
-          icon: false,
-        },
-      ],
-    ],
   }
 
   const getActiveSteps = () => {
@@ -319,10 +352,7 @@ const AppSubscriptionDetailOverlay = ({
             <StaticTable data={subscriptionDetails} />
           </div>
           <div style={{ marginTop: '20px' }}>
-            <StaticTable
-              data={technicalDetails}
-              handleEdit={(url) => handleSaveURL(url)}
-            />
+            <VerticalTableNew data={technicalDetails} />
           </div>
           <div style={{ marginTop: '20px' }}>
             <Typography

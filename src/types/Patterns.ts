@@ -18,9 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { getRequireHttpsUrlPattern } from '../services/EnvironmentService'
+
+// check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to !== 'false' if not set
+const requireHttpsUrlPattern = getRequireHttpsUrlPattern() !== 'false'
+
 const DOMAIN =
   /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
+// construct regex patterns for URL based on the REQUIRE_HTTPS_URL_PATTERN environment variable
+const urlProtocol = requireHttpsUrlPattern ? 'https' : 'https?'
+const urlPattern = new RegExp(
+  `^(${urlProtocol})://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
+  'i'
+)
+const prefixUrlPattern = new RegExp(`^${urlProtocol}:`, 'i')
 
 export const Patterns = {
   ID: /^[a-z0-9_.@-]{1,80}$/i,
@@ -29,10 +41,7 @@ export const Patterns = {
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*))@(([a-z0-9-]+\.)+[a-z]{2,})$/,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
-  URL: new RegExp(
-    `^(https)://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
-    'i'
-  ),
+  URL: urlPattern,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
@@ -43,7 +52,7 @@ export const Patterns = {
   regionName: /^[0-9A-Za-z- ]{2,20}$/,
   prefix: {
     BPN: /^BPNL/i,
-    URL: /^https:/i,
+    URL: prefixUrlPattern,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
   SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
@@ -98,6 +107,7 @@ export const Patterns = {
   },
 }
 
+export const isEmpty = (expr: string) => !expr || expr.trim() === ''
 export const isID = (expr: string) => Patterns.ID.test(expr)
 export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)

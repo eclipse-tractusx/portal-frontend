@@ -1,5 +1,69 @@
 # Changelog
 
+## 2.0.0-RC9
+
+### Feature
+
+- Company Wallet
+  - added option to revoke credential
+
+### Bugfix
+
+- App Subscription
+  - fixed blank page on autosetup call
+- App Subscription Detail
+  - fixed opening the correct technical user by ID
+- Decline company
+  - fixed api url typos
+- App Access Management
+  - fixed carousel element
+- Connectors
+  - fetched all service accounts and show them in the auto complete list
+- Admin Credential
+  - changed document download endpoint
+- Application request
+  - made changes in progress bar calculation
+- App user role overlay
+  - changed required role to `modify_user_account`
+- Onboarding Service Provider
+  - preset partner unique id type
+
+## 2.0.0-RC8
+
+### Feature
+
+- Technical User Creation
+  - implemented API response changes
+- Technical User UIs
+  - introduced support for multiple technical users
+- Application Request
+  - implemented expandable status detail overlay
+- Admin Credential
+  - implemented credential revocation feature
+  - added credential status
+- Connector Management
+  - updated main page UI and added details overlay and functionality
+
+### Change
+
+- Technical Setup
+  - updated overlay styling for connector configuration
+- Identity Provider Config
+  - added links on click of 'learn more'
+- URL Pattern validation
+  - made HTTPS in URL patterns configurable: enabled by default, HTTP can be configured by setting the introduced environment variable to false
+
+### Bugfix
+
+- Usecase Participation
+  - fixed missing status in framework agreement request page
+- Side menu
+  - fixed missing "My company" section in mobile version
+- App marketplace
+  - fixed displaying of images in app detail page
+- Identity Provider Config
+  - Added delete option for newly created "Managed IdPs"
+
 ## 2.0.0-RC7
 
 ### Change
@@ -20,12 +84,21 @@
 
 ## 2.0.0-RC6
 
+### Feature
+
+- Application Requests
+  - Company Registration Management Board Update
+
 ### Bugfix
 
 - Partner Network - fix white page blank issue
 - Admin Credential - changed API endpoints for approval and decline request
 - Use Case Participation - add loader until response is generated
 - Error Handling - fixed forwarding to an error page when backend not available
+
+### Feature
+
+- Company Wallet - Add new end point and update the response schema. Handle error and not valid membership wallet case in the UI.
 
 ## 2.0.0-RC5
 

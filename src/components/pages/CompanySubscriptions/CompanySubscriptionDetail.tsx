@@ -38,7 +38,10 @@ import { PAGES } from 'types/Constants'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import { SubscriptionStatus } from 'features/apps/types'
+import {
+  type SubscribeTechnicalUserData,
+  SubscriptionStatus,
+} from 'features/apps/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { getApiBase } from 'services/EnvironmentService'
 import './CompanySubscriptions.scss'
@@ -61,7 +64,11 @@ export default function CompanySubscriptionDetail() {
     ],
     body: [
       [data?.connectorData?.[0]?.name ?? ''],
-      [data?.technicalUserData?.[0]?.name ?? ''],
+      [
+        data?.technicalUserData
+          ?.map((userdata: SubscribeTechnicalUserData) => userdata.name)
+          .toString() ?? '',
+      ],
     ],
   }
 

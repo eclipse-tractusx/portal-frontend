@@ -48,11 +48,17 @@ export interface WalletContent {
   status: CredentialSubjectStatus
   expiryDate: string
   authority: string
+  credentialDetailId: string
+}
+
+enum Tags {
+  REVOKED = 'REVOKED',
 }
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyWallet',
   baseQuery: fetchBaseQuery(apiSsiCredentialQuery()),
+  tagTypes: [Tags.REVOKED],
   endpoints: (builder) => ({
     fetchCompanyWallet: builder.query<WalletContent[], void>({
       query: () => {
@@ -61,7 +67,14 @@ export const apiSlice = createApi({
         }
       },
     }),
+    revokeCredential: builder.mutation<string, string>({
+      query: (id) => ({
+        url: `/api/revocation/credentials/${id}`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
-export const { useFetchCompanyWalletQuery } = apiSlice
+export const { useFetchCompanyWalletQuery, useRevokeCredentialMutation } =
+  apiSlice

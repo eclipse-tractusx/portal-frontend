@@ -24,6 +24,7 @@ import {
   type WalletContent,
   useFetchCompanyWalletQuery,
   CredentialType,
+  useRevokeCredentialMutation,
 } from 'features/compayWallet/companyWalletApiSlice'
 import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
@@ -32,12 +33,19 @@ import { useEffect, useState } from 'react'
 import { groupBy } from 'lodash'
 import { Box } from '@mui/material'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
+import Overlay from './Overlay'
+import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
-  const { data, isSuccess, isError } = useFetchCompanyWalletQuery()
+  const { data, isSuccess, isError, refetch } = useFetchCompanyWalletQuery()
   const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
-
+  const [credentialId, setCredentialId] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [success, setSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
+  const [revokeCredential] = useRevokeCredentialMutation()
   useEffect(() => {
     const actives: WalletContent[] = []
     data?.forEach((cont) => {
@@ -53,6 +61,22 @@ export default function CompanyWallet(): JSX.Element {
       ? item.credentialType
       : t('content.companyWallet.others')
   )
+
+  const handleRevocation = async () => {
+    setLoading(true)
+    try {
+      await revokeCredential(credentialId)
+        .unwrap()
+        .then(() => {
+          setSuccess(true)
+          refetch()
+        })
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
+    setCredentialId('')
+  }
 
   return (
     <main className="companywallet-main">
@@ -79,7 +103,12 @@ export default function CompanyWallet(): JSX.Element {
               <>
                 <ComapnyWalletSubNavigationHeader />
                 <div className="container">
-                  <RuleCard sections={groupedItems} />
+                  <RuleCard
+                    handleRevoke={(id) => {
+                      setCredentialId(id)
+                    }}
+                    sections={groupedItems}
+                  />
                 </div>
               </>
             )}
@@ -96,6 +125,45 @@ export default function CompanyWallet(): JSX.Element {
           >
             <LoadingProgress />
           </Box>
+        )}
+        {credentialId !== '' && (
+          <Overlay
+            title={t('content.companyWallet.confirmOverlay.title')}
+            description={t('content.companyWallet.confirmOverlay.description')}
+            handleConfirmClick={handleRevocation}
+            handleOverlayClose={() => {
+              setCredentialId('')
+            }}
+            loading={loading}
+            openDialog={credentialId !== ''}
+          />
+        )}
+        {success && (
+          <ServerResponseOverlay
+            title={t('content.companyWallet.successOverlay.title')}
+            intro={t('content.companyWallet.successOverlay.description')}
+            dialogOpen={true}
+            handleCallback={() => {
+              // do nothing
+            }}
+          >
+            <Typography variant="body2"></Typography>
+          </ServerResponseOverlay>
+        )}
+        {error && (
+          <ServerResponseOverlay
+            title={t('content.companyWallet.errorOverlay.title')}
+            intro={t('content.companyWallet.errorOverlay.description')}
+            dialogOpen={true}
+            iconComponent={
+              <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
+            }
+            handleCallback={() => {
+              // do nothing
+            }}
+          >
+            <Typography variant="body2"></Typography>
+          </ServerResponseOverlay>
         )}
       </div>
     </main>

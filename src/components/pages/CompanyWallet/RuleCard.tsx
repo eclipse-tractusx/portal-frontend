@@ -17,28 +17,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Tooltips, Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import {
   CredentialSubjectStatus,
+  CredentialType,
   type WalletContent,
 } from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 
 type Hash<T> = Record<string, T>
 
 export default function RuleCard({
   sections,
+  handleRevoke,
 }: {
   readonly sections: Hash<WalletContent[]>
+  readonly handleRevoke: (id: string) => void
 }): JSX.Element {
   const { t } = useTranslation()
   const keys = Object.keys(sections)
   const getBgColor = (item: WalletContent) => {
     if (item?.status === CredentialSubjectStatus.ACTIVE) {
       return '#004F4B'
+    } else if (
+      item?.status === CredentialSubjectStatus.INACTIVE ||
+      item?.status === CredentialSubjectStatus.REVOKED
+    ) {
+      return '#FEE7E2'
     } else {
       return '#FFA600'
     }
@@ -48,6 +57,14 @@ export default function RuleCard({
     status === CredentialSubjectStatus.REVOKED
       ? CredentialSubjectStatus.INACTIVE
       : status
+
+  const canShowRevoke = (item: WalletContent) => {
+    return (
+      item.status === CredentialSubjectStatus.ACTIVE &&
+      item?.credentialType !== CredentialType.MEMBERSHIP &&
+      item.credentialType !== CredentialType.BUSINESS_PARTNER_NUMBER
+    )
+  }
 
   return (
     <>
@@ -73,26 +90,38 @@ export default function RuleCard({
             }}
             className="grid-layout"
           >
-            {sections[key]?.map((item: WalletContent) => (
+            {sections[key]?.map((item: WalletContent, index) => (
               <Grid
                 item
                 xs={4}
                 sm={4}
                 md={4}
                 className="main-rule-card-container"
-                key={item.expiryDate}
+                key={item.expiryDate ?? index}
                 sx={{
                   paddingLeft: '20px !important',
                 }}
               >
                 <Box className="gradient-container">
-                  <Box key={item.expiryDate} className="rule-card-container">
+                  <Box
+                    key={item.expiryDate ?? index}
+                    className="rule-card-container"
+                    sx={{
+                      backgroundColor:
+                        item?.status === CredentialSubjectStatus.INACTIVE ||
+                        item?.status === CredentialSubjectStatus.REVOKED
+                          ? '#EAEAEA'
+                          : '#deeeef',
+                    }}
+                  >
                     <Box className="circle-container">
                       <Typography
                         sx={{
-                          color: item?.status
-                            ? '#fff !important'
-                            : '#428C5B !important',
+                          color:
+                            item?.status !== CredentialSubjectStatus.INACTIVE &&
+                            item?.status !== CredentialSubjectStatus.REVOKED
+                              ? '#fff !important'
+                              : '#FF532F !important',
                           backgroundColor: getBgColor(item),
                         }}
                         className="text"
@@ -101,7 +130,7 @@ export default function RuleCard({
                         {getStatus(item?.status)}
                       </Typography>
                       <img
-                        src="/assets/images/logos/logo_tractus-x.svg"
+                        src="/logo_tractus-x.svg"
                         alt="tractus x logo"
                         style={{
                           width: 40,
@@ -111,15 +140,37 @@ export default function RuleCard({
                     <Typography className="text" variant="h4">
                       {item?.credentialType.split('_').join(' ')}
                     </Typography>
-                    <div>
-                      <Typography className="text" variant="body3">
-                        {item.authority}
-                      </Typography>
-                      <Typography className="text" variant="body3">
-                        {t('content.companyWallet.expiry')}
-                        {dayjs(item.expiryDate).format('YYYY-MM-DD')}
-                      </Typography>
-                    </div>
+                    <Box className="revoke-container">
+                      <div>
+                        <Typography className="text" variant="body3">
+                          {item.authority}
+                        </Typography>
+                        <Typography className="text" variant="body3">
+                          {t('content.companyWallet.expiry')}
+                          {dayjs(item.expiryDate).format('YYYY-MM-DD')}
+                        </Typography>
+                      </div>
+                      {canShowRevoke(item) && (
+                        <Tooltips
+                          tooltipPlacement="top-start"
+                          tooltipText={t('content.companyWallet.revokeHint')}
+                          children={
+                            <Box
+                              onClick={() => {
+                                handleRevoke(item.credentialDetailId)
+                              }}
+                            >
+                              <SettingsBackupRestoreIcon
+                                sx={{
+                                  color: '#c84f4f',
+                                  cursor: 'pointer',
+                                }}
+                              />
+                            </Box>
+                          }
+                        />
+                      )}
+                    </Box>
                   </Box>
                 </Box>
               </Grid>
