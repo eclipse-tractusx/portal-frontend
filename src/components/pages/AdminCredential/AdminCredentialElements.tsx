@@ -46,6 +46,7 @@ import {
   PageLoadingTable,
   LoadingButton,
   StatusTag,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
@@ -76,17 +77,18 @@ enum SortType {
 }
 
 export default function AdminCredentialElements() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
 
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(FilterType.ALL)
+  const [group, setGroup] = useState<string>(FilterType.PENDING)
   const [sortOption, setSortOption] = useState<string>(SortType.BPNLASC)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterValueAPI, setFilterValueAPI] = useState<string>('')
+  const [filterValueAPI, setFilterValueAPI] = useState<string>(
+    FilterType.PENDING
+  )
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
-  const [approveLoading, setApproveLoading] = useState<string>()
-  const [declineLoading, setDeclineLoading] = useState<string>()
+  const [approveDeclineLoading, setApproveDeclineLoading] = useState<string>()
   const [openRevokeOverlay, setOpenRevokeOverlay] = useState<boolean>(false)
   const [credentialData, setCredentialData] = useState<CredentialData>()
   const [revokeLoading, setRevokeLoading] = useState<boolean>(false)
@@ -135,9 +137,7 @@ export default function AdminCredentialElements() {
     credentialId: string,
     status: StatusType
   ) => {
-    status === StatusType.APPROVE
-      ? setApproveLoading(credentialId)
-      : setDeclineLoading(credentialId)
+    setApproveDeclineLoading(credentialId)
     const APIRequest =
       status === StatusType.APPROVE ? approveCredential : declineCredential
     await APIRequest(credentialId)
@@ -153,8 +153,7 @@ export default function AdminCredentialElements() {
       .catch(() => {
         error(t('content.adminCertificate.errorMessage'))
       })
-    setApproveLoading('')
-    setDeclineLoading('')
+    setApproveDeclineLoading('')
   }
 
   const filterButtons = [
@@ -199,32 +198,30 @@ export default function AdminCredentialElements() {
   const renderApproveDeclineBtn = (row: CredentialData) => {
     if (row.participantStatus === StatusEnum.PENDING) {
       return (
-        <>
-          <Button
-            size="small"
-            color="error"
-            variant="contained"
-            className="statusBtn"
-            disabled={declineLoading === row.credentialDetailId}
-            onClick={() =>
-              handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
-            }
-          >
-            {t('global.actions.decline')}
-          </Button>
+        <div className="approveDeclineBtn">
           <Button
             size="small"
             color="success"
             variant="contained"
             className="statusBtn ml-10"
-            disabled={approveLoading === row.credentialDetailId}
+            disabled={approveDeclineLoading === row.credentialDetailId}
             onClick={() =>
               handleApproveDecline(row.credentialDetailId, StatusType.APPROVE)
             }
           >
             {t('global.actions.confirm')}
           </Button>
-        </>
+          <Button
+            className={`hexagon ${approveDeclineLoading === row.credentialDetailId && 'disabledDecline'}`}
+            disabled={approveDeclineLoading === row.credentialDetailId}
+            onClick={() =>
+              !approveDeclineLoading &&
+              handleApproveDecline(row.credentialDetailId, StatusType.DECLINE)
+            }
+          >
+            <Typography variant="body3">X</Typography>
+          </Button>
+        </div>
       )
     }
   }
@@ -233,17 +230,26 @@ export default function AdminCredentialElements() {
     {
       field: 'credentialType',
       headerName: t('content.adminCertificate.table.crendentialType'),
-      flex: 2.5,
+      flex: 3,
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <>
+          {i18n.exists(
+            `content.adminCertificate.table.type.${row.credentialType}`
+          )
+            ? `${t(`content.adminCertificate.table.type.${row.credentialType}`)}`
+            : row.credentialType}
+        </>
+      ),
     },
     {
-      field: 'companyName',
+      field: 'bpnl',
       headerName: t('content.adminCertificate.table.companyInfo'),
-      flex: 2,
+      flex: 2.5,
     },
     {
       field: 'useCase',
       headerName: t('content.adminCertificate.table.certificate'),
-      flex: 1.5,
+      flex: 2,
       renderCell: ({ row }: { row: CredentialData }) => (
         <>{row.useCase ?? 'N/A'}</>
       ),
@@ -304,12 +310,23 @@ export default function AdminCredentialElements() {
         <>
           {UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
             row.participantStatus === StatusEnum.ACTIVE && (
-              <SettingsBackupRestoreIcon
-                className="revokeBtn"
-                onClick={() => {
-                  setOpenRevokeOverlay(true)
-                  setCredentialData(row)
+              <Tooltips
+                additionalStyles={{
+                  cursor: 'pointer',
                 }}
+                tooltipPlacement="top-start"
+                tooltipText={t('content.adminCertificate.table.revoke')}
+                children={
+                  <div>
+                    <SettingsBackupRestoreIcon
+                      className="revokeBtn"
+                      onClick={() => {
+                        setOpenRevokeOverlay(true)
+                        setCredentialData(row)
+                      }}
+                    />
+                  </div>
+                }
               />
             )}
         </>
@@ -326,6 +343,7 @@ export default function AdminCredentialElements() {
       error(t('content.adminCertificate.revokeOverlay.error'))
     }
     setRevokeLoading(false)
+    setOpenRevokeOverlay(false)
   }
 
   return (

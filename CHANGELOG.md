@@ -6,6 +6,8 @@
 
 - Company Wallet
   - Revoke credential
+- Admin Credential
+  - Credential Request Management Board Improvements
 
 ### Bugfix
 
