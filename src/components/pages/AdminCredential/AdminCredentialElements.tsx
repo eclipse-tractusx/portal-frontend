@@ -227,11 +227,12 @@ export default function AdminCredentialElements() {
   }
 
   const renderCredentialType = (row: CredentialData) => {
+    let type = row.credentialType
     if (
       i18n.exists(`content.adminCertificate.table.type.${row.credentialType}`)
     )
-      return `${t(`content.adminCertificate.table.type.${row.credentialType}`)}`
-    else return row.credentialType
+      type = `${t(`content.adminCertificate.table.type.${row.credentialType}`)}`
+    return type
   }
 
   const columns = [
