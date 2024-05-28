@@ -140,7 +140,7 @@ export default function AddServiceProvider() {
             onClick={() => {
               void addURL()
             }}
-            disabled={UrlErrorMsg !== '' || !inputURL}
+            disabled={UrlErrorMsg !== ''}
           >
             {t('global.actions.confirm')}
           </Button>

@@ -6,6 +6,8 @@
 
 - Admin Credential
   - Credential Request Management Board Improvements
+- App Subscription
+  - Register URL changes for Autosetup
 
 ## 2.0.0-RC9
 
