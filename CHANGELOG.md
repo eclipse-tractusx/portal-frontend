@@ -1,5 +1,33 @@
 # Changelog
 
+## 2.0.0-RC9
+
+### Feature
+
+- Company Wallet
+  - added option to revoke credential
+
+### Bugfix
+
+- App Subscription
+  - fixed blank page on autosetup call
+- App Subscription Detail
+  - fixed opening the correct technical user by ID
+- Decline company
+  - fixed api url typos
+- App Access Management
+  - fixed carousel element
+- Connectors
+  - fetched all service accounts and show them in the auto complete list
+- Admin Credential
+  - changed document download endpoint
+- Application request
+  - made changes in progress bar calculation
+- App user role overlay
+  - changed required role to `modify_user_account`
+- Onboarding Service Provider
+  - preset partner unique id type
+
 ## 2.0.0-RC8
 
 ### Feature

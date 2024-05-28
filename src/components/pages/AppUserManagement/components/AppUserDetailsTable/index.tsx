@@ -23,13 +23,14 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { UserList } from 'components/shared/frame/UserList'
 import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import {
   type AppRole,
   useFetchAppUsersSearchQuery,
 } from 'features/admin/appuserApiSlice'
 import type { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
+import UserService from 'services/UserService'
 
 export const AppUserDetailsTable = ({
   roles,
@@ -48,7 +49,11 @@ export const AppUserDetailsTable = ({
       sectionTitle={'content.usermanagement.appUserDetails.subheadline'}
       addButtonLabel={'content.usermanagement.appUserDetails.table.add'}
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
-      addButtonDisabled={roles && roles?.length <= 0}
+      addButtonDisabled={
+        !roles ||
+        roles.length === 0 ||
+        !UserService.hasRole(ROLES.MODIFY_USER_ACCOUNT)
+      }
       addButtonTooltip={
         roles && roles?.length <= 0
           ? t('content.usermanagement.appUserDetails.table.buttonTooltip')
@@ -58,8 +63,11 @@ export const AppUserDetailsTable = ({
       fetchHook={useFetchAppUsersSearchQuery}
       fetchHookArgs={{ appId, expr, userRoleResponse, role: true }}
       onSearch={setExpr}
-      onDetailsClick={(row: TenantUser) =>
-        dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
+      onDetailsClick={
+        UserService.hasRole(ROLES.MODIFY_USER_ACCOUNT)
+          ? (row: TenantUser) =>
+              dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
+          : undefined
       }
     />
   )

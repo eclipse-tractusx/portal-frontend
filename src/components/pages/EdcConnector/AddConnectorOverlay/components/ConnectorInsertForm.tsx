@@ -258,11 +258,9 @@ any) => {
   const [serviceAccountUsers, setServiceAccountUsers] = useState([])
 
   useEffect(() => {
-    if (fetchServiceAccountUsers?.content)
+    if (fetchServiceAccountUsers)
       setServiceAccountUsers(
-        fetchServiceAccountUsers.content?.filter(
-          (item: { name: string }) => item.name
-        )
+        fetchServiceAccountUsers?.filter((item: { name: string }) => item.name)
       )
   }, [fetchServiceAccountUsers])
 

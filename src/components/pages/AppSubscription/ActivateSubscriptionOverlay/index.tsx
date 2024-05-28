@@ -77,7 +77,7 @@ const ActivateSubscriptionOverlay = ({
   const [URLErrorMsg, setURLErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const [activationResponse, setActivationResponse] =
-    useState<SubscriptionActivationResponse[]>()
+    useState<SubscriptionActivationResponse>()
 
   const [addUserSubscribtion] = useAddUserSubscribtionMutation()
   const { data } = useFetchTechnicalUserProfilesQuery(appId)
@@ -102,6 +102,7 @@ const ActivateSubscriptionOverlay = ({
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   const closeActivationOverlay = () => {
@@ -117,30 +118,31 @@ const ActivateSubscriptionOverlay = ({
     ],
   }
 
-  const activationData = activationResponse?.map(
-    (userdata: SubscriptionActivationResponse) => [
-      [
-        t('content.appSubscription.activation.appClientId'),
-        `${userdata?.clientInfo?.clientId}`,
-      ],
+  const activationData = activationResponse?.technicalUserInfo
+    ?.map((userdata) => [
       [
         t('content.appSubscription.activation.technicalClientId'),
-        `${userdata?.technicalUserInfo?.technicalClientId}`,
+        `${userdata?.technicalClientId}`,
       ],
       [
         t('content.appSubscription.activation.technicalSecret'),
-        `${userdata?.technicalUserInfo?.technicalUserSecret}`,
+        `${userdata?.technicalUserSecret}`,
       ],
       [
         t('content.appSubscription.activation.technicalPermission'),
-        `${userdata?.technicalUserInfo?.technicalUserPermissions.toString()}`,
+        `${userdata?.technicalUserPermissions?.toString()}`,
       ],
-    ]
-  )
+    ])
+    .flat(1)
+
+  activationData?.unshift([
+    t('content.appSubscription.activation.appClientId'),
+    `${activationResponse?.clientInfo?.clientId}`,
+  ])
 
   const tableData2: TableType = {
     head: [t('content.appSubscription.activation.technicalDetails'), ''],
-    body: activationData?.flat(1) ?? [],
+    body: activationData ?? [],
   }
 
   return (
