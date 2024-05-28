@@ -1,13 +1,18 @@
 # Changelog
 
+## Changes
+
+### Feature
+
+- Admin Credential
+  - Credential Request Management Board Improvements
+
 ## 2.0.0-RC9
 
 ### Feature
 
 - Company Wallet
   - Revoke credential
-- Admin Credential
-  - Credential Request Management Board Improvements
 
 ### Bugfix
 
