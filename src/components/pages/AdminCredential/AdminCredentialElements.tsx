@@ -226,20 +226,21 @@ export default function AdminCredentialElements() {
     }
   }
 
+  const renderCredentialType = (row: CredentialData) => {
+    if (
+      i18n.exists(`content.adminCertificate.table.type.${row.credentialType}`)
+    )
+      return `${t(`content.adminCertificate.table.type.${row.credentialType}`)}`
+    else return row.credentialType
+  }
+
   const columns = [
     {
       field: 'credentialType',
       headerName: t('content.adminCertificate.table.crendentialType'),
       flex: 3,
-      renderCell: ({ row }: { row: CredentialData }) => (
-        <>
-          {i18n.exists(
-            `content.adminCertificate.table.type.${row.credentialType}`
-          )
-            ? `${t(`content.adminCertificate.table.type.${row.credentialType}`)}`
-            : row.credentialType}
-        </>
-      ),
+      renderCell: ({ row }: { row: CredentialData }) =>
+        renderCredentialType(row),
     },
     {
       field: 'bpnl',
