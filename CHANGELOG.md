@@ -2,6 +2,13 @@
 
 ## Changes
 
+## Unreleased
+
+### Bugfix
+
+- Overlay
+  - Fix consistency issue in overlays where form input is used
+
 ### Feature
 
 - Admin Credential
