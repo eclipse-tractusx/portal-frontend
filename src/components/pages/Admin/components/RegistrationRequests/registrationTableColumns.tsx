@@ -41,14 +41,15 @@ export const RegistrationRequestsTableColumns = (
   onConfirmationCancel?: (applicationId: string, name: string) => void
 ): Array<GridColDef> => {
   const getStatusProgress = (row: ApplicationRequest) => {
-    const items: ProgressType = _.chain(row.applicationChecklist)
+    const groupedItems = _.chain(row.applicationChecklist)
       .groupBy('statusId')
-      .map((value, key) => ({ key, value: value.length }))
+      .map((value, key) => ({ [key]: value.length }))
       .value()
-      .reduce(
-        (obj, item) => Object.assign(obj, { [item.key]: item.value }),
-        initialProgressValue
-      )
+
+    const items: ProgressType = {
+      ...initialProgressValue,
+      ...Object.assign({}, ...groupedItems),
+    }
 
     const getProgressStatus = (
       style: React.CSSProperties,
@@ -96,9 +97,10 @@ export const RegistrationRequestsTableColumns = (
           <Typography
             variant="body2"
             className="cancelBtn"
-            onClick={() =>
+            onClick={(e) => {
+              e.stopPropagation()
               onConfirmationCancel?.(row.applicationId, row.companyName)
-            }
+            }}
           >
             {t('content.admin.registration-requests.cancel')}
           </Typography>

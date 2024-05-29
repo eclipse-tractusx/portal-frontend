@@ -168,7 +168,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       )
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
       return (
-        <NotificationContent item={item} navlinks={[PAGES.TECHNICAL_SETUP]} />
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.CONNECTOR_MANAGEMENT]}
+        />
       )
     case NotificationType.WELCOME_USE_CASES:
       return <NotificationContent item={item} navlinks={[PAGES.USE_CASE]} />

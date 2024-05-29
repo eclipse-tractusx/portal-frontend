@@ -19,6 +19,7 @@
     "usermanagement": "Benutzerverwaltung",
     "idpmanagement": "Identitätsprovider (IDP)",
     "technicalsetup": "Technische Integration",
+    "connectormanagement": "Connector-Management",
     "applicationrequests": "Beitrittsanträge",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
@@ -558,13 +559,42 @@
         "name": "Konnektorname",
         "id": "Konnektor-ID",
         "type": "Steckertyp",
-        "details": "Status",
+        "status": "Status",
+        "details": "Einzelheiten",
         "location": "Location",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
         "hostCompanyName": "Host",
-        "providerCompanyName": "Customer"
+        "providerCompanyName": "Customer",
+        "connectorUrl": "Connector-URL"
+      },
+      "details": {
+        "heading": "Connector konfigurieren",
+        "name": "Name",
+        "url": "URL",
+        "status": "Status: ",
+        "type": "Typ: ",
+        "host": "Gastgeber: ",
+        "location": "Standort: ",
+        "technicalUser": "Technischer Benutzer: ",
+        "SdRegistration": "SD-Registrierung: ",
+        "SdDocument": "SD-Dokument: ",
+        "noTechnicalUserAvailable": "Kein technischer Benutzer verfügbar",
+        "errormessage": "Fehler! Etwas ist schief gelaufen",
+        "wantToDeleteConnector": "Möchten Sie den Connector wirklich löschen?",
+        "connectorDeletedSuccessfully": "Der Connector wurde erfolgreich gelöscht",
+        "delete": "Löschen",
+        "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
+        "learnMore": "Learn More",
+        "noDocumentAvailable": "Kein Dokument verfügbar",
+        "selfDescriptionDocument": "Selbstbeschreibungsdokument",
+        "deleteConnector": "Connector löschen",
+        "urlUpdatedSuccessfully": "URL erfolgreich aktualisiert",
+        "note": "Bitte beachten Sie:",
+        "noteDesc": "Wenn Sie die URL des Connectors ändern, wird das aktuelle SD-Dokument ungültig und vom System wird automatisch ein neues erstellt",
+        "urlErrorMessage": "Ein Fehler ist aufgetreten. Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut oder kommen Sie später wieder",
+        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein"
       },
       "rowValue": {
         "owned": "Owned",
@@ -592,7 +622,7 @@
       "helpTextNew": "Details Connector Configuration",
       "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
-      "tabletitle": "Onboarded Connectors",
+      "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
@@ -1002,8 +1032,8 @@
         "addOverlay": {
           "service": "Technical User Role",
           "serviceSubHeading": "Select one of the following service roles:",
-          "username": "Username",
-          "description": "Beschreibung",
+          "username": "Username*",
+          "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
@@ -1766,11 +1796,28 @@
         "crendentialType": "Type",
         "companyInfo": "Company Info",
         "certificate": "Zertifikat",
-        "document": "Dokumente"
+        "document": "Dokumente",
+        "type": {
+          "TRACEABILITY_FRAMEWORK": "Traceability",
+          "PCF_FRAMEWORK": "PCF Framework",
+          "BEHAVIOR_TWIN_FRAMEWORK": "Behaviour Twin Framework",
+          "DISMANTLER_CERTIFICATE": "Dismantler Certificate",
+          "SUSTAINABILITY_FRAMEWORK": "Sustainability Framework",
+          "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
+          "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
+        },
+        "revoke": "Widerrufen"
       },
       "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
       "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
-      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator."
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator.",
+      "revokeOverlay": {
+        "title": "Revoke Credential",
+        "description": "Revoking a credential cannot be undone.",
+        "subDesc": "Do you want to revoke the credential:",
+        "success": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird.",
+        "error": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuche Sie es später erneut."
+      }
     },
     "certificates": {
       "heading": "Zertifikate",
@@ -1847,18 +1894,18 @@
         "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
         "successTitle": "Certificate successfully uploaded.",
         "successDescription": "The upload was successful. The document is now available under your company certificate management page as well as shared with all dataspace providers.",
-        "certificateTypeTitle": "Certificate Type",
+        "certificateTypeTitle": "Certificate Type*",
         "certificateTypeError": "",
         "certificateTypeLabel": "",
         "certificateTypePlaceholder": "Please select",
-        "certificateSiteTitle": "Certificate Site/Level",
+        "certificateSiteTitle": "Certificate Site/Level*",
         "certificateSiteError": "",
         "certificateSiteLabel": "",
         "certificateSitePlaceholder": "Please select",
-        "uploadDocumentTitle": "Certificate file upload",
+        "uploadDocumentTitle": "Certificate file upload*",
         "note": "",
         "comingsoon": "Coming soon",
-        "expiry": "Expiry Date",
+        "expiry": "Expiry Date*",
         "dateplaceholder": "Enter a Date",
         "dateError": "Select a valid date"
       },
@@ -1897,7 +1944,20 @@
         "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
       },
       "expiry": "Ablauf: ",
-      "others": "Others"
+      "others": "Others",
+      "revokeHint": "Revoke Credential",
+      "confirmOverlay": {
+        "title": "Confirm Revoke",
+        "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
+      },
+      "successOverlay": {
+        "title": "Revoke Credential",
+        "description": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird. Wenn Sie die Zugangsdaten erneut anfordern möchten, starten Sie bitte eine neue Zugangsdatenanfrage."
+      },
+      "errorOverlay": {
+        "title": "Revoke Credential",
+        "description": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuchen Sie es später erneut."
+      }
     },
     "standardLibraryTable": {
       "version": "Version",

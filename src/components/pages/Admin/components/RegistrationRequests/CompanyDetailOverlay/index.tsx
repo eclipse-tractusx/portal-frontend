@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useState, useEffect, useRef, type SyntheticEvent } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
@@ -52,6 +52,7 @@ interface CompanyDetailOverlayProps {
   openDialog?: boolean
   selectedRequest?: ApplicationRequest
   selectedRequestId?: string
+  selectedActiveTab?: number
   handleOverlayClose: React.MouseEventHandler
 }
 
@@ -59,6 +60,7 @@ const CompanyDetailOverlay = ({
   openDialog = false,
   selectedRequest,
   selectedRequestId,
+  selectedActiveTab,
   handleOverlayClose,
 }: CompanyDetailOverlayProps) => {
   const modalElement = useRef<HTMLInputElement>()
@@ -69,7 +71,7 @@ const CompanyDetailOverlay = ({
   )
   const [company, setCompany] = useState<ApplicationRequest>()
   const [getDocumentById] = useFetchNewDocumentByIdMutation()
-  const [activeTab, setActiveTab] = useState<number>(0)
+  const [activeTab, setActiveTab] = useState<number>(selectedActiveTab ?? 0)
   const [height, setHeight] = useState<string>('')
   const { data: checklistData } =
     useFetchCheckListDetailsQuery(selectedRequestId)
@@ -272,22 +274,6 @@ const CompanyDetailOverlay = ({
           }}
         >
           <>
-            {activeTab === 0 && (
-              <Trans
-                i18nKey={t(
-                  'content.admin.registration-requests.overlay.tab1SubTitle'
-                )}
-                values={{
-                  status: 'in progress',
-                }}
-              >
-                <Typography variant="h6">
-                  {t(
-                    'content.admin.registration-requests.overlay.tab1SubTitle'
-                  )}
-                </Typography>
-              </Trans>
-            )}
             <Box
               sx={{
                 marginLeft: '60px',
@@ -375,7 +361,10 @@ const CompanyDetailOverlay = ({
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <Box sx={{ width: '100%', height }}>
-                <CheckListFullButtons progressButtons={checklistData} />
+                <CheckListFullButtons
+                  progressButtons={checklistData}
+                  selectedRequestId={selectedRequestId}
+                />
               </Box>
             </TabPanel>
           </DialogContent>

@@ -38,9 +38,13 @@ import { RequestList } from './components/RequestList'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
-import CheckListStatusOverlay from './components/CheckList/CheckListStatusOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
+
+enum TableField {
+  DETAIL = 'detail',
+  STATUS = 'status',
+}
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
@@ -71,18 +75,21 @@ export default function RegistrationRequests() {
   const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
   const [errorOverlay, setErrorOverlay] = useState<boolean>(false)
 
-  const [statusConfirmationOverlay, setStatusConfirmationOverlay] =
-    useState<boolean>(false)
   const [confirmCancelModalOpen, setConfirmCancelModalOpen] =
     useState<boolean>(false)
   const [selectedRequestName, setSelectedRequestName] = useState<string>('')
+  const [selectedActiveTab, setSelectedActiveTab] = useState<number>(0)
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (params.field === 'detail') {
+    if (
+      params.field === TableField.DETAIL ||
+      params.field === TableField.STATUS
+    ) {
       setSelectedRequestId(params.row.applicationId)
       setSelectedRequest(params.row)
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
+      setSelectedActiveTab(params.field === TableField.DETAIL ? 0 : 1)
     }
   }
 
@@ -158,6 +165,7 @@ export default function RegistrationRequests() {
             openDialog: overlayOpen,
             selectedRequest,
             selectedRequestId,
+            selectedActiveTab,
             handleOverlayClose: () => {
               setOverlayOpen(false)
             },
@@ -211,15 +219,6 @@ export default function RegistrationRequests() {
         companyName={selectedRequestName}
         selectedRequestId={selectedRequestId}
       />
-      {statusConfirmationOverlay && selectedRequestId && (
-        <CheckListStatusOverlay
-          openDialog={statusConfirmationOverlay}
-          handleOverlayClose={() => {
-            setStatusConfirmationOverlay(false)
-          }}
-          selectedRequestId={selectedRequestId}
-        />
-      )}
       <AddBpnOveraly
         openDialog={enableBpnInput}
         isLoading={isLoading}

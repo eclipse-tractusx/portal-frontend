@@ -19,6 +19,7 @@
     "usermanagement": "User Management",
     "idpmanagement": "Identity Provider Config",
     "technicalsetup": "Technical Integration",
+    "connectormanagement": "Connector Management",
     "applicationrequests": "Application Requests",
     "admin": "Administration",
     "developer": "Development",
@@ -557,13 +558,42 @@
         "name": "Connector Name",
         "id": "Connector_ID",
         "type": "Connector Type",
-        "details": "Status",
+        "status": "Status",
+        "details": "Details",
         "location": "Location",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "The Self-Description is triggered. Process might take up to a couple of minutes.",
         "hostCompanyName": "Host",
-        "providerCompanyName": "Customer"
+        "providerCompanyName": "Customer",
+        "connectorUrl": "Connector URL"
+      },
+      "details": {
+        "heading": "Configure Connector",
+        "name": "Name",
+        "url": "URL",
+        "status": "Status: ",
+        "type": "Type: ",
+        "host": "Host: ",
+        "location": "Location: ",
+        "technicalUser": "Technical User: ",
+        "SdRegistration": "SD Registration: ",
+        "SdDocument": "SD Document: ",
+        "noTechnicalUserAvailable": "No technical user available",
+        "errormessage": "Error! Something went wrong",
+        "wantToDeleteConnector": "Do you really want to delete the connector?",
+        "connectorDeletedSuccessfully": "Connector has been deleted successfully",
+        "delete": "Delete",
+        "configureYourConnectorDetails": "Configure the connector details",
+        "learnMore": "Learn More",
+        "noDocumentAvailable": "No Document available",
+        "selfDescriptionDocument": "Self Description Document",
+        "deleteConnector": "Delete Connector",
+        "urlUpdatedSuccessfully": "URL updated successfully",
+        "note": "Please Note:",
+        "noteDesc": "If you change the URL of the connector, the current SD document becomes invalid and a new one will be created automatically by the system",
+        "urlErrorMessage": "An error has occured. The changes could not be saved. Please try again or come back later",
+        "pleaseEnterValidURL": "Please enter a valid URL"
       },
       "rowValue": {
         "owned": "Owned",
@@ -590,8 +620,13 @@
       "helpText": "Get some help",
       "helpTextNew": "Details Connector Configuration",
       "headertitle": "Connector Registration",
+      "desc": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
+      "subDesc1": "Connector Configuration Details",
+      "subDesc2": "https://bpnl00000003crhk-catena-x.authentication.eu10.hana.ondemand.com/oauth/token",
+      "subDesc3": "https://dis-integration-service-prod.eu10.dim.cloud.sap/api/v2.0.0/iatp/catena-x-portal",
+      "subDesc4": "Did:web:xxxxxxxxx",
       "subheadertitle": "Connector",
-      "tabletitle": "Onboarded Connectors",
+      "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
@@ -1000,8 +1035,8 @@
         "addOverlay": {
           "service": "Technical User Role",
           "serviceSubHeading": "Select one of the following service roles:",
-          "username": "Username",
-          "description": "Description",
+          "username": "Username*",
+          "description": "Description*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
@@ -1785,18 +1820,18 @@
         "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
         "successTitle": "Certificate successfully uploaded.",
         "successDescription": "The upload was successful. The document is now available under your company certificate management page as well as shared with all dataspace providers.",
-        "certificateTypeTitle": "Certificate Type",
+        "certificateTypeTitle": "Certificate Type*",
         "certificateTypeError": "",
         "certificateTypeLabel": "",
         "certificateTypePlaceholder": "Please select",
-        "certificateSiteTitle": "Certificate Site/Level",
+        "certificateSiteTitle": "Certificate Site/Level*",
         "certificateSiteError": "",
         "certificateSiteLabel": "",
         "certificateSitePlaceholder": "Please select",
-        "uploadDocumentTitle": "Certificate file upload",
+        "uploadDocumentTitle": "Certificate file upload*",
         "note": "",
         "comingsoon": "Coming soon",
-        "expiry": "Expiry Date",
+        "expiry": "Expiry Date*",
         "dateplaceholder": "Enter a Date",
         "dateError": "Select a valid date"
       },
@@ -1837,11 +1872,28 @@
         "crendentialType": "Type",
         "companyInfo": "Company Info",
         "certificate": "Certificate",
-        "document": "Document"
+        "document": "Document",
+        "type": {
+          "TRACEABILITY_FRAMEWORK": "Traceability",
+          "PCF_FRAMEWORK": "PCF Framework",
+          "BEHAVIOR_TWIN_FRAMEWORK": "Behaviour Twin Framework",
+          "DISMANTLER_CERTIFICATE": "Dismantler Certificate",
+          "SUSTAINABILITY_FRAMEWORK": "Sustainability Framework",
+          "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
+          "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
+        },
+        "revoke": "Revoke"
       },
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
-      "errorMessage": "Something went wrong!"
+      "errorMessage": "Something went wrong!",
+      "revokeOverlay": {
+        "title": "Revoke Credential",
+        "description": "Revoking a credential cannot be undone.",
+        "subDesc": "Do you want to revoke the credential:",
+        "success": "The customer credential revocation has been successfully processed. With the successful revocation the credential is no longer valid. Note once a credential is revoked, the action cannot be undone, and the credential will no longer be recognized as valid.",
+        "error": "The revocation of the credential was unsuccessful. An error occurred. Please try again. If the problem persists, contact the site administrator"
+      }
     },
     "companyWallet": {
       "heading": "My Company Wallet",
@@ -1859,7 +1911,20 @@
         "button3": "Get more details of VCs (coming soon)"
       },
       "expiry": "Expiry: ",
-      "others": "Others"
+      "others": "Others",
+      "revokeHint": "Revoke Credential",
+      "confirmOverlay": {
+        "title": "Confirm Revoke",
+        "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
+      },
+      "successOverlay": {
+        "title": "Revoke Credential",
+        "description": "You credential revocation has been successfully processed. With the successful revocation the credential is no longer valid. Note once a credential is revoked, the action cannot be undone, and the credential will no longer be recognized as valid. If you want to request the credential again, please initiate a new credential request."
+      },
+      "errorOverlay": {
+        "title": "Revoke Credential",
+        "description": "The revocation of the credential was unsuccessful. Please contact the administrator or try again later."
+      }
     },
     "standardLibraryTable": {
       "version": "Version",

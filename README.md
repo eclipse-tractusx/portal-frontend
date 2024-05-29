@@ -43,6 +43,10 @@ yarn start
 
 Note: if you'd like to run the complete frontend application, follow the `Run frontend on localhost.md` guide available within the technical documentation of [portal-assets](https://github.com/eclipse-tractusx/portal-assets).
 
+## Known Issues and Limitations
+
+See [Known Knowns](/CHANGELOG.md#known-knowns).
+
 ## Notice for Docker image
 
 This application provides container images for demonstration purposes.
