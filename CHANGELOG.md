@@ -6,6 +6,9 @@
 
 - Admin Credential
   - Credential Request Management Board Improvements
+
+### Bugfix
+
 - Company Wallet
   - Use appropriate path to display logo on cards
 
