@@ -403,9 +403,15 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
-    name: PAGES.TECHNICAL_SETUP,
+    name: PAGES.CONNECTOR_MANAGEMENT,
     role: ROLES.TECHNICAL_SETUP_VIEW,
     element: <EdcConnector />,
+  },
+  // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
+  {
+    name: PAGES.TECHNICAL_SETUP,
+    role: ROLES.TECHNICAL_SETUP_VIEW,
+    element: <Redirect path={PAGES.CONNECTOR_MANAGEMENT} />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
   { name: PAGES.INTRODUCTION, element: <CompanyRoles /> },
@@ -614,11 +620,11 @@ export const ALL_OVERLAYS: IOverlay[] = [
   },
   {
     name: OVERLAYS.ADD_APP_USER_ROLES,
-    role: ROLES.USERMANAGEMENT_ADD,
+    role: ROLES.MODIFY_USER_ACCOUNT,
   },
   {
     name: OVERLAYS.EDIT_APP_USER_ROLES,
-    role: ROLES.USERMANAGEMENT_ADD,
+    role: ROLES.MODIFY_USER_ACCOUNT,
   },
   { name: OVERLAYS.APP, role: ROLES.APPSTORE_VIEW },
   { name: OVERLAYS.NEWS },
@@ -812,7 +818,7 @@ export const userMenuFull = [
   PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,
-  PAGES.TECHNICAL_SETUP,
+  PAGES.CONNECTOR_MANAGEMENT,
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
@@ -831,7 +837,7 @@ export const userMenuCompany = [
   PAGES.ORGANIZATION,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,
-  PAGES.TECHNICAL_SETUP,
+  PAGES.CONNECTOR_MANAGEMENT,
   PAGES.APPLICATION_REQUESTS,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,

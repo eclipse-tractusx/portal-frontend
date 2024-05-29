@@ -20,14 +20,19 @@
 
 import { useTranslation } from 'react-i18next'
 import {
+  Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogHeader,
+  StaticTable,
+  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
-import { PAGES } from 'types/Constants'
+import { Box } from '@mui/material'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 interface ConfigurationDetailsOverlayProps {
   openDialog: boolean
@@ -41,17 +46,109 @@ const ConfigurationDetailsOverlay = ({
   const { t } = useTranslation()
   const { data } = useFetchDecentralIdentityUrlsQuery()
 
+  const tableData: TableType = {
+    head: [
+      'trusted_issuer:',
+      'iatp.sts.oauth.token_url*:',
+      'iatp.sts.oauth.client.id*:',
+      'iatp.sts.oauth.client.secret_alias*:',
+      'iatp.sts.dim.url*:',
+      'participant_id:',
+      'iatp.id:',
+      'DID Resolver:',
+    ],
+    body: [
+      [data?.trusted_issuer ?? ''],
+      [data?.decentralIdentityManagementAuthUrl ?? ''],
+      [t('content.edcconnector.configurationDetails.clientId') ?? ''],
+      [t('content.edcconnector.configurationDetails.secret') ?? ''],
+      [data?.decentralIdentityManagementServiceUrl ?? ''],
+      [data?.participant_id ?? ''],
+      [data?.iatp_id ?? ''],
+      [data?.did_resolver ?? ''],
+    ],
+    copy: [
+      [
+        {
+          icon: true,
+          copyValue: data?.trusted_issuer ?? '',
+        },
+      ],
+      [
+        {
+          icon: true,
+          copyValue: data?.decentralIdentityManagementAuthUrl ?? '',
+        },
+      ],
+      [
+        {
+          icon: false,
+        },
+      ],
+      [
+        {
+          icon: false,
+        },
+      ],
+      [
+        {
+          icon: true,
+          copyValue: data?.decentralIdentityManagementServiceUrl ?? '',
+        },
+      ],
+      [
+        {
+          icon: true,
+          copyValue: data?.participant_id ?? '',
+        },
+      ],
+      [
+        {
+          icon: true,
+          copyValue: data?.iatp_id ?? '',
+        },
+      ],
+      [
+        {
+          icon: true,
+          copyValue: data?.did_resolver ?? '',
+        },
+      ],
+    ],
+  }
+
   return (
     <div className="detailsOverlay">
       <Dialog
         open={openDialog}
         additionalModalRootStyles={{
-          width: '45%',
+          width: '60%',
         }}
       >
         <DialogHeader
           title={t('content.edcconnector.configurationDetails.title')}
-          intro={t('content.edcconnector.configurationDetails.description')}
+          intro={
+            <Box
+              sx={{
+                textAlign: 'center',
+                margin: '50px auto 0px',
+                display: 'grid',
+              }}
+            >
+              <Typography variant="label3">
+                {t('content.edcconnector.configurationDetails.description1')}
+              </Typography>
+              <Typography variant="label3">
+                {t('content.edcconnector.configurationDetails.description2')}
+              </Typography>
+              <Typography variant="label3">
+                {t('content.edcconnector.configurationDetails.description3')}
+              </Typography>
+              <Typography variant="label3">
+                {t('content.edcconnector.configurationDetails.description4')}
+              </Typography>
+            </Box>
+          }
           closeWithIcon={true}
           onCloseWithIcon={() => {
             handleOverlayClose()
@@ -62,80 +159,59 @@ const ConfigurationDetailsOverlay = ({
             padding: '0px 120px 40px 120px',
           }}
         >
-          <Typography variant="body2" className="detailsBodyText">
-            <b>
-              {t(
-                'content.edcconnector.configurationDetails.section.part1.title'
-              )}
-            </b>
-            {t(
-              'content.edcconnector.configurationDetails.section.part1.description'
-            )}
-            <span className="detailsBodyLink">
-              {data?.decentralIdentityManagementAuthUrl}
-            </span>
+          <StaticTable data={tableData} horizontal={true} />
+
+          <Typography
+            variant="label3"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: '#0088CC',
+              textDecoration: 'underline',
+              m: '36px auto',
+              fontWeight: 400,
+            }}
+          >
+            <HelpOutlineIcon
+              sx={{
+                width: '22px',
+                height: '22px',
+                mr: '14px',
+              }}
+            />
+            {t('content.edcconnector.configurationDetails.learnMore')}
           </Typography>
-          <Typography variant="body2" className="detailsBodyText">
-            <b>
-              {t(
-                'content.edcconnector.configurationDetails.section.part2.title'
-              )}
-            </b>
-            {t(
-              'content.edcconnector.configurationDetails.section.part2.description1'
-            )}
-            <span
-              className="detailsBodyLink"
-              style={{
-                textDecoration: 'underline',
-              }}
-              onClick={() => window.open(PAGES.TECHUSER_MANAGEMENT, '_blank')}
-              onKeyUp={() => {
-                // do nothing
-              }}
-            >
-              {t('content.edcconnector.configurationDetails.section.part2.key')}
-            </span>
-            {t(
-              'content.edcconnector.configurationDetails.section.part2.description2'
-            )}
+          <Typography variant="body3">
+            {' '}
+            {t('content.edcconnector.configurationDetails.section.text1')}
           </Typography>
-          <Typography variant="body2" className="detailsBodyText">
-            <b>
-              {t(
-                'content.edcconnector.configurationDetails.section.part3.title'
-              )}
-            </b>
-            {t(
-              'content.edcconnector.configurationDetails.section.part3.description'
-            )}
-            <span
-              className="detailsBodyLink"
-              style={{
-                textDecoration: 'underline',
-              }}
-              onClick={() => window.open(PAGES.TECHUSER_MANAGEMENT, '_blank')}
-              onKeyUp={() => {
-                // do nothing
-              }}
-            >
-              {t('content.edcconnector.configurationDetails.section.part3.key')}
-            </span>
+          <Typography variant="body3">
+            {t('content.edcconnector.configurationDetails.section.text2')}
           </Typography>
-          <Typography variant="body2" className="detailsBodyText">
-            <b>
-              {t(
-                'content.edcconnector.configurationDetails.section.part4.title'
-              )}
-            </b>
-            {t(
-              'content.edcconnector.configurationDetails.section.part4.description'
-            )}
-            <span className="detailsBodyLink">
-              {data?.decentralIdentityManagementServiceUrl}
-            </span>
+          <Typography variant="body3">
+            {t('content.edcconnector.configurationDetails.section.text3')}
+          </Typography>
+          <Typography variant="body3">
+            {t('content.edcconnector.configurationDetails.section.text4')}
+          </Typography>
+          <Typography variant="body3">
+            {t('content.edcconnector.configurationDetails.section.text5')}
+          </Typography>
+          <Typography variant="body3">
+            {t('content.edcconnector.configurationDetails.section.text6')}
           </Typography>
         </DialogContent>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              handleOverlayClose()
+            }}
+          >
+            {t('global.actions.close')}
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   )

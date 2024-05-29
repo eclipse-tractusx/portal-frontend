@@ -109,12 +109,12 @@ export type SubscriptionStoreRequest = {
 }
 
 export type SubscriptionActivationResponse = {
-  technicalUserInfo: {
+  technicalUserInfo: Array<{
     technicalUserId: string
     technicalUserSecret: string
     technicalClientId: string
     technicalUserPermissions: string[]
-  }
+  }>
   clientInfo: {
     clientId: string
     clientUrl: string

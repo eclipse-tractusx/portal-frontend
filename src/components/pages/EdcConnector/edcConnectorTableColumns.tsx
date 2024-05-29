@@ -20,6 +20,7 @@
 
 import type { GridColDef } from '@mui/x-data-grid'
 import {
+  IconButton,
   StatusTag,
   Tooltips,
   Typography,
@@ -29,6 +30,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import Box from '@mui/material/Box'
 import type { ConnectorContentAPIResponse } from 'features/connector/types'
 import { useTranslation } from 'react-i18next'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 // Columns definitions of Connector page Data Grid
 export const ConnectorTableColumns = (
@@ -40,14 +42,14 @@ export const ConnectorTableColumns = (
     {
       field: 'name',
       headerName: t('content.edcconnector.columns.name'),
-      flex: 1.3,
+      flex: 1,
       disableColumnMenu: true,
       sortable: false,
     },
     {
       field: 'type',
       headerName: t('content.edcconnector.columns.type'),
-      flex: 1,
+      flex: 0.7,
       sortable: false,
       disableColumnMenu: true,
       renderCell: ({ row }: { row: ConnectorContentAPIResponse }) => (
@@ -59,21 +61,9 @@ export const ConnectorTableColumns = (
       ),
     },
     {
-      field: 'location',
-      headerName: t('content.edcconnector.columns.location'),
-      flex: 0.8,
-      sortable: false,
-      disableColumnMenu: true,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: ({ row }: { row: ConnectorContentAPIResponse }) => (
-        <Typography variant="body2">{row.location}</Typography>
-      ),
-    },
-    {
       field: 'selfDescriptionDocumentId',
       headerName: t('content.edcconnector.columns.sdDescription'),
-      flex: 1,
+      flex: 0.8,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',
@@ -117,9 +107,32 @@ export const ConnectorTableColumns = (
       ),
     },
     {
+      field: 'connectorUrl',
+      headerName: t('content.edcconnector.columns.connectorUrl'),
+      flex: 1,
+      sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
+    },
+    {
       field: 'details',
       headerName: t('content.edcconnector.columns.details'),
-      flex: 1.2,
+      flex: 0.8,
+      sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: () => (
+        <IconButton color="secondary">
+          <ArrowForwardIcon />
+        </IconButton>
+      ),
+    },
+    {
+      field: 'status',
+      headerName: t('content.edcconnector.columns.status'),
+      flex: 0.8,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',

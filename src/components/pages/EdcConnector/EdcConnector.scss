@@ -46,12 +46,30 @@
   }
 }
 
-.detailsBodyText {
-  margin-bottom: 10px !important;
-  margin-left: 20px !important;
-}
-
-.detailsBodyLink {
-  cursor: pointer;
-  color: #0f71cb;
+.edc-connector-header {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  .edc-connector-title {
+    text-align: center;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .edc-connector-title::after {
+    content: '';
+    width: 70px;
+    border-bottom: 2px solid;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .edc-connector-desc {
+    width: 74%;
+    margin: 50px auto;
+  }
+  .add-idp-btn {
+    margin-top: 30px;
+    text-transform: capitalize;
+  }
 }

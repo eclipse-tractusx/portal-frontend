@@ -19,6 +19,7 @@
     "usermanagement": "Benutzerverwaltung",
     "idpmanagement": "Identitätsprovider (IDP)",
     "technicalsetup": "Technische Integration",
+    "connectormanagement": "Connector-Management",
     "applicationrequests": "Beitrittsanträge",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
@@ -164,11 +165,14 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "date": "Datum",
           "companyinfo": "Bewerbungsinformationen des Unternehmens",
+          "contact": "Kontakt",
+          "bpn": "BPN",
+          "age": "Alter",
+          "days": "tage",
           "documents": "Unterlagen",
           "details": "Einzelheiten",
-          "state": "Zustand"
+          "status": "Status"
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
@@ -181,18 +185,21 @@
         "buttonconfirm": "bestätigen",
         "buttondecline": "ablehnen",
         "buttonprogress": "in progress",
+        "buttonrejected": "rejected",
+        "buttoncompleted": "completed",
+        "buttonerror": "error",
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
         "progress": "Confirmation in progress: ",
-        "cancel": "Cancel Process",
+        "cancel": "Cancel",
         "overlay": {
           "title": "Company Registration Details",
-          "companydatatitle": "Overview",
+          "companydatatitle": "Company Details",
           "companydatadescription": "Below you can find the details of the company registration",
           "taxid": "Steuernummer",
           "address": "Address",
           "docs": "Document(s)",
-          "roles": "Company Role(s)",
+          "roles": "Company Role(s) in Catena-X",
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
           "onboardingProvider": "Onboarding Service Anbieter",
@@ -206,6 +213,7 @@
           "tab1": "Company Data",
           "tab2": "Registration Process",
           "tab1Title": "Company Data",
+          "tab1SubTitle": "Registration Status: {{status}}",
           "tab2Title": "Confirmation {{status}}",
           "statusComplete": "[complete]",
           "statusIncomplete": "[incomplete]",
@@ -552,48 +560,70 @@
         "name": "Konnektorname",
         "id": "Konnektor-ID",
         "type": "Steckertyp",
-        "details": "Status",
+        "status": "Status",
+        "details": "Einzelheiten",
         "location": "Location",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
         "hostCompanyName": "Host",
-        "providerCompanyName": "Customer"
+        "providerCompanyName": "Customer",
+        "connectorUrl": "Connector-URL"
+      },
+      "details": {
+        "heading": "Connector konfigurieren",
+        "name": "Name",
+        "url": "URL",
+        "status": "Status: ",
+        "type": "Typ: ",
+        "host": "Gastgeber: ",
+        "location": "Standort: ",
+        "technicalUser": "Technischer Benutzer: ",
+        "SdRegistration": "SD-Registrierung: ",
+        "SdDocument": "SD-Dokument: ",
+        "noTechnicalUserAvailable": "Kein technischer Benutzer verfügbar",
+        "errormessage": "Fehler! Etwas ist schief gelaufen",
+        "wantToDeleteConnector": "Möchten Sie den Connector wirklich löschen?",
+        "connectorDeletedSuccessfully": "Der Connector wurde erfolgreich gelöscht",
+        "delete": "Löschen",
+        "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
+        "learnMore": "Learn More",
+        "noDocumentAvailable": "Kein Dokument verfügbar",
+        "selfDescriptionDocument": "Selbstbeschreibungsdokument",
+        "deleteConnector": "Connector löschen",
+        "urlUpdatedSuccessfully": "URL erfolgreich aktualisiert",
+        "note": "Bitte beachten Sie:",
+        "noteDesc": "Wenn Sie die URL des Connectors ändern, wird das aktuelle SD-Dokument ungültig und vom System wird automatisch ein neues erstellt",
+        "urlErrorMessage": "Ein Fehler ist aufgetreten. Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut oder kommen Sie später wieder",
+        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein"
       },
       "rowValue": {
         "owned": "Owned",
         "managed": "Managed"
       },
       "configurationDetails": {
-        "title": "How to Configure Your Connector",
-        "description": "Dies Beschreibung bietet schrittweise Anweisungen zur Konfiguration Ihres Connectors. Bitte befolgen Sie die unten stehenden Anweisungen, um die erforderlichen Konfigurationswerte einzustellen. Stellen Sie sicher, dass Sie die richtigen Werte für jede Konfigurationseinstellung eingeben. Sobald Sie diese Werte eingestellt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+        "title": "So konfigurieren Sie Ihren Connector",
+        "description1": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.",
+        "description2": "Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.",
+        "description3": "Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.",
+        "description4": "Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+        "learnMore": "Lern mehr",
+        "clientId": "Client-ID Ihres technischen Benutzers",
+        "secret": "Geheimnis",
         "section": {
-          "part1": {
-            "title": "iatp.sts.oauth.token_url: ",
-            "description": "Der Token-Endpunkt der dezentralen Identitätsverwaltungsinstanz ist "
-          },
-          "part2": {
-            "title": "iatp.sts.oauth.client.id: ",
-            "description1": "Technische Benutzer-Client-ID Ihres technischen Benutzers für den spezifischen Connector. Stellen Sie sicher, dass Sie die technischen Benutzer trennen – jeder Connector ist ein technischer Benutzer. Technische Benutzer können im gefunden und angefragt werden ",
-            "key": "technical user self-service.",
-            "description2": " Sie können den technischen Benutzer auch im Rahmen der Connector-Registrierung erstellen."
-          },
-          "part3": {
-            "title": "iatp.sts.oauth.client.secret_alias: ",
-            "description": "Alias, unter dem Sie Ihr DIM-Client-Geheimnis im Tresor gespeichert haben. Im Tresor sollte das Geheimnis des oben definierten technischen Benutzers gespeichert werden. Sie können das Geheimnis im Inneren sehen ",
-            "key": "technical user self-service."
-          },
-          "part4": {
-            "title": "iatp.sts.dim.url: ",
-            "description": "Base-URL Ihrer dezentralen Identitätsverwaltungsinstanz. Bitte verwenden Sie die folgenden Angaben für Connectors, die unter Ihrer Firmenidentität laufen: "
-          }
+          "text1": "*iatp.sts.oauth.token_url: der Token-Endpunkt der dezentralen Identitätsverwaltungsinstanz.",
+          "text2": "*iatp.sts.oauth.client.id: Client-ID des technischen Benutzers Ihres technischen Benutzers für den spezifischen Connector.",
+          "text3": "Stellen Sie sicher, dass Sie die technischen Benutzer trennen – jeder Connector ist ein technischer Benutzer.",
+          "text4": "*iatp.sts.oauth.client.secret_alias: Alias, unter dem Sie Ihren DIM-Client gespeichert haben",
+          "text5": "Geheimnis im Tresor. Im Tresor sollte das Geheimnis des oben definierten technischen Benutzers gespeichert werden.",
+          "text6": "*iatp.sts.dim.url: Basis-URL Ihrer dezentralen Identitätsverwaltungsinstanz."
         }
       },
       "helpText": "Get some help",
       "helpTextNew": "Details Connector Configuration",
       "headertitle": "Connector Registration",
       "subheadertitle": "Connector",
-      "tabletitle": "Onboarded Connectors",
+      "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
@@ -716,7 +746,9 @@
         "bpn": "BPN",
         "name": "Firmenname",
         "country": "Land",
-        "street": "Straße",
+        "street": "Straße, Hausnummer",
+        "contact": "Admin-Kontakt",
+        "uniqueid": "Eindeutige ID",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
         "cxparticipant": "CX Member",
@@ -1001,8 +1033,8 @@
         "addOverlay": {
           "service": "Technical User Role",
           "serviceSubHeading": "Select one of the following service roles:",
-          "username": "Username",
-          "description": "Beschreibung",
+          "username": "Username*",
+          "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
@@ -1737,6 +1769,7 @@
       "framework": "Framework",
       "nodocument": "Kein Dokument vorhanden",
       "expiry": "Expiry: {{expiry}}",
+      "request": "Request",
       "editUsecase": {
         "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
         "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
@@ -1764,11 +1797,28 @@
         "crendentialType": "Type",
         "companyInfo": "Company Info",
         "certificate": "Zertifikat",
-        "document": "Dokumente"
+        "document": "Dokumente",
+        "type": {
+          "TRACEABILITY_FRAMEWORK": "Traceability",
+          "PCF_FRAMEWORK": "PCF Framework",
+          "BEHAVIOR_TWIN_FRAMEWORK": "Behaviour Twin Framework",
+          "DISMANTLER_CERTIFICATE": "Dismantler Certificate",
+          "SUSTAINABILITY_FRAMEWORK": "Sustainability Framework",
+          "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
+          "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
+        },
+        "revoke": "Widerrufen"
       },
       "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
       "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
-      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator."
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator.",
+      "revokeOverlay": {
+        "title": "Revoke Credential",
+        "description": "Revoking a credential cannot be undone.",
+        "subDesc": "Do you want to revoke the credential:",
+        "success": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird.",
+        "error": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuche Sie es später erneut."
+      }
     },
     "certificates": {
       "heading": "Zertifikate",
@@ -1845,18 +1895,18 @@
         "description": "Select the certificate flow and upload your company certificate below. Please note - you are responsible for the certificate validity - only upload valid and official documents.",
         "successTitle": "Certificate successfully uploaded.",
         "successDescription": "The upload was successful. The document is now available under your company certificate management page as well as shared with all dataspace providers.",
-        "certificateTypeTitle": "Certificate Type",
+        "certificateTypeTitle": "Certificate Type*",
         "certificateTypeError": "",
         "certificateTypeLabel": "",
         "certificateTypePlaceholder": "Please select",
-        "certificateSiteTitle": "Certificate Site/Level",
+        "certificateSiteTitle": "Certificate Site/Level*",
         "certificateSiteError": "",
         "certificateSiteLabel": "",
         "certificateSitePlaceholder": "Please select",
-        "uploadDocumentTitle": "Certificate file upload",
+        "uploadDocumentTitle": "Certificate file upload*",
         "note": "",
         "comingsoon": "Coming soon",
-        "expiry": "Expiry Date",
+        "expiry": "Expiry Date*",
         "dateplaceholder": "Enter a Date",
         "dateError": "Select a valid date"
       },
@@ -1895,7 +1945,20 @@
         "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
       },
       "expiry": "Ablauf: ",
-      "others": "Others"
+      "others": "Others",
+      "revokeHint": "Revoke Credential",
+      "confirmOverlay": {
+        "title": "Confirm Revoke",
+        "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
+      },
+      "successOverlay": {
+        "title": "Revoke Credential",
+        "description": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird. Wenn Sie die Zugangsdaten erneut anfordern möchten, starten Sie bitte eine neue Zugangsdatenanfrage."
+      },
+      "errorOverlay": {
+        "title": "Revoke Credential",
+        "description": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuchen Sie es später erneut."
+      }
     },
     "standardLibraryTable": {
       "version": "Version",

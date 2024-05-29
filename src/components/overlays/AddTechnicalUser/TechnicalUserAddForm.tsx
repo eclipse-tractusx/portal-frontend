@@ -168,7 +168,7 @@ const TechnicalUserAddFormTextfield = ({
             error={!!errors[name as keyof Object]}
             sx={{ marginBottom: '7px', color: '#000' }}
           >
-            <Typography variant="body2">{label}</Typography>
+            <Typography variant="label3">{label}</Typography>
           </InputLabel>
           <TextField
             error={!!errors[name as keyof Object]}

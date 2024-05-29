@@ -102,6 +102,7 @@ const ActivateSubscriptionOverlay = ({
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   const closeActivationOverlay = () => {
@@ -117,26 +118,31 @@ const ActivateSubscriptionOverlay = ({
     ],
   }
 
-  const tableData2: TableType = {
-    head: [t('content.appSubscription.activation.technicalDetails'), ''],
-    body: [
-      [
-        t('content.appSubscription.activation.appClientId'),
-        `${activationResponse?.clientInfo?.clientId}`,
-      ],
+  const activationData = activationResponse?.technicalUserInfo
+    ?.map((userdata) => [
       [
         t('content.appSubscription.activation.technicalClientId'),
-        `${activationResponse?.technicalUserInfo?.technicalClientId}`,
+        `${userdata?.technicalClientId}`,
       ],
       [
         t('content.appSubscription.activation.technicalSecret'),
-        `${activationResponse?.technicalUserInfo?.technicalUserSecret}`,
+        `${userdata?.technicalUserSecret}`,
       ],
       [
         t('content.appSubscription.activation.technicalPermission'),
-        `${activationResponse?.technicalUserInfo?.technicalUserPermissions.toString()}`,
+        `${userdata?.technicalUserPermissions?.toString()}`,
       ],
-    ],
+    ])
+    .flat(1)
+
+  activationData?.unshift([
+    t('content.appSubscription.activation.appClientId'),
+    `${activationResponse?.clientInfo?.clientId}`,
+  ])
+
+  const tableData2: TableType = {
+    head: [t('content.appSubscription.activation.technicalDetails'), ''],
+    body: activationData ?? [],
   }
 
   return (

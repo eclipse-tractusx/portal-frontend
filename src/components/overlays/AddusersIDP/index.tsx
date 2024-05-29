@@ -649,6 +649,13 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             color: '#0088CC',
             textDecoration: 'underline',
           }}
+          onClick={() =>
+            window.open(
+              '/documentation/?path=user%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md',
+              '_blank',
+              'noopener'
+            )
+          }
         >
           <HelpOutlineIcon
             sx={{

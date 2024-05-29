@@ -46,6 +46,7 @@ export enum PAGES {
   PARTNER_NETWORK = 'partnernetwork',
   USER_MANAGEMENT = 'usermanagement',
   TECHNICAL_SETUP = 'technicalsetup',
+  CONNECTOR_MANAGEMENT = 'connectormanagement',
   TECHUSER_MANAGEMENT = 'technicaluser',
   TECHUSER_DETAILS = 'techuserdetails',
   IDP_MANAGEMENT = 'idpmanagement',
@@ -228,6 +229,7 @@ export enum ROLES {
   MY_ACCOUNT = 'view_own_user_account',
   COMPANY_DATA = 'view_company_data',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
+  REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
 }
 
 export enum HINTS {
