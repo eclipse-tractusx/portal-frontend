@@ -2,12 +2,12 @@
 
 ## Unreleased
 
-## Unreleased
-
 ### Bugfix
 
 - Overlay
   - Fix consistency issue in overlays where form input is used
+- Company Wallet
+  - Use appropriate path to display logo on cards
 
 ### Feature
 
@@ -17,7 +17,9 @@
   - New company data page created
   - Connect to the gate api to fetch the records
   - Create and Edit address/site feature introduced
-
+- App marketplace
+  - Add more and collapse button to category view
+  
 ## 2.0.0
 
 ### Change
