@@ -19,7 +19,7 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
-  
+
 ## 2.0.0
 
 ### Change
