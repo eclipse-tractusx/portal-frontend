@@ -28,11 +28,13 @@ import {
   Checkbox,
   CircleProgress,
   LoadingButton,
+  IconButton,
 } from '@catena-x/portal-shared-components'
 import {
   type ConnectorDetailsType,
   useDeleteConnectorMutation,
   useUpdateConnectorUrlMutation,
+  useFetchConnectorDetailsQuery,
 } from 'features/connector/connectorApiSlice'
 import { Box, Divider, Grid } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -42,6 +44,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import Patterns from 'types/Patterns'
 import { useFetchDocumentMutation } from 'features/serviceManagement/apiSlice'
 import { download } from 'utils/downloadUtils'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/Constants'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
@@ -56,6 +60,9 @@ const ConnectorDetailsOverlay = ({
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
   const [fetchDocumentById] = useFetchDocumentMutation()
+  const fetchConnectorDetails = useFetchConnectorDetailsQuery(
+    overlayData?.id ?? ''
+  ).data
   const [openDeleteConnector, setOpenDeleteConnector] = useState(false)
   const [deleteConnectorSuccess, setDeleteConnectorSuccess] = useState(false)
   const [deleteConnector] = useDeleteConnectorMutation()
@@ -68,44 +75,44 @@ const ConnectorDetailsOverlay = ({
   const [connectorUrlValue, setConnectorUrlValue] = useState('')
 
   useEffect(() => {
-    setConnectorUrlValue(overlayData?.connectorUrl ?? '')
-  }, [overlayData])
+    setConnectorUrlValue(fetchConnectorDetails?.connectorUrl ?? '')
+  }, [fetchConnectorDetails])
 
   const detailsData = [
     {
       key: t('content.edcconnector.details.status'),
-      value: overlayData?.status ?? '',
+      value: fetchConnectorDetails?.status ?? '',
     },
     {
       key: t('content.edcconnector.details.type'),
-      value: overlayData?.type ?? '',
+      value: fetchConnectorDetails?.type ?? '',
     },
     {
       key: t('content.edcconnector.details.host'),
-      value: overlayData?.hostCompanyName ?? '',
+      value: fetchConnectorDetails?.hostCompanyName ?? '',
     },
     {
       key: t('content.edcconnector.details.location'),
-      value: overlayData?.location ?? '',
+      value: fetchConnectorDetails?.location ?? '',
     },
     {
       key: t('content.edcconnector.details.technicalUser'),
       value:
-        overlayData?.technicalUser === null
+        fetchConnectorDetails?.technicalUser === null
           ? t('content.edcconnector.details.noTechnicalUserAvailable')
-          : overlayData?.technicalUser,
+          : fetchConnectorDetails?.technicalUser,
     },
     {
       key: t('content.edcconnector.details.SdRegistration'),
-      value: overlayData?.selfDescriptionDocumentId,
+      value: fetchConnectorDetails?.selfDescriptionDocumentId,
     },
   ]
 
   const handleDownloadFn = async (documentId: string, documentName: string) => {
-    if (overlayData?.id) {
+    if (fetchConnectorDetails?.id) {
       try {
         const response = await fetchDocumentById({
-          appId: overlayData.id,
+          appId: fetchConnectorDetails.id,
           documentId,
         }).unwrap()
 
@@ -120,7 +127,7 @@ const ConnectorDetailsOverlay = ({
 
   const handleDeleteConnector = async () => {
     setLoading(true)
-    await deleteConnector(overlayData?.id ?? '')
+    await deleteConnector(fetchConnectorDetails?.id ?? '')
       .unwrap()
       .then(() => {
         setDeleteConnectorSuccess(true)
@@ -142,9 +149,9 @@ const ConnectorDetailsOverlay = ({
   const handleUrlSubmit = async () => {
     setIsLoading(true)
 
-    if (overlayData?.id) {
+    if (fetchConnectorDetails?.id) {
       const saveData = {
-        connectorId: overlayData.id,
+        connectorId: fetchConnectorDetails.id,
         body: {
           connectorUrl: connectorUrlValue,
         },
@@ -185,7 +192,7 @@ const ConnectorDetailsOverlay = ({
         >
           <DialogHeader
             title={t('content.edcconnector.details.deleteConnector')}
-            intro={overlayData?.name ?? ''}
+            intro={fetchConnectorDetails?.name ?? ''}
           />
           <DialogContent
             sx={{
@@ -264,7 +271,7 @@ const ConnectorDetailsOverlay = ({
       >
         <DialogHeader
           title={t('content.edcconnector.details.heading')}
-          intro={overlayData?.name ?? ''}
+          intro={fetchConnectorDetails?.name ?? ''}
         />
         <DialogContent
           sx={{
@@ -282,14 +289,14 @@ const ConnectorDetailsOverlay = ({
             </Button>
           </Box>
           <Grid container spacing={2}>
-            <Grid xs={12}>
+            <Grid xs={12} item>
               <Input
                 label={
                   <Typography variant="body2">
                     {t('content.edcconnector.details.name')}
                   </Typography>
                 }
-                value={overlayData?.name ?? ''}
+                value={fetchConnectorDetails?.name ?? ''}
                 disabled={true}
                 sx={{ mb: 2 }}
               />
@@ -319,17 +326,24 @@ const ConnectorDetailsOverlay = ({
               </Typography>
             </Grid>
             <Grid xs={1}>
-              <EditIcon
+              <IconButton
+                size="small"
                 sx={{
-                  color: '#0f71cb',
-                  cursor: 'pointer',
                   mt: 8,
                 }}
                 onClick={() => {
                   setEnableConnectorUrl(false)
                   setEnableUrlApiErrorMsg(false)
                 }}
-              />
+                disabled={!UserService.hasRole(ROLES.MODIFY_CONNECTORS)}
+              >
+                <EditIcon
+                  sx={{
+                    color: '#0f71cb',
+                    cursor: 'pointer',
+                  }}
+                />
+              </IconButton>
             </Grid>
             {!enableConnectorUrl && (
               <>
@@ -350,7 +364,9 @@ const ConnectorDetailsOverlay = ({
                     variant="outlined"
                     onClick={() => {
                       setEnableConnectorUrl(true)
-                      setConnectorUrlValue(overlayData?.connectorUrl ?? '')
+                      setConnectorUrlValue(
+                        fetchConnectorDetails?.connectorUrl ?? ''
+                      )
                     }}
                     size="small"
                     sx={{ mr: 2 }}
@@ -373,6 +389,7 @@ const ConnectorDetailsOverlay = ({
                       variant="outlined"
                       onClick={handleUrlSubmit}
                       size="small"
+                      disabled={urlErrorMsg !== ''}
                     >
                       {t('global.actions.submit')}
                     </Button>
@@ -433,7 +450,7 @@ const ConnectorDetailsOverlay = ({
             </Grid>
             <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
               <Typography variant="body2" sx={{ textAlign: 'left' }}>
-                {overlayData?.selfDescriptionDocumentId === null ? (
+                {fetchConnectorDetails?.selfDescriptionDocumentId === null ? (
                   t('content.edcconnector.details.noDocumentAvailable')
                 ) : (
                   <>
@@ -441,9 +458,9 @@ const ConnectorDetailsOverlay = ({
                     <button
                       className="document-button-link"
                       onClick={() =>
-                        overlayData?.selfDescriptionDocumentId &&
+                        fetchConnectorDetails?.selfDescriptionDocumentId &&
                         handleDownloadFn(
-                          overlayData?.selfDescriptionDocumentId,
+                          fetchConnectorDetails?.selfDescriptionDocumentId,
                           t('content.edcconnector.details.SdDocument')
                         )
                       }
@@ -463,6 +480,7 @@ const ConnectorDetailsOverlay = ({
             onClick={() => {
               setOpenDeleteConnector(true)
             }}
+            disabled={!UserService.hasRole(ROLES.DELETE_CONNECTORS)}
             size="small"
             sx={{ float: 'right' }}
           >
