@@ -6,6 +6,9 @@
 
 - Admin Credential
   - Credential Request Management Board Improvements
+
+### Bugfix
+
 - App Subscription
   - Register URL changes for Autosetup
 

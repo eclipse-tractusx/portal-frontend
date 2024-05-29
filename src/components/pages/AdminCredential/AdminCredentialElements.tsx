@@ -128,8 +128,8 @@ export default function AdminCredentialElements() {
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (err) {
+      error(t('content.adminCertificate.errorMessage'))
     }
   }
 
@@ -252,7 +252,7 @@ export default function AdminCredentialElements() {
     {
       field: 'document',
       headerName: t('content.adminCertificate.table.document'),
-      flex: 1.5,
+      flex: 2,
       renderCell: ({ row }: { row: CredentialData }) =>
         row.documents?.map((document) => {
           return (
@@ -293,7 +293,7 @@ export default function AdminCredentialElements() {
     {
       field: 'approveDecline',
       headerName: '',
-      flex: 2.5,
+      flex: 2,
       renderCell: ({ row }: { row: CredentialData }) =>
         renderApproveDeclineBtn(row),
     },

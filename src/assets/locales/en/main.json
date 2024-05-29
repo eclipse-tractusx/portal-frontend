@@ -1886,7 +1886,7 @@
       },
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
-      "errorMessage": "Something went wrong!",
+      "errorMessage": "Something went wrong. Please contact your administrator.",
       "revokeOverlay": {
         "title": "Revoke Credential",
         "description": "Revoking a credential cannot be undone.",

@@ -33,7 +33,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
-import type { store } from 'features/store'
 import {
   useAddServiceProviderMutation,
   useFetchServiceProviderQuery,
@@ -43,8 +42,8 @@ import { setSuccessType } from 'features/serviceProvider/slice'
 
 export default function AddServiceProvider() {
   const { t } = useTranslation()
-  const dispatch = useDispatch<typeof store.dispatch>()
-  const [inputURL, setInputURL] = useState('')
+  const dispatch = useDispatch()
+  const [inputURL, setInputURL] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [UrlErrorMsg, setUrlErrorMessage] = useState('')
   const [saveErrorMsg, setSaveErrorMessage] = useState(false)
@@ -57,7 +56,7 @@ export default function AddServiceProvider() {
   }, [refetch, dispatch])
 
   const addInputURL = (value: string) => {
-    setInputURL(value)
+    setInputURL(value ?? null)
     if (!Patterns.URL.test(value.trim())) {
       setUrlErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
     } else {
@@ -96,7 +95,7 @@ export default function AddServiceProvider() {
                 {t('content.appSubscription.register.endpointConfigured')}
               </Typography>
             }
-            value={data ? data.url : ''}
+            value={data?.url ?? ''}
             disabled={true}
             sx={{ marginBottom: '20px' }}
           />
