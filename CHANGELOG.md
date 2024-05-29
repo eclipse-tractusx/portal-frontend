@@ -1,211 +1,76 @@
 # Changelog
 
-## Changes
+## Unreleased
+
+### Bugfix
+
+- Overlay
+  - Fix consistency issue in overlays where form input is used
+- Company Wallet
+  - Use appropriate path to display logo on cards
 
 ### Feature
 
 - Admin Credential
   - Credential Request Management Board Improvements
 
-### Bugfix
-
-- Company Wallet
-  - Use appropriate path to display logo on cards
-
-## 2.0.0-RC9
-
-### Feature
-
-- Company Wallet
-  - added option to revoke credential
-
-### Bugfix
-
-- App Subscription
-  - fixed blank page on autosetup call
-- App Subscription Detail
-  - fixed opening the correct technical user by ID
-- Decline company
-  - fixed api url typos
-- App Access Management
-  - fixed carousel element
-- Connectors
-  - fetched all service accounts and show them in the auto complete list
-- Admin Credential
-  - changed document download endpoint
-- Application request
-  - made changes in progress bar calculation
-- App user role overlay
-  - changed required role to `modify_user_account`
-- Onboarding Service Provider
-  - preset partner unique id type
-
-## 2.0.0-RC8
-
-### Feature
-
-- Technical User Creation
-  - implemented API response changes
-- Technical User UIs
-  - introduced support for multiple technical users
-- Application Request
-  - implemented expandable status detail overlay
-- Admin Credential
-  - implemented credential revocation feature
-  - added credential status
-- Connector Management
-  - updated main page UI and added details overlay and functionality
+## 2.0.0
 
 ### Change
 
-- Technical Setup
-  - updated overlay styling for connector configuration
-- Identity Provider Config
-  - added links on click of 'learn more'
-- URL Pattern validation
-  - made HTTPS in URL patterns configurable: enabled by default, HTTP can be configured by setting the introduced environment variable to false
-
-### Bugfix
-
-- Usecase Participation
-  - fixed missing status in framework agreement request page
-- Side menu
-  - fixed missing "My company" section in mobile version
-- App marketplace
-  - fixed displaying of images in app detail page
-- Identity Provider Config
-  - Added delete option for newly created "Managed IdPs"
-
-## 2.0.0-RC7
-
-### Change
-
-- upgraded vite package
-
-### Feature
-
-- Company Wallet - added new endpoint, updated the response schema as well as handled errors and not valid membership wallet case
-
-### Bugfix
-
-- fixed sonar finding: added initial reduce value
-
-### Technical Support
-
-- Dependabot - introduced grouping of pull request for version updates
-
-## 2.0.0-RC6
+- **Identity Provider Configuration**
+  - updated the IdP Config Overlay to include additional metadata properties for comprehensive configuration:
+    - clientId: string
+    - hasClientSecret?: boolean
+    - logoutUrl?: string
+    - metadataUrl: string
+- **Responsive Design Updates**
+  - improved the navigation menu for reduced screen sizes with an expanded full display height for better visibility and access
+  - refined the sub-navigation header styling for a more consistent appearance with reduced custom styles
+- **Onboarding and Service Provider Registration UI & IdPs**
+  - overhauled the UI design of the screen, enhancing the user experience during customer registration:
+    - customer Consent & Company Data Page
+    - error Overlay & Page
+    - success Page
+  - introduced support for mobile devices, ensuring a seamless onboarding process across different screen sizes
+  - added delete option for newly created/not yet configured "Managed IdPs"
+- **Wallet UI**
+  - reimagined the main active wallet card style to align with the new design philosophy
+  - implemented a visual differentiation for wallet cards based on their status - active, inactive, or unknown
+- **Marketplace and App Enhancements**
+  - modernized the app marketplace card with updated styling and new design elements
+  - enabled navigation for inactive app sub-menus and refreshed the overlay content for "in progress" applications
+- **Shared Component Improvements**
+  - upgraded the props for quick links to enhance component versatility
+- **Credential Management**
+  - adjusted document data handling and sorting for more efficient credential management
+- **BPDM Interfaces**
+  - upgraded the Partner Network integration to align with the new BPDM endpoints and schema ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+  - updated the Partner Network Business Partner Detail Overlay to accommodate the updated BPDM endpoints and schema ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+- **Others**
+  - disabled unwanted console logs
+  - removed home page warning
+  - App Release Process "Technical Integration" - updated frontend service for retrieving roles via the apps service API GET /api/apps/AppReleaseProcess/{appId}/roles
+  - Partner Network - improved overlay of Company Data
 
 ### Feature
 
-- Application Requests
-  - Company Registration Management Board Update
-
-### Bugfix
-
-- Partner Network - fix white page blank issue
-- Admin Credential - changed API endpoints for approval and decline request
-- Use Case Participation - add loader until response is generated
-- Error Handling - fixed forwarding to an error page when backend not available
-
-### Feature
-
-- Company Wallet - Add new end point and update the response schema. Handle error and not valid membership wallet case in the UI.
-
-## 2.0.0-RC5
-
-### Feature
-
-- Partner Network - improved overlay of Company Data
-- Technical Setup - improved Connector Registration overlay
-- Credential Management - adjusted document data and sorting
-
-### Bugfix
-
-- Application Requests
-  - fixed displaying of incorrect company roles in case of requester company with role "Onboarding Service Provider"
-
-## 2.0.0-RC4
-
-### Feature
-
-- Connected Credential Management UI with new Issuer Component
-
-  ### Bugfix
-
-- App Release Process
-  - updated roles endpoint to get roles
-
-## 2.0.0-RC3
-
-### Bugfix
-
-- Technical Setup
-  - fixed white page issue on connector registration with "Existing Technical User" selection
-
-## 2.0.0-RC2
-
-### Change
-
-- Technical Integration: updated connector registration overlay
-
-  ### Bugfix
-
-- Company Subscriptions
-  - added missing translations
-- Connector overlay
-  - updated overlay content with dynamic data
-- Sticky header
-  - disabled focus effect on button
-- User Management
-  - fixed app roles section
-- My Account
-  - changed account page access role
-
-## 2.0.0-RC1
-
-### Change
-
-- Enhanced the IdP Config Overlay details by adding metadata of
-  - clientId: string
-  - hasClientSecret?: boolean
-  - logoutUrl?: string
-  - metadataUrl: string
-- Menu for reduced screen sizes
-  - updated the small version of the navigation menu to full display height
-- Sub Navigation Header
-  - updated styling and reduced custom style
-- Onboarding Service Provider Customer Registration - Updated UI design of the existing prototype screens
-  - Customer Consent & Company Data Page
-  - Error Overlay & Page
-  - Success Page
-  - introduced mobile version support
-- Extended company role change flow by adding logic and response in case of the role change has no impact on the company rights/features used in the portal
-- Wallet UI
-  - updated main active card style according to new design
-  - added differentiation of wallet card based on status - active, inactive and unknown
-- app marketplace card updated with new styling and elements
-- App Change Process
-  - enabled inactive app sub-menus
-  - update overlay content for 'in progress' apps
-- Shared Components
-  - updated props for quick links
-- migrate from create react app to vite framework
-  - switched from deprecated create react app to a new framework for build scripts and development server
-  - upgraded to Portal Shared Components 3.x based on Vite
-  - upgraded dependencies
-- upgraded keycloak-js dependency to v23.0.7
-- fixed code smells regarding length of "certificateTypes" always greater or equal to zero
-- disabled unwanted console logs
-- removed home page warning
-- code clean-ups
-  - removed unused overlays
-  - remove duplicate api endpoints
-- removed appendchild from the code and replace it with alternative code
-
-### Feature
-
-- Company Certificates (enhancement)
+- **Self-Sovereign-Identity Next**
+  - **Company Wallet (due to new Issue Component)**
+    - migrated wallet-related API endpoints to the new Issuer Component, resulting in a change in the response schema ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+    - enhanced error handling in the UI for invalid or non-existing membership credentials
+- **Credential Management - UseCaseParticipation (due to new Issue Component)**
+  - transitioned API endpoints from MIW wallet to the Issuer Component ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+  - added functionality to expand details showing the current status of useCaseParticipation and the history of credential requests along with their statuses
+- **Credential Management Board**
+  - updated the board to utilize Issuer Component endpoints for managing credential requests, including approvals and declines
+  - switched from the document download API endpoint of the portal to the Issuer Component ![Tag](https://img.shields.io/static/v1?label=&message=BreakingChange&color=yellow&style=flat)
+- **Revoke Credentials**
+  - implemented new features to revoke credentials, available to operators through the Credential Management board
+  - implemented new features to revoke credentials, available to customers through the Wallet UI
+- **Multi-Technical-User-Provider**
+  - enhanced several overlays to support the management of multiple technical users, including those for app and service subscription management, activation, and technical user creation
+- **Company Certificates (enhancement)**
   - added company certificates inside the partner network company details overlay (incl. download function)
   - enabled certificate deletion
   - added success message for certificate upload function
@@ -213,69 +78,113 @@
   - enabled error icon on certificate deletion error scenario
   - updated API Endpoint for fetching Certificate Document
   - changed listing page api to fetch certificates in details page
-- Company Subscription Management
-  - released company subscriptions management
+- **Company Subscription Management**
+  - rolled out comprehensive management of company subscriptions
   - enabled unsubscribe function of subscriptions
   - enabled customer subscription detail view with linked objects such as technical user, connector, etc.
-- Technical User Accounts
-  - added "Inactive" view
-- App Release Process
+- **Technical User Accounts**
+  - introduced a new view for managing "Inactive" technical user accounts
+- **App Release Process**
   - enhanced the technical integration configuration form by adding the technical user option "none" and updating frontend logic to manage api payloads
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
-- Service Release Process
+- **Service Release Process**
   - enhanced the technical integration configuration form (for type dataspace services) by adding the technical user option "none" and updating frontend logic to manage api payloads
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
-- Company Data/Organization
-  - redesign of company data
-  - added "Company Delete" button in inactive state
-  - added owned and active company certificates
+- **Company Data/Organization**
+  - redesigned the company data section
+  - added a "Company Delete" button in an inactive state
+  - added a own section for owned and active company certificates (linked to certificate feature)
+- **Company Registration Management Board**
+  - updated the design to support additional registration processes
+  - added a process status element
+  - removed details on management page (e.g. documents) and moved them into the detail overlay
+  - implemented expandable status details inside the business partner registration detail overlay
+- **Connector Management**
+  - updated the UI styling and user experience for connector management
+  - updated connector registration flow and enhanced self-service support with technical user linkage
 
 ### Technical Support
 
-- introduced codeql scan
-- removed veracode workflow
+- introduced CodeQL scan
+- removed Veracode workflow
 - renamed docker notice file
 - CONTRIBUTING.md: linked to contribution details
 - updated eclipse dash tool for dependencies check
-- added dependabot.yml file
+- added dependabot.yml file and introduced grouping of pull request for version updates
 - upgraded gh actions and change to pinned actions full length commit sha
 - removed warnings from log and dev server
+- added support of unavailable backend by redirecting the user to an error page
+- migrate from create react app to vite framework
+  - switched from deprecated create react app to a new framework for build scripts and development server
+  - upgraded to Portal Shared Components 3.x based on Vite
+  - upgraded dependencies
+- upgraded keycloak-js dependency to v23.0.7
+- URL Pattern validation
+  - made HTTPS in URL patterns configurable: enabled by default, HTTP can be configured by setting the introduced environment variable to false
+- code clean-ups
+  - removed unused overlays
+  - remove duplicate api endpoints
+- removed appendchild from the code and replaced it with alternative code
 
 ### Bugfix
 
-- inner page upscrolling removed for
+- resolved code smells related to the "certificateTypes" length check, ensuring the logic correctly handles all scenarios
+- Page Scroll Behavior: removed unintended page upscrolling on various sections to enhance user experience
   - Partner Network
   - Application Request page
   - Company Subscriptions
   - Invite Business Partner
   - Semantic Hub
   - Technical User Management
-- User Management - fixed user roles displayed in chip cards
-- App release process form - fixed user roles displayed in chip cards
-- Locale file content update
-  - company role change overlay descriptions
-- Wording update in several sections (e.g. 'Active Service Subscription' overlay section header for 'Technical User Details', IdP config - Add IdP | Wrong and confusing information on enable success screen)
-- Help Links fixed
-  - Notification page
-  - App Subscription Activation Overlay
-  - App release process
-  - Service release process
-- switched back button type on app detail page
-- App Change - Description
-  - fixed description displaying logic
-- Semantic Hub overlay of displaying semantic model diagrams fixed
-- Fixed several pages and elements regarding the styling, effects and used typo/sizing
-  - added background on hover effect
+- User Management: fixed the display of user roles within chip cards in User Management
+- App Release Process form: fixed the display of user roles within chip cards
+- Local & Wording Updates: updated locale file content to clarify company role change overlay descriptions and revised wording in multiple sections for better clarity
+- Help Link Correction
+  - addressed and fixed broken help links on:
+    - Notification page
+    - App Subscription Activation Overlay
+    - App release process
+    - Service release process
+- App Change: corrected the logic for displaying descriptions in the App Change section
+- Semantic Hub: rectified overlay issues for displaying semantic model diagrams in the Semantic Hub
+- General Styling Enhancements
+  - applied background hover effects to improve visual feedback
   - fixed notifications sorting dropdown closing issue
-  - button sync
-- Fixed inactive company certificate not being displayed
-- App Roles
-  - updated administration app roles api's
+  - synchronized button styling across different pages
+- Company Certificates: fixed inactive company certificate not being displayed
+- Application Requests: corrected the display of company roles for requester companies with the "Onboarding Service Provider" role in the Application Requests section
+- Use Case Participation: implemented a loader to provide feedback while waiting for a response in Use Case Participation
+- Sonar finding(s): adding an initial value to the reduce function, preventing potential errors
+- Connectors: Enhanced the connectors feature to improve the retrieval and display of service accounts in the autocomplete list, thereby improving user experience
+- App Role Management: Streamlined role-based access control by updating the required role to `modify_user_account` in the App User Role Management feature for the "edit" and "Add Role" button as well as for the overlay
+- Side menu: Fixed the absence of the "My company" section in the mobile version of the side menu
+- Company Role Change: Enhanced the company role change flow by adding logic to handle scenarios where the role change does not impact company rights or features
 
 ### Known Knowns
 
-- Technical User Accounts - displaying inactive tech user details result into white page due to missing backend enablement.
-- Assign & view app user roles not working (due to backend api integration issue)
+- Technical Issues and Limitations
+  - Technical User Accounts
+    - There is an issue where attempting to display details for inactive technical users results in a blank page due to a lack of necessary backend support.
+  - Partner Registration Prototype
+    - The prototype is not yet functional for production use and fails to capture data entered through browser autofill.
+  - App Release Process
+    - The delete function for App Roles in the App Release Process is currently non-operational.
+  - Credential Revocation
+    - The administrator's Credential Revocation Overlay does not automatically close after a successful revocation request submission.
+- Feature Support and Development
+  - Auto-setup Process Worker
+    - There is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
+  - Registration Approval Process
+    - The frontend provides limited support for the registration approval process, particularly concerning the retriggering of jobs.
+  - Technical User Details
+    - The status of technical users is not displayed on the technical user detail page.
+  - App Subscription URL Management
+    - Users are currently unable to delete URLs in the "Register URL for Autosetup" function on the App Subscription Page due to missing user experience updates and API integration.
+- UI Development Needs
+  - Onboarding Service Provider Management Board
+    - The user interface for the Onboarding Service Provider management board is not yet developed.
+  - Company Data Management
+    - The user interface development for company data management is not included at this stage.
 
 ## 1.8.0
 

@@ -128,7 +128,14 @@ export default function UploadCompanyCertificate({
       ) : (
         <DialogContent>
           <div className="upload-certificate">
-            <Typography variant="h4" className="title">
+            <Typography
+              variant="label3"
+              sx={{
+                display: 'block',
+                marginBottom: '-10px',
+              }}
+              className="title"
+            >
               {t('content.companyCertificate.upload.certificateTypeTitle')}
             </Typography>
             <SelectList
@@ -154,7 +161,14 @@ export default function UploadCompanyCertificate({
               keyTitle={'certificateType'}
               disabled={certificateTypes?.length === 1}
             />
-            <Typography variant="h4" className="title">
+            <Typography
+              variant="label3"
+              sx={{
+                display: 'block',
+                marginBottom: '-10px',
+              }}
+              className="title"
+            >
               {t('content.companyCertificate.upload.certificateSiteTitle')}
             </Typography>
             <Tooltips
@@ -187,10 +201,11 @@ export default function UploadCompanyCertificate({
               </span>
             </Tooltips>
             <Typography
-              variant="h4"
+              variant="label3"
               className="title"
               sx={{
-                marginBottom: '20px',
+                marginBottom: '15px',
+                display: 'block',
               }}
             >
               {t('content.companyCertificate.upload.expiry')}
@@ -219,10 +234,11 @@ export default function UploadCompanyCertificate({
               label={''}
             />
             <Typography
-              variant="h4"
+              variant="label3"
               className="title"
               sx={{
-                marginBottom: '20px',
+                marginBottom: '15px',
+                display: 'block',
               }}
             >
               {t('content.companyCertificate.upload.uploadDocumentTitle')}
