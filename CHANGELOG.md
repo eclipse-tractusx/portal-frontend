@@ -13,6 +13,10 @@
 
 - Admin Credential
   - Credential Request Management Board Improvements
+- Company data
+  - New company data page created
+  - Connect to the gate api to fetch the records
+  - Create and Edit address/site feature introduced
 
 ## 2.0.0
 
