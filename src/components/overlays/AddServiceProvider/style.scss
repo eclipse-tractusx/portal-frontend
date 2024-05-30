@@ -17,10 +17,39 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
-.manageInputURL {
-  padding: 0 80px;
-  .error {
-    color: #e93333;
+.registerUrlMain {
+  .dialog-header-main {
+    h4 {
+      width: 75%;
+      margin: 40px auto 0;
+    }
+  }
+  .urlListMain {
+    background-color: #dedede;
+    padding: 20px;
+    .urlList {
+      display: flex;
+      margin-top: 10px;
+      .deleteIcon {
+        cursor: pointer;
+      }
+      .deleteIcon:hover {
+        color: #0f71cb;
+      }
+      .urlDetail {
+        margin-left: 10px;
+      }
+    }
+  }
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .manageInputURL {
+    padding: 0 80px;
+    .error {
+      color: #e93333;
+    }
   }
 }

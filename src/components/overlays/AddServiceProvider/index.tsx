@@ -20,6 +20,7 @@
 
 import {
   Button,
+  CircleProgress,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -39,12 +40,14 @@ import {
 } from 'features/serviceProvider/serviceProviderApiSlice'
 import Patterns from 'types/Patterns'
 import { setSuccessType } from 'features/serviceProvider/slice'
+import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
 
 export default function AddServiceProvider() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [inputURL, setInputURL] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [deleteLoading, setDeleteLoading] = useState(false)
   const [UrlErrorMsg, setUrlErrorMessage] = useState('')
   const [saveErrorMsg, setSaveErrorMessage] = useState(false)
 
@@ -57,6 +60,7 @@ export default function AddServiceProvider() {
 
   const addInputURL = (value: string) => {
     setInputURL(value ?? null)
+    if (!value) return
     if (!Patterns.URL.test(value.trim())) {
       setUrlErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
     } else {
@@ -65,7 +69,8 @@ export default function AddServiceProvider() {
   }
 
   const addURL = async () => {
-    setLoading(true)
+    if (inputURL) setLoading(true)
+    else setDeleteLoading(true)
     try {
       await addServiceProvider({ url: inputURL }).unwrap()
       dispatch(setSuccessType(true))
@@ -77,7 +82,7 @@ export default function AddServiceProvider() {
   }
 
   return (
-    <>
+    <div className="registerUrlMain">
       <DialogHeader
         {...{
           title: t('content.appSubscription.register.heading'),
@@ -89,29 +94,71 @@ export default function AddServiceProvider() {
 
       <DialogContent>
         <div className="manageInputURL">
-          <Input
-            label={
-              <Typography variant="body2">
-                {t('content.appSubscription.register.endpointConfigured')}
-              </Typography>
-            }
-            value={data?.url ?? ''}
-            disabled={true}
-            sx={{ marginBottom: '20px' }}
-          />
-          <Input
-            label={
-              <Typography variant="body2">
-                {t('content.appSubscription.register.autosetupURL')}
-              </Typography>
-            }
-            placeholder="URL of the customer tentant"
-            onChange={(e) => {
-              addInputURL(e.target.value)
-            }}
-            value={inputURL}
-          />
-          <p className="error">{UrlErrorMsg}</p>
+          {data ? (
+            <>
+              <div className="urlListMain">
+                <Typography variant="body2">
+                  {t('content.appSubscription.register.endpointConfigured')}
+                </Typography>
+                <div className="urlList">
+                  {data?.url ? (
+                    <>
+                      {deleteLoading ? (
+                        <CircleProgress
+                          colorVariant="primary"
+                          interval={800}
+                          iteration
+                          size={20}
+                          step={100}
+                          thickness={1}
+                          variant="indeterminate"
+                        />
+                      ) : (
+                        <DeleteIcon
+                          onClick={() => {
+                            addURL()
+                          }}
+                          className="deleteIcon"
+                        />
+                      )}
+                      <Typography variant="label2" className="urlDetail">
+                        {data.url}
+                      </Typography>
+                    </>
+                  ) : (
+                    '-'
+                  )}
+                </div>
+              </div>
+              <Input
+                label={
+                  <Typography variant="body2">
+                    {t('content.appSubscription.register.autosetupURL')}
+                  </Typography>
+                }
+                placeholder={t(
+                  'content.appSubscription.register.inputPlaceholder'
+                )}
+                onChange={(e) => {
+                  addInputURL(e.target.value)
+                }}
+                value={inputURL}
+              />
+              <p className="error">{UrlErrorMsg}</p>
+            </>
+          ) : (
+            <div className="progress">
+              <CircleProgress
+                colorVariant="primary"
+                interval={800}
+                iteration
+                size={50}
+                step={100}
+                thickness={5}
+                variant="indeterminate"
+              />
+            </div>
+          )}
         </div>
       </DialogContent>
 
@@ -139,7 +186,7 @@ export default function AddServiceProvider() {
             onClick={() => {
               void addURL()
             }}
-            disabled={UrlErrorMsg !== ''}
+            disabled={UrlErrorMsg !== '' || !inputURL}
           >
             {t('global.actions.confirm')}
           </Button>
@@ -154,6 +201,6 @@ export default function AddServiceProvider() {
         description={t('content.appSubscription.register.providerErrorMessage')}
         showIcon={true}
       />
-    </>
+    </div>
   )
 }
