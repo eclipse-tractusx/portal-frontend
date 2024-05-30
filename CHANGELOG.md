@@ -17,7 +17,7 @@
   - Credential Request Management Board Improvements
 - App marketplace
   - Add more and collapse button to category view
-  
+
 ## 2.0.0
 
 ### Change
