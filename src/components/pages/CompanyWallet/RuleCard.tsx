@@ -28,6 +28,7 @@ import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
+import { getAssetBase } from 'services/EnvironmentService'
 
 type Hash<T> = Record<string, T>
 
@@ -130,7 +131,7 @@ export default function RuleCard({
                         {getStatus(item?.status)}
                       </Typography>
                       <img
-                        src="/logo_tractus-x.svg"
+                        src={`${getAssetBase()}/images/logos/logo_tractus-x.svg`}
                         alt="tractus x logo"
                         style={{
                           width: 40,

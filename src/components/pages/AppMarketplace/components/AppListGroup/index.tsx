@@ -31,27 +31,26 @@ export const AppListGroup = ({
   items: AppMarketplaceCard[]
 }) => {
   const { t } = useTranslation()
-  const [itemsShown, setItemsShown] = useState('4')
-
+  const [itemsShown, setItemsShown] = useState(4)
   const itemsToShow = items.slice(0, Number(itemsShown))
-
-  const increaseItemsShown = () => {
-    setItemsShown((prevState) => {
-      return (Number(prevState) + 4).toString()
-    })
-  }
 
   return (
     <>
       <CategoryDivider
-        buttonText={t('global.actions.more')}
+        buttonText={
+          items.length <= 4 || itemsToShow.length < items.length
+            ? t('global.actions.more')
+            : t('global.actions.collapse')
+        }
         categoryItemsLength={items.length}
         categoryName={t(
           'content.appstore.appOverviewSection.categories.' +
             category.replace(/\s+/g, '').toLowerCase()
         )}
-        disabled={itemsToShow.length >= items.length}
-        onButtonClick={increaseItemsShown}
+        disabled={items.length <= 4}
+        onButtonClick={() => {
+          setItemsShown(itemsToShow.length >= items.length ? 4 : items.length)
+        }}
       />
       <Cards
         buttonText={t('global.actions.details')}
