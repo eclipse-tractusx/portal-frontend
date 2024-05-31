@@ -84,19 +84,14 @@ const ConnectorDetailsOverlay = ({
   }, [fetchConnectorDetails])
 
   useEffect(() => {
-    if (
-      openDialog &&
-      fetchError?.data?.status >= 400 &&
-      fetchError?.data?.status < 500
-    ) {
-      setApiErrorStatus('4xx')
-      setOpenApiErrorModal(true)
-    } else if (
-      openDialog &&
-      fetchError?.data?.status >= 500 &&
-      fetchError?.data?.status < 600
-    ) {
-      setApiErrorStatus('5xx')
+    if (openDialog && fetchError && 'data' in fetchError) {
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
+      const errorData = fetchError as any
+      if (errorData?.data?.status >= 400 && errorData?.data?.status < 500)
+        setApiErrorStatus('4xx')
+      else if (errorData?.data?.status >= 500 && errorData?.data?.status < 600)
+        setApiErrorStatus('5xx')
       setOpenApiErrorModal(true)
     }
   }, [fetchError])
