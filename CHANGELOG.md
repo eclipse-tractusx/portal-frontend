@@ -10,6 +10,10 @@
   - Use appropriate path to display logo on cards
 - App Subscription
   - Register URL changes for Autosetup
+- Connector Management
+  - fetch details using api, added permissions and fixed error messages
+- App Release Process
+  - Integrated role deletion with BE api reponse
 
 ### Feature
 
