@@ -8,6 +8,8 @@
   - Fix consistency issue in overlays where form input is used
 - Company Wallet
   - Use appropriate path to display logo on cards
+- App Release Process
+  - Integrated role deletion with BE api reponse
 
 ### Feature
 
@@ -15,7 +17,7 @@
   - Credential Request Management Board Improvements
 - App marketplace
   - Add more and collapse button to category view
-  
+
 ## 2.0.0
 
 ### Change

@@ -611,7 +611,7 @@ export default function TechnicalIntegration() {
                                 },
                               }}
                               handleDelete={() => {
-                                onChipDelete(role.role)
+                                onChipDelete(role.roleId ?? '')
                               }}
                             />
                           ),
