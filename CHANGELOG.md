@@ -8,6 +8,8 @@
   - Fix consistency issue in overlays where form input is used
 - Company Wallet
   - Use appropriate path to display logo on cards
+- Refactor
+  - Remove unnecessary import of Trans from mui
 
 ### Feature
 
