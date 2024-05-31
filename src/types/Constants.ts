@@ -203,6 +203,7 @@ export enum ROLES {
   IDP_DISABLE = 'disable_idp',
   MODIFY_USER_ACCOUNT = 'modify_user_account',
   ORGANIZATION_VIEW = 'view_organization',
+  MY_ORGANIZATION_VIEW = 'view_company_data',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',
   CONNECTORS_VIEW = 'view_connectors',
