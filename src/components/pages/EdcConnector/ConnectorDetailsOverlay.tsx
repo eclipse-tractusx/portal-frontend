@@ -60,8 +60,12 @@ const ConnectorDetailsOverlay = ({
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
   const [fetchDocumentById] = useFetchDocumentMutation()
-  const { data: fetchConnectorDetails, isFetching } =
-    useFetchConnectorDetailsQuery(overlayData?.id ?? '')
+  const {
+    data: fetchConnectorDetails,
+    isFetching,
+    error: fetchError,
+    refetch,
+  } = useFetchConnectorDetailsQuery(overlayData?.id ?? '')
   const [openDeleteConnector, setOpenDeleteConnector] = useState(false)
   const [deleteConnectorSuccess, setDeleteConnectorSuccess] = useState(false)
   const [deleteConnector] = useDeleteConnectorMutation()
@@ -72,10 +76,30 @@ const ConnectorDetailsOverlay = ({
   const [enableUrlApiErrorMsg, setEnableUrlApiErrorMsg] = useState(false)
   const [urlErrorMsg, setUrlErrorMsg] = useState('')
   const [connectorUrlValue, setConnectorUrlValue] = useState('')
+  const [openApiErrorModal, setOpenApiErrorModal] = useState(false)
+  const [apiErrorStatus, setApiErrorStatus] = useState('')
 
   useEffect(() => {
     setConnectorUrlValue(fetchConnectorDetails?.connectorUrl ?? '')
   }, [fetchConnectorDetails])
+
+  useEffect(() => {
+    if (
+      openDialog &&
+      fetchError?.data?.status >= 400 &&
+      fetchError?.data?.status < 500
+    ) {
+      setApiErrorStatus('4xx')
+      setOpenApiErrorModal(true)
+    } else if (
+      openDialog &&
+      fetchError?.data?.status >= 500 &&
+      fetchError?.data?.status < 600
+    ) {
+      setApiErrorStatus('5xx')
+      setOpenApiErrorModal(true)
+    }
+  }, [fetchError])
 
   const detailsData = [
     {
@@ -180,6 +204,104 @@ const ConnectorDetailsOverlay = ({
 
   return (
     <div>
+      {openApiErrorModal && (
+        <Dialog
+          open={openApiErrorModal}
+          sx={{
+            '.MuiDialog-paper': {
+              maxWidth: '45%',
+            },
+          }}
+        >
+          <DialogHeader
+            title={
+              apiErrorStatus === '4xx'
+                ? t('content.edcconnector.details.configureConnector')
+                : t('content.edcconnector.details.viewEditConnectorData')
+            }
+            intro={
+              apiErrorStatus === '5xx'
+                ? t('content.edcconnector.details.featureNotAvailable')
+                : ''
+            }
+            closeWithIcon={true}
+            onCloseWithIcon={(e) => {
+              setOpenApiErrorModal(false)
+              handleOverlayClose(e)
+            }}
+          />
+          <DialogContent
+            sx={{
+              textAlign: 'center',
+              marginBottom: '25px',
+              padding: '0px 80px 20px 80px',
+            }}
+          >
+            {apiErrorStatus === '4xx' ? (
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  {t('content.edcconnector.details.apiErrorDesc1')}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2 }}>
+                  {t('content.edcconnector.details.apiErrorDesc2')}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  {t('content.edcconnector.details.apiErrorDesc3')}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  {t('content.edcconnector.details.apiErrorDesc4')}
+                </Typography>
+              </Box>
+            ) : (
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="body2" sx={{ mb: 2 }}>
+                  {t('content.edcconnector.details.apiErrorDesc5')}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  {t('content.edcconnector.details.apiErrorDesc3')}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  {t('content.edcconnector.details.apiErrorDesc4')}
+                </Typography>
+              </Box>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={(e) => {
+                setOpenApiErrorModal(false)
+                handleOverlayClose(e)
+              }}
+            >
+              {t('global.actions.close')}
+            </Button>
+            {apiErrorStatus === '4xx' &&
+              (isFetching ? (
+                <LoadingButton
+                  size="small"
+                  variant="contained"
+                  onButtonClick={() => {
+                    // do nothing
+                  }}
+                  loading={isFetching}
+                  label={t('content.edcconnector.details.reload')}
+                  loadIndicator="Loading..."
+                />
+              ) : (
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    refetch()
+                  }}
+                >
+                  {t('content.edcconnector.details.reload')}
+                </Button>
+              ))}
+          </DialogActions>
+        </Dialog>
+      )}
+
       {openDeleteConnector && (
         <Dialog
           open={openDeleteConnector}
@@ -406,7 +528,7 @@ const ConnectorDetailsOverlay = ({
                             // do nothing
                           }}
                           loading={confirmLoading}
-                          label={`${t('global.actions.confirm')}`}
+                          label={t('global.actions.confirm')}
                           loadIndicator="Loading..."
                         />
                       ) : (

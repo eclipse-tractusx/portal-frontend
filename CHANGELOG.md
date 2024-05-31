@@ -8,6 +8,8 @@
 
 - Overlay
   - Fix consistency issue in overlays where form input is used
+- Connector Management
+  - fetch details using api, added permissions and fixed error messages
 
 ### Feature
 
