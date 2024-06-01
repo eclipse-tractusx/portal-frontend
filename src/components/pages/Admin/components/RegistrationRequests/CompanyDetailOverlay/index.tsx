@@ -33,8 +33,9 @@ import {
   DropPreviewFile,
   UploadStatus,
   DialogActions,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
-import { Box, useTheme, CircularProgress } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'
 import {
@@ -320,8 +321,10 @@ const CompanyDetailOverlay = ({
               padding: '30px',
             }}
           >
-            <CircularProgress
+            <CircleProgress
               size={35}
+              variant="indeterminate"
+              colorVariant="primary"
               sx={{
                 color: theme.palette.primary.main,
                 zIndex: 1,

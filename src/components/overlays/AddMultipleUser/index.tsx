@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { store } from 'features/store'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   DialogActions,
@@ -273,11 +273,13 @@ export default function AddMultipleUser() {
           {tableErrorData && tableErrorData.body[0]?.length > 0 && (
             <>
               <div className="mb-30">
-                <Typography variant="body1" className="errorUsersLabel">
-                  {t(
-                    'content.usermanagement.addMultipleUsers.success.errorUsersLabel'
-                  )}
-                </Typography>
+                <Trans>
+                  <Typography variant="body1" className="errorUsersLabel">
+                    {t(
+                      'content.usermanagement.addMultipleUsers.success.errorUsersLabel'
+                    )}
+                  </Typography>
+                </Trans>
               </div>
               <StaticTable data={tableErrorData} horizontal={false} />
             </>

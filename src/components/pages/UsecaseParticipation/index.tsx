@@ -21,10 +21,11 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
-import { CircularProgress, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import dayjs from 'dayjs'
 import {
   Chip,
+  CircleProgress,
   CustomAccordion,
   PageHeader,
   StatusTag,
@@ -188,7 +189,9 @@ export default function UsecaseParticipation() {
             <ul>
               {isLoading ? (
                 <div className="progress-main">
-                  <CircularProgress
+                  <CircleProgress
+                    variant="indeterminate"
+                    colorVariant="primary"
                     size={35}
                     sx={{
                       color: theme.palette.primary.main,

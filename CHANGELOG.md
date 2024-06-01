@@ -9,7 +9,7 @@
 - Company Wallet
   - Use appropriate path to display logo on cards
 - Refactor
-  - Remove unnecessary import of Trans from mui
+  - Remove unnecessary import of Typography, Dialog and Circular Progress from mui and use those from shared-components
 - Connector Management
   - fetch details using api, added permissions and fixed error messages
 - App Release Process

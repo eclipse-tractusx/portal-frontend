@@ -30,6 +30,7 @@ import {
   type CardItems,
   PageSnackbar,
   ErrorBar,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
@@ -52,7 +53,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
-import { Box, useTheme, CircularProgress } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { initialState } from 'features/serviceManagement/types'
 
 enum ServiceSubMenuItems {
@@ -229,7 +230,9 @@ export default function ServiceListOverview() {
       <section>
         {isFetching ? (
           <div style={{ textAlign: 'center' }}>
-            <CircularProgress
+            <CircleProgress
+              variant="indeterminate"
+              colorVariant="primary"
               size={50}
               sx={{
                 color: theme.palette.primary.main,

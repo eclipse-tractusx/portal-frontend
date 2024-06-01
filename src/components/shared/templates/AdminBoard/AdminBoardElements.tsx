@@ -20,11 +20,12 @@
 
 import {
   CardDecision,
+  CircleProgress,
   ErrorBar,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
@@ -150,7 +151,9 @@ export default function AdminBoardElements({
         />
       ) : (
         <div className="loading-progress">
-          <CircularProgress
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
             size={50}
             sx={{
               color: theme.palette.primary.main,
