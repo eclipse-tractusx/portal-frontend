@@ -43,10 +43,11 @@ import {
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
-import { getTitle } from './CompanyDetailsHelper'
+import { getIntro, getTitle } from './CompanyDetailsHelper'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { type UniqueIdType } from 'features/admin/registration/types'
+import { StatusProgress } from '../registrationTableColumns'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -268,7 +269,8 @@ const CompanyDetailOverlay = ({
       >
         <DialogHeader
           {...{
-            title: getTitle(activeTab, checklistData ?? [], t),
+            title: getTitle(activeTab, t, selectedRequest),
+            intro: getIntro(activeTab, selectedCompany, t),
             closeWithIcon: true,
             onCloseWithIcon: handleOverlayClose,
           }}
@@ -276,7 +278,8 @@ const CompanyDetailOverlay = ({
           <>
             <Box
               sx={{
-                marginLeft: '60px',
+                width: '80%',
+                margin: '0 auto',
               }}
             >
               <Tabs value={activeTab} onChange={handleChange}>
@@ -284,8 +287,10 @@ const CompanyDetailOverlay = ({
                   icon={getStepIcon('1')}
                   iconPosition="start"
                   sx={{
-                    fontSize: '18px',
+                    fontSize: '14px',
                     width: '50%',
+                    textTransform: 'capitalize',
+                    color: '#111 !important',
                     '&.Mui-selected': {
                       borderBottom: '3px solid #0f71cb',
                     },
@@ -298,7 +303,10 @@ const CompanyDetailOverlay = ({
                   icon={getStepIcon('2')}
                   iconPosition="start"
                   sx={{
-                    fontSize: '18px',
+                    fontSize: '14px',
+                    width: '50%',
+                    textTransform: 'capitalize',
+                    color: '#111 !important',
                     '&.Mui-selected': {
                       borderBottom: '3px solid #0f71cb',
                     },
@@ -337,7 +345,7 @@ const CompanyDetailOverlay = ({
             }}
           >
             <TabPanel value={activeTab} index={0}>
-              <Box sx={{ width: '100%', marginBottom: '50px' }}>
+              <Box sx={{ width: '100%', margin: '50px 0' }}>
                 <KeyValueView
                   cols={2.3}
                   title={t(
@@ -361,6 +369,21 @@ const CompanyDetailOverlay = ({
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <Box sx={{ width: '100%', height }}>
+                {selectedRequest && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      margin: '30px',
+                    }}
+                  >
+                    <StatusProgress
+                      application={selectedRequest}
+                      trans={t}
+                      type={false}
+                    />
+                  </div>
+                )}
                 <CheckListFullButtons
                   progressButtons={checklistData}
                   selectedRequestId={selectedRequestId}

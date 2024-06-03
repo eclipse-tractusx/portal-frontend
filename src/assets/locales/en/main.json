@@ -211,9 +211,9 @@
           "tab1": "Company Data",
           "tab2": "Registration Process",
           "tab1Title": "Company Data",
-          "tab1SubTitle": "Registration Status: {{status}}",
           "tab2Title": "Confirmation {{status}}",
-          "statusComplete": "[complete]",
+          "tab2SubTitle": "Registration Status: {{status}}",
+          "lastDate": "Last process update: {{date}}",
           "statusIncomplete": "[incomplete]",
           "approvedButton": "approved",
           "failedButton": "falied"
@@ -1553,6 +1553,8 @@
         "REGISTRATION_VERIFICATION": "Data Validation",
         "BUSINESS_PARTNER_NUMBER": "BPN Creation",
         "IDENTITY_WALLET": "Identity Wallet Creation",
+        "BPNL_CREDENTIAL": "BPNL Credential",
+        "MEMBERSHIP_CREDENTIAL": "Membership Credential",
         "CLEARING_HOUSE": "Clearing House",
         "SELF_DESCRIPTION_LP": "Self Description"
       },
@@ -1634,6 +1636,48 @@
         "FAILED": {
           "title": "Your action is needed.",
           "description": "The Identity Wallet creation failed. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "BPNL_CREDENTIAL": {
+        "stepName": "BPNL Credential",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "Your action is needed to resolve the issue",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "No action needed from your side",
+          "description": "The BPNL Credential creation failed. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "MEMBERSHIP_CREDENTIAL": {
+        "stepName": "Membership Credential",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "Your action is needed to resolve the issue",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "No action needed from your side",
+          "description": "The Membership Credential creation failed. You can retrigger the endpoint or close/reject the company registration."
         }
       },
       "CLEARING_HOUSE": {

@@ -8,6 +8,9 @@
   - Fix consistency issue in overlays where form input is used
 - Company Wallet
   - Use appropriate path to display logo on cards
+- Company Application Registraion Detail Overlay
+  - UI improvements
+  - Add correct registration application checklist items
 
 ### Feature
 
@@ -15,7 +18,7 @@
   - Credential Request Management Board Improvements
 - App marketplace
   - Add more and collapse button to category view
-  
+
 ## 2.0.0
 
 ### Change
