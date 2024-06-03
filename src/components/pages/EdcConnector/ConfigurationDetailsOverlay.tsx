@@ -28,6 +28,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
@@ -44,7 +45,7 @@ const ConfigurationDetailsOverlay = ({
   handleOverlayClose,
 }: ConfigurationDetailsOverlayProps) => {
   const { t } = useTranslation()
-  const { data } = useFetchDecentralIdentityUrlsQuery()
+  const { data, isFetching } = useFetchDecentralIdentityUrlsQuery()
 
   const tableData: TableType = {
     head: [
@@ -159,48 +160,68 @@ const ConfigurationDetailsOverlay = ({
             padding: '0px 120px 40px 120px',
           }}
         >
-          <StaticTable data={tableData} horizontal={true} />
-
-          <Typography
-            variant="label3"
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: '#0088CC',
-              textDecoration: 'underline',
-              m: '36px auto',
-              fontWeight: 400,
-            }}
-          >
-            <HelpOutlineIcon
-              sx={{
-                width: '22px',
-                height: '22px',
-                mr: '14px',
+          {isFetching ? (
+            <div
+              style={{
+                width: '100%',
+                height: '500px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-            />
-            {t('content.edcconnector.configurationDetails.learnMore')}
-          </Typography>
-          <Typography variant="body3">
-            {' '}
-            {t('content.edcconnector.configurationDetails.section.text1')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text2')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text3')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text4')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text5')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text6')}
-          </Typography>
+            >
+              <CircleProgress
+                colorVariant="primary"
+                size={80}
+                thickness={8}
+                variant="indeterminate"
+              />
+            </div>
+          ) : (
+            <>
+              <StaticTable data={tableData} horizontal={true} />
+              <Typography
+                variant="label3"
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: '#0088CC',
+                  textDecoration: 'underline',
+                  m: '36px auto',
+                  fontWeight: 400,
+                }}
+              >
+                <HelpOutlineIcon
+                  sx={{
+                    width: '22px',
+                    height: '22px',
+                    mr: '14px',
+                  }}
+                />
+                {t('content.edcconnector.configurationDetails.learnMore')}
+              </Typography>
+              <Typography variant="body3">
+                {' '}
+                {t('content.edcconnector.configurationDetails.section.text1')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text2')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text3')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text4')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text5')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text6')}
+              </Typography>
+            </>
+          )}
         </DialogContent>
         <DialogActions>
           <Button

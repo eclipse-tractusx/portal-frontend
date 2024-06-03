@@ -594,7 +594,16 @@
         "note": "Bitte beachten Sie:",
         "noteDesc": "Wenn Sie die URL des Connectors ändern, wird das aktuelle SD-Dokument ungültig und vom System wird automatisch ein neues erstellt",
         "urlErrorMessage": "Ein Fehler ist aufgetreten. Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut oder kommen Sie später wieder",
-        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein"
+        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein",
+        "reload": "Neu laden",
+        "apiErrorDesc1": "Die Connector-Daten können derzeit nicht geladen werden",
+        "apiErrorDesc2": "Bitte laden Sie die Seite neu oder versuchen Sie es später noch einmal",
+        "apiErrorDesc3": "Sollte das Problem weiterhin bestehen, wenden Sie sich bitte an:",
+        "apiErrorDesc4": "support@catena-x.com",
+        "apiErrorDesc5": "Bitte versuchen Sie es später noch einmal.",
+        "configureConnector": "Connector konfigurieren",
+        "viewEditConnectorData": "Connector-Daten anzeigen/bearbeiten",
+        "featureNotAvailable": "Diese Funktion ist derzeit nicht verfügbar"
       },
       "rowValue": {
         "owned": "Owned",

@@ -195,7 +195,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.PARTNER_NETWORK_VIEW,
+    role: ROLES.MY_ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
@@ -403,13 +403,13 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW,
     element: <EdcConnector />,
   },
   // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
   {
     name: PAGES.TECHNICAL_SETUP,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW,
     element: <Redirect path={PAGES.CONNECTOR_MANAGEMENT} />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
