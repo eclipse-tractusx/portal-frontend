@@ -14,6 +14,9 @@
   - fetch details using api, added permissions and fixed error messages
 - App Release Process
   - Integrated role deletion with BE api reponse
+- Company Application Registraion Detail Overlay
+  - UI improvements
+  - Add correct registration application checklist items
 
 ### Feature
 

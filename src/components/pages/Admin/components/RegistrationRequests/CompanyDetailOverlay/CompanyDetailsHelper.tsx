@@ -19,46 +19,83 @@
  ********************************************************************************/
 
 import {
-  type ProgressButtonsType,
   ProgressStatus,
+  ApplicationRequestStatus,
+  type ApplicationRequest,
 } from 'features/admin/applicationRequestApiSlice'
 import { Trans } from 'react-i18next'
 import type i18next from 'i18next'
-
-export const isComplete = (applicationChecklist: ProgressButtonsType[]) =>
-  applicationChecklist.reduce(
-    (a, b) => a && b.statusId === ProgressStatus.DONE,
-    true
-  )
+import dayjs from 'dayjs'
+import { Typography } from '@catena-x/portal-shared-components'
+import { type CompanyDetail } from 'features/admin/registration/types'
 
 export const getTitle = (
   activeTab: number,
-  applicationChecklist: ProgressButtonsType[],
-  t: typeof i18next.t
+  t: typeof i18next.t,
+  selectedRequest?: ApplicationRequest
 ) => {
+  const getStatus = () => {
+    if (
+      selectedRequest?.applicationStatus === ApplicationRequestStatus.SUBMITTED
+    ) {
+      const failedItems = selectedRequest.applicationChecklist.filter(
+        (checklist) => checklist.statusId === ProgressStatus.FAILED
+      )
+      return t(
+        `content.admin.registration-requests.${failedItems.length ? 'buttonerror' : 'buttonprogress'}`
+      )
+    } else if (
+      selectedRequest?.applicationStatus ===
+        ApplicationRequestStatus.DECLINED ||
+      selectedRequest?.applicationStatus ===
+        ApplicationRequestStatus.CANCELLED_BY_CUSTOMER
+    ) {
+      return t('content.admin.registration-requests.buttonrejected')
+    } else if (
+      selectedRequest?.applicationStatus === ApplicationRequestStatus.CONFIRMED
+    ) {
+      return t('content.admin.registration-requests.buttoncompleted')
+    }
+  }
+
   if (activeTab === 0) {
     return t('content.admin.registration-requests.overlay.tab1Title')
-  }
-  if (isComplete(applicationChecklist)) {
+  } else {
     return (
-      <Trans
-        i18nKey={'content.admin.registration-requests.overlay.tab2Title'}
-        values={{
-          status: t(
-            'content.admin.registration-requests.overlay.statusComplete'
-          ),
-        }}
-      ></Trans>
+      <>
+        <Typography variant="h3">
+          {t('content.admin.registration-requests.overlay.tab1Title')}
+        </Typography>
+        <Trans
+          values={{
+            status: getStatus(),
+          }}
+        >
+          <Typography variant="h3">
+            {t('content.admin.registration-requests.overlay.tab2SubTitle')}
+          </Typography>
+        </Trans>
+      </>
     )
   }
-  return (
-    <Trans
-      i18nKey={'content.admin.registration-requests.overlay.tab2Title'}
-      values={{
-        status: t(
-          'content.admin.registration-requests.overlay.statusIncomplete'
-        ),
-      }}
-    ></Trans>
-  )
+}
+
+export const getIntro = (
+  activeTab: number,
+  selectedCompany: CompanyDetail,
+  t: typeof i18next.t
+) => {
+  if (activeTab === 1) {
+    return (
+      <Trans
+        values={{
+          date: dayjs(selectedCompany.lastChanged).format('DD-MM-YYYY'),
+        }}
+      >
+        <Typography variant="caption3">
+          {t('content.admin.registration-requests.overlay.lastDate')}
+        </Typography>
+      </Trans>
+    )
+  }
 }
