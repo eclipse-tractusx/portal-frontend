@@ -21,7 +21,7 @@
 import qs from 'qs'
 import { HttpClient } from 'utils/HttpClient'
 import type { BusinessPartnerResponse, BusinessPartner } from './types'
-import { getApiBase, getBpdmApiBase } from 'services/EnvironmentService'
+import { getApiBase, getBpdmPoolApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
 import type { SearchParams } from 'types/MainTypes'
 
@@ -30,7 +30,7 @@ export class PartnerNetworkApi extends HttpClient {
   private static classInstance?: PartnerNetworkApi
 
   public constructor() {
-    super(getBpdmApiBase())
+    super(getBpdmPoolApiBase())
   }
 
   // To avoid create an instance everytime, pointed to Singleton of static value

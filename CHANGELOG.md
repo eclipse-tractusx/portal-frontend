@@ -17,6 +17,10 @@
 
 - Admin Credential
   - Credential Request Management Board Improvements
+- Company data
+  - New company data page created
+  - Connect to the gate api to fetch the records
+  - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
 

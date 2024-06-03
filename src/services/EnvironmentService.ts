@@ -41,7 +41,9 @@ export const getSsiBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
 
 export const getAssetBase = () => ENV.PORTAL_ASSETS_URL ?? ''
 
-export const getBpdmApiBase = () => ENV.BPDM_API_URL ?? ''
+export const getBpdmPoolApiBase = () => ENV.BPDM_POOL_API_URL ?? ''
+
+export const getBpdmGateApiBase = () => ENV.BPDM_GATE_API_URL ?? ''
 
 export const getSemanticApiBase = () => ENV.SEMANTICS_URL ?? ''
 
@@ -59,7 +61,8 @@ const EnvironmentService = {
   getCentralIdp,
   getApiBase,
   getAssetBase,
-  getBpdmApiBase,
+  getBpdmPoolApiBase,
+  getBpdmGateApiBase,
   getSemanticApiBase,
   getMiwBase,
   getSSICredentialBase,
