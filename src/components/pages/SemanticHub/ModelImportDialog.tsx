@@ -27,6 +27,7 @@ import {
   Typography,
   Input,
   theme,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -41,7 +42,6 @@ import {
   FormControl,
   Select,
   type SelectChangeEvent,
-  CircularProgress,
 } from '@mui/material'
 import type { AppDispatch } from 'features/store'
 
@@ -126,7 +126,9 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         {error && <Typography color="error">{error}</Typography>}
         {uploading && (
           <Box sx={{ textAlign: 'center', mt: 2 }}>
-            <CircularProgress
+            <CircleProgress
+              variant="indeterminate"
+              colorVariant="primary"
               size={35}
               sx={{
                 color: theme.palette.primary.main,
