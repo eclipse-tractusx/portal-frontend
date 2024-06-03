@@ -195,7 +195,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.PARTNER_NETWORK_VIEW,
+    role: ROLES.MY_ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
