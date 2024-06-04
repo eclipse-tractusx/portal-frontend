@@ -68,7 +68,8 @@
     "companyWallet": "Company Wallet",
     "company-subscriptions": "Firmenabonnements",
     "mycompany": "My Company",
-    "mynotifications": "My Notifications"
+    "mynotifications": "My Notifications",
+    "company_data": "Company Data"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -212,9 +213,9 @@
           "tab1": "Company Data",
           "tab2": "Registration Process",
           "tab1Title": "Company Data",
-          "tab1SubTitle": "Registration Status: {{status}}",
           "tab2Title": "Confirmation {{status}}",
-          "statusComplete": "[complete]",
+          "tab2SubTitle": "Registration Status: {{status}}",
+          "lastDate": "Last process update: {{date}}",
           "statusIncomplete": "[incomplete]",
           "approvedButton": "approved",
           "failedButton": "falied"
@@ -594,7 +595,16 @@
         "note": "Bitte beachten Sie:",
         "noteDesc": "Wenn Sie die URL des Connectors ändern, wird das aktuelle SD-Dokument ungültig und vom System wird automatisch ein neues erstellt",
         "urlErrorMessage": "Ein Fehler ist aufgetreten. Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut oder kommen Sie später wieder",
-        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein"
+        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein",
+        "reload": "Neu laden",
+        "apiErrorDesc1": "Die Connector-Daten können derzeit nicht geladen werden",
+        "apiErrorDesc2": "Bitte laden Sie die Seite neu oder versuchen Sie es später noch einmal",
+        "apiErrorDesc3": "Sollte das Problem weiterhin bestehen, wenden Sie sich bitte an:",
+        "apiErrorDesc4": "support@catena-x.com",
+        "apiErrorDesc5": "Bitte versuchen Sie es später noch einmal.",
+        "configureConnector": "Connector konfigurieren",
+        "viewEditConnectorData": "Connector-Daten anzeigen/bearbeiten",
+        "featureNotAvailable": "Diese Funktion ist derzeit nicht verfügbar"
       },
       "rowValue": {
         "owned": "Owned",
@@ -1587,6 +1597,8 @@
         "REGISTRATION_VERIFICATION": "Data Validation",
         "BUSINESS_PARTNER_NUMBER": "BPN Creation",
         "IDENTITY_WALLET": "Identity Wallet Creation",
+        "BPNL_CREDENTIAL": "BPNL Credential",
+        "MEMBERSHIP_CREDENTIAL": "Membership Credential",
         "CLEARING_HOUSE": "Clearing House",
         "SELF_DESCRIPTION_LP": "Self Description"
       },
@@ -1668,6 +1680,48 @@
         "FAILED": {
           "title": "Ihre Aktion ist erforderlich, um fortzufahren",
           "description": "Die Identity-Wallet-Erstellung ist fehlgeschlagen. Sie können den Job erneut auslösen oder die Firmenregistrierung schließen/ablehnen."
+        }
+      },
+      "BPNL_CREDENTIAL": {
+        "stepName": "BPNL Credential",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "Your action is needed to resolve the issue",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "No action needed from your side",
+          "description": "The BPNL Credential creation failed. You can retrigger the endpoint or close/reject the company registration."
+        }
+      },
+      "MEMBERSHIP_CREDENTIAL": {
+        "stepName": "Membership Credential",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "additionalText": "",
+        "TO_DO": {
+          "title": "Your action is needed to resolve the issue",
+          "description": "The process gets auto triggered with the next automation run."
+        },
+        "IN_PROGRESS": {
+          "title": "No action needed from your side",
+          "description": "The process is ongoing."
+        },
+        "DONE": {
+          "title": "No action needed from your side",
+          "description": "The process is successfully completed."
+        },
+        "FAILED": {
+          "title": "No action needed from your side",
+          "description": "The Membership Credential creation failed. You can retrigger the endpoint or close/reject the company registration."
         }
       },
       "CLEARING_HOUSE": {
@@ -1979,6 +2033,113 @@
       "retryBtn": "Retry Deletion",
       "notSupportedTitle": "Company account deletion is not supported. You registration is already submitted/closed. To unsubscribe you need to use the platform off-boarding process.",
       "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
+    },
+    "companyData": {
+      "label": "Company Data",
+      "statusInfo": {
+        "title": "Status Information"
+      },
+      "companyInfo": {
+        "title": "Company Name",
+        "legalEntityName": "Legal Entity Name",
+        "legalEntityNumber": "Legal Entity Number",
+        "legalEntityNameTooltip": "Legal Entity Name",
+        "legalEntityNumberTooltip": "Legal Entity Number",
+        "addressTitle": "Address",
+        "siteTitle": "Site"
+      },
+      "table": {
+        "title": "Sites and addresses",
+        "buttonSite": "add site",
+        "buttonAddress": "add address",
+        "site": "Site Name",
+        "location": "Location",
+        "search": "search address / site",
+        "noRowsMsg": "No Data yet",
+        "type": "Type"
+      },
+      "site": {
+        "title": "Create new site",
+        "editTitle": "Edit Site",
+        "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+        "form": {
+          "site": {
+            "name": "Site Name",
+            "hint": "Site Name",
+            "error": "Please enter valid Site Name"
+          },
+          "street": {
+            "name": "Street with House Number",
+            "hint": "Street with House Number",
+            "error": "Please enter valid Street with House Number"
+          },
+          "postal": {
+            "name": "Postal Code",
+            "hint": "Postal Code",
+            "error": "Please enter valid Postal Code"
+          },
+          "city": {
+            "name": "City",
+            "hint": "City",
+            "error": "Please enter valid City"
+          },
+          "countryCode": {
+            "name": "Country Code",
+            "hint": "Country Code",
+            "error": "Please enter valid Country Code"
+          },
+          "countryIdentifier": {
+            "name": "Country Identifier",
+            "hint": "Country Identifier",
+            "error": "Please enter valid Country Identifier"
+          },
+          "identifierNumber": {
+            "name": "Identifier Number",
+            "hint": "Identifier Number",
+            "error": "Please enter valid Identifier Number"
+          }
+        }
+      },
+      "address": {
+        "title": "Create new address",
+        "editTitle": "Edit Address",
+        "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+        "form": {
+          "companySite": {
+            "name": "Select company / site",
+            "hint": "Select company / site",
+            "error": "Please enter valid company / site"
+          },
+          "addressTitle": {
+            "name": "Address Title",
+            "hint": "Address Title",
+            "error": "Please enter valid Address Title"
+          },
+          "street": {
+            "name": "Street with House Number",
+            "hint": "Street with House Number",
+            "error": "Please enter valid Street with House Number"
+          },
+          "postal": {
+            "name": "Postal Code",
+            "hint": "Postal Code",
+            "error": "Please enter valid Postal Code"
+          },
+          "city": {
+            "name": "City",
+            "hint": "City",
+            "error": "Please enter valid City"
+          }
+        }
+      },
+      "success": {
+        "title": "Create {name}",
+        "description": "The changes have been successfully saved"
+      },
+      "error": {
+        "title": "Create {name}",
+        "description": "The changes could not be saved. Please try again"
+      }
     }
   },
   "navigation": {
@@ -2080,7 +2241,8 @@
       "retry": "Retry",
       "exit": "exit",
       "loading": "Loading...",
-      "unsubscribe": "Unsubscribe"
+      "unsubscribe": "Unsubscribe",
+      "edit": "Edit"
     },
     "state": {
       "enabled": "aktiv",

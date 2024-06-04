@@ -20,7 +20,7 @@
 
 import { useEffect, useReducer, useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import debounce from 'lodash.debounce'
 import {
   SearchInput,
@@ -28,6 +28,7 @@ import {
   SortOption,
   PageHeader,
   LoadMoreButton,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import './AdminBoard.scss'
 import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
@@ -447,7 +448,9 @@ export default function CommonAdminBoard({
         <div className="mainContainer">
           {isFetching ? (
             <div className="loading-progress">
-              <CircularProgress
+              <CircleProgress
+                variant="indeterminate"
+                colorVariant="primary"
                 size={50}
                 sx={{
                   color: theme.palette.primary.main,

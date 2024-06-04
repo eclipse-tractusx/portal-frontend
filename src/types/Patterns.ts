@@ -105,6 +105,11 @@ export const Patterns = {
   techuser: {
     clientId: /^[a-zA-Z0-9-]{0,80}$/,
   },
+  companyData: {
+    CITY: /^[A-ZÀ-ÿ0-9Śął](([ .'-]|\. )?[A-Za-zÀ-ÿ0-9Śął]{1,40}){1,10}$/,
+    STREET: /^[A-ZÀ-ÿ0-9Śął](([ .'-]|\. )?[A-Za-zÀ-ÿ0-9Śął]{1,40}){1,10}$/,
+    COUNTRYCODE: /^[A-Za-zÀ-ÿ]{2,3}$/,
+  },
 }
 
 export const isEmpty = (expr: string) => !expr || expr.trim() === ''
@@ -176,5 +181,9 @@ export const isCountryCodeOrEmpty = (expr: string) =>
   expr === '' || isCountryCode(expr)
 export const isStreetNumberOrEmpty = (expr: string) =>
   expr === '' || isStreetNumber(expr)
+export const isCity = (expr: string) => Patterns.companyData.CITY.test(expr)
+export const isStreet = (expr: string) => Patterns.companyData.STREET.test(expr)
+export const isCountry = (expr: string) =>
+  Patterns.companyData.COUNTRYCODE.test(expr)
 
 export default Patterns
