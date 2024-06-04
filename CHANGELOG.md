@@ -28,6 +28,8 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Page headers
+  - harmonization and standardization of page headers
 
 ## 2.0.0
 

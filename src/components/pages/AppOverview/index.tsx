@@ -20,7 +20,6 @@
 
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   PageHeader,
   Typography,
@@ -210,9 +209,7 @@ export default function AppOverview() {
         title={t('content.appoverview.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
         <div className="desc-recently">
           <div className="container">
