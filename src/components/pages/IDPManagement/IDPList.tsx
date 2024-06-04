@@ -21,10 +21,11 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { CircularProgress, MenuItem } from '@mui/material'
+import { MenuItem } from '@mui/material'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import './style.scss'
 import {
+  CircleProgress,
   DropdownMenu,
   StatusTag,
   Table,
@@ -173,7 +174,9 @@ export const IDPList = () => {
         >
           {ti('action.delete')}
           {deleteLoading && (
-            <CircularProgress
+            <CircleProgress
+              variant="indeterminate"
+              colorVariant="primary"
               size={15}
               sx={{
                 marginLeft: '5px',
@@ -226,7 +229,9 @@ export const IDPList = () => {
           >
             {idp.enabled ? ti('action.disable') : ti('action.enable')}
             {disableLoading && (
-              <CircularProgress
+              <CircleProgress
+                variant="indeterminate"
+                colorVariant="primary"
                 size={15}
                 sx={{
                   marginLeft: '5px',

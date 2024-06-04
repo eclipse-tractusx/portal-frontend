@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@mui/material'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function HeaderSection() {
@@ -26,8 +26,8 @@ export default function HeaderSection() {
   return (
     <section style={{ paddingBottom: 0, margin: '0 auto' }}>
       <Typography
-        sx={{ fontFamily: 'LibreFranklin-Light', fontSize: '25px' }}
-        variant="h3"
+        sx={{ fontSize: '25px' }}
+        variant="body1"
         className="section-title"
       >
         {t('content.appstore.appOverviewSection.title')}

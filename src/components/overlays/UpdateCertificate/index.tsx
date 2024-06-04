@@ -32,8 +32,9 @@ import {
   Typography,
   SelectList,
   Tooltips,
+  Dialog,
 } from '@catena-x/portal-shared-components'
-import { Box, Dialog } from '@mui/material'
+import { Box } from '@mui/material'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import { OVERLAYS } from 'types/Constants'

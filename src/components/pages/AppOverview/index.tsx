@@ -30,8 +30,9 @@ import {
   Cards,
   PageSnackbar,
   ErrorBar,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress, Box } from '@mui/material'
+import { useTheme, Box } from '@mui/material'
 import {
   appCardStatus,
   appCardRecentlyApps,
@@ -269,7 +270,9 @@ export default function AppOverview() {
         <div className="app-detail">
           {isFetching ? (
             <div style={{ textAlign: 'center' }}>
-              <CircularProgress
+              <CircleProgress
+                variant="indeterminate"
+                colorVariant="primary"
                 size={50}
                 sx={{
                   color: theme.palette.primary.main,

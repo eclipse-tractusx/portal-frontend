@@ -18,8 +18,8 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress } from '@mui/material'
+import { CircleProgress, Typography } from '@catena-x/portal-shared-components'
+import { useTheme } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -83,7 +83,9 @@ export default function AppListSection() {
 
   const renderProgress = () => (
     <div style={{ textAlign: 'center' }}>
-      <CircularProgress
+      <CircleProgress
+        variant="indeterminate"
+        colorVariant="primary"
         size={50}
         sx={{
           color: theme.palette.primary.main,

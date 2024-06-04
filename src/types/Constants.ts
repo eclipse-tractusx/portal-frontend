@@ -109,6 +109,7 @@ export enum PAGES {
   CONSENT_OSP = 'consent_osp',
   COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'company-subscriptions-detail',
+  COMPANY_DATA = 'company_data',
 }
 
 export enum OVERLAYS {
@@ -202,7 +203,7 @@ export enum ROLES {
   IDP_SETUP = 'setup_idp',
   IDP_DISABLE = 'disable_idp',
   MODIFY_USER_ACCOUNT = 'modify_user_account',
-  ORGANIZATION_VIEW = 'view_organization',
+  MY_ORGANIZATION_VIEW = 'view_company_data',
   PARTNER_NETWORK_VIEW = 'view_partner_network',
   DEVELOPER = 'catenax_developer',
   CONNECTORS_VIEW = 'view_connectors',
@@ -228,6 +229,7 @@ export enum ROLES {
   VIEW_SUBSCRIPTION = 'view_subscription',
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
+  COMPANY_DATA = 'view_company_data',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
 }
