@@ -1424,12 +1424,13 @@
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "register": {
-        "heading": "Autosetup URL",
-        "message": "Enter your autosetup url in the input field below to store the autosetup endpoint. The endpoint will get triggered by CX as soon as a interested company is hitting the 'Subscribe' button in the marketplace.",
-        "endpointConfigured": "Current Endpoint",
-        "autosetupURL": "AutoSetup URL",
+        "heading": "Configuration Autosetup URL",
+        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. This feature also enables operators to retrieve technical configuration elements and activate the subscription.",
+        "endpointConfigured": "Configured Provider Endpoint",
+        "autosetupURL": "Set a new endpoint URL",
+        "inputPlaceholder": "...enter your setup url",
         "providerErrorMessage": "Something went wrong! Please try it later again.",
-        "providerSuccessMessage": "Service Provider Details added successfully."
+        "providerSuccessMessage": "Details updated successfully."
       },
       "activation": {
         "heading": "Activate App Subscription",
@@ -1940,7 +1941,7 @@
       },
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
-      "errorMessage": "Something went wrong!",
+      "errorMessage": "Something went wrong. Please contact your administrator.",
       "revokeOverlay": {
         "title": "Revoke Credential",
         "description": "Revoking a credential cannot be undone.",

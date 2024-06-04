@@ -8,6 +8,8 @@
   - Fix consistency issue in overlays where form input is used
 - Company Wallet
   - Use appropriate path to display logo on cards
+- App Subscription
+  - Register URL changes for Autosetup
 - Refactor
   - Remove unnecessary import of Typography, Dialog and Circular Progress from mui and use those from shared-components
 - Connector Management
