@@ -128,8 +128,8 @@ export default function AdminCredentialElements() {
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (err) {
+      error(t('content.adminCertificate.errorMessage'))
     }
   }
 
