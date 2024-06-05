@@ -612,10 +612,7 @@
       },
       "configurationDetails": {
         "title": "So konfigurieren Sie Ihren Connector",
-        "description1": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.",
-        "description2": "Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.",
-        "description3": "Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.",
-        "description4": "Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+        "description": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.<br/> Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.<br/>Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.<br/> Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
         "learnMore": "Lern mehr",
         "clientId": "Client-ID Ihres technischen Benutzers",
         "secret": "Geheimnis",

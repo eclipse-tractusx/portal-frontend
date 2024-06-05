@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Dialog,
@@ -71,13 +71,13 @@ const ConfigurationDetailsOverlay = ({
     copy: [
       [
         {
-          icon: true,
+          icon: data?.trusted_issuer ? true : false,
           copyValue: data?.trusted_issuer ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: data?.decentralIdentityManagementAuthUrl ? true : false,
           copyValue: data?.decentralIdentityManagementAuthUrl ?? '',
         },
       ],
@@ -93,25 +93,25 @@ const ConfigurationDetailsOverlay = ({
       ],
       [
         {
-          icon: true,
+          icon: data?.decentralIdentityManagementServiceUrl ? true : false,
           copyValue: data?.decentralIdentityManagementServiceUrl ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: data?.participant_id ? true : false,
           copyValue: data?.participant_id ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: data?.iatp_id ? true : false,
           copyValue: data?.iatp_id ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: data?.did_resolver ? true : false,
           copyValue: data?.did_resolver ?? '',
         },
       ],
@@ -132,22 +132,15 @@ const ConfigurationDetailsOverlay = ({
             <Box
               sx={{
                 textAlign: 'center',
-                margin: '50px auto 0px',
+                margin: '50px auto 20px',
                 display: 'grid',
               }}
             >
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description1')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description2')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description3')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description4')}
-              </Typography>
+              <Trans>
+                <Typography variant="label3">
+                  {t('content.edcconnector.configurationDetails.description')}
+                </Typography>
+              </Trans>
             </Box>
           }
           closeWithIcon={true}
