@@ -47,6 +47,11 @@ const ConfigurationDetailsOverlay = ({
   const { t } = useTranslation()
   const { data, isFetching } = useFetchDecentralIdentityUrlsQuery()
 
+  const handleIconDisplay = (value: string | undefined) => {
+    if (value) return true
+    else return false
+  }
+
   const tableData: TableType = {
     head: [
       'trusted_issuer:',
@@ -71,13 +76,13 @@ const ConfigurationDetailsOverlay = ({
     copy: [
       [
         {
-          icon: data?.trusted_issuer ? true : false,
+          icon: handleIconDisplay(data?.trusted_issuer),
           copyValue: data?.trusted_issuer ?? '',
         },
       ],
       [
         {
-          icon: data?.decentralIdentityManagementAuthUrl ? true : false,
+          icon: handleIconDisplay(data?.decentralIdentityManagementAuthUrl),
           copyValue: data?.decentralIdentityManagementAuthUrl ?? '',
         },
       ],
@@ -93,25 +98,25 @@ const ConfigurationDetailsOverlay = ({
       ],
       [
         {
-          icon: data?.decentralIdentityManagementServiceUrl ? true : false,
+          icon: handleIconDisplay(data?.decentralIdentityManagementServiceUrl),
           copyValue: data?.decentralIdentityManagementServiceUrl ?? '',
         },
       ],
       [
         {
-          icon: data?.participant_id ? true : false,
+          icon: handleIconDisplay(data?.participant_id),
           copyValue: data?.participant_id ?? '',
         },
       ],
       [
         {
-          icon: data?.iatp_id ? true : false,
+          icon: handleIconDisplay(data?.iatp_id),
           copyValue: data?.iatp_id ?? '',
         },
       ],
       [
         {
-          icon: data?.did_resolver ? true : false,
+          icon: handleIconDisplay(data?.did_resolver),
           copyValue: data?.did_resolver ?? '',
         },
       ],
