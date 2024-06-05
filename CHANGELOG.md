@@ -17,6 +17,8 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
+- Credential Request
+  - UI Improvements
 
 ### Feature
 
