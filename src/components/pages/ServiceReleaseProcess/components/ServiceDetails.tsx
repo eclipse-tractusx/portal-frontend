@@ -33,7 +33,6 @@ import {
 } from 'features/serviceManagement/apiSlice'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { Divider } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useParams } from 'react-router-dom'
@@ -85,9 +84,7 @@ export default function ServiceDetails() {
           title={t('servicedetails.headerTitle')}
           topPage={true}
           headerHeight={200}
-        >
-          <PageBreadcrumb backButtonVariant="contained" />
-        </PageHeader>
+        />
       </div>
       {fetchServiceStatus && (
         <>
