@@ -30,6 +30,8 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Onboarding Service Provider Management
+  - Create new page for onboarding service provider management
 
 ## 2.0.0
 
