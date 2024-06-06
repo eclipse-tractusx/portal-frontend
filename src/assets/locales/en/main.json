@@ -611,10 +611,7 @@
       },
       "configurationDetails": {
         "title": "How to Configure Your Connector",
-        "description1": "This description provides step-by-step instructions on how to configure your connector.",
-        "description2": "Please follow the instructions below to set the necessary configuration values.",
-        "description3": "Ensure that you enter the correct values for each configuration setting.",
-        "description4": "Once you have set these values, your connector will be properly configured and ready to use.",
+        "description": "This description provides step-by-step instructions on how to configure your connector.<br/>Please follow the instructions below to set the necessary configuration values.<br/>Ensure that you enter the correct values for each configuration setting.<br/>Once you have set these values, your connector will be properly configured and ready to use.",
         "learnMore": "learn more",
         "clientId": "Client ID of your technical user",
         "secret": "Secret",

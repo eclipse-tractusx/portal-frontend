@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   Typography,
   PageHeader,
@@ -231,9 +230,7 @@ export default function ChangeDocuments() {
 
   return (
     <main className="deactivate-main">
-      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200} />
 
       <section>
         <Typography mb={3} align="center" variant="body2">
