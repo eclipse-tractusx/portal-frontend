@@ -52,6 +52,7 @@ export type CompanyDetail = {
   companyId: string
   name: string
   bpn: string
+  lastChanged: string
   taxId: string
   streetName: string
   streetNumber: string

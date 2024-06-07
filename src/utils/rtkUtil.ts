@@ -20,7 +20,8 @@
 
 import {
   getApiBase,
-  getBpdmApiBase,
+  getBpdmPoolApiBase,
+  getBpdmGateApiBase,
   getMiwBase,
   getAssetBase,
   getSsiBase,
@@ -43,8 +44,16 @@ export const apiSsiCredentialQuery = () => ({
   },
 })
 
-export const apiBpdmQuery = () => ({
-  baseUrl: getBpdmApiBase(),
+export const apiBpdmPoolQuery = () => ({
+  baseUrl: getBpdmPoolApiBase(),
+  prepareHeaders: (headers: Headers) => {
+    headers.set('authorization', `Bearer ${UserService.getToken()}`)
+    return headers
+  },
+})
+
+export const apiBpdmGateQuery = () => ({
+  baseUrl: getBpdmGateApiBase(),
   prepareHeaders: (headers: Headers) => {
     headers.set('authorization', `Bearer ${UserService.getToken()}`)
     return headers

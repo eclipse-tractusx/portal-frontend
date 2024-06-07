@@ -8,13 +8,30 @@
   - Fix consistency issue in overlays where form input is used
 - Company Wallet
   - Use appropriate path to display logo on cards
+- App Subscription
+  - Register URL changes for Autosetup
+- Refactor
+  - Remove unnecessary import of Typography, Dialog and Circular Progress from mui and use those from shared-components
+- Connector Management
+  - fetch details using api, added permissions and fixed error messages
+- App Release Process
+  - Integrated role deletion with BE api reponse
+- Company Application Registraion Detail Overlay
+  - UI improvements
+  - Add correct registration application checklist items
 
 ### Feature
 
 - Admin Credential
   - Credential Request Management Board Improvements
+- Company data
+  - New company data page created
+  - Connect to the gate api to fetch the records
+  - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Page headers
+  - harmonization and standardization of page headers
 
 ## 2.0.0
 

@@ -20,7 +20,6 @@
 
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   PageHeader,
   Typography,
@@ -30,8 +29,9 @@ import {
   Cards,
   PageSnackbar,
   ErrorBar,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress, Box } from '@mui/material'
+import { useTheme, Box } from '@mui/material'
 import {
   appCardStatus,
   appCardRecentlyApps,
@@ -209,9 +209,7 @@ export default function AppOverview() {
         title={t('content.appoverview.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
         <div className="desc-recently">
           <div className="container">
@@ -269,7 +267,9 @@ export default function AppOverview() {
         <div className="app-detail">
           {isFetching ? (
             <div style={{ textAlign: 'center' }}>
-              <CircularProgress
+              <CircleProgress
+                variant="indeterminate"
+                colorVariant="primary"
                 size={50}
                 sx={{
                   color: theme.palette.primary.main,

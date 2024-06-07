@@ -28,6 +28,7 @@ import {
   Input,
   Button,
   DialogActions,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,7 +39,6 @@ import {
   Select,
   Divider,
   Box,
-  CircularProgress,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
@@ -141,7 +141,12 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
 
   const Loading = (
     <Box sx={{ textAlign: 'center' }}>
-      <CircularProgress size={35} sx={{ color: theme.palette.primary.main }} />
+      <CircleProgress
+        variant="indeterminate"
+        colorVariant="primary"
+        size={35}
+        sx={{ color: theme.palette.primary.main }}
+      />
     </Box>
   )
 

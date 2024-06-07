@@ -35,7 +35,6 @@ import {
 } from '@catena-x/portal-shared-components'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   type CompanyRolesResponse,
   useFetchRolesQuery,
@@ -111,9 +110,7 @@ export default function CompanyRoles() {
         title={t('content.companyRolesUpdate.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       <div className="companyRoles-main">
         <div className="container">
           <Typography variant="h2" className="heading">

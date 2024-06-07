@@ -49,6 +49,7 @@ export type BasicInputProps = {
   toggleHide?: boolean
   errorMessage?: string
   style?: React.CSSProperties
+  valid?: boolean
 }
 
 const BasicInputStyle = {
@@ -77,6 +78,7 @@ const BasicInput = ({
   toggleHide = false,
   errorMessage,
   style,
+  valid,
 }: BasicInputProps) => {
   const ref = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState<boolean>(type === InputType.password)
@@ -90,6 +92,12 @@ const BasicInput = ({
   useEffect(() => {
     ref.current && (ref.current.value = value ?? '')
     setFocus(document.activeElement === ref.current)
+  }, [value])
+
+  useEffect(() => {
+    if (value !== '') {
+      onValue?.(value)
+    }
   }, [value])
 
   return (
@@ -125,7 +133,7 @@ const BasicInput = ({
             ...BasicInputStyle,
             ...{
               borderBottom: `2px solid ${
-                errorMessage ? Colors.error : Colors.secondary
+                !valid ? Colors.error : Colors.secondary
               }`,
             },
             ...style,
@@ -157,27 +165,28 @@ const BasicInput = ({
                 onClick={toggleHidden}
               />
             ))}
-          {errorMessage && (
+          {!valid && (
             <ErrorOutlineIcon
               style={{ marginLeft: '8px', color: Colors.error }}
             />
           )}
         </div>
       </div>
-
-      <div style={{ width: '100%', height: '12px' }}>
-        {
-          // eslint-disable-next-line
-          (errorMessage || (hint && focus)) && (
-            <Typography
-              sx={{ color: errorMessage ? Colors.error : Colors.secondary }}
-              variant={'label4'}
-            >
-              {errorMessage ?? hint}
-            </Typography>
-          )
-        }
-      </div>
+      {!valid && (
+        <div style={{ width: '100%', height: '12px' }}>
+          {
+            // eslint-disable-next-line
+            (errorMessage || focus) && (
+              <Typography
+                sx={{ color: errorMessage ? Colors.error : Colors.secondary }}
+                variant={'label4'}
+              >
+                {errorMessage}
+              </Typography>
+            )
+          }
+        </div>
+      )}
     </div>
   )
 }
