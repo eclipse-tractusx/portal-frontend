@@ -49,7 +49,7 @@ export type SubscriptionServiceRequest = {
 }
 
 export type ServiceRequest = {
-  url: string
+  url: string | null
 }
 
 export const apiSlice = createApi({

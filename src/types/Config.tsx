@@ -592,7 +592,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.COMPANY_DATA,
-    role: ROLES.COMPANY_DATA,
+    role: ROLES.MY_ORGANIZATION_VIEW,
     element: <CompanyData />,
   },
 ]

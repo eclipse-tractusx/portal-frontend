@@ -20,7 +20,6 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   PageHeader,
   ViewSelector,
@@ -202,9 +201,7 @@ export default function ServiceListOverview() {
         title={t('serviceoverview.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       <div className="app-main">
         <Box sx={{ marginTop: '20px' }} className="overview-section">
           <section className="overview-section-content">

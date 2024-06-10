@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Dialog,
@@ -47,6 +47,11 @@ const ConfigurationDetailsOverlay = ({
   const { t } = useTranslation()
   const { data, isFetching } = useFetchDecentralIdentityUrlsQuery()
 
+  const handleIconDisplay = (value: string | undefined) => {
+    if (value) return true
+    else return false
+  }
+
   const tableData: TableType = {
     head: [
       'trusted_issuer:',
@@ -71,13 +76,13 @@ const ConfigurationDetailsOverlay = ({
     copy: [
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.trusted_issuer),
           copyValue: data?.trusted_issuer ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.decentralIdentityManagementAuthUrl),
           copyValue: data?.decentralIdentityManagementAuthUrl ?? '',
         },
       ],
@@ -93,25 +98,25 @@ const ConfigurationDetailsOverlay = ({
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.decentralIdentityManagementServiceUrl),
           copyValue: data?.decentralIdentityManagementServiceUrl ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.participant_id),
           copyValue: data?.participant_id ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.iatp_id),
           copyValue: data?.iatp_id ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.did_resolver),
           copyValue: data?.did_resolver ?? '',
         },
       ],
@@ -132,22 +137,15 @@ const ConfigurationDetailsOverlay = ({
             <Box
               sx={{
                 textAlign: 'center',
-                margin: '50px auto 0px',
+                margin: '50px auto 20px',
                 display: 'grid',
               }}
             >
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description1')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description2')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description3')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description4')}
-              </Typography>
+              <Trans>
+                <Typography variant="label3">
+                  {t('content.edcconnector.configurationDetails.description')}
+                </Typography>
+              </Trans>
             </Box>
           }
           closeWithIcon={true}

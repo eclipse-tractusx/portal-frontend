@@ -37,7 +37,6 @@ import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   useFetchUsecaseQuery,
   type UsecaseResponse,
@@ -146,9 +145,7 @@ export default function UsecaseParticipation() {
         title={t('content.usecaseParticipation.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       <div className="usecase-main">
         <div className="container">
           <Typography variant="h2" className="heading">

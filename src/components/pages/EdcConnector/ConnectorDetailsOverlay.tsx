@@ -123,7 +123,7 @@ const ConnectorDetailsOverlay = ({
       value:
         fetchConnectorDetails?.technicalUser === null
           ? t('content.edcconnector.details.noTechnicalUserAvailable')
-          : fetchConnectorDetails?.technicalUser,
+          : fetchConnectorDetails?.technicalUser?.name,
     },
     {
       key: t('content.edcconnector.details.SdRegistration'),

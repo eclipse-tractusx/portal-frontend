@@ -8,6 +8,8 @@
   - Fix consistency issue in overlays where form input is used
 - Company Wallet
   - Use appropriate path to display logo on cards
+- App Subscription
+  - Register URL changes for Autosetup
 - Refactor
   - Remove unnecessary import of Typography, Dialog and Circular Progress from mui and use those from shared-components
 - Connector Management
@@ -28,8 +30,11 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Page headers
+  - harmonization and standardization of page headers
 - Company Role
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
+
 
 ## 2.0.0
 

@@ -612,10 +612,7 @@
       },
       "configurationDetails": {
         "title": "So konfigurieren Sie Ihren Connector",
-        "description1": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.",
-        "description2": "Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.",
-        "description3": "Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.",
-        "description4": "Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+        "description": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.<br/> Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.<br/>Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.<br/> Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
         "learnMore": "Lern mehr",
         "clientId": "Client-ID Ihres technischen Benutzers",
         "secret": "Geheimnis",
@@ -1457,12 +1454,13 @@
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "register": {
-        "heading": "Autosetup URL",
-        "message": "This is some text for the dialog component. Lorem ispum dolores mia dela culpa dela rey.",
-        "endpointConfigured": "Endpoint Configured",
-        "autosetupURL": "AutoSetup URL",
+        "heading": "Configuration Autosetup URL",
+        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. This feature also enables operators to retrieve technical configuration elements and activate the subscription.",
+        "endpointConfigured": "Configured Provider Endpoint",
+        "autosetupURL": "Set a new endpoint URL",
+        "inputPlaceholder": "...enter your setup url",
         "providerErrorMessage": "Something went wrong!",
-        "providerSuccessMessage": "Service Provider Details added successfully."
+        "providerSuccessMessage": "Details updated successfully."
       },
       "activation": {
         "heading": "Activate App Subscription",
