@@ -35,31 +35,31 @@ const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
 
-  const handleChange = (
-    _event: SyntheticEvent<Element, Event>,
-    newValue: number
+  const handleTabChange = (
+    _e: SyntheticEvent<Element, Event>,
+    value: number
   ) => {
-    setActiveTab(newValue)
+    setActiveTab(value)
   }
 
-  const getTabIcon = (step: number) => {
+  const getTabsIcon = (step: number) => {
     return (
       <Typography
+        variant="label3"
         sx={{
           background: activeTab + 1 === step ? '#0f71cb' : 'white',
           color: activeTab + 1 === step ? 'white' : '#0f71cb',
           outline: '2px solid #0f71cb',
           flex: '0',
-          width: '20px',
-          height: '20px',
+          marginRight: '20px',
           borderRadius: '50%',
+          height: '20px',
+          width: '20px',
           minWidth: '20px',
           textAlign: 'center',
           lineHeight: '20px',
-          marginRight: '20px',
           position: 'relative',
         }}
-        variant="label3"
       >
         {step}
       </Typography>
@@ -125,40 +125,40 @@ const OnboardingServiceProvider = () => {
       <Box>
         <Tabs
           value={activeTab}
-          onChange={handleChange}
+          onChange={handleTabChange}
           sx={{ margin: '0 10% 70px' }}
         >
           <Tab
-            icon={getTabIcon(1)}
             iconPosition="start"
+            icon={getTabsIcon(1)}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+            id={`simple-tab-${activeTab}`}
+            label={t('content.onboardingServiceProvider.tabletitle1')}
             sx={{
+              textTransform: 'none',
+              display: 'inline-flex',
               width: '100%',
               maxWidth: '550px',
               '&.Mui-selected': {
                 borderBottom: '3px solid #0f71cb',
               },
-              textTransform: 'none',
-              display: 'inline-flex',
             }}
-            label={t('content.onboardingServiceProvider.tabletitle1')}
-            id={`simple-tab-${activeTab}`}
-            aria-controls={`simple-tabpanel-${activeTab}`}
           />
           <Tab
-            icon={getTabIcon(2)}
             iconPosition="start"
+            icon={getTabsIcon(2)}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+            id={`simple-tab-${activeTab}`}
+            label={t('content.onboardingServiceProvider.tabletitle2')}
             sx={{
+              textTransform: 'none',
+              display: 'inline-flex',
               width: '100%',
               maxWidth: '550px',
               '&.Mui-selected': {
                 borderBottom: '3px solid #0f71cb',
               },
-              textTransform: 'none',
-              display: 'inline-flex',
             }}
-            label={t('content.onboardingServiceProvider.tabletitle2')}
-            id={`simple-tab-${activeTab}`}
-            aria-controls={`simple-tabpanel-${activeTab}`}
           />
         </Tabs>
         <TabPanel value={activeTab} index={0}>
