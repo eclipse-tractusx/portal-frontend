@@ -96,22 +96,27 @@ const ConnectorDetailsOverlay = ({
     }
   }, [fetchError])
 
+  const renderDetailsValue = (value: string | undefined) => {
+    if (value) return value
+    else return ''
+  }
+
   const detailsData = [
     {
       key: t('content.edcconnector.details.status'),
-      value: fetchConnectorDetails?.status ?? '',
+      value: renderDetailsValue(fetchConnectorDetails?.status),
     },
     {
       key: t('content.edcconnector.details.type'),
-      value: fetchConnectorDetails?.type ?? '',
+      value: renderDetailsValue(fetchConnectorDetails?.type),
     },
     {
       key: t('content.edcconnector.details.host'),
-      value: fetchConnectorDetails?.hostCompanyName ?? '',
+      value: renderDetailsValue(fetchConnectorDetails?.hostCompanyName),
     },
     {
       key: t('content.edcconnector.details.location'),
-      value: fetchConnectorDetails?.location ?? '',
+      value: renderDetailsValue(fetchConnectorDetails?.location),
     },
     {
       key: t('content.edcconnector.details.technicalUser'),
