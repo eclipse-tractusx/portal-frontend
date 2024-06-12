@@ -33,6 +33,7 @@
 - Page headers
   - harmonization and standardization of page headers
 - Use scroll to top button from shared components
+- Enable more fine grained permission checks by client id and roles
 
 ## 2.0.0
 

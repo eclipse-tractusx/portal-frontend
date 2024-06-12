@@ -18,18 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Keycloak from 'keycloak-js'
+import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
 import type { IUser } from 'features/user/types'
-import { ROLES } from 'types/Constants'
-import {
-  getCentralIdp,
-  getClientId,
-  getClientIdMiw,
-  getClientIdSsiCredential,
-  getClientIdSemantic,
-  getMiwBase,
-  getRealm,
-} from './EnvironmentService'
+import { getCentralIdp, getClientId, getRealm } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
 import { setLoggedUser } from 'features/user/slice'
@@ -39,26 +30,6 @@ const keycloakConfig: Keycloak.KeycloakConfig = {
   realm: getRealm(),
   clientId: getClientId(),
 }
-
-const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
-  url: getCentralIdp(),
-  realm: getRealm(),
-  clientId: getClientIdSemantic(),
-}
-
-const keycloakConfigMIW: Keycloak.KeycloakConfig = {
-  url: getMiwBase(),
-  realm: getRealm(),
-  clientId: getClientIdMiw(),
-}
-
-const keycloakConfigSsiCredential: Keycloak.KeycloakConfig = {
-  url: getMiwBase(),
-  realm: getRealm(),
-  clientId: getClientIdSsiCredential(),
-}
-
-// Add an ESLint exception until there is a solution
 
 const KC = new Keycloak(keycloakConfig)
 
@@ -116,22 +87,8 @@ const getCompany = () => KC.tokenParsed?.organisation
 
 const getTenant = () => KC.tokenParsed?.tenant
 
-// Add a more sustainable logic for role management with multiple clients
-// not sustainable because client roles need to be unique across all clients
-const getRoles = (): Array<string> =>
-  KC.tokenParsed?.resource_access?.[keycloakConfig.clientId]?.roles
-    .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
-    )
-    .concat(KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles)
-    .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigSsiCredential.clientId]
-        ?.roles
-    ) ?? []
-
-const hasRole = (role: string) => getRoles()?.includes(role)
-
-const isAdmin = (): boolean => hasRole(ROLES.CX_ADMIN) ?? false
+export const getAccess = (): KeycloakResourceAccess =>
+  KC.tokenParsed?.resource_access ?? {}
 
 const isLoggedIn = () => !!KC.token
 
@@ -141,8 +98,7 @@ const getLoggedUser = (): IUser => ({
   email: getEmail(),
   company: getCompany(),
   tenant: getTenant(),
-  roles: getRoles(),
-  isAdmin: isAdmin(),
+  access: getAccess(),
   token: getToken(),
   parsedToken: getParsedToken(),
 })
@@ -157,10 +113,8 @@ const UserService = {
   getName,
   getCompany,
   getTenant,
-  getRoles,
-  hasRole,
+  getAccess,
   init,
-  isAdmin,
   isLoggedIn,
 }
 

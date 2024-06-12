@@ -18,8 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { multiMapBy } from './multiMapBy'
+import { multiMapBy, intersectAccess } from './dataUtils'
 import { forEach, groupBy, keys, union, uniq, values } from 'lodash'
+import type { KeycloakResourceAccess } from 'keycloak-js'
 
 describe('multiMapBy', () => {
   type person = {
@@ -131,5 +132,52 @@ describe('multiMapBy', () => {
 
       expect(ourTypeMap).toStrictEqual(lodashTypeMap)
     }
+  })
+})
+
+const requiredAccess: KeycloakResourceAccess = {
+  client1: { roles: ['read', 'write'] },
+  client2: { roles: ['write'] },
+}
+const testdata: Array<Array<KeycloakResourceAccess>> = [
+  [
+    {
+      client1: { roles: ['read', 'write'] },
+      client2: { roles: ['read', 'write'] },
+      client3: { roles: ['read', 'write'] },
+    },
+    {
+      client1: { roles: ['read', 'write'] },
+      client2: { roles: ['write'] },
+    },
+  ],
+  [
+    {
+      client1: { roles: ['read'] },
+      client2: { roles: ['read'] },
+    },
+    {
+      client1: { roles: ['read'] },
+    },
+  ],
+  [
+    {
+      client1: { roles: ['read'] },
+    },
+    { client1: { roles: ['read'] } },
+  ],
+  [
+    {
+      client3: { roles: ['read', 'write'] },
+    },
+    {},
+  ],
+]
+
+describe('Intersection Tests', () => {
+  it('calculates the intersection of access resource items', () => {
+    testdata.forEach((pair) => {
+      expect(intersectAccess(requiredAccess, pair[0])).toEqual(pair[1])
+    })
   })
 })

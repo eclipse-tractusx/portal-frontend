@@ -48,9 +48,9 @@ import {
   StatusTag,
   Tooltips,
 } from '@catena-x/portal-shared-components'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface FetchHookArgsType {
   filterType: string
@@ -303,7 +303,7 @@ export default function AdminCredentialElements() {
       flex: 1,
       renderCell: ({ row }: { row: CredentialData }) => (
         <>
-          {UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+          {userHasPortalRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
             row.participantStatus === StatusEnum.ACTIVE && (
               <Tooltips
                 additionalStyles={{

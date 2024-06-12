@@ -30,7 +30,7 @@ import {
 } from 'features/admin/appuserApiSlice'
 import type { TenantUser } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
-import UserService from 'services/UserService'
+import { userHasPortalRole } from 'services/AccessService'
 
 export const AppUserDetailsTable = ({
   roles,
@@ -52,7 +52,7 @@ export const AppUserDetailsTable = ({
       addButtonDisabled={
         !roles ||
         roles.length === 0 ||
-        !UserService.hasRole(ROLES.MODIFY_USER_ACCOUNT)
+        !userHasPortalRole(ROLES.MODIFY_USER_ACCOUNT)
       }
       addButtonTooltip={
         roles && roles?.length <= 0
@@ -64,7 +64,7 @@ export const AppUserDetailsTable = ({
       fetchHookArgs={{ appId, expr, userRoleResponse, role: true }}
       onSearch={setExpr}
       onDetailsClick={
-        UserService.hasRole(ROLES.MODIFY_USER_ACCOUNT)
+        userHasPortalRole(ROLES.MODIFY_USER_ACCOUNT)
           ? (row: TenantUser) =>
               dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
           : undefined

@@ -28,8 +28,7 @@ const initialState: IUser = {
   email: '',
   company: '',
   tenant: '',
-  roles: [],
-  isAdmin: false,
+  access: {},
 }
 
 const userSlice = createSlice({
