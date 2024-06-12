@@ -102,8 +102,6 @@ export type IPage = RestrictedItem & {
   children?: string[]
 }
 
-export type IOverlay = RestrictedItem
-
 export type IAction = RestrictedItem & {
   element: JSX.Element
   value?: string

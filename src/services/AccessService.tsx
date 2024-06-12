@@ -18,13 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type {
-  IAction,
-  IOverlay,
-  IPage,
-  RestrictedItem,
-  Tree,
-} from 'types/MainTypes'
+import type { IAction, IPage, RestrictedItem, Tree } from 'types/MainTypes'
 import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
@@ -88,7 +82,7 @@ import {
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
-let overlayMap: { [overlay: string]: IOverlay }
+let overlayMap: { [overlay: string]: RestrictedItem }
 
 export const userHasAccess = (required: KeycloakResourceAccess): boolean =>
   Object.keys(intersectAccess(required, getAccess())).length > 0
@@ -265,7 +259,7 @@ function init() {
     {}
   )
   overlayMap = ALL_OVERLAYS.reduce(
-    (map: { [overlay: string]: IOverlay }, overlay: IOverlay) => {
+    (map: { [overlay: string]: RestrictedItem }, overlay: RestrictedItem) => {
       map[overlay.name] = overlay
       return map
     },

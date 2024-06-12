@@ -65,7 +65,7 @@ export default function MarketplaceHeader({
         <Button
           color="primary"
           className="subscribe-btn"
-          disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)}
+          disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE)}
           onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
         >
           {t('content.appdetail.subscribe')}

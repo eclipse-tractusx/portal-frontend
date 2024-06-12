@@ -52,7 +52,7 @@ import UserManagement from 'components/pages/UserManagement'
 import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
-import type { IAction, IOverlay, IPage } from './MainTypes'
+import type { IAction, RestrictedItem, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import IDPDetail from 'components/pages/IDPDetail'
@@ -611,7 +611,7 @@ export const ALL_PAGES: IPage[] = [
   },
 ]
 
-export const ALL_OVERLAYS: IOverlay[] = [
+export const ALL_OVERLAYS: RestrictedItem[] = [
   {
     name: OVERLAYS.ADD_BPN,
     allowTo: () => userHasPortalRole(ROLES.MODIFY_USER_ACCOUNT),
