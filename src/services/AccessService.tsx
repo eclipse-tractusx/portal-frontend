@@ -76,6 +76,7 @@ import { getAccess } from './UserService'
 import {
   getClientId,
   getClientIdMiw,
+  getClientIdRegistration,
   getClientIdSemantic,
   getClientIdSsiCredential,
 } from './EnvironmentService'
@@ -95,6 +96,10 @@ export const userHasClientRole = (
 
 export const userHasPortalRole = (roles: string | Array<string>): boolean =>
   userHasClientRole(getClientId(), roles)
+
+export const userHasRegistrationRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdRegistration(), roles)
 
 export const userHasSemanticHubRole = (
   roles: string | Array<string>
