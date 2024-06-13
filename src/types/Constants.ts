@@ -232,6 +232,7 @@ export enum ROLES {
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
   SUBSCRIBE_APPS = 'subscribe_apps',
   SUBSCRIBE_SERVICE = 'subscribe_service',
+  VIEW_REGISTRATION = 'view_registration',
 }
 
 export enum HINTS {
