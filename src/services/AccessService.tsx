@@ -86,18 +86,23 @@ let overlayMap: { [overlay: string]: RestrictedItem }
 
 export const userHasAccess = (required: KeycloakResourceAccess): boolean =>
   Object.keys(intersectAccess(required, getAccess())).length > 0
+
 export const userHasClientRole = (
   client: string,
   roles: string | Array<string>
 ): boolean =>
   userHasAccess({ [client]: { roles: Array.isArray(roles) ? roles : [roles] } })
+
 export const userHasPortalRole = (roles: string | Array<string>): boolean =>
   userHasClientRole(getClientId(), roles)
+
 export const userHasSemanticHubRole = (
   roles: string | Array<string>
 ): boolean => userHasClientRole(getClientIdSemantic(), roles)
+
 export const userHasMiwRole = (roles: string | Array<string>): boolean =>
   userHasClientRole(getClientIdMiw(), roles)
+
 export const userHasSsiCredentialRole = (
   roles: string | Array<string>
 ): boolean => userHasClientRole(getClientIdSsiCredential(), roles)
