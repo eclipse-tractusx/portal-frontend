@@ -264,16 +264,15 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.SERVICEADMINBOARD,
     allowTo: () =>
       userHasPortalRole([
-        ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
+        ROLES.APPROVE_SERVICE_RELEASE,
+        ROLES.DECLINE_SERVICE_RELEASE,
       ]),
     element: <ServiceAdminBoard />,
   },
   {
     name: PAGES.ADMINBOARD_DETAIL,
     allowTo: () =>
-      userHasPortalRole([
-        ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
-      ]),
+      userHasPortalRole([ROLES.APPROVE_APP_RELEASE, ROLES.DECLINE_APP_RELEASE]),
     isRoute: true,
     element: (
       <Route
@@ -290,7 +289,8 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.SERVICEADMINBOARD_DETAIL,
     allowTo: () =>
       userHasPortalRole([
-        ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
+        ROLES.APPROVE_SERVICE_RELEASE,
+        ROLES.DECLINE_SERVICE_RELEASE,
       ]),
     isRoute: true,
     element: (
