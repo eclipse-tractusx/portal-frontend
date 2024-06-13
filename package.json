@@ -109,7 +109,6 @@
     "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,yml,yaml,md}\"",
     "pretty:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,yml,yaml,md}\"",
     "lint": "eslint \"./src/**/*.{ts,tsx,js,jsx}\" --report-unused-disable-directives --max-warnings 0",
-    "lint:staged": "lint-staged",
     "start": "vite --host --port 3001",
     "build": "yarn build:copy-legal-info && tsc && vite build",
     "test": "jest",
