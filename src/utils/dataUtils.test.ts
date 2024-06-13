@@ -168,6 +168,8 @@ const testdata: Array<Array<KeycloakResourceAccess>> = [
   ],
   [
     {
+      client1: { roles: ['create'] },
+      client2: { roles: ['delete'] },
       client3: { roles: ['read', 'write'] },
     },
     {},
