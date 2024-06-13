@@ -91,6 +91,7 @@ import CompanyData from 'components/pages/CompanyData'
 import {
   userHasPortalRole,
   userHasSemanticHubRole,
+  userHasSsiCredentialRole,
 } from 'services/AccessService'
 
 /**
@@ -563,7 +564,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.DATA_SPACE, element: <DataSpace /> },
   {
     name: PAGES.ADMIN_CREDENTIAL,
-    allowTo: () => userHasPortalRole(ROLES.DECISION_SSICREDENTIAL),
+    allowTo: () => userHasSsiCredentialRole(ROLES.DECISION_SSICREDENTIAL),
     element: <AdminCredential />,
   },
   {
