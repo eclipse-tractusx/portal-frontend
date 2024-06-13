@@ -121,10 +121,6 @@ export const ALL_PAGES: IPage[] = [
     element: <Redirect path="documentation" tab={'documentation'} />,
   },
   {
-    name: PAGES.STORYBOOK,
-    element: <Redirect path="_storybook" tab={'storybook'} />,
-  },
-  {
     name: PAGES.MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
     element: <AppMarketplace />,
@@ -589,7 +585,6 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.CONSENT_OSP,
-    allowTo: () => userHasRegistrationRole(ROLES.VIEW_REGISTRATION),
     element: <OSPConsent />,
   },
   {

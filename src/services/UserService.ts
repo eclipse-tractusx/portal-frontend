@@ -19,11 +19,8 @@
  ********************************************************************************/
 
 import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
-import type { IUser } from 'features/user/types'
 import { getCentralIdp, getClientId, getRealm } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
-import { store } from 'features/store'
-import { setLoggedUser } from 'features/user/slice'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
@@ -34,18 +31,16 @@ const keycloakConfig: Keycloak.KeycloakConfig = {
 const KC = new Keycloak(keycloakConfig)
 
 const update = () => {
-  //info(`${getUsername()} updating token`)
   KC.updateToken(600)
     .then((refreshed: boolean) => {
       info(`${getUsername()} token refreshed ${refreshed}`)
-      store.dispatch(setLoggedUser(getLoggedUser()))
     })
     .catch(() => {
       error(`${getUsername()} token refresh failed`)
     })
 }
 
-const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
+const init = (onAuthenticatedCallback: () => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',
@@ -53,8 +48,7 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
     .then((authenticated: boolean) => {
       if (authenticated) {
         info(`${getUsername()} authenticated`)
-        onAuthenticatedCallback(getLoggedUser())
-        store.dispatch(setLoggedUser(getLoggedUser()))
+        onAuthenticatedCallback()
       } else {
         error(`${getUsername()} authentication failed`)
       }
@@ -81,41 +75,20 @@ const getUsername = () => KC.tokenParsed?.preferred_username
 
 const getName = () => KC.tokenParsed?.name
 
-const getEmail = () => KC.tokenParsed?.email
-
 const getCompany = () => KC.tokenParsed?.organisation
 
-const getTenant = () => KC.tokenParsed?.tenant
-
-export const getAccess = (): KeycloakResourceAccess =>
+const getAccess = (): KeycloakResourceAccess =>
   KC.tokenParsed?.resource_access ?? {}
-
-const isLoggedIn = () => !!KC.token
-
-const getLoggedUser = (): IUser => ({
-  userName: getUsername(),
-  name: getName(),
-  email: getEmail(),
-  company: getCompany(),
-  tenant: getTenant(),
-  access: getAccess(),
-  token: getToken(),
-  parsedToken: getParsedToken(),
-})
 
 const UserService = {
   doLogin,
   doLogout,
+  getAccess,
   getToken,
   getParsedToken,
-  getEmail,
-  getUsername,
   getName,
   getCompany,
-  getTenant,
-  getAccess,
   init,
-  isLoggedIn,
 }
 
 export default UserService

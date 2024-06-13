@@ -72,7 +72,7 @@ import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedI
 import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
 import type { KeycloakResourceAccess } from 'keycloak-js'
 import { intersectAccess } from 'utils/dataUtils'
-import { getAccess } from './UserService'
+import UserService from './UserService'
 import {
   getClientId,
   getClientIdMiw,
@@ -86,7 +86,7 @@ let actionMap: { [action: string]: IAction }
 let overlayMap: { [overlay: string]: RestrictedItem }
 
 export const userHasAccess = (required: KeycloakResourceAccess): boolean =>
-  Object.keys(intersectAccess(required, getAccess())).length > 0
+  Object.keys(intersectAccess(required, UserService.getAccess())).length > 0
 
 export const userHasClientRole = (
   client: string,

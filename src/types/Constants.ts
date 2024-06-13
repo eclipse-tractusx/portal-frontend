@@ -26,8 +26,6 @@ export enum PAGES {
   ROOT = '',
   HOME = 'home',
   REGISTRATION = 'registration',
-  SWAGGER = 'swagger',
-  STORYBOOK = 'storybook',
   APPSUBSCRIPTION = 'appsubscription',
   ADMINBOARD = 'adminboard',
   ADMINBOARD_DETAIL = 'adminboarddetail',
