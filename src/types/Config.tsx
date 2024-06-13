@@ -90,6 +90,7 @@ import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/Com
 import CompanyData from 'components/pages/CompanyData'
 import {
   userHasPortalRole,
+  userHasRegistrationRole,
   userHasSemanticHubRole,
   userHasSsiCredentialRole,
 } from 'services/AccessService'
@@ -106,7 +107,11 @@ import {
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
-  { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
+  {
+    name: PAGES.REGISTRATION,
+    allowTo: () => userHasRegistrationRole(ROLES.VIEW_REGISTRATION),
+    element: <Redirect path="registration" />,
+  },
   {
     name: PAGES.HELP,
     element: <Redirect path="documentation" tab={'documentation'} />,
@@ -584,6 +589,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.CONSENT_OSP,
+    allowTo: () => userHasRegistrationRole(ROLES.VIEW_REGISTRATION),
     element: <OSPConsent />,
   },
   {
