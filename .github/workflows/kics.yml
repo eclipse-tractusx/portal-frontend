@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-name: "KICS"
+name: 'KICS'
 
 on:
   push:
@@ -29,7 +29,7 @@ on:
   #   - "**/*.md"
   #   - "**/*.txt"
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -48,7 +48,7 @@ jobs:
         uses: checkmarx/kics-github-action@d1b692d84c536f4e8696954ce7aab6818f95f5bc # v2.0.0
         with:
           # Scanning directory .
-          path: "."
+          path: '.'
           # Fail on HIGH severity results
           fail_on: high
           # when provided with a directory on output_path
@@ -57,7 +57,7 @@ jobs:
           # - results-dir/results.json
           # - results-dir/results.sarif
           output_path: kicsResults/
-          output_formats: "json,sarif"
+          output_formats: 'json,sarif'
           # If you want KICS to ignore the results and return exit status code 0 unless a KICS engine error happens
           # ignore_on_exit: results
           # GITHUB_TOKEN enables this github action to access github API and post comments in a pull request
@@ -70,4 +70,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
         with:
           sarif_file: kicsResults/results.sarif
-          

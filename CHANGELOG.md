@@ -19,6 +19,7 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
+- Fixed incorrect usage of pre-commit hook
 
 ### Feature
 

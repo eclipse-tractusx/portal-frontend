@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # #############################################################################
 
-name: "Lint PullRequest"
+name: 'Lint PullRequest'
 
 on:
   pull_request_target:
@@ -44,11 +44,11 @@ jobs:
           header: pr-title-lint-error
           message: |
             Hey there and thank you for opening this pull request! 👋🏼
-            
+
             We require pull request titles to follow the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/) and it looks like your proposed title needs to be adjusted.
 
             Details:
-            
+
             ```
             ${{ steps.lint_pr_title.outputs.error_message }}
             ```
