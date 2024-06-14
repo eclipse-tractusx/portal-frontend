@@ -125,6 +125,7 @@ describe('multiMapBy', () => {
 
       expect(ourTypeMap).toStrictEqual(lodashTypeMap)
     }
+
     {
       const ourTypeMap = multiMapBy(mixedArray, (item) => typeof item)
       const lodashTypeMap = groupBy(mixedArray, (item) => typeof item)

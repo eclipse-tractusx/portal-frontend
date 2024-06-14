@@ -29,7 +29,7 @@
 # supported CodeQL languages.
 #
 
-name: "CodeQL"
+name: 'CodeQL'
 
 on:
   push:
@@ -42,7 +42,7 @@ on:
       - 'src/**'
       - 'public/**'
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -63,7 +63,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ["javascript"]
+        language: ['javascript']
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
         # Use only 'java' to analyze code written in Java, Kotlin or both
         # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
@@ -104,4 +104,4 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@9fdb3e49720b44c48891d036bb502feb25684276 # v2.227
         with:
-          category: "/language:${{matrix.language}}"
+          category: '/language:${{matrix.language}}'
