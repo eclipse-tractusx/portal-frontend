@@ -40,18 +40,21 @@ interface KeyValueViewProps {
   editLink?: string
 }
 
-const renderValue = (value: DataValue) => (
-  <Typography
-    sx={{
-      fontSize: '14px',
-      color: 'gray',
-      margin: 'auto 0px',
-      wordBreak: 'break-all',
-    }}
-  >
-    {value}
-  </Typography>
-)
+const renderValue = (value: DataValue) =>
+  typeof value === 'string' ? (
+    <Typography
+      sx={{
+        fontSize: '14px',
+        color: 'gray',
+        margin: 'auto 0px',
+        wordBreak: 'break-all',
+      }}
+    >
+      {value}
+    </Typography>
+  ) : (
+    <Box sx={{ margin: 'auto 0px' }}>{value}</Box>
+  )
 
 export const KeyValueView = ({
   cols,

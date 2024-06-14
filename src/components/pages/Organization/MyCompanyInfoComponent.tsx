@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
-import UserService from 'services/UserService'
+import { userHasPortalRole } from 'services/AccessService'
 import { ROLES, PAGES } from 'types/Constants'
 
 export default function MyCompanyInfoComponent({
@@ -99,7 +99,7 @@ export default function MyCompanyInfoComponent({
             title={t('content.organization.companyRoles.title')}
             items={companyRoleData}
             editLink={
-              editable && UserService.hasRole(ROLES.UPDATE_COMPANY_ROLE)
+              editable && userHasPortalRole(ROLES.UPDATE_COMPANY_ROLE)
                 ? `/${PAGES.COMPANY_ROLE}`
                 : ''
             }
