@@ -21,6 +21,8 @@
   - Add correct registration application checklist items
 - Company Role
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
+- Credential Request
+  - UI Improvements
 
 ### Feature
 
