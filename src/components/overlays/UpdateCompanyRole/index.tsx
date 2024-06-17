@@ -53,6 +53,7 @@ import {
   setOverlayCancel,
 } from 'features/companyRoles/slice'
 import { useFetchFrameDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import uniq from 'lodash.uniq'
 
 export enum AgreementStatus {
   ACTIVE = 'ACTIVE',
@@ -90,9 +91,14 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
   const newRolesSummary = [...newSelectedRoles, ...newDeselectedRoles]
 
   useEffect(() => {
+    const handleAgreement = (agreement: AgreementsData) => {
+      setAgreements((oldArray: AgreementsData[]) =>
+        uniq([...oldArray, agreement])
+      )
+    }
     newSelectedRoles?.map((role: CompanyRolesResponse) =>
       role.agreements.map((agreement: AgreementsData) => {
-        setAgreements((oldArray: AgreementsData[]) => [...oldArray, agreement])
+        handleAgreement(agreement)
         return null
       })
     )
@@ -393,10 +399,16 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
                               'content.companyRolesUpdate.overlay.TermsAndCondSpan2'
                             )}
                           </Typography>
+                          <span style={{ color: 'red' }}>
+                            {agreement.mandatory ? ' *' : ''}
+                          </span>
                         </>
                       ) : (
                         <Typography variant="label2">
                           {agreement.agreementName}
+                          <span style={{ color: 'red' }}>
+                            {agreement.mandatory ? ' *' : ''}
+                          </span>
                         </Typography>
                       )}
                     </li>
@@ -431,7 +443,15 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
             variant="contained"
             onClick={() => handleSubmit()}
             disabled={
-              checkedAgreementsIds.length === agreements?.length ? false : true
+              !(
+                checkedAgreementsIds.length >=
+                  agreements.filter((agreement) => agreement.mandatory)
+                    .length &&
+                agreements
+                  .filter((item) => item.mandatory)
+                  .map((i) => i.agreementId)
+                  .every((value) => checkedAgreementsIds.includes(value))
+              )
             }
           >
             {`${t('content.companyRolesUpdate.overlay.submit')}`}
