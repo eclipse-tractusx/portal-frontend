@@ -21,13 +21,20 @@
       "last 1 safari version"
     ]
   },
-  "lint:staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "yarn test:ci"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write --ignore-unknown",
+      "eslint --quiet --fix"
+    ],
+    "*.{json,css,sass,scss,xml,yml,yaml,md}": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.test.{js,jsx,ts,tsx}": [
+      "jest"
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^3.0.17",
+    "@catena-x/portal-shared-components": "^3.0.21",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@hookform/error-message": "^2.0.1",
@@ -99,7 +106,8 @@
   },
   "scripts": {
     "prepare": "husky",
-    "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,md}\"",
+    "pretty": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,yml,yaml,md}\"",
+    "pretty:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,sass,scss,xml,yml,yaml,md}\"",
     "lint": "eslint \"./src/**/*.{ts,tsx,js,jsx}\" --report-unused-disable-directives --max-warnings 0",
     "start": "vite --host --port 3001",
     "build": "yarn build:copy-legal-info && tsc && vite build",

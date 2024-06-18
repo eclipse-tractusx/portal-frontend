@@ -42,7 +42,10 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: linter checks
+      - name: Prettier Checks
+        run: yarn pretty:check
+
+      - name: Linter checks
         run: yarn lint
 
       - name: Unit Tests
