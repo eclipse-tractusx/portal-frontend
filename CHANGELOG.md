@@ -19,6 +19,7 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
+- Fixed incorrect usage of pre-commit hook
 
 ### Feature
 
@@ -32,6 +33,7 @@
   - Add more and collapse button to category view
 - Page headers
   - harmonization and standardization of page headers, added consistent headers and removed unused code
+- Use scroll to top button from shared components
 
 ## 2.0.0
 

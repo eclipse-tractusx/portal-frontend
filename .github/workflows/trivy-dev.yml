@@ -20,11 +20,11 @@
 # Depending on the location of your Docker container
 # you need to change the path to the specific Docker registry.
 #
-name: "Trivy Dev"
+name: 'Trivy Dev'
 
 on:
   push:
-    branches: [ dev ]
+    branches: [dev]
   # pull_request:
   # The branches below must be a subset of the branches above
   # branches: [ main ]
@@ -33,13 +33,13 @@ on:
   #   - "**/*.txt"
   schedule:
     # Once a day
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
   # Trigger manually
 
 env:
-  IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "portal-frontend"
+  IMAGE_NAMESPACE: 'tractusx'
+  IMAGE_NAME: 'portal-frontend'
 
 jobs:
   analyze-config:
@@ -56,17 +56,17 @@ jobs:
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
         with:
-          scan-type: "config"
+          scan-type: 'config'
           hide-progress: false
-          format: "sarif"
-          output: "trivy-results1.sarif"
-          vuln-type: "os,library"
+          format: 'sarif'
+          output: 'trivy-results1.sarif'
+          vuln-type: 'os,library'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
         if: always()
         with:
-          sarif_file: "trivy-results1.sarif"
+          sarif_file: 'trivy-results1.sarif'
 
   analyze-portal-frontend:
     runs-on: ubuntu-latest
@@ -89,13 +89,13 @@ jobs:
         uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
         with:
           # Path to Docker image
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:dev"
-          format: "sarif"
-          output: "trivy-results2.sarif"
-          vuln-type: "os,library"
+          image-ref: '${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:dev'
+          format: 'sarif'
+          output: 'trivy-results2.sarif'
+          vuln-type: 'os,library'
 
       - name: Upload Trivy scan results to GitHub Security tab
         if: always()
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
         with:
-          sarif_file: "trivy-results2.sarif"
+          sarif_file: 'trivy-results2.sarif'
