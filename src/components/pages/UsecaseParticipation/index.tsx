@@ -27,7 +27,6 @@ import {
   Chip,
   CircleProgress,
   CustomAccordion,
-  PageHeader,
   StatusTag,
   Tooltips,
   Typography,
@@ -141,11 +140,6 @@ export default function UsecaseParticipation() {
 
   return (
     <main className="usecase-participation">
-      <PageHeader
-        title={t('content.usecaseParticipation.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      />
       <div className="usecase-main">
         <div className="container">
           <Typography variant="h2" className="heading">

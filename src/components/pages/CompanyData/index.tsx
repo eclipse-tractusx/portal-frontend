@@ -17,18 +17,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import { Box } from '@mui/material'
-import { BackButton } from '@catena-x/portal-shared-components'
 import { CompanyAddressList } from './components/CompanyAddressList'
 import { useState } from 'react'
 import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
 import EditForm from './components/EditForm'
 
 export default function CompanyData() {
-  const navigate = useNavigate()
-  const { t } = useTranslation()
   const [showOverlay, setShowOverlay] = useState({
     address: false,
     site: false,
@@ -45,15 +39,6 @@ export default function CompanyData() {
 
   return (
     <main className="organization-main">
-      <Box className="app-back">
-        <BackButton
-          backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
-          onBackButtonClick={() => {
-            navigate('/')
-          }}
-        />
-      </Box>
       <div className="organization-section">
         <MyCompanyInfoComponent editable={false} />
       </div>
