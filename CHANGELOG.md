@@ -19,8 +19,6 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
-- Company Role
-  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 - Credential Request
   - UI Improvements
 
@@ -34,6 +32,8 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Company Role
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 
 ## 2.0.0
 
