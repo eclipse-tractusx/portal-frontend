@@ -32,7 +32,7 @@
 - App marketplace
   - Add more and collapse button to category view
 - Page headers
-  - harmonization and standardization of page headers
+  - harmonization and standardization of page headers, added consistent headers and removed unused code
 - Use scroll to top button from shared components
 
 ## 2.0.0
