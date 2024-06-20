@@ -19,6 +19,8 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
+- Credential Request
+  - UI Improvements
 
 ### Feature
 
@@ -30,6 +32,8 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Company Role
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 - Onboarding Service Provider Management
   - Create new page for onboarding service provider management
 
