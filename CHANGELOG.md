@@ -34,6 +34,8 @@
   - Add more and collapse button to category view
 - Company Role
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
+- Onboarding Service Provider Management
+  - Create new page for onboarding service provider management
 
 ## 2.0.0
 
