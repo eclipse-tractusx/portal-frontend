@@ -55,7 +55,6 @@ import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import type { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
-import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
@@ -370,21 +369,6 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.IDP_VIEW,
     element: <IDPManagement />,
   },
-  {
-    name: PAGES.IDP_DETAIL,
-    role: ROLES.IDP_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.IDP_DETAIL}
-        path={`/${PAGES.IDP_DETAIL}`}
-        element={<IDPDetail />}
-      >
-        <Route path=":idpId" element={<IDPDetail />} />
-      </Route>
-    ),
-  },
-
   {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,

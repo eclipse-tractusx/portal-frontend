@@ -32,6 +32,9 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+- Page headers
+  - harmonization and standardization of page headers, added consistent headers and removed unused code
+- Use scroll to top button from shared components
 - Company Role
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 
