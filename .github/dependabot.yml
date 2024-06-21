@@ -22,7 +22,6 @@ version: 2
 updates:
   # NPM
   - package-ecosystem: 'npm'
-    target-branch: dev
     directory: /
     labels:
       - 'dependabot'
@@ -42,7 +41,6 @@ updates:
 
   # Github Actions
   - package-ecosystem: 'github-actions'
-    target-branch: dev
     directory: /
     labels:
       - 'dependabot'
@@ -55,7 +53,6 @@ updates:
 
   # Docker
   - package-ecosystem: 'docker'
-    target-branch: dev
     directory: ./.conf/
     labels:
       - 'dependabot'
