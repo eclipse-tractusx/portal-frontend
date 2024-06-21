@@ -21,12 +21,12 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
-import { CircularProgress, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import dayjs from 'dayjs'
 import {
   Chip,
+  CircleProgress,
   CustomAccordion,
-  PageHeader,
   StatusTag,
   Tooltips,
   Typography,
@@ -36,7 +36,6 @@ import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   useFetchUsecaseQuery,
   type UsecaseResponse,
@@ -141,13 +140,6 @@ export default function UsecaseParticipation() {
 
   return (
     <main className="usecase-participation">
-      <PageHeader
-        title={t('content.usecaseParticipation.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
       <div className="usecase-main">
         <div className="container">
           <Typography variant="h2" className="heading">
@@ -188,7 +180,9 @@ export default function UsecaseParticipation() {
             <ul>
               {isLoading ? (
                 <div className="progress-main">
-                  <CircularProgress
+                  <CircleProgress
+                    variant="indeterminate"
+                    colorVariant="primary"
                     size={35}
                     sx={{
                       color: theme.palette.primary.main,

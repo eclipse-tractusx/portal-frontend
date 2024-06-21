@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import debounce from 'lodash.debounce'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import BasicInput, {
   type BasicInputProps,
   Colors,
@@ -29,9 +29,10 @@ import BasicInput, {
 export type ValidatingInputProps = BasicInputProps & {
   name: string
   debounceTime?: number
-  validate?: (expr: string) => boolean
+  validate: (expr: string) => boolean
   onValid?: (name: string, value: string) => void
   onInvalid?: (name: string, value: string) => void
+  skipInitialValidation?: boolean
 }
 
 const ValidatingInput = ({
@@ -49,14 +50,16 @@ const ValidatingInput = ({
   validate,
   onValid,
   onInvalid,
+  skipInitialValidation = false,
 }: ValidatingInputProps) => {
   const [color, setColor] = useState<Colors>(Colors.secondary)
   const [currentValue, setCurrentValue] = useState<string>(value)
-
+  const [valid, setValid] = useState<boolean>(true)
   const immediateValidate = useCallback(
     (expr: string) => {
-      const isValid = validate ? validate(expr) : true
+      const isValid = validate(expr)
       setColor(isValid ? Colors.success : Colors.error)
+      setValid(isValid)
       if (isValid && onValid) onValid(name, expr)
       else if (!isValid && onInvalid) onInvalid(name, expr)
     },
@@ -80,6 +83,10 @@ const ValidatingInput = ({
     [debounceTime, debouncedValidate, immediateValidate]
   )
 
+  useEffect(() => {
+    if (!skipInitialValidation) debouncedValidate(value)
+  }, [value])
+
   return (
     <BasicInput
       {...{
@@ -98,6 +105,7 @@ const ValidatingInput = ({
         ...style,
         borderBottom: `2px solid ${color}`,
       }}
+      valid={valid}
       onValue={doValidate}
     />
   )

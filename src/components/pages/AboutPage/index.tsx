@@ -19,16 +19,13 @@
 
 import { AboutCard, PageHeader } from '@catena-x/portal-shared-components'
 import legalJson from '../../../assets/notice/legal-notice.json'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useTranslation } from 'react-i18next'
 
 export default function AboutPage() {
   const { t } = useTranslation()
   return (
     <main>
-      <PageHeader title={t('pages.about')} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeader title={t('pages.about')} topPage={true} headerHeight={200} />
       <section
         style={{
           maxWidth: '800px',

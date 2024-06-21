@@ -55,7 +55,6 @@ import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import type { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
-import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
@@ -87,6 +86,7 @@ import CompanyCertificates from 'components/pages/CompanyCertificates'
 import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
+import CompanyData from 'components/pages/CompanyData'
 
 /**
  * ALL_PAGES
@@ -195,7 +195,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.PARTNER_NETWORK_VIEW,
+    role: ROLES.MY_ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
@@ -370,21 +370,6 @@ export const ALL_PAGES: IPage[] = [
     element: <IDPManagement />,
   },
   {
-    name: PAGES.IDP_DETAIL,
-    role: ROLES.IDP_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.IDP_DETAIL}
-        path={`/${PAGES.IDP_DETAIL}`}
-        element={<IDPDetail />}
-      >
-        <Route path=":idpId" element={<IDPDetail />} />
-      </Route>
-    ),
-  },
-
-  {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,
     element: <InviteBusinessPartner />,
@@ -403,13 +388,13 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW,
     element: <EdcConnector />,
   },
   // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
   {
     name: PAGES.TECHNICAL_SETUP,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW,
     element: <Redirect path={PAGES.CONNECTOR_MANAGEMENT} />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
@@ -588,6 +573,11 @@ export const ALL_PAGES: IPage[] = [
         <Route path=":appId" element={<CompanySubscriptionDetail />} />
       </Route>
     ),
+  },
+  {
+    name: PAGES.COMPANY_DATA,
+    role: ROLES.MY_ORGANIZATION_VIEW,
+    element: <CompanyData />,
   },
 ]
 
@@ -821,6 +811,7 @@ export const userMenuFull = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
   PAGES.LOGOUT,
 ]
 
@@ -839,6 +830,7 @@ export const userMenuCompany = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
 ]
 
 /**

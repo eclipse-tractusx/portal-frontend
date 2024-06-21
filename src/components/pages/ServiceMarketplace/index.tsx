@@ -26,7 +26,7 @@ import {
   type ChangeEvent,
 } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import debounce from 'lodash.debounce'
 import ServicesElements from './ServicesElements'
 import RecommendedServices from './RecommendedServices'
@@ -40,6 +40,7 @@ import {
   Typography,
   ViewSelector,
   SortOption,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -194,7 +195,9 @@ export default function ServiceMarketplace() {
             </div>
             {!services ? (
               <div className="loading-progress">
-                <CircularProgress
+                <CircleProgress
+                  variant="indeterminate"
+                  colorVariant="primary"
                   size={50}
                   sx={{
                     color: theme.palette.primary.main,

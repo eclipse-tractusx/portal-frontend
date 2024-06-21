@@ -27,7 +27,6 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AppUserDetailsHeader from './components/AppUserDetailsHeader'
 import { AppUserDetailsTable } from './components/AppUserDetailsTable'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   Dialog,
   DialogContent,
@@ -78,10 +77,8 @@ export default function AppUserManagement() {
           app: appDetails?.title,
         })}
         topPage={true}
-        headerHeight={314}
-      >
-        <PageBreadcrumb />
-      </PageHeader>
+        headerHeight={200}
+      />
       <AppUserDetailsHeader
         roles={data}
         error={isError ? JSON.stringify(data) : ''}

@@ -18,7 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTheme, CircularProgress } from '@mui/material'
+import { CircleProgress } from '@catena-x/portal-shared-components'
+import { useTheme } from '@mui/material'
 export default function LoadingError({
   isLoading,
   isError,
@@ -33,7 +34,9 @@ export default function LoadingError({
     <>
       {isLoading ? (
         <div className="organization-loader">
-          <CircularProgress
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
             size={50}
             sx={{
               color: theme.palette.primary.main,

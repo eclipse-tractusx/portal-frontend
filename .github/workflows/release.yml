@@ -29,12 +29,12 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "portal-frontend"
-  REF_NAME: "${{ github.ref_name }}"
+  IMAGE_NAMESPACE: 'tractusx'
+  IMAGE_NAME: 'portal-frontend'
+  REF_NAME: '${{ github.ref_name }}'
   # variables needed for scripts/legal-notice.sh
-  SERVER_URL: "${{ github.server_url }}"
-  REPOSITORY: "${{ github.repository }}"
+  SERVER_URL: '${{ github.server_url }}'
+  REPOSITORY: '${{ github.repository }}'
 
 jobs:
   build-and-push-release:
@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Setup Node
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
@@ -91,7 +91,7 @@ jobs:
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
@@ -100,9 +100,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
-          images: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-           # Automatically prepare image tags;
-           # semver patter will generate tags like these for example :v1 :v1.2 v1.2.3
+          images:
+            ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+            # Automatically prepare image tags;
+            # semver patter will generate tags like these for example :v1 :v1.2 v1.2.3
           tags: |
             type=raw,value=latest
             type=raw,value=${{ env.REF_NAME }}
@@ -128,7 +129,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          readme-filepath: ".conf/docker-notice-portal.md"
+          readme-filepath: '.conf/docker-notice-portal.md'
 
   auth-and-dispatch:
     needs: build-and-push-release
@@ -139,7 +140,7 @@ jobs:
         run: echo "RELEASE_VERSION=${{ env.REF_NAME }}" >> $GITHUB_ENV
 
       - name: Checkout repository
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Check for hotfix version
         id: hf-check
@@ -172,7 +173,7 @@ jobs:
           if [[ ${{ steps.rc-check.outputs.rc }} == 'true' ]]; then
             echo "branch=release-candidate" >> $GITHUB_OUTPUT
           else
-            echo "branch=dev" >> $GITHUB_OUTPUT
+            echo "branch=main" >> $GITHUB_OUTPUT
           fi
         if: steps.hf-check.outputs.hf == 'false'
 

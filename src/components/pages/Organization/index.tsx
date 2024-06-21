@@ -19,136 +19,30 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import { Box } from '@mui/material'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import {
   Button,
   Typography,
-  BackButton,
-  StatusTag,
   ContentCard,
 } from '@catena-x/portal-shared-components'
-import UserService from 'services/UserService'
-import { PAGES, ROLES } from 'types/Constants'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
 import './Organization.scss'
 import { FilterType, SortType } from '../CompanyCertificates'
+import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 
 export default function Organization() {
-  const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()
   const certificates = useFetchCertificatesQuery({
     filter: FilterType.ACTIVE,
     sortOption: SortType.CertificateTypeAsc,
     page: 0,
   }).data?.content
 
-  const companyData = [
-    {
-      key: t('content.organization.companyDetails.companyName'),
-      value: companyDetails?.shortName ?? 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.bpn'),
-      value: companyDetails?.bpn ?? 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.street'),
-      value: companyDetails
-        ? companyDetails.streetName + ' ' + companyDetails.streetNumber
-        : 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.postal'),
-      value: companyDetails
-        ? companyDetails.zipCode + ' ' + companyDetails.city
-        : 'N/A',
-    },
-    {
-      key: t('content.organization.companyDetails.region'),
-      value:
-        companyDetails?.countryAlpha2Code +
-        (companyDetails?.region ? ', ' + companyDetails?.region : ''),
-    },
-  ]
-
-  const companyRoleData = [
-    {
-      key: '',
-      value: (
-        <>
-          {companyDetails?.companyRole.map((item: string) => (
-            <StatusTag
-              key={item}
-              color="label"
-              label={t(`content.companyRolesUpdate.${item}`)}
-              sx={{
-                marginRight: '8px',
-              }}
-            />
-          ))}
-        </>
-      ),
-    },
-  ]
-
   return (
     <main className="organization-main">
-      <Box className="app-back">
-        <BackButton
-          backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
-          onBackButtonClick={() => {
-            navigate('/')
-          }}
-        />
-      </Box>
       <div className="organization-section">
-        <Typography variant="h2" className="main-title">
-          {t('pages.organization')}
-        </Typography>
-        <div className="table-section">
-          <Box
-            sx={{
-              width: '50%',
-              '@media (max-width: 1200px)': {
-                order: 1,
-                width: '50%',
-              },
-            }}
-          >
-            <KeyValueView
-              cols={1.5}
-              title={t('content.organization.companyDetails.title')}
-              items={companyData}
-            />
-          </Box>
-          <Box
-            sx={{
-              width: '50%',
-              '@media (max-width: 1200px)': {
-                order: 1,
-                width: '50%',
-              },
-            }}
-          >
-            <KeyValueView
-              cols={1.5}
-              title={t('content.organization.companyRoles.title')}
-              items={companyRoleData}
-              editLink={
-                UserService.hasRole(ROLES.UPDATE_COMPANY_ROLE)
-                  ? `/${PAGES.COMPANY_ROLE}`
-                  : ''
-              }
-            />
-          </Box>
-        </div>
+        <MyCompanyInfoComponent />
         <div className="delete-btn">
           <Button
             color="secondary"

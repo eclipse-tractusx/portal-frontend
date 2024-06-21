@@ -18,8 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal } from '@catena-x/portal-shared-components'
-import { Grid, useTheme, CircularProgress } from '@mui/material'
+import {
+  CardHorizontal,
+  CircleProgress,
+} from '@catena-x/portal-shared-components'
+import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
@@ -86,7 +89,9 @@ export default function RecommendedServices({
         </Grid>
       ) : (
         <div className="loading-progress">
-          <CircularProgress
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
             size={50}
             sx={{
               color: theme.palette.primary.main,

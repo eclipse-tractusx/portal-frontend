@@ -33,7 +33,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
@@ -68,9 +67,7 @@ export default function UserDetail() {
         title={t('content.account.userAccount')}
         topPage={false}
         headerHeight={200}
-      >
-        <PageBreadcrumb />
-      </PageHeader>
+      />
       <section>
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}

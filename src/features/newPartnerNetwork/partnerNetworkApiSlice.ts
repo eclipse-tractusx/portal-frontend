@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBpdmQuery } from 'utils/rtkUtil'
+import { apiBpdmPoolQuery } from 'utils/rtkUtil'
 import type {
   PaginResult,
   PaginFetchArgs,
@@ -38,7 +38,7 @@ const checkIfBPNLNumber = (text: string): boolean =>
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',
-  baseQuery: fetchBaseQuery(apiBpdmQuery()),
+  baseQuery: fetchBaseQuery(apiBpdmPoolQuery()),
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartnerAddressResponse>,

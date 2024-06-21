@@ -17,11 +17,11 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-name: "KICS"
+name: 'KICS'
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   # pull_request:
   # The branches below must be a subset of the branches above
   # branches: [main, master]
@@ -29,7 +29,7 @@ on:
   #   - "**/*.md"
   #   - "**/*.txt"
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -42,13 +42,13 @@ jobs:
       security-events: write
 
     steps:
-      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: KICS scan
-        uses: checkmarx/kics-github-action@8a44970e3d2eca668be41abe9d4e06709c3b3609 # v1.7.0
+        uses: checkmarx/kics-github-action@d1b692d84c536f4e8696954ce7aab6818f95f5bc # v2.0.0
         with:
           # Scanning directory .
-          path: "."
+          path: '.'
           # Fail on HIGH severity results
           fail_on: high
           # when provided with a directory on output_path
@@ -57,7 +57,7 @@ jobs:
           # - results-dir/results.json
           # - results-dir/results.sarif
           output_path: kicsResults/
-          output_formats: "json,sarif"
+          output_formats: 'json,sarif'
           # If you want KICS to ignore the results and return exit status code 0 unless a KICS engine error happens
           # ignore_on_exit: results
           # GITHUB_TOKEN enables this github action to access github API and post comments in a pull request
@@ -67,7 +67,6 @@ jobs:
       # Upload findings to GitHub Advanced Security Dashboard
       - name: Upload SARIF file for GitHub Advanced Security Dashboard
         if: always()
-        uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
+        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
         with:
           sarif_file: kicsResults/results.sarif
-          

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   Button,
   Dialog,
@@ -28,6 +28,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
@@ -44,7 +45,12 @@ const ConfigurationDetailsOverlay = ({
   handleOverlayClose,
 }: ConfigurationDetailsOverlayProps) => {
   const { t } = useTranslation()
-  const { data } = useFetchDecentralIdentityUrlsQuery()
+  const { data, isFetching } = useFetchDecentralIdentityUrlsQuery()
+
+  const handleIconDisplay = (value: string | undefined) => {
+    if (value) return true
+    else return false
+  }
 
   const tableData: TableType = {
     head: [
@@ -70,13 +76,13 @@ const ConfigurationDetailsOverlay = ({
     copy: [
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.trusted_issuer),
           copyValue: data?.trusted_issuer ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.decentralIdentityManagementAuthUrl),
           copyValue: data?.decentralIdentityManagementAuthUrl ?? '',
         },
       ],
@@ -92,25 +98,25 @@ const ConfigurationDetailsOverlay = ({
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.decentralIdentityManagementServiceUrl),
           copyValue: data?.decentralIdentityManagementServiceUrl ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.participant_id),
           copyValue: data?.participant_id ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.iatp_id),
           copyValue: data?.iatp_id ?? '',
         },
       ],
       [
         {
-          icon: true,
+          icon: handleIconDisplay(data?.did_resolver),
           copyValue: data?.did_resolver ?? '',
         },
       ],
@@ -126,31 +132,20 @@ const ConfigurationDetailsOverlay = ({
         }}
       >
         <DialogHeader
-          title={
-            <Typography variant="h3">
-              {t('content.edcconnector.configurationDetails.title')}
-            </Typography>
-          }
+          title={t('content.edcconnector.configurationDetails.title')}
           intro={
             <Box
               sx={{
                 textAlign: 'center',
-                margin: '50px auto 0px',
+                margin: '50px auto 20px',
                 display: 'grid',
               }}
             >
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description1')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description2')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description3')}
-              </Typography>
-              <Typography variant="label3">
-                {t('content.edcconnector.configurationDetails.description4')}
-              </Typography>
+              <Trans>
+                <Typography variant="label3">
+                  {t('content.edcconnector.configurationDetails.description')}
+                </Typography>
+              </Trans>
             </Box>
           }
           closeWithIcon={true}
@@ -163,48 +158,68 @@ const ConfigurationDetailsOverlay = ({
             padding: '0px 120px 40px 120px',
           }}
         >
-          <StaticTable data={tableData} horizontal={true} />
-
-          <Typography
-            variant="label3"
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: '#0088CC',
-              textDecoration: 'underline',
-              m: '36px auto',
-              fontWeight: 400,
-            }}
-          >
-            <HelpOutlineIcon
-              sx={{
-                width: '22px',
-                height: '22px',
-                mr: '14px',
+          {isFetching ? (
+            <div
+              style={{
+                width: '100%',
+                height: '500px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-            />
-            {t('content.edcconnector.configurationDetails.learnMore')}
-          </Typography>
-          <Typography variant="body3">
-            {' '}
-            {t('content.edcconnector.configurationDetails.section.text1')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text2')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text3')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text4')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text5')}
-          </Typography>
-          <Typography variant="body3">
-            {t('content.edcconnector.configurationDetails.section.text6')}
-          </Typography>
+            >
+              <CircleProgress
+                colorVariant="primary"
+                size={80}
+                thickness={8}
+                variant="indeterminate"
+              />
+            </div>
+          ) : (
+            <>
+              <StaticTable data={tableData} horizontal={true} />
+              <Typography
+                variant="label3"
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: '#0088CC',
+                  textDecoration: 'underline',
+                  m: '36px auto',
+                  fontWeight: 400,
+                }}
+              >
+                <HelpOutlineIcon
+                  sx={{
+                    width: '22px',
+                    height: '22px',
+                    mr: '14px',
+                  }}
+                />
+                {t('content.edcconnector.configurationDetails.learnMore')}
+              </Typography>
+              <Typography variant="body3">
+                {' '}
+                {t('content.edcconnector.configurationDetails.section.text1')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text2')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text3')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text4')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text5')}
+              </Typography>
+              <Typography variant="body3">
+                {t('content.edcconnector.configurationDetails.section.text6')}
+              </Typography>
+            </>
+          )}
         </DialogContent>
         <DialogActions>
           <Button
