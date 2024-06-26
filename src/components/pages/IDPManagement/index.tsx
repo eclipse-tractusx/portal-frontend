@@ -38,7 +38,7 @@ export default function IDPManagement() {
         <div className="idp-management-header">
           <Trans>
             <Typography variant="h2" className="idp-management-title">
-              {t('idpmanagement.title')}
+              {t('idpManagement.title')}
             </Typography>
           </Trans>
           <Trans>

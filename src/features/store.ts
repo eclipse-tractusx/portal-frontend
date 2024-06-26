@@ -73,7 +73,7 @@ import { apiSlice as companyDataApiSlice } from './companyData/companyDataApiSli
 import companyDataSlice from './companyData/slice'
 
 import languageSlice from './language/slice'
-import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
+import { apiSlice as usecaseApiSlice } from './useCase/usecaseApiSlice'
 
 export const reducers = {
   admin,

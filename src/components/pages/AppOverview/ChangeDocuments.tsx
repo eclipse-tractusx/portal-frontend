@@ -341,7 +341,7 @@ export default function ChangeDocuments() {
             color="secondary"
             size="small"
             onClick={() => {
-              navigate('/appoverview')
+              navigate('/appOverview')
             }}
           >
             {t('global.actions.close')}

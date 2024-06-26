@@ -192,7 +192,7 @@ const AppSubscriptionDetailOverlay = ({
       {technicalData.map((data) => (
         <Link
           target="_blank"
-          to={`/techuserdetails/${data.id}`}
+          to={`/techuserDetails/${data.id}`}
           style={{
             textDecoration: 'none',
           }}
