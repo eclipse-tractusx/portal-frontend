@@ -40,7 +40,7 @@ import {
   useFetchUsecaseQuery,
   type UsecaseResponse,
   type VerifiedCredentialsData,
-} from 'features/useCase/usecaseApiSlice'
+} from 'features/usecase/usecaseApiSlice'
 import './UsecaseParticipation.scss'
 import {
   type SSIDetailData,
