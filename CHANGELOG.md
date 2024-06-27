@@ -20,6 +20,7 @@
   - UI improvements
   - Add correct registration application checklist items
 - Fixed incorrect usage of pre-commit hook
+- Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
 
 ### Feature
 
