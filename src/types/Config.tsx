@@ -332,18 +332,18 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.TECHUSER_MANAGEMENT,
+    name: PAGES.TECH_USER_MANAGEMENT,
     role: ROLES.TECHUSER_VIEW,
     element: <TechnicalUserManagement />,
   },
   {
-    name: PAGES.TECHUSER_DETAILS,
+    name: PAGES.TECH_USER_DETAILS,
     role: ROLES.TECHUSER_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.TECHUSER_DETAILS}
-        path={`/${PAGES.TECHUSER_DETAILS}`}
+        key={PAGES.TECH_USER_DETAILS}
+        path={`/${PAGES.TECH_USER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />

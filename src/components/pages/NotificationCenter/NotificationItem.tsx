@@ -198,7 +198,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return (
         <NotificationContent
           item={item}
-          navlinks={[PAGES.TECHUSER_MANAGEMENT]}
+          navlinks={[PAGES.TECH_USER_MANAGEMENT]}
         />
       )
     case NotificationType.SERVICE_REQUEST:

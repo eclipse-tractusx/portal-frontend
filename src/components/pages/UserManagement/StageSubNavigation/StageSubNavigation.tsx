@@ -46,7 +46,7 @@ export const StageSubNavigation = () => {
     <SubNavigation
       buttonLabel={t('navigation.subNavigation.buttonLabel')}
       onButtonClick={() => {
-        navigate('/technicalUser')
+        navigate('/technicalUserManagement')
       }}
       link1Label={t('navigation.subNavigation.link1Label')}
       onLink1Click={() => {

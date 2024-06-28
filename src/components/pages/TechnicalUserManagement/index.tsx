@@ -45,7 +45,7 @@ export default function TechnicalUserManagement() {
   return (
     <main>
       <PageHeaderWithCrumbs
-        crumbs={[PAGES.USER_MANAGEMENT, PAGES.TECHUSER_MANAGEMENT]}
+        crumbs={[PAGES.USER_MANAGEMENT, PAGES.TECH_USER_MANAGEMENT]}
       />
       <section>
         <div className="content-technical-user">
