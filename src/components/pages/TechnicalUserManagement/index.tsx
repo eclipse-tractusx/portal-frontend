@@ -65,7 +65,7 @@ export default function TechnicalUserManagement() {
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
-              onClick={() => dispatch(show(OVERLAYS.ADD_TECHUSER))}
+              onClick={() => dispatch(show(OVERLAYS.ADD_TECH_USER))}
             >
               {t('content.usermanagement.technicalUser.create')}
             </Button>

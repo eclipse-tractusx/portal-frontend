@@ -333,12 +333,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.TECH_USER_MANAGEMENT,
-    role: ROLES.TECHUSER_VIEW,
+    role: ROLES.TECH_USER_VIEW,
     element: <TechnicalUserManagement />,
   },
   {
     name: PAGES.TECH_USER_DETAILS,
-    role: ROLES.TECHUSER_VIEW,
+    role: ROLES.TECH_USER_VIEW,
     isRoute: true,
     element: (
       <Route
@@ -595,12 +595,12 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.USERMANAGEMENT_ADD,
   },
   {
-    name: OVERLAYS.ADD_TECHUSER,
-    role: ROLES.TECHUSER_ADD,
+    name: OVERLAYS.ADD_TECH_USER,
+    role: ROLES.TECH_USER_ADD,
   },
   {
-    name: OVERLAYS.DELETE_TECHUSER,
-    role: ROLES.TECHUSER_DELETE,
+    name: OVERLAYS.DELETE_TECH_USER,
+    role: ROLES.TECH_USER_DELETE,
   },
   {
     name: OVERLAYS.ADD_APP_USER_ROLES,
