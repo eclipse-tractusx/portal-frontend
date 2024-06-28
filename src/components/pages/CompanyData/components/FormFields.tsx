@@ -50,7 +50,6 @@ const responseToForm = (data: CompanyDataFieldsType) => {
   form.countryCode = data.countryCode ?? ''
   form.countryIdentifier = data.countryIdentifier ?? ''
   form.identifierNumber = data.identifierNumber ?? ''
-  form.addressTitle = data.addressTitle ?? ''
   return form
 }
 
@@ -62,7 +61,6 @@ const formToUpdate = (form: IHashMap<string>) => ({
   countryCode: form.countryCode,
   countryIdentifier: form.countryIdentifier,
   identifierNumber: form.identifierNumber,
-  addressTitle: form.addressTitle,
 })
 
 const UpdateForm = ({
@@ -89,19 +87,6 @@ const UpdateForm = ({
 
   return (
     <>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="addressTitle"
-          label={t('content.companyData.address.form.addressTitle.name')}
-          value={data.addressTitle ?? ''}
-          hint={t('content.companyData.address.form.addressTitle.hint')}
-          validate={isName}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t('content.companyData.address.form.addressTitle.hint')}
-          skipInitialValidation={newForm}
-        />
-      </div>
       <div style={{ marginTop: '34px' }}>
         <ValidatingInput
           name="siteName"
@@ -247,7 +232,6 @@ export const FormFields = ({
       : companyData.address.physicalPostalAddress.country,
     countryIdentifier: newForm ? '' : identifier?.[0]?.type ?? '',
     identifierNumber: newForm ? '' : identifier?.[0]?.value ?? '',
-    addressTitle: newForm ? '' : companyData.address.name,
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)
@@ -264,8 +248,7 @@ export const FormFields = ({
       current.postalCode &&
       current.countryCode &&
       current.identifierNumber &&
-      current.countryIdentifier &&
-      current.addressTitle
+      current.countryIdentifier
     onValid(
       formValid
         ? {

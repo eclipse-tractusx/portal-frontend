@@ -115,7 +115,6 @@ export default function EditForm({
     setIsValid(form !== undefined)
     if (form) {
       inputParams.site.name = form.body.siteName
-      inputParams.address.name = form.body.addressTitle
       inputParams.address.addressType = AddressType.AdditionalAddress
       getFilledData(form)
     }
