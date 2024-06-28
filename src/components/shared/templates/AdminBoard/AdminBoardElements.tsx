@@ -93,7 +93,7 @@ export default function AdminBoardElements({
 
   const handleApprove = async (appId: string) => {
     setActionApprove(true)
-    if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+    if (type === PAGES.SERVICE_ADMIN_BOARD_DETAIL) {
       await approveServiceRequest(appId)
         .unwrap()
         .then(() => {
@@ -140,7 +140,7 @@ export default function AdminBoardElements({
           items={apps}
           onDelete={(appId: string) => {
             setActionApprove(false)
-            if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+            if (type === PAGES.SERVICE_ADMIN_BOARD_DETAIL) {
               dispatch(show(OVERLAYS.SERVICE_DECLINE_ADMINBOARD, appId))
             } else {
               dispatch(show(OVERLAYS.APP_DECLINE_ADMINBOARD, appId))

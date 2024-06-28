@@ -44,7 +44,7 @@ export default function AppDetailsOverlay({
     <>
       <DialogHeader
         {...{
-          title: t('content.appoverview.details.title'),
+          title: t('content.appOverview.details.title'),
           closeWithIcon: true,
           onCloseWithIcon: () => dispatch(closeOverlay()),
         }}
@@ -64,7 +64,7 @@ export default function AppDetailsOverlay({
             }}
             variant="h5"
           >
-            {t('content.appoverview.details.description').replace(
+            {t('content.appOverview.details.description').replace(
               '{appName}',
               title
             )}

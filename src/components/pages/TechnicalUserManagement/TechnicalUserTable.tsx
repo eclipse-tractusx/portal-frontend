@@ -155,7 +155,7 @@ export const TechnicalUserTable = () => {
                     //dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
                     {
                       navigate(
-                        `/${PAGES.TECHUSER_DETAILS}/${row.serviceAccountId}`
+                        `/${PAGES.TECH_USER_DETAILS}/${row.serviceAccountId}`
                       )
                     }
                   }

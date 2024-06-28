@@ -53,12 +53,12 @@ export default function Deactivate() {
     await deactivateApp(app[0].id)
       .unwrap()
       .then(() => {
-        navigate('/appoverview', {
+        navigate('/appOverview', {
           state: 'deactivate-success',
         })
       })
       .catch(() => {
-        navigate('/appoverview', {
+        navigate('/appOverview', {
           state: 'deactivate-error',
         })
       })
@@ -121,7 +121,7 @@ export default function Deactivate() {
             color="secondary"
             size="small"
             onClick={() => {
-              navigate('/appoverview')
+              navigate('/appOverview')
             }}
           >
             {t('global.actions.cancel')}

@@ -51,7 +51,7 @@ export default function AppOverViewConfirm({
       <DialogHeader
         {...{
           title: title
-            ? t('content.appoverview.confirmModal.title').replace(
+            ? t('content.appOverview.confirmModal.title').replace(
                 '{appName}',
                 title
               )
@@ -71,7 +71,7 @@ export default function AppOverViewConfirm({
       >
         {title && (
           <Typography variant="body2">
-            {t('content.appoverview.confirmModal.description').replace(
+            {t('content.appOverview.confirmModal.description').replace(
               '{appName}',
               title
             )}
@@ -97,7 +97,7 @@ export default function AppOverViewConfirm({
           variant="contained"
           onClick={() => {
             close()
-            navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+            navigate(`/${PAGES.APP_RELEASE_PROCESS}/form`)
           }}
         >
           {`${t('global.actions.yes')}`}

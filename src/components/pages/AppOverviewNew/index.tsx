@@ -33,7 +33,7 @@ export default function AppOverviewNew() {
   return (
     <main>
       <PageHeader
-        title={t('content.appoverview.headerTitle')}
+        title={t('content.appOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
       />

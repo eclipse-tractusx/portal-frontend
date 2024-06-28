@@ -35,10 +35,10 @@ import {
 } from 'features/staticContent/staticContentApiSlice'
 
 enum URLs {
-  companyrolesappprovider = 'companyrolesappprovider',
-  companyrolesserviceprovider = 'companyrolesserviceprovider',
-  companyrolesconformitybody = 'companyrolesconformitybody',
-  companyrolesonboardingserviceprovider = 'companyrolesonboardingserviceprovider',
+  companyRolesAppProvider = 'companyRolesAppProvider',
+  companyRolesServiceProvider = 'companyRolesServiceProvider',
+  companyRolesConformityBody = 'companyRolesConformityBody',
+  companyRolesOnboardingServiceProvider = 'companyRolesOnboardingServiceProvider',
 }
 
 export default function CompanyRoles() {
@@ -54,18 +54,18 @@ export default function CompanyRoles() {
   useEffect(() => {
     const roles = []
     if (companyRolesResponse && standardLibraryResponse) {
-      if (url.includes(URLs.companyrolesappprovider)) {
+      if (url.includes(URLs.companyRolesAppProvider)) {
         setCompanyRoles(companyRolesResponse.appProvider)
         setLinkArray(companyRolesResponse.appProvider.subNavigation)
         roles.push(3)
-      } else if (url.includes(URLs.companyrolesserviceprovider)) {
+      } else if (url.includes(URLs.companyRolesServiceProvider)) {
         setCompanyRoles(companyRolesResponse.serviceProvider)
         setLinkArray(companyRolesResponse.serviceProvider.subNavigation)
         roles.push(2)
-      } else if (url.includes(URLs.companyrolesconformitybody)) {
+      } else if (url.includes(URLs.companyRolesConformityBody)) {
         setCompanyRoles(companyRolesResponse.conformity)
         setLinkArray(companyRolesResponse.conformity.subNavigation)
-      } else if (url.includes(URLs.companyrolesonboardingserviceprovider)) {
+      } else if (url.includes(URLs.companyRolesOnboardingServiceProvider)) {
         setCompanyRoles(companyRolesResponse.ospProvider)
         setLinkArray(companyRolesResponse.ospProvider.subNavigation)
         roles.push(15)

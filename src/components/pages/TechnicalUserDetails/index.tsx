@@ -33,8 +33,8 @@ export default function TechnicalUserDetails() {
       <PageHeaderWithCrumbs
         crumbs={[
           PAGES.USER_MANAGEMENT,
-          PAGES.TECHUSER_MANAGEMENT,
-          PAGES.TECHUSER_DETAILS,
+          PAGES.TECH_USER_MANAGEMENT,
+          PAGES.TECH_USER_DETAILS,
         ]}
       />
       {data ? <TechnicalUserDetailsContent data={data} /> : <Empty />}

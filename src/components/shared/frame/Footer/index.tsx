@@ -44,9 +44,9 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     })
   }
   const isAppOverviewPage = [
-    PAGES.APPOVERVIEW,
+    PAGES.APP_OVERVIEW,
     PAGES.APP_MANAGEMENT,
-    PAGES.APPRELEASEPROCESS,
+    PAGES.APP_RELEASE_PROCESS,
     PAGES.SERVICE_MARKETPLACE,
   ].find((e) => location.pathname.split('/').includes(e))
 
@@ -54,8 +54,8 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     location.pathname.split('/').includes(e)
   )
 
-  const isAppReleaseProcessForm = [`${PAGES.APPRELEASEPROCESS}/form`].find(() =>
-    location.pathname.split('/').includes('form')
+  const isAppReleaseProcessForm = [`${PAGES.APP_RELEASE_PROCESS}/form`].find(
+    () => location.pathname.split('/').includes('form')
   )
 
   const [showScrollToTop, setShowScrollToTop] = useState(false)

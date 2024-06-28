@@ -53,7 +53,7 @@ export default function RecommendedServices({
   }, [])
 
   const handleClick = (id: string) => {
-    navigate(`/servicemarketplacedetail/${id}`)
+    navigate(`/serviceMarketplaceDetail/${id}`)
   }
 
   if (services && services.length === 0) {

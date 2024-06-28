@@ -109,7 +109,7 @@ export default function ChangeDescription() {
       await saveDescription(saveData)
         .unwrap()
         .then(() => {
-          navigate(`/${PAGES.APPOVERVIEW}`, {
+          navigate(`/${PAGES.APP_OVERVIEW}`, {
             state: 'change-description-success',
           })
           success(t('content.changeDescription.successMsg'))
@@ -319,7 +319,7 @@ export default function ChangeDescription() {
           <Button
             color="secondary"
             onClick={() => {
-              navigate(`/${PAGES.APPOVERVIEW}`)
+              navigate(`/${PAGES.APP_OVERVIEW}`)
             }}
             size="small"
           >

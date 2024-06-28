@@ -150,7 +150,7 @@ const AddRolesOverlay = ({
     await updateActiveApp(updatedData)
       .unwrap()
       .then(() => {
-        navigate(`/${PAGES.APPOVERVIEW}`, {
+        navigate(`/${PAGES.APP_OVERVIEW}`, {
           state: 'add-roles-success',
         })
         success(t('content.addRoles.successMsg'))

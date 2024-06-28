@@ -95,7 +95,7 @@ export default function AppDetailContentDetails({
                 onBackButtonClick={() => {
                   nav === 'marketplace'
                     ? navigate(`/${PAGES.APP_MARKETPLACE}`)
-                    : navigate(`/${PAGES.APPOVERVIEW}`)
+                    : navigate(`/${PAGES.APP_OVERVIEW}`)
                 }}
               />
             </Box>
