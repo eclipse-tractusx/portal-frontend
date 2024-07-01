@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Chip, Typography } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { statusSelector } from 'features/companyData/slice'
 import { useTranslation } from 'react-i18next'
@@ -25,6 +25,7 @@ import { useSelector } from 'react-redux'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import { SharingStateStatusType } from 'features/companyData/companyDataApiSlice'
 
 export default function StatusInformation() {
   const { t } = useTranslation()
@@ -33,9 +34,22 @@ export default function StatusInformation() {
   const statusIcon: Record<string, JSX.Element> = {
     Success: <CheckCircleIcon />,
     Pending: <HourglassBottomIcon />,
-    Ready: <WarningAmberIcon />,
-    Initial: <WarningAmberIcon />,
+    Ready: <HourglassBottomIcon />,
+    Initial: <HourglassBottomIcon />,
     Error: <WarningAmberIcon />,
+  }
+
+  const getStatusColor = (status: string | undefined) => {
+    if (status === SharingStateStatusType.Success) {
+      return 'success'
+    } else if (
+      status === SharingStateStatusType.Pending ||
+      status === SharingStateStatusType.Initial
+    ) {
+      return 'warning'
+    } else {
+      return 'error'
+    }
   }
 
   return (
@@ -46,6 +60,7 @@ export default function StatusInformation() {
         alignItems: 'flex-start',
         marginBottom: '50px',
         padding: '0px 10%',
+        marginTop: '50px',
       }}
     >
       <Typography
@@ -64,15 +79,20 @@ export default function StatusInformation() {
           marginLeft: '20%',
         }}
       >
-        {statusIcon[status]}
-        <Typography
+        <Chip
+          icon={statusIcon[status]}
+          color={getStatusColor(status)}
+          variant="filled"
+          label={status}
+          size="medium"
+          withIcon={true}
           sx={{
-            marginLeft: '10px',
+            marginRight: '0 !important',
+            margin: '0 auto',
+            width: '100px',
+            maxWidth: '100px',
           }}
-          variant="body1"
-        >
-          {status}
-        </Typography>
+        />
       </Box>
     </Box>
   )
