@@ -90,11 +90,6 @@ export default function EditForm({
     inputParams.address.physicalPostalAddress.city = form.body.city
     inputParams.address.physicalPostalAddress.country = form.body.countryCode
     inputParams.address.physicalPostalAddress.street.name = form.body.street
-    inputParams.identifiers.push({
-      type: form.body.countryIdentifier,
-      value: form.body.identifierNumber,
-      issuingBody: null,
-    })
     setInput(inputParams)
   }
 
@@ -116,6 +111,11 @@ export default function EditForm({
     if (form) {
       inputParams.site.name = form.body.siteName
       inputParams.address.addressType = AddressType.AdditionalAddress
+      inputParams.identifiers.push({
+        type: form.body.countryIdentifier,
+        value: form.body.identifierNumber,
+        issuingBody: null,
+      })
       getFilledData(form)
     }
   }
@@ -162,6 +162,7 @@ export default function EditForm({
                 ? handleAddressValidation(form)
                 : handleSiteValidation(form)
             }}
+            isAddress={isAddress}
           />
         </DialogContent>
         <DialogActions>

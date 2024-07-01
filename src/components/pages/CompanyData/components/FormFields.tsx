@@ -68,11 +68,13 @@ const UpdateForm = ({
   onChange,
   identifiers,
   newForm,
+  isAddress,
 }: {
   data: CompanyDataFieldsType
   onChange: (key: string, value: string | undefined) => boolean
   identifiers: UniqueIdentifier[]
   newForm: boolean
+  isAddress: boolean
 }) => {
   const { t } = useTranslation()
   const [defaultIdentifier, setDefaultIdentifier] =
@@ -152,47 +154,53 @@ const UpdateForm = ({
           skipInitialValidation={newForm}
         />
       </div>
-      <div
-        style={{
-          marginTop: '-20px',
-          marginBottom: '25px',
-        }}
-      >
-        <SelectList
-          error={false}
-          helperText={t('content.companyData.site.form.countryIdentifier.hint')}
-          defaultValue={defaultIdentifier?.[0]}
-          items={identifiers}
-          label={t('content.companyData.site.form.countryIdentifier.name')}
-          placeholder={t(
-            'content.companyData.site.form.countryIdentifier.name'
-          )}
-          onChangeItem={(val) => {
-            onChange('countryIdentifier', val.label)
-          }}
-          keyTitle={'label'}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="identifierNumber"
-          label={t('content.companyData.site.form.identifierNumber.name')}
-          value={data.identifierNumber ?? ''}
-          hint={t('content.companyData.site.form.identifierNumber.hint')}
-          validate={(expr) =>
-            isCommercialRegNumber(expr) ||
-            isVatID(expr) ||
-            isVies(expr) ||
-            isEori(expr)
-          }
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t(
-            'content.companyData.site.form.identifierNumber.error'
-          )}
-          skipInitialValidation={newForm}
-        />
-      </div>
+      {isAddress && (
+        <>
+          <div
+            style={{
+              marginTop: '-20px',
+              marginBottom: '25px',
+            }}
+          >
+            <SelectList
+              error={false}
+              helperText={t(
+                'content.companyData.site.form.countryIdentifier.hint'
+              )}
+              defaultValue={defaultIdentifier?.[0]}
+              items={identifiers}
+              label={t('content.companyData.site.form.countryIdentifier.name')}
+              placeholder={t(
+                'content.companyData.site.form.countryIdentifier.name'
+              )}
+              onChangeItem={(val) => {
+                onChange('countryIdentifier', val.label)
+              }}
+              keyTitle={'label'}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="identifierNumber"
+              label={t('content.companyData.site.form.identifierNumber.name')}
+              value={data.identifierNumber ?? ''}
+              hint={t('content.companyData.site.form.identifierNumber.hint')}
+              validate={(expr) =>
+                isCommercialRegNumber(expr) ||
+                isVatID(expr) ||
+                isVies(expr) ||
+                isEori(expr)
+              }
+              onValid={onChange}
+              onInvalid={onChange}
+              errorMessage={t(
+                'content.companyData.site.form.identifierNumber.error'
+              )}
+              skipInitialValidation={newForm}
+            />
+          </div>
+        </>
+      )}
     </>
   )
 }
@@ -200,9 +208,11 @@ const UpdateForm = ({
 export const FormFields = ({
   onValid,
   newForm,
+  isAddress,
 }: {
   onValid: (form: { body: CompanyDataFieldsType } | undefined) => void
   newForm: boolean
+  isAddress: boolean
 }) => {
   const companyData = useSelector(companyDataSelector)
 
@@ -271,6 +281,7 @@ export const FormFields = ({
       identifiers={identifiers ?? []}
       data={data}
       onChange={checkData}
+      isAddress={isAddress}
     />
   )
 }
