@@ -1,0 +1,49 @@
+name: CFX Release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+-cfx-*'
+      - '!v*.*.*'
+      - '!v*.*.*-RC*'
+      - '!v*.*.*-iam*'
+      - '!v*.*.*-framework*'
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/cfx_build_release.yml'
+      - '.conf/Dockerfile.full'
+
+concurrency:
+  # cancel older running jobs on the same branch
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dockerizing-application:
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+      id-token: write
+
+    strategy:
+      matrix:
+        include:
+          - service_name: frontend
+            dockerfile: .conf/Dockerfile.full
+
+    uses: Cofinity-X/central-pipelines/.github/workflows/reusable-publish-image-to-acr.yaml@main
+    name: Dockerizing ${{ matrix.service_name }}
+    with:
+      team_name: portal
+      repository_name: ${{ github.event.repository.name }}
+      service_name: ${{ matrix.service_name }}
+      dockerfile_path: ${{ matrix.dockerfile }}
+      environment: lower-env-acr
+      push: ${{ github.event_name == 'push' }}
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
