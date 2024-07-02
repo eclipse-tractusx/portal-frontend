@@ -21,6 +21,10 @@
   - Add correct registration application checklist items
 - Credential Request
   - UI Improvements
+- Company Data
+  - Remove unwanted input forms
+  - Fix crash issue in details page
+  - Add error handling component in table
 
 ### Feature
 
