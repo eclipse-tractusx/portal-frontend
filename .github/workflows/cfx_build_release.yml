@@ -8,6 +8,7 @@ on:
       - '!v*.*.*-RC*'
       - '!v*.*.*-iam*'
       - '!v*.*.*-framework*'
+    branches: [main]
   workflow_dispatch:
   pull_request:
     branches: [main]
