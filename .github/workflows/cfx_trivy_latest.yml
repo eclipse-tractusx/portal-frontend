@@ -1,0 +1,64 @@
+name: CFX Scheduled Daily Trivy Stable
+
+on:
+  schedule:
+    # Once a day
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  # Trigger manually
+  pull_request:
+    paths:
+      - '.github/workflows/cfx_trivy_latest.yml'
+
+concurrency:
+  # cancel older running jobs on the same branch
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze-config:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@595be6a0f6560a0a8fc419ddf630567fc623531d # v0.22.0
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          format: 'sarif'
+          output: 'config-trivy-results.sarif'
+          vuln-type: 'os,library'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@2e230e8fe0ad3a14a340ad0815ddb96d599d2aff # v3.25.8
+        if: always()
+        with:
+          sarif_file: 'config-trivy-results.sarif'
+
+  analyze-services:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      id-token: write
+    strategy:
+      matrix:
+        include:
+          - service_name: frontend
+    uses: Cofinity-X/central-pipelines/.github/workflows/reusable-trivy-acr-latest-image-scan.yaml@main
+    name: Trivy Scan ${{ matrix.service_name }}
+    with:
+      environment: lower-env-acr
+      image-name: ${{ matrix.service_name }}
+      image-namespace: portal/portal-frontend/images
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}

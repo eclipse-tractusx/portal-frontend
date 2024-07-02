@@ -1,0 +1,29 @@
+name: CFX CodeQL Javascript
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - '.github/workflows/cfx_codeql.yml'
+
+concurrency:
+  # cancel older running jobs on the same branch
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dotnet-build:
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+
+    name: Central Pipelines (Scan)
+    uses: Cofinity-X/central-pipelines/.github/workflows/reusable-codeql.yaml@main
+    with:
+      project-directory: '.'
+      languages: "['javascript']"
