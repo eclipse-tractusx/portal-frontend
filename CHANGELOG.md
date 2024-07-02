@@ -20,6 +20,10 @@
   - UI improvements
   - Add correct registration application checklist items
 - Fixed incorrect usage of pre-commit hook
+- Company Data
+  - Remove unwanted input forms
+  - Fix crash issue in details page
+  - Add error handling component in table
 
 ### Feature
 
