@@ -29,6 +29,7 @@ import {
   type TableType,
   Typography,
   CircleProgress,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
@@ -45,7 +46,12 @@ const ConfigurationDetailsOverlay = ({
   handleOverlayClose,
 }: ConfigurationDetailsOverlayProps) => {
   const { t } = useTranslation()
-  const { data, isFetching } = useFetchDecentralIdentityUrlsQuery()
+  const { data, isFetching, error, isError, refetch } =
+    useFetchDecentralIdentityUrlsQuery()
+
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const decentralIdentityUrlsError = error as any
 
   const tableData: TableType = {
     head: [
@@ -179,7 +185,22 @@ const ConfigurationDetailsOverlay = ({
             </div>
           ) : (
             <>
-              <StaticTable data={tableData} horizontal={true} />
+              {!isError ? (
+                <StaticTable data={tableData} horizontal={true} />
+              ) : (
+                <ErrorBar
+                  errorText={
+                    decentralIdentityUrlsError.code !== 500
+                      ? t('error.description') +
+                        ' ' +
+                        t('error.additionalDescription')
+                      : t('error.errorBar')
+                  }
+                  showButton={decentralIdentityUrlsError.code === 500}
+                  buttonText={t('error.tryAgain')}
+                  handleButton={refetch}
+                />
+              )}
               <Typography
                 variant="label3"
                 sx={{
