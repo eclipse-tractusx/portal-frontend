@@ -34,6 +34,8 @@
 - Page headers
   - harmonization and standardization of page headers, added consistent headers and removed unused code
 - Use scroll to top button from shared components
+- Imprint
+  - updated imprint page with anonymized data
 
 ## 2.0.0
 
