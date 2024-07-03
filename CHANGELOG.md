@@ -34,6 +34,8 @@
 - Page headers
   - harmonization and standardization of page headers, added consistent headers and removed unused code
 - Use scroll to top button from shared components
+- Connect management details overlay
+  - Show appropriate error information to the user along with refetch button
 
 ## 2.0.0
 
