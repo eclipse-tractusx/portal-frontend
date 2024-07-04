@@ -28,15 +28,17 @@ import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {
   const { t } = useTranslation('footer', { keyPrefix: 'imprint' })
-  return (
-    <main>
-      <PageHeader headerHeight={200} topPage={true} title={t('title')} />
-      <section>
-        <Typography variant="h5">{t('directors')}</Typography>
 
+  const handlePlaceHolder = (
+    label: string,
+    placeholder: string,
+    margin: string
+  ) => {
+    return (
+      <div>
         <Box sx={{ display: 'inline-flex' }}>
-          <div style={{ paddingTop: '20px' }}>CEO : </div>
-          <div style={{ marginTop: '-29px' }}>
+          <div style={{ paddingTop: '20px' }}>{label}</div>
+          <div style={{ margin: margin }}>
             <Input
               sx={{
                 width: 'max-width',
@@ -45,112 +47,44 @@ export default function Imprint() {
                 display: 'inline-flex',
                 '.MuiFilledInput-input': { padding: '10px !important' },
               }}
-              placeholder={'Oliver Ganser'}
+              placeholder={placeholder}
               disabled={true}
             />
           </div>
         </Box>
-        <div>
-          <Box sx={{ display: 'inline-flex' }}>
-            <div style={{ paddingTop: '20px' }}>{t('deputyCeo')} : </div>
-            <div style={{ marginTop: '-25px' }}>
-              <Input
-                sx={{
-                  width: 'max-width',
-                  ml: 1,
-                  p: 0,
-                  display: 'inline-flex',
-                  '.MuiFilledInput-input': { padding: '10px !important' },
-                }}
-                placeholder={'Prof. Dr.-Ing. Boris Otto'}
-                disabled={true}
-              />
-            </div>
-          </Box>
-        </div>
-        <div>
-          <Box sx={{ display: 'inline-flex' }}>
-            <div style={{ paddingTop: '20px' }}>{t('treasurer')} : </div>
-            <div style={{ marginTop: '-20px' }}>
-              <Input
-                sx={{
-                  width: 'max-width',
-                  ml: 1,
-                  p: 0,
-                  display: 'inline-flex',
-                  '.MuiFilledInput-input': { padding: '10px !important' },
-                }}
-                placeholder={'Claus Cremers'}
-                disabled={true}
-              />
-            </div>
-          </Box>
-        </div>
+      </div>
+    )
+  }
+
+  return (
+    <main>
+      <PageHeader headerHeight={200} topPage={true} title={t('title')} />
+      <section>
+        <Typography variant="h5">{t('directors')}</Typography>
+        {handlePlaceHolder(`${t('ceo')} :`, 'Oliver Ganser', '-29px 0 0 0')}
+        {handlePlaceHolder(
+          `${t('deputyCeo')} :`,
+          'Prof. Dr.-Ing. Boris Otto',
+          '-25px 0 0 0'
+        )}
+        {handlePlaceHolder(
+          `${t('treasurer')} :`,
+          'Claus Cremers',
+          '-20px 0 0 0'
+        )}
         <br />
         <Typography variant="body2">{t('address')}</Typography>
-        <Typography variant="body2">
-          Catena-X Automotive Network e.V.
-        </Typography>
-        <div>
-          <Box sx={{ display: 'inline-flex' }}>
-            <div style={{ paddingTop: '20px' }}>c/o : </div>
-            <div style={{ marginTop: '-20px' }}>
-              <Input
-                sx={{
-                  width: 'max-width',
-                  ml: 1,
-                  p: 0,
-                  display: 'inline-flex',
-                  '.MuiFilledInput-input': { padding: '10px !important' },
-                }}
-                placeholder={'IFOK GmbH'}
-                disabled={true}
-              />
-            </div>
-          </Box>
-        </div>
-
-        <div>
-          <Box sx={{ display: 'inline-flex' }}>
-            <div style={{ marginTop: '-20px' }}>
-              <Input
-                sx={{
-                  width: 'max-width',
-                  ml: 1,
-                  p: 0,
-                  display: 'inline-flex',
-                  '.MuiFilledInput-input': { padding: '10px !important' },
-                }}
-                placeholder={'Reinhardtstraße 58'}
-                disabled={true}
-              />
-            </div>
-          </Box>
-        </div>
-        <div>
-          <Box sx={{ display: 'inline-flex' }}>
-            <div style={{ marginTop: '-20px' }}>
-              <Input
-                sx={{
-                  width: 'max-width',
-                  ml: 1,
-                  p: 0,
-                  display: 'inline-flex',
-                  '.MuiFilledInput-input': { padding: '10px !important' },
-                }}
-                placeholder={'10117 Berlin'}
-                disabled={true}
-              />
-            </div>
-          </Box>
-        </div>
+        <Typography variant="body2">{t('catenaxAutomativeNetwork')}</Typography>
+        {handlePlaceHolder('c/o : ', 'IFOK GmbH', '-20px 0 0 0')}
+        {handlePlaceHolder('', 'Reinhardtstraße 58', '-20px 0 0 0')}
+        {handlePlaceHolder('', '10117 Berlin', '-20px 0 0 0')}
         <br />
         <Typography variant="h5">{t('contact&support')}</Typography>
         <Typography variant="body2">{t('contact&supportDesc')}</Typography>
         <br />
         <Typography variant="h5">{t('privacy')}</Typography>
         <Typography variant="body2">{t('privacyDesc')}</Typography>
-        <a href="./privacy">Privacy Policy</a>
+        <a href="./privacy">{t('privacyPolicy')}</a>
       </section>
     </main>
   )

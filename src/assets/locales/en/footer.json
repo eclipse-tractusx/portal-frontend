@@ -13,7 +13,9 @@
     "contact&support": "Contact & Support",
     "contact&supportDesc": "For assistance, please refer to our support page or use the contact form provided on our website. For direct inquiries, contact us via the provided channels on the contact page.",
     "privacy": "Privacy",
-    "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:"
+    "privacyDesc": "For questions about data protection and information about what data is collected from you, you can find all the details under the following link:",
+    "privacyPolicy": "Privacy Policy",
+    "catenaxAutomativeNetwork": "Catena-X Automotive Network e.V."
   },
   "privacy": {
     "title": "Privacy",
