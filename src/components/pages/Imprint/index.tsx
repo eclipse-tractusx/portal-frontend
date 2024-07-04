@@ -37,8 +37,10 @@ export default function Imprint() {
     return (
       <div>
         <Box sx={{ display: 'inline-flex' }}>
-          <div style={{ paddingTop: '20px' }}>{label}</div>
-          <div style={{ margin: margin }}>
+          <Typography variant="body2" sx={{ mt: 3 }}>
+            {label}
+          </Typography>
+          <div style={{ margin }}>
             <Input
               sx={{
                 width: 'max-width',
