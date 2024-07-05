@@ -29,9 +29,9 @@ export default function Imprint() {
       <PageHeader headerHeight={200} topPage={true} title={t('title')} />
       <section>
         <Typography variant="h5">{t('directors')}</Typography>
-        <Typography variant="body2">({t('ceo')})</Typography>
-        <Typography variant="body2">({t('deputyCeo')})</Typography>
-        <Typography variant="body2">({t('treasurer')})</Typography>
+        <Typography variant="body2">{t('ceo')}</Typography>
+        <Typography variant="body2">{t('deputyCeo')}</Typography>
+        <Typography variant="body2">{t('treasurer')}</Typography>
         <br />
         <Typography variant="h5">{t('address')}</Typography>
         <Typography variant="body2">{t('nameOfOrganization')}</Typography>
