@@ -19,6 +19,8 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
+- Credential Request
+  - UI Improvements
 
 ### Feature
 
@@ -35,6 +37,8 @@
 - Use scroll to top button from shared components
 - Connect management details overlay
   - Show appropriate error information to the user along with refetch button
+- Company Role
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 
 ## 2.0.0
 
