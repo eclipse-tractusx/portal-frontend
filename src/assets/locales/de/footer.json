@@ -6,16 +6,19 @@
   "imprint": {
     "title": "Abdruck",
     "directors": "Verwaltungsrat",
-    "ceo": "HAUPTGESCHÄFTSFÜHRER",
-    "deputyCeo": "Stellvertretender Geschäftsführer",
-    "treasurer": "Schatzmeister",
+    "ceo": "CEO: [Platzhalter für CEO-Name]",
+    "deputyCeo": "Stellvertretender CEO: [Platzhalter für Name des stellvertretenden CEO]",
+    "treasurer": "Schatzmeister: [Platzhalter für Name des Schatzmeisters]",
     "address": "Adresse",
-    "contact&support": "Kontakt & Support",
-    "contact&supportDesc": "Wenn Sie Hilfe benötigen, besuchen Sie bitte unsere Support-Seite oder nutzen Sie das Kontaktformular auf unserer Website. Für direkte Anfragen kontaktieren Sie uns über die bereitgestellten Kanäle auf der Kontaktseite.",
+    "contact&Support": "Kontakt & Support",
+    "contact&SupportDesc": "Wenn Sie Hilfe benötigen, besuchen Sie bitte unsere Support-Seite oder nutzen Sie das Kontaktformular auf unserer Website. Für direkte Anfragen kontaktieren Sie uns über die bereitgestellten Kanäle auf der Kontaktseite.",
     "privacy": "Privatsphäre",
     "privacyDesc": "Für Fragen zum Datenschutz und Informationen darüber, welche Daten bei Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:",
     "privacyPolicy": "Datenschutzrichtlinie",
-    "catenaxAutomativeNetwork": "Catena-X Automotive Network e.V."
+    "nameOfOrganization": "[Name der Organisation]",
+    "careOf": "c/o [Platzhalter für Dienstleistungsunternehmen]",
+    "street": "[Platzhalter für Straße]",
+    "postalCode&City": "[Platzhalter für Postleitzahl und Ort]"
   },
   "privacy": {
     "title": "Privatsphäre",
