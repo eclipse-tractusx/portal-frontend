@@ -18,39 +18,76 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
-import { Typography } from '@catena-x/portal-shared-components'
+import {
+  Input,
+  PageHeader,
+  Typography,
+} from '@catena-x/portal-shared-components'
+import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {
   const { t } = useTranslation('footer', { keyPrefix: 'imprint' })
+
+  const handlePlaceHolder = (
+    label: string,
+    placeholder: string,
+    margin: string
+  ) => {
+    return (
+      <div>
+        <Box sx={{ display: 'inline-flex' }}>
+          <Typography variant="body2" sx={{ mt: 3 }}>
+            {label}
+          </Typography>
+          <div style={{ margin }}>
+            <Input
+              sx={{
+                width: 'max-width',
+                ml: 1,
+                p: 0,
+                display: 'inline-flex',
+                '.MuiFilledInput-input': { padding: '10px !important' },
+              }}
+              placeholder={placeholder}
+              disabled={true}
+            />
+          </div>
+        </Box>
+      </div>
+    )
+  }
+
   return (
     <main>
-      <StageHeader title={t('title')} />
+      <PageHeader headerHeight={200} topPage={true} title={t('title')} />
       <section>
         <Typography variant="h5">{t('directors')}</Typography>
-        <Typography variant="body2">Oliver Ganser ({t('ceo')})</Typography>
-        <Typography variant="body2">
-          Prof. Dr.-Ing. Boris Otto ({t('deputyCeo')})
-        </Typography>
-        <Typography variant="body2">
-          Claus Cremers ({t('treasurer')})
-        </Typography>
+
+        {handlePlaceHolder(`${t('ceo')} :`, 'Oliver Ganser', '-29px 0 0 0')}
+        {handlePlaceHolder(
+          `${t('deputyCeo')} :`,
+          'Prof. Dr.-Ing. Boris Otto',
+          '-25px 0 0 0'
+        )}
+        {handlePlaceHolder(
+          `${t('treasurer')} :`,
+          'Claus Cremers',
+          '-20px 0 0 0'
+        )}
         <br />
         <Typography variant="body2">{t('address')}</Typography>
-        <Typography variant="body2">
-          Catena-X Automotive Network e.V.
-        </Typography>
-        <Typography variant="body2">c/o IFOK GmbH</Typography>
-        <Typography variant="body2">Reinhardtstraße 58</Typography>
-        <Typography variant="body2">10117 Berlin</Typography>
+        <Typography variant="body2">{t('catenaxAutomativeNetwork')}</Typography>
+        {handlePlaceHolder('c/o : ', 'IFOK GmbH', '-20px 0 0 0')}
+        {handlePlaceHolder('', 'Reinhardtstraße 58', '-20px 0 0 0')}
+        {handlePlaceHolder('', '10117 Berlin', '-20px 0 0 0')}
         <br />
         <Typography variant="h5">{t('contact&support')}</Typography>
         <Typography variant="body2">{t('contact&supportDesc')}</Typography>
         <br />
         <Typography variant="h5">{t('privacy')}</Typography>
         <Typography variant="body2">{t('privacyDesc')}</Typography>
-        <a href=".">xxx.xxx.xxx</a>
+        <a href="./privacy">{t('privacyPolicy')}</a>
       </section>
     </main>
   )
