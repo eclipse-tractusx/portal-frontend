@@ -321,7 +321,9 @@
           "modularproduction": "Modular Production"
         },
         "noMatch": "No Match",
-        "for": "for your search term"
+        "for": "for your search term",
+        "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+        "loadFailed": "Load Failed"
       }
     },
     "semantichub": {

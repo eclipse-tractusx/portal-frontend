@@ -32,6 +32,9 @@
   - Create and Edit address/site feature introduced
 - App marketplace
   - Add more and collapse button to category view
+  - Show appropriate error information to the user along with refetch button
+- Service Marketplace
+  - Show appropriate error information to the user along with refetch button
 - Company Role
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 

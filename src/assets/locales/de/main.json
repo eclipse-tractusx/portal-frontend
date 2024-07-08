@@ -322,7 +322,9 @@
           "modularproduction": "Modular Production"
         },
         "noMatch": "Keine Treffer",
-        "for": "zu Ihrem Suchausdruck"
+        "for": "zu Ihrem Suchausdruck",
+        "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+        "loadFailed": "Laden fehlgeschlagen"
       }
     },
     "semantichub": {
