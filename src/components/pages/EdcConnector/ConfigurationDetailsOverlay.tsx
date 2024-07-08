@@ -190,13 +190,17 @@ const ConfigurationDetailsOverlay = ({
               ) : (
                 <ErrorBar
                   errorText={
-                    decentralIdentityUrlsError.code !== 500
+                    decentralIdentityUrlsError.code >= 400 &&
+                    decentralIdentityUrlsError.code < 500
                       ? t('error.description') +
                         ' ' +
                         t('error.additionalDescription')
                       : t('error.errorBar')
                   }
-                  showButton={decentralIdentityUrlsError.code === 500}
+                  showButton={
+                    decentralIdentityUrlsError.code >= 500 &&
+                    decentralIdentityUrlsError.code < 600
+                  }
                   buttonText={t('error.tryAgain')}
                   handleButton={refetch}
                 />
