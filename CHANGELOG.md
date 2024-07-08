@@ -21,6 +21,8 @@
   - Add correct registration application checklist items
 - Credential Request
   - UI Improvements
+- Application Requests
+  - UI Improvements
 
 ### Feature
 

@@ -222,12 +222,7 @@ const CompanyDetailOverlay = ({
               )}
             </>
           ) : (
-            <Typography
-              sx={{
-                padding: '20px',
-              }}
-              variant="body1"
-            >
+            <Typography sx={{ padding: '20px' }} variant="body3">
               {t('content.admin.registration-requests.overlay.noinfo')}
             </Typography>
           )}
@@ -241,17 +236,25 @@ const CompanyDetailOverlay = ({
       key: '',
       value: (
         <>
-          {selectedCompany?.companyRoles?.map(
-            (role: { companyRole: string }) => (
-              <StatusTag
-                key={role.companyRole}
-                color="label"
-                label={getLocaleStr(role.companyRole)}
-                sx={{
-                  marginRight: '8px',
-                }}
-              />
+          {selectedCompany?.companyRoles?.length > 0 ? (
+            selectedCompany?.companyRoles?.map(
+              (role: { companyRole: string }) => (
+                <StatusTag
+                  key={role.companyRole}
+                  color="label"
+                  label={getLocaleStr(role.companyRole)}
+                  sx={{
+                    marginRight: '8px',
+                  }}
+                />
+              )
             )
+          ) : (
+            <Typography sx={{ padding: '20px' }} variant="body3">
+              {t(
+                'content.admin.registration-requests.overlay.noRolesAvailable'
+              )}
+            </Typography>
           )}
         </>
       ),

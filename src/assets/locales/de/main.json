@@ -165,7 +165,7 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "companyinfo": "Bewerbungsinformationen des Unternehmens",
+          "companyinfo": "Unternehmen",
           "contact": "Kontakt",
           "bpn": "BPN",
           "age": "Alter",
@@ -204,7 +204,8 @@
           "appProvider": "App Anbieter",
           "onboardingProvider": "Onboarding Service Anbieter",
           "serviceProvider": "Service Anbieter",
-          "noinfo": "no data available",
+          "noinfo": "Keine Daten verfügbar",
+          "noRolesAvailable": "Keine Rollen verfügbar",
           "commercialRegisterNumber": "Handelsregisternummer",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",

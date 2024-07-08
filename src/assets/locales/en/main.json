@@ -164,7 +164,7 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "companyinfo": "Company Application Info",
+          "companyinfo": "Company",
           "contact": "Contact",
           "bpn": "BPN",
           "age": "Age",
@@ -203,7 +203,8 @@
           "appProvider": "App Provider",
           "onboardingProvider": "Onboarding Service Provider",
           "serviceProvider": "Service Provider",
-          "noinfo": "no data available",
+          "noinfo": "No data available",
+          "noRolesAvailable": "No roles available",
           "commercialRegisterNumber": "Commercial Register Number",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
