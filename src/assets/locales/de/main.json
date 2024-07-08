@@ -1384,6 +1384,8 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
+      "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+      "loadFailed": "Laden fehlgeschlagen",
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",

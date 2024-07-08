@@ -41,6 +41,7 @@ import {
   ViewSelector,
   SortOption,
   CircleProgress,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -48,6 +49,7 @@ import {
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import NoItems from '../NoItems'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -77,12 +79,16 @@ export default function ServiceMarketplace() {
 
   const indexToSplit = 2 //show only 2 services in recommended
 
-  const { data } = useFetchServicesQuery({
+  const { data, error, isError, refetch } = useFetchServicesQuery({
     page: 0,
     serviceType: serviceTypeId,
     sortingType,
   })
   const services = data?.content
+
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const servicesError = error as any
 
   useEffect(() => {
     services && setCardServices(services)
@@ -162,6 +168,37 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
+  const handleApiError = () => {
+    if (
+      servicesError?.data?.status >= 400 &&
+      servicesError?.data?.status < 500
+    ) {
+      return t('content.serviceMarketplace.dataLoadFailed')
+    } else if (servicesError.code >= 500 && servicesError?.data?.status < 600) {
+      return t('content.serviceMarketplace.loadFailed')
+    }
+  }
+
+  const renderServices = () => {
+    if (services && services.length === 0) return <NoItems />
+    if (!services)
+      return (
+        <div className="loading-progress">
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      )
+    return (
+      <RecommendedServices services={cardServices?.slice(0, indexToSplit)} />
+    )
+  }
+
   return (
     <main className="serviceMarketplace">
       <div className="mainContainer">
@@ -193,20 +230,16 @@ export default function ServiceMarketplace() {
                 />
               </div>
             </div>
-            {!services ? (
-              <div className="loading-progress">
-                <CircleProgress
-                  variant="indeterminate"
-                  colorVariant="primary"
-                  size={50}
-                  sx={{
-                    color: theme.palette.primary.main,
-                  }}
-                />
-              </div>
+            {!isError ? (
+              renderServices()
             ) : (
-              <RecommendedServices
-                services={cardServices?.slice(0, indexToSplit)}
+              <ErrorBar
+                errorText={handleApiError()}
+                showButton={
+                  servicesError.code >= 500 && servicesError?.data?.status < 600
+                }
+                buttonText={t('error.tryAgain')}
+                handleButton={refetch}
               />
             )}
           </div>
