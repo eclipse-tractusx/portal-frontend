@@ -88,6 +88,7 @@ import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 import CompanyData from 'components/pages/CompanyData'
 import {
+  userHasBpdmRole,
   userHasPortalRole,
   userHasRegistrationRole,
   userHasSemanticHubRole,
@@ -206,7 +207,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    allowTo: () => userHasPortalRole(ROLES.PARTNER_NETWORK_VIEW),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
     element: <PartnerNetwork />,
   },
   {
@@ -564,7 +565,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.COMPANY_WALLET,
-    allowTo: () => userHasPortalRole(ROLES.CREDENTIAL_REQUESTS),
+    allowTo: () => userHasSsiCredentialRole(ROLES.CREDENTIAL_REQUESTS),
     element: <CompanyWallet />,
   },
   {
@@ -630,7 +631,7 @@ export const ALL_OVERLAYS: RestrictedItem[] = [
   { name: OVERLAYS.NEWS },
   {
     name: OVERLAYS.PARTNER,
-    allowTo: () => userHasPortalRole(ROLES.PARTNER_NETWORK_VIEW),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
   },
   {
     name: OVERLAYS.USER,

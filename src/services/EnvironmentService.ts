@@ -31,6 +31,8 @@ export const getClientIdRegistration = () => ENV.CLIENT_ID_REGISTRATION ?? ''
 
 export const getClientIdSemantic = () => ENV.CLIENT_ID_SEMANTIC ?? ''
 
+export const getClientIdBpdm = () => ENV.CLIENT_ID_BPDM ?? ''
+
 export const getClientIdMiw = () => ENV.CLIENT_ID_MIW ?? ''
 
 export const getClientIdSsiCredential = () => ENV.CLIENT_ID_SSI_CREDENTIAL ?? ''
@@ -59,6 +61,7 @@ const EnvironmentService = {
   getClientId,
   getClientIdRegistration,
   getClientIdSemantic,
+  getClientIdBpdm,
   getClientIdMiw,
   getClientIdSsiCredential,
   getCentralIdp,

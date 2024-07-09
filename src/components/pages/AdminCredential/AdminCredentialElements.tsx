@@ -50,7 +50,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
-import { userHasPortalRole } from 'services/AccessService'
+import { userHasSsiCredentialRole } from 'services/AccessService'
 
 interface FetchHookArgsType {
   filterType: string
@@ -303,7 +303,7 @@ export default function AdminCredentialElements() {
       flex: 1,
       renderCell: ({ row }: { row: CredentialData }) => (
         <>
-          {userHasPortalRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+          {userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
             row.participantStatus === StatusEnum.ACTIVE && (
               <Tooltips
                 additionalStyles={{

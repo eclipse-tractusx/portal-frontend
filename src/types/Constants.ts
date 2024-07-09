@@ -230,6 +230,7 @@ export enum ROLES {
   SUBSCRIBE_APPS = 'subscribe_apps',
   SUBSCRIBE_SERVICE = 'subscribe_service',
   VIEW_REGISTRATION = 'view_registration',
+  READ_PARTNER = 'read_partner',
 }
 
 export enum HINTS {

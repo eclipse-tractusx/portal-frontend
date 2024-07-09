@@ -75,6 +75,7 @@ import { intersectAccess } from 'utils/dataUtils'
 import UserService from './UserService'
 import {
   getClientId,
+  getClientIdBpdm,
   getClientIdMiw,
   getClientIdRegistration,
   getClientIdSemantic,
@@ -104,6 +105,9 @@ export const userHasRegistrationRole = (
 export const userHasSemanticHubRole = (
   roles: string | Array<string>
 ): boolean => userHasClientRole(getClientIdSemantic(), roles)
+
+export const userHasBpdmRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientIdBpdm(), roles)
 
 export const userHasMiwRole = (roles: string | Array<string>): boolean =>
   userHasClientRole(getClientIdMiw(), roles)
