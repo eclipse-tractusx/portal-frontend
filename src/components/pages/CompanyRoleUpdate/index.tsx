@@ -29,7 +29,6 @@ import { OVERLAYS } from 'types/Constants'
 import {
   Button,
   Checkbox,
-  PageHeader,
   PageSnackbar,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -106,11 +105,6 @@ export default function CompanyRoles() {
 
   return (
     <main className="companyRoleUpdate">
-      <PageHeader
-        title={t('content.companyRolesUpdate.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      />
       <div className="companyRoles-main">
         <div className="container">
           <Typography variant="h2" className="heading">

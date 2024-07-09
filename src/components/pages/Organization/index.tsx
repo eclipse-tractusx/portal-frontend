@@ -19,13 +19,10 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import { Box } from '@mui/material'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import {
   Button,
   Typography,
-  BackButton,
   ContentCard,
 } from '@catena-x/portal-shared-components'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
@@ -34,7 +31,6 @@ import { FilterType, SortType } from '../CompanyCertificates'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 
 export default function Organization() {
-  const navigate = useNavigate()
   const { t } = useTranslation()
 
   const certificates = useFetchCertificatesQuery({
@@ -45,15 +41,6 @@ export default function Organization() {
 
   return (
     <main className="organization-main">
-      <Box className="app-back">
-        <BackButton
-          backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
-          onBackButtonClick={() => {
-            navigate('/')
-          }}
-        />
-      </Box>
       <div className="organization-section">
         <MyCompanyInfoComponent />
         <div className="delete-btn">

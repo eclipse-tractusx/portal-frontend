@@ -24,7 +24,6 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  PageHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
@@ -159,11 +158,6 @@ export default function InviteBusinessPartner() {
         </DialogContent>
       </Dialog>
 
-      <PageHeader
-        title={t('content.invite.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      />
       <section>
         <Typography variant="h2" mb={3} align="center">
           {t('content.invite.subHeaderTitle')}
