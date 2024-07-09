@@ -35,6 +35,11 @@
   - harmonization and standardization of page headers, added consistent headers and removed unused code
 - Use scroll to top button from shared components
 
+### Change
+
+- **Others**
+  - More readable and typo resistant implementation to inject env vars
+
 ## 2.0.0
 
 ### Change
