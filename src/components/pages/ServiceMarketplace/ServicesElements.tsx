@@ -50,7 +50,7 @@ export default function ServicesElements({
   }, [])
 
   const handleClick = (id: string) => {
-    navigate(`/servicemarketplacedetail/${id}`)
+    navigate(`/serviceMarketplaceDetail/${id}`)
   }
 
   return (

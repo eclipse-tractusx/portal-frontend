@@ -88,7 +88,7 @@ export default function ServiceDetails() {
       </div>
       {fetchServiceStatus && (
         <>
-          <div className="servicedetail-main">
+          <div className="serviceDetail-main">
             <div className="imageCard">
               <CardHorizontal
                 borderRadius={6}

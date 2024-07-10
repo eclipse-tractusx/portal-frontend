@@ -115,7 +115,7 @@ export default function TechnicalUserDetailsContent({
         variant="outlined"
         startIcon={<HighlightOffIcon />}
         onClick={() =>
-          dispatch(show(OVERLAYS.DELETE_TECHUSER, newData.serviceAccountId))
+          dispatch(show(OVERLAYS.DELETE_TECH_USER, newData.serviceAccountId))
         }
       >
         {t('content.usermanagement.technicalUser.delete')}

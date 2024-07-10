@@ -205,7 +205,7 @@ export default function AddRoles() {
           <Button
             color="secondary"
             onClick={() => {
-              navigate(`/${PAGES.APPOVERVIEW}`)
+              navigate(`/${PAGES.APP_OVERVIEW}`)
             }}
             size="small"
           >
