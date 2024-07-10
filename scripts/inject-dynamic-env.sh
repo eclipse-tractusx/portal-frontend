@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ###############################################################
 # Copyright (c) 2024 Contributors to the Eclipse Foundation
@@ -19,8 +19,10 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-src_file=/usr/share/nginx/html/index.html.reference
-tgt_file=/tmp/index.html
+#src_file=/usr/share/nginx/html/index.html.reference
+#tgt_file=/tmp/index.html
+src_file=index.html
+tgt_file=i.html
 # base sed command: output source file and remove javascript comments
 sed_cmd="cat ${src_file} | sed -e \"s/^\\\s*\/\/.*//g\""
 
@@ -49,4 +51,4 @@ do
   sed_cmd="${sed_cmd} -e \"s/${var}:\s*\\\".*\\\"/${var}: \\\"\${${var}}\\\"/g\""
 done
 
-echo ${sed_cmd} | bash > ${tgt_file}
+echo ${sed_cmd} | sh > ${tgt_file}
