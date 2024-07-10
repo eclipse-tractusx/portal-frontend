@@ -168,17 +168,6 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
-  const handleApiError = () => {
-    if (
-      servicesError?.data?.status >= 400 &&
-      servicesError?.data?.status < 500
-    ) {
-      return t('content.serviceMarketplace.dataLoadFailed')
-    } else if (servicesError.code >= 500 && servicesError?.data?.status < 600) {
-      return t('content.serviceMarketplace.loadFailed')
-    }
-  }
-
   const renderServices = () => {
     if (services && services.length === 0) return <NoItems />
     if (!services)
@@ -234,7 +223,12 @@ export default function ServiceMarketplace() {
               renderServices()
             ) : (
               <ErrorBar
-                errorText={handleApiError()}
+                errorText={
+                  servicesError?.data?.status >= 400 &&
+                  servicesError?.data?.status < 500
+                    ? t('content.serviceMarketplace.dataLoadFailed')
+                    : t('content.serviceMarketplace.loadFailed')
+                }
                 showButton={
                   servicesError.code >= 500 && servicesError?.data?.status < 600
                 }

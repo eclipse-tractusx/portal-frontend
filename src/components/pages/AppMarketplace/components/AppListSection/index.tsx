@@ -148,27 +148,18 @@ export default function AppListSection() {
     return renderGroups()
   }
 
-  const handleErrorText = () => {
-    if (
-      activeAppsError?.data?.status >= 400 &&
-      activeAppsError?.data?.status < 500
-    ) {
-      return t('content.appstore.appOverviewSection.dataLoadFailed')
-    } else if (
-      activeAppsError.code >= 500 &&
-      activeAppsError?.data?.status < 600
-    ) {
-      return t('content.appstore.appOverviewSection.loadFailed')
-    }
-  }
-
   return (
     <section>
       {!isError ? (
         renderList()
       ) : (
         <ErrorBar
-          errorText={handleErrorText()}
+          errorText={
+            activeAppsError?.data?.status >= 400 &&
+            activeAppsError?.data?.status < 500
+              ? t('content.appstore.appOverviewSection.dataLoadFailed')
+              : t('content.appstore.appOverviewSection.loadFailed')
+          }
           showButton={
             activeAppsError.code >= 500 && activeAppsError?.data?.status < 600
           }
