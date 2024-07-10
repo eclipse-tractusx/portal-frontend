@@ -21,32 +21,35 @@
 
 source_file=/usr/share/nginx/html/index.html.reference
 target_file=/tmp/index.html
+
+vars=" \
+REQUIRE_HTTPS_URL_PATTERN \
+CENTRALIDP_URL \
+PORTAL_ASSETS_URL \
+PORTAL_BACKEND_URL \
+SEMANTICS_URL \
+BPDM_GATE_API_URL \
+BPDM_POOL_API_URL \
+SSI_CREDENTIAL_URL \
+MANAGED_IDENTITY_WALLETS_NEW_URL \
+REALM \
+CLIENT_ID \
+CLIENT_ID_REGISTRATION \
+CLIENT_ID_SEMANTIC \
+CLIENT_ID_BPDM \
+CLIENT_ID_MIW \
+CLIENT_ID_SSI_CREDENTIAL \
+"
+
 # base sed command: output source file and remove javascript comments
 sed_command="cat ${source_file} | sed -e \"s/^\\\s*\/\/.*//g\""
 
-declare -a vars=(
-  "REQUIRE_HTTPS_URL_PATTERN"
-  "CENTRALIDP_URL"
-  "PORTAL_ASSETS_URL"
-  "PORTAL_BACKEND_URL"
-  "SEMANTICS_URL"
-  "BPDM_GATE_API_URL"
-  "BPDM_POOL_API_URL"
-  "SSI_CREDENTIAL_URL"
-  "MANAGED_IDENTITY_WALLETS_NEW_URL"
-  "REALM"
-  "CLIENT_ID"
-  "CLIENT_ID_REGISTRATION"
-  "CLIENT_ID_SEMANTIC"
-  "CLIENT_ID_BPDM"
-  "CLIENT_ID_MIW"
-  "CLIENT_ID_SSI_CREDENTIAL"
-)
-
-for var in "${vars[@]}"
-do
+set -- $vars
+while [ -n "$1" ]; do
+  var=$1
   # add a replace expression for each variable
   sed_command="${sed_command} -e \"s/${var}:\s*\\\".*\\\"/${var}: \\\"\${${var}}\\\"/g\""
-done
+  shift                                                                                  
+done   
 
 echo ${sed_command} | sh > ${target_file}
