@@ -221,37 +221,37 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceOverview />,
   },
   {
-    name: PAGES.APPOVERVIEW,
+    name: PAGES.APP_OVERVIEW,
     allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: <AppOverview />,
   },
   {
-    name: PAGES.APPOVERVIEW_NEW,
+    name: PAGES.APP_OVERVIEW_NEW,
     allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: <AppOverviewNew />,
   },
   {
-    name: PAGES.SERVICEOVERVIEW,
+    name: PAGES.SERVICE_OVERVIEW,
     allowTo: () => userHasPortalRole(ROLES.SERVICEOVERVIEW_VIEW),
     element: <ServiceOverview />,
   },
   {
-    name: PAGES.APPRELEASEPROCESS,
+    name: PAGES.APP_RELEASE_PROCESS,
     allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: <AppReleaseProcess />,
   },
   {
-    name: PAGES.SERVICERELEASEPROCESS,
+    name: PAGES.SERVICE_RELEASE_PROCESS,
     allowTo: () => userHasPortalRole(ROLES.VIEW_SERVICE_RELEASE),
     element: <ServiceReleaseProcess />,
   },
   {
-    name: PAGES.APPSUBSCRIPTION,
+    name: PAGES.APP_SUBSCRIPTION,
     allowTo: () => userHasPortalRole(ROLES.APP_MANAGEMENT),
     element: <AppSubscription />,
   },
   {
-    name: PAGES.SERVICESUBSCRIPTION,
+    name: PAGES.SERVICE_SUBSCRIPTION,
     allowTo: () => userHasPortalRole(ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT),
     element: <ServiceSubscription />,
   },
@@ -262,7 +262,7 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminBoard />,
   },
   {
-    name: PAGES.SERVICEADMINBOARD,
+    name: PAGES.SERVICE_ADMIN_BOARD,
     allowTo: () =>
       userHasPortalRole([
         ROLES.APPROVE_SERVICE_RELEASE,
@@ -287,7 +287,7 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.SERVICEADMINBOARD_DETAIL,
+    name: PAGES.SERVICE_ADMIN_BOARD_DETAIL,
     allowTo: () =>
       userHasPortalRole([
         ROLES.APPROVE_SERVICE_RELEASE,
@@ -296,8 +296,8 @@ export const ALL_PAGES: IPage[] = [
     isRoute: true,
     element: (
       <Route
-        key={PAGES.SERVICEADMINBOARD_DETAIL}
-        path={PAGES.SERVICEADMINBOARD_DETAIL}
+        key={PAGES.SERVICE_ADMIN_BOARD_DETAIL}
+        path={PAGES.SERVICE_ADMIN_BOARD_DETAIL}
         element={<ServiceAdminBoardDetail />}
       >
         <Route index element={null} />
@@ -311,8 +311,8 @@ export const ALL_PAGES: IPage[] = [
     allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: (
       <Route
-        key={`${PAGES.APPRELEASEPROCESS}/form`}
-        path={`${PAGES.APPRELEASEPROCESS}/form`}
+        key={`${PAGES.APP_RELEASE_PROCESS}/form`}
+        path={`${PAGES.APP_RELEASE_PROCESS}/form`}
         element={<AppReleaseProcessForm />}
       />
     ),
@@ -323,8 +323,8 @@ export const ALL_PAGES: IPage[] = [
     allowTo: () => userHasPortalRole(ROLES.VIEW_SERVICE_RELEASE),
     element: (
       <Route
-        key={`${PAGES.SERVICERELEASEPROCESS}/form`}
-        path={`${PAGES.SERVICERELEASEPROCESS}/form`}
+        key={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
+        path={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
         element={<ServiceReleaseProcessForm />}
       />
     ),
@@ -349,18 +349,18 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.TECHUSER_MANAGEMENT,
-    allowTo: () => userHasPortalRole(ROLES.TECHUSER_VIEW),
+    name: PAGES.TECH_USER_MANAGEMENT,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_VIEW),
     element: <TechnicalUserManagement />,
   },
   {
-    name: PAGES.TECHUSER_DETAILS,
-    allowTo: () => userHasPortalRole(ROLES.TECHUSER_VIEW),
+    name: PAGES.TECH_USER_DETAILS,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_VIEW),
     isRoute: true,
     element: (
       <Route
-        key={PAGES.TECHUSER_DETAILS}
-        path={`/${PAGES.TECHUSER_DETAILS}`}
+        key={PAGES.TECH_USER_DETAILS}
+        path={`/${PAGES.TECH_USER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
@@ -437,12 +437,12 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.SERVICEDEACTIVATE,
+    name: PAGES.SERVICE_DEACTIVATE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.SERVICEDEACTIVATE}
-        path={PAGES.SERVICEDEACTIVATE}
+        key={PAGES.SERVICE_DEACTIVATE}
+        path={PAGES.SERVICE_DEACTIVATE}
         element={<ServiceDeactivate />}
       >
         <Route path=":serviceId" element={<ServiceDeactivate />} />
@@ -508,9 +508,9 @@ export const ALL_PAGES: IPage[] = [
       <Route
         key={PAGES.VIEW_DETAILS}
         path={PAGES.VIEW_DETAILS}
-        element={<AppDetail navigate={'appoverview'} />}
+        element={<AppDetail navigate={'appOverview'} />}
       >
-        <Route path=":appId" element={<AppDetail navigate={'appoverview'} />} />
+        <Route path=":appId" element={<AppDetail navigate={'appOverview'} />} />
       </Route>
     ),
   },
@@ -554,7 +554,7 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminCredential />,
   },
   {
-    name: PAGES.ONBOARDING_SERVICEPROVIDER,
+    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
     allowTo: () => userHasPortalRole(ROLES.IDP_VIEW),
     element: <OSPManagement />,
   },
@@ -612,12 +612,12 @@ export const ALL_OVERLAYS: RestrictedItem[] = [
     allowTo: () => userHasPortalRole(ROLES.USERMANAGEMENT_ADD),
   },
   {
-    name: OVERLAYS.ADD_TECHUSER,
-    allowTo: () => userHasPortalRole(ROLES.TECHUSER_ADD),
+    name: OVERLAYS.ADD_TECH_USER,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_ADD),
   },
   {
-    name: OVERLAYS.DELETE_TECHUSER,
-    allowTo: () => userHasPortalRole(ROLES.TECHUSER_DELETE),
+    name: OVERLAYS.DELETE_TECH_USER,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_DELETE),
   },
   {
     name: OVERLAYS.ADD_APP_USER_ROLES,
@@ -786,22 +786,22 @@ export const mainMenuFullTree = [
   {
     name: PAGES.APP_MANAGEMENT,
     children: [
-      { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
-      { name: PAGES.APPRELEASEPROCESS },
-      { name: PAGES.APPSUBSCRIPTION, hint: HINTS.NEW },
+      { name: PAGES.APP_OVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.APP_RELEASE_PROCESS },
+      { name: PAGES.APP_SUBSCRIPTION, hint: HINTS.NEW },
       { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
     ],
   },
   {
     name: PAGES.SERVICE_MANAGEMENT,
     children: [
-      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW },
-      { name: PAGES.SERVICERELEASEPROCESS, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_OVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_RELEASE_PROCESS, hint: HINTS.NEW },
       {
-        name: PAGES.SERVICESUBSCRIPTION,
+        name: PAGES.SERVICE_SUBSCRIPTION,
         hint: HINTS.NEW,
       },
-      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_ADMIN_BOARD, hint: HINTS.NEW },
     ],
   },
 ]
