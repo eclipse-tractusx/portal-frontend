@@ -56,10 +56,10 @@ export default function AppStoreSection() {
       <Button
         sx={{ margin: '100px auto 60px', display: 'block' }}
         onClick={() => {
-          navigate('/appmarketplace')
+          navigate('/appMarketplace')
         }}
       >
-        {t('pages.appmarketplace')}
+        {t('pages.appMarketplace')}
       </Button>
     </section>
   )

@@ -121,7 +121,7 @@ export default function ChangeImage() {
       uploadDocumentApi(appId, uploadImageValue)
         .then(() => {
           setFileStatus(UploadStatus.UPLOAD_SUCCESS)
-          navigate('/appoverview', {
+          navigate('/appOverview', {
             state: 'change-image-success',
           })
           success(t('content.changeImage.successMsg'))
@@ -204,7 +204,7 @@ export default function ChangeImage() {
             color="secondary"
             size="small"
             onClick={() => {
-              navigate('/appoverview')
+              navigate('/appOverview')
             }}
           >
             {t('global.actions.cancel')}
