@@ -19,12 +19,10 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-#src_file=/usr/share/nginx/html/index.html.reference
-#tgt_file=/tmp/index.html
-src_file=index.html
-tgt_file=i.html
+source_file=/usr/share/nginx/html/index.html.reference
+target_file=/tmp/index.html
 # base sed command: output source file and remove javascript comments
-sed_cmd="cat ${src_file} | sed -e \"s/^\\\s*\/\/.*//g\""
+sed_command="cat ${source_file} | sed -e \"s/^\\\s*\/\/.*//g\""
 
 declare -a vars=(
   "REQUIRE_HTTPS_URL_PATTERN"
@@ -48,7 +46,7 @@ declare -a vars=(
 for var in "${vars[@]}"
 do
   # add a replace expression for each variable
-  sed_cmd="${sed_cmd} -e \"s/${var}:\s*\\\".*\\\"/${var}: \\\"\${${var}}\\\"/g\""
+  sed_command="${sed_command} -e \"s/${var}:\s*\\\".*\\\"/${var}: \\\"\${${var}}\\\"/g\""
 done
 
-echo ${sed_cmd} | sh > ${tgt_file}
+echo ${sed_command} | sh > ${target_file}
