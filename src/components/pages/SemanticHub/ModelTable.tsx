@@ -45,7 +45,7 @@ type SelectedFilter = {
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
-  const { modelList, loadingModelList, deleteModelId, uploadedModel } =
+  const { modelList, loadingModelList, deleteModelId, uploadedModel, error } =
     useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
@@ -149,6 +149,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     }
   }
   const columns = SemanticModelTableColumns(t, onModelSelect)
+  const errorObj = {
+    status: 0,
+  }
+
+  if (error) {
+    errorObj.status = Number(error)
+  }
 
   return (
     <section>
@@ -178,6 +185,12 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         rows={models}
         getRowId={(row) => uniqueId(row.urn)}
         hasBorder={false}
+        error={errorObj}
+        reload={() =>
+          dispatch(
+            fetchSemanticModels({ filter: { page: 0, pageSize: rowCount } })
+          )
+        }
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (

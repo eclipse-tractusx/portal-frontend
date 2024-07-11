@@ -34,6 +34,8 @@
   - Add more and collapse button to category view
 - Company Role
   - enabled agreement handling by adding frontend logic and UI handling of optional agreements
+- Semantic Hub
+  - Show appropriate error information to the user along with refetch button
 
 ## 2.0.0
 

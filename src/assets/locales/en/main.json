@@ -328,7 +328,7 @@
       "title": "Semantic Data Models",
       "introText_0": "Semantic models are used to structure data. As a concept, they make it possible to give fundamental meaning to data and their relationships. In the context of data modeling and data organization they realize the development of applications as well as the maintenance of data consistency.",
       "introText_1": "In Catena-X, semantic data models are provided in a suitable publication system, the so-called Semantic Hub. For data or service providers, the Semantic Hub presents a foundation for the use and reuse of semantic models. For this reason, the publication of a semantic data model takes place under the specification of a version. This supports transparency as well as control over all semantic models and their release status.",
-      "addModel": "Neues Model anlegen",
+      "addModel": "Create new model",
       "alerts": {
         "alertSuccessTitle": "Success!",
         "alertErrorTitle": "Error!",

@@ -30,7 +30,9 @@ export interface SemanticModelsInitialState {
   uploadError: string
   openApiLink: string
   openApiError: string
-  error: string
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
+  error: any
   deleteModelId: string
   deleteError: string
 }

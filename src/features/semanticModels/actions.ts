@@ -29,9 +29,11 @@ const fetchSemanticModels = createAsyncThunk(
   async ({ filter }: { filter: FilterParams }) => {
     try {
       return await Api.getInstance().getModels(filter)
-    } catch (error: unknown) {
+      // Add an ESLint exception until there is a solution
+      // eslint-disable-next-line
+    } catch (error: any) {
       console.error('api call error:', error)
-      throw Error(`Fetching models failed: ${message}`)
+      throw Error(JSON.stringify(error.response.status))
     }
   }
 )
