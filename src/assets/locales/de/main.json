@@ -68,8 +68,8 @@
     "companyWallet": "Company Wallet",
     "company-subscriptions": "Firmenabonnements",
     "mycompany": "My Company",
-    "mynotifications": "My Notifications",
-    "company_data": "Company Data"
+    "company_data": "Company Data",
+    "onboardingServiceProvider": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -2142,6 +2142,14 @@
         "title": "Create {name}",
         "description": "The changes could not be saved. Please try again"
       }
+    },
+    "onboardingServiceProvider": {
+      "headertitle": "Onboarding Service Provider Management",
+      "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "subDesc1": "OSP Callback configured",
+      "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
+      "tabletitle1": "OSP Identity Provider (IDPs)",
+      "tabletitle2": "Customer Overview"
     }
   },
   "navigation": {

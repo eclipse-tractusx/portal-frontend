@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,40 +17,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.connector-table-container {
-  margin: 0 10% 70px;
-}
-
-.connector-page-container {
+.onboarding-service-page-container {
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.connector-type-selector-container {
-  .dotted-gradient {
-    background-image: linear-gradient(
-      to right,
-      #dadada 40%,
-      rgba(218, 218, 218, 0) 20%
-    );
-    background-position: bottom;
-    background-size: 24px 1.5px;
-    background-repeat: repeat-x;
-    padding: 20px;
-  }
-}
-
-.edc-connector-header {
+.onboarding-service-header {
   text-align: center;
   width: 100%;
   margin: 0 auto;
-  .edc-connector-title {
+
+  .onboarding-service-title {
     text-align: center;
     padding-bottom: 20px;
     position: relative;
   }
-  .edc-connector-title::after {
+
+  .onboarding-service-title::after {
     content: '';
     width: 70px;
     border-bottom: 2px solid;
@@ -60,12 +43,9 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .edc-connector-desc {
+
+  .onboarding-service-desc {
     width: 74%;
     margin: 50px auto;
-  }
-  .add-idp-btn {
-    margin-top: 30px;
-    text-transform: capitalize;
   }
 }
