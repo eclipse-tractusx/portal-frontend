@@ -21,6 +21,8 @@
   - Add correct registration application checklist items
 - Credential Request
   - UI Improvements
+- User Management
+  - Fix disable button state when deselect all checkboxes  
 
 ### Feature
 
