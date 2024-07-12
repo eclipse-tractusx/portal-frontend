@@ -88,7 +88,7 @@ const PartnerNetwork = () => {
         title={t('content.partnernetwork.headertitle')}
         topPage={false}
         headerHeight={200}
-      ></PageHeader>
+      />
 
       <section id="identity-management-id">
         <PageLoadingTable<BusinessPartner, { expr: string }>

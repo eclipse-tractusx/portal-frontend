@@ -132,9 +132,9 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddMultipleUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
-    case OVERLAYS.ADD_TECHUSER:
+    case OVERLAYS.ADD_TECH_USER:
       return <AddTechnicalUser />
-    case OVERLAYS.DELETE_TECHUSER:
+    case OVERLAYS.DELETE_TECH_USER:
       return <DeleteTechnicalUser id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />

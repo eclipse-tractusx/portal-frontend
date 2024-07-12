@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   PageHeader,
   Typography,
@@ -80,10 +79,8 @@ export const ReleaseProcess = ({
   registerButton,
 }: ReleaseProcessProps) => {
   return (
-    <div className="appoverview-main">
-      <PageHeader title={headerTitle} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+    <div className="appOverview-main">
+      <PageHeader title={headerTitle} topPage={true} headerHeight={200} />
       <div className="desc-section">
         <div className="container">
           <Typography variant="h3" className="desc-heading">

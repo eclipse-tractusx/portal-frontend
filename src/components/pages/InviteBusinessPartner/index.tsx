@@ -24,14 +24,12 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  PageHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import type { InviteData } from 'features/admin/registration/types'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
@@ -160,13 +158,6 @@ export default function InviteBusinessPartner() {
         </DialogContent>
       </Dialog>
 
-      <PageHeader
-        title={t('content.invite.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
       <section>
         <Typography variant="h2" mb={3} align="center">
           {t('content.invite.subHeaderTitle')}
