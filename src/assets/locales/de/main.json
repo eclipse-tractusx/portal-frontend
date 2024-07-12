@@ -2286,7 +2286,9 @@
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
       "noDocumentsAvailable": "No documents available",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available",
+      "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+      "loadFailed": "Laden fehlgeschlagen"
     },
     "table": {
       "search": "Enter email to search",

@@ -2254,7 +2254,9 @@
       "additionalDescription": "Please contact your admin.",
       "noDocumentsAvailable": "No documents available",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available",
+      "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+      "loadFailed": "Load Failed"
     },
     "table": {
       "search": "Enter email to search",

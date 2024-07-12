@@ -151,10 +151,15 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const columns = SemanticModelTableColumns(t, onModelSelect)
   const errorObj = {
     status: 0,
+    message: '',
   }
 
   if (error) {
     errorObj.status = Number(error)
+    errorObj.message =
+      error && Number(error) >= 400 && Number(error) < 500
+        ? t('global.errors.dataLoadFailed')
+        : t('global.errors.loadFailed')
   }
 
   return (
@@ -183,7 +188,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         }}
         columns={columns}
         rows={models}
-        getRowId={(row) => uniqueId(row.urn)}
+        getRowId={(row: { urn: string | undefined }) => uniqueId(row.urn)}
         hasBorder={false}
         error={errorObj}
         reload={() =>
@@ -191,6 +196,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
             fetchSemanticModels({ filter: { page: 0, pageSize: rowCount } })
           )
         }
+        noRowsMsg={t('global.noData.heading')}
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (
