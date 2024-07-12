@@ -14,6 +14,7 @@
   - Remove unnecessary import of Typography, Dialog and Circular Progress from mui and use those from shared-components
 - Connector Management
   - fetch details using api, added permissions and fixed error messages
+  - Fixed blank page issue on cliking on details
 - App Release Process
   - Integrated role deletion with BE api reponse
 - Company Application Registraion Detail Overlay
