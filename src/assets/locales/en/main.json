@@ -1923,6 +1923,8 @@
         "companyInfo": "Company Info",
         "certificate": "Certificate",
         "document": "Document",
+        "status": "Status",
+        "action": "Action",
         "type": {
           "TRACEABILITY_FRAMEWORK": "Traceability",
           "PCF_FRAMEWORK": "PCF Framework",

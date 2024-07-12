@@ -19,8 +19,10 @@
 - Company Application Registraion Detail Overlay
   - UI improvements
   - Add correct registration application checklist items
-- Fixed incorrect usage of pre-commit hook
-- Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
+- Credential Request
+  - UI Improvements
+- User Management
+- Fix disable button state when deselect all checkboxes
 
 ### Feature
 
@@ -35,6 +37,8 @@
 - Page headers
   - harmonization and standardization of page headers, added consistent headers and removed unused code
 - Use scroll to top button from shared components
+- Company Role
+  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
 
 ## 2.0.0
 
