@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -33,7 +33,6 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
-import { getAssetBase } from 'services/EnvironmentService'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,
@@ -44,13 +43,13 @@ import {
   appearMenuSelector,
 } from 'features/control/appear'
 import { UserInfo } from '../UserInfo'
-import { Logo } from '../Logo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './style.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import { COMPANY_ROLES } from 'types/Constants'
+import { ImageReferences } from 'types/ImageReferences'
 
 export const Header = ({
   main,
@@ -170,7 +169,12 @@ export const Header = ({
     <>
       <header>
         <MainNavigation items={menu} component={NavLink}>
-          <Logo />
+          <Link to={'/'} className="logo">
+            <img
+              src={ImageReferences.logo.url}
+              alt={ImageReferences.logo.alt}
+            />
+          </Link>
           <div className="d-flex">
             <div
               onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
@@ -202,7 +206,12 @@ export const Header = ({
       </header>
       <div className="mobileNav">
         <div className="mobileHeader">
-          <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
+          <Link to={'/'} className="logo-mobile">
+            <img
+              src={ImageReferences.logoMobile.url}
+              alt={ImageReferences.logoMobile.alt}
+            />
+          </Link>
         </div>
         <div className="mobileHeaderRight">
           <div

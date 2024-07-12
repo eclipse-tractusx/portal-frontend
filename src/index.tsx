@@ -33,6 +33,7 @@ import {
 import CompanyService from 'services/CompanyService'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { cofinityTheme } from 'theme.override'
 
 I18nService.init()
 AccessService.init()
@@ -44,7 +45,7 @@ UserService.init(() => {
         <StrictMode>
           <SharedCssBaseline />
           <Provider store={store}>
-            <SharedThemeProvider>
+          <SharedThemeProvider themeDesign={cofinityTheme}>
               <AuthorizingRouter />
             </SharedThemeProvider>
           </Provider>
