@@ -6,7 +6,7 @@
 
 - **User Management**:
   - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
-- **User Management**:
+- **Admin Board**:
   - Fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
 
 ## 2.1.0-RC1
