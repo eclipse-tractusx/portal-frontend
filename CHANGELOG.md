@@ -2,40 +2,55 @@
 
 ## Unreleased
 
-### Bugfix
+### Feature
+- **Imprint**:
+  - updated imprint page with anonymized data [#893](https://github.com/eclipse-tractusx/portal-frontend/issues/893)
 
-- Overlay
-  - Fix consistency issue in overlays where form input is used
-- Company Wallet
-  - Use appropriate path to display logo on cards
-- App Subscription
-  - Register URL changes for Autosetup
-- Refactor
-  - Remove unnecessary import of Typography, Dialog and Circular Progress from mui and use those from shared-components
-- Connector Management
-  - fetch details using api, added permissions and fixed error messages
-- App Release Process
-  - Integrated role deletion with BE api reponse
-- Company Application Registraion Detail Overlay
-  - UI improvements
-  - Add correct registration application checklist items
-- Credential Request
-  - UI Improvements
+## 2.1.0-RC1
+
+### Change
+
+- **Scroll Integration**:
+  - integrated now scroll-to-top component from shared components for all pages [#872](https://github.com/eclipse-tractusx/portal-frontend/pull/872)
+- **Credential Request**:
+  - UI improvements such as table headers, joint table columns, type updates, etc. [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/866)
 
 ### Feature
 
-- Admin Credential
-  - Credential Request Management Board Improvements
-- Company data
-  - New company data page created
-  - Connect to the gate api to fetch the records
-  - Create and Edit address/site feature introduced
-- App marketplace
-  - Add more and collapse button to category view
-- Company Role
-  - enabled agreement handling by adding frontend logic and UI handling of optional agreements
-- Imprint
-  - updated imprint page with anonymized data
+- **Company Role**:
+  - added support for optional terms [#879](https://github.com/eclipse-tractusx/portal-frontend/pull/879)
+- **Company Data Management**:
+  - released Company data management page for Legal Entity, Sites and Addresses incl. simple status management [#731](https://github.com/eclipse-tractusx/portal-frontend/pull/731)
+- **Connector Management**:
+  - released connector detail view including change connector url, view SD document, etc. Add details overlay [#848](https://github.com/eclipse-tractusx/portal-frontend/pull/848)
+
+### Technical Maintenance
+
+- **Dependencies**:
+  - bumped GitHub actions [#846](https://github.com/eclipse-tractusx/portal-frontend/pull/846)
+- **Refactoring**:
+  - removed direct imports from MUI [#855](https://github.com/eclipse-tractusx/portal-frontend/pull/855)
+
+### Bugfixes
+
+- **PartnerNetwork Registration OSP**:
+  - fixed access to customer registration consent UI for OSP customers [#913](https://github.com/eclipse-tractusx/portal-frontend/pull/913)
+- **App Subscription**:
+  - allowed empty URL in register URL overlay [#842](https://github.com/eclipse-tractusx/portal-frontend/pull/842)
+- **Registration Detail**:
+  - fixed translation of registration process flow technical keys – Credential and BPNL Credential [#862](https://github.com/eclipse-tractusx/portal-frontend/pull/862)
+- **App Release Process**:
+  - integrated missing app release process `app role deletion` function with BE API response [#850](https://github.com/eclipse-tractusx/portal-frontend/pull/850)
+- **Company Wallet**:
+  - fixed transaction logo path [#845](https://github.com/eclipse-tractusx/portal-frontend/pull/845)
+- **Overlays**:
+  - fixed consistency for form input fields across the application [#843](https://github.com/eclipse-tractusx/portal-frontend/pull/843)
+- **My Organization View**:
+  - fixed permission validation for `my organization` view [#857](https://github.com/eclipse-tractusx/portal-frontend/pull/857)
+- **App Marketplace**:
+  - fixed app category view more and collapse button function [#805](https://github.com/eclipse-tractusx/portal-frontend/pull/805)
+- **Connector Management**:
+  - fixed blank page issue on clicking on details [#925](https://github.com/eclipse-tractusx/portal-frontend/pull/925)
 
 ## 2.0.0
 
