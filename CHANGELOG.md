@@ -3,10 +3,11 @@
 ## Unreleased
 
 ### Feature
+
 - **App marketplace**:
-  - show appropriate error information to the user along with refetch button [#890](https://github.com/eclipse-tractusx/portal-frontend/issues/890)
+  - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 - **Service Marketplace**:
-  - show appropriate error information to the user along with refetch button [#890](https://github.com/eclipse-tractusx/portal-frontend/issues/890)
+  - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 
 ## 2.1.0-RC1
 
