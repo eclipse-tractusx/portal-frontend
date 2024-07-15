@@ -106,7 +106,7 @@
     "Lang_en": "Sprache auf Englisch stellen"
   },
   "error": {
-    "deleteTechUserNotificationErrorDescription": "Please try it later again or contact your administrator.",
+    "deleteTechUserNotificationErrorDescription": "Bitte versuchen Sie es später noch einmal oder wenden Sie sich an Ihren Administrator.",
     "tryAgain": "Try Again",
     "errorBar": "Something went wrong. Try again",
     "title": "Hoppla! Etwas ist schiefgelaufen.",
@@ -204,7 +204,7 @@
           "appProvider": "App Anbieter",
           "onboardingProvider": "Onboarding Service Anbieter",
           "serviceProvider": "Service Anbieter",
-          "noinfo": "no data available",
+          "noinfo": "keine Daten verfügbar",
           "commercialRegisterNumber": "Handelsregisternummer",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
@@ -233,10 +233,10 @@
           "error": "Bitte überprüfen Sie Ihre Eingabe erneut; Die Nachricht sollte nicht mit '=' beginnen."
         },
         "addBpn": {
-          "successTitle": "Update BPN number successfully completed",
-          "successDescription": "Update BPN number successfully completed.",
+          "successTitle": "Aktualisierung der BPN-Nummer erfolgreich abgeschlossen",
+          "successDescription": "Aktualisierung der BPN-Nummer erfolgreich abgeschlossen",
           "errorTitle": "Something went wrong",
-          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+          "errorDescription": "Something went wrong. Bitte versuchen Sie es später noch einmal oder wenden Sie sich an Ihren Administrator."
         },
         "filter": {
           "all": "Alle",
@@ -940,42 +940,42 @@
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
-        "confirmTitle": "Are you sure you want to delete the user account of {userName}?",
-        "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
-        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "confirmTitle": "Sind Sie sicher, dass Sie das Benutzerkonto von {userName} löschen möchten?",
+        "description": "Durch das Löschen des Kontos werden dem Benutzer der Zugriff auf Catena-X sowie sämtliche Rechte und Datenzugriffe entzogen.",
+        "note": "Hinweis: Wenn Sie das Konto jetzt löschen, können Sie es später nicht erneut aktivieren.",
         "successTitle": "User successfully deleted",
-        "successDescription": "The user got successfully deleted. All rights have been disabled. Please note that the user might still be able to use the application for the next 10 minutes. Latest in 10 minutes the user is automatically logged out and a new login attempt will get declined",
+        "successDescription": "Der Benutzer wurde erfolgreich gelöscht. Alle Rechte wurden deaktiviert. Bitte beachten Sie, dass der Benutzer die Anwendung möglicherweise noch in den nächsten 10 Minuten nutzen kann. Spätestens nach 10 Minuten wird der Benutzer automatisch abgemeldet und ein neuer Anmeldeversuch wird abgelehnt",
         "errorTitle": "Something went wrong",
-        "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
+        "errorDescription": "Ihr Benutzer konnte nicht gelöscht werden. Bitte versuchen Sie es später noch einmal oder wenden Sie sich an Ihren Administrator."
       },
       "suspendUserConfirm": {
         "header": "Suspend user account",
-        "confirmTitle": "Are you sure you want to suspend the user account of {userName}?",
-        "description": "By suspending the account, the access of this user to Catena-X as well as any permissions and data accesses will get deactivated temporarily.",
-        "note": "Note: Suspended accounts can get reactivated anytime.",
+        "confirmTitle": "Sind Sie sicher, dass Sie das Benutzerkonto von {userName} sperren möchten?",
+        "description": "Durch die Sperrung des Kontos werden der Zugriff dieses Benutzers auf Catena-X sowie alle Berechtigungen und Datenzugriffe vorübergehend deaktiviert.",
+        "note": "Hinweis: Gesperrte Konten können jederzeit reaktiviert werden.",
         "successTitle": "User successfully suspended",
-        "successDescription": "The user is successfully suspended and all rights are disabled.",
+        "successDescription": "Der Benutzer wurde erfolgreich gesperrt und alle Rechte wurden deaktiviert.",
         "errorTitle": "Something went wrong",
-        "errorDescription": "Your user couldn't get suspended. Please try it later again or contact your administrator."
+        "errorDescription": "Ihr Benutzer konnte nicht gesperrt werden. Bitte versuchen Sie es später noch einmal oder wenden Sie sich an Ihren Administrator."
       },
       "resetPasswordConfirm": {
         "header": "Password Reset",
         "confirmTitle": "Are you sure you want to reset the password?",
-        "note": "The user {userName} will receive an email to reset the password.",
-        "successTitle": "Password Reset successfully triggered",
-        "successDescription": "The password reset request got send to {userName}.",
+        "note": "Der Benutzer {userName} erhält eine E-Mail zum Zurücksetzen des Passworts.",
+        "successTitle": "Passwort-Reset erfolgreich ausgelöst",
+        "successDescription": "Die Anfrage zum Zurücksetzen des Passworts wurde an {userName} gesendet.",
         "errorTitle": "Something went wrong",
-        "errorDescription": "The password reset was unsuccessful. Please try it later again or contact the administrator."
+        "errorDescription": "Das Zurücksetzen des Passworts war nicht erfolgreich. Bitte versuchen Sie es später noch einmal oder wenden Sie sich an den Administrator."
       },
       "deleteOwnUserConfirm": {
         "header": "Delete my user account",
-        "confirmTitle": "Are you sure you want to delete this user account?",
-        "description": "By deleting the account, the access of this user to Catena-X as well as any rights and data access will get revoked.",
-        "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
+        "confirmTitle": "Sind Sie sicher, dass Sie dieses Benutzerkonto löschen möchten?",
+        "description": "Durch das Löschen des Kontos werden dem Benutzer der Zugriff auf Catena-X sowie sämtliche Rechte und Datenzugriffe entzogen.",
+        "note": "Hinweis: Wenn Sie das Konto jetzt löschen, können Sie es später nicht erneut aktivieren.",
         "successTitle": "User successfully deleted",
-        "successDescription": "Your user got successfully deleted, you will get disconnected within the following 5 seconds.",
+        "successDescription": "Ihr Benutzer wurde erfolgreich gelöscht. Ihre Verbindung wird innerhalb der folgenden 5 Sekunden getrennt.",
         "errorTitle": "Something went wrong",
-        "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
+        "errorDescription": "Ihr Benutzer konnte nicht gelöscht werden. Bitte versuchen Sie es später noch einmal oder wenden Sie sich an Ihren Administrator."
       }
     },
     "idpmanagement": {

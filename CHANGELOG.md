@@ -1,5 +1,10 @@
 # Changelog
 
+## unlreleased
+
+- Locales
+  - Update translation in locale file
+
 ## 2.1.0-RC1
 
 ### Change
