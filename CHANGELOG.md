@@ -53,7 +53,6 @@
 - **Connector Management**:
   - fixed blank page issue on clicking on details [#925](https://github.com/eclipse-tractusx/portal-frontend/pull/925)
 
-
 ## 2.0.0
 
 ### Change
