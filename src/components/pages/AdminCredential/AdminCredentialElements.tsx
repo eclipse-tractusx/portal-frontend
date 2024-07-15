@@ -223,6 +223,28 @@ export default function AdminCredentialElements() {
           </Button>
         </div>
       )
+    } else if (
+      UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+      row.participantStatus === StatusEnum.ACTIVE
+    ) {
+      return (
+        <Tooltips
+          additionalStyles={{
+            cursor: 'pointer',
+          }}
+          tooltipPlacement="top-start"
+          tooltipText={t('content.adminCertificate.table.revoke')}
+          children={
+            <SettingsBackupRestoreIcon
+              className="revokeBtn"
+              onClick={() => {
+                setOpenRevokeOverlay(true)
+                setCredentialData(row)
+              }}
+            />
+          }
+        />
+      )
     }
   }
 
@@ -275,7 +297,7 @@ export default function AdminCredentialElements() {
     },
     {
       field: 'credentialDetailId',
-      headerName: '',
+      headerName: t('content.adminCertificate.table.status'),
       flex: 2,
       renderCell: ({ row }: { row: CredentialData }) => (
         <StatusTag
@@ -292,38 +314,10 @@ export default function AdminCredentialElements() {
     },
     {
       field: 'approveDecline',
-      headerName: '',
-      flex: 2,
+      headerName: t('content.adminCertificate.table.action'),
+      flex: 2.5,
       renderCell: ({ row }: { row: CredentialData }) =>
         renderApproveDeclineBtn(row),
-    },
-    {
-      field: '',
-      headerName: '',
-      flex: 1,
-      renderCell: ({ row }: { row: CredentialData }) => (
-        <>
-          {userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
-            row.participantStatus === StatusEnum.ACTIVE && (
-              <Tooltips
-                additionalStyles={{
-                  cursor: 'pointer',
-                }}
-                tooltipPlacement="top-start"
-                tooltipText={t('content.adminCertificate.table.revoke')}
-                children={
-                  <SettingsBackupRestoreIcon
-                    className="revokeBtn"
-                    onClick={() => {
-                      setOpenRevokeOverlay(true)
-                      setCredentialData(row)
-                    }}
-                  />
-                }
-              />
-            )}
-        </>
-      ),
     },
   ]
 
@@ -430,6 +424,7 @@ export default function AdminCredentialElements() {
           onSortClick={(value) => {
             setSortOption(value)
           }}
+          disableColumnSelector={true}
         />
       </div>
     </>
