@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Bugfixes
+
+- **User Management**:
+  - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
+
+
 ## 2.1.0-RC1
 
 ### Change
@@ -45,8 +53,6 @@
   - fixed app category view more and collapse button function [#805](https://github.com/eclipse-tractusx/portal-frontend/pull/805)
 - **Connector Management**:
   - fixed blank page issue on clicking on details [#925](https://github.com/eclipse-tractusx/portal-frontend/pull/925)
-- **User Management**:
-  - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
 
 
 ## 2.0.0
