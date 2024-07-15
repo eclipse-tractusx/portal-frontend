@@ -143,7 +143,6 @@ export enum OVERLAYS {
   ENABLE_IDP_SUCCESS = 'enable_idp_success',
   REGISTER_OSP = 'register_osp',
   REGISTER_NEXT_OSP = 'register_next_osp',
-  CONSENT_OSP = 'consent_osp',
   APP_OVERVIEW_CONFIRM = 'app_overview_confirm',
   APP_DETAILS_OVERLAY = 'app_details_overlay',
   CONFIRM_USER_ACTION = 'confirm_user_action',

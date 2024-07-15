@@ -92,7 +92,12 @@ export interface ConnectorDetailsType {
   hostId: string
   hostCompanyName: string
   connectorUrl: string
-  technicalUser: string
+  technicalUser: null | {
+    id: string
+    name: string
+    clientId: string
+    description: string
+  }
   selfDescriptionDocumentId?: string | null
 }
 
