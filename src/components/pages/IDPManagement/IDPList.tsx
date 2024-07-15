@@ -199,13 +199,6 @@ export const IDPList = () => {
           label={ti('action.register_next')}
         />
       ),
-      consent: (
-        <MenuItemOpenOverlay
-          overlay={OVERLAYS.CONSENT_OSP}
-          id={idp.identityProviderId}
-          label={ti('action.consent')}
-        />
-      ),
       enableToggle:
         isManaged && idp.enabled ? (
           <MenuItemOpenOverlay
