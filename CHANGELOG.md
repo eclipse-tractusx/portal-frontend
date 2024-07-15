@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Connector
+  - Show appropriate error information to the user along with refetch button
+
 ## 2.1.0-RC1
 
 ### Change
@@ -45,7 +50,6 @@
   - fixed app category view more and collapse button function [#805](https://github.com/eclipse-tractusx/portal-frontend/pull/805)
 - **Connector Management**:
   - fixed blank page issue on clicking on details [#925](https://github.com/eclipse-tractusx/portal-frontend/pull/925)
-  - Show appropriate error information to the user along with refetch button [#904](https://github.com/eclipse-tractusx/portal-frontend/pull/904)
 
 ## 2.0.0
 
