@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+- Compant Data
+  - Remove unwanted input forms
+  - Fix crash issue in details page
+  - Add error handling component in table
+
 ## 2.1.0-RC1
 
 ### Change
@@ -45,10 +52,6 @@
   - fixed app category view more and collapse button function [#805](https://github.com/eclipse-tractusx/portal-frontend/pull/805)
 - **Connector Management**:
   - fixed blank page issue on clicking on details [#925](https://github.com/eclipse-tractusx/portal-frontend/pull/925)
-- **Compant Data**:
-  - Remove unwanted input forms
-  - Fix crash issue in details page
-  - Add error handling component in table
 
 ## 2.0.0
 
