@@ -2,10 +2,16 @@
 
 ## unreleased
 
-- Compant Data
+### Bugfixes
+
+- **Company Data Management**:
   - Remove unwanted input forms
   - Fix crash issue in details page
   - Add error handling component in table
+- **Connector Management**:
+  - Show appropriate error information to the user along with refetch button
+- **User Management**:
+  - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
 
 ## 2.1.0-RC1
 
