@@ -1,14 +1,33 @@
 # Changelog
 
-## Unreleased
+## unreleased
+
+### Feature
+
+- **Imprint**:
+  - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
+- **App marketplace**:
+  - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
+- **Service Marketplace**:
+  - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 
 ### Bugfixes
 
+- **Company Data Management**:
+  - Remove unwanted input forms
+  - Fix crash issue in details page
+  - Add error handling component in table
+- **Connector Management**:
+  - Show appropriate error information to the user along with refetch button
 - **User Management**:
   - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
 - **Admin Board**:
   - Fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
-
+- **UI Language**
+  - Updated translations in locale files
+- **Application Requests**:
+  - UI Improvements [#911](https://github.com/eclipse-tractusx/portal-frontend/pull/911)
+ 
 ## 2.1.0-RC1
 
 ### Change
