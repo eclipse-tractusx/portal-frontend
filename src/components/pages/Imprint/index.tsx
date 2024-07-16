@@ -18,39 +18,34 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
-import { Typography } from '@catena-x/portal-shared-components'
+import { PageHeader, Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {
   const { t } = useTranslation('footer', { keyPrefix: 'imprint' })
+
   return (
     <main>
-      <StageHeader title={t('title')} />
+      <PageHeader headerHeight={200} topPage={true} title={t('title')} />
       <section>
         <Typography variant="h5">{t('directors')}</Typography>
-        <Typography variant="body2">Oliver Ganser ({t('ceo')})</Typography>
-        <Typography variant="body2">
-          Prof. Dr.-Ing. Boris Otto ({t('deputyCeo')})
-        </Typography>
-        <Typography variant="body2">
-          Claus Cremers ({t('treasurer')})
-        </Typography>
+        <Typography variant="body2">{t('ceo')}</Typography>
+        <Typography variant="body2">{t('deputyCeo')}</Typography>
+        <Typography variant="body2">{t('treasurer')}</Typography>
         <br />
-        <Typography variant="body2">{t('address')}</Typography>
-        <Typography variant="body2">
-          Catena-X Automotive Network e.V.
-        </Typography>
-        <Typography variant="body2">c/o IFOK GmbH</Typography>
-        <Typography variant="body2">Reinhardtstraße 58</Typography>
-        <Typography variant="body2">10117 Berlin</Typography>
+        <Typography variant="h5">{t('address')}</Typography>
+        <Typography variant="body2">{t('nameOfOrganization')}</Typography>
+        <Typography variant="body2">{t('careOf')}</Typography>
+        <Typography variant="body2">{t('street')}</Typography>
+        <Typography variant="body2">{t('postalCode&City')}</Typography>
         <br />
-        <Typography variant="h5">{t('contact&support')}</Typography>
-        <Typography variant="body2">{t('contact&supportDesc')}</Typography>
+        <Typography variant="h5">{t('contact&Support')}</Typography>
+        <Typography variant="body2">{t('contact&SupportDesc')}</Typography>
         <br />
         <Typography variant="h5">{t('privacy')}</Typography>
         <Typography variant="body2">{t('privacyDesc')}</Typography>
-        <a href=".">xxx.xxx.xxx</a>
+        {/* TODO: once privacy page's content is available, then href url can be changed to href="./privacy" */}
+        <a href="./imprint">{t('privacyPolicy')}</a>
       </section>
     </main>
   )

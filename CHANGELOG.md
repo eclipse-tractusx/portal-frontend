@@ -2,6 +2,11 @@
 
 ## unreleased
 
+### Feature
+
+- **Imprint**:
+  - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
+
 ### Bugfixes
 
 - **Company Data Management**:
