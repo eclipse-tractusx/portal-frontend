@@ -18,7 +18,11 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { CircleProgress, Typography } from '@catena-x/portal-shared-components'
+import {
+  CircleProgress,
+  ErrorBar,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { useTheme } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,6 +38,7 @@ import { appsControlSelector } from 'features/apps/control'
 import { type AppMarketplaceApp } from 'features/apps/types'
 import { useEffect, useState } from 'react'
 import { cloneDeep } from 'lodash'
+import NoItems from 'components/pages/NoItems'
 
 export const label = 'AppList'
 
@@ -43,11 +48,15 @@ export default function AppListSection() {
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { data } = useFetchActiveAppsQuery()
+  const { data, error, isError, refetch } = useFetchActiveAppsQuery()
   const { data: favoriteItems } = useFetchFavoriteAppsQuery()
   const control = useSelector(appsControlSelector)
   const [list, setList] = useState<AppMarketplaceApp[]>([])
   const [favList, setFavlist] = useState<string[]>([])
+
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const activeAppsError = error as any
 
   const checkIsFavorite = (appId: string) => favList?.includes(appId)
 
@@ -133,10 +142,31 @@ export default function AppListSection() {
     )
 
   const renderList = () => {
+    if (data && data.length === 0) return <NoItems />
     if (!data) return renderProgress()
     if (!data.length) return renderNoMatch()
     return renderGroups()
   }
 
-  return <section>{renderList()}</section>
+  return (
+    <section>
+      {!isError ? (
+        renderList()
+      ) : (
+        <ErrorBar
+          errorText={
+            activeAppsError?.data?.status >= 400 &&
+            activeAppsError?.data?.status < 500
+              ? t('content.appstore.appOverviewSection.dataLoadFailed')
+              : t('content.appstore.appOverviewSection.loadFailed')
+          }
+          showButton={
+            activeAppsError.code >= 500 && activeAppsError?.data?.status < 600
+          }
+          buttonText={t('error.tryAgain')}
+          handleButton={refetch}
+        />
+      )}
+    </section>
+  )
 }
