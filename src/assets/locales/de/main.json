@@ -165,7 +165,7 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "companyinfo": "Bewerbungsinformationen des Unternehmens",
+          "companyinfo": "Unternehmen",
           "contact": "Kontakt",
           "bpn": "BPN",
           "age": "Alter",
@@ -204,7 +204,8 @@
           "appProvider": "App Anbieter",
           "onboardingProvider": "Onboarding Service Anbieter",
           "serviceProvider": "Service Anbieter",
-          "noinfo": "keine Daten verfügbar",
+          "noinfo": "Keine Daten verfügbar",
+          "noRolesAvailable": "Keine Rollen verfügbar",
           "commercialRegisterNumber": "Handelsregisternummer",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
@@ -322,7 +323,9 @@
           "modularproduction": "Modular Production"
         },
         "noMatch": "Keine Treffer",
-        "for": "zu Ihrem Suchausdruck"
+        "for": "zu Ihrem Suchausdruck",
+        "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+        "loadFailed": "Laden fehlgeschlagen"
       }
     },
     "semantichub": {
@@ -1382,6 +1385,8 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
+      "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+      "loadFailed": "Laden fehlgeschlagen",
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",

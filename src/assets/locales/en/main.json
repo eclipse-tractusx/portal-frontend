@@ -164,7 +164,7 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "companyinfo": "Company Application Info",
+          "companyinfo": "Company",
           "contact": "Contact",
           "bpn": "BPN",
           "age": "Age",
@@ -203,7 +203,8 @@
           "appProvider": "App Provider",
           "onboardingProvider": "Onboarding Service Provider",
           "serviceProvider": "Service Provider",
-          "noinfo": "no data available",
+          "noinfo": "No data available",
+          "noRolesAvailable": "No roles available",
           "commercialRegisterNumber": "Commercial Register Number",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
@@ -321,7 +322,9 @@
           "modularproduction": "Modular Production"
         },
         "noMatch": "No Match",
-        "for": "for your search term"
+        "for": "for your search term",
+        "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+        "loadFailed": "Load Failed"
       }
     },
     "semantichub": {
@@ -1349,6 +1352,8 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
+      "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+      "loadFailed": "Load Failed",
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
