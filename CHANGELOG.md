@@ -7,6 +7,11 @@
 - **Imprint**:
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
 
+### Bugfixes
+
+- **User Management**:
+  - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
+
 ## 2.1.0-RC1
 
 ### Change
