@@ -4,6 +4,10 @@
 
 ### Bugfixes
 
+- **Company Data Management**:
+  - Remove unwanted input forms
+  - Fix crash issue in details page
+  - Add error handling component in table
 - **Connector Management**:
   - Show appropriate error information to the user along with refetch button
 - **User Management**:

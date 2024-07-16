@@ -41,7 +41,6 @@ export type CompanyDataFieldsType = {
   countryCode: string | undefined | null
   countryIdentifier: string | undefined | null
   identifierNumber: string | undefined | null
-  addressTitle: string | undefined | null
 }
 
 export interface CompanyDataRequestType {

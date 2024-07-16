@@ -54,10 +54,17 @@ export const CompanyAddressList = ({
   handleConfirm: () => void
 }) => {
   const { t } = useTranslation()
-  const { data, refetch: refreshSharingData } = useFetchSharingStateQuery()
+  const {
+    data,
+    refetch: refreshSharingData,
+    isFetching,
+    error: sharingStateError,
+  } = useFetchSharingStateQuery()
   const sharingStates = data?.content
-  const [outputRequest] = useFetchOutputCompanyBusinessPartnersMutation()
-  const [inputRequest] = useFetchInputCompanyBusinessPartnersMutation()
+  const [outputRequest, { isLoading: isOutputLoading, error: outputError }] =
+    useFetchOutputCompanyBusinessPartnersMutation()
+  const [inputRequest, { isLoading: isInputLoading, error: inputError }] =
+    useFetchInputCompanyBusinessPartnersMutation()
   const [outputs, setOutputs] = useState<CompanyDataType[]>([])
   const [inputs, setInputs] = useState<CompanyDataType[]>([])
   const [details, setDetails] = useState<boolean>(false)
@@ -72,12 +79,15 @@ export const CompanyAddressList = ({
       )
       .map((state) => state.externalId)
 
-    if (params && params?.length > 0)
+    if (params && params?.length > 0) {
       await inputRequest(params)
         .unwrap()
         .then((payload) => {
           setOutputs(payload.content)
         })
+    } else {
+      setOutputs([])
+    }
   }
 
   const getOutputItems = async () => {
@@ -86,12 +96,15 @@ export const CompanyAddressList = ({
         (state) => state.sharingStateType === SharingStateStatusType.Success
       )
       .map((state) => state.externalId)
-    if (params && params?.length > 0)
+    if (params && params?.length > 0) {
       await outputRequest(params)
         .unwrap()
         .then((payload) => {
           setInputs(payload.content)
         })
+    } else {
+      setInputs([])
+    }
   }
 
   useEffect(() => {
@@ -141,9 +154,19 @@ export const CompanyAddressList = ({
     }
   }
 
+  const errorObj = {
+    status: 0,
+  }
+
+  const error = sharingStateError ?? inputError ?? outputError
+
+  if (error && 'status' in error) {
+    errorObj.status = error.status as number
+  }
+
   return (
     <>
-      {inputs.length > 0 || outputs.length > 0 ? (
+      {!isFetching && !isOutputLoading && !isInputLoading ? (
         <Table
           autoFocus={false}
           onButtonClick={handleButtonClick}
@@ -160,6 +183,7 @@ export const CompanyAddressList = ({
           getRowId={(row: { [key: string]: string }) => row.createdAt}
           rows={inputs.concat(outputs)}
           onCellClick={onRowClick}
+          error={errorObj}
           columns={[
             {
               field: 'site',
