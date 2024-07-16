@@ -106,10 +106,11 @@ export default function EditPortalRoles({ id }: { id: string }) {
   }
 
   const checkConfirmButton = () =>
-    assignedRoles &&
-    selectedRoles &&
-    assignedRoles.length === selectedRoles.length &&
-    assignedRoles.every((value) => selectedRoles.includes(value))
+    selectedRoles.length === 0 ||
+    (assignedRoles &&
+      selectedRoles &&
+      assignedRoles.length === selectedRoles.length &&
+      assignedRoles.every((value) => selectedRoles.includes(value)))
 
   return (
     <>
