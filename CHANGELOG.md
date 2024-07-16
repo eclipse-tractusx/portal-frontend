@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Bugfixes
+
+- **Connector Management**:
+  - update get endpoint for 'Connect Company Connector' to consider technical user status [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
+
 ## 2.1.0-RC1
 
 ### Change
