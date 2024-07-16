@@ -7,6 +7,13 @@
 - **Imprint**:
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
 
+### Feature
+
+- **App marketplace**:
+  - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
+- **Service Marketplace**:
+  - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
+
 ### Bugfixes
 
 - **Company Data Management**:
