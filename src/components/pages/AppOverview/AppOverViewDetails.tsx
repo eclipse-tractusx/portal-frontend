@@ -147,7 +147,7 @@ export default function AppOverViewDetails({
               }}
             >
               <Typography variant="h5">
-                {t('content.appoverview.details.language')}
+                {t('content.appOverview.details.language')}
               </Typography>
               <LanguageSwitch
                 current={cardLanguage}
@@ -167,7 +167,7 @@ export default function AppOverViewDetails({
                   }}
                 >
                   <Typography variant="h5">
-                    {t('content.appoverview.details.useCase')}
+                    {t('content.appOverview.details.useCase')}
                   </Typography>
                   <Typography
                     sx={{
@@ -188,7 +188,7 @@ export default function AppOverViewDetails({
               }}
             >
               <Typography variant="h5">
-                {t('content.appoverview.details.price')}
+                {t('content.appOverview.details.price')}
               </Typography>
               <Typography
                 sx={{

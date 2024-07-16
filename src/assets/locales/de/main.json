@@ -6,21 +6,21 @@
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
-    "appmarketplace": "App Marketplace",
-    "servicemarketplace": "Service Marketplace",
+    "appMarketplace": "App Marketplace",
+    "serviceMarketplace": "Service Marketplace",
     "appdetails": "App Details",
-    "datamanagement": "Datenmanagement",
+    "dataManagement": "Datenmanagement",
     "semantichub": "Semantische Modelle",
     "connector": "Konnektor",
-    "partnernetwork": "Partner Network",
+    "partnerNetwork": "Partner Network",
     "account": "Mein CX Account",
     "organization": "Meine Company",
     "notifications": "Benachrichtigungen",
-    "usermanagement": "Benutzerverwaltung",
-    "idpmanagement": "Identitätsprovider (IDP)",
-    "technicalsetup": "Technische Integration",
-    "connectormanagement": "Connector-Management",
-    "applicationrequests": "Beitrittsanträge",
+    "userManagement": "Benutzerverwaltung",
+    "idpManagement": "Identitätsprovider (IDP)",
+    "technicalSetup": "Technische Integration",
+    "connectorManagement": "Connector-Management",
+    "applicationRequests": "Beitrittsanträge",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
     "invite": "Einladung CX Teilnehmer",
@@ -30,51 +30,53 @@
     "imprint": "Impressum",
     "privacy": "Privatsphäre",
     "terms": "Nutzungsbedingungen",
-    "cookiepolicy": "Cookies",
+    "cookiePolicy": "Cookies",
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden",
-    "appmanagement": "App Management",
-    "appoverview": "App-Übersicht",
+    "notFound": "Seite nicht gefunden",
+    "appManagement": "App Management",
+    "appOverview": "App-Übersicht",
     "deactivate": "Deactivate",
-    "appreleaseprocess": "App Release Process",
-    "appsubscription": "App Subscription MGT",
+    "appReleaseProcess": "App Release Process",
+    "appSubscription": "App Subscription MGT",
     "adminboard": "Admin Board",
-    "appusermanagement": "App Benutzer Verwaltung",
+    "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technische Benutzer Verwaltung",
-    "techuserdetails": "Technischer Benutzer Details",
-    "companyroles": "Company Roles",
-    "companyrolesparticipant": "Participant",
-    "companyrolesappprovider": "App Provider",
-    "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconformitybody": "Conformity Body",
-    "companyrolesonboardingserviceprovider": "Onboarding Service Provider",
-    "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity",
-    "servicemanagement": "Service Management",
-    "serviceoverview": "Service Overview",
-    "servicereleaseprocess": "Service Release Process",
-    "serviceadminboard": "Admin Board",
-    "servicesubscription": "Service Subscription Mgt",
-    "servicedetail": "Service Details",
-    "company-role": "Config - Company Role",
-    "usecase-participation": "Config - Use Case Participation",
-    "certificate-credential": "Config - Certificates",
+    "technicalUserManagement": "Technische Benutzer Verwaltung",
+    "techUserDetails": "Technischer Benutzer Details",
+    "companyRoles": "Company Roles",
+    "companyRolesParticipant": "Participant",
+    "companyRolesAppProvider": "App Provider",
+    "companyRolesServiceProvider": "Service Provider",
+    "companyRolesConformityBody": "Conformity Body",
+    "companyRolesOnboardingServiceProvider": "Onboarding Service Provider",
+    "useCase": "Use Case",
+    "useCaseTraceablity": "Traceablity",
+    "serviceManagement": "Service Management",
+    "serviceOverview": "Service Overview",
+    "serviceReleaseProcess": "Service Release Process",
+    "serviceAdminBoard": "Admin Board",
+    "serviceSubscription": "Service Subscription Mgt",
+    "serviceDetail": "Service Details",
+    "companyRole": "Config - Company Role",
+    "useCaseParticipation": "Config - Use Case Participation",
+    "certificateCredential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space",
-    "admin-credential": "Credential Requests",
+    "dataSpace": "Data Space",
+    "adminCredential": "Credential Requests",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
-    "company-subscriptions": "Firmenabonnements",
+    "companySubscriptions": "Firmenabonnements",
     "mycompany": "My Company",
     "company_data": "Company Data",
     "onboardingServiceProvider": "Onboarding Service Provider"
+    "mynotifications": "My Notifications",
+    "companyData": "Company Data"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
-    "add_user": "Neuen Benutzer hinzufügen",
-    "add_techuser": "Neuen technischen Benutzer hinzufügen",
+    "addUser": "Neuen Benutzer hinzufügen",
+    "addTechuser": "Neuen technischen Benutzer hinzufügen",
     "idp_delete_info_title": "Löschung des Identitätsanbieters.",
     "idp_delete_info_intro": "Bitte beachten Sie, dass alle Benutzer, die nicht auf das neue iDP migriert werden, unwiderruflich gelöscht werden.",
     "idp_delete_success_title": "Identitätsanbieter {{name}} wurde erfolgreich gelöscht.",
@@ -258,13 +260,13 @@
           "title": "Catena-X",
           "subtitle": "das Tor zum digitalen Automotive-Netzwerk",
           "buttonName": "Meine Apps",
-          "navigation": "/appmanagement"
+          "navigation": "/appManagement"
         },
         "slider2": {
           "title": "Use Case Introduction",
           "subtitle": "Lernen Sie die unterstützten Anwendungsfälle, zugehörigen semantischen Modelle und Apps kennen, um Ihre anwendungsfallgesteuerte Onboarding-Reise zu beginnen.",
           "buttonName": "Use Case Introduction",
-          "navigation": "/usecase"
+          "navigation": "/useCase"
         },
         "slider3": {
           "title": "Marktplätze",
@@ -460,7 +462,7 @@
         "showAll": "zeige alles"
       }
     },
-    "appoverview": {
+    "appOverview": {
       "headerTitle": "Meine Applikationen",
       "title": "App-Übersicht",
       "inputPlaceholder": "Suchen Sie nach Apps",
@@ -549,7 +551,7 @@
       "deleteIconTooltip": "Mindestens ein Dokument ist obligatorisch. Laden Sie ein neues Dokument hoch, bevor Sie das Bild entfernen können.",
       "uploadButtonTooltip": "Maximale Anzahl zulässiger Dokumente erreicht. Bitte löschen Sie ein Dokument, bevor Sie ein neues hochladen."
     },
-    "appreleaseprocess": {
+    "appReleaseProcess": {
       "message": "App Release Process Message"
     },
     "connector": {
@@ -612,10 +614,7 @@
       },
       "configurationDetails": {
         "title": "So konfigurieren Sie Ihren Connector",
-        "description1": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.",
-        "description2": "Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.",
-        "description3": "Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.",
-        "description4": "Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+        "description": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.<br/> Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.<br/>Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.<br/> Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
         "learnMore": "Lern mehr",
         "clientId": "Client-ID Ihres technischen Benutzers",
         "secret": "Geheimnis",
@@ -659,12 +658,12 @@
         "company": {
           "title": "Connector registrieren",
           "intro": "Um mit Ihrem Connector innerhalb des Datenraums kommunizieren zu können, muss der Connector-Endpunkt registriert werden. Für den Connector ist zwingend ein technischer Benutzer erforderlich. Dieser Benutzer wird verwendet, um die Kommunikation zwischen Ihrem Connector und dem Firmen-Wallet (Identitätsmanagement) zu ermöglichen. Wenn der technische Benutzer noch nicht erstellt wurde, erstellen Sie bitte zuerst den technischen Benutzer und fahren Sie anschließend mit der Connector-Registrierung fort. Beachten Sie, dass die technische Benutzererstellung ein asynchroner Prozess ist und bis zu 5 Minuten dauern kann.",
-          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen aktiver Teilnehmer ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
+          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen aktiver Teilnehmer ist. Unternehmensrollen können vom Unternehmensadministrator /companyRole geändert werden"
         },
         "managed": {
           "title": "Register Managed Connector",
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
-          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
+          "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /companyRole geändert werden"
         },
         "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
         "connectorasaservice": "Connector-as-a-service",
@@ -1145,7 +1144,7 @@
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
     },
     "appdetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Verfügbare App Sprachen",
       "subscribe": "Abonnieren",
       "subscribed": "Abonniert",
@@ -1548,7 +1547,7 @@
       }
     },
     "adminboardDetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Language",
       "price": "Price",
       "longDescriptionTitleEN": "[Long Description - EN] ",
@@ -1773,7 +1772,6 @@
       "tab2": "Role Comparison"
     },
     "companyRolesUpdate": {
-      "headerTitle": "Roles",
       "heading": "Change Company Role",
       "description": "Below you can manage the roles your company takes in Catena-X.",
       "step1": "You can change your current role by deselecting it and selecting another role.",
@@ -1812,9 +1810,8 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview",
       "heading": "Use Case Participation",
-      "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
+      "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the useCase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",

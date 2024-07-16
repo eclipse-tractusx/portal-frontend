@@ -18,15 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
-import { Typography } from '@catena-x/portal-shared-components'
+import { PageHeader, Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {
   const { t } = useTranslation('footer', { keyPrefix: 'imprint' })
   return (
     <main>
-      <StageHeader title={t('title')} />
+      <PageHeader headerHeight={200} topPage={true} title={t('title')} />
       <section>
         <Typography variant="h5">{t('directors')}</Typography>
         <Typography variant="body2">Oliver Ganser ({t('ceo')})</Typography>

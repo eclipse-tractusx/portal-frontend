@@ -192,9 +192,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         <Typography variant="caption1" sx={{ mb: 1, display: 'inherit' }}>
           {item.price}
         </Typography>
-        <div className="usecase">
+        <div className="useCase">
           <Typography variant="label2" sx={{ pb: 1 }}>
-            {t('content.appdetail.usecase')}:
+            {t('content.appdetail.useCase')}:
           </Typography>
           <Typography variant="caption2" sx={{ pb: 1, ml: 1 }}>
             {item.useCases.map((useCase: UseCaseType) => (
@@ -202,7 +202,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             ))}
           </Typography>
         </div>
-        <div className="usecase">
+        <div className="useCase">
           <Typography variant="label2">
             {t('content.appdetail.language')}:
           </Typography>

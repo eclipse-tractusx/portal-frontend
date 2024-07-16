@@ -184,7 +184,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       )
     case NotificationType.APP_SUBSCRIPTION_REQUEST:
       return (
-        <NotificationContent item={item} navlinks={[PAGES.APPSUBSCRIPTION]} />
+        <NotificationContent item={item} navlinks={[PAGES.APP_SUBSCRIPTION]} />
       )
     case NotificationType.APP_RELEASE_REQUEST:
       return <NotificationContent item={item} navlinks={[PAGES.ADMINBOARD]} />
@@ -193,24 +193,27 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
         <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />
       )
     case NotificationType.APP_RELEASE_REJECTION:
-      return <NotificationContent item={item} navlinks={[PAGES.APPOVERVIEW]} />
+      return <NotificationContent item={item} navlinks={[PAGES.APP_OVERVIEW]} />
     case NotificationType.TECHNICAL_USER_CREATION:
       return (
         <NotificationContent
           item={item}
-          navlinks={[PAGES.TECHUSER_MANAGEMENT]}
+          navlinks={[PAGES.TECH_USER_MANAGEMENT]}
         />
       )
     case NotificationType.SERVICE_REQUEST:
       return (
         <NotificationContent
           item={item}
-          navlinks={[PAGES.SERVICESUBSCRIPTION]}
+          navlinks={[PAGES.SERVICE_SUBSCRIPTION]}
         />
       )
     case NotificationType.SERVICE_RELEASE_REQUEST:
       return (
-        <NotificationContent item={item} navlinks={[PAGES.SERVICEADMINBOARD]} />
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.SERVICE_ADMIN_BOARD]}
+        />
       )
     case NotificationType.ROLE_UPDATE_APP_OFFER:
       return <NotificationContent item={item} />
