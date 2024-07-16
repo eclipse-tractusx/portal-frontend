@@ -2,7 +2,9 @@
 
 ## unreleased
 
-- Connector
+### Bugfixes
+
+- **Connector Management**:
   - Show appropriate error information to the user along with refetch button
 
 ## 2.1.0-RC1
