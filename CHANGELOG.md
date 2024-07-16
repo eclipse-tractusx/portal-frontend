@@ -6,9 +6,6 @@
 
 - **Imprint**:
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
-
-### Feature
-
 - **App marketplace**:
   - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 - **Service Marketplace**:
@@ -24,6 +21,8 @@
   - Show appropriate error information to the user along with refetch button
 - **User Management**:
   - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
+- **UI Language**
+  - Updated translations in locale files
 - **Application Requests**:
   - UI Improvements [#911](https://github.com/eclipse-tractusx/portal-frontend/pull/911)
  
