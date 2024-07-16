@@ -21,6 +21,8 @@
   - Show appropriate error information to the user along with refetch button
 - **User Management**:
   - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
+- **Connector Management**:
+  - update get endpoint for 'Connect Company Connector' to consider technical user status [#938](https://github.com/eclipse-tractusx/portal-frontend/pull/938)
 - **UI Language**
   - Updated translations in locale files
 - **Application Requests**:
