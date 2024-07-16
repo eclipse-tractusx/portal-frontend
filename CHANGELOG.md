@@ -1,9 +1,11 @@
 # Changelog
 
-## Unreleased
+## unreleased
 
 ### Bugfixes
 
+- **Connector Management**:
+  - Show appropriate error information to the user along with refetch button
 - **User Management**:
   - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
 
