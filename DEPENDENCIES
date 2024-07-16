@@ -42,7 +42,7 @@ npm/npmjs/-/base64-js/1.5.1, MIT, approved, clearlydefined
 npm/npmjs/-/binary-extensions/2.3.0, MIT, approved, #13867
 npm/npmjs/-/brace-expansion/1.1.11, MIT, approved, clearlydefined
 npm/npmjs/-/brace-expansion/2.0.1, MIT, approved, clearlydefined
-npm/npmjs/-/braces/3.0.2, MIT, approved, #14866
+npm/npmjs/-/braces/3.0.3, MIT, approved, #14866
 npm/npmjs/-/browserslist/4.23.0, MIT, approved, clearlydefined
 npm/npmjs/-/bs-logger/0.2.6, MIT, approved, clearlydefined
 npm/npmjs/-/bser/2.1.1, Apache-2.0, approved, clearlydefined
@@ -168,7 +168,7 @@ npm/npmjs/-/fastq/1.17.1, ISC, approved, clearlydefined
 npm/npmjs/-/fb-watchman/2.0.2, MIT AND Apache-2.0, approved, #5379
 npm/npmjs/-/file-entry-cache/6.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/file-selector/0.6.0, MIT, approved, #3230
-npm/npmjs/-/fill-range/7.0.1, MIT, approved, clearlydefined
+npm/npmjs/-/fill-range/7.1.1, MIT, approved, #14867
 npm/npmjs/-/find-root/1.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/find-up/4.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/find-up/5.0.0, MIT, approved, clearlydefined
