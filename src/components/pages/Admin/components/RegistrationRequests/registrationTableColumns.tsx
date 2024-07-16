@@ -77,7 +77,7 @@ export const StatusProgress = ({
           totalItems={row.applicationChecklist.length}
         />
         <Typography
-          variant="body2"
+          variant="body3"
           className="statusText"
           sx={{ color: style.color }}
         >
@@ -103,7 +103,7 @@ export const StatusProgress = ({
         )}
         {type && (
           <Typography
-            variant="body2"
+            variant="body3"
             className="cancelBtn"
             onClick={(e) => {
               e.stopPropagation()
