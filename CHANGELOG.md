@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased
+
+### Change
+
+- Page headers
+  - harmonization and standardization of page headers, added consistent headers and removed unused code
+
+### Feature
+
+- Use scroll to top button from shared components
+
+### Bugfixes
+
+- Fixed incorrect usage of pre-commit hook
+- Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
+
 ## 2.1.0-RC2
 
 ### Feature

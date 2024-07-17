@@ -31,7 +31,6 @@ import {
   CircleProgress,
 } from '@catena-x/portal-shared-components'
 import './AdminBoard.scss'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
 import type {
@@ -399,9 +398,7 @@ export default function CommonAdminBoard({
 
   return (
     <div className="adminBoard">
-      <PageHeader title={headerTitle} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeader title={headerTitle} topPage={true} headerHeight={200} />
       <div className="mainContainer">
         <div className="searchContainer">
           <SearchInput

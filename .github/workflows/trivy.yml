@@ -20,11 +20,11 @@
 # Depending on the location of your Docker container
 # you need to change the path to the specific Docker registry.
 #
-name: "Trivy Stable"
+name: 'Trivy Stable'
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   # pull_request:
   # The branches below must be a subset of the branches above
   # branches: [ main ]
@@ -33,13 +33,13 @@ on:
   #   - "**/*.txt"
   schedule:
     # Once a day
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
   # Trigger manually
 
 env:
-  IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "portal-frontend"
+  IMAGE_NAMESPACE: 'tractusx'
+  IMAGE_NAME: 'portal-frontend'
 
 jobs:
   analyze-config:
@@ -51,22 +51,22 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
+        uses: aquasecurity/trivy-action@7c2007bcb556501da015201bcba5aa14069b74e2 # v0.23.0
         with:
-          scan-type: "config"
+          scan-type: 'config'
           hide-progress: false
-          format: "sarif"
-          output: "trivy-results1.sarif"
-          vuln-type: "os,library"
+          format: 'sarif'
+          output: 'trivy-results1.sarif'
+          vuln-type: 'os,library'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
+        uses: github/codeql-action/upload-sarif@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
         if: always()
         with:
-          sarif_file: "trivy-results1.sarif"
+          sarif_file: 'trivy-results1.sarif'
 
   analyze-portal-frontend:
     runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       # It's also possible to scan your private registry with Trivy's built-in image scan.
       # All you have to do is set ENV vars.
@@ -86,16 +86,16 @@ jobs:
       # For public images, no ENV vars must be set.
       - name: Run Trivy vulnerability scanner
         if: always()
-        uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
+        uses: aquasecurity/trivy-action@7c2007bcb556501da015201bcba5aa14069b74e2 # v0.23.0
         with:
           # Path to Docker image
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest"
-          format: "sarif"
-          output: "trivy-results2.sarif"
-          vuln-type: "os,library"
+          image-ref: '${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest'
+          format: 'sarif'
+          output: 'trivy-results2.sarif'
+          vuln-type: 'os,library'
 
       - name: Upload Trivy scan results to GitHub Security tab
         if: always()
-        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
+        uses: github/codeql-action/upload-sarif@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
         with:
-          sarif_file: "trivy-results2.sarif"
+          sarif_file: 'trivy-results2.sarif'

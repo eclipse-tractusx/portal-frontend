@@ -20,7 +20,6 @@
 
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   PageHeader,
   Typography,
@@ -163,22 +162,22 @@ export default function AppOverview() {
 
   const categoryViews = [
     {
-      buttonText: t('content.appoverview.filter.all'),
+      buttonText: t('content.appOverview.filter.all'),
       buttonValue: '',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.active'),
+      buttonText: t('content.appOverview.filter.active'),
       buttonValue: 'active',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.inactive'),
+      buttonText: t('content.appOverview.filter.inactive'),
       buttonValue: 'inactive',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.wip'),
+      buttonText: t('content.appOverview.filter.wip'),
       buttonValue: 'wip',
       onButtonClick: setView,
     },
@@ -205,22 +204,20 @@ export default function AppOverview() {
   }
 
   return (
-    <div className="appoverview-app">
+    <div className="appOverview-app">
       <PageHeader
-        title={t('content.appoverview.headerTitle')}
+        title={t('content.appOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
         <div className="desc-recently">
           <div className="container">
             <Typography variant="h4" className="desc-heading">
-              {t('content.appoverview.recently.header')}
+              {t('content.appOverview.recently.header')}
             </Typography>
             <Typography variant="body2" className="desc-message">
-              {t('content.appoverview.recently.subheader')}
+              {t('content.appOverview.recently.subheader')}
             </Typography>
             <div className="desc-card">
               <Cards
@@ -247,7 +244,7 @@ export default function AppOverview() {
               variant="h3"
               className="section-title"
             >
-              {t('content.appoverview.title')}
+              {t('content.appOverview.title')}
             </Typography>
 
             <Box sx={{ textAlign: 'center' }}>
@@ -258,7 +255,7 @@ export default function AppOverview() {
                 onChange={(e) => {
                   doSearch(e.target.value)
                 }}
-                placeholder={t('content.appoverview.inputPlaceholder')}
+                placeholder={t('content.appOverview.inputPlaceholder')}
               />
             </Box>
             <div className="view-selector">
