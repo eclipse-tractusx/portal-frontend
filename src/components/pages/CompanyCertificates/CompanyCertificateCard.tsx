@@ -171,7 +171,7 @@ export default function CompanyCertificateCard({
           borderRadius: '74px',
         }}
         onClick={handleDelete}
-        disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE)}
+        disabled={!userHasPortalRole(ROLES.DELETE_CERTIFICATES)}
       >
         <DeleteOutlinedIcon
           style={{
@@ -202,7 +202,7 @@ export default function CompanyCertificateCard({
               <Typography variant="label3" onClick={handleView}>
                 {t('content.companyCertificate.view')}{' '}
               </Typography>
-              {userHasPortalRole(ROLES.SUBSCRIBE_SERVICE) &&
+              {userHasPortalRole(ROLES.DELETE_CERTIFICATES) &&
                 item.companyCertificateStatus ===
                   CompanyCertificateStatus.ACTIVE && (
                   <Typography variant="label3" onClick={handleDelete}>

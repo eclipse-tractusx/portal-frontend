@@ -224,7 +224,7 @@ export default function AdminCredentialElements() {
         </div>
       )
     } else if (
-      UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+      userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
       row.participantStatus === StatusEnum.ACTIVE
     ) {
       return (
