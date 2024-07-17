@@ -32,6 +32,7 @@ import {
   SharedCssBaseline,
 } from '@catena-x/portal-shared-components'
 import { cofinityTheme } from 'theme.override'
+import { ThemeProvider } from '@mui/material'
 
 I18nService.init()
 AccessService.init()
@@ -42,9 +43,11 @@ UserService.init((user) => {
       <SharedCssBaseline />
       <Provider store={store}>
         <SharedThemeProvider themeDesign={cofinityTheme}>
-          <AuthProvider user={user}>
-            <AuthorizingRouter />
-          </AuthProvider>
+          <ThemeProvider theme={cofinityTheme}>
+            <AuthProvider user={user}>
+              <AuthorizingRouter />
+            </AuthProvider>
+          </ThemeProvider>
         </SharedThemeProvider>
       </Provider>
     </StrictMode>

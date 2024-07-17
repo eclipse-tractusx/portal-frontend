@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useState, useMemo } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -29,7 +29,6 @@ import SortIcon from '@mui/icons-material/Sort'
 import {
   Button,
   CustomAccordion,
-  MainNavigation,
   Typography,
 } from '@catena-x/portal-shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
@@ -47,11 +46,13 @@ import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './Header.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
+import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const location = useLocation()
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
@@ -73,13 +74,31 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
       (item: Tree): MenuItem => ({
         ...item,
         to: `/${item.name}`,
-        title: t(`pages.${item.name}`),
+        title: item.children
+          ? t(`menu.heading.${item.name}`)
+          : t(`pages.${item.name}`),
         hint: item.hint ? t(`hints.${item.hint}`) : '',
         children: addTitle(item.children),
       })
     )
 
   const menu = addTitle(main) ?? []
+
+  const activeMenuBucket = useMemo(() => {
+    return menu.find((item) => {
+      if (item.children) {
+        return item.children.find((menuItem) => {
+          if (menuItem.children) {
+            return menuItem.children.find(
+              (subItem) => subItem.to === location.pathname
+            )
+          }
+          return menuItem.to === location.pathname
+        })
+      }
+      return false
+    })?.name
+  }, [menu])
 
   const renderFullText = () => {
     return (
@@ -153,7 +172,11 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   return (
     <>
       <header>
-        <MainNavigation items={menu} component={NavLink}>
+        <MainNavigation
+          items={menu}
+          component={NavLink}
+          activeMenu={activeMenuBucket}
+        >
           <Link to={'/'} className="logo">
             <img
               src={ImageReferences.logo.url}
@@ -173,7 +196,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
             <Button
               size="small"
               color="secondary"
-              variant="contained"
+              variant="outlined"
               onClick={() => {
                 window.open(
                   `${document.location.origin}/documentation/`,

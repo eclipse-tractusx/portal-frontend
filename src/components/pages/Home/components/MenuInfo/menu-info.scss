@@ -26,18 +26,15 @@
   right: 0px;
   width: 280px;
   padding: 10px 0px;
-  height: 99%;
-}
-
-.closeIcon {
-  position: absolute;
-  right: 10px;
-}
-
-.userMenuInfo {
-  margin-top: 20px;
 }
 
 .dep {
   transition: all 3s ease-out;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
