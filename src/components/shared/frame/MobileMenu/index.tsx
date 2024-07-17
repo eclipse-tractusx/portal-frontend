@@ -41,7 +41,7 @@ import { type CompanyMenuTypes, MyCompanyLink } from './MyCompanyLink'
 import { MenuSubItems } from './MenuChildren'
 import { MenuFooter } from './MenuFooter'
 import { t } from 'i18next'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 
 export interface MenuProps extends BoxProps {
   items: MenuItemProps[]

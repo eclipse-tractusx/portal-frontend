@@ -36,7 +36,7 @@ import {
   useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
 import { useTranslation } from 'react-i18next'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'

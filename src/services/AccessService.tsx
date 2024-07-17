@@ -29,7 +29,6 @@ import type { OverlayState } from 'features/control/overlay'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,
-  ALL_PAGES,
   footerMenuFull,
   userMenuRegistration,
   userMenuCompany,
@@ -78,7 +77,7 @@ import {
   getClientIdSemantic,
   getClientIdSsiCredential,
 } from './EnvironmentService'
-import { mainMenuFullTree, userMenuFull } from 'types/cfx/Config'
+import { mainMenuFullTree, userMenuFull, ALL_PAGES } from 'types/cfx/Config'
 import { getCompanyRoles } from './CompanyService'
 
 let pageMap: { [page: string]: IPage }

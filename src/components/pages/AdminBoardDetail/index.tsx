@@ -24,7 +24,7 @@ import { Box } from '@mui/material'
 import { t } from 'i18next'
 import { useFetchBoardAppDetailsQuery } from 'features/adminBoard/adminBoardApiSlice'
 import BoardContentDetails from './BoardContentDetails'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import './style.scss'
 
 export default function AdminBoardDetail() {

@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 import AccessService from '../services/AccessService'
 import MainOverlay from './MainOverlay'
 import { show } from 'features/control/overlay'
-import { type OVERLAYS, PAGES } from 'types/Constants'
+import { type OVERLAYS } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
 import { MenuInfo } from './pages/Home/MenuInfo'
@@ -42,6 +42,7 @@ import RegistrationStatus from './pages/RegistrationStatus'
 import Logout from './pages/Logout'
 import Redirect from './actions/Redirect'
 import { OSPConsent } from './pages/OSPConsent'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function Main() {
   const { t } = useTranslation()

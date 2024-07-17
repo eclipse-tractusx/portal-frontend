@@ -33,7 +33,7 @@ import CommonService from 'services/CommonService'
 import BoardPrivacy from './BoardPrivacy'
 import BoardRoles from './BoardRoles'
 import BoardTechnicalUserSetup from './BoardTechnicalUserSetup'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import './style.scss'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {

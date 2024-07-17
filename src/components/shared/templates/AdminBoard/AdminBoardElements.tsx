@@ -32,7 +32,7 @@ import {
   type AppContent,
   useApproveRequestMutation,
 } from 'features/adminBoard/adminBoardApiSlice'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import {
   currentErrorType,
   currentSuccessType,
@@ -47,6 +47,7 @@ import {
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function AdminBoardElements({
   apps,

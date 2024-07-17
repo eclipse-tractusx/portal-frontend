@@ -26,7 +26,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
 import './style.scss'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'
 

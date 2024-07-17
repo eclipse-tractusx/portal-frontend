@@ -21,7 +21,7 @@
 import { type CardItems, Cards } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import type { AppInfo } from 'features/apps/types'
 import { fetchImageWithToken } from 'services/ImageService'
 
