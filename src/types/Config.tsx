@@ -100,7 +100,7 @@ import {
  *
  * this is the main application config table. Each entry has at least:
  * name - name of the page used as application route (without leading '/')
- * role - role required to access this page on the front end
+ * allowTo - function to determine if the current user can access resource
  * element - either a JSX Element that renders the page or a custom router setup
  *           for that page. By default it will create a simple route name -> element
  */
