@@ -154,7 +154,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     message: '',
   }
 
-  if (error !== '') {
+  if (error) {
     errorObj.status = Number(error)
     errorObj.message =
       error && Number(error) >= 400 && Number(error) < 500
