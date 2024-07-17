@@ -34,6 +34,7 @@ import CompanyService from 'services/CompanyService'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { cofinityTheme } from 'theme.override'
+import { ThemeProvider } from '@mui/material'
 
 I18nService.init()
 AccessService.init()

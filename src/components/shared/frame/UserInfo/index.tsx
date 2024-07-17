@@ -23,7 +23,6 @@ import {
   LanguageSwitch,
   UserAvatar,
   UserMenu,
-  UserNav,
   type NotificationBadgeType,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
@@ -36,7 +35,8 @@ import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
 import { useDispatch } from 'react-redux'
-import { Box } from '@mui/material'
+import { Box, styled } from '@mui/material'
+import { Menu } from 'components/shared/generic'
 
 export const UserInfo = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()
@@ -49,7 +49,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
   const [notificationInfo, setNotificationInfo] =
     useState<NotificationBadgeType>()
   const menu = pages.map((link) => ({
-    to: link,
+    to: `/${link}`,
     title: t(`pages.${link}`),
   }))
 
@@ -89,18 +89,18 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
           isNotificationAlert={notificationInfo?.isNotificationAlert}
         />
       </div>
-      <UserMenu
+      <UserMenuStyled
         open={menuOpen}
         sx={{
           top: '60px',
-          width: '256px',
           position: 'absolute',
+          width: 300,
         }}
         userName={UserService.getName()}
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
-        <UserNav
+        <Menu
           component={Link}
           onClick={openCloseMenu}
           divider
@@ -115,7 +115,16 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
             changeLanguage(key)
           }}
         />
-      </UserMenu>
+      </UserMenuStyled>
     </Box>
   )
 }
+
+const UserMenuStyled = styled(UserMenu)(
+  ({ theme }) => `
+  .MuiBox-root {
+    background-color: ${theme.palette.common.white};
+  }
+
+  `
+)

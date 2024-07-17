@@ -31,8 +31,6 @@ import {
   ALL_OVERLAYS,
   ALL_PAGES,
   footerMenuFull,
-  mainMenuFullTree,
-  userMenuFull,
   userMenuRegistration,
   userMenuCompany,
 } from 'types/Config'
@@ -80,7 +78,7 @@ import {
   getClientIdSemantic,
   getClientIdSsiCredential,
 } from './EnvironmentService'
-import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
+import { mainMenuFullTree, userMenuFull } from 'types/cfx/Config'
 import { getCompanyRoles } from './CompanyService'
 
 let pageMap: { [page: string]: IPage }
@@ -139,11 +137,14 @@ const accessToMenu = (menu: string[]) =>
 
 const accessToMenuTree = (menu: Tree[] | undefined): Tree[] | undefined =>
   menu
-    ?.filter((item: Tree) => hasAccess(item.name))
+    ?.filter((item: Tree) => item.children ?? hasAccess(item.name))
     .map((item: Tree) => ({
       ...item,
       children: accessToMenuTree(item.children),
     }))
+    .filter(
+      (item) => !item.children || (item.children && item.children.length > 0)
+    )
 
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
