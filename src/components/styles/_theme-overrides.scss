@@ -1,4 +1,5 @@
 $color-primary: #d31184;
+$color-primary-dark: #a60f68;
 $color-secondary: #4d4d4d;
 $color-gray: #f6f6f6;
 $mobile-enable-width: 1800px;
@@ -12,9 +13,10 @@ $font-family-primary:
 
 $navigation-height-balance: 85px;
 $enable-desktop-nav: 1;
+$defaultSpacing: 16px;
+$selected-hover: #ededed;
 
 body {
-  // max-width: 100%;
 }
 
 #app {
@@ -156,7 +158,7 @@ header {
 // desktop nav enabled end
 
 .MenuInfo {
-  width: 350px;
+  width: 280px;
 
   .MuiSvgIcon-root {
     cursor: pointer;
@@ -164,7 +166,6 @@ header {
 }
 
 .MenuInfo .MuiBox-root {
-  width: 100%;
 }
 
 .userMenuInfo {
@@ -177,14 +178,27 @@ header {
     font-weight: 500;
     border-radius: 0;
     color: #000000 !important;
+    width: 100%;
 
     &:hover {
-      border-radius: 0;
-      background-color: $color-gray;
+      border-radius: 8px;
+      background-color: $selected-hover;
       color: #000000 !important;
+      cursor: pointer;
 
       .MuiSvgIcon-root {
         color: #000000 !important;
+        background-color: $selected-hover;
+      }
+      .MuiListItemAvatar-root {
+        .MuiSvgIcon-root {
+          color: white !important;
+          background-color: inherit;
+
+          path {
+            fill: white !important;
+          }
+        }
       }
 
       .badgeBox,
@@ -1060,6 +1074,44 @@ footer {
   }
 }
 
+.mainNavigation {
+  .menuItem {
+    :hover {
+      background-color: $selected-hover !important;
+      border-radius: 8px;
+    }
+    .active {
+      color: $color-primary;
+      // not working
+      :hover {
+        color: $color-primary !important;
+      }
+    }
+    // not working
+    .MuiListItem-root a .active {
+      :hover {
+        color: $color-primary !important;
+      }
+    }
+  }
+
+  .UserInfo {
+    .MuiTypography-label3 {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .MuiTypography-label4 {
+      font-weight: 500;
+      font-size: 16px;
+      color: $color-secondary;
+    }
+  }
+
+  .MuiAvatar-circular.MuiAvatar-colorDefault {
+    background-color: $color-primary !important;
+  }
+}
 // slick slider
 .slick-slide .MuiTypography-root.MuiTypography-body2 {
   color: #000;

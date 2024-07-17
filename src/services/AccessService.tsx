@@ -32,8 +32,6 @@ import {
   ALL_OVERLAYS,
   ALL_PAGES,
   footerMenuFull,
-  mainMenuFullTree,
-  userMenuFull,
   userMenuRegistration,
   userMenuCompany,
 } from 'types/Config'
@@ -71,6 +69,7 @@ import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDet
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
 import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
 import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
+import { mainMenuFullTree, userMenuFull } from 'types/cfx/Config'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -98,11 +97,14 @@ const accessToMenu = (menu: string[]) =>
 // eslint-disable-next-line
 const accessToMenuTree = (menu: Tree[] | undefined): any =>
   menu
-    ?.filter((item: Tree) => hasAccess(item.name))
+    ?.filter((item: Tree) => item.children ?? hasAccess(item.name))
     .map((item: Tree) => ({
       ...item,
       children: accessToMenuTree(item.children),
     }))
+    .filter(
+      (item) => !item.children || (item.children && item.children.length > 0)
+    )
 
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
