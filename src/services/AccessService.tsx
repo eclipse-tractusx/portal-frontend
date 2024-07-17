@@ -30,7 +30,6 @@ import type { OverlayState } from 'features/control/overlay'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,
-  ALL_PAGES,
   footerMenuFull,
   userMenuRegistration,
   userMenuCompany,
@@ -68,7 +67,7 @@ import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDet
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
 import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
 import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
-import { mainMenuFullTree, userMenuFull } from 'types/cfx/Config'
+import { mainMenuFullTree, userMenuFull, ALL_PAGES } from 'types/cfx/Config'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }

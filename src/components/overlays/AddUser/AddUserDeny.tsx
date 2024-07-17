@@ -28,7 +28,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import type { IdentityProvider } from 'features/admin/idpApiSlice'
 
 export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {

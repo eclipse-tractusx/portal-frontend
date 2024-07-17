@@ -29,7 +29,7 @@ import {
   currentSuccessType,
   setSuccessType,
 } from 'features/serviceMarketplace/slice'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import './Marketplace.scss'
 
 export default function ServiceMarketplaceDetail() {

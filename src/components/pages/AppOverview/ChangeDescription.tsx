@@ -38,7 +38,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import type { ItemType } from './AddRoles'
 
 export default function ChangeDescription() {

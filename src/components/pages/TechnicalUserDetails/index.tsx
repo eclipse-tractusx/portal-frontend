@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useParams } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import TechnicalUserDetailsContent from './TechnicalUserDetailsContent'
 import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'

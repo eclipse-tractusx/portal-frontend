@@ -30,7 +30,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import './AppOverviewConfirm.scss'
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { setApplicationId } from 'features/appManagement/slice'
 
 export default function AppOverViewConfirm({

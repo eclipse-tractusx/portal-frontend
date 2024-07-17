@@ -21,7 +21,7 @@
 import CommonAdminBoard from 'components/shared/templates/AdminBoard'
 import { useFetchInReviewServicesQuery } from 'features/adminBoard/serviceAdminBoardApiSlice'
 import { useTranslation } from 'react-i18next'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function ServiceAdminBoard() {
   const { t } = useTranslation('servicerelease')
