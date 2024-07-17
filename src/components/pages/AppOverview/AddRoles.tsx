@@ -35,7 +35,7 @@ import { useEffect, useState } from 'react'
 import { useFetchAppRolesQuery } from 'features/appManagement/apiSlice'
 import AddRolesOverlay from './AddRolesOverlay'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import uniqueId from 'lodash/uniqueId'
 
 export type ItemType = {

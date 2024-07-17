@@ -20,7 +20,7 @@
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { Button, PageNotifications } from '@catena-x/portal-shared-components'
 import { show } from 'features/control/overlay'
@@ -32,6 +32,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import './style.scss'
 import { TechnicalUserTable } from './TechnicalUserTable'
 import { getAssetBase } from 'services/EnvironmentService'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()

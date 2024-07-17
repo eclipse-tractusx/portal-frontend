@@ -30,7 +30,7 @@ import {
   type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { Box, Grid } from '@mui/material'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import { Controller, useForm } from 'react-hook-form'

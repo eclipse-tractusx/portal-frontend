@@ -37,7 +37,7 @@ import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './components/AppDetailTechUserSetup'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function AppDetailContentDetails({
   item,

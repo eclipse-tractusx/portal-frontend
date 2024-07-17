@@ -30,7 +30,7 @@ import {
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'
 import { useSelector } from 'react-redux'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { updateTechuserSelector } from 'features/control/updates'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'

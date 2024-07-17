@@ -43,7 +43,7 @@ import {
 } from 'features/serviceManagement/apiSlice'
 import NoItems from 'components/pages/NoItems'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import debounce from 'lodash.debounce'
 import {
   setServiceId,

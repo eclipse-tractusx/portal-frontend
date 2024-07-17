@@ -42,7 +42,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { OVERLAYS, PAGES } from 'types/Constants'
+import { OVERLAYS } from 'types/Constants'
 import { show, closeOverlay } from 'features/control/overlay'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
@@ -66,6 +66,7 @@ import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
 import { error } from 'services/NotifyService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { PAGES } from 'types/cfx/Constants'
 
 const HelpPageURL =
   '/documentation/?path=user%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'

@@ -32,7 +32,7 @@ import {
 } from 'features/admin/appuserApiSlice'
 import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 
 export const UserRoles = () => {
   const { t } = useTranslation()

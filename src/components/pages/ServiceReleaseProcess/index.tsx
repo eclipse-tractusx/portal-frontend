@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { useDispatch } from 'react-redux'
 import { ReleaseProcess } from 'components/shared/basic/ReleaseProcess'
 import {

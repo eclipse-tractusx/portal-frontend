@@ -27,7 +27,7 @@ import {
 import { setNotification } from 'features/notification/actions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { updateData, UPDATES } from 'features/control/updates'
 import { closeOverlay } from 'features/control/overlay'
 import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'

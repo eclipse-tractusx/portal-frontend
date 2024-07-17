@@ -36,7 +36,7 @@ import {
   ServiceDeactivateEnum,
   useDeactivateServiceMutation,
 } from 'features/serviceManagement/apiSlice'
-import { PAGES } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
 
