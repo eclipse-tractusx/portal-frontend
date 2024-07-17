@@ -36,7 +36,7 @@ export interface SemanticModelsInitialState {
   uploadError: string
   openApiLink: string
   openApiError: string
-  error: ErrorResponse
+  error: ErrorResponse | string
   deleteModelId: string
   deleteError: string
 }
