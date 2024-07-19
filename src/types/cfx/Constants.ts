@@ -1,3 +1,5 @@
+import i18next from 'i18next'
+
 export const MENUS = {
   DATASPACE_PARTICIPATION: 'dataSpaceParticipation',
   MARKETPLACE: 'marketplace',
@@ -8,8 +10,9 @@ export const MENUS = {
   CX_OPERATOR: 'cxOperator',
 }
 
-export const HELP_LINK =
-  'https://intercom-help.eu/cofinity-x/en/collections/323675-portal-marketplace'
+export const HELP_LINK = () => {
+  return `https://intercom-help.eu/cofinity-x/${i18next.language}/collections/323675-portal-marketplace`
+}
 
 export enum PAGES {
   ROOT = '',
