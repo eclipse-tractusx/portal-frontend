@@ -51,7 +51,7 @@ export const MenuFooter = (): JSX.Element => {
           color="secondary"
           variant="outlined"
           onClick={() => {
-            window.open(HELP_LINK, 'documentation', 'noreferrer')
+            window.open(HELP_LINK(), 'documentation', 'noreferrer')
           }}
           className="documentation"
         >

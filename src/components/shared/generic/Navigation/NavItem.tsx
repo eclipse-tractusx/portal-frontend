@@ -60,14 +60,15 @@ export const NavItem = ({
         sx={{
           display: 'block',
           typography: 'label1',
-          margin: spacing(0.7, 2.25),
+          margin: spacing(1, 2.25),
+          marginTop: spacing(1.5),
           color: 'accent.accent03',
           ':hover, &.active': {
             color: 'primary.main',
           },
           '&.active': {
             borderBottom: '2px solid',
-            paddingBottom: '2px',
+            paddingBottom: '7px',
           },
           ...(!unstyled && {
             typography: 'label3',
@@ -94,7 +95,7 @@ export const NavItem = ({
             position: 'absolute',
             top: spacing(4.5),
             left: spacing(-1),
-            minWidth: 220,
+            width: 290,
             padding: spacing(2, 0),
             borderRadius: 4,
             backgroundColor: 'background.background01',

@@ -32,7 +32,7 @@
     "terms": "Nutzungsbedingungen",
     "cookiepolicy": "Cookies",
     "3rdpartylicenses": "Drittanbieterlizenzen",
-    "logout": "Log Out",
+    "logout": "Abmelden",
     "notfound": "Seite nicht gefunden",
     "appmanagement": "App Management",
     "appoverview": "Ihre Apps",
@@ -68,7 +68,7 @@
     "companyWallet": "Firmen-Wallet",
     "company-subscriptions": "App & Service Abonnements",
     "mycompany": "My Company",
-    "mynotifications": "My Notifications",
+    "mynotifications": "Benachrichtigungen",
     "company_data": "Company Data"
   },
   "overlays": {
@@ -280,7 +280,7 @@
         }
       },
       "searchSection": {
-        "inputPlaceholder": "Suche in Catena-X"
+        "inputPlaceholder": "Suche in Cofinity-X"
       },
       "businessApplicationsSection": {
         "title": "Meine Applications"
