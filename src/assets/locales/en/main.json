@@ -665,7 +665,7 @@
         "intro": "Registration of a company connector which is implemented in your own company network.",
         "company": {
           "title": "Register Connector",
-          "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is a asynchrony process and might take up to 5 minutes.",
+          "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is an asynchronous process and might take up to 5 minutes.",
           "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /company-role"
         },
         "managed": {
