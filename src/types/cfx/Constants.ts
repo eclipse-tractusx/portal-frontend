@@ -8,6 +8,9 @@ export const MENUS = {
   CX_OPERATOR: 'cxOperator',
 }
 
+export const HELP_LINK =
+  'https://intercom-help.eu/cofinity-x/en/collections/323675-portal-marketplace'
+
 export enum PAGES {
   ROOT = '',
   HOME = 'home',

@@ -48,6 +48,7 @@ import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationR
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
+import { HELP_LINK } from 'types/cfx/Constants'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -198,11 +199,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               color="secondary"
               variant="outlined"
               onClick={() => {
-                window.open(
-                  `${document.location.origin}/documentation/`,
-                  'documentation',
-                  'noreferrer'
-                )
+                window.open(HELP_LINK, 'documentation', 'noreferrer')
               }}
               className="documentation"
             >
