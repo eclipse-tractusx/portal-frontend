@@ -15,6 +15,8 @@ $navigation-height-balance: 85px;
 $enable-desktop-nav: 1;
 $defaultSpacing: 16px;
 $selected-hover: #ededed;
+$secondary-hover: #333333;
+$black: #000000;
 
 body {
 }
@@ -204,6 +206,7 @@ header {
       .badgeBox,
       a {
         color: #000000 !important;
+        background-color: $selected-hover !important;
       }
     }
   }
@@ -1076,12 +1079,18 @@ footer {
 
 .mainNavigation {
   .menuItem {
+    .MuiTypography-root {
+      font-size: 18px !important;
+      font-weight: 500 !important;
+      color: $secondary-hover;
+    }
     :hover {
       background-color: $selected-hover !important;
       border-radius: 8px;
+      color: $secondary-hover !important;
     }
     .active {
-      color: $color-primary;
+      color: $color-primary !important;
       // not working
       :hover {
         color: $color-primary !important;
@@ -1092,6 +1101,14 @@ footer {
       :hover {
         color: $color-primary !important;
       }
+    }
+  }
+
+  .menuHeaderItem {
+    .MuiTypography-root {
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      color: $black;
     }
   }
 
