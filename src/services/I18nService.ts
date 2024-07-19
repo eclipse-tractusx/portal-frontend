@@ -21,7 +21,7 @@
 import i18n, { changeLanguage } from 'i18next'
 import { initReactI18next, useTranslation } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
-import mainDE from '../assets/locales/de/main.json'
+import mainDE from '../assets/locales/cfx/de/main.json'
 import mainEN from '../assets/locales/cfx/en/main.json'
 import footerDE from '../assets/locales/de/footer.json'
 import footerEN from '../assets/locales/en/footer.json'

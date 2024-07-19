@@ -23,6 +23,7 @@ import { useDispatch } from 'react-redux'
 import i18next, { changeLanguage, t } from 'i18next'
 import I18nService from 'services/I18nService'
 import { setLanguage } from 'features/language/actions'
+import { HELP_LINK } from 'types/cfx/Constants'
 
 export const MenuFooter = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -50,11 +51,7 @@ export const MenuFooter = (): JSX.Element => {
           color="secondary"
           variant="outlined"
           onClick={() => {
-            window.open(
-              `${document.location.origin}/documentation/`,
-              'documentation',
-              'noreferrer'
-            )
+            window.open(HELP_LINK, 'documentation', 'noreferrer')
           }}
           className="documentation"
         >

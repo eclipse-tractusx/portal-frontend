@@ -50,6 +50,7 @@ import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import { COMPANY_ROLES } from 'types/Constants'
 import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
+import { HELP_LINK } from 'types/cfx/Constants'
 
 export const Header = ({
   main,
@@ -213,11 +214,7 @@ export const Header = ({
               color="secondary"
               variant="outlined"
               onClick={() => {
-                window.open(
-                  `${document.location.origin}/documentation/`,
-                  'documentation',
-                  'noreferrer'
-                )
+                window.open(HELP_LINK, 'documentation', 'noreferrer')
               }}
               className="documentation"
             >

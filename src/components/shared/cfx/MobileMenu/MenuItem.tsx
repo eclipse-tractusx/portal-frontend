@@ -77,7 +77,7 @@ export const MenuItem = ({
       sx={{
         display: 'flex',
         position: 'relative',
-        padding: spacing(0, 0),
+        padding: spacing(hint ? 1.3 : 1.5, 1),
         ':hover': {
           borderRadius: 10,
           backgroundColor: 'selected.hover !important',
@@ -101,7 +101,7 @@ export const MenuItem = ({
       }}
     >
       {icon ? (
-        <ListItemAvatar sx={{ height: 30, width: 30, minWidth: 30, ml: 1 }}>
+        <ListItemAvatar sx={{ height: 30, width: 30, minWidth: 30, mr: 1 }}>
           <Avatar
             sx={{
               height: 30,
@@ -127,7 +127,6 @@ export const MenuItem = ({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: spacing(hint ? 1.3 : 1.5, 1),
 
           typography: 'body2',
           textDecoration: 'none',
