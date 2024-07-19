@@ -97,7 +97,7 @@ export const MenuItem = ({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: theme.spacing(hint ? 1.3 : 1, 2),
+          padding: theme.spacing(hint ? 1.3 : 1.5, 2),
           borderRadius: theme.spacing(1),
           typography: 'body2',
           textDecoration: 'none',

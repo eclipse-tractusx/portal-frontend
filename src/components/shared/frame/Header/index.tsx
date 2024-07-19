@@ -199,7 +199,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
               color="secondary"
               variant="outlined"
               onClick={() => {
-                window.open(HELP_LINK, 'documentation', 'noreferrer')
+                window.open(HELP_LINK(), 'documentation', 'noreferrer')
               }}
               className="documentation"
             >
