@@ -21,12 +21,13 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Button, Stepper, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography } from '@catena-x/portal-shared-components'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
 import './style.scss'
+import Stepper from 'components/shared/generic/Stepper'
 
 export default function RegistrationStatus() {
   const { t } = useTranslation()
@@ -42,17 +43,17 @@ export default function RegistrationStatus() {
       case ApplicationStatus.ADD_COMPANY_DATA:
         setActiveStep(1)
         return
-      case ApplicationStatus.INVITE_USER:
+      /*case ApplicationStatus.INVITE_USER:
+        setActiveStep(2)
+        return*/
+      case ApplicationStatus.SELECT_COMPANY_ROLE:
         setActiveStep(2)
         return
-      case ApplicationStatus.SELECT_COMPANY_ROLE:
+      case ApplicationStatus.UPLOAD_DOCUMENTS:
         setActiveStep(3)
         return
-      case ApplicationStatus.UPLOAD_DOCUMENTS:
-        setActiveStep(4)
-        return
       case ApplicationStatus.VERIFY:
-        setActiveStep(5)
+        setActiveStep(4)
     }
   }, [companyData])
 
@@ -60,34 +61,24 @@ export default function RegistrationStatus() {
     {
       headline: t('content.registration.steps.step1'),
       step: 1,
-      color: '',
     },
-    {
+   /* {
       headline: t('content.registration.steps.step2'),
+      step: 2,
+    },*/
+    {
+      headline: t('content.registration.steps.step3'),
       step: 2,
     },
     {
-      headline: t('content.registration.steps.step3'),
+      headline: t('content.registration.steps.step4'),
       step: 3,
     },
     {
-      headline: t('content.registration.steps.step4'),
+      headline: t('content.registration.steps.step5'),
       step: 4,
     },
-    {
-      headline: t('content.registration.steps.step5'),
-      step: 5,
-    },
   ]
-
-  const NewAddStepList = AddStepsList.map((list) => {
-    if (list.step === activeStep) {
-      const obj = { ...list }
-      obj.color = '#0F71CB'
-      return obj
-    }
-    return list
-  })
 
   return (
     <div className="container registration-main">
@@ -112,7 +103,7 @@ export default function RegistrationStatus() {
           {t('content.registration.description')}
         </Typography>
         <Stepper
-          list={NewAddStepList}
+          list={AddStepsList}
           showSteps={5}
           activeStep={activeStep}
           tooltipText={t('content.registration.steps.tooltipText')}
@@ -121,8 +112,15 @@ export default function RegistrationStatus() {
         <div className="helpTextReg">
           <Typography variant="body3">
             {t('content.registration.helpText')}
-            <Link to={''} className="emailText">
+            <Link to={'mailto:support@cofinity-x.com '} className="emailText">
               {t('content.registration.email')}
+            </Link>
+            {t('customRegistration.helpText2')}
+            <Link
+              to={t('customRegistration.helpDocLink')}
+              className="emailText"
+            >
+              {t('customRegistration.helpDoc')}
             </Link>
           </Typography>
         </div>
