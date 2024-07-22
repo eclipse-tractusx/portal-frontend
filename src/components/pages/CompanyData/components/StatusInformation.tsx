@@ -33,7 +33,7 @@ import {
 export default function StatusInformation({
   error,
 }: {
-  error?: SharingStateType
+  readonly error?: SharingStateType
 }) {
   const { t } = useTranslation()
   const status = useSelector(statusSelector)
