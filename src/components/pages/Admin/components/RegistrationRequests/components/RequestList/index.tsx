@@ -123,6 +123,11 @@ export const RequestList = ({
   return (
     <section id="registration-section-id">
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
+        sx={{
+          '.MuiDataGrid-cell': {
+            alignContent: 'center !important',
+          },
+        }}
         autoFocus={false}
         searchExpr={searchExpr}
         rowHeight={90}
