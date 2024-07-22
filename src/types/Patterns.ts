@@ -116,7 +116,7 @@ export const Patterns = {
     VIES: /^[A-Z]{2}[0-9A-Za-z+*.]{2,12}$/,
     EORI: /^[A-Z]{2}[A-Za-z0-9]{1,15}$/,
     POSTAL_CODE:
-      /^(?!.*\s$)(?=[a-zA-Z\d-]*[-\s]?[a-zA-Z\d-]*$)[a-zA-Z\d\s-]{2,10}$/,
+      /^(?!.*\s$)(?=[a-zA-Z\d-]{0,10}[-\s]?[a-zA-Z\d-]{0,10}$)[a-zA-Z\d\s-]{2,10}$/,
   },
 }
 
