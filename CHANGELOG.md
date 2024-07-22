@@ -10,6 +10,8 @@
 ### Feature
 
 - Use scroll to top button from shared components
+- Subscription Overlay
+  - implement loading state for provider subscription detail overlay
 
 ### Bugfixes
 
