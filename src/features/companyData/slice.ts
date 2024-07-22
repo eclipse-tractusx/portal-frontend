@@ -20,13 +20,17 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
-import { type CompanyDataType } from './companyDataApiSlice'
+import {
+  type SharingStateType,
+  type CompanyDataType,
+} from './companyDataApiSlice'
 
 const name = 'companies/companyData'
 
 export interface CompanyDataState {
   row: CompanyDataType
   status: string
+  sharingStateInfo: SharingStateType
 }
 
 export const companyDataInitialData: CompanyDataType = {
@@ -159,6 +163,14 @@ export const companyDataInitialData: CompanyDataType = {
 export const initialState: CompanyDataState = {
   status: '',
   row: companyDataInitialData,
+  sharingStateInfo: {
+    externalId: '',
+    sharingStateType: '',
+    sharingErrorCode: '',
+    sharingErrorMessage: '',
+    sharingProcessStarted: '',
+    taskId: '',
+  },
 }
 
 const companyDataSlice = createSlice({
@@ -173,6 +185,10 @@ const companyDataSlice = createSlice({
       ...state,
       status: actions.payload,
     }),
+    setSharingStateInfo: (state, actions) => ({
+      ...state,
+      sharingStateInfo: actions.payload,
+    }),
   },
 })
 
@@ -182,7 +198,13 @@ export const companyDataSelector = (state: RootState): CompanyDataType =>
 export const statusSelector = (state: RootState): string =>
   state.companyData.status
 
-export const { setSelectedCompanyData, setSelectedCompanyStatus } =
-  companyDataSlice.actions
+export const sharingStateInfoSelector = (state: RootState): SharingStateType =>
+  state.companyData.sharingStateInfo
+
+export const {
+  setSelectedCompanyData,
+  setSelectedCompanyStatus,
+  setSharingStateInfo,
+} = companyDataSlice.actions
 
 export default companyDataSlice

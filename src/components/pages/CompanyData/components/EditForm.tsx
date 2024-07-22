@@ -35,6 +35,7 @@ import {
   type CompanyDataType,
   useUpdateCompanySiteAndAddressMutation,
   type CompanyDataFieldsType,
+  useUpdateCompanyStatusToReadyMutation,
 } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
 import {
@@ -67,6 +68,7 @@ export default function EditForm({
   const [loading, setLoading] = useState<boolean>(false)
   const [isValid, setIsValid] = useState<boolean>(false)
   const [updateData] = useUpdateCompanySiteAndAddressMutation()
+  const [updateReadyState] = useUpdateCompanyStatusToReadyMutation()
   const companyData = useSelector(companyDataSelector)
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
@@ -120,12 +122,26 @@ export default function EditForm({
     }
   }
 
+  const updateStateToReady = async (response: CompanyDataType[]) => {
+    try {
+      await updateReadyState({
+        externalIds: [response[0].externalId],
+      })
+        .unwrap()
+        .then(() => {
+          setSuccess(true)
+        })
+    } catch (e) {
+      setError(true)
+    }
+  }
+
   const handleCreation = async () => {
     try {
       await updateData([input])
         .unwrap()
-        .then(() => {
-          setSuccess(true)
+        .then((response) => {
+          updateStateToReady(response)
         })
     } catch (e) {
       setError(true)

@@ -256,9 +256,7 @@ export const FormFields = ({
       current.street &&
       current.city &&
       current.postalCode &&
-      current.countryCode &&
-      current.identifierNumber &&
-      current.countryIdentifier
+      current.countryCode
     onValid(
       formValid
         ? {

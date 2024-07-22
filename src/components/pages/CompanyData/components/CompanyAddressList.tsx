@@ -39,6 +39,7 @@ import DetailsOverlay from './DetailsOverlay'
 import {
   setSelectedCompanyData,
   setSelectedCompanyStatus,
+  setSharingStateInfo,
 } from 'features/companyData/slice'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
@@ -75,7 +76,9 @@ export const CompanyAddressList = ({
       ?.filter(
         (state) =>
           state.sharingStateType === SharingStateStatusType.Pending ||
-          state.sharingStateType === SharingStateStatusType.Initial
+          state.sharingStateType === SharingStateStatusType.Initial ||
+          state.sharingStateType === SharingStateStatusType.Ready ||
+          state.sharingStateType === SharingStateStatusType.Error
       )
       .map((state) => state.externalId)
 
@@ -122,10 +125,16 @@ export const CompanyAddressList = ({
       .sharingStateType
 
   const onRowClick = (params: GridCellParams) => {
+    const sharingStateInfo = sharingStates
+      ?.filter(
+        (state) => state.sharingStateType === SharingStateStatusType.Error
+      )
+      .filter((state) => state.externalId === params.row.externalId)
     const status = getStatus(params.row.externalId)
     setDetails(true)
     dispatch(setSelectedCompanyStatus(status))
     dispatch(setSelectedCompanyData(params.row))
+    if (sharingStateInfo) dispatch(setSharingStateInfo(sharingStateInfo[0]))
   }
 
   const renderIcon = (status: string | undefined) => {
@@ -133,7 +142,8 @@ export const CompanyAddressList = ({
       return <CheckCircleIcon />
     } else if (
       status === SharingStateStatusType.Pending ||
-      status === SharingStateStatusType.Initial
+      status === SharingStateStatusType.Initial ||
+      status === SharingStateStatusType.Ready
     ) {
       return <HourglassBottomIcon />
     } else {
@@ -146,7 +156,8 @@ export const CompanyAddressList = ({
       return 'success'
     } else if (
       status === SharingStateStatusType.Pending ||
-      status === SharingStateStatusType.Initial
+      status === SharingStateStatusType.Initial ||
+      status === SharingStateStatusType.Ready
     ) {
       return 'warning'
     } else {
