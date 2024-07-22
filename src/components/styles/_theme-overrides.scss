@@ -1133,3 +1133,58 @@ footer {
 .slick-slide .MuiTypography-root.MuiTypography-body2 {
   color: #000;
 }
+
+// registration status overrides
+
+.registration-main {
+  .title {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .mainDescription {
+    max-width: 736px !important;
+    padding-top: 8px !important;
+    height: 56px !important;
+  }
+
+  .text-center {
+    text-align: left !important;
+    padding: 0 15px !important;
+  }
+
+  .helpTextReg {
+    width: 100% !important;
+  }
+}
+
+div.container.registration-main {
+  div > p {
+    margin-left: 0;
+  }
+
+  div > button.completeBtn {
+    color: #ffffff;
+    background-color: #d31184;
+    border: 2px solid transparent;
+  }
+
+  div > button.completeBtn:hover {
+    color: black;
+    background-color: #ffffff;
+    border: 2px solid black;
+  }
+
+  div > div.helpTextReg > p {
+    font-family: Karbon;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25.2px;
+    text-align: center;
+  }
+}
+
+p.MuiTypography-root.MuiTypography-body3.description,
+.title::before {
+  display: none;
+}
