@@ -92,23 +92,11 @@ const UpdateForm = ({
       <div style={{ marginTop: '34px' }}>
         <ValidatingInput
           name="siteName"
-          label={
-            isAddress
-              ? t('content.companyData.address.form.site.name')
-              : t('content.companyData.site.form.site.name')
-          }
+          label={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.site.name`)}
           value={data.siteName ?? ''}
           validate={isName}
-          hint={
-            isAddress
-              ? t('content.companyData.address.form.site.hint')
-              : t('content.companyData.site.form.site.hint')
-          }
-          errorMessage={
-            isAddress
-              ? t('content.companyData.address.form.site.error')
-              : t('content.companyData.site.form.site.error')
-          }
+          hint={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.site.hint`)}
+          errorMessage={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.site.error`)}
           onValid={onChange}
           onInvalid={onChange}
           skipInitialValidation={newForm}
@@ -117,100 +105,52 @@ const UpdateForm = ({
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="street"
-          label={
-            isAddress
-              ? t('content.companyData.address.form.street.name')
-              : t('content.companyData.site.form.street.name')
-          }
+          label={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`)}
           value={data.street ?? ''}
-          hint={
-            isAddress
-              ? t('content.companyData.address.form.street.hint')
-              : t('content.companyData.site.form.street.hint')
-          }
+          hint={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.street.hint`)}
           validate={isStreet}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={
-            isAddress
-              ? t('content.companyData.address.form.street.error')
-              : t('content.companyData.site.form.street.error')
-          }
+          errorMessage={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.street.error`)}
           skipInitialValidation={newForm}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="city"
-          label={
-            isAddress
-              ? t('content.companyData.address.form.city.name')
-              : t('content.companyData.site.form.city.name')
-          }
+          label={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.city.name`)}
           value={data.city ?? ''}
-          hint={
-            isAddress
-              ? t('content.companyData.address.form.city.hint')
-              : t('content.companyData.site.form.city.hint')
-          }
+          hint={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.city.hint`)}
           validate={isCity}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={
-            isAddress
-              ? t('content.companyData.address.form.city.error')
-              : t('content.companyData.site.form.city.error')
-          }
+          errorMessage={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.city.error`)}
           skipInitialValidation={newForm}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="countryCode"
-          label={
-            isAddress
-              ? t('content.companyData.address.form.countryCode.name')
-              : t('content.companyData.site.form.countryCode.name')
-          }
+          label={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`)}
           value={data.countryCode ?? ''}
-          hint={
-            isAddress
-              ? t('content.companyData.address.form.countryCode.hint')
-              : t('content.companyData.site.form.countryCode.hint')
-          }
+          hint={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.hint`)}
           validate={isCountry}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={
-            isAddress
-              ? t('content.companyData.address.form.countryCode.error')
-              : t('content.companyData.site.form.countryCode.error')
-          }
+          errorMessage={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.error`)}
           skipInitialValidation={newForm}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="postalCode"
-          label={
-            isAddress
-              ? t('content.companyData.address.form.postal.name')
-              : t('content.companyData.site.form.postal.name')
-          }
+          label={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.postal.name`)}
           value={data.postalCode ?? ''}
-          hint={
-            isAddress
-              ? t('content.companyData.address.form.postal.hint')
-              : t('content.companyData.site.form.postal.hint')
-          }
+          hint={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.postal.hint`)}
           validate={isPostalCode}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={
-            isAddress
-              ? t('content.companyData.address.form.postal.error')
-              : t('content.companyData.site.form.postal.error')
-          }
+          errorMessage={t(`content.companyData.${isAddress ? 'address' : 'site'}.form.postal.error`)}
           skipInitialValidation={newForm}
         />
       </div>
