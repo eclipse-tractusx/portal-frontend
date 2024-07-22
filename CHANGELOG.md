@@ -10,6 +10,9 @@
 ### Feature
 
 - Use scroll to top button from shared components
+- Company data
+  - Integrate /ready api to trigger once the new record is created
+  - Show sharing state error details in the company overlay details page
 
 ### Bugfixes
 
