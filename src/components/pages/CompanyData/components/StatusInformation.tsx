@@ -49,11 +49,12 @@ export default function StatusInformation({
   const getStatusColor = (status: string | undefined) => {
     if (status === SharingStateStatusType.Success) {
       return 'success'
-    } else if (
-      status === SharingStateStatusType.Pending ||
-      status === SharingStateStatusType.Initial
-    ) {
+    } else if (status === SharingStateStatusType.Initial) {
       return 'warning'
+    } else if (status === SharingStateStatusType.Pending) {
+      return 'info'
+    } else if (status === SharingStateStatusType.Ready) {
+      return 'primary'
     } else {
       return 'error'
     }

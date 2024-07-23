@@ -165,7 +165,7 @@ export interface CompanyDataType {
       deliveryServiceType: string | undefined | null
       deliveryServiceQualifier: string | undefined | null
       deliveryServiceNumber: string | undefined | null
-    }
+    } | null
     confidenceCriteria: {
       sharedByOwner: true
       checkedByExternalDataSource: true

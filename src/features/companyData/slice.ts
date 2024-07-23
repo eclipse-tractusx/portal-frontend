@@ -126,20 +126,7 @@ export const companyDataInitialData: CompanyDataType = {
       floor: '',
       door: '',
     },
-    alternativePostalAddress: {
-      geographicCoordinates: {
-        longitude: 0,
-        latitude: 0,
-        altitude: 0,
-      },
-      country: null,
-      administrativeAreaLevel1: null,
-      postalCode: null,
-      city: null,
-      deliveryServiceType: null,
-      deliveryServiceQualifier: null,
-      deliveryServiceNumber: null,
-    },
+    alternativePostalAddress: null,
     confidenceCriteria: {
       sharedByOwner: true,
       checkedByExternalDataSource: true,

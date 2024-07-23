@@ -81,6 +81,7 @@ export default function EditForm({
   })
   const [input, setInput] = useState<CompanyDataType>(companyDataInitialData)
   const inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
+
   if (companyInfo) {
     inputParams.externalId = `${companyInfo?.bpn}_${new Date().toISOString()}`
     inputParams.legalEntity.legalEntityBpn = companyInfo?.bpn
@@ -92,6 +93,7 @@ export default function EditForm({
     inputParams.address.physicalPostalAddress.city = form.body.city
     inputParams.address.physicalPostalAddress.country = form.body.countryCode
     inputParams.address.physicalPostalAddress.street.name = form.body.street
+    inputParams.address.alternativePostalAddress = null
     setInput(inputParams)
   }
 
