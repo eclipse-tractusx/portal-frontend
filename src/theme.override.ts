@@ -38,6 +38,7 @@ export enum COLOR_PALETTE {
   SUCCESS_LIGHT = '#DBEBB0',
   SUCCESS_DARK = '#406124',
   ERROR = '#B62100',
+  ERROR_EXTRA_LIGHT = '#F8E9E6',
   ERROR_LIGHT = '#F0D3CC',
   ERROR_DARK = '#6D1400',
 
@@ -235,6 +236,39 @@ export const paletteDefinitions = {
   },
 }
 export const palette = createPalette(paletteDefinitions as unknown as Palette)
+
+export const registrationStatusColors = {
+  inProgress: {
+    backgroundColor: paletteDefinitions.accent.accent02,
+    color: COLOR_PALETTE.SECONDARY,
+    btnColor: COLOR_PALETTE.SECONDARY,
+    textColor: COLOR_PALETTE.WHITE,
+  },
+  done: {
+    backgroundColor: paletteDefinitions.buttons.yellow,
+    color: COLOR_PALETTE.SUCCESS, // icon color
+    btnColor: COLOR_PALETTE.SUCCESS_LIGHT,
+    textColor: COLOR_PALETTE.SUCCESS_DARK,
+  },
+  failed: {
+    backgroundColor: COLOR_PALETTE.ERROR_EXTRA_LIGHT,
+    color: paletteDefinitions.chip.inactive,
+    btnColor: COLOR_PALETTE.ERROR_LIGHT,
+    textColor: COLOR_PALETTE.ERROR,
+  },
+  todo: {
+    backgroundColor: paletteDefinitions.accent.accent02,
+    color: COLOR_PALETTE.SECONDARY,
+    btnColor: COLOR_PALETTE_CHIP.LABEL_MAIN,
+    textColor: COLOR_PALETTE.BLACK,
+  },
+  default: {
+    backgroundColor: paletteDefinitions.background.background08,
+    color: paletteDefinitions.chip.inactive,
+    btnColor: paletteDefinitions.chip.inactive,
+    textColor: COLOR_PALETTE.ERROR,
+  },
+}
 
 export const typographyDefinitions = {
   fontWeight: 400,

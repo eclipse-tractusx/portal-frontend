@@ -62,7 +62,7 @@ export default function RegistrationStatus() {
       headline: t('content.registration.steps.step1'),
       step: 1,
     },
-   /* {
+    /* {
       headline: t('content.registration.steps.step2'),
       step: 2,
     },*/

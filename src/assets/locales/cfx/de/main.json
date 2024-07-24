@@ -132,30 +132,30 @@
       "email": "help@catena-x.com"
     },
     "registrationInreview": {
-      "title": "Welcome to Catena-X",
-      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
-      "subDescription": "At the current state of the review you already have limited access to the portal.",
-      "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
+      "title": "Ihr Registrierungsstatus",
+      "description": "",
+      "subDescription": "Ihre Anmeldung wird überprüft. Wir senden Ihnen eine E-Mail-Benachrichtigung, sobald die Überprüfung abgeschlossen ist. In der Zwischenzeit können Sie hier den Fortschritt verfolgen.",
+      "stageTitle": "Aktueller Status:  {{step}}/{{totalSteps}}",
       "lastUpdate": "Last process update: {{date}}",
       "steps": {
-        "REGISTRATION_VERIFICATION": "Data Validation",
-        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "REGISTRATION_VERIFICATION": "Datenvalidierung",
+        "IDENTITY_WALLET": "Erstellung der Wallet",
         "CLEARING_HOUSE": "Clearing House",
         "SELF_DESCRIPTION_LP": "Self Description",
-        "APPLICATION_ACTIVATION": "Application Activation",
-        "BUSINESS_PARTNER_NUMBER": "BPN Creation"
+        "APPLICATION_ACTIVATION": "Aktivierung der Anfrage",
+        "BUSINESS_PARTNER_NUMBER": "BPN-Erstellung"
       },
       "status": {
-        "IN_PROGRESS": "In Bearbeitung",
+        "IN_PROGRESS": "in Bearbeitung",
         "TO_DO": "Ausstehend",
-        "DONE": "Erledigt",
+        "DONE": "genehmigt",
         "FAILED": "Fehlgeschlagen"
       },
-      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@catena-x.com.</0>",
-      "note": "NOTE:",
-      "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
-      "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
-      "email": "help@catena-x.com"
+      "helperText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich an <0>support@cofinity-x.com.</0>",
+      "note": "Hinweis: ",
+      "noteDetail": "Ihre Anmeldung wird überprüft. Ihr Zugriff auf das Portal ist derzeit eingeschränkt. Sie erhalten eine E-Mail, sobald die Überprüfung abgeschlossen ist.",
+      "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich an ",
+      "email": "support@cofinity-x.com"
     },
     "registrationDeclined": {
       "title": "Registration Status",

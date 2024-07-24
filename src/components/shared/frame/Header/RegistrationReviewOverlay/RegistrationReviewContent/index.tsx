@@ -43,15 +43,23 @@ const RegistrationReviewContent = () => {
       checklist.statusId === ProgressStatus.DONE
   ).length
 
+  const inreviewSteps = companyData?.applicationChecklist.filter(
+    (checklist: ApplicationChecklist) =>
+      !checklist.typeId.includes('CREDENTIAL')
+  )
+
   return (
     <>
-      <Typography variant="body3" className="subDescription">
+      <Typography variant="h4" className="title">
+        {t('content.registrationInreview.title')}
+      </Typography>
+      <Typography variant="body1" className="subDescription">
         {t('content.registrationInreview.subDescription')}
       </Typography>
       <Trans
         values={{
           step: approvedSteps,
-          totalSteps: companyData?.applicationChecklist.length,
+          totalSteps: inreviewSteps?.length,
         }}
       >
         <Typography variant="h5" className="stepTitle">
@@ -59,7 +67,9 @@ const RegistrationReviewContent = () => {
         </Typography>
       </Trans>
       {companyData?.applicationChecklist && (
-        <RegistrationStatusList checklist={companyData.applicationChecklist} />
+        <RegistrationStatusList
+          checklist={inreviewSteps as unknown as ApplicationChecklist[]}
+        />
       )}
     </>
   )
