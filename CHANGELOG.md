@@ -6,11 +6,10 @@
 
 - **Imprint**:
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
-
-### Feature
-
 - **Semantic Hub**:
   - show appropriate error information to the user along with refetch button [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
+  - **Onboarding Service Provider Management**:
+  - Create new page for onboarding service provider management
 
 ### Bugfixes
 
