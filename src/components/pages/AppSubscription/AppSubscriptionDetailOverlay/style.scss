@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,29 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
-import type { TypographyProps } from '@mui/material'
-import { useTranslation } from 'react-i18next'
-
-interface ComponentProps extends TypographyProps {
-  readonly title: string
-  readonly params?: Record<string, string>
-}
-
-export default function SubHeaderTitle({
-  title,
-  params,
-  variant = 'body1',
-}: ComponentProps) {
-  const { t } = useTranslation()
-
-  return (
-    <Typography
-      sx={{ fontFamily: 'LibreFranklin-Light' }}
-      variant={variant}
-      className="section-title"
-    >
-      {`${t(title, params ?? {})}`}
-    </Typography>
-  )
+.app-subscription-overlay {
+  .loading-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 }

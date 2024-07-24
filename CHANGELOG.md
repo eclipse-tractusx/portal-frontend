@@ -13,6 +13,8 @@
 - Company data
   - Integrate /ready api to trigger once the new record is created
   - Show sharing state error details in the company overlay details page
+- Subscription Overlay
+  - implement loading state for provider subscription detail overlay
 
 ### Bugfixes
 
