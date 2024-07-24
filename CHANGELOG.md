@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+### Technical Support
+
+- **Admin Board**:
+  - Fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
+
 ## 2.1.0-RC2
 
 ### Feature
