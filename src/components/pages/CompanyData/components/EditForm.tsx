@@ -93,7 +93,6 @@ export default function EditForm({
     inputParams.address.physicalPostalAddress.city = form.body.city
     inputParams.address.physicalPostalAddress.country = form.body.countryCode
     inputParams.address.physicalPostalAddress.street.name = form.body.street
-    inputParams.address.alternativePostalAddress = null
     setInput(inputParams)
   }
 
@@ -136,6 +135,7 @@ export default function EditForm({
     } catch (e) {
       setError(true)
     }
+    setLoading(false)
   }
 
   const handleCreation = async () => {
@@ -148,7 +148,6 @@ export default function EditForm({
     } catch (e) {
       setError(true)
     }
-    setLoading(false)
   }
 
   const getTitle = () => {
