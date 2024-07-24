@@ -2,17 +2,49 @@
 
 ## unreleased
 
+### Technical Support
+
+- **Admin Board**:
+  - Fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
+
+## 2.1.0-RC2
+
 ### Feature
 
 - **Imprint**:
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
+
+### Feature
+
+- **Semantic Hub**:
+  - show appropriate error information to the user along with refetch button [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
+
+### Bugfixes
+
+- **Company Data Management**:
+  - removed unwanted input forms [#887](https://github.com/eclipse-tractusx/portal-frontend/issues/887)
+  - fixed crash issue in details page
+  - added error handling component in table [#888](https://github.com/eclipse-tractusx/portal-frontend/issues/888)
+- **User Management**:
+  - fixed disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
+- **Connector Management**:
+  - updated GET endpoint for 'Connect Company Connector' to consider technical user status [#938](https://github.com/eclipse-tractusx/portal-frontend/pull/938)
+- **UI Language**
+  - updated translations in locale files [#935](https://github.com/eclipse-tractusx/portal-frontend/pull/935)
+- **Application Requests**:
+  - made UI improvements [#911](https://github.com/eclipse-tractusx/portal-frontend/pull/911)
+- **Connector Management**:
+  - show appropriate error information to the user along with refetch button [#923](https://github.com/eclipse-tractusx/portal-frontend/issues/923)
 - **App marketplace**:
   - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 - **Service Marketplace**:
   - show appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 
-### Bugfixes
+### Technical Support
 
+- **Upgraded dependencies**
+  - bumped braces from 3.0.2 to 3.0.3 [#927](https://github.com/eclipse-tractusx/portal-frontend/pull/927)
+  - bumped ws from 8.16.0 to 8.18.0 [#928](https://github.com/eclipse-tractusx/portal-frontend/pull/928)
 - **Company Data Management**:
   - Remove unwanted input forms
   - Fix crash issue in details page
@@ -21,13 +53,11 @@
   - Show appropriate error information to the user along with refetch button
 - **User Management**:
   - Fix disable button state when deselect all checkboxes [#923](https://github.com/eclipse-tractusx/portal-frontend/pull/923)
-- **Admin Board**:
-  - Fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
 - **UI Language**
   - Updated translations in locale files
 - **Application Requests**:
   - UI Improvements [#911](https://github.com/eclipse-tractusx/portal-frontend/pull/911)
- 
+
 ## 2.1.0-RC1
 
 ### Change
@@ -46,7 +76,7 @@
 - **Connector Management**:
   - released connector detail view including change connector url, view SD document, etc. Add details overlay [#848](https://github.com/eclipse-tractusx/portal-frontend/pull/848)
 
-### Technical Maintenance
+### Technical Support
 
 - **Dependencies**:
   - bumped GitHub actions [#846](https://github.com/eclipse-tractusx/portal-frontend/pull/846)

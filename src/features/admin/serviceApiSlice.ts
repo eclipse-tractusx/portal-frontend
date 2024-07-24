@@ -180,7 +180,7 @@ export const apiSlice = createApi({
       number
     >({
       query: (page) =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false`,
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false&userStatus=ACTIVE`,
     }),
   }),
 })
