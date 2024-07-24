@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Feature
+
+- **Onboarding Service Provider Management**:
+  - Create new page for onboarding service provider management [#962](https://github.com/eclipse-tractusx/portal-frontend/pull/962)
+
 ## 2.1.0-RC2
 
 ### Feature
@@ -8,8 +15,6 @@
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
 - **Semantic Hub**:
   - show appropriate error information to the user along with refetch button [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
-  - **Onboarding Service Provider Management**:
-  - Create new page for onboarding service provider management
 
 ### Bugfixes
 
