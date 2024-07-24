@@ -18,14 +18,12 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { useMediaQuery, useTheme } from '@mui/material'
+import { Typography, useMediaQuery, useTheme } from '@mui/material'
 import {
   Button,
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogActions,
-  Typography,
 } from '@catena-x/portal-shared-components'
 import RegistrationReviewContent from './RegistrationReviewContent'
 import './RegistrationReview.scss'
@@ -55,15 +53,14 @@ const RegistrationReviewOverlay = ({
       <Dialog
         open={openDialog}
         additionalModalRootStyles={{
-          width: isMobile ? '100%' : '50%',
+          width: isMobile ? '100%' : '70%',
           margin: isMobile ? '80px 0 0' : '',
           borderRadius: '32px 32px 0px 0px',
         }}
       >
-        <DialogHeader title={t('content.registrationInreview.title')} />
         <DialogContent
           sx={{
-            padding: isMobile ? '0 20px' : '0 120px',
+            padding: isMobile ? '0 20px' : '60px 100px',
             marginBottom: '20px',
           }}
         >

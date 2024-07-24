@@ -17,6 +17,7 @@ $defaultSpacing: 16px;
 $selected-hover: #ededed;
 $secondary-hover: #333333;
 $black: #000000;
+$white: #ffffff;
 
 body {
 }
@@ -1164,15 +1165,15 @@ div.container.registration-main {
   }
 
   div > button.completeBtn {
-    color: #ffffff;
-    background-color: #d31184;
+    color: $white;
+    background-color: $color-primary;
     border: 2px solid transparent;
   }
 
   div > button.completeBtn:hover {
-    color: black;
-    background-color: #ffffff;
-    border: 2px solid black;
+    color: $black;
+    background-color: $white;
+    border: 2px solid $black;
   }
 
   div > div.helpTextReg > p {
@@ -1187,4 +1188,94 @@ div.container.registration-main {
 p.MuiTypography-root.MuiTypography-body3.description,
 .title::before {
   display: none;
+}
+
+// Registration review dialog and accordion overrides
+.MuiAccordion-root {
+  &:hover {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &.Mui-expanded {
+    &.MuiAccordion-root {
+      .MuiAccordionSummary-root {
+        background-color: $white !important;
+      }
+    }
+  }
+
+  .MuiAccordionSummary-root {
+    &:hover {
+      background-color: $white !important;
+    }
+
+    &.Mui-focused {
+      background-color: $white !important;
+    }
+  }
+
+  .MuiAccordionSummary-content {
+    .MuiBox-root {
+      margin-right: 5px !important;
+    }
+  }
+}
+
+.registrationReviewNoteSection {
+  border: 1px solid $color-primary;
+
+  .noteReviewText {
+    color: $color-primary;
+    display: inline;
+  }
+}
+
+.actions-main {
+  padding: 40px 100px !important;
+}
+
+.registration-review {
+  text-align: left;
+  margin: 40px auto 0px auto;
+
+  .description {
+    padding-bottom: 35px;
+  }
+  .subDescription {
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 35px;
+  }
+  .stepTitle {
+    margin-top: 35px;
+    margin-bottom: 30px;
+  }
+
+  .helpMain {
+    text-align: center;
+    span {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+}
+
+.statusList {
+  .statusLabel > span {
+    font-weight: 500;
+    line-height: 28px;
+  }
+  .statusTag {
+    margin-bottom: 0px;
+    line-height: 25px;
+    border: none;
+  }
+}
+
+.MuiDialog-root .MuiPaper-root {
+  border-radius: 32px !important;
+
+  div {
+    margin-bottom: 0px !important;
+  }
 }

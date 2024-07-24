@@ -25,7 +25,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import SortIcon from '@mui/icons-material/Sort'
 import {
   Button,
   CustomAccordion,
@@ -120,7 +119,9 @@ export const Header = ({
     return (
       <div
         className="registration-review"
-        style={{ width: isMobile ? '100%' : '40%', margin: '0 auto' }}
+        style={{
+          width: isMobile ? '100%' : '60%',
+        }}
       >
         <RegistrationReviewContent />
         <div className="helpMain">
@@ -154,25 +155,32 @@ export const Header = ({
               children: renderFullText(),
               expanded: false,
               icon: (
-                <Typography variant="label3" className="noteReviewText">
-                  <SortIcon className="subjectIcon" />
-                  {isMobile
-                    ? 'REGISTRATION IN REVIEW '
-                    : t('content.registrationInreview.note')}
+                <Typography variant="label1" className="noteReviewText">
+                  <img
+                    src="/note_stack.svg"
+                    alt="cx logo"
+                    style={{
+                      width: 24,
+                    }}
+                  />
                 </Typography>
               ),
               id: 'panel-1',
               title: '',
               titleElement: !isMobile ? (
                 <div>
-                  <Trans>
-                    <Typography variant="label3">
-                      {t('content.registrationInreview.noteDetail')}
-                    </Typography>
-                    <Typography variant="label3" className="emailText">
-                      {t('content.registrationInreview.email')}
-                    </Typography>
-                  </Trans>
+                  <Typography
+                    variant="label1"
+                    className="noteReviewText"
+                    sx={{ fontWeight: 500 }}
+                  >
+                    {isMobile
+                      ? 'REGISTRATION IN REVIEW '
+                      : t('content.registrationInreview.note')}
+                  </Typography>
+                  <Typography variant="label1" sx={{ fontWeight: 500 }}>
+                    {t('content.registrationInreview.noteDetail')}
+                  </Typography>
                 </div>
               ) : (
                 <></>

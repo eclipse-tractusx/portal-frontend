@@ -131,9 +131,9 @@
       "email": "support@cofinity-x.com"
     },
     "registrationInreview": {
-      "title": "Welcome to Catena-X",
-      "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
-      "subDescription": "At the current state of the review you already have limited access to the portal.",
+      "title": "Your registration status",
+      "description": "",
+      "subDescription": "Your registration is being reviewed. We’ll send you an e-mail notification once the review is complete. In the meantime, you can track the progress below.",
       "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
       "lastUpdate": "Last process update: {{date}}",
       "steps": {
@@ -145,16 +145,16 @@
         "BUSINESS_PARTNER_NUMBER": "BPN Creation"
       },
       "status": {
-        "IN_PROGRESS": "In Progress",
-        "TO_DO": "To Do",
-        "DONE": "Done",
-        "FAILED": "Failed"
+        "IN_PROGRESS": "in progress",
+        "TO_DO": "to do",
+        "DONE": "approved",
+        "FAILED": "failed"
       },
-      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@catena-x.com.</0>",
-      "note": "NOTE:",
-      "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
-      "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
-      "email": "help@catena-x.com"
+      "helperText": "If you have any questions regarding your registration reach out to us at <0>support@cofinity-x.com.</0>",
+      "note": "NOTE: ",
+      "noteDetail": "Your registration is being reviewed. Your access to the portal is currently limited. We’ll send you an e-mail notification once the review is complete.",
+      "helpText": "If you have any questions regarding your registration reach out to us at ",
+      "email": "support@cofinity-x.com"
     },
     "registrationDeclined": {
       "title": "Registration Status",
