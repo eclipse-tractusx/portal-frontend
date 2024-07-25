@@ -1171,9 +1171,7 @@ div.container.registration-main {
   }
 
   div > button.completeBtn:hover {
-    color: $black;
-    background-color: $white;
-    border: 2px solid $black;
+    background-color: $color-primary-dark;
   }
 
   div > div.helpTextReg > p {
