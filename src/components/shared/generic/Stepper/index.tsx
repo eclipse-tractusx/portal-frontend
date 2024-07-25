@@ -3,7 +3,7 @@ import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import './stepper.scss'
-import { Link } from 'react-router-dom'
+import Link from '@mui/material/Link'
 import { Typography } from '@mui/material'
 
 function a11yProps(index: number) {
@@ -60,7 +60,11 @@ export default function Stepper({
                   {...a11yProps(step.step)}
                 />
                 {activeStep === step.step && (
-                  <Link className="tool-tip-a" to={tooltipLink}>
+                  <Link
+                    className="tool-tip-a"
+                    href={tooltipLink}
+                    target="_blank"
+                  >
                     <Box className="tool-tip">
                       <ExpandLessIcon />
                       <Typography className="tool-tip-text" variant="inherit">

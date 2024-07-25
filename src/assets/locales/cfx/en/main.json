@@ -123,11 +123,11 @@
         "step1": "Add company data",
         "step2": "Responsibilities & admin account",
         "step3": "Select company role",
-        "step4": "Upload IDs and certificates",
+        "step4": "Upload document",
         "step5": "Verify & submit registration",
         "tooltipText": "Continue where you left"
       },
-      "helpText": "Do you need help? Reach out to us at ",
+      "helpText": "Do you need help? Reach out to us at",
       "email": "support@cofinity-x.com"
     },
     "registrationInreview": {
@@ -2282,7 +2282,7 @@
     }
   },
   "customRegistration": {
-    "helpText2": " or explore our ",
+    "helpText2": " or explore our",
     "helpDoc": "help documentation.",
     "helpDocLink": "https://intercom-help.eu/cofinity-x/en/collections/323188-registration"
   }

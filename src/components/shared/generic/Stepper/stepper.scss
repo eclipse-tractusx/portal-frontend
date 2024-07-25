@@ -10,10 +10,10 @@
 
 #simple-tab {
   align-items: center;
-  z-index: 999999;
   width: 100%;
   font-size: 14px !important;
   height: 80px;
+  cursor: default !important;
 }
 
 .active-tab {
@@ -29,7 +29,7 @@
 .active-icon,
 .completed-icon,
 .uncomplete-icon {
-  font-weight: 400;
+  font-weight: 600;
   line-height: 140%;
   letter-spacing: 0;
   font-family: 'Karbon', Arial, Sans-serif, Serif;
