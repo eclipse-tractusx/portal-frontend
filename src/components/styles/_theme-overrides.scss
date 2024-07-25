@@ -1223,7 +1223,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 }
 
 .registrationReviewNoteSection {
-  border: 1px solid $color-primary;
+  border: 2px solid $color-primary !important;
 
   .noteReviewText {
     color: $color-primary;
