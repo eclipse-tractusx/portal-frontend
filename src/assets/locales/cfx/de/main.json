@@ -147,9 +147,9 @@
       },
       "status": {
         "IN_PROGRESS": "in Bearbeitung",
-        "TO_DO": "Ausstehend",
+        "TO_DO": "ausstehend",
         "DONE": "genehmigt",
-        "FAILED": "Fehlgeschlagen"
+        "FAILED": "fehlgeschlagen"
       },
       "helperText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich an <0>support@cofinity-x.com.</0>",
       "note": "Hinweis: ",
