@@ -216,7 +216,7 @@ export enum ROLES {
   ACTIVATE_SUBSCRIPTION = 'activate_subscription',
   APPROVE_APP_RELEASE = 'approve_app_release',
   DECLINE_APP_RELEASE = 'decline_app_release',
-  APPROVE_SERVICE_RELEASE = 'activate_subscription',
+  APPROVE_SERVICE_RELEASE = 'approve_service_release',
   DECLINE_SERVICE_RELEASE = 'decline_service_release',
   VIEW_SERVICE_RELEASE = 'add_service_offering',
   UPDATE_COMPANY_ROLE = 'update_company_role',
