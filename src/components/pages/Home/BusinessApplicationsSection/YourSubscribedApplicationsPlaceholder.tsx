@@ -18,20 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import NewsSection from './NewsSection'
-import BusinessApplicationsSection from './BusinessApplicationsSection'
-import StageSection from './StageSection'
-import AppStoreSection from './AppStoreSection'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './style.scss'
+import { useTranslation } from 'react-i18next'
+import './YourSubscribedApplicationsPlaceholder.scss'
+import { Typography } from '@mui/material'
 
-export default function Home() {
+export default function YourSubscribedApplicationsPlaceholder() {
+  const { t } = useTranslation()
+
   return (
-    <main className="home">
-      <StageSection />
-      <AppStoreSection />
-      <BusinessApplicationsSection />
-    </main>
+    <div className="your-subscribe-applications-placeholder">
+      <div className="container">
+        <Typography sx={{ typography: 'h4', mb: 2.5 }}>
+          {t('homepage.placeholder.title')}
+        </Typography>
+        <Typography sx={{ typography: 'body2', fontWeight: 500 }}>
+          {t('homepage.placeholder.description')}
+        </Typography>
+      </div>
+    </div>
   )
 }

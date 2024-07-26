@@ -50,19 +50,8 @@ section {
 
   .section-title {
     text-align: center;
-    padding-bottom: 20px;
-    margin-bottom: 80px;
+    padding-bottom: 40px;
     position: relative;
-
-    &::after {
-      content: '';
-      width: 70px;
-      border-bottom: 2px solid;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
   }
 }
 

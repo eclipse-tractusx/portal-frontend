@@ -18,20 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import NewsSection from './NewsSection'
-import BusinessApplicationsSection from './BusinessApplicationsSection'
-import StageSection from './StageSection'
-import AppStoreSection from './AppStoreSection'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './style.scss'
-
-export default function Home() {
-  return (
-    <main className="home">
-      <StageSection />
-      <AppStoreSection />
-      <BusinessApplicationsSection />
-    </main>
-  )
+export interface IHome {
+  headerNote: boolean
 }

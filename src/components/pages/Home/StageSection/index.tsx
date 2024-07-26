@@ -24,10 +24,14 @@ import { SlidingMainHeader } from 'components/shared/frame/SlidingMainHeader/Sli
 import { useNavigate } from 'react-router-dom'
 import { userHasPortalRole } from 'services/AccessService'
 import { ROLES } from 'types/Constants'
+import { useSelector } from 'react-redux'
+import type { RootState } from 'features/store'
 
 export default function StageSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+
+  const isHeaderNote = useSelector((state: RootState) => state.home.headerNote)
 
   return (
     <div className="stage-home">
@@ -39,6 +43,7 @@ export default function StageSection() {
             imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
             buttonText: t('content.home.stage.slider1.buttonName'),
             handleClick: () => {
+              if (isHeaderNote) return null
               navigate(t('content.home.stage.slider1.navigation'))
             },
             hasAccess: userHasPortalRole(ROLES.APPMANAGEMENT_VIEW),
@@ -49,6 +54,7 @@ export default function StageSection() {
             imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
             buttonText: t('content.home.stage.slider2.buttonName'),
             handleClick: () => {
+              if (isHeaderNote) return null
               navigate(t('content.home.stage.slider2.navigation'))
             },
           },
@@ -58,6 +64,7 @@ export default function StageSection() {
             imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
             buttonText: t('content.home.stage.slider3.buttonName'),
             handleClick: () => {
+              if (isHeaderNote) return null
               navigate(t('content.home.stage.slider3.navigation'))
             },
             hasAccess: userHasPortalRole(ROLES.APPSTORE_VIEW),
@@ -68,6 +75,7 @@ export default function StageSection() {
             imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
             buttonText: t('content.home.stage.slider4.buttonName'),
             handleClick: () => {
+              if (isHeaderNote) return null
               navigate(t('content.home.stage.slider4.navigation'))
             },
             hasAccess: userHasPortalRole(ROLES.USERMANAGEMENT_VIEW),

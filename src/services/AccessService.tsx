@@ -29,7 +29,6 @@ import type { OverlayState } from 'features/control/overlay'
 import {
   ALL_ACTIONS,
   ALL_OVERLAYS,
-  footerMenuFull,
   userMenuRegistration,
   userMenuCompany,
 } from 'types/Config'

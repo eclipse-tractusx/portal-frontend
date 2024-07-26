@@ -30,7 +30,7 @@
     "imprint": "Imprint",
     "privacy": "Privacy",
     "terms": "Terms of Service",
-    "cookiepolicy": "Cookies",
+    "cookiepolicy": "Cookie Policy",
     "logout": "Log Out",
     "notfound": "Page not found",
     "appmanagement": "App Management",
@@ -248,44 +248,44 @@
       "title": "News"
     },
     "home": {
-      "slider1": "My Apps",
-      "slider2": "Use Case Introduction",
-      "slider3": "Marketplace",
-      "slider4": "User Management",
+      "slider1": "User Management",
+      "slider2": "App Marketplace",
+      "slider3": "Service Marketplace",
+      "slider4": "Connector Registration",
       "stage": {
         "slider1": {
-          "title": "Catena-X",
-          "subtitle": "the gateway to the automotive digital network",
-          "buttonName": "My Apps",
-          "navigation": "/appmanagement"
+          "title": "User Management",
+          "subtitle": "Add users to your company account, assign rights, and manage access to subscribed applications.",
+          "buttonName": "Manage Users",
+          "navigation": "/usermanagement"
         },
         "slider2": {
-          "title": "Use Case Introduction",
-          "subtitle": "Get to know the supported use cases, related semantic models and apps to start your use case driven onboarding journey.",
-          "buttonName": "Use Case Introduction",
-          "navigation": "/usecase"
+          "title": "App Marketplace",
+          "subtitle": "Your one-stop shop for interoperable, ready-to-use business applications. Discover Catena-X certified data exchange solutions for key industry use cases.",
+          "buttonName": "Explore Applications",
+          "navigation": "/appmarketplace"
         },
         "slider3": {
-          "title": "Marketplaces",
-          "subtitle": "Transparent and interobarble service and business application marketplace to realize new ideas and use data optimally",
-          "buttonName": "Marketplace",
-          "navigation": "/marketplace"
+          "title": "Service Marketplace",
+          "subtitle": "Explore advisory and consultancy services from trusted partners. Achieve your business goals with strategic insights and expert guidance on Catena-X and data exchange.",
+          "buttonName": "Explore Services",
+          "navigation": "/servicemarketplace"
         },
         "slider4": {
-          "title": "User Management",
-          "subtitle": "Manage user access centrally to reduce administrative work and ensure a transparent overview of all user rights.",
-          "buttonName": "User Management",
-          "navigation": "/usermanagement"
+          "title": "Connector Registration",
+          "subtitle": "Register your connector – whether it's your own or managed – to be fully connected to the dataspace and ready for efficient data exchange.",
+          "buttonName": "Register your Connector",
+          "navigation": "/connectormanagement"
         }
       },
       "searchSection": {
         "inputPlaceholder": "Search in Cofinity-X"
       },
       "businessApplicationsSection": {
-        "title": "My Business Applications"
+        "title": "Your Subscribed Applications"
       },
       "appStoreSection": {
-        "title": "New Apps"
+        "title": "New Applications"
       },
       "emptyCards": {
         "title": "New apps will get added here as soon as you have any assigned"
@@ -1090,7 +1090,7 @@
       }
     },
     "footer": {
-      "copyright": "Copyright © Catena-X Automotive Network"
+      "copyright": "Copyright © Cofinity-X GmbH – All rights reserved."
     },
     "logout": {
       "message": "We are logging you out now... Hope to see you again soon!"
@@ -2285,5 +2285,11 @@
     "helpText2": " or explore our",
     "helpDoc": "help documentation.",
     "helpDocLink": "https://intercom-help.eu/cofinity-x/en/collections/323188-registration"
+  },
+  "homepage": {
+    "placeholder": {
+      "title": "Apps not subscribed yet",
+      "description": "You have not subscribed any applications. For subscribing any apps, please visit App Marketplace"
+    }
   }
 }

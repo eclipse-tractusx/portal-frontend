@@ -50,6 +50,7 @@ import { COMPANY_ROLES } from 'types/Constants'
 import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
+import { setIsHeaderNote } from 'features/home/slice'
 
 export const Header = ({
   main,
@@ -75,6 +76,7 @@ export const Header = ({
   const [submittedOverlayOpen, setSubmittedOverlayOpen] =
     useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
+  console.log(headerNote, 'headerNote')
 
   useEffect(() => {
     if (!(companyData && companyDetails)) return
@@ -268,6 +270,7 @@ export const Header = ({
         handleOverlayClose={() => {
           setSubmittedOverlayOpen(false)
           setHeaderNote(true)
+          dispatch(setIsHeaderNote({ headerNote: true }))
         }}
       />
       <RegistrationDeclinedOverlay
