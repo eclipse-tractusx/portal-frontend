@@ -18,19 +18,23 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import BusinessApplicationsSection from './components/BusinessApplicationsSection'
-import StageSection from './components/StageSection'
-import AppStoreSection from 'components/shared/cfx/AppStoreSection'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './Home.scss'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
+import type { IHome } from './types'
 
-export default function Home() {
-  return (
-    <main className="home">
-      <StageSection />
-      <AppStoreSection />
-      <BusinessApplicationsSection />
-    </main>
-  )
+const initialState: IHome = {
+  headerNote: false,
 }
+
+export const homeSlice = createSlice({
+  name: 'home',
+  initialState,
+  reducers: {
+    setIsHeaderNote: (_state: IHome, action: PayloadAction<IHome>) => {
+      return action.payload
+    },
+  },
+})
+
+export const { setIsHeaderNote } = homeSlice.actions
+export const homeSelector = (state: RootState): IHome => state.home

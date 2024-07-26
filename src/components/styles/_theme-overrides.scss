@@ -59,6 +59,7 @@ header {
   left: auto;
   right: auto;
   max-width: 1800px;
+  height: 85px;
 
   .MuiSvgIcon-root {
     color: $color-secondary;
@@ -217,7 +218,7 @@ header {
 section {
   max-width: 100%;
   margin: 0 auto;
-  padding: 50px 180px;
+  padding: 60px 30px !important;
 
   #identity-management-id {
     padding-right: 0px;
@@ -977,7 +978,8 @@ header .search-icon {
 
 .orange-background-home {
   display: block;
-  @extend .global-background;
+
+  background: #fafafa !important;
 }
 
 .app-marketplace-main {
@@ -1067,14 +1069,7 @@ footer {
   }
 
   .footer-content {
-    // @extend .global-background
-    // background: rgba(250, 250, 250, 1)
-    background: #fff;
-
-    a {
-      text-decoration: none !important;
-      font-weight: 500;
-    }
+    background: #fafafa;
   }
 }
 

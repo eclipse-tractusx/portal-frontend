@@ -21,40 +21,15 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Carousel, Card } from '@catena-x/portal-shared-components'
-import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
 import { type AppMarketplaceApp } from 'features/apps/types'
 import { useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
+import YourSubscribedApplicationsPlaceholder from './YourSubscribedApplicationsPlaceholder'
 
 export const label = 'BusinessApplictions'
-
-const EmptyBox = ({ text }: { text: string }) => (
-  <Box
-    sx={{
-      height: '240px',
-      border: '3px dashed #f3f3f3',
-      borderRadius: '15px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      padding: '15px',
-    }}
-  >
-    <Typography
-      sx={{
-        color: '#f3f3f3',
-      }}
-      variant="body2"
-    >
-      {text}
-    </Typography>
-  </Box>
-)
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
@@ -76,40 +51,30 @@ export default function BusinessApplicationsSection() {
   return (
     <div ref={reference} className="orange-background-home">
       <section className="business-applications-section">
-        <Typography
-          sx={{
-            fontFamily: 'LibreFranklin-Light',
-            marginBottom: '48px !important',
-          }}
-          variant="h2"
-          className="section-title"
-        >
+        <Typography variant="h2" className="section-title">
           {t('content.home.businessApplicationsSection.title')}
         </Typography>
 
-        <Carousel gapToDots={5}>
-          {(data ?? placeholder).map(appToCard).map((item) => (
-            <Card
-              {...item}
-              key={uniqueId(item.title)}
-              buttonText="Details"
-              imageSize="small"
-              imageShape="round"
-              variant="minimal"
-              expandOnHover={false}
-              filledBackground={true}
-              onClick={item.onClick}
-              imageLoader={fetchImageWithToken}
-            />
-          ))}
-          {data &&
-            data.length < 4 &&
-            new Array(4 - data.length)
-              .fill(true)
-              .map((_item, i) => (
-                <EmptyBox key={i} text={t('content.home.emptyCards.title')} />
-              ))}
-        </Carousel>
+        {data && data.length > 0 ? (
+          <Carousel gapToDots={5}>
+            {(data ?? placeholder).map(appToCard).map((item) => (
+              <Card
+                {...item}
+                key={uniqueId(item.title)}
+                buttonText="Details"
+                imageSize="small"
+                imageShape="round"
+                variant="minimal"
+                expandOnHover={false}
+                filledBackground={true}
+                onClick={item.onClick}
+                imageLoader={fetchImageWithToken}
+              />
+            ))}
+          </Carousel>
+        ) : (
+          <YourSubscribedApplicationsPlaceholder />
+        )}
       </section>
     </div>
   )
