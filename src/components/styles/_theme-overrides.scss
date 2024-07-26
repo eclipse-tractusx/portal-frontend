@@ -1277,3 +1277,13 @@ p.MuiTypography-root.MuiTypography-body3.description,
     margin-bottom: 0px !important;
   }
 }
+
+.app-store-section {
+  .card {
+    .MuiBox-root {
+      .MuiTypography-root {
+        z-index: 3 !important;
+      }
+    }
+  }
+}
