@@ -96,6 +96,7 @@ export const NavItem = ({
             top: spacing(4.5),
             left: spacing(-1),
             width: 300,
+            zIndex: 1299,
             padding: spacing(2, 0),
             borderRadius: 4,
             backgroundColor: 'background.background01',

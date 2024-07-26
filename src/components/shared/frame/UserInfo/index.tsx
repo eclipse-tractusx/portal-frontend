@@ -124,6 +124,19 @@ const UserMenuStyled = styled(UserMenu)(
   ({ theme }) => `
   .MuiBox-root {
     background-color: ${theme.palette.common.white};
+    .MuiTypography-label3{
+      font-size: 20px !important;
+      font-weight: 600;
+      padding-bottom: 8px;
+
+    }
+
+    .MuiTypography-label4{
+      font-size: 16px !important;
+      font-weight: 500;
+      color: ${theme.palette.secondary.main}
+    }
+
   }
 
   `
