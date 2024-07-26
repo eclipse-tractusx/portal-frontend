@@ -48,6 +48,7 @@ import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
+import { setIsHeaderNote } from 'features/home/slice'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -68,6 +69,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
     companyData?.applicationStatus === ApplicationStatus.SUBMITTED
   )
   const [headerNote, setHeaderNote] = useState(false)
+  console.log(headerNote, 'headerNote')
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -253,6 +255,7 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
         handleOverlayClose={() => {
           setSubmittedOverlayOpen(false)
           setHeaderNote(true)
+          dispatch(setIsHeaderNote({ headerNote: true }))
         }}
       />
       <RegistrationDeclinedOverlay

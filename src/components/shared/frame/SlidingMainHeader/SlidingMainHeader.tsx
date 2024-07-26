@@ -17,8 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Header } from './Header'
-import './SlidingMainHeader.scss'
+import { Header } from '../../cfx/SlidingMainHeader/Header'
+import '../../cfx/SlidingMainHeader/SlidingMainHeader.scss'
 import Slider from 'react-slick'
 import { Box } from '@mui/material'
 

@@ -528,3 +528,16 @@ export const userMenuFull = [
   PAGES.NOTIFICATIONS,
   PAGES.LOGOUT,
 ]
+
+/**
+ * footerMenuFull
+ *
+ * lists all the entries that are visible in the footer menu for a user with maximum permissions.
+ * it will be restricted by personal user permissions
+ */
+export const footerMenuFull = [
+  PAGES.IMPRINT,
+  PAGES.PRIVACY,
+  PAGES.COOKIE_POLICY,
+  PAGES.CONTACT,
+]

@@ -28,7 +28,7 @@
     "documentation": "Dokumentation & Hilfe",
     "contact": "Kontakt",
     "imprint": "Impressum",
-    "privacy": "Privatsphäre",
+    "privacy": "Cookie-Richtlinie",
     "terms": "Nutzungsbedingungen",
     "cookiepolicy": "Cookies",
     "3rdpartylicenses": "Drittanbieterlizenzen",
@@ -249,34 +249,34 @@
       "title": "Neuigkeiten"
     },
     "home": {
-      "slider1": "Meine Apps",
-      "slider2": "Use Case Introduction",
-      "slider3": "Marktplatz",
-      "slider4": "Benutzermanagement",
+      "slider1": "Benutzer Management",
+      "slider2": "App Marktplatz",
+      "slider3": "Service Marktplatz",
+      "slider4": "Connector Registrierung",
       "stage": {
         "slider1": {
-          "title": "Catena-X",
-          "subtitle": "das Tor zum digitalen Automotive-Netzwerk",
-          "buttonName": "Meine Apps",
-          "navigation": "/appmanagement"
+          "title": "Benutzer Management",
+          "subtitle": "Fügen Sie Benutzer Ihres Unternehmens hinzu, vergeben Sie Rechte und verwalten Sie den Zugriff auf abonnierte Anwendungen.",
+          "buttonName": "Benutzer verwalten",
+          "navigation": "/usermanagement"
         },
         "slider2": {
-          "title": "Use Case Introduction",
-          "subtitle": "Lernen Sie die unterstützten Anwendungsfälle, zugehörigen semantischen Modelle und Apps kennen, um Ihre anwendungsfallgesteuerte Onboarding-Reise zu beginnen.",
-          "buttonName": "Use Case Introduction",
-          "navigation": "/usecase"
+          "title": "App Marktplatz",
+          "subtitle": "Ihre zentrale Anlaufstelle für sofort einsatzbereite Business-Applikationen. Entdecken Sie Catena-X zertifizierte Anwendungen für effizienten Datenaustausch.",
+          "buttonName": "Apps entdecken",
+          "navigation": "/appmarketplace"
         },
         "slider3": {
-          "title": "Marktplätze",
-          "subtitle": "Transparenter und interoperabler Service- und Business-Applikations-Marktplatz, um neue Ideen umzusetzen und Daten optimal zu nutzen.",
-          "buttonName": "Marktplatz",
-          "navigation": "/marketplace"
+          "title": "Service Marktplatz",
+          "subtitle": "Hier finden Sie Beratungsdienstleistungen von qualifizierten Partnern. Erreichen Sie Ihre Geschäftsziele durch fachkundige Beratung rundum Catena-X und Datenaustausch.",
+          "buttonName": "Services entdecken",
+          "navigation": "/servicemarketplace"
         },
         "slider4": {
-          "title": "Benutzermanagement",
-          "subtitle": "Verwalten Sie Benutzerzugriffe zentral, um den Verwaltungsaufwand zu reduzieren und einen transparenten Überblick über alle Benutzerrechte zu gewährleisten.",
-          "buttonName": "Benutzermanagement",
-          "navigation": "/usermanagement"
+          "title": "Connector Registrierung",
+          "subtitle": "Registrieren Sie Ihren Connector, um vollständig mit dem Datenraum verbunden und für einen effizienten Datenaustausch bereit zu sein.",
+          "buttonName": "Connector registrieren",
+          "navigation": "/connectormanagement"
         }
       },
       "searchSection": {
@@ -1124,7 +1124,7 @@
       }
     },
     "footer": {
-      "copyright": "Copyright © Catena-X Automotive Network"
+      "copyright": "Copyright © Cofinity-X GmbH – Alle Rechte vorbehalten."
     },
     "logout": {
       "message": "Wir melden Sie nun ab... Wir freuen uns Sie bald wieder hier zu sehen!"
