@@ -21,6 +21,7 @@
 import {
   IconButton,
   PageLoadingTable,
+  StatusTag,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -39,6 +40,13 @@ import Patterns from 'types/Patterns'
 interface FetchHookArgsType {
   statusFilter: string
   expr: string
+}
+
+enum ServiceAccountStatus {
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
+  PENDING = 'Pending',
+  DELETED = 'Deleted',
 }
 
 export const TechnicalUserTable = () => {
@@ -89,6 +97,13 @@ export const TechnicalUserTable = () => {
     },
   ]
 
+  const renderStatusColor = (status: string) => {
+    if (status === ServiceAccountStatus.ACTIVE) return 'confirmed'
+    else if (status === ServiceAccountStatus.INACTIVE) return 'declined'
+    else if (status === ServiceAccountStatus.PENDING) return 'pending'
+    else return 'label'
+  }
+
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry, FetchHookArgsType>
@@ -126,7 +141,7 @@ export const TechnicalUserTable = () => {
           {
             field: 'serviceAccountType',
             headerName: t('global.field.type'),
-            flex: 1,
+            flex: 1.2,
           },
           {
             field: 'offer',
@@ -138,9 +153,20 @@ export const TechnicalUserTable = () => {
           {
             field: 'isOwner',
             headerName: t('global.field.owner'),
-            flex: 1,
+            flex: 0.8,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.isOwner ? 'Yes' : 'No',
+          },
+          {
+            field: 'status',
+            headerName: t('global.field.status'),
+            flex: 1.2,
+            renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
+              <StatusTag
+                color={renderStatusColor(row.status)}
+                label={row.status}
+              />
+            ),
           },
           {
             field: 'details',
