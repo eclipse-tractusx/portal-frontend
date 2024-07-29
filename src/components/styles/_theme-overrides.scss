@@ -1282,3 +1282,13 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
+.business-applications-section {
+  .slick-active button:before {
+    color: $color-primary !important;
+  }
+  .section-title {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+  }
+}
