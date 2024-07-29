@@ -116,19 +116,19 @@
   },
   "content": {
     "registration": {
-      "title": "Willkommen bei Catena-X",
-      "mainDescription": "Vielen Dank, dass Sie sich bei uns registriert haben. Sie haben Ihren Registrierungsprozess gestartet, aber es fehlen noch ein paar Dinge.",
-      "completeBtn": "Vervollständige deine Registrierung",
+      "title": "Willkommen zurück!",
+      "mainDescription": "Sie haben mit der Registrierung begonnen, sind aber noch nicht fertig. Führen Sie alle Schritte aus, um Zugriff auf das Cofinity-X-Portal zu erhalten, während Ihre Registrierung überprüft wird.",
+      "completeBtn": "Registrierung fortsetzen",
       "description": "Zum aktuellen Stand der Registrierung können Sie nicht auf das Portal zugreifen. Nach Abschluss aller Phasen der Registrierung erhalten Sie eingeschränkten Zugriff auf das Portal, während Ihre Registrierung überprüft wird.",
       "steps": {
-        "step1": "Verify your company data",
+        "step1": "Unternehmensdaten hinzufügen",
         "step2": "Responsibilities & admin account",
-        "step3": "Role of your company",
-        "step4": "Upload document",
-        "step5": "Verify your entries",
+        "step3": "Unternehmensrolle  auswählen",
+        "step4": "Dokument hochladen",
+        "step5": "Überprüfen und absenden",
         "tooltipText": "Fahren Sie dort fort, wo Sie aufgehört haben"
       },
-      "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:",
+      "helpText": "Benötigen Sie Hilfe? Kontaktieren Sie uns unter",
       "email": "help@catena-x.com"
     },
     "registrationInreview": {
@@ -2307,5 +2307,10 @@
       "appManagement": "App Management",
       "serviceManagement": "Service Management"
     }
+  },
+  "customRegistration": {
+    "helpText2": " oder nutzen Sie unsere",
+    "helpDoc": "Hilfe-Dokumentation.",
+    "helpDocLink": "https://intercom-help.eu/cofinity-x/en/collections/323188-registration"
   }
 }
