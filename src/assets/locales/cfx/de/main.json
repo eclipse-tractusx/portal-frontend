@@ -283,13 +283,13 @@
         "inputPlaceholder": "Suche in Cofinity-X"
       },
       "businessApplicationsSection": {
-        "title": "Meine Applications"
+        "title": "Ihre abonnierten Apps"
       },
       "appStoreSection": {
         "title": "Neue Apps"
       },
       "emptyCards": {
-        "title": "New apps will get added here as soon as you have any assigned"
+        "title": "Apps werden hier hinzugefügt, sobald Ihnen der Zugang zugewiesen wurde"
       }
     },
     "appstore": {
