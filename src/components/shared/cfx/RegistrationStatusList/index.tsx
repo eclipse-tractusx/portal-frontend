@@ -27,8 +27,10 @@ import PendingIcon from '@mui/icons-material/Pending'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import { type ApplicationChecklist } from 'features/registration/registrationApiSlice'
 import uniqueId from 'lodash/uniqueId'
-import '../RegistrationReview.scss'
+import './RegistrationReview.scss'
 import { ProgressStatus } from 'features/admin/applicationRequestApiSlice'
+import { registrationStatusColors } from 'theme.override'
+import { REVIEW_STAGE_ORDERS } from 'types/Constants'
 
 export type StatusTagIcon = {
   type?: 'confirmed' | 'pending' | 'declined' | 'label'
@@ -50,87 +52,100 @@ const RegistrationStatusList = ({
       case ProgressStatus.IN_PROGRESS:
         return {
           icon: <LoopIcon />,
-          backgroundColor: '#EAF1FE',
-          color: '#0F71CB',
           iconColor: 'label' as StatusTagIcon['type'],
+          ...registrationStatusColors.inProgress,
         }
       case ProgressStatus.TO_DO:
         return {
           icon: <PendingActionsIcon />,
-          backgroundColor: '#EAF1FE',
-          color: '#0F71CB',
           iconColor: 'label' as StatusTagIcon['type'],
+          ...registrationStatusColors.todo,
         }
       case ProgressStatus.DONE:
         return {
           icon: <CheckCircleOutlineIcon />,
-          backgroundColor: '#F5F9EE',
-          color: '#00AA55',
           iconColor: 'confirmed' as StatusTagIcon['type'],
+          ...registrationStatusColors.done,
         }
       case ProgressStatus.FAILED:
         return {
           icon: <ReportProblemIcon />,
-          backgroundColor: '#FFF6FF',
-          color: '#D91E18',
           iconColor: 'declined' as StatusTagIcon['type'],
+          ...registrationStatusColors.failed,
         }
       default:
         return {
           icon: <PendingIcon />,
-          backgroundColor: '#FFF6FF',
-          color: '#D91E18',
           iconColor: 'label' as StatusTagIcon['type'],
+          ...registrationStatusColors.default,
         }
     }
   }
 
   return (
     <ul className="statusList">
-      {checklist.map((checklist: ApplicationChecklist) => (
-        <li
-          key={uniqueId(checklist.statusId)}
-          style={{
-            backgroundColor: renderStatus(checklist.statusId).backgroundColor,
-            flexDirection: isMobile ? 'column-reverse' : 'unset',
-            borderRadius: '6px',
-          }}
-        >
-          {!isMobile && (
-            <div
-              style={{ color: renderStatus(checklist.statusId).color }}
-              className="icon"
-            >
-              {renderStatus(checklist.statusId).icon}
-            </div>
-          )}
-          <div
-            className={`${isMobile ? 'm-0' : 'statusLabel'}`}
-            style={{
-              margin: isMobile ? 0 : '',
-            }}
-          >
-            <Typography
-              variant="label3"
-              sx={{
-                fontSize: isMobile ? '12px' : '',
+      {REVIEW_STAGE_ORDERS.map((stageName: string) => {
+        const currentStage = checklist.find((c) => c.typeId === stageName)
+
+        if (currentStage) {
+          const {
+            icon,
+            iconColor,
+            color,
+            backgroundColor,
+            btnColor,
+            textColor,
+          } = renderStatus(currentStage.statusId)
+          return (
+            <li
+              key={uniqueId(currentStage.statusId)}
+              style={{
+                backgroundColor,
+                flexDirection: isMobile ? 'column-reverse' : 'unset',
+                borderRadius: '6px',
               }}
             >
-              {t(`content.registrationInreview.steps.${checklist.typeId}`)}
-            </Typography>
-          </div>
-          <StatusTag
-            color={renderStatus(checklist.statusId).iconColor}
-            label={t(
-              `content.registrationInreview.status.${checklist.statusId}`
-            )}
-            size="small"
-            sx={{
-              fontSize: isMobile ? '12px' : '',
-            }}
-          />
-        </li>
-      ))}
+              {!isMobile && (
+                <div style={{ color }} className="icon">
+                  {icon}
+                </div>
+              )}
+              <div
+                className={`${isMobile ? 'm-0' : 'statusLabel'}`}
+                style={{
+                  margin: isMobile ? 0 : '',
+                }}
+              >
+                <Typography
+                  variant="label3"
+                  sx={{
+                    fontSize: isMobile ? '12px' : '20px',
+                  }}
+                >
+                  {t(
+                    `content.registrationInreview.steps.${currentStage.typeId}`
+                  )}
+                </Typography>
+              </div>
+              <StatusTag
+                className="statusTag"
+                color={iconColor}
+                label={t(
+                  `content.registrationInreview.status.${currentStage.statusId}`
+                )}
+                size="small"
+                sx={{
+                  fontSize: isMobile ? '12px' : '18px',
+                  backgroundColor: btnColor,
+                  color: textColor,
+                }}
+              />
+            </li>
+          )
+        }
+
+        return null
+      })}
     </ul>
   )
 }
