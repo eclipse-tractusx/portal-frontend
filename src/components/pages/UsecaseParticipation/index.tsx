@@ -27,7 +27,6 @@ import {
   Chip,
   CircleProgress,
   CustomAccordion,
-  PageHeader,
   StatusTag,
   Tooltips,
   Typography,
@@ -37,7 +36,6 @@ import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   useFetchUsecaseQuery,
   type UsecaseResponse,
@@ -141,15 +139,8 @@ export default function UsecaseParticipation() {
   }
 
   return (
-    <main className="usecase-participation">
-      <PageHeader
-        title={t('content.usecaseParticipation.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
-      <div className="usecase-main">
+    <main className="useCaseParticipation">
+      <div className="useCase-main">
         <div className="container">
           <Typography variant="h2" className="heading">
             {t('content.usecaseParticipation.heading')}
@@ -185,7 +176,7 @@ export default function UsecaseParticipation() {
               {t('content.usecaseParticipation.noteDetail')}
             </Typography>
           </div>
-          <div className="usecase-list-main">
+          <div className="useCase-list-main">
             <ul>
               {isLoading ? (
                 <div className="progress-main">
@@ -203,14 +194,14 @@ export default function UsecaseParticipation() {
               ) : (
                 data?.map((item) => {
                   return (
-                    <div className="usecase-list" key={uniqueId(item.useCase)}>
-                      <li className="usecase-list-item">
-                        <div className="usecase-detail">
+                    <div className="useCase-list" key={uniqueId(item.useCase)}>
+                      <li className="useCase-list-item">
+                        <div className="useCase-detail">
                           <PixIcon />
                           <div>
                             <Typography
                               variant="body1"
-                              className="usecase-title"
+                              className="useCase-title"
                             >
                               {item.useCase}
                             </Typography>

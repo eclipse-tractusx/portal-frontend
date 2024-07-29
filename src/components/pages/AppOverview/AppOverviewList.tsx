@@ -49,44 +49,44 @@ export const AppOverviewList = ({
 
   const activeSubmenuOptions = [
     {
-      label: t('content.appoverview.sortOptions.deactivate'),
+      label: t('content.appOverview.sortOptions.deactivate'),
       value: AppSubMenuItems.DEACTIVATE,
     },
     {
-      label: t('content.appoverview.sortOptions.changeImage'),
+      label: t('content.appOverview.sortOptions.changeImage'),
       value: AppSubMenuItems.CHANGE_IMAGE,
     },
     {
-      label: t('content.appoverview.sortOptions.changeDescription'),
+      label: t('content.appOverview.sortOptions.changeDescription'),
       value: AppSubMenuItems.CHANGE_DESCRIPTION,
     },
     {
-      label: t('content.appoverview.sortOptions.addRoles'),
+      label: t('content.appOverview.sortOptions.addRoles'),
       value: AppSubMenuItems.ADD_ROLES,
     },
     {
-      label: t('content.appoverview.sortOptions.changeDocuments'),
+      label: t('content.appOverview.sortOptions.changeDocuments'),
       value: AppSubMenuItems.CHANGE_DOCUMENTS,
     },
     {
-      label: t('content.appoverview.sortOptions.viewDetails'),
+      label: t('content.appOverview.sortOptions.viewDetails'),
       value: AppSubMenuItems.VIEW_DETAILS,
     },
   ]
 
   const inactiveSubmenuOptions = [
     {
-      label: t('content.appoverview.sortOptions.activate'),
+      label: t('content.appOverview.sortOptions.activate'),
       value: AppSubMenuItems.ACTIVATE,
       disabled: true,
     },
     {
-      label: t('content.appoverview.sortOptions.delete'),
+      label: t('content.appOverview.sortOptions.delete'),
       value: AppSubMenuItems.DELETE,
       disabled: true,
     },
     {
-      label: t('content.appoverview.sortOptions.viewDetails'),
+      label: t('content.appOverview.sortOptions.viewDetails'),
       value: AppSubMenuItems.VIEW_INACTIVE_APP_DETAILS,
     },
   ]
@@ -102,9 +102,9 @@ export const AppOverviewList = ({
         imageSize={'small'}
         imageLoader={fetchImageWithToken}
         showAddNewCard={true}
-        newButtonText={t('content.appoverview.addbtn')}
+        newButtonText={t('content.appOverview.addbtn')}
         onNewCardButton={() => {
-          navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+          navigate(`/${PAGES.APP_RELEASE_PROCESS}/form`)
         }}
         onCardClick={(item: unknown) => {
           showOverlay(item as AppInfo)
@@ -143,7 +143,7 @@ export const AppOverviewList = ({
             })
           return undefined
         }}
-        tooltipText={t('content.appoverview.submenuNotAvail')}
+        tooltipText={t('content.appOverview.submenuNotAvail')}
       />
     </div>
   )

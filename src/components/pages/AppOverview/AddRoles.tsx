@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   Typography,
   PageHeader,
@@ -146,9 +145,7 @@ export default function AddRoles() {
 
   return (
     <main className="add-app-roles-main">
-      <PageHeader headerHeight={200} topPage={true} title={app?.[0]?.title}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeader headerHeight={200} topPage={true} title={app?.[0]?.title} />
       <section>
         <Typography mb={3} variant="body2" align="center">
           {app?.[0]?.title}
@@ -208,7 +205,7 @@ export default function AddRoles() {
           <Button
             color="secondary"
             onClick={() => {
-              navigate(`/${PAGES.APPOVERVIEW}`)
+              navigate(`/${PAGES.APP_OVERVIEW}`)
             }}
             size="small"
           >
