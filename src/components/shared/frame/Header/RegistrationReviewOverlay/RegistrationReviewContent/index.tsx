@@ -26,7 +26,7 @@ import {
 } from 'features/registration/registrationApiSlice'
 import '../RegistrationReview.scss'
 import { ProgressStatus } from 'features/admin/applicationRequestApiSlice'
-import RegistrationStatusList from './RegistrationStatusList'
+import RegistrationStatusList from 'components/shared/cfx/RegistrationStatusList'
 
 export type StatusTagIcon = {
   type?: 'confirmed' | 'pending' | 'declined' | 'label'
