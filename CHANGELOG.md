@@ -1,11 +1,21 @@
 # Changelog
 
-## unreleased
+## 2.1.0-RC3
 
 ### Technical Support
 
+- upgraded shared components [#957](https://github.com/eclipse-tractusx/portal-frontend/pull/957)
+
+### Bugfixes
+
+- **Semantic Hub**:
+  - show appropriate error information to the user along with refetch button [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
+- **Company Data Management**:
+  - updated company data input patterns [#946](https://github.com/eclipse-tractusx/portal-frontend/pull/946)
 - **Admin Board**:
-  - Fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
+  - fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
+- **Connector Overlay**
+  - fixed typo
 
 ## 2.1.0-RC2
 
@@ -13,11 +23,6 @@
 
 - **Imprint**:
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
-
-### Feature
-
-- **Semantic Hub**:
-  - show appropriate error information to the user along with refetch button [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
 
 ### Bugfixes
 
