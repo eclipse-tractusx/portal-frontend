@@ -107,8 +107,16 @@ export const Patterns = {
   },
   companyData: {
     CITY: /^[A-ZÀ-ÿ0-9Śął](([ .'-]|\. )?[A-Za-zÀ-ÿ0-9Śął]{1,40}){1,10}$/,
-    STREET: /^[A-ZÀ-ÿ0-9Śął](([ .'-]|\. )?[A-Za-zÀ-ÿ0-9Śął]{1,40}){1,10}$/,
+    STREET:
+      /^(?!.*\s$)([a-zA-Z0-9À-ÿšŚął]{1,40}( ?[.,'/-] ?| )?){1,10}[a-zA-Z0-9À-ÿšŚął.]$/,
     COUNTRYCODE: /^[A-Za-zÀ-ÿ]{2,3}$/,
+    COMMERCIAL_REG_NUMBER: /^(?!.*\s$)([A-Za-z0-9](\.|\s|-)?){4,21}$/,
+    VAT_ID: /^(?!.*\s$)([A-Za-z0-9](\.|\s|-|\/)?){5,18}$/,
+    LEI_CODE: /^[A-Za-z0-9]{20}$/,
+    VIES: /^[A-Z]{2}[0-9A-Za-z+*.]{2,12}$/,
+    EORI: /^[A-Z]{2}[A-Za-z0-9]{1,15}$/,
+    POSTAL_CODE:
+      /^(?!.*\s$)(?=[a-zA-Z\d-]{0,10}[-\s]?[a-zA-Z\d-]{0,10}$)[a-zA-Z\d\s-]{2,10}$/,
   },
 }
 
@@ -185,5 +193,17 @@ export const isCity = (expr: string) => Patterns.companyData.CITY.test(expr)
 export const isStreet = (expr: string) => Patterns.companyData.STREET.test(expr)
 export const isCountry = (expr: string) =>
   Patterns.companyData.COUNTRYCODE.test(expr)
+export const isCompanyCommercialRegNumber = (expr: string) =>
+  Patterns.companyData.COMMERCIAL_REG_NUMBER.test(expr)
+export const isCompanyVatID = (expr: string) =>
+  Patterns.companyData.VAT_ID.test(expr)
+export const isCompantVies = (expr: string) =>
+  Patterns.companyData.VIES.test(expr)
+export const isCompanyEori = (expr: string) =>
+  Patterns.companyData.EORI.test(expr)
+export const isCompanyVies = (expr: string) =>
+  Patterns.companyData.VIES.test(expr)
+export const isPostalCode = (expr: string) =>
+  Patterns.companyData.POSTAL_CODE.test(expr)
 
 export default Patterns
