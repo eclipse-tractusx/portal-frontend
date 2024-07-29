@@ -77,7 +77,6 @@
   justify-content: center;
   color: #111111;
   width: 160px;
-  height: 63px;
   margin: 8px auto 20px auto;
   padding: 16px, 16px, 4px, 16px;
   border-radius: 10px;
@@ -91,4 +90,9 @@
 
 .tool-tip-a {
   text-decoration: none;
+}
+
+.tool-tip-text {
+  text-wrap: wrap;
+  padding-bottom: 10px;
 }
