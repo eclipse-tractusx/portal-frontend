@@ -368,6 +368,7 @@ const CompanyDetailOverlay = ({
             sx={{
               padding: '30px 110px 56px 110px',
               width: '100%',
+              marginBottom: activeTab ? 5 : 0,
             }}
           >
             <TabPanel value={activeTab} index={0}>
@@ -408,7 +409,7 @@ const CompanyDetailOverlay = ({
                 <Typography className="title" variant="h4">
                   {t('content.admin.registration-requests.overlay.roles')}
                 </Typography>
-                {companyRoleData?.[0]?.value}
+                <div>{companyRoleData?.[0]?.value}</div>
               </Box>
             </TabPanel>
             <TabPanel value={activeTab} index={2}>

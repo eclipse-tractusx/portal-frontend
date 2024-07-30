@@ -213,6 +213,7 @@
   border-radius: 30px;
   margin-bottom: 28px;
   background-color: #f9f9f9;
+  overflow: hidden;
 
   .title {
     font-size: 18px;
@@ -238,6 +239,19 @@
   .detail-text {
     flex-grow: 1;
     text-align: left;
+  }
+
+  @media (max-width: 600px) {
+    .detail {
+      flex-direction: column;
+    }
+
+    .detail-name {
+      padding-right: 0;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+    }
   }
 }
 
@@ -282,8 +296,6 @@
   padding: 4px 12px;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
-  align-self: stretch;
 
   .tab-divider {
     background-color: #dcdcdc;
