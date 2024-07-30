@@ -293,20 +293,21 @@
     },
     "appstore": {
       "stage": {
-        "title": "Catena-X App Store",
-        "subtitle": "A scalable & expandable ecosystem",
+        "title": "App Marketplace",
+        "subtitle": "Explore Catena-X certified apps for key industry use cases. Filter by use cases or browse all products. You can mark favorite apps with a heart and display them in the Your Favorite Apps section.",
         "appButton": "App Overview"
       },
+      "searchSection": { "inputPlaceholder": "Search by app title..." },
       "favoriteSection": {
         "title": "My Favorite Applications",
-        "myFavorite": "My Favorites",
+        "myFavorite": "Your Favourite Apps",
         "noFavoriteDescription": "Your app favorites will show up in this section as soon as favorites selected."
       },
       "appOverviewSection": {
-        "title": "App Overview",
+        "title": "All apps",
         "categoryViews": {
-          "all": "List View",
-          "useCases": "Category View"
+          "all": "View all",
+          "useCases": "Sort by Use Cases"
         },
         "categories": {
           "none": "Not categorized",
@@ -318,7 +319,8 @@
           "manufacturingasaservice": "Manufacturing as a Service",
           "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
           "real-timecontrol": "Real Time Control",
-          "modularproduction": "Modular Production"
+          "modularproduction": "Modular Production",
+          "behaviortwin": "Behavior Twin"
         },
         "noMatch": "No Match",
         "for": "for your search term"
@@ -2254,8 +2256,8 @@
       "searchName": "Enter name to search"
     },
     "noData": {
-      "heading": "No data available",
-      "description": "Currently no data available; change the view or come back later"
+      "heading": "No Results Found",
+      "description": "We couldn't find any matches for your search. Please try different keywords or filters."
     }
   },
   "servicemarketplace": {

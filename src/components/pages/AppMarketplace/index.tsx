@@ -25,6 +25,7 @@ import { Box } from '@mui/material'
 import PageService from 'services/PageService'
 import { useRef } from 'react'
 import './AppMarketplace.scss'
+import FavoriteSection from 'components/shared/cfx/AppMarketplace/FavoriteSection'
 
 export default function AppMarketplace() {
   const reference = PageService.registerReference('AppList', useRef(null))
@@ -32,8 +33,12 @@ export default function AppMarketplace() {
   return (
     <main className="app-store">
       <StageSection />
+
       <Box ref={reference} className="overview-section">
-        <HeaderSection />
+        <FavoriteSection />
+        <Box sx={{ py: '40px' }}>
+          <HeaderSection />
+        </Box>
         <SearchSection />
         <AppListSection />
       </Box>
