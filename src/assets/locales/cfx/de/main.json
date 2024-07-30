@@ -294,32 +294,34 @@
     },
     "appstore": {
       "stage": {
-        "title": "Catena-X App Store",
-        "subtitle": "Ein skalierendes und erweiterbares Ökosystem",
+        "title": "App Marktplatz",
+        "subtitle": "Entdecken Sie Catena-X zertifizierte Apps für verschiedenste Industrieanwendungen. Sie können das Angebot nach Use Cases sortieren oder alle Produkte durchsuchen. Markieren Sie Apps mit einem Herz, um sie im Bereich Gemerkte Apps anzuzeigen.",
         "appButton": "App Übersicht"
       },
+      "searchSection": { "inputPlaceholder": "Suche nach App Titel..." },
       "favoriteSection": {
         "title": "Meine Favoriten",
-        "myFavorite": "Meine Favoriten",
+        "myFavorite": "Gemerkte Apps",
         "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind."
       },
       "appOverviewSection": {
-        "title": "App Übersicht",
+        "title": "Alle Apps",
         "categoryViews": {
-          "all": "Alle",
-          "useCases": "Anwendungsbereiche"
+          "all": "Gesamtansicht",
+          "useCases": "Use Case Ansicht"
         },
         "categories": {
-          "none": "Nicht kategorisiert",
-          "businesspartnermanagement": "Geschäftspartner Datenmanagement",
-          "circulareconomy": "Kreislaufwirtschaft",
-          "qualitymanagement": "Bedarfs- & Qualitätsmanagement",
-          "demandandcapacitymanagement": "Bedarfs- & Kapazitätsmanagement",
-          "traceability": "Rückverfolgbarkeit",
-          "manufacturingasaservice": "Produzieren als Dienst",
+          "none": "Not categorized",
+          "businesspartnermanagement": "Business Partner Data Management",
+          "circulareconomy": "Circular Economy",
+          "qualitymanagement": "Demand & Quality Management",
+          "demandandcapacitymanagement": "Demand & Capacity Management",
+          "traceability": "Traceability",
+          "manufacturingasaservice": "Manufacturing as a Service",
           "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
           "real-timecontrol": "Real Time Control",
-          "modularproduction": "Modular Production"
+          "modularproduction": "Modular Production",
+          "behaviortwin": "Behavior Twin"
         },
         "noMatch": "Keine Treffer",
         "for": "zu Ihrem Suchausdruck"
@@ -2286,8 +2288,8 @@
       "searchName": "Enter name to search"
     },
     "noData": {
-      "heading": "No data available",
-      "description": "Currently no data available; change the view or come back later"
+      "heading": "Keine Ergebnisse gefunden",
+      "description": "Wir konnten keine Übereinstimmungen für Ihre Suche finden. Bitte versuchen Sie es mit anderen Stichwörtern oder Filtern."
     }
   },
   "servicemarketplace": {

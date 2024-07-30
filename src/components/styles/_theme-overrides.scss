@@ -1284,11 +1284,65 @@ p.MuiTypography-root.MuiTypography-body3.description,
 }
 
 .business-applications-section {
-  .slick-active button:before {
-    color: $color-primary !important;
-  }
   .section-title {
     margin-bottom: 0px !important;
     padding-bottom: 0px !important;
+  }
+}
+.slick-active button:before {
+  color: $color-primary !important;
+}
+
+.mainHeaderContainer {
+  .mainHeaderTitle {
+    padding: 0px 100px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    h1 {
+      font-size: 40px !important;
+      font-weight: 600 !important;
+      padding-bottom: 20px !important;
+      text-align: left !important;
+    }
+    h2 {
+      font-size: 20px !important;
+      font-weight: 500 !important;
+      text-align: left !important;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1499px) {
+  .mainHeaderContainer {
+    .mainHeaderTitle {
+      padding: 0px 100px !important;
+    }
+  }
+}
+//tab layout
+@media (max-width: 1024px) {
+  .mainHeaderContainer {
+    height: 350px !important;
+    .mainHeaderTitle {
+      padding: 0px 50px !important;
+      h2 {
+        width: unset !important;
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .mainHeaderContainer {
+    .mainHeaderTitle {
+      padding: 0px 30px !important;
+      h1 {
+        font-size: 30px !important;
+      }
+      h2 {
+        font-size: 16px !important;
+      }
+    }
   }
 }
