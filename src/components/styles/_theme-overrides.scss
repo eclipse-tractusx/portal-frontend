@@ -1273,14 +1273,15 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
-.app-store-section {
-  .card {
-    .MuiBox-root {
-      .MuiTypography-root {
-        z-index: 3 !important;
-      }
+.card {
+  .MuiBox-root {
+    .MuiTypography-root {
+      z-index: 3 !important;
     }
   }
+}
+.card:hover {
+  z-index: 5 !important;
 }
 
 .business-applications-section {
