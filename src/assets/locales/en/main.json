@@ -6,21 +6,21 @@
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
-    "appmarketplace": "App Marketplace",
-    "servicemarketplace": "Service Marketplace",
+    "appMarketplace": "App Marketplace",
+    "serviceMarketplace": "Service Marketplace",
     "appdetails": "App Details",
-    "datamanagement": "Data Management",
+    "dataManagement": "Data Management",
     "semantichub": "Semantic Hub",
-    "partnernetwork": "Partner Network",
+    "partnerNetwork": "Partner Network",
     "connector": "Connector",
     "account": "My CX Account",
     "organization": "My Company",
     "notifications": "Notifications",
-    "usermanagement": "User Management",
-    "idpmanagement": "Identity Provider Config",
-    "technicalsetup": "Technical Integration",
-    "connectormanagement": "Connector Management",
-    "applicationrequests": "Application Requests",
+    "userManagement": "User Management",
+    "idpManagement": "Identity Provider Config",
+    "technicalSetup": "Technical Integration",
+    "connectorManagement": "Connector Management",
+    "applicationRequests": "Application Requests",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -30,50 +30,50 @@
     "imprint": "Imprint",
     "privacy": "Privacy",
     "terms": "Terms of Service",
-    "cookiepolicy": "Cookies",
+    "cookiePolicy": "Cookies",
     "logout": "Sign Out",
-    "notfound": "Page not found",
-    "appmanagement": "App Management",
-    "appoverview": "App Overview",
+    "notFound": "Page not found",
+    "appManagement": "App Management",
+    "appOverview": "App Overview",
     "deactivate": "Deactivate",
-    "appreleaseprocess": "App Release Process",
-    "appsubscription": "App Subscription MGT",
+    "appReleaseProcess": "App Release Process",
+    "appSubscription": "App Subscription MGT",
     "adminboard": "Admin Board",
-    "appusermanagement": "App User Management",
+    "appUserManagement": "App User Management",
     "userdetails": "User Details",
-    "technicaluser": "Technical User Management",
-    "techuserdetails": "Technical User Details",
-    "companyroles": "Company Roles",
-    "companyrolesparticipant": "Participant",
-    "companyrolesappprovider": "App Provider",
-    "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconformitybody": "Conformity Body",
-    "companyrolesonboardingserviceprovider": "Onboarding Service Provider",
-    "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity",
-    "servicemanagement": "Service Management",
-    "serviceoverview": "Service Overview",
-    "servicereleaseprocess": "Service Release Process",
-    "serviceadminboard": "Admin Board",
-    "servicesubscription": "Service Subscription Mgt",
-    "servicedetail": "Service Details",
-    "company-role": "Config - Company Role",
-    "usecase-participation": "Config - Use Case Participation",
-    "certificate-credential": "Config - Certificates",
+    "technicalUserManagement": "Technical User Management",
+    "techUserDetails": "Technical User Details",
+    "companyRoles": "Company Roles",
+    "companyRolesParticipant": "Participant",
+    "companyRolesAppProvider": "App Provider",
+    "companyRolesServiceProvider": "Service Provider",
+    "companyRolesConformityBody": "Conformity Body",
+    "companyRolesOnboardingServiceProvider": "Onboarding Service Provider",
+    "useCase": "Use Case",
+    "useCaseTraceablity": "Traceablity",
+    "serviceManagement": "Service Management",
+    "serviceOverview": "Service Overview",
+    "serviceReleaseProcess": "Service Release Process",
+    "serviceAdminBoard": "Admin Board",
+    "serviceSubscription": "Service Subscription Mgt",
+    "serviceDetail": "Service Details",
+    "companyRole": "Config - Company Role",
+    "useCaseParticipation": "Config - Use Case Participation",
+    "certificateCredential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space",
-    "admin-credential": "Credential Requests",
+    "dataSpace": "Data Space",
+    "adminCredential": "Credential Requests",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
-    "company-subscriptions": "Company Subscriptions",
+    "companySubscriptions": "Company Subscriptions",
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
-    "company_data": "Company Data"
+    "companyData": "Company Data"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
-    "add_user": "Add new user",
-    "add_techuser": "Add new technical user",
+    "addUser": "Add new user",
+    "addTechuser": "Add new technical user",
     "idp_delete_info_title": "Deletion of the identity provider.",
     "idp_delete_info_intro": "Please note, all users which are not migrated to the new iDP wii get irreversible deleted.",
     "idp_delete_success_title": "Identity provider {{name}} was successfully deleted.",
@@ -258,13 +258,13 @@
           "title": "Catena-X",
           "subtitle": "the gateway to the automotive digital network",
           "buttonName": "My Apps",
-          "navigation": "/appmanagement"
+          "navigation": "/appManagement"
         },
         "slider2": {
           "title": "Use Case Introduction",
           "subtitle": "Get to know the supported use cases, related semantic models and apps to start your use case driven onboarding journey.",
           "buttonName": "Use Case Introduction",
-          "navigation": "/usecase"
+          "navigation": "/useCase"
         },
         "slider3": {
           "title": "Marketplaces",
@@ -462,7 +462,7 @@
     "datamanagement": {
       "message": "Contents of Data Management"
     },
-    "appoverview": {
+    "appOverview": {
       "headerTitle": "My Apps",
       "title": "App Overview",
       "inputPlaceholder": "Search for Apps",
@@ -551,7 +551,7 @@
       "deleteIconTooltip": "At least one document is mandatory. Upload a new document before being able to remove the image.",
       "uploadButtonTooltip": "Maximum number of allowed documents reached. Please delete one document before uploading a new one."
     },
-    "appreleaseprocess": {
+    "appReleaseProcess": {
       "message": "App Release Process Message"
     },
     "connector": {
@@ -614,10 +614,7 @@
       },
       "configurationDetails": {
         "title": "How to Configure Your Connector",
-        "description1": "This description provides step-by-step instructions on how to configure your connector.",
-        "description2": "Please follow the instructions below to set the necessary configuration values.",
-        "description3": "Ensure that you enter the correct values for each configuration setting.",
-        "description4": "Once you have set these values, your connector will be properly configured and ready to use.",
+        "description": "This description provides step-by-step instructions on how to configure your connector.<br/>Please follow the instructions below to set the necessary configuration values.<br/>Ensure that you enter the correct values for each configuration setting.<br/>Once you have set these values, your connector will be properly configured and ready to use.",
         "learnMore": "learn more",
         "clientId": "Client ID of your technical user",
         "secret": "Secret",
@@ -666,12 +663,12 @@
         "company": {
           "title": "Register Connector",
           "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is an asynchronous process and might take up to 5 minutes.",
-          "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /company-role"
+          "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /companyRole"
         },
         "managed": {
           "title": "Register Managed Connector",
           "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
-          "disableDescription": "This option is only available if your company is App Provider or Service Provider. Company roles can get changed by the company admin /company-role"
+          "disableDescription": "This option is only available if your company is App Provider or Service Provider. Company roles can get changed by the company admin /companyRole"
         },
         "companyconnectorlabel": "Connect company connector",
         "connectorasaservice": "Connector-as-a-service",
@@ -1114,7 +1111,7 @@
       "further": "If you think there should be content please contact your administrator."
     },
     "appdetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Language",
       "subscribe": "Subscribe",
       "subscribed": "Subscribed",
@@ -1520,7 +1517,7 @@
       }
     },
     "adminboardDetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Language",
       "price": "Price",
       "longDescriptionTitleEN": "[Long Description - EN] ",
@@ -1745,7 +1742,6 @@
       "tab2": "Role Comparison"
     },
     "companyRolesUpdate": {
-      "headerTitle": "Roles",
       "heading": "Change Company Role",
       "description": "Below you can manage the roles your company takes in Catena-X.",
       "step1": "You can change your current role by selecting and deselecting the resepctive available roles.",
@@ -1784,9 +1780,8 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview",
       "heading": "Use Case Participation",
-      "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
+      "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the useCase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",

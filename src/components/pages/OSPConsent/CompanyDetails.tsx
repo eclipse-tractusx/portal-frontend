@@ -239,7 +239,7 @@ export const CompanyDetails = ({
         <div className="rolesList">
           {allConsentData?.companyRoles.map((role) => (
             <div
-              className="company-role-section"
+              className="companyRole-section"
               key={uniqueId(role.companyRole)}
             >
               <div className="role-checkbox-row">

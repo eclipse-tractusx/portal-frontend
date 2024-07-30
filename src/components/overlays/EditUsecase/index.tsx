@@ -36,8 +36,8 @@ import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
 import type { store } from 'features/store'
 import { Dropzone } from '../../shared/basic/Dropzone'
-import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 import './style.scss'
+import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 
 export default function EditUsecase({
   id: verifiedCredentialTypeId,

@@ -20,7 +20,6 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   PageHeader,
   ViewSelector,
@@ -86,14 +85,14 @@ export default function ServiceListOverview() {
 
   const activeSubmenuOptions = [
     {
-      label: t('serviceoverview.sortOptions.deactivate'),
+      label: t('serviceOverview.sortOptions.deactivate'),
       value: ServiceSubMenuItems.DEACTIVATE,
     },
   ]
 
   const inactiveSubmenuOptions = [
     {
-      label: t('serviceoverview.sortOptions.activate'),
+      label: t('serviceOverview.sortOptions.activate'),
       value: ServiceSubMenuItems.ACTIVATE,
       disabled: true,
     },
@@ -131,22 +130,22 @@ export default function ServiceListOverview() {
 
   const statusFilterViews = [
     {
-      buttonText: t('serviceoverview.filter.all'),
+      buttonText: t('serviceOverview.filter.all'),
       buttonValue: StatusIdEnum.All,
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceoverview.filter.active'),
+      buttonText: t('serviceOverview.filter.active'),
       buttonValue: StatusIdEnum.Active,
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceoverview.filter.inactive'),
+      buttonText: t('serviceOverview.filter.inactive'),
       buttonValue: StatusIdEnum.Inactive,
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceoverview.filter.wip'),
+      buttonText: t('serviceOverview.filter.wip'),
       buttonValue: StatusIdEnum.WIP,
       onButtonClick: setView,
     },
@@ -190,7 +189,7 @@ export default function ServiceListOverview() {
   }
 
   const onNewServiceCardClick = () => {
-    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+    navigate(`/${PAGES.SERVICE_RELEASE_PROCESS}/form`)
     dispatch(setServiceId(''))
     dispatch(setServiceReleaseActiveStep())
     dispatch(setServiceStatus(initialState.serviceStatusData))
@@ -199,12 +198,10 @@ export default function ServiceListOverview() {
   return (
     <main>
       <PageHeader
-        title={t('serviceoverview.headerTitle')}
+        title={t('serviceOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       <div className="app-main">
         <Box sx={{ marginTop: '20px' }} className="overview-section">
           <section className="overview-section-content">
@@ -221,7 +218,7 @@ export default function ServiceListOverview() {
                 onChange={(e) => {
                   onSearch(e.target.value)
                 }}
-                placeholder={t('serviceoverview.inputPlaceholder')}
+                placeholder={t('serviceOverview.inputPlaceholder')}
               />
             </Box>
           </section>
@@ -261,7 +258,7 @@ export default function ServiceListOverview() {
                     imageSize={'small'}
                     imageLoader={fetchImageWithToken}
                     showAddNewCard={false}
-                    newButtonText={t('serviceoverview.addbtn')}
+                    newButtonText={t('serviceOverview.addbtn')}
                     onNewCardButton={onNewServiceCardClick}
                     onCardClick={(item: CardItems) => {
                       // TODO: workaround - fix CardItems type
@@ -271,7 +268,7 @@ export default function ServiceListOverview() {
                         cardItem.status === ProvidedServiceStatusEnum.CREATED
                       ) {
                         dispatch(setServiceId(item.id ?? ''))
-                        navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                        navigate(`/${PAGES.SERVICE_RELEASE_PROCESS}/form`)
                       } else {
                         navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
                       }
@@ -284,12 +281,12 @@ export default function ServiceListOverview() {
                       id: string | undefined
                     ) => {
                       sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                        navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
+                        navigate(`/${PAGES.SERVICE_DEACTIVATE}/${id}`, {
                           state: items,
                         })
                       return undefined
                     }}
-                    tooltipText={t('serviceoverview.submenuNotAvailable')}
+                    tooltipText={t('serviceOverview.submenuNotAvailable')}
                   />
                 </div>
               ) : (
@@ -321,8 +318,8 @@ export default function ServiceListOverview() {
           }
           description={
             state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
-              ? t('serviceoverview.serviceDeactivate.successMsg')
-              : t('serviceoverview.serviceDeactivate.errorMsg')
+              ? t('serviceOverview.serviceDeactivate.successMsg')
+              : t('serviceOverview.serviceDeactivate.errorMsg')
           }
           showIcon={true}
           autoClose={true}

@@ -18,15 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageHeader from 'components/shared/frame/StageHeader'
 import {
   Button,
+  PageHeader,
   PageSnackbar,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
 import { useDispatch, useSelector } from 'react-redux'
@@ -120,7 +120,13 @@ export default function SemanticHub() {
 
   return (
     <>
-      <StageHeader title={t('content.semantichub.title')} />
+      <Box sx={{ position: 'sticky' }}>
+        <PageHeader
+          headerHeight={200}
+          topPage={true}
+          title={t('content.semantichub.title')}
+        />
+      </Box>
       <main className="semantic-models">
         <section>
           <Grid container justifyContent="space-between">
@@ -144,7 +150,12 @@ export default function SemanticHub() {
             </Grid>
             <Grid item xs={4}>
               <img
-                style={{ marginTop: '-200px', border: '16px solid white' }}
+                style={{
+                  marginTop: '-50%',
+                  border: '16px solid white',
+                  display: 'block',
+                  position: 'relative',
+                }}
                 src={`${getAssetBase()}/images/content/teaser.png`}
                 width="100%"
                 alt={'alt tag info'}

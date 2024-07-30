@@ -17,8 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.usecase-participation {
-  .usecase-main {
+.useCaseParticipation {
+  .useCase-main {
     margin-top: 72px;
   }
   .container {
@@ -67,7 +67,7 @@
     border-bottom: 1px solid #dcdcdc;
     padding: 30px;
   }
-  .usecase-list-main {
+  .useCase-list-main {
     max-width: 850px;
     width: 100%;
     margin: 0 auto 50px;
@@ -82,12 +82,12 @@
         border: 0;
         border-top: 1px solid #dcdcdc;
       }
-      .usecase-list {
+      .useCase-list {
         margin-bottom: 30px;
-        .usecase-list-item {
+        .useCase-list-item {
           margin-bottom: 20px;
           display: flex;
-          .usecase-detail {
+          .useCase-detail {
             display: flex;
             width: 80%;
             svg {

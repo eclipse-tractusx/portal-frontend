@@ -21,49 +21,44 @@
 version: 2
 updates:
   # NPM
-  -
-    package-ecosystem: "npm"
-    target-branch: dev
+  - package-ecosystem: 'npm'
     directory: /
     labels:
-      - "dependabot"
-      - "dependencies"
+      - 'dependabot'
+      - 'dependencies'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     # restrict to patch updates (due to the big amount of dependencies)
     ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: '*'
+        update-types:
+          ['version-update:semver-major', 'version-update:semver-minor']
     groups:
       production-dependencies:
-        dependency-type: "production"
+        dependency-type: 'production'
       development-dependencies:
-        dependency-type: "development"
+        dependency-type: 'development'
 
   # Github Actions
-  -
-    package-ecosystem: "github-actions"
-    target-branch: dev
+  - package-ecosystem: 'github-actions'
     directory: /
     labels:
-      - "dependabot"
-      - "github-actions"
+      - 'dependabot'
+      - 'github-actions'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     groups:
       dependencies:
-        dependency-type: "production"
+        dependency-type: 'production'
 
   # Docker
-  -
-    package-ecosystem: "docker"
-    target-branch: dev
+  - package-ecosystem: 'docker'
     directory: ./.conf/
     labels:
-      - "dependabot"
-      - "docker"
+      - 'dependabot'
+      - 'docker'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     groups:
       dependencies:
-        dependency-type: "production"
+        dependency-type: 'production'
