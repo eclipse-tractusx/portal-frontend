@@ -17,11 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, MainHeader } from '@catena-x/portal-shared-components'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { useTranslation } from 'react-i18next'
-import PageService from 'services/PageService'
-import { label as AppList } from '../AppListSection'
-import FavoriteSection from '../FavoriteSection'
 import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SearchSection() {
@@ -32,21 +29,10 @@ export default function SearchSection() {
       <MainHeader
         title={t('content.appstore.stage.title')}
         subTitle={t('content.appstore.stage.subtitle')}
-        headerHeight={731}
-        subTitleWidth={787}
-        background="LinearGradient1"
+        headerHeight={250}
+        subTitleWidth={750}
         imagePath={`${getAssetBase()}/images/content/app-store-stage-desktop.png`}
-      >
-        <Button
-          sx={{ margin: '40px 10px 0 0' }}
-          onClick={() => {
-            PageService.scrollTo(AppList)
-          }}
-        >
-          {t('content.appstore.stage.appButton')}
-        </Button>
-        <FavoriteSection />
-      </MainHeader>
+      ></MainHeader>
     </div>
   )
 }

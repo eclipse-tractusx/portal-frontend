@@ -18,6 +18,7 @@
  ********************************************************************************/
 
 import { ViewSelector } from '@catena-x/portal-shared-components'
+import { Stack } from '@mui/material'
 import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
 import {
   appsControlSelector,
@@ -57,18 +58,25 @@ export default function SearchSection() {
   ]
 
   return (
-    <section style={{ paddingTop: 0, paddingBottom: 0, margin: '0 auto' }}>
-      <ViewSelector activeView={control.group} views={categoryViews} />
-
-      <div style={{ width: '100%', textAlign: 'center' }}>
+    <Stack
+      justifyContent={{ sm: 'space-between', xs: 'center' }}
+      direction={{ lg: 'row', xs: 'column' }}
+      spacing={3}
+      alignItems={'center'}
+      sx={{ px: 3 }}
+    >
+      <div>
         <DebouncedSearchInput
-          sx={{ minWidth: '544px', marginBottom: '0px' }}
-          placeholder={t('content.home.searchSection.inputPlaceholder')}
+          sx={{ marginBottom: '0px' }}
+          placeholder={t('content.appstore.searchSection.inputPlaceholder')}
           value={control.search}
           debounceTime={500}
           onSearch={triggerSearch}
         />
       </div>
-    </section>
+      <div>
+        <ViewSelector activeView={control.group} views={categoryViews} />
+      </div>
+    </Stack>
   )
 }

@@ -19,17 +19,38 @@
  ********************************************************************************/
 
 import { Typography } from '@catena-x/portal-shared-components'
-import { useTranslation } from 'react-i18next'
-export default function NoItems() {
-  const { t } = useTranslation()
+import { type MainHeaderProps } from '../MainHeader'
+
+export const MainHeaderTitle = ({
+  title,
+  subTitle,
+  subTitleWidth,
+  titleTextVariant = 'h1',
+  subTitleTextVariant = 'h2',
+}: MainHeaderProps) => {
   return (
-    <div style={{ margin: '130px 0 150px' }}>
-      <Typography mb={2} variant="h3" align="center" sx={{}}>
-        {t('global.noData.heading')}
-      </Typography>
-      <Typography variant="h5" align="center">
-        {t('global.noData.description')}
-      </Typography>
-    </div>
+    <>
+      {title && (
+        <Typography
+          sx={{
+            fontWeight: 600,
+          }}
+          variant={titleTextVariant}
+        >
+          {title}
+        </Typography>
+      )}
+
+      {subTitle && (
+        <Typography
+          sx={{
+            width: `${subTitleWidth}px`,
+          }}
+          variant={subTitleTextVariant}
+        >
+          {subTitle}
+        </Typography>
+      )}
+    </>
   )
 }

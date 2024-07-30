@@ -1,0 +1,66 @@
+/********************************************************************************
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+import { Carousel, Typography } from '@catena-x/portal-shared-components'
+import { Box } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
+import { appToCard } from 'features/apps/mapper'
+import { useDispatch, useSelector } from 'react-redux'
+import { itemsSelector } from 'features/apps/favorites/slice'
+import { useEffect } from 'react'
+import { fetchItems } from 'features/apps/favorites/actions'
+import type { AppDispatch } from 'features/store'
+import FavoriteItem from 'components/pages/AppMarketplace/components/FavoriteSection/FavoriteItem'
+
+export default function FavoriteSection() {
+  const { t } = useTranslation()
+  const dispatch = useDispatch<AppDispatch>()
+  const active = useFetchActiveAppsQuery().data ?? []
+  const favorites = useSelector(itemsSelector)
+
+  useEffect(() => {
+    dispatch(fetchItems())
+  }, [dispatch])
+
+  if (favorites.length === 0) return null
+
+  return (
+    <Box sx={{ py: '40px' }}>
+      <Typography variant="h4" sx={{ textAlign: 'center' }}>
+        {t('content.appstore.favoriteSection.myFavorite')}
+      </Typography>
+
+      <Carousel gapToDots={5} itemWidth={266} itemHeight={280}>
+        {active
+          .filter((item) => favorites.includes(item.id!))
+          .map((item) => appToCard(item))
+          .map((item) => (
+            <FavoriteItem
+              key={item.id}
+              item={item}
+              expandOnHover={false}
+              cardClick={true}
+            />
+          ))}
+      </Carousel>
+    </Box>
+  )
+}
