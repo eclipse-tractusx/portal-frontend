@@ -46,6 +46,7 @@ import {
   useUnsubscribeServiceMutation,
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 interface FetchHookArgsType {
   statusId: string
@@ -231,6 +232,13 @@ export default function CompanySubscriptions() {
 
   return (
     <main className="page-main-container">
+      <MainHeader
+        title={t('content.companySubscriptions.title')}
+        subTitle={t('content.companySubscriptions.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
       {showUnsubscribeOverlay && (
         <UnSubscribeOverlay
           openDialog={showUnsubscribeOverlay}

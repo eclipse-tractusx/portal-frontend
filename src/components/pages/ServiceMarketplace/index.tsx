@@ -54,6 +54,8 @@ import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
 import { SORTING_TYPE } from 'features/serviceManagement/types'
 import { serviceTypeMapping } from 'types/Constants'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -229,6 +231,13 @@ export default function ServiceMarketplace() {
 
   return (
     <main className="serviceMarketplace">
+            <MainHeader
+        title={t('content.serviceMarketplace.title')}
+        subTitle={t('content.serviceMarketplace.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+      
       {isFetching ? (
         <div style={{ textAlign: 'center' }}>
           <CircleProgress

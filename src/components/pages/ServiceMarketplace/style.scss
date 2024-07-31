@@ -100,21 +100,13 @@
     }
   }
 
-  .searchContainer {
-    margin: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .searchContainer .MuiTextField-root {
     margin: auto;
     width: 100%;
   }
 
   .searchContainer .MuiBox-root {
-    width: 50%;
+    min-width: 350px;
   }
 
   .searchContainer .MuiOutlinedInput-input {
@@ -135,9 +127,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 60px;
+
     svg {
       color: #0f71cb;
     }
@@ -150,11 +140,12 @@
   .filterSection .chipContainer {
     padding-left: 20px;
   }
-
   .sortSection {
+    position: relative;
+  }
+  .sortSectionOption {
     position: absolute;
-    left: 62%;
-    margin-top: 6%;
+
     background: #f9f9f9;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
     border-radius: 16px;

@@ -20,7 +20,6 @@
 
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { MainHeaderTitle } from './MainHeaderTitle'
-import { Image } from '@catena-x/portal-shared-components'
 
 export interface MainHeaderProps {
   title?: string
@@ -32,7 +31,6 @@ export interface MainHeaderProps {
     | 'LinearGradient2'
     | 'LinearGradient3'
     | 'LinearGradient4'
-  imagePath?: string
   titleTextVariant?:
     | 'h1'
     | 'h2'
@@ -78,7 +76,7 @@ export const MainHeader = ({
   subTitle,
   subTitleWidth,
   headerHeight = 645,
-  imagePath,
+
   titleTextVariant,
   subTitleTextVariant,
 }: MainHeaderProps) => {
@@ -99,32 +97,6 @@ export const MainHeader = ({
       }}
       className="mainHeaderContainer"
     >
-      {imagePath && (
-        <Box
-          sx={{
-            height: '100%',
-            width: '100%',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          <Image
-            src={imagePath}
-            alt="home stage"
-            style={{
-              bottom: 0,
-              height: '100%',
-              left: 0,
-              objectFit: 'cover',
-              right: 0,
-              top: 0,
-              visibility: 'visible',
-              width: '100%',
-            }}
-          />
-        </Box>
-      )}
-
       <Box
         sx={{
           width: '100%',

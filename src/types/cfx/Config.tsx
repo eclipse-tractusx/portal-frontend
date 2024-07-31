@@ -77,6 +77,7 @@ import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 
 import { MENUS, PAGES } from './Constants'
+import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
@@ -104,7 +105,21 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.APPSTORE_VIEW_SERVICES,
     element: <ServiceMarketplace />,
   },
-
+  {
+    name: PAGES.SERVICE_MARKETPLACE_DETAIL,
+    role: ROLES.APPSTORE_VIEW_SERVICES,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.SERVICE_MARKETPLACE_DETAIL}
+        path={PAGES.SERVICE_MARKETPLACE_DETAIL}
+        element={<ServiceMarketplaceDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":serviceId" element={<ServiceMarketplaceDetail />} />
+      </Route>
+    ),
+  },
   {
     name: PAGES.APP_DETAIL,
     role: ROLES.APPSTORE_VIEW,

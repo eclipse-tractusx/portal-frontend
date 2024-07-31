@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -17,20 +17,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeader } from 'components/shared/cfx/MainHeader'
-import { useTranslation } from 'react-i18next'
+import { Stack } from '@mui/material'
 
-export default function SearchSection() {
-  const { t } = useTranslation()
-
+export default function SearchAndSortSection(props: {
+  children: JSX.Element[]
+}) {
   return (
-    <div className="stage-app-store">
-      <MainHeader
-        title={t('content.appstore.stage.title')}
-        subTitle={t('content.appstore.stage.subtitle')}
-        headerHeight={250}
-        subTitleWidth={750}
-      ></MainHeader>
-    </div>
+    <Stack
+      justifyContent={{ sm: 'space-between', xs: 'center' }}
+      direction={{ lg: 'row', xs: 'column' }}
+      spacing={3}
+      alignItems={'center'}
+      sx={{ py: 5 }}
+    >
+      {props.children}
+    </Stack>
   )
 }

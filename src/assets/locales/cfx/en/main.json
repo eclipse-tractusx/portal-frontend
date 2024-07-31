@@ -437,6 +437,8 @@
       "certificates": "Certificates/Documents"
     },
     "companySubscriptions": {
+      "title": "App & Service Subscriptions",
+      "description": "This is your overview of all applications and services that your company has requested or subscribed to. Here, you can monitor the status of each request and manage the subscriptions.",
       "headertitle": "App & Service Subscriptions",
       "tableTitle": "Subscribed Apps",
       "subscribed": "Subscribed",
@@ -445,6 +447,7 @@
       "connector": "Connector",
       "technicalUser": "Technical User",
       "unsubscribe": "Unsubscribe",
+      "searchPlaceholder": "Search by app or service",
       "table": {
         "appIcon": "App Icon",
         "appTitle": "App title",
@@ -1118,7 +1121,7 @@
       "purchased": "Purchased",
       "requested": "Requested",
       "buttons": {
-        "subscribtionInit": "Subscribtion initiated",
+        "subscribtionInit": "Subscription initiated",
         "appDeployed": "App Instance deployed",
         "activation": "Activation, Notifications & credentials"
       },
@@ -1333,11 +1336,13 @@
       }
     },
     "serviceMarketplace": {
+      "title": "Service Marketplace",
+      "description": "Explore various consulting services from qualified partners. Here you will find expert advice on Catena-X and efficient data exchange. Make the most of the data space to achieve your business goals.",
       "headline": "Service Subscription",
-      "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
-      "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
+      "desc1": "By selecting 'Confirm' below, you will promptly notify the service provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc2": "Once all necessary information has been confirmed and any queries resolved, the service provider will proceed to activate your service tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
       "desc3": "IMPORTANT NOTICE:",
-      "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the app provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
+      "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the service provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
       "termsHeading": "Specific Terms and Conditions:",
       "noTermsAvailable": "no specific terms and conditions",
       "desc5": "Dear customer,",
@@ -1351,6 +1356,7 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
+      "searchPlaceholder": "Search for services",
       "tabs": {
         "all": "All Services",
         "dataspaceService": "Dataspace Services",
@@ -2256,8 +2262,8 @@
       "searchName": "Enter name to search"
     },
     "noData": {
-      "heading": "No Results Found",
-      "description": "We couldn't find any matches for your search. Please try different keywords or filters."
+      "heading": "No data available",
+      "description": "There is currently no data available. Please try changing the view or check back later."
     }
   },
   "servicemarketplace": {
