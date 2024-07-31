@@ -50,6 +50,8 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -190,13 +192,17 @@ export default function ServiceMarketplace() {
 
   return (
     <main className="serviceMarketplace">
+      <MainHeader
+        title={t('content.serviceMarketplace.title')}
+        subTitle={t('content.serviceMarketplace.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
       <div className="mainContainer">
         <div className="mainRow">
           <Typography className="newServicesTitle" variant="h2">
             {t('content.serviceMarketplace.newServices')}
-          </Typography>
-          <Typography className="recommendationsTitle" variant="body1">
-            {t('content.serviceMarketplace.recommendations')}
           </Typography>
           <div>
             <div className="searchContainer">
@@ -219,21 +225,18 @@ export default function ServiceMarketplace() {
                 />
               </div>
             </div>
-            {!isError ? (
-              renderServices()
+            {!services ? (
+              <div className="loading-progress">
+                <CircularProgress
+                  size={50}
+                  sx={{
+                    color: theme.palette.primary.main,
+                  }}
+                />
+              </div>
             ) : (
-              <ErrorBar
-                errorText={
-                  servicesError?.data?.status >= 400 &&
-                  servicesError?.data?.status < 500
-                    ? t('content.serviceMarketplace.dataLoadFailed')
-                    : t('content.serviceMarketplace.loadFailed')
-                }
-                showButton={
-                  servicesError.code >= 500 && servicesError?.data?.status < 600
-                }
-                buttonText={t('error.tryAgain')}
-                handleButton={refetch}
+              <RecommendedServices
+                services={cardServices?.slice(0, indexToSplit)}
               />
             )}
           </div>

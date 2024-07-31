@@ -140,7 +140,7 @@ export default function CompanySubscriptionDetail() {
         />
       </Box>
       {data && fetchAppsData && (
-        <Box className="company-subscription-content ">
+        <Box className="company-subscription-content">
           <Box className="company-subscription-header">
             <div className="lead-image">
               <Image

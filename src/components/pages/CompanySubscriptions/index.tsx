@@ -17,10 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  PageLoadingTable,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { PageLoadingTable } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import {
   useFetchSubscribedActiveAppsStatusQuery,
@@ -38,6 +35,7 @@ import {
   type SubscribedActiveApps,
 } from 'features/apps/types'
 import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -133,6 +131,13 @@ export default function CompanySubscriptions() {
 
   return (
     <main className="page-main-container">
+      <MainHeader
+        title={t('content.companySubscriptions.title')}
+        subTitle={t('content.companySubscriptions.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
       {showUnsubscribeOverlay && (
         <UnSubscribeOverlay
           openDialog={showUnsubscribeOverlay}
@@ -148,13 +153,6 @@ export default function CompanySubscriptions() {
           enableErrorMessage={enableErrorMessage}
         />
       )}
-      <Typography
-        className="subTitle"
-        variant="h2"
-        sx={{ pb: 3, marginTop: '35px' }}
-      >
-        {t('content.companySubscriptions.headertitle')}
-      </Typography>
 
       <div className={'table-container'}>
         <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
@@ -171,7 +169,9 @@ export default function CompanySubscriptions() {
           toolbarVariant={'searchAndFilter'}
           hasBorder={false}
           columnHeadersBackgroundColor={'transparent'}
-          searchPlaceholder={t('global.table.searchName')}
+          searchPlaceholder={t(
+            'content.companySubscriptions.searchPlaceholder'
+          )}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
             if (!onValidate(expr)) return

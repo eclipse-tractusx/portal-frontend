@@ -58,6 +58,7 @@ export enum PAGES {
   APP_RELEASE_PROCESS_FORM = 'appreleaseprocess_form',
   SERVICE_RELEASE_PROCESS_FORM = 'servicereleaseprocess_form',
   APP_DETAIL = 'appdetail',
+  SERVICE_MARKETPLACE_DETAIL = 'servicemarketplacedetail',
 
   HELP = 'help', // Not Sure
   DOCUMENTATION = 'documentation', // Not Sure

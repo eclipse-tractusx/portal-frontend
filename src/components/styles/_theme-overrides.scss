@@ -1347,3 +1347,23 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
+.mainHeaderContainer {
+  @extend .global-background;
+}
+
+.page-main-container
+  > .table-container
+  > .MuiBox-root
+  > .MuiDataGrid-root
+  > .MuiBox-root:first-child {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  margin-top: 0px !important;
+  padding: 0px !important;
+}
+
+.company-subscription-detail .company-subscription-content {
+  background: none !important;
+}
