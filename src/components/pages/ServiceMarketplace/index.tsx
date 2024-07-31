@@ -47,6 +47,8 @@ import {
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -163,35 +165,45 @@ export default function ServiceMarketplace() {
 
   return (
     <main className="serviceMarketplace">
+      <MainHeader
+        title={t('content.serviceMarketplace.title')}
+        subTitle={t('content.serviceMarketplace.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
       <div className="mainContainer">
         <div className="mainRow">
           <Typography className="newServicesTitle" variant="h2">
             {t('content.serviceMarketplace.newServices')}
           </Typography>
-          <Typography className="recommendationsTitle" variant="body1">
-            {t('content.serviceMarketplace.recommendations')}
-          </Typography>
           <div>
-            <div className="searchContainer">
-              <SearchInput
-                placeholder={t('notification.search')}
-                value={searchExpr}
-                autoFocus={false}
-                onChange={doFilter}
-              />
-            </div>
-            <div className="filterSection" onMouseLeave={setModalFalse}>
-              <ViewSelector activeView={selected} views={filterButtons} />
-              <SortImage onClick={setModalTrue} selected={showModal} />
-              <div className="sortSection">
-                <SortOption
-                  show={showModal}
-                  selectedOption={sortOption}
-                  setSortOption={setSortOptionFn}
-                  sortOptions={sortOptions}
+            <SearchAndSortSection>
+              <div className="searchContainer">
+                <SearchInput
+                  placeholder={t(
+                    'content.serviceMarketplace.searchPlaceholder'
+                  )}
+                  value={searchExpr}
+                  autoFocus={false}
+                  onChange={doFilter}
                 />
               </div>
-            </div>
+              <div className="filterSection" onMouseLeave={setModalFalse}>
+                <ViewSelector activeView={selected} views={filterButtons} />
+                <div className="sortSection">
+                  <SortImage onClick={setModalTrue} selected={showModal} />
+                  <div className="sortSectionOption">
+                    <SortOption
+                      show={showModal}
+                      selectedOption={sortOption}
+                      setSortOption={setSortOptionFn}
+                      sortOptions={sortOptions}
+                    />
+                  </div>
+                </div>
+              </div>
+            </SearchAndSortSection>
             {!services ? (
               <div className="loading-progress">
                 <CircularProgress

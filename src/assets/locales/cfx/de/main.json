@@ -441,14 +441,17 @@
       "message": "Inhalte vom Datenmanagement"
     },
     "companySubscriptions": {
+      "title": "App & Service Abonnements",
+      "description": "Dies ist Ihre Übersicht über alle Apps und Services, die Ihr Unternehmen angefordert oder abonniert hat. Hier können Sie den Status jeder Anfrage verfolgen und die Abonnements verwalten.",
       "headertitle": "App- und Service-Abonnements",
       "tableTitle": "Abonnierte Apps",
-      "subscribed": "Gezeichnet",
+      "subscribed": "Abonniert",
       "requested": "Angefordert",
       "declined": "Abgelehnt",
       "connector": "Verbinder",
       "technicalUser": "Technischer Benutzer",
       "unsubscribe": "Abbestellen",
+      "searchPlaceholder": "Suche nach App oder Service",
       "table": {
         "appIcon": "App-Symbol",
         "appTitle": "App-Titel",
@@ -457,9 +460,9 @@
         "action": "Aktion"
       },
       "filter": {
-        "requested": "angefordert",
-        "active": "aktiv",
-        "showAll": "zeige alles"
+        "requested": "Angefordert",
+        "active": "Aktiv",
+        "showAll": "All anzeigen"
       }
     },
     "appoverview": {
@@ -1152,12 +1155,12 @@
       "purchased": "Purchased",
       "requested": "Angefragt",
       "buttons": {
-        "subscribtionInit": "Subscribtion initiated",
-        "appDeployed": "App Instance deployed",
-        "activation": "Activation, Notifications & credentials"
+        "subscribtionInit": "Abonnement initiiert",
+        "appDeployed": "App Instanz bereitgestellt",
+        "activation": "Aktivierung, Benachrichtigungen & Credentials"
       },
-      "description": "Description",
-      "imageGallery": "Images",
+      "description": "Beschreibung",
+      "imageGallery": "Bilder",
       "tags": "Tags",
       "privacy": {
         "heading": "Datenschutz",
@@ -1170,7 +1173,7 @@
         "NONE": "None"
       },
       "howtouse": {
-        "heading": "Nutzungsbedingungen",
+        "heading": "Dokumente",
         "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
       },
       "providerInformation": {
@@ -1182,7 +1185,7 @@
         "phone": "Telefon"
       },
       "technicalUserSetup": {
-        "heading": "Technical User Setup",
+        "heading": "Technische Nutzer Setup",
         "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerberechtigung an, die dem technischen Benutzer, der im Rahmen der App-/Dienstaktivierung erstellt wurde, automatisch zugewiesen wird."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
@@ -1366,11 +1369,13 @@
       }
     },
     "serviceMarketplace": {
+      "title": "Service Marktplatz",
+      "description": "Erkunden Sie verschiedene Beratungsdienstleistungen von qualifizierten Partnern. Hier finden Sie fachkundige Beratung rundum Catena-X und effizienten Datenaustausch, um den Datenraum optimal für das Erreichen Ihrer Geschäftsziele zu nutzen.",
       "headline": "Service-Abonnement",
-      "desc1": "Wenn Sie unten „Bestätigen“ auswählen, benachrichtigen Sie den App-Anbieter umgehend über Ihr Interesse an seinem Dienst und er beginnt mit dem Abonnementverfahren. Sollte der Anbieter weitere Einzelheiten benötigen, um fortzufahren, wird er sich direkt an Sie wenden.",
-      "desc2": "Sobald alle notwendigen Informationen bestätigt und alle Fragen geklärt sind, wird der App-Anbieter mit der Aktivierung Ihres App-Mandanten fortfahren. Sie erhalten eine Benachrichtigung, die Sie durch alle weiteren Schritte führt, die Ihrerseits erforderlich sind.",
-      "desc3": "WICHTIGER HINWEIS:WICHTIGER HINWEIS:",
-      "desc4": "Mit der Bestätigung der Abonnementanfrage autorisieren Sie die Übermittlung Ihrer Geschäftspartnerdaten, zu denen Ihr Firmenname, Ihre Geschäftspartnernummer (BPN), Ihre Adresse usw. gehören, an den App-Anbieter. Darüber hinaus wird Ihre E-Mail-Adresse weitergegeben, um die Kommunikation zu erleichtern, falls weitere Informationen benötigt werden.",
+      "desc1": "Wenn Sie unten „Bestätigen“ auswählen, benachrichtigen Sie den Service-Anbieter umgehend über Ihr Interesse an seinem Dienst und er beginnt mit dem Abonnementverfahren. Sollte der Anbieter weitere Einzelheiten benötigen, um fortzufahren, wird er sich direkt an Sie wenden.",
+      "desc2": "Sobald alle notwendigen Informationen bestätigt und alle Fragen geklärt sind, wird der Service-Anbieter mit der Aktivierung Ihres Service-Mandanten fortfahren. Sie erhalten eine Benachrichtigung, die Sie durch alle weiteren Schritte führt, die Ihrerseits erforderlich sind.",
+      "desc3": "WICHTIGER HINWEIS:",
+      "desc4": "Mit der Bestätigung der Abonnementanfrage autorisieren Sie die Übermittlung Ihrer Geschäftspartnerdaten, zu denen Ihr Firmenname, Ihre Geschäftspartnernummer (BPN), Ihre Adresse usw. gehören, an den Service-Anbieter. Darüber hinaus wird Ihre E-Mail-Adresse weitergegeben, um die Kommunikation zu erleichtern, falls weitere Informationen benötigt werden.",
       "termsHeading": "Besondere Geschäftsbedingungen:",
       "noTermsAvailable": "keine besonderen Geschäftsbedingungen",
       "desc5": "Lieber Kunde,",
@@ -1381,29 +1386,30 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
-      "newServices": "New Services",
+      "newServices": "Neue Services",
       "recommendations": "Recommendations",
-      "allServices": "All Services",
+      "allServices": "Alle Services",
+      "searchPlaceholder": "Services suchen",
       "tabs": {
-        "all": "Alle Dienstleistungen",
-        "dataspaceService": "Datenraumdienste",
-        "consultancyService": "Beratungsservice"
+        "all": "Alle Services",
+        "dataspaceService": "Datenraum Services",
+        "consultancyService": "Beratungs Services"
       },
       "sortOptions": {
         "new": "Newest First",
         "provider": "Provider"
       },
       "document": {
-        "heading": "Nutzungsbedingungen",
-        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+        "heading": "Relevante Dokumente",
+        "message": "Die Relevante Dokumente regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Relevante Dokumente, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
       },
       "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator."
     },
     "appMarketplace": {
-      "headline": "Geschäftsanwednung abonnieren",
+      "headline": "App abonnieren",
       "desc1": "Wenn Sie unten „Bestätigen“ auswählen, benachrichtigen Sie den App-Anbieter umgehend über Ihr Interesse an seinem Dienst und er beginnt mit dem Abonnementverfahren. Sollte der Anbieter weitere Einzelheiten benötigen, um fortzufahren, wird er sich direkt an Sie wenden.",
       "desc2": "Sobald alle notwendigen Informationen bestätigt und alle Fragen geklärt sind, wird der App-Anbieter mit der Aktivierung Ihres App-Mandanten fortfahren. Sie erhalten eine Benachrichtigung, die Sie durch alle weiteren Schritte führt, die Ihrerseits erforderlich sind.",
-      "desc3": "WICHTIGER HINWEIS:WICHTIGER HINWEIS:",
+      "desc3": "WICHTIGER HINWEIS:",
       "desc4": "Mit der Bestätigung der Abonnementanfrage autorisieren Sie die Übermittlung Ihrer Geschäftspartnerdaten, zu denen Ihr Firmenname, Ihre Geschäftspartnernummer (BPN), Ihre Adresse usw. gehören, an den App-Anbieter. Darüber hinaus wird Ihre E-Mail-Adresse weitergegeben, um die Kommunikation zu erleichtern, falls weitere Informationen benötigt werden.",
       "termsHeading": "Besondere Geschäftsbedingungen:",
       "noTermsAvailable": "keine besonderen Geschäftsbedingungen",
@@ -2288,8 +2294,8 @@
       "searchName": "Enter name to search"
     },
     "noData": {
-      "heading": "Keine Ergebnisse gefunden",
-      "description": "Wir konnten keine Übereinstimmungen für Ihre Suche finden. Bitte versuchen Sie es mit anderen Stichwörtern oder Filtern."
+      "heading": "Keine Daten verfügbar",
+      "description": "Derzeit sind keine Daten verfügbar. Bitte ändern Sie die Ansicht oder versuchen Sie es später erneut."
     }
   },
   "servicemarketplace": {
