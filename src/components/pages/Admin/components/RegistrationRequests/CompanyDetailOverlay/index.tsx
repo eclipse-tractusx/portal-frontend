@@ -378,8 +378,8 @@ const CompanyDetailOverlay = ({
                     'content.admin.registration-requests.overlay.companydatatitle'
                   )}
                 </Typography>
-                {companyData?.map((detail, index) => (
-                  <div className="detail" key={index}>
+                {companyData?.map((detail) => (
+                  <div className="detail" key={detail.key}>
                     <Typography variant="body2" className="detail-name">
                       {detail.key}
                     </Typography>
@@ -396,8 +396,8 @@ const CompanyDetailOverlay = ({
                 </Typography>
 
                 <div className="document-container">
-                  {documentData?.map((detail, index) => {
-                    return <div key={index}>{detail.value}</div>
+                  {documentData?.map((detail) => {
+                    return <div key={detail.key}>{detail.value}</div>
                   })}
                 </div>
               </Box>
