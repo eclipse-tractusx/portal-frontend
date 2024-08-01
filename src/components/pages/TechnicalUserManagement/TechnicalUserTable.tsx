@@ -43,10 +43,10 @@ interface FetchHookArgsType {
 }
 
 enum ServiceAccountStatus {
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive',
-  PENDING = 'Pending',
-  DELETED = 'Deleted',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+  DELETED = 'DELETED',
 }
 
 export const TechnicalUserTable = () => {
@@ -98,10 +98,17 @@ export const TechnicalUserTable = () => {
   ]
 
   const renderStatusColor = (status: string) => {
-    if (status === ServiceAccountStatus.ACTIVE) return 'confirmed'
-    else if (status === ServiceAccountStatus.INACTIVE) return 'declined'
-    else if (status === ServiceAccountStatus.PENDING) return 'pending'
-    else return 'label'
+    if (status.toLowerCase() === ServiceAccountStatus.ACTIVE.toLowerCase())
+      return 'confirmed'
+    else if (
+      status.toLowerCase() === ServiceAccountStatus.INACTIVE.toLowerCase()
+    )
+      return 'declined'
+    else if (
+      status.toLowerCase() === ServiceAccountStatus.PENDING.toLowerCase()
+    )
+      return 'pending'
+    else return 'deleted'
   }
 
   return (
@@ -164,7 +171,9 @@ export const TechnicalUserTable = () => {
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <StatusTag
                 color={renderStatusColor(row.status)}
-                label={row.status}
+                label={t(
+                  `content.usermanagement.technicalUser.status.${row.status}`
+                )}
               />
             ),
           },

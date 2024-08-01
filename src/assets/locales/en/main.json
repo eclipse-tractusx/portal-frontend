@@ -927,6 +927,12 @@
           "spoc": "SPOC",
           "permission": "Permission"
         },
+        "status": {
+          "ACTIVE": "ACTIVE",
+          "INACTIVE": "INACTIVE",
+          "PENDING": "PENDING",
+          "DELETED": "DELETED"
+        },
         "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
