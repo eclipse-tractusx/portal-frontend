@@ -153,7 +153,6 @@ export const IDPList = () => {
     } else if (enabled && clientId) {
       status = `${ti('field.status4')}`
     }
-
     return <StatusTag color={renderStatusColor(status)} label={status} />
   }
 
