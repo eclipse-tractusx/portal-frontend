@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Carousel, Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
@@ -29,6 +29,7 @@ import { useEffect } from 'react'
 import { fetchItems } from 'features/apps/favorites/actions'
 import type { AppDispatch } from 'features/store'
 import FavoriteItem from 'components/pages/AppMarketplace/components/FavoriteSection/FavoriteItem'
+import { Carousel } from '../../Carousel'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()
@@ -48,7 +49,12 @@ export default function FavoriteSection() {
         {t('content.appstore.favoriteSection.myFavorite')}
       </Typography>
 
-      <Carousel gapToDots={5} itemWidth={266} itemHeight={280}>
+      <Carousel
+        itemWidth={266}
+        itemHeight={280}
+        infinite={false}
+        key={favorites.length}
+      >
         {active
           .filter((item) => favorites.includes(item.id!))
           .map((item) => appToCard(item))
