@@ -18,7 +18,7 @@
 - Fixed incorrect usage of pre-commit hook
 - Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
 - IDP management
-- Fixed statusTag color in status coloumn
+  - Fixed statusTag color in status coloumn
 
 ## 2.1.0
 
