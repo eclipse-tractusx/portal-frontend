@@ -43,6 +43,13 @@ import {
   IDPCategory,
 } from 'features/admin/idpApiSlice'
 
+enum IdpAccountStatus {
+  ACTIVE = 'active',
+  OPEN = 'open',
+  IDP_CREATED = 'Idp created',
+  DISABLED = 'disabled',
+}
+
 const MenuItemOpenOverlay = ({
   overlay,
   id,
@@ -126,6 +133,17 @@ export const IDPList = () => {
     }
   }
 
+  const renderStatusColor = (status: string) => {
+    if (status === IdpAccountStatus.ACTIVE) return 'confirmed'
+    else if (status === IdpAccountStatus.DISABLED) return 'declined'
+    else if (
+      status === IdpAccountStatus.OPEN ||
+      status === IdpAccountStatus.IDP_CREATED
+    )
+      return 'pending'
+    else return 'label'
+  }
+
   const getStatus = (enabled: boolean, clientId: string | undefined) => {
     let status = `${ti('field.status1')}`
     if (enabled && !clientId) {
@@ -135,7 +153,8 @@ export const IDPList = () => {
     } else if (enabled && clientId) {
       status = `${ti('field.status4')}`
     }
-    return <StatusTag color="label" label={status} />
+
+    return <StatusTag color={renderStatusColor(status)} label={status} />
   }
 
   const renderMenu = (idp: IdentityProvider) => {
