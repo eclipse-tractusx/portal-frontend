@@ -157,7 +157,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   if (error) {
     errorObj.status = Number(error)
     errorObj.message =
-      error && Number(error) >= 400 && Number(error) < 500
+      Number(error) >= 400 && Number(error) < 500
         ? t('global.errors.dataLoadFailed')
         : t('global.errors.loadFailed')
   }
