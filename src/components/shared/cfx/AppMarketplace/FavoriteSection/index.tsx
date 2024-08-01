@@ -38,7 +38,9 @@ export default function FavoriteSection() {
   const favorites = useSelector(itemsSelector)
 
   useEffect(() => {
-    dispatch(fetchItems())
+    setTimeout(() => {
+      dispatch(fetchItems())
+    }, 10)
   }, [dispatch])
 
   if (favorites.length === 0) return null

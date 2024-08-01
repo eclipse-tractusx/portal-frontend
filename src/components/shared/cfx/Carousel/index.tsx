@@ -156,13 +156,16 @@ export const Carousel = ({
     setResponsiveWidth(getCarouselWidth(slidesToShow))
   }, [slidesToShow, getCarouselWidth])
 
+  const showDotAndArrow = responsiveSlides >= arrayChildren.length
+
   const settings = {
-    dots,
+    dots: !showDotAndArrow,
     infinite,
-    slidesToShow,
-    slidesToScroll: 1,
+    slidesToShow: responsiveSlides,
+    slidesToScroll: responsiveSlides,
     nextArrow: <NavArrows show={showArrows} isNext={true} />,
     prevArrow: <NavArrows show={showArrows} isNext={false} />,
+    arrows: !showDotAndArrow,
   }
 
   return (
