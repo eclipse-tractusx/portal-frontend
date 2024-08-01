@@ -20,7 +20,7 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
-import type { FilterParams, NewSemanticModel } from './types'
+import type { ErrorResponse, FilterParams, NewSemanticModel } from './types'
 
 const message = 'The server responded with an error.'
 
@@ -31,10 +31,11 @@ const fetchSemanticModels = createAsyncThunk(
       return await Api.getInstance().getModels(filter)
     } catch (error: unknown) {
       console.error('api call error:', error)
-      throw Error(`Fetching models failed: ${message}`)
+      throw Error(JSON.stringify((error as ErrorResponse).response.status))
     }
   }
 )
+
 const fetchSemanticModelById = createAsyncThunk(
   'semantic/model/fetchById',
   async (id: string) => {

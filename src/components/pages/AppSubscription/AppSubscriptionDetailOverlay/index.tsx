@@ -32,6 +32,7 @@ import {
   EditField,
   type TableCellType,
   Tooltips,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import {
   ProcessStep,
@@ -43,6 +44,7 @@ import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
 import { SubscriptionStatus } from 'features/apps/types'
 import { ROLES } from 'types/Constants'
 import { useState } from 'react'
+import './style.scss'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { isURL } from 'types/Patterns'
 import { SubscriptionTypes } from 'components/shared/templates/Subscription'
@@ -78,7 +80,7 @@ const AppSubscriptionDetailOverlay = ({
   const fetchAPI = isAppSubscription
     ? useFetchSubscriptionDetailQuery
     : useFetchServiceSubDetailQuery
-  const { data, refetch } = fetchAPI({
+  const { data, refetch, isFetching } = fetchAPI({
     appId,
     subscriptionId,
   })
@@ -348,12 +350,29 @@ const AppSubscriptionDetailOverlay = ({
             numberOfSteps={3}
             activePage={getActiveSteps()}
           />
-          <div style={{ marginTop: '30px' }}>
-            <StaticTable data={subscriptionDetails} />
-          </div>
-          <div style={{ marginTop: '20px' }}>
-            <VerticalTableNew data={technicalDetails} />
-          </div>
+          {isFetching ? (
+            <div className="app-subscription-overlay">
+              <div className="loading-progress">
+                <CircleProgress
+                  size={40}
+                  step={1}
+                  interval={0.1}
+                  colorVariant={'primary'}
+                  variant={'indeterminate'}
+                  thickness={8}
+                />
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div style={{ marginTop: '30px' }}>
+                <StaticTable data={subscriptionDetails} />
+              </div>
+              <div style={{ marginTop: '20px' }}>
+                <VerticalTableNew data={technicalDetails} />
+              </div>
+            </div>
+          )}
           <div style={{ marginTop: '20px' }}>
             <Typography
               variant="caption2"

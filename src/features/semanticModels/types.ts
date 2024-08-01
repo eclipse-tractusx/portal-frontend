@@ -20,6 +20,12 @@
 
 import type { Nullable } from 'types/MainTypes'
 
+export interface ErrorResponse {
+  response: {
+    status: number
+  }
+}
+
 export interface SemanticModelsInitialState {
   modelList: ModelList
   loadingModelList: boolean
@@ -30,7 +36,7 @@ export interface SemanticModelsInitialState {
   uploadError: string
   openApiLink: string
   openApiError: string
-  error: string
+  error: ErrorResponse | string
   deleteModelId: string
   deleteError: string
 }

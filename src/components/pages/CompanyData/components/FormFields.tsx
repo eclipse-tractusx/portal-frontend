@@ -20,14 +20,14 @@
 import { useEffect, useState } from 'react'
 import {
   isCity,
-  isCommercialRegNumber,
+  isCompanyCommercialRegNumber,
   isCountry,
-  isEori,
+  isCompanyEori,
   isName,
   isStreet,
-  isVatID,
-  isVies,
-  isZipCode,
+  isCompanyVatID,
+  isCompanyVies,
+  isPostalCode,
 } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
@@ -50,7 +50,6 @@ const responseToForm = (data: CompanyDataFieldsType) => {
   form.countryCode = data.countryCode ?? ''
   form.countryIdentifier = data.countryIdentifier ?? ''
   form.identifierNumber = data.identifierNumber ?? ''
-  form.addressTitle = data.addressTitle ?? ''
   return form
 }
 
@@ -62,7 +61,6 @@ const formToUpdate = (form: IHashMap<string>) => ({
   countryCode: form.countryCode,
   countryIdentifier: form.countryIdentifier,
   identifierNumber: form.identifierNumber,
-  addressTitle: form.addressTitle,
 })
 
 const UpdateForm = ({
@@ -70,11 +68,13 @@ const UpdateForm = ({
   onChange,
   identifiers,
   newForm,
+  isAddress,
 }: {
   data: CompanyDataFieldsType
   onChange: (key: string, value: string | undefined) => boolean
   identifiers: UniqueIdentifier[]
   newForm: boolean
+  isAddress: boolean
 }) => {
   const { t } = useTranslation()
   const [defaultIdentifier, setDefaultIdentifier] =
@@ -89,27 +89,20 @@ const UpdateForm = ({
 
   return (
     <>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="addressTitle"
-          label={t('content.companyData.address.form.addressTitle.name')}
-          value={data.addressTitle ?? ''}
-          hint={t('content.companyData.address.form.addressTitle.hint')}
-          validate={isName}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t('content.companyData.address.form.addressTitle.hint')}
-          skipInitialValidation={newForm}
-        />
-      </div>
       <div style={{ marginTop: '34px' }}>
         <ValidatingInput
           name="siteName"
-          label={t('content.companyData.site.form.site.name')}
+          label={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.site.name`
+          )}
           value={data.siteName ?? ''}
           validate={isName}
-          hint={t('content.companyData.site.form.site.hint')}
-          errorMessage={t('content.companyData.site.form.site.error')}
+          hint={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.site.hint`
+          )}
+          errorMessage={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.site.error`
+          )}
           onValid={onChange}
           onInvalid={onChange}
           skipInitialValidation={newForm}
@@ -118,96 +111,130 @@ const UpdateForm = ({
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="street"
-          label={t('content.companyData.site.form.street.name')}
+          label={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`
+          )}
           value={data.street ?? ''}
-          hint={t('content.companyData.site.form.street.hint')}
+          hint={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.street.hint`
+          )}
           validate={isStreet}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={t('content.companyData.site.form.street.error')}
+          errorMessage={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.street.error`
+          )}
           skipInitialValidation={newForm}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="city"
-          label={t('content.companyData.site.form.city.name')}
+          label={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.city.name`
+          )}
           value={data.city ?? ''}
-          hint={t('content.companyData.site.form.city.hint')}
+          hint={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.city.hint`
+          )}
           validate={isCity}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={t('content.companyData.site.form.city.error')}
+          errorMessage={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.city.error`
+          )}
           skipInitialValidation={newForm}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="countryCode"
-          label={t('content.companyData.site.form.countryCode.name')}
+          label={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`
+          )}
           value={data.countryCode ?? ''}
-          hint={t('content.companyData.site.form.countryCode.hint')}
+          hint={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.hint`
+          )}
           validate={isCountry}
           onValid={onChange}
           onInvalid={onChange}
-          errorMessage={t('content.companyData.site.form.countryCode.error')}
+          errorMessage={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.error`
+          )}
           skipInitialValidation={newForm}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
         <ValidatingInput
           name="postalCode"
-          label={t('content.companyData.site.form.postal.name')}
-          value={data.postalCode ?? ''}
-          hint={t('content.companyData.site.form.postal.hint')}
-          validate={isZipCode}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t('content.companyData.site.form.postal.error')}
-          skipInitialValidation={newForm}
-        />
-      </div>
-      <div
-        style={{
-          marginTop: '-20px',
-          marginBottom: '25px',
-        }}
-      >
-        <SelectList
-          error={false}
-          helperText={t('content.companyData.site.form.countryIdentifier.hint')}
-          defaultValue={defaultIdentifier?.[0]}
-          items={identifiers}
-          label={t('content.companyData.site.form.countryIdentifier.name')}
-          placeholder={t(
-            'content.companyData.site.form.countryIdentifier.name'
+          label={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.name`
           )}
-          onChangeItem={(val) => {
-            onChange('countryIdentifier', val.label)
-          }}
-          keyTitle={'label'}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="identifierNumber"
-          label={t('content.companyData.site.form.identifierNumber.name')}
-          value={data.identifierNumber ?? ''}
-          hint={t('content.companyData.site.form.identifierNumber.hint')}
-          validate={(expr) =>
-            isCommercialRegNumber(expr) ||
-            isVatID(expr) ||
-            isVies(expr) ||
-            isEori(expr)
-          }
+          value={data.postalCode ?? ''}
+          hint={t(
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.hint`
+          )}
+          validate={isPostalCode}
           onValid={onChange}
           onInvalid={onChange}
           errorMessage={t(
-            'content.companyData.site.form.identifierNumber.error'
+            `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.error`
           )}
           skipInitialValidation={newForm}
         />
       </div>
+      {isAddress && (
+        <>
+          <div
+            style={{
+              marginTop: '-20px',
+              marginBottom: '25px',
+            }}
+          >
+            <SelectList
+              error={false}
+              helperText={t(
+                'content.companyData.address.form.countryIdentifier.hint'
+              )}
+              defaultValue={defaultIdentifier?.[0]}
+              items={identifiers}
+              label={t(
+                'content.companyData.address.form.countryIdentifier.name'
+              )}
+              placeholder={t(
+                'content.companyData.address.form.countryIdentifier.name'
+              )}
+              onChangeItem={(val) => {
+                onChange('countryIdentifier', val.label)
+              }}
+              keyTitle={'label'}
+            />
+          </div>
+          <div style={{ margin: '12px 0' }}>
+            <ValidatingInput
+              name="identifierNumber"
+              label={t(
+                'content.companyData.address.form.identifierNumber.name'
+              )}
+              value={data.identifierNumber ?? ''}
+              hint={t('content.companyData.address.form.identifierNumber.hint')}
+              validate={(expr) =>
+                isCompanyCommercialRegNumber(expr) ||
+                isCompanyVatID(expr) ||
+                isCompanyVies(expr) ||
+                isCompanyEori(expr)
+              }
+              onValid={onChange}
+              onInvalid={onChange}
+              errorMessage={t(
+                'content.companyData.address.form.identifierNumber.error'
+              )}
+              skipInitialValidation={newForm}
+            />
+          </div>
+        </>
+      )}
     </>
   )
 }
@@ -215,9 +242,11 @@ const UpdateForm = ({
 export const FormFields = ({
   onValid,
   newForm,
+  isAddress,
 }: {
   onValid: (form: { body: CompanyDataFieldsType } | undefined) => void
   newForm: boolean
+  isAddress: boolean
 }) => {
   const companyData = useSelector(companyDataSelector)
 
@@ -247,7 +276,6 @@ export const FormFields = ({
       : companyData.address.physicalPostalAddress.country,
     countryIdentifier: newForm ? '' : identifier?.[0]?.type ?? '',
     identifierNumber: newForm ? '' : identifier?.[0]?.value ?? '',
-    addressTitle: newForm ? '' : companyData.address.name,
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)
@@ -264,8 +292,7 @@ export const FormFields = ({
       current.postalCode &&
       current.countryCode &&
       current.identifierNumber &&
-      current.countryIdentifier &&
-      current.addressTitle
+      current.countryIdentifier
     onValid(
       formValid
         ? {
@@ -288,6 +315,7 @@ export const FormFields = ({
       identifiers={identifiers ?? []}
       data={data}
       onChange={checkData}
+      isAddress={isAddress}
     />
   )
 }

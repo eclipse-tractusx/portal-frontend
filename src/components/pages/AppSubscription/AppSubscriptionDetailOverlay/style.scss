@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,38 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
-
-.app-store {
-  width: 100%;
-  padding: 0;
-  margin-bottom: -50px;
-
-  input[type='radio'] {
-    margin-left: 12px;
-  }
-
-  .GroupSelect {
-    float: right;
-  }
-
-  ul {
-    clear: both;
-  }
-
-  .overview-section {
-    background-color: color('white');
-
-    &-content {
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-bottom: 270px;
-    }
-  }
-
-  .favorite-section-title {
-    h3 {
-      margin-bottom: 48px !important;
-    }
+.app-subscription-overlay {
+  .loading-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 }
