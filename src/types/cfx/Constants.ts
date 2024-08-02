@@ -20,6 +20,7 @@ export enum PAGES {
   REGISTRATION = 'registration',
   APPSUBSCRIPTION = 'appsubscription',
   ADMINBOARD = 'adminboard',
+  ADMINBOARD_DETAIL = 'adminboarddetail',
   APP_MARKETPLACE = 'appmarketplace',
   SERVICE_MARKETPLACE = 'servicemarketplace',
   ACCOUNT = 'account',

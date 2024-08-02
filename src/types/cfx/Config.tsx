@@ -55,6 +55,7 @@ import AdminBoard from 'components/pages/AdminBoard'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
 import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
 import RoleDetails from 'components/pages/RoleDetails'
+import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
 import ServiceSubscription from 'components/pages/ServiceSubscription'
@@ -214,6 +215,21 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.SERVICEADMINBOARD,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
     element: <ServiceAdminBoard />,
+  },
+  {
+    name: PAGES.ADMINBOARD_DETAIL,
+    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.ADMINBOARD_DETAIL}
+        path={PAGES.ADMINBOARD_DETAIL}
+        element={<AdminBoardDetail />}
+      >
+        <Route index element={null} />
+        <Route path=":appId" element={<AdminBoardDetail />} />
+      </Route>
+    ),
   },
   {
     name: PAGES.SERVICEADMINBOARD_DETAIL,
