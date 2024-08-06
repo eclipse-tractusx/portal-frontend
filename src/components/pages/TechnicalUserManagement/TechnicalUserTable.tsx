@@ -47,6 +47,7 @@ enum ServiceAccountStatus {
   INACTIVE = 'INACTIVE',
   PENDING = 'PENDING',
   DELETED = 'DELETED',
+  PENDING_DELETION = 'PENDING_DELETION',
 }
 
 export const TechnicalUserTable = () => {
@@ -105,10 +106,10 @@ export const TechnicalUserTable = () => {
     )
       return 'declined'
     else if (
-      status.toLowerCase() === ServiceAccountStatus.PENDING.toLowerCase()
+      status.toLowerCase() === ServiceAccountStatus.DELETED.toLowerCase()
     )
-      return 'pending'
-    else return 'deleted'
+      return 'deleted'
+    else return 'pending'
   }
 
   return (

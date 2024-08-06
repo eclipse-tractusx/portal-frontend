@@ -931,7 +931,8 @@
           "ACTIVE": "ACTIVE",
           "INACTIVE": "INACTIVE",
           "PENDING": "PENDING",
-          "DELETED": "DELETED"
+          "DELETED": "DELETED",
+          "PENDING_DELETION": "PENDING_DELETION"
         },
         "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
