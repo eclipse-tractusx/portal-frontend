@@ -106,7 +106,9 @@ export default function AddServiceProvider() {
                 {t('content.appSubscription.register.autosetupURL')}
               </Typography>
             }
-            placeholder="URL of the customer tentant"
+            placeholder={t(
+              'content.appSubscription.register.autoSetupPlaceholder'
+            )}
             onChange={(e) => {
               addInputURL(e.target.value)
             }}

@@ -168,14 +168,14 @@ export default function CompanySubscriptionDetail() {
             </div>
           </Box>
           <Typography variant="h3" sx={{ whiteSpace: 'pre-line', mb: 4 }}>
-            {'Long description'}
+            {t('content.companySubscriptions.longDescription')}
           </Typography>
           <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
             {fetchAppsData.longDescription}
           </Typography>
           <Box sx={{ mt: '59px' }}>
             <Typography variant="h3" sx={{ mb: 4 }}>
-              {'Technical Details'}
+              {t('content.companySubscriptions.technicalDetails')}
             </Typography>
             <StaticTable data={tableData} horizontal={true} />
           </Box>

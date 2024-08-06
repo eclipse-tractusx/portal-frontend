@@ -452,6 +452,8 @@
       "technicalUser": "Technischer Benutzer",
       "unsubscribe": "Abbestellen",
       "searchPlaceholder": "Suche nach App oder Service",
+      "longDescription": "Detaillierte Beschreibung",
+      "technicalDetails": "Technische Details",
       "table": {
         "appIcon": "App-Symbol",
         "appTitle": "App-Titel",
@@ -462,7 +464,7 @@
       "filter": {
         "requested": "Angefordert",
         "active": "Aktiv",
-        "showAll": "All anzeigen"
+        "showAll": "Alle anzeigen"
       }
     },
     "appoverview": {
@@ -523,7 +525,7 @@
     "changeDescription": {
       "headerTitle": "Change Descriptions",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "longDescription": "Long Description",
+      "longDescription": "Detaillierte Beschreibung",
       "longDescriptionEN": "Long Description - EN *",
       "longDescriptionDE": "Long Description - DE *",
       "shortDescription": "Short Description",
@@ -1453,12 +1455,13 @@
       }
     },
     "appSubscription": {
-      "headline": "App Subscription",
+      "headline": "App Abonnements",
+      "headlineDescription": "Verwalten und überprüfen Sie Kundenabonnements für Ihre veröffentlichten Apps auf dem Marktplatz.",
       "subHeading": "Manage customer subscriptons",
-      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "description": "Möchten Sie die automatische Einrichtung nutzen? Verbinden Sie Ihren Service, um die Erstellung von Marktplatz-Abonnements zu automatisieren.",
       "readMore": "Read More",
-      "registerURL": "RegisterURL",
-      "search": "...search by entering the app name here.",
+      "registerURL": "Auto-setup URL registrieren",
+      "search": "Search by app title...",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -1467,14 +1470,14 @@
       "allServices": "All Services",
       "viewDetails": "Display more details",
       "activateBtn": "Activate",
-      "configureBtn": "Configure",
+      "configureBtn": "Konfigurieren",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Success",
       "tabs": {
-        "request": "Request",
-        "active": "Active",
-        "showAll": "Show All"
+        "request": "Anfragen",
+        "active": "Aktiv",
+        "showAll": "Alle"
       },
       "sortOptions": {
         "customer": "By Customer A-Z",
@@ -1485,13 +1488,14 @@
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "register": {
-        "heading": "Configuration Autosetup URL",
-        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. This feature also enables operators to retrieve technical configuration elements and activate the subscription.",
-        "endpointConfigured": "Configured Provider Endpoint",
-        "autosetupURL": "Set a new endpoint URL",
+        "heading": "Konfiguration Autosetup URL",
+        "message": "Die Funktion zur Konfiguration der Unternehmens-URL für die automatische Einrichtung ermöglicht es den Betreibern, eine benutzerdefinierte URL einzurichten, die verwendet wird, um automatisch Abonnementanfragen an den Dienstanbieter zu übermitteln, wenn App-Abonnements auf dem Marktplatz ausgelöst werden. Diese Funktion ermöglicht es Betreibern auch, technische Konfigurationselemente abzurufen und das Abonnement zu aktivieren.",
+        "endpointConfigured": "Konfigurierter Anbieter-Endpunkt",
+        "autosetupURL": "Neue Endpunkt-URL festlegen",
         "inputPlaceholder": "...enter your setup url",
         "providerErrorMessage": "Something went wrong!",
-        "providerSuccessMessage": "Details updated successfully."
+        "providerSuccessMessage": "Details updated successfully.",
+        "autoSetupPlaceholder": "URL des Kundenanbieters"
       },
       "activation": {
         "heading": "Activate App Subscription",
@@ -1518,33 +1522,33 @@
         "technicalPermission": "Technical User Permission"
       },
       "detailOverlay": {
-        "title": "Provider View",
-        "description": "App Subscription Details & Status",
+        "title": "Anbieter Ansicht",
+        "description": "Details und Status des App-Abonnements",
         "stepLists": {
-          "firstStep": "Subscription Initiated",
-          "secondStep": "Setup Ongoing",
-          "thirdStep": "Subscription Activate"
+          "firstStep": "Abonnement initiiert",
+          "secondStep": "Einrichtung Laufend",
+          "thirdStep": "Abonnement aktivieren"
         },
-        "subscriptionDetails": "Subscription Details",
-        "appTitle": "App Title",
+        "subscriptionDetails": "Abonnement Details",
+        "appTitle": "App Name",
         "serviceTitle": "Service Title",
         "status": "Status",
         "subscriptionInitiated": "Subscription Initiated",
         "subscriptionActivate": "Subscription Activate",
         "setupOngoing": "Setup Ongoing",
-        "customer": "Customer",
+        "customer": "Kunde",
         "bpn": "BPN",
-        "contact": "Contact",
+        "contact": "Kontakt",
         "technicalDetails": "Technical Details",
         "appTenantUrl": "App Tenant URL",
         "appId": "App ID (clientID)",
         "appIdInfo": "Die Client-ID ist entscheidend für OAuth2/OpenID Connect-Interaktionen. Dieser Bezeichner wird als Client-ID-Parameter in Anfragen an den Autorisierungsserver gesendet. Es wird zur Kundenidentifizierung verwendet. Mit der Abonnementaktivierung wird die Client-ID erstellt.",
         "technicalName": "Technical User Name",
         "technicalNameInfo": "Technischer Benutzername des technischen Benutzer-/Dienstkontos, das für das spezifische App-Abonnement erstellt wurde. Sie können auf den technischen Benutzernamen klicken, um die Client-ID und die geheimen Details abzurufen.",
-        "technicalPermission": "Technical User Permission",
+        "technicalPermission": "Technische Benutzerberechtigung",
         "technicalPermissionInfo": "Dem technischen Benutzer zugewiesene Berechtigungen.",
-        "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
-        "email": "xxx@xxxx.xxxx",
+        "helpText": "Bei Fragen zu diesen Änderungen wenden Sie sich bitte an:",
+        "email": "support@cofinity-x.com",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
         "tenantUrlErrorMsg": "Error! Something went wrong"
       }

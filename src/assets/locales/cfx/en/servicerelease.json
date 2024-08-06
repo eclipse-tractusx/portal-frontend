@@ -1,0 +1,273 @@
+{
+  "headerTitle": "Service Release Process",
+  "descHeading": "Publish your company services inside the Catena-X marketplace",
+  "descMessage": "Register your service and metadata to get published on the marketplace. Scrolling down, you can find a quick overview of the service release process.",
+  "startCreatingButton": "Start to register your service offering",
+  "registerButton": "Register your service",
+  "overviewButton": "Service Overview",
+  "stepHeading": "The process will guide your through the following steps:",
+  "dividerText": "Lets get started to publishing your service...",
+  "marketplaceHeading": "Service Marketplace upcoming submission requirements",
+  "requiredButton": "New",
+  "requiredtitle": "Requirement Lorem ipsum",
+  "requiredExplaination": "Explanation of the requirement",
+  "consultancyService": "Consultancy Service",
+  "dataspaceService": "Dataspace Service",
+  "loadmore": "Load More",
+  "documentDeleteSuccess": "Document deleted successfully",
+  "documentDeleteError": "Something went wrong.",
+  "global": {
+    "actions": {
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "stepper": {
+    "marketCard": "Offer Card",
+    "servicePage": "Offer Page Details",
+    "contractAndConsent": "Contract & Consent",
+    "technicalIntegration": "technical Integration",
+    "validateAndPublish": "Verify & Submit"
+  },
+  "step1": {
+    "headerTitle": "Create Service",
+    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer.",
+    "serviceName": "Service Name",
+    "serviceType": "Service Type",
+    "serviceTypePlaceholder": "Select a Service Type Id",
+    "shortDescriptionEN": "Short Description (en)",
+    "shortDescriptionDE": "Short Description (de)",
+    "serviceLeadImageUpload": "Service Card Image"
+  },
+  "step2": {
+    "headerTitle": "Service Details",
+    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "longDescriptionEN": "Long Description (en)",
+    "longDescriptionDE": "Long Description (de)",
+    "doc": "Supporting Material",
+    "note": "Note:",
+    "providerDetails": "Provider Details",
+    "providerHomePage": "Provider Homepage",
+    "providerContactEmail": "Customer Contact E-Mail",
+    "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
+    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
+  },
+  "step3": {
+    "headerTitle": "Agreements and Consent",
+    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "uploadImageConformity": "Conformity Service Certificate",
+    "documentDeleteSuccess": "Document deleted successfully"
+  },
+  "technicalIntegration": {
+    "headerTitle": "Technical Integration",
+    "headerDescription": "Setup the technical profile of a technical user/service account of needed permissions to be able to run the application inside the dataspace. Select minimum one permission, the selected permission(s) will be stored as service technical user profile and used to create technical users for subscription activations.",
+    "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
+    "technicalUserProfileError": "Error while updating technical user profiles",
+    "noneOption": "none (no technical user needed to run the app/service)"
+  },
+  "step4": {
+    "headerTitle": "Validate & Publish",
+    "headerDescription": "Below you can find a summary of all your service registration inputs as well as the look of the marketplace service card and detail page. Please check your entered data carefully before sending the service for release. We will validate your service registration shortly after the service submission.",
+    "appDetails": "Service Details",
+    "documents": "Documents",
+    "providerInformation": "Provider Information",
+    "consent": "Consent",
+    "longDescriptionTitleEN": "[Long Description - EN] ",
+    "longDescriptionTitleDE": "[Long Description - DE] ",
+    "conformityDocument": "Conformity Document",
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
+  "serviceReleaseForm": {
+    "headerTitle": "Create service",
+    "addMore": "Add More",
+    "noItemsSelected": "No Items Selected",
+    "note": "Note:",
+    "OnlyOneFileAllowed": "Only one file for upload allowed",
+    "max1Images": "Only one file is supported",
+    "minimum": "Minimum",
+    "charactersRequired": " characters required",
+    "maximum": "Maximum",
+    "charactersAllowed": " characters allowed",
+    "validCharactersIncludes": "Valid characters includes: ",
+    "isMandatory": " is mandatory",
+    "fileUploadIsMandatory": "File upload is mandatory",
+    "error": {
+      "title": "Submission was not successful.",
+      "message": "Please try it again or come back later."
+    },
+    "dataSavedSuccessMessage": "Data saved successfully",
+    "roleDeleteSuccessMessage": "Role deleted successfully",
+    "rolesDeleteSuccessMessage": "Roles deleted successfully",
+    "errormessage": "Error! Something went wrong"
+  },
+  "footerButtons": {
+    "help": "Help",
+    "saveAndProceed": "Save & proceed",
+    "save": "Save",
+    "submit": "Submit",
+    "proceed": "Proceed"
+  },
+  "submit": {
+    "headerTitle": "Thank you for submitting the service!",
+    "headerDescription": "After a review by a Catena-X administrator, you will receive",
+    "headerDescriptionComplete": "further information on service release",
+    "yourCatenaXTeam": "Your Catena-X team",
+    "overview": "My services overview"
+  },
+  "defaultValues": {
+    "conformityDocumentsDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
+  "serviceoverview": {
+    "headerTitle": "Your Services",
+    "headerDescription": "Register a new service and manage your current service offerings. In the overview, you will find services that have already been published as well as offers that are still being created or have been rejected.",
+    "inputPlaceholder": "Search for services",
+    "filter": {
+      "all": "All",
+      "active": "Active",
+      "inactive": "Inactive",
+      "created": "Created",
+      "wip": "WIP"
+    },
+    "addbtn": "Register new service",
+    "submenuNotAvailable": "Sub-Menu is not available.",
+    "sortOptions": {
+      "deactivate": "Deactivate",
+      "activate": "Activate"
+    },
+    "serviceDeactivate": {
+      "headerTitle": "Deactivate Service",
+      "description": "Deactivation of service will deactivate the service offer inside the Catena-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
+      "checkboxLabel": "Hereby I confirm that I have read the business service terms and conditions and that I am deactivating my company business services from the marketplace with immediate effect. I understand that it is not possible to self-reverse the deactivation.",
+      "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
+      "successMsg": "Deactivation successfully completed",
+      "errorMsg": "Error! Something went wrong"
+    }
+  },
+  "servicedetails": {
+    "headerTitle": "Service Details"
+  },
+  "serviceSubscription": {
+    "headline": "Service Subscription",
+    "subHeading": "Manage customer subscriptions",
+    "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+    "readMore": "Read More",
+    "registerURL": "RegisterURL",
+    "search": "...search by entering the service name here.",
+    "noDataMessage": "No data available",
+    "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+    "subscribeSuccessMsg": "Subscribed Successfully",
+    "newServices": "New Services",
+    "recommendations": "Recommendations",
+    "allServices": "All Services",
+    "activateBtn": "Activate",
+    "pleaseEnterValidURL": "Please enter a valid URL",
+    "tabs": {
+      "request": "Request",
+      "active": "Active",
+      "showAll": "Show All"
+    },
+    "sortOptions": {
+      "customer": "By Customer A-Z",
+      "offer": "By Offer"
+    },
+    "document": {
+      "heading": "Relevant Documents",
+      "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+    },
+    "register": {
+      "title": "Active Service Subscription",
+      "subtitle": "for ",
+      "description": "In order to activate the subscription of {{company}}, follow these steps below, <br /> <br />1. Activate the service subscription request.<br />2. Customer will be informed about the successfully activation<br />",
+      "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /> <br />1. Activate the service subscription request.<br />2. System - technical user (if needed) will get generated and credentials getting shared.<br />3. Configure your service with the specific technical user to ensure that the service is fully usable",
+      "technicalUserDetails": "Technical User Details",
+      "sectionHeader": "Technical User Profile",
+      "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
+      "close": "Close",
+      "confirm": "Confirm",
+      "help": "Help",
+      "loading": "Loading..."
+    },
+    "detailOverlay": {
+      "description": "Service Subscription Details & Status"
+    },
+    "activation": {
+      "title": "Service Subscription Activated",
+      "subtitle": "for ",
+      "successDescription": "The service is now activated and technical user was successfully created. <br />Please find the necessary user details below.",
+      "successDescriptionWithTechUser": "The service is now activated and technical user was successfully created.<br /> Please find the necessary user details below.",
+      "tableheader": "Technical User Details:",
+      "userId": "Client ID Tech User:",
+      "sercret": "Secret:",
+      "url": "URL:",
+      "technicaluserType": "Assigned Permissions:",
+      "close": "Close"
+    }
+  },
+  "adminBoard": {
+    "headerTitle": "Service request management",
+    "search": "search company name/service title",
+    "noDataMessage": "No data available",
+    "successApproveMsg": "Service successfully activated",
+    "errorApproveMsg": "Service not activated. Something went wrong.",
+    "successDeclineMsg": "Service got successfully declined and provider informed",
+    "errorDeclineMsg": "Service decline failed. Something went wrong.",
+    "tabs": {
+      "open": "Open",
+      "all": "All"
+    },
+    "sortOptions": {
+      "newFirst": "Newest First",
+      "AppTitle": "Service Title (A-Z)"
+    },
+    "declineModal": {
+      "title": "Reject Service Release Request {appName}",
+      "subheading": "Are you sure you want to reject the service release request ?",
+      "declineReason": "The rejection will",
+      "declineReason1Label": "Create a notification & email message to inform the service provider/manager about the rejection",
+      "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
+      "declineReason3Label": "The service will get set back to the status “in progress“",
+      "inputLabel": "Cancellation Message",
+      "confirm": "Confirm",
+      "close": "Close"
+    }
+  },
+  "adminboardDetail": {
+    "action": {
+      "back": "Back"
+    },
+    "longDescriptionTitleEN": "Description - English",
+    "longDescriptionTitleDE": "Description - German",
+    "backToBoard": "Back to Admin Board",
+    "noDocumentsAvailable": "No documents available",
+    "ConformityDocument": {
+      "heading": "Conformity Document",
+      "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+    },
+    "documents": {
+      "heading": "Documents",
+      "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
+    },
+    "provider": {
+      "heading": "Provider Information",
+      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+      "homepage": "Homepage",
+      "email": "E-Mail"
+    },
+    "technicalUserSetup": {
+      "heading": "Technical User Setup",
+      "message": "The technical user profile defined below displays the user permission which the technical user created as part of the app/service activation gets automatically assigned.",
+      "roleDescription": "The role description is expected to get displayed here in future.",
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+    }
+  },
+  "retryOverlay": {
+    "title": "Something went wrong",
+    "description": "The data could not get loaded, please try it again or go back to the previous page."
+  },
+  "error": {
+    "tryAgain": "Try Again",
+    "errorBar": "Something went wrong. Try again"
+  }
+}

@@ -57,10 +57,6 @@
     transform: translateX(-50%);
   }
 
-  .description {
-    margin-left: 170px;
-  }
-
   .subDescription {
     color: #0f71cb;
     text-align: center;
@@ -75,39 +71,11 @@
     text-align: center;
   }
 
-  .searchContainer {
-    margin: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .searchContainer .MuiTextField-root {
-    margin: auto;
-    width: 100%;
-  }
-
-  .searchContainer .MuiBox-root {
-    width: 50%;
-  }
-
-  .searchContainer .MuiOutlinedInput-input {
-    font-size: 18px;
-  }
-
-  .searchContainer .MuiOutlinedInput-root {
-    padding: 12px 20px 12px 20px !important;
-    height: 52px;
-  }
-
   .filterSection {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    margin-bottom: 60px;
   }
 
   .filterSection .chipContainer {
@@ -191,7 +159,7 @@
       }
 
       .viewDetails {
-        width: 15%;
+        width: 10%;
       }
 
       .thirdSection {
@@ -202,8 +170,12 @@
       }
 
       .forthSection {
-        width: 15%;
-        display: block;
+        width: 18%;
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        align-items: center;
+
         button {
           width: 50%;
           border-radius: 15px;
