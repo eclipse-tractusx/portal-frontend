@@ -23,11 +23,19 @@ import { IconButton, Typography } from '@catena-x/portal-shared-components'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { useTranslation } from 'react-i18next'
 import { Stack, Link } from '@mui/material'
+import { FOOTERLINK } from 'types/cfx/Constants'
 
 export const Footer = ({ pages }: { pages: string[] }) => {
+  const footerLinks: { [key: string]: string } = {
+    imprint: `${FOOTERLINK.url}/imprint/`,
+    privacy: `${FOOTERLINK.url}/data-privacy/`,
+    cookiepolicy: `${FOOTERLINK.url}/data-privacy/#cookies`,
+    contact: `${FOOTERLINK.url}/`,
+  }
+
   const { t } = useTranslation()
   const items = pages.map((page) => ({
-    to: page,
+    to: footerLinks[page],
     title: t(`pages.${page}`),
   }))
   const scrollToTop = () => {
