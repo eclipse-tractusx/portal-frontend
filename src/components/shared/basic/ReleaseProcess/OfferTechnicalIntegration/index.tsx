@@ -20,7 +20,7 @@
 
 import { Typography, Checkbox, Radio } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
 import {
   ServiceTypeIdsEnum,

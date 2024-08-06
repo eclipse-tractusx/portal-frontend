@@ -53,7 +53,7 @@ import {
   type updateRolePayload,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
 import { ErrorType } from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
 import { ButtonLabelTypes } from '..'
@@ -409,21 +409,6 @@ export default function TechnicalIntegration() {
               {t('content.apprelease.technicalIntegration.template')}
             </Button>
           </a>
-          <Button
-            sx={{ ml: 2, fontSize: '16px' }}
-            size="small"
-            variant="contained"
-            color="secondary"
-            onClick={() =>
-              window.open(
-                '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F04.+Technical+Integration.md',
-                '_blank',
-                'noopener'
-              )
-            }
-          >
-            {t('content.apprelease.technicalIntegration.getHelp')}
-          </Button>
         </Grid>
         <Controller
           name={'uploadAppRoles'}
@@ -631,7 +616,9 @@ export default function TechnicalIntegration() {
           ) : (
             <Box className="no-roles-box">
               <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
-                {`Currently no roles loaded for app (${fetchAppStatus?.title})`}
+                {t(
+                  'content.apprelease.technicalIntegration.noRolesLoaded'
+                ).replace('{{appName}}', fetchAppStatus?.title ?? '')}
               </Typography>
             </Box>
           )}

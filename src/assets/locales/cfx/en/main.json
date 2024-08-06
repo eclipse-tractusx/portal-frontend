@@ -465,9 +465,10 @@
       "message": "Contents of Data Management"
     },
     "appoverview": {
-      "headerTitle": "My Apps",
+      "headerTitle": "Your Apps",
+      "description": "Register a new app and manage your current app offerings. Recently changed apps will show on top and in the overview below, you will find apps that have already been published as well as offers that are still being created or have been rejected.",
       "title": "App Overview",
-      "inputPlaceholder": "Search for Apps",
+      "inputPlaceholder": "Search by app title...",
       "recently": {
         "header": "Recently changed",
         "subheader": "Below you can find your recently changed apps. By clicking on the app, you can open up the deatils/proceed on the app release process. The sub-menu added to each app card will help you to do changes on active apps. Below the recent changed apps, a list of all by your company provided apps can get found. Please scroll down to get more details."
@@ -476,7 +477,7 @@
         "all": "All",
         "active": "Active",
         "inactive": "Inactive",
-        "wip": "WIP"
+        "wip": "In Progress"
       },
       "sortOptions": {
         "deactivate": "Deactivate",
@@ -488,7 +489,7 @@
         "activate": "Activate",
         "delete": "Delete"
       },
-      "addbtn": "Register your App",
+      "addbtn": "Register new app",
       "confirmModal": {
         "title": "Change app {appName}",
         "description": "Dear user, you have selected an application that's currently in the “In Creation” status. Would you like to access the app release management form for this app? This will allow you to modify and update the data and information associated with the application before it's released."
@@ -1160,28 +1161,45 @@
     },
     "apprelease": {
       "headerTitle": "App Release Process",
+      "headerDescription": "Register your app to get published on the marketplace. You can find a quick overview of the app release process below.",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
-      "descMessage": "Register your app and metdata to get published on the marketplace. Scrolling down, you can find a quick overview of the app release process.",
-      "startCreatingButton": "Register your app",
-      "registerButton": "Register your app",
-      "overviewButton": "Overview my apps",
+      "descMessage": "Register and publish your company apps on the Cofinity-X marketplace or go to “Your Apps” to manage your created offerings.",
+      "startCreatingButton": "Register Your App",
+      "registerButton": "Register Your App",
+      "overviewButton": "Your Apps",
       "stepHeading": "The process will guide your through the following steps:",
-      "dividerText": "Lets get started to publishing your app...",
+      "dividerText": "Start registering your app",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "New",
       "marketplaceTitle": "Requirement Lorem ipsum",
       "marketplaceExplanation": "Expalanation of the requirement",
+      "stepperHeadline": {
+        "appMarketCard": "App Card",
+        "appPage": "App Page Details",
+        "contractAndConsent": "Agreements and Consent",
+        "technicalIntegration": "Technical Integration & User Roles",
+        "betaTest": "Beta Test",
+        "validateAndPublish": "Verify Data and Submit Your App"
+      },
       "stepper": {
         "appMarketCard": "App Card",
         "appPage": "App Page Details",
-        "contractAndConsent": "Contract & Consent",
-        "technicalIntegration": "Technical Integration",
+        "contractAndConsent": "Agreements & Consent",
+        "technicalIntegration": "Technical Integration & User Roles",
         "betaTest": "Beta Test",
-        "validateAndPublish": "Validate & Publish"
+        "validateAndPublish": "Validate & Submit"
+      },
+      "stepperDescription": {
+        "appMarketCard": "Create your 'App Card' for the marketplace. This card is your first touchpoint with customers and will show the basic information of your offering, like title, description, language settings, pricing etc.",
+        "appPage": "Provide detailed information for your app’s detail page, including a long description in English and German, images, several documents, provider details and privacy information.",
+        "contractAndConsent": "To publish your offer as a Catena-X Certified App on the marketplace, you need to accept the T&Cs and guidelines and upload your Conformity Certificate.",
+        "technicalIntegration": "Add user roles by uploading them as CSV file. If your app requires technical integration, select the respective technical user(s). Otherwise, choose 'None' and proceed.",
+        "betaTest": "This step is currently not available and can be skipped.",
+        "validateAndPublish": "Review the summary of all your app registration inputs. We will validate your app registration shortly after the app submission."
       },
       "appMarketCard": {
         "headerTitle": "Create App Card",
-        "headerDescription": "The following input fields and uploads are used to create your app 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer. While entering the data below, have a look at the app card on the left side which is getting autoupdated based on your input.",
+        "headerDescription": "The following input fields and uploads are used to create your 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer.",
         "defaultCardAppImageAlt": "App Logo",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "This is the app title",
@@ -1196,12 +1214,12 @@
         "appLanguagePlaceholder": "Select app supported languages",
         "salesManager": "Sales Manager",
         "salesManagerPlaceholder": "Please select a Sales Manager",
-        "salesManagerDescription": "Please select the app sales manager via the dropdown below. The sales manager can only get set if a user of your company has the respective portal role. The sales manager will get informed as soon as a app subscribtion request is triggered by the customer.",
+        "salesManagerDescription": "Please select your Sales manager via the dropdown below. The sales manager can only get set if a user of your company has the respective portal role (Sales Manager). The sales manager will get informed as soon as a app subscribtion request is triggered by the customer.",
         "pricingInformation": "Pricing Information (e.g. free / charged (to be defined))",
-        "appLeadImageUpload": "App Lead Image Upload"
+        "appLeadImageUpload": "App cover image upload"
       },
       "appPage": {
-        "headerTitle": "App Details",
+        "headerTitle": "App Page Details",
         "headerDescription": "Fill out your app details page. On the marketplace the following added information will be public available for customers to get a extended view of your application supported functions as well as necessary details regarding security, architecture, etc.",
         "longDescriptionEN": "Long Description (en)",
         "longDescriptionDE": "Long Description (de)",
@@ -1213,8 +1231,8 @@
         "uploadAppContract": "Upload “App Contract”",
         "providerDetails": "Provider Details",
         "providerHomePage": "Provider Homepage",
-        "providerContactEmail": "Contact (E-Mail)",
-        "providerPhoneContact": "Contac (Phone Number)",
+        "providerContactEmail": "Customer Contact E-Mail",
+        "providerPhoneContact": "Customer Contact Phone Number",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
         "pleaseEnterValidContact": "Please add a valid phone number and in the following format: “+ xx xxxx xxxxxx”, “+ xxx xxxx-xxxx”, “+xx xxxxxxxxxx”. Note: more formats are allowed, mentioned formats are the most used formats.",
@@ -1224,15 +1242,15 @@
         "privacyInformationMandatory": "Privacy Information is mandatory"
       },
       "contractAndConsent": {
-        "headerTitle": "Consent & Contract",
-        "headerDescription": "To publish your app on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+        "headerTitle": "Agreements & Consent",
+        "headerDescription": "To publish your offer as a Catena-X Certified App on the marketplace, you need to accept the T&Cs and guidelines and upload your Conformity Certificate.",
         "allAgreementsMandatory": "All agreements are mandatory",
         "uploadImageConformity": "Conformity App Certificate",
         "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
-        "headerTitle": "Technical Integration",
-        "headerDescription": "Integrate your app with the catena-x dataspace. For the integration you need to upload the application supported roles as well as the necessary technical user profile which is needed to run your application inside the network. Please note: in this step you are only setting the frame of the authentication - no users are going to get created. If you need any support feel free to use the 'Help' button or the attached template.",
+        "headerTitle": "Technical Integration & User Roles",
+        "headerDescription": "Integrate your app with the Catena-X dataspace. For the integration you need to upload the application supported roles as well as the necessary technical user profile which is needed to run your application inside the network. Please note: in this step you are only setting the frame of the authentication - no users are going to get created. Upload all app roles by using the available upload template (csv) file added attached.",
         "step1Header": "1. User Role Upload",
         "step1HeaderDescription": "Upload your application roles which can get assigned to user identities to be able to access the application.",
         "clientID": "Client ID",
@@ -1265,18 +1283,19 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical user needed to run the app/service)",
+        "noRolesLoaded": "Currently no roles loaded for app ({{appName}})"
       },
       "betaTest": {
-        "headerTitle": "CX Test Runs",
+        "headerTitle": "Beta Test",
         "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release.",
         "betaTests": "Beta Tests",
         "technicalIntegrationTest": "Technical Integration Test",
         "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
       },
       "validateAndPublish": {
-        "headerTitle": "Validate & Publish",
-        "headerDescription": "Below you can find a summary of all your app registration inputs as well as the look of the marketplace app card and detail page. Please check your entered data carefully before sending the app for release. We will validate your app registration shortly after the app submission.",
+        "headerTitle": "Validate & Submit",
+        "headerDescription": "Below you can find a summary of all your app registration inputs. Please check your entered data carefully before sending the app for release. We will validate your app registration shortly after the app submission.",
         "appDetails": "App Details",
         "language": "Language :  ",
         "useCase": "Use Case :  ",
@@ -1285,16 +1304,20 @@
         "documents": "Documents",
         "providerInformation": "Provider Information",
         "consent": "Consent",
-        "cxTestRuns": "CX Test Runs",
+        "cxTestRuns": "Beta Test",
         "longDescriptionTitleEN": "[Long Description - EN] ",
-        "longDescriptionTitleDE": "[Long Description - DE] "
+        "longDescriptionTitleDE": "[Long Description - DE] ",
+        "providerTableData": {
+          "appProvider": "App Provider",
+          "phone": "Phone"
+        }
       },
       "submit": {
         "headerTitle": "Thank you for submitting the app!",
-        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescription": "After a review by a Cofinity-X administrator, you will receive further information on the app release.",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Your Catena-X team",
-        "overview": "My apps overview"
+        "overview": "Go to Your Apps"
       },
       "defaultValues": {
         "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

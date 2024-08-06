@@ -69,7 +69,6 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
     companyData?.applicationStatus === ApplicationStatus.SUBMITTED
   )
   const [headerNote, setHeaderNote] = useState(false)
-  console.log(headerNote, 'headerNote')
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(

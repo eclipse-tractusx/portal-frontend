@@ -76,7 +76,6 @@ export default function AppReleaseProcessForm() {
       headerDescriptionComplete={t(
         'content.apprelease.submit.headerDescriptionComplete'
       )}
-      yourCatenaXTeam={t('content.apprelease.submit.yourCatenaXTeam')}
       myAppsOverview={t('content.apprelease.submit.overview')}
     />
   )
