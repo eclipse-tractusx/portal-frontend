@@ -82,3 +82,7 @@ export enum PAGES {
   CHANGE_DOCUMENTS = 'changedocuments', // src/components/pages/AppOverview/AppOverviewList.tsx:117
   VIEW_DETAILS = 'viewDetails', // src/components/pages/AppOverview/AppOverviewList.tsx:117
 }
+
+export const FOOTERLINK = {
+  url: 'https://www.cofinity-x.com/contact',
+}
