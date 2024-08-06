@@ -466,12 +466,13 @@
       }
     },
     "appoverview": {
-      "headerTitle": "Meine Applikationen",
+      "headerTitle": "Ihre Apps",
+      "description": "Registrieren Sie eine neue App und verwalten Sie Ihre aktuellen App-Angebote. Kürzlich geänderte Apps werden oben angezeigt und in der Übersicht unten finden Sie Apps, die bereits veröffentlicht wurden, sowie Angebote, die noch erstellt oder abgelehnt wurden.",
       "title": "App-Übersicht",
-      "inputPlaceholder": "Suchen Sie nach Apps",
+      "inputPlaceholder": "Suche nach App Titel",
       "recently": {
-        "header": "Kürzlich gewechselt",
-        "subheader": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ."
+        "header": "Kürzlich geändert",
+        "subheader": "Hier finden Sie Ihre kürzlich geänderten Apps. Klicken Sie auf eine App, um Details anzuzeigen oder den Release Prozess fortzusetzen. Das Untermenü auf jeder App-Karte ermöglicht Ihnen, Änderungen an aktiven Apps vorzunehmen. Unterhalb der kürzlich geänderten Apps finden Sie eine Liste aller von Ihrem Unternehmen bereitgestellten Apps. Scrollen Sie nach unten, um weitere Details zu sehen."
       },
       "filter": {
         "all": "Alle",
@@ -480,16 +481,16 @@
         "wip": "In Arbeit"
       },
       "sortOptions": {
-        "deactivate": "Deactivate",
-        "changeImage": "Change Image",
-        "changeDescription": "Change Description",
-        "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)",
+        "deactivate": "Deaktivieren",
+        "changeImage": "Bild ändern",
+        "changeDescription": "Beschreibung ändern",
+        "addRoles": "Beschreibung ändern",
+        "changeDocuments": "Dokument(e) ändern",
         "viewDetails": "Details anzeigen",
         "activate": "aktivieren Sie",
         "delete": "Löschen"
       },
-      "addbtn": "Registrieren Sie Ihre App",
+      "addbtn": "Neue App registrieren",
       "confirmModal": {
         "title": "Appbeschreibung '{appName}' öffnen",
         "description": "Sehr geehrter Benutzer, Sie haben eine Anwendung ausgewählt, die sich derzeit im Status „In Erstellung“ befindet. Möchten Sie auf das App-Release-Management-Formular für diese App zugreifen? Auf diese Weise können Sie die mit der Anwendung verknüpften Daten und Informationen vor der Veröffentlichung ändern und aktualisieren."
@@ -1166,11 +1167,11 @@
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
         "notSupportedMessage": "Currently not yet supported",
-        "COMPANY_DATA": "Company Data",
-        "USER_DATA": "User Data",
-        "LOCATION": "Location",
-        "BROWSER_HISTORY": "Browser History",
-        "NONE": "None"
+        "COMPANY_DATA": "Unternehmensdaten",
+        "USER_DATA": "Benutzerdaten",
+        "LOCATION": "Standort",
+        "BROWSER_HISTORY": "Browser-Verlauf",
+        "NONE": "Keine"
       },
       "howtouse": {
         "heading": "Dokumente",
@@ -1192,92 +1193,109 @@
       "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert."
     },
     "apprelease": {
-      "headerTitle": "App Release Process",
+      "headerTitle": "App Release Prozess",
+      "headerDescription": "Registrieren Sie Ihre App, um diese auf dem Marktplatz zu veröffentlichen. Nachstehend finden Sie einen kurzen Überblick über den App Release Prozess.",
       "descHeading": "Publish your company app inside the Catena-X marketplace",
-      "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "startCreatingButton": "App Registrierung starten",
-      "registerButton": "App Registrierung starten",
-      "overviewButton": "Übersicht Unternehmens-Apps",
+      "descMessage": "Registrieren und veröffentlichen Sie Ihre Apps auf dem Cofinity-X-Marktplatz oder gehen Sie zu „Ihre Apps“, um Ihre erstellten Angebote zu verwalten.",
+      "startCreatingButton": "App Registrieren",
+      "registerButton": "App Registrieren",
+      "overviewButton": "Ihre Apps",
       "stepHeading": "The process will guide your through the following steps:",
-      "dividerText": "Lets get started to register your app...",
+      "dividerText": "Starten Sie die Registrierung Ihrer App",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "Neu",
       "marketplaceTitle": "Requirement Lorem ipsum",
       "marketplaceExplanation": "Expalanation of the requirement",
+      "stepperHeadline": {
+        "appMarketCard": "App Card",
+        "appPage": "App Detailseite",
+        "contractAndConsent": "Vereinbarungen und Einverständnis",
+        "technicalIntegration": "Technische Integration & Benutzerrollen",
+        "betaTest": "Beta Test",
+        "validateAndPublish": "Daten überprüfen und Ihre App einreichen"
+      },
       "stepper": {
         "appMarketCard": "App Card",
         "appPage": "App Detailseite",
-        "contractAndConsent": "Terms & Conditions",
-        "technicalIntegration": "Technical Integration",
+        "contractAndConsent": "Vereinbarung & Einverständnis",
+        "technicalIntegration": "Technische Integration & Benutzerrollen",
         "betaTest": "Beta Test",
-        "validateAndPublish": "Validate & Publish"
+        "validateAndPublish": "Validieren & Einreichen"
+      },
+      "stepperDescription": {
+        "appMarketCard": "Erstellen Sie Ihre „App-Karte“ für den Marktplatz. Diese Karte ist Ihr erster Berührungspunkt mit den Kunden und zeigt die grundlegenden Informationen über Ihr Angebot, wie Titel, Beschreibung, Spracheinstellungen, Preise usw.",
+        "appPage": "Stellen Sie ausführliche Informationen für die Detailseite Ihrer App bereit, einschließlich einer langen Beschreibung auf Deutsch und Englisch, Bilder, mehrere Dokumente, Angaben zum Anbieter und Informationen zum Datenschutz.",
+        "contractAndConsent": "Um Ihr Angebot als Catena-X-zertifizierte App auf dem Marktplatz zu veröffentlichen, müssen Sie die AGBs und Richtlinien akzeptieren und Ihr Konformitätszertifikat hochladen.",
+        "technicalIntegration": "Fügen Sie Benutzerrollen hinzu, indem Sie sie als CSV-Datei hochladen. Wenn Ihre Anwendung eine technische Integration erfordert, wählen Sie den/die entsprechenden technischen Benutzer aus. Andernfalls wählen Sie „Nicht notwendig“ und fahren fort.",
+        "betaTest": "Dieser Schritt ist derzeit nicht verfügbar und kann übersprungen werden.",
+        "validateAndPublish": "Überprüfen Sie die Zusammenfassung aller Eingaben bei der App-Registrierung. Wir werden Ihre App-Registrierung kurz nach der Einreichung der App validieren."
       },
       "appMarketCard": {
-        "headerTitle": "Create App",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "headerTitle": "App Card erstellen",
+        "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre „App Card“ zu erstellen, die dann auf dem Marktplatz platziert wird. Die App Card ist der erste Kontaktpunkt mit dem Kunden.",
         "defaultCardAppImageAlt": "App Logo",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
-        "appTitle": "App title",
-        "appProvider": "App provider",
-        "shortDescriptionEN": "Short Description (en)",
-        "shortDescriptionDE": "Short Description (de)",
-        "useCaseCategory": "Use Case /Category",
+        "appTitle": "App Name",
+        "appProvider": "App Anbieter",
+        "shortDescriptionEN": "SKurzbeschreibung (en)",
+        "shortDescriptionDE": "Kurzbeschreibung (de)",
+        "useCaseCategory": "Use Case/Kategorie",
         "useCaseCategoryPlaceholder": "Choose the relevant use case",
-        "appLanguage": "App Language",
+        "appLanguage": "App Sprache(n)",
         "appLanguagePlaceholder": "Select app supported language",
         "salesManager": "Sales Manager",
         "salesManagerPlaceholder": "Please select a Sales Manager",
-        "salesManagerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
-        "pricingInformation": "Preisinformation",
-        "appLeadImageUpload": "App Lead Image Upload"
+        "salesManagerDescription": "Bitte wählen Sie den App-Manager über das untenstehende Dropdown-Menü aus. Dieser kann nur gesetzt werden, wenn ein Benutzer Ihres Unternehmens die entsprechende Portalrolle hat (Sales Manager). Dieser Nutzer wird benachrichtigt, sobald eine App-Abonnement-Anfrage durch den Kunden ausgelöst wird.",
+        "pricingInformation": "Preisinformationen (z. B. kostenlos / kostenpflichtig (noch zu definieren))",
+        "appLeadImageUpload": "App Coverbild Upload"
       },
       "appPage": {
-        "headerTitle": "App Details",
+        "headerTitle": "App Detailseite",
         "headerDescription": "Füllen Sie die Seite mit den App-Details aus. Auf dem Marktplatz werden die folgenden zusätzlichen Informationen für Kunden öffentlich verfügbar sein, um einen erweiterten Überblick über die von Ihrer Anwendung unterstützten Funktionen sowie notwendige Details zu Sicherheit, Architektur usw. zu erhalten.",
-        "longDescriptionEN": "Detailierte Beschreibung - EN",
-        "longDescriptionDE": "Detailierte Beschreibung - DE",
+        "longDescriptionEN": "Detaillierte App Beschreibung (en)",
+        "longDescriptionDE": "Detaillierte App Beschreibung (de)",
         "images": "Bilder",
-        "note": "Note:",
-        "maxThreeImages": "Max.3 Images",
-        "uploadDataPrerequisits": "Upload “Data Prerequisits”",
-        "uploadTechnicalGuide": "Upload “Technical Guide”",
-        "uploadAppContract": "Upload “App Contract”",
-        "providerDetails": "Provider Details",
-        "providerHomePage": "Provider Homepage",
-        "providerContactEmail": "Customer Contact E-Mail",
-        "providerPhoneContact": "Provider Phone Contact",
+        "note": "Hinweis:",
+        "maxThreeImages": "Max. 3 Bilder",
+        "uploadDataPrerequisits": "Upload „Datenvoraussetzungen“",
+        "uploadTechnicalGuide": "Upload „Technischer Leitfaden“",
+        "uploadAppContract": "Upload „App Vertrag“",
+        "providerDetails": "Anbieter Details",
+        "providerHomePage": "Anbieter Homepage",
+        "providerContactEmail": "Kundenkontakt E-Mail",
+        "providerPhoneContact": "Kundenkontakt Telefonnummer",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
         "pleaseEnterValidContact": "Bitte fügen Sie eine gültige Telefonnummer im folgenden Format hinzu: „+ xx xxxx xxxxxx“, „+ xxx xxxx-xxxx“, „+xx xxxxxxxxxx“. Hinweis: Es sind weitere Formate zulässig. Die genannten Formate sind die am häufigsten verwendeten Formate.",
-        "privacyInformation": "Privacy Information",
-        "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
+        "privacyInformation": "Datenschutzinformationen",
+        "privacyInformationDescription": "Die Datenschutzinformationen werden verwendet, um Datenarten anzuzeigen, die die App auf der Detailseite der App sammeln kann. Sie können mehrere Optionen auswählen ODER „keine“ wählen.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",
         "privacyInformationMandatory": "Privacy Information is mandatory"
       },
       "contractAndConsent": {
-        "headerTitle": "Consent & Contract",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+        "headerTitle": "Vereinbarungen und Einverständnis",
+        "headerDescription": "Um Ihr Angebot als Catena-X-zertifizierte App auf dem Marktplatz zu veröffentlichen, müssen Sie die AGBs und Richtlinien akzeptieren und Ihr Konformitätszertifikat hochladen.",
         "allAgreementsMandatory": "All agreements are mandatory",
-        "uploadImageConformity": "Conformity App Certificate",
+        "uploadImageConformity": "Konformitäts App Zertifikat",
         "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
-        "headerTitle": "Technical Integration",
-        "headerDescription": "Integrieren Sie Ihre App mit dem catena-x-Datenraum. Für die Integration müssen Sie die von der Anwendung unterstützten Rollen sowie das erforderliche technische Benutzerprofil hochladen, das zum Ausführen Ihrer Anwendung im Netzwerk erforderlich ist. Bitte beachten Sie: In diesem Schritt legen Sie nur den Rahmen der Authentifizierung fest – es werden keine Benutzer erstellt. Wenn Sie Unterstützung benötigen, können Sie gerne die Schaltfläche „Hilfe“ oder die beigefügte Vorlage verwenden.",
-        "step1Header": "1. User Role Upload",
+        "headerTitle": "Technische Integration & Benutzerrollen",
+        "headerDescription": "Integrieren Sie Ihre Anwendung in den Catena-X Datenraum. Für die Integration müssen Sie die von der Anwendung unterstützten Rollen sowie das notwendige technische Benutzerprofil hochladen, das für den Betrieb Ihrer Anwendung im Netzwerk benötigt wird. Bitte beachten Sie, dass Sie in diesem Schritt nur den Rahmen für die Authentifizierung setzen - es werden keine Benutzer angelegt. Laden Sie alle Anwendungsrollen mit Hilfe der beigefügten Upload-Vorlage (csv) hoch.",
+        "step1Header": "1. Uplad Benutzerrolle(n)",
         "step1HeaderDescription": "Laden Sie Ihre Anwendungsrollen hoch, die Benutzeridentitäten zugewiesen werden können, um auf die Anwendung zugreifen zu können.",
         "clientID": "Client ID",
         "URL": "URL",
         "pleaseEnterValidURL": "Please enter a valid URL",
         "URLPlaceholder": "http://www.loremipsum.de",
         "clientCreated": "Client created",
-        "step2Header": "2. Technical User Setup",
+        "step2Header": "2. Technische User Setup",
         "step2HeaderDescription": "Richten Sie das technische Profil eines technischen Benutzer-/Dienstkontos mit den erforderlichen Berechtigungen ein, um die Anwendung im Datenraum ausführen zu können.",
         "uploadRolesDescription": "Upload all app roles by using the available upload template (csv) file added attached",
-        "rolesPreview": "Preview of Roles uploaded",
-        "uploadAppRolesButton": "Upload App Roles",
+        "rolesPreview": "Vorschau der hochgeladenen Rollen",
+        "uploadAppRolesButton": "App Rollen hochladen",
         "step3Header": "3. Enable your Identity Management Solution",
         "step3HeaderDescription": "[copy] How-To-Text -> Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis,",
         "step4Header": "4. Get Test Users to Test Integration",
@@ -1286,9 +1304,9 @@
         "createTestUser": "Create Test User",
         "password": "Password",
         "username": "Username",
-        "successfullyUploadedAppRoles": "Successfully uploaded app roles",
+        "successfullyUploadedAppRoles": "Erfolgreich hochgeladene App-Rollen",
         "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
-        "template": "Template",
+        "template": "Vorlage",
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
@@ -1296,38 +1314,43 @@
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles",
-        "encoding": "Encoding(select supported encoding)",
+        "encoding": "Kodierung (Auswahl der unterstützten Kodierung)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+        "noRolesLoaded": "Derzeit keine Rollen für die App geladen ({{appName}})"
       },
       "betaTest": {
-        "headerTitle": "CX Test Runs",
-        "headerDescription": "The beta tests are currently not available. Please proceed to the next step. As soon as the tests are released, we will share them with you to enable app specific beta tests before the official app release.",
+        "headerTitle": "Beta Test",
+        "headerDescription": "Die Betatests sind derzeit nicht verfügbar. Bitte fahren Sie mit dem nächsten Schritt fort. Sobald die Tests freigegeben sind, werden wir sie mit Ihnen teilen, um app-spezifische Beta-Tests vor der offiziellen Veröffentlichung der App zu ermöglichen.",
         "betaTests": "Beta Tests",
         "technicalIntegrationTest": "Technical Integration Test",
         "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
       },
       "validateAndPublish": {
-        "headerTitle": "Validate & Publish",
-        "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-        "appDetails": "App Details",
-        "language": "Language :  ",
+        "headerTitle": "Validieren & Einreichen",
+        "headerDescription": "Nachstehend finden Sie eine Zusammenfassung aller Eingaben, die Sie bei der App-Registrierung gemacht haben. Bitte überprüfen Sie Ihre eingegebenen Daten sorgfältig, bevor Sie die App zur Freigabe senden. Wir werden Ihre App-Registrierung kurz nach der Einreichung der App validieren.",
+        "appDetails": "App Detailseite",
+        "language": "Sprache:  ",
         "useCase": "Use Case :  ",
         "price": "Price :  ",
         "conformityDocument": "Conformity Document",
         "documents": "Documents",
-        "providerInformation": "Provider Information",
+        "providerInformation": "Anbieter Information",
         "consent": "Consent",
-        "cxTestRuns": "CX Test Runs",
-        "longDescriptionTitleEN": "[Long Description - EN] ",
-        "longDescriptionTitleDE": "[Long Description - DE] "
+        "cxTestRuns": "Beta Test",
+        "longDescriptionTitleEN": "Detaillierte App Beschreibung (en) ",
+        "longDescriptionTitleDE": "Detaillierte App Beschreibung (de) ",
+        "providerTableData": {
+          "appProvider": "App Anbieter",
+          "phone": "Telefon"
+        }
       },
       "submit": {
         "headerTitle": "App erfolgreich eingereicht!",
-        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie",
         "headerDescriptionComplete": "further information on app release",
         "yourCatenaXTeam": "Dein Catena-X team",
-        "overview": "My apps overview"
+        "overview": "Zu Ihren Apps"
       },
       "defaultValues": {
         "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -1335,10 +1358,10 @@
       },
       "appReleaseForm": {
         "headerTitle": "Create App",
-        "addMore": "Add More",
-        "noItemsSelected": "No Items Selected",
-        "note": "Note:",
-        "OnlyOneFileAllowed": "Only one file for upload allowed",
+        "addMore": "Mehr hinzufügen",
+        "noItemsSelected": "Keine Auswahl angegeben",
+        "note": "Hinweis:",
+        "OnlyOneFileAllowed": "Nur eine Datei für den Upload möglich",
         "max3Images": "Max. 3 Images",
         "minimum": "Minimum",
         "charactersRequired": " characters required",
@@ -1358,10 +1381,10 @@
       },
       "footerButtons": {
         "help": "Help",
-        "saveAndProceed": "Save & proceed",
-        "save": "Save",
-        "submit": "Submit",
-        "proceed": "Proceed"
+        "saveAndProceed": "Speichern & Weiter",
+        "save": "Speichern",
+        "submit": "Absenden",
+        "proceed": "Weiter"
       },
       "retryOverlay": {
         "title": "Something went wrong",
@@ -1579,7 +1602,7 @@
         "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
       },
       "roles": {
-        "heading": "App Roles",
+        "heading": "App Rollen",
         "message": "Geschäftsanwendungsrollen und -beschreibung für die jeweilige App. Die Rollen werden verwendet, um App-Kunden benutzerspezifischen Zugriff zu gewähren und Berechtigungen zwischen verschiedenen Benutzergruppen einzuschränken.",
         "roleDescription": "The role description is expected to get displayed here in future."
       },
@@ -2179,7 +2202,7 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
-      "uploadProgess": "Uploaded % of % files"
+      "uploadProgess": "% von % Dateien hochgeladen"
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
@@ -2285,9 +2308,9 @@
       "title": "Oops, Etwas ist schief gelaufen.",
       "description": "Der Server hat einen internen Fehler oder eine Fehlkonfiguration festgestellt und konnte Ihre Anfrage nicht abschließen.",
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
-      "noDocumentsAvailable": "No documents available",
+      "noDocumentsAvailable": "Keine Dokumente vorhanden",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "noTechnicalUserProfilesAvailable": "Keine technischen User vorhanden"
     },
     "table": {
       "search": "Enter email to search",

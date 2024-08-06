@@ -39,7 +39,7 @@ import {
   useDeleteAppReleaseDocumentMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
-import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import {

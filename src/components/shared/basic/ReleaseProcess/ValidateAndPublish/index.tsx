@@ -57,14 +57,15 @@ export default function ValidateAndPublish({
   const defaultValues = useMemo(() => {
     return {
       images: [LogoGrayData, LogoGrayData, LogoGrayData],
-      conformityDocumentsDescription: t(
-        'content.apprelease.defaultValues.conformityDocumentsDescription'
-      ),
-      documentsDescription: t(
-        'content.apprelease.defaultValues.documentsDescription'
-      ),
       providerTableData: {
-        head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
+        head: [
+          t(
+            'content.apprelease.validateAndPublish.providerTableData.appProvider'
+          ),
+          'Homepage',
+          'E-Mail',
+          t('content.apprelease.validateAndPublish.providerTableData.phone'),
+        ],
         body: [
           [fetchAppStatus?.providerName],
           [fetchAppStatus?.providerUri],

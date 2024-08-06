@@ -18,15 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
-  PageHeader,
   Typography,
   Button,
   ProcessList,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import './ReleaseProcess.scss'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 type RequerementStepType = {
   neuButton: string
@@ -51,6 +50,7 @@ type ReleaseProcessProps = {
   onOverviewButton: () => void
   stepsLists: StepListType[]
   headerTitle?: string
+  headerDescription?: string
   descHeading?: string
   descMessage?: string
   startCreatingButton?: string
@@ -68,27 +68,25 @@ export const ReleaseProcess = ({
   onOverviewButton,
   stepsLists,
   headerTitle,
-  descHeading,
+  headerDescription,
   descMessage,
   overviewButton,
   stepHeading,
   dividerText,
   startCreatingButton,
-  marketplaceHeading,
-  requirements,
   elementNumbers,
   registerButton,
 }: ReleaseProcessProps) => {
   return (
     <div className="appoverview-main">
-      <PageHeader title={headerTitle} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <MainHeader
+        title={headerTitle}
+        subTitle={headerDescription}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <div className="desc-section">
         <div className="container">
-          <Typography variant="h3" className="desc-heading">
-            {descHeading}
-          </Typography>
           <Typography variant="body2" className="desc-message">
             {descMessage}
           </Typography>
@@ -146,35 +144,7 @@ export const ReleaseProcess = ({
               >
                 {startCreatingButton}
               </Button>
-              <Typography variant="h3" className="marketplace-heading">
-                {marketplaceHeading}
-              </Typography>
             </Box>
-            <div className="marketplace-requirements">
-              <ul>
-                {requirements?.map((req: RequerementStepType) => (
-                  <li key={req.index}>
-                    <Button color="secondary" size="small" className="neu-btn">
-                      {req.neuButton}
-                    </Button>
-                    <span>
-                      <Typography
-                        variant="body2"
-                        className="marketplace-title1"
-                      >
-                        {req.marketplaceTitle}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        className="marketplace-title1"
-                      >
-                        {req.marketplaceExplanation}
-                      </Typography>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </div>

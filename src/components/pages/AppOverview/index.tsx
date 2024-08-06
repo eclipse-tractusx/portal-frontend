@@ -20,9 +20,7 @@
 
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
-  PageHeader,
   Typography,
   ViewSelector,
   SearchInput,
@@ -52,6 +50,8 @@ import { fetchImageWithToken } from 'services/ImageService'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import NoItems from '../NoItems'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -205,13 +205,12 @@ export default function AppOverview() {
 
   return (
     <div className="appoverview-app">
-      <PageHeader
+      <MainHeader
         title={t('content.appoverview.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+        subTitle={t('content.appoverview.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
         <div className="desc-recently">
           <div className="container">
@@ -239,34 +238,31 @@ export default function AppOverview() {
         </div>
       ) : null}
       <div className="app-main">
-        <Box sx={{ marginTop: '20px' }} className="overview-section">
-          <section className="overview-section-content">
-            <Typography
-              sx={{ fontFamily: 'LibreFranklin-Light' }}
-              variant="h3"
-              className="section-title"
-            >
-              {t('content.appoverview.title')}
-            </Typography>
-
-            <Box sx={{ textAlign: 'center' }}>
-              <SearchInput
-                sx={{ minWidth: '544px' }}
-                margin={'normal'}
-                value={searchExpr}
-                onChange={(e) => {
-                  doSearch(e.target.value)
-                }}
-                placeholder={t('content.appoverview.inputPlaceholder')}
-              />
-            </Box>
-            <div className="view-selector">
-              <ViewSelector activeView={group} views={categoryViews} />
-            </div>
-          </section>
+        <Box className="overview-section">
+          <Typography
+            sx={{ fontFamily: 'LibreFranklin-Light' }}
+            variant="h3"
+            className="section-title"
+          >
+            {t('content.appoverview.title')}
+          </Typography>
         </Box>
 
         <div className="app-detail">
+          <SearchAndSortSection>
+            <SearchInput
+              margin={'normal'}
+              value={searchExpr}
+              onChange={(e) => {
+                doSearch(e.target.value)
+              }}
+              placeholder={t('content.appoverview.inputPlaceholder')}
+            />
+
+            <div>
+              <ViewSelector activeView={group} views={categoryViews} />
+            </div>
+          </SearchAndSortSection>
           {isFetching ? (
             <div style={{ textAlign: 'center' }}>
               <CircularProgress
