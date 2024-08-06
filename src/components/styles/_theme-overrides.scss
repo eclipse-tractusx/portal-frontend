@@ -379,6 +379,7 @@ main {
   }
 
   .MuiButtonBase-root.MuiChip-root {
+    margin-bottom: 0px !important;
     &:hover,
     &:focus,
     &:active {
@@ -1409,4 +1410,9 @@ p.MuiTypography-root.MuiTypography-body3.description,
       }
     }
   }
+}
+
+.descriptionContainer {
+  padding-top: 40px;
+  text-align: center;
 }

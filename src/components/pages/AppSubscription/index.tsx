@@ -37,9 +37,9 @@ export default function AppSubscription() {
         'content.appSubscription.register.providerSuccessMessage'
       )}
       headline={t('content.appSubscription.headline')}
+      headlineDescription={t('content.appSubscription.headlineDescription')}
       subHeading={t('content.appSubscription.subHeading')}
       description={t('content.appSubscription.description')}
-      readMore={t('content.appSubscription.readMore')}
       registerURL={t('content.appSubscription.registerURL')}
       searchPlaceHoder={t('content.appSubscription.search')}
       sortOptionLabels={{

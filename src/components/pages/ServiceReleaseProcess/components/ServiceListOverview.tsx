@@ -21,7 +21,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  PageHeader,
   ViewSelector,
   SearchInput,
   Cards,
@@ -54,6 +53,8 @@ import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { Box, useTheme } from '@mui/material'
 import { initialState } from 'features/serviceManagement/types'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 
 enum ServiceSubMenuItems {
   DEACTIVATE = 'deactivate',
@@ -145,7 +146,7 @@ export default function ServiceListOverview() {
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceOverview.filter.wip'),
+      buttonText: t('serviceOverview.filter.created'),
       buttonValue: StatusIdEnum.WIP,
       onButtonClick: setView,
     },
@@ -197,19 +198,15 @@ export default function ServiceListOverview() {
 
   return (
     <main>
-      <PageHeader
+      <MainHeader
         title={t('serviceOverview.headerTitle')}
-        topPage={true}
-        headerHeight={200}
+        subTitle={t('serviceOverview.headerDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
       />
       <div className="app-main">
         <Box sx={{ marginTop: '20px' }} className="overview-section">
-          <section className="overview-section-content">
-            <ViewSelector
-              activeView={group}
-              views={statusFilterViews}
-              align="center"
-            />
+          <SearchAndSortSection>
             <Box sx={{ textAlign: 'center', marginTop: '30px' }}>
               <SearchInput
                 sx={{ minWidth: '544px' }}
@@ -221,7 +218,12 @@ export default function ServiceListOverview() {
                 placeholder={t('serviceOverview.inputPlaceholder')}
               />
             </Box>
-          </section>
+            <ViewSelector
+              activeView={group}
+              views={statusFilterViews}
+              align="center"
+            />
+          </SearchAndSortSection>
         </Box>
       </div>
       <section>
