@@ -25,7 +25,7 @@ import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
 import { useDispatch, useSelector } from 'react-redux'
 import { itemsSelector } from 'features/apps/favorites/slice'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { fetchItems } from 'features/apps/favorites/actions'
 import type { AppDispatch } from 'features/store'
 import FavoriteItem from 'components/pages/AppMarketplace/components/FavoriteSection/FavoriteItem'
@@ -43,7 +43,15 @@ export default function FavoriteSection() {
     }, 10)
   }, [dispatch])
 
-  if (favorites.length === 0) return null
+  const favoritesApplications = useMemo(() => {
+    if (favorites.length === 0 || active.length === 0) return []
+    return active.filter((item) => favorites.includes(item.id!))
+  }, [favorites, active])
+
+  // NOTE: Active variable return list of applications
+  // Favorite variable has a favorites application
+  // So, If Active variable don't have item that no need to render other portion.
+  if (favoritesApplications.length === 0) return null
 
   return (
     <Box sx={{ py: '40px' }}>
@@ -57,8 +65,7 @@ export default function FavoriteSection() {
         infinite={false}
         key={favorites.length}
       >
-        {active
-          .filter((item) => favorites.includes(item.id!))
+        {favoritesApplications
           .map((item) => appToCard(item))
           .map((item) => (
             <FavoriteItem
