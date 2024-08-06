@@ -32,6 +32,7 @@ export enum PAGES {
   TECHUSER_MANAGEMENT = 'technicaluser',
   IDP_MANAGEMENT = 'idpmanagement',
   APPLICATION_REQUESTS = 'applicationrequests',
+  APP_USER_MANAGEMENT = 'appusermanagement',
   INVITE = 'invite',
   LOGOUT = 'logout',
   APPRELEASEPROCESS = 'appreleaseprocess',

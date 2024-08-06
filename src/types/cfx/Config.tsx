@@ -79,6 +79,7 @@ import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/Com
 
 import { MENUS, PAGES } from './Constants'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
+import AppUserManagement from 'components/pages/AppUserManagement'
 
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
@@ -305,6 +306,20 @@ export const ALL_PAGES: IPage[] = [
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
+      </Route>
+    ),
+  },
+  {
+    name: PAGES.APP_USER_MANAGEMENT,
+    role: ROLES.USERMANAGEMENT_VIEW,
+    isRoute: true,
+    element: (
+      <Route
+        key={PAGES.APP_USER_MANAGEMENT}
+        path={`/${PAGES.APP_USER_MANAGEMENT}`}
+        element={<AppUserManagement />}
+      >
+        <Route path=":appId" element={<AppUserManagement />} />
       </Route>
     ),
   },
