@@ -2211,9 +2211,9 @@
   },
   "global": {
     "field": {
-      "first": "Name",
-      "last": "Nachname",
-      "email": "E-Mail",
+      "first": "Bitte geben Sie einen Vornamen an",
+      "last": "Bitte geben Sie einen Nachnamen an",
+      "email": "Bitte geben Sie eine gültige E-Mail Adresse an",
       "company": "Firmenname",
       "status": "Status",
       "role": "Rolle",
