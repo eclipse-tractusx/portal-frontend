@@ -45,6 +45,8 @@ import type { RootState } from 'features/store'
 import { show } from 'features/control/overlay'
 import SortImage from 'components/shared/frame/SortImage'
 import { isCompanyName } from 'types/Patterns'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export enum SubscriptionTypes {
   APP_SUBSCRIPTION = 'app',
@@ -243,7 +245,7 @@ interface SubscriptionType {
   headline: string
   subHeading: string
   description: string
-  readMore: string
+  readMore?: string
   registerURL: string
   searchPlaceHoder: string
   sortOptionLabels: {
@@ -261,6 +263,7 @@ interface SubscriptionType {
   type?: string
   activeAppHeading?: string
   subscriptionHeading?: string
+  headlineDescription?: string
 }
 
 export default function Subscription({
@@ -268,7 +271,6 @@ export default function Subscription({
   headline,
   fetchQuery,
   fetchAppFilters,
-  subHeading,
   description,
   readMore,
   registerURL,
@@ -281,6 +283,7 @@ export default function Subscription({
   type = SubscriptionTypes.APP_SUBSCRIPTION,
   activeAppHeading = 'Apps Offered',
   subscriptionHeading = 'Subscriptions',
+  headlineDescription,
 }: SubscriptionType) {
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -421,6 +424,11 @@ export default function Subscription({
 
   const filterButtons = [
     {
+      buttonText: tabLabels.showAll,
+      buttonValue: FilterType.SHOWALL,
+      onButtonClick: setView,
+    },
+    {
       buttonText: tabLabels.request,
       buttonValue: FilterType.REQUEST,
       onButtonClick: setView,
@@ -428,11 +436,6 @@ export default function Subscription({
     {
       buttonText: tabLabels.active,
       buttonValue: FilterType.ACTIVE,
-      onButtonClick: setView,
-    },
-    {
-      buttonText: tabLabels.showAll,
-      buttonValue: FilterType.SHOWALL,
       onButtonClick: setView,
     },
   ]
@@ -469,22 +472,23 @@ export default function Subscription({
 
   return (
     <main className="appSubscription">
+      <MainHeader
+        title={headline}
+        subTitle={headlineDescription}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <div className="mainContainer">
         <div className="mainRow">
-          <Typography className="heading" variant="h2">
-            {headline}
-          </Typography>
-          <Typography className="subheading" variant="body1">
-            {subHeading}
-          </Typography>
           {!doNotShowAutoSetup && (
-            <Typography className="description" variant="caption2">
-              {description}
-            </Typography>
+            <div className="descriptionContainer">
+              <Typography variant="caption2">{description}</Typography>
+            </div>
           )}
           {!doNotShowAutoSetup && (
             <div className="subDescription">
-              <Typography
+              {readMore && (
+                <Typography
                 className="readMore"
                 variant="label3"
                 sx={{
@@ -500,8 +504,9 @@ export default function Subscription({
                   )
                 }
               >
-                {readMore}
-              </Typography>
+                  {readMore}
+                </Typography>
+              )}
               <Typography
                 variant="label3"
                 onClick={() => dispatch(show(OVERLAYS.ADD_SERVICE_PROVIDER))}
@@ -512,39 +517,41 @@ export default function Subscription({
             </div>
           )}
           <div>
-            <div className="searchContainer">
-              <SearchInput
-                placeholder={searchPlaceHoder}
-                value={searchExpr}
-                autoFocus={false}
-                onChange={(e) => {
-                  searchDataFn(e.target.value)
-                }}
-                autoComplete="off"
-              />
-            </div>
-            <div
-              className="filterSection"
-              onMouseLeave={() => {
-                setState({ type: ActionKind.SET_SHOW_MODAL, payload: false })
-              }}
-            >
-              <ViewSelector activeView={selected} views={filterButtons} />
-              <SortImage
-                onClick={() => {
-                  setState({ type: ActionKind.SET_SHOW_MODAL, payload: true })
-                }}
-                selected={showModal}
-              />
-              <div className="sortSection">
-                <SortOption
-                  show={showModal}
-                  selectedOption={sortOption}
-                  setSortOption={setSortOptionFunc}
-                  sortOptions={sortOptions}
+            <SearchAndSortSection>
+              <div className="searchContainer">
+                <SearchInput
+                  placeholder={searchPlaceHoder}
+                  value={searchExpr}
+                  autoFocus={false}
+                  onChange={(e) => {
+                    searchDataFn(e.target.value)
+                  }}
+                  autoComplete="off"
                 />
               </div>
-            </div>
+              <div
+                className="filterSection"
+                onMouseLeave={() => {
+                  setState({ type: ActionKind.SET_SHOW_MODAL, payload: false })
+                }}
+              >
+                <ViewSelector activeView={selected} views={filterButtons} />
+                <SortImage
+                  onClick={() => {
+                    setState({ type: ActionKind.SET_SHOW_MODAL, payload: true })
+                  }}
+                  selected={showModal}
+                />
+                <div className="sortSection">
+                  <SortOption
+                    show={showModal}
+                    selectedOption={sortOption}
+                    setSortOption={setSortOptionFunc}
+                    sortOptions={sortOptions}
+                  />
+                </div>
+              </div>
+            </SearchAndSortSection>
             {appFilters && appFilters.length > 0 && (
               <>
                 <Typography variant="h4">{activeAppHeading}</Typography>

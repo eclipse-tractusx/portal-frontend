@@ -307,7 +307,7 @@
         "title": "All apps",
         "categoryViews": {
           "all": "View all",
-          "useCases": "Sort by Use Cases"
+          "useCases": "Sort by Use Case"
         },
         "categories": {
           "none": "Not categorized",
@@ -448,6 +448,8 @@
       "technicalUser": "Technical User",
       "unsubscribe": "Unsubscribe",
       "searchPlaceholder": "Search by app or service",
+      "longDescription": "Long description",
+      "technicalDetails": "Technical Details",
       "table": {
         "appIcon": "App Icon",
         "appTitle": "App title",
@@ -1421,11 +1423,12 @@
     },
     "appSubscription": {
       "headline": "App Subscription",
+      "headlineDescription": "Manage and oversee customer subscriptions to your published apps on the marketplace.",
       "subHeading": "Manage customer subscriptons",
-      "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
+      "description": "Do you want to use the auto-setup instead? Connect your service to automate marketplace subscription build.",
       "readMore": "Read More",
-      "registerURL": "RegisterURL",
-      "search": "...search by entering the app name here.",
+      "registerURL": "Register auto-setup URL",
+      "search": "Search by app title...",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -1439,9 +1442,9 @@
       "error": "Error",
       "success": "Success",
       "tabs": {
-        "request": "Request",
+        "request": "Requests",
         "active": "Active",
-        "showAll": "Show All"
+        "showAll": "All"
       },
       "sortOptions": {
         "customer": "By Customer A-Z",
@@ -1458,7 +1461,8 @@
         "autosetupURL": "Set a new endpoint URL",
         "inputPlaceholder": "...enter your setup url",
         "providerErrorMessage": "Something went wrong! Please try it later again.",
-        "providerSuccessMessage": "Details updated successfully."
+        "providerSuccessMessage": "Details updated successfully.",
+        "autoSetupPlaceholder": "URL of the customer tentant"
       },
       "activation": {
         "heading": "Activate App Subscription",
@@ -1510,8 +1514,8 @@
         "technicalNameInfo": "Technical user name of the technical user/service account created for the specific app subscription. You can click on the technical user name to retrieve client id and secret details.",
         "technicalPermission": "Technical User Permission",
         "technicalPermissionInfo": "Permissions assigned to the technical user.",
-        "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
-        "email": "xxx@xxxx.xxxx",
+        "helpText": "For any questions regarding these change(s), please contact:",
+        "email": "support@cofinity-x.com",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
         "tenantUrlErrorMsg": "Error! Something went wrong"
       }
