@@ -76,7 +76,6 @@ export const Header = ({
   const [submittedOverlayOpen, setSubmittedOverlayOpen] =
     useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
-  console.log(headerNote, 'headerNote')
 
   useEffect(() => {
     if (!(companyData && companyDetails)) return

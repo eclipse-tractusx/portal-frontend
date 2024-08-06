@@ -463,7 +463,7 @@ export default function CommonValidateAndPublish({
         {conformityDocument && (
           <>
             <Typography variant="h4">{conformityDocument}</Typography>
-            {defaultValues && (
+            {defaultValues?.conformityDocumentsDescription && (
               <Typography variant="body2" className="form-field">
                 {defaultValues.conformityDocumentsDescription}
               </Typography>
@@ -480,7 +480,7 @@ export default function CommonValidateAndPublish({
         )}
 
         <Typography variant="h4">{documentsTitle}</Typography>
-        {defaultValues && (
+        {defaultValues?.documentsDescription && (
           <Typography variant="body2" className="form-field">
             {defaultValues.documentsDescription}
           </Typography>

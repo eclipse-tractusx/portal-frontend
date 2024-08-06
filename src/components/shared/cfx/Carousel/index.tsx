@@ -124,7 +124,8 @@ export const Carousel = ({
   const [responsiveWidth, setResponsiveWidth] = useState(
     getCarouselWidth(slidesToShow)
   )
-  const [carouselLeft, setCarouselLeft] = useState(getCarouselLeft())
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setCarouselLeft] = useState(getCarouselLeft())
 
   const updateWindowSize = () => {
     const appId = document.getElementById('app')
@@ -175,7 +176,6 @@ export const Carousel = ({
         width: 'max-content',
         maxWidth: `${responsiveWidth}px`,
         position: `${position}`,
-        left: carouselLeft,
         marginLeft: 'auto',
         marginRight: 'auto',
         li: {

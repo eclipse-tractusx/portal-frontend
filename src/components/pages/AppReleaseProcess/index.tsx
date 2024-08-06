@@ -34,39 +34,39 @@ export default function AppReleaseProcess() {
 
   const stepsLists = [
     {
-      description:
-        'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      headline: 'App Market Card',
+      description: t('content.apprelease.stepperDescription.appMarketCard'),
+      headline: t('content.apprelease.stepperHeadline.appMarketCard'),
       step: 1,
     },
     {
-      description:
-        'App Page descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'App Page',
+      description: t('content.apprelease.stepperDescription.appPage'),
+      headline: t('content.apprelease.stepperHeadline.appPage'),
       step: 2,
     },
     {
-      description:
-        'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Contract & Consent',
+      description: t(
+        'content.apprelease.stepperDescription.contractAndConsent'
+      ),
+      headline: t('content.apprelease.stepperHeadline.contractAndConsent'),
       step: 3,
     },
     {
-      description:
-        'Technical Integration descsription consetetur sadipscing elitr Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Technical Integration',
+      description: t(
+        'content.apprelease.stepperDescription.technicalIntegration'
+      ),
+      headline: t('content.apprelease.stepperHeadline.technicalIntegration'),
       step: 4,
     },
     {
-      description:
-        'Beta Test descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-      headline: 'Beta Test',
+      description: t('content.apprelease.stepperDescription.betaTest'),
+      headline: t('content.apprelease.stepperHeadline.betaTest'),
       step: 5,
     },
     {
-      description:
-        'Validate & Publish descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      headline: 'Validate & Publish',
+      description: t(
+        'content.apprelease.stepperDescription.validateAndPublish'
+      ),
+      headline: t('content.apprelease.stepperHeadline.validateAndPublish'),
       step: 6,
     },
   ]
@@ -103,6 +103,7 @@ export default function AppReleaseProcess() {
       onOverviewButton={onOverviewButton}
       stepsLists={stepsLists}
       headerTitle={t('content.apprelease.headerTitle')}
+      headerDescription={t('content.apprelease.headerDescription')}
       descHeading={t('content.apprelease.descHeading')}
       descMessage={t('content.apprelease.descMessage')}
       overviewButton={t('content.apprelease.overviewButton')}

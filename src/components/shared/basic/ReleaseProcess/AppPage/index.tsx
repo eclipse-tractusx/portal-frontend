@@ -56,7 +56,7 @@ import {
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
-import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
 import { ConnectorFormInputField } from '../components/ConnectorFormInputField'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ProviderConnectorField from '../components/ProviderConnectorField'

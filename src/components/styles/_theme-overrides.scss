@@ -1367,3 +1367,45 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .company-subscription-detail .company-subscription-content {
   background: none !important;
 }
+
+.appoverview-app {
+  .desc-recently {
+    .container {
+      .desc-heading {
+        font-weight: 600 !important;
+        font-size: 32px !important;
+        text-align: center !important;
+        max-width: 100% !important;
+      }
+    }
+  }
+
+  .overview-section {
+    text-align: center !important;
+    padding-top: 40px !important;
+  }
+}
+
+.appoverview-main {
+  .desc-section {
+    margin-top: 40px !important;
+    .container {
+      .desc-message {
+        font-weight: 500 !important;
+        font-size: 20px !important;
+      }
+    }
+  }
+  .process-steps {
+    margin-top: 40px !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  .process-steps {
+    .steps-main {
+      .step-heading {
+        margin-bottom: 40px !important;
+      }
+    }
+  }
+}

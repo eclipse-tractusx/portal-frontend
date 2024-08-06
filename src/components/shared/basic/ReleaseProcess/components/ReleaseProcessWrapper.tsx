@@ -21,7 +21,6 @@
 import {
   Button,
   MainHeader,
-  PageHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useCallback, useEffect, useState } from 'react'
@@ -45,6 +44,7 @@ import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import OfferValidateAndPublish from '../OfferValidateAndPublish'
 import { getAssetBase } from 'services/EnvironmentService'
 import OfferTechnicalIntegration from '../OfferTechnicalIntegration'
+import { MainHeader as MainHeaderCFX } from 'components/shared/cfx/MainHeader'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
@@ -126,18 +126,22 @@ export default function ReleaseProcessWrapper({
           <Typography variant="body1" sx={{ mb: 2 }}>
             {headerDescriptionComplete}
           </Typography>
-          <Typography variant="body1" sx={{ mb: 2 }}>
-            {yourCatenaXTeam}
-          </Typography>
+          {yourCatenaXTeam ? (
+            <Typography variant="body1" sx={{ mb: 2 }}>
+              {yourCatenaXTeam}
+            </Typography>
+          ) : null}
           <Button onClick={onAppsOverviewClick}>{myAppsOverview}</Button>
         </MainHeader>
       ) : (
         <>
-          <PageHeader
+          <MainHeaderCFX
             title={pageHeaderTitle}
-            topPage={true}
-            headerHeight={200}
+            subTitle={''}
+            headerHeight={250}
+            subTitleWidth={750}
           />
+
           <div className="create-app-section">
             <div className="container">
               <ReleaseStepper

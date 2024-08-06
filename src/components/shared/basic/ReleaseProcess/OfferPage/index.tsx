@@ -41,7 +41,7 @@ import {
   useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
-import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
+import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import {
   serviceIdSelector,
