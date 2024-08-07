@@ -34,21 +34,25 @@ export const SingleUserContent = ({
     userId: {
       key: 'userId',
       i18n: 'global.field.userid',
+      helperText: '',
       validate: isID,
     },
     firstName: {
       key: 'firstName',
       i18n: 'global.field.first',
+      helperText: 'global.field.firstNameHelper',
       validate: isFirstName,
     },
     lastName: {
       key: 'lastName',
       i18n: 'global.field.last',
+      helperText: 'global.field.lastNameHelper',
       validate: isLastName,
     },
     email: {
       key: 'email',
       i18n: 'global.field.email',
+      helperText: 'global.field.emailHelper',
       validate: isMail,
     },
   }
@@ -64,13 +68,13 @@ export const SingleUserContent = ({
               lastName: InputDefinitions.lastName,
               email: InputDefinitions.email,
             }
-      ).map(({ key, i18n, validate }) => (
+      ).map(({ key, i18n, validate, helperText }) => (
         <ValidatingInput
           name={key}
           key={key}
           label={t(i18n)}
           placeholder={t(i18n)}
-          helperText={t(i18n)}
+          helperText={t(helperText)}
           validate={validate}
           onValid={(key, value) => {
             setValue(key, value ?? '')
