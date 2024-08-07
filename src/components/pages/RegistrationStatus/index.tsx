@@ -86,7 +86,7 @@ export default function RegistrationStatus() {
         <Typography variant="h2" className="mb-35 title">
           {t('content.registration.title')}
         </Typography>
-        <Typography variant="body1" className="mainDescription mb-35">
+        <Typography variant="body1" className="mainDescription">
           {t('content.registration.mainDescription')}
         </Typography>
         <Button
@@ -112,7 +112,7 @@ export default function RegistrationStatus() {
         <div className="helpTextReg">
           <Typography variant="body3">
             {t('content.registration.helpText')}
-            <Link to={'mailto:support@cofinity-x.com '} className="emailText">
+            <Link to={'mailto:support@cofinity-x.com'} className="emailText">
               {t('content.registration.email')}
             </Link>
             {t('customRegistration.helpText2')}
