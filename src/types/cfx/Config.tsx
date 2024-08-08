@@ -61,7 +61,7 @@ import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/Se
 import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
-import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
+// import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
 import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
@@ -460,11 +460,11 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-  {
-    name: PAGES.COMPANY_ROLE,
-    role: ROLES.UPDATE_COMPANY_ROLE,
-    element: <CompanyRoleUpdate />,
-  },
+  // { // For now we are removing this page
+  //   name: PAGES.COMPANY_ROLE,
+  //   role: ROLES.UPDATE_COMPANY_ROLE,
+  //   element: <CompanyRoleUpdate />,
+  // },
   {
     name: PAGES.USECASE_PARTICIPATION,
     role: ROLES.REQUEST_SSICREDENTIAL,
@@ -569,7 +569,7 @@ export const userMenuFull = [
   PAGES.ACCOUNT,
   PAGES.USER_MANAGEMENT,
   PAGES.ORGANIZATION,
-  PAGES.COMPANY_ROLE,
+  // PAGES.COMPANY_ROLE, // For now we are removing this page
   PAGES.COMPANY_WALLET,
   PAGES.NOTIFICATIONS,
   PAGES.LOGOUT,
