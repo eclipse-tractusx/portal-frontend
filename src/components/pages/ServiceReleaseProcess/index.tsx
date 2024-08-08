@@ -37,32 +37,27 @@ export default function ServiceReleaseProcess() {
 
   const processStepsLists = [
     {
-      description:
-        'descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: t('stepperDescription.marketCard'),
       headline: t('stepper.marketCard'),
       step: 1,
     },
     {
-      description:
-        'App Page descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+      description: t('stepperDescription.servicePage'),
       headline: t('stepper.servicePage'),
       step: 2,
     },
     {
-      description:
-        'Contrac & Consent descsription Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+      description: t('stepperDescription.contractAndConsent'),
       headline: t('stepper.contractAndConsent'),
       step: 3,
     },
     {
-      description:
-        'Technical Integration descsription consetetur sadipscing elitr Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+      description: t('stepperDescription.technicalIntegration'),
       headline: t('stepper.technicalIntegration'),
       step: 4,
     },
     {
-      description:
-        'Validate & Publish descsription sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: t('stepperDescription.validateAndPublish'),
       headline: t('stepper.validateAndPublish'),
       step: 5,
     },
@@ -97,6 +92,7 @@ export default function ServiceReleaseProcess() {
   return (
     <ReleaseProcess
       headerTitle={t('headerTitle')}
+      headerDescription={t('headerDescription')}
       descHeading={t('descHeading')}
       descMessage={t('descMessage')}
       overviewButton={t('overviewButton')}

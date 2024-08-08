@@ -1,12 +1,13 @@
 {
-  "headerTitle": "Service Release Process",
+  "headerTitle": "Service Release Prozess",
+  "headerDescription": "Registrieren Sie Ihren Service und Ihre Metadaten, um ihn auf dem Marktplatz zu veröffentlichen. Nachstehend finden Sie einen kurzen Überblick über den Service Release Prozess.",
   "descHeading": "Veröffentlichen Sie Ihre Service auf dem Catena-X Marktplatz",
-  "descMessage": "Registrieren Sie Ihren Service und Ihre Metadaten, um auf dem Marktplatz veröffentlicht zu werden. Wenn Sie nach unten scrollen, finden Sie einen ersten Überblick zu dem Service-Freigabeprozess.",
-  "startCreatingButton": "Beginnen Sie mit der Registrierung Ihres Serviceangebots",
-  "registerButton": "Registrieren Sie Ihre Serviceangebot",
-  "overviewButton": "Service Übersicht",
+  "descMessage": "Registrieren und veröffentlichen Sie Ihre Services auf dem Cofinity-X-Marktplatz oder gehen Sie zu „Ihre Services“, um Ihre erstellten Angebote zu verwalten.",
+  "startCreatingButton": "Service Registrieren",
+  "registerButton": "Service Registrieren",
+  "overviewButton": "Ihre Services",
   "stepHeading": "Der Prozess führt Sie durch die folgenden Schritte:",
-  "dividerText": "Beginnen wir mit der Veröffentlichung Ihres Dienstes...",
+  "dividerText": "Starten Sie die Registrierung Ihres Services",
   "marketplaceHeading": "Anforderungen für anstehende Einreichungen im Service Marketplace",
   "requiredButton": "Neu",
   "requiredtitle": "Requirement Lorem ipsum",
@@ -24,67 +25,75 @@
     }
   },
   "stepper": {
-    "marketCard": "Offer Card",
-    "servicePage": "Offer Page Details",
-    "contractAndConsent": "Contract & Consent",
-    "technicalIntegration": "technical Integration",
-    "validateAndPublish": "Verify & Submit"
+    "marketCard": "Service Card",
+    "servicePage": "Service Detailseite",
+    "contractAndConsent": "Vereinbarungen und Einverständnis",
+    "technicalIntegration": "Technische Integration",
+    "validateAndPublish": "Daten verifizieren und Service einreichen"
+  },
+  "stepperDescription": {
+    "marketCard": "Erstellen Sie Ihre „Service Card“ für den Marktplatz. Diese Karte ist Ihr erster Kontaktpunkt mit den Kunden. Geben Sie einen Titel, eine Beschreibung und ein Bild für den Service an.",
+    "servicePage": "Stellen Sie detaillierte Informationen für die Detailseite Ihres Services bereit, einschließlich einer ausführlichen Beschreibung auf Englisch und Deutsch, einem unterstützenden Dokument wie einer Zusammenfassung oder einem Exposé sowie Angaben zum Anbieter.",
+    "contractAndConsent": "Um Ihr Angebot als Catena-X Qualified Service auf dem Marktplatz zu veröffentlichen, müssen Sie die AGB akzeptieren und das Conformity Service Certificate hochladen.",
+    "technicalIntegration": "Wenn Ihr Service eine technische Integration erfordert, wählen Sie den/die entsprechenden technischen User. Andernfalls wählen Sie „Nicht notwendig“ und fahren fort.",
+    "validateAndPublish": "Überprüfen Sie die Zusammenfassung aller Eingaben, die Sie bei der Registrierung Ihres Services gemacht haben. Wir werden Ihren Service kurz nach Ihrer Einreichung validieren."
   },
   "step1": {
     "headerTitle": "Service Card Erstellen",
-    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre Service-'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Servicekarte ist der erste Berührungspunkt mit dem Kunden.",
+    "headerDescription": "Die folgenden Eingabefelder und Uploads werden verwendet, um Ihre 'Service Card' zu erstellen, die auf dem Marktplatz platziert wird. Die Service Card ist der erste Berührungspunkt mit dem Kunden.",
     "serviceName": "Service Name",
-    "serviceType": "Service Type",
+    "serviceType": "Service Typ",
     "serviceTypePlaceholder": "Wählen Sie den Servicetyp aus",
     "shortDescriptionEN": "Kurzbeschreibung (en)",
     "shortDescriptionDE": "Kurzbeschreibung (de)",
     "serviceLeadImageUpload": "Service Card Bild"
   },
   "step2": {
-    "headerTitle": "Service Details",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-    "longDescriptionEN": "Service Beschreibung (en)",
-    "longDescriptionDE": "Service Beschreibung (de)",
-    "doc": "Supporting Material",
+    "headerTitle": "Service Detailseite",
+    "headerDescription": "Bitte stellen Sie detaillierte Informationen für die Detailseite Ihres Services bereit.",
+    "longDescriptionEN": "Detaillierte Service Beschreibung (en)",
+    "longDescriptionDE": "Detaillierte Service Beschreibung (de)",
+    "doc": "Begleitmaterial",
     "note": "Info:",
-    "providerDetails": "Provider Details",
-    "providerHomePage": "Provider Homepage",
-    "providerContactEmail": "Customer Contact E-Mail",
+    "providerDetails": "Anbieter Details",
+    "providerHomePage": "Anbieter Homepage",
+    "providerContactEmail": "E-Mail Kundenkontakt",
     "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://catena-x.net",
     "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an"
   },
   "step3": {
-    "headerTitle": "Agreements and Consent",
-    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
+    "headerTitle": "Vereinbarungen und Einverständnis",
+    "headerDescription": "Um Ihr Angebot als Catena-X Qualified Service auf dem Marktplatz zu veröffentlichen, bitte akzeptieren Sie die AGB und laden Sie das Conformity Service Certificate hoch.",
     "uploadImageConformity": "Conformity Service Certificate",
     "documentDeleteSuccess": "Document deleted successfully"
   },
   "technicalIntegration": {
-    "headerTitle": "Technical Integration",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "headerTitle": "Technische Integration",
+    "headerDescription": "Wenn Ihr Service eine technische Integration erfordert, wählen Sie den/die entsprechenden technischen User. Andernfalls wählen Sie „Nicht notwendig“ und fahren fort.",
     "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
     "technicalUserProfileError": "Error while updating technical user profiles",
     "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
   },
   "step4": {
-    "headerTitle": "Validate & Publish",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ",
+    "stepHeader": "Verifizieren und einreichen",
+    "headerTitle": "Verifizieren und einreichen",
+    "headerDescription": "Nachstehend finden Sie eine Zusammenfassung aller Eingaben, die Sie bei der Registrierung Ihres Services gemacht haben. Bitte überprüfen Sie Ihre Eingaben sorgfältig, bevor Sie den Service zur Freigabe senden. Wir werden Ihre Anfrage kurz nach der Übermittlung des Services validieren.",
     "appDetails": "Service Details",
-    "documents": "Documents",
-    "providerInformation": "Provider Information",
-    "consent": "Consent",
+    "documents": "Begleitmaterial",
+    "providerInformation": "Anbieter Information",
+    "consent": "Zustimmung",
     "longDescriptionTitleEN": "[Long Description - EN] ",
     "longDescriptionTitleDE": "[Long Description - DE] ",
-    "conformityDocument": "Conformity Document",
-    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "conformityDocument": "Konformitätserklärung",
+    "conformityDocumentsDescription": ""
   },
   "serviceReleaseForm": {
     "headerTitle": "Create Service",
-    "addMore": "Add More",
+    "addMore": "Mehr hinzufügen",
     "noItemsSelected": "No Items Selected",
-    "note": "Note:",
-    "OnlyOneFileAllowed": "Only one file for upload allowed",
-    "max1Images": "Only one file is supported",
+    "note": "Hinweis:",
+    "OnlyOneFileAllowed": "Nur eine Datei für den Upload möglich",
+    "max1Images": "Nur eine Datei für den Upload möglich",
     "minimum": "Minimum",
     "charactersRequired": " characters required",
     "maximum": "Maximum",
@@ -110,14 +119,14 @@
   },
   "submit": {
     "headerTitle": "Service erfolgreich eingereicht!",
-    "headerDescription": "Nach einer Überprüfung durch einen Catena-X-Administrator erhalten Sie",
+    "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie weitere Informationen zur Servicefreigabe.",
     "headerDescriptionComplete": "weitere Informationen zur Servicefreigabe",
-    "yourCatenaXTeam": "Dein Catena-X team",
-    "overview": "Zu meiner Service Übersicht"
+    "yourCatenaXTeam": "",
+    "overview": "Zu Ihren Services"
   },
   "defaultValues": {
-    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "conformityDocumentsDescription": "",
+    "documentsDescription": ""
   },
   "serviceoverview": {
     "filter": {
@@ -240,7 +249,7 @@
     "longDescriptionTitleEN": "Description - English",
     "longDescriptionTitleDE": "Description - German",
     "backToBoard": "Back to Admin Board",
-    "noDocumentsAvailable": "No documents available",
+    "noDocumentsAvailable": "Keine Dokumente verfügbar",
     "ConformityDocument": {
       "heading": "Conformity Document",
       "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
@@ -256,8 +265,8 @@
       "email": "E-Mail"
     },
     "technicalUserSetup": {
-      "heading": "Technical User Setup",
-      "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerberechtigung an, die dem technischen Benutzer, der im Rahmen der App-/Dienstaktivierung erstellt wurde, automatisch zugewiesen wird.",
+      "heading": "Technische Integration",
+      "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerrechte, die dem bei der Aktivierung des Services angelegten technischen User automatisch zugewiesen werden.",
       "roleDescription": "The role description is expected to get displayed here in future.",
       "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     }

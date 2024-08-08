@@ -56,7 +56,7 @@ export default function ServiceReleaseProcessForm() {
       step: 3,
     },
     {
-      headline: t('stepper.validateAndPublish'),
+      headline: t('step4.stepHeader'),
       step: 4,
     },
   ]
@@ -79,7 +79,7 @@ export default function ServiceReleaseProcessForm() {
       step: 4,
     },
     {
-      headline: t('stepper.validateAndPublish'),
+      headline: t('step4.stepHeader'),
       step: 5,
     },
   ]
@@ -112,7 +112,6 @@ export default function ServiceReleaseProcessForm() {
       headerTitle={t('submit.headerTitle')}
       headerDescription={t('submit.headerDescription')}
       headerDescriptionComplete={t('submit.headerDescriptionComplete')}
-      yourCatenaXTeam={t('submit.yourCatenaXTeam')}
       myAppsOverview={t('submit.overview')}
     />
   )
