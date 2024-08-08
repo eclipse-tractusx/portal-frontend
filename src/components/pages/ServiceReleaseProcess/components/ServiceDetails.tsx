@@ -51,7 +51,7 @@ export default function ServiceDetails() {
     refetchOnMountOrArgChange: true,
   }).data
   const [fetchDocument] = useFetchDocumentMutation()
-  const [image, setActualImage] = useState('')
+  const [image, setActualImage] = useState<string>('')
 
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
@@ -90,14 +90,18 @@ export default function ServiceDetails() {
 
   useEffect(() => {
     async function fetchImage() {
-      const actualImage = await fetchImageWithToken(getImageUrl())
-      const firstByte = Buff2Hex(actualImage.slice(0, 1))
-      const first3Bytes = Buff2Hex(actualImage.slice(0, 3))
-      const imageType =
-        IMAGE_TYPES[firstByte] ?? IMAGE_TYPES[first3Bytes] ?? 'image/*'
-      setActualImage(
-        URL.createObjectURL(new Blob([actualImage], { type: imageType }))
-      )
+      try {
+        const actualImage = await fetchImageWithToken(getImageUrl())
+        const firstByte = Buff2Hex(actualImage.slice(0, 1))
+        const first3Bytes = Buff2Hex(actualImage.slice(0, 3))
+        const imageType =
+          IMAGE_TYPES[firstByte] ?? IMAGE_TYPES[first3Bytes] ?? 'image/*'
+        setActualImage(
+          URL.createObjectURL(new Blob([actualImage], { type: imageType }))
+        )
+      } catch (error) {
+        console.error('An error occurred while fetching the image:', error)
+      }
     }
     fetchImage()
   }, [fetchServiceStatus])
