@@ -158,12 +158,13 @@
     "headerTitle": "Service Details"
   },
   "serviceSubscription": {
-    "headline": "Service Subscription",
+    "headline": "Service Subscriptions",
+    "headlineDescription": "Derzeit sind keine Daten verfügbar. Bitte ändern Sie die Ansicht oder versuchen Sie es später erneut.",
     "subHeading": "Manage customer subscriptions",
     "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
     "readMore": "Read More",
     "registerURL": "RegisterURL",
-    "search": "...search by entering the service name here.",
+    "search": "Search for services",
     "noDataMessage": "No data available",
     "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
     "subscribeSuccessMsg": "Subscribed Successfully",
@@ -173,9 +174,9 @@
     "activateBtn": "Activate",
     "pleaseEnterValidURL": "Please enter a valid URL",
     "tabs": {
-      "request": "Request",
+      "request": "Requests",
       "active": "Active",
-      "showAll": "Show All"
+      "showAll": "All"
     },
     "sortOptions": {
       "customer": "By Customer A-Z",
