@@ -43,6 +43,7 @@ export enum AppFilterType {
 export interface DocumentMapper {
   documentType: string
   documentId: string
+  documentSize?: number
 }
 
 export interface ApplicationChecklistType {

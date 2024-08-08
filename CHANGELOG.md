@@ -12,6 +12,8 @@
 - Use scroll to top button from shared components
 - Subscription Overlay
   - implement loading state for provider subscription detail overlay
+- Customer Detail Data Overlay
+  - implement new UI design for customer detail data overlay
 
 ### Bugfixes
 
