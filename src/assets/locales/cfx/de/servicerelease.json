@@ -82,8 +82,8 @@
     "documents": "Begleitmaterial",
     "providerInformation": "Anbieter Information",
     "consent": "Zustimmung",
-    "longDescriptionTitleEN": "[Long Description - EN] ",
-    "longDescriptionTitleDE": "[Long Description - DE] ",
+    "longDescriptionTitleEN": "Detaillierte Service Beschreibung (en) ",
+    "longDescriptionTitleDE": "Detaillierte Service Beschreibung (de) ",
     "conformityDocument": "Konformitätserklärung",
     "conformityDocumentsDescription": ""
   },
@@ -158,12 +158,13 @@
     "headerTitle": "Service Details"
   },
   "serviceSubscription": {
-    "headline": "Service Subscription",
+    "headline": "Service Abonnements",
+    "headlineDescription": "Manage and oversee customer subscriptions to your published services on the marketplace.",
     "subHeading": "Manage customer subscriptons",
     "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
     "readMore": "Read More",
     "registerURL": "RegisterURL",
-    "search": "...search by entering the service name here.",
+    "search": "Suche nach Services",
     "noDataMessage": "No data available",
     "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
     "subscribeSuccessMsg": "Subscribed Successfully",
@@ -173,9 +174,9 @@
     "activateBtn": "Activate",
     "pleaseEnterValidURL": "Please enter a valid URL",
     "tabs": {
-      "request": "Request",
-      "active": "Active",
-      "showAll": "Show All"
+      "request": "Anfragen",
+      "active": "Aktiv",
+      "showAll": "Alle"
     },
     "sortOptions": {
       "customer": "By Customer A-Z",
@@ -186,20 +187,20 @@
       "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
     },
     "register": {
-      "title": "Active Service Subscription",
+      "title": "Aktive Service Abonnements",
       "subtitle": "for ",
-      "description": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Activate the service subscription request.<br />2. Customer will be informed about the successfully activation<br />",
-      "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Activate the service subscription request.<br />2. System - technical user (if needed) will get generated and credentials getting shared.<br />3. Configure your service with the specific technical user to ensure that the service is fully usable",
-      "technicalUserDetails": "Technische Benutzerdetails",
+      "description": "Um das Abonnement der {{company}} zu aktivieren, folgen Sie bitte den unten stehenden Schritten, <br /><br />1. Aktivieren Sie die Service Abonnement-Anfrage.<br />2. Der Kunde wird über die erfolgreiche Aktivierung informiert.<br />",
+      "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Aktivieren Sie die Service Abonnement-Anfrage.<br />2. Ein technischer User (falls erforderlich) wird erstellt und die Anmeldedaten werden freigegeben.<br />3. Konfigurieren Sie Ihren Dienst mit dem spezifischen technischen User, um sicherzustellen, dass der Dienst vollständig nutzbar ist.",
+      "technicalUserDetails": "Technische User Details",
       "sectionHeader": "Technischer User Profil",
       "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
-      "close": "Close",
-      "confirm": "Confirm",
+      "close": "Schließen",
+      "confirm": "Bestätigen",
       "help": "Help",
       "loading": "Loading..."
     },
     "detailOverlay": {
-      "description": "Service Subscription Details & Status"
+      "description": "Service Abonnement Details & Status"
     },
     "activation": {
       "title": "Service Subscription Activated",
