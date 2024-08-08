@@ -14,6 +14,16 @@
   font-size: 14px !important;
   height: 80px;
   cursor: default !important;
+  font-family:
+    'Karbon',
+    -apple-system,
+    'Helvetica Neue',
+    Arial,
+    sans-serif,
+    serif !important;
+  // color: #111111 !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
 }
 
 .active-tab {
@@ -29,17 +39,22 @@
 .active-icon,
 .completed-icon,
 .uncomplete-icon {
-  font-weight: 600;
-  line-height: 140%;
+  font-weight: 500;
   letter-spacing: 0;
-  font-family: 'Karbon', Arial, Sans-serif, Serif;
-  font-size: 18px;
+  font-family:
+    'Karbon',
+    -apple-system,
+    'Helvetica Neue',
+    Arial,
+    sans-serif,
+    serif !important;
+  font-size: 14px;
   color: #fff;
   background-color: #d31184;
   border-radius: 50%;
   margin: 0 auto;
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -55,8 +70,16 @@
   align-items: center;
 }
 
+.MuiTabs-root {
+  color: #111111 !important;
+}
 .completed-icon {
   background-color: #b3cb2d;
+}
+
+.completed-tab {
+  border-bottom: 2px solid #b3cb2d !important;
+  text-transform: none !important;
 }
 
 .uncomplete-icon {
