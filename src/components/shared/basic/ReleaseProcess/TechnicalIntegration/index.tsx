@@ -475,9 +475,6 @@ export default function TechnicalIntegration() {
         <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 4 }}>
           <Typography variant="body2" align="center">
             {t('content.apprelease.technicalIntegration.headerDescription')}
-            {t(
-              'content.apprelease.technicalIntegration.uploadRolesDescription'
-            )}
           </Typography>
         </Grid>
       </Grid>

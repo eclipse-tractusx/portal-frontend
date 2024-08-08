@@ -1441,6 +1441,7 @@
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Success",
+      "lordMore": "Load More",
       "tabs": {
         "request": "Requests",
         "active": "Active",
@@ -1472,7 +1473,7 @@
         "step1": "Activate the app subscription request",
         "step2": "System - technical user will get automatically generated and credentials getting shared",
         "step3": "Configure your app with the specific technical user to ensure that the app is fully usable.",
-        "addTentalURLHeading": "Add Tentant URL",
+        "addTentalURLHeading": "Add Tenant URL",
         "addTentalURLDescription": "The tenant url of the app is the customer specific url which the customer has to access to receive access to the application. Please note: only https:// addresses are allowed.",
         "enterURL": "Enter URL",
         "technicalUserDetailsHeading": "Technical User Details",

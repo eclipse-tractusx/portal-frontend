@@ -21,8 +21,8 @@ interface Step {
 interface StepperProps {
   showSteps: number
   activeStep: number
-  tooltipText: string
-  tooltipLink: string
+  tooltipText?: string
+  tooltipLink?: string
   list: Step[]
 }
 
@@ -54,12 +54,14 @@ export default function Stepper({
                   className={
                     activeStep === step.step
                       ? 'active-tab tab-text'
-                      : 'non-active-tab tab-text'
+                      : activeStep > step.step
+                        ? 'completed-tab tab-text'
+                        : 'non-active-tab tab-text'
                   }
                   label={step.headline}
                   {...a11yProps(step.step)}
                 />
-                {activeStep === step.step && (
+                {activeStep === step.step && tooltipText && tooltipLink && (
                   <Link
                     className="tool-tip-a"
                     href={tooltipLink}

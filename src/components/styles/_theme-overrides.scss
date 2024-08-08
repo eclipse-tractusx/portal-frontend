@@ -1008,6 +1008,31 @@ header .search-icon {
 
 // steps
 .steps-main {
+  .MuiBox-root > .MuiBox-root {
+    .MuiBox-root:first-child {
+      div {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        h5 {
+          padding-top: unset !important;
+          font-size: 18px !important;
+          font-weight: bold !important;
+        }
+      }
+    }
+    .MuiBox-root:last-child {
+      h5 {
+        margin-top: 6px !important;
+      }
+      p {
+        padding-bottom: 20px !important;
+      }
+      div {
+        height: 0px !important;
+      }
+    }
+  }
   .css-gwnvmy {
     background-color: $color-primary;
   }
@@ -1415,4 +1440,9 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .descriptionContainer {
   padding-top: 40px;
   text-align: center;
+  .MuiTypography-root {
+    color: $secondary-hover !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+  }
 }

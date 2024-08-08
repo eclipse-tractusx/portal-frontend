@@ -1,12 +1,13 @@
 {
   "headerTitle": "Service Release Process",
+  "headerDescription": "Register your service and metadata to get published on the marketplace. You can find a quick overview of the service release process below.",
   "descHeading": "Publish your company services inside the Catena-X marketplace",
-  "descMessage": "Register your service and metadata to get published on the marketplace. Scrolling down, you can find a quick overview of the service release process.",
-  "startCreatingButton": "Start to register your service offering",
-  "registerButton": "Register your service",
-  "overviewButton": "Service Overview",
+  "descMessage": "Register and publish your company services on the Cofinity-X marketplace or go to “Your Services” to manage your created offerings.",
+  "startCreatingButton": "Register Your Service",
+  "registerButton": "Register Your Service",
+  "overviewButton": "Your Services",
   "stepHeading": "The process will guide your through the following steps:",
-  "dividerText": "Lets get started to publishing your service...",
+  "dividerText": "Start registering your service",
   "marketplaceHeading": "Service Marketplace upcoming submission requirements",
   "requiredButton": "New",
   "requiredtitle": "Requirement Lorem ipsum",
@@ -24,15 +25,22 @@
     }
   },
   "stepper": {
-    "marketCard": "Offer Card",
-    "servicePage": "Offer Page Details",
-    "contractAndConsent": "Contract & Consent",
-    "technicalIntegration": "technical Integration",
-    "validateAndPublish": "Verify & Submit"
+    "marketCard": "Service Card",
+    "servicePage": "Service Page Details",
+    "contractAndConsent": "Agreements and Consent",
+    "technicalIntegration": "Technical Integration",
+    "validateAndPublish": "Verify Data and Submit Your Service"
+  },
+  "stepperDescription": {
+    "marketCard": "Create your 'Service Card' for the marketplace. This card is your first touchpoint with customers. Provide a title, description, and a service cover image.",
+    "servicePage": "Provide detailed information for your service's detail page, including a long description in English and German, a supporting document such as a summary or exposé, and provider details.",
+    "contractAndConsent": "To publish your offer as a Catena-X Qualified Service on the marketplace, you need to accept the T&Cs and provide the Conformity Service Certificate.",
+    "technicalIntegration": "If your service requires technical integration, select the respective technical user(s). Otherwise, choose 'None' and proceed.",
+    "validateAndPublish": "Review the summary of all your service registration inputs. We will validate your service registration shortly after the service submission."
   },
   "step1": {
-    "headerTitle": "Create Service",
-    "headerDescription": "The following input fields and uploads are used to create your service 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer.",
+    "headerTitle": "Create Service Card",
+    "headerDescription": "The following input fields and uploads are used to create you 'Service Card' which will be placed inside the marketplace. The service card is the first touchpoint with the customer.",
     "serviceName": "Service Name",
     "serviceType": "Service Type",
     "serviceTypePlaceholder": "Select a Service Type Id",
@@ -41,8 +49,8 @@
     "serviceLeadImageUpload": "Service Card Image"
   },
   "step2": {
-    "headerTitle": "Service Details",
-    "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+    "headerTitle": "Service Page Details",
+    "headerDescription": "Please provide detailed information for your service's detail page.",
     "longDescriptionEN": "Long Description (en)",
     "longDescriptionDE": "Long Description (de)",
     "doc": "Supporting Material",
@@ -55,28 +63,29 @@
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "headerDescription": "To publish your offer as a Catena-X Qualified Service on the marketplace, please accept the T&Cs and upload your Conformity Service Certificate.",
     "uploadImageConformity": "Conformity Service Certificate",
     "documentDeleteSuccess": "Document deleted successfully"
   },
   "technicalIntegration": {
     "headerTitle": "Technical Integration",
-    "headerDescription": "Setup the technical profile of a technical user/service account of needed permissions to be able to run the application inside the dataspace. Select minimum one permission, the selected permission(s) will be stored as service technical user profile and used to create technical users for subscription activations.",
+    "headerDescription": "If your service requires technical integration, select the respective technical user(s). Otherwise, choose 'None' and proceed.",
     "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
     "technicalUserProfileError": "Error while updating technical user profiles",
     "noneOption": "none (no technical user needed to run the app/service)"
   },
   "step4": {
-    "headerTitle": "Validate & Publish",
-    "headerDescription": "Below you can find a summary of all your service registration inputs as well as the look of the marketplace service card and detail page. Please check your entered data carefully before sending the service for release. We will validate your service registration shortly after the service submission.",
+    "stepHeader": "Verify & Submit",
+    "headerTitle": "Validate & Submit",
+    "headerDescription": "Below you can find a summary of all your service registration inputs. Please check your entered data carefully before sending the service for release. We will validate your service registration shortly after the service submission.",
     "appDetails": "Service Details",
-    "documents": "Documents",
+    "documents": "Supporting Material",
     "providerInformation": "Provider Information",
     "consent": "Consent",
     "longDescriptionTitleEN": "[Long Description - EN] ",
     "longDescriptionTitleDE": "[Long Description - DE] ",
     "conformityDocument": "Conformity Document",
-    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "conformityDocumentsDescription": ""
   },
   "serviceReleaseForm": {
     "headerTitle": "Create service",
@@ -110,14 +119,14 @@
   },
   "submit": {
     "headerTitle": "Thank you for submitting the service!",
-    "headerDescription": "After a review by a Catena-X administrator, you will receive",
+    "headerDescription": "After a review by a Cofinity-X administrator, you will receive further information on the service release.",
     "headerDescriptionComplete": "further information on service release",
-    "yourCatenaXTeam": "Your Catena-X team",
-    "overview": "My services overview"
+    "yourCatenaXTeam": "",
+    "overview": "Go to Your Services"
   },
   "defaultValues": {
     "conformityDocumentsDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
-    "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "documentsDescription": ""
   },
   "serviceoverview": {
     "headerTitle": "Your Services",
@@ -256,8 +265,8 @@
       "email": "E-Mail"
     },
     "technicalUserSetup": {
-      "heading": "Technical User Setup",
-      "message": "The technical user profile defined below displays the user permission which the technical user created as part of the app/service activation gets automatically assigned.",
+      "heading": "Technical Integration",
+      "message": "The technical user profile defined below shows the user permissions that are automatically assigned to the technical user created during the service activation.",
       "roleDescription": "The role description is expected to get displayed here in future.",
       "noTechnicalUserProfilesAvailable": "No technical user profiles available"
     }
