@@ -52,6 +52,7 @@ export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
+  status: string
   isOwner?: boolean
   offer?: {
     name?: string
