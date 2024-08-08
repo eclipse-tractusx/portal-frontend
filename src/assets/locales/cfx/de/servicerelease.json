@@ -136,7 +136,7 @@
       "created": "Erstellt",
       "wip": "In Arbeit"
     },
-    "headerTitle": "Your Services",
+    "headerTitle": "Ihre Services",
     "headerDescription": "Registrieren Sie einen neuen Service und verwalten Sie Ihr aktuelles Service Angebot. In der Übersicht finden Sie sowohl bereits veröffentlichte Services als auch Angebote, die sich noch in der Erstellung befinden oder abgelehnt wurden.",
     "inputPlaceholder": "Suche nach Services",
     "addbtn": "Neuen Service registrieren",
@@ -187,13 +187,13 @@
       "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
     },
     "register": {
-      "title": "Aktive Service Abonnements",
+      "title": "Service Abonnement aktivieren",
       "subtitle": "for ",
       "description": "Um das Abonnement der {{company}} zu aktivieren, folgen Sie bitte den unten stehenden Schritten, <br /><br />1. Aktivieren Sie die Service Abonnement-Anfrage.<br />2. Der Kunde wird über die erfolgreiche Aktivierung informiert.<br />",
       "descriptionWithTechUser": "In order to activate the subscription of {{company}}, follow these steps below, <br /><br />1. Aktivieren Sie die Service Abonnement-Anfrage.<br />2. Ein technischer User (falls erforderlich) wird erstellt und die Anmeldedaten werden freigegeben.<br />3. Konfigurieren Sie Ihren Dienst mit dem spezifischen technischen User, um sicherzustellen, dass der Dienst vollständig nutzbar ist.",
       "technicalUserDetails": "Technische User Details",
       "sectionHeader": "Technischer User Profil",
-      "sectionDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsu",
+      "sectionDescription": "Nachfolgend wird das technische User-Profil, das zur Erstellung des technischen Users für den App-Mieter verwendet wird, freigegeben. Wenn Sie unten auf “Bestätigen” klicken, wird der technische User mit den entsprechend konfigurierten Berechtigungen angelegt. Bitte beachten Sie, dass der technische User kundenbezogen ist",
       "close": "Schließen",
       "confirm": "Bestätigen",
       "help": "Help",
@@ -212,7 +212,7 @@
       "sercret": "Secret:",
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
-      "close": "Close"
+      "close": "Schließen"
     }
   },
   "adminBoard": {
