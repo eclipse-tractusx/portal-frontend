@@ -45,7 +45,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
   SEMANTICHUB = 'semantichub',
   APPOVERVIEW = 'appoverview',
-  COMPANY_ROLE = 'company-role',
+  // COMPANY_ROLE = 'company-role', // Currently we are removing this page.
 
   // Basic
   ABOUTPAGE = 'about',
