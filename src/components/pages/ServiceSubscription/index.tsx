@@ -39,6 +39,7 @@ export default function ServiceSubscription() {
         'serviceSubscription.register.providerSuccessMessage'
       )}
       headline={t('serviceSubscription.headline')}
+      headlineDescription={t('serviceSubscription.headlineDescription')}
       subHeading={t('serviceSubscription.subHeading')}
       description={t('serviceSubscription.description')}
       readMore={t('serviceSubscription.readMore')}
