@@ -108,6 +108,11 @@
   - Onboarding Service Provider Management Board
     - The user interface for the Onboarding Service Provider management board is not yet developed.
 
+### Change
+
+- **Others**
+  - More readable and typo resistant implementation to inject env vars
+
 ## 2.0.0
 
 ### Change
