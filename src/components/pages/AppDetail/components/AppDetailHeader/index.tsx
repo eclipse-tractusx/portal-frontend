@@ -36,6 +36,7 @@ import { SubscriptionStatus } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
+import type { RootState } from 'features/store'
 
 enum Roles {
   SUBSCRIBE_APPS = 'subscribe_apps',
@@ -56,20 +57,37 @@ export interface ButtonColorType {
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const isDialogConfirmed = useSelector(
+    (state: RootState) => state?.dialog?.isConfirmed
+  )
+
   const { appId } = useParams()
   const user = useSelector(userSelector)
   const [image, setImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [buttonLabel, setButtonLabel] = useState(
+    t('content.appdetail.subscribe')
+  )
 
   const getStatusLabel = (subscribeStatus: string) => {
     if (subscribeStatus === SubscriptionStatus.PENDING) {
-      return t('content.appdetail.requested')
+      setButtonLabel(t('content.appdetail.requested'))
     } else if (subscribeStatus === SubscriptionStatus.ACTIVE) {
-      return t('content.appdetail.subscribed')
+      setButtonLabel(t('content.appdetail.subscribed'))
     } else {
-      return t('content.appdetail.subscribe')
+      setButtonLabel(t('content.appdetail.subscribe'))
     }
   }
+
+  useEffect(() => {
+    if (isDialogConfirmed) {
+      setButtonLabel(t('content.appdetail.requested'))
+    }
+  }, [isDialogConfirmed])
+
+  useEffect(() => {
+    getStatusLabel(item.isSubscribed ?? SubscriptionStatus.INACTIVE)
+  }, [])
 
   const getBtnColor = (subscribeStatus: string) => {
     let btnColor: ButtonColorType
@@ -131,7 +149,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
 
     return (
       <OrderStatusButton
-        label={getStatusLabel(subscribeStatus)}
+        label={buttonLabel}
         color={btnColor.color}
         buttonData={OrderStatusButtonItems}
         selectable={

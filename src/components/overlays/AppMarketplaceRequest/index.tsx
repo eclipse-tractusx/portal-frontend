@@ -39,6 +39,7 @@ import './AppMarketplaceRequest.scss'
 import { error } from 'services/NotifyService'
 import { AgreementStatus } from '../UpdateCompanyRole'
 import { type AgreementRequest } from 'features/apps/types'
+import { confirmDialog } from 'features/overlay/slice'
 
 export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -86,6 +87,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
         .then(() => {
           setSuccessOverlay(true)
           setSubscriptionOverlay(false)
+          dispatch(confirmDialog())
         })
         .catch((err) => {
           error(t('content.appMarketplace.errorMessage'), '', err as object)
