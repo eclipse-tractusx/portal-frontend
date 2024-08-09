@@ -1108,6 +1108,7 @@
       "description3_third": "Targetting Cookies"
     },
     "account": {
+      "headlineDescription": "Verwalten Sie Ihre persönlichen Daten und bestimmen Sie, welche  Informationen andere sehen können und auf welche Apps Sie zugreifen  können.",
       "userAccount": "Benutzer Konto",
       "token": "DEV only: Aktuelles Authentisierungstoken",
       "copy_to_clipboard": "Token in die Zwischenablage kopieren",
@@ -1119,8 +1120,26 @@
       "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
+      "personalInfo": {
+        "title": "Persönliche Informationen",
+        "name": "Name",
+        "surname": "Nachname",
+        "email": "E-Mail",
+        "bpn": "BPN"
+      },
+      "statusInfo": {
+        "title": "Status-Informationen",
+        "status": "Status",
+        "userCreated": "Benutzer angelegt"
+      },
+      "issuerInfo": {
+        "title": "Aussteller-Informationen",
+        "organisation": "Organisation",
+        "adminName": "Admin Name",
+        "adminMail": "Admin E-Mail"
+      },
       "appPermissionTable": {
-        "title": "Applikation Berechtigungen",
+        "title": "App Berechtigungen",
         "appName": "App Name",
         "appProvider": "App Anbieter"
       },
@@ -1540,13 +1559,13 @@
         "customer": "Kunde",
         "bpn": "BPN",
         "contact": "Kontakt",
-        "technicalDetails": "Technical Details",
+        "technicalDetails": "Technische Details",
         "appTenantUrl": "App Tenant URL",
         "appId": "App ID (clientID)",
         "appIdInfo": "Die Client-ID ist entscheidend für OAuth2/OpenID Connect-Interaktionen. Dieser Bezeichner wird als Client-ID-Parameter in Anfragen an den Autorisierungsserver gesendet. Es wird zur Kundenidentifizierung verwendet. Mit der Abonnementaktivierung wird die Client-ID erstellt.",
         "technicalName": "Technical User Name",
         "technicalNameInfo": "Technischer Benutzername des technischen Benutzer-/Dienstkontos, das für das spezifische App-Abonnement erstellt wurde. Sie können auf den technischen Benutzernamen klicken, um die Client-ID und die geheimen Details abzurufen.",
-        "technicalPermission": "Technische Benutzerberechtigung",
+        "technicalPermission": "Technical User Zulassung",
         "technicalPermissionInfo": "Dem technischen Benutzer zugewiesene Berechtigungen.",
         "helpText": "Bei Fragen zu diesen Änderungen wenden Sie sich bitte an:",
         "email": "support@cofinity-x.com",
@@ -2210,7 +2229,7 @@
       "uploadProgess": "% von % Dateien hochgeladen"
     },
     "userRoles": {
-      "title": "Assigned Catena-X Portal Roles",
+      "title": "Zugewiesene Cofinity-X Portal-Rollen",
       "changeRoleBtn": "Change Portal Role"
     }
   },
