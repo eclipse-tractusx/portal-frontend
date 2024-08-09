@@ -77,7 +77,7 @@
     "idp_delete_info_title": "Deletion of the identity provider.",
     "idp_delete_info_intro": "Please note, all users which are not migrated to the new iDP wii get irreversible deleted.",
     "idp_delete_success_title": "Identity provider {{name}} was successfully deleted.",
-    "idp_delete_success_intro": "The window will close automatically. In case it doesn't, please use the 'close' button in on the top right.",
+    "idp_delete_success_intro": "The window will close automatically. In case it doesn't, please use the “close” button in on the top right.",
     "idp_delete_error_title": "The identity provider did not got deleted.",
     "idp_delete_error_intro": "Please retry or contact an administrator if the failure persist.",
     "idp_delete_tooltip_info": "Please disable the service first or make sure if any one of the service for following company is working.",
@@ -229,7 +229,7 @@
           "details": "With confirming the cancellation, the registration company will get informed and the cancellation message added below will be shared.",
           "note": "Please note that the cancellation wont allow the company to register again, as long as no new registration is triggered.",
           "inputLabel": "Cancellation Message",
-          "error": "Please revalidate your input; the message should not start with '='."
+          "error": "Please revalidate your input; the message should not start with “=”."
         },
         "addBpn": {
           "successTitle": "Update BPN number successfully completed",
@@ -473,7 +473,7 @@
       "inputPlaceholder": "Search by app title...",
       "recently": {
         "header": "Recently changed",
-        "subheader": "Below you can find your recently changed apps. By clicking on the app, you can open up the deatils/proceed on the app release process. The sub-menu added to each app card will help you to do changes on active apps. Below the recent changed apps, a list of all by your company provided apps can get found. Please scroll down to get more details."
+        "subheader": "Here you can find your recently modified apps. Click on an app to view details or continue the release process. The sub-menu on each app card allows you to make changes to active apps. Below the recently changed apps, you will find a list of all apps provided by your company. Scroll down for more details."
       },
       "filter": {
         "all": "All",
@@ -800,7 +800,7 @@
       "inviteText2": "Invite a new partner to Catena-X.",
       "invite": "Invite",
       "success": "Business Partner Successfully Invited",
-      "successSubText": "The window will close automatically. In case it doesn't, please use the 'close' button on the top right.",
+      "successSubText": "The window will close automatically. In case it doesn't, please use the “close” button on the top right.",
       "failure": "Error - Business Partner was not invited",
       "failureSubText": "An error occured. Please try it again later.",
       "tabletitle": "Invites",
@@ -851,7 +851,7 @@
         "userRoleErrorMsg": "Roles have not got updated.",
         "header": {
           "title": "App Roles",
-          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the 'Role Description' field. To add the user role to an existing active company user, please use the 'add role' button below the 'Available Role' area.",
+          "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the “Role Description” field. To add the user role to an existing active company user, please use the “add role” button below the “Available Role” area.",
           "noRoles": "No app roles are currently existing. No assignment possible."
         },
         "table": {
@@ -1074,9 +1074,10 @@
       "roleDescriptions": "Role Descriptions"
     },
     "account": {
+      "headlineDescription": "Manage your personal data and determine what information others can see as well as what apps you can access.",
       "userAccount": "User account",
       "token": "DEV only: Current authentication token",
-      "copy_to_clipboard": "copy token to clipboard",
+      "copy_to_clipboard": "Copy token to clipboard",
       "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Delete user",
       "suspendAccount": "Suspend user",
@@ -1085,6 +1086,24 @@
       "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
+      "personalInfo": {
+        "title": "Personal Information",
+        "name": "Name",
+        "surname": "Last name",
+        "email": "E-Mail",
+        "bpn": "BPN"
+      },
+      "statusInfo": {
+        "title": "Status Information",
+        "status": "Status",
+        "userCreated": "User Created"
+      },
+      "issuerInfo": {
+        "title": "Issuer Information",
+        "organisation": "Organisation",
+        "adminName": "Admin Name",
+        "adminMail": "Admin E-Mail"
+      },
       "appPermissionTable": {
         "title": "App Permissions",
         "appName": "App Name",
@@ -1192,16 +1211,16 @@
         "validateAndPublish": "Validate & Submit"
       },
       "stepperDescription": {
-        "appMarketCard": "Create your 'App Card' for the marketplace. This card is your first touchpoint with customers and will show the basic information of your offering, like title, description, language settings, pricing etc.",
+        "appMarketCard": "Create your “App Card” for the marketplace. This card is your first touchpoint with customers and will show the basic information of your offering, like title, description, language settings, pricing etc.",
         "appPage": "Provide detailed information for your app’s detail page, including a long description in English and German, images, several documents, provider details and privacy information.",
         "contractAndConsent": "To publish your offer as a Catena-X Certified App on the marketplace, you need to accept the T&Cs and guidelines and upload your Conformity Certificate.",
-        "technicalIntegration": "Add user roles by uploading them as CSV file. If your app requires technical integration, select the respective technical user(s). Otherwise, choose 'None' and proceed.",
+        "technicalIntegration": "Add user roles by uploading them as CSV file. If your app requires technical integration, select the respective technical user(s). Otherwise, choose “None” and proceed.",
         "betaTest": "This step is currently not available and can be skipped.",
         "validateAndPublish": "Review the summary of all your app registration inputs. We will validate your app registration shortly after the app submission."
       },
       "appMarketCard": {
         "headerTitle": "Create App Card",
-        "headerDescription": "The following input fields and uploads are used to create your 'App Card' which will be placed inside the marketplace. The app card is the first touchpoint with the customer.",
+        "headerDescription": "The following input fields and uploads are used to create your “App Card” which will be placed inside the marketplace. The app card is the first touchpoint with the customer.",
         "defaultCardAppImageAlt": "App Logo",
         "defaultCardAppProvider": "Catena-X",
         "defaultCardAppTitle": "This is the app title",
@@ -1364,7 +1383,7 @@
       "title": "Service Marketplace",
       "description": "Explore various consulting services from qualified partners. Here you will find expert advice on Catena-X and efficient data exchange. Make the most of the data space to achieve your business goals.",
       "headline": "Service Subscription",
-      "desc1": "By selecting 'Confirm' below, you will promptly notify the service provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc1": "By selecting “Confirm” below, you will promptly notify the service provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
       "desc2": "Once all necessary information has been confirmed and any queries resolved, the service provider will proceed to activate your service tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
       "desc3": "IMPORTANT NOTICE:",
       "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the service provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
@@ -1399,7 +1418,7 @@
     },
     "appMarketplace": {
       "headline": "Business Application Subscription",
-      "desc1": "By selecting 'Confirm' below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
+      "desc1": "By selecting “Confirm” below, you will promptly notify the app provider of your interest in their service, and they will commence the subscription procedure. Should the provider require further details to proceed, they will reach out to you directly.",
       "desc2": "Once all necessary information has been confirmed and any queries resolved, the app provider will proceed to activate your app tenant. You will receive a notification to guide you through any subsequent steps required on your part.",
       "desc3": "IMPORTANT NOTICE:",
       "desc4": "By confirming the subscription request, you authorize the transfer of your business partner data, which includes your company name, Business Partner Number (BPN), address, etc., to the app provider. Additionally, your email address will be shared to facilitate communication should further information be needed.",
@@ -1477,7 +1496,7 @@
         "addTentalURLDescription": "The tenant url of the app is the customer specific url which the customer has to access to receive access to the application. Please note: only https:// addresses are allowed.",
         "enterURL": "Enter URL",
         "technicalUserDetailsHeading": "Technical User Details",
-        "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on 'Confirm' below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
+        "technicalUserDetailsDescription": "Below the technical user profile used to create the technical user for the app tenant is shared. With clicking on “Confirm” below, the technical user is getting created with the respective configured permissions. Please note the technical user is customer specific.",
         "technicalUserProfileHeading": "Technical User Profile",
         "successDescription": "The app subscription got successfully activated, the customer got informed via email about the app activation. Please find the technical user details below:",
         "clientDetails": "Client Details",
@@ -1621,7 +1640,7 @@
       "resolveTitle": "Your option to resolve the issue",
       "REGISTRATION_VERIFICATION": {
         "stepName": "Data Validation",
-        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and “accept” / “decline” the application; depending on the validation results",
         "additionalText": "By declining the application; the registration company will not be able to proceed; a new registration will be needed.",
         "TO_DO": {
           "title": "Your action is needed to resolve the issue",
@@ -1684,7 +1703,7 @@
       },
       "BPNL_CREDENTIAL": {
         "stepName": "BPNL Credential",
-        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and “accept” / “decline” the application; depending on the validation results",
         "additionalText": "",
         "TO_DO": {
           "title": "Your action is needed to resolve the issue",
@@ -1705,7 +1724,7 @@
       },
       "MEMBERSHIP_CREDENTIAL": {
         "stepName": "Membership Credential",
-        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and 'accept' / 'decline' the application; depending on the validation results",
+        "stepDescription": "Manual validation of the company registration by the operator. Please check the company details as well as uploaded documents and “accept” / “decline” the application; depending on the validation results",
         "additionalText": "",
         "TO_DO": {
           "title": "Your action is needed to resolve the issue",
@@ -1876,7 +1895,7 @@
         "valid": "Valid until: ",
         "status": "Status: "
       },
-      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above."
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the “Upload Certificate” button above."
     },
     "companyCertificate": {
       "heading": "Company Certificates",
@@ -1922,13 +1941,13 @@
         "dateError": "Select a valid date"
       },
       "confirm": {
-        "success": "The certificate {{name}} has been successfully deleted and moved to 'Inactive'",
+        "success": "The certificate {{name}} has been successfully deleted and moved to “Inactive”",
         "error": "The deletion was not successful. System Message: {{error}} Please contact an administrator.",
         "title": "{{name}} Deletion",
         "description": "Are you sure you want to delete the certificate. Please note that the certificate deletion is immediately active. A re-activation is not possible; but you can upload a new file under the same type whenever needed."
       },
       "uploadCertificate": "Upload Certificate",
-      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
+      "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the “Upload Certificate” button above.",
       "validtill": "Valid Till",
       "morelink": ">> More",
       "view": "View",
@@ -2177,7 +2196,7 @@
       "uploadProgess": "Uploaded % of % files"
     },
     "userRoles": {
-      "title": "Assigned Catena-X Portal Roles",
+      "title": "Assigned Cofinity-X Portal Roles",
       "changeRoleBtn": "Change Portal Role"
     }
   },

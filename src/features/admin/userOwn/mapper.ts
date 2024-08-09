@@ -20,40 +20,56 @@
 
 import type { KeycloakTokenParsed } from 'keycloak-js'
 import type { AdminData, UserDetail } from './types'
+import { t } from 'i18next'
 
 export const userDetailsToCards = (
   user: UserDetail,
   parsedToken?: KeycloakTokenParsed
 ) => [
   {
-    cardCategory: 'Personal Information',
+    cardCategory: t('content.account.personalInfo.title'),
     cardContentItems: {
-      name: { label: 'Name', value: user.firstName },
-      surname: { label: 'Nachname', value: user.lastName },
-      email: { label: 'E-Mail', value: user.email },
-      bpn: { label: 'BPN', value: user.bpn },
+      name: {
+        label: t('content.account.personalInfo.name'),
+        value: user.firstName,
+      },
+      surname: {
+        label: t('content.account.personalInfo.surname'),
+        value: user.lastName,
+      },
+      email: {
+        label: t('content.account.personalInfo.email'),
+        value: user.email,
+      },
+      bpn: { label: t('content.account.personalInfo.bpn'), value: user.bpn },
     },
   },
   {
-    cardCategory: 'Status Information',
+    cardCategory: t('content.account.statusInfo.title'),
     cardContentItems: {
-      status: { label: 'Status', value: user.status },
+      status: {
+        label: t('content.account.statusInfo.status'),
+        value: user.status,
+      },
       userCreated: {
-        label: 'Nutzer angelegt',
+        label: t('content.account.statusInfo.userCreated'),
         value: user.created.substring(0, 16).replace('T', ' '),
       },
     },
   },
   {
-    cardCategory: 'Issuer Information',
+    cardCategory: t('content.account.issuerInfo.title'),
     cardContentItems: {
       organisation: {
-        label: 'Organisation',
+        label: t('content.account.issuerInfo.organisation'),
         value: parsedToken ? parsedToken.organisation : 'N/A',
       },
-      adminName: { label: 'Admin Name', value: 'N/A' },
+      adminName: {
+        label: t('content.account.issuerInfo.adminName'),
+        value: 'N/A',
+      },
       adminMail: {
-        label: 'Admin E-Mail',
+        label: t('content.account.issuerInfo.adminMail'),
         value: user.admin?.length
           ? user.admin?.map((data: AdminData) => data.email)
           : 'N/A',

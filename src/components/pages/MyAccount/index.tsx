@@ -23,7 +23,6 @@ import {
   Button,
   UserAvatar,
   Typography,
-  PageHeader,
 } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -39,6 +38,7 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
 import UserService from 'services/UserService'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -50,10 +50,11 @@ export default function MyAccount() {
 
   return (
     <main className="my-account">
-      <PageHeader
+      <MainHeader
         title={t('pages.account')}
-        topPage={false}
-        headerHeight={200}
+        subTitle={t('content.account.headlineDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
       />
 
       <section>
