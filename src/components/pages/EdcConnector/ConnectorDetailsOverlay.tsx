@@ -44,8 +44,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import Patterns from 'types/Patterns'
 import { useFetchDocumentMutation } from 'features/serviceManagement/apiSlice'
 import { download } from 'utils/downloadUtils'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
@@ -483,7 +483,7 @@ const ConnectorDetailsOverlay = ({
                       setEnableConnectorUrl(false)
                       setEnableUrlApiErrorMsg(false)
                     }}
-                    disabled={!UserService.hasRole(ROLES.MODIFY_CONNECTORS)}
+                    disabled={!userHasPortalRole(ROLES.MODIFY_CONNECTORS)}
                   >
                     <EditIcon
                       sx={{
@@ -627,7 +627,7 @@ const ConnectorDetailsOverlay = ({
                 onClick={() => {
                   setOpenDeleteConnector(true)
                 }}
-                disabled={!UserService.hasRole(ROLES.DELETE_CONNECTORS)}
+                disabled={!userHasPortalRole(ROLES.DELETE_CONNECTORS)}
                 size="small"
                 sx={{ float: 'right' }}
               >

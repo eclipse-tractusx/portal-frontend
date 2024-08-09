@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
   Typography,
   OrderStatusButton,
@@ -26,9 +26,8 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
-import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -36,11 +35,7 @@ import { SubscriptionStatus } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
-
-enum Roles {
-  SUBSCRIBE_APPS = 'subscribe_apps',
-  SUBSCRIBE_SERVICE = 'subscribe_service',
-}
+import { userHasPortalRole } from 'services/AccessService'
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -57,7 +52,6 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { appId } = useParams()
-  const user = useSelector(userSelector)
   const [image, setImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
@@ -92,11 +86,12 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         break
       default:
         btnColor = {
-          color:
-            user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-            user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
-              ? 'primary'
-              : 'secondary',
+          color: userHasPortalRole([
+            ROLES.SUBSCRIBE_APPS,
+            ROLES.SUBSCRIBE_SERVICE,
+          ])
+            ? 'primary'
+            : 'secondary',
           background1: paletteDefinitions.buttons.darkGrey ?? '',
           background2: paletteDefinitions.buttons.lightGrey ?? '',
           background3: paletteDefinitions.buttons.white ?? '',
@@ -136,15 +131,11 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         buttonData={OrderStatusButtonItems}
         selectable={
           subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
-            ? true
-            : false
+          userHasPortalRole([ROLES.SUBSCRIBE_APPS, ROLES.SUBSCRIBE_SERVICE])
         }
         onButtonClick={() =>
           subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1 &&
+          userHasPortalRole([ROLES.SUBSCRIBE_APPS, ROLES.SUBSCRIBE_SERVICE]) &&
           dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
         }
       />

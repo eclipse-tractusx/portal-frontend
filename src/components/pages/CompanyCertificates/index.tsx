@@ -28,7 +28,6 @@ import SortImage from 'components/shared/frame/SortImage'
 import './CompanyCertificate.scss'
 import { ROLES } from 'types/Constants'
 import CompanyCertificateElements from './CompanyCertificateElements'
-import UserService from 'services/UserService'
 import {
   type ComapnyCertificateData,
   useFetchCertificatesQuery,
@@ -38,6 +37,7 @@ import { Box } from '@mui/material'
 import UploadCompanyCertificate from './UploadCompanyCerificate'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface TabButtonsType {
   buttonText: string
@@ -184,7 +184,7 @@ export default function CompanyCertificates(): JSX.Element {
                     setUploadModal(true)
                   }}
                   disabled={
-                    !UserService.hasRole(ROLES.UPLOAD_COMPANY_CERTIFICATE)
+                    !userHasPortalRole(ROLES.UPLOAD_COMPANY_CERTIFICATE)
                   }
                 >
                   {t('content.companyCertificate.uploadCertificate')}

@@ -50,7 +50,13 @@ import './Header.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 
-export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
+export const Header = ({
+  main,
+  user,
+}: {
+  main: Tree[] | undefined
+  user: string[]
+}) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()

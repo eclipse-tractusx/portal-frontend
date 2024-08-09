@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import type { KeycloakResourceAccess } from 'keycloak-js'
 import { forEach, reduce } from 'lodash'
 
 /**
@@ -62,3 +63,23 @@ export const multiMapBy = <T>(
     {}
   )
 }
+
+export const intersect = (
+  arrayA: Array<string>,
+  arrayB: Array<string>
+): string[] => arrayA.filter((item) => arrayB.includes(item))
+
+export const intersectAccess = (
+  requiredAccess: KeycloakResourceAccess,
+  userAccess: KeycloakResourceAccess
+): KeycloakResourceAccess =>
+  Object.keys(requiredAccess)
+    .filter((client) => Object.keys(userAccess).includes(client))
+    .reduce((acc: KeycloakResourceAccess, client: string) => {
+      const roles = intersect(
+        requiredAccess[client].roles,
+        userAccess[client].roles
+      )
+      if (roles.length > 0) acc[client] = { roles }
+      return acc
+    }, {})

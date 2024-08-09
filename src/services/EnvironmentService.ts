@@ -27,7 +27,11 @@ export const getRealm = () => ENV.REALM ?? ''
 
 export const getClientId = () => ENV.CLIENT_ID ?? ''
 
+export const getClientIdRegistration = () => ENV.CLIENT_ID_REGISTRATION ?? ''
+
 export const getClientIdSemantic = () => ENV.CLIENT_ID_SEMANTIC ?? ''
+
+export const getClientIdBpdm = () => ENV.CLIENT_ID_BPDM ?? ''
 
 export const getClientIdMiw = () => ENV.CLIENT_ID_MIW ?? ''
 
@@ -55,7 +59,9 @@ const EnvironmentService = {
   getRequireHttpsUrlPattern,
   getRealm,
   getClientId,
+  getClientIdRegistration,
   getClientIdSemantic,
+  getClientIdBpdm,
   getClientIdMiw,
   getClientIdSsiCredential,
   getCentralIdp,

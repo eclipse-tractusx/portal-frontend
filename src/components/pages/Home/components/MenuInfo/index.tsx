@@ -28,7 +28,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { MobileMenu } from 'components/shared/MobileMenu'
 import { Drawer } from '@mui/material'
 
-export const MenuInfo = ({ main }: { main: Tree[] }) => {
+export const MenuInfo = ({ main }: { main: Tree[] | undefined }) => {
   const { t } = useTranslation()
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()

@@ -42,7 +42,6 @@ import {
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
 import { SubscriptionStatus } from 'features/apps/types'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useState } from 'react'
 import './style.scss'
@@ -52,6 +51,7 @@ import { SubscriptionTypes } from 'components/shared/templates/Subscription'
 import { useFetchServiceSubDetailQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Link } from 'react-router-dom'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
@@ -217,7 +217,7 @@ const AppSubscriptionDetailOverlay = ({
   const renderTenantUrl = (url: string) => {
     if (
       isAppSubscription &&
-      UserService.hasRole(ROLES.APPSTORE_EDIT) &&
+      userHasPortalRole(ROLES.APPSTORE_EDIT) &&
       data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
     ) {
       return (

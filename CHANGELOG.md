@@ -10,6 +10,7 @@
 ### Feature
 
 - Use scroll to top button from shared components
+- Enable more fine grained permission checks by client id and roles
 - Subscription Overlay
   - implement loading state for provider subscription detail overlay
 

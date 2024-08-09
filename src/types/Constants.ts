@@ -26,8 +26,6 @@ export enum PAGES {
   ROOT = '',
   HOME = 'home',
   REGISTRATION = 'registration',
-  SWAGGER = 'swagger',
-  STORYBOOK = 'storybook',
   APP_SUBSCRIPTION = 'appSubscription',
   ADMINBOARD = 'adminboard',
   ADMINBOARD_DETAIL = 'adminboardDetail',
@@ -174,7 +172,6 @@ export enum ROLES {
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
   APPSTORE_VIEW_SERVICES = 'view_service_marketplace',
-  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service',
   APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',
@@ -230,6 +227,10 @@ export enum ROLES {
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
+  SUBSCRIBE_APPS = 'subscribe_apps',
+  SUBSCRIBE_SERVICE = 'subscribe_service',
+  VIEW_REGISTRATION = 'view_registration',
+  READ_PARTNER = 'read_partner',
 }
 
 export enum HINTS {
