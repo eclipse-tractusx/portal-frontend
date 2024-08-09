@@ -26,7 +26,10 @@ import { Box, Divider } from '@mui/material'
 import { useState } from 'react'
 import StatusInformation from './StatusInformation'
 import CompanyInfo from './CompanyInfo'
-import { companyDataSelector } from 'features/companyData/slice'
+import {
+  companyDataSelector,
+  sharingStateInfoSelector,
+} from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import EditForm from './EditForm'
 import { AddressType } from 'features/companyData/companyDataApiSlice'
@@ -53,6 +56,7 @@ export default function DetailsOverlay({
     setEdit(true)
   }
   const companyData = useSelector(companyDataSelector)
+  const sharingStateErrorInfo = useSelector(sharingStateInfoSelector)
   const isSite = companyData.address.addressType === AddressType.SiteMainAddress
   return (
     <Box>
@@ -64,7 +68,7 @@ export default function DetailsOverlay({
           onCloseWithIcon={handleClose}
         />
         <DialogContent>
-          <StatusInformation />
+          <StatusInformation error={sharingStateErrorInfo} />
           <Divider
             sx={{
               borderColor: '#111111',

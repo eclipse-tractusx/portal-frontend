@@ -165,7 +165,7 @@ export interface CompanyDataType {
       deliveryServiceType: string | undefined | null
       deliveryServiceQualifier: string | undefined | null
       deliveryServiceNumber: string | undefined | null
-    }
+    } | null
     confidenceCriteria: {
       sharedByOwner: true
       checkedByExternalDataSource: true
@@ -211,6 +211,10 @@ export enum SharingStateStatusType {
   Initial = 'Initial',
 }
 
+export interface ReadyStateRequestBody {
+  externalIds: string[]
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyData',
   baseQuery: fetchBaseQuery(apiBpdmGateQuery()),
@@ -241,12 +245,22 @@ export const apiSlice = createApi({
       }),
     }),
     updateCompanySiteAndAddress: builder.mutation<
-      CompanyDataResponse,
+      CompanyDataType[],
       CompanyDataType[]
     >({
       query: (data: CompanyDataType[]) => ({
         url: '/input/business-partners',
         method: 'PUT',
+        body: data,
+      }),
+    }),
+    updateCompanyStatusToReady: builder.mutation<
+      CompanyDataType[],
+      ReadyStateRequestBody
+    >({
+      query: (data) => ({
+        url: '/sharing-state/ready',
+        method: 'POST',
         body: data,
       }),
     }),
@@ -258,4 +272,5 @@ export const {
   useFetchInputCompanyBusinessPartnersMutation,
   useFetchOutputCompanyBusinessPartnersMutation,
   useUpdateCompanySiteAndAddressMutation,
+  useUpdateCompanyStatusToReadyMutation,
 } = apiSlice
