@@ -37,7 +37,6 @@ const dialog = createSlice({
       state.isOpen = true
     },
     closeDialog: (state) => {
-      console.log(state, 'close dialog')
       state.isOpen = false
     },
     confirmDialog: (state) => {
