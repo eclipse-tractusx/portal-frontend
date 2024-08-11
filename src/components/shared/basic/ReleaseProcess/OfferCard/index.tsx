@@ -294,6 +294,7 @@ export default function OfferCard() {
       'title',
       'serviceTypeIds',
       'shortDescriptionEN',
+      'shortDescriptionDE',
     ])
     const apiBody = {
       serviceTypeIds: data.serviceTypeIds,
