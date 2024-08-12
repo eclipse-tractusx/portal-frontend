@@ -45,7 +45,7 @@ export const apiSlice = createApi({
       BusinessPartnerRequest
     >({
       query: (body) => ({
-        url: '/legal-entities/search?page=0&size=30',
+        url: '/members/legal-entities/search?page=0&size=30',
         method: 'POST',
         body,
       }),
