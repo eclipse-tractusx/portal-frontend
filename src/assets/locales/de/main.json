@@ -923,6 +923,13 @@
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
+        "status": {
+          "ACTIVE": "AKTIV",
+          "INACTIVE": "INAKTIV",
+          "PENDING": "AUSSTEHEND",
+          "DELETED": "GELÖSCHT",
+          "PENDING_DELETION": "PENDING_DELETION"
+        },
         "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",

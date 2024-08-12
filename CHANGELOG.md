@@ -12,6 +12,9 @@
 - Use scroll to top button from shared components
 - Subscription Overlay
   - implement loading state for provider subscription detail overlay
+- Technical User Management
+  - Enhance technical user table by adding StatusTag to the status column
+  - Enhance technical user table status column by adding new status 'pending deletion'
 
 ### Bugfixes
 
