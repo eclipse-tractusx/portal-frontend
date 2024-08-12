@@ -75,12 +75,10 @@ export const Patterns = {
   offerCard: {
     serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescription:
-      /^[^ @=<>*\-+#?%&_:;]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){10,120}$/,
+    shortDescription: /^.{10,120}$/,
   },
   offerPage: {
-    longDescription:
-      /^[^ @=<>*\-+#?%&_:;]([a-zA-ZÀ-ÿ0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
+    longDescription: /^.{9,1999}$/,
   },
   appPage: {
     longDescriptionEN:
