@@ -48,11 +48,19 @@ export interface ServiceAccountCreate {
   roleIds: string[]
 }
 
+export enum ServiceAccountStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+  DELETED = 'DELETED',
+  PENDING_DELETION = 'PENDING_DELETION',
+}
+
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
-  status: string
+  status: ServiceAccountStatus
   isOwner?: boolean
   offer?: {
     name?: string

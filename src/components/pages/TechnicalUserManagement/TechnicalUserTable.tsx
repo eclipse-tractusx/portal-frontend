@@ -27,6 +27,7 @@ import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   type ServiceAccountListEntry,
+  ServiceAccountStatus,
   ServiceAccountStatusFilter,
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'
@@ -41,14 +42,13 @@ interface FetchHookArgsType {
   statusFilter: string
   expr: string
 }
-
-enum ServiceAccountStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-  PENDING = 'PENDING',
-  DELETED = 'DELETED',
-  PENDING_DELETION = 'PENDING_DELETION',
-}
+type StatusTagColor =
+  | 'pending'
+  | 'confirmed'
+  | 'declined'
+  | 'label'
+  | 'deleted'
+  | undefined
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
@@ -98,18 +98,12 @@ export const TechnicalUserTable = () => {
     },
   ]
 
-  const renderStatusColor = (status: string) => {
-    if (status.toLowerCase() === ServiceAccountStatus.ACTIVE.toLowerCase())
-      return 'confirmed'
-    else if (
-      status.toLowerCase() === ServiceAccountStatus.INACTIVE.toLowerCase()
-    )
-      return 'declined'
-    else if (
-      status.toLowerCase() === ServiceAccountStatus.DELETED.toLowerCase()
-    )
-      return 'deleted'
-    else return 'pending'
+  const statusColorMap: Record<ServiceAccountStatus, StatusTagColor> = {
+    [ServiceAccountStatus.ACTIVE]: 'confirmed',
+    [ServiceAccountStatus.INACTIVE]: 'declined',
+    [ServiceAccountStatus.DELETED]: 'deleted',
+    [ServiceAccountStatus.PENDING]: 'pending',
+    [ServiceAccountStatus.PENDING_DELETION]: 'pending',
   }
 
   return (
@@ -171,7 +165,7 @@ export const TechnicalUserTable = () => {
             flex: 1.2,
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <StatusTag
-                color={renderStatusColor(row.status)}
+                color={statusColorMap[row.status]}
                 label={t(
                   `content.usermanagement.technicalUser.status.${row.status}`
                 )}
