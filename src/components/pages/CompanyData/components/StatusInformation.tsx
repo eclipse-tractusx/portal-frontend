@@ -25,10 +25,11 @@ import { useSelector } from 'react-redux'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import {
+import type {
   SharingStateStatusType,
-  type SharingStateType,
+  SharingStateType,
 } from 'features/companyData/companyDataApiSlice'
+import { statusColorMap } from 'utils/dataMapper'
 
 export default function StatusInformation({
   error,
@@ -44,14 +45,6 @@ export default function StatusInformation({
     Ready: <HourglassBottomIcon />,
     Initial: <HourglassBottomIcon />,
     Error: <WarningAmberIcon />,
-  }
-
-  const getStatusColor = (status: string | undefined) => {
-    if (status === SharingStateStatusType.Success) return 'success'
-    else if (status === SharingStateStatusType.Initial) return 'warning'
-    else if (status === SharingStateStatusType.Pending) return 'info'
-    else if (status === SharingStateStatusType.Ready) return 'primary'
-    return 'error'
   }
 
   return (
@@ -85,7 +78,11 @@ export default function StatusInformation({
         >
           <Chip
             icon={statusIcon[status]}
-            color={getStatusColor(status)}
+            color={
+              status
+                ? statusColorMap[status as SharingStateStatusType]
+                : 'error'
+            }
             variant="filled"
             label={status}
             size="medium"
