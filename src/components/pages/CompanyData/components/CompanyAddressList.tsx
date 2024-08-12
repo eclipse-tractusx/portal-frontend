@@ -42,22 +42,7 @@ import {
   setSharingStateInfo,
 } from 'features/companyData/slice'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
-
-type StatusColorType =
-  | 'success'
-  | 'warning'
-  | 'info'
-  | 'primary'
-  | 'error'
-  | undefined
-
-const statusColorMap: Record<SharingStateStatusType, StatusColorType> = {
-  [SharingStateStatusType.Success]: 'success',
-  [SharingStateStatusType.Initial]: 'warning',
-  [SharingStateStatusType.Pending]: 'info',
-  [SharingStateStatusType.Ready]: 'primary',
-  [SharingStateStatusType.Error]: 'error',
-}
+import { statusColorMap } from 'utils/dataMapper'
 
 export const CompanyAddressList = ({
   handleButtonClick,
