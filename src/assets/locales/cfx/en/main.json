@@ -402,6 +402,7 @@
       }
     },
     "organization": {
+      "headlineDescription": "Here you can view all the details about your company and its roles within the Catena-X dataspace.",
       "unsubscribe": {
         "title": "Unsubscribe Business Application / Service",
         "descriptionNote": "Please note: the unsubscription is not revertible",
@@ -2001,8 +2002,8 @@
       }
     },
     "companyWallet": {
-      "heading": "My Company Wallet",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "heading": "Company Wallet",
+      "description": "The wallet stores your secure identity and issued verifiable credentials like your Membership and BPN credentials. This enables participants on the  Catena-X network to confirm your identity as a foundation to exchange data with you.",
       "activate": "Connected",
       "activateDescription": "You have activated your Catena-X wallet.",
       "error": "Not Connected",

@@ -19,13 +19,11 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import {
   Button,
   Typography,
-  BackButton,
   StatusTag,
   ContentCard,
 } from '@catena-x/portal-shared-components'
@@ -36,9 +34,9 @@ import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
 import './Organization.scss'
 import { FilterType, SortType } from '../CompanyCertificates'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function Organization() {
-  const navigate = useNavigate()
   const { t } = useTranslation()
 
   const { data: companyDetails } = useFetchOwnCompanyDetailsQuery()
@@ -98,88 +96,87 @@ export default function Organization() {
   ]
 
   return (
-    <main className="organization-main">
-      <Box className="app-back">
-        <BackButton
-          backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
-          onBackButtonClick={() => {
-            navigate('/')
-          }}
-        />
-      </Box>
-      <div className="organization-section">
-        <Typography variant="h2" className="main-title">
-          {t('pages.organization')}
-        </Typography>
-        <div className="table-section">
-          <Box
-            sx={{
-              width: '50%',
-              '@media (max-width: 1200px)': {
-                order: 1,
-                width: '50%',
-              },
-            }}
-          >
-            <KeyValueView
-              cols={1.5}
-              title={t('content.organization.companyDetails.title')}
-              items={companyData}
-            />
-          </Box>
-          <Box
-            sx={{
-              width: '50%',
-              '@media (max-width: 1200px)': {
-                order: 1,
-                width: '50%',
-              },
-            }}
-          >
-            <KeyValueView
-              cols={1.5}
-              title={t('content.organization.companyRoles.title')}
-              items={companyRoleData}
-              editLink={
-                UserService.hasRole(ROLES.UPDATE_COMPANY_ROLE)
-                  ? `/${PAGES.COMPANY_ROLE}`
-                  : ''
-              }
-            />
-          </Box>
-        </div>
-        <div className="delete-btn">
-          <Button
-            color="secondary"
-            size="small"
-            variant="outlined"
-            startIcon={<CancelOutlinedIcon />}
-            disabled
-          >
-            {t('content.organization.deleteAccount')}
-          </Button>
-        </div>
-        <div className="certificates-section">
-          <Typography variant="h4">
-            {t('content.organization.certificates')}
+    <>
+      <MainHeader
+        title={t('pages.organization')}
+        subTitle={t('content.organization.headlineDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+      <main className="organization-main">
+        <div className="organization-section">
+          <Typography variant="h2" className="main-title">
+            {t('pages.organization')}
           </Typography>
-          <div className="certificate-items">
-            {certificates?.map((certificate) => (
-              <div key={certificate.companyCertificateType}>
-                {
-                  <ContentCard
-                    title={certificate.companyCertificateType}
-                    chipText={certificate.companyCertificateType}
-                    heading="Business Partner Level: "
-                    detail="N/A"
-                  />
+          <div className="table-section">
+            <Box
+              sx={{
+                width: '50%',
+                '@media (max-width: 1200px)': {
+                  order: 1,
+                  width: '50%',
+                },
+              }}
+            >
+              <KeyValueView
+                cols={1.5}
+                title={t('content.organization.companyDetails.title')}
+                items={companyData}
+              />
+            </Box>
+            <Box
+              sx={{
+                width: '50%',
+                '@media (max-width: 1200px)': {
+                  order: 1,
+                  width: '50%',
+                },
+              }}
+            >
+              <KeyValueView
+                cols={1.5}
+                title={t('content.organization.companyRoles.title')}
+                items={companyRoleData}
+                editLink={
+                  UserService.hasRole(ROLES.UPDATE_COMPANY_ROLE)
+                    ? `/${PAGES.COMPANY_ROLE}`
+                    : ''
                 }
-              </div>
-            ))}
+              />
+            </Box>
+          </div>
+          <div className="delete-btn">
+            <Button
+              color="secondary"
+              size="small"
+              variant="outlined"
+              startIcon={<CancelOutlinedIcon />}
+              disabled
+            >
+              {t('content.organization.deleteAccount')}
+            </Button>
+          </div>
+          <div className="certificates-section">
+            <Typography variant="h4">
+              {t('content.organization.certificates')}
+            </Typography>
+            <div className="certificate-items">
+              {certificates?.map((certificate) => (
+                <div key={certificate.companyCertificateType}>
+                  {
+                    <ContentCard
+                      title={certificate.companyCertificateType}
+                      chipText={certificate.companyCertificateType}
+                      heading="Business Partner Level: "
+                      detail="N/A"
+                    />
+                  }
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

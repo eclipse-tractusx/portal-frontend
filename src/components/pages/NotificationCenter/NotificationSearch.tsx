@@ -57,6 +57,7 @@ export default function NotificationSearch() {
   return (
     <div className="searchContainer">
       <DebouncedSearchInput
+        placeholder={t('header.searchPlaceholder')}
         debounceTime={500}
         onSearch={(expr: string) => dispatch(setSearch(expr))}
       />
