@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation, Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import {
@@ -36,6 +36,7 @@ import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import Overlay from './Overlay'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
@@ -80,17 +81,13 @@ export default function CompanyWallet(): JSX.Element {
 
   return (
     <main className="companywallet-main">
+      <MainHeader
+        title={t('content.companyWallet.heading')}
+        subTitle={t('content.companyWallet.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <div className="companywallet-section">
-        <div className="container">
-          <Typography variant="h2" className="heading">
-            {t('content.companyWallet.heading')}
-          </Typography>
-          <Trans>
-            <Typography variant="body1" className="description">
-              {t('content.companyWallet.description')}
-            </Typography>
-          </Trans>
-        </div>
         {isSuccess || isError ? (
           <>
             <div className="container">
