@@ -1831,6 +1831,7 @@
       }
     },
     "usecaseParticipation": {
+      "headerTitle": "Use Case Participation Overview", 
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
