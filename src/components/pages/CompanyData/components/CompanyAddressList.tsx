@@ -43,6 +43,22 @@ import {
 } from 'features/companyData/slice'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
+type StatusColorType =
+  | 'success'
+  | 'warning'
+  | 'info'
+  | 'primary'
+  | 'error'
+  | undefined
+
+const statusColorMap: Record<SharingStateStatusType, StatusColorType> = {
+  [SharingStateStatusType.Success]: 'success',
+  [SharingStateStatusType.Initial]: 'warning',
+  [SharingStateStatusType.Pending]: 'info',
+  [SharingStateStatusType.Ready]: 'primary',
+  [SharingStateStatusType.Error]: 'error',
+}
+
 export const CompanyAddressList = ({
   handleButtonClick,
   handleSecondButtonClick,
@@ -151,14 +167,6 @@ export const CompanyAddressList = ({
     }
   }
 
-  const getStatusColor = (status: string | undefined) => {
-    if (status === SharingStateStatusType.Success) return 'success'
-    else if (status === SharingStateStatusType.Initial) return 'warning'
-    else if (status === SharingStateStatusType.Pending) return 'info'
-    else if (status === SharingStateStatusType.Ready) return 'primary'
-    return 'error'
-  }
-
   const errorObj = {
     status: 0,
   }
@@ -237,7 +245,11 @@ export const CompanyAddressList = ({
                   >
                     <Chip
                       icon={renderIcon(status)}
-                      color={getStatusColor(status)}
+                      color={
+                        status
+                          ? statusColorMap[status as SharingStateStatusType]
+                          : 'error'
+                      }
                       variant="filled"
                       label={status}
                       size="medium"
