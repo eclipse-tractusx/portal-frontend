@@ -29,6 +29,7 @@ import { useFetchCertificatesQuery } from 'features/companyCertification/company
 import './style.scss'
 import { FilterType, SortType } from '../CompanyCertificates'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function Organization() {
   const { t } = useTranslation()
@@ -40,6 +41,13 @@ export default function Organization() {
   }).data?.content
 
   return (
+    <>
+        <MainHeader
+        title={t('pages.organization')}
+        subTitle={t('content.organization.headlineDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
     <main className="organization-main">
       <div className="organization-section">
         <MyCompanyInfoComponent />
@@ -75,5 +83,6 @@ export default function Organization() {
         </div>
       </div>
     </main>
+    </>
   )
 }

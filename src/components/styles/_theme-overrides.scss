@@ -24,7 +24,14 @@ body {
 
 #app {
   position: relative;
-  margin-top: $navigation-height-balance;
+  padding-top: $navigation-height-balance !important;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+main {
+  flex: 1;
 }
 
 //mobile layout

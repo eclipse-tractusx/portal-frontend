@@ -21,6 +21,7 @@ import { Box } from '@mui/material'
 import './style.scss'
 import { Typography } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export interface SectionHeaderProps {
   title?: string
@@ -38,27 +39,32 @@ export const SectionHeader = ({
   link,
 }: SectionHeaderProps) => {
   return (
-    <Box className="mainWrapper">
-      <Box>
-        {title && <Typography variant="h2">{title}</Typography>}
-        {subTitle && (
-          <Typography className="sub" variant="body1">
-            {subTitle}
-          </Typography>
-        )}
-        {description && <Typography variant="body1">{description}</Typography>}
-        {linkText && (
-          <Box className="linkText">
-            <HelpOutlineIcon sx={{ color: '#0f71cb' }} fontSize={'small'} />
-            <Typography
-              onClick={() => window.open(link, '_blank', 'noopener')}
-              variant="body1"
-            >
-              {linkText}
-            </Typography>
-          </Box>
-        )}
+    <>
+      <MainHeader
+        title={title}
+        subTitle={subTitle}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
+      <Box className="mainWrapper">
+        <Box>
+          {description && (
+            <Typography variant="body1">{description}</Typography>
+          )}
+          {linkText && (
+            <Box className="linkText">
+              <HelpOutlineIcon sx={{ color: '#0f71cb' }} fontSize={'small'} />
+              <Typography
+                onClick={() => window.open(link, '_blank', 'noopener')}
+                variant="body1"
+              >
+                {linkText}
+              </Typography>
+            </Box>
+          )}
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }

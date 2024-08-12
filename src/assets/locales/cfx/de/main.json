@@ -403,6 +403,7 @@
       }
     },
     "organization": {
+      "headlineDescription": "Hier können Sie alle Details zu Ihrem Unternehmen und seinen Rollen innerhalb des Catena-X-Datenraums einsehen.",
       "unsubscribe": {
         "title": "Geschäftsanwendung/Dienst abbestellen",
         "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
@@ -423,19 +424,19 @@
         "unsubscriptionOnProgress": "Abmeldung bei Fortschritt"
       },
       "companyDetails": {
-        "title": "Company Details",
-        "companyName": "Company Name",
+        "title": "Unternehmensangaben",
+        "companyName": "Name des Unternehmens",
         "bpn": "BPN",
-        "street": "Street & House Number",
-        "postal": "Postal Code & City",
-        "region": "Country Code & Region"
+        "street": "Straße & Hausnummer",
+        "postal": "PLZ & Stadt",
+        "region": "Ländercode & Region"
       },
       "companyRoles": {
-        "title": "Company Roles in Catena-X",
+        "title": "Unternehmensrollen in Catena-X",
         "RoleName": "Active Participant"
       },
-      "deleteAccount": "Delete Account",
-      "certificates": "Certificates/Documents"
+      "deleteAccount": "Account löschen",
+      "certificates": "Zertifikate/Dokumente"
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
@@ -1832,10 +1833,10 @@
       "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
       "note": "Please note: ",
       "noteDetail": "Changing the role affects the roles, rights, and functions available to your organization in the portal. You will see the impact of your changes before you make final changes to the role(s).",
-      "ACTIVE_PARTICIPANT": "Activer Teilnehmer",
-      "APP_PROVIDER": "App-Anbieter",
-      "SERVICE_PROVIDER": "Dienstleister",
-      "ONBOARDING_SERVICE_PROVIDER": "Onboarding-Dienstleister",
+      "ACTIVE_PARTICIPANT": "Active Participant",
+      "APP_PROVIDER": "App Provider",
+      "SERVICE_PROVIDER": "Service Provider",
+      "ONBOARDING_SERVICE_PROVIDER": "Onboarding Service Provider",
       "OPERATOR": "Operator",
       "roleDescDownTitle": "Full role description",
       "roleDescUpTitle": "Close role description",
@@ -2034,8 +2035,8 @@
       }
     },
     "companyWallet": {
-      "heading": "Mein Firmen-Wallet",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "heading": "Firmen-Wallet",
+      "description": "Die Wallet speichert Ihre sichere Identität und die von Ihnen ausgestellten überprüfbaren Credentials wie Ihre Mitgliedschafts- und BPN-Credentials. Dies ermöglicht es den Teilnehmern des Catena-X-Netzwerks, Ihre Identität als Grundlage für den Datenaustausch mit Ihnen zu bestätigen.",
       "activate": "Connected",
       "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
       "error": "Nicht verbunden",
