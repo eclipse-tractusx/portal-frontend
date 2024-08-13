@@ -566,11 +566,11 @@
     },
     "edcconnector": {
       "columns": {
-        "name": "Konnektorname",
+        "name": "Connector Name",
         "id": "Konnektor-ID",
-        "type": "Steckertyp",
+        "type": "Connector Typ",
         "status": "Status",
-        "details": "Einzelheiten",
+        "details": "Details",
         "location": "Location",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
@@ -636,11 +636,14 @@
       },
       "helpText": "Get some help",
       "helpTextNew": "Details Connector Configuration",
-      "headertitle": "Connector Registration",
+      "headertitle": "Connector Registrierung",
+      "subDesc1": "Details zur Connector Registrierung",
+      "desc": "Der Connector kombiniert die Vorteile von IDS-Connector (sichere und standardisierte Kommunikation, Datennutzungskontrolle) mit der Interoperabilität. Um Ihren Connector im Netzwerk zu registrieren und Ihre Connector-Selbstbeschreibung zu erstellen, registrieren Sie bitte Ihren Connector.",
       "subheadertitle": "Connector",
-      "tabletitle": "Owned Connectors",
-      "managedtabletitle": "Managed Connectors",
-      "noConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
+      "tabletitle": "Eigene Connectoren",
+      "managedtabletitle": "Verwaltete Connectoren",
+      "noConnectorsMessage": "Keine registrierten Connectoren vorhanden",
+      "noManagedConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
       "snackbar": {
@@ -660,20 +663,20 @@
         }
       },
       "modal": {
-        "title": "Firmenstecker anschließen",
-        "intro": "Registrierung eines Company Connectoren welcher im eigenen Firmennetz implementiert ist.",
+        "title": "Connector registrieren",
+        "intro": "Registrierung eines Unternehmens Connectors, welcher im eigenen Firmennetz implementiert ist.",
         "company": {
-          "title": "Connector registrieren",
+          "title": "Unternehmens Connector registrieren",
           "intro": "Um mit Ihrem Connector innerhalb des Datenraums kommunizieren zu können, muss der Connector-Endpunkt registriert werden. Für den Connector ist zwingend ein technischer Benutzer erforderlich. Dieser Benutzer wird verwendet, um die Kommunikation zwischen Ihrem Connector und dem Firmen-Wallet (Identitätsmanagement) zu ermöglichen. Wenn der technische Benutzer noch nicht erstellt wurde, erstellen Sie bitte zuerst den technischen Benutzer und fahren Sie anschließend mit der Connector-Registrierung fort. Beachten Sie, dass die technische Benutzererstellung ein asynchroner Prozess ist und bis zu 5 Minuten dauern kann.",
           "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen aktiver Teilnehmer ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
         "managed": {
-          "title": "Register Managed Connector",
-          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
+          "title": "Verwalteten Connector registrieren",
+          "intro": "Registrieren Sie einen verwalteten Connector, der von Ihrem Kunden/einem Drittanbieter bereitgestellt wird. Diese Auswahl ist vor allem für Dienstleister relevant, die Datenanbietern/Konsumenten verwaltete Konnektoren zur Verfügung stellen.",
           "disableDescription": "Diese Option ist nur verfügbar, wenn Ihr Unternehmen App-Anbieter oder Dienstanbieter ist. Unternehmensrollen können vom Unternehmensadministrator /company-role geändert werden"
         },
-        "companyconnectorlabel": "Verbinden Sie den Unternehmenskonnektor",
-        "connectorasaservice": "Connector-as-a-service",
+        "companyconnectorlabel": "Eigener Unternehmens-Connector",
+        "connectorasaservice": "Verwalteter Connector (Connector-as-a-Service)",
         "technicalUser": "Technischer Benutzer",
         "connectorRegistrationDetails": "Details zur Connector-Registrierung",
         "connectAlreadyExistingTechnicalUser": "Verbinden Sie einen bereits vorhandenen technischen Benutzer",
@@ -1864,7 +1867,7 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview", 
+      "headerTitle": "Use Case Participation Overview",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",

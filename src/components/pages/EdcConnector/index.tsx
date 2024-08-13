@@ -65,6 +65,7 @@ import ConnectorDetailsOverlay from './ConnectorDetailsOverlay'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -393,14 +394,14 @@ const EdcConnector = () => {
           setViewConfigurationDetailsOverlayOpen(false)
         }}
       />
+      <MainHeader
+        title={t('content.edcconnector.headertitle')}
+        subTitle={t('content.edcconnector.desc')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <section>
         <div className="edc-connector-header">
-          <Typography variant="h2" className="edc-connector-title">
-            {t('content.edcconnector.headertitle')}
-          </Typography>
-          <Typography variant="body2" className="edc-connector-desc">
-            {t('content.edcconnector.desc')}
-          </Typography>
           <Box
             sx={{
               position: 'relative',
@@ -507,6 +508,7 @@ const EdcConnector = () => {
               fetchHookRefresh={refresh}
               getRowId={(row: { [key: string]: string }) => row.id}
               columns={ownConnectorCols}
+              noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params, t('content.edcconnector.tabletitle'))
               }}
@@ -523,7 +525,7 @@ const EdcConnector = () => {
               fetchHookRefresh={refresh}
               getRowId={(row: { [key: string]: string }) => row.id}
               columns={managedConnectorCols}
-              noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
+              noRowsMsg={t('content.edcconnector.noManagedConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(
                   params,
