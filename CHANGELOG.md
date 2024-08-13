@@ -10,13 +10,20 @@
 ### Feature
 
 - Use scroll to top button from shared components
+- Company data
+  - Integrate /ready api to trigger once the new record is created
+  - Show sharing state error details in the company overlay details page
 - Subscription Overlay
   - implement loading state for provider subscription detail overlay
+- Technical User Management
+  - Enhance technical user table by adding StatusTag to the status column
+  - Enhance technical user table status column by adding new status 'pending deletion'
 
 ### Bugfixes
 
 - Fixed incorrect usage of pre-commit hook
 - Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
+- Remove unnecessary condition in semantic hub page's table
 - App Release Process
   - Fixed role upload does not work using Firefox
 
