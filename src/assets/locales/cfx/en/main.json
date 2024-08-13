@@ -644,7 +644,8 @@
       "subheadertitle": "Connector",
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
-      "noConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
+      "noConnectorsMessage": "No registered connectors available",
+      "noManagedConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {
@@ -664,7 +665,7 @@
         }
       },
       "modal": {
-        "title": "Connect company connector",
+        "title": "Register connector",
         "intro": "Registration of a company connector which is implemented in your own company network.",
         "company": {
           "title": "Register Connector",
@@ -673,11 +674,11 @@
         },
         "managed": {
           "title": "Register Managed Connector",
-          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer. If you want to register your own connector, please use the selection above.",
+          "intro": "Register a managed connector of your customer / 3rd party provided. This selection is mainly service provider relevant, which offers managed connectors to data provider/consumer.",
           "disableDescription": "This option is only available if your company is App Provider or Service Provider. Company roles can get changed by the company admin /company-role"
         },
-        "companyconnectorlabel": "Connect company connector",
-        "connectorasaservice": "Connector-as-a-service",
+        "companyconnectorlabel": "Own company connector",
+        "connectorasaservice": "Managed Connector (Connector-as-a-Service)",
         "technicalUser": "Technical User",
         "connectorRegistrationDetails": "Connector Registration Details",
         "connectAlreadyExistingTechnicalUser": "Connect an already existing technical user",
@@ -1831,7 +1832,7 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview", 
+      "headerTitle": "Use Case Participation Overview",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",

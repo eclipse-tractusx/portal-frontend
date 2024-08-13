@@ -2,95 +2,95 @@
   "item": {
     "WELCOME": {
       "title": "Willkommen bei Catena-X!",
-      "content": "Willkommen im Catena-X Netzwerk. Um Ihnen das Onboarding zu erleichtern, wurde eine Reihe von Benachrichtigungen / Onboarding-Schritten definiert. Bitte lesen Sie die folgenden Nachrichten und starten Sie die Konfiguration Ihres Unternehmensbereichs im Portal, um ein Netzwerkerlebnis nach Ihren Bedürfnissen zu erhalten."
+      "content": "Willkommen im Catena-X Netzwerk. Um Ihnen den Einstieg zu erleichtern, wurden eine Reihe von Benachrichtigungen / Einführungsschritten definiert. Bitte überprüfen Sie Ihre Benachrichtigungen und beginnen Sie mit der Konfiguration Ihres Unternehmensbereichs innerhalb des Portals, um eine auf Ihre Bedürfnisse zugeschnittene Netzwerkerfahrung zu erhalten."
     },
     "WELCOME_USE_CASES": {
-      "title": "Häufige Anwendungsfälle",
-      "content": "Das CX-Netzwerk ist groß, wir möchten sicherstellen, dass Sie sich vorwiegend auf Ihre bevorzugten Anwendungsfälle konzentrieren können. Wählen Sie Ihren bevorzugten Anwendungsfall aus der folgenden Tabelle aus....."
+      "title": "Allgemeine Use Cases durchsuchen",
+      "content": "Wir möchten sicherstellen, dass Sie sich auf Ihren bevorzugten Use Case spezialisieren können, da das Netzwerk sehr groß ist. Bitte wählen Sie Ihren bevorzugten Use Case aus der folgenden Tabelle aus: ....."
     },
     "WELCOME_SERVICE_PROVIDER": {
-      "title": "Service Provider warten auf Sie",
-      "content": "Wenn Sie einen Dienstanbieter benötigen, der Ihnen bei der Einrichtung Ihres Datenraums oder eines EDC hilft, folgen Sie uns einfach zum Dienstanbieter-Marktplatz."
+      "title": "Die Service Provider warten auf Sie",
+      "content": "Wenn Sie einen Service Provider suchen, der Ihnen bei der Einrichtung Ihres Data Centers oder eines EDC hilft, besuchen Sie den Service Provider Marktplatz."
     },
     "WELCOME_CONNECTOR_REGISTRATION": {
-      "title": "Registrieren eines Connectors",
-      "content": "Sie haben noch keinen registrierten Connector – schauen Sie sich die Connector-Angebote an und sichern Sie sich Ihren Connector zur Teilnahme."
+      "title": "Registriere einen Connector",
+      "content": "Sie haben noch keinen registrierten Connector. Schauen Sie sich die Connector Offers an und registrieren Sie Ihren Connector, um teilzunehmen."
     },
     "WELCOME_APP_MARKETPLACE": {
-      "title": "Schauen Sie sich den App Marketplace an",
-      "content": "Erhalten Sie einen ersten Einblick in verfügbare Apps, folgen Sie uns einfach zum Marktplatz für Apps."
+      "title": " Besuchen Sie den App Marktplatz",
+      "content": "Um einen ersten Überblick über die verfügbaren Apps zu erhalten, besuchen Sie den App Marktplatz"
     },
     "APP_SUBSCRIPTION_REQUEST": {
-      "title": "App {{app}}: Abonnementanfrage",
-      "content": "Eine neue App-Abonnementanfrage wurde von <strong>{{company}}</strong> ausgelöst. Nehmen Sie Kontakt mit <strong>{{useremail}}</strong> auf, um die App-Nutzungs- und Einrichtungsrichtlinien zu vereinbaren. Sobald dies erledigt ist, können Sie die App für <strong>{{company}}</strong> aktivieren"
+      "title": "App {{app}}: Abonnement Anfrage",
+      "content": "Eine neue App Abonnement Anfrage wurde von <strong>{{company}}</strong> gestellt. Nehmen Sie Kontakt mit <strong>{{useremail}}</strong> auf, um den Richtlinien für die Nutzung und Einrichtung der App zuzustimmen. Sobald dies geschehen ist, können Sie die App für <strong>{{company}}</strong> aktivieren."
     },
     "APP_SUBSCRIPTION_ACTIVATION": {
-      "title": "Congratulations! - {{offer}} ist nun aktiv!",
-      "content": "Glückwunsch! Ihr Zugriff auf Ihre abonnierte App <strong>{{offer}}</strong> wurde aktiviert. Sie können jetzt mit der Verwendung der App beginnen. Vor dem direkten Zugriff auf die App; gehen Sie bitte in die Benutzerverwaltung und weisen Sie den jeweiligen Benutzern App-Rollen zu. Nur Benutzer mit einer zugewiesenen Rolle können auf die Anwendung zugreifen."
+      "title": "Glückwunsch! - {{offer}} wurde aktiviert",
+      "content": " Herzlichen Glückwunsch! Ihr Zugang zu Ihrer abonnierten App <strong>{{offer}}</strong> wurde aktiviert. Sie können nun mit der Nutzung der App beginnen. Bevor Sie direkt auf die App zugreifen, gehen Sie bitte in das Benutzer Management und weisen Sie den jeweiligen Benutzern App-Rollen zu. Nur Benutzer mit einer zugewiesenen Rolle können auf die Anwendung zugreifen."
     },
     "CONNECTOR_REGISTERED": {
-      "title": "Connector erfolgreich registriert",
-      "content": "Der Konnektor {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
+      "title": "Connector erfolgreich registriert ",
+      "content": "Der Connector {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
     },
     "APP_RELEASE_REQUEST": {
-      "title": "App Release Request - App: {{app}}",
-      "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
+      "title": "App Release Anfrage - App: {{offer}}",
+      "content": "{{company}} hat eine neue App erstellt, die auf dem Cofinity-X Marktplatz veröffentlicht werden soll. Bitte prüfen Sie die App Release Anfrage und genehmigen Sie diese oder lehnen Sie sie ab."
     },
     "APP_RELEASE_APPROVAL": {
-      "title": "App-Anfrage genehmigt",
-      "content": "Ihre Anfrage für App {{app}} wurde erfolgreich genehmigt. Sie können nun damit beginnen, Benutzerberechtigungen über das Benutzerverwaltungspanel zuzuweisen."
+      "title": "App Release Anfrage genehmingt",
+      "content": "Ihre Release Anfrage für die App {{app}} wurde erfolgreich genehmigt. Sie können nun damit beginnen, Benutzerrechte über das Benutzer Management zu vergeben."
     },
     "APP_RELEASE_REJECTION": {
-      "title": "App-Anfrage wurde abgelehnt",
-      "content": "Ihre Anfrage für App {{offer}} wurde abgelehnt. Wir bedauern, Ihnen mitteilen zu müssen, dass Ihre Anfrage zur Veröffentlichung der App abgelehnt wurde. Wir sind sehr stolz auf die Qualität unserer Apps und die Benutzererfahrung, die sie bieten. Obwohl Ihre App viel Potenzial hat, erfüllt sie nicht unsere Standards für die Markteinführung. Mit den entsprechenden Änderungen kann Ihre App das Qualitätsniveau erreichen, das unseren Standards entspricht. Wenn Sie Unterstützung benötigen, zögern Sie bitte nicht, sich an den Support zu wenden. Wir freuen uns darauf, zu sehen, wie Ihre App ihr volles Potenzial ausschöpft und veröffentlicht wird. Mit freundlichen Grüßen, Catena-X."
+      "title": "App Release Anfrage abgelehnt",
+      "content": "Ihre Anfrage für die App {{offer}} wurde abgelehnt. Wir bedauern, Ihnen mitteilen zu müssen, dass Ihre Anfrage auf einen App Release abgelehnt wurde. Wir legen großen Wert  auf die Qualität unserer Apps und das Benutzererlebnis. Obwohl Ihre App viel Potenzial hat, entspricht sie derzeit nicht unseren Standards für die Freigabe auf dem Marktplatz. Mit den entsprechenden Änderungen kann Ihre App das Qualitätsniveau erreichen, das unseren Standards entspricht. Wenn Sie Unterstützung benötigen, zögern Sie bitte nicht, uns zu kontaktieren. Wir freuen uns darauf, zu sehen, wie Ihre App ihr volles Potenzial entfaltet und in Zukunft veröffentlicht wird. Mit freundlichen Grüßen, Cofinity-X."
     },
     "APP_ROLE_ADDED": {
-      "title": "App {{app}} neue Userrollen hinzugefügt",
-      "content": "Für die App <strong>{{app}}</strong> wurden neue Userrollen hinzugefügt welche sie nun assignen können.\n\nNeue Userrollen: {{roles}}"
+      "title": "App {{app}} neue Rollen hinzugefügt",
+      "content": "Es wurden neue Benutzerrollen für die App <strong>{{app}}</strong> hinzugefügt, die Sie nun zuweisen können\n\nNeue Rollen: {{roles}}"
     },
     "TECHNICAL_USER_CREATION": {
-      "title": "{{appName}} subscription created a new technical user",
-      "content": "This is a default text and will get enhanced later."
+      "title": "{{appName}} Abonnement hat einen neuen Technischer User angelegt ",
+      "content": "Ein neuer Technischer User wurde erstellt."
     },
     "SERVICE_RELEASE_REQUEST": {
-      "title": "Service Release Request - Service: {{offer}}",
-      "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
+      "title": "Service Release Anfrage - Service: {{offer}}",
+      "content": "{{company}} hat einen neuen Service erstellt, der auf dem Cofinity-X Marktplatz veröffentlicht werden soll. Bitte prüfen Sie die Service Release Anfrage und genehmigen Sie diese oder lehnen Sie sie ab."
     },
     "SERVICE_RELEASE_APPROVAL": {
-      "title": "Service release request approved",
-      "content": "Your release request for service offer {{serviceName}} was successfully approved and available on the service marketplace."
+      "title": "Service Release Anfrage genehmigt",
+      "content": "Ihre Release Anfrage für Service {{serviceName}} wurde erfolgreich genehmigt und ist nun im Service Marktplatz verfügbar."
     },
     "SERVICE_RELEASE_REJECTION": {
-      "title": "Service release request rejected",
-      "content": "Your request for service offer {{serviceName}} got declined. Please recheck your service management board and solve the findings: {{personalMessage}}."
+      "title": "Service Release Anfrage abgelehnt",
+      "content": "Ihre Release Anfrage für Service {{serviceName}} wurde abgelehnt. Bitte überprüfen Sie Ihr Service Management Pannel und lösen Sie die Probleme: {{personalMessage}}."
     },
     "SERVICE_REQUEST": {
-      "title": "Service Subscription Request - Service: {{app}}",
-      "content": "{{company}} triggered a subscription request for service {{app}}. Validate the request details on the subscription board."
+      "title": "Service Abonnement Anfrage - Service: {{app}}",
+      "content": "{{company}} hat eine Abonnement Anfrage für den Service {{app}}. Überprüfen Sie die Anfragedetails auf dem Subscription Pannel."
     },
     "SERVICE_ACTIVATION": {
-      "title": "Service request activated",
-      "content": "Your subscription for service offer {{serviceName}} is now active"
+      "title": "Service Anfrage aktiviert.",
+      "content": "Ihr Abonnement für den Service {{serviceName}} ist nun aktiv."
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
-      "content": "Hallo {{username}}, \n\nIhre Portal-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Auswirkungen der Rollenänderung finden Sie in der Rollenmatrix und Rollenbeschreibung des Portals (Link folgend) \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}\n\n"
+      "content": "Hallo {{username}}, \n\nIhre Portal Benutzer Rollen wurden von Ihrem Firmenadministrator aktualisiert. Mit der Änderung der Rollenzuweisung haben sich Ihre Zugriffsrechte geändert. Weitere Details zu den Auswirkungen der Rollenänderung finden Sie in der Portal Rollen Übersicht und der Rollenbeschreibung (Link unten)\n\nNeue Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}\n\n"
     },
     "ROLE_UPDATE_APP_OFFER": {
-      "title": "Assigned User Roles Updated - {{app}}",
-      "content": "Hallo {{username}}, \n\nIhre App-Benutzerrollen wurden von Ihrem Unternehmensadministrator aktualisiert. Mit dem Wechsel der Rolle ändern sich Ihre Zugriffsrechte. Weitere Einzelheiten zu den Rollenänderungen finden sie anbei. \n\nHinzugefügte Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
+      "title": " Zugewiesene Benutzer Rollen aktualisiert - {{app}}",
+      "content": "Hallo {{username}}, \n\nIhre App Benutzer Rollen wurden von Ihrem Firmenadministrator aktualisiert. Mit der Änderung der Rollenzuweisung haben sich Ihre Zugriffsrechte geändert. Alle Details zur Rollenänderung finden Sie unten.\n\nNeue Rollen: {{addedRoles}} \n\nEntfernte Rollen: {{removedRoles}}"
     },
     "CREDENTIAL_APPROVAL": {
-      "title": "Verified Credential {{credentialType}} angelegt",
-      "content": "Verified Credential {{credentialType}} wurde ihrem Company Wallet hinzugefügt."
+      "title": "Verifizierter Nachweis {{credentialType}} zugewiesen",
+      "content": "Verifizierter Nachweis {{credentialType}} wurde Ihrer Firmen-Wallet zugewiesen."
     },
     "CREDENTIAL_REJECTED": {
-      "title": "Verified Credential {{credentialType}} abgelehnt",
-      "content": "Verified Credential {{credentialType}} wurde abgelehnt. Sie können jederzeit die Anfrage wiederholen."
+      "title": "Verifizierter Nachweis {{credentialType}} abgelehnt",
+      "content": " Verifizierter Nachweis {{credentialType}} wurd eabgelehnt. Sie können sofort eine neue Anfrage stellen."
     },
     "SUBSCRIPTION_URL_UPDATE": {
-      "title": "App URL {{app}} updated",
-      "content": "Der App Provider hat die hinterlegte App Instance URL für ihre abonnierte App {{app}} geändert.\n\nNeue URL: {{newUrl}}"
+      "title": "App URL {{app}} aktualisiert",
+      "content": " Der App-Anbieter hat die gespeicherte App-Instanz-URL für Ihre abonnierte App {{app}} geändert.\n\nNeue URL: {{newUrl}}"
     }
   },
   "link": {
@@ -158,7 +158,7 @@
     "title": "Benachrichtigungen",
     "subtitle": "Erhalten Sie Updates zu Cofinity-X, veröffentlichten Apps und Services sowie  Änderungen an Ihrem Benutzerkonto, wie neu zugewiesene oder widerrufene  Rollen.",
     "linkText": "Help",
-    "link": "/documentation/?path=user%2F06.+Notifications%2F01.+Notifications%2F01.+Overview.md",
+    "link": "https://intercom-help.eu/cofinity-x/en/articles/202743-notifications",
     "searchPlaceholder": "Durchsuche die Benachrichtigungen"
   }
 }
