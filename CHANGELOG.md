@@ -17,6 +17,8 @@
 
 - Fixed incorrect usage of pre-commit hook
 - Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
+- App Release Process
+  - Fixed role upload does not work using Firefox
 
 ## 2.1.0
 
