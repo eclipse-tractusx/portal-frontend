@@ -2,31 +2,31 @@
   "item": {
     "WELCOME": {
       "title": "Welcome to Catena-X!",
-      "content": "Welcome to the Catena- X Network. To easily get you onboarded, a number of notifications / onboarding steps have been defined. Please check your notifications and start the configuration of your company area inside the portal to have a network experience based on your need."
+      "content": "Welcome to the Catena-X Network. A series of notifications / onboarding steps have been defined to help you get started. Please check your notifications and start configuring your company space within the portal to have a network experience based on your needs."
     },
     "WELCOME_USE_CASES": {
       "title": "Browse common Use Cases",
-      "content": "The network is quite huge, we want to ensure that you can focus on your preferred use cases. Select your preferred use case from the table below....."
+      "content": "We want to make sure you can focus on your preferred use cases, as the network is quite large. Please select the use case you prefer from the table below: ....."
     },
     "WELCOME_SERVICE_PROVIDER": {
       "title": "Service Providers are waiting for you",
-      "content": "If you need a service provider to help you with setting up your dataspace or an EDC, just follow us to the Service Provider Marketplace."
+      "content": "If you are in need of a service provider to help you set up your datacenter or an EDC, visit the Service Provider Marketplace."
     },
     "WELCOME_CONNECTOR_REGISTRATION": {
       "title": "Register a Connector",
-      "content": "You do not have any registered Connector so far – have a look at the connector offers and get your connector to participate."
+      "content": "You don't have a registered Connector yet. Check out the Connector Offers and register your Connector to participate."
     },
     "WELCOME_APP_MARKETPLACE": {
       "title": "Check out the App Marketplace",
-      "content": "Get a first insight into available apps, just follow us to the app marketplace."
+      "content": "To gain an initial understanding of the available apps, visit the app marketplace."
     },
     "APP_SUBSCRIPTION_REQUEST": {
       "title": "App {{app}}: Subscription Request",
-      "content": "A new app subscription request was triggered by <strong>{{company}}</strong>. Get in contact with <strong>{{useremail}}</strong> to agree on the app usage and setup guidelines. As soon as this is done, you can activate the app for <strong>{{company}}</strong>"
+      "content": "A new app subscription request was triggered by <strong>{{company}}</strong>. Get in contact with <strong>{{useremail}}</strong> to agree on the app usage and setup guidelines. Once this is done, you will be able to activate the app for <strong>{{company}}</strong>"
     },
     "APP_SUBSCRIPTION_ACTIVATION": {
       "title": "Congratulations! - {{offer}} is activated",
-      "content": "Congratulations! Your access to your subscribed app <strong>{{offer}}</strong> have got activated. You are now ready to start using the app. Before accessing the app directly; please got to the user management and assign app roles to the respective users. Only users with an assigned role can access the application."
+      "content": "Congratulations! Your access to your subscribed app <strong>{{offer}}</strong> has been activated. You are now ready to start using the app. Before accessing the app directly; please got to the user management and assign app roles to the respective users. Only users with an assigned role can access the application."
     },
     "CONNECTOR_REGISTERED": {
       "title": "Connector registered successfully",
@@ -34,15 +34,15 @@
     },
     "APP_RELEASE_REQUEST": {
       "title": "App Release Request - App: {{offer}}",
-      "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
+      "content": "{{company}} has created a new app to be published to the Cofinity-X marketplace. Please review the app release request and approve or decline the request."
     },
     "APP_RELEASE_APPROVAL": {
       "title": "App request approved",
-      "content": "Your request for app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel."
+      "content": "Your request for the app {{app}} was successfully approved. You can now start to assign user permissions via the user management panel."
     },
     "APP_RELEASE_REJECTION": {
       "title": "App Release request rejected",
-      "content": "Your request for app {{offer}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Catena-X."
+      "content": "Your request for app {{offer}} has been rejected. We regret to inform you that your request for an app release has been denied. We take great pride in the quality of our apps and the user experience that they provide. While your app has a lot of potential, it does not currently meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't hesitate to contact us. We look forward to seeing your app reach its full potential and be released. Sincerely, Cofinity-X."
     },
     "APP_ROLE_ADDED": {
       "title": "App {{app}} new Roles added",
@@ -50,19 +50,19 @@
     },
     "TECHNICAL_USER_CREATION": {
       "title": "{{appName}} subscription created a new technical user",
-      "content": "This is a default text and will get enhanced later."
+      "content": "A new technical user has been created"
     },
     "SERVICE_RELEASE_REQUEST": {
       "title": "Service Release Request - Service: {{offer}}",
-      "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
+      "content": "{{company}} created a new service to get published to the Cofinity-X marketplace. Please review the service release request and approve or decline the service release."
     },
     "SERVICE_RELEASE_APPROVAL": {
       "title": "Service release request approved",
-      "content": "Your release request for service offer {{serviceName}} was successfully approved and available on the service marketplace."
+      "content": "Your release request for service offer {{serviceName}} has been successfully approved and is available on the service marketplace."
     },
     "SERVICE_RELEASE_REJECTION": {
       "title": "Service release request rejected",
-      "content": "Your request for service offer {{serviceName}} got declined. Please recheck your service management board and solve the findings: {{personalMessage}}."
+      "content": "Your request for service offer {{serviceName}} has been rejected. Please review your service management board and solve the findings: {{personalMessage}}."
     },
     "SERVICE_REQUEST": {
       "title": "Service Subscription Request - Service: {{app}}",
@@ -74,11 +74,11 @@
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
-      "content": "Dear {{username}}, \n\nyour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}\n\n"
+      "content": "Dear {{username}}, \n\nYour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}\n\n"
     },
     "ROLE_UPDATE_APP_OFFER": {
       "title": "Assigned User Roles Updated - {{app}}",
-      "content": "Hallo {{username}}, \n\nyour app user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find all details regarding the role change below. \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
+      "content": "Dear {{username}}, \n\nYour app user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find all details regarding the role change below. \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}"
     },
     "CREDENTIAL_APPROVAL": {
       "title": "Verified Credential {{credentialType}} assigned",
@@ -158,7 +158,7 @@
     "title": "Notifications",
     "subtitle": "Receive updates on Cofinity-X, published apps and services, and changes to your user account, such as newly assigned or revoked roles.",
     "linkText": "Help",
-    "link": "/documentation/?path=user%2F06.+Notifications%2F01.+Notifications%2F01.+Overview.md",
+    "link": "https://intercom-help.eu/cofinity-x/en/articles/202743-notifications",
     "searchPlaceholder": "Search for notifications"
   }
 }
