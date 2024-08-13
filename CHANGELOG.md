@@ -18,6 +18,7 @@
 - Fixed incorrect usage of pre-commit hook
 - Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
 - Remove unnecessary condition in semantic hub page's table
+- Remove fixed height for "Admin Service Detail" page content.
 
 ## 2.1.0
 
