@@ -91,9 +91,15 @@ const ConnectorDetailsOverlay = ({
     {
       key: t('content.edcconnector.details.technicalUser'),
       value:
-        overlayData?.technicalUser === null
-          ? t('content.edcconnector.details.noTechnicalUserAvailable')
-          : overlayData?.technicalUser,
+      overlayData?.technicalUser === null ? (
+          t('content.edcconnector.details.noTechnicalUserAvailable')
+        ) : (
+          <a
+            href={`/techuserdetails/${overlayData?.technicalUser?.id}`}
+          >
+            {overlayData?.technicalUser?.name}
+          </a>
+        ),
     },
     {
       key: t('content.edcconnector.details.SdRegistration'),
