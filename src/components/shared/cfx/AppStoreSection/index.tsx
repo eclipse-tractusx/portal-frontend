@@ -50,6 +50,11 @@ export default function AppStoreSection() {
           expandOnHover={false}
           filledBackground={true}
           imageLoader={fetchImageWithToken}
+          onCardClick={
+            (data) => {
+              navigate(`/appdetail/${data.id}`)
+            }
+          }
         />
       )}
       <Stack
