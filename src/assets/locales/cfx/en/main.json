@@ -1852,10 +1852,10 @@
       "expiry": "Expiry: {{expiry}}",
       "request": "Request",
       "editUsecase": {
-        "title": "Trigger the use case participation by signing and uploading the use case frame agreement for {{usecaseName}}",
-        "description": "To be able to participate in the data exchange of the use case {{usecaseName}} please download the use case frame agreement {placeholder until download is available} and upload the signed document in the upload window below.After submission, the platform owner will validate the uploaded document you will be informed as soon as the validation is successfully finished",
+        "title": "Initiate use case participation by confirming the the use case frame agreement for {{usecaseName}}",
+        "description": "Cofinity-X will approve your participation within 48 hours and generate the necessary credentials for your wallet. Once approved, you can begin exchanging data with other Use Case participants.",
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
-        "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
+        "checkboxLabel": "Yes, I confirm that I would like to participate.",
         "error": "Something went wrong!",
         "success": "Usecase document upload has been done successfully."
       }
