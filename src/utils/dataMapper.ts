@@ -24,6 +24,23 @@ import type {
   RegistrationRequestDataGrid,
 } from 'features/admin/registration/types'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
+import { SharingStateStatusType } from 'features/companyData/companyDataApiSlice'
+
+type StatusColorType =
+  | 'success'
+  | 'warning'
+  | 'info'
+  | 'primary'
+  | 'error'
+  | undefined
+
+export const statusColorMap: Record<SharingStateStatusType, StatusColorType> = {
+  [SharingStateStatusType.Success]: 'success',
+  [SharingStateStatusType.Initial]: 'warning',
+  [SharingStateStatusType.Pending]: 'info',
+  [SharingStateStatusType.Ready]: 'primary',
+  [SharingStateStatusType.Error]: 'error',
+}
 
 // Temporary solution for mapping api response to DataGrid component type
 const mapBusinessPartnerToDataGrid = (

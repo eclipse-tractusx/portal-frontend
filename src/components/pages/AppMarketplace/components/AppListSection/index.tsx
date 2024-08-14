@@ -26,7 +26,7 @@ import {
 import { useTheme } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { addItem, removeItem } from 'features/apps/favorites/actions'
 import {
   useFetchActiveAppsQuery,
@@ -45,6 +45,8 @@ export const label = 'AppList'
 export default function AppListSection() {
   const { t } = useTranslation()
   const theme = useTheme()
+  const { id } = useParams()
+  const location = useLocation()
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
@@ -82,6 +84,10 @@ export default function AppListSection() {
     setList(d)
     setFavlist(favs)
   }
+
+  useEffect(() => {
+    refetch()
+  }, [id, location.key])
 
   useEffect(() => {
     if (data && favoriteItems) {
