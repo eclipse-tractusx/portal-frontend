@@ -282,13 +282,13 @@
         "inputPlaceholder": "Search in Cofinity-X"
       },
       "businessApplicationsSection": {
-        "title": "Your Subscribed Applications"
+        "title": "Your Accessible Apps"
       },
       "appStoreSection": {
         "title": "New Applications"
       },
       "emptyCards": {
-        "title": "Apps will be added here as soon as you are assigned access to them"
+        "title": "Your subscribed app will appear in this section once respective roles are assigned to you."
       }
     },
     "appstore": {
