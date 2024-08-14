@@ -31,18 +31,14 @@ import {
   useFetchDocumentMutation,
   useFetchServiceStatusQuery,
 } from 'features/serviceManagement/apiSlice'
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Divider } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
-import { getAssetBase } from 'services/EnvironmentService'
 import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
-import { fetchImageWithToken } from 'services/ImageService'
-import { IMAGE_TYPES } from 'types/MainTypes'
-import { Buff2Hex } from 'utils/buff2hex'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -51,7 +47,7 @@ export default function ServiceDetails() {
     refetchOnMountOrArgChange: true,
   }).data
   const [fetchDocument] = useFetchDocumentMutation()
-  const [image, setActualImage] = useState<string>('')
+  const [leadImg, setLeadImg] = useState<string>('')
 
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
@@ -81,29 +77,23 @@ export default function ServiceDetails() {
     }
   }
 
-  const getImageUrl = () => {
-    if (fetchServiceStatus) {
-      return `${getAssetBase()}/api/administration/documents/${fetchServiceStatus.leadPictureId}`
+  const setLeadingImg = async () => {
+    try {
+      const response = await fetchDocument({
+        appId: serviceId,
+        documentId: fetchServiceStatus?.leadPictureId,
+      }).unwrap()
+      const file = response.data
+      setLeadImg(URL.createObjectURL(file))
+    } catch (error) {
+      console.log(error)
     }
-    return `${getAssetBase()}/images/content/ServiceMarketplace.png`
   }
 
   useEffect(() => {
-    async function fetchImage() {
-      try {
-        const actualImage = await fetchImageWithToken(getImageUrl())
-        const firstByte = Buff2Hex(actualImage.slice(0, 1))
-        const first3Bytes = Buff2Hex(actualImage.slice(0, 3))
-        const imageType =
-          IMAGE_TYPES[firstByte] ?? IMAGE_TYPES[first3Bytes] ?? 'image/*'
-        setActualImage(
-          URL.createObjectURL(new Blob([actualImage], { type: imageType }))
-        )
-      } catch (error) {
-        console.error('An error occurred while fetching the image:', error)
-      }
+    if (fetchServiceStatus) {
+      setLeadingImg()
     }
-    fetchImage()
   }, [fetchServiceStatus])
 
   return (
@@ -122,7 +112,7 @@ export default function ServiceDetails() {
               <CardHorizontal
                 borderRadius={6}
                 imageAlt="Service Card"
-                imagePath={image}
+                imagePath={leadImg}
                 label={''}
                 buttonText=""
                 onBtnClick={() => {
