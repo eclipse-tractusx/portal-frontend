@@ -37,18 +37,14 @@ import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 import {
   type IdentityProvider,
+  IdpAccountStatus,
   useEnableIDPMutation,
   useFetchIDPListQuery,
   useRemoveIDPMutation,
   IDPCategory,
 } from 'features/admin/idpApiSlice'
 
-enum IdpAccountStatus {
-  ACTIVE = 'active',
-  OPEN = 'open',
-  IDP_CREATED = 'Idp created',
-  DISABLED = 'disabled',
-}
+type StatusTagColor = 'pending' | 'confirmed' | 'declined' | undefined
 
 const MenuItemOpenOverlay = ({
   overlay,
@@ -133,15 +129,11 @@ export const IDPList = () => {
     }
   }
 
-  const renderStatusColor = (status: string) => {
-    if (status === IdpAccountStatus.ACTIVE) return 'confirmed'
-    else if (status === IdpAccountStatus.DISABLED) return 'declined'
-    else if (
-      status === IdpAccountStatus.OPEN ||
-      status === IdpAccountStatus.IDP_CREATED
-    )
-      return 'pending'
-    else return 'label'
+  const statusColorMap: Record<IdpAccountStatus, StatusTagColor> = {
+    [IdpAccountStatus.ACTIVE]: 'confirmed',
+    [IdpAccountStatus.DISABLED]: 'declined',
+    [IdpAccountStatus.OPEN]: 'pending',
+    [IdpAccountStatus.IDP_CREATED]: 'pending',
   }
 
   const getStatus = (enabled: boolean, clientId: string | undefined) => {
@@ -153,7 +145,12 @@ export const IDPList = () => {
     } else if (enabled && clientId) {
       status = `${ti('field.status4')}`
     }
-    return <StatusTag color={renderStatusColor(status)} label={status} />
+    return (
+      <StatusTag
+        color={statusColorMap[status as IdpAccountStatus]}
+        label={status}
+      />
+    )
   }
 
   const renderMenu = (idp: IdentityProvider) => {
