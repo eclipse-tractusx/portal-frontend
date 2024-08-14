@@ -283,13 +283,13 @@
         "inputPlaceholder": "Suche in Cofinity-X"
       },
       "businessApplicationsSection": {
-        "title": "Ihre abonnierten Apps"
+        "title": "Ihre zugänglichen Apps"
       },
       "appStoreSection": {
         "title": "Neue Apps"
       },
       "emptyCards": {
-        "title": "Apps werden hier hinzugefügt, sobald Ihnen der Zugang zugewiesen wurde"
+        "title": "Ihre abonnierte App wird in diesem Abschnitt angezeigt, sobald Ihnen die entsprechenden Rollen zugewiesen wurden."
       }
     },
     "appstore": {
