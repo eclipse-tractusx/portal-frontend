@@ -1899,7 +1899,8 @@
     },
     "adminCertificate": {
       "headline": "Credential Request Overview",
-      "search": "Suchen via Name der Firma",
+      "headlineDescription": "The credential admin board enables the administrator to view credential requests and approve/reject them.",
+      "search": "Search by company name...",
       "tabs": {
         "all": "Alle",
         "pending": "Ausstehend",
