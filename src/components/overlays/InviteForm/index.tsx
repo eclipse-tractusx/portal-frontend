@@ -154,7 +154,7 @@ export const InviteForm = ({
           />
         ) : (
           <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
-            {`${t('content.invite.invite')}`}
+            {`${t('content.invite.inviteButton')}`}
           </Button>
         )}
       </DialogActions>

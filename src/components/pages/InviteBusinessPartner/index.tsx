@@ -38,6 +38,7 @@ import {
   useSendInviteMutation,
 } from 'features/admin/inviteApiSlice'
 import { InviteList } from './components/InviteList'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export enum ProcessingType {
   BUSY = 'BUSY',
@@ -158,16 +159,14 @@ export default function InviteBusinessPartner() {
         </DialogContent>
       </Dialog>
 
+      <MainHeader
+        title={t('content.invite.headerTitle')}
+        subTitle={t('content.invite.headlineDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
       <section>
-        <Typography variant="h2" mb={3} align="center">
-          {t('content.invite.subHeaderTitle')}
-        </Typography>
-        <Typography variant="body1" align="center">
-          {t('content.invite.inviteText1')}
-        </Typography>
-        <Typography variant="body1" mb={3} align="center">
-          {t('content.invite.inviteText2')}
-        </Typography>
         <Button
           onClick={() => {
             setInviteOverlayOpen(true)

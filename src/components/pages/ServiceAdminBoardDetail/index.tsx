@@ -116,7 +116,7 @@ export default function ServiceAdminBoardDetail() {
   }
 
   return (
-    <main className="service-admin-board-detail">
+    <div className="service-admin-board-detail">
       <Box className="service-back">
         <Button
           color="secondary"
@@ -291,6 +291,6 @@ export default function ServiceAdminBoardDetail() {
           </Button>
         </Box>
       )}
-    </main>
+    </div>
   )
 }
