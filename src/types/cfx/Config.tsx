@@ -80,6 +80,7 @@ import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/Com
 import { MENUS, PAGES } from './Constants'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import AppUserManagement from 'components/pages/AppUserManagement'
+import AdminCredential from 'components/pages/AdminCredential'
 
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
@@ -471,6 +472,11 @@ export const ALL_PAGES: IPage[] = [
     element: <UsecaseParticipation />,
   },
   {
+    name: PAGES.ADMIN_CREDENTIAL,
+    role: ROLES.DECISION_SSICREDENTIAL,
+    element: <AdminCredential />,
+  },
+  {
     name: PAGES.COMPANY_WALLET,
     role: ROLES.CREDENTIAL_REQUESTS,
     element: <CompanyWallet />,
@@ -553,6 +559,7 @@ export const mainMenuFullTree = [
     children: [
       { name: PAGES.INVITE },
       { name: PAGES.APPLICATION_REQUESTS },
+      { name: PAGES.ADMIN_CREDENTIAL },
       { name: PAGES.ADMINBOARD }, // Admin Board -> App Marketplace
       { name: PAGES.SERVICEADMINBOARD }, // Admin Board -> Service Marketplace
     ],

@@ -41,6 +41,7 @@ export enum PAGES {
   SERVICEADMINBOARD = 'serviceadminboard',
   SERVICESUBSCRIPTION = 'servicesubscription',
   USECASE_PARTICIPATION = 'usecase-participation',
+  ADMIN_CREDENTIAL = 'admin-credential',
   COMPANY_WALLET = 'companyWallet',
   COMPANY_SUBSCRIPTIONS = 'company-subscriptions',
   SEMANTICHUB = 'semantichub',

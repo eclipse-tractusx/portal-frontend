@@ -19,20 +19,23 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
 import './style.scss'
 import AdminCredentialElements from './AdminCredentialElements'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function AdminCredential() {
   const { t } = useTranslation()
 
   return (
     <main className="appCertificate">
+      <MainHeader
+        title={t('content.adminCertificate.headline')}
+        subTitle={t('content.adminCertificate.headlineDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <div className="mainContainer">
         <div className="mainRow">
-          <Typography className="heading" variant="h2">
-            {t('content.adminCertificate.headline')}
-          </Typography>
           <AdminCredentialElements />
         </div>
       </div>
