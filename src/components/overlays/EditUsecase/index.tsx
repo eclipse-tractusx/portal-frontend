@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useDispatch } from 'react-redux'
@@ -27,17 +27,15 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  DropArea,
-  type DropAreaProps,
   LoadingButton,
 } from '@catena-x/portal-shared-components'
 import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'
 import type { store } from 'features/store'
-import { Dropzone } from '../../shared/basic/Dropzone'
 import './style.scss'
 import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
+import { generateDummyPdf } from 'utils/cfxPdfGenerator'
 
 export default function EditUsecase({
   id: verifiedCredentialTypeId,
@@ -53,10 +51,6 @@ export default function EditUsecase({
   const [loading, setLoading] = useState<boolean>(false)
 
   const [addUsecase] = useAddUsecaseMutation()
-
-  const renderDropArea = (props: DropAreaProps) => {
-    return <DropArea {...props} size="small" />
-  }
 
   const handleUpload = async () => {
     setLoading(true)
@@ -78,6 +72,16 @@ export default function EditUsecase({
     }
   }
 
+  useEffect(() => {
+    if (checked) {
+      const createPdf = async () => {
+        const file = await generateDummyPdf()
+        setUploadedFile(file)
+      }
+      createPdf()
+    }
+  }, [checked])
+
   return (
     <>
       <DialogHeader
@@ -96,19 +100,6 @@ export default function EditUsecase({
 
       <DialogContent>
         <div className="edit-usecase">
-          <Dropzone
-            acceptFormat={{ 'application/pdf': [] }}
-            maxFilesToUpload={1}
-            maxFileSize={2097152}
-            onChange={([file]) => {
-              setUploadedFile(file)
-            }}
-            errorText={t(
-              'content.usecaseParticipation.editUsecase.fileSizeError'
-            )}
-            DropStatusHeader={false}
-            DropArea={renderDropArea}
-          />
           <div className="checkbox-confirmation">
             <Checkbox
               label={`${t(
@@ -147,7 +138,7 @@ export default function EditUsecase({
           <Button
             variant="contained"
             onClick={handleUpload}
-            disabled={!checked || uploadedFile === undefined}
+            disabled={!checked}
           >
             {t('global.actions.submit')}
           </Button>
