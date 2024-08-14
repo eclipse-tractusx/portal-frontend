@@ -24,14 +24,12 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  PageHeader,
   Typography,
 } from '@catena-x/portal-shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import type { InviteData } from 'features/admin/registration/types'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InviteForm } from 'components/overlays/InviteForm'
@@ -40,6 +38,7 @@ import {
   useSendInviteMutation,
 } from 'features/admin/inviteApiSlice'
 import { InviteList } from './components/InviteList'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export enum ProcessingType {
   BUSY = 'BUSY',
@@ -160,23 +159,14 @@ export default function InviteBusinessPartner() {
         </DialogContent>
       </Dialog>
 
-      <PageHeader
+      <MainHeader
         title={t('content.invite.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+        subTitle={t('content.invite.headlineDescription')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+
       <section>
-        <Typography variant="h2" mb={3} align="center">
-          {t('content.invite.subHeaderTitle')}
-        </Typography>
-        <Typography variant="body1" align="center">
-          {t('content.invite.inviteText1')}
-        </Typography>
-        <Typography variant="body1" mb={3} align="center">
-          {t('content.invite.inviteText2')}
-        </Typography>
         <Button
           onClick={() => {
             setInviteOverlayOpen(true)

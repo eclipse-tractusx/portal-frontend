@@ -26,11 +26,9 @@ import {
   SearchInput,
   ViewSelector,
   SortOption,
-  PageHeader,
   LoadMoreButton,
 } from '@catena-x/portal-shared-components'
 import './AdminBoard.scss'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
 import type {
@@ -40,6 +38,8 @@ import type {
 import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 
 export interface TabButtonsType {
   buttonText: string
@@ -206,6 +206,7 @@ const setCards = (
 
 type CommonAdminBoardType = {
   headerTitle: string
+  headerDescription?: string
   searchText: string
   filterOptionText: {
     all: string
@@ -229,6 +230,7 @@ type CommonAdminBoardType = {
 
 export default function CommonAdminBoard({
   headerTitle,
+  headerDescription,
   searchText,
   filterOptionText,
   sortOptionText,
@@ -398,11 +400,14 @@ export default function CommonAdminBoard({
 
   return (
     <div className="adminBoard">
-      <PageHeader title={headerTitle} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <MainHeader
+        title={headerTitle}
+        subTitle={headerDescription}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <div className="mainContainer">
-        <div className="searchContainer">
+        <SearchAndSortSection>
           <SearchInput
             placeholder={searchText}
             value={searchExpr}
@@ -412,35 +417,35 @@ export default function CommonAdminBoard({
             }}
             autoComplete="off"
           />
-        </div>
-        <div
-          className="filterSection"
-          onMouseLeave={() => {
-            setState({
-              type: ActionKind.SET_SHOW_MODAL,
-              payload: false,
-            })
-          }}
-        >
-          <ViewSelector activeView={selected} views={tabButtons} />
-          <SortImage
-            onClick={() => {
+          <div
+            className="filterSection"
+            onMouseLeave={() => {
               setState({
                 type: ActionKind.SET_SHOW_MODAL,
-                payload: true,
+                payload: false,
               })
             }}
-            selected={showModal}
-          />
-          <div className="sortSection">
-            <SortOption
-              show={showModal}
-              selectedOption={sortOption}
-              setSortOption={handleSortOption}
-              sortOptions={sortOptions}
+          >
+            <ViewSelector activeView={selected} views={tabButtons} />
+            <SortImage
+              onClick={() => {
+                setState({
+                  type: ActionKind.SET_SHOW_MODAL,
+                  payload: true,
+                })
+              }}
+              selected={showModal}
             />
+            <div className="sortSection">
+              <SortOption
+                show={showModal}
+                selectedOption={sortOption}
+                setSortOption={handleSortOption}
+                sortOptions={sortOptions}
+              />
+            </div>
           </div>
-        </div>
+        </SearchAndSortSection>
       </div>
       <div className="admin-board-main">
         <div style={{ height: '60px' }}></div>

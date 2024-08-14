@@ -32,7 +32,6 @@ import {
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './EdcConnector.scss'
 import { Box } from '@mui/material'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 interface ConfigurationDetailsOverlayProps {
   openDialog: boolean
@@ -165,28 +164,7 @@ const ConfigurationDetailsOverlay = ({
         >
           <StaticTable data={tableData} horizontal={true} />
 
-          <Typography
-            variant="label3"
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: '#0088CC',
-              textDecoration: 'underline',
-              m: '36px auto',
-              fontWeight: 400,
-            }}
-          >
-            <HelpOutlineIcon
-              sx={{
-                width: '22px',
-                height: '22px',
-                mr: '14px',
-              }}
-            />
-            {t('content.edcconnector.configurationDetails.learnMore')}
-          </Typography>
-          <Typography variant="body3">
+          <Typography variant="body3" sx={{ mt: 2 }}>
             {' '}
             {t('content.edcconnector.configurationDetails.section.text1')}
           </Typography>

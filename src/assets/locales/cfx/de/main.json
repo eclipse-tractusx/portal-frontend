@@ -8,7 +8,7 @@
     "marketplace": "Marketplace",
     "appmarketplace": "App Marktplatz",
     "servicemarketplace": "Service Marktplatz",
-    "appdetails": "App Details",
+    "appdetails": "App Detailseite",
     "datamanagement": "Datenmanagement",
     "semantichub": "Semantik Hub",
     "connector": "Konnektor",
@@ -165,7 +165,7 @@
     "admin": {
       "registration-requests": {
         "columns": {
-          "companyinfo": "Bewerbungsinformationen des Unternehmens",
+          "companyinfo": "Anfrageninformationen",
           "contact": "Kontakt",
           "bpn": "BPN",
           "age": "Alter",
@@ -176,8 +176,8 @@
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
-        "headertitle": "Admin Board",
-        "headersubtitle": "Application Requests",
+        "headertitle": "Beitrittsanfragen",
+        "headersubtitle": "Die Beitrittsanfragen-Übersicht enthält alle aktuellen offenen Anfragen sowie eine Übersicht über die bestätigten und abgelehnten Anfragen von Unternehmen an das Catena-X-Netzwerk. Wenn eine Anfrage genehmigt wird, erhält das registrierte Unternehmen Zugang zum CX-Portal, um das technische und funktionale Onboarding zu starten. Bitte vergewissern Sie sich, dass Sie die Anfragendetails überprüfen, bevor Sie eine Anfrage genehmigen.",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
@@ -194,12 +194,12 @@
         "cancel": "Cancel",
         "overlay": {
           "title": "Company Registration Details",
-          "companydatatitle": "Company Details",
+          "companydatatitle": "Unternehmensdetails",
           "companydatadescription": "Below you can find the details of the company registration",
           "taxid": "Steuernummer",
           "address": "Address",
-          "docs": "Document(s)",
-          "roles": "Company Role(s) in Catena-X",
+          "docs": "Dokumente",
+          "roles": "Unternehmensrollen in Catena-X",
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
           "onboardingProvider": "Onboarding Service Anbieter",
@@ -210,8 +210,8 @@
           "leiCode": "LEI Code",
           "vies": "VIES",
           "eori": "EORI",
-          "tab1": "Company Data",
-          "tab2": "Registration Process",
+          "tab1": "Unternehmensdaten",
+          "tab2": "Registrationsprozess",
           "tab1Title": "Company Data",
           "tab2Title": "Confirmation {{status}}",
           "tab2SubTitle": "Registration Status: {{status}}",
@@ -620,7 +620,13 @@
         "managed": "Managed"
       },
       "configurationDetails": {
-        "title": "So konfigurieren Sie Ihren Connector",
+        "title": "Konfigurieren Sie Ihren Connector",
+
+        "description1": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.",
+        "description2": "Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.",
+        "description3": "Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.",
+        "description4": "Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
+
         "description": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.<br/> Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.<br/>Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.<br/> Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
         "learnMore": "Lern mehr",
         "clientId": "Client-ID Ihres technischen Benutzers",
@@ -793,17 +799,19 @@
       }
     },
     "invite": {
-      "headerTitle": "Business Partner Invite",
-      "headerIntro": "Add below the business partner registration contact and the company name.",
+      "headerTitle": "Einladung Business Partner",
+      "headlineDescription": "Einladungsverfahren für den Registrierungsantrag. Laden Sie einen neuen Partner zu Cofinity-X ein.",
+      "headerIntro": "Fügen Sie unten den Kontakt für die Business Partner-Registrierung und den Firmennamen ein.",
       "subHeaderTitle": "Invite a new partner",
       "inviteText1": "Registration application invite process.",
       "inviteText2": "Invite a new partner to Catena-X.",
-      "invite": "Einladung",
+      "invite": "Neuen Business Partner einladen",
+      "inviteButton": "Einladen",
       "success": "Business Partner Einladung erfolgreich gesendet.",
-      "successSubText": "Das Fenster wird automatisch geschlossen. Falls dies nicht der Fall ist, verwenden Sie bitte die Schaltfläche 'Schließen' oben rechts.",
+      "successSubText": "Dieses Fenster wird automatisch geschlossen. Sollte dies nicht der Fall sein, klicken Sie den „Schließen“ Button oben rechts.",
       "failure": "Error - Business Partner Einladung schlug fehl.",
       "failureSubText": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
-      "tabletitle": "Invites",
+      "tabletitle": "Einladungen",
       "columns": {
         "companyName": "Unternehmensname",
         "firstAndLastName": "Vor- und Nachname",
@@ -1358,7 +1366,7 @@
         "language": "Sprache:  ",
         "useCase": "Use Case :  ",
         "price": "Price :  ",
-        "conformityDocument": "Conformity Document",
+        "conformityDocument": "Konformitätserklärung",
         "documents": "Dokumente",
         "providerInformation": "Anbieter Information",
         "consent": "Einverständniserklärung",
@@ -1372,8 +1380,8 @@
       },
       "submit": {
         "headerTitle": "App erfolgreich eingereicht!",
-        "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie",
-        "headerDescriptionComplete": "further information on app release",
+        "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie weitere Informationen zur App Freigabe.",
+        "headerDescriptionComplete": "",
         "yourCatenaXTeam": "Dein Catena-X team",
         "overview": "Zu Ihren Apps"
       },
@@ -1578,8 +1586,9 @@
       }
     },
     "adminBoard": {
-      "headerTitle": "App request management",
-      "search": "search company name/app title",
+      "headerTitle": "App Request Management",
+      "headerDescription": "All the requested applications will be managed from this page.",
+      "search": "Search by app title...",
       "noDataMessage": "No data available",
       "tabs": {
         "open": "Open",
@@ -1619,15 +1628,15 @@
       },
       "securityInfo": {
         "heading": "Data Security Information",
-        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
+        "message": ""
       },
       "ConformityDocument": {
         "heading": "Conformity Document",
-        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "message": ""
       },
       "Documents": {
         "heading": "Documents",
-        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them."
       },
       "roles": {
         "heading": "App Rollen",
