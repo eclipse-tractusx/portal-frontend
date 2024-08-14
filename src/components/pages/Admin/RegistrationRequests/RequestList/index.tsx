@@ -119,7 +119,7 @@ export const RequestList = ({
   }
 
   return (
-    <section id="registration-section-id">
+    <div id="registration-section-id">
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
         sx={{
           '.MuiDataGrid-cell': {
@@ -149,12 +149,9 @@ export const RequestList = ({
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.applicationId}
         columns={columns}
-        descriptionText={`${t(
-          'content.admin.registration-requests.introText1'
-        )}${t('content.admin.registration-requests.introText2')}`}
         defaultFilter={group}
         filterViews={filterView}
       />
-    </section>
+    </div>
   )
 }

@@ -34,7 +34,6 @@ import {
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './style.scss'
 import { Box } from '@mui/material'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 interface ConfigurationDetailsOverlayProps {
   openDialog: boolean
@@ -203,27 +202,6 @@ const ConfigurationDetailsOverlay = ({
                   handleButton={refetch}
                 />
               )}
-              <Typography
-                variant="label3"
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: '#0088CC',
-                  textDecoration: 'underline',
-                  m: '36px auto',
-                  fontWeight: 400,
-                }}
-              >
-                <HelpOutlineIcon
-                  sx={{
-                    width: '22px',
-                    height: '22px',
-                    mr: '14px',
-                  }}
-                />
-                {t('content.edcconnector.configurationDetails.learnMore')}
-              </Typography>
               <Typography variant="body3">
                 {' '}
                 {t('content.edcconnector.configurationDetails.section.text1')}

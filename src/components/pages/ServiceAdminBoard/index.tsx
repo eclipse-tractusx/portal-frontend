@@ -28,6 +28,7 @@ export default function ServiceAdminBoard() {
   return (
     <CommonAdminBoard
       headerTitle={t('adminBoard.headerTitle')}
+      headerDescription={t('adminBoard.headerDescription')}
       searchText={t('adminBoard.search')}
       filterOptionText={{
         open: t('adminBoard.tabs.open'),

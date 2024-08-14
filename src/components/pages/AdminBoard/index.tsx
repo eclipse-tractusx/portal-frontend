@@ -27,6 +27,7 @@ export default function AdminBoard() {
   return (
     <CommonAdminBoard
       headerTitle={t('content.adminBoard.headerTitle')}
+      headerDescription={t('content.adminBoard.headerDescription')}
       searchText={t('content.adminBoard.search')}
       filterOptionText={{
         open: t('content.adminBoard.tabs.open'),

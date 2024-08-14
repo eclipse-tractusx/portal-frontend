@@ -175,8 +175,8 @@
         },
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
-        "headertitle": "Admin Board",
-        "headersubtitle": "Application Requests",
+        "headertitle": "Application Requests",
+        "headersubtitle": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network. If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
         "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "tabletitle": "Registration requests",
@@ -619,7 +619,11 @@
         "managed": "Managed"
       },
       "configurationDetails": {
-        "title": "How to Configure Your Connector",
+        "title": "Configure Your Connector",
+        "description1": "This description provides step-by-step instructions on how to configure your connector.",
+        "description2": "Please follow the instructions below to set the necessary configuration values.",
+        "description3": "Ensure that you enter the correct values for each configuration setting.",
+        "description4": "Once you have set these values, your connector will be properly configured and ready to use.",
         "description": "This description provides step-by-step instructions on how to configure your connector.<br/>Please follow the instructions below to set the necessary configuration values.<br/>Ensure that you enter the correct values for each configuration setting.<br/>Once you have set these values, your connector will be properly configured and ready to use.",
         "learnMore": "learn more",
         "clientId": "Client ID of your technical user",
@@ -795,12 +799,14 @@
       }
     },
     "invite": {
-      "headerTitle": "Business Partner Invite",
+      "headerTitle": "Invite Business Partner",
+      "headlineDescription": "Registration application invite process. Invite a new partner to Cofinity-X.",
       "headerIntro": "Add below the business partner registration contact and the company name.",
       "subHeaderTitle": "Invite a new partner",
       "inviteText1": "Registration application invite process.",
       "inviteText2": "Invite a new partner to Catena-X.",
-      "invite": "Invite",
+      "invite": "Invite New Business Partner",
+      "inviteButton": "Invite",
       "success": "Business Partner Successfully Invited",
       "successSubText": "The window will close automatically. In case it doesn't, please use the “close” button on the top right.",
       "failure": "Error - Business Partner was not invited",
@@ -1190,7 +1196,7 @@
       "startCreatingButton": "Register Your App",
       "registerButton": "Register Your App",
       "overviewButton": "Your Apps",
-      "stepHeading": "The process will guide your through the following steps:",
+      "stepHeading": "App Release Process",
       "dividerText": "Start registering your app",
       "marketplaceHeading": "App Marketplace upcomming submission requirements",
       "neuButton": "New",
@@ -1543,8 +1549,9 @@
       }
     },
     "adminBoard": {
-      "headerTitle": "App request management",
-      "search": "search company name/app title",
+      "headerTitle": "App Request Management",
+      "headerDescription": "All the requested applications will be managed from this page.",
+      "search": "Search by company name / app title",
       "noDataMessage": "No data available",
       "errorMsg": "Error! Something went wrong",
       "successMsg": "Successfully completed",
@@ -1584,11 +1591,11 @@
       },
       "securityInfo": {
         "heading": "Data Security Information",
-        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ..."
+        "message": ""
       },
       "ConformityDocument": {
         "heading": "Conformity Document",
-        "message": "[copy] Lorem ipsum sapientem ne neque dolor erat,eros solet invidunt duo Quisque aliquid leo. Pretium patrioque sociis eu nihil Cum enim ad, ipsum alii vidisse justo id. Option porttitor diam voluptua. Cu Eam augue dolor dolores quis, "
+        "message": ""
       },
       "Documents": {
         "heading": "Documents",

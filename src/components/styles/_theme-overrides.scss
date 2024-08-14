@@ -1029,11 +1029,10 @@ header .search-icon {
       }
     }
     .MuiBox-root:last-child {
-      h5 {
-        margin-top: 6px !important;
-      }
       p {
         padding-bottom: 20px !important;
+        border-color: $color-primary !important;
+        margin-top: 8px !important;
       }
       div {
         height: 0px !important;

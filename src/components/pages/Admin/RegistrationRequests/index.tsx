@@ -40,6 +40,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import type { AppDispatch } from 'features/store'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 enum TableField {
   DETAIL = 'detail',
@@ -229,24 +230,12 @@ export default function RegistrationRequests() {
         handleConfirmClick={(bpn: string) => void onUpdateBpn(bpn)}
       />
 
-      <div
-        style={{
-          marginTop: '60px',
-        }}
-      >
-        <Typography className="newTitle" variant="h2">
-          {t('content.admin.registration-requests.headertitle')}
-        </Typography>
-        <Typography
-          className="subTitle"
-          variant="body1"
-          sx={{
-            fontSize: '36px',
-          }}
-        >
-          {t('content.admin.registration-requests.headersubtitle')}
-        </Typography>
-      </div>
+      <MainHeader
+        title={t('content.admin.registration-requests.headertitle')}
+        subTitle={t('content.admin.registration-requests.headersubtitle')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
 
       {/* Table component */}
       <div className={'table-container'}>
