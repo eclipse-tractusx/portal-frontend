@@ -144,16 +144,23 @@ const TESTDATA = {
       'BMW.Mini',
       'BMW&Mini',
       'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      '1234567890'.repeat(16),
+      'Bayerische Motoren Werke Aktiengesellschaft',
+      '7-ELEVEN INTERNATIONAL LLC',
+      '5N Plus Lübeck GmbH',
+      'Recht 24/7 Schröder Rechtsanwaltsgesellschaft mbH',
+      '+SEN Inc.', // leading special character
+      'La Poste S.A.',
+      'JPMORGAN ASIA-PACIFIC ADVANTAGE HYBRID FUND (QDII)',
+      'Currency £$€¥¢',
     ],
     invalid: [
       ' BMW',
       'BMW  TG',
       'BMW  ',
-      '123',
-      '!#@',
-      'BMW/Mini]]',
-      'BMW]]',
-      'aaaaaaaaaaaa  aaaaaaaaaaaaaaaaaa',
+      'Bayerische Motoren Werke Aktiengesellschaft\n', // newline
+      'W'.repeat(161), // 161 characters
+      '', // empty
     ],
   },
   CNAMES: {
