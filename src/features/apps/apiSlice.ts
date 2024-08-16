@@ -107,16 +107,11 @@ export const apiSlice = createApi({
     }),
     fetchProvidedApps: builder.query<ProvidedApps, PaginFetchArgs>({
       query: (fetchArgs) => {
-        const url = `/api/apps/provided?page=${fetchArgs.page}&size=15`
-        if (fetchArgs?.args?.statusFilter && !fetchArgs?.args?.expr) {
-          return `${url}&statusId=${fetchArgs?.args?.statusFilter}`
-        } else if (fetchArgs?.args?.expr && !fetchArgs?.args?.statusFilter) {
-          return `${url}&statusId=${StatusIdEnum.All}&offerName=${fetchArgs?.args?.expr}`
-        } else if (fetchArgs?.args?.expr && fetchArgs?.args?.statusFilter) {
-          return `${url}&statusId=${fetchArgs?.args?.statusFilter}&offerName=${fetchArgs?.args?.expr}`
-        } else {
-          return `${url}&statusId=${StatusIdEnum.All}`
-        }
+        const { page, args } = fetchArgs
+        const baseUrl = `/api/apps/provided?page=${page}&size=15`
+        const statusId = args?.statusFilter || StatusIdEnum.All
+        const offerName = args?.expr ? `&offerName=${args.expr}` : ''
+        return `${baseUrl}&statusId=${statusId}${offerName}`
       },
     }),
     fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
