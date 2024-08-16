@@ -59,7 +59,7 @@ export default function CompanyWallet(): JSX.Element {
 
   const groupedItems = groupBy(data, (item: WalletContent) =>
     item.credentialType === CredentialType.TRACEABILITY_FRAMEWORK
-      ? item.credentialType
+      ? t('content.companyWallet.TRACEABILITY_FRAMEWORK')
       : t('content.companyWallet.others')
   )
 

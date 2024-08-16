@@ -94,13 +94,13 @@
     "note": "Hinweis:",
     "OnlyOneFileAllowed": "Nur eine Datei für den Upload möglich",
     "max1Images": "Nur eine Datei für den Upload möglich",
-    "minimum": "Minimum",
-    "charactersRequired": " characters required",
+    "minimum": "Mindestens",
+    "charactersRequired": " Zeichen erforderlich",
     "maximum": "Maximum",
     "charactersAllowed": " characters allowed",
     "validCharactersIncludes": "Valid characters includes: ",
-    "isMandatory": " is mandatory",
-    "fileUploadIsMandatory": "File upload is mandatory",
+    "isMandatory": " ist obligatorisch",
+    "fileUploadIsMandatory": "File upload ist obligatorisch",
     "error": {
       "title": "Die Übermittlung war nicht erfolgreich.",
       "message": "Bitte versuchen Sie es erneut oder kommen Sie später wieder."

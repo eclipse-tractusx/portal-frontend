@@ -115,13 +115,11 @@ const ConnectorDetailsOverlay = ({
     {
       key: t('content.edcconnector.details.technicalUser'),
       value:
-        fetchConnectorDetails?.technicalUser === null ? (
+        overlayData?.technicalUser === null ? (
           t('content.edcconnector.details.noTechnicalUserAvailable')
         ) : (
-          <a
-            href={`/techuserdetails/${fetchConnectorDetails?.technicalUser?.id}`}
-          >
-            {fetchConnectorDetails?.technicalUser?.name}
+          <a href={`/techuserdetails/${overlayData?.technicalUser?.id}`}>
+            {overlayData?.technicalUser?.name}
           </a>
         ),
     },
