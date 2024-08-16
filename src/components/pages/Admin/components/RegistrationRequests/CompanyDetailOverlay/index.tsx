@@ -396,9 +396,9 @@ const CompanyDetailOverlay = ({
                 </Typography>
 
                 <div className="document-container">
-                  {documentData?.map((detail) => {
-                    return <div key={detail.key}>{detail.value}</div>
-                  })}
+                  {documentData?.map((detail) => (
+                    <div key={detail.key}>{detail.value}</div>
+                  ))}
                 </div>
               </Box>
               <Box
