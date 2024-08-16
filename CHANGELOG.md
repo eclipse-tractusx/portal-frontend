@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Feature
+
+- Customer Detail Data Overlay
+  - implement new UI design for customer detail data overlay
+
 ## 2.2.0-RC1
 
 ### Change
@@ -13,10 +18,6 @@
   - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
 
 ### Feature
-
-- Customer Detail Data Overlay
-
-  - implement new UI design for customer detail data overlay
 
 - **Subscription Overlay**
   - implemented loading state for provider subscription detail overlay [#959](https://github.com/eclipse-tractusx/portal-frontend/pull/959)
