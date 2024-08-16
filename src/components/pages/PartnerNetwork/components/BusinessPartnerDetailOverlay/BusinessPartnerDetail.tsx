@@ -18,21 +18,37 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useFetchBusinessPartnersQuery } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
+import { useFetchBusinessPartnerAddressMutation } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import BusinessPartnerDetailContent from './BusinessPartnerDetailContent'
+import { useEffect, useState } from 'react'
+import { type BusinessPartner } from 'features/partnerNetwork/types'
 
 const BusinessPartnerDetail = ({ id }: { id: string }) => {
-  const { data } = useFetchBusinessPartnersQuery({
-    page: 0,
-    args: {
-      expr: id,
-    },
-  })
+  const [bpMutation] = useFetchBusinessPartnerAddressMutation()
+  const [items, setItems] = useState<BusinessPartner[]>()
+  const callApi = async () => {
+    await bpMutation({
+      bpnLs: [id],
+      legalName: '',
+    })
+      .unwrap()
+      .then((data) => {
+        console.log(data)
+        setItems(data.content)
+      })
+      .catch(() => {
+        setItems([])
+      })
+  }
+
+  useEffect(() => {
+    callApi()
+  }, [])
 
   return (
     <>
-      {data?.content?.length && (
-        <BusinessPartnerDetailContent selectedRowBPN={data.content[0]} />
+      {items?.length && (
+        <BusinessPartnerDetailContent selectedRowBPN={items[0]} />
       )}
     </>
   )

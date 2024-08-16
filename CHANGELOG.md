@@ -7,7 +7,7 @@
 - Page headers
   - harmonization and standardization of page headers, added consistent headers and removed unused code
 - Partner Network
-  - Add /members to the fetchBusinessPartnerAddress api.
+  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly
 
 ### Feature
 
