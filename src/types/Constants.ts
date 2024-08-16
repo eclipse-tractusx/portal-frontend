@@ -185,7 +185,7 @@ export enum ROLES {
   APPMANAGEMENT_VIEW = 'add_apps',
   SERVICEMANAGEMENT_VIEW = 'add_service_offering',
   APP_MANAGEMENT = 'app_management',
-  SERVICE_SUBSCRIPTION_MANAGEMENT = 'activate_subscription',
+  SERVICE_SUBSCRIPTION_MANAGEMENT = 'service_management',
   APPOVERVIEW_VIEW = 'add_apps',
   SERVICEOVERVIEW_VIEW = 'add_service_offering',
   CONNECTOR_SETUP = 'setup_connector',
