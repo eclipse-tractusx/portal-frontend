@@ -331,7 +331,7 @@
       "title": "Semantic Data Models",
       "introText_0": "Semantic models are used to structure data. As a concept, they make it possible to give fundamental meaning to data and their relationships. In the context of data modeling and data organization they realize the development of applications as well as the maintenance of data consistency.",
       "introText_1": "In Catena-X, semantic data models are provided in a suitable publication system, the so-called Semantic Hub. For data or service providers, the Semantic Hub presents a foundation for the use and reuse of semantic models. For this reason, the publication of a semantic data model takes place under the specification of a version. This supports transparency as well as control over all semantic models and their release status.",
-      "addModel": "Neues Model anlegen",
+      "addModel": "Create new model",
       "alerts": {
         "alertSuccessTitle": "Success!",
         "alertErrorTitle": "Error!",
@@ -662,7 +662,7 @@
         "intro": "Registration of a company connector which is implemented in your own company network.",
         "company": {
           "title": "Register Connector",
-          "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is a asynchrony process and might take up to 5 minutes.",
+          "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is an asynchronous process and might take up to 5 minutes.",
           "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /companyRole"
         },
         "managed": {
@@ -926,6 +926,13 @@
           "description": "Description",
           "spoc": "SPOC",
           "permission": "Permission"
+        },
+        "status": {
+          "ACTIVE": "ACTIVE",
+          "INACTIVE": "INACTIVE",
+          "PENDING": "PENDING",
+          "DELETED": "DELETED",
+          "PENDING_DELETION": "PENDING_DELETION"
         },
         "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
@@ -2056,16 +2063,6 @@
             "name": "Country Code",
             "hint": "Country Code",
             "error": "Please enter valid Country Code"
-          },
-          "countryIdentifier": {
-            "name": "Country Identifier",
-            "hint": "Country Identifier",
-            "error": "Please enter valid Country Identifier"
-          },
-          "identifierNumber": {
-            "name": "Identifier Number",
-            "hint": "Identifier Number",
-            "error": "Please enter valid Identifier Number"
           }
         }
       },
@@ -2074,15 +2071,10 @@
         "editTitle": "Edit Address",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
-          "companySite": {
+          "site": {
             "name": "Select company / site",
             "hint": "Select company / site",
             "error": "Please enter valid company / site"
-          },
-          "addressTitle": {
-            "name": "Address Title",
-            "hint": "Address Title",
-            "error": "Please enter valid Address Title"
           },
           "street": {
             "name": "Street with House Number",
@@ -2098,6 +2090,21 @@
             "name": "City",
             "hint": "City",
             "error": "Please enter valid City"
+          },
+          "countryCode": {
+            "name": "Country Code",
+            "hint": "Country Code",
+            "error": "Please enter valid Country Code"
+          },
+          "countryIdentifier": {
+            "name": "Country Identifier",
+            "hint": "Country Identifier",
+            "error": "Please enter valid Country Identifier"
+          },
+          "identifierNumber": {
+            "name": "Identifier Number",
+            "hint": "Identifier Number",
+            "error": "Please enter valid Identifier Number"
           }
         }
       },
@@ -2254,7 +2261,9 @@
       "additionalDescription": "Please contact your admin.",
       "noDocumentsAvailable": "No documents available",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available",
+      "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+      "loadFailed": "Load Failed"
     },
     "table": {
       "search": "Enter email to search",

@@ -123,7 +123,9 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           maxRows={18}
           disabled={uploading}
         />
-        {error && <Typography color="error">{error}</Typography>}
+        {typeof error === 'string' && (
+          <Typography color="error">{error}</Typography>
+        )}
         {uploading && (
           <Box sx={{ textAlign: 'center', mt: 2 }}>
             <CircleProgress

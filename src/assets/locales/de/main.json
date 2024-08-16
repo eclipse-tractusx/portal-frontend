@@ -923,6 +923,13 @@
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
+        "status": {
+          "ACTIVE": "AKTIV",
+          "INACTIVE": "INAKTIV",
+          "PENDING": "AUSSTEHEND",
+          "DELETED": "GELÖSCHT",
+          "PENDING_DELETION": "PENDING_DELETION"
+        },
         "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
@@ -2089,16 +2096,6 @@
             "name": "Country Code",
             "hint": "Country Code",
             "error": "Please enter valid Country Code"
-          },
-          "countryIdentifier": {
-            "name": "Country Identifier",
-            "hint": "Country Identifier",
-            "error": "Please enter valid Country Identifier"
-          },
-          "identifierNumber": {
-            "name": "Identifier Number",
-            "hint": "Identifier Number",
-            "error": "Please enter valid Identifier Number"
           }
         }
       },
@@ -2107,15 +2104,10 @@
         "editTitle": "Edit Address",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
-          "companySite": {
+          "site": {
             "name": "Select company / site",
             "hint": "Select company / site",
             "error": "Please enter valid company / site"
-          },
-          "addressTitle": {
-            "name": "Address Title",
-            "hint": "Address Title",
-            "error": "Please enter valid Address Title"
           },
           "street": {
             "name": "Street with House Number",
@@ -2131,6 +2123,16 @@
             "name": "City",
             "hint": "City",
             "error": "Please enter valid City"
+          },
+          "countryIdentifier": {
+            "name": "Country Identifier",
+            "hint": "Country Identifier",
+            "error": "Please enter valid Country Identifier"
+          },
+          "identifierNumber": {
+            "name": "Identifier Number",
+            "hint": "Identifier Number",
+            "error": "Please enter valid Identifier Number"
           }
         }
       },
@@ -2286,7 +2288,9 @@
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
       "noDocumentsAvailable": "No documents available",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available",
+      "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+      "loadFailed": "Laden fehlgeschlagen"
     },
     "table": {
       "search": "Enter email to search",
