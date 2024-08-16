@@ -2,31 +2,42 @@
 
 ## Unreleased
 
+## 2.2.0-RC1
+
 ### Change
 
-- Page headers
-  - harmonization and standardization of page headers, added consistent headers and removed unused code
+- **Page headers**
+  - harmonized and standardized page headers: added consistent headers and removed unused code [#864](https://github.com/eclipse-tractusx/portal-frontend/pull/864)
+- **Company data Management**
+  - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
+  - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
 
 ### Feature
 
-- Use scroll to top button from shared components
-- Company data
-  - Integrate /ready api to trigger once the new record is created
-  - Show sharing state error details in the company overlay details page
-- Subscription Overlay
-  - implement loading state for provider subscription detail overlay
-- Technical User Management
-  - Enhance technical user table by adding StatusTag to the status column
-  - Enhance technical user table status column by adding new status 'pending deletion'
 - Customer Detail Data Overlay
+
   - implement new UI design for customer detail data overlay
+
+- **Subscription Overlay**
+  - implemented loading state for provider subscription detail overlay [#959](https://github.com/eclipse-tractusx/portal-frontend/pull/959)
+- **Technical User Management**
+  - enhanced technical user table by adding StatusTag to the status column [#967](https://github.com/eclipse-tractusx/portal-frontend/pull/967)
+  - enhanced technical user table status column by adding new status 'pending deletion' [#967](https://github.com/eclipse-tractusx/portal-frontend/pull/967)
+
+### Technical Support
+
+- fixed incorrect usage of pre-commit hook [#874](https://github.com/eclipse-tractusx/portal-frontend/pull/874)
+- changed licensing and legal docs [#881](https://github.com/eclipse-tractusx/portal-frontend/pull/881)
+- dev-flow: maintain latest changes in main branch [#882](https://github.com/eclipse-tractusx/portal-frontend/pull/882)
+- enhanced readme file and added coding guidelines [#916](https://github.com/eclipse-tractusx/portal-frontend/pull/916)
 
 ### Bugfixes
 
-- Fixed incorrect usage of pre-commit hook
-- Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
-- Remove unnecessary condition in semantic hub page's table
-- Remove fixed height for "Admin Service Detail" page content.
+- fixed usage of scroll to top button from shared components [#868](https://github.com/eclipse-tractusx/portal-frontend/pull/868)
+- fixed naming consistency of constants: used camel case for all page paths and update corresponding usage in other files [#895](https://github.com/eclipse-tractusx/portal-frontend/pull/895)
+- removed unnecessary condition in semantic hub page's table [#979](https://github.com/eclipse-tractusx/portal-frontend/pull/979)
+- fixed unchanged text of button when user requests subscription [#985](https://github.com/eclipse-tractusx/portal-frontend/pull/985)
+- fixed height for "Admin Service Detail" page content [#1001](https://github.com/eclipse-tractusx/portal-frontend/pull/1001)
 
 ## 2.1.0
 
