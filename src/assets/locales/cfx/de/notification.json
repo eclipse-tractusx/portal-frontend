@@ -129,17 +129,17 @@
     "unread": "Ungelesen",
     "ALL": {
       "title": "Alle Benachrichtigungen",
-      "description": "Messaged for required action from your side",
+      "description": "Mes Übersicht aller Benachrichtigungen",
       "countTitle": "new"
     },
     "INFO": {
       "title": "Info-Benachrichtigungen",
-      "description": "Aktualisierung der Dataspace-Rollen und technischer Benutzer",
+      "description": "Aktualisierung der Dataspace-Rollen und technischer User",
       "countTitle": "new"
     },
     "OFFER": {
       "title": "App-Benachrichtigungen",
-      "description": "App publish notifications, request, activations, etc.",
+      "description": "Veröffentlichung, Anforderung oder Aktivierung einer App",
       "countTitle": "new"
     },
     "ACTION": {
@@ -157,7 +157,7 @@
   "header": {
     "title": "Benachrichtigungen",
     "subtitle": "Erhalten Sie Updates zu Cofinity-X, veröffentlichten Apps und Services sowie  Änderungen an Ihrem Benutzerkonto, wie neu zugewiesene oder widerrufene  Rollen.",
-    "linkText": "Help",
+    "linkText": "Hilfe",
     "link": "https://intercom-help.eu/cofinity-x/en/articles/202743-notifications",
     "searchPlaceholder": "Durchsuche die Benachrichtigungen"
   }

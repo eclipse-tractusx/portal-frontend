@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography, Button } from '@catena-x/portal-shared-components'
+import { Button } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import EastIcon from '@mui/icons-material/East'
 import { useNavigate } from 'react-router'
@@ -32,29 +32,10 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
       title: t('content.companyWallet.subnavigation.button1'),
       link: '/useCaseParticipation',
     },
-    {
-      title: t('content.companyWallet.subnavigation.button2'),
-      link: '/certificateCredential',
-    },
-    {
-      title: t('content.companyWallet.subnavigation.button3'),
-      link: '',
-    },
   ]
 
   return (
     <div className="subnavigation">
-      <div className="title">
-        <Typography
-          variant="h6"
-          sx={{
-            fontSize: '18px',
-            textTransform: 'lowercase',
-          }}
-        >
-          {t('content.companyWallet.subnavigation.title')}
-        </Typography>
-      </div>
       {links.map((nav) => (
         <Button
           key={nav.title}
