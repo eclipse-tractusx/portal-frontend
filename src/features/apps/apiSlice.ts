@@ -27,20 +27,21 @@ import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { PAGE_SIZE } from 'types/Constants'
-import type {
-  AppDetails,
-  AppMarketplaceApp,
-  SubscriptionStatusItem,
-  SubscriptionStatusDuplicateItem,
-  ActiveSubscriptionItem,
-  ProvidedApps,
-  DocumentRequestData,
-  SubscriptionAppRequest,
-  AgreementRequest,
-  ActiveSubscription,
-  ActiveSubscriptionDetails,
-  FetchSubscriptionAppQueryType,
-  SubscribedActiveApps,
+import {
+  type AppDetails,
+  type AppMarketplaceApp,
+  type SubscriptionStatusItem,
+  type SubscriptionStatusDuplicateItem,
+  type ActiveSubscriptionItem,
+  type ProvidedApps,
+  type DocumentRequestData,
+  type SubscriptionAppRequest,
+  type AgreementRequest,
+  type ActiveSubscription,
+  type ActiveSubscriptionDetails,
+  type FetchSubscriptionAppQueryType,
+  type SubscribedActiveApps,
+  StatusIdEnum,
 } from './types'
 
 export const apiSlice = createApi({
@@ -104,8 +105,19 @@ export const apiSlice = createApi({
         return { data: subscriptionData }
       },
     }),
-    fetchProvidedApps: builder.query<ProvidedApps, void>({
-      query: () => '/api/apps/provided',
+    fetchProvidedApps: builder.query<ProvidedApps, PaginFetchArgs>({
+      query: (fetchArgs) => {
+        const url = `/api/apps/provided?page=${fetchArgs.page}&size=15`
+        if (fetchArgs?.args?.statusFilter && !fetchArgs?.args?.expr) {
+          return `${url}&statusId=${fetchArgs?.args?.statusFilter}`
+        } else if (fetchArgs?.args?.expr && !fetchArgs?.args?.statusFilter) {
+          return `${url}&statusId=${StatusIdEnum.All}&offerName=${fetchArgs?.args?.expr}`
+        } else if (fetchArgs?.args?.expr && fetchArgs?.args?.statusFilter) {
+          return `${url}&statusId=${fetchArgs?.args?.statusFilter}&offerName=${fetchArgs?.args?.expr}`
+        } else {
+          return `${url}&statusId=${StatusIdEnum.All}`
+        }
+      },
     }),
     fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
       query: () => '/api/apps/business',
