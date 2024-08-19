@@ -12,7 +12,7 @@
   - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
   - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
 - **App Subscription**
-  - remove subscripe_service requirement for app subscription [#1013](https://github.com/eclipse-tractusx/portal-frontend/pull/1013)
+  - remove subscribe_service requirement for app subscription [#1013](https://github.com/eclipse-tractusx/portal-frontend/pull/1013)
 
 ### Feature
 
