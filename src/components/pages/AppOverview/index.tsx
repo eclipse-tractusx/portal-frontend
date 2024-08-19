@@ -88,7 +88,6 @@ export default function AppOverview() {
 
   const { data, isFetching, isSuccess, refetch } =
     useFetchProvidedAppsQuery(argsData)
-
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const valueMap: any = {
