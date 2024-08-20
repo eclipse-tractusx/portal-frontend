@@ -22,7 +22,6 @@ import {
   Button,
   Card,
   Checkbox,
-  IconButton,
   LanguageSwitch,
   LogoGrayData,
   PageNotifications,
@@ -33,9 +32,8 @@ import {
   CardHorizontal,
   ImageGallery,
   type ImageType,
+  BackButton,
 } from '@catena-x/portal-shared-components'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
@@ -139,13 +137,11 @@ export default function CommonValidateAndPublish({
   consentTitle,
   cxTestRunsTitle,
   error,
-  helpText,
   submitButton,
   values,
   type,
   serviceTypes,
   rolesData,
-  helpUrl,
   techUserProfiles,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
@@ -641,17 +637,16 @@ export default function CommonValidateAndPublish({
             </Grid>
           )}
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-          <Button
-            startIcon={<HelpOutlineIcon />}
-            variant="outlined"
-            sx={{ mr: 1 }}
-            onClick={() => window.open(helpUrl, '_blank')}
-          >
-            {helpText}
-          </Button>
-          <IconButton color="secondary" onClick={onBackIconClick}>
-            <KeyboardArrowLeftIcon />
-          </IconButton>
+
+          <BackButton
+            backButtonLabel={t('global.actions.back')}
+            backButtonVariant="text"
+            onBackButtonClick={() => {
+              type === ReleaseProcessTypes.APP_RELEASE
+                ? dispatch(decrement())
+                : dispatch(serviceReleaseStepDecrement())
+            }}
+          />
           {loading ? (
             <span
               style={{

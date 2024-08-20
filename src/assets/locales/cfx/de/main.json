@@ -1380,9 +1380,9 @@
       },
       "submit": {
         "headerTitle": "App erfolgreich eingereicht!",
-        "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie weitere Informationen zur App Freigabe.",
-        "headerDescriptionComplete": "",
-        "yourCatenaXTeam": "Dein Catena-X team",
+        "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie",
+        "headerDescriptionComplete": "weitere Informationen zur App Freigabe.",
+        "yourCatenaXTeam": "",
         "overview": "Zu Ihren Apps"
       },
       "defaultValues": {

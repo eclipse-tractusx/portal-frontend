@@ -19,13 +19,11 @@
  ********************************************************************************/
 
 import {
+  BackButton,
   Button,
-  IconButton,
   PageNotifications,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import {
   appIdSelector,
