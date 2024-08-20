@@ -196,7 +196,7 @@ export default function ServiceListOverview() {
   }
 
   return (
-    <main>
+    <main className="service-list-overview">
       <MainHeader
         title={t('serviceoverview.headerTitle')}
         subTitle={t('serviceoverview.headerDescription')}

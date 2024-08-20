@@ -24,6 +24,13 @@
       "save": "Speichern"
     }
   },
+  "stepperHeadline": {
+    "marketCard": "Service Card",
+    "servicePage": "Service Detailseite",
+    "contractAndConsent": "Vereinbarungen und Einverständnis",
+    "technicalIntegration": "Technische Integration",
+    "validateAndPublish": "Daten verifizieren und Service einreichen"
+  },
   "stepper": {
     "marketCard": "Service Card",
     "servicePage": "Service Detailseite",
@@ -119,8 +126,8 @@
   },
   "submit": {
     "headerTitle": "Service erfolgreich eingereicht!",
-    "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie weitere Informationen zur Servicefreigabe.",
-    "headerDescriptionComplete": "weitere Informationen zur Servicefreigabe",
+    "headerDescription": "Nach einer Überprüfung durch einen Cofinity-X Administrator erhalten Sie",
+    "headerDescriptionComplete": "weitere Informationen zur Servicefreigabe.",
     "yourCatenaXTeam": "",
     "overview": "Zu Ihren Services"
   },

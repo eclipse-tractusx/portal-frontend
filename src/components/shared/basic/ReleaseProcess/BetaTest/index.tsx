@@ -19,13 +19,11 @@
  ********************************************************************************/
 
 import {
+  BackButton,
   Button,
-  IconButton,
   PageNotifications,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import {
   appIdSelector,
@@ -78,22 +76,14 @@ export default function BetaTest() {
           </Grid>
         )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          startIcon={<HelpOutlineIcon />}
-          sx={{ mr: 1 }}
-          onClick={() =>
-            window.open(
-              '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process',
-              '_blank'
-            )
-          }
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton onClick={() => dispatch(decrement())} color="secondary">
-          <KeyboardArrowLeftIcon />
-        </IconButton>
+
+        <BackButton
+          backButtonLabel={t('global.actions.back')}
+          backButtonVariant="text"
+          onBackButtonClick={() => {
+            dispatch(decrement())
+          }}
+        />
         <Button
           variant="contained"
           sx={{ float: 'right' }}
