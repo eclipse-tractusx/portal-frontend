@@ -33,7 +33,6 @@ const BusinessPartnerDetail = ({ id }: { id: string }) => {
     })
       .unwrap()
       .then((data) => {
-        console.log(data)
         setItems(data.content)
       })
       .catch(() => {
