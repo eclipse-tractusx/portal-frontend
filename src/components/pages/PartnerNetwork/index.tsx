@@ -86,7 +86,7 @@ const PartnerNetwork = () => {
 
   useEffect(() => {
     setLoading(true)
-    if (data?.length) fetchAllMembers()
+    if (data && data.length > 0) fetchAllMembers()
   }, [data, fetchArgs])
 
   const setCountryAttributes = (payload: PaginResult<BusinessPartner>) => {
