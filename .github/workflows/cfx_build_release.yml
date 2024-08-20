@@ -16,6 +16,13 @@ on:
       - '.github/workflows/cfx_build_release.yml'
       - '.conf/Dockerfile.full'
 
+env:
+  TARGET_REPOSITORY: portal-charts
+  TARGET_BRANCH: main
+  VALUES_FILE: portal/dev/values-dev.yaml
+  WORKFLOW_ID: cfx-generic-version-bump.yaml
+  IMAGE_TAG_PROPERTY: .frontend.portal.image.portaltag
+
 concurrency:
   # cancel older running jobs on the same branch
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -48,3 +55,49 @@ jobs:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+  # To dispatch a workflow in portal-charts repo for auto image tag update.
+  auto-deploy-dispatch:
+    needs: dockerizing-application
+    name: Dispatch charts repo workflow
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref_type != 'tag' }}
+    steps:
+      # Get image tags from the previous job filter the tag that needs to be updated (Currently, it's main-{sha})
+      - name: Get image tags
+        id: get_tag
+        run: |
+          for image_tag in $(echo "${{ needs.dockerizing-application.outputs.image_tags }}")
+          do
+            tag=$(echo $image_tag | cut -d ":" -f2)
+            if [[ $tag == main* ]];
+            then
+              main_tag=$tag
+            fi
+          done
+          echo "main_tag=$main_tag" >> $GITHUB_OUTPUT
+      - name: Get token
+        uses: actions/create-github-app-token@v1
+        id: get_workflow_token
+        with:
+          app-id: ${{ secrets.PORTAL_WORKFLOW_TRIGGER_GH_APP_ID }}
+          private-key: ${{ secrets.PORTAL_WORKFLOW_TRIGGER_GH_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ env.TARGET_REPOSITORY }}
+      - name: Trigger Workflow for all backend services
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.get_workflow_token.outputs.token }}
+          debug: true
+          script: |
+            const workflow = await github.rest.actions.createWorkflowDispatch({
+                owner: "${{ github.repository_owner }}",
+                repo: "${{ env.TARGET_REPOSITORY }}",
+                workflow_id: "${{ env.WORKFLOW_ID }}",
+                ref: "${{ env.TARGET_BRANCH }}",
+                inputs: {
+                  image_tag: "${{ steps.get_tag.outputs.main_tag }}",
+                  helm_values_path: "${{ env.VALUES_FILE }}",
+                  image_tag_property: "${{ env.IMAGE_TAG_PROPERTY }}"
+                }
+            });
