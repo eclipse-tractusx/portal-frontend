@@ -23,6 +23,7 @@ import type { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { ServiceStatusDataState } from './types'
 import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
+import i18next from 'i18next'
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',
@@ -283,7 +284,8 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceUserRoles: builder.query<serviceUserRolesType[], void>({
-      query: () => 'api/administration/serviceaccount/user/roles',
+      query: () =>
+        `api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
     }),
     fetchServiceTechnicalUserProfiles: builder.query<
       technicalUserProfile[],

@@ -1343,9 +1343,9 @@
       },
       "submit": {
         "headerTitle": "Thank you for submitting the app!",
-        "headerDescription": "After a review by a Cofinity-X administrator, you will receive further information on the app release.",
-        "headerDescriptionComplete": "further information on app release",
-        "yourCatenaXTeam": "Your Catena-X team",
+        "headerDescription": "After a review by a Cofinity-X administrator, you will receive ",
+        "headerDescriptionComplete": "further information on the app release.",
+        "yourCatenaXTeam": "",
         "overview": "Go to Your Apps"
       },
       "defaultValues": {

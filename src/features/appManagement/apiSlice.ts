@@ -344,7 +344,8 @@ export const apiSlice = createApi({
       }),
     }),
     fetchUserRoles: builder.query<userRolesType[], void>({
-      query: () => 'api/administration/serviceaccount/user/roles',
+      query: () =>
+        `api/administration/serviceaccount/user/roles?languageShortName=${i18next.language}`,
     }),
     fetchTechnicalUserProfiles: builder.query<technicalUserProfiles[], string>({
       query: (appId) =>

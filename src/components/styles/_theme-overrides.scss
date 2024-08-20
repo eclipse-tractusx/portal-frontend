@@ -1452,3 +1452,16 @@ p.MuiTypography-root.MuiTypography-body3.description,
     font-weight: 500 !important;
   }
 }
+
+.appoverview-app,
+.service-list-overview {
+  .cx-card__main {
+    .cx-card__instance:first-child {
+      width: 270px !important;
+
+      .cx-card__add-service--wrapper {
+        padding: 10px !important;
+      }
+    }
+  }
+}

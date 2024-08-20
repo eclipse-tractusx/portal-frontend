@@ -24,6 +24,13 @@
       "save": "Save"
     }
   },
+  "stepperHeadline": {
+    "marketCard": "Service Card",
+    "servicePage": "Service Page Details",
+    "contractAndConsent": "Agreements & Consent",
+    "technicalIntegration": "Technical Integration",
+    "validateAndPublish": "Verify & Submit"
+  },
   "stepper": {
     "marketCard": "Service Card",
     "servicePage": "Service Page Details",
@@ -119,8 +126,8 @@
   },
   "submit": {
     "headerTitle": "Thank you for submitting the service!",
-    "headerDescription": "After a review by a Cofinity-X administrator, you will receive further information on the service release.",
-    "headerDescriptionComplete": "further information on service release",
+    "headerDescription": "After a review by a Cofinity-X administrator, you will receive",
+    "headerDescriptionComplete": "further information on the service release.",
     "yourCatenaXTeam": "",
     "overview": "Go to Your Services"
   },

@@ -44,42 +44,42 @@ export default function ServiceReleaseProcessForm() {
 
   const stepsListWithoutTechnicalIntegration = [
     {
-      headline: t('stepper.marketCard'),
+      headline: t('stepperHeadline.marketCard'),
       step: 1,
     },
     {
-      headline: t('stepper.servicePage'),
+      headline: t('stepperHeadline.servicePage'),
       step: 2,
     },
     {
-      headline: t('stepper.contractAndConsent'),
+      headline: t('stepperHeadline.contractAndConsent'),
       step: 3,
     },
     {
-      headline: t('step4.stepHeader'),
+      headline: t('stepperHeadline.validateAndPublish'),
       step: 4,
     },
   ]
 
   const stepsList = [
     {
-      headline: t('stepper.marketCard'),
+      headline: t('stepperHeadline.marketCard'),
       step: 1,
     },
     {
-      headline: t('stepper.servicePage'),
+      headline: t('stepperHeadline.servicePage'),
       step: 2,
     },
     {
-      headline: t('stepper.contractAndConsent'),
+      headline: t('stepperHeadline.contractAndConsent'),
       step: 3,
     },
     {
-      headline: t('stepper.technicalIntegration'),
+      headline: t('stepperHeadline.technicalIntegration'),
       step: 4,
     },
     {
-      headline: t('step4.stepHeader'),
+      headline: t('stepperHeadline.validateAndPublish'),
       step: 5,
     },
   ]
