@@ -81,6 +81,7 @@ import { MENUS, PAGES } from './Constants'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import AdminCredential from 'components/pages/AdminCredential'
+import { OSPConsent } from 'components/pages/OSPConsent'
 
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
@@ -480,6 +481,10 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.COMPANY_WALLET,
     role: ROLES.CREDENTIAL_REQUESTS,
     element: <CompanyWallet />,
+  },
+  {
+    name: PAGES.CONSENT_OSP,
+    element: <OSPConsent />,
   },
   {
     name: PAGES.COMPANY_SUBSCRIPTIONS,

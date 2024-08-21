@@ -105,9 +105,6 @@ export default function Organization() {
       />
       <main className="organization-main">
         <div className="organization-section">
-          <Typography variant="h2" className="main-title">
-            {t('pages.organization')}
-          </Typography>
           <div className="table-section">
             <Box
               sx={{

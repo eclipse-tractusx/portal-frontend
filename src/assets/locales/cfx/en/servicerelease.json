@@ -28,7 +28,7 @@
     "marketCard": "Service Card",
     "servicePage": "Service Page Details",
     "contractAndConsent": "Agreements & Consent",
-    "technicalIntegration": "Technical Integration",
+    "technicalIntegration": "Technical User Setup",
     "validateAndPublish": "Verify & Submit"
   },
   "stepper": {
@@ -75,7 +75,7 @@
     "documentDeleteSuccess": "Document deleted successfully"
   },
   "technicalIntegration": {
-    "headerTitle": "Technical Integration",
+    "headerTitle": "Technical User Setup",
     "headerDescription": "If your service requires technical integration, select the respective technical user(s). Otherwise, choose “None” and proceed.",
     "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
     "technicalUserProfileError": "Error while updating technical user profiles",
