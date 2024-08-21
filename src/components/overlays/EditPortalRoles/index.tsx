@@ -41,6 +41,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
+import UserService from 'services/UserService'
 
 export default function EditPortalRoles({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -113,17 +114,12 @@ export default function EditPortalRoles({ id }: { id: string }) {
       assignedRoles.length === selectedRoles.length &&
       assignedRoles.every((value) => selectedRoles.includes(value)))
 
-  const disabledCheckbox = (currentRole: string) => {
-    const adminRoles = selectedRoles.filter((item) => item.includes('Admin'))
-    const assignedAdminRoles = assignedRoles.filter((item) =>
-      item.includes('Admin')
-    )
+  const disabledCheckbox = (currentRole: AppRole) => {
+    const allAdminRoles = allRoles.filter((item) => item.role.includes('Admin'))
 
-    return (
-      assignedAdminRoles.length >= 1 &&
-      adminRoles.length < 3 &&
-      adminRoles.indexOf(currentRole) !== -1
-    )
+    return UserService.getUsername() === id
+      ? allAdminRoles.indexOf(currentRole) !== -1
+      : false
   }
 
   return (
@@ -146,7 +142,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
               allRoles.map((role) => (
                 <li key={role.roleId}>
                   <Checkbox
-                    disabled={disabledCheckbox(role.role)}
+                    disabled={disabledCheckbox(role)}
                     label={role.role}
                     checked={selectedRoles.indexOf(role.role) !== -1}
                     onChange={(e) => {
@@ -157,9 +153,11 @@ export default function EditPortalRoles({ id }: { id: string }) {
               ))}
           </ul>
         </div>
-        <Typography variant="body3" sx={{ mt: 3 }}>
-          {t('shared.userRoles.errorMsg')}
-        </Typography>
+        {UserService.getUsername() === id && (
+          <Typography variant="body3" sx={{ mt: 3 }}>
+            {t('shared.userRoles.errorMsg')}
+          </Typography>
+        )}
       </DialogContent>
 
       <DialogActions>
