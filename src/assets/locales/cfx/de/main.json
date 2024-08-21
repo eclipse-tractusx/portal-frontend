@@ -897,7 +897,7 @@
         "step3": {
           "heading": "Upload form by selecting the form file with the user data"
         },
-        "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed",
+        "fileSizeError": "Das hochgeladene Dokument ist zu groß. Maximal 100KB sind erlaubt.",
         "fileHeaderError": "Bulk Upload list format wrong. Missing or incorrect header line. Recheck the download file to retrieve the expected format",
         "uploadedFile": {
           "fileHeading": "Prepared for upload:",
@@ -1147,8 +1147,8 @@
       "issuerInfo": {
         "title": "Aussteller-Informationen",
         "organisation": "Organisation",
-        "adminName": "Admin Name",
-        "adminMail": "Admin E-Mail"
+        "adminName": "Admin name",
+        "adminMail": "Admin e-Mail"
       },
       "appPermissionTable": {
         "title": "App Berechtigungen",
@@ -1398,9 +1398,9 @@
         "max3Images": "Max. 3 Bilder",
         "minimum": "Mindestens",
         "charactersRequired": " Zeichen erforderlich",
-        "maximum": "Maximum",
-        "charactersAllowed": " characters allowed",
-        "validCharactersIncludes": "Valid characters includes: ",
+        "maximum": "Maximal",
+        "charactersAllowed": " Zeichen sind erlaubt",
+        "validCharactersIncludes": "Zulässige Zeichen sind: ",
         "isMandatory": " ist obligatorisch",
         "fileUploadIsMandatory": "File upload ist obligatorisch",
         "error": {
@@ -1409,7 +1409,7 @@
         },
         "dataSavedSuccessMessage": "Data saved successfully",
         "errormessage": "Error! Something went wrong",
-        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed",
+        "fileSizeError": "Das hochgeladene Dokument ist zu groß. Maximal 0,8MB sind erlaubt",
         "shouldNotStartWith": "and should not start with"
       },
       "footerButtons": {
@@ -2250,7 +2250,7 @@
       "errorTitle": "Es tut uns leid",
       "placeholder": "",
       "uploadError": "Not Uploaded",
-      "uploadSuccess": "Uploaded",
+      "uploadSuccess": "Hochgeladen",
       "uploadProgess": "% von % Dateien hochgeladen"
     },
     "userRoles": {

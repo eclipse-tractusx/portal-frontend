@@ -82,6 +82,8 @@ export enum PAGES {
   ADD_ROLES = 'addroles', // src/components/pages/AppOverview/AppOverviewList.tsx:117
   CHANGE_DOCUMENTS = 'changedocuments', // src/components/pages/AppOverview/AppOverviewList.tsx:117
   VIEW_DETAILS = 'viewDetails', // src/components/pages/AppOverview/AppOverviewList.tsx:117
+
+  CONSENT_OSP = 'consent_osp',
 }
 
 export const FOOTERLINK = {

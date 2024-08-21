@@ -1109,8 +1109,8 @@
       "issuerInfo": {
         "title": "Issuer Information",
         "organisation": "Organisation",
-        "adminName": "Admin Name",
-        "adminMail": "Admin E-Mail"
+        "adminName": "Admin name",
+        "adminMail": "Admin e-Mail"
       },
       "appPermissionTable": {
         "title": "App Permissions",
