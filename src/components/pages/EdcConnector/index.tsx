@@ -158,12 +158,9 @@ const EdcConnector = () => {
     setAddConnectorOverlayOpen(false)
   }
 
-  const onTableCellClick = (params: GridCellParams, title: string) => {
+  const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (
-      params.field === 'details' &&
-      title === t('content.edcconnector.tabletitle')
-    ) {
+    if (params.field === 'details') {
       setOpenDetailsOverlay(true)
       setOverlayData(params.row)
     }
@@ -497,7 +494,7 @@ const EdcConnector = () => {
               getRowId={(row: { [key: string]: string }) => row.id}
               columns={ownConnectorCols}
               onCellClick={(params: GridCellParams) => {
-                onTableCellClick(params, t('content.edcconnector.tabletitle'))
+                onTableCellClick(params)
               }}
             />
           </div>
@@ -514,10 +511,7 @@ const EdcConnector = () => {
               columns={managedConnectorCols}
               noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
-                onTableCellClick(
-                  params,
-                  t('content.edcconnector.managedtabletitle')
-                )
+                onTableCellClick(params)
               }}
             />
           </div>

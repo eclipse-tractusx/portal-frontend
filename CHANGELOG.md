@@ -34,6 +34,7 @@
 - removed unnecessary condition in semantic hub page's table [#979](https://github.com/eclipse-tractusx/portal-frontend/pull/979)
 - fixed unchanged text of button when user requests subscription [#985](https://github.com/eclipse-tractusx/portal-frontend/pull/985)
 - fixed height for "Admin Service Detail" page content [#1001](https://github.com/eclipse-tractusx/portal-frontend/pull/1001)
+- fixed click handling on 'Details' tab in Managed Connectors [#1017](https://github.com/eclipse-tractusx/portal-frontend/issues/1017)
 
 ## 2.1.0
 
