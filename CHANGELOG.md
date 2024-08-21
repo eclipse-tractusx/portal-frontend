@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Application Requests and Connector Management**
+  - update the status(skipped) in application requests and necessary changes with checkbox in connector management
+
 ## 2.2.0-RC1
 
 ### Change

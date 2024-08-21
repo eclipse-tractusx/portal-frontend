@@ -19,24 +19,31 @@ export const Progress = ({
   const red = (items.FAILED / totalItems) * 360 + yellow
 
   const progressColor = () => {
-    switch (applicationStatus) {
-      case ApplicationRequestStatus.CONFIRMED:
-        return {
-          progressBg: '#e2f6c7',
-          progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
-        }
-      case ApplicationRequestStatus.DECLINED:
-      case ApplicationRequestStatus.CANCELLED_BY_CUSTOMER:
-        return {
-          progressBg: '#fee7e2',
-          progressColor: 'conic-gradient(#d91e18 360deg 360deg)',
-        }
-      default:
-        return {
-          progressBg: '#ffffff',
-          progressColor: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
-        }
-    }
+    if (ApplicationRequestStatus.CONFIRMED && items?.SKIPPED === 1) {
+      return {
+        progressBg: '#e2f6c7',
+        progressColor:
+          'conic-gradient(#02aa56 308deg, rgb(245 243 237) 102.857deg, rgb(239, 184, 0) 154.286deg, rgb(217, 30, 24) 154.286deg, rgb(217, 30, 24) 154.286deg, rgb(255, 255, 255) 154.286deg, rgb(255, 255, 255) 360deg)',
+      }
+    } else
+      switch (applicationStatus) {
+        case ApplicationRequestStatus.CONFIRMED:
+          return {
+            progressBg: '#e2f6c7',
+            progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
+          }
+        case ApplicationRequestStatus.DECLINED:
+        case ApplicationRequestStatus.CANCELLED_BY_CUSTOMER:
+          return {
+            progressBg: '#fee7e2',
+            progressColor: 'conic-gradient(#d91e18 360deg 360deg)',
+          }
+        default:
+          return {
+            progressBg: '#ffffff',
+            progressColor: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
+          }
+      }
   }
 
   return (
