@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Service Subscription
+  - Update auto setup api response data in the service subscription response overlay
+
 ## 2.2.0-RC1
 
 ### Change
