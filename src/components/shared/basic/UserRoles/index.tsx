@@ -40,7 +40,6 @@ import {
   currentUserRoleResp,
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
-import type { RootState } from 'features/store'
 
 export const UserRoles = ({
   user,
@@ -59,8 +58,6 @@ export const UserRoles = ({
     )[0]?.roles ?? []
 
   const portalRoleResponse = useSelector(currentUserRoleResp)
-  const loggedInUser = useSelector((state: RootState) => state.user.email)
-  const isButtonDisabled = loggedInUser === data?.email
 
   return (
     <>
@@ -75,19 +72,12 @@ export const UserRoles = ({
                 color="secondary"
                 size="small"
                 onClick={() =>
-                  !isButtonDisabled &&
                   dispatch(show(OVERLAYS.EDIT_PORTAL_ROLES, user.companyUserId))
                 }
-                disabled={isButtonDisabled}
               >
                 <EditIcon className="edit-icon" />
                 {t('shared.userRoles.changeRoleBtn')}
               </Button>
-              {isButtonDisabled && (
-                <Typography variant="body2" sx={{ mt: 3 }}>
-                  {t('shared.userRoles.errorMsg')}
-                </Typography>
-              )}
             </div>
           )}
 

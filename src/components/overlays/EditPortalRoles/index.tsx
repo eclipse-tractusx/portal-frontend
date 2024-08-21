@@ -24,6 +24,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import {
   type AppRole,
@@ -112,6 +113,19 @@ export default function EditPortalRoles({ id }: { id: string }) {
       assignedRoles.length === selectedRoles.length &&
       assignedRoles.every((value) => selectedRoles.includes(value)))
 
+  const disabledCheckbox = (currentRole: string) => {
+    const adminRoles = selectedRoles.filter((item) => item.includes('Admin'))
+    const assignedAdminRoles = assignedRoles.filter((item) =>
+      item.includes('Admin')
+    )
+
+    return (
+      assignedAdminRoles.length >= 1 &&
+      adminRoles.length < 3 &&
+      adminRoles.indexOf(currentRole) !== -1
+    )
+  }
+
   return (
     <>
       <div className="roles-heading">
@@ -132,6 +146,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
               allRoles.map((role) => (
                 <li key={role.roleId}>
                   <Checkbox
+                    disabled={disabledCheckbox(role.role)}
                     label={role.role}
                     checked={selectedRoles.indexOf(role.role) !== -1}
                     onChange={(e) => {
@@ -142,6 +157,9 @@ export default function EditPortalRoles({ id }: { id: string }) {
               ))}
           </ul>
         </div>
+        <Typography variant="body3" sx={{ mt: 3 }}>
+          {t('shared.userRoles.errorMsg')}
+        </Typography>
       </DialogContent>
 
       <DialogActions>
