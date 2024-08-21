@@ -66,7 +66,7 @@
     "providerHomePage": "Anbieter Homepage",
     "providerContactEmail": "E-Mail Kundenkontakt",
     "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://catena-x.net",
-    "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an"
+    "pleaseEnterValidEmail": "Bitte geben Sie eine gültige E-Mail an"
   },
   "step3": {
     "headerTitle": "Vereinbarungen und Einverständnis",
@@ -97,15 +97,15 @@
   "serviceReleaseForm": {
     "headerTitle": "Create Service",
     "addMore": "Mehr hinzufügen",
-    "noItemsSelected": "No Items Selected",
+    "noItemsSelected": "Keine Auswahl angegeben",
     "note": "Hinweis:",
     "OnlyOneFileAllowed": "Nur eine Datei für den Upload möglich",
     "max1Images": "Nur eine Datei für den Upload möglich",
     "minimum": "Mindestens",
     "charactersRequired": " Zeichen erforderlich",
-    "maximum": "Maximum",
-    "charactersAllowed": " characters allowed",
-    "validCharactersIncludes": "Valid characters includes: ",
+    "maximum": "Maximal",
+    "charactersAllowed": " Zeichen sind erlaubt",
+    "validCharactersIncludes": "Zulässige Zeichen sind: ",
     "isMandatory": " ist obligatorisch",
     "fileUploadIsMandatory": "File upload ist obligatorisch",
     "error": {
