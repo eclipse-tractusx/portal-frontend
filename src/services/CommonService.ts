@@ -73,7 +73,7 @@ const isValidPictureId = (id: string) => {
 }
 
 const getRoleDescription = (callback: (data: RoleDescData[]) => void) => {
-  const url = `${getAssetBase()}/content/${
+  const url = `${getAssetBase()}/content/cfx/${
     i18next.language
   }/roledescription.json`
   fetch(url)
@@ -87,7 +87,7 @@ const getRoleDescription = (callback: (data: RoleDescData[]) => void) => {
 }
 
 const getCompanyRoleUpdateData = (callback: (data: RolesData) => void) => {
-  const url = `${getAssetBase()}/content/${
+  const url = `${getAssetBase()}/content/cfx/${
     i18next.language
   }/companyRoleChange.json`
   fetch(url)
