@@ -39,7 +39,6 @@ import {
   PageSnackbar,
   Typography,
 } from '@catena-x/portal-shared-components'
-import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { OVERLAYS } from 'types/Constants'
@@ -67,9 +66,6 @@ import { AddUserDeny } from '../AddUser/AddUserDeny'
 import { error } from 'services/NotifyService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { PAGES } from 'types/cfx/Constants'
-
-const HelpPageURL =
-  '/documentation/?path=user%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
 
 export default function AddMultipleUser() {
   const dispatch = useDispatch<typeof store.dispatch>()
@@ -413,12 +409,6 @@ export default function AddMultipleUser() {
             <Typography variant="body1" className="mb-30">
               {t('content.usermanagement.addMultipleUsers.step2.heading')}
             </Typography>
-            <Link to={HelpPageURL} target="_blank" className="linkText mb-30">
-              <Typography variant="caption2">
-                {t('content.usermanagement.addMultipleUsers.step2.linkText')}
-              </Typography>
-            </Link>
-            <EditIcon className="editIcon" />
           </div>
           <div className="thirdStep backgroundSection">
             <Typography variant="label4" className="number">
