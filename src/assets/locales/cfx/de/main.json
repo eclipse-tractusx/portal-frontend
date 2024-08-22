@@ -884,36 +884,36 @@
         "error": "Es tut uns leid, es scheint ein Problem mit dem Identitätsaufruf zu geben, das jede weitere Aktion für diese Funktion blockiert. Bitte versuchen Sie es später noch einmal. Wenn das Problem weiterhin besteht, wenden Sie sich an den Plattformadministrator."
       },
       "addMultipleUsers": {
-        "heading": "Add user account by bulk upload",
+        "heading": "Nutzer Accounts via Massen-Upload hinzufügen",
         "intro": "Bulk upload process",
         "step1": {
-          "heading": "Download this upload template by clicking the icon",
-          "buttonLabel": "Download template"
+          "heading": "Laden Sie diese Upload-Vorlage herunter, indem Sie auf das Symbol klicken",
+          "buttonLabel": "Vorlage herunterladen"
         },
         "step2": {
-          "heading": "Enter user data in upload form",
+          "heading": "Benutzerdaten im Upload-Formular eingeben",
           "linkText": "Guide on how to fill the template"
         },
         "step3": {
-          "heading": "Upload form by selecting the form file with the user data"
+          "heading": "Formular hochladen, durch Auswahl der Formulardatei mit den Benutzerdaten"
         },
         "fileSizeError": "Das hochgeladene Dokument ist zu groß. Maximal 100KB sind erlaubt.",
         "fileHeaderError": "Bulk Upload list format wrong. Missing or incorrect header line. Recheck the download file to retrieve the expected format",
         "uploadedFile": {
-          "fileHeading": "Prepared for upload:",
-          "addUserRolesHeading": "Add user roles for all users in bulk upload:",
+          "fileHeading": "Zum Hochladen vorbereitet:",
+          "addUserRolesHeading": "Fügen Sie im Massenupload Benutzerrollen für alle Benutzer hinzu:",
           "usersToBeUpload": "users to be uploaded",
           "note": "Note:",
-          "note1": "Only assign roles that apply to all users in the bulk upload file - individual roles can be applied individually later.",
-          "note2": "Roles for applications can be assigned after the user(s) have been successfully created.",
-          "note3": "We suggest to assign CX User initially to all bulk uploaded users and set specific user permissions separately.",
-          "availableRoles": "Available Roles: ",
+          "note1": "Weisen Sie in der Massen-Upload-Datei nur Rollen zu, die für alle Benutzer gelten – einzelne Rollen können später einzeln angewendet werden.",
+          "note2": "Rollen für Anwendungen können zugewiesen werden, nachdem der/die Benutzer erfolgreich erstellt wurden.",
+          "note3": "Wir empfehlen, zunächst allen Massen-Upload-Benutzern die Rolle CX-User zuzuweisen und spezifische Benutzerberechtigungen separat festzulegen.",
+          "availableRoles": "Verfügbare Rollen: ",
           "roleDesc": "Role Descriptions"
         },
         "success": {
-          "userUploaded": "Users successfully uploaded",
-          "userFailed": "User uploads failed",
-          "errorUsersLabel": "Errors have occured for the following usernames: <br/> Please check their entries in the upload file and try upload it again."
+          "userUploaded": "Nutzer erfolgreich hochgeladen",
+          "userFailed": "Nutzer Upload fehlgeschlagen",
+          "errorUsersLabel": "Bei den folgenden Benutzernamen sind Fehler aufgetreten: <br/> Bitte überprüfen Sie deren Einträge in der Upload-Datei und versuchen Sie, diese erneut hochzuladen."
         },
         "error": {
           "note": "Note:",
@@ -1041,7 +1041,7 @@
       "metadata_url_invalid_error": "Bitte geben Sie eine gültige Metadaten-URL ein"
     },
     "addUser": {
-      "headline": "Erstelle einen neuen User",
+      "headline": "Nutzer Account hinzufügen",
       "subheadline": "Fügen Sie ein neues Benutzerkonto hinzu, indem Sie den Vor- und Nachnamen des Benutzers sowie die E-Mail-Adresse hinterlegen. Wählen Sie unterhalb der Eingabefelder die jeweiligen Benutzerrollen aus, die der Benutzer haben soll. Eine Rolle ist mindestens erforderlich, um dem Benutzer den Zugriff auf das Netzwerk zu ermöglichen.",
       "singleUser": "Einzel-Upload",
       "multipleUser": "Massen-Upload",
@@ -1121,19 +1121,19 @@
     },
     "account": {
       "headlineDescription": "Verwalten Sie Ihre persönlichen Daten und bestimmen Sie, welche  Informationen andere sehen können und auf welche Apps Sie zugreifen  können.",
-      "userAccount": "Benutzer Konto",
+      "userAccount": "Benutzer Account",
       "token": "DEV only: Aktuelles Authentisierungstoken",
       "copy_to_clipboard": "Token in die Zwischenablage kopieren",
       "copy_to_clipboard_success": "Token Copied successfully",
       "deleteAccount": "Benutzer löschen",
-      "suspendAccount": "Benutzer aussetzen",
+      "suspendAccount": "Benutzer suspendieren",
       "resetPswrdAccount": "Passwort zurücksetzen",
       "resetPswrdSuccessMsg": "Password Reset Successfully",
       "resetPswrdMaxLimitError": "The maximum amount of errors is triggered already. Please try it later again",
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "personalInfo": {
-        "title": "Persönliche Informationen",
+        "title": "Persönliche Information",
         "name": "Name",
         "surname": "Nachname",
         "email": "E-Mail",
@@ -1833,9 +1833,9 @@
       }
     },
     "roleDetails": {
-      "heading": "Overview of the available Catena-X portal roles",
-      "tab1": "Role Descriptions",
-      "tab2": "Role Comparison"
+      "heading": "Übersicht der verfügbaren Portal Rollen",
+      "tab1": "Rollenbeschreibung",
+      "tab2": "Rollenvergleich"
     },
     "companyRolesUpdate": {
       "heading": "Change Company Role",
@@ -2221,7 +2221,7 @@
     "subNavigation": {
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
-      "link2Label": "Identity User Management"
+      "link2Label": "Portal User Management"
     }
   },
   "notification": {
@@ -2254,8 +2254,8 @@
       "uploadProgess": "% von % Dateien hochgeladen"
     },
     "userRoles": {
-      "title": "Zugewiesene Cofinity-X Portal-Rollen",
-      "changeRoleBtn": "Change Portal Role"
+      "title": "Zugewiesene Portal Rollen",
+      "changeRoleBtn": "Portal Rolle ändern"
     }
   },
   "global": {
