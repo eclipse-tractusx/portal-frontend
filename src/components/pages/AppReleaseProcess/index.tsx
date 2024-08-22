@@ -79,7 +79,7 @@ export default function AppReleaseProcess() {
   }
 
   const onOverviewButton = () => {
-    // do nothing
+    navigate(`/${PAGES.APP_OVERVIEW}`)
   }
 
   const requirements = [
