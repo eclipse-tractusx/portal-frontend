@@ -1465,3 +1465,14 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
+.cx-breadcrumbs__links {
+  display: none !important;
+}
+
+.cx-button__back {
+  color: $white !important;
+  background-color: $color-secondary !important;
+  background-color: #4d4d4d !important;
+}
+

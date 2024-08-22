@@ -1050,7 +1050,7 @@
       "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
       "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
-      "chooseUserRole": "Select CX Portal User Role",
+      "chooseUserRole": "Select Portal User Role",
       "help": "Help",
       "helperText": "Please enter all required information before proceeding.",
       "roleDesc": "Role Description Details",
@@ -1796,7 +1796,7 @@
       }
     },
     "roleDetails": {
-      "heading": "Overview of the available Catena-X portal roles",
+      "heading": "Overview of the available Portal roles",
       "tab1": "Role Descriptions",
       "tab2": "Role Comparison"
     },
@@ -2184,7 +2184,7 @@
     "subNavigation": {
       "buttonLabel": "Technical User Management",
       "link1Label": "Access Management",
-      "link2Label": "Identity User Management"
+      "link2Label": "Portal User Management"
     }
   },
   "notification": {
@@ -2217,7 +2217,7 @@
       "uploadProgess": "Uploaded % of % files"
     },
     "userRoles": {
-      "title": "Assigned Cofinity-X Portal Roles",
+      "title": "Assigned Portal Roles",
       "changeRoleBtn": "Change Portal Role"
     }
   },
