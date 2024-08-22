@@ -1334,8 +1334,8 @@
         "providerInformation": "Provider Information",
         "consent": "Consent",
         "cxTestRuns": "Beta Test",
-        "longDescriptionTitleEN": "[Long Description - EN] ",
-        "longDescriptionTitleDE": "[Long Description - DE] ",
+        "longDescriptionTitleEN": "Long Description (en) ",
+        "longDescriptionTitleDE": "Long Description (de) ",
         "providerTableData": {
           "appProvider": "App Provider",
           "phone": "Phone"
@@ -1579,8 +1579,8 @@
       "usecase": "Use Case",
       "language": "Language",
       "price": "Price",
-      "longDescriptionTitleEN": "[Long Description - EN] ",
-      "longDescriptionTitleDE": "[Long Description - DE] ",
+      "longDescriptionTitleEN": "Long Description (en) ",
+      "longDescriptionTitleDE": "Long Description (de) ",
       "backToBoard": "Back to Admin Board",
       "connectedData": {
         "heading": "Connected Data",

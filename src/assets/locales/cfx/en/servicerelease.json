@@ -89,8 +89,8 @@
     "documents": "Supporting Material",
     "providerInformation": "Provider Information",
     "consent": "Consent",
-    "longDescriptionTitleEN": "[Long Description - EN] ",
-    "longDescriptionTitleDE": "[Long Description - DE] ",
+    "longDescriptionTitleEN": "Long Description (en) ",
+    "longDescriptionTitleDE": "Long Description (de) ",
     "conformityDocument": "Conformity Document",
     "conformityDocumentsDescription": ""
   },

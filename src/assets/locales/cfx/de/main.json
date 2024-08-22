@@ -1275,11 +1275,11 @@
         "shortDescriptionEN": "Kurzbeschreibung (en)",
         "shortDescriptionDE": "Kurzbeschreibung (de)",
         "useCaseCategory": "Use Case/Kategorie",
-        "useCaseCategoryPlaceholder": "Choose the relevant use case",
+        "useCaseCategoryPlaceholder": "Wählen Sie den passenden Use case aus",
         "appLanguage": "App Sprache(n)",
-        "appLanguagePlaceholder": "Select app supported language",
+        "appLanguagePlaceholder": "Wählen Sie die unterstützte App-Sprache aus",
         "salesManager": "Sales Manager",
-        "salesManagerPlaceholder": "Please select a Sales Manager",
+        "salesManagerPlaceholder": "Bitte wählen Sie einen Sales Manager",
         "salesManagerDescription": "Bitte wählen Sie den App-Manager über das untenstehende Dropdown-Menü aus. Dieser kann nur gesetzt werden, wenn ein Benutzer Ihres Unternehmens die entsprechende Portalrolle hat (Sales Manager). Dieser Nutzer wird benachrichtigt, sobald eine App-Abonnement-Anfrage durch den Kunden ausgelöst wird.",
         "pricingInformation": "Preisinformationen (z. B. kostenlos / kostenpflichtig (noch zu definieren))",
         "appLeadImageUpload": "App Coverbild Upload"
@@ -1299,20 +1299,20 @@
         "providerHomePage": "Anbieter Homepage",
         "providerContactEmail": "Kundenkontakt E-Mail",
         "providerPhoneContact": "Kundenkontakt Telefonnummer",
-        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
-        "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+        "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - z.B.: https://www.cofinity-x.com",
+        "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Kundenkontakt E-Mail ein",
         "pleaseEnterValidContact": "Bitte fügen Sie eine gültige Telefonnummer im folgenden Format hinzu: „+ xx xxxx xxxxxx“, „+ xxx xxxx-xxxx“, „+xx xxxxxxxxxx“. Hinweis: Es sind weitere Formate zulässig. Die genannten Formate sind die am häufigsten verwendeten Formate.",
         "privacyInformation": "Datenschutzinformationen",
         "privacyInformationDescription": "Die Datenschutzinformationen werden verwendet, um Datenarten anzuzeigen, die die App auf der Detailseite der App sammeln kann. Sie können mehrere Optionen auswählen ODER „keine“ wählen.",
-        "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",
-        "privacyInformationMandatory": "Privacy Information is mandatory"
+        "privacyInfoError": "Fehler - Daten konnten nicht geladen werden. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator.",
+        "privacyInformationMandatory": "Datenschutzinformationen sind obligatorisch"
       },
       "contractAndConsent": {
         "headerTitle": "Vereinbarungen und Einverständnis",
         "headerDescription": "Um Ihr Angebot als Catena-X-zertifizierte App auf dem Marktplatz zu veröffentlichen, müssen Sie die AGBs und Richtlinien akzeptieren und Ihr Konformitätszertifikat hochladen.",
-        "allAgreementsMandatory": "All agreements are mandatory",
+        "allAgreementsMandatory": "Alle Vereinbarungen sind obligatorisch",
         "uploadImageConformity": "Konformitäts App Zertifikat",
-        "documentDeleteSuccess": "Document deleted successfully"
+        "documentDeleteSuccess": "Dokument erfolgreich gelöscht"
       },
       "technicalIntegration": {
         "headerTitle": "Technische Integration & Benutzerrollen",
@@ -1321,8 +1321,8 @@
         "step1HeaderDescription": "Laden Sie Ihre Anwendungsrollen hoch, die Benutzeridentitäten zugewiesen werden können, um auf die Anwendung zugreifen zu können.",
         "clientID": "Client ID",
         "URL": "URL",
-        "pleaseEnterValidURL": "Please enter a valid URL",
-        "URLPlaceholder": "http://www.loremipsum.de",
+        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein",
+        "URLPlaceholder": "https://www.cofinity-x.com",
         "clientCreated": "Client created",
         "step2Header": "2. Technische User Setup",
         "step2HeaderDescription": "Richten Sie das technische Profil eines technischen Benutzer-/Dienstkontos mit den erforderlichen Berechtigungen ein, um die Anwendung im Datenraum ausführen zu können.",
@@ -1616,8 +1616,8 @@
       "usecase": "Use Case",
       "language": "Language",
       "price": "Price",
-      "longDescriptionTitleEN": "[Long Description - EN] ",
-      "longDescriptionTitleDE": "[Long Description - DE] ",
+      "longDescriptionTitleEN": "Detaillierte App Beschreibung (en)",
+      "longDescriptionTitleDE": "Detaillierte App Beschreibung (de)",
       "backToBoard": "Back to Admin Board",
       "connectedData": {
         "heading": "Connected Data",
