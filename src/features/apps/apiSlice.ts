@@ -109,7 +109,9 @@ export const apiSlice = createApi({
       query: (fetchArgs) => {
         const { page, args } = fetchArgs
         const baseUrl = `/api/apps/provided?page=${page}&size=15`
-        const statusId = args?.statusFilter || StatusIdEnum.All
+        const statusId = args?.statusFilter
+          ? args.statusFilter
+          : StatusIdEnum.All
         const offerName = args?.expr ? `&offerName=${args.expr}` : ''
         return `${baseUrl}&statusId=${statusId}${offerName}`
       },

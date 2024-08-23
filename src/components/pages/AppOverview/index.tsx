@@ -334,11 +334,7 @@ export default function AppOverview() {
                 ))}
             </>
           )}
-          <div
-            style={{
-              textAlign: 'center',
-            }}
-          >
+          <div className="load-more-btn">
             {data?.meta && data?.meta?.totalPages > page + 1 && (
               <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
             )}
