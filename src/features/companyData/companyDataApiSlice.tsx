@@ -215,15 +215,22 @@ export interface ReadyStateRequestBody {
   externalIds: string[]
 }
 
+interface SharingStateRequest {
+  page: number
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyData',
   baseQuery: fetchBaseQuery(apiBpdmGateQuery()),
   endpoints: (builder) => ({
-    fetchSharingState: builder.query<SharingStateResponse, void>({
-      query: () => ({
-        url: '/sharing-state?page=0&size=100',
-      }),
-    }),
+    fetchSharingState: builder.query<SharingStateResponse, SharingStateRequest>(
+      {
+        query: (obj) => ({
+          url: `/sharing-state?page=${obj.page}&size=100`,
+        }),
+        keepUnusedDataFor: 5,
+      }
+    ),
     fetchInputCompanyBusinessPartners: builder.mutation<
       CompanyDataResponse,
       string[] | void

@@ -21,13 +21,15 @@ import { CompanyAddressList } from './components/CompanyAddressList'
 import { useState } from 'react'
 import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
 import EditForm from './components/EditForm'
+import { useDispatch } from 'react-redux'
+import { setCompanyPageRefetch } from 'features/companyData/slice'
 
 export default function CompanyData() {
   const [showOverlay, setShowOverlay] = useState({
     address: false,
     site: false,
   })
-  const [refetch, setRefetch] = useState<number>(0)
+  const dispatch = useDispatch()
 
   const updateOverlay = () => {
     setShowOverlay((old) => {
@@ -55,9 +57,8 @@ export default function CompanyData() {
             return { ...old }
           })
         }}
-        refetch={refetch !== 0}
         handleConfirm={() => {
-          setRefetch(Date.now())
+          dispatch(setCompanyPageRefetch(true))
         }}
       />
       <EditForm
@@ -68,7 +69,7 @@ export default function CompanyData() {
         }}
         open={showOverlay.address || showOverlay.site}
         handleConfirm={() => {
-          setRefetch(Date.now())
+          dispatch(setCompanyPageRefetch(true))
         }}
       />
     </main>

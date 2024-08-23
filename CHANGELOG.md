@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Company Data
+  - Implement pagination
+
 ## 2.2.0-RC1
 
 ### Change

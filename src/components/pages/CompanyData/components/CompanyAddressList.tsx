@@ -19,7 +19,7 @@
 
 import { Chip, IconButton, Table } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
@@ -29,6 +29,7 @@ import {
   useFetchOutputCompanyBusinessPartnersMutation,
   useFetchSharingStateQuery,
   AddressType,
+  type SharingStateType,
 } from 'features/companyData/companyDataApiSlice'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -37,32 +38,34 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { type GridCellParams } from '@mui/x-data-grid'
 import DetailsOverlay from './DetailsOverlay'
 import {
+  companyRefetch,
+  setCompanyPageRefetch,
   setSelectedCompanyData,
   setSelectedCompanyStatus,
   setSharingStateInfo,
 } from 'features/companyData/slice'
-import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import { statusColorMap } from 'utils/dataMapper'
 
 export const CompanyAddressList = ({
   handleButtonClick,
   handleSecondButtonClick,
-  refetch = false,
   handleConfirm,
 }: {
   handleButtonClick: () => void
   handleSecondButtonClick: () => void
-  refetch: boolean
   handleConfirm: () => void
 }) => {
   const { t } = useTranslation()
+  const [page, setPage] = useState<number>(0)
   const {
     data,
-    refetch: refreshSharingData,
     isFetching,
     error: sharingStateError,
-  } = useFetchSharingStateQuery()
-  const sharingStates = data?.content
+    refetch: refetchSharingState,
+  } = useFetchSharingStateQuery({
+    page,
+  })
+  const [sharingStates, setSharingStates] = useState<SharingStateType[]>([])
   const [outputRequest, { isLoading: isOutputLoading, error: outputError }] =
     useFetchOutputCompanyBusinessPartnersMutation()
   const [inputRequest, { isLoading: isInputLoading, error: inputError }] =
@@ -71,6 +74,7 @@ export const CompanyAddressList = ({
   const [inputs, setInputs] = useState<CompanyDataType[]>([])
   const [details, setDetails] = useState<boolean>(false)
   const dispatch = useDispatch()
+  const refetch = useSelector(companyRefetch)
 
   const getInputItems = async () => {
     const params = sharingStates
@@ -113,13 +117,23 @@ export const CompanyAddressList = ({
 
   useEffect(() => {
     if (refetch) {
-      refreshSharingData()
       setInputs([])
       setOutputs([])
+      setPage(0)
+      refetchSharingState()
+      dispatch(setCompanyPageRefetch(false))
     }
     getInputItems()
     getOutputItems()
   }, [sharingStates, refetch])
+
+  useEffect(() => {
+    if (data) {
+      setSharingStates((i) =>
+        page === 0 ? data.content : i.concat(data.content)
+      )
+    }
+  }, [data])
 
   const getStatus = (id: string) =>
     sharingStates?.filter((state) => id === state.externalId)[0]
@@ -164,8 +178,14 @@ export const CompanyAddressList = ({
 
   return (
     <>
-      {!isFetching && !isOutputLoading && !isInputLoading ? (
+      {sharingStates.length > 0 && (
         <Table
+          loading={isFetching || isOutputLoading || isInputLoading}
+          hasMore={data && data.totalPages > page + 1}
+          nextPage={() => {
+            setPage((i) => i + 1)
+          }}
+          hideFooterPagination={true}
           autoFocus={false}
           onButtonClick={handleButtonClick}
           rowsCount={inputs.length + outputs.length}
@@ -181,7 +201,7 @@ export const CompanyAddressList = ({
           getRowId={(row: { [key: string]: string }) => row.createdAt}
           rows={inputs.concat(outputs)}
           onCellClick={onRowClick}
-          error={errorObj}
+          error={errorObj.status === 0 ? null : errorObj}
           columns={[
             {
               field: 'site',
@@ -271,15 +291,6 @@ export const CompanyAddressList = ({
           ]}
           disableColumnMenu
         />
-      ) : (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <LoadingProgress />
-        </Box>
       )}
       {details && (
         <DetailsOverlay
@@ -288,7 +299,10 @@ export const CompanyAddressList = ({
             setDetails(false)
           }}
           open={details}
-          handleConfirm={handleConfirm}
+          handleConfirm={() => {
+            setSharingStates([])
+            handleConfirm()
+          }}
         />
       )}
     </>
