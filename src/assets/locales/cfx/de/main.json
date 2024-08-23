@@ -670,7 +670,7 @@
       },
       "modal": {
         "title": "Connector registrieren",
-        "intro": "Registrierung eines Unternehmens Connectors, welcher im eigenen Firmennetz implementiert ist.",
+        "intro": "Registrierung eines Unternehmens-Connectors, welcher im eigenen Firmennetz implementiert ist.",
         "company": {
           "title": "Unternehmens Connector registrieren",
           "intro": "Um mit Ihrem Connector innerhalb des Datenraums kommunizieren zu können, muss der Connector-Endpunkt registriert werden. Für den Connector ist zwingend ein technischer Benutzer erforderlich. Dieser Benutzer wird verwendet, um die Kommunikation zwischen Ihrem Connector und dem Firmen-Wallet (Identitätsmanagement) zu ermöglichen. Wenn der technische Benutzer noch nicht erstellt wurde, erstellen Sie bitte zuerst den technischen Benutzer und fahren Sie anschließend mit der Connector-Registrierung fort. Beachten Sie, dass die technische Benutzererstellung ein asynchroner Prozess ist und bis zu 5 Minuten dauern kann.",
@@ -2313,7 +2313,7 @@
       "submit": "Einreichen",
       "no": "No",
       "yes": "Yes",
-      "next": "Next",
+      "next": "Weiter",
       "success": "Success",
       "error": "Error",
       "retry": "Retry",
