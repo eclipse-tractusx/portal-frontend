@@ -651,7 +651,7 @@
       "noConnectorsMessage": "No registered connectors available",
       "noManagedConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
-      "addconnectorbutton": "Register Connector",
+      "addconnectorbutton": "Register New Connector",
       "snackbar": {
         "successmessage": "Connector successfully added",
         "errormessage": "Error! Something went wrong"
@@ -672,7 +672,7 @@
         "title": "Register connector",
         "intro": "Registration of a company connector which is implemented in your own company network.",
         "company": {
-          "title": "Register Connector",
+          "title": "Register Company Connector",
           "intro": "To be able to communicate with your connector inside the dataspace, the connector endpoint needs to get registered. For the connector, a technical user is mandatorily needed. This user is used to enable the communication between your connector and the company wallet (identity management). If the technical user is not created already, please create the technical user first and proceed with the connector registration afterwards. Note, the technical user creation is a asynchrony process and might take up to 5 minutes.",
           "disableDescription": "This option is only available if your company is Active Participant. Company roles can get changed by the company admin /company-role"
         },
