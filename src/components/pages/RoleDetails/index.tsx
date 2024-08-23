@@ -39,15 +39,19 @@ export type RoleDescData = {
 }
 
 export default function RoleDetails() {
-  const { t } = useTranslation('', { keyPrefix: 'content.roleDetails' })
+  const { t, i18n } = useTranslation('', { keyPrefix: 'content.roleDetails' })
 
   const [dataArray, setDataArray] = useState<RoleDescData[]>()
 
-  useEffect(() => {
+   useEffect(() => {
+    getTranslateRoles()
+  }, [i18n.language])
+
+  const getTranslateRoles = () => {
     CommonService.getRoleDescription((data: RoleDescData[]) => {
       setDataArray(data)
     })
-  }, [])
+  }
 
   const [activeTab, setActiveTab] = useState<number>(0)
 
