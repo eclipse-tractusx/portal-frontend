@@ -60,7 +60,7 @@ export enum AgreementStatus {
 }
 
 export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
   const close = () => {
     dispatch(setOverlayCancel(true))
@@ -101,13 +101,15 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
 
   const [dataArray, setDataArray] = useState<RolesData>()
 
-  useEffect(() => {
+  const getTranslateRoles = () => {
     CommonService.getCompanyRoleUpdateData((data: RolesData) => {
       setDataArray(data)
     })
-    dispatch(setCompanyRoleSuccess(false))
-    dispatch(setCompanyRoleError(false))
-  }, [dispatch])
+  }
+
+  useEffect(() => {
+    getTranslateRoles()
+  }, [i18n.language])
 
   const getRolesFeaturesList = (data: RoleFeatureData) => {
     return (
