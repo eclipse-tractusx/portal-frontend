@@ -143,8 +143,8 @@ export const StatusProgress = ({
     items?.SKIPPED === 1
   ) {
     const style = {
-      border: '#00AA55',
-      color: '#00AA55',
+      border: '#0f71cb',
+      color: '#0f71cb',
       background: '#eaf1fe',
     }
     return getProgressStatus(

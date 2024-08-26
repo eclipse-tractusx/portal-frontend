@@ -22,7 +22,7 @@ export const Progress = ({
     if (ApplicationRequestStatus.CONFIRMED && items?.SKIPPED === 1) {
       return {
         progressBg: '#eaf1fe',
-        progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
+        progressColor: '#0f71cb',
       }
     } else
       switch (applicationStatus) {
