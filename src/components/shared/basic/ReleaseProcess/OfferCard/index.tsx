@@ -458,9 +458,9 @@ export default function OfferCard() {
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + '/120'
                       }
-                      patternKey="shortDescriptionEN"
-                      patternEN={Patterns.offerCard.shortDescriptionEN}
-                      patternDE={Patterns.offerCard.shortDescriptionDE}
+                      patternKey="shortDescription"
+                      patternEN={Patterns.offerCard.shortDescription}
+                      patternDE={Patterns.offerCard.shortDescription}
                       isRequired={true}
                       rules={{
                         required:
@@ -471,11 +471,7 @@ export default function OfferCard() {
                         )}`,
                         pattern: `${t(
                           'serviceReleaseForm.validCharactersIncludes'
-                        )} ${
-                          desc === 'shortDescriptionEN'
-                            ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
-                            : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
-                        }`,
+                        )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'}`,
                         maxLength: `${t('serviceReleaseForm.maximum')} 120 ${t(
                           'serviceReleaseForm.charactersAllowed'
                         )}`,
