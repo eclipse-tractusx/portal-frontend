@@ -21,9 +21,8 @@ export const Progress = ({
   const progressColor = () => {
     if (ApplicationRequestStatus.CONFIRMED && items?.SKIPPED === 1) {
       return {
-        progressBg: '#e2f6c7',
-        progressColor:
-          'conic-gradient(#02aa56 308deg, rgb(245 243 237) 102.857deg, rgb(239, 184, 0) 154.286deg, rgb(217, 30, 24) 154.286deg, rgb(217, 30, 24) 154.286deg, rgb(255, 255, 255) 154.286deg, rgb(255, 255, 255) 360deg)',
+        progressBg: '#eaf1fe',
+        progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
       }
     } else
       switch (applicationStatus) {
@@ -72,7 +71,7 @@ export const Progress = ({
         }}
       >
         {applicationStatus !== ApplicationRequestStatus.DECLINED &&
-          `${items.DONE}/${totalItems}`}
+          `${items.DONE + items.SKIPPED}/${totalItems}`}
       </div>
     </div>
   )

@@ -133,7 +133,6 @@ export const progressMapper = {
   IN_PROGRESS: 5,
   TO_DO: 0,
   FAILED: 0,
-  SKIPPED: 0,
 }
 
 export interface ApplicationRequest {

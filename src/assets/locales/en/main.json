@@ -186,6 +186,7 @@
         "buttonprogress": "in progress",
         "buttonrejected": "rejected",
         "buttoncompleted": "completed",
+        "buttonPartiallyCompleted": "partially completed",
         "buttonerror": "error",
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
