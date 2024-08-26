@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Feature
+
+- Customer Detail Data Overlay
+  - implement new UI design for customer detail data overlay
+
 ## 2.2.0-RC1
 
 ### Change
