@@ -61,6 +61,13 @@ export enum SAMLAuthMethod {
   SECRET = 'SECRET',
 }
 
+export enum IdpAccountStatus {
+  ACTIVE = 'active',
+  OPEN = 'open',
+  IDP_CREATED = 'Idp created',
+  DISABLED = 'disabled',
+}
+
 export interface IDPMapperConfig {
   syncMode: IDPSyncModeType
 }
