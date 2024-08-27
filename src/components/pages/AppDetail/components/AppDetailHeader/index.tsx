@@ -159,12 +159,17 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             ? true
             : false
         }
-        onButtonClick={() =>
-          subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1 &&
-          dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
-        }
+        onButtonClick={() => {
+          if (buttonLabel === t('content.appdetail.requested')) {
+            return
+          }
+          return (
+            subscribeStatus === SubscriptionStatus.INACTIVE &&
+            user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
+            user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1 &&
+            dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
+          )
+        }}
       />
     )
   }
