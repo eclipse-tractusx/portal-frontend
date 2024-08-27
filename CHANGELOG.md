@@ -11,6 +11,8 @@
 - **Company data Management**
   - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
   - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
+- **Business partner invite**
+  - updated first name and last name pattern to allow 2 characters in business partner invite application form [#1025](https://github.com/eclipse-tractusx/portal-frontend/pull/1025)
 
 ### Feature
 
