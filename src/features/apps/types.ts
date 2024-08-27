@@ -264,3 +264,11 @@ export interface SubscribedActiveApps {
   subscriptionId: string
   image: string
 }
+
+export enum StatusIdEnum {
+  Active = 'Active',
+  Inactive = 'Inactive',
+  InReview = 'InReview',
+  WIP = 'WIP',
+  All = 'All',
+}
