@@ -12,6 +12,11 @@
 - Customer Detail Data Overlay
   - implement new UI design for customer detail data overlay
 
+### Change
+
+- **Technical User Management**
+  - Removed 'Inactive' filter in technical user management
+
 ## 2.2.0-RC1
 
 ### Change
