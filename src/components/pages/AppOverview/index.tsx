@@ -28,6 +28,7 @@ import {
   Cards,
   PageSnackbar,
   ErrorBar,
+  LoadMoreButton,
 } from '@catena-x/portal-shared-components'
 import { useTheme, CircularProgress, Box } from '@mui/material'
 import {
@@ -36,7 +37,11 @@ import {
   appToCard,
 } from 'features/apps/mapper'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
-import { type AppInfo, type AppMarketplaceApp } from 'features/apps/types'
+import {
+  type ProvidedApps,
+  type AppInfo,
+  type AppMarketplaceApp,
+} from 'features/apps/types'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
@@ -58,7 +63,6 @@ export default function AppOverview() {
   const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data, refetch, isSuccess, isFetching } = useFetchProvidedAppsQuery()
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const [itemCards, setItemCards] = useState<any>([])
@@ -73,6 +77,17 @@ export default function AppOverview() {
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
+  const [page, setPage] = useState<number>(0)
+  const [argsData, setArgsData] = useState({
+    page,
+    args: {
+      expr: '',
+      statusFilter: '',
+    },
+  })
+
+  const { data, isFetching, isSuccess, refetch } =
+    useFetchProvidedAppsQuery(argsData)
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const valueMap: any = {
@@ -107,13 +122,17 @@ export default function AppOverview() {
   }, [itemCards])
 
   useEffect(() => {
-    if (data) {
-      const filterItems = data.content?.map((item: AppMarketplaceApp) =>
-        appToCard(item)
+    dispatch(setCurrentActiveStep())
+    if (data?.content)
+      setCards(
+        data?.meta.page === 0
+          ? setDataInfo(data)
+          : (i: CardItems[]) => i.concat(setDataInfo(data))
       )
-      setCards(filterItems)
-    }
-  }, [data])
+  }, [data, dispatch])
+
+  const setDataInfo = (data: ProvidedApps) =>
+    data.content.map((item: AppMarketplaceApp) => appToCard(item))
 
   const debouncedSearch = useMemo(
     () =>
@@ -157,7 +176,25 @@ export default function AppOverview() {
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
-    debouncedSearch(searchExpr, itemCards, viewValue)
+    setArgsData({
+      page: 0,
+      args: {
+        expr: '',
+        statusFilter: viewValue,
+      },
+    })
+    setPage(0)
+  }
+
+  const nextPage = () => {
+    setArgsData({
+      page: page + 1,
+      args: {
+        expr: '',
+        statusFilter: group,
+      },
+    })
+    setPage(page + 1)
   }
 
   const categoryViews = [
@@ -293,6 +330,11 @@ export default function AppOverview() {
                 ))}
             </>
           )}
+          <div className="load-more-btn">
+            {data?.meta && data?.meta?.totalPages > page + 1 && (
+              <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
+            )}
+          </div>
         </div>
       </div>
       {state && (
