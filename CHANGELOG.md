@@ -7,6 +7,16 @@
 - **Application Requests and Connector Management**
   - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
 
+### Bugfixes
+
+- **IDP management**
+  - Fixed statusTag color in status coloumn [#978](https://github.com/eclipse-tractusx/portal-frontend/pull/978)
+
+### Feature
+
+- Customer Detail Data Overlay
+  - implement new UI design for customer detail data overlay
+
 ## 2.2.0-RC1
 
 ### Change

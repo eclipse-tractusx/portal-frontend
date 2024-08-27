@@ -79,7 +79,7 @@ export const getTitle = (
             status: getStatus(),
           }}
         >
-          <Typography variant="h3">
+          <Typography variant="h4">
             {t('content.admin.registration-requests.overlay.tab2SubTitle')}
           </Typography>
         </Trans>
@@ -93,7 +93,7 @@ export const getIntro = (
   selectedCompany: CompanyDetail,
   t: typeof i18next.t
 ) => {
-  if (activeTab === 1) {
+  if (activeTab === 2) {
     return (
       <Trans
         values={{

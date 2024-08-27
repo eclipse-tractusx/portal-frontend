@@ -39,6 +39,7 @@ interface StatusProgressProps {
   trans: typeof i18next.t
   type?: boolean
   onConfirmationCancel?: (applicationId: string, name: string) => void
+  isProgressOnly?: boolean
 }
 
 export const StatusProgress = ({
@@ -46,6 +47,7 @@ export const StatusProgress = ({
   trans,
   type = true,
   onConfirmationCancel,
+  isProgressOnly = false,
 }: StatusProgressProps) => {
   const t = trans
   const groupedItems = _.chain(application.applicationChecklist)
@@ -64,31 +66,43 @@ export const StatusProgress = ({
     statusText: string
   ) => {
     return (
-      <div
-        className="progressMain"
-        style={{
-          border: `2px solid ${style.border}`,
-          background: style.background,
-          width:
-            statusText ===
-            t('content.admin.registration-requests.buttonPartiallyCompleted')
-              ? 'max-width'
-              : '140px',
-        }}
-      >
-        <Progress
-          applicationStatus={row.applicationStatus}
-          items={items}
-          totalItems={row.applicationChecklist.length}
-        />
-        <Typography
-          variant="body3"
-          className="statusText"
-          sx={{ color: style.color }}
-        >
-          {statusText}
-        </Typography>
-      </div>
+      <>
+        {isProgressOnly ? (
+          <Progress
+            applicationStatus={row.applicationStatus}
+            items={items}
+            totalItems={row.applicationChecklist.length}
+          />
+        ) : (
+          <div
+            className="progressMain"
+            style={{
+              border: `2px solid ${style.border}`,
+              background: style.background,
+              width:
+                statusText ===
+                t(
+                  'content.admin.registration-requests.buttonPartiallyCompleted'
+                )
+                  ? 'max-width'
+                  : '140px',
+            }}
+          >
+            <Progress
+              applicationStatus={row.applicationStatus}
+              items={items}
+              totalItems={row.applicationChecklist.length}
+            />
+            <Typography
+              variant="body3"
+              className="statusText"
+              sx={{ color: style.color }}
+            >
+              {statusText}
+            </Typography>
+          </div>
+        )}
+      </>
     )
   }
 
