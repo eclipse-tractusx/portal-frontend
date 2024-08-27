@@ -16,12 +16,37 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+import { createSlice } from '@reduxjs/toolkit'
 
-.app-subscription-overlay {
-  .loading-progress {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+interface DialogState {
+  isOpen: boolean
+  isConfirmed: boolean
 }
+
+const initialState: DialogState = {
+  isOpen: false,
+  isConfirmed: false,
+}
+
+const dialog = createSlice({
+  name: 'dialog',
+  initialState,
+  reducers: {
+    openDialog: (state) => {
+      state.isOpen = true
+    },
+    closeDialog: (state) => {
+      state.isOpen = false
+    },
+    confirmDialog: (state) => {
+      state.isConfirmed = true
+    },
+    resetDialog: (state) => {
+      state.isConfirmed = false
+    },
+  },
+})
+
+export const { openDialog, closeDialog, confirmDialog, resetDialog } =
+  dialog.actions
+export default dialog
