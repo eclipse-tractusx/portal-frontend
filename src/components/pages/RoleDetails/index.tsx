@@ -43,7 +43,7 @@ export default function RoleDetails() {
 
   const [dataArray, setDataArray] = useState<RoleDescData[]>()
 
-   useEffect(() => {
+  useEffect(() => {
     getTranslateRoles()
   }, [i18n.language])
 
