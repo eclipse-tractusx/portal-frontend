@@ -249,7 +249,7 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceSubscription />,
   },
   {
-    name: PAGES.ADMINBOARD,
+    name: PAGES.APP_ADMIN_BOARD,
     role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
     element: <AdminBoard />,
   },
@@ -259,13 +259,13 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceAdminBoard />,
   },
   {
-    name: PAGES.ADMINBOARD_DETAIL,
+    name: PAGES.APP_ADMIN_BOARD_DETAIL,
     role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.ADMINBOARD_DETAIL}
-        path={PAGES.ADMINBOARD_DETAIL}
+        key={PAGES.APP_ADMIN_BOARD_DETAIL}
+        path={PAGES.APP_ADMIN_BOARD_DETAIL}
         element={<AdminBoardDetail />}
       >
         <Route index element={null} />
@@ -772,7 +772,7 @@ export const mainMenuFullTree = [
       { name: PAGES.APP_OVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APP_RELEASE_PROCESS },
       { name: PAGES.APP_SUBSCRIPTION, hint: HINTS.NEW },
-      { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
+      { name: PAGES.APP_ADMIN_BOARD, hint: HINTS.NEW },
     ],
   },
   {
