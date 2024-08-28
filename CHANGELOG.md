@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Company Data
+  - Implement pagination
+
 ### Change
 
 - **Application Requests and Connector Management**
