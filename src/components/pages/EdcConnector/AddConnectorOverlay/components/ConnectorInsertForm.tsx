@@ -21,11 +21,11 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import { Controller } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import {
   Button,
   DropArea,
   Input,
-  LoadingButton,
   Radio,
   SelectList,
   Tooltips,
@@ -246,14 +246,11 @@ const ConnectorInsertForm = ({
   selectedService,
   subscriptions,
   fetchServiceAccountUsers,
-  setNewTechnicalUSer,
-  onFormSubmitt,
-  newUserLoading,
-  newUserSuccess,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [selectedValue, setSelectedValue] = useState<string>()
   const [serviceAccountUsers, setServiceAccountUsers] = useState([])
 
@@ -263,45 +260,6 @@ any) => {
         fetchServiceAccountUsers?.filter((item: { name: string }) => item.name)
       )
   }, [fetchServiceAccountUsers])
-
-  const handleTechnicalUserSubmit = () => {
-    if (
-      selectedValue === t('content.edcconnector.modal.createNewTechnicalUser')
-    ) {
-      if (newUserLoading) {
-        return (
-          <Box sx={{ textAlign: 'right', mt: '20px' }}>
-            <LoadingButton
-              color="primary"
-              helperText=""
-              helperTextColor="success"
-              label=""
-              loadIndicator="Processing"
-              loading
-              onButtonClick={() => {
-                // do nothing
-              }}
-              sx={{ marginLeft: '10px', textTransform: 'none' }}
-            />
-          </Box>
-        )
-      } else
-        return (
-          <Box sx={{ textAlign: 'right', mt: '20px' }}>
-            <Button
-              variant="contained"
-              sx={{ textTransform: 'none' }}
-              onClick={!newUserSuccess && onFormSubmitt}
-              color={newUserSuccess ? 'success' : 'primary'}
-            >
-              {newUserSuccess
-                ? t('global.actions.success')
-                : t('global.actions.submit')}
-            </Button>
-          </Box>
-        )
-    }
-  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -390,7 +348,6 @@ any) => {
                 value={t('content.edcconnector.modal.createNewTechnicalUser')}
                 onChange={(event) => {
                   setSelectedValue(event.target.value)
-                  setNewTechnicalUSer(true)
                 }}
                 size="small"
                 sx={{
@@ -400,82 +357,25 @@ any) => {
             </Box>
             {selectedValue ===
               t('content.edcconnector.modal.createNewTechnicalUser') && (
-              <>
-                <ConnectorFormInput
-                  {...{
-                    control,
-                    trigger,
-                    errors,
-                    type: 'input',
-                    name: 'TechnicalUserName',
-                    minLength: 2,
-                    maxLength: 80,
-                    pattern: Patterns.connectors.TECHNICAL_USER_NAME,
-                    rules: {
-                      required: t(
-                        'content.edcconnector.modal.insertform.UserName.mandatoryError'
-                      ),
-                      minLength:
-                        t('content.edcconnector.modal.insertform.minLength') +
-                        ' 2',
-                      maxLength:
-                        t('content.edcconnector.modal.insertform.maxLength') +
-                        ' 80',
-                      pattern: t(
-                        'content.edcconnector.modal.insertform.UserName.patternError'
-                      ),
-                    },
-                    label: t(
-                      'content.edcconnector.modal.insertform.UserName.label'
-                    ),
-                    placeholder: t(
-                      'content.edcconnector.modal.insertform.UserName.placeholder'
-                    ),
-                    tooltipMsg: t(
-                      'content.edcconnector.modal.insertform.UserName.tooltipMsg'
-                    ),
-                    disable: newUserSuccess ?? false,
+              <div className="create-technical-user">
+                <Typography variant="body3" className="margin-bottom-typo">
+                  {t(
+                    'content.edcconnector.modal.createNewTechnicalUserDescription'
+                  )}
+                </Typography>
+                <Button
+                  size="small"
+                  sx={{ backgroundColor: '#4D4D4D' }}
+                  onClick={() => {
+                    navigate('/technicaluser', {
+                      state: { triggerEvent: true },
+                    })
                   }}
-                />
-                <ConnectorFormInput
-                  {...{
-                    control,
-                    trigger,
-                    errors,
-                    type: 'input',
-                    name: 'TechnicalUserDescription',
-                    minLength: 2,
-                    maxLength: 120,
-                    pattern: Patterns.connectors.TECHNICAL_USER_DESCRIPTION,
-                    rules: {
-                      required: t(
-                        'content.edcconnector.modal.insertform.description.mandatoryError'
-                      ),
-                      minLength:
-                        t('content.edcconnector.modal.insertform.minLength') +
-                        ' 2',
-                      maxLength:
-                        t('content.edcconnector.modal.insertform.maxLength') +
-                        ' 120',
-                      pattern: t(
-                        'content.edcconnector.modal.insertform.UserName.patternError'
-                      ),
-                    },
-                    label: t(
-                      'content.edcconnector.modal.insertform.description.label'
-                    ),
-                    placeholder: t(
-                      'content.edcconnector.modal.insertform.description.placeholder'
-                    ),
-                    tooltipMsg: t(
-                      'content.edcconnector.modal.insertform.description.tooltipMsg'
-                    ),
-                    disable: newUserSuccess ?? false,
-                  }}
-                />
-              </>
+                >
+                  {t('content.edcconnector.modal.createNewTechnicalUser')}
+                </Button>
+              </div>
             )}
-            {handleTechnicalUserSubmit()}
             <Box
               className="stepNumber"
               sx={{ margin: '16px auto', color: '#0f71cb' }}

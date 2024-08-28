@@ -687,6 +687,7 @@
         "connectorRegistrationDetails": "Connector Registration Details",
         "connectAlreadyExistingTechnicalUser": "Connect an already existing technical user",
         "createNewTechnicalUser": "Create a new technical user",
+        "createNewTechnicalUserDescription": "Create a new technical user from the Technical User Management page or by clicking the button below. Please note that the technical user creation process may take up to 5 minutes before the user is ready for Connector Registration.",
         "insertform": {
           "name": {
             "label": "Name*",
