@@ -366,7 +366,7 @@ const CompanyDetailOverlay = ({
         ) : (
           <DialogContent
             sx={{
-              padding: '30px 110px 56px 110px',
+              padding: activeTab === 0 ? '30px 110px 56px 110px' : '0px 120px',
               width: '100%',
               marginBottom: activeTab ? 5 : 0,
             }}

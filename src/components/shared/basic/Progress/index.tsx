@@ -19,24 +19,30 @@ export const Progress = ({
   const red = (items.FAILED / totalItems) * 360 + yellow
 
   const progressColor = () => {
-    switch (applicationStatus) {
-      case ApplicationRequestStatus.CONFIRMED:
-        return {
-          progressBg: '#e2f6c7',
-          progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
-        }
-      case ApplicationRequestStatus.DECLINED:
-      case ApplicationRequestStatus.CANCELLED_BY_CUSTOMER:
-        return {
-          progressBg: '#fee7e2',
-          progressColor: 'conic-gradient(#d91e18 360deg 360deg)',
-        }
-      default:
-        return {
-          progressBg: '#ffffff',
-          progressColor: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
-        }
-    }
+    if (ApplicationRequestStatus.CONFIRMED && items?.SKIPPED === 1) {
+      return {
+        progressBg: '#eaf1fe',
+        progressColor: '#0f71cb',
+      }
+    } else
+      switch (applicationStatus) {
+        case ApplicationRequestStatus.CONFIRMED:
+          return {
+            progressBg: '#e2f6c7',
+            progressColor: 'conic-gradient(#00aa55 360deg 360deg)',
+          }
+        case ApplicationRequestStatus.DECLINED:
+        case ApplicationRequestStatus.CANCELLED_BY_CUSTOMER:
+          return {
+            progressBg: '#fee7e2',
+            progressColor: 'conic-gradient(#d91e18 360deg 360deg)',
+          }
+        default:
+          return {
+            progressBg: '#ffffff',
+            progressColor: `conic-gradient(#00aa55 ${green}deg, #efb800 ${green}deg ${yellow}deg, #d91e18 ${yellow}deg ${red}deg, #ffffff ${red}deg 360deg)`,
+          }
+      }
   }
 
   return (
@@ -65,7 +71,7 @@ export const Progress = ({
         }}
       >
         {applicationStatus !== ApplicationRequestStatus.DECLINED &&
-          `${items.DONE}/${totalItems}`}
+          `${items.DONE + items.SKIPPED}/${totalItems}`}
       </div>
     </div>
   )

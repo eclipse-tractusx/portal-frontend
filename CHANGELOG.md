@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Application Requests and Connector Management**
+  - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
+
 ### Bugfixes
 
 - **IDP management**
@@ -10,6 +15,8 @@
   - Updated SD document download API to fix downloading SD document issue [#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
 - **Service Release Process**
   - Fixed back button navigation to service management instead of navigating to home page[#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
+- **Application Requests**
+  - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
 
 ### Feature
 
