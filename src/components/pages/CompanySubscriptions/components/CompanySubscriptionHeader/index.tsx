@@ -1,3 +1,22 @@
+/********************************************************************************
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
 import {
   Button,
   Image,
@@ -24,8 +43,8 @@ export default function CompanySubscriptionHeader({
   const [docId, setDocId] = useState('')
 
   useEffect(() => {
-    if (detail?.leadPictureId) {
-      const id = CommonService.isValidPictureId(detail?.leadPictureId)
+    if (detail.leadPictureId) {
+      const id = CommonService.isValidPictureId(detail.leadPictureId)
       setDocId(id)
     }
   }, [detail])
@@ -43,7 +62,7 @@ export default function CompanySubscriptionHeader({
             textTransform: 'none',
           }}
         >
-          {t('content.companySubscriptions.subscribed')}
+          {t('content.companySubscriptionsDetail.subscribed')}
         </Button>
       )
     else if (status === SubscriptionStatus.PENDING)
@@ -59,7 +78,7 @@ export default function CompanySubscriptionHeader({
           }}
           startIcon={<HourglassEmptyIcon />}
         >
-          {t('content.companySubscriptions.requested')}
+          {t('content.companySubscriptionsDetail.requested')}
         </Button>
       )
     else
@@ -74,7 +93,7 @@ export default function CompanySubscriptionHeader({
             textTransform: 'none',
           }}
         >
-          {t('content.companySubscriptions.declined')}
+          {t('content.companySubscriptionsDetail.declined')}
         </Button>
       )
   }
@@ -92,17 +111,25 @@ export default function CompanySubscriptionHeader({
           loader={fetchImageWithToken}
         />
       </div>
-      <div className="content">
-        <Box sx={{ padding: '11px 12px' }}>
-          {renderStatusButton(detail.isSubscribed)}
-          <Typography variant="h5" sx={{ color: '#888888' }}>
-            {detail.provider}
+      <Box className="content">
+        <Typography variant="h5" sx={{ color: '#888888' }}>
+          {detail.provider}
+        </Typography>
+        <Typography variant="h4">{detail.title}</Typography>
+        <Typography variant="label2">
+          {t('content.companySubscriptionsDetail.language')}:
+          <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
+            {!!detail.languages.length
+              ? detail.languages.map((lang, index) => (
+                  <span key={lang}>
+                    {` ${index ? ', ' : ''}${lang.toUpperCase()} `}
+                  </span>
+                ))
+              : '-'}
           </Typography>
-          <Typography variant="h4" sx={{}}>
-            {detail.title}
-          </Typography>
-        </Box>
-      </div>
+        </Typography>
+      </Box>
+      <Box>{renderStatusButton(detail.isSubscribed)}</Box>
     </Box>
   )
 }

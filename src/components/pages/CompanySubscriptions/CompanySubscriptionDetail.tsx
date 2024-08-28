@@ -38,29 +38,30 @@ export default function CompanySubscriptionDetail() {
   const { state } = useLocation()
   const items = state
   const { t } = useTranslation()
-  const appId = items.offerId ?? ''
-  const subscriptionId = items.subscriptionId ?? ''
+
+  const appId = items ? items.offerId : ''
+  const subscriptionId = items ? items.subscriptionId : ''
   const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
   const fetchAppsData = useFetchAppDetailsQuery(appId).data
 
   return (
     <main className="company-subscription-detail">
-      <Box className="company-subscription-back app-back">
-        <BackButton
-          backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
-          onBackButtonClick={() => {
-            navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
-          }}
-        />
-      </Box>
-      {data && fetchAppsData && (
+      {fetchAppsData && (
         <Box className="company-subscription-content ">
+          <Box className="company-subscription-back app-back">
+            <BackButton
+              backButtonLabel={t('global.actions.back')}
+              backButtonVariant="text"
+              onBackButtonClick={() => {
+                navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
+              }}
+            />
+          </Box>
           <CompanySubscriptionHeader detail={fetchAppsData} />
           <CompanySubscriptionContent detail={fetchAppsData} />
-          <CompanySubscriptionTechnical detail={data} />
           <CompanySubscriptionDocument detail={fetchAppsData} />
           <CompanySubscriptionPrivacy detail={fetchAppsData} />
+          {data && <CompanySubscriptionTechnical detail={data} />}
         </Box>
       )}
     </main>
