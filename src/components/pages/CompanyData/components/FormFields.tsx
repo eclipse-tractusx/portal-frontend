@@ -287,10 +287,13 @@ export const FormFields = ({
     setFormData(current)
     const formValid =
       current.siteName &&
+      isName(current.siteName) &&
       current.street &&
+      isStreet(current.street) &&
       current.city &&
-      current.postalCode &&
-      current.countryCode
+      isCity(current.city)
+    current.postalCode && isPostalCode(current.postalCode)
+    current.countryCode && isCountry(current.countryCode)
     onValid(
       formValid
         ? {
