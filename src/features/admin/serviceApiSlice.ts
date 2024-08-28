@@ -98,7 +98,6 @@ export interface ServiceAccountsResponseType {
 
 export enum ServiceAccountStatusFilter {
   ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
 }
@@ -152,12 +151,6 @@ export const apiSlice = createApi({
           fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ACTIVE
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
-        } else if (
-          !isFetchArgs &&
-          fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.INACTIVE
-        ) {
-          return `${url}&filterForInactive=true`
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&

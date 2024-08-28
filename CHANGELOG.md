@@ -19,6 +19,11 @@
 - Customer Detail Data Overlay
   - implement new UI design for customer detail data overlay
 
+### Change
+
+- **Technical User Management**
+  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+
 ## 2.2.0-RC1
 
 ### Change
