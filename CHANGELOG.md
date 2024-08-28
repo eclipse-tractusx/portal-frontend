@@ -11,6 +11,8 @@
 
 - **IDP management**
   - Fixed statusTag color in status coloumn [#978](https://github.com/eclipse-tractusx/portal-frontend/pull/978)
+- **Application Requests**
+  - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process)
 
 ### Feature
 
