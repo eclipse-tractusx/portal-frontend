@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Company data
+  - Disable confirm button if input value is not matching with the regular expression
+  - Fix infinite loop issue in add New Address Modal
+
 ## 2.2.0-RC1
 
 ### Change
