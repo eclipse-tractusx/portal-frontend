@@ -33,15 +33,26 @@ import './style.scss'
 import { TechnicalUserTable } from './TechnicalUserTable'
 import { getAssetBase } from 'services/EnvironmentService'
 import { PAGES } from 'types/cfx/Constants'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()
+  const location = useLocation()
+
+  const triggerEvent = location.state?.triggerEvent
   const notification = useSelector(notificationSelector)
   const dispatch = useDispatch()
 
   const handleCloseNotification = () => {
     dispatch(resetNotification())
   }
+
+  useEffect(() => {
+    if (triggerEvent) {
+      dispatch(show(OVERLAYS.ADD_TECHUSER))
+    }
+  }, [triggerEvent])
 
   return (
     <main>
