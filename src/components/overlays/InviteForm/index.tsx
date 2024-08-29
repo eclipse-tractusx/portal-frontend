@@ -104,7 +104,7 @@ export const InviteForm = ({
   return (
     <Dialog open={openDialog} sx={{ '.MuiDialog-paper': { maxWidth: '60%' } }}>
       <DialogHeader
-        title={t('content.invite.headerTitle')}
+        title={t('content.invite.dialogHeaderTitle')}
         intro={t('content.invite.headerIntro')}
       />
       <DialogContent sx={{ padding: '0px 130px 40px 150px' }}>
