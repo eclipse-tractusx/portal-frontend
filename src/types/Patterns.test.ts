@@ -27,8 +27,8 @@ import {
   isUUID,
   isCName,
   isCountryCode,
-  isFirstName,
   isClientID,
+  isPersonName,
 } from './Patterns'
 
 const TESTDATA = {
@@ -164,13 +164,43 @@ const TESTDATA = {
     valid: ['DE'],
     invalid: ['', 'D', 'de', 'some string'],
   },
-  FIRSTNAME: {
-    valid: ['Julia Sophie', 'Julia-Sophie', 'Chloé', 'Paŭlo'],
+  PERSON_NAME: {
+    valid: [
+      'Franz Mustermann',
+      'Li',
+      'Bo Li',
+      'Julia Sophie',
+      'Julia-Sophie',
+      'Dr. Müller',
+      'Chloé',
+      'Paŭlo',
+      'Walther von der Vogelweide',
+      'Willard Carroll Smith, Jr.',
+      'John F. Kennedy',
+      'Ursula K. Le Guin',
+      // prettier-ignore
+      'Joseph O\'Neill',
+      // prettier-ignore
+      'd\'Artagnan',
+      'Sigríður',
+      'Łukasz',
+      'Božič',
+      'Polývios',
+      // prettier-ignore
+      'Muhammad bin Salmān Āl Su\'ūd',
+    ],
     invalid: [
       'Julia  Sophie',
       'Julia–Sophie',
       'Julia Sophie ',
       ' Julia Sophie ',
+      'William H Gates',
+      'Prayut Chan-o-cha',
+      'Meister. Eder',
+      '孔夫子',
+      'แพทองธาร ชินวัตร',
+      'مُحَمَّدْ بْنْ سَلْمَانْ آلْ سُعُودْ',
+      'Muḥammad bin Salmān Āl Su‘ūd',
     ],
   },
   CLIENTID: {
@@ -251,12 +281,12 @@ describe('Input Pattern Tests', () => {
       expect(isCountryCode(expr)).toBe(false)
     })
   })
-  it('validates firstName', () => {
-    TESTDATA.FIRSTNAME.valid.forEach((expr) => {
-      expect(isFirstName(expr)).toBe(true)
+  it('validates person name', () => {
+    TESTDATA.PERSON_NAME.valid.forEach((expr) => {
+      expect(isPersonName(expr)).toBe(true)
     })
-    TESTDATA.FIRSTNAME.invalid.forEach((expr) => {
-      expect(isFirstName(expr)).toBe(false)
+    TESTDATA.PERSON_NAME.invalid.forEach((expr) => {
+      expect(isPersonName(expr)).toBe(false)
     })
   })
   it('validate tech user clientId', () => {
