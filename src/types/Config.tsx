@@ -581,7 +581,7 @@ export const ALL_PAGES: IPage[] = [
     element: <CompanyData />,
   },
   {
-    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
+    name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
     element: <OnboardingServiceProvider />,
   },
 ]
@@ -817,7 +817,7 @@ export const userMenuFull = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
-  PAGES.ONBOARDING_SERVICE_PROVIDER,
+  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
   PAGES.LOGOUT,
 ]
 

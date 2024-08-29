@@ -78,7 +78,7 @@ const MenuItemOpenOverlay = ({
   )
 }
 
-export const IDPList = () => {
+export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const { t } = useTranslation()
   const ti = useTranslation('idp').t
 
@@ -323,7 +323,13 @@ export const IDPList = () => {
           renderCell: ({ row }: { row: IdentityProvider }) => renderMenu(row),
         },
       ]}
-      rows={idpsData ?? []}
+      rows={
+        (isManagementOSP
+          ? idpsData?.filter(
+              (a) => a.identityProviderTypeId === IDPCategory.MANAGED
+            )
+          : idpsData) ?? []
+      }
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
     />

@@ -70,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "onboardingServiceProvider": "Onboarding Service Provider"
+    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
