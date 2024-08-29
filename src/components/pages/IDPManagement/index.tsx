@@ -18,15 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { OVERLAYS } from 'types/Constants'
-import { Button, Typography } from '@catena-x/portal-shared-components'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { IDPList } from './IDPList'
 import { show } from 'features/control/overlay'
 import './style.scss'
-import { getAssetBase } from 'services/EnvironmentService'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import PageInfo from 'components/shared/cfx/PageInfo'
 
 export default function IDPManagement() {
   const { t } = useTranslation('idp')
@@ -34,33 +33,19 @@ export default function IDPManagement() {
 
   return (
     <main>
+      <MainHeader
+        title={t('idpmanagement.title')}
+        subTitle={t('page.desc')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <section>
-        <div className="idp-management-header">
-          <Trans>
-            <Typography variant="h2" className="idp-management-title">
-              {t('page.title')}
-            </Typography>
-          </Trans>
-          <Trans>
-            <Typography className="idp-management-desc">
-              {t('page.desc')}
-            </Typography>
-          </Trans>
-          <img
-            src={`${getAssetBase()}/images/content/teaser.png`}
-            alt={'idp management'}
-          />
-          <div>
-            <Button
-              size="small"
-              startIcon={<AddCircleOutlineIcon />}
-              onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
-              className="add-idp-btn"
-            >
-              {t('action.create')}
-            </Button>
-          </div>
-        </div>
+        <PageInfo
+          description={t('page.shortDescriptionText')}
+          buttonLabel={t('action.create')}
+          buttonAction={() => dispatch(show(OVERLAYS.ADD_IDP))}
+        />
+
         <div style={{ paddingTop: '70px' }}>
           <IDPList />
         </div>

@@ -298,7 +298,9 @@
         "subtitle": "Entdecken Sie Catena-X zertifizierte Apps für verschiedenste Industrieanwendungen. Sie können das Angebot nach Use Cases sortieren oder alle Produkte durchsuchen. Markieren Sie Apps mit einem Herz, um sie im Bereich Gemerkte Apps anzuzeigen.",
         "appButton": "App Übersicht"
       },
-      "searchSection": { "inputPlaceholder": "Suche nach App Titel..." },
+      "searchSection": {
+        "inputPlaceholder": "Suche nach App Titel..."
+      },
       "favoriteSection": {
         "title": "Meine Favoriten",
         "myFavorite": "Gemerkte Apps",
@@ -329,8 +331,9 @@
     },
     "semantichub": {
       "title": "Semantische Datenmodelle",
-      "introText_0": "Semantische Modelle dienen zur Strukturierung von Daten. Als Konzept ermöglichen sie es, Daten und ihren Beziehungen eine grundlegende Bedeutung zu verleihen. Im Rahmen der Datenmodellierung und Datenorganisation realisieren sie die einfache Entwicklung von Anwendungen wie auch die Aufrechterhaltung von Datenkonsistenz.",
-      "introText_1": "In Catena-X werden semantische Datenmodelle in einem geeigneten Publikationssystem, dem sogenannten Semantic Hub, bereitgestellt. Für Daten bzw. Service Anbieter stellt der Semantic Hub  eine Grundlage für die Nutzung und Wiederverwendung von semantischen Modellen. Aus diesem Grund erfolgt die Veröffentlichung eines semantischen Datenmodells unter der Angabe einer Version. Dies fördert Transparenz wie auch Kontrolle über alle semantischen Modelle und deren Freigabestatus.",
+      "introTitle": "Semantik Hub",
+      "introText_0": "In Catena-X veröffentlicht und verwaltet der Semantik Hub semantische Datenmodelle. Er ermöglicht es Daten- und Dienstanbietern, diese Modelle effizient zu nutzen und wiederzuverwenden. Jedes Datenmodell wird versioniert, um Transparenz und Kontrolle zu gewährleisten und den Freigabestatus effektiv zu verwalten.",
+      "introText_1": "Semantische Modelle dienen zur Strukturierung von Daten. Als Konzept  ermöglichen sie es, Daten und ihren Beziehungen eine grundlegende  Bedeutung zu verleihen. Im Rahmen der Datenmodellierung und  Datenorganisation realisieren sie die einfache Entwicklung von  Anwendungen wie auch die Aufrechterhaltung von Datenkonsistenz.",
       "addModel": "Neues Model anlegen",
       "alerts": {
         "alertSuccessTitle": "Erfolg!",
@@ -621,12 +624,10 @@
       },
       "configurationDetails": {
         "title": "Konfigurieren Sie Ihren Connector",
-
         "description1": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.",
         "description2": "Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.",
         "description3": "Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.",
         "description4": "Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
-
         "description": "Diese Beschreibung enthält Schritt-für-Schritt-Anleitungen zur Konfiguration Ihres Connectors.<br/> Bitte befolgen Sie die nachstehenden Anweisungen, um die erforderlichen Konfigurationswerte festzulegen.<br/>Stellen Sie sicher, dass Sie für jede Konfigurationseinstellung die richtigen Werte eingeben.<br/> Sobald Sie diese Werte festgelegt haben, ist Ihr Connector ordnungsgemäß konfiguriert und einsatzbereit.",
         "learnMore": "Lern mehr",
         "clientId": "Client-ID Ihres technischen Benutzers",
@@ -925,19 +926,20 @@
       },
       "technicalUser": {
         "serviceaccount": "Technischer Benutzer",
-        "create": "Technischen Nutzer anlegen",
-        "delete": "Technischen Nutzer entfernen",
+        "create": "Technischen User anlegen",
+        "delete": "Technischen User entfernen",
         "credentialReset": "Credential Reset",
         "headline": "Technical User Management {{company}}",
-        "descriptionHeader": "Technical User Management {{company}}",
-        "descriptionText": "Der technische Benutzer ist eine Identität, die ein Unternehmen verwenden kann, um sich mit CX-Backend-Diensten ohne ständige Trennung zu verbinden. Zum Beispiel ist ein technischer Run-As-Benutzer erforderlich, um sich mit der Registrierung für digitale Zwillinge oder dem semantischen Modell zu verbinden. Bitte verwenden Sie die Aktionsschaltfläche, um einen neuen technischen Benutzer mit den Rollen gemäß Ihren Anforderungen anzufordern. Oder verwalten Sie bereits vorhandene technische Benutzer, indem Sie die unten stehende Benutzerverwaltungsfunktion verwenden.",
+        "descriptionHeader": "Technischer User Management",
+        "descriptionText": "Der technische Benutzer ist eine Identität, die ein Unternehmen verwenden kann, um sich mit CX-Backend-Diensten ohne ständige Trennung zu verbinden. Zum Beispiel ist ein technischer Run-As-Benutzer erforderlich, um sich mit der Registrierung für digitale Zwillinge oder dem semantischen Modell zu verbinden.",
+        "shortDescriptionText": "Klicken Sie den Button, um einen neuen technischen User mit den Rollen gemäß Ihren Anforderungen anzulegen. Oder verwalten Sie bereits vorhandene technische User in der Tabelle.",
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
-          "connectedObjects": "Connected Objects",
+          "connectedObjects": "Verbundene Objekte",
           "connectorLink": "Connector Link",
           "offerLink": "Offer Link",
-          "userDetails": "Technischer Benutzer Details",
+          "userDetails": "Technischer User Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
           "permission": "Berechtigungen"
@@ -955,7 +957,10 @@
           "managed": "Gelang es",
           "owned": "Besessen"
         },
-        "searchText": "Search by client Id"
+        "searchText": "Search by client Id",
+        "technicalUserDetails": {
+          "heading": "Technischer User Details"
+        }
       },
       "deleteUserConfirm": {
         "header": "Delete user account",

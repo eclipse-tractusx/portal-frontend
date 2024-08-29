@@ -1,6 +1,6 @@
 {
   "idpmanagement": {
-    "title": "IDP Provider Config / <br>My Company Wallet",
+    "title": "Konfiguration Identity Provider",
     "addIdpHeadline": "New IdP Connection",
     "addIdpSubheadline": "Enter a name for the new Identity Provider to start the configuration",
     "updateIdpHeadline": "Identity Provider Configuration",
@@ -46,7 +46,8 @@
   },
   "page": {
     "title": "Konfiguration des Identitätsanbieters",
-    "desc": "Auf dieser Seite können Sie die Benutzerauthentifizierung für Ihr Unternehmen verwalten. <br/><br/> Bei der Registrierung haben wir einen Identity Provider (IDP) mit einem einzigen Benutzereintrag für den Administrator eingerichtet. Viele Organisationen unterhalten bereits ihren eigenen IDP, bei dem sich Benutzer mit ihren etablierten Unternehmensbenutzer-IDs und vertrauten Anmeldeoberflächen authentifizieren. In solchen Fällen möchten Sie möglicherweise Ihren vorhandenen Unternehmens-IDP nutzen. Auf dieser Seite können Sie die erforderliche Föderation erstellen und verwalten."
+    "desc": "Auf dieser Seite können Sie die Benutzerauthentifizierung für Ihr Unternehmen verwalten. <br/><br/> Bei der Registrierung haben wir einen Identity Provider (IDP) mit einem einzigen Benutzereintrag für den Administrator eingerichtet. Viele Organisationen unterhalten bereits ihren eigenen IDP, bei dem sich Benutzer mit ihren etablierten Unternehmensbenutzer-IDs und vertrauten Anmeldeoberflächen authentifizieren. In solchen Fällen möchten Sie möglicherweise Ihren vorhandenen Unternehmens-IDP nutzen. Auf dieser Seite können Sie die erforderliche Föderation erstellen und verwalten.",
+    "shortDescriptionText":"Sie bevorzugen wahrscheinlich die Nutzung Ihres eigenen Unternehmens-IDP. Auf dieser Seite können Sie die Föderation erstellen und verwalten. Bei der Registrierung haben wir eine IDP mit einem Benutzereintrag für den Administrator erstellt."
   },
   "add": {
     "title": "Add your Identity Provider (IdP)",
@@ -239,7 +240,7 @@
       "hint": "Enter the client secret provided by your IdP"
     },
     "clientAuthMethod": {
-      "name": "Auth Method",
+      "name": "Auth Methode",
       "hint": "The way how the central IdP authenticates with this IdP"
     },
     "copy": {
@@ -270,10 +271,41 @@
     "notConfiguredAndEnabled": "IdP-Eintrag erstellt. Status deaktiviert und Konfiguration erforderlich.",
     "configuredAndNotEnabled": "Der IdP ist derzeit deaktiviert. Sie können den Datensatz aktivieren, um den IdP zu verwenden. Der IdP ist derzeit deaktiviert. Sie können den Eintrag aktivieren, um den IdP für die Anmeldung zu verwenden.",
     "configuredAndEnabled": "IdP aktiv. Benutzer können den IdP für die Anmeldung verwenden wenn ihr User Account angelegt wurde..",
-    "status1": "open",
+    "status1": "ausstehend",
     "status2": "Idp created",
     "status3": "disabled",
-    "status4": "active"
+    "status4": "aktiv"
+  },
+  "osp": {
+    "steps": {
+      "one": {
+        "text": "done",
+        "title": "Create"
+      },
+      "two": {
+        "text": "done",
+        "title": "Configure"
+      },
+      "three": {
+        "text": "done",
+        "title": "Register"
+      },
+      "four": {
+        "text": "done",
+        "title": "Next Steps"
+      }
+    },
+    "register": {
+      "title": "Register Partner",
+      "desc": "Please Note: This registration form only serves as a mock, that allows to register partners. In the future this functionality is not planned to exist further. The partner registration will then happen utilizing a technical user.",
+      "error": "Error submitting registration",
+      "success": "Registration successful"
+    },
+    "register_next": {
+      "title": "Next Steps",
+      "desc": "{Description of next steps}",
+      "body1": "Registration of IDP {{id}} successful. Now do ..."
+    }
   },
   "osp": {
     "steps": {
@@ -307,17 +339,17 @@
     }
   },
   "action": {
-    "actions": "Actions",
+    "actions": "Aktion",
     "createIdp": "Create IdP entry",
     "create": "Add Identity Provider",
     "details": "Details",
     "enable": "Enable",
-    "disable": "Disable",
+    "disable": "Deaktivieren",
     "delete": "Delete",
     "edit": "Edit",
-    "configure": "Configure",
+    "configure": "Konfigurieren",
     "register": "Register Partner",
-    "users": "Users",
+    "users": "Benutzer",
     "signout": "Sign out",
     "confirm": "Confirm",
     "close": "Close",

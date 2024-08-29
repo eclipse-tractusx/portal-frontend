@@ -18,27 +18,26 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  PageHeader,
-  PageSnackbar,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { PageSnackbar, Button, Typography } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Grid } from '@mui/material'
 import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSemanticModelById } from 'features/semanticModels/actions'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModelImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
+import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import Grid from '@mui/material/Grid'
+
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAssetBase } from 'services/EnvironmentService'
 import type { AppDispatch } from 'features/store'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import PageInfo from 'components/shared/cfx/PageInfo'
 import { userHasSemanticHubRole } from 'services/AccessService'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
@@ -120,15 +119,22 @@ export default function SemanticHub() {
 
   return (
     <>
-      <Box sx={{ position: 'sticky' }}>
-        <PageHeader
-          headerHeight={200}
-          topPage={true}
-          title={t('content.semantichub.title')}
-        />
-      </Box>
       <main className="semantic-models">
+        <MainHeader
+          title={t('content.semantichub.introTitle')}
+          subTitle={t('content.semantichub.introText_0')}
+          headerHeight={250}
+          subTitleWidth={750}
+        />
         <section>
+        <PageInfo
+            description={t('content.semantichub.introText_1')}
+            buttonLabel={t('content.semantichub.addModel')}
+            buttonAction={() => {
+              setImportModel(true)
+            }}
+          />
+         
           <Grid container justifyContent="space-between">
             <Grid item xs={5}>
               <Typography variant="body2" mb={2}>

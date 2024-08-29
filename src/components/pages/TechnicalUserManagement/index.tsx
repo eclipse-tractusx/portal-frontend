@@ -18,13 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import { OVERLAYS } from 'types/Constants'
-import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { Button, PageNotifications } from '@catena-x/portal-shared-components'
+import { PageNotifications } from '@catena-x/portal-shared-components'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { show } from 'features/control/overlay'
-import UserService from 'services/UserService'
 import {
   notificationSelector,
   setNotification,
@@ -33,9 +30,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import './style.scss'
 import { TechnicalUserTable } from './TechnicalUserTable'
-import { getAssetBase } from 'services/EnvironmentService'
-import { initServicetNotifications } from 'types/MainTypes'
-import { PAGES } from 'types/cfx/Constants'
+import PageInfo from 'components/shared/cfx/PageInfo'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -59,52 +54,35 @@ export default function TechnicalUserManagement() {
 
   return (
     <main>
-      <PageHeaderWithCrumbs
-        crumbs={[PAGES.USER_MANAGEMENT, PAGES.TECH_USER_MANAGEMENT]}
+      <MainHeader
+        title={t('content.usermanagement.technicalUser.descriptionHeader')}
+        subTitle={t('content.usermanagement.technicalUser.descriptionText')}
+        headerHeight={250}
+        subTitleWidth={750}
       />
       <section>
-        <div className="content-technical-user">
-          <div className="content-technical-user-description">
-            <div className="content-technical-user-title">
-              <SubHeaderTitle
-                title={'content.usermanagement.technicalUser.descriptionHeader'}
-                params={{ company: UserService.getCompany() as string }}
-                variant="h3"
-              />
 
-              <SubHeaderTitle
-                title={'content.usermanagement.technicalUser.descriptionText'}
-                variant="body1"
+        <PageInfo 
+          description={t('content.usermanagement.technicalUser.shortDescriptionText')}
+          buttonLabel={t('content.usermanagement.technicalUser.create')}
+          buttonAction={() => dispatch(show(OVERLAYS.ADD_TECH_USER))} />
+
+        <div className="cx-content-technical__container" >
+          {notification.title && notification.description && (
+            <div className="cx-content-technical__notifications" >
+              <PageNotifications
+                open={notification.open}
+                severity={notification.severity}
+                title={t(notification.title)}
+                description={t(notification.description)}
+                onCloseNotification={handleCloseNotification}
+                showIcon={false}
               />
             </div>
-            <Button
-              size="small"
-              startIcon={<AddCircleOutlineIcon />}
-              onClick={() => dispatch(show(OVERLAYS.ADD_TECH_USER))}
-            >
-              {t('content.usermanagement.technicalUser.create')}
-            </Button>
-          </div>
-          <div className="content-technical-user-image">
-            <img
-              src={`${getAssetBase()}/images/content/teaser.png`}
-              alt={'alt tag info'}
-            />
-          </div>
-        </div>
-
-        <div style={{ paddingTop: '70px' }}>
-          {notification?.title && notification?.description && (
-            <PageNotifications
-              open={notification.open}
-              severity={notification.severity}
-              title={t(notification.title)}
-              description={t(notification.description)}
-              onCloseNotification={handleCloseNotification}
-              showIcon={false}
-            />
           )}
-          <TechnicalUserTable />
+          <div className="cx-content-technical__table" >
+            <TechnicalUserTable />
+          </div>
         </div>
       </section>
     </main>
