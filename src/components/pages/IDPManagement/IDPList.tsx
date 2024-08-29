@@ -252,6 +252,92 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     )
   }
 
+  const renderManagementOSPMenu = (idp: IdentityProvider) => {
+    const isManagedIdp = idp.identityProviderTypeId === IDPCategory.MANAGED
+    const menuItems = {
+      edit: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.UPDATE_IDP}
+          id={idp.identityProviderId}
+          label={ti('action.edit')}
+        />
+      ),
+      delete: isManagedIdp ? (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.DELETE_MANAGED_IDP}
+          id={idp.identityProviderId}
+          label={ti('action.delete')}
+        />
+      ) : (
+        <MenuItem
+          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+            !deleteLoading && doDelete(e, idp)
+          }
+          sx={{
+            color: deleteLoading ? '#b6b6b6' : '#111111',
+          }}
+          disabled={idp.enabled}
+        >
+          {ti('action.delete')}
+          {deleteLoading && (
+            <CircleProgress
+              variant="indeterminate"
+              colorVariant="primary"
+              size={15}
+              sx={{
+                marginLeft: '5px',
+              }}
+            />
+          )}
+        </MenuItem>
+      ),
+      enableToggle:
+        isManagedIdp && idp.enabled ? (
+          <MenuItemOpenOverlay
+            overlay={OVERLAYS.DISABLE_MANAGED_IDP}
+            id={idp.identityProviderId}
+            label={ti('action.disable')}
+          />
+        ) : (
+          <MenuItem
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
+            sx={{
+              color: disableLoading ? '#b6b6b6' : '#111111',
+            }}
+            disabled={
+              data &&
+              idp.enabled &&
+              data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
+            }
+          >
+            {idp.enabled ? ti('action.disable') : ti('action.enable')}
+            {disableLoading && (
+              <CircleProgress
+                variant="indeterminate"
+                colorVariant="primary"
+                size={15}
+                sx={{
+                  marginLeft: '5px',
+                }}
+              />
+            )}
+          </MenuItem>
+        ),
+    }
+
+    return (
+      <div className="action-menu">
+        <DropdownMenu buttonText={ti('action.actions')}>
+          {menuItems.edit}
+          {menuItems.enableToggle}
+          {menuItems.delete}
+        </DropdownMenu>
+      </div>
+    )
+  }
+
   return (
     <Table
       rowsCount={idpsData?.length}
@@ -320,7 +406,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           headerName: t('global.field.action'),
           flex: 2,
           sortable: false,
-          renderCell: ({ row }: { row: IdentityProvider }) => renderMenu(row),
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
         },
       ]}
       rows={
