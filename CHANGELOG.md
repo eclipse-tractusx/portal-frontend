@@ -6,6 +6,10 @@
 
 - **Onboarding Service Provider Management**:
   - Create new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
+- Service Subscription
+  - Update auto setup api response data in the service subscription response overlay
+- Partner Network
+  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly
 
 ## 2.2.0-RC1
 

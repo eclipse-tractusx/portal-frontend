@@ -96,11 +96,11 @@ export default function ActivateserviceSubscription({
     body: [
       [
         t('serviceSubscription.activation.userId'),
-        techUserInfo?.technicalUserInfo.technicalClientId ?? '',
+        techUserInfo?.technicalUserInfo[0]?.technicalClientId ?? '',
       ],
       [
         t('serviceSubscription.activation.sercret'),
-        techUserInfo?.technicalUserInfo.technicalUserSecret ?? '',
+        techUserInfo?.technicalUserInfo[0]?.technicalUserSecret ?? '',
       ],
       [
         t('serviceSubscription.activation.url'),
@@ -108,8 +108,9 @@ export default function ActivateserviceSubscription({
       ],
       [
         t('serviceSubscription.activation.technicaluserType'),
-        techUserInfo?.technicalUserInfo.technicalUserPermissions.join(', ') ??
-          '',
+        techUserInfo?.technicalUserInfo[0]?.technicalUserPermissions?.join(
+          ', '
+        ) ?? '',
       ],
     ],
     edit: [
@@ -127,7 +128,7 @@ export default function ActivateserviceSubscription({
         },
         {
           icon: false,
-          copyValue: techUserInfo?.technicalUserInfo.technicalUserSecret,
+          copyValue: techUserInfo?.technicalUserInfo[0]?.technicalUserSecret,
         },
       ],
     ],
