@@ -6,6 +6,9 @@
 
 - **Onboarding Service Provider Management**:
   - Create new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
+- Company data
+  - Disable confirm button if input value is not matching with the regular expression
+  - Fix infinite loop issue in add New Address Modal
 - Service Subscription
   - Update auto setup api response data in the service subscription response overlay
 - Partner Network

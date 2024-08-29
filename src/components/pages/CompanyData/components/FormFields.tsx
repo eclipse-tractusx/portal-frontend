@@ -32,7 +32,6 @@ import {
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
-import { SelectList } from '@catena-x/portal-shared-components'
 import { type CompanyDataFieldsType } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
 import { companyDataSelector } from 'features/companyData/slice'
@@ -40,6 +39,7 @@ import {
   type UniqueIdentifier,
   useFetchUniqueIdentifierQuery,
 } from 'features/admin/userApiSlice'
+import { SelectList } from './SelectList'
 
 const responseToForm = (data: CompanyDataFieldsType) => {
   const form: IHashMap<string> = {}
@@ -287,10 +287,13 @@ export const FormFields = ({
     setFormData(current)
     const formValid =
       current.siteName &&
+      isName(current.siteName) &&
       current.street &&
+      isStreet(current.street) &&
       current.city &&
-      current.postalCode &&
-      current.countryCode
+      isCity(current.city)
+    current.postalCode && isPostalCode(current.postalCode)
+    current.countryCode && isCountry(current.countryCode)
     onValid(
       formValid
         ? {

@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^3.1.3",
+    "@catena-x/portal-shared-components": "^3.4.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/error-message": "^2.0.1",
@@ -43,6 +43,7 @@
     "@mui/x-data-grid": "^6.19.11",
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.6",
+    "autosuggest-highlight": "^3.3.4",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.12",
@@ -81,6 +82,7 @@
     "@types/react-dom": "^18.2.22",
     "@types/react-redux": "^7.1.33",
     "@types/react-slick": "^0.23.13",
+    "@types/autosuggest-highlight": "^3.2.3",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "@vitejs/plugin-react": "^4.2.1",
