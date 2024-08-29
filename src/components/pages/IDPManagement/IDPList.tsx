@@ -303,24 +303,24 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
             sx={{
               color: disableLoading ? '#b6b6b6' : '#111111',
             }}
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-              !disableLoading && doEnableDisableToggle(e, idp)
-            }
             disabled={
               data &&
               idp.enabled &&
               data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
             }
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
           >
             {idp.enabled ? ti('action.disable') : ti('action.enable')}
             {disableLoading && (
               <CircleProgress
-                variant="indeterminate"
-                colorVariant="primary"
                 size={15}
+                variant="indeterminate"
                 sx={{
                   marginLeft: '5px',
                 }}
+                colorVariant="primary"
               />
             )}
           </MenuItem>
