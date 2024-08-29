@@ -178,7 +178,7 @@ export type ActivateSubscriptionRequest = {
 }
 
 export type ActivateSubscriptionResponse = {
-  technicalUserInfo: TechnicalUserInfoType
+  technicalUserInfo: TechnicalUserInfoType[]
   clientInfo: ClientInfoType
 }
 
