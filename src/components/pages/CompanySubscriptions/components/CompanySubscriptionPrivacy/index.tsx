@@ -25,6 +25,14 @@ import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { type AppDetails } from 'features/apps/types'
 import './CompanySubscriptionPrivacy.scss'
 
+const policyIcons = {
+  [PrivacyPolicyType.COMPANY_DATA]: Apartment,
+  [PrivacyPolicyType.USER_DATA]: Person,
+  [PrivacyPolicyType.LOCATION]: LocationOn,
+  [PrivacyPolicyType.BROWSER_HISTORY]: Web,
+  [PrivacyPolicyType.NONE]: Info,
+}
+
 export default function CompanySubscriptionPrivacy({
   detail,
 }: {
@@ -35,20 +43,8 @@ export default function CompanySubscriptionPrivacy({
   })
 
   const renderPrivacy = (policy: PrivacyPolicyType) => {
-    switch (policy) {
-      case PrivacyPolicyType.COMPANY_DATA:
-        return <Apartment className="policy-icon" />
-      case PrivacyPolicyType.USER_DATA:
-        return <Person className="policy-icon" />
-      case PrivacyPolicyType.LOCATION:
-        return <LocationOn className="policy-icon" />
-      case PrivacyPolicyType.BROWSER_HISTORY:
-        return <Web className="policy-icon" />
-      case PrivacyPolicyType.NONE:
-        return <Info className="policy-icon" />
-      default:
-        return <Apartment className="policy-icon" />
-    }
+    const IconComponent = policyIcons[policy] || Apartment
+    return <IconComponent className="policy-icon" />
   }
 
   return (

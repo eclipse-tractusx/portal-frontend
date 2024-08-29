@@ -35,35 +35,42 @@ import './CompanySubscriptions.scss'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
-  const { state } = useLocation()
-  const items = state
+  const { state: items } = useLocation()
   const { t } = useTranslation()
 
   const appId = items ? items.offerId : ''
   const subscriptionId = items ? items.subscriptionId : ''
-  const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
-  const fetchAppsData = useFetchAppDetailsQuery(appId).data
+
+  // Prevent API call when appId does not exist
+  const { data } = appId
+    ? useFetchSubscriptionAppQuery({ appId, subscriptionId })
+    : { data: undefined }
+  const { data: fetchAppsData } = appId
+    ? useFetchAppDetailsQuery(appId)
+    : { data: undefined }
 
   return (
     <main className="company-subscription-detail">
-      {fetchAppsData && (
-        <Box className="company-subscription-content ">
-          <Box className="company-subscription-back app-back">
-            <BackButton
-              backButtonLabel={t('global.actions.back')}
-              backButtonVariant="text"
-              onBackButtonClick={() => {
-                navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
-              }}
-            />
-          </Box>
-          <CompanySubscriptionHeader detail={fetchAppsData} />
-          <CompanySubscriptionContent detail={fetchAppsData} />
-          <CompanySubscriptionDocument detail={fetchAppsData} />
-          <CompanySubscriptionPrivacy detail={fetchAppsData} />
-          {data && <CompanySubscriptionTechnical detail={data} />}
+      <Box className="company-subscription-content">
+        <Box className="company-subscription-back app-back">
+          <BackButton
+            backButtonLabel={t('global.actions.back')}
+            backButtonVariant="text"
+            onBackButtonClick={() => {
+              navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
+            }}
+          />
         </Box>
-      )}
+        {data && fetchAppsData && (
+          <>
+            <CompanySubscriptionHeader detail={fetchAppsData} />
+            <CompanySubscriptionContent detail={fetchAppsData} />
+            <CompanySubscriptionDocument detail={fetchAppsData} />
+            <CompanySubscriptionPrivacy detail={fetchAppsData} />
+            <CompanySubscriptionTechnical detail={data} />
+          </>
+        )}
+      </Box>
     </main>
   )
 }

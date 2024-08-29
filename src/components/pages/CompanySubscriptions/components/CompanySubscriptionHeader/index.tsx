@@ -103,7 +103,7 @@ export default function CompanySubscriptionHeader({
       <div className="lead-image">
         <Image
           src={
-            detail?.id
+            detail?.id && docId
               ? `${getApiBase()}/api/apps/${detail.id}/appDocuments/${docId}`
               : LogoGrayData
           }
@@ -112,10 +112,10 @@ export default function CompanySubscriptionHeader({
         />
       </div>
       <Box className="content">
-        <Typography variant="h5" sx={{ color: '#888888' }}>
-          {detail.provider}
-        </Typography>
-        <Typography variant="h4">{detail.title}</Typography>
+        <div>
+          <Typography variant="h5">{detail.provider}</Typography>
+          <Typography variant="h4">{detail.title}</Typography>
+        </div>
         <Typography variant="label2">
           {t('content.companySubscriptionsDetail.language')}:
           <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
@@ -125,7 +125,7 @@ export default function CompanySubscriptionHeader({
                     {` ${index ? ', ' : ''}${lang.toUpperCase()} `}
                   </span>
                 ))
-              : '-'}
+              : ''}
           </Typography>
         </Typography>
       </Box>

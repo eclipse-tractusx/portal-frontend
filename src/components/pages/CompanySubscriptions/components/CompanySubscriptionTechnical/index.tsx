@@ -38,10 +38,10 @@ export default function CompanySubscriptionTechnical({
     ],
     body: [
       [
-        !!detail.connectorData.length ? detail.connectorData[0].name : ' - ',
-        !!detail.technicalUserData.length
-          ? detail.technicalUserData[0].name
-          : ' - ',
+        !detail.connectorData.length ? '' : detail.connectorData[0].name,
+        !detail.technicalUserData.length
+          ? ''
+          : detail.technicalUserData[0].name,
       ],
     ],
     edit: [

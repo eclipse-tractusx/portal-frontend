@@ -17,7 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/breakpoints';
+@import 'src/components/styles/_breakpoints';
+@import 'src/components/styles/_colors';
 
 .company-subscription-detail {
   min-width: 1440px;
@@ -43,9 +44,6 @@
 
     @include media-breakpoint-up(xs) {
       max-width: 300px;
-    }
-    @include media-breakpoint-up(sm) {
-      max-width: map-get($breakpoints, xs);
     }
     @include media-breakpoint-up(md) {
       max-width: 620px;
@@ -86,12 +84,18 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 11px 12px;
+        gap: 10px;
+
+        h5 {
+          color: color('text-tertiary');
+        }
       }
     }
 
     #image-gallery {
       max-width: 90%;
-      overflow: hidden;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
