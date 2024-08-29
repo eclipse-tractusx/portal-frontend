@@ -60,6 +60,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
   const [allRoles, setAllRoles] = useState<AppRole[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
   const [offerId, setOfferId] = useState<string>('')
+  const [allAdminRoles, setAllAdminRoles] = useState<AppRole[]>([])
 
   const [updatePortalRoles] = useUpdatePortalRolesMutation()
 
@@ -69,6 +70,13 @@ export default function EditPortalRoles({ id }: { id: string }) {
       setOfferId(appRoles[0].offerId)
     }
   }, [appRoles])
+
+  useEffect(() => {
+    if (allRoles) {
+      const adminRoles = allRoles.filter((item) => item.role.includes('Admin'))
+      setAllAdminRoles(adminRoles)
+    }
+  }, [allRoles])
 
   useEffect(() => {
     setSelectedRoles(assignedRoles ?? [])
@@ -114,13 +122,10 @@ export default function EditPortalRoles({ id }: { id: string }) {
       assignedRoles.length === selectedRoles.length &&
       assignedRoles.every((value) => selectedRoles.includes(value)))
 
-  const disabledCheckbox = (currentRole: AppRole) => {
-    const allAdminRoles = allRoles.filter((item) => item.role.includes('Admin'))
-
-    return UserService.getUsername() === id
-      ? allAdminRoles.indexOf(currentRole) !== -1
+  const disabledCheckbox = (currentRole: AppRole) =>
+    UserService.getUsername() === id
+      ? allAdminRoles.includes(currentRole)
       : false
-  }
 
   return (
     <>
