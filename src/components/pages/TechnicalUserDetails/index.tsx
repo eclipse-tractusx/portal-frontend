@@ -19,23 +19,22 @@
  ********************************************************************************/
 
 import { useParams } from 'react-router-dom'
-import { PAGES } from 'types/cfx/Constants'
-import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import TechnicalUserDetailsContent from './TechnicalUserDetailsContent'
 import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
 import { Empty } from 'components/shared/basic/Empty'
+import { t } from 'i18next'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function TechnicalUserDetails() {
   const { userId } = useParams()
   const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
   return (
     <main>
-      <PageHeaderWithCrumbs
-        crumbs={[
-          PAGES.USER_MANAGEMENT,
-          PAGES.TECHUSER_MANAGEMENT,
-          PAGES.TECHUSER_DETAILS,
-        ]}
+       <MainHeader
+        title={t('content.usermanagement.technicalUserDetails.heading')}
+        headerHeight={250}
+        subTitleWidth={750}
+        backButton={true}
       />
       {data ? <TechnicalUserDetailsContent data={data} /> : <Empty />}
     </main>

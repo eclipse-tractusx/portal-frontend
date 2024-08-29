@@ -25,7 +25,6 @@ import {
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import {
-  PageHeader,
   PageLoadingTable,
   type PaginResult,
 } from '@catena-x/portal-shared-components'
@@ -42,6 +41,7 @@ import {
   addMemberAttribute,
 } from './components/PartnerList/helper'
 import { type BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 const PartnerNetwork = () => {
   const { t } = useTranslation()
@@ -84,11 +84,12 @@ const PartnerNetwork = () => {
 
   return (
     <main className="partner-network-page-container">
-      <PageHeader
+
+       <MainHeader
         title={t('content.partnernetwork.headertitle')}
-        topPage={false}
-        headerHeight={200}
-      ></PageHeader>
+        headerHeight={250}
+        subTitleWidth={750}
+      />
 
       <section id="identity-management-id">
         <PageLoadingTable<BusinessPartner, { expr: string }>

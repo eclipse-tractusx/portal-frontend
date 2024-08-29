@@ -481,6 +481,9 @@ export const customTheme = {
             color: COLOR_PALETTE.SECONDARY,
             height: '32px',
           },
+          '& .MuiInputBase-root.MuiFilledInput-root.MuiInputBase-multiline': {
+            padding: 0,
+          },
           '&.MuiTextField-root .MuiAutocomplete-tag .MuiChip-label': {
             fontWeight: 500,
             fontSize: '16px !important',
@@ -902,6 +905,11 @@ export const customTheme = {
           },
           '& .MuiDataGrid-cellContent': {
             fontSize: 16,
+          },
+        },
+        row: {
+          '&.Mui-selected,&:hover,&:focus': {
+            backgroundColor: `${COLOR_PALETTE.LIGHT_GRAY} !important`,
           },
         },
         root: {

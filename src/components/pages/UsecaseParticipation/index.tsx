@@ -26,7 +26,6 @@ import dayjs from 'dayjs'
 import {
   Chip,
   CustomAccordion,
-  PageHeader,
   StatusTag,
   Tooltips,
   Typography,
@@ -36,7 +35,6 @@ import LaunchIcon from '@mui/icons-material/Launch'
 import uniqueId from 'lodash/uniqueId'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   useFetchUsecaseQuery,
   type UsecaseResponse,
@@ -47,6 +45,7 @@ import {
   type SSIDetailData,
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
@@ -141,13 +140,11 @@ export default function UsecaseParticipation() {
 
   return (
     <main className="usecase-participation">
-      <PageHeader
+      <MainHeader
         title={t('content.usecaseParticipation.headerTitle')}
-        topPage={true}
-        headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <div className="usecase-main">
         <div className="container">
           <Typography variant="h2" className="heading">

@@ -297,7 +297,9 @@
         "subtitle": "Explore Catena-X certified apps for key industry use cases. Filter by use cases or browse all products. You can mark favorite apps with a heart and display them in the Your Favorite Apps section.",
         "appButton": "App Overview"
       },
-      "searchSection": { "inputPlaceholder": "Search by app title..." },
+      "searchSection": {
+        "inputPlaceholder": "Search by app title..."
+      },
       "favoriteSection": {
         "title": "My Favorite Applications",
         "myFavorite": "Your Favourite Apps",
@@ -328,9 +330,10 @@
     },
     "semantichub": {
       "title": "Semantic Data Models",
-      "introText_0": "Semantic models are used to structure data. As a concept, they make it possible to give fundamental meaning to data and their relationships. In the context of data modeling and data organization they realize the development of applications as well as the maintenance of data consistency.",
-      "introText_1": "In Catena-X, semantic data models are provided in a suitable publication system, the so-called Semantic Hub. For data or service providers, the Semantic Hub presents a foundation for the use and reuse of semantic models. For this reason, the publication of a semantic data model takes place under the specification of a version. This supports transparency as well as control over all semantic models and their release status.",
-      "addModel": "Neues Model anlegen",
+      "introTitle": "Semantic Hub",
+      "introText_0": "In Catena-X, the Semantic Hub publishes and manages semantic data models. It allows data and service providers to use and reuse these models efficiently. Each data model is versioned to ensure transparency and control, managing their release status effectively.",
+      "introText_1": "Semantic models are used to structure data. As a concept, they make it  possible to give fundamental meaning to data and their relationships. In  the context of data modeling and data organization they realize the  development of applications as well as the maintenance of data  consistency.",
+      "addModel": "Create New Model",
       "alerts": {
         "alertSuccessTitle": "Success!",
         "alertErrorTitle": "Error!",
@@ -925,12 +928,13 @@
       },
       "technicalUser": {
         "serviceaccount": "Service Account",
-        "create": "Create technical user",
+        "create": "Create Technical User",
         "delete": "Delete this technical User",
         "credentialReset": "Credential Reset",
         "headline": "Technical user management {{company}}",
-        "descriptionHeader": "Technical user management {{company}}",
-        "descriptionText": "The technical user is an identity that a company can use to connect to CX backend services without continous disconnection. For example, a run-as technical user is required for connecting to the digital twin registry or the semantic model. Please use the action button to request a new technical user with the roles as per your need. Or manage already existing technical users by using the user management function below.",
+        "descriptionHeader": "Technical user management",
+        "descriptionText": "The technical user is an identity that a company can use to connect to CX backend services without continuous disconnection. For example, a run-as technical user is required for connecting to the digital twin registry or the semantic model.",
+        "shortDescriptionText": "Please use the action button to request a new technical user with the roles as per your need. Or manage already existing technical users in the table below.",
         "tableHeader": "Technical User List",
         "detailsHeader": "Technical User: USER_NAME",
         "detailsPage": {
@@ -956,6 +960,11 @@
           "owned": "Owned"
         },
         "searchText": "Search by client Id"
+      },
+      "technicalUserDetails": {
+        "heading": "Technical User Details",
+        "shortDescriptionText": "You will probably prefer to use your own company IDP and you can create and manage the federation on this page. On registration we have created an IDP with one user entry for the admin."
+
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
