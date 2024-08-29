@@ -78,7 +78,7 @@ const MenuItemOpenOverlay = ({
   )
 }
 
-export const IDPList = () => {
+export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const { t } = useTranslation()
   const ti = useTranslation('idp').t
 
@@ -252,6 +252,92 @@ export const IDPList = () => {
     )
   }
 
+  const renderManagementOSPMenu = (idp: IdentityProvider) => {
+    const isManagedIdp = idp.identityProviderTypeId === IDPCategory.MANAGED
+    const menuItems = {
+      edit: (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.UPDATE_IDP}
+          label={ti('action.edit')}
+          id={idp.identityProviderId}
+        />
+      ),
+      delete: isManagedIdp ? (
+        <MenuItemOpenOverlay
+          overlay={OVERLAYS.DELETE_MANAGED_IDP}
+          label={ti('action.delete')}
+          id={idp.identityProviderId}
+        />
+      ) : (
+        <MenuItem
+          sx={{
+            color: deleteLoading ? '#b6b6b6' : '#111111',
+          }}
+          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+            !deleteLoading && doDelete(e, idp)
+          }
+          disabled={idp.enabled}
+        >
+          {ti('action.delete')}
+          {deleteLoading && (
+            <CircleProgress
+              colorVariant="primary"
+              variant="indeterminate"
+              sx={{
+                marginLeft: '5px',
+              }}
+              size={15}
+            />
+          )}
+        </MenuItem>
+      ),
+      enableToggle:
+        isManagedIdp && idp.enabled ? (
+          <MenuItemOpenOverlay
+            overlay={OVERLAYS.DISABLE_MANAGED_IDP}
+            label={ti('action.disable')}
+            id={idp.identityProviderId}
+          />
+        ) : (
+          <MenuItem
+            sx={{
+              color: disableLoading ? '#b6b6b6' : '#111111',
+            }}
+            disabled={
+              data &&
+              idp.enabled &&
+              data?.filter((idp: IdentityProvider) => idp.enabled).length < 2
+            }
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
+          >
+            {idp.enabled ? ti('action.disable') : ti('action.enable')}
+            {disableLoading && (
+              <CircleProgress
+                size={15}
+                variant="indeterminate"
+                sx={{
+                  marginLeft: '5px',
+                }}
+                colorVariant="primary"
+              />
+            )}
+          </MenuItem>
+        ),
+    }
+
+    return (
+      <div className="action-menu">
+        <DropdownMenu buttonText={ti('action.actions')}>
+          {menuItems.edit}
+          {menuItems.enableToggle}
+          {menuItems.delete}
+        </DropdownMenu>
+      </div>
+    )
+  }
+
   return (
     <Table
       rowsCount={idpsData?.length}
@@ -320,10 +406,17 @@ export const IDPList = () => {
           headerName: t('global.field.action'),
           flex: 2,
           sortable: false,
-          renderCell: ({ row }: { row: IdentityProvider }) => renderMenu(row),
+          renderCell: ({ row }: { row: IdentityProvider }) =>
+            isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
         },
       ]}
-      rows={idpsData ?? []}
+      rows={
+        (isManagementOSP
+          ? idpsData?.filter(
+              (a) => a.identityProviderTypeId === IDPCategory.MANAGED
+            )
+          : idpsData) ?? []
+      }
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
     />
