@@ -601,7 +601,7 @@ npm/npmjs/@babel/template/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@babel/traverse/7.24.1, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #13926
 npm/npmjs/@babel/types/7.24.0, MIT, approved, clearlydefined
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/3.0.29, Apache-2.0 AND CC-BY-4.0 AND OFL-1.1, approved, #14247
+npm/npmjs/@catena-x/portal-shared-components/3.4.0, Apache-2.0 AND CC-BY-4.0 AND OFL-1.1, approved, #16027
 npm/npmjs/@cspotcode/source-map-support/0.8.1, MIT, approved, clearlydefined
 npm/npmjs/@date-io/core/3.0.0, MIT, approved, clearlydefined
 npm/npmjs/@date-io/date-fns/3.0.0, MIT, approved, #14023
@@ -684,7 +684,7 @@ npm/npmjs/@mui/material/5.15.15, MIT AND CC-BY-3.0, approved, #13175
 npm/npmjs/@mui/private-theming/5.15.14, MIT AND CC-BY-3.0, approved, #13174
 npm/npmjs/@mui/styled-engine/5.15.14, MIT AND CC-BY-3.0, approved, #13173
 npm/npmjs/@mui/system/5.15.15, MIT, approved, #13170
-npm/npmjs/@mui/types/7.2.14, MIT, approved, clearlydefined
+npm/npmjs/@mui/types/7.2.14, MIT, approved, #16017
 npm/npmjs/@mui/utils/5.15.14, MIT AND OFL-1.1 AND CC-BY-3.0, approved, #13927
 npm/npmjs/@mui/x-data-grid/6.19.11, MIT, approved, #14027
 npm/npmjs/@mui/x-date-pickers/6.19.9, MIT, approved, #14025
@@ -738,6 +738,7 @@ npm/npmjs/@tsconfig/node12/1.0.11, MIT, approved, clearlydefined
 npm/npmjs/@tsconfig/node14/1.0.3, MIT, approved, clearlydefined
 npm/npmjs/@tsconfig/node16/1.0.4, MIT, approved, clearlydefined
 npm/npmjs/@types/aria-query/5.0.4, MIT, approved, #10958
+npm/npmjs/@types/autosuggest-highlight/3.2.3, MIT, approved, #11672
 npm/npmjs/@types/babel__core/7.20.5, MIT, approved, clearlydefined
 npm/npmjs/@types/babel__generator/7.6.8, MIT, approved, clearlydefined
 npm/npmjs/@types/babel__template/7.4.4, MIT, approved, clearlydefined
