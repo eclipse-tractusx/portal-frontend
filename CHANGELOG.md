@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Partner Network
+  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly
+
 ## 2.2.0-RC1
 
 ### Change

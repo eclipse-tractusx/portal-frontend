@@ -25,44 +25,53 @@ import type {
   PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import type { BusinessPartner } from './types'
-import Patterns from 'types/Patterns'
-import type { BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
+import { isBPN } from 'types/Patterns'
 
 export interface BusinessPartnerRequest {
   bpnLs: string[]
   legalName: string
 }
 
-const checkIfBPNLNumber = (text: string): boolean =>
-  Patterns.BPN.test(text.trim())
-
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',
   baseQuery: fetchBaseQuery(apiBpdmPoolQuery()),
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
-      PaginResult<BusinessPartnerAddressResponse>,
+      PaginResult<BusinessPartner>,
       BusinessPartnerRequest
     >({
       query: (body) => ({
-        url: '/legal-entities/search?page=0&size=30',
+        url: '/members/legal-entities/search?page=0&size=10',
         method: 'POST',
         body,
       }),
     }),
-    fetchBusinessPartners: builder.query<
+    fetchBusinessPartners: builder.mutation<
       PaginResult<BusinessPartner>,
       PaginFetchArgs
     >({
       query: (fetchArgs) => {
-        if (fetchArgs.args.expr && !checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/legal-entities?page=${
-            fetchArgs.page
-          }&size=10&legalName=${fetchArgs.args!.expr}`
-        } else if (checkIfBPNLNumber(fetchArgs.args.expr)) {
-          return `/legal-entities/${fetchArgs.args!.expr}`
+        let url = ''
+        let body = {}
+        if (fetchArgs.args.expr && !isBPN(fetchArgs.args.expr)) {
+          url = `/members/legal-entities/search?page=${fetchArgs.page}&size=10`
+          body = {
+            bpnl: [],
+            legalName: fetchArgs.args.expr,
+          }
+        } else if (isBPN(fetchArgs.args.expr)) {
+          url = `/members/legal-entities/search?page=${fetchArgs.page}&size=10`
+          body = {
+            bpnl: [fetchArgs.args.expr],
+            legalName: '',
+          }
         } else {
-          return `/legal-entities?page=${fetchArgs.page}&size=10`
+          url = `/members/legal-entities/search?page=${fetchArgs.page}&size=10`
+        }
+        return {
+          url,
+          method: 'POST',
+          body,
         }
       },
       // Add an ESLint exception until there is a solution
@@ -96,5 +105,5 @@ export const apiSlice = createApi({
 
 export const {
   useFetchBusinessPartnerAddressMutation,
-  useFetchBusinessPartnersQuery,
+  useFetchBusinessPartnersMutation,
 } = apiSlice
