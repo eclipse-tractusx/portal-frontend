@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Feature
+
+- **Onboarding Service Provider Management**:
+  - Create new page for onboarding service provider management
+
 ## 2.2.0-RC1
 
 ### Change

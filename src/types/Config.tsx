@@ -87,6 +87,7 @@ import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 import CompanyData from 'components/pages/CompanyData'
+import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
 
 /**
  * ALL_PAGES
@@ -579,6 +580,10 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.MY_ORGANIZATION_VIEW,
     element: <CompanyData />,
   },
+  {
+    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
+    element: <OnboardingServiceProvider />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -812,6 +817,7 @@ export const userMenuFull = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
+  PAGES.ONBOARDING_SERVICE_PROVIDER,
   PAGES.LOGOUT,
 ]
 
