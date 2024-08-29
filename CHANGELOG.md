@@ -5,7 +5,7 @@
 ### Feature
 
 - **Onboarding Service Provider Management**:
-  - Create new page for onboarding service provider management
+  - Create new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
 
 ## 2.2.0-RC1
 

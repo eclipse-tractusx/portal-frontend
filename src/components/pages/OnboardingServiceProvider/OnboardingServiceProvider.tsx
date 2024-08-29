@@ -25,15 +25,27 @@ import {
   Tabs,
   Tab,
   TabPanel,
+  PageLoadingTable,
+  DialogActions,
+  Button,
+  DialogHeader,
+  DialogContent,
+  Dialog,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import LinkIcon from '@mui/icons-material/Link'
 import { Box } from '@mui/material'
 import './OnboardingServiceProvider.scss'
+import { IDPList } from '../IDPManagement/IDPList'
+import {
+  type networkCompany,
+  useFetchCompaniesListQuery,
+} from 'features/admin/idpApiSlice'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
+  // const [refresh, setRefresh] = useState<number>(0)
+  const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
   const handleTabChange = (
     _e: SyntheticEvent<Element, Event>,
@@ -65,9 +77,52 @@ const OnboardingServiceProvider = () => {
       </Typography>
     )
   }
+
   return (
     <main className="onboarding-service-page-container ">
       <section>
+        <Dialog
+          open={overlayOpen}
+          additionalModalRootStyles={{
+            width: '60%',
+          }}
+        >
+          <DialogHeader
+            title={'Configure IDp Metadata'}
+            intro={
+              <Box
+                sx={{
+                  textAlign: 'center',
+                  margin: '50px auto 20px',
+                  display: 'grid',
+                }}
+              ></Box>
+            }
+            closeWithIcon={true}
+            onCloseWithIcon={() => {
+              setOverlayOpen(false)
+            }}
+          />
+          <DialogContent
+            sx={{
+              padding: '0px 120px 40px 120px',
+            }}
+          ></DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                setOverlayOpen(false)
+              }}
+            >
+              {t('global.actions.close')}
+            </Button>
+            <Button variant="outlined" onClick={() => {}}>
+              {t('global.actions.confirm')}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <div className="onboarding-service-header">
           <Typography variant="h2" className="onboarding-service-title">
             {t('content.onboardingServiceProvider.headertitle')}
@@ -79,24 +134,11 @@ const OnboardingServiceProvider = () => {
             sx={{
               position: 'relative',
               height: '100%',
-              width: '90%',
+              width: '50%',
               background: '#F4FBFD',
               margin: 'auto',
             }}
           >
-            <IconButton
-              aria-label="close"
-              onClick={() => {}}
-              sx={{
-                left: '0',
-                position: 'absolute',
-                top: '50%',
-                msTransform: 'translateY(-50%)',
-                transform: 'translateY(-50%)',
-              }}
-            >
-              <LinkIcon />
-            </IconButton>
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="body3">
                 {t('content.onboardingServiceProvider.subDesc1')}
@@ -162,10 +204,59 @@ const OnboardingServiceProvider = () => {
           />
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          <div className="connector-table-container"></div>
+          <div className="connector-table-container">
+            <IDPList isManagementOSP={true} />
+          </div>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
-          <div className="connector-table-container"></div>
+          <div className="connector-table-container">
+            <PageLoadingTable<networkCompany, { expr: string }>
+              toolbarVariant="premium"
+              title={t('content.onboardingServiceProvider.tabletitle2')}
+              loadLabel={t('global.actions.more')}
+              fetchHook={useFetchCompaniesListQuery}
+              // fetchHookRefresh={refresh}
+              getRowId={(row: { [key: string]: string }) =>
+                row.applicationStatus
+              }
+              columns={[
+                {
+                  field: 'companyName',
+                  headerName: t(
+                    'content.onboardingServiceProvider.table.customerName'
+                  ),
+                  flex: 1,
+                  sortable: false,
+                },
+                {
+                  field: 'applicationStatus',
+                  headerName: t(
+                    'content.onboardingServiceProvider.table.status'
+                  ),
+                  flex: 1,
+                  sortable: false,
+                },
+                {
+                  field: 'identityProvider',
+                  headerName: t(
+                    'content.onboardingServiceProvider.table.idpName'
+                  ),
+                  flex: 1,
+                  sortable: false,
+                  renderCell: ({ row }: { row: networkCompany }) =>
+                    row?.identityProvider?.[0].alias,
+                },
+                {
+                  field: 'activeUsers',
+                  headerName: t(
+                    'content.onboardingServiceProvider.table.users'
+                  ),
+                  flex: 1,
+                  sortable: false,
+                },
+              ]}
+            />
+          </div>
         </TabPanel>
       </Box>
     </main>

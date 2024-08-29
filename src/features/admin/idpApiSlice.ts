@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { type PaginFetchArgs, type PaginResult } from '@catena-x/portal-shared-components'
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { type RootState } from 'features/store'
@@ -177,6 +178,25 @@ export interface ManagedIDPNetworkType {
     | null
 }
 
+export type networkCompany = {
+  companyId: string
+  externalId: string
+  applicationId: string
+  applicationStatus: string
+  applicationDateCreated: string
+  dateCreated: string
+  lastChangedDate: string
+  companyName: string
+  companyRoles?: string[] | null
+  identityProvider?: IdentityProviderEntity[] | null
+  bpn: string
+  activeUsers: number
+}
+export interface IdentityProviderEntity {
+  identityProviderId: string
+  alias: string
+}
+
 enum TAGS {
   IDP = 'idp',
 }
@@ -280,6 +300,13 @@ export const apiSlice = createApi({
       query: (id: string) =>
         `/api/administration/identityprovider/network/identityproviders/managed/${id}`,
     }),
+    fetchCompaniesList: builder.query<
+      PaginResult<networkCompany>,
+      PaginFetchArgs
+    >({
+      query: (filters) =>
+        `/api/administration/registration/network/companies?page=${filters.page}&size=10`,
+    }),
   }),
 })
 
@@ -296,6 +323,7 @@ export const {
   useEnableIDPMutation,
   useUpdateUserIDPMutation,
   useFetchManagedIDPNetworkQuery,
+  useFetchCompaniesListQuery,
 } = apiSlice
 
 export default slice

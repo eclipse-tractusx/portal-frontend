@@ -2147,12 +2147,18 @@
       }
     },
     "onboardingServiceProvider": {
-      "headertitle": "Onboarding Service Provider Management",
+      "headertitle": "Onboarding-Dienstleister-Management",
       "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "subDesc1": "OSP Callback configured",
+      "subDesc1": "OSP-Callback konfiguriert",
       "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
-      "tabletitle1": "OSP Identity Provider (IDPs)",
-      "tabletitle2": "Customer Overview"
+      "tabletitle1": "OSP-Identitätsanbieter (IDPs)",
+      "tabletitle2": "Kundenübersicht",
+      "table": {
+        "customerName": "Kundenname",
+        "status": "Status",
+        "idpName": "IDP-Name",
+        "users": "Anzahl der Benutzer"
+      }
     }
   },
   "navigation": {

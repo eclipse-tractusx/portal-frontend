@@ -2124,7 +2124,13 @@
       "subDesc1": "OSP Callback configured",
       "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
       "tabletitle1": "OSP Identity Provider (IDPs)",
-      "tabletitle2": "Customer Overview"
+      "tabletitle2": "Customer Overview",
+      "table": {
+        "customerName": "Customer Name",
+        "status": "Status",
+        "idpName": "IDP name",
+        "users": "# of users"
+      }
     }
   },
   "navigation": {
