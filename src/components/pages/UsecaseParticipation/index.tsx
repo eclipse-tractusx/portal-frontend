@@ -46,6 +46,7 @@ import {
   type SSIDetailData,
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function UsecaseParticipation() {
   const { t } = useTranslation()
@@ -139,8 +140,13 @@ export default function UsecaseParticipation() {
   }
 
   return (
-    <main className="useCaseParticipation">
-      <div className="useCase-main">
+    <main className="usecase-participation">
+      <MainHeader
+        title={t('content.usecaseParticipation.headerTitle')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+      <div className="usecase-main">
         <div className="container">
           <Typography variant="h2" className="heading">
             {t('content.usecaseParticipation.heading')}

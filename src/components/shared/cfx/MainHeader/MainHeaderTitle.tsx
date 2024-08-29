@@ -31,7 +31,7 @@ export const MainHeaderTitle = ({
   return (
     <>
       {title && (
-        <Typography
+        <Typography className="cx-main-header__heading"
           sx={{
             fontWeight: 600,
           }}
@@ -42,7 +42,7 @@ export const MainHeaderTitle = ({
       )}
 
       {subTitle && (
-        <Typography
+        <Typography className="cx-main-header__subheading"
           sx={{
             width: `${subTitleWidth}px`,
           }}

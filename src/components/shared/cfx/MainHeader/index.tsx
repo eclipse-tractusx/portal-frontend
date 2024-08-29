@@ -20,12 +20,15 @@
 
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { MainHeaderTitle } from './MainHeaderTitle'
+import { BackButton } from '@catena-x/portal-shared-components'
+import { useNavigate } from 'react-router-dom'
 
 export interface MainHeaderProps {
   title?: string
   subTitle?: string
   subTitleWidth?: number | string
   headerHeight?: number
+
   background?:
     | 'LinearGradient1'
     | 'LinearGradient2'
@@ -69,6 +72,7 @@ export interface MainHeaderProps {
     | 'caption2'
     | 'caption3'
     | 'label1'
+  backButton?: boolean
 }
 
 export const MainHeader = ({
@@ -79,6 +83,7 @@ export const MainHeader = ({
 
   titleTextVariant,
   subTitleTextVariant,
+  backButton,
 }: MainHeaderProps) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
@@ -87,7 +92,11 @@ export const MainHeader = ({
   const styles = isMobile
     ? { padding: '0px 20px', paddingTop: '200px', textAlign: 'center' }
     : { padding: '0px 180px', paddingTop: '150px' }
+  const navigate = useNavigate()
 
+  const previousPage = () => {
+    navigate(-1)
+  }
   return (
     <Box
       sx={{
@@ -95,8 +104,17 @@ export const MainHeader = ({
         height: `${headerHeight}px`,
         position: 'relative',
       }}
-      className="mainHeaderContainer"
+      className="mainHeaderContainer cx-main-header"
     >
+      {backButton === true && (
+        <div className="cx-main-header__button">
+          <BackButton
+            backButtonLabel="Back"
+            backButtonVariant="outlined"
+            onBackButtonClick={previousPage}
+          />
+        </div>
+      )}
       <Box
         sx={{
           width: '100%',
@@ -106,7 +124,7 @@ export const MainHeader = ({
           top: '0px',
           ...styles,
         }}
-        className="mainHeaderTitle"
+        className="mainHeaderTitle cx-main-header__headings"
       >
         <MainHeaderTitle
           title={title}
