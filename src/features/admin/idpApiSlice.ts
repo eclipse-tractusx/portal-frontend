@@ -200,6 +200,13 @@ export interface IdentityProviderEntity {
   alias: string
 }
 
+export interface RegistartionStatusCallbackType {
+  callbackUrl: string
+  authUrl?: string
+  clientId: string
+  clientSecret: string
+}
+
 enum TAGS {
   IDP = 'idp',
 }
@@ -310,6 +317,22 @@ export const apiSlice = createApi({
       query: (filters) =>
         `/api/administration/registration/network/companies?page=${filters.page}&size=10`,
     }),
+    fetchRegistartionStatusCallback: builder.query<
+      RegistartionStatusCallbackType,
+      void
+    >({
+      query: () => '/api/administration/RegistrationStatus/callback',
+    }),
+    updateRegistartionStatusCallback: builder.mutation<
+      void,
+      RegistartionStatusCallbackType
+    >({
+      query: (data: RegistartionStatusCallbackType) => ({
+        url: '/api/administration/RegistrationStatus/callback',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
@@ -327,6 +350,8 @@ export const {
   useUpdateUserIDPMutation,
   useFetchManagedIDPNetworkQuery,
   useFetchCompaniesListQuery,
+  useFetchRegistartionStatusCallbackQuery,
+  useUpdateRegistartionStatusCallbackMutation,
 } = apiSlice
 
 export default slice

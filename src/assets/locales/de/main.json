@@ -2155,11 +2155,26 @@
       "tabletitle2": "Kundenübersicht",
       "userList": "Benutzerliste",
       "addIdentityProvider": "Identitätsanbieter hinzufügen",
+      "dialogTitle": "IdP-Metadaten konfigurieren",
       "table": {
         "customerName": "Kundenname",
         "status": "Status",
         "idpName": "IDP-Name",
         "users": "Anzahl der Benutzer"
+      },
+      "success": "OSP-Rückruf erfolgreich konfiguriert",
+      "callbackUrlError": "Fehler beim Konfigurieren des OSP-Rückrufs",
+      "callbackUrl": {
+        "name": "Rückruf-URL",
+        "hint": "Geben Sie die Rückruf-URL Ihres IDP ein, die mit „/.well-known/openid-configuration“ endet'"
+      },
+      "clientId": {
+        "name": "Kunden-ID",
+        "hint": "Geben Sie die von Ihrem IdP bereitgestellte Client-ID ein"
+      },
+      "clientSecret": {
+        "name": "Client-Geheimnis",
+        "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
       }
     }
   },
