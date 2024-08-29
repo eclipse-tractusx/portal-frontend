@@ -67,7 +67,7 @@ const OnboardingServiceProvider = () => {
     useUpdateRegistartionStatusCallbackMutation()
   const [formData, setFormData] = useState<IHashMap<string>>({})
   const [showError, setShowError] = useState(false)
-  const [idpUpdateData, setIdpUpdateData] = useState<
+  const [callbackData, setCallbackData] = useState<
     RegistartionStatusCallbackType | undefined
   >(undefined)
 
@@ -105,12 +105,11 @@ const OnboardingServiceProvider = () => {
   const isWellknownMetadata = (expr: string) =>
     isURL(expr) && expr.endsWith('.well-known/openid-configuration')
 
-  const doUpdateIDP = async () => {
-    if (!(data && idpUpdateData)) return
-    console.log('idpUpdateData', idpUpdateData)
+  const updateCallbackIDP = async () => {
+    if (!(data && callbackData)) return
     setLoading(true)
     try {
-      await updateRegistartionStatusCallback(idpUpdateData).unwrap()
+      await updateRegistartionStatusCallback(callbackData).unwrap()
       success(t('content.onboardingServiceProvider.success'))
       setOverlayOpen(false)
     } catch (err) {
@@ -119,13 +118,13 @@ const OnboardingServiceProvider = () => {
     setLoading(false)
   }
 
-  const checkData = (key: string, value: string | undefined): boolean => {
+  const checkValidData = (key: string, value: string | undefined): boolean => {
     const current: IHashMap<string> = { ...formData }
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
     const formValid =
       current.callbackUrl && current.clientId && current.clientSecret
-    setIdpUpdateData(
+    setCallbackData(
       formValid
         ? {
             callbackUrl: current.callbackUrl,
@@ -179,7 +178,7 @@ const OnboardingServiceProvider = () => {
                   validate={(expr) => isWellknownMetadata(expr)}
                   hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
                   debounceTime={0}
-                  onValid={checkData}
+                  onValid={checkValidData}
                 />
               </div>
               <div style={{ margin: '12px 0' }}>
@@ -189,7 +188,7 @@ const OnboardingServiceProvider = () => {
                   value={data?.clientId}
                   hint={t('content.onboardingServiceProvider.clientId.hint')}
                   validate={isIDPClientID}
-                  onValid={checkData}
+                  onValid={checkValidData}
                 />
               </div>
               <div style={{ margin: '12px 0 30px' }}>
@@ -204,7 +203,7 @@ const OnboardingServiceProvider = () => {
                   )}
                   type={InputType.password}
                   validate={isIDPClientSecret}
-                  onValid={checkData}
+                  onValid={checkValidData}
                 />
               </div>
               {showError && (
@@ -257,8 +256,8 @@ const OnboardingServiceProvider = () => {
             ) : (
               <Button
                 variant="contained"
-                onClick={doUpdateIDP}
-                disabled={!idpUpdateData}
+                onClick={updateCallbackIDP}
+                disabled={!callbackData}
               >
                 {t('global.actions.confirm')}
               </Button>
