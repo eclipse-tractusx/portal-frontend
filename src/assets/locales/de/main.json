@@ -2153,6 +2153,8 @@
       "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
       "tabletitle1": "OSP-Identitätsanbieter (IDPs)",
       "tabletitle2": "Kundenübersicht",
+      "userList": "Benutzerliste",
+      "addIdentityProvider": "Identitätsanbieter hinzufügen",
       "table": {
         "customerName": "Kundenname",
         "status": "Status",

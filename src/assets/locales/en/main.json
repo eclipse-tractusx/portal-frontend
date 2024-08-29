@@ -2125,6 +2125,8 @@
       "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
       "tabletitle1": "OSP Identity Provider (IDPs)",
       "tabletitle2": "Customer Overview",
+      "userList": "User List",
+      "addIdentityProvider": "Add Identity Provider",
       "table": {
         "customerName": "Customer Name",
         "status": "Status",

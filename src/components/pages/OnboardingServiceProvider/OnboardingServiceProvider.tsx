@@ -40,12 +40,16 @@ import {
   type networkCompany,
   useFetchCompaniesListQuery,
 } from 'features/admin/idpApiSlice'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
-  // const [refresh, setRefresh] = useState<number>(0)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
   const handleTabChange = (
     _e: SyntheticEvent<Element, Event>,
@@ -168,7 +172,7 @@ const OnboardingServiceProvider = () => {
         <Tabs
           value={activeTab}
           onChange={handleTabChange}
-          sx={{ margin: '0 10% 70px' }}
+          sx={{ margin: '0 10% 20px' }}
         >
           <Tab
             iconPosition="start"
@@ -205,6 +209,19 @@ const OnboardingServiceProvider = () => {
         </Tabs>
         <TabPanel value={activeTab} index={0}>
           <div className="connector-table-container">
+            <Box sx={{ display: 'flex' }}>
+              <Typography variant="h5" sx={{ mr: 5 }}>
+                {t('content.onboardingServiceProvider.userList')}
+              </Typography>
+              <Button
+                size="small"
+                startIcon={<AddCircleOutlineIcon />}
+                onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+                className="add-idp-btn"
+              >
+                {t('content.onboardingServiceProvider.addIdentityProvider')}
+              </Button>
+            </Box>
             <IDPList isManagementOSP={true} />
           </div>
         </TabPanel>
@@ -215,7 +232,6 @@ const OnboardingServiceProvider = () => {
               title={t('content.onboardingServiceProvider.tabletitle2')}
               loadLabel={t('global.actions.more')}
               fetchHook={useFetchCompaniesListQuery}
-              // fetchHookRefresh={refresh}
               getRowId={(row: { [key: string]: string }) =>
                 row.applicationStatus
               }

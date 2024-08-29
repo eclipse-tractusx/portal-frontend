@@ -258,35 +258,35 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       edit: (
         <MenuItemOpenOverlay
           overlay={OVERLAYS.UPDATE_IDP}
-          id={idp.identityProviderId}
           label={ti('action.edit')}
+          id={idp.identityProviderId}
         />
       ),
       delete: isManagedIdp ? (
         <MenuItemOpenOverlay
           overlay={OVERLAYS.DELETE_MANAGED_IDP}
-          id={idp.identityProviderId}
           label={ti('action.delete')}
+          id={idp.identityProviderId}
         />
       ) : (
         <MenuItem
-          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-            !deleteLoading && doDelete(e, idp)
-          }
           sx={{
             color: deleteLoading ? '#b6b6b6' : '#111111',
           }}
+          onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+            !deleteLoading && doDelete(e, idp)
+          }
           disabled={idp.enabled}
         >
           {ti('action.delete')}
           {deleteLoading && (
             <CircleProgress
-              variant="indeterminate"
               colorVariant="primary"
-              size={15}
+              variant="indeterminate"
               sx={{
                 marginLeft: '5px',
               }}
+              size={15}
             />
           )}
         </MenuItem>
@@ -295,17 +295,17 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
         isManagedIdp && idp.enabled ? (
           <MenuItemOpenOverlay
             overlay={OVERLAYS.DISABLE_MANAGED_IDP}
-            id={idp.identityProviderId}
             label={ti('action.disable')}
+            id={idp.identityProviderId}
           />
         ) : (
           <MenuItem
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-              !disableLoading && doEnableDisableToggle(e, idp)
-            }
             sx={{
               color: disableLoading ? '#b6b6b6' : '#111111',
             }}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+              !disableLoading && doEnableDisableToggle(e, idp)
+            }
             disabled={
               data &&
               idp.enabled &&
