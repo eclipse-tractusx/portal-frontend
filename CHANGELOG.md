@@ -5,6 +5,10 @@
 - Company data
   - Disable confirm button if input value is not matching with the regular expression
   - Fix infinite loop issue in add New Address Modal
+- Service Subscription
+  - Update auto setup api response data in the service subscription response overlay
+- Partner Network
+  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly
 
 ## 2.2.0-RC1
 
