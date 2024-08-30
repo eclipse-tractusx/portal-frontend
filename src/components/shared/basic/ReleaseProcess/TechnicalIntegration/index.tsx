@@ -263,7 +263,10 @@ export default function TechnicalIntegration() {
 
   const csvPreview = (files: File[]) => {
     files
-      .filter((file: File) => file.type === 'text/csv')
+      .filter(
+        (file: File) =>
+          file.type === 'text/csv' || file.type === 'application/vnd.ms-excel'
+      )
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onabort = () => {
@@ -441,7 +444,10 @@ export default function TechnicalIntegration() {
                 csvPreview(files)
                 setUploadFileInfo(files)
               }}
-              acceptFormat={{ 'text/csv': ['.csv'] }}
+              acceptFormat={{
+                'text/csv': ['.csv'],
+                'application/vnd.ms-excel': ['.csv'],
+              }}
               maxFilesToUpload={1}
               enableDeleteOverlay={true}
               deleteOverlayTranslation={{
