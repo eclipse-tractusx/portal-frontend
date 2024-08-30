@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **App Release Process**:
+  - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
+
 ### Change
 
 - **Application Requests and Connector Management**
