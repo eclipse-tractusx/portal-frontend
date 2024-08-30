@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { type AppDetails } from 'features/apps/types'
-import './CompanySubscriptionPrivacy.scss'
+import './CompanySubscriptionPrivacyContent.scss'
 
 const policyIcons = {
   [PrivacyPolicyType.COMPANY_DATA]: Apartment,
@@ -35,9 +35,9 @@ const policyIcons = {
 
 export default function CompanySubscriptionPrivacy({
   detail,
-}: {
+}: Readonly<{
   detail: AppDetails
-}) {
+}>) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.companySubscriptionsDetail.privacy',
   })

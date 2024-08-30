@@ -92,11 +92,7 @@ export default function CompanySubscriptionDocument({
             )
         )
       ) : (
-        <Typography
-          variant="label3"
-          className="not-available"
-          sx={{ textAlign: 'left' }}
-        >
+        <Typography variant="label3" className="not-available">
           {t('global.errors.noDocumentsAvailable')}
         </Typography>
       )}

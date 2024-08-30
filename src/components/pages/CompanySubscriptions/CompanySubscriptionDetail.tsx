@@ -30,7 +30,7 @@ import CompanySubscriptionTechnical from './components/CompanySubscriptionTechni
 import CompanySubscriptionContent from './components/CompanySubscriptionContent'
 import CompanySubscriptionHeader from './components/CompanySubscriptionHeader'
 import CompanySubscriptionDocument from './components/CompanySubscriptionDocument'
-import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacy'
+import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacyContent'
 import './CompanySubscriptions.scss'
 
 export default function CompanySubscriptionDetail() {

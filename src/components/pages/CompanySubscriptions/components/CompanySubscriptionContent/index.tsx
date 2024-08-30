@@ -18,17 +18,21 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Box } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { ImageGallery, Typography } from '@catena-x/portal-shared-components'
 import { type AppDetails } from 'features/apps/types'
 import CommonService from 'services/CommonService'
 
 export default function CompanySubscriptionContent({
   detail,
-}: {
+}: Readonly<{
   detail: AppDetails
-}) {
+}>) {
   const { t } = useTranslation()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
+    defaultMatches: true,
+  })
   return (
     <>
       <Box className="company-subscription-content-section" id="description">
@@ -45,7 +49,8 @@ export default function CompanySubscriptionContent({
             detail.images,
             detail.id
           )}
-          modalWidth="900"
+          maxWidth={isMobile ? 150 : undefined}
+          modalWidth={isMobile ? '300' : '600'}
         />
       </Box>
     </>
