@@ -98,6 +98,19 @@ export default function CheckListFullButtons({
           ),
           backgroundColor: '#FFF6FF',
         }
+      case ProgressStatus.SKIPPED:
+        return {
+          icon: (
+            <PendingActionsIcon
+              style={{
+                color: '#0F71CB',
+                height: '30px',
+                width: '20px',
+              }}
+            />
+          ),
+          backgroundColor: '#ffffff',
+        }
     }
   }
 
@@ -111,6 +124,8 @@ export default function CheckListFullButtons({
         return 'confirmed'
       case ProgressStatus.FAILED:
         return 'declined'
+      case ProgressStatus.SKIPPED:
+        return 'label'
     }
   }
 

@@ -43,6 +43,7 @@ export enum AppFilterType {
 export interface DocumentMapper {
   documentType: string
   documentId: string
+  documentSize?: number
 }
 
 export interface ApplicationChecklistType {
@@ -55,6 +56,7 @@ export enum ProgressStatus {
   TO_DO = 'TO_DO',
   DONE = 'DONE',
   FAILED = 'FAILED',
+  SKIPPED = 'SKIPPED',
 }
 
 export type ProgressType = {
@@ -62,6 +64,7 @@ export type ProgressType = {
   DONE: number
   FAILED: number
   IN_PROGRESS: number
+  SKIPPED: number
 }
 
 export const initialProgressValue: ProgressType = {
@@ -69,6 +72,7 @@ export const initialProgressValue: ProgressType = {
   DONE: 0,
   FAILED: 0,
   IN_PROGRESS: 0,
+  SKIPPED: 0,
 }
 
 export enum StatusType {
@@ -130,6 +134,7 @@ export const progressMapper = {
   IN_PROGRESS: 5,
   TO_DO: 0,
   FAILED: 0,
+  SKIPPED: 0,
 }
 
 export interface ApplicationRequest {
