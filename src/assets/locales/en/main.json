@@ -186,6 +186,7 @@
         "buttonprogress": "in progress",
         "buttonrejected": "rejected",
         "buttoncompleted": "completed",
+        "buttonPartiallyCompleted": "partially completed",
         "buttonerror": "error",
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
@@ -567,7 +568,7 @@
         "location": "Location",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
-        "sdRegistrationToolTip": "The Self-Description is triggered. Process might take up to a couple of minutes.",
+        "sdRegistrationToolTip": "The SD Document is not yet loaded. This could be due to the deactivation of the Sd Factory. This process will be retriggered as soon as possible by the CX Admin",
         "hostCompanyName": "Host",
         "providerCompanyName": "Customer",
         "connectorUrl": "Connector URL"
@@ -1494,7 +1495,34 @@
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
-        "tenantUrlErrorMsg": "Error! Something went wrong"
+        "tenantUrlErrorMsg": "Error! Something went wrong",
+        "externalServices": {
+          "heading": "External Service Details",
+          "trustedIssuer": {
+            "label": "Trusted Issuer",
+            "description": "The trusted issuer responsible for issuing the identity credentials."
+          },
+          "participantId": {
+            "label": "Participant ID",
+            "description": "The unique identifier of the participant in the external system."
+          },
+          "iatpId": {
+            "label": "IATP ID",
+            "description": "The unique identifier of the IATP (Identity and Trust Protocol)."
+          },
+          "didResolver": {
+            "label": "DID Resolver",
+            "description": "The URL of the DID (Decentralized Identifier) resolver used for resolving decentralized identities."
+          },
+          "decentralIdentityManagementAuthUrl": {
+            "label": "Decentralized Identity Management Auth URL",
+            "description": "The URL of the authentication endpoint for the decentralized identity management."
+          },
+          "decentralIdentityManagementServiceUrl": {
+            "label": "Decentralized Identity Management Service URL",
+            "description": "The URL of the service endpoint for the decentralized identity management."
+          }
+        }
       }
     },
     "adminBoard": {
@@ -1582,7 +1610,8 @@
         "DONE": "approved",
         "IN_PROGRESS": "in progress",
         "FAILED": "failed",
-        "TO_DO": "to do"
+        "TO_DO": "to do",
+        "SKIPPED": "skipped"
       },
       "buttonApprove": "Approve",
       "buttonConfirm": "Confirm",
@@ -1740,6 +1769,10 @@
         "FAILED": {
           "title": "Your action is needed.",
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        },
+        "SKIPPED": {
+          "title": "No action needed from your side",
+          "description": "The self-description creation was skipped on purpose. This process will be retriggered by the CX Operator as soon as possible."
         }
       }
     },

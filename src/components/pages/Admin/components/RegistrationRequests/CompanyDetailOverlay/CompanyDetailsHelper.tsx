@@ -36,6 +36,14 @@ export const getTitle = (
 ) => {
   const getStatus = () => {
     if (
+      selectedRequest?.applicationStatus ===
+        ApplicationRequestStatus.CONFIRMED &&
+      selectedRequest?.applicationChecklist?.filter(
+        (checklist) => checklist.statusId === ProgressStatus.SKIPPED
+      ).length > 0
+    ) {
+      return t('content.admin.registration-requests.buttonPartiallyCompleted')
+    } else if (
       selectedRequest?.applicationStatus === ApplicationRequestStatus.SUBMITTED
     ) {
       const failedItems = selectedRequest.applicationChecklist.filter(
@@ -71,7 +79,7 @@ export const getTitle = (
             status: getStatus(),
           }}
         >
-          <Typography variant="h3">
+          <Typography variant="h4">
             {t('content.admin.registration-requests.overlay.tab2SubTitle')}
           </Typography>
         </Trans>
@@ -85,7 +93,7 @@ export const getIntro = (
   selectedCompany: CompanyDetail,
   t: typeof i18next.t
 ) => {
-  if (activeTab === 1) {
+  if (activeTab === 2) {
     return (
       <Trans
         values={{
