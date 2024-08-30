@@ -26,9 +26,9 @@ import UserService from 'services/UserService'
 
 export default function CompanySubscriptionTechnical({
   detail,
-}: {
+}: Readonly<{
   detail: ActiveSubscriptionDetails
-}) {
+}>) {
   const { t } = useTranslation()
 
   const tableData = {
@@ -53,7 +53,7 @@ export default function CompanySubscriptionTechnical({
           icon: false,
           clickableLink:
             UserService.hasRole(ROLES.VIEW_USER_ACCOUNT) &&
-            !!detail.technicalUserData.length
+            detail.technicalUserData.length
               ? `/${PAGES.USER_DETAILS}/${detail.technicalUserData[0].id}`
               : undefined,
         },

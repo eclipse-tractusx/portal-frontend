@@ -36,9 +36,9 @@ import { getApiBase } from 'services/EnvironmentService'
 
 export default function CompanySubscriptionHeader({
   detail,
-}: {
+}: Readonly<{
   detail: AppDetails
-}) {
+}>) {
   const { t } = useTranslation()
   const [docId, setDocId] = useState('')
 
@@ -119,7 +119,7 @@ export default function CompanySubscriptionHeader({
         <Typography variant="label2">
           {t('content.companySubscriptionsDetail.language')}:
           <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
-            {!!detail.languages.length
+            {detail.languages.length
               ? detail.languages.map((lang, index) => (
                   <span key={lang}>
                     {` ${index ? ', ' : ''}${lang.toUpperCase()} `}

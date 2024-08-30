@@ -29,9 +29,9 @@ import 'components/styles/document.scss'
 
 export default function CompanySubscriptionDocument({
   detail,
-}: {
+}: Readonly<{
   detail: AppDetails
-}) {
+}>) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()
