@@ -156,6 +156,7 @@ export enum OVERLAYS {
   UPDATE_CERTIFICATE = 'updateCertificate',
   COMPANY_CERTIFICATE_DETAILS = 'companyCertificateDetails',
   COMPANY_CERTIFICATE_CONFIRM_DELETE = 'companyCertificateConfirmDelete',
+  CSV_UPLOAD_OVERLAY = 'csvUploadOverlay',
 }
 
 export enum ACTIONS {

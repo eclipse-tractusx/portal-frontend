@@ -726,6 +726,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
   },
+  {
+    name: OVERLAYS.CSV_UPLOAD_OVERLAY,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
