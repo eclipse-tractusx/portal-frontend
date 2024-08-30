@@ -2046,8 +2046,21 @@
     },
     "companyData": {
       "label": "Company Data",
+      "csvUploadBtn": "Upload CSV",
       "statusInfo": {
         "title": "Status Information"
+      },
+      "upload": {
+        "title": "Upload CSV",
+        "fileSizeError": "Uploaded file is too big. Maximum 1MB is allowed",
+        "successDescription": "CSV Upload is success. Please close the modal to see updated list",
+        "note": "Note: Please upload only CSV files with maximum 1 MB.",
+        "errorDescription": "CSV Upload failed with the following erros",
+        "templateBtn": "Download CSV Template",
+        "emptyError": "Uploaded CSV is empty. Kindly check and upload again",
+        "copy": "Copy Error to clipboard",
+        "copySuccess": "Error messages copied successfully",
+        "downloadSuccess": "CSV template download successfully"
       },
       "companyInfo": {
         "title": "Company Name",
@@ -2066,7 +2079,9 @@
         "location": "Location",
         "search": "search address / site",
         "noRowsMsg": "No Data yet",
-        "type": "Type"
+        "type": "Type",
+        "status": "Status",
+        "details": "Details"
       },
       "site": {
         "title": "Create new site",

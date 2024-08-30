@@ -23,8 +23,13 @@ import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
 import EditForm from './components/EditForm'
 import { useDispatch } from 'react-redux'
 import { setCompanyPageRefetch } from 'features/companyData/slice'
+import { Button } from '@catena-x/portal-shared-components'
+import { useTranslation } from 'react-i18next'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
 
 export default function CompanyData() {
+  const { t } = useTranslation()
   const [showOverlay, setShowOverlay] = useState({
     address: false,
     site: false,
@@ -43,6 +48,16 @@ export default function CompanyData() {
     <main className="organization-main">
       <div className="organization-section">
         <MyCompanyInfoComponent editable={false} />
+        <div>
+          <Button
+            sx={{ margin: '-30px auto 30px auto', display: 'block' }}
+            onClick={() => {
+              dispatch(show(OVERLAYS.CSV_UPLOAD_OVERLAY))
+            }}
+          >
+            {t('content.companyData.csvUploadBtn')}
+          </Button>
+        </div>
       </div>
       <CompanyAddressList
         handleButtonClick={() => {

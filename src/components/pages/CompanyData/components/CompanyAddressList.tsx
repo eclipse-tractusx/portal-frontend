@@ -217,7 +217,7 @@ export const CompanyAddressList = ({
               headerAlign: 'left',
               align: 'left',
               headerName: t('content.companyData.table.location'),
-              flex: 2.5,
+              flex: 2,
               valueGetter: ({ row }: { row: CompanyDataType }) =>
                 row.address
                   ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''} ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.country ?? ''}`
@@ -236,7 +236,7 @@ export const CompanyAddressList = ({
             },
             {
               field: 'status',
-              headerName: '',
+              headerName: t('content.companyData.table.status'),
               align: 'left',
               flex: 1,
               renderCell: ({ row }: { row: CompanyDataType }) => {
@@ -272,9 +272,9 @@ export const CompanyAddressList = ({
             },
             {
               field: 'details',
-              headerName: '',
+              headerName: t('content.companyData.table.details'),
               align: 'left',
-              flex: 0.5,
+              flex: 1,
               renderCell: () => {
                 return (
                   <IconButton
