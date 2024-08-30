@@ -652,7 +652,7 @@
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "No registered connectors available",
-      "noManagedConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
+      "noManagedConnectorsMessage": "No registered connectors available",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register New Connector",
       "snackbar": {
@@ -964,7 +964,6 @@
       "technicalUserDetails": {
         "heading": "Technical User Details",
         "shortDescriptionText": "You will probably prefer to use your own company IDP and you can create and manage the federation on this page. On registration we have created an IDP with one user entry for the admin."
-
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
