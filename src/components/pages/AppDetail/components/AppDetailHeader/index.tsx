@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
 import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -37,11 +37,6 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
 import type { RootState } from 'features/store'
-
-enum Roles {
-  SUBSCRIBE_APPS = 'subscribe_apps',
-  SUBSCRIBE_SERVICE = 'subscribe_service',
-}
 
 export interface AppDetailHeaderProps {
   item: AppDetails
@@ -111,8 +106,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       default:
         btnColor = {
           color:
-            user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-            user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
+            user.roles.indexOf(ROLES.SUBSCRIBE_APP_MARKETPLACE) !== -1
               ? 'primary'
               : 'secondary',
           background1: paletteDefinitions.buttons.darkGrey ?? '',
@@ -154,15 +148,13 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         buttonData={OrderStatusButtonItems}
         selectable={
           subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
+          user.roles.indexOf(ROLES.SUBSCRIBE_APP_MARKETPLACE) !== -1
             ? true
             : false
         }
         onButtonClick={() =>
           subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1 &&
+          user.roles.indexOf(ROLES.SUBSCRIBE_APP_MARKETPLACE) !== -1 &&
           dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
         }
       />
