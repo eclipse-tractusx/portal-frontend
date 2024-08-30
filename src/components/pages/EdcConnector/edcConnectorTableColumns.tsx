@@ -27,6 +27,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import Box from '@mui/material/Box'
 import type { ConnectorContentAPIResponse } from 'features/connector/types'
 import { useTranslation } from 'react-i18next'
@@ -83,7 +84,6 @@ export const ConnectorTableColumns = (
             <Tooltips
               additionalStyles={{
                 cursor: 'pointer',
-                marginTop: '30px !important',
               }}
               tooltipPlacement="bottom"
               tooltipText={t(
@@ -92,7 +92,7 @@ export const ConnectorTableColumns = (
               children={
                 <span>
                   <Box>
-                    <CheckBoxIcon
+                    <CheckBoxOutlineBlankIcon
                       sx={{
                         color: '#b6b6b6',
                         cursor: 'pointer',

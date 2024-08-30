@@ -187,6 +187,7 @@
         "buttonprogress": "in progress",
         "buttonrejected": "rejected",
         "buttoncompleted": "completed",
+        "buttonPartiallyCompleted": "teilweise abgeschlossen",
         "buttonerror": "error",
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
@@ -568,7 +569,7 @@
         "location": "Location",
         "tooltipText": "Connector's status is pending",
         "sdDescription": "SD Registration",
-        "sdRegistrationToolTip": "Die Selbstbeschreibung wurde ausgelöst. Der Vorgang kann bis zu ein paar Minuten dauern.",
+        "sdRegistrationToolTip": "Das SD-Dokument ist noch nicht geladen. Dies könnte auf die Deaktivierung der SD-Fabrik zurückzuführen sein. Dieser Prozess wird so bald wie möglich vom CX-Administrator neu ausgelöst.",
         "hostCompanyName": "Host",
         "providerCompanyName": "Customer",
         "connectorUrl": "Connector-URL"
@@ -1642,7 +1643,8 @@
         "DONE": "approved",
         "IN_PROGRESS": "in progress",
         "FAILED": "failed",
-        "TO_DO": "to do"
+        "TO_DO": "to do",
+        "SKIPPED": "skipped"
       },
       "buttonApprove": "Approve",
       "buttonConfirm": "Confirm",
@@ -1800,6 +1802,10 @@
         "FAILED": {
           "title": "Ihre Aktion ist erforderlich, um fortzufahren.",
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        },
+        "SKIPPED": {
+          "title": "Von Ihrer Seite sind keine Maßnahmen erforderlich",
+          "description": "Die Erstellung der Selbstbeschreibung wurde absichtlich übersprungen. Dieser Prozess wird vom CX-Operator so bald wie möglich wieder ausgelöst."
         }
       }
     },

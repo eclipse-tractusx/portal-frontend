@@ -93,44 +93,49 @@ export default function ActivateserviceSubscription({
 
   const tableData: TableType = {
     head: [t('serviceSubscription.activation.tableheader'), ''],
-    body: [
-      [
-        t('serviceSubscription.activation.userId'),
-        techUserInfo?.technicalUserInfo.technicalClientId ?? '',
-      ],
-      [
-        t('serviceSubscription.activation.sercret'),
-        techUserInfo?.technicalUserInfo.technicalUserSecret ?? '',
-      ],
-      [
-        t('serviceSubscription.activation.url'),
-        techUserInfo?.clientInfo?.clientUrl ?? 'n/a',
-      ],
-      [
-        t('serviceSubscription.activation.technicaluserType'),
-        techUserInfo?.technicalUserInfo.technicalUserPermissions.join(', ') ??
-          '',
-      ],
-    ],
-    edit: [
-      [
-        {
-          icon: false,
-        },
-        {
-          icon: false,
-        },
-      ],
-      [
-        {
-          icon: false,
-        },
-        {
-          icon: false,
-          copyValue: techUserInfo?.technicalUserInfo.technicalUserSecret,
-        },
-      ],
-    ],
+    body:
+      techUserInfo?.technicalUserInfo
+        ?.map((userData) => [
+          [
+            t('serviceSubscription.activation.userId'),
+            userData.technicalClientId ?? '',
+          ],
+          [
+            t('serviceSubscription.activation.sercret'),
+            userData.technicalUserSecret ?? '',
+          ],
+          [
+            t('serviceSubscription.activation.url'),
+            techUserInfo?.clientInfo?.clientUrl ?? 'N/A',
+          ],
+          [
+            t('serviceSubscription.activation.technicaluserType'),
+            userData.technicalUserPermissions.join(', ') ?? '',
+          ],
+        ])
+        .flat(1) ?? [],
+    edit:
+      techUserInfo?.technicalUserInfo
+        ?.map((userData) => [
+          [
+            {
+              icon: false,
+            },
+            {
+              icon: false,
+            },
+          ],
+          [
+            {
+              icon: false,
+            },
+            {
+              icon: false,
+              copyValue: userData.technicalUserSecret,
+            },
+          ],
+        ])
+        .flat(1) ?? [],
   }
 
   return (
@@ -177,7 +182,10 @@ export default function ActivateserviceSubscription({
                 </Typography>
               </Trans>
             </Box>
-            <StaticTable data={tableData} horizontal={false} />
+            {techUserInfo?.technicalUserInfo &&
+            techUserInfo?.technicalUserInfo?.length > 0 ? (
+              <StaticTable data={tableData} horizontal={false} />
+            ) : null}
           </DialogContent>
           <DialogActions>
             <Button
