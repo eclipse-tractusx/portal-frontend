@@ -37,7 +37,7 @@ export default function IDPManagement() {
         title={t('idpmanagement.title')}
         subTitle={t('page.desc')}
         headerHeight={250}
-        subTitleWidth={750}
+        subTitleWidth={900}
       />
       <section>
         <PageInfo

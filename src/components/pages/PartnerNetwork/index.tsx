@@ -136,8 +136,7 @@ const PartnerNetwork = () => {
 
   return (
     <main className="partner-network-page-container">
-
-       <MainHeader
+      <MainHeader
         title={t('content.partnernetwork.headertitle')}
         headerHeight={250}
         subTitleWidth={750}

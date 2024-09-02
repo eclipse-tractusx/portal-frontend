@@ -56,18 +56,19 @@ export default function TechnicalUserManagement() {
         title={t('content.usermanagement.technicalUser.descriptionHeader')}
         subTitle={t('content.usermanagement.technicalUser.descriptionText')}
         headerHeight={250}
-        subTitleWidth={750}
+        subTitleWidth={900}
       />
       <section>
-
-        <PageInfo 
-          description={t('content.usermanagement.technicalUser.shortDescriptionText')}
+        <PageInfo
+          description={t(
+            'content.usermanagement.technicalUser.shortDescriptionText'
+          )}
           buttonLabel={t('content.usermanagement.technicalUser.create')}
           buttonAction={() => dispatch(show(OVERLAYS.ADD_TECH_USER))} />
 
-        <div className="cx-content-technical__container" >
+        <div className="cx-content-technical__container">
           {notification.title && notification.description && (
-            <div className="cx-content-technical__notifications" >
+            <div className="cx-content-technical__notifications">
               <PageNotifications
                 open={notification.open}
                 severity={notification.severity}
@@ -78,7 +79,7 @@ export default function TechnicalUserManagement() {
               />
             </div>
           )}
-          <div className="cx-content-technical__table" >
+          <div className="cx-content-technical__table">
             <TechnicalUserTable />
           </div>
         </div>
