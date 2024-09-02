@@ -1638,6 +1638,16 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
+
+.show-3-rows-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+
 // cx-main-header
 .cx-main-header {
   background: rgba(250, 250, 250, 1) !important;
@@ -1703,6 +1713,8 @@ p.MuiTypography-root.MuiTypography-body3.description,
       display: flex;
       padding-top: 62px !important;
       justify-content: flex-start !important;
+      position: relative;
+      z-index: 3;
     }
   }
 
@@ -1718,14 +1730,13 @@ p.MuiTypography-root.MuiTypography-body3.description,
     font-weight: 500 !important;
     line-height: 28px !important;
     font-size: 20px !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 }
+
+
 
 .cx-main-header__content > h2 {
   font-size: 20px !important;
   font-weight: 500 !important;
 }
+
