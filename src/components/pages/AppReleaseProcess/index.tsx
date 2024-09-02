@@ -79,7 +79,8 @@ export default function AppReleaseProcess() {
   }
 
   const onOverviewButton = () => {
-    // do nothing
+    // Code update based on the current codebase
+    navigate(`/${PAGES.APPOVERVIEW}`)
   }
 
   const requirements = [
