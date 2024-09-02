@@ -68,7 +68,8 @@
     "companySubscriptions": "Company Subscriptions",
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
-    "companyData": "Company Data"
+    "companyData": "Company Data",
+    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -1495,7 +1496,34 @@
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
-        "tenantUrlErrorMsg": "Error! Something went wrong"
+        "tenantUrlErrorMsg": "Error! Something went wrong",
+        "externalServices": {
+          "heading": "External Service Details",
+          "trustedIssuer": {
+            "label": "Trusted Issuer",
+            "description": "The trusted issuer responsible for issuing the identity credentials."
+          },
+          "participantId": {
+            "label": "Participant ID",
+            "description": "The unique identifier of the participant in the external system."
+          },
+          "iatpId": {
+            "label": "IATP ID",
+            "description": "The unique identifier of the IATP (Identity and Trust Protocol)."
+          },
+          "didResolver": {
+            "label": "DID Resolver",
+            "description": "The URL of the DID (Decentralized Identifier) resolver used for resolving decentralized identities."
+          },
+          "decentralIdentityManagementAuthUrl": {
+            "label": "Decentralized Identity Management Auth URL",
+            "description": "The URL of the authentication endpoint for the decentralized identity management."
+          },
+          "decentralIdentityManagementServiceUrl": {
+            "label": "Decentralized Identity Management Service URL",
+            "description": "The URL of the service endpoint for the decentralized identity management."
+          }
+        }
       }
     },
     "adminBoard": {
@@ -2018,8 +2046,21 @@
     },
     "companyData": {
       "label": "Company Data",
+      "csvUploadBtn": "Upload CSV",
       "statusInfo": {
         "title": "Status Information"
+      },
+      "upload": {
+        "title": "Upload CSV",
+        "fileSizeError": "Uploaded file is too big. Maximum 1MB is allowed",
+        "successDescription": "CSV Upload is success. Please close the modal to see updated list",
+        "note": "Note: Please upload only CSV files with maximum 1 MB.",
+        "errorDescription": "CSV Upload failed with the following erros",
+        "templateBtn": "Download CSV Template",
+        "emptyError": "Uploaded CSV is empty. Kindly check and upload again",
+        "copy": "Copy Error to clipboard",
+        "copySuccess": "Error messages copied successfully",
+        "downloadSuccess": "CSV template download successfully"
       },
       "companyInfo": {
         "title": "Company Name",
@@ -2038,7 +2079,9 @@
         "location": "Location",
         "search": "search address / site",
         "noRowsMsg": "No Data yet",
-        "type": "Type"
+        "type": "Type",
+        "status": "Status",
+        "details": "Details"
       },
       "site": {
         "title": "Create new site",
@@ -2121,6 +2164,37 @@
       "error": {
         "title": "Create {name}",
         "description": "The changes could not be saved. Please try again"
+      }
+    },
+    "onboardingServiceProvider": {
+      "headertitle": "Onboarding Service Provider Management",
+      "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "subDesc1": "OSP Callback configured",
+      "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
+      "tabletitle1": "OSP Identity Provider (IDPs)",
+      "tabletitle2": "Customer Overview",
+      "userList": "User List",
+      "addIdentityProvider": "Add Identity Provider",
+      "dialogTitle": "Configure IdP Metadata",
+      "table": {
+        "customerName": "Customer Name",
+        "status": "Status",
+        "idpName": "IDP name",
+        "users": "# of users"
+      },
+      "success": "Successfully configured OSP callback",
+      "callbackUrlError": "Failed configuring OSP callback",
+      "callbackUrl": {
+        "name": "Callback URL",
+        "hint": "Enter the callback URL from your IDP that ends with '/.well-known/openid-configuration'"
+      },
+      "clientId": {
+        "name": "Client ID",
+        "hint": "Enter the client ID provided by your IdP"
+      },
+      "clientSecret": {
+        "name": "Client Secret",
+        "hint": "Enter the client secret provided by your IdP"
       }
     }
   },

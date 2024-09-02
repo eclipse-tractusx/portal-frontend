@@ -63,6 +63,14 @@ export type SubscriptionDetailResponse = {
   technicalUserData: TechnicalUserData[]
   tenantUrl: string
   processStepTypeId: ProcessStep | null
+  externalService: {
+    trusted_issuer: string
+    participant_id: string
+    iatp_id: string
+    did_resolver: string
+    decentralIdentityManagementAuthUrl: string
+    decentralIdentityManagementServiceUrl: string
+  }
 }
 
 export type UserRoles = {
