@@ -36,6 +36,14 @@ export const getTitle = (
 ) => {
   const getStatus = () => {
     if (
+      selectedRequest?.applicationStatus ===
+        ApplicationRequestStatus.CONFIRMED &&
+      selectedRequest?.applicationChecklist?.filter(
+        (checklist) => checklist.statusId === ProgressStatus.SKIPPED
+      ).length > 0
+    ) {
+      return t('content.admin.registration-requests.buttonPartiallyCompleted')
+    } else if (
       selectedRequest?.applicationStatus === ApplicationRequestStatus.SUBMITTED
     ) {
       const failedItems = selectedRequest.applicationChecklist.filter(

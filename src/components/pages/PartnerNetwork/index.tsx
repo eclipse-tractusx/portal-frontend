@@ -21,20 +21,20 @@
 import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
 import { useTranslation } from 'react-i18next'
 import {
-  useFetchBusinessPartnersQuery,
+  useFetchBusinessPartnersMutation,
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import {
   PageHeader,
-  PageLoadingTable,
+  Table,
   type PaginResult,
 } from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
-import Patterns from 'types/Patterns'
+import Patterns, { isBPN } from 'types/Patterns'
 import { useFetchMemberCompaniesQuery } from 'features/newPartnerNetwork/partnerNetworkPortalApiSlice'
 import {
   isContentPresent,
@@ -46,41 +46,93 @@ import { type BusinessPartnerAddressResponse } from 'features/partnerNetwork/typ
 const PartnerNetwork = () => {
   const { t } = useTranslation()
   const [expr, setExpr] = useState<string>('')
-  const [refresh, setRefresh] = useState<number>(0)
+  const [bpn, setBpn] = useState<string>('')
   const searchInputData = useSelector(updatePartnerSelector)
   const columns = PartnerNetworksTableColumns(t)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
   const { data } = useFetchMemberCompaniesQuery()
+  const [fetchMembers] = useFetchBusinessPartnersMutation()
 
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
+  const [page, setPage] = useState<number>(0)
+  const [allItems, setAllItems] = useState<BusinessPartner[]>([])
+  const [memberData, setMemberData] = useState<PaginResult<BusinessPartner>>()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [fetchArgs, setFetchArgs] = useState({
+    args: {
+      expr,
+    },
+    page,
+  })
 
-  const [allItems, setAllItems] = useState<BusinessPartner[]>()
-
-  const fetchAndApply = async (cData: PaginResult<BusinessPartner>) => {
-    //BPDM response does not has content attribute. Check for it and proceed
-    if (isContentPresent(cData) && cData.content.length === 0) {
-      setAllItems([])
-      return
-    }
-
-    const result = cData.content.map((x: BusinessPartner) => x.bpnl)
-    await mutationRequest({ bpnLs: result, legalName: '' })
+  const fetchAllMembers = async () => {
+    await fetchMembers(fetchArgs)
       .unwrap()
-      .then((payload: PaginResult<BusinessPartnerAddressResponse>) => {
-        //new country attribute && member attributes based on the response
-        let finalObj = JSON.parse(JSON.stringify(cData?.content))
-        finalObj = addCountryAttribute(
-          finalObj,
-          payload.content as unknown as BusinessPartnerAddressResponse[]
-        )
-        finalObj = addMemberAttribute(finalObj, data)
-        setAllItems(finalObj)
+      .then((payload) => {
+        setMemberData(payload)
+        if (isContentPresent(payload) && payload.content.length === 0) {
+          setAllItems([])
+          setLoading(false)
+        } else {
+          setCountryAttributes(payload)
+        }
       })
       .catch(() => {
         setAllItems([])
       })
+    setLoading(false)
   }
+
+  useEffect(() => {
+    setLoading(true)
+    if (data && data.length > 0) fetchAllMembers()
+  }, [data, fetchArgs])
+
+  const setCountryAttributes = (payload: PaginResult<BusinessPartner>) => {
+    let finalObj = JSON.parse(JSON.stringify(payload?.content))
+    finalObj = addCountryAttribute(
+      finalObj,
+      payload.content as unknown as BusinessPartnerAddressResponse[]
+    )
+    finalObj = addMemberAttribute(finalObj, data)
+    setAllItems((i) => (page === 0 ? finalObj : i.concat(finalObj)))
+  }
+
+  const fetchAndApply = async (result: string[]) => {
+    await mutationRequest({ bpnLs: result, legalName: '' })
+      .unwrap()
+      .then((payload) => {
+        setCountryAttributes(payload)
+      })
+      .catch(() => {
+        setAllItems([])
+      })
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    setFetchArgs({
+      args: {
+        expr,
+      },
+      page,
+    })
+  }, [page, expr])
+
+  useEffect(() => {
+    if (bpn === '') {
+      setFetchArgs({
+        args: {
+          expr: '',
+        },
+        page: 0,
+      })
+    }
+    setLoading(true)
+    fetchAndApply([bpn])
+  }, [bpn])
 
   return (
     <main className="partner-network-page-container">
@@ -91,29 +143,42 @@ const PartnerNetwork = () => {
       />
 
       <section id="identity-management-id">
-        <PageLoadingTable<BusinessPartner, { expr: string }>
+        <Table
           autoFocus={false}
-          searchExpr={expr}
+          searchExpr={expr || bpn}
           toolbarVariant={'ultimate'}
           hasBorder={false}
           columnHeadersBackgroundColor={'transparent'}
           searchPlaceholder={t('content.partnernetwork.searchfielddefaulttext')}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
+            if (expr === '') {
+              setBpn('')
+              setExpr('')
+              setPage(0)
+            }
             if (expr !== '' && !validateSearchText(expr)) return
-            setRefresh(Date.now())
-            setExpr(expr)
+            setAllItems([])
+            if (isBPN(expr)) setBpn(expr)
+            else setExpr(expr)
           }}
           searchDebounce={1000}
           title={t('content.partnernetwork.tabletitle')}
           loadLabel={t('global.actions.loadmore')}
-          fetchHook={useFetchBusinessPartnersQuery}
-          fetchHookArgs={{ expr }}
-          fetchHookRefresh={refresh}
           getRowId={(row: { bpnl: string }) => row.bpnl ?? ''}
           columns={columns}
-          callbackToPage={fetchAndApply}
-          allItems={allItems}
+          loading={loading}
+          rows={allItems}
+          rowsCount={allItems?.length}
+          noRowsMsg={t('content.companyData.table.noRowsMsg')}
+          nextPage={() => {
+            setPage(page + 1)
+          }}
+          hasMore={
+            memberData?.meta &&
+            memberData.meta.page < memberData.meta.totalPages - 1
+          }
+          hideFooterPagination={true}
         />
       </section>
     </main>

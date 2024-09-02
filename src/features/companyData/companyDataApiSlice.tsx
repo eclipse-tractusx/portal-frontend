@@ -215,15 +215,28 @@ export interface ReadyStateRequestBody {
   externalIds: string[]
 }
 
+interface SharingStateRequest {
+  page: number
+}
+
+enum TAGS {
+  SHARING = 'sharing',
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyData',
   baseQuery: fetchBaseQuery(apiBpdmGateQuery()),
+  tagTypes: [TAGS.SHARING],
   endpoints: (builder) => ({
-    fetchSharingState: builder.query<SharingStateResponse, void>({
-      query: () => ({
-        url: '/sharing-state?page=0&size=100',
-      }),
-    }),
+    fetchSharingState: builder.query<SharingStateResponse, SharingStateRequest>(
+      {
+        query: (obj) => ({
+          url: `/sharing-state?page=${obj.page}&size=100`,
+        }),
+        keepUnusedDataFor: 5,
+        providesTags: [TAGS.SHARING],
+      }
+    ),
     fetchInputCompanyBusinessPartners: builder.mutation<
       CompanyDataResponse,
       string[] | void
@@ -264,6 +277,22 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    uploadCSV: builder.mutation<CompanyDataType[], File>({
+      query: (body) => {
+        const formData = new FormData()
+        formData.append('file', body)
+        formData.append('type', body.type)
+        return {
+          url: '/input/partner-upload-process',
+          method: 'POST',
+          body: formData,
+        }
+      },
+      invalidatesTags: [TAGS.SHARING],
+    }),
+    downloadCsv: builder.query<void, void>({
+      query: () => '/input/partner-upload-template',
+    }),
   }),
 })
 
@@ -273,4 +302,6 @@ export const {
   useFetchOutputCompanyBusinessPartnersMutation,
   useUpdateCompanySiteAndAddressMutation,
   useUpdateCompanyStatusToReadyMutation,
+  useUploadCSVMutation,
+  useDownloadCsvQuery,
 } = apiSlice

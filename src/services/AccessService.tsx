@@ -70,6 +70,7 @@ import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDet
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
 import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
 import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
+import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -209,6 +210,8 @@ export const getOverlay = (overlay: OverlayState) => {
           title={overlay.title ?? ''}
         />
       )
+    case OVERLAYS.CSV_UPLOAD_OVERLAY:
+      return <CSVUploadOverlay />
     default:
       return <NotFound />
   }
