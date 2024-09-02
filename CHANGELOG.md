@@ -1,18 +1,24 @@
 # Changelog
 
-## Unreleased
+## 2.2.0-RC2
 
 ### Feature
 
 - **Onboarding Service Provider Management**:
   - Create new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
-- Company data
-  - Disable confirm button if input value is not matching with the regular expression
+- **Company data**
+  - Disable confirm button if input value is not matching with the regular expression [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
   - Fix infinite loop issue in add New Address Modal
-- Service Subscription
+  - Add new csv bulk upload modal [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
+- **Service Subscription**
   - Update auto setup api response data in the service subscription response overlay
-- Partner Network
-  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly
+
+### Bugfixes
+
+- **Partner Network**
+  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly [#1002](https://github.com/eclipse-tractusx/portal-frontend/pull/1002)
+- **Business Partner invite**
+  - fix person name regex patter [#1040](https://github.com/eclipse-tractusx/portal-frontend/pull/1040)
 
 ## 2.2.0-RC1
 
