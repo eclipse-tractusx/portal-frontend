@@ -31,6 +31,7 @@ export interface CompanyDataState {
   row: CompanyDataType
   status: string
   sharingStateInfo: SharingStateType
+  refetchState: boolean
 }
 
 export const companyDataInitialData: CompanyDataType = {
@@ -158,6 +159,7 @@ export const initialState: CompanyDataState = {
     sharingProcessStarted: '',
     taskId: '',
   },
+  refetchState: false,
 }
 
 const companyDataSlice = createSlice({
@@ -176,6 +178,10 @@ const companyDataSlice = createSlice({
       ...state,
       sharingStateInfo: actions.payload,
     }),
+    setCompanyPageRefetch: (state, actions) => ({
+      ...state,
+      refetchState: actions.payload,
+    }),
   },
 })
 
@@ -188,10 +194,14 @@ export const statusSelector = (state: RootState): string =>
 export const sharingStateInfoSelector = (state: RootState): SharingStateType =>
   state.companyData.sharingStateInfo
 
+export const companyRefetch = (state: RootState): boolean =>
+  state.companyData.refetchState
+
 export const {
   setSelectedCompanyData,
   setSelectedCompanyStatus,
   setSharingStateInfo,
+  setCompanyPageRefetch,
 } = companyDataSlice.actions
 
 export default companyDataSlice
