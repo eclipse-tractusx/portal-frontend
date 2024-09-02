@@ -841,18 +841,18 @@
       "failure": "Die Verarbeitung Ihrer Anfrage ist fehlgeschlagen"
     },
     "usermanagement": {
-      "title": "User Management",
-      "description": "Alle dem Unternehmen zugewiesenen Benutzer anzeigen und verwalten. Rollenzuweisung, erstelle neue Benutzerkonten, sowie technische Accounts.",
+      "title": "Benutzer Management",
+      "description": "Hier können Sie dem Unternehmen zugewiesenen Benutzer anzeigen und verwalten. Managen Sie Rollenzuweisung, neue Benutzerkonten sowie Erstellung technischer Nutzer.",
       "apparea": {
-        "headline": "App Zugriffsmanagement",
+        "headline": "App-Zugriff Management",
         "appsNotAvailable": "Apps sind verfügbar, sobald Geschäftsanwendungen abonniert und aktiviert sind"
       },
       "table": {
-        "headline": "Benutzerkontenverwaltung",
+        "headline": "Portal Nutzer Management",
         "title": "User Liste",
         "details": "Details",
         "add": "User hinzufügen",
-        "addMultiple": "Add Multiple users",
+        "addMultiple": "Mehrere User hinzufügen",
         "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
       },
       "appUserDetails": {
@@ -2226,7 +2226,7 @@
   },
   "navigation": {
     "subNavigation": {
-      "buttonLabel": "Technical User Management",
+      "buttonLabel": "Technische User Management",
       "link1Label": "Access Management",
       "link2Label": "Portal User Management"
     }
