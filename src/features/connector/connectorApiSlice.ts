@@ -173,6 +173,15 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchSdDocument: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/selfDescription/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -186,4 +195,5 @@ export const {
   useFetchOfferSubscriptionsQuery,
   useFetchDecentralIdentityUrlsQuery,
   useUpdateConnectorUrlMutation,
+  useFetchSdDocumentMutation,
 } = apiSlice

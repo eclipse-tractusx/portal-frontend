@@ -82,11 +82,6 @@ export const TechnicalUserTable = () => {
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
-      buttonValue: ServiceAccountStatusFilter.INACTIVE,
-      onButtonClick: setView,
-    },
-    {
       buttonText: t('content.usermanagement.technicalUser.tabs.managed'),
       buttonValue: ServiceAccountStatusFilter.MANAGED,
       onButtonClick: setView,
