@@ -117,7 +117,7 @@ export default function SemanticHub() {
           title={t('content.semantichub.introTitle')}
           subTitle={t('content.semantichub.introText_0')}
           headerHeight={250}
-          subTitleWidth={750}
+          subTitleWidth={1000}
         />
         <section>
           <PageInfo

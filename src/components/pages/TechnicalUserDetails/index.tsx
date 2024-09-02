@@ -30,7 +30,7 @@ export default function TechnicalUserDetails() {
   const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
   return (
     <main>
-       <MainHeader
+      <MainHeader
         title={t('content.usermanagement.technicalUserDetails.heading')}
         headerHeight={250}
         subTitleWidth={750}

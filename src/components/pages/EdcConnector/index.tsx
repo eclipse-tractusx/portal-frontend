@@ -387,7 +387,7 @@ const EdcConnector = () => {
         title={t('content.edcconnector.headertitle')}
         subTitle={t('content.edcconnector.desc')}
         headerHeight={250}
-        subTitleWidth={750}
+        subTitleWidth={900}
       />
       <section>
         <div className="edc-connector-header">

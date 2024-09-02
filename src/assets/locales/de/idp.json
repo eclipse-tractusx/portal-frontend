@@ -47,7 +47,7 @@
   "page": {
     "title": "Identity Provider Config",
     "desc": "Verwalten Sie, wie sich die Nutzer Ihres Unternehmens im Cofinity-X Portal authentifizieren. Viele Unternehmen verfügen bereits über ihren eigenen Identity Provider (IDP), bei dem die Nutzer ihre bekannten Unternehmens-Benutzer-IDs und eine vertraute Anmeldemaske verwenden.",
-    "shortDescriptionText":"Sie bevorzugen wahrscheinlich die Nutzung Ihres eigenen Unternehmens-IDP. Auf dieser Seite können Sie die Föderation erstellen und verwalten. Bei der Registrierung haben wir eine IDP mit einem Benutzereintrag für den Administrator erstellt."
+    "shortDescriptionText": "Sie bevorzugen wahrscheinlich die Nutzung Ihres eigenen Unternehmens-IDP. Auf dieser Seite können Sie die Föderation erstellen und verwalten. Bei der Registrierung haben wir eine IDP mit einem Benutzereintrag für den Administrator erstellt."
   },
   "add": {
     "title": "Add your Identity Provider (IdP)",
