@@ -109,6 +109,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS = 'companySubscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   COMPANY_DATA = 'companyData',
+  MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider',
 }
 
 export enum OVERLAYS {
@@ -155,6 +156,7 @@ export enum OVERLAYS {
   UPDATE_CERTIFICATE = 'updateCertificate',
   COMPANY_CERTIFICATE_DETAILS = 'companyCertificateDetails',
   COMPANY_CERTIFICATE_CONFIRM_DELETE = 'companyCertificateConfirmDelete',
+  CSV_UPLOAD_OVERLAY = 'csvUploadOverlay',
 }
 
 export enum ACTIONS {
