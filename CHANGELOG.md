@@ -6,6 +6,8 @@
 
 - **Application Requests and Connector Management**
   - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
+- **Technical User Management**
+  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
 
 ### Bugfixes
 
@@ -22,11 +24,8 @@
 
 - Customer Detail Data Overlay
   - implement new UI design for customer detail data overlay
-
-### Change
-
-- **Technical User Management**
-  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+- **Company Subscription Management**
+  - Extended the subscription detail page for customer to include more app-related information [#1051](https://github.com/eclipse-tractusx/portal-frontend/pull/1051)
 
 ## 2.2.0-RC1
 
