@@ -75,7 +75,7 @@ export default function ActivateserviceSubscription({
     [data]
   )
 
-  const handleConfrim = async () => {
+  const handleConfirm = async () => {
     setLoading(true)
     try {
       const result = await subscribe({
@@ -296,7 +296,7 @@ export default function ActivateserviceSubscription({
                 sx={{ marginLeft: '10px' }}
               />
             ) : (
-              <Button variant="contained" onClick={() => handleConfrim()}>
+              <Button variant="contained" onClick={() => handleConfirm()}>
                 {t('serviceSubscription.register.confirm')}
               </Button>
             )}

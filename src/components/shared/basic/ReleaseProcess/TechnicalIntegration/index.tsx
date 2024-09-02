@@ -56,6 +56,7 @@ import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { ErrorType } from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
+import { info } from 'services/LogService'
 import { ButtonLabelTypes } from '..'
 
 export default function TechnicalIntegration() {
@@ -267,10 +268,10 @@ export default function TechnicalIntegration() {
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onabort = () => {
-          console.log('file reading was aborted')
+          info('file reading was aborted')
         }
         reader.onerror = () => {
-          console.log('file reading has failed')
+          info('file reading has failed')
         }
         reader.onload = () => {
           const str = reader.result

@@ -41,6 +41,7 @@ import './style.scss'
 import { useReducer } from 'react'
 import { useDispatch } from 'react-redux'
 import { refreshApplicationRequest } from 'features/admin/registration/actions'
+import { info } from 'services/LogService'
 
 enum ActionKind {
   SET_RETRIGGER_LOADING = 'SET_RETRIGGER_LOADING',
@@ -170,7 +171,7 @@ export const ProgressVerificationButton = ({
     await approveChecklist(selectedRequestId)
       .unwrap()
       .then((payload) => {
-        console.log('fulfilled', payload)
+        info('fulfilled', payload)
       })
       .catch((error) => {
         setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
@@ -192,7 +193,7 @@ export const ProgressVerificationButton = ({
     })
       .unwrap()
       .then((payload) => {
-        console.log('fulfilled', payload)
+        info('fulfilled', payload)
       })
       .catch((error) => {
         setState({ type: ActionKind.SET_ERROR, payload: error.data.title })
@@ -206,10 +207,7 @@ export const ProgressVerificationButton = ({
 
   const onRetrigger = () => {
     if (!selectedRequestId) return
-    console.log(
-      'props.retriggerableProcessSteps',
-      props.retriggerableProcessSteps
-    )
+    info('props.retriggerableProcessSteps', props.retriggerableProcessSteps)
     setState({ type: ActionKind.SET_RETRIGGER_LOADING, payload: true })
     props.retriggerableProcessSteps &&
       props.retriggerableProcessSteps.forEach(async (process: string) => {

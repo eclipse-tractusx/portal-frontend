@@ -29,6 +29,7 @@ import UserService from 'services/UserService'
 import './MarketplaceHeader.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { getAssetBase } from 'services/EnvironmentService'
+import { info } from 'services/LogService'
 import { Box } from '@mui/material'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 
@@ -54,7 +55,7 @@ export default function MarketplaceHeader({
           color="success"
           className="subscribe-btn"
           onClick={() => {
-            console.log('click function')
+            info('click function')
           }}
         >
           {t('content.appdetail.subscribed')}
