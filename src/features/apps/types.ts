@@ -251,8 +251,9 @@ export const initialState: AppsControlState = {
 }
 
 export enum CompanySubscriptionFilterType {
-  REQUESTED = 'requested',
+  PENDING = 'pending',
   ACTIVE = 'active',
+  INACTIVE = 'inactive',
   SHOW_ALL = 'show all',
 }
 

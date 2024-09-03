@@ -15,6 +15,8 @@
   - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
 - **Technical User Management**
   - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+- **Company Subscriptions**
+  - Update and bind API with filter options
 
 ### Bugfixes
 
