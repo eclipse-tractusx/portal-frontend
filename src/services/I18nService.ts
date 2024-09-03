@@ -36,6 +36,7 @@ import servicereleaseEN from '../assets/locales/en/servicerelease.json'
 import registrationDE from '../assets/locales/de/registration.json'
 import registrationEN from '../assets/locales/en/registration.json'
 import type { NotificationType } from 'features/notification/types'
+import { error } from './LogService'
 
 const resources = {
   de: {
@@ -75,7 +76,7 @@ const init = (): void => {
       },
     })
     .catch((e) => {
-      console.error('Translation library init got error:', e)
+      error('Translation library init got error:', e)
     })
 }
 

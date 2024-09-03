@@ -90,7 +90,7 @@ export default function Test() {
           acceptFormat={{ 'application/json': [] }}
           maxFilesToUpload={20}
         />
-        <ItemProcessor items={items} process={console.log} autostart={true} />
+        <ItemProcessor items={items} process={info} autostart={true} />
       </section>
       <section>
         <Dropzone onChange={appPreview} />

@@ -22,14 +22,15 @@ import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
 import type { SearchParams } from '../../connector/types'
+import { error, type LogData } from 'services/LogService'
 
 const fetchRegistrationRequests = createAsyncThunk(
   `${name}/fetchRegistrationRequests`,
   async ({ params }: { params: SearchParams }) => {
     try {
       await Api.getInstance().getRegistrationRequests(params)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${name}/fetchRegistrationRequests error`)
     }
   }
@@ -40,8 +41,8 @@ const fetchCompanyDetail = createAsyncThunk(
   async (applicationId: string) => {
     try {
       return await Api.getInstance().getCompanyDetail(applicationId)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${name}/fetchCompanyDetail error`)
     }
   }

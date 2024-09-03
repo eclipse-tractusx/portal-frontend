@@ -74,6 +74,8 @@ import {
   type UseCaseType,
 } from 'features/appManagement/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { error } from 'services/NotifyService'
+import { type LogData } from 'services/LogService'
 
 type FormDataType = {
   title: string
@@ -286,9 +288,9 @@ export default function AppMarketCard() {
       const file = response.data
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
       setCardImage(URL.createObjectURL(file))
-    } catch (error) {
+    } catch (e) {
       setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      error('ERROR WHILE FETCHING IMAGE', '', e as LogData)
     }
   }
 

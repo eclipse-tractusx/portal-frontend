@@ -21,6 +21,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
 import type { ErrorResponse, FilterParams, NewSemanticModel } from './types'
+import { error, type LogData } from 'services/LogService'
 
 const message = 'The server responded with an error.'
 
@@ -29,9 +30,9 @@ const fetchSemanticModels = createAsyncThunk(
   async ({ filter }: { filter: FilterParams }) => {
     try {
       return await Api.getInstance().getModels(filter)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
-      throw Error(JSON.stringify((error as ErrorResponse).response.status))
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
+      throw Error(JSON.stringify((e as ErrorResponse).response.status))
     }
   }
 )
@@ -41,8 +42,8 @@ const fetchSemanticModelById = createAsyncThunk(
   async (id: string) => {
     try {
       return await Api.getInstance().getModelById(id)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`Fetching model failed: ${message}`)
     }
   }
@@ -57,8 +58,8 @@ const deleteSemanticModelById = createAsyncThunk(
       return await Api.getInstance()
         .deleteModelById(encodedUrn)
         .then(() => id)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`Deleting model failed: ${message}`)
     }
   }
@@ -69,8 +70,8 @@ const postSemanticModel = createAsyncThunk(
   async (model: NewSemanticModel) => {
     try {
       return await Api.getInstance().postSemanticModel(model)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${error}. Adding a new model failed.`)
     }
   }
@@ -81,8 +82,8 @@ const changeOpenApiUrl = createAsyncThunk(
     const { id, url } = params
     try {
       return await Api.getInstance().getOpenAPIUrl(id, url)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error('Change open API URL call error.')
     }
   }

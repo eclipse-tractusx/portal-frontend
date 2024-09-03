@@ -48,6 +48,8 @@ import { getIntro, getTitle } from './CompanyDetailsHelper'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { type UniqueIdType } from 'features/admin/registration/types'
 import { StatusProgress } from '../registrationTableColumns'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean
@@ -103,8 +105,8 @@ const CompanyDetailOverlay = ({
       const file = response.data
 
       download(file, fileType, documentType)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
 

@@ -21,6 +21,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import type { SearchParams } from 'types/MainTypes'
 import { PartnerNetworkApi } from './api'
+import { error, type LogData } from 'services/LogService'
 
 const fetchMemberCompaniesData = createAsyncThunk(
   'partnerNetwork/fetchMemberCompaniesData',
@@ -28,8 +29,8 @@ const fetchMemberCompaniesData = createAsyncThunk(
     try {
       // Call axios instance to get values
       return await PartnerNetworkApi.getInstance().getAllMemberCompanies()
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw new Error('Error while fetching membership data')
     }
   }
@@ -47,8 +48,8 @@ const fetchBusinessPartners = createAsyncThunk(
       }
       // Call axios instance to get values
       return await PartnerNetworkApi.getInstance().getAllBusinessPartner(params)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error('fetchBusinessPartners api call error')
     }
   }
@@ -59,8 +60,8 @@ const getOneBusinessPartner = createAsyncThunk(
     try {
       // Call axios instance to get values
       return await PartnerNetworkApi.getInstance().getBusinessPartnerByBpn(bpn)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error('getOneBusinessPartner api call error')
     }
   }

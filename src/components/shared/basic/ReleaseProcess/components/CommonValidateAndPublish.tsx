@@ -69,6 +69,8 @@ import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
 import 'components/styles/document.scss'
+import { type LogData } from 'services/LogService'
+import NotifyService from 'services/NotifyService'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -158,8 +160,8 @@ export default function CommonValidateAndPublish({
         }).unwrap()
         const file = response.data
         setCardImage(URL.createObjectURL(file))
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      } catch (e) {
+        NotifyService.error('ERROR WHILE FETCHING IMAGE', '', e as LogData)
       }
     },
     [fetchDocumentById, id]
@@ -204,8 +206,8 @@ export default function CommonValidateAndPublish({
       const file = response.data
 
       download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      NotifyService.error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
 

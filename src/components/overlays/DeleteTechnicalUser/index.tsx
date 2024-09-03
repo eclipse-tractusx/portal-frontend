@@ -32,6 +32,7 @@ import { updateData, UPDATES } from 'features/control/updates'
 import { closeOverlay } from 'features/control/overlay'
 import DeleteUserContent from 'components/shared/basic/DeleteObjectContent'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { error } from 'services/LogService'
 
 export const DeleteTechnicalUser = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -75,25 +76,23 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
       deleteUserSuccess()
     } catch (err: unknown) {
       deleteUserError(err)
-      console.log(err)
+      error(err as string)
     }
   }
   return data ? (
-    <>
-      <DeleteUserContent
-        header={`${t('global.actions.delete')} ${t(
-          'global.objects.techuser'
-        )} ${data.name}`}
-        subHeader={t('global.actions.confirmDelete', {
-          object: t('global.objects.techuser'),
-          name: data.name,
-        })}
-        subHeaderTitle={t('global.actions.noteDelete', {
-          object: t('global.objects.techuser'),
-        })}
-        handleConfirm={handleRemove}
-        confirmTitle={t('global.actions.delete')}
-      />
-    </>
+    <DeleteUserContent
+      header={`${t('global.actions.delete')} ${t(
+        'global.objects.techuser'
+      )} ${data.name}`}
+      subHeader={t('global.actions.confirmDelete', {
+        object: t('global.objects.techuser'),
+        name: data.name,
+      })}
+      subHeaderTitle={t('global.actions.noteDelete', {
+        object: t('global.objects.techuser'),
+      })}
+      handleConfirm={handleRemove}
+      confirmTitle={t('global.actions.delete')}
+    />
   ) : null
 }

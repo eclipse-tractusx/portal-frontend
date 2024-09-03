@@ -31,6 +31,7 @@ import {
 } from 'features/apps/types'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
+import { info } from 'services/LogService'
 import { PAGES } from 'types/Constants'
 import { useNavigate } from 'react-router'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
@@ -169,7 +170,7 @@ export const CompanySubscriptionsTableColumns = (
             sx={{ textTransform: 'none' }}
             onClick={(e) => {
               handleOverlay?.(row, true)
-              console.log('row.offerId', row.offerId)
+              info('row.offerId', row.offerId)
               e.stopPropagation()
             }}
           >

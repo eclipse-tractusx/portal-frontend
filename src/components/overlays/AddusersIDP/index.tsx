@@ -50,6 +50,7 @@ import {
   FORMS,
   storeForm,
 } from 'features/control/form'
+import { info } from 'services/LogService'
 import { error, success } from 'services/NotifyService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
@@ -433,10 +434,10 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       }
       const reader = new FileReader()
       reader.onabort = () => {
-        console.log('file reading was aborted')
+        info('file reading was aborted')
       }
       reader.onerror = () => {
-        console.log('file reading has failed')
+        info('file reading has failed')
       }
       reader.onload = () => {
         if (!reader.result) return

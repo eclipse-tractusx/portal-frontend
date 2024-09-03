@@ -22,6 +22,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ConnectorApi } from './api'
 import type { SearchParams } from 'types/MainTypes'
 import type { ConnectorCreateBody } from './types'
+import { error, type LogData } from 'services/LogService'
 
 const fetchConnectors = createAsyncThunk(
   'connector/fetchConnectors',
@@ -29,8 +30,8 @@ const fetchConnectors = createAsyncThunk(
     try {
       // Call axios instance to get values
       return await ConnectorApi.getInstance().getAllConnector(params)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error('fetchConnectors api call error')
     }
   }
@@ -53,8 +54,8 @@ const createConnector = createAsyncThunk(
 
       // Call axios instance to get values
       return await ConnectorApi.getInstance().createConnector(newConnectorBody)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error('createConnectors api call error')
     }
   }
@@ -66,8 +67,8 @@ const deleteConnector = createAsyncThunk(
     try {
       // Call axios instance to get values
       return await ConnectorApi.getInstance().deleteConnector(connectorID)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error('deleteConnector api call error')
     }
   }
