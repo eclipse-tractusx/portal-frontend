@@ -126,7 +126,7 @@ const EdcConnector = () => {
     if (roles && roles.length > 0)
       setRole(
         roles?.filter((i) => i.roleName === 'Identity Wallet Management')[0]
-          .roleId
+          ?.roleId
       )
   }, [roles])
 
