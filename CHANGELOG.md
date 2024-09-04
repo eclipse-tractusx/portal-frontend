@@ -7,6 +7,12 @@
 - Customer Detail Data Overlay
   - implement new UI design for customer detail data overlay
 
+### BugFix
+
+- Technical User
+  - Show appropriate error message.
+  - Fix closing page notification bar issue
+
 ### Change
 
 - **Technical User Management**
