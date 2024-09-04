@@ -48,6 +48,7 @@ import { statusColorMap } from 'utils/dataMapper'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import UploadIcon from '@mui/icons-material/Upload'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -191,6 +192,11 @@ export const CompanyAddressList = ({
           hideFooterPagination={true}
           buttons={[
             {
+              title: t('content.companyData.table.buttonSite'),
+              click: () => handleSecondButtonClick,
+              icon: <AddCircleOutlineIcon />,
+            },
+            {
               title: t('content.companyData.csvUploadBtn'),
               click: () => dispatch(show(OVERLAYS.CSV_UPLOAD_OVERLAY)),
               icon: <UploadIcon />,
@@ -200,8 +206,6 @@ export const CompanyAddressList = ({
           onButtonClick={handleButtonClick}
           rowsCount={inputs.length + outputs.length}
           buttonLabel={t('content.companyData.table.buttonAddress')}
-          secondButtonLabel={t('content.companyData.table.buttonSite')}
-          onSecondButtonClick={handleSecondButtonClick}
           toolbarVariant="premium"
           searchPlaceholder={t('content.companyData.table.search')}
           columnHeadersBackgroundColor={'#FFFFFF'}
