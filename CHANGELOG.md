@@ -28,6 +28,8 @@
   - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
 - **App Release Process**:
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
+- **Error Handling**
+  - Replaced logs with appropriate handler [#1072](https://github.com/eclipse-tractusx/portal-frontend/pull/1072)
 
 ## 2.2.0-RC2
 
