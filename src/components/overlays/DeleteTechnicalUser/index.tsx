@@ -74,8 +74,12 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     try {
       await removeServiceAccount(data.serviceAccountId)
         .unwrap()
-        .then(() => { deleteUserSuccess() })
-        .catch((err) => { deleteUserError(err) })
+        .then(() => {
+          deleteUserSuccess()
+        })
+        .catch((err) => {
+          deleteUserError(err)
+        })
     } catch (err: unknown) {
       deleteUserError(err)
     }
