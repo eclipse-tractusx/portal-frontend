@@ -69,6 +69,11 @@ export const StatusProgress = ({
         style={{
           border: `2px solid ${style.border}`,
           background: style.background,
+          width:
+            statusText ===
+            t('content.admin.registration-requests.buttonPartiallyCompleted')
+              ? 'max-width'
+              : '140px',
         }}
       >
         <Progress
@@ -132,6 +137,20 @@ export const StatusProgress = ({
       style,
       application,
       t('content.admin.registration-requests.buttonrejected')
+    )
+  } else if (
+    application.applicationStatus === ApplicationRequestStatus.CONFIRMED &&
+    items?.SKIPPED === 1
+  ) {
+    const style = {
+      border: '#0f71cb',
+      color: '#0f71cb',
+      background: '#eaf1fe',
+    }
+    return getProgressStatus(
+      style,
+      application,
+      t('content.admin.registration-requests.buttonPartiallyCompleted')
     )
   } else if (
     application.applicationStatus === ApplicationRequestStatus.CONFIRMED
