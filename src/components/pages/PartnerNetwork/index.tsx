@@ -138,6 +138,7 @@ const PartnerNetwork = () => {
     <main className="partner-network-page-container">
       <MainHeader
         title={t('content.partnernetwork.headertitle')}
+        subTitle={t('content.partnernetwork.headerDescription')}
         headerHeight={250}
         subTitleWidth={750}
       />
@@ -180,6 +181,63 @@ const PartnerNetwork = () => {
             memberData.meta.page < memberData.meta.totalPages - 1
           }
           hideFooterPagination={true}
+          localeText={{
+            columnMenuManageColumns: t('global.table.columnMenuManageColumns'),
+            columnMenuHideColumn: t('global.table.columnMenuHideColumn'),
+            columnMenuFilter: t('global.table.columnMenuFilter'),
+            columnMenuUnsort: t('global.table.columnMenuUnsort'),
+            columnMenuSortAsc: t('global.table.columnMenuSortAsc'),
+            columnMenuSortDesc: t('global.table.columnMenuSortDesc'),
+
+            columnsPanelTextFieldLabel: t(
+              'global.table.columnsPanelTextFieldLabel'
+            ),
+            columnsPanelTextFieldPlaceholder: t(
+              'global.table.columnsPanelTextFieldPlaceholder'
+            ),
+            columnsPanelShowAllButton: t(
+              'global.table.columnsPanelShowAllButton'
+            ),
+            columnsPanelHideAllButton: t(
+              'global.table.columnsPanelHideAllButton'
+            ),
+
+            filterPanelAddFilter: t('global.table.filterPanelAddFilter'),
+            filterPanelRemoveAll: t('global.table.filterPanelRemoveAll'),
+            filterPanelDeleteIconLabel: t(
+              'global.table.filterPanelDeleteIconLabel'
+            ),
+            filterPanelLogicOperator: t(
+              'global.table.filterPanelLogicOperator'
+            ),
+            filterPanelOperator: t('global.table.filterPanelOperator'),
+            filterPanelOperatorAnd: t('global.table.filterPanelOperatorAnd'),
+            filterPanelOperatorOr: t('global.table.filterPanelOperatorOr'),
+            filterPanelColumns: t('global.table.filterPanelColumns'),
+            filterPanelInputLabel: t('global.table.filterPanelInputLabel'),
+            filterPanelInputPlaceholder: t(
+              'global.table.filterPanelInputPlaceholder'
+            ),
+            filterOperatorContains: t('global.table.filterOperatorContains'),
+            filterOperatorEquals: t('global.table.filterOperatorEquals'),
+            filterOperatorStartsWith: t(
+              'global.table.filterOperatorStartsWith'
+            ),
+            filterOperatorEndsWith: t('global.table.filterOperatorEndsWith'),
+            filterOperatorIs: t('global.table.filterOperatorIs'),
+            filterOperatorNot: t('global.table.filterOperatorNot'),
+            filterOperatorAfter: t('global.table.filterOperatorAfter'),
+            filterOperatorOnOrAfter: t('global.table.filterOperatorOnOrAfter'),
+            filterOperatorBefore: t('global.table.filterOperatorBefore'),
+            filterOperatorOnOrBefore: t(
+              'global.table.filterOperatorOnOrBefore'
+            ),
+            filterOperatorIsEmpty: t('global.table.filterOperatorIsEmpty'),
+            filterOperatorIsNotEmpty: t(
+              'global.table.filterOperatorIsNotEmpty'
+            ),
+            filterOperatorIsAnyOf: t('global.table.filterOperatorIsAnyOf'),
+          }}
         />
       </section>
     </main>

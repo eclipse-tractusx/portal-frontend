@@ -768,7 +768,8 @@
       }
     },
     "partnernetwork": {
-      "headertitle": "Partners Network",
+      "headertitle": "Partner Network",
+      "headerDescription": "Your overview of your partners within the Catena-X network.",
       "tabletitle": "Business Partner Data",
       "columns": {
         "bpn": "BPN",
@@ -1849,13 +1850,14 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview",
+      "headerTitle": "Use Case Participation",
+      "headerDescription": "Below you can manage your use case participation in Catena-X. Please note: the selection of the use case participation is relevant for data provider and data consumer.",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
-      "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "noteDetail": "Use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
       "nodocument": "No document available",
@@ -2340,7 +2342,43 @@
     },
     "table": {
       "search": "Enter email to search",
-      "searchName": "Enter name to search"
+      "searchName": "Enter name to search",
+      "columnMenuManageColumns": "Manage columns",
+      "columnMenuHideColumn": "Hide column",
+      "columnMenuFilter": "Filter",
+      "columnMenuUnsort": "Unsort",
+      "columnMenuSortAsc": "Sort by ASC",
+      "columnMenuSortDesc": "Sort by DESC",
+
+      "columnsPanelTextFieldLabel": "Find column",
+      "columnsPanelTextFieldPlaceholder": "Column title",
+
+      "columnsPanelShowAllButton": "Show all",
+      "columnsPanelHideAllButton": "Hide all",
+
+      "filterPanelAddFilter": "Add filter",
+      "filterPanelRemoveAll": "Remove all",
+      "filterPanelDeleteIconLabel": "Delete",
+      "filterPanelLogicOperator": "Logic operator",
+      "filterPanelOperator": "Operator",
+      "filterPanelOperatorAnd": "And",
+      "filterPanelOperatorOr": "Or",
+      "filterPanelColumns": "Columns",
+      "filterPanelInputLabel": "Value",
+      "filterPanelInputPlaceholder": "Filter value",
+      "filterOperatorContains": "contains111",
+      "filterOperatorEquals": "equals",
+      "filterOperatorStartsWith": "starts with",
+      "filterOperatorEndsWith": "ends with",
+      "filterOperatorIs": "is",
+      "filterOperatorNot": "is not",
+      "filterOperatorAfter": "is after",
+      "filterOperatorOnOrAfter": "is on or after",
+      "filterOperatorBefore": "is before",
+      "filterOperatorOnOrBefore": "is on or before",
+      "filterOperatorIsEmpty": "is empty",
+      "filterOperatorIsNotEmpty": "is not empty",
+      "filterOperatorIsAnyOf": "is any of"
     },
     "noData": {
       "heading": "No data available",
