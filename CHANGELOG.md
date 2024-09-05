@@ -2,6 +2,11 @@
 
 ## (unreleased) 2.2.0-RC3
 
+- Confirm Modal
+  - Fix broken title and description section
+- Company data
+  - Fix translation error
+
 ### Change
 
 - **Technical User Management**
