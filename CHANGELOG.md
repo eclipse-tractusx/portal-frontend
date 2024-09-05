@@ -1,9 +1,11 @@
 # Changelog
 
-## unreleased (2.2.0-RC3)
+## (unreleased) 2.2.0-RC3
 
 ### Change
 
+- **Technical User Management**
+  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
 - **Application Requests and Connector Management**
   - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
 
