@@ -2229,8 +2229,8 @@
   "navigation": {
     "subNavigation": {
       "buttonLabel": "Technische User Management",
-      "link1Label": "Access Management",
-      "link2Label": "Portal User Management"
+      "link1Label": "App-Zugriff Management",
+      "link2Label": "Portal Nutzer Management"
     }
   },
   "notification": {
