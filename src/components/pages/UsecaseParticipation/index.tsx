@@ -142,19 +142,12 @@ export default function UsecaseParticipation() {
     <main className="usecase-participation">
       <MainHeader
         title={t('content.usecaseParticipation.headerTitle')}
+        subTitle={t('content.usecaseParticipation.headerDescription')}
         headerHeight={250}
         subTitleWidth={750}
       />
       <div className="usecase-main">
         <div className="container">
-          <Typography variant="h2" className="heading">
-            {t('content.usecaseParticipation.heading')}
-          </Typography>
-          <Trans>
-            <Typography variant="body1" className="description">
-              {t('content.usecaseParticipation.description')}
-            </Typography>
-          </Trans>
           <div>
             <div className="step1">
               <Typography variant="label4" className="number">
