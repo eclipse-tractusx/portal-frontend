@@ -766,7 +766,8 @@
       }
     },
     "partnernetwork": {
-      "headertitle": "Partnernetzwerk",
+      "headertitle": "Partner Netzwerk",
+      "headerDescription": "Ihre Übersicht Ihrer Partner innerhalb des Catena-X Netzwerks. ",
       "tabletitle": "Geschäftspartnerdaten",
       "columns": {
         "bpn": "BPN",
@@ -1883,13 +1884,14 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview",
+      "headerTitle": "Use Case Teilnahme",
+      "headerDescription": "Hier können Sie Ihre Use Case Teilnahme in Catena-X verwalten. Bitte beachten Sie: Die Auswahl der Use Case Teilnahme ist für Data Provider und Data Consumer relevant.",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
-      "step1": "You can view your current signed use case participation",
-      "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
-      "note": "Please note: ",
-      "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "step1": "Sie können Ihre aktuelle unterzeichnete Use Case Teilnahme einsehen",
+      "step2": "Sie können weitere Use Cases signieren, indem Sie den Dokument-Download auswählen, das Dokument signieren und dasselbe hochladen",
+      "note": "Bitte beachten Sie: ",
+      "noteDetail": "Der Widerruf der Use Case Teilnahme ist derzeit nicht aktiviert. Wenden Sie sich für Unterstützung bitte an den Plattformbesitzer.",
       "version": "Version: {{version}}",
       "framework": "Framework",
       "nodocument": "Kein Dokument vorhanden",
@@ -2373,7 +2375,42 @@
     },
     "table": {
       "search": "Enter email to search",
-      "searchName": "Enter name to search"
+      "searchName": "Enter name to search",
+      "columnMenuManageColumns": "Spalten verwalten",
+      "columnMenuHideColumn": "Spalte ausblenden",
+      "columnMenuFilter": "Filtern",
+      "columnMenuUnsort": "Sortierung aufheben",
+      "columnMenuSortAsc": "Sort by ASC",
+      "columnMenuSortDesc": "Absteigend sortieren",
+
+      "columnsPanelTextFieldLabel": "Find column",
+      "columnsPanelTextFieldPlaceholder": "Column title",
+      "columnsPanelShowAllButton": "Alle zeigen",
+      "columnsPanelHideAllButton": "Alle ausblenden",
+
+      "filterPanelAddFilter": "Add filter",
+      "filterPanelRemoveAll": "Remove all",
+      "filterPanelDeleteIconLabel": "Delete",
+      "filterPanelLogicOperator": "Logic operator",
+      "filterPanelOperator": "Operator",
+      "filterPanelOperatorAnd": "And",
+      "filterPanelOperatorOr": "Or",
+      "filterPanelColumns": "Spalten",
+      "filterPanelInputLabel": "Wert",
+      "filterPanelInputPlaceholder": "Filter value",
+      "filterOperatorContains": "enthält",
+      "filterOperatorEquals": "ist gleich",
+      "filterOperatorStartsWith": "beginnt mit",
+      "filterOperatorEndsWith": "endet mit",
+      "filterOperatorIs": "is",
+      "filterOperatorNot": "is not",
+      "filterOperatorAfter": "is after",
+      "filterOperatorOnOrAfter": "is on or after",
+      "filterOperatorBefore": "is before",
+      "filterOperatorOnOrBefore": "is on or before",
+      "filterOperatorIsEmpty": "ist leer",
+      "filterOperatorIsNotEmpty": "ist nicht leer",
+      "filterOperatorIsAnyOf": "ist eines von"
     },
     "noData": {
       "heading": "Keine Daten verfügbar",
