@@ -248,10 +248,17 @@ const EdcConnector = () => {
     }
   }
 
-  const deleteSelectedConnector = async () => {
+  const deleteSelectedConnector = async (status: boolean) => {
     setAction('delete')
     setLoading(true)
-    await deleteConnector(selectedConnector.id ?? '')
+
+    // Include the deleteServiceAccount query only if the connector is linked to a technical user account
+    await deleteConnector({
+      connectorID: selectedConnector.id ?? '',
+      deleteServiceAccount: selectedConnector.technicalUser
+        ? status
+        : undefined,
+    })
       .unwrap()
       .then(() => {
         setDeleteConnectorConfirmModalOpen(false)
@@ -360,7 +367,7 @@ const EdcConnector = () => {
         handleOverlayClose={() => {
           setDeleteConnectorConfirmModalOpen(false)
         }}
-        handleConfirmClick={() => deleteSelectedConnector()}
+        handleConfirmClick={(s) => deleteSelectedConnector(s)}
         loading={loading}
         techUser={selectedConnector?.technicalUser}
       />

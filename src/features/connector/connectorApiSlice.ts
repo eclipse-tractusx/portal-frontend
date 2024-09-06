@@ -108,6 +108,11 @@ export type updateConnectorUrlType = {
   }
 }
 
+type deleteConnectorArgs = {
+  connectorID: string
+  deleteServiceAccount?: boolean
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -129,11 +134,17 @@ export const apiSlice = createApi({
     fetchConnectorDetails: builder.query<ConnectorDetailsType, string>({
       query: (connectorID) => `/api/administration/Connectors/${connectorID}`,
     }),
-    deleteConnector: builder.mutation<void, string>({
-      query: (connectorID) => ({
-        url: `/api/administration/Connectors/${connectorID}`,
-        method: 'DELETE',
-      }),
+    deleteConnector: builder.mutation<void, deleteConnectorArgs>({
+      query: ({ connectorID, deleteServiceAccount }) => {
+        let queryString = ''
+        if (deleteServiceAccount !== undefined) {
+          queryString = `?deleteServiceAccount=${deleteServiceAccount}`
+        }
+        return {
+          url: `/api/administration/Connectors/${connectorID + '123'}${queryString}`,
+          method: 'DELETE',
+        }
+      },
     }),
     fetchConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,

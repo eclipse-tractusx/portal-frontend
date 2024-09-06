@@ -151,7 +151,7 @@ const ConnectorDetailsOverlay = ({
 
   const handleDeleteConnector = async () => {
     setDeleteLoading(true)
-    await deleteConnector(fetchConnectorDetails?.id ?? '')
+    await deleteConnector({ connectorID: fetchConnectorDetails?.id ?? '' })
       .unwrap()
       .then(() => {
         setDeleteConnectorSuccess(true)
@@ -305,7 +305,7 @@ const ConnectorDetailsOverlay = ({
 
       {openDeleteConnector && (
         <Dialog
-          open={openDeleteConnector}
+          open
           sx={{
             '.MuiDialog-paper': {
               maxWidth: '45%',

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Delete Confirmation Overlay
+  - updated delete connector confirmation logic with technical user
+
 ## 2.2.0-RC3
 
 ### Change

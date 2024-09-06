@@ -650,7 +650,7 @@
       "deletemodal": {
         "title": "Delete Connector",
         "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
-        "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected – the technical user will get inactived immediadetly as well when proceeding with the deletion.",
+        "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected - the technical user can be deleted if you select the checkbox below otherwise only the mapping between connector and technical user will be deleted.",
         "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
         "techDetails": {
           "title": "Technical Details",
