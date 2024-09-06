@@ -39,7 +39,7 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "appAdminBoard": "Admin Board",
     "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicalUserManagement": "Technische Benutzer Verwaltung",
@@ -460,9 +460,10 @@
         "action": "Aktion"
       },
       "filter": {
-        "requested": "angefordert",
+        "pending": "ausstehend",
         "active": "aktiv",
-        "showAll": "zeige alles"
+        "inactive": "inaktiv",
+        "showAll": "Alles anzeigen"
       }
     },
     "companySubscriptionsDetail": {
@@ -951,7 +952,9 @@
           "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
-          "permission": "Berechtigungen"
+          "permission": "Berechtigungen",
+          "companyServiceAccountTypeID": "Firmenservicekontotyp",
+          "authenticationType": "Authentifizierungstyp"
         },
         "status": {
           "ACTIVE": "AKTIV",
