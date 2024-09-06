@@ -216,7 +216,7 @@ const AddConnectorOverlay = ({
                 setNewTechnicalUSer={setNewTechnicalUSer}
                 newUserLoading={newUserLoading}
                 newUserSuccess={newUserSuccess}
-                {...{ handleSubmit, control, errors, trigger }}
+                {...{ handleSubmit, control, errors, trigger, getValues }}
               />
             </>
           )}

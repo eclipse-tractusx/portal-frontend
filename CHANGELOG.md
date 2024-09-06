@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Connector Management**
+  - fixed technical user selection
+
+## 2.2.0-RC2
+
 ### Feature
 
 - Customer Detail Data Overlay
