@@ -18,6 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import {
+  type PaginFetchArgs,
+  type PaginResult,
+} from '@catena-x/portal-shared-components'
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { type RootState } from 'features/store'
@@ -184,6 +188,32 @@ export interface ManagedIDPNetworkType {
     | null
 }
 
+export type networkCompany = {
+  companyId: string
+  externalId: string
+  applicationId: string
+  applicationStatus: string
+  applicationDateCreated: string
+  dateCreated: string
+  lastChangedDate: string
+  companyName: string
+  companyRoles?: string[] | null
+  identityProvider?: IdentityProviderEntity[] | null
+  bpn: string
+  activeUsers: number
+}
+export interface IdentityProviderEntity {
+  identityProviderId: string
+  alias: string
+}
+
+export interface RegistartionStatusCallbackType {
+  callbackUrl: string
+  authUrl?: string
+  clientId: string
+  clientSecret: string
+}
+
 enum TAGS {
   IDP = 'idp',
 }
@@ -287,6 +317,29 @@ export const apiSlice = createApi({
       query: (id: string) =>
         `/api/administration/identityprovider/network/identityproviders/managed/${id}`,
     }),
+    fetchCompaniesList: builder.query<
+      PaginResult<networkCompany>,
+      PaginFetchArgs
+    >({
+      query: (filters) =>
+        `/api/administration/registration/network/companies?page=${filters.page}&size=10`,
+    }),
+    fetchRegistartionStatusCallback: builder.query<
+      RegistartionStatusCallbackType,
+      void
+    >({
+      query: () => '/api/administration/RegistrationStatus/callback',
+    }),
+    updateRegistartionStatusCallback: builder.mutation<
+      void,
+      RegistartionStatusCallbackType
+    >({
+      query: (data: RegistartionStatusCallbackType) => ({
+        url: '/api/administration/RegistrationStatus/callback',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
@@ -303,6 +356,9 @@ export const {
   useEnableIDPMutation,
   useUpdateUserIDPMutation,
   useFetchManagedIDPNetworkQuery,
+  useFetchCompaniesListQuery,
+  useFetchRegistartionStatusCallbackQuery,
+  useUpdateRegistartionStatusCallbackMutation,
 } = apiSlice
 
 export default slice
