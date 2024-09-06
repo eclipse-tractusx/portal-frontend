@@ -39,7 +39,7 @@ export default function AdminBoardDetail() {
           backButtonLabel={t('global.actions.back')}
           backButtonVariant="text"
           onBackButtonClick={() => {
-            navigate(`/${PAGES.ADMINBOARD}`)
+            navigate(`/${PAGES.APP_ADMIN_BOARD}`)
           }}
         />
       </Box>
