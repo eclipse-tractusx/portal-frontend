@@ -149,9 +149,15 @@ const ConnectorDetailsOverlay = ({
     }
   }
 
-  const handleDeleteConnector = async () => {
+  const handleDeleteConnector = async (status: boolean) => {
     setDeleteLoading(true)
-    await deleteConnector({ connectorID: fetchConnectorDetails?.id ?? '' })
+    // Include the deleteServiceAccount query only if the connector is linked to a technical user account
+    await deleteConnector({
+      connectorID: fetchConnectorDetails?.id ?? '',
+      deleteServiceAccount: fetchConnectorDetails?.technicalUser
+        ? status
+        : undefined,
+    })
       .unwrap()
       .then(() => {
         setDeleteConnectorSuccess(true)
@@ -373,7 +379,7 @@ const ConnectorDetailsOverlay = ({
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    handleDeleteConnector()
+                    handleDeleteConnector(false)
                   }}
                 >
                   {t('content.edcconnector.details.delete')}

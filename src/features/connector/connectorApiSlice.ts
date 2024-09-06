@@ -141,7 +141,7 @@ export const apiSlice = createApi({
           queryString = `?deleteServiceAccount=${deleteServiceAccount}`
         }
         return {
-          url: `/api/administration/Connectors/${connectorID + '123'}${queryString}`,
+          url: `/api/administration/Connectors/${connectorID}${queryString}`,
           method: 'DELETE',
         }
       },
