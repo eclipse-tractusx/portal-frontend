@@ -24,6 +24,8 @@
 
 - **Connector Management**
   - fixed technical user selection
+- **IDP management**
+  - Fixed IDP management page title & description
 - **Technical User**
   - Show appropriate error message.
   - Fix closing page notification bar issue
