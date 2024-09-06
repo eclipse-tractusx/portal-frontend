@@ -1,13 +1,6 @@
 # Changelog
 
-## Unreleased
-
-### Bugfixes
-
-- **Connector Management**
-  - fixed technical user selection
-
-## 2.2.0-RC2
+## Unreleased 2.2.0-RC3
 
 ### Feature
 
@@ -15,12 +8,6 @@
   - implement new UI design for customer detail data overlay
 - **Company Subscription Management**
   - Extended the subscription detail page for customer to include more app-related information [#1051](https://github.com/eclipse-tractusx/portal-frontend/pull/1051)
-
-### BugFix
-
-- Technical User
-  - Show appropriate error message.
-  - Fix closing page notification bar issue
 
 ### Change
 
@@ -35,6 +22,11 @@
 
 ### Bugfixes
 
+- **Connector Management**
+  - fixed technical user selection
+- Technical User
+  - Show appropriate error message.
+  - Fix closing page notification bar issue
 - **IDP management**
   - Fixed statusTag color in status coloumn [#978](https://github.com/eclipse-tractusx/portal-frontend/pull/978)
 - **Connector Management**
@@ -47,6 +39,8 @@
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
 - **Error Handling**
   - Replaced logs with appropriate handler [#1072](https://github.com/eclipse-tractusx/portal-frontend/pull/1072)
+- **OSP Consent form**
+  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
 ## 2.2.0-RC2
 

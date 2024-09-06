@@ -206,7 +206,7 @@ export const CompanyDetails = ({
   }
 
   const tableData: TableType = {
-    head: [t('osp.companyName'), t('osp.bmw')],
+    head: [t('osp.companyName'), companyDetails?.name ?? ''],
     body: [
       [t('osp.street'), companyDetails?.streetName ?? ''],
       [t('osp.zip'), companyDetails?.zipCode ?? ''],
