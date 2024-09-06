@@ -13,6 +13,8 @@
 
 - Customer Detail Data Overlay
   - implement new UI design for customer detail data overlay
+- **Company Subscription Management**
+  - Extended the subscription detail page for customer to include more app-related information [#1051](https://github.com/eclipse-tractusx/portal-frontend/pull/1051)
 
 ### BugFix
 
