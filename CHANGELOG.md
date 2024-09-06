@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+### Bugfixes
+- **OSP Consent form**
+  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+  - Fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
+
 ## Unreleased 2.2.0-RC3
 
 ### Feature
@@ -41,8 +47,6 @@
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
 - **Technical User Management**
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
-- **OSP Consent form**
-  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
 ## 2.2.0-RC2
 
