@@ -923,7 +923,9 @@
           "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
-          "permission": "Berechtigungen"
+          "permission": "Berechtigungen",
+          "companyServiceAccountTypeID": "Firmenservicekontotyp",
+          "authenticationType": "Authentifizierungstyp"
         },
         "status": {
           "ACTIVE": "AKTIV",
