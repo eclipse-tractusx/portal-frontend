@@ -193,7 +193,9 @@ export const CompanyAddressList = ({
           buttons={[
             {
               title: t('content.companyData.table.buttonSite'),
-              click: () => { handleSecondButtonClick() },
+              click: () => {
+                handleSecondButtonClick()
+              },
               icon: <AddCircleOutlineIcon />,
             },
             {
