@@ -13,6 +13,7 @@
 
 - **Technical User Management**
   - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+  - Update Filters view and logic
 - **Application Requests and Connector Management**
   - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
 
