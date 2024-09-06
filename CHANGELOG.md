@@ -4,6 +4,10 @@
 
 - Company Data
   - Remove page notification on download csv template action
+- Confirm Modal
+  - Fix broken title and description section
+- Company data
+  - Fix translation error
 
 ### Change
 
