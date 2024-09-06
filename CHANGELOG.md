@@ -29,7 +29,7 @@
 - **App Release Process**:
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
     **OSP Consent form**
-  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083] https://github.com/eclipse-tractusx/portal-frontend/pull/1083
+  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
 ## 2.2.0-RC2
 
