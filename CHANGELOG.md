@@ -6,6 +6,8 @@
 
 - **Connector Management**
   - fixed technical user selection
+- **IDP management**
+  - Fixed IDP management page title & description
 
 ## 2.2.0-RC2
 
