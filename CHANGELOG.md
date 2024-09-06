@@ -6,6 +6,8 @@
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
   - Fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
 
+- **Connector Management**
+  - fixed technical user selection
 ## Unreleased 2.2.0-RC3
 
 ### Feature
