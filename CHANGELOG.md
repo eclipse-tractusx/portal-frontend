@@ -2,6 +2,8 @@
 
 ## (unreleased) 2.2.0-RC3
 
+- Company Data
+  - Remove page notification on download csv template action
 - Confirm Modal
   - Fix broken title and description section
 - Company data
