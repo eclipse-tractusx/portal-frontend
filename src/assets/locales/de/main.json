@@ -460,9 +460,10 @@
         "action": "Aktion"
       },
       "filter": {
-        "requested": "angefordert",
+        "pending": "ausstehend",
         "active": "aktiv",
-        "showAll": "zeige alles"
+        "inactive": "inaktiv",
+        "showAll": "Alles anzeigen"
       }
     },
     "appOverview": {

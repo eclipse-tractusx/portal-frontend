@@ -456,8 +456,9 @@
         "action": "Action"
       },
       "filter": {
-        "requested": "requested",
+        "pending": "pending",
         "active": "active",
+        "inactive": "inactive",
         "showAll": "show all"
       }
     },
