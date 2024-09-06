@@ -28,7 +28,7 @@
   - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
 - **App Release Process**:
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
-    **OSP Consent form**
+- **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
 ## 2.2.0-RC2
