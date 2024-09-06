@@ -84,7 +84,7 @@ export const Patterns = {
     shortDescription: /^.{10,120}$/,
   },
   offerPage: {
-    longDescription: /^.{9,1999}$/,
+    longDescription: /^.{10,1999}$/,
   },
   appPage: {
     longDescriptionEN:

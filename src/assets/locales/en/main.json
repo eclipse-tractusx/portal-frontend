@@ -38,7 +38,7 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "appAdminBoard": "Admin Board",
     "appUserManagement": "App User Management",
     "userdetails": "User Details",
     "technicalUserManagement": "Technical User Management",
@@ -456,9 +456,39 @@
         "action": "Action"
       },
       "filter": {
-        "requested": "requested",
+        "pending": "pending",
         "active": "active",
+        "inactive": "inactive",
         "showAll": "show all"
+      }
+    },
+    "companySubscriptionsDetail": {
+      "language": "Language",
+      "description": "Description",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "howtouse": {
+        "heading": "Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "privacy": {
+        "heading": "Privacy Policy",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "COMPANY_DATA_ICON": "ApartmentIcon",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
+      },
+      "table": {
+        "connector": "Connector",
+        "technicalUser": "Technical User"
+      },
+      "technicalUser": {
+        "heading": "Technical Details"
       }
     },
     "datamanagement": {
@@ -927,7 +957,9 @@
           "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
-          "permission": "Permission"
+          "permission": "Permission",
+          "companyServiceAccountTypeID": "Company Service Account Type",
+          "authenticationType": "Authentication Type"
         },
         "status": {
           "ACTIVE": "ACTIVE",

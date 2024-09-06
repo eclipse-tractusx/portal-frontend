@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, CircleProgress } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  CircleProgress,
+  StatusTag,
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
@@ -32,8 +36,20 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import SyncIcon from '@mui/icons-material/Sync'
-import { useState } from 'react'
+import { type ComponentProps, useState } from 'react'
 import { error, success } from 'services/NotifyService'
+import { ServiceAccountStatus } from 'features/admin/serviceApiSlice'
+
+export const statusColorMap: Record<
+  ServiceAccountStatus,
+  ComponentProps<typeof StatusTag>['color']
+> = {
+  [ServiceAccountStatus.ACTIVE]: 'confirmed',
+  [ServiceAccountStatus.INACTIVE]: 'declined',
+  [ServiceAccountStatus.DELETED]: 'deleted',
+  [ServiceAccountStatus.PENDING]: 'pending',
+  [ServiceAccountStatus.PENDING_DELETION]: 'pending',
+}
 
 export default function TechnicalUserDetailsContent({
   data,
@@ -60,6 +76,16 @@ export default function TechnicalUserDetailsContent({
 
   const displayData = [
     {
+      key: t('global.field.status'),
+      value: (
+        <StatusTag
+          color={statusColorMap[newData?.status]}
+          label={newData?.status}
+        />
+      ),
+      copy: false,
+    },
+    {
       key: 'ID',
       value: newData.serviceAccountId,
       copy: true,
@@ -72,12 +98,21 @@ export default function TechnicalUserDetailsContent({
       copy: true,
     },
     {
+      key: t(
+        'content.usermanagement.technicalUser.detailsPage.companyServiceAccountTypeID'
+      ),
+      value: newData.companyServiceAccountTypeId,
+      copy: false,
+    },
+    {
       key: t('global.field.clientId'),
       value: newData.clientId,
       copy: true,
     },
     {
-      key: t('global.field.authType'),
+      key: t(
+        'content.usermanagement.technicalUser.detailsPage.authenticationType'
+      ),
       value: newData.authenticationType,
     },
     {

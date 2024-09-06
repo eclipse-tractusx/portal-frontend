@@ -153,11 +153,16 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             ? true
             : false
         }
-        onButtonClick={() =>
-          subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(ROLES.SUBSCRIBE_APP_MARKETPLACE) !== -1 &&
-          dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
-        }
+        onButtonClick={() => {
+          if (buttonLabel === t('content.appdetail.requested')) {
+            return
+          }
+          return (
+            subscribeStatus === SubscriptionStatus.INACTIVE &&
+            user.roles.indexOf(ROLES.SUBSCRIBE_APP_MARKETPLACE) !== -1 &&
+            dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
+          )
+        }}
       />
     )
   }
