@@ -143,13 +143,11 @@ export default function TechnicalIntegration() {
   )
 
   useEffect(() => {
-    if (userProfiles.length > 0) {
-      setTechUserProfiles(userProfiles)
-    } else {
-      // Set default value as "None" when user profiles don't have any roles
-      // Initially, value is "None"
-      setTechUserProfiles([technicalUserNone])
-    }
+    // Set default value as "None" when user profiles don't have any roles
+    // Initially, value is "None"
+    setTechUserProfiles(
+      userProfiles.length > 0 ? userProfiles : [technicalUserNone]
+    )
   }, [userProfiles])
 
   const defaultValues = {
