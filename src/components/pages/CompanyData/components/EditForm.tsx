@@ -147,6 +147,7 @@ export default function EditForm({
         })
     } catch (e) {
       setError(true)
+      setLoading(false)
     }
   }
 

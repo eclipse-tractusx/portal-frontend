@@ -87,6 +87,7 @@ import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 import CompanyData from 'components/pages/CompanyData'
+import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
 
 /**
  * ALL_PAGES
@@ -249,7 +250,7 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceSubscription />,
   },
   {
-    name: PAGES.ADMINBOARD,
+    name: PAGES.APP_ADMIN_BOARD,
     role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
     element: <AdminBoard />,
   },
@@ -259,13 +260,13 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceAdminBoard />,
   },
   {
-    name: PAGES.ADMINBOARD_DETAIL,
+    name: PAGES.APP_ADMIN_BOARD_DETAIL,
     role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.ADMINBOARD_DETAIL}
-        path={PAGES.ADMINBOARD_DETAIL}
+        key={PAGES.APP_ADMIN_BOARD_DETAIL}
+        path={PAGES.APP_ADMIN_BOARD_DETAIL}
         element={<AdminBoardDetail />}
       >
         <Route index element={null} />
@@ -579,6 +580,10 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.MY_ORGANIZATION_VIEW,
     element: <CompanyData />,
   },
+  {
+    name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+    element: <OnboardingServiceProvider />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -721,6 +726,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
   },
+  {
+    name: OVERLAYS.CSV_UPLOAD_OVERLAY,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -772,7 +780,7 @@ export const mainMenuFullTree = [
       { name: PAGES.APP_OVERVIEW, hint: HINTS.NEW },
       { name: PAGES.APP_RELEASE_PROCESS },
       { name: PAGES.APP_SUBSCRIPTION, hint: HINTS.NEW },
-      { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
+      { name: PAGES.APP_ADMIN_BOARD, hint: HINTS.NEW },
     ],
   },
   {
@@ -812,6 +820,7 @@ export const userMenuFull = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
+  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
   PAGES.LOGOUT,
 ]
 
