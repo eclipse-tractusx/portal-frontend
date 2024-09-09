@@ -177,7 +177,7 @@
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Beitrittsanfragen",
-        "headersubtitle": "Die Beitrittsanfragen-Übersicht enthält alle aktuellen offenen Anfragen sowie eine Übersicht über die bestätigten und abgelehnten Anfragen von Unternehmen an das Catena-X-Netzwerk. Wenn eine Anfrage genehmigt wird, erhält das registrierte Unternehmen Zugang zum CX-Portal, um das technische und funktionale Onboarding zu starten. Bitte vergewissern Sie sich, dass Sie die Anfragendetails überprüfen, bevor Sie eine Anfrage genehmigen.",
+        "headersubtitle": "Die Beitrittsanfragen-Übersicht zeigt alle offenen Anfragen und einen Überblick über bestätigte oder abgelehnte Anträge an das Catena-X-Netzwerk. Genehmigte Bewerber erhalten Zugang zum Portal für das Onboarding. Stellen Sie sicher, dass Sie die Details vor der Genehmigung validieren.",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",

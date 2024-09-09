@@ -176,7 +176,7 @@
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Application Requests",
-        "headersubtitle": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network. If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
+        "headersubtitle": "The application request board displays current requests and an overview of confirmed or declined applications to the Catena-X Network. Approved applicants gain portal access for onboarding. Ensure you validate details before approval.",
         "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
         "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "tabletitle": "Registration requests",
