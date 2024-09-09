@@ -110,7 +110,7 @@ export type updateConnectorUrlType = {
 
 type deleteConnectorArgs = {
   connectorID: string
-  deleteServiceAccount?: boolean
+  deleteServiceAccount: boolean
 }
 
 export const apiSlice = createApi({
@@ -136,12 +136,8 @@ export const apiSlice = createApi({
     }),
     deleteConnector: builder.mutation<void, deleteConnectorArgs>({
       query: ({ connectorID, deleteServiceAccount }) => {
-        let queryString = ''
-        if (deleteServiceAccount !== undefined) {
-          queryString = `?deleteServiceAccount=${deleteServiceAccount}`
-        }
         return {
-          url: `/api/administration/Connectors/${connectorID}${queryString}`,
+          url: `/api/administration/Connectors/${connectorID}?deleteServiceAccount=${deleteServiceAccount}`,
           method: 'DELETE',
         }
       },

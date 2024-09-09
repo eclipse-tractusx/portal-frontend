@@ -237,6 +237,10 @@ const EdcConnector = () => {
     setNewUserLoading(false)
   }
 
+  const resetSuccessErrorOverlayState = () => {
+    if (response) setResponse(false)
+    else if (error) setError(false)
+  }
   const showOverlay = (result: boolean) => {
     setLoading(false)
     closeAndResetModalState()
@@ -252,21 +256,19 @@ const EdcConnector = () => {
     setAction('delete')
     setLoading(true)
 
-    // Include the deleteServiceAccount query only if the connector is linked to a technical user account
     await deleteConnector({
       connectorID: selectedConnector.id ?? '',
-      deleteServiceAccount: selectedConnector.technicalUser
-        ? status
-        : undefined,
+      deleteServiceAccount: status,
     })
       .unwrap()
       .then(() => {
-        setDeleteConnectorConfirmModalOpen(false)
         showOverlay(true)
       })
       .catch(() => {
-        setDeleteConnectorConfirmModalOpen(false)
         showOverlay(false)
+      })
+      .finally(() => {
+        setDeleteConnectorConfirmModalOpen(false)
       })
   }
 
@@ -362,15 +364,17 @@ const EdcConnector = () => {
         }}
         overlayData={overlayData}
       />
-      <DeleteConfirmationOverlay
-        openDialog={deleteConnectorConfirmModalOpen}
-        handleOverlayClose={() => {
-          setDeleteConnectorConfirmModalOpen(false)
-        }}
-        handleConfirmClick={(s) => deleteSelectedConnector(s)}
-        loading={loading}
-        techUser={selectedConnector?.technicalUser}
-      />
+      {deleteConnectorConfirmModalOpen && (
+        <DeleteConfirmationOverlay
+          openDialog
+          handleOverlayClose={() => {
+            setDeleteConnectorConfirmModalOpen(false)
+          }}
+          handleConfirmClick={(s) => deleteSelectedConnector(s)}
+          loading={loading}
+          techUser={selectedConnector?.technicalUser}
+        />
+      )}
       <AddConnectorOverlay
         openDialog={addConnectorOverlayOpen}
         handleOverlayClose={closeAndResetModalState}
@@ -534,10 +538,8 @@ const EdcConnector = () => {
         <ServerResponseOverlay
           title={getSuccessTitle()}
           intro={getSuccessIntro()}
-          dialogOpen={true}
-          handleCallback={() => {
-            // do nothing
-          }}
+          dialogOpen
+          handleCallback={() => { resetSuccessErrorOverlayState() }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
@@ -546,13 +548,11 @@ const EdcConnector = () => {
         <ServerResponseOverlay
           title={getErrorTitle()}
           intro={getErrorIntro()}
-          dialogOpen={true}
+          dialogOpen
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
           }
-          handleCallback={() => {
-            // do nothing
-          }}
+          handleCallback={() => { resetSuccessErrorOverlayState() }}
         >
           <Typography variant="body2"></Typography>
         </ServerResponseOverlay>
