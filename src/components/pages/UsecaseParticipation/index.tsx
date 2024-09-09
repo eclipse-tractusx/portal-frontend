@@ -53,6 +53,8 @@ export default function UsecaseParticipation() {
   const dispatch = useDispatch()
 
   const { data, refetch, isLoading } = useFetchUsecaseQuery()
+  const useCaseList =
+    data?.filter((usecase) => usecase.verifiedCredentials.length) ?? []
 
   useEffect(() => {
     refetch()
@@ -192,131 +194,126 @@ export default function UsecaseParticipation() {
                   />
                 </div>
               ) : (
-                data
-                  ?.filter((usecase) => usecase.verifiedCredentials.length)
-                  .map((item) => {
-                    return (
-                      <div
-                        className="useCase-list"
-                        key={uniqueId(item.useCase)}
-                      >
-                        <li className="useCase-list-item">
-                          <div className="useCase-detail">
-                            <PixIcon />
-                            <div>
-                              <Typography
-                                variant="body1"
-                                className="useCase-title"
-                              >
-                                {item.useCase}
-                              </Typography>
-                              <Typography variant="body2">
-                                {item.description}
-                              </Typography>
-                            </div>
+                useCaseList.map((item) => {
+                  return (
+                    <div className="useCase-list" key={uniqueId(item.useCase)}>
+                      <li className="useCase-list-item">
+                        <div className="useCase-detail">
+                          <PixIcon />
+                          <div>
+                            <Typography
+                              variant="body1"
+                              className="useCase-title"
+                            >
+                              {item.useCase}
+                            </Typography>
+                            <Typography variant="body2">
+                              {item.description}
+                            </Typography>
                           </div>
-                        </li>
-                        <ul className="credential-list">
-                          {item.verifiedCredentials.map((credential) => {
-                            return (
-                              <div key={credential.externalDetailData.id}>
-                                <hr className="seperation" />
-                                {credential.ssiDetailData?.length ? (
-                                  <div style={{ width: '105%' }}>
-                                    <CustomAccordion
-                                      items={[
-                                        {
-                                          expanded: false,
-                                          id: credential.externalDetailData.id,
-                                          title: '',
-                                          titleElement: renderCredentialData(
-                                            item,
-                                            credential
-                                          ),
-                                          color: 'white',
-                                          children: (
-                                            <>
-                                              {credential.ssiDetailData.map(
-                                                (ssidata: SSIDetailData) => (
-                                                  <div
-                                                    className="credential-list-item"
-                                                    style={{
-                                                      width: '82%',
-                                                      textAlign: 'center',
-                                                      margin: '0 0 10px',
-                                                    }}
-                                                    key={ssidata.credentialId}
+                        </div>
+                      </li>
+                      <ul className="credential-list">
+                        {item.verifiedCredentials.map((credential) => {
+                          return (
+                            <div key={credential.externalDetailData.id}>
+                              <hr className="seperation" />
+                              {credential.ssiDetailData?.length ? (
+                                <div style={{ width: '105%' }}>
+                                  <CustomAccordion
+                                    items={[
+                                      {
+                                        expanded: false,
+                                        id: credential.externalDetailData.id,
+                                        title: '',
+                                        titleElement: renderCredentialData(
+                                          item,
+                                          credential
+                                        ),
+                                        color: 'white',
+                                        children: (
+                                          <>
+                                            {credential.ssiDetailData.map(
+                                              (ssidata: SSIDetailData) => (
+                                                <div
+                                                  className="credential-list-item"
+                                                  style={{
+                                                    width: '82%',
+                                                    textAlign: 'center',
+                                                    margin: '0 0 10px',
+                                                  }}
+                                                  key={ssidata.credentialId}
+                                                >
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="firstSection font-12"
                                                   >
-                                                    <Typography
-                                                      variant="caption3"
-                                                      className="firstSection font-12"
-                                                    >
-                                                      {
-                                                        credential
-                                                          .externalDetailData
-                                                          .verifiedCredentialExternalTypeId
+                                                    {
+                                                      credential
+                                                        .externalDetailData
+                                                        .verifiedCredentialExternalTypeId
+                                                    }
+                                                  </Typography>
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="secondSection font-12"
+                                                  >
+                                                    {
+                                                      credential
+                                                        .externalDetailData
+                                                        .version
+                                                    }
+                                                  </Typography>
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="thirdSection statustag font-12"
+                                                  >
+                                                    <StatusTag
+                                                      color={
+                                                        ssidata.participationStatus ===
+                                                        StatusEnum.PENDING
+                                                          ? 'pending'
+                                                          : 'label'
                                                       }
-                                                    </Typography>
-                                                    <Typography
-                                                      variant="caption3"
-                                                      className="secondSection font-12"
-                                                    >
-                                                      {
-                                                        credential
-                                                          .externalDetailData
-                                                          .version
+                                                      label={
+                                                        ssidata.participationStatus
                                                       }
-                                                    </Typography>
-                                                    <Typography
-                                                      variant="caption3"
-                                                      className="thirdSection statustag font-12"
-                                                    >
-                                                      <StatusTag
-                                                        color={
-                                                          ssidata.participationStatus ===
-                                                          StatusEnum.PENDING
-                                                            ? 'pending'
-                                                            : 'label'
-                                                        }
-                                                        label={
-                                                          ssidata.participationStatus
-                                                        }
-                                                        variant="filled"
-                                                        sx={{
-                                                          height: '22px',
-                                                        }}
-                                                        size="small"
-                                                      />
-                                                    </Typography>
-                                                    <Typography
-                                                      variant="caption3"
-                                                      className="forthSection font-12"
-                                                    >
-                                                      {ssidata.expiryDate
-                                                        ? ssidata.expiryDate.split(
-                                                            'T'
-                                                          )[0]
-                                                        : ''}
-                                                    </Typography>
-                                                  </div>
-                                                )
-                                              )}
-                                            </>
-                                          ),
-                                        },
-                                      ]}
-                                    />
-                                  </div>
-                                ) : (
-                                  renderCredentialData(item, credential)
-                                )}
-                              </div>
-                            )
-                          })}
-                        </ul>
-                      </div>
-                    )
-                  })
+                                                      variant="filled"
+                                                      sx={{
+                                                        height: '22px',
+                                                      }}
+                                                      size="small"
+                                                    />
+                                                  </Typography>
+                                                  <Typography
+                                                    variant="caption3"
+                                                    className="forthSection font-12"
+                                                  >
+                                                    {ssidata.expiryDate
+                                                      ? ssidata.expiryDate.split(
+                                                          'T'
+                                                        )[0]
+                                                      : ''}
+                                                  </Typography>
+                                                </div>
+                                              )
+                                            )}
+                                          </>
+                                        ),
+                                      },
+                                    ]}
+                                  />
+                                </div>
+                              ) : (
+                                renderCredentialData(item, credential)
+                              )}
+                            </div>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  )
+                })
               )}
             </ul>
           </div>
