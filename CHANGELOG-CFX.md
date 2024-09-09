@@ -6,6 +6,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
+- **Main Header Component**
+
+  - To allow the text in MainHeader to be in 3 lines with fixed header height and heading postions [#118](https://github.com/Cofinity-X/portal-frontend/pull/118)
+  - CHERRY-PICK Overview My App button not working on App Release Process page [#1023](https://github.com/eclipse-tractusx/portal-frontend/pull/1023)
+
+
 - **App Subscription**
 
   - CHERRY-PICK remove subscribe_service requirement for app subscription [#1013](https://github.com/eclipse-tractusx/portal-frontend/pull/1013)
