@@ -4,6 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## 2.0.0-cfx-2
 
+### Bug Fixes
+- **App Marketplace**
+  - CHERRY-PICK fix: update the onButtonClick logic to avoid clicks after subscribed [#1042](https://github.com/eclipse-tractusx/portal-frontend/pull/1042)
+
+
 ### Change
 
 - **Main Header Component**
