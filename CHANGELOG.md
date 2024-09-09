@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Bugfixes
+
+- **Error Handling**
+  - Replaced logs with appropriate handler [#1072](https://github.com/eclipse-tractusx/portal-frontend/pull/1072)
+
 ## Unreleased 2.2.0-RC3
 
 ### Feature
@@ -24,7 +31,9 @@
 
 - **Connector Management**
   - fixed technical user selection
-- Technical User
+- **IDP management**
+  - Fixed IDP management page title & description
+- **Technical User**
   - Show appropriate error message.
   - Fix closing page notification bar issue
 - **IDP management**
@@ -37,8 +46,8 @@
   - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
 - **App Release Process**:
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
-- **Error Handling**
-  - Replaced logs with appropriate handler [#1072](https://github.com/eclipse-tractusx/portal-frontend/pull/1072)
+- **Technical User Management**
+  - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
