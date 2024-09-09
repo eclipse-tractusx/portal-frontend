@@ -43,6 +43,8 @@
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+- **Technical Integration**
+  - fixed "None" selection issue in Technical Integration -> App Release Process [#1036](https://github.com/eclipse-tractusx/portal-frontend/issues/1036)
 
 ## 2.2.0-RC2
 
@@ -100,7 +102,6 @@
 - fixed height for "Admin Service Detail" page content [#1001](https://github.com/eclipse-tractusx/portal-frontend/pull/1001)
 - fixed onClick of "Overview My Apps" button in App Release Process screen [#1022](https://github.com/eclipse-tractusx/portal-frontend/issues/1022)
 - Fix 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
-- fixed "None" selection issue in Technical Integration -> App Release Process [#1036](https://github.com/eclipse-tractusx/portal-frontend/issues/1036)
 
 ## 2.1.0
 
