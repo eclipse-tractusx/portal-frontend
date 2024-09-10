@@ -582,7 +582,7 @@
         "connectorUrl": "Connector URL"
       },
       "details": {
-        "heading": "Configure Connector",
+        "heading": "Connector Configuration",
         "name": "Name",
         "url": "URL",
         "status": "Status: ",
@@ -594,10 +594,10 @@
         "SdDocument": "SD Document: ",
         "noTechnicalUserAvailable": "No technical user available",
         "errormessage": "Error! Something went wrong",
-        "wantToDeleteConnector": "Do you really want to delete the connector?",
+        "wantToDeleteConnector": "Are you sure you want to delete the registered connector? This action cannot be undone.",
         "connectorDeletedSuccessfully": "Connector has been deleted successfully",
         "delete": "Delete",
-        "configureYourConnectorDetails": "Configure the connector details",
+        "configureYourConnectorDetails": "",
         "learnMore": "Learn More",
         "noDocumentAvailable": "No Document available",
         "selfDescriptionDocument": "Self Description Document",
@@ -661,7 +661,7 @@
       },
       "deletemodal": {
         "title": "Delete Connector",
-        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
+        "description": "Are you sure you want to delete the registered connector? This action cannot be undone.",
         "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected – the technical user will get inactived immediadetly as well when proceeding with the deletion.",
         "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
         "techDetails": {
@@ -690,6 +690,7 @@
         "connectorRegistrationDetails": "Connector Registration Details",
         "connectAlreadyExistingTechnicalUser": "Connect an already existing technical user",
         "createNewTechnicalUser": "Create a new technical user",
+        "createNewTechnicalUserBtn": "Create a new technical user",
         "createNewTechnicalUserDescription": "Create a new technical user from the Technical User Management page or by clicking the button below. Please note that the technical user creation process may take up to 5 minutes before the user is ready for Connector Registration.",
         "insertform": {
           "name": {

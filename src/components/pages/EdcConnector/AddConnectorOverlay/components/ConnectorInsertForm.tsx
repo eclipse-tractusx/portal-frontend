@@ -372,7 +372,7 @@ any) => {
                     })
                   }}
                 >
-                  {t('content.edcconnector.modal.createNewTechnicalUser')}
+                  {t('content.edcconnector.modal.createNewTechnicalUserBtn')}
                 </Button>
               </div>
             )}
