@@ -48,10 +48,19 @@ export interface ServiceAccountCreate {
   roleIds: string[]
 }
 
+export enum ServiceAccountStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+  DELETED = 'DELETED',
+  PENDING_DELETION = 'PENDING_DELETION',
+}
+
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
+  status: ServiceAccountStatus
   isOwner?: boolean
   offer?: {
     name?: string
@@ -70,6 +79,7 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   roles: ServiceAccountRole[]
   connector: ConnectedObject
   offer: ConnectedObject
+  companyServiceAccountTypeId: companyServiceAccountType
 }
 
 export type AppRoleCreate = {
@@ -89,9 +99,13 @@ export interface ServiceAccountsResponseType {
 
 export enum ServiceAccountStatusFilter {
   ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
+}
+
+export enum companyServiceAccountType {
+  MANAGED = 'MANAGED',
+  OWNED = 'OWN',
 }
 
 export const apiSlice = createApi({
@@ -143,12 +157,6 @@ export const apiSlice = createApi({
           fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ACTIVE
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
-        } else if (
-          !isFetchArgs &&
-          fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.INACTIVE
-        ) {
-          return `${url}&filterForInactive=true`
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&

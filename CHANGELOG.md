@@ -1,11 +1,6 @@
 # Changelog
 
-## Unreleased
-
-### Change
-
-- Page headers
-  - harmonization and standardization of page headers, added consistent headers and removed unused code
+## Unreleased main
 
 ### Feature
 
@@ -13,11 +8,104 @@
 - Enable more fine grained permission checks by client id and roles
 - Subscription Overlay
   - implement loading state for provider subscription detail overlay
+- Customer Detail Data Overlay
+  - implement new UI design for customer detail data overlay
+- **Company Subscription Management**
+  - Extended the subscription detail page for customer to include more app-related information [#1051](https://github.com/eclipse-tractusx/portal-frontend/pull/1051)
+
+### Change
+
+- **Technical User Management**
+  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+- **Application Requests and Connector Management**
+  - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
+- **Technical User Management**
+  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+- **Company Subscriptions**
+  - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
+
+## Unreleased 2.2.0-RC3
 
 ### Bugfixes
 
-- Fixed incorrect usage of pre-commit hook
-- Fix consistency issue in constants file. Use camel case for all page paths. Update corresponding usage in other files
+- **Connector Management**
+  - fixed technical user selection
+- **IDP management**
+  - Fixed IDP management page title & description
+- **Technical User**
+  - Show appropriate error message.
+  - Fix closing page notification bar issue
+- **IDP management**
+  - Fixed statusTag color in status coloumn [#978](https://github.com/eclipse-tractusx/portal-frontend/pull/978)
+- **Connector Management**
+  - Updated SD document download API to fix downloading SD document issue [#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
+- **Service Release Process**
+  - Fixed back button navigation to service management instead of navigating to home page[#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
+- **Application Requests**
+  - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
+- **App Release Process**:
+  - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
+- **Technical User Management**
+  - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
+- **OSP Consent form**
+  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+
+## 2.2.0-RC2
+
+### Feature
+
+- **Onboarding Service Provider Management**:
+  - Create new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
+- **Company data**
+  - Disable confirm button if input value is not matching with the regular expression [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
+  - Fix infinite loop issue in add New Address Modal
+  - Add new csv bulk upload modal [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
+- **Service Subscription**
+  - Update auto setup api response data in the service subscription response overlay
+
+### Bugfixes
+
+- **Partner Network**
+  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly [#1002](https://github.com/eclipse-tractusx/portal-frontend/pull/1002)
+- **Business Partner invite**
+  - fix person name regex patter [#1040](https://github.com/eclipse-tractusx/portal-frontend/pull/1040)
+
+## 2.2.0-RC1
+
+### Change
+
+- **Page headers**
+  - harmonized and standardized page headers: added consistent headers and removed unused code [#864](https://github.com/eclipse-tractusx/portal-frontend/pull/864)
+- **Company data Management**
+  - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
+  - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
+- **Business partner invite**
+  - updated first name and last name pattern to allow 2 characters in business partner invite application form [#1025](https://github.com/eclipse-tractusx/portal-frontend/pull/1025)
+
+### Feature
+
+- **Subscription Overlay**
+  - implemented loading state for provider subscription detail overlay [#959](https://github.com/eclipse-tractusx/portal-frontend/pull/959)
+- **Technical User Management**
+  - enhanced technical user table by adding StatusTag to the status column [#967](https://github.com/eclipse-tractusx/portal-frontend/pull/967)
+  - enhanced technical user table status column by adding new status 'pending deletion' [#967](https://github.com/eclipse-tractusx/portal-frontend/pull/967)
+
+### Technical Support
+
+- fixed incorrect usage of pre-commit hook [#874](https://github.com/eclipse-tractusx/portal-frontend/pull/874)
+- changed licensing and legal docs [#881](https://github.com/eclipse-tractusx/portal-frontend/pull/881)
+- dev-flow: maintain latest changes in main branch [#882](https://github.com/eclipse-tractusx/portal-frontend/pull/882)
+- enhanced readme file and added coding guidelines [#916](https://github.com/eclipse-tractusx/portal-frontend/pull/916)
+
+### Bugfixes
+
+- fixed usage of scroll to top button from shared components [#868](https://github.com/eclipse-tractusx/portal-frontend/pull/868)
+- fixed naming consistency of constants: used camel case for all page paths and update corresponding usage in other files [#895](https://github.com/eclipse-tractusx/portal-frontend/pull/895)
+- removed unnecessary condition in semantic hub page's table [#979](https://github.com/eclipse-tractusx/portal-frontend/pull/979)
+- fixed unchanged text of button when user requests subscription [#985](https://github.com/eclipse-tractusx/portal-frontend/pull/985)
+- fixed height for "Admin Service Detail" page content [#1001](https://github.com/eclipse-tractusx/portal-frontend/pull/1001)
+- fixed onClick of "Overview My Apps" button in App Release Process screen [#1022](https://github.com/eclipse-tractusx/portal-frontend/issues/1022)
+- Fix 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
 
 ## 2.1.0
 

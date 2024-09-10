@@ -29,6 +29,7 @@ import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
 import images from './images/slice'
+import dialog from './overlay/slice'
 import managementSlice from './appManagement/slice'
 import serviceManagementSlice from './serviceManagement/slice'
 import serviceMarketplaceSlice from './serviceMarketplace/slice'
@@ -80,6 +81,7 @@ export const reducers = {
   control,
   info,
   images,
+  dialog: dialog.reducer,
   companyData: companyDataSlice.reducer,
   management: managementSlice.reducer,
   serviceManagement: serviceManagementSlice.reducer,

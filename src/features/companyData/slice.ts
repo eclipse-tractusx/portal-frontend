@@ -20,13 +20,18 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
-import { type CompanyDataType } from './companyDataApiSlice'
+import {
+  type SharingStateType,
+  type CompanyDataType,
+} from './companyDataApiSlice'
 
 const name = 'companies/companyData'
 
 export interface CompanyDataState {
   row: CompanyDataType
   status: string
+  sharingStateInfo: SharingStateType
+  refetchState: boolean
 }
 
 export const companyDataInitialData: CompanyDataType = {
@@ -47,12 +52,12 @@ export const companyDataInitialData: CompanyDataType = {
     },
   ],
   roles: ['SUPPLIER'],
-  isOwnCompanyData: false,
+  isOwnCompanyData: true,
   legalEntity: {
     legalEntityBpn: '',
     legalName: '',
     shortName: '',
-    legalForm: '',
+    legalForm: null,
     confidenceCriteria: {
       sharedByOwner: false,
       checkedByExternalDataSource: false,
@@ -70,7 +75,7 @@ export const companyDataInitialData: CompanyDataType = {
     ],
   },
   site: {
-    siteBpn: '',
+    siteBpn: null,
     name: '',
     confidenceCriteria: {
       sharedByOwner: false,
@@ -89,8 +94,8 @@ export const companyDataInitialData: CompanyDataType = {
     ],
   },
   address: {
-    addressBpn: '',
-    name: '',
+    addressBpn: null,
+    name: null,
     addressType: '',
     physicalPostalAddress: {
       geographicCoordinates: {
@@ -99,43 +104,30 @@ export const companyDataInitialData: CompanyDataType = {
         altitude: 0,
       },
       country: '',
-      administrativeAreaLevel1: '',
-      administrativeAreaLevel2: '',
-      administrativeAreaLevel3: '',
+      administrativeAreaLevel1: null,
+      administrativeAreaLevel2: null,
+      administrativeAreaLevel3: null,
       postalCode: '',
       city: '',
-      district: '',
+      district: null,
       street: {
-        namePrefix: '',
-        additionalNamePrefix: '',
+        namePrefix: null,
+        additionalNamePrefix: null,
         name: '',
-        nameSuffix: '',
-        additionalNameSuffix: '',
-        houseNumber: '',
-        houseNumberSupplement: '',
-        milestone: '',
-        direction: '',
+        nameSuffix: null,
+        additionalNameSuffix: null,
+        houseNumber: null,
+        houseNumberSupplement: null,
+        milestone: null,
+        direction: null,
       },
-      companyPostalCode: '',
-      industrialZone: '',
-      building: '',
-      floor: '',
-      door: '',
+      companyPostalCode: null,
+      industrialZone: null,
+      building: null,
+      floor: null,
+      door: null,
     },
-    alternativePostalAddress: {
-      geographicCoordinates: {
-        longitude: 0,
-        latitude: 0,
-        altitude: 0,
-      },
-      country: null,
-      administrativeAreaLevel1: null,
-      postalCode: null,
-      city: null,
-      deliveryServiceType: null,
-      deliveryServiceQualifier: null,
-      deliveryServiceNumber: null,
-    },
+    alternativePostalAddress: null,
     confidenceCriteria: {
       sharedByOwner: true,
       checkedByExternalDataSource: true,
@@ -159,6 +151,15 @@ export const companyDataInitialData: CompanyDataType = {
 export const initialState: CompanyDataState = {
   status: '',
   row: companyDataInitialData,
+  sharingStateInfo: {
+    externalId: '',
+    sharingStateType: '',
+    sharingErrorCode: '',
+    sharingErrorMessage: '',
+    sharingProcessStarted: '',
+    taskId: '',
+  },
+  refetchState: false,
 }
 
 const companyDataSlice = createSlice({
@@ -173,6 +174,14 @@ const companyDataSlice = createSlice({
       ...state,
       status: actions.payload,
     }),
+    setSharingStateInfo: (state, actions) => ({
+      ...state,
+      sharingStateInfo: actions.payload,
+    }),
+    setCompanyPageRefetch: (state, actions) => ({
+      ...state,
+      refetchState: actions.payload,
+    }),
   },
 })
 
@@ -182,7 +191,17 @@ export const companyDataSelector = (state: RootState): CompanyDataType =>
 export const statusSelector = (state: RootState): string =>
   state.companyData.status
 
-export const { setSelectedCompanyData, setSelectedCompanyStatus } =
-  companyDataSlice.actions
+export const sharingStateInfoSelector = (state: RootState): SharingStateType =>
+  state.companyData.sharingStateInfo
+
+export const companyRefetch = (state: RootState): boolean =>
+  state.companyData.refetchState
+
+export const {
+  setSelectedCompanyData,
+  setSelectedCompanyStatus,
+  setSharingStateInfo,
+  setCompanyPageRefetch,
+} = companyDataSlice.actions
 
 export default companyDataSlice

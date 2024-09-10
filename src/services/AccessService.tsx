@@ -80,6 +80,7 @@ import {
   getClientIdSemantic,
   getClientIdSsiCredential,
 } from './EnvironmentService'
+import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -246,6 +247,8 @@ export const getOverlay = (overlay: OverlayState) => {
           title={overlay.title ?? ''}
         />
       )
+    case OVERLAYS.CSV_UPLOAD_OVERLAY:
+      return <CSVUploadOverlay />
     default:
       return <NotFound />
   }

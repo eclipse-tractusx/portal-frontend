@@ -33,6 +33,11 @@ const urlPattern = new RegExp(
   'i'
 )
 const prefixUrlPattern = new RegExp(`^${urlProtocol}:`, 'i')
+const nameGroup = 'A-Za-z\u00C0-\u017F'
+const personNameToken = `([${nameGroup}]\\.|[${nameGroup}']{2,30})`
+const personNamePattern = new RegExp(
+  `^([Dd]r\\.? )?${personNameToken}(( ?- ?| )${personNameToken}){0,16}(,? [JjSs](un|en|n?r)\\.?)?$`
+)
 
 export const Patterns = {
   ID: /^[a-z0-9_.@-]{1,80}$/i,
@@ -45,8 +50,9 @@ export const Patterns = {
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
-    /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ!?@&_£$€¥\-.,:;'()*+#%=]\s?){2,40}$/i,
-  name: /^([A-Za-zÀ-ÿ-,.'](?!.*[-,.]{2})[A-Za-zÀ-ÿ-,.']{1,40} ?)[^ –]{1,40}$/,
+    /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
+  personName: personNamePattern,
+  name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
   zipcode: /^[A-Z0-9-]{1,8}$/,
   streetNumber: /^[0-9A-Za-z- ]{1,20}$/,
   regionName: /^[0-9A-Za-z- ]{2,20}$/,
@@ -75,14 +81,10 @@ export const Patterns = {
   offerCard: {
     serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
-    shortDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
+    shortDescription: /^.{10,120}$/,
   },
   offerPage: {
-    longDescriptionEN:
-      /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
-    longDescriptionDE:
-      /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
+    longDescription: /^.{10,1999}$/,
   },
   appPage: {
     longDescriptionEN:
@@ -136,8 +138,9 @@ export const isName = (expr: string) => Patterns.name.test(expr)
 export const isCityName = isName
 export const isStreetName = isName
 export const isRegionName = (expr: string) => Patterns.regionName.test(expr)
-export const isFirstName = isName
-export const isLastName = isName
+export const isPersonName = (expr: string) => Patterns.personName.test(expr)
+export const isFirstName = isPersonName
+export const isLastName = isPersonName
 export const isUserName = (expr: string) => isName(expr) || isMail(expr)
 export const isZipCode = (expr: string) => Patterns.zipcode.test(expr)
 export const isStreetNumber = (expr: string) => Patterns.streetNumber.test(expr)

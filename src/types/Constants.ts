@@ -27,8 +27,8 @@ export enum PAGES {
   HOME = 'home',
   REGISTRATION = 'registration',
   APP_SUBSCRIPTION = 'appSubscription',
-  ADMINBOARD = 'adminboard',
-  ADMINBOARD_DETAIL = 'adminboardDetail',
+  APP_ADMIN_BOARD = 'appAdminBoard',
+  APP_ADMIN_BOARD_DETAIL = 'appAdminBoardDetail',
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appMarketplace',
   SERVICE_MARKETPLACE = 'serviceMarketplace',
@@ -107,6 +107,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS = 'companySubscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   COMPANY_DATA = 'companyData',
+  MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider',
 }
 
 export enum OVERLAYS {
@@ -153,6 +154,7 @@ export enum OVERLAYS {
   UPDATE_CERTIFICATE = 'updateCertificate',
   COMPANY_CERTIFICATE_DETAILS = 'companyCertificateDetails',
   COMPANY_CERTIFICATE_CONFIRM_DELETE = 'companyCertificateConfirmDelete',
+  CSV_UPLOAD_OVERLAY = 'csvUploadOverlay',
 }
 
 export enum ACTIONS {
@@ -172,6 +174,8 @@ export enum ROLES {
   SETUP_CLIENT = 'setup_client',
   APPSTORE_VIEW = 'view_apps',
   APPSTORE_VIEW_SERVICES = 'view_service_marketplace',
+  SUBSCRIBE_APP_MARKETPLACE = 'subscribe_apps',
+  SUBSCRIBE_SERVICE_MARKETPLACE = 'subscribe_service',
   APPSTORE_VIEW_DATASPACES = 'view_dataspaces',
   APPSTORE_ADD = 'add_app',
   APPSTORE_EDIT = 'edit_apps',
@@ -180,7 +184,7 @@ export enum ROLES {
   APPMANAGEMENT_VIEW = 'add_apps',
   SERVICEMANAGEMENT_VIEW = 'add_service_offering',
   APP_MANAGEMENT = 'app_management',
-  SERVICE_SUBSCRIPTION_MANAGEMENT = 'activate_subscription',
+  SERVICE_SUBSCRIPTION_MANAGEMENT = 'service_management',
   APPOVERVIEW_VIEW = 'add_apps',
   SERVICEOVERVIEW_VIEW = 'add_service_offering',
   CONNECTOR_SETUP = 'setup_connector',

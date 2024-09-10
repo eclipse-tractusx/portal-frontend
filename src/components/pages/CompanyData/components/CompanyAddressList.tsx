@@ -19,7 +19,7 @@
 
 import { Chip, IconButton, Table } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
@@ -29,6 +29,7 @@ import {
   useFetchOutputCompanyBusinessPartnersMutation,
   useFetchSharingStateQuery,
   AddressType,
+  type SharingStateType,
 } from 'features/companyData/companyDataApiSlice'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -37,30 +38,34 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { type GridCellParams } from '@mui/x-data-grid'
 import DetailsOverlay from './DetailsOverlay'
 import {
+  companyRefetch,
+  setCompanyPageRefetch,
   setSelectedCompanyData,
   setSelectedCompanyStatus,
+  setSharingStateInfo,
 } from 'features/companyData/slice'
-import LoadingProgress from 'components/shared/basic/LoadingProgress'
+import { statusColorMap } from 'utils/dataMapper'
 
 export const CompanyAddressList = ({
   handleButtonClick,
   handleSecondButtonClick,
-  refetch = false,
   handleConfirm,
 }: {
   handleButtonClick: () => void
   handleSecondButtonClick: () => void
-  refetch: boolean
   handleConfirm: () => void
 }) => {
   const { t } = useTranslation()
+  const [page, setPage] = useState<number>(0)
   const {
     data,
-    refetch: refreshSharingData,
     isFetching,
     error: sharingStateError,
-  } = useFetchSharingStateQuery()
-  const sharingStates = data?.content
+    refetch: refetchSharingState,
+  } = useFetchSharingStateQuery({
+    page,
+  })
+  const [sharingStates, setSharingStates] = useState<SharingStateType[]>([])
   const [outputRequest, { isLoading: isOutputLoading, error: outputError }] =
     useFetchOutputCompanyBusinessPartnersMutation()
   const [inputRequest, { isLoading: isInputLoading, error: inputError }] =
@@ -69,13 +74,16 @@ export const CompanyAddressList = ({
   const [inputs, setInputs] = useState<CompanyDataType[]>([])
   const [details, setDetails] = useState<boolean>(false)
   const dispatch = useDispatch()
+  const refetch = useSelector(companyRefetch)
 
   const getInputItems = async () => {
     const params = sharingStates
       ?.filter(
         (state) =>
           state.sharingStateType === SharingStateStatusType.Pending ||
-          state.sharingStateType === SharingStateStatusType.Initial
+          state.sharingStateType === SharingStateStatusType.Initial ||
+          state.sharingStateType === SharingStateStatusType.Ready ||
+          state.sharingStateType === SharingStateStatusType.Error
       )
       .map((state) => state.externalId)
 
@@ -109,23 +117,39 @@ export const CompanyAddressList = ({
 
   useEffect(() => {
     if (refetch) {
-      refreshSharingData()
       setInputs([])
       setOutputs([])
+      setPage(0)
+      refetchSharingState()
+      dispatch(setCompanyPageRefetch(false))
     }
     getInputItems()
     getOutputItems()
   }, [sharingStates, refetch])
+
+  useEffect(() => {
+    if (data) {
+      setSharingStates((i) =>
+        page === 0 ? data.content : i.concat(data.content)
+      )
+    }
+  }, [data])
 
   const getStatus = (id: string) =>
     sharingStates?.filter((state) => id === state.externalId)[0]
       .sharingStateType
 
   const onRowClick = (params: GridCellParams) => {
+    const sharingStateInfo = sharingStates
+      ?.filter(
+        (state) => state.sharingStateType === SharingStateStatusType.Error
+      )
+      .filter((state) => state.externalId === params.row.externalId)
     const status = getStatus(params.row.externalId)
     setDetails(true)
     dispatch(setSelectedCompanyStatus(status))
     dispatch(setSelectedCompanyData(params.row))
+    if (sharingStateInfo) dispatch(setSharingStateInfo(sharingStateInfo[0]))
   }
 
   const renderIcon = (status: string | undefined) => {
@@ -133,24 +157,12 @@ export const CompanyAddressList = ({
       return <CheckCircleIcon />
     } else if (
       status === SharingStateStatusType.Pending ||
-      status === SharingStateStatusType.Initial
+      status === SharingStateStatusType.Initial ||
+      status === SharingStateStatusType.Ready
     ) {
       return <HourglassBottomIcon />
     } else {
       return <WarningAmberIcon />
-    }
-  }
-
-  const getStatusColor = (status: string | undefined) => {
-    if (status === SharingStateStatusType.Success) {
-      return 'success'
-    } else if (
-      status === SharingStateStatusType.Pending ||
-      status === SharingStateStatusType.Initial
-    ) {
-      return 'warning'
-    } else {
-      return 'error'
     }
   }
 
@@ -166,8 +178,14 @@ export const CompanyAddressList = ({
 
   return (
     <>
-      {!isFetching && !isOutputLoading && !isInputLoading ? (
+      {sharingStates.length > 0 && (
         <Table
+          loading={isFetching || isOutputLoading || isInputLoading}
+          hasMore={data && data.totalPages > page + 1}
+          nextPage={() => {
+            setPage((i) => i + 1)
+          }}
+          hideFooterPagination={true}
           autoFocus={false}
           onButtonClick={handleButtonClick}
           rowsCount={inputs.length + outputs.length}
@@ -183,7 +201,7 @@ export const CompanyAddressList = ({
           getRowId={(row: { [key: string]: string }) => row.createdAt}
           rows={inputs.concat(outputs)}
           onCellClick={onRowClick}
-          error={errorObj}
+          error={errorObj.status === 0 ? null : errorObj}
           columns={[
             {
               field: 'site',
@@ -199,7 +217,7 @@ export const CompanyAddressList = ({
               headerAlign: 'left',
               align: 'left',
               headerName: t('content.companyData.table.location'),
-              flex: 2.5,
+              flex: 2,
               valueGetter: ({ row }: { row: CompanyDataType }) =>
                 row.address
                   ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''} ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.country ?? ''}`
@@ -218,7 +236,7 @@ export const CompanyAddressList = ({
             },
             {
               field: 'status',
-              headerName: '',
+              headerName: t('content.companyData.table.status'),
               align: 'left',
               flex: 1,
               renderCell: ({ row }: { row: CompanyDataType }) => {
@@ -232,7 +250,11 @@ export const CompanyAddressList = ({
                   >
                     <Chip
                       icon={renderIcon(status)}
-                      color={getStatusColor(status)}
+                      color={
+                        status
+                          ? statusColorMap[status as SharingStateStatusType]
+                          : 'error'
+                      }
                       variant="filled"
                       label={status}
                       size="medium"
@@ -250,9 +272,9 @@ export const CompanyAddressList = ({
             },
             {
               field: 'details',
-              headerName: '',
+              headerName: t('content.companyData.table.details'),
               align: 'left',
-              flex: 0.5,
+              flex: 1,
               renderCell: () => {
                 return (
                   <IconButton
@@ -269,15 +291,6 @@ export const CompanyAddressList = ({
           ]}
           disableColumnMenu
         />
-      ) : (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <LoadingProgress />
-        </Box>
       )}
       {details && (
         <DetailsOverlay
@@ -286,7 +299,10 @@ export const CompanyAddressList = ({
             setDetails(false)
           }}
           open={details}
-          handleConfirm={handleConfirm}
+          handleConfirm={() => {
+            setSharingStates([])
+            handleConfirm()
+          }}
         />
       )}
     </>

@@ -43,6 +43,7 @@ export enum AppFilterType {
 export interface DocumentMapper {
   documentType: string
   documentId: string
+  documentSize?: number
 }
 
 export interface ApplicationChecklistType {
@@ -55,6 +56,7 @@ export enum ProgressStatus {
   TO_DO = 'TO_DO',
   DONE = 'DONE',
   FAILED = 'FAILED',
+  SKIPPED = 'SKIPPED',
 }
 
 export type ProgressType = {
@@ -62,6 +64,7 @@ export type ProgressType = {
   DONE: number
   FAILED: number
   IN_PROGRESS: number
+  SKIPPED: number
 }
 
 export const initialProgressValue: ProgressType = {
@@ -69,6 +72,7 @@ export const initialProgressValue: ProgressType = {
   DONE: 0,
   FAILED: 0,
   IN_PROGRESS: 0,
+  SKIPPED: 0,
 }
 
 export enum StatusType {
@@ -85,6 +89,7 @@ interface Map {
 
 export const EndUrlMap: Map = {
   RETRIGGER_IDENTITY_WALLET: 'trigger-identity-wallet',
+  RETRIGGER_CREATE_DIM_WALLET: 'retrigger-create-dim-wallet',
   RETRIGGER_CLEARING_HOUSE: 'retrigger-clearinghouse',
   TRIGGER_OVERRIDE_CLEARING_HOUSE: 'override-clearinghouse',
   RETRIGGER_SELF_DESCRIPTION_LP: 'trigger-self-description',
@@ -98,6 +103,7 @@ export const EndUrlMap: Map = {
 
 export enum RetriggerableProcessSteps {
   RETRIGGER_IDENTITY_WALLET = 'RETRIGGER_IDENTITY_WALLET',
+  RETRIGGER_CREATE_DIM_WALLET = 'RETRIGGER_CREATE_DIM_WALLET',
   RETRIGGER_CLEARING_HOUSE = 'RETRIGGER_CLEARING_HOUSE',
   TRIGGER_OVERRIDE_CLEARING_HOUSE = 'TRIGGER_OVERRIDE_CLEARING_HOUSE',
   RETRIGGER_SELF_DESCRIPTION_LP = 'RETRIGGER_SELF_DESCRIPTION_LP',
@@ -128,6 +134,7 @@ export const progressMapper = {
   IN_PROGRESS: 5,
   TO_DO: 0,
   FAILED: 0,
+  SKIPPED: 0,
 }
 
 export interface ApplicationRequest {
