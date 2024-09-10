@@ -954,7 +954,10 @@
           "spoc": "SPOC",
           "permission": "Berechtigungen",
           "companyServiceAccountTypeID": "Firmenservicekontotyp",
-          "authenticationType": "Authentifizierungstyp"
+          "authenticationType": "Authentifizierungstyp",
+          "userType": "Benutzertyp",
+          "serviceEndpoint": "Dienstendpunkt",
+          "missingInfoHint": "Diese Informationen stehen älteren Benutzern möglicherweise nicht zur Verfügung. Erstellen Sie den Benutzer neu, um die vollständigen Details zu erhalten."
         },
         "status": {
           "ACTIVE": "AKTIV",

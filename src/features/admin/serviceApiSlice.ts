@@ -56,6 +56,11 @@ export enum ServiceAccountStatus {
   PENDING_DELETION = 'PENDING_DELETION',
 }
 
+export enum UserType {
+  INTERNAL = 'internal',
+  EXTERNAL = 'external',
+}
+
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
@@ -80,6 +85,8 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   connector: ConnectedObject
   offer: ConnectedObject
   companyServiceAccountTypeId: companyServiceAccountType
+  usertype: UserType
+  authenticationServiceUrl: string
 }
 
 export type AppRoleCreate = {
