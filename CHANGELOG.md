@@ -8,6 +8,7 @@
   - Fix broken title and description section
 - Company data
   - Fix translation error
+  - Disable csv upload
 
 ### Change
 
