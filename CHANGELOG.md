@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Bugfixes
+
+- **Service Release Process**
+  - Updated description regex & validation error message to prevent only spaces in short & long description
+
 ## Unreleased 2.2.0-RC3
 
 ### Feature
