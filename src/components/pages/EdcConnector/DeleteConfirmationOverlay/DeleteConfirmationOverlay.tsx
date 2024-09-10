@@ -137,12 +137,12 @@ const DeleteConfirmationOverlay = ({
           </Button>
           {!loading && (
             <Button
-              variant="contained"
+              variant="outlined"
               onClick={() => {
                 handleConfirmClick(checkBoxSelected)
               }}
             >
-              {t('global.actions.confirm')}
+              {t('content.edcconnector.details.delete')}
             </Button>
           )}
           {loading && (
