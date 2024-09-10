@@ -2150,7 +2150,7 @@
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
       "changeRoleBtn": "Change Portal Role",
-      "errorMsg": "You are not authorized to change your own admin roles. Please contact another Company Admin or IT Admin"
+      "errorMsg": "You are not authorized to change your own admin roles. Please contact another Company Admin or IT Admin."
     }
   },
   "global": {
