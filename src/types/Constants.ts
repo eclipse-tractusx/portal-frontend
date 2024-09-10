@@ -231,8 +231,6 @@ export enum ROLES {
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
-  SUBSCRIBE_APPS = 'subscribe_apps',
-  SUBSCRIBE_SERVICE = 'subscribe_service',
   VIEW_REGISTRATION = 'view_registration',
   READ_PARTNER = 'read_partner',
 }

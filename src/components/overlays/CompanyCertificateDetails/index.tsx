@@ -208,7 +208,9 @@ export default function CompanyCertificateDetails({
               </Box>
               <Box>
                 <Button
-                  disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE)}
+                  disabled={
+                    !userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
+                  }
                   startIcon={<DeleteIcon />}
                   variant="outlined"
                   size="small"
