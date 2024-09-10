@@ -590,15 +590,15 @@
         "type": "Typ: ",
         "host": "Gastgeber: ",
         "location": "Standort: ",
-        "technicalUser": "Technischer Benutzer: ",
+        "technicalUser": "Technischer User: ",
         "SdRegistration": "SD-Registrierung: ",
         "SdDocument": "SD-Dokument: ",
-        "noTechnicalUserAvailable": "Kein technischer Benutzer verfügbar",
+        "noTechnicalUserAvailable": "Kein technischer User verfügbar",
         "errormessage": "Fehler! Etwas ist schief gelaufen",
-        "wantToDeleteConnector": "Möchten Sie den Connector wirklich löschen?",
+        "wantToDeleteConnector": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
         "connectorDeletedSuccessfully": "Der Connector wurde erfolgreich gelöscht",
         "delete": "Löschen",
-        "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
+        "configureYourConnectorDetails": "",
         "learnMore": "Learn More",
         "noDocumentAvailable": "Kein Dokument verfügbar",
         "selfDescriptionDocument": "Selbstbeschreibungsdokument",
@@ -658,8 +658,8 @@
         "errormessage": "Fehler! Etwas ist schief gelaufen. Der Konnektor wurde nicht angelegt."
       },
       "deletemodal": {
-        "title": "EDC-Connector Löschen",
-        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
+        "title": "Connector löschen",
+        "description": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
         "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist – der technische Benutzer wird ebenfalls sofort inaktiviert, wenn mit dem Löschen fortgefahren wird.",
         "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
         "techDetails": {
@@ -688,7 +688,8 @@
         "connectorRegistrationDetails": "Details zur Connector-Registrierung",
         "connectAlreadyExistingTechnicalUser": "Verbinden Sie einen bereits vorhandenen technischen Benutzer",
         "createNewTechnicalUser": "Erstellen Sie einen neuen technischen Benutzer",
-        "createNewTechnicalUserDescription": "Erstellen Sie einen neuen technischen User über die Technische User Management Seite oder durch Klick auf den unten stehenden Button. Bitte beachten Sie, dass der Prozess der Erstellung des technischen Users bis zu 5 Minuten dauern kann, bevor dieser für die Connector-Registrierung bereit ist.",
+        "createNewTechnicalUserBtn": "Neuen technischen User erstellen",
+        "createNewTechnicalUserDescription": "Erstellen Sie einen neuen technischen User über die Technische User Management Seite oder durch Klick auf den unten stehenden Button. Bitte beachten Sie, dass der Erstellungsprozess des technischen Users bis zu 5 Minuten dauern kann, bevor dieser für die Connector-Registrierung bereit ist.",
         "insertform": {
           "name": {
             "label": "Name*",

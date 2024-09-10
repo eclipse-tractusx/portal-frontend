@@ -277,14 +277,6 @@ const ConnectorDetailsOverlay = ({
             padding: '0px 80px 20px 80px',
           }}
         >
-          <Box sx={{ display: 'inline-flex', textAlign: 'center' }}>
-            <Typography variant="body2" sx={{ mt: 1, mr: 2 }}>
-              {t('content.edcconnector.details.configureYourConnectorDetails')}
-            </Typography>
-            <Button onClick={() => {}} variant="outlined" size="small" disabled>
-              {t('content.edcconnector.details.learnMore')}
-            </Button>
-          </Box>
           <Grid container spacing={2}>
             <Grid xs={12}>
               <Input
