@@ -1,42 +1,43 @@
 # Changelog
 
-## (unreleased) 2.2.0-RC3
-
-- Company Data
-  - Remove page notification on download csv template action
-- Confirm Modal
-  - Fix broken title and description section
-- Company data
-  - Fix translation error
-  - Disable csv upload
+## 2.2.0-RC3
 
 ### Change
 
 - **Technical User Management**
-  - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
-  - Update filters view and logic [#1087](https://github.com/eclipse-tractusx/portal-frontend/pull/1087)
-- **Application Requests and Connector Management**
-  - update the status(skipped) in application requests and necessary changes with checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
+  - removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
+  - updated filters view and logic [#1087](https://github.com/eclipse-tractusx/portal-frontend/pull/1087)
+- **Skipping of GX compliance service interface**
+  - updated the status (skipped) in application requests and changed checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
+- **Company data**
+  - disabled csv upload [#1091](https://github.com/eclipse-tractusx/portal-frontend/pull/1091)
+
+### Bugfixes
+
+- **Company data**
+  - removed page notification on download csv template action [#1071](https://github.com/eclipse-tractusx/portal-frontend/pull/1071)
+  - fixed broken title and description in modal [#1070](https://github.com/eclipse-tractusx/portal-frontend/pull/1070)
+  - fixed translation error [#1070](https://github.com/eclipse-tractusx/portal-frontend/pull/1070)
 
 ## 2.2.0-RC2
 
 ### Feature
 
 - **Onboarding Service Provider Management**:
-  - Create new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
+  - created new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
 - **Company data**
-  - Disable confirm button if input value is not matching with the regular expression [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
-  - Fix infinite loop issue in add New Address Modal
-  - Add new csv bulk upload modal [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
+  - disabled confirm button if input value is not matching with the regular expression [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
+  - fixed infinite loop issue in add New Address Modal
+  - added new csv bulk upload modal [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
 - **Service Subscription**
-  - Update auto setup api response data in the service subscription response overlay
+  - updated auto setup api response data in the service subscription response overlay
 
 ### Bugfixes
 
 - **Partner Network**
-  - Change interface of the partner network apis. add /members to the POST api and update the business logic accordingly [#1002](https://github.com/eclipse-tractusx/portal-frontend/pull/1002)
+  - changed interface of the partner network apis. add /members to the POST api and update the business logic accordingly [#1002](https://github.com/eclipse-tractusx/portal-frontend/pull/1002)
 - **Business Partner invite**
-  - fix person name regex patter [#1040](https://github.com/eclipse-tractusx/portal-frontend/pull/1040)
+  - fixed person name regex patter [#1040](https://github.com/eclipse-tractusx/portal-frontend/pull/1040)
 
 ## 2.2.0-RC1
 
