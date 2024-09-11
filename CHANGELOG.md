@@ -16,6 +16,8 @@
 
 ### Bugfixes
 
+- fixed onClick of "Overview My Apps" button in App Release Process screen [#1022](https://github.com/eclipse-tractusx/portal-frontend/issues/1022)
+- fixed 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
 - **Connector Management**
   - fixed technical user selection
 - **IDP management**
@@ -38,56 +40,22 @@
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
-## 2.2.0-RC3
+## 2.2.0
 
 ### Change
 
+- **Company Data Management**
+  - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
+  - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
 - **Technical User Management**
   - removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
   - updated filters view and logic [#1087](https://github.com/eclipse-tractusx/portal-frontend/pull/1087)
 - **Skipping of GX compliance service interface**
   - updated the status (skipped) in application requests and changed checkbox in connector management [#1019](https://github.com/eclipse-tractusx/portal-frontend/pull/1019)
-- **Company data**
-  - disabled csv upload [#1091](https://github.com/eclipse-tractusx/portal-frontend/pull/1091)
-
-### Bugfixes
-
-- **Company data**
-  - removed page notification on download csv template action [#1071](https://github.com/eclipse-tractusx/portal-frontend/pull/1071)
-  - fixed broken title and description in modal [#1070](https://github.com/eclipse-tractusx/portal-frontend/pull/1070)
-  - fixed translation error [#1070](https://github.com/eclipse-tractusx/portal-frontend/pull/1070)
-
-## 2.2.0-RC2
-
-### Feature
-
-- **Onboarding Service Provider Management**:
-  - created new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
-- **Company data**
-  - disabled confirm button if input value is not matching with the regular expression [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
-  - fixed infinite loop issue in add New Address Modal
-  - added new csv bulk upload modal [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
-- **Service Subscription**
-  - updated auto setup api response data in the service subscription response overlay
-
-### Bugfixes
-
-- **Partner Network**
-  - changed interface of the partner network apis. add /members to the POST api and update the business logic accordingly [#1002](https://github.com/eclipse-tractusx/portal-frontend/pull/1002)
-- **Business Partner invite**
-  - fixed person name regex patter [#1040](https://github.com/eclipse-tractusx/portal-frontend/pull/1040)
-
-## 2.2.0-RC1
-
-### Change
-
+- **Connector Management**
+  - updated delete connector confirmation logic with technical user [#1076](https://github.com/eclipse-tractusx/portal-frontend/pull/1076)
 - **Page headers**
   - harmonized and standardized page headers: added consistent headers and removed unused code [#864](https://github.com/eclipse-tractusx/portal-frontend/pull/864)
-- **Company data Management**
-  - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
-  - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
-- **Business partner invite**
-  - updated first name and last name pattern to allow 2 characters in business partner invite application form [#1025](https://github.com/eclipse-tractusx/portal-frontend/pull/1025)
 
 ### Feature
 
@@ -96,6 +64,13 @@
 - **Technical User Management**
   - enhanced technical user table by adding StatusTag to the status column [#967](https://github.com/eclipse-tractusx/portal-frontend/pull/967)
   - enhanced technical user table status column by adding new status 'pending deletion' [#967](https://github.com/eclipse-tractusx/portal-frontend/pull/967)
+- **Onboarding Service Provider Management**:
+  - created new page for onboarding service provider management [#1052](https://github.com/eclipse-tractusx/portal-frontend/pull/1052)
+- **Company Data Management**
+  - added new csv bulk upload BUT it is currently not enabled: further enhancements will follow [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056), [#1091](https://github.com/eclipse-tractusx/portal-frontend/pull/1091)
+  - disabled confirm button if input value is not matching with the regular expression [#1056](https://github.com/eclipse-tractusx/portal-frontend/pull/1056)
+- **Service Subscription**
+  - updated auto setup api response data in the service subscription response overlay
 
 ### Technical Support
 
@@ -106,13 +81,33 @@
 
 ### Bugfixes
 
+- **Partner Network**
+  - changed BPDM interface integration so that partners are listed in the Partner Network: added /members to the POST api and updated the business logic accordingly [#1002](https://github.com/eclipse-tractusx/portal-frontend/pull/1002)
+- **Company Data Management**
+  - fixed infinite loop issue in add new address modal [#1048](https://github.com/eclipse-tractusx/portal-frontend/pull/1048)
+  - fixed broken title and description in modal [#1070](https://github.com/eclipse-tractusx/portal-frontend/pull/1070)
+  - fixed translation error [#1070](https://github.com/eclipse-tractusx/portal-frontend/pull/1070)
+- **Business Partner Invitation**
+  - updated first name and last name pattern to allow 2 characters in application form [#1025](https://github.com/eclipse-tractusx/portal-frontend/pull/1025)
+  - fixed person name regex pattern [#1040](https://github.com/eclipse-tractusx/portal-frontend/pull/1040)
 - fixed usage of scroll to top button from shared components [#868](https://github.com/eclipse-tractusx/portal-frontend/pull/868)
 - fixed naming consistency of constants: used camel case for all page paths and update corresponding usage in other files [#895](https://github.com/eclipse-tractusx/portal-frontend/pull/895)
 - removed unnecessary condition in semantic hub page's table [#979](https://github.com/eclipse-tractusx/portal-frontend/pull/979)
 - fixed unchanged text of button when user requests subscription [#985](https://github.com/eclipse-tractusx/portal-frontend/pull/985)
 - fixed height for "Admin Service Detail" page content [#1001](https://github.com/eclipse-tractusx/portal-frontend/pull/1001)
-- fixed onClick of "Overview My Apps" button in App Release Process screen [#1022](https://github.com/eclipse-tractusx/portal-frontend/issues/1022)
-- Fix 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
+
+### Known Knowns
+
+- Technical Issues and Limitations
+  - Technical User Accounts
+    - There is an issue where attempting to display details for inactive technical users results in a blank page due to a lack of necessary backend support.
+  - Long Description field in German (de) does not accept German special characters [#965](https://github.com/eclipse-tractusx/portal-frontend/pull/965).
+  - Role Upload does not work during App Release Process when using Firefox [#961](https://github.com/eclipse-tractusx/portal-frontend/pull/961).
+- Feature Support and Development
+  - Auto-setup Process Worker
+    - There is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
+  - Registration Approval Process
+    - The frontend provides limited support for the registration approval process, particularly concerning the retriggering of jobs.
 
 ## 2.1.0
 
