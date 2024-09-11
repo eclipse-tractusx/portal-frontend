@@ -277,6 +277,81 @@ const AppSubscriptionDetailOverlay = ({
     body: bodyData,
   }
 
+  const externalServicesDetails: VerticalTableType = {
+    head: [
+      t('content.appSubscription.detailOverlay.externalServices.heading'),
+      '',
+    ],
+    body: [
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.trustedIssuer.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.trustedIssuer.description'
+          )
+        ),
+        data?.externalService?.trusted_issuer ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.participantId.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.participantId.description'
+          )
+        ),
+        data?.externalService?.participant_id ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.iatpId.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.iatpId.description'
+          )
+        ),
+        data?.externalService?.iatp_id ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.didResolver.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.didResolver.description'
+          )
+        ),
+        data?.externalService?.did_resolver ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementAuthUrl.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementAuthUrl.description'
+          )
+        ),
+        data?.externalService?.decentralIdentityManagementAuthUrl ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementServiceUrl.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementServiceUrl.description'
+          )
+        ),
+        data?.externalService?.decentralIdentityManagementServiceUrl ?? '-',
+      ],
+    ],
+  }
+
   const getActiveSteps = () => {
     if (data?.offerSubscriptionStatus === SubscriptionStatus.PENDING) {
       return 2
@@ -370,6 +445,9 @@ const AppSubscriptionDetailOverlay = ({
               </div>
               <div style={{ marginTop: '20px' }}>
                 <VerticalTableNew data={technicalDetails} />
+              </div>
+              <div style={{ marginTop: '20px' }}>
+                <VerticalTableNew data={externalServicesDetails} />
               </div>
             </div>
           )}

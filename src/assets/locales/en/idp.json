@@ -45,8 +45,8 @@
     "metadata_url_invalid_error": "Please enter valid metadata url"
   },
   "page": {
-    "title": "Identity Provider Config",
-    "desc": "Here you can manage how the users of your company authenticate with Catena-X. <br /><br />On registration we have created an IDP with one user entry for the admin (that's probably you ;). <br />Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page."
+    "title": "Identity Provider configuration",
+    "desc": "This page provides the functionality to manage user authentication for your company. <br/><br/> Upon registration, we have established an Identity Provider (IDP) with a single user entry for the administrator. Many organizations already maintain their own IDP, where users authenticate using their established company user IDs and familiar login interfaces. In such cases, you may prefer to leverage your existing company IDP. You can create and manage the necessary federation on this page."
   },
   "add": {
     "title": "Add your Identity Provider (IdP)",

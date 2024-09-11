@@ -17,11 +17,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.app-subscription-overlay {
-  .loading-progress {
+.company-subscription-detail-privacy {
+  .privacy-content {
+    margin-bottom: 32px;
+  }
+  .app-policies {
+    padding: 0 20px;
+  }
+  .policies-list {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-wrap: wrap;
+    max-width: none;
+    margin: 0;
+    .policy-name {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .policy-icon {
+      font-size: 20;
+      margin-right: 5px;
+    }
   }
 }
