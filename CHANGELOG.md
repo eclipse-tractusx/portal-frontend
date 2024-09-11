@@ -16,8 +16,6 @@
 - **Company Subscriptions**
   - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
 
-## Unreleased 2.2.0-RC3
-
 ### Bugfixes
 
 - **Connector Management**
