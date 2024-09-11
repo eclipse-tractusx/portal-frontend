@@ -976,8 +976,7 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "active": "Active",
-          "inactive": "Inactive",
+          "showAll": "Show All",
           "managed": "Managed",
           "owned": "Owned"
         },
@@ -2268,7 +2267,8 @@
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
-      "changeRoleBtn": "Change Portal Role"
+      "changeRoleBtn": "Change Portal Role",
+      "errorMsg": "You are not authorized to change your own admin roles. Please contact another admin."
     }
   },
   "global": {
