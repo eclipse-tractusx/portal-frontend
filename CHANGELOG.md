@@ -4,6 +4,8 @@
 
 ### Feature
 
+- **Roles and Permissions**
+  - Enable more fine grained permission checks by client id and roles
 - **Customer Detail Data Overlay**
   - implement new UI design for customer detail data overlay
 - **Company Subscription Management**
