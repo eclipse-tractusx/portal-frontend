@@ -43,7 +43,8 @@ import './CompanySubscriptions.scss'
 
 export const CompanySubscriptionsTableColumns = (
   t: typeof i18next.t,
-  handleOverlay?: (row: SubscribedActiveApps, enable: boolean) => void
+  handleOverlay?: (row: SubscribedActiveApps, enable: boolean) => void,
+  currentActive?: number
 ): Array<GridColDef> => {
   const navigate = useNavigate()
 
@@ -86,6 +87,28 @@ export const CompanySubscriptionsTableColumns = (
       )
   }
 
+  const checkStatus = (row: SubscribedActiveApps) => {
+    const length = row.companySubscriptionStatuses?.length ?? 0
+    const activeSubscription = row.companySubscriptionStatuses?.filter(
+      (a) => a.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
+    )
+    return (
+      activeSubscription?.[0]?.offerSubscriptionStatus ??
+      row.companySubscriptionStatuses?.[length - 1]?.offerSubscriptionStatus
+    )
+  }
+
+  const renderServiceStatus = (row: SubscribedActiveApps) => {
+    const status = checkStatus(row)
+    return renderStatus(status ?? '')
+  }
+
+  const canShowButton = (row: SubscribedActiveApps) => {
+    const status = checkStatus(row)
+    if (status === SubscriptionStatus.ACTIVE) return true
+    return false
+  }
+
   return [
     {
       field: 'image',
@@ -98,7 +121,7 @@ export const CompanySubscriptionsTableColumns = (
         <Image
           src={
             row.image
-              ? `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${
+              ? `${getApiBase()}/api/${currentActive === 0 ? 'apps' : 'services'}/${row.offerId}/${currentActive === 0 ? 'appDocuments' : 'serviceDocuments'}/${
                   row.image
                 }`
               : LogoGrayData
@@ -120,7 +143,7 @@ export const CompanySubscriptionsTableColumns = (
       flex: 3,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
         <Box sx={{ display: 'grid' }}>
-          <Typography variant="body3">{row.name}</Typography>
+          <Typography variant="body3">{row.offerName}</Typography>
           <Typography variant="body3">{row.provider}</Typography>
         </Box>
       ),
@@ -130,7 +153,7 @@ export const CompanySubscriptionsTableColumns = (
       headerName: t('content.companySubscriptions.table.status'),
       flex: 2,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-        return renderStatus(row.status)
+        return renderServiceStatus(row)
       },
     },
     {
@@ -146,7 +169,13 @@ export const CompanySubscriptionsTableColumns = (
             onClick={() => {
               navigate(
                 `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
-                { state: row }
+                {
+                  state: {
+                    row,
+                    app: currentActive === 0,
+                    service: currentActive === 1,
+                  },
+                }
               )
             }}
           >
@@ -162,14 +191,13 @@ export const CompanySubscriptionsTableColumns = (
       disableColumnMenu: true,
       sortable: false,
       renderCell: ({ row }: { row: SubscribedActiveApps }) =>
-        row.status === SubscriptionStatus.ACTIVE && (
+        canShowButton(row) && (
           <Button
             variant="contained"
             size="small"
             sx={{ textTransform: 'none' }}
             onClick={(e) => {
               handleOverlay?.(row, true)
-              console.log('row.offerId', row.offerId)
               e.stopPropagation()
             }}
           >

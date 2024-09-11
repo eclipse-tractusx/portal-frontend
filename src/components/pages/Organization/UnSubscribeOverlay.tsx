@@ -38,6 +38,8 @@ import {
   type SubscribeTechnicalUserData,
   SubscriptionStatus,
 } from 'features/apps/types'
+import { useFetchSubscriptionServiceQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 interface UnSubscribeOverlayProps {
   openDialog?: boolean
@@ -47,6 +49,7 @@ interface UnSubscribeOverlayProps {
   subscriptionId: string
   appId: string
   enableErrorMessage: boolean
+  activeTab: number
 }
 
 const UnSubscribeOverlay = ({
@@ -57,10 +60,35 @@ const UnSubscribeOverlay = ({
   subscriptionId,
   appId,
   enableErrorMessage,
+  activeTab,
 }: UnSubscribeOverlayProps) => {
   const { t } = useTranslation()
-  const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
+  const {
+    data: appData,
+    error: appError,
+    isFetching: isAppFetching,
+  } = useFetchSubscriptionAppQuery(
+    { appId, subscriptionId },
+    { skip: activeTab === 1 }
+  )
+  const {
+    data: serviceData,
+    error: serviceError,
+    isFetching: isServiceFetching,
+  } = useFetchSubscriptionServiceQuery(
+    { serviceId: appId, subscriptionId },
+    { skip: activeTab === 0 }
+  )
   const [checkBoxSelected, setCheckBoxSelected] = useState<boolean>(false)
+
+  const data = activeTab === 0 ? appData : serviceData
+
+  const isFetching: boolean = isAppFetching ?? isServiceFetching
+
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const error: any = activeTab === 0 ? appError : serviceError
+
   return (
     <div>
       <Dialog
@@ -74,71 +102,108 @@ const UnSubscribeOverlay = ({
         <div className="unsubscribeOverlay">
           <DialogHeader
             title={t('content.organization.unsubscribe.title')}
-            intro={`For ${data?.name}`}
+            intro={error ? '' : `For ${data?.name}`}
           />
           <DialogContent>
-            <Typography variant="body3">
-              {t('content.organization.unsubscribe.descriptionNote')}
-            </Typography>
-            <Typography variant="body3">
-              {t('content.organization.unsubscribe.description')}
-            </Typography>
-            <Box sx={{ mt: '20px' }}>
-              <StaticTable
-                data={{
-                  head: [
-                    t(
-                      'content.organization.unsubscribe.table.listOfConnectedObjects'
-                    ),
-                    '',
-                  ],
-                  body: [
-                    [
-                      t('content.organization.unsubscribe.table.app'),
-                      data?.name ?? '',
-                    ],
-                    [
-                      t('content.organization.unsubscribe.table.status'),
-                      data?.offerSubscriptionStatus ===
-                      SubscriptionStatus.ACTIVE
-                        ? t('content.organization.unsubscribe.subscribed')
-                        : '',
-                    ],
-                    [
-                      t('content.organization.unsubscribe.table.connector'),
-                      data?.connectorData[0]?.name ?? '',
-                    ],
-                    [
-                      t('content.organization.unsubscribe.table.techUser'),
-                      data?.technicalUserData
-                        ?.map(
-                          (userdata: SubscribeTechnicalUserData) =>
-                            userdata.name
-                        )
-                        .toString() ?? '',
-                    ],
-                  ],
-                }}
-                horizontal={false}
-              />
-            </Box>
-            <Box
-              sx={{
-                alignContent: 'left',
-                display: 'grid',
-                padding: '44px 0 12px 0',
+            <div
+              style={{
+                textAlign: 'center',
               }}
             >
-              <Checkbox
-                label={t('content.organization.unsubscribe.checkBoxLabel')}
-                checked={checkBoxSelected}
-                onClick={() => {
-                  setCheckBoxSelected(!checkBoxSelected)
-                }}
-              />
-              <Typography variant="body2" sx={{ ml: 4 }}>
-                {t('content.organization.unsubscribe.checkBoxLabelDescription')}
+              <Typography variant="body3">
+                {t('content.organization.unsubscribe.descriptionNote')}
               </Typography>
+              <Typography variant="body3">
+                {t('content.organization.unsubscribe.description')}
+              </Typography>
+            </div>
+            <Box sx={{ mt: '20px' }}>
+              {isFetching ? (
+                <div style={{ textAlign: 'center', margin: 30 }}>
+                  <LoadingProgress />
+                </div>
+              ) : (
+                <>
+                  {error ? (
+                    <Typography
+                      variant="body2"
+                      sx={{ ml: 0, textAlign: 'center' }}
+                    >
+                      {error.data.title}
+                    </Typography>
+                  ) : (
+                    <>
+                      <StaticTable
+                        data={{
+                          head: [
+                            t(
+                              'content.organization.unsubscribe.table.listOfConnectedObjects'
+                            ),
+                            '',
+                          ],
+                          body: [
+                            [
+                              t('content.organization.unsubscribe.table.app'),
+                              data?.name ?? '',
+                            ],
+                            [
+                              t(
+                                'content.organization.unsubscribe.table.status'
+                              ),
+                              data?.offerSubscriptionStatus ===
+                              SubscriptionStatus.ACTIVE
+                                ? t(
+                                    'content.organization.unsubscribe.subscribed'
+                                  )
+                                : '',
+                            ],
+                            [
+                              t(
+                                'content.organization.unsubscribe.table.connector'
+                              ),
+                              data?.connectorData[0]?.name ?? '',
+                            ],
+                            [
+                              t(
+                                'content.organization.unsubscribe.table.techUser'
+                              ),
+                              data?.technicalUserData
+                                ?.map(
+                                  (userdata: SubscribeTechnicalUserData) =>
+                                    userdata.name
+                                )
+                                .toString() ?? '',
+                            ],
+                          ],
+                        }}
+                        horizontal={false}
+                      />
+                      <Box
+                        sx={{
+                          alignContent: 'left',
+                          display: 'grid',
+                          padding: '44px 0 12px 0',
+                        }}
+                      >
+                        <Checkbox
+                          label={t(
+                            'content.organization.unsubscribe.checkBoxLabel'
+                          )}
+                          checked={checkBoxSelected}
+                          onClick={() => {
+                            setCheckBoxSelected(!checkBoxSelected)
+                          }}
+                        />
+                        <Typography variant="body2" sx={{ ml: 4 }}>
+                          {t(
+                            'content.organization.unsubscribe.checkBoxLabelDescription'
+                          )}
+                        </Typography>
+                      </Box>
+                    </>
+                  )}
+                </>
+              )}
             </Box>
           </DialogContent>
           <DialogActions sx={{ display: 'block', textAlign: 'center' }}>
@@ -179,7 +244,7 @@ const UnSubscribeOverlay = ({
               ) : (
                 <Button
                   variant="contained"
-                  disabled={!checkBoxSelected}
+                  disabled={!checkBoxSelected || error}
                   onClick={(e) => {
                     handleConfirmClick(e)
                   }}

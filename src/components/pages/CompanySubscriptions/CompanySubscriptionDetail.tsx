@@ -45,17 +45,42 @@ import {
 import { fetchImageWithToken } from 'services/ImageService'
 import { getApiBase } from 'services/EnvironmentService'
 import './CompanySubscriptions.scss'
+import {
+  useFetchServiceDetailsQuery,
+  useFetchSubscriptionServiceQuery,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
   const { state } = useLocation()
   const items = state
   const { t } = useTranslation()
-  const appId = items.offerId ?? ''
-  const subscriptionId = items.subscriptionId ?? ''
-  const { data } = useFetchSubscriptionAppQuery({ appId, subscriptionId })
-  const fetchAppsData = useFetchAppDetailsQuery(appId).data
+  const id = items.row.offerId ?? ('' as string)
+  const subscriptionId =
+    items.row.companySubscriptionStatuses[0].subscriptionId ?? ('' as string)
+  const { data: appData, error: appError } = useFetchSubscriptionAppQuery(
+    { appId: id, subscriptionId },
+    { skip: items.service }
+  )
+  const { data: serviceData, error: serviceError } =
+    useFetchSubscriptionServiceQuery(
+      { serviceId: id, subscriptionId },
+      { skip: items.app }
+    )
+  const { data: fetchAppsData } = useFetchAppDetailsQuery(id, {
+    skip: items.service,
+  })
+  const { data: fetchServicessData } = useFetchServiceDetailsQuery(id, {
+    skip: items.app,
+  })
   const [docId, setDocId] = useState('')
+
+  const data = items.app ? appData : serviceData
+  const fetchData = items.app ? fetchAppsData : fetchServicessData
+
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const error: any = items.app ? appError : serviceError
 
   const tableData = {
     head: [
@@ -73,13 +98,13 @@ export default function CompanySubscriptionDetail() {
   }
 
   useEffect(() => {
-    if (fetchAppsData?.leadPictureId) {
-      const id = CommonService.isValidPictureId(fetchAppsData?.leadPictureId)
+    if (fetchData?.leadPictureId) {
+      const id = CommonService.isValidPictureId(fetchData?.leadPictureId)
       setDocId(id)
     }
-  }, [fetchAppsData])
+  }, [fetchData])
 
-  const renderStatusButton = (status: string) => {
+  const renderStatusButton = (status: string | undefined) => {
     if (status === SubscriptionStatus.ACTIVE)
       return (
         <Button
@@ -128,6 +153,19 @@ export default function CompanySubscriptionDetail() {
       )
   }
 
+  const getSrc = () => {
+    if (fetchData?.id && items.app && docId)
+      return `${getApiBase()}/api/apps/${fetchData.id}/appDocuments/${docId}`
+    else if (fetchData?.id && items.service && docId)
+      return `${getApiBase()}/api/services/${
+        fetchData.id
+      }/serviceDocuments/${docId}`
+    return LogoGrayData
+  }
+
+  const serviceSubscriptionStatus =
+    fetchData?.offerSubscriptionDetailData?.[0]?.offerSubscriptionStatus
+
   return (
     <main className="company-subscription-detail">
       <Box className="company-subscription-back app-back">
@@ -139,48 +177,50 @@ export default function CompanySubscriptionDetail() {
           }}
         />
       </Box>
-      {data && fetchAppsData && (
-        <Box className="company-subscription-content ">
-          <Box className="company-subscription-header">
-            <div className="lead-image">
-              <Image
-                src={
-                  fetchAppsData?.id
-                    ? `${getApiBase()}/api/apps/${
-                        fetchAppsData.id
-                      }/appDocuments/${docId}`
-                    : LogoGrayData
-                }
-                alt={fetchAppsData.title}
-                loader={fetchImageWithToken}
-              />
-            </div>
-            <div className="content">
-              <Box sx={{ padding: '11px 12px' }}>
-                {renderStatusButton(fetchAppsData.isSubscribed)}
-                <Typography variant="h5" sx={{ color: '#888888' }}>
-                  {fetchAppsData.provider}
-                </Typography>
-                <Typography variant="h4" sx={{}}>
-                  {fetchAppsData.title}
-                </Typography>
-              </Box>
-            </div>
-          </Box>
-          <Typography variant="h3" sx={{ whiteSpace: 'pre-line', mb: 4 }}>
-            {'Long description'}
-          </Typography>
-          <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
-            {fetchAppsData.longDescription}
-          </Typography>
-          <Box sx={{ mt: '59px' }}>
-            <Typography variant="h3" sx={{ mb: 4 }}>
-              {'Technical Details'}
+
+      <Box className="company-subscription-content ">
+        {error && <Typography variant="body2">{error?.data?.title}</Typography>}
+        {data && fetchData && (
+          <>
+            <Box className="company-subscription-header">
+              <div className="lead-image">
+                <Image
+                  src={getSrc()}
+                  alt={fetchData.title}
+                  loader={fetchImageWithToken}
+                />
+              </div>
+              <div className="content">
+                <Box sx={{ padding: '11px 12px' }}>
+                  {renderStatusButton(
+                    items.service
+                      ? serviceSubscriptionStatus
+                      : fetchData.isSubscribed
+                  )}
+                  <Typography variant="h5" sx={{ color: '#888888' }}>
+                    {fetchData.provider}
+                  </Typography>
+                  <Typography variant="h4" sx={{}}>
+                    {fetchData.title}
+                  </Typography>
+                </Box>
+              </div>
+            </Box>
+            <Typography variant="h3" sx={{ whiteSpace: 'pre-line', mb: 4 }}>
+              {'Long description'}
             </Typography>
-            <StaticTable data={tableData} horizontal={true} />
-          </Box>
-        </Box>
-      )}
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+              {fetchData.longDescription ?? fetchData.description}
+            </Typography>
+            <Box sx={{ mt: '59px' }}>
+              <Typography variant="h3" sx={{ mb: 4 }}>
+                {'Technical Details'}
+              </Typography>
+              <StaticTable data={tableData} horizontal={true} />
+            </Box>
+          </>
+        )}
+      </Box>
     </main>
   )
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Company subscription
+  - Add a tabular section to show up both app and service subscription data
+
 ## (unreleased) 2.2.0-RC3
 
 - Company Data

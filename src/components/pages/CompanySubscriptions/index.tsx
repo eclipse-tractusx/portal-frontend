@@ -19,6 +19,9 @@
 
 import {
   PageLoadingTable,
+  Tab,
+  TabPanel,
+  Tabs,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
@@ -26,18 +29,21 @@ import {
   useFetchSubscribedActiveAppsStatusQuery,
   useUnsubscribeAppMutation,
 } from 'features/apps/apiSlice'
-import { useEffect, useState } from 'react'
+import { type SyntheticEvent, useEffect, useState } from 'react'
 import { isName } from 'types/Patterns'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updates'
 import UnSubscribeOverlay from '../Organization/UnSubscribeOverlay'
 import { success } from 'services/NotifyService'
-import {
-  CompanySubscriptionFilterType,
-  type SubscribedActiveApps,
-} from 'features/apps/types'
+import { type SubscribedActiveApps } from 'features/apps/types'
 import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
+import {
+  CompanyServiceSubscriptionFilterType,
+  useFetchCompanyServiceSubscriptionsQuery,
+  useUnsubscribeServiceMutation,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import { Box } from '@mui/material'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -60,8 +66,10 @@ export default function CompanySubscriptions() {
   const [loading, setLoading] = useState<boolean>(false)
   const [appId, setAppId] = useState<string>('')
   const [subscriptionId, setSubscriptionId] = useState<string>('')
-  const [unsubscribeMutation] = useUnsubscribeAppMutation()
+  const [unsubscribeAppMutation] = useUnsubscribeAppMutation()
+  const [unsubscribeServiceMutation] = useUnsubscribeServiceMutation()
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
+  const [currentActive, setCurrentActive] = useState<number>(0)
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -70,31 +78,36 @@ export default function CompanySubscriptions() {
     setRefresh(Date.now())
   }
 
+  const handleTabChange = (
+    _e: SyntheticEvent<Element, Event>,
+    value: number
+  ) => {
+    setCurrentActive(value)
+  }
+
   const filterView = [
     {
       buttonText: t('content.companySubscriptions.filter.requested'),
-      buttonValue: CompanySubscriptionFilterType.REQUESTED,
+      buttonValue: CompanyServiceSubscriptionFilterType.REQUESTED,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.companySubscriptions.filter.active'),
-      buttonValue: CompanySubscriptionFilterType.ACTIVE,
+      buttonValue: CompanyServiceSubscriptionFilterType.ACTIVE,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.companySubscriptions.filter.showAll'),
-      buttonValue: CompanySubscriptionFilterType.SHOW_ALL,
+      buttonValue: CompanyServiceSubscriptionFilterType.SHOW_ALL,
       onButtonClick: setView,
     },
   ]
 
   useEffect(() => {
-    if (onValidate(searchExpr)) {
-      setFetchHookArgs({
-        statusFilter: filterStatus,
-        expr: searchExpr,
-      })
-    }
+    setFetchHookArgs({
+      statusFilter: filterStatus,
+      expr: searchExpr,
+    })
   }, [filterStatus, searchExpr])
 
   const onValidate = (expr: string) => {
@@ -103,33 +116,75 @@ export default function CompanySubscriptions() {
     return validateExpr
   }
 
+  const callSuccess = () => {
+    success(t('content.organization.unsubscribe.unsubscribeSuccess'))
+    setLoading(false)
+    setShowUnsubscribeOverlay(false)
+    setEnableErrorMessage(false)
+    setRefresh(Date.now())
+  }
+
   const onUnsubscribeSubmit = async () => {
     setLoading(true)
-    await unsubscribeMutation(subscriptionId)
-      .unwrap()
-      .then(() => {
-        success(t('content.organization.unsubscribe.unsubscribeSuccess'))
-        setLoading(false)
-        setShowUnsubscribeOverlay(false)
-        setEnableErrorMessage(false)
-        setRefresh(Date.now())
-      })
-      .catch(() => {
-        setLoading(false)
-        setEnableErrorMessage(true)
-      })
+    if (currentActive === 0)
+      await unsubscribeAppMutation(subscriptionId)
+        .unwrap()
+        .then(() => {
+          callSuccess()
+        })
+        .catch(() => {
+          setLoading(false)
+          setEnableErrorMessage(true)
+        })
+    else
+      await unsubscribeServiceMutation(subscriptionId)
+        .unwrap()
+        .then(() => {
+          callSuccess()
+        })
+        .catch(() => {
+          setLoading(false)
+          setEnableErrorMessage(true)
+        })
   }
 
   const handleOverlay = (row: SubscribedActiveApps, enable: boolean) => {
     setAppId(row.offerId)
     setShowUnsubscribeOverlay(enable)
-    setSubscriptionId(row.subscriptionId)
+    setSubscriptionId(
+      row?.companySubscriptionStatuses?.[0]?.subscriptionId ?? ''
+    )
   }
 
   const companySubscriptionsCols = CompanySubscriptionsTableColumns(
     t,
-    handleOverlay
+    handleOverlay,
+    currentActive
   )
+
+  const getIcon = (num: number) => {
+    return (
+      <Typography
+        variant="label3"
+        sx={{
+          background: currentActive + 1 === num ? '#0f71cb' : 'white',
+          color: currentActive + 1 === num ? 'white' : '#0f71cb',
+          outline: '2px solid #0f71cb',
+          flex: '0',
+          marginRight: '20px',
+          borderRadius: '50%',
+          height: '20px',
+          width: '20px',
+          minWidth: '20px',
+          textAlign: 'center',
+          lineHeight: '20px',
+          position: 'relative',
+        }}
+      >
+        {num}
+      </Typography>
+    )
+  }
 
   return (
     <main className="page-main-container">
@@ -146,6 +201,7 @@ export default function CompanySubscriptions() {
           appId={appId}
           subscriptionId={subscriptionId}
           enableErrorMessage={enableErrorMessage}
+          activeTab={currentActive}
         />
       )}
       <Typography
@@ -155,39 +211,114 @@ export default function CompanySubscriptions() {
       >
         {t('content.companySubscriptions.headertitle')}
       </Typography>
-
-      <div className={'table-container'}>
-        <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
-          sx={{
-            '.MuiDataGrid-cell': {
-              alignContent: 'center !important',
-            },
-          }}
-          autoFocus={false}
-          searchExpr={searchExpr}
-          alignCell="start"
-          defaultFilter={group}
-          filterViews={filterView}
-          toolbarVariant={'searchAndFilter'}
-          hasBorder={false}
-          columnHeadersBackgroundColor={'transparent'}
-          searchPlaceholder={t('global.table.searchName')}
-          searchInputData={searchInputData}
-          onSearch={(expr: string) => {
-            if (!onValidate(expr)) return
-            setRefresh(Date.now())
-            setSearchExpr(expr)
-          }}
-          searchDebounce={1000}
-          title={''}
-          loadLabel={t('global.actions.more')}
-          fetchHook={useFetchSubscribedActiveAppsStatusQuery}
-          fetchHookArgs={fetchHookArgs}
-          fetchHookRefresh={refresh}
-          getRowId={(row: { [key: string]: string }) => row.subscriptionId}
-          columns={companySubscriptionsCols}
-        />
-      </div>
+      <Box>
+        <Tabs
+          value={currentActive}
+          onChange={handleTabChange}
+          sx={{ margin: '0 18% 20px' }}
+        >
+          <Tab
+            iconPosition="start"
+            icon={getIcon(1)}
+            aria-controls={`simple-tabpanel-${currentActive}`}
+            id={`simple-tab-${currentActive}`}
+            label={'App Company Subscriptions'}
+            sx={{
+              textTransform: 'none',
+              display: 'inline-flex',
+              width: '100%',
+              maxWidth: '550px',
+              '&.Mui-selected': {
+                borderBottom: '3px solid #0f71cb',
+              },
+            }}
+          />
+          <Tab
+            iconPosition="start"
+            icon={getIcon(2)}
+            aria-controls={`simple-tabpanel-${currentActive}`}
+            id={`simple-tab-${currentActive}`}
+            label={'Service Company Subscriptions'}
+            sx={{
+              textTransform: 'none',
+              display: 'inline-flex',
+              width: '100%',
+              maxWidth: '550px',
+              '&.Mui-selected': {
+                borderBottom: '3px solid #0f71cb',
+              },
+            }}
+          />
+        </Tabs>
+        <TabPanel value={currentActive} index={0}>
+          <div className={'table-container'}>
+            <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
+              sx={{
+                '.MuiDataGrid-cell': {
+                  alignContent: 'center !important',
+                },
+              }}
+              autoFocus={false}
+              searchExpr={searchExpr}
+              alignCell="start"
+              defaultFilter={group}
+              filterViews={filterView}
+              toolbarVariant={'searchAndFilter'}
+              hasBorder={false}
+              columnHeadersBackgroundColor={'transparent'}
+              searchPlaceholder={t('global.table.searchName')}
+              searchInputData={searchInputData}
+              onSearch={(expr: string) => {
+                if (!onValidate(expr)) return
+                setRefresh(Date.now())
+                setSearchExpr(expr)
+              }}
+              searchDebounce={1000}
+              title={''}
+              loadLabel={t('global.actions.more')}
+              fetchHook={useFetchSubscribedActiveAppsStatusQuery}
+              fetchHookArgs={fetchHookArgs}
+              fetchHookRefresh={refresh}
+              getRowId={(row: { [key: string]: string }) => row.offerId}
+              columns={companySubscriptionsCols}
+            />
+          </div>
+        </TabPanel>
+        <TabPanel value={currentActive} index={1}>
+          <div className={'table-container'}>
+            <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
+              sx={{
+                '.MuiDataGrid-cell': {
+                  alignContent: 'center !important',
+                },
+              }}
+              autoFocus={false}
+              searchExpr={searchExpr}
+              alignCell="start"
+              defaultFilter={group}
+              filterViews={filterView}
+              toolbarVariant={'searchAndFilter'}
+              hasBorder={false}
+              columnHeadersBackgroundColor={'transparent'}
+              searchPlaceholder={t('global.table.searchName')}
+              searchInputData={searchInputData}
+              onSearch={(expr: string) => {
+                if (!onValidate(expr)) return
+                setRefresh(Date.now())
+                setSearchExpr(expr)
+              }}
+              searchDebounce={1000}
+              title={''}
+              loadLabel={t('global.actions.more')}
+              fetchHook={useFetchCompanyServiceSubscriptionsQuery}
+              fetchHookArgs={fetchHookArgs}
+              fetchHookRefresh={refresh}
+              getRowId={(row: { [key: string]: string }) => row.offerId}
+              columns={companySubscriptionsCols}
+            />
+          </div>
+        </TabPanel>
+      </Box>
     </main>
   )
 }

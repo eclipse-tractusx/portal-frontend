@@ -20,6 +20,10 @@
 import type { CardItems } from '@catena-x/portal-shared-components'
 import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import type { UseCaseType } from 'features/appManagement/types'
+import {
+  type OfferSubscriptionDataType,
+  type SubscriptionResponseContentType,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export type ImageType = {
   src: string
@@ -150,6 +154,7 @@ export type AppDetails = AppMarketplaceApp & {
   technicalUserProfile?: {
     [key: string]: string[] | null
   }
+  offerSubscriptionDetailData?: OfferSubscriptionDataType[]
 }
 
 export type Documents = {
@@ -263,4 +268,6 @@ export interface SubscribedActiveApps {
   status: string
   subscriptionId: string
   image: string
+  offerName?: string
+  companySubscriptionStatuses?: SubscriptionResponseContentType[]
 }

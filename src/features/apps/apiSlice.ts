@@ -26,7 +26,6 @@ import {
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PAGE_SIZE } from 'types/Constants'
 import type {
   AppDetails,
   AppMarketplaceApp,
@@ -144,6 +143,12 @@ export const apiSlice = createApi({
     >({
       query: (obj) =>
         `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
+      transformErrorResponse: (res) => {
+        return {
+          status: res.status,
+          data: res.data,
+        }
+      },
     }),
     unsubscribeApp: builder.mutation<void, string>({
       query: (subscriptionId) => ({
@@ -155,9 +160,18 @@ export const apiSlice = createApi({
       PaginResult<SubscribedActiveApps>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) => ({
-        url: `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
-      }),
+      query: (body) => {
+        const url = `/api/apps/provided/subscription-status?size=15&page=${body.page}`
+        const statusId = body.args.statusFilter
+          ? `&statusId=${body.args.statusFilter}`
+          : ''
+        const companyName = body.args.expr
+          ? `&companyName=${body.args.expr}`
+          : ''
+        return {
+          url: `${url}${statusId}${companyName}`,
+        }
+      },
     }),
   }),
 })
