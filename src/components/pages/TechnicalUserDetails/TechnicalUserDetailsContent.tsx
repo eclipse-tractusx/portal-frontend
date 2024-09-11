@@ -45,8 +45,6 @@ export const statusColorMap: Record<
   ComponentProps<typeof StatusTag>['color']
 > = {
   [ServiceAccountStatus.ACTIVE]: 'confirmed',
-  [ServiceAccountStatus.INACTIVE]: 'declined',
-  [ServiceAccountStatus.DELETED]: 'deleted',
   [ServiceAccountStatus.PENDING]: 'pending',
   [ServiceAccountStatus.PENDING_DELETION]: 'pending',
 }

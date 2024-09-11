@@ -87,6 +87,7 @@ const UserService = {
   getToken,
   getParsedToken,
   getName,
+  getUsername,
   getCompany,
   init,
 }
