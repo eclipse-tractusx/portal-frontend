@@ -89,7 +89,7 @@ export default function RegistrationRequests() {
       setSelectedRequest(params.row)
       dispatch(fetchCompanyDetail(params.row.applicationId))
       setOverlayOpen(true)
-      setSelectedActiveTab(params.field === TableField.DETAIL ? 0 : 1)
+      setSelectedActiveTab(params.field === TableField.DETAIL ? 0 : 2)
     }
   }
 

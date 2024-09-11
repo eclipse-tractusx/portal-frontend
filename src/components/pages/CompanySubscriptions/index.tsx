@@ -40,7 +40,7 @@ import {
 import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
 
 interface FetchHookArgsType {
-  statusFilter: string
+  statusId: string
   expr: string
 }
 
@@ -50,7 +50,9 @@ export default function CompanySubscriptions() {
   const [refresh, setRefresh] = useState(0)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
-  const [filterStatus, setFilterStatus] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState<string>(
+    CompanySubscriptionFilterType.SHOW_ALL
+  )
   const searchInputData = useSelector(updateApplicationRequestSelector)
   const [group, setGroup] = useState<string>(
     t('content.companySubscriptions.filter.showAll')
@@ -72,13 +74,18 @@ export default function CompanySubscriptions() {
 
   const filterView = [
     {
-      buttonText: t('content.companySubscriptions.filter.requested'),
-      buttonValue: CompanySubscriptionFilterType.REQUESTED,
+      buttonText: t('content.companySubscriptions.filter.pending'),
+      buttonValue: CompanySubscriptionFilterType.PENDING,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.companySubscriptions.filter.active'),
       buttonValue: CompanySubscriptionFilterType.ACTIVE,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.companySubscriptions.filter.inactive'),
+      buttonValue: CompanySubscriptionFilterType.INACTIVE,
       onButtonClick: setView,
     },
     {
@@ -89,12 +96,10 @@ export default function CompanySubscriptions() {
   ]
 
   useEffect(() => {
-    if (onValidate(searchExpr)) {
-      setFetchHookArgs({
-        statusFilter: filterStatus,
-        expr: searchExpr,
-      })
-    }
+    setFetchHookArgs({
+      statusId: filterStatus,
+      expr: searchExpr,
+    })
   }, [filterStatus, searchExpr])
 
   const onValidate = (expr: string) => {

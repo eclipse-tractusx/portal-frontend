@@ -96,7 +96,7 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
           color="secondary"
           size="small"
           onClick={() => {
-            navigate(`/${PAGES.ADMINBOARD}`)
+            navigate(`/${PAGES.APP_ADMIN_BOARD}`)
           }}
         >
           {t('content.adminboardDetail.backToBoard')}

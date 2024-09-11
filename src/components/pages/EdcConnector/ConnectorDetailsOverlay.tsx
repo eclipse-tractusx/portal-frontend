@@ -34,6 +34,7 @@ import {
   type ConnectorDetailsType,
   useUpdateConnectorUrlMutation,
   useFetchConnectorDetailsQuery,
+  useFetchSdDocumentMutation,
 } from 'features/connector/connectorApiSlice'
 import { Box, Divider, Grid } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -41,7 +42,6 @@ import { useEffect, useState } from 'react'
 import { error, success } from 'services/NotifyService'
 import EditIcon from '@mui/icons-material/Edit'
 import Patterns from 'types/Patterns'
-import { useFetchDocumentMutation } from 'features/serviceManagement/apiSlice'
 import { download } from 'utils/downloadUtils'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
@@ -58,7 +58,7 @@ const ConnectorDetailsOverlay = ({
   overlayData,
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
-  const [fetchDocumentById] = useFetchDocumentMutation()
+  const [fetchSDDocument] = useFetchSdDocumentMutation()
   const {
     data: fetchConnectorDetails,
     isFetching,
@@ -130,10 +130,7 @@ const ConnectorDetailsOverlay = ({
   const handleDownloadFn = async (documentId: string, documentName: string) => {
     if (fetchConnectorDetails?.id) {
       try {
-        const response = await fetchDocumentById({
-          appId: fetchConnectorDetails.id,
-          documentId,
-        }).unwrap()
+        const response = await fetchSDDocument(documentId).unwrap()
 
         const fileType = response.headers.get('content-type')
         const file = response.data
@@ -494,8 +491,8 @@ const ConnectorDetailsOverlay = ({
                     null ? (
                       t('content.edcconnector.details.noDocumentAvailable')
                     ) : (
-                      <>
-                        <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                      <Box sx={{ display: 'flex' }}>
+                        <ArticleOutlinedIcon sx={{ color: '#9c9c9c', mr: 1 }} />
                         <button
                           className="document-button-link"
                           onClick={() =>
@@ -510,7 +507,7 @@ const ConnectorDetailsOverlay = ({
                             'content.edcconnector.details.selfDescriptionDocument'
                           )}
                         </button>
-                      </>
+                      </Box>
                     )}
                   </Typography>
                 </Grid>

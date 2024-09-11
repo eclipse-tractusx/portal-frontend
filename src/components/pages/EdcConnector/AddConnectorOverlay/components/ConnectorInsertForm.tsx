@@ -38,6 +38,7 @@ import { Dropzone } from '../../../../shared/basic/Dropzone'
 import { useEffect, useState } from 'react'
 import './EdcComponentStyles.scss'
 import { ConnectorFormFields } from '..'
+import { type ServiceAccountListEntry } from 'features/admin/serviceApiSlice'
 
 export const ConnectorFormInput = ({
   control,
@@ -243,6 +244,7 @@ const ConnectorInsertForm = ({
   errors,
   control,
   trigger,
+  getValues,
   selectedService,
   subscriptions,
   fetchServiceAccountUsers,
@@ -256,6 +258,7 @@ any) => {
   const { t } = useTranslation()
   const [selectedValue, setSelectedValue] = useState<string>()
   const [serviceAccountUsers, setServiceAccountUsers] = useState([])
+  const [selectedTechnicalUser, setSelectedTechnicalUser] = useState('')
 
   useEffect(() => {
     if (fetchServiceAccountUsers)
@@ -263,6 +266,17 @@ any) => {
         fetchServiceAccountUsers?.filter((item: { name: string }) => item.name)
       )
   }, [fetchServiceAccountUsers])
+
+  useEffect(() => {
+    const selectedConnectorTechnicalUser: ServiceAccountListEntry[] =
+      serviceAccountUsers?.filter(
+        (i: { serviceAccountId: string }) =>
+          i.serviceAccountId === getValues().ConnectorTechnicalUser
+      )
+    if (selectedConnectorTechnicalUser.length > 0) {
+      setSelectedTechnicalUser(selectedConnectorTechnicalUser[0]?.name)
+    }
+  }, [serviceAccountUsers])
 
   const handleTechnicalUserSubmit = () => {
     if (
@@ -374,7 +388,7 @@ any) => {
                     'content.edcconnector.modal.insertform.technicalUser.error'
                   ),
                   items: serviceAccountUsers,
-                  defaultSelectValue: {},
+                  defaultSelectValue: selectedTechnicalUser ?? {},
                   keyTitle: 'name',
                 }}
               />

@@ -65,6 +65,7 @@ import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
 import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { PAGES } from 'types/Constants'
 
 type FormDataType = {
   title: string
@@ -458,9 +459,9 @@ export default function OfferCard() {
                           ? getValues().shortDescriptionEN.length
                           : getValues().shortDescriptionDE.length) + '/120'
                       }
-                      patternKey="shortDescriptionEN"
-                      patternEN={Patterns.offerCard.shortDescriptionEN}
-                      patternDE={Patterns.offerCard.shortDescriptionDE}
+                      patternKey="shortDescription"
+                      patternEN={Patterns.offerCard.shortDescription}
+                      patternDE={Patterns.offerCard.shortDescription}
                       isRequired={true}
                       rules={{
                         required:
@@ -471,11 +472,7 @@ export default function OfferCard() {
                         )}`,
                         pattern: `${t(
                           'serviceReleaseForm.validCharactersIncludes'
-                        )} ${
-                          desc === 'shortDescriptionEN'
-                            ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
-                            : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
-                        }`,
+                        )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'}`,
                         maxLength: `${t('serviceReleaseForm.maximum')} 120 ${t(
                           'serviceReleaseForm.charactersAllowed'
                         )}`,
@@ -524,7 +521,7 @@ export default function OfferCard() {
           setServiceCardSnackbar(false)
         }}
         onBackIconClick={() => {
-          navigate('/home')
+          navigate(`/${PAGES.SERVICE_MANAGEMENT}`)
         }}
         // Add an ESLint exception until there is a solution
         // eslint-disable-next-line

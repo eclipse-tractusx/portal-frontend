@@ -50,7 +50,7 @@ export const Patterns = {
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
-    /^\d*?[a-zÀ-ÿ]\d?([a-z0-9À-ÿ!?@&_£$€¥\-.,:;'()*+#%=]\s?){2,40}$/i,
+    /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
   personName: personNamePattern,
   name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
   zipcode: /^[A-Z0-9-]{1,8}$/,
@@ -81,14 +81,10 @@ export const Patterns = {
   offerCard: {
     serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescriptionEN: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
-    shortDescriptionDE: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{10,120}$/,
+    shortDescription: /^.{10,120}$/,
   },
   offerPage: {
-    longDescriptionEN:
-      /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
-    longDescriptionDE:
-      /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
+    longDescription: /^.{10,1999}$/,
   },
   appPage: {
     longDescriptionEN:

@@ -77,6 +77,7 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   roles: ServiceAccountRole[]
   connector: ConnectedObject
   offer: ConnectedObject
+  companyServiceAccountTypeId: companyServiceAccountType
 }
 
 export type AppRoleCreate = {
@@ -98,6 +99,11 @@ export enum ServiceAccountStatusFilter {
   SHOW_ALL = 'show all',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
+}
+
+export enum companyServiceAccountType {
+  MANAGED = 'MANAGED',
+  OWNED = 'OWN',
 }
 
 export const apiSlice = createApi({

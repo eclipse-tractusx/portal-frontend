@@ -39,7 +39,7 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "appAdminBoard": "Admin Board",
     "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicalUserManagement": "Technische Benutzer Verwaltung",
@@ -460,9 +460,38 @@
         "action": "Aktion"
       },
       "filter": {
-        "requested": "angefordert",
+        "pending": "ausstehend",
         "active": "aktiv",
-        "showAll": "zeige alles"
+        "inactive": "inaktiv",
+        "showAll": "Alles anzeigen"
+      }
+    },
+    "companySubscriptionsDetail": {
+      "language": "Verfügbare App Sprachen",
+      "description": "Description",
+      "subscribed": "Gezeichnet",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "howtouse": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+      },
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
+      },
+      "table": {
+        "connector": "Verbinder",
+        "technicalUser": "Technischer Benutzer"
+      },
+      "technicalUser": {
+        "heading": "Technischer Details"
       }
     },
     "appOverview": {
@@ -923,7 +952,9 @@
           "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
-          "permission": "Berechtigungen"
+          "permission": "Berechtigungen",
+          "companyServiceAccountTypeID": "Firmenservicekontotyp",
+          "authenticationType": "Authentifizierungstyp"
         },
         "status": {
           "ACTIVE": "AKTIV",
@@ -1528,7 +1559,34 @@
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
-        "tenantUrlErrorMsg": "Error! Something went wrong"
+        "tenantUrlErrorMsg": "Error! Something went wrong",
+        "externalServices": {
+          "heading": "Details zum externen Dienst",
+          "trustedIssuer": {
+            "label": "Vertrauenswürdiger Aussteller",
+            "description": "Der vertrauenswürdige Aussteller, der für die Ausstellung der Identitätsnachweise verantwortlich ist."
+          },
+          "participantId": {
+            "label": "Teilnehmer-ID",
+            "description": "Die eindeutige Kennung des Teilnehmers im externen System."
+          },
+          "iatpId": {
+            "label": "IATP-ID",
+            "description": "Die eindeutige Kennung des IATP-Programms (Identity and Trust Protocol)."
+          },
+          "didResolver": {
+            "label": "DID-Resolver",
+            "description": "Die URL des DID-Resolvers (Decentralized Identifier), der für die Auflösung der dezentralen Identitäten verwendet wird."
+          },
+          "decentralIdentityManagementAuthUrl": {
+            "label": "Auth-URL für dezentrales Identitätsmanagement",
+            "description": "Die URL des Authentifizierungsendpunkts für das dezentrale Identitätsmanagement."
+          },
+          "decentralIdentityManagementServiceUrl": {
+            "label": "Service-URL für dezentrales Identitätsmanagement",
+            "description": "Die URL des Dienstendpunkts für das dezentrale Identitätsmanagement."
+          }
+        }
       }
     },
     "adminBoard": {
@@ -2236,7 +2294,8 @@
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
-      "changeRoleBtn": "Change Portal Role"
+      "changeRoleBtn": "Change Portal Role",
+      "errorMsg": "Sie sind nicht berechtigt, Ihre eigenen Administrator-Rollen zu ändern. Bitte wenden Sie sich an einen anderen Administrator."
     }
   },
   "global": {
