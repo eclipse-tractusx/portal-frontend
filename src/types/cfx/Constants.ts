@@ -11,8 +11,12 @@ export const MENUS = {
 }
 
 export const HELP_LINK = () => {
+  // TODO: in future we need to replace 323675-portal-marketplace with specific section of this page
   return `https://intercom-help.eu/cofinity-x/${i18next.language}/collections/323675-portal-marketplace`
 }
+
+export const DOCUMENTATION_HELP_LINK = (path: string) =>
+  `https://portal.development.cofinity-x.com/documentation/?path=${path}`
 
 export enum PAGES {
   ROOT = '',

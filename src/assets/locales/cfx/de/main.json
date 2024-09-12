@@ -928,6 +928,7 @@
       },
       "technicalUser": {
         "serviceaccount": "Technischer Benutzer",
+        "tableTechnicalUser": "Technischer User Name",
         "create": "Technischen User anlegen",
         "delete": "Technischen User entfernen",
         "credentialReset": "Credential Reset",
@@ -956,13 +957,13 @@
         "tabs": {
           "active": "Aktiv",
           "inactive": "Inaktiv",
-          "managed": "Gelang es",
-          "owned": "Besessen"
+          "managed": "Verwaltet",
+          "owned": "Eigene"
         },
-        "searchText": "Search by client Id",
-        "technicalUserDetails": {
-          "heading": "Technischer User Details"
-        }
+        "searchText": "Suche nach Client ID"
+      },
+      "technicalUserDetails": {
+        "heading": "Technischer User Details"
       },
       "deleteUserConfirm": {
         "header": "Delete user account",
@@ -1056,18 +1057,18 @@
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
       "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
-      "technicalUserHeadline": "Technischen Nutzer anfragen",
+      "technicalUserHeadline": "Technischen User anlegen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
-      "help": "Help",
+      "help": "Hilfe",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "serviceSubHeading": "Wählen Sie eine der folgenden Rollen aus:",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -1076,7 +1077,8 @@
           "name": "Username",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
-            "description": "Bitte geben Sie eine Beschreibung ein."
+            "description": "Bitte geben Sie eine Beschreibung ein.",
+            "username": "Bitte Benutzernamen angeben"
           }
         }
       }
@@ -2306,7 +2308,7 @@
       "cancel": "Abbrechen",
       "decline": "Decline",
       "confirm": "Bestätigen",
-      "more": "Mehr",
+      "more": "Mehr laden",
       "collapse": "Einklappen",
       "loadmore": "Mehr laden",
       "details": "Details",
