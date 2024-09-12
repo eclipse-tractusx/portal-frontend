@@ -166,13 +166,14 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (fetchArgs) => {
+        const expr = `&name=${fetchArgs.args.expr}`
         if (
           fetchArgs.args.status &&
           fetchArgs.args.status !== CompanySubscriptionFilterType.SHOW_ALL
         ) {
-          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&status=${fetchArgs.args.status}&name=${fetchArgs.args.expr}`
+          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&status=${fetchArgs.args.status}${fetchArgs.args.expr !== '' && expr}`
         } else {
-          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&name=${fetchArgs.args.expr}`
+          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}${fetchArgs.args.expr !== '' && expr}`
         }
       },
     }),
