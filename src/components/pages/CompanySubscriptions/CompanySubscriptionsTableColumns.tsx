@@ -97,6 +97,16 @@ export const CompanySubscriptionsTableColumns = (
     return false
   }
 
+  const getSource = (row: SubscribedActiveApps) => {
+    if (row.image && currentActive === 0)
+      return `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${row.image}`
+    else if (row.image && currentActive === 1)
+      return `${getApiBase()}/api/services/${row.offerId}/serviceDocuments/${
+        row.image
+      }`
+    return LogoGrayData
+  }
+
   return [
     {
       field: 'image',
@@ -107,13 +117,7 @@ export const CompanySubscriptionsTableColumns = (
       disableColumnMenu: true,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
         <Image
-          src={
-            row.image
-              ? `${getApiBase()}/api/${currentActive === 0 ? 'apps' : 'services'}/${row.offerId}/${currentActive === 0 ? 'appDocuments' : 'serviceDocuments'}/${
-                  row.image
-                }`
-              : LogoGrayData
-          }
+          src={getSource(row)}
           loader={fetchImageWithToken}
           style={{
             objectFit: 'cover',
