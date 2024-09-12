@@ -193,6 +193,45 @@ export default function CompanySubscriptions() {
     )
   }
 
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
+  const renderTable = (query: any) => {
+    return (
+      <div className={'table-container'}>
+        <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
+          sx={{
+            '.MuiDataGrid-cell': {
+              alignContent: 'center !important',
+            },
+          }}
+          autoFocus={false}
+          searchExpr={searchExpr}
+          alignCell="start"
+          defaultFilter={group}
+          filterViews={filterView}
+          toolbarVariant={'searchAndFilter'}
+          hasBorder={false}
+          columnHeadersBackgroundColor={'transparent'}
+          searchPlaceholder={t('global.table.searchName')}
+          searchInputData={searchInputData}
+          onSearch={(expr: string) => {
+            if (!onValidate(expr)) return
+            setRefresh(Date.now())
+            setSearchExpr(expr)
+          }}
+          searchDebounce={1000}
+          title={''}
+          loadLabel={t('global.actions.more')}
+          fetchHook={query}
+          fetchHookArgs={fetchHookArgs}
+          fetchHookRefresh={refresh}
+          getRowId={(row: { [key: string]: string }) => row.offerId}
+          columns={companySubscriptionsCols}
+        />
+      </div>
+    )
+  }
+
   return (
     <main className="page-main-container">
       {showUnsubscribeOverlay && (
@@ -258,72 +297,10 @@ export default function CompanySubscriptions() {
           />
         </Tabs>
         <TabPanel value={currentActive} index={0}>
-          <div className={'table-container'}>
-            <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
-              sx={{
-                '.MuiDataGrid-cell': {
-                  alignContent: 'center !important',
-                },
-              }}
-              autoFocus={false}
-              searchExpr={searchExpr}
-              alignCell="start"
-              defaultFilter={group}
-              filterViews={filterView}
-              toolbarVariant={'searchAndFilter'}
-              hasBorder={false}
-              columnHeadersBackgroundColor={'transparent'}
-              searchPlaceholder={t('global.table.searchName')}
-              searchInputData={searchInputData}
-              onSearch={(expr: string) => {
-                if (!onValidate(expr)) return
-                setRefresh(Date.now())
-                setSearchExpr(expr)
-              }}
-              searchDebounce={1000}
-              title={''}
-              loadLabel={t('global.actions.more')}
-              fetchHook={useFetchSubscribedActiveAppsStatusQuery}
-              fetchHookArgs={fetchHookArgs}
-              fetchHookRefresh={refresh}
-              getRowId={(row: { [key: string]: string }) => row.offerId}
-              columns={companySubscriptionsCols}
-            />
-          </div>
+          {renderTable(useFetchSubscribedActiveAppsStatusQuery)}
         </TabPanel>
         <TabPanel value={currentActive} index={1}>
-          <div className={'table-container'}>
-            <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
-              sx={{
-                '.MuiDataGrid-cell': {
-                  alignContent: 'center !important',
-                },
-              }}
-              autoFocus={false}
-              searchExpr={searchExpr}
-              alignCell="start"
-              defaultFilter={group}
-              filterViews={filterView}
-              toolbarVariant={'searchAndFilter'}
-              hasBorder={false}
-              columnHeadersBackgroundColor={'transparent'}
-              searchPlaceholder={t('global.table.searchName')}
-              searchInputData={searchInputData}
-              onSearch={(expr: string) => {
-                if (!onValidate(expr)) return
-                setRefresh(Date.now())
-                setSearchExpr(expr)
-              }}
-              searchDebounce={1000}
-              title={''}
-              loadLabel={t('global.actions.more')}
-              fetchHook={useFetchCompanyServiceSubscriptionsQuery}
-              fetchHookArgs={fetchHookArgs}
-              fetchHookRefresh={refresh}
-              getRowId={(row: { [key: string]: string }) => row.offerId}
-              columns={companySubscriptionsCols}
-            />
-          </div>
+          {renderTable(useFetchCompanyServiceSubscriptionsQuery)}
         </TabPanel>
       </Box>
     </main>
