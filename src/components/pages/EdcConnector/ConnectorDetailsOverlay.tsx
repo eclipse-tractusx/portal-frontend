@@ -43,8 +43,8 @@ import { error, success } from 'services/NotifyService'
 import EditIcon from '@mui/icons-material/Edit'
 import Patterns from 'types/Patterns'
 import { download } from 'utils/downloadUtils'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
@@ -374,7 +374,7 @@ const ConnectorDetailsOverlay = ({
                       setEnableConnectorUrl(false)
                       setEnableUrlApiErrorMsg(false)
                     }}
-                    disabled={!UserService.hasRole(ROLES.MODIFY_CONNECTORS)}
+                    disabled={!userHasPortalRole(ROLES.MODIFY_CONNECTORS)}
                   >
                     <EditIcon
                       sx={{
