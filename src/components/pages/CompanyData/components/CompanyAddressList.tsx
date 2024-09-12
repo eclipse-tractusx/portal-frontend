@@ -45,9 +45,6 @@ import {
   setSharingStateInfo,
 } from 'features/companyData/slice'
 import { statusColorMap } from 'utils/dataMapper'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
-import UploadIcon from '@mui/icons-material/Upload'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export const CompanyAddressList = ({
@@ -197,11 +194,6 @@ export const CompanyAddressList = ({
                 handleSecondButtonClick()
               },
               icon: <AddCircleOutlineIcon />,
-            },
-            {
-              title: t('content.companyData.csvUploadBtn'),
-              click: () => dispatch(show(OVERLAYS.CSV_UPLOAD_OVERLAY)),
-              icon: <UploadIcon />,
             },
           ]}
           autoFocus={false}

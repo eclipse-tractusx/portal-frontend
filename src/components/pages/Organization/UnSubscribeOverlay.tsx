@@ -34,11 +34,11 @@ import {
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
 import './Organization.scss'
+import { type SubscribeTechnicalUserData } from 'features/apps/types'
 import {
-  type SubscribeTechnicalUserData,
-  SubscriptionStatus,
-} from 'features/apps/types'
-import { useFetchSubscriptionServiceQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+  OfferSubscriptionStatus,
+  useFetchSubscriptionServiceQuery,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 interface UnSubscribeOverlayProps {
@@ -151,7 +151,7 @@ const UnSubscribeOverlay = ({
                                 'content.organization.unsubscribe.table.status'
                               ),
                               data?.offerSubscriptionStatus ===
-                              SubscriptionStatus.ACTIVE
+                              OfferSubscriptionStatus.ACTIVE
                                 ? t(
                                     'content.organization.unsubscribe.subscribed'
                                   )

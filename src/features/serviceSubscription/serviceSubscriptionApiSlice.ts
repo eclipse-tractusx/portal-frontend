@@ -23,13 +23,15 @@ import {
   type PaginResult,
 } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import {
-  type SubscribeConnectorData,
-  type SubscribeTechnicalUserData,
+  type Documents,
+  type FetchSubscriptionResponseType,
   type SubscribedActiveApps,
 } from 'features/apps/types'
 import { type ProcessStep } from 'features/appSubscription/appSubscriptionApiSlice'
 import i18next from 'i18next'
+import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export interface SubscriptionRequestType {
@@ -100,12 +102,6 @@ export type SubscriptionDetailResponse = {
   processStepTypeId?: ProcessStep
 }
 
-export enum CompanyServiceSubscriptionFilterType {
-  REQUESTED = 'PENDING',
-  ACTIVE = 'ACTIVE',
-  SHOW_ALL = ' ',
-}
-
 export enum LicenseType {
   COTS = 'COTS',
   FOSS = 'FOSS',
@@ -143,21 +139,15 @@ export interface ServiceDetailsResponse {
   leadPictureId?: string
   isSubscribed: string
   longDescription: string
+  languages: string[]
+  images: string[]
+  privacyPolicies: PrivacyPolicyType[]
+  documents: Documents
 }
 
 export interface SubscriptionServiceRequestType {
   serviceId: string
   subscriptionId: string
-}
-
-export interface SubscriptionServiceResponseType {
-  id: string
-  offerSubscriptionStatus: OfferSubscriptionStatus
-  name: string
-  provider: string
-  contact: string[]
-  technicalUserData: SubscribeTechnicalUserData[]
-  connectorData: SubscribeConnectorData[]
 }
 
 export const apiSlice = createApi({
@@ -194,7 +184,7 @@ export const apiSlice = createApi({
         `/api/services/${body.appId}/subscription/${body.subscriptionId}/provider`,
     }),
     fetchSubscriptionService: builder.query<
-      SubscriptionServiceResponseType,
+      FetchSubscriptionResponseType,
       SubscriptionServiceRequestType
     >({
       query: (obj) =>
@@ -214,9 +204,10 @@ export const apiSlice = createApi({
       PaginFetchArgs
     >({
       query: (body) => {
-        const url = `/api/services/provided/subscription-status?size=15&page=${body.page}`
-        const statusId = body.args.statusFilter
-          ? `&statusId=${body.args.statusFilter}`
+        console.log(body)
+        const url = `/api/services/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const statusId = body.args.statusId
+          ? `&statusId=${body.args.statusId}`
           : ''
         const companyName = body.args.expr
           ? `&companyName=${body.args.expr}`

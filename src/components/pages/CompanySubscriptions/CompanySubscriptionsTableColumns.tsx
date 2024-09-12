@@ -88,19 +88,7 @@ export const CompanySubscriptionsTableColumns = (
   }
 
   const checkStatus = (row: SubscribedActiveApps) => {
-    const length = row.companySubscriptionStatuses?.length ?? 0
-    const activeSubscription = row.companySubscriptionStatuses?.filter(
-      (a) => a.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
-    )
-    return (
-      activeSubscription?.[0]?.offerSubscriptionStatus ??
-      row.companySubscriptionStatuses?.[length - 1]?.offerSubscriptionStatus
-    )
-  }
-
-  const renderServiceStatus = (row: SubscribedActiveApps) => {
-    const status = checkStatus(row)
-    return renderStatus(status ?? '')
+    return row.status
   }
 
   const canShowButton = (row: SubscribedActiveApps) => {
@@ -143,7 +131,7 @@ export const CompanySubscriptionsTableColumns = (
       flex: 3,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
         <Box sx={{ display: 'grid' }}>
-          <Typography variant="body3">{row.offerName}</Typography>
+          <Typography variant="body3">{row.name}</Typography>
           <Typography variant="body3">{row.provider}</Typography>
         </Box>
       ),
@@ -153,7 +141,7 @@ export const CompanySubscriptionsTableColumns = (
       headerName: t('content.companySubscriptions.table.status'),
       flex: 2,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => {
-        return renderServiceStatus(row)
+        return renderStatus(row.status)
       },
     },
     {
@@ -190,20 +178,20 @@ export const CompanySubscriptionsTableColumns = (
       flex: 2,
       disableColumnMenu: true,
       sortable: false,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) =>
-        canShowButton(row) && (
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ textTransform: 'none' }}
-            onClick={(e) => {
-              handleOverlay?.(row, true)
-              e.stopPropagation()
-            }}
-          >
-            {t('content.companySubscriptions.unsubscribe')}
-          </Button>
-        ),
+      renderCell: ({ row }: { row: SubscribedActiveApps }) => (
+        <Button
+          variant="contained"
+          size="small"
+          disabled={!canShowButton(row)}
+          sx={{ textTransform: 'none' }}
+          onClick={(e) => {
+            handleOverlay?.(row, true)
+            e.stopPropagation()
+          }}
+        >
+          {t('content.companySubscriptions.unsubscribe')}
+        </Button>
+      ),
     },
   ]
 }

@@ -84,7 +84,6 @@ export const ConnectorTableColumns = (
             <Tooltips
               additionalStyles={{
                 cursor: 'pointer',
-                marginTop: '30px !important',
               }}
               tooltipPlacement="bottom"
               tooltipText={t(

@@ -37,11 +37,14 @@ import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 import {
   type IdentityProvider,
+  IdpAccountStatus,
   useEnableIDPMutation,
   useFetchIDPListQuery,
   useRemoveIDPMutation,
   IDPCategory,
 } from 'features/admin/idpApiSlice'
+
+type StatusTagColor = 'pending' | 'confirmed' | 'declined' | undefined
 
 const MenuItemOpenOverlay = ({
   overlay,
@@ -126,6 +129,13 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     }
   }
 
+  const statusColorMap: Record<IdpAccountStatus, StatusTagColor> = {
+    [IdpAccountStatus.ACTIVE]: 'confirmed',
+    [IdpAccountStatus.DISABLED]: 'declined',
+    [IdpAccountStatus.OPEN]: 'pending',
+    [IdpAccountStatus.IDP_CREATED]: 'pending',
+  }
+
   const getStatus = (enabled: boolean, clientId: string | undefined) => {
     let status = `${ti('field.status1')}`
     if (enabled && !clientId) {
@@ -135,7 +145,12 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     } else if (enabled && clientId) {
       status = `${ti('field.status4')}`
     }
-    return <StatusTag color="label" label={status} />
+    return (
+      <StatusTag
+        color={statusColorMap[status as IdpAccountStatus]}
+        label={status}
+      />
+    )
   }
 
   const renderMenu = (idp: IdentityProvider) => {

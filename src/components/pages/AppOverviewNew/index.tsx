@@ -28,7 +28,15 @@ import { appToCard } from 'features/apps/mapper'
 
 export default function AppOverviewNew() {
   const { t } = useTranslation()
-  const { data, refetch, isSuccess } = useFetchProvidedAppsQuery()
+  const { data, refetch, isSuccess } = useFetchProvidedAppsQuery({
+    page: 0,
+    args: {
+      expr: '',
+      statusFilter: 'All',
+    },
+  })
+  // apiSlice has since been updated to accept params for pagination.
+  // Temporary solution until this page is completed.
 
   return (
     <main>

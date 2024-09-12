@@ -36,17 +36,19 @@ import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updates'
 import UnSubscribeOverlay from '../Organization/UnSubscribeOverlay'
 import { success } from 'services/NotifyService'
-import { type SubscribedActiveApps } from 'features/apps/types'
+import {
+  CompanySubscriptionFilterType,
+  type SubscribedActiveApps,
+} from 'features/apps/types'
 import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
 import {
-  CompanyServiceSubscriptionFilterType,
   useFetchCompanyServiceSubscriptionsQuery,
   useUnsubscribeServiceMutation,
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
 
 interface FetchHookArgsType {
-  statusFilter: string
+  statusId: string
   expr: string
 }
 
@@ -56,7 +58,9 @@ export default function CompanySubscriptions() {
   const [refresh, setRefresh] = useState(0)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
-  const [filterStatus, setFilterStatus] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState<string>(
+    CompanySubscriptionFilterType.SHOW_ALL
+  )
   const searchInputData = useSelector(updateApplicationRequestSelector)
   const [group, setGroup] = useState<string>(
     t('content.companySubscriptions.filter.showAll')
@@ -87,25 +91,30 @@ export default function CompanySubscriptions() {
 
   const filterView = [
     {
-      buttonText: t('content.companySubscriptions.filter.requested'),
-      buttonValue: CompanyServiceSubscriptionFilterType.REQUESTED,
+      buttonText: t('content.companySubscriptions.filter.pending'),
+      buttonValue: CompanySubscriptionFilterType.PENDING,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.companySubscriptions.filter.active'),
-      buttonValue: CompanyServiceSubscriptionFilterType.ACTIVE,
+      buttonValue: CompanySubscriptionFilterType.ACTIVE,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.companySubscriptions.filter.inactive'),
+      buttonValue: CompanySubscriptionFilterType.INACTIVE,
       onButtonClick: setView,
     },
     {
       buttonText: t('content.companySubscriptions.filter.showAll'),
-      buttonValue: CompanyServiceSubscriptionFilterType.SHOW_ALL,
+      buttonValue: CompanySubscriptionFilterType.SHOW_ALL,
       onButtonClick: setView,
     },
   ]
 
   useEffect(() => {
     setFetchHookArgs({
-      statusFilter: filterStatus,
+      statusId: filterStatus,
       expr: searchExpr,
     })
   }, [filterStatus, searchExpr])
@@ -151,9 +160,7 @@ export default function CompanySubscriptions() {
   const handleOverlay = (row: SubscribedActiveApps, enable: boolean) => {
     setAppId(row.offerId)
     setShowUnsubscribeOverlay(enable)
-    setSubscriptionId(
-      row?.companySubscriptionStatuses?.[0]?.subscriptionId ?? ''
-    )
+    setSubscriptionId(row.subscriptionId)
   }
 
   const companySubscriptionsCols = CompanySubscriptionsTableColumns(
