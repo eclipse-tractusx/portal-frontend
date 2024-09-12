@@ -253,7 +253,7 @@ export const TechnicalUserAddForm = ({
               ),
               label: t('content.addUser.technicalUser.addOverlay.username'),
               helperText: t(
-                'content.addUser.technicalUser.addOverlay.error.description'
+                'content.addUser.technicalUser.addOverlay.error.username'
               ),
             }}
           />

@@ -930,6 +930,7 @@
       },
       "technicalUser": {
         "serviceaccount": "Service Account",
+        "tableTechnicalUser": "Service Account Name",
         "create": "Create Technical User",
         "delete": "Delete this technical User",
         "credentialReset": "Credential Reset",
@@ -961,7 +962,7 @@
           "managed": "Managed",
           "owned": "Owned"
         },
-        "searchText": "Search by client Id"
+        "searchText": "Search by Client ID"
       },
       "technicalUserDetails": {
         "heading": "Technical User Details",
@@ -1040,7 +1041,7 @@
       "companyName": "Company Name",
       "done": "Done",
       "loading": "Loading",
-      "load": "Load",
+      "load": "Load More",
       "selectIpsText": "Select the type of IdP which should get newly created",
       "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
       "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
@@ -1078,7 +1079,8 @@
           "name": "Username",
           "error": {
             "select": "Please select a value.",
-            "description": "Please enter a description."
+            "description": "Please enter a description.",
+            "username": "Please enter a username."
           }
         }
       }
@@ -2274,9 +2276,9 @@
       "cancel": "Cancel",
       "decline": "Decline",
       "confirm": "Confirm",
-      "more": "More",
+      "more": "Load More",
       "collapse": "Collapse",
-      "loadmore": "Load more",
+      "loadmore": "Load More",
       "details": "Details",
       "close": "Close",
       "save": "Save",
