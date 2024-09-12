@@ -167,10 +167,10 @@ export const apiSlice = createApi({
     >({
       query: (fetchArgs) => {
         if (
-          fetchArgs.args.statusId &&
-          fetchArgs.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+          fetchArgs.args.status &&
+          fetchArgs.args.status !== CompanySubscriptionFilterType.SHOW_ALL
         ) {
-          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&statusId=${fetchArgs.args.statusId}`
+          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&status=${fetchArgs.args.status}`
         } else {
           return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`
         }

@@ -19,6 +19,7 @@
   - Removed 'Inactive' filter in technical user management [#1046](https://github.com/eclipse-tractusx/portal-frontend/pull/1046)
 - **Company Subscriptions**
   - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
+  - Update and bind API with filter options and search parameter [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
 
 ### Bugfixes
 

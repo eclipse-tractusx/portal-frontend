@@ -40,7 +40,7 @@ import {
 import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
 
 interface FetchHookArgsType {
-  statusId: string
+  status: string
   expr: string
 }
 
@@ -97,7 +97,7 @@ export default function CompanySubscriptions() {
 
   useEffect(() => {
     setFetchHookArgs({
-      statusId: filterStatus,
+      status: filterStatus,
       expr: searchExpr,
     })
   }, [filterStatus, searchExpr])
