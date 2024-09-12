@@ -22,12 +22,13 @@ import { useParams } from 'react-router-dom'
 import TechnicalUserDetailsContent from './TechnicalUserDetailsContent'
 import { useFetchServiceAccountDetailQuery } from 'features/admin/serviceApiSlice'
 import { Empty } from 'components/shared/basic/Empty'
-import { t } from 'i18next'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { useTranslation } from 'react-i18next'
 
 export default function TechnicalUserDetails() {
   const { userId } = useParams()
   const { data } = useFetchServiceAccountDetailQuery(userId ?? '')
+  const { t } = useTranslation()
   return (
     <main>
       <MainHeader

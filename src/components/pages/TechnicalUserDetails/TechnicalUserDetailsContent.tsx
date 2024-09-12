@@ -130,9 +130,7 @@ export default function TechnicalUserDetailsContent({
       copy: true,
     },
     {
-      key: `${t('content.usermanagement.technicalUser.serviceaccount')} ${t(
-        'global.field.name'
-      )}`,
+      key: t('content.usermanagement.technicalUser.tableTechnicalUser'),
       value: newData.name,
       copy: true,
     },

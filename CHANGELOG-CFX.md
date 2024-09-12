@@ -37,6 +37,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - CHERRY-PICK Fix 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
 
+- **Technical User Management**
+
+  - Fixed UI/Translation issues. [PM2-1145](https://cofinity-x.atlassian.net/browse/PM2-1145)
+
 ## 2.0.0-cfx-1
 
 ## Change

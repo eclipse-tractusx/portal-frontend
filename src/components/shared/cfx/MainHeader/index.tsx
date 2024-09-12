@@ -22,6 +22,7 @@ import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { MainHeaderTitle } from './MainHeaderTitle'
 import { BackButton } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export interface MainHeaderProps {
   title?: string
@@ -86,6 +87,7 @@ export const MainHeader = ({
   backButton,
 }: MainHeaderProps) => {
   const theme = useTheme()
+  const { t } = useTranslation()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
   })
@@ -109,7 +111,7 @@ export const MainHeader = ({
       {backButton === true && (
         <div className="cx-main-header__button">
           <BackButton
-            backButtonLabel="Back"
+            backButtonLabel={t('global.actions.back')}
             backButtonVariant="outlined"
             onBackButtonClick={previousPage}
           />
