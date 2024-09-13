@@ -20,6 +20,7 @@
 - fixed 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
 - **Connector Management**
   - fixed technical user selection
+  - updated inconsistent wording during connector deletion [#1098](https://github.com/eclipse-tractusx/portal-frontend/pull/1098)
 - **IDP management**
   - Fixed IDP management page title & description
 - **Technical User**
