@@ -41,6 +41,8 @@
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+- **Admin Service Management**
+  - Resolved service title overlap and improved responsiveness on the admin service detail page [#1112](https://github.com/eclipse-tractusx/portal-frontend/pull/1112)
 
 ## 2.2.0
 
