@@ -237,37 +237,45 @@ export const CompanyDetails = ({
           {t('osp.companyRole.subTitle')}
         </Typography>
         <div className="rolesList">
-          {allConsentData?.companyRoles.map((role) => (
-            <div
-              className="companyRole-section"
-              key={uniqueId(role.companyRole)}
-            >
-              <div className="role-checkbox-row">
-                <div className="role-checkbox">
-                  <Checkbox
-                    label=""
-                    onChange={() => {
-                      handleCompanyRoleCheck(role.companyRole)
-                    }}
-                    checked={companyRoleChecked?.[role.companyRole]}
-                  />
-                </div>
-                <div className="role-checkbox-text">
-                  <Typography
-                    variant={isMobile ? 'label2' : 'label1'}
-                    className="company-heading"
-                  >
-                    {t(`osp.companyRole.${role.companyRole}`)}
-                  </Typography>
-                  <Typography variant={isMobile ? 'body3' : 'body2'}>
-                    {role.descriptions['en' as keyof typeof role.descriptions]}
-                  </Typography>
-                  {companyRoleChecked?.[role.companyRole] &&
-                    renderTermsSection(role)}
+          {allConsentData?.companyRoles
+            .filter((role) =>
+              consentData?.companyRoles.includes(role.companyRole)
+            )
+            .map((role) => (
+              <div
+                className="companyRole-section"
+                key={uniqueId(role.companyRole)}
+              >
+                <div className="role-checkbox-row">
+                  <div className="role-checkbox">
+                    <Checkbox
+                      label=""
+                      onChange={() => {
+                        handleCompanyRoleCheck(role.companyRole)
+                      }}
+                      checked={companyRoleChecked?.[role.companyRole]}
+                    />
+                  </div>
+                  <div className="role-checkbox-text">
+                    <Typography
+                      variant={isMobile ? 'label2' : 'label1'}
+                      className="company-heading"
+                    >
+                      {t(`osp.companyRole.${role.companyRole}`)}
+                    </Typography>
+                    <Typography variant={isMobile ? 'body3' : 'body2'}>
+                      {
+                        role.descriptions[
+                          'en' as keyof typeof role.descriptions
+                        ]
+                      }
+                    </Typography>
+                    {companyRoleChecked?.[role.companyRole] &&
+                      renderTermsSection(role)}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         {submitError && (
           <Typography variant="body3" className="submitError">
