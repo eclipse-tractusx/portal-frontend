@@ -41,6 +41,9 @@
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+- **App & Service Subcription Managemnt**
+  - Search place holder text updated
+  - Show only available offer names at the top
 
 ## 2.2.0
 
