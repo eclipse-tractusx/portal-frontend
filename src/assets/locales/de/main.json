@@ -464,7 +464,8 @@
         "active": "aktiv",
         "inactive": "inaktiv",
         "showAll": "Alles anzeigen"
-      }
+      },
+      "searchName": "..search by company name here"
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",

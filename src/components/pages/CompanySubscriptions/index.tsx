@@ -212,7 +212,7 @@ export default function CompanySubscriptions() {
           toolbarVariant={'searchAndFilter'}
           hasBorder={false}
           columnHeadersBackgroundColor={'transparent'}
-          searchPlaceholder={t('global.table.searchName')}
+          searchPlaceholder={t('content.companySubscriptions.searchName')}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
             if (!onValidate(expr)) return

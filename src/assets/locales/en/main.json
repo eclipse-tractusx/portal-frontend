@@ -460,7 +460,8 @@
         "active": "active",
         "inactive": "inactive",
         "showAll": "show all"
-      }
+      },
+      "searchName": "..search by company name here"
     },
     "companySubscriptionsDetail": {
       "language": "Language",
