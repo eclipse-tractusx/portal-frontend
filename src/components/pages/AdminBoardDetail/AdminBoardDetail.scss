@@ -17,29 +17,48 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+@import 'src/components/styles/_breakpoints';
+
 .service-admin-board-detail {
-  min-width: 1440px;
+  max-width: 1000px;
+  margin: 60px auto 0;
+  width: calc(100% - 30px);
+
+  @include media-breakpoint-up(minDesktop) {
+    margin-top: 0;
+    width: 100%;
+  }
+
   .service-back {
     height: 140px;
-    padding: 48px 256px 48px 160px;
+    padding: 48px 0px;
+    @include media-breakpoint-up(minDesktop) {
+      margin-left: -75px;
+    }
   }
   .service-content {
-    padding: 0px 256px 0px 256px;
     .divider-height {
       height: 39px;
     }
     .service-board-header {
-      width: 928px;
-      height: 288px;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+
+      @include media-breakpoint-up(lg) {
+        min-width: 928px;
+        height: 288px;
+        gap: 56px;
+      }
+
       .lead-image > img {
         border-radius: 16px;
+        max-width: 100%;
         width: 412px;
-        height: 288px;
       }
       .service-app-content {
-        padding: 68px 0 68px 56px;
         flex: 1;
       }
     }

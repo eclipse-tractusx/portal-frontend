@@ -25,6 +25,7 @@ $breakpoints: (
   lg: 1056px,
   xl: 1312px,
   xxl: 1584px,
+  minDesktop: 1500px,
 );
 
 @mixin media-breakpoint-up($name) {
