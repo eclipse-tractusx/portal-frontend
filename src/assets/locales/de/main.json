@@ -453,8 +453,8 @@
       "technicalUser": "Technischer Benutzer",
       "unsubscribe": "Abbestellen",
       "table": {
-        "appIcon": "App-Symbol",
-        "appTitle": "App-Titel",
+        "appIcon": "Symbol",
+        "appTitle": "Titel",
         "status": "Status",
         "details": "Einzelheiten",
         "action": "Aktion"
