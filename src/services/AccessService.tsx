@@ -72,6 +72,7 @@ import {
   ALL_PAGES,
   footerMenuFull,
 } from 'types/cfx/Config'
+import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }

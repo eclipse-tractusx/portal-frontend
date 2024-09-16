@@ -6,21 +6,21 @@
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
-    "appmarketplace": "App Marktplatz",
-    "servicemarketplace": "Service Marktplatz",
+    "appMarketplace": "App Marktplatz",
+    "serviceMarketplace": "Service Marktplatz",
     "appdetails": "App Detailseite",
-    "datamanagement": "Datenmanagement",
+    "dataManagement": "Datenmanagement",
     "semantichub": "Semantik Hub",
     "connector": "Konnektor",
-    "partnernetwork": "Partner Netzwerk",
+    "partnerNetwork": "Partner Netzwerk",
     "account": "Ihr Account",
     "organization": "Ihr Unternehmen",
     "notifications": "Benachrichtigungen",
-    "usermanagement": "Benutzer Management",
-    "idpmanagement": "Konfiguration Identitätsdienst",
-    "technicalsetup": "Technische Integration",
-    "connectormanagement": "Connector Registrierung",
-    "applicationrequests": "Beitrittsanfragen",
+    "userManagement": "Benutzer Management",
+    "idpManagement": "Konfiguration Identitätsdienst",
+    "technicalSetup": "Technische Integration",
+    "connectorManagement": "Connector Registrierung",
+    "applicationRequests": "Beitrittsanfragen",
     "admin": "Verwaltung",
     "developer": "Entwicklung",
     "invite": "Einladung Business Partner",
@@ -30,51 +30,52 @@
     "imprint": "Impressum",
     "privacy": "Privatsphäre",
     "terms": "Nutzungsbedingungen",
-    "cookiepolicy": "Cookie-Richtlinie",
+    "cookiePolicy": "Cookie-Richtlinie",
     "3rdpartylicenses": "Drittanbieterlizenzen",
     "logout": "Abmelden",
-    "notfound": "Seite nicht gefunden",
-    "appmanagement": "App Management",
-    "appoverview": "Ihre Apps",
+    "notFound": "Seite nicht gefunden",
+    "appManagement": "App Management",
+    "appOverview": "Ihre Apps",
     "deactivate": "Deactivate",
-    "appreleaseprocess": "App-Release Prozess",
-    "appsubscription": "App Abonnements",
+    "appReleaseProcess": "App-Release Prozess",
+    "appSubscription": "App Abonnements",
     "adminboard": "App-Release Anfragen",
-    "appusermanagement": "App Benutzer Verwaltung",
+    "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
-    "technicaluser": "Technischer User Management",
-    "techuserdetails": "Technischer Benutzer Details",
-    "companyroles": "Company Roles",
-    "companyrolesparticipant": "Participant",
-    "companyrolesappprovider": "App Provider",
-    "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconformitybody": "Conformity Body",
-    "companyrolesonboardingserviceprovider": "Onboarding Service Provider",
-    "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity",
-    "servicemanagement": "Service Management",
-    "serviceoverview": "Ihre Services",
-    "servicereleaseprocess": "Service-Release Prozess",
-    "serviceadminboard": "Service-Release Anfragen",
-    "servicesubscription": "Service Abonnements",
-    "servicedetail": "Service Details",
-    "company-role": "Ihre Unternehmensrollen",
-    "usecase-participation": "Use Case Teilnahme",
-    "certificate-credential": "Config - Certificates",
+    "technicalUserManagement": "Technischer User Management",
+    "techUserDetails": "Technischer Benutzer Details",
+    "companyRoles": "Company Roles",
+    "companyRolesParticipant": "Participant",
+    "companyRolesAppProvider": "App Provider",
+    "companyRolesServiceProvider": "Service Provider",
+    "companyRolesConformityBody": "Conformity Body",
+    "companyRolesOnboardingServiceProvider": "Onboarding Service Provider",
+    "useCase": "Use Case",
+    "useCaseTraceablity": "Traceablity",
+    "serviceManagement": "Service Management",
+    "serviceOverview": "Ihre Services",
+    "serviceReleaseProcess": "Service-Release Prozess",
+    "serviceAdminBoard": "Service-Release Anfragen",
+    "serviceSubscription": "Service Abonnements",
+    "serviceDetail": "Service Details",
+    "companyRole": "Ihre Unternehmensrollen",
+    "useCaseParticipation": "Use Case Teilnahme",
+    "certificateCredential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space",
-    "admin-credential": "Credential Requests",
+    "dataSpace": "Data Space",
+    "adminCredential": "Credential Requests",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Firmen-Wallet",
-    "company-subscriptions": "App & Service Abonnements",
+    "companySubscriptions": "App & Service Abonnements",
     "mycompany": "My Company",
     "mynotifications": "Benachrichtigungen",
-    "company_data": "Company Data"
+    "companyData": "Company Data",
+    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
-    "add_user": "Neuen Benutzer hinzufügen",
-    "add_techuser": "Neuen technischen Benutzer hinzufügen",
+    "addUser": "Neuen Benutzer hinzufügen",
+    "addTechuser": "Neuen technischen Benutzer hinzufügen",
     "idp_delete_info_title": "Löschung des Identitätsanbieters.",
     "idp_delete_info_intro": "Bitte beachten Sie, dass alle Benutzer, die nicht auf das neue iDP migriert werden, unwiderruflich gelöscht werden.",
     "idp_delete_success_title": "Identitätsanbieter {{name}} wurde erfolgreich gelöscht.",
@@ -177,7 +178,7 @@
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Beitrittsanfragen",
-        "headersubtitle": "Die Beitrittsanfragen-Übersicht zeigt alle offenen Anfragen und einen Überblick über bestätigte oder abgelehnte Anträge an das Catena-X-Netzwerk. Genehmigte Bewerber erhalten Zugang zum Portal für das Onboarding. Stellen Sie sicher, dass Sie die Details vor der Genehmigung validieren.",
+        "headersubtitle": "Die Beitrittsanfragen-Übersicht enthält alle aktuellen offenen Anfragen sowie eine Übersicht über die bestätigten und abgelehnten Anfragen von Unternehmen an das Catena-X-Netzwerk. Wenn eine Anfrage genehmigt wird, erhält das registrierte Unternehmen Zugang zum CX-Portal, um das technische und funktionale Onboarding zu starten. Bitte vergewissern Sie sich, dass Sie die Anfragendetails überprüfen, bevor Sie eine Anfrage genehmigen.",
         "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
@@ -187,6 +188,7 @@
         "buttonprogress": "in progress",
         "buttonrejected": "rejected",
         "buttoncompleted": "completed",
+        "buttonPartiallyCompleted": "teilweise abgeschlossen",
         "buttonerror": "error",
         "cellconfirmed": "bestätigt",
         "celldeclined": "abgelehnt",
@@ -205,6 +207,7 @@
           "onboardingProvider": "Onboarding Service Anbieter",
           "serviceProvider": "Service Anbieter",
           "noinfo": "no data available",
+          "noRolesAvailable": "Keine Rollen verfügbar",
           "commercialRegisterNumber": "Handelsregisternummer",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
@@ -258,25 +261,25 @@
           "title": "Benutzer Management",
           "subtitle": "Fügen Sie Benutzer Ihres Unternehmens hinzu, vergeben Sie Rechte und verwalten Sie den Zugriff auf abonnierte Anwendungen.",
           "buttonName": "Benutzer verwalten",
-          "navigation": "/usermanagement"
+          "navigation": "/userManagement"
         },
         "slider2": {
           "title": "App Marktplatz",
           "subtitle": "Ihre zentrale Anlaufstelle für sofort einsatzbereite Business-Applikationen. Entdecken Sie Catena-X zertifizierte Anwendungen für effizienten Datenaustausch.",
           "buttonName": "Apps entdecken",
-          "navigation": "/appmarketplace"
+          "navigation": "/appMarketplace"
         },
         "slider3": {
           "title": "Service Marktplatz",
           "subtitle": "Hier finden Sie Beratungsdienstleistungen von qualifizierten Partnern. Erreichen Sie Ihre Geschäftsziele durch fachkundige Beratung rundum Catena-X und Datenaustausch.",
           "buttonName": "Services entdecken",
-          "navigation": "/servicemarketplace"
+          "navigation": "/serviceMarketplace"
         },
         "slider4": {
           "title": "Connector Registrierung",
           "subtitle": "Registrieren Sie Ihren Connector, um vollständig mit dem Datenraum verbunden und für einen effizienten Datenaustausch bereit zu sein.",
           "buttonName": "Connector registrieren",
-          "navigation": "/connectormanagement"
+          "navigation": "/connectorManagement"
         }
       },
       "searchSection": {
@@ -326,7 +329,9 @@
           "behaviortwin": "Behavior Twin"
         },
         "noMatch": "Keine Treffer",
-        "for": "zu Ihrem Suchausdruck"
+        "for": "zu Ihrem Suchausdruck",
+        "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+        "loadFailed": "Laden fehlgeschlagen"
       }
     },
     "semantichub": {
@@ -471,7 +476,7 @@
         "showAll": "Alle anzeigen"
       }
     },
-    "appoverview": {
+    "appOverview": {
       "headerTitle": "Ihre Apps",
       "description": "Registrieren Sie eine neue App und verwalten Sie Ihre aktuellen App-Angebote. Kürzlich geänderte Apps werden oben angezeigt und in der Übersicht unten finden Sie Apps, die bereits veröffentlicht wurden, sowie Angebote, die noch erstellt oder abgelehnt wurden.",
       "title": "App-Übersicht",
@@ -561,7 +566,7 @@
       "deleteIconTooltip": "Mindestens ein Dokument ist obligatorisch. Laden Sie ein neues Dokument hoch, bevor Sie das Bild entfernen können.",
       "uploadButtonTooltip": "Maximale Anzahl zulässiger Dokumente erreicht. Bitte löschen Sie ein Dokument, bevor Sie ein neues hochladen."
     },
-    "appreleaseprocess": {
+    "appReleaseProcess": {
       "message": "App Release Process Message"
     },
     "connector": {
@@ -590,15 +595,15 @@
         "type": "Typ: ",
         "host": "Gastgeber: ",
         "location": "Standort: ",
-        "technicalUser": "Technischer User: ",
+        "technicalUser": "Technischer Benutzer: ",
         "SdRegistration": "SD-Registrierung: ",
         "SdDocument": "SD-Dokument: ",
-        "noTechnicalUserAvailable": "Kein technischer User verfügbar",
+        "noTechnicalUserAvailable": "Kein technischer Benutzer verfügbar",
         "errormessage": "Fehler! Etwas ist schief gelaufen",
-        "wantToDeleteConnector": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
+        "wantToDeleteConnector": "Möchten Sie den Connector wirklich löschen?",
         "connectorDeletedSuccessfully": "Der Connector wurde erfolgreich gelöscht",
         "delete": "Löschen",
-        "configureYourConnectorDetails": "",
+        "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
         "learnMore": "Learn More",
         "noDocumentAvailable": "Kein Dokument verfügbar",
         "selfDescriptionDocument": "Selbstbeschreibungsdokument",
@@ -658,8 +663,8 @@
         "errormessage": "Fehler! Etwas ist schief gelaufen. Der Konnektor wurde nicht angelegt."
       },
       "deletemodal": {
-        "title": "Connector löschen",
-        "description": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
+        "title": "EDC-Connector Löschen",
+        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
         "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist – der technische Benutzer wird ebenfalls sofort inaktiviert, wenn mit dem Löschen fortgefahren wird.",
         "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
         "techDetails": {
@@ -689,7 +694,7 @@
         "connectAlreadyExistingTechnicalUser": "Verbinden Sie einen bereits vorhandenen technischen Benutzer",
         "createNewTechnicalUser": "Erstellen Sie einen neuen technischen Benutzer",
         "createNewTechnicalUserBtn": "Neuen technischen User erstellen",
-        "createNewTechnicalUserDescription": "Erstellen Sie einen neuen technischen User über die Technische User Management Seite oder durch Klick auf den unten stehenden Button. Bitte beachten Sie, dass der Erstellungsprozess des technischen Users bis zu 5 Minuten dauern kann, bevor dieser für die Connector-Registrierung bereit ist.",
+        "createNewTechnicalUserDescription": "Erstellen Sie einen neuen technischen User über die Technische User Management Seite oder durch Klick auf den unten stehenden Button. Bitte beachten Sie, dass der Prozess der Erstellung des technischen Users bis zu 5 Minuten dauern kann, bevor dieser für die Connector-Registrierung bereit ist.",
         "insertform": {
           "name": {
             "label": "Name*",
@@ -767,7 +772,7 @@
       }
     },
     "partnernetwork": {
-      "headertitle": "Partner Netzwerk",
+      "headertitle": "Partnernetzwerk",
       "headerDescription": "Ihre Übersicht Ihrer Partner innerhalb des Catena-X Netzwerks. ",
       "tabletitle": "Geschäftspartnerdaten",
       "columns": {
@@ -947,6 +952,13 @@
           "spoc": "SPOC",
           "permission": "Berechtigungen"
         },
+        "status": {
+          "ACTIVE": "AKTIV",
+          "INACTIVE": "INAKTIV",
+          "PENDING": "AUSSTEHEND",
+          "DELETED": "GELÖSCHT",
+          "PENDING_DELETION": "PENDING_DELETION"
+        },
         "confirmDeleteUser": "Sind Sie sicher, dass Sie user '{{ user }}' löschen möchten?",
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
@@ -955,12 +967,13 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
+          "showAll": "Alle anzeigen",
           "active": "Aktiv",
           "inactive": "Inaktiv",
-          "managed": "Verwaltet",
-          "owned": "Eigene"
+          "managed": "Gelang es",
+          "owned": "Besessen"
         },
-        "searchText": "Suche nach Client ID"
+        "searchText": "Search by client Id"
       },
       "technicalUserDetails": {
         "heading": "Technischer User Details"
@@ -1057,18 +1070,18 @@
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
       "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
-      "technicalUserHeadline": "Technischen User anlegen",
+      "technicalUserHeadline": "Technischen Nutzer anfragen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
-      "help": "Hilfe",
+      "help": "Help",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Wählen Sie eine der folgenden Rollen aus:",
+          "serviceSubHeading": "Select one of the following service roles:",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -1192,7 +1205,7 @@
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
     },
     "appdetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Verfügbare App Sprachen",
       "subscribe": "Abonnieren",
       "subscribed": "Abonniert",
@@ -1453,6 +1466,8 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
+      "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+      "loadFailed": "Laden fehlgeschlagen",
       "newServices": "Neue Services",
       "recommendations": "Recommendations",
       "allServices": "Alle Services",
@@ -1624,7 +1639,7 @@
       }
     },
     "adminboardDetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Language",
       "price": "Price",
       "longDescriptionTitleEN": "Detaillierte App Beschreibung (en)",
@@ -1682,7 +1697,8 @@
         "DONE": "approved",
         "IN_PROGRESS": "in progress",
         "FAILED": "failed",
-        "TO_DO": "to do"
+        "TO_DO": "to do",
+        "SKIPPED": "skipped"
       },
       "buttonApprove": "Approve",
       "buttonConfirm": "Confirm",
@@ -1840,6 +1856,10 @@
         "FAILED": {
           "title": "Ihre Aktion ist erforderlich, um fortzufahren.",
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        },
+        "SKIPPED": {
+          "title": "Von Ihrer Seite sind keine Maßnahmen erforderlich",
+          "description": "Die Erstellung der Selbstbeschreibung wurde absichtlich übersprungen. Dieser Prozess wird vom CX-Operator so bald wie möglich wieder ausgelöst."
         }
       }
     },
@@ -1887,14 +1907,14 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Teilnahme",
+      "headerTitle": "Use Case Participation Overview",
       "headerDescription": "Hier können Sie Ihre Use Case Teilnahme in Catena-X verwalten. Bitte beachten Sie: Die Auswahl der Use Case Teilnahme ist für Data Provider und Data Consumer relevant.",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
-      "step1": "Sie können Ihre aktuelle unterzeichnete Use Case Teilnahme einsehen",
-      "step2": "Sie können weitere Use Cases signieren, indem Sie den Dokument-Download auswählen, das Dokument signieren und dasselbe hochladen",
-      "note": "Bitte beachten Sie: ",
-      "noteDetail": "Der Widerruf der Use Case Teilnahme ist derzeit nicht aktiviert. Wenden Sie sich für Unterstützung bitte an den Plattformbesitzer.",
+      "step1": "You can view your current signed use case participation",
+      "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
+      "note": "Please note: ",
+      "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
       "nodocument": "Kein Dokument vorhanden",
@@ -1929,6 +1949,8 @@
         "companyInfo": "Company Info",
         "certificate": "Zertifikat",
         "document": "Dokumente",
+        "status": "Status",
+        "action": "Aktion",
         "type": {
           "TRACEABILITY_FRAMEWORK": "Traceability",
           "PCF_FRAMEWORK": "PCF Framework",
@@ -2123,8 +2145,21 @@
     },
     "companyData": {
       "label": "Company Data",
+      "csvUploadBtn": "Upload CSV",
       "statusInfo": {
         "title": "Status Information"
+      },
+      "upload": {
+        "title": "Upload CSV",
+        "fileSizeError": "Uploaded file is too big. Maximum 1MB is allowed",
+        "successDescription": "CSV Upload is success. Please close the modal to see updated list",
+        "note": "Note: Please upload only CSV files with maximum 1 MB.",
+        "errorDescription": "CSV Upload failed with the following erros",
+        "templateBtn": "Download CSV Template",
+        "emptyError": "Uploaded CSV is empty. Kindly check and upload again",
+        "copy": "Copy Error to clipboard",
+        "copySuccess": "Error messages copied successfully",
+        "downloadSuccess": "CSV template download successfully"
       },
       "companyInfo": {
         "title": "Company Name",
@@ -2143,7 +2178,9 @@
         "location": "Location",
         "search": "search address / site",
         "noRowsMsg": "No Data yet",
-        "type": "Type"
+        "type": "Type",
+        "status": "Status",
+        "details": "Details"
       },
       "site": {
         "title": "Create new site",
@@ -2192,7 +2229,7 @@
         "editTitle": "Edit Address",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
-          "companySite": {
+          "site": {
             "name": "Select company / site",
             "hint": "Select company / site",
             "error": "Please enter valid company / site"
@@ -2216,6 +2253,16 @@
             "name": "City",
             "hint": "City",
             "error": "Please enter valid City"
+          },
+          "countryIdentifier": {
+            "name": "Country Identifier",
+            "hint": "Country Identifier",
+            "error": "Please enter valid Country Identifier"
+          },
+          "identifierNumber": {
+            "name": "Identifier Number",
+            "hint": "Identifier Number",
+            "error": "Please enter valid Identifier Number"
           }
         }
       },
@@ -2227,13 +2274,44 @@
         "title": "Create {name}",
         "description": "The changes could not be saved. Please try again"
       }
+    },
+    "onboardingServiceProvider": {
+      "headertitle": "Onboarding-Dienstleister-Management",
+      "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "subDesc1": "OSP-Callback konfiguriert",
+      "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
+      "tabletitle1": "OSP-Identitätsanbieter (IDPs)",
+      "tabletitle2": "Kundenübersicht",
+      "userList": "Benutzerliste",
+      "addIdentityProvider": "Identitätsanbieter hinzufügen",
+      "dialogTitle": "IdP-Metadaten konfigurieren",
+      "table": {
+        "customerName": "Kundenname",
+        "status": "Status",
+        "idpName": "IDP-Name",
+        "users": "Anzahl der Benutzer"
+      },
+      "success": "OSP-Rückruf erfolgreich konfiguriert",
+      "callbackUrlError": "Fehler beim Konfigurieren des OSP-Rückrufs",
+      "callbackUrl": {
+        "name": "Rückruf-URL",
+        "hint": "Geben Sie die Rückruf-URL Ihres IDP ein, die mit „/.well-known/openid-configuration“ endet'"
+      },
+      "clientId": {
+        "name": "Kunden-ID",
+        "hint": "Geben Sie die von Ihrem IdP bereitgestellte Client-ID ein"
+      },
+      "clientSecret": {
+        "name": "Client-Geheimnis",
+        "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
+      }
     }
   },
   "navigation": {
     "subNavigation": {
       "buttonLabel": "Technische User Management",
-      "link1Label": "App-Zugriff Management",
-      "link2Label": "Portal Nutzer Management"
+      "link1Label": "Access Management",
+      "link2Label": "Portal User Management"
     }
   },
   "notification": {
@@ -2308,7 +2386,7 @@
       "cancel": "Abbrechen",
       "decline": "Decline",
       "confirm": "Bestätigen",
-      "more": "Mehr laden",
+      "more": "Mehr",
       "collapse": "Einklappen",
       "loadmore": "Mehr laden",
       "details": "Details",
@@ -2374,7 +2452,9 @@
       "additionalDescription": "Bitte wenden Sie sich an Ihren Administrator.",
       "noDocumentsAvailable": "Keine Dokumente vorhanden",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "Keine technischen User vorhanden"
+      "noTechnicalUserProfilesAvailable": "Keine technischen User vorhanden",
+      "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
+      "loadFailed": "Laden fehlgeschlagen"
     },
     "table": {
       "search": "Enter email to search",

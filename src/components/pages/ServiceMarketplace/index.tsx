@@ -41,7 +41,6 @@ import {
   ViewSelector,
   SortOption,
   CircleProgress,
-  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -51,7 +50,9 @@ import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+// import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+
+// TODO: Code missing
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -81,16 +82,12 @@ export default function ServiceMarketplace() {
 
   const indexToSplit = 2 //show only 2 services in recommended
 
-  const { data, error, isError, refetch } = useFetchServicesQuery({
+  const { data } = useFetchServicesQuery({
     page: 0,
     serviceType: serviceTypeId,
     sortingType,
   })
   const services = data?.content
-
-  // To-Do fix the type issue with status and data from FetchBaseQueryError
-  // eslint-disable-next-line
-  const servicesError = error as any
 
   useEffect(() => {
     services && setCardServices(services)
@@ -225,20 +222,7 @@ export default function ServiceMarketplace() {
                 />
               </div>
             </div>
-            {!services ? (
-              <div className="loading-progress">
-                <CircularProgress
-                  size={50}
-                  sx={{
-                    color: theme.palette.primary.main,
-                  }}
-                />
-              </div>
-            ) : (
-              <RecommendedServices
-                services={cardServices?.slice(0, indexToSplit)}
-              />
-            )}
+            {renderServices()}
           </div>
         </div>
       </div>

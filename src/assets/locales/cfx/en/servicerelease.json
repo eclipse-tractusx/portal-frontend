@@ -135,7 +135,7 @@
     "conformityDocumentsDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "documentsDescription": ""
   },
-  "serviceoverview": {
+  "serviceOverview": {
     "headerTitle": "Your Services",
     "headerDescription": "Register a new service and manage your current service offerings. In the overview, you will find services that have already been published as well as offers that are still being created or have been rejected.",
     "inputPlaceholder": "Search for services",

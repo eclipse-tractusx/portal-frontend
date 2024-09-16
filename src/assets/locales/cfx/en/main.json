@@ -6,21 +6,21 @@
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
-    "appmarketplace": "App Marketplace",
-    "servicemarketplace": "Service Marketplace",
+    "appMarketplace": "App Marketplace",
+    "serviceMarketplace": "Service Marketplace",
     "appdetails": "App Details",
-    "datamanagement": "Data Management",
+    "dataManagement": "Data Management",
     "semantichub": "Semantic Hub",
-    "partnernetwork": "Partner Network",
+    "partnerNetwork": "Partner Network",
     "connector": "Connector",
     "account": "Your Account",
     "organization": "Your Company",
     "notifications": "Notifications",
-    "usermanagement": "User Management",
-    "idpmanagement": "Identity Provider Configuration",
-    "technicalsetup": "Technical Integration",
-    "connectormanagement": "Connector Registration",
-    "applicationrequests": "Application Requests",
+    "userManagement": "User Management",
+    "idpManagement": "Identity Provider Configuration",
+    "technicalSetup": "Technical Integration",
+    "connectorManagement": "Connector Registration",
+    "applicationRequests": "Application Requests",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -30,50 +30,51 @@
     "imprint": "Imprint",
     "privacy": "Privacy",
     "terms": "Terms of Service",
-    "cookiepolicy": "Cookie Policy",
+    "cookiePolicy": "Cookie Policy",
     "logout": "Log Out",
-    "notfound": "Page not found",
-    "appmanagement": "App Management",
-    "appoverview": "Your Apps",
+    "notFound": "Page not found",
+    "appManagement": "App Management",
+    "appOverview": "Your Apps",
     "deactivate": "Deactivate",
-    "appreleaseprocess": "App Release Process",
-    "appsubscription": "App Subscriptions",
+    "appReleaseProcess": "App Release Process",
+    "appSubscription": "App Subscriptions",
     "adminboard": "App Request Management",
-    "appusermanagement": "App User Management",
+    "appUserManagement": "App User Management",
     "userdetails": "User Details",
-    "technicaluser": "Technical User Management",
-    "techuserdetails": "Technical User Details",
-    "companyroles": "Company Roles",
-    "companyrolesparticipant": "Participant",
-    "companyrolesappprovider": "App Provider",
-    "companyrolesserviceprovider": "Service Provider",
-    "companyrolesconformitybody": "Conformity Body",
-    "companyrolesonboardingserviceprovider": "Onboarding Service Provider",
-    "usecase": "Use Case",
-    "usecasetraceablity": "Traceablity",
-    "servicemanagement": "Service Management",
-    "serviceoverview": "Your Services",
-    "servicereleaseprocess": "Service Release Process",
-    "serviceadminboard": "Service Request Management",
-    "servicesubscription": "Service Subscriptions",
-    "servicedetail": "Service Details",
-    "company-role": "Company Role Configuration",
-    "usecase-participation": "Use Case Participation",
-    "certificate-credential": "Config - Certificates",
+    "technicalUserManagement": "Technical User Management",
+    "techUserDetails": "Technical User Details",
+    "companyRoles": "Company Roles",
+    "companyRolesParticipant": "Participant",
+    "companyRolesAppProvider": "App Provider",
+    "companyRolesServiceProvider": "Service Provider",
+    "companyRolesConformityBody": "Conformity Body",
+    "companyRolesOnboardingServiceProvider": "Onboarding Service Provider",
+    "useCase": "Use Case",
+    "useCaseTraceablity": "Traceablity",
+    "serviceManagement": "Service Management",
+    "serviceOverview": "Your Services",
+    "serviceReleaseProcess": "Service Release Process",
+    "serviceAdminBoard": "Service Request Management",
+    "serviceSubscription": "Service Subscriptions",
+    "serviceDetail": "Service Details",
+    "companyRole": "Company Role Configuration",
+    "useCaseParticipation": "Use Case Participation",
+    "certificateCredential": "Config - Certificates",
     "about": "About",
-    "dataspace": "Data Space",
-    "admin-credential": "Credential Requests",
+    "dataSpace": "Data Space",
+    "adminCredential": "Credential Requests",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Company Wallet",
-    "company-subscriptions": "App & Service Subscriptions",
+    "companySubscriptions": "App & Service Subscriptions",
     "mycompany": "My Company",
     "mynotifications": "Notifications",
-    "company_data": "Company Data"
+    "companyData": "Company Data",
+    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
-    "add_user": "Add new user",
-    "add_techuser": "Add new technical user",
+    "addUser": "Add new user",
+    "addTechuser": "Add new technical user",
     "idp_delete_info_title": "Deletion of the identity provider.",
     "idp_delete_info_intro": "Please note, all users which are not migrated to the new iDP wii get irreversible deleted.",
     "idp_delete_success_title": "Identity provider {{name}} was successfully deleted.",
@@ -176,7 +177,7 @@
         "enterBpn": "Enter Business Partner Number",
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Application Requests",
-        "headersubtitle": "The application request board displays current requests and an overview of confirmed or declined applications to the Catena-X Network. Approved applicants gain portal access for onboarding. Ensure you validate details before approval.",
+        "headersubtitle": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network. If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "introText1": "The application request board includes all current outstanding application requests as well as an overview of confirmed and declined company applications to the Catena-X Network.",
         "introText2": "If an application is approved, the registration company will receive access to the CX portal to start the technical and functional onboarding. Please make sure that you validate the application request details before approving a request.",
         "tabletitle": "Registration requests",
@@ -186,6 +187,7 @@
         "buttonprogress": "in progress",
         "buttonrejected": "rejected",
         "buttoncompleted": "completed",
+        "buttonPartiallyCompleted": "partially completed",
         "buttonerror": "error",
         "cellconfirmed": "confirmed",
         "celldeclined": "declined",
@@ -204,6 +206,7 @@
           "onboardingProvider": "Onboarding Service Provider",
           "serviceProvider": "Service Provider",
           "noinfo": "no data available",
+          "noRolesAvailable": "No roles available",
           "commercialRegisterNumber": "Commercial Register Number",
           "vatId": "VAT ID",
           "leiCode": "LEI Code",
@@ -257,25 +260,25 @@
           "title": "User Management",
           "subtitle": "Add users to your company account, assign rights, and manage access to subscribed applications.",
           "buttonName": "Manage Users",
-          "navigation": "/usermanagement"
+          "navigation": "/userManagement"
         },
         "slider2": {
           "title": "App Marketplace",
           "subtitle": "Your one-stop shop for interoperable, ready-to-use business applications. Discover Catena-X certified data exchange solutions for key industry use cases.",
           "buttonName": "Explore Applications",
-          "navigation": "/appmarketplace"
+          "navigation": "/appMarketplace"
         },
         "slider3": {
           "title": "Service Marketplace",
           "subtitle": "Explore advisory and consultancy services from trusted partners. Achieve your business goals with strategic insights and expert guidance on Catena-X and data exchange.",
           "buttonName": "Explore Services",
-          "navigation": "/servicemarketplace"
+          "navigation": "/serviceMarketplace"
         },
         "slider4": {
           "title": "Connector Registration",
           "subtitle": "Register your connector – whether it's your own or managed – to be fully connected to the dataspace and ready for efficient data exchange.",
           "buttonName": "Register your Connector",
-          "navigation": "/connectormanagement"
+          "navigation": "/connectorManagement"
         }
       },
       "searchSection": {
@@ -325,7 +328,9 @@
           "behaviortwin": "Behavior Twin"
         },
         "noMatch": "No Match",
-        "for": "for your search term"
+        "for": "for your search term",
+        "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+        "loadFailed": "Load Failed"
       }
     },
     "semantichub": {
@@ -470,7 +475,7 @@
     "datamanagement": {
       "message": "Contents of Data Management"
     },
-    "appoverview": {
+    "appOverview": {
       "headerTitle": "Your Apps",
       "description": "Register a new app and manage your current app offerings. Recently changed apps will show on top and in the overview below, you will find apps that have already been published as well as offers that are still being created or have been rejected.",
       "title": "App Overview",
@@ -560,7 +565,7 @@
       "deleteIconTooltip": "At least one document is mandatory. Upload a new document before being able to remove the image.",
       "uploadButtonTooltip": "Maximum number of allowed documents reached. Please delete one document before uploading a new one."
     },
-    "appreleaseprocess": {
+    "appReleaseProcess": {
       "message": "App Release Process Message"
     },
     "connector": {
@@ -582,7 +587,7 @@
         "connectorUrl": "Connector URL"
       },
       "details": {
-        "heading": "Connector Configuration",
+        "heading": "Configure Connector",
         "name": "Name",
         "url": "URL",
         "status": "Status: ",
@@ -594,10 +599,10 @@
         "SdDocument": "SD Document: ",
         "noTechnicalUserAvailable": "No technical user available",
         "errormessage": "Error! Something went wrong",
-        "wantToDeleteConnector": "Are you sure you want to delete the registered connector? This action cannot be undone.",
+        "wantToDeleteConnector": "Do you really want to delete the connector?",
         "connectorDeletedSuccessfully": "Connector has been deleted successfully",
         "delete": "Delete",
-        "configureYourConnectorDetails": "",
+        "configureYourConnectorDetails": "Configure the connector details",
         "learnMore": "Learn More",
         "noDocumentAvailable": "No Document available",
         "selfDescriptionDocument": "Self Description Document",
@@ -661,7 +666,7 @@
       },
       "deletemodal": {
         "title": "Delete Connector",
-        "description": "Are you sure you want to delete the registered connector? This action cannot be undone.",
+        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
         "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected – the technical user will get inactived immediadetly as well when proceeding with the deletion.",
         "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
         "techDetails": {
@@ -769,7 +774,7 @@
       }
     },
     "partnernetwork": {
-      "headertitle": "Partner Network",
+      "headertitle": "Partners Network",
       "headerDescription": "Your overview of your partners within the Catena-X network.",
       "tabletitle": "Business Partner Data",
       "columns": {
@@ -949,6 +954,13 @@
           "spoc": "SPOC",
           "permission": "Permission"
         },
+        "status": {
+          "ACTIVE": "ACTIVE",
+          "INACTIVE": "INACTIVE",
+          "PENDING": "PENDING",
+          "DELETED": "DELETED",
+          "PENDING_DELETION": "PENDING_DELETION"
+        },
         "confirmDeleteUser": "Are you sure you want to delete technical user {{ user }}?",
         "noteDeleteUser": "Note: The deletion will be permanently. It is not possible the reactive the user again.",
         "confirmDeleteNotificationTitle": "User deletion was successful.",
@@ -957,12 +969,13 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
+          "showAll": "Show All",
           "active": "Active",
           "inactive": "Inactive",
           "managed": "Managed",
           "owned": "Owned"
         },
-        "searchText": "Search by Client ID"
+        "searchText": "Search by client Id"
       },
       "technicalUserDetails": {
         "heading": "Technical User Details",
@@ -1041,7 +1054,7 @@
       "companyName": "Company Name",
       "done": "Done",
       "loading": "Loading",
-      "load": "Load More",
+      "load": "Load",
       "selectIpsText": "Select the type of IdP which should get newly created",
       "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
       "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
@@ -1157,7 +1170,7 @@
       "further": "If you think there should be content please contact your administrator."
     },
     "appdetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Language",
       "subscribe": "Subscribe",
       "subscribed": "Subscribed",
@@ -1419,6 +1432,8 @@
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
+      "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+      "loadFailed": "Load Failed",
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
@@ -1590,7 +1605,7 @@
       }
     },
     "adminboardDetail": {
-      "usecase": "Use Case",
+      "useCase": "Use Case",
       "language": "Language",
       "price": "Price",
       "longDescriptionTitleEN": "Long Description (en) ",
@@ -1648,7 +1663,8 @@
         "DONE": "approved",
         "IN_PROGRESS": "in progress",
         "FAILED": "failed",
-        "TO_DO": "to do"
+        "TO_DO": "to do",
+        "SKIPPED": "skipped"
       },
       "buttonApprove": "Approve",
       "buttonConfirm": "Confirm",
@@ -1806,6 +1822,10 @@
         "FAILED": {
           "title": "Your action is needed.",
           "description": "The self-description creation was unsuccessful. Details regarding the unsuccessful process can get found below. Additionally you can retrigger the endpoint (by resetting the status) or close/reject the company registration."
+        },
+        "SKIPPED": {
+          "title": "No action needed from your side",
+          "description": "The self-description creation was skipped on purpose. This process will be retriggered by the CX Operator as soon as possible."
         }
       }
     },
@@ -1853,14 +1873,14 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation",
+      "headerTitle": "Use Case Participation Overview",
       "headerDescription": "Below you can manage your use case participation in Catena-X. Please note: the selection of the use case participation is relevant for data provider and data consumer.",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
-      "noteDetail": "Use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
       "nodocument": "No document available",
@@ -2004,6 +2024,8 @@
         "companyInfo": "Company Info",
         "certificate": "Certificate",
         "document": "Document",
+        "status": "Status",
+        "action": "Action",
         "type": {
           "TRACEABILITY_FRAMEWORK": "Traceability",
           "PCF_FRAMEWORK": "PCF Framework",
@@ -2089,8 +2111,21 @@
     },
     "companyData": {
       "label": "Company Data",
+      "csvUploadBtn": "Upload CSV",
       "statusInfo": {
         "title": "Status Information"
+      },
+      "upload": {
+        "title": "Upload CSV",
+        "fileSizeError": "Uploaded file is too big. Maximum 1MB is allowed",
+        "successDescription": "CSV Upload is success. Please close the modal to see updated list",
+        "note": "Note: Please upload only CSV files with maximum 1 MB.",
+        "errorDescription": "CSV Upload failed with the following erros",
+        "templateBtn": "Download CSV Template",
+        "emptyError": "Uploaded CSV is empty. Kindly check and upload again",
+        "copy": "Copy Error to clipboard",
+        "copySuccess": "Error messages copied successfully",
+        "downloadSuccess": "CSV template download successfully"
       },
       "companyInfo": {
         "title": "Company Name",
@@ -2109,7 +2144,9 @@
         "location": "Location",
         "search": "search address / site",
         "noRowsMsg": "No Data yet",
-        "type": "Type"
+        "type": "Type",
+        "status": "Status",
+        "details": "Details"
       },
       "site": {
         "title": "Create new site",
@@ -2158,7 +2195,7 @@
         "editTitle": "Edit Address",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
-          "companySite": {
+          "site": {
             "name": "Select company / site",
             "hint": "Select company / site",
             "error": "Please enter valid company / site"
@@ -2182,6 +2219,21 @@
             "name": "City",
             "hint": "City",
             "error": "Please enter valid City"
+          },
+          "countryCode": {
+            "name": "Country Code",
+            "hint": "Country Code",
+            "error": "Please enter valid Country Code"
+          },
+          "countryIdentifier": {
+            "name": "Country Identifier",
+            "hint": "Country Identifier",
+            "error": "Please enter valid Country Identifier"
+          },
+          "identifierNumber": {
+            "name": "Identifier Number",
+            "hint": "Identifier Number",
+            "error": "Please enter valid Identifier Number"
           }
         }
       },
@@ -2192,6 +2244,37 @@
       "error": {
         "title": "Create {name}",
         "description": "The changes could not be saved. Please try again"
+      }
+    },
+    "onboardingServiceProvider": {
+      "headertitle": "Onboarding Service Provider Management",
+      "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "subDesc1": "OSP Callback configured",
+      "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
+      "tabletitle1": "OSP Identity Provider (IDPs)",
+      "tabletitle2": "Customer Overview",
+      "userList": "User List",
+      "addIdentityProvider": "Add Identity Provider",
+      "dialogTitle": "Configure IdP Metadata",
+      "table": {
+        "customerName": "Customer Name",
+        "status": "Status",
+        "idpName": "IDP name",
+        "users": "# of users"
+      },
+      "success": "Successfully configured OSP callback",
+      "callbackUrlError": "Failed configuring OSP callback",
+      "callbackUrl": {
+        "name": "Callback URL",
+        "hint": "Enter the callback URL from your IDP that ends with '/.well-known/openid-configuration'"
+      },
+      "clientId": {
+        "name": "Client ID",
+        "hint": "Enter the client ID provided by your IdP"
+      },
+      "clientSecret": {
+        "name": "Client Secret",
+        "hint": "Enter the client secret provided by your IdP"
       }
     }
   },
@@ -2276,9 +2359,9 @@
       "cancel": "Cancel",
       "decline": "Decline",
       "confirm": "Confirm",
-      "more": "Load More",
+      "more": "More",
       "collapse": "Collapse",
-      "loadmore": "Load More",
+      "loadmore": "Load more",
       "details": "Details",
       "close": "Close",
       "save": "Save",
@@ -2341,7 +2424,9 @@
       "additionalDescription": "Please contact your admin.",
       "noDocumentsAvailable": "No documents available",
       "noRolesAvailable": "No roles available",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "noTechnicalUserProfilesAvailable": "No technical user profiles available",
+      "dataLoadFailed": "Data Load Failed due to missing permission rights.",
+      "loadFailed": "Load Failed"
     },
     "table": {
       "search": "Enter email to search",

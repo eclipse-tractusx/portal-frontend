@@ -46,7 +46,7 @@ export default function TechnicalUserManagement() {
 
   useEffect(() => {
     if (triggerEvent) {
-      dispatch(show(OVERLAYS.ADD_TECHUSER))
+      dispatch(show(OVERLAYS.ADD_TECH_USER))
     }
   }, [triggerEvent])
 
@@ -64,7 +64,8 @@ export default function TechnicalUserManagement() {
             'content.usermanagement.technicalUser.shortDescriptionText'
           )}
           buttonLabel={t('content.usermanagement.technicalUser.create')}
-          buttonAction={() => dispatch(show(OVERLAYS.ADD_TECH_USER))} />
+          buttonAction={() => dispatch(show(OVERLAYS.ADD_TECH_USER))}
+        />
 
         <div className="cx-content-technical__container">
           {notification.title && notification.description && (
