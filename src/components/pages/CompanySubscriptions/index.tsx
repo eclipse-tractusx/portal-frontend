@@ -215,7 +215,7 @@ export default function CompanySubscriptions() {
           searchPlaceholder={t('content.companySubscriptions.searchName')}
           searchInputData={searchInputData}
           onSearch={(expr: string) => {
-            if (!onValidate(expr)) return
+            if (expr !== '' && !onValidate(expr)) return
             setRefresh(Date.now())
             setSearchExpr(expr)
           }}

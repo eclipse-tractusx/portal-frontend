@@ -41,6 +41,7 @@ import {
   type SubscribedActiveApps,
   StatusIdEnum,
   type FetchSubscriptionResponseType,
+  CompanySubscriptionFilterType,
 } from './types'
 import { PAGE_SIZE } from 'types/Constants'
 
@@ -172,9 +173,11 @@ export const apiSlice = createApi({
     >({
       query: (body) => {
         const url = `/api/apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
-        const statusId = body.args.statusId
-          ? `&statusId=${body.args.statusId}`
-          : ''
+        const statusId =
+          body.args.statusId &&
+          body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+            ? `&status=${body.args.statusId}`
+            : ''
         const companyName = body.args.expr
           ? `&companyName=${body.args.expr}`
           : ''
