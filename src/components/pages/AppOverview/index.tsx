@@ -30,6 +30,7 @@ import {
   ErrorBar,
   CircleProgress,
   LoadMoreButton,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { useTheme, Box } from '@mui/material'
 import {

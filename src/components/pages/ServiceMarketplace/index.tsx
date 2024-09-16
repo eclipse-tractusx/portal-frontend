@@ -41,7 +41,6 @@ import {
   ViewSelector,
   SortOption,
   CircleProgress,
-  ErrorBar,
   LoadMoreButton,
 } from '@catena-x/portal-shared-components'
 import {
@@ -55,7 +54,9 @@ import NoItems from '../NoItems'
 import { SORTING_TYPE } from 'features/serviceManagement/types'
 import { serviceTypeMapping } from 'types/Constants'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+// import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+
+// TODO: Code missing
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -96,10 +97,6 @@ export default function ServiceMarketplace() {
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
   const services = data?.content
-
-  // To-Do fix the type issue with status and data from FetchBaseQueryError
-  // eslint-disable-next-line
-  const servicesError = error as any
 
   useEffect(() => {
     if (services)

@@ -39,6 +39,7 @@ import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import AppSubscription from 'components/pages/AppSubscription'
 import ServiceMarketplace from 'components/pages/ServiceMarketplace'
+import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
 import Terms from 'components/pages/Terms'
@@ -47,15 +48,16 @@ import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import { ROLES } from '../Constants'
 import type { IPage } from '../MainTypes'
+import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
 import AdminBoard from 'components/pages/AdminBoard'
+import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
 import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
 import RoleDetails from 'components/pages/RoleDetails'
-import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
 import ServiceSubscription from 'components/pages/ServiceSubscription'
@@ -72,17 +74,22 @@ import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
-
 import CompanyWallet from 'components/pages/CompanyWallet'
+import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
-
 import { MENUS, PAGES } from './Constants'
-import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
-import AppUserManagement from 'components/pages/AppUserManagement'
 import AdminCredential from 'components/pages/AdminCredential'
-import { OSPConsent } from 'components/pages/OSPConsent'
 
+/**
+ * ALL_PAGES
+ *
+ * this is the main application config table. Each entry has at least:
+ * name - name of the page used as application route (without leading '/')
+ * role - role required to access this page on the front end
+ * element - either a JSX Element that renders the page or a custom router setup
+ *           for that page. By default it will create a simple route name -> element
+ */
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
@@ -94,10 +101,6 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.DOCUMENTATION,
     element: <Redirect path="documentation" tab={'documentation'} />,
-  },
-  {
-    name: PAGES.STORYBOOK,
-    element: <Redirect path="_storybook" tab={'storybook'} />,
   },
   {
     name: PAGES.APP_MARKETPLACE,
@@ -180,32 +183,38 @@ export const ALL_PAGES: IPage[] = [
     element: <AppOverview />,
   },
   {
-    name: PAGES.APPOVERVIEW,
+    name: PAGES.APP_OVERVIEW,
     role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverview />,
   },
+  // TODO:
+  // {
+  //   name: PAGES.APP_OVERVIEW_NEW,
+  //   role: ROLES.APPOVERVIEW_VIEW,
+  //   element: <AppOverviewNew />,
+  // },
   {
-    name: PAGES.SERVICEOVERVIEW,
+    name: PAGES.SERVICE_OVERVIEW,
     role: ROLES.SERVICEOVERVIEW_VIEW,
     element: <ServiceOverview />,
   },
   {
-    name: PAGES.APPRELEASEPROCESS,
+    name: PAGES.APP_RELEASE_PROCESS,
     role: ROLES.APPOVERVIEW_VIEW,
     element: <AppReleaseProcess />,
   },
   {
-    name: PAGES.SERVICERELEASEPROCESS,
+    name: PAGES.SERVICE_RELEASE_PROCESS,
     role: ROLES.VIEW_SERVICE_RELEASE,
     element: <ServiceReleaseProcess />,
   },
   {
-    name: PAGES.APPSUBSCRIPTION,
+    name: PAGES.APP_SUBSCRIPTION,
     role: ROLES.APP_MANAGEMENT,
     element: <AppSubscription />,
   },
   {
-    name: PAGES.SERVICESUBSCRIPTION,
+    name: PAGES.SERVICE_SUBSCRIPTION,
     role: ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT,
     element: <ServiceSubscription />,
   },
@@ -215,7 +224,7 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminBoard />,
   },
   {
-    name: PAGES.SERVICEADMINBOARD,
+    name: PAGES.SERVICE_ADMIN_BOARD,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
     element: <ServiceAdminBoard />,
   },
@@ -235,13 +244,13 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.SERVICEADMINBOARD_DETAIL,
+    name: PAGES.SERVICE_ADMIN_BOARD_DETAIL,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.SERVICEADMINBOARD_DETAIL}
-        path={PAGES.SERVICEADMINBOARD_DETAIL}
+        key={PAGES.SERVICE_ADMIN_BOARD_DETAIL}
+        path={PAGES.SERVICE_ADMIN_BOARD_DETAIL}
         element={<ServiceAdminBoardDetail />}
       >
         <Route index element={null} />
@@ -255,8 +264,8 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.APPOVERVIEW_VIEW,
     element: (
       <Route
-        key={`${PAGES.APPRELEASEPROCESS}/form`}
-        path={`${PAGES.APPRELEASEPROCESS}/form`}
+        key={`${PAGES.APP_RELEASE_PROCESS}/form`}
+        path={`${PAGES.APP_RELEASE_PROCESS}/form`}
         element={<AppReleaseProcessForm />}
       />
     ),
@@ -267,8 +276,8 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.VIEW_SERVICE_RELEASE,
     element: (
       <Route
-        key={`${PAGES.SERVICERELEASEPROCESS}/form`}
-        path={`${PAGES.SERVICERELEASEPROCESS}/form`}
+        key={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
+        path={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
         element={<ServiceReleaseProcessForm />}
       />
     ),
@@ -293,18 +302,18 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.TECHUSER_MANAGEMENT,
-    role: ROLES.TECHUSER_VIEW,
+    name: PAGES.TECH_USER_MANAGEMENT,
+    role: ROLES.TECH_USER_VIEW,
     element: <TechnicalUserManagement />,
   },
   {
-    name: PAGES.TECHUSER_DETAILS,
-    role: ROLES.TECHUSER_VIEW,
+    name: PAGES.TECH_USER_DETAILS,
+    role: ROLES.TECH_USER_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.TECHUSER_DETAILS}
-        path={`/${PAGES.TECHUSER_DETAILS}`}
+        key={PAGES.TECH_USER_DETAILS}
+        path={`/${PAGES.TECH_USER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
@@ -318,7 +327,7 @@ export const ALL_PAGES: IPage[] = [
     element: (
       <Route
         key={PAGES.APP_USER_MANAGEMENT}
-        path={`/${PAGES.APP_USER_MANAGEMENT}`}
+        path={PAGES.APP_USER_MANAGEMENT}
         element={<AppUserManagement />}
       >
         <Route path=":appId" element={<AppUserManagement />} />
@@ -348,7 +357,7 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW, // TODO: p: TECHNICAL_SETUP_VIEW
     element: <EdcConnector />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
@@ -367,12 +376,12 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.SERVICEDEACTIVATE,
+    name: PAGES.SERVICE_DEACTIVATE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.SERVICEDEACTIVATE}
-        path={PAGES.SERVICEDEACTIVATE}
+        key={PAGES.SERVICE_DEACTIVATE}
+        path={PAGES.SERVICE_DEACTIVATE}
         element={<ServiceDeactivate />}
       >
         <Route path=":serviceId" element={<ServiceDeactivate />} />
@@ -438,9 +447,9 @@ export const ALL_PAGES: IPage[] = [
       <Route
         key={PAGES.VIEW_DETAILS}
         path={PAGES.VIEW_DETAILS}
-        element={<AppDetail navigate={'appoverview'} />}
+        element={<AppDetail navigate={'appOverview'} />}
       >
-        <Route path=":appId" element={<AppDetail navigate={'appoverview'} />} />
+        <Route path=":appId" element={<AppDetail navigate={'appOverview'} />} />
       </Route>
     ),
   },
@@ -535,17 +544,17 @@ export const mainMenuFullTree = [
       {
         name: MENUS.APP_MANAGEMENT,
         children: [
-          { name: PAGES.APPOVERVIEW }, // App Overview
-          { name: PAGES.APPRELEASEPROCESS },
-          { name: PAGES.APPSUBSCRIPTION },
+          { name: PAGES.APP_OVERVIEW }, // App Overview
+          { name: PAGES.APP_RELEASE_PROCESS },
+          { name: PAGES.APP_SUBSCRIPTION },
         ],
       },
       {
         name: MENUS.SERVICE_MANAGEMENT,
         children: [
-          { name: PAGES.SERVICEOVERVIEW }, // Service Overview
-          { name: PAGES.SERVICERELEASEPROCESS },
-          { name: PAGES.SERVICESUBSCRIPTION },
+          { name: PAGES.SERVICE_OVERVIEW }, // Service Overview
+          { name: PAGES.SERVICE_RELEASE_PROCESS },
+          { name: PAGES.SERVICE_SUBSCRIPTION },
         ],
       },
     ],
@@ -553,7 +562,7 @@ export const mainMenuFullTree = [
   {
     name: MENUS.TECHNICAL_SETUP, // New Section
     children: [
-      { name: PAGES.TECHUSER_MANAGEMENT },
+      { name: PAGES.TECH_USER_MANAGEMENT },
       { name: PAGES.IDP_MANAGEMENT }, // Identity Provide Config
       { name: PAGES.CONNECTOR_MANAGEMENT }, // Connector Management
       { name: PAGES.SEMANTICHUB },
@@ -566,7 +575,7 @@ export const mainMenuFullTree = [
       { name: PAGES.APPLICATION_REQUESTS },
       { name: PAGES.ADMIN_CREDENTIAL },
       { name: PAGES.ADMINBOARD }, // Admin Board -> App Marketplace
-      { name: PAGES.SERVICEADMINBOARD }, // Admin Board -> Service Marketplace
+      { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
     ],
   },
 ]

@@ -78,6 +78,7 @@ import {
 } from './EnvironmentService'
 import { mainMenuFullTree, userMenuFull, ALL_PAGES } from 'types/cfx/Config'
 import { getCompanyRoles } from './CompanyService'
+import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
