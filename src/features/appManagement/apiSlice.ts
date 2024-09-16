@@ -122,6 +122,7 @@ export type updateRoleType = {
 
 export type updateRolePayload = {
   role: string
+  roleId?: string
   descriptions?:
     | {
         languageCode: string

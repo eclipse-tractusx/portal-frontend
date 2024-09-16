@@ -79,7 +79,7 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
           }}
           sx={{ textTransform: 'none' }}
         >
-          {t('pages.idpmanagement')}
+          {t('pages.idpManagement')}
         </Button>
       </DialogActions>
     </>

@@ -313,7 +313,7 @@ export const ProgressVerificationButton = ({
                       sx={{
                         paddingLeft: '15px',
                       }}
-                      variant="h4"
+                      variant="label3"
                     >
                       {' '}
                       {props.label}
@@ -334,7 +334,7 @@ export const ProgressVerificationButton = ({
                 <div
                   style={{
                     textAlign: 'left',
-                    minHeight: '220px',
+                    padding: '0px 0 32px 20px',
                   }}
                 >
                   <Typography
@@ -342,7 +342,7 @@ export const ProgressVerificationButton = ({
                       paddingBottom: '10px',
                       fontWeight: '600',
                     }}
-                    variant="h3"
+                    variant="h5"
                   >
                     {getStepName()}
                   </Typography>
@@ -351,7 +351,7 @@ export const ProgressVerificationButton = ({
                       paddingBottom:
                         getAdditionalText() !== '' ? '30px' : '10px',
                     }}
-                    variant="body2"
+                    variant="caption3"
                   >
                     {getStpeDescription()}
                   </Typography>
@@ -360,7 +360,7 @@ export const ProgressVerificationButton = ({
                       sx={{
                         paddingBottom: '10px',
                       }}
-                      variant="body2"
+                      variant="caption3"
                     >
                       {getAdditionalText()}
                     </Typography>
@@ -376,9 +376,7 @@ export const ProgressVerificationButton = ({
                 <div
                   style={{
                     textAlign: 'left',
-                    marginTop: '30px',
-                    marginBottom: '30px',
-                    minHeight: '100px',
+                    padding: '32px 0 0 20px',
                   }}
                 >
                   <Typography
@@ -386,7 +384,7 @@ export const ProgressVerificationButton = ({
                       paddingBottom: '10px',
                       fontWeight: '600',
                     }}
-                    variant="h6"
+                    variant="h5"
                   >
                     {t('content.checklistOverlay.comments')}
                   </Typography>
@@ -400,7 +398,7 @@ export const ProgressVerificationButton = ({
                       WebkitBoxOrient: 'vertical',
                       height: '70px',
                     }}
-                    variant="body2"
+                    variant="caption3"
                   >
                     {props.details
                       ? props.details
@@ -417,9 +415,7 @@ export const ProgressVerificationButton = ({
                 <div
                   style={{
                     textAlign: 'left',
-                    marginTop: '30px',
-                    marginBottom: '10px',
-                    minHeight: '125px',
+                    padding: '32px 0 0 20px',
                   }}
                 >
                   <Typography
@@ -427,7 +423,7 @@ export const ProgressVerificationButton = ({
                       paddingBottom: '10px',
                       fontWeight: '600',
                     }}
-                    variant="h6"
+                    variant="h5"
                   >
                     {getTitle()}
                   </Typography>
@@ -435,7 +431,7 @@ export const ProgressVerificationButton = ({
                     sx={{
                       paddingBottom: '10px',
                     }}
-                    variant="body2"
+                    variant="caption3"
                   >
                     {getDescription()}
                   </Typography>
@@ -467,9 +463,7 @@ export const ProgressVerificationButton = ({
                 <div
                   style={{
                     display: 'flex',
-                    marginTop: '30px',
-                    marginBottom: '30px',
-                    minHeight: '50px',
+                    padding: '32px 0 0 20px',
                   }}
                 >
                   {props.retriggerableProcessSteps &&

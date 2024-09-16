@@ -19,12 +19,12 @@
 
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { CircularProgress } from '@mui/material'
 import { uniqueId } from 'lodash'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
   Button,
+  CircleProgress,
   LoadingButton,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -85,7 +85,11 @@ export default function DeleteCompany() {
     <>
       {isLoading ? (
         <div className="loading">
-          <CircularProgress size={100} />
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
+            size={100}
+          />
         </div>
       ) : (
         <div

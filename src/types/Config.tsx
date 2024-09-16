@@ -55,7 +55,6 @@ import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
 import type { IAction, IOverlay, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
-import IDPDetail from 'components/pages/IDPDetail'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
@@ -87,6 +86,8 @@ import CompanyCertificates from 'components/pages/CompanyCertificates'
 import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
+import CompanyData from 'components/pages/CompanyData'
+import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
 
 /**
  * ALL_PAGES
@@ -195,7 +196,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.PARTNER_NETWORK_VIEW,
+    role: ROLES.MY_ORGANIZATION_VIEW,
     element: <Organization />,
   },
   {
@@ -214,37 +215,37 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceOverview />,
   },
   {
-    name: PAGES.APPOVERVIEW,
+    name: PAGES.APP_OVERVIEW,
     role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverview />,
   },
   {
-    name: PAGES.APPOVERVIEW_NEW,
+    name: PAGES.APP_OVERVIEW_NEW,
     role: ROLES.APPOVERVIEW_VIEW,
     element: <AppOverviewNew />,
   },
   {
-    name: PAGES.SERVICEOVERVIEW,
+    name: PAGES.SERVICE_OVERVIEW,
     role: ROLES.SERVICEOVERVIEW_VIEW,
     element: <ServiceOverview />,
   },
   {
-    name: PAGES.APPRELEASEPROCESS,
+    name: PAGES.APP_RELEASE_PROCESS,
     role: ROLES.APPOVERVIEW_VIEW,
     element: <AppReleaseProcess />,
   },
   {
-    name: PAGES.SERVICERELEASEPROCESS,
+    name: PAGES.SERVICE_RELEASE_PROCESS,
     role: ROLES.VIEW_SERVICE_RELEASE,
     element: <ServiceReleaseProcess />,
   },
   {
-    name: PAGES.APPSUBSCRIPTION,
+    name: PAGES.APP_SUBSCRIPTION,
     role: ROLES.APP_MANAGEMENT,
     element: <AppSubscription />,
   },
   {
-    name: PAGES.SERVICESUBSCRIPTION,
+    name: PAGES.SERVICE_SUBSCRIPTION,
     role: ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT,
     element: <ServiceSubscription />,
   },
@@ -254,7 +255,7 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminBoard />,
   },
   {
-    name: PAGES.SERVICEADMINBOARD,
+    name: PAGES.SERVICE_ADMIN_BOARD,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
     element: <ServiceAdminBoard />,
   },
@@ -274,13 +275,13 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.SERVICEADMINBOARD_DETAIL,
+    name: PAGES.SERVICE_ADMIN_BOARD_DETAIL,
     role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.SERVICEADMINBOARD_DETAIL}
-        path={PAGES.SERVICEADMINBOARD_DETAIL}
+        key={PAGES.SERVICE_ADMIN_BOARD_DETAIL}
+        path={PAGES.SERVICE_ADMIN_BOARD_DETAIL}
         element={<ServiceAdminBoardDetail />}
       >
         <Route index element={null} />
@@ -294,8 +295,8 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.APPOVERVIEW_VIEW,
     element: (
       <Route
-        key={`${PAGES.APPRELEASEPROCESS}/form`}
-        path={`${PAGES.APPRELEASEPROCESS}/form`}
+        key={`${PAGES.APP_RELEASE_PROCESS}/form`}
+        path={`${PAGES.APP_RELEASE_PROCESS}/form`}
         element={<AppReleaseProcessForm />}
       />
     ),
@@ -306,8 +307,8 @@ export const ALL_PAGES: IPage[] = [
     role: ROLES.VIEW_SERVICE_RELEASE,
     element: (
       <Route
-        key={`${PAGES.SERVICERELEASEPROCESS}/form`}
-        path={`${PAGES.SERVICERELEASEPROCESS}/form`}
+        key={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
+        path={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
         element={<ServiceReleaseProcessForm />}
       />
     ),
@@ -332,18 +333,18 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.TECHUSER_MANAGEMENT,
-    role: ROLES.TECHUSER_VIEW,
+    name: PAGES.TECH_USER_MANAGEMENT,
+    role: ROLES.TECH_USER_VIEW,
     element: <TechnicalUserManagement />,
   },
   {
-    name: PAGES.TECHUSER_DETAILS,
-    role: ROLES.TECHUSER_VIEW,
+    name: PAGES.TECH_USER_DETAILS,
+    role: ROLES.TECH_USER_VIEW,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.TECHUSER_DETAILS}
-        path={`/${PAGES.TECHUSER_DETAILS}`}
+        key={PAGES.TECH_USER_DETAILS}
+        path={`/${PAGES.TECH_USER_DETAILS}`}
         element={<TechnicalUserDetails />}
       >
         <Route path=":userId" element={<TechnicalUserDetails />} />
@@ -370,21 +371,6 @@ export const ALL_PAGES: IPage[] = [
     element: <IDPManagement />,
   },
   {
-    name: PAGES.IDP_DETAIL,
-    role: ROLES.IDP_VIEW,
-    isRoute: true,
-    element: (
-      <Route
-        key={PAGES.IDP_DETAIL}
-        path={`/${PAGES.IDP_DETAIL}`}
-        element={<IDPDetail />}
-      >
-        <Route path=":idpId" element={<IDPDetail />} />
-      </Route>
-    ),
-  },
-
-  {
     name: PAGES.INVITE,
     role: ROLES.INVITE_NEW_PARTNER,
     element: <InviteBusinessPartner />,
@@ -403,13 +389,13 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW,
     element: <EdcConnector />,
   },
   // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
   {
     name: PAGES.TECHNICAL_SETUP,
-    role: ROLES.TECHNICAL_SETUP_VIEW,
+    role: ROLES.CONNECTORS_VIEW,
     element: <Redirect path={PAGES.CONNECTOR_MANAGEMENT} />,
   },
   { name: PAGES.LOGOUT, element: <Logout /> },
@@ -435,12 +421,12 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
-    name: PAGES.SERVICEDEACTIVATE,
+    name: PAGES.SERVICE_DEACTIVATE,
     isRoute: true,
     element: (
       <Route
-        key={PAGES.SERVICEDEACTIVATE}
-        path={PAGES.SERVICEDEACTIVATE}
+        key={PAGES.SERVICE_DEACTIVATE}
+        path={PAGES.SERVICE_DEACTIVATE}
         element={<ServiceDeactivate />}
       >
         <Route path=":serviceId" element={<ServiceDeactivate />} />
@@ -506,9 +492,9 @@ export const ALL_PAGES: IPage[] = [
       <Route
         key={PAGES.VIEW_DETAILS}
         path={PAGES.VIEW_DETAILS}
-        element={<AppDetail navigate={'appoverview'} />}
+        element={<AppDetail navigate={'appOverview'} />}
       >
-        <Route path=":appId" element={<AppDetail navigate={'appoverview'} />} />
+        <Route path=":appId" element={<AppDetail navigate={'appOverview'} />} />
       </Route>
     ),
   },
@@ -552,7 +538,7 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminCredential />,
   },
   {
-    name: PAGES.ONBOARDING_SERVICEPROVIDER,
+    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
     role: ROLES.IDP_VIEW,
     element: <OSPManagement />,
   },
@@ -589,6 +575,15 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  {
+    name: PAGES.COMPANY_DATA,
+    role: ROLES.MY_ORGANIZATION_VIEW,
+    element: <CompanyData />,
+  },
+  {
+    name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+    element: <OnboardingServiceProvider />,
+  },
 ]
 
 export const ALL_OVERLAYS: IOverlay[] = [
@@ -605,12 +600,12 @@ export const ALL_OVERLAYS: IOverlay[] = [
     role: ROLES.USERMANAGEMENT_ADD,
   },
   {
-    name: OVERLAYS.ADD_TECHUSER,
-    role: ROLES.TECHUSER_ADD,
+    name: OVERLAYS.ADD_TECH_USER,
+    role: ROLES.TECH_USER_ADD,
   },
   {
-    name: OVERLAYS.DELETE_TECHUSER,
-    role: ROLES.TECHUSER_DELETE,
+    name: OVERLAYS.DELETE_TECH_USER,
+    role: ROLES.TECH_USER_DELETE,
   },
   {
     name: OVERLAYS.ADD_APP_USER_ROLES,
@@ -731,6 +726,9 @@ export const ALL_OVERLAYS: IOverlay[] = [
   {
     name: OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
   },
+  {
+    name: OVERLAYS.CSV_UPLOAD_OVERLAY,
+  },
 ]
 
 export const ALL_ACTIONS: IAction[] = [
@@ -779,22 +777,22 @@ export const mainMenuFullTree = [
   {
     name: PAGES.APP_MANAGEMENT,
     children: [
-      { name: PAGES.APPOVERVIEW, hint: HINTS.NEW },
-      { name: PAGES.APPRELEASEPROCESS },
-      { name: PAGES.APPSUBSCRIPTION, hint: HINTS.NEW },
+      { name: PAGES.APP_OVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.APP_RELEASE_PROCESS },
+      { name: PAGES.APP_SUBSCRIPTION, hint: HINTS.NEW },
       { name: PAGES.ADMINBOARD, hint: HINTS.NEW },
     ],
   },
   {
     name: PAGES.SERVICE_MANAGEMENT,
     children: [
-      { name: PAGES.SERVICEOVERVIEW, hint: HINTS.NEW },
-      { name: PAGES.SERVICERELEASEPROCESS, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_OVERVIEW, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_RELEASE_PROCESS, hint: HINTS.NEW },
       {
-        name: PAGES.SERVICESUBSCRIPTION,
+        name: PAGES.SERVICE_SUBSCRIPTION,
         hint: HINTS.NEW,
       },
-      { name: PAGES.SERVICEADMINBOARD, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_ADMIN_BOARD, hint: HINTS.NEW },
     ],
   },
 ]
@@ -821,6 +819,8 @@ export const userMenuFull = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
+  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
   PAGES.LOGOUT,
 ]
 
@@ -839,6 +839,7 @@ export const userMenuCompany = [
   PAGES.ADMIN_CREDENTIAL,
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
 ]
 
 /**

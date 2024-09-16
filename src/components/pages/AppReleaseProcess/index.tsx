@@ -72,7 +72,7 @@ export default function AppReleaseProcess() {
   ]
 
   const onStartClick = () => {
-    navigate(`/${PAGES.APPRELEASEPROCESS}/form`)
+    navigate(`/${PAGES.APP_RELEASE_PROCESS}/form`)
     dispatch(setCurrentActiveStep())
     dispatch(setAppId(''))
     dispatch(setAppStatus(initialState.appStatusData))
@@ -80,7 +80,7 @@ export default function AppReleaseProcess() {
 
   const onOverviewButton = () => {
     // Code update based on the current codebase
-    navigate(`/${PAGES.APPOVERVIEW}`)
+    navigate(`/${PAGES.APP_OVERVIEW}`)
   }
 
   const requirements = [

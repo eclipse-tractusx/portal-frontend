@@ -30,7 +30,7 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
   const links = [
     {
       title: t('content.companyWallet.subnavigation.button1'),
-      link: '/usecase-participation',
+      link: '/useCaseParticipation',
     },
   ]
 

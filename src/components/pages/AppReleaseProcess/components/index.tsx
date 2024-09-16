@@ -31,7 +31,7 @@ export default function AppReleaseProcessForm() {
   const dispatch = useDispatch()
 
   const onAppsOverviewClick = () => {
-    navigate('/appoverview')
+    navigate('/appOverview')
     dispatch(setCurrentActiveStep())
   }
 

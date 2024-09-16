@@ -29,6 +29,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
@@ -171,8 +172,23 @@ const ActivateSubscriptionOverlay = ({
               onCloseWithIcon={() => dispatch(closeOverlay())}
             />
             <DialogContent>
-              <StaticTable data={tableData1} horizontal={false} />
-              <StaticTable data={tableData2} horizontal={false} />
+              {loading ? (
+                <div className="loading-progress">
+                  <CircleProgress
+                    size={40}
+                    step={1}
+                    interval={0.1}
+                    colorVariant={'primary'}
+                    variant={'indeterminate'}
+                    thickness={8}
+                  />
+                </div>
+              ) : (
+                <>
+                  <StaticTable data={tableData1} horizontal={false} />
+                  <StaticTable data={tableData2} horizontal={false} />
+                </>
+              )}
             </DialogContent>
             <DialogActions>
               <Button variant="outlined" onClick={closeActivationOverlay}>

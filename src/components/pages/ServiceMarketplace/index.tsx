@@ -26,7 +26,7 @@ import {
   type ChangeEvent,
 } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import debounce from 'lodash.debounce'
 import ServicesElements from './ServicesElements'
 import RecommendedServices from './RecommendedServices'
@@ -40,6 +40,7 @@ import {
   Typography,
   ViewSelector,
   SortOption,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -47,8 +48,11 @@ import {
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import NoItems from '../NoItems'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+// import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+
+// TODO: Code missing
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -163,6 +167,26 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
+  const renderServices = () => {
+    if (services && services.length === 0) return <NoItems />
+    if (!services)
+      return (
+        <div className="loading-progress">
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      )
+    return (
+      <RecommendedServices services={cardServices?.slice(0, indexToSplit)} />
+    )
+  }
+
   return (
     <main className="serviceMarketplace">
       <MainHeader
@@ -178,46 +202,27 @@ export default function ServiceMarketplace() {
             {t('content.serviceMarketplace.newServices')}
           </Typography>
           <div>
-            <SearchAndSortSection>
-              <div className="searchContainer">
-                <SearchInput
-                  placeholder={t(
-                    'content.serviceMarketplace.searchPlaceholder'
-                  )}
-                  value={searchExpr}
-                  autoFocus={false}
-                  onChange={doFilter}
-                />
-              </div>
-              <div className="filterSection" onMouseLeave={setModalFalse}>
-                <ViewSelector activeView={selected} views={filterButtons} />
-                <div className="sortSection">
-                  <SortImage onClick={setModalTrue} selected={showModal} />
-                  <div className="sortSectionOption">
-                    <SortOption
-                      show={showModal}
-                      selectedOption={sortOption}
-                      setSortOption={setSortOptionFn}
-                      sortOptions={sortOptions}
-                    />
-                  </div>
-                </div>
-              </div>
-            </SearchAndSortSection>
-            {!services ? (
-              <div className="loading-progress">
-                <CircularProgress
-                  size={50}
-                  sx={{
-                    color: theme.palette.primary.main,
-                  }}
-                />
-              </div>
-            ) : (
-              <RecommendedServices
-                services={cardServices?.slice(0, indexToSplit)}
+            <div className="searchContainer">
+              <SearchInput
+                placeholder={t('notification.search')}
+                value={searchExpr}
+                autoFocus={false}
+                onChange={doFilter}
               />
-            )}
+            </div>
+            <div className="filterSection" onMouseLeave={setModalFalse}>
+              <ViewSelector activeView={selected} views={filterButtons} />
+              <SortImage onClick={setModalTrue} selected={showModal} />
+              <div className="sortSection">
+                <SortOption
+                  show={showModal}
+                  selectedOption={sortOption}
+                  setSortOption={setSortOptionFn}
+                  sortOptions={sortOptions}
+                />
+              </div>
+            </div>
+            {renderServices()}
           </div>
         </div>
       </div>

@@ -70,6 +70,8 @@ import { apiSlice as deleteCompanyApiSlice } from './deleteCompany/deleteCompany
 import { apiSlice as registrationApiSlice } from './registration/registrationApiSlice'
 import { apiSlice as companyCertificateApiSlice } from './companyCertification/companyCertificateApiSlice'
 import { apiSlice as staticContentApiSlice } from './staticContent/staticContentApiSlice'
+import { apiSlice as companyDataApiSlice } from './companyData/companyDataApiSlice'
+import companyDataSlice from './companyData/slice'
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
@@ -82,6 +84,7 @@ export const reducers = {
   info,
   images,
   dialog: dialog.reducer,
+  companyData: companyDataSlice.reducer,
   management: managementSlice.reducer,
   serviceManagement: serviceManagementSlice.reducer,
   serviceMarketplace: serviceMarketplaceSlice.reducer,
@@ -130,6 +133,7 @@ export const reducers = {
   [registrationApiSlice.reducerPath]: registrationApiSlice.reducer,
   [companyCertificateApiSlice.reducerPath]: companyCertificateApiSlice.reducer,
   [staticContentApiSlice.reducerPath]: staticContentApiSlice.reducer,
+  [companyDataApiSlice.reducerPath]: companyDataApiSlice.reducer,
   [homeSlice.reducerPath]: homeSlice.reducer,
 }
 
@@ -166,7 +170,8 @@ export const store = configureStore({
       .concat(companyCertificateApiSlice.middleware)
       .concat(companyWalletApiSlice.middleware)
       .concat(staticContentApiSlice.middleware)
-      .concat(deleteCompanyApiSlice.middleware),
+      .concat(deleteCompanyApiSlice.middleware)
+      .concat(companyDataApiSlice.middleware),
 })
 
 type RootState = ReturnType<typeof store.getState>

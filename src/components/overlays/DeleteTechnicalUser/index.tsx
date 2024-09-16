@@ -52,7 +52,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     dispatch(closeOverlay())
     dispatch(updateData(UPDATES.TECHUSER_LIST))
     dispatch(setNotification(notification))
-    navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
+    navigate(`/${PAGES.TECH_USER_MANAGEMENT}`)
   }
 
   const deleteUserError = (err: unknown) => {
@@ -65,7 +65,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     }
     dispatch(closeOverlay())
     dispatch(setNotification(notification))
-    navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
+    navigate(`/${PAGES.TECH_USER_MANAGEMENT}`)
   }
 
   const handleRemove = async () => {

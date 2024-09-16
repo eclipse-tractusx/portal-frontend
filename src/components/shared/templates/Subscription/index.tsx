@@ -20,7 +20,7 @@
 
 import { useEffect, useCallback, useMemo, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
 import {
@@ -30,6 +30,7 @@ import {
   SortOption,
   PageSnackbar,
   LoadMoreButton,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import type {
   AppFiltersResponse,
@@ -554,7 +555,9 @@ export default function Subscription({
             )}
             {isFetching ? (
               <div className="loading-progress">
-                <CircularProgress
+                <CircleProgress
+                  variant="indeterminate"
+                  colorVariant="primary"
                   size={50}
                   sx={{
                     color: theme.palette.primary.main,

@@ -61,7 +61,6 @@ import EditUsecase from 'components/overlays/EditUsecase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
 import AddMultipleUser from 'components/overlays/AddMultipleUser'
 import { OSPRegister } from 'components/overlays/OSPRegister'
-import { OSPConsent } from 'components/overlays/OSPConsent'
 import { OSPRegisterNext } from 'components/overlays/OSPRegister/OSPRegisterNext'
 import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDetails'
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
@@ -73,6 +72,7 @@ import {
   ALL_PAGES,
   footerMenuFull,
 } from 'types/cfx/Config'
+import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -138,9 +138,9 @@ export const getOverlay = (overlay: OverlayState) => {
       return <AddMultipleUser />
     case OVERLAYS.USER:
       return <UserInfo id={overlay.id} />
-    case OVERLAYS.ADD_TECHUSER:
+    case OVERLAYS.ADD_TECH_USER:
       return <AddTechnicalUser />
-    case OVERLAYS.DELETE_TECHUSER:
+    case OVERLAYS.DELETE_TECH_USER:
       return <DeleteTechnicalUser id={overlay.id} />
     case OVERLAYS.ADD_APP_USER_ROLES:
       return <AddAppUserRoles />
@@ -180,8 +180,6 @@ export const getOverlay = (overlay: OverlayState) => {
       return <OSPRegister id={overlay.id} />
     case OVERLAYS.REGISTER_NEXT_OSP:
       return <OSPRegisterNext id={overlay.id} />
-    case OVERLAYS.CONSENT_OSP:
-      return <OSPConsent />
     case OVERLAYS.APP_OVERVIEW_CONFIRM:
       return <AppOverViewConfirm id={overlay.id} title={overlay.title} />
     case OVERLAYS.APP_DETAILS_OVERLAY:
@@ -217,6 +215,8 @@ export const getOverlay = (overlay: OverlayState) => {
           title={overlay.title ?? ''}
         />
       )
+    case OVERLAYS.CSV_UPLOAD_OVERLAY:
+      return <CSVUploadOverlay />
     default:
       return <NotFound />
   }

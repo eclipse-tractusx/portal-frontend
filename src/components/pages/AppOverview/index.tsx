@@ -29,8 +29,9 @@ import {
   PageSnackbar,
   ErrorBar,
   LoadMoreButton,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
-import { useTheme, CircularProgress, Box } from '@mui/material'
+import { useTheme, Box } from '@mui/material'
 import {
   appCardStatus,
   appCardRecentlyApps,
@@ -199,22 +200,22 @@ export default function AppOverview() {
 
   const categoryViews = [
     {
-      buttonText: t('content.appoverview.filter.all'),
+      buttonText: t('content.appOverview.filter.all'),
       buttonValue: '',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.active'),
+      buttonText: t('content.appOverview.filter.active'),
       buttonValue: 'active',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.inactive'),
+      buttonText: t('content.appOverview.filter.inactive'),
       buttonValue: 'inactive',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.wip'),
+      buttonText: t('content.appOverview.filter.wip'),
       buttonValue: 'wip',
       onButtonClick: setView,
     },
@@ -252,10 +253,10 @@ export default function AppOverview() {
         <div className="desc-recently">
           <div className="container">
             <Typography variant="h4" className="desc-heading">
-              {t('content.appoverview.recently.header')}
+              {t('content.appOverview.recently.header')}
             </Typography>
             <Typography variant="body2" className="desc-message">
-              {t('content.appoverview.recently.subheader')}
+              {t('content.appOverview.recently.subheader')}
             </Typography>
             <div className="desc-card">
               <Cards
@@ -281,7 +282,7 @@ export default function AppOverview() {
             variant="h3"
             className="section-title"
           >
-            {t('content.appoverview.title')}
+            {t('content.appOverview.title')}
           </Typography>
         </Box>
 
@@ -293,7 +294,7 @@ export default function AppOverview() {
               onChange={(e) => {
                 doSearch(e.target.value)
               }}
-              placeholder={t('content.appoverview.inputPlaceholder')}
+              placeholder={t('content.appOverview.inputPlaceholder')}
             />
 
             <div>
@@ -302,7 +303,9 @@ export default function AppOverview() {
           </SearchAndSortSection>
           {isFetching ? (
             <div style={{ textAlign: 'center' }}>
-              <CircularProgress
+              <CircleProgress
+                variant="indeterminate"
+                colorVariant="primary"
                 size={50}
                 sx={{
                   color: theme.palette.primary.main,

@@ -26,6 +26,7 @@ export type AgreementsData = {
   agreementName: string
   consentStatus: string
   documentId: string
+  mandatory?: boolean
 }
 
 export type CompanyRolesResponse = {

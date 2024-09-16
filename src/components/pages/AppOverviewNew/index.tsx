@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import { ErrorBar, PageHeader } from '@catena-x/portal-shared-components'
 import { type AppMarketplaceApp } from 'features/apps/types'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
@@ -42,12 +41,10 @@ export default function AppOverviewNew() {
   return (
     <main>
       <PageHeader
-        title={t('content.appoverview.headerTitle')}
+        title={t('content.appOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
-      >
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      />
       <section>
         {data && data.content?.length > 0 ? (
           <AppOverviewList

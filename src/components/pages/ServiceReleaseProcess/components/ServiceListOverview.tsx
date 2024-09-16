@@ -28,6 +28,7 @@ import {
   type CardItems,
   PageSnackbar,
   ErrorBar,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { serviceToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
@@ -50,7 +51,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
-import { Box, useTheme, CircularProgress } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { initialState } from 'features/serviceManagement/types'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
@@ -85,14 +86,14 @@ export default function ServiceListOverview() {
 
   const activeSubmenuOptions = [
     {
-      label: t('serviceoverview.sortOptions.deactivate'),
+      label: t('serviceOverview.sortOptions.deactivate'),
       value: ServiceSubMenuItems.DEACTIVATE,
     },
   ]
 
   const inactiveSubmenuOptions = [
     {
-      label: t('serviceoverview.sortOptions.activate'),
+      label: t('serviceOverview.sortOptions.activate'),
       value: ServiceSubMenuItems.ACTIVATE,
       disabled: true,
     },
@@ -130,22 +131,22 @@ export default function ServiceListOverview() {
 
   const statusFilterViews = [
     {
-      buttonText: t('serviceoverview.filter.all'),
+      buttonText: t('serviceOverview.filter.all'),
       buttonValue: StatusIdEnum.All,
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceoverview.filter.active'),
+      buttonText: t('serviceOverview.filter.active'),
       buttonValue: StatusIdEnum.Active,
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceoverview.filter.inactive'),
+      buttonText: t('serviceOverview.filter.inactive'),
       buttonValue: StatusIdEnum.Inactive,
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceoverview.filter.created'),
+      buttonText: t('serviceOverview.filter.created'),
       buttonValue: StatusIdEnum.WIP,
       onButtonClick: setView,
     },
@@ -189,7 +190,7 @@ export default function ServiceListOverview() {
   }
 
   const onNewServiceCardClick = () => {
-    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+    navigate(`/${PAGES.SERVICE_RELEASE_PROCESS}/form`)
     dispatch(setServiceId(''))
     dispatch(setServiceReleaseActiveStep())
     dispatch(setServiceStatus(initialState.serviceStatusData))
@@ -198,8 +199,8 @@ export default function ServiceListOverview() {
   return (
     <main className="service-list-overview">
       <MainHeader
-        title={t('serviceoverview.headerTitle')}
-        subTitle={t('serviceoverview.headerDescription')}
+        title={t('serviceOverview.headerTitle')}
+        subTitle={t('serviceOverview.headerDescription')}
         headerHeight={250}
         subTitleWidth={750}
       />
@@ -214,7 +215,7 @@ export default function ServiceListOverview() {
                 onChange={(e) => {
                   onSearch(e.target.value)
                 }}
-                placeholder={t('serviceoverview.inputPlaceholder')}
+                placeholder={t('serviceOverview.inputPlaceholder')}
               />
             </Box>
             <ViewSelector
@@ -228,7 +229,9 @@ export default function ServiceListOverview() {
       <section>
         {isFetching ? (
           <div style={{ textAlign: 'center' }}>
-            <CircularProgress
+            <CircleProgress
+              variant="indeterminate"
+              colorVariant="primary"
               size={50}
               sx={{
                 color: theme.palette.primary.main,
@@ -257,7 +260,7 @@ export default function ServiceListOverview() {
                     imageSize={'small'}
                     imageLoader={fetchImageWithToken}
                     showAddNewCard={false}
-                    newButtonText={t('serviceoverview.addbtn')}
+                    newButtonText={t('serviceOverview.addbtn')}
                     onNewCardButton={onNewServiceCardClick}
                     onCardClick={(item: CardItems) => {
                       // TODO: workaround - fix CardItems type
@@ -267,7 +270,7 @@ export default function ServiceListOverview() {
                         cardItem.status === ProvidedServiceStatusEnum.CREATED
                       ) {
                         dispatch(setServiceId(item.id ?? ''))
-                        navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+                        navigate(`/${PAGES.SERVICE_RELEASE_PROCESS}/form`)
                       } else {
                         navigate(`/${PAGES.SERVICE_DETAIL}/${item.id}`)
                       }
@@ -280,12 +283,12 @@ export default function ServiceListOverview() {
                       id: string | undefined
                     ) => {
                       sortMenu === ServiceSubMenuItems.DEACTIVATE &&
-                        navigate(`/${PAGES.SERVICEDEACTIVATE}/${id}`, {
+                        navigate(`/${PAGES.SERVICE_DEACTIVATE}/${id}`, {
                           state: items,
                         })
                       return undefined
                     }}
-                    tooltipText={t('serviceoverview.submenuNotAvailable')}
+                    tooltipText={t('serviceOverview.submenuNotAvailable')}
                   />
                 </div>
               ) : (
@@ -317,8 +320,8 @@ export default function ServiceListOverview() {
           }
           description={
             state === ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS
-              ? t('serviceoverview.serviceDeactivate.successMsg')
-              : t('serviceoverview.serviceDeactivate.errorMsg')
+              ? t('serviceOverview.serviceDeactivate.successMsg')
+              : t('serviceOverview.serviceDeactivate.errorMsg')
           }
           showIcon={true}
           autoClose={true}

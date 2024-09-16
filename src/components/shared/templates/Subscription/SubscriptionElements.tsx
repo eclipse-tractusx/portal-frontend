@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   Typography,
@@ -27,6 +27,7 @@ import {
   Tooltips,
   Chip,
   ErrorBar,
+  CircleProgress,
 } from '@catena-x/portal-shared-components'
 import {
   type CompanySubscriptionData,
@@ -297,7 +298,9 @@ export default function SubscriptionElements({
         </ul>
       ) : (
         <div className="loading-progress">
-          <CircularProgress
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
             size={50}
             sx={{
               color: theme.palette.primary.main,

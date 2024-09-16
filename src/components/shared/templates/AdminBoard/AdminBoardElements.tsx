@@ -20,11 +20,12 @@
 
 import {
   CardDecision,
+  CircleProgress,
   ErrorBar,
   PageSnackbar,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTheme, CircularProgress } from '@mui/material'
+import { useTheme } from '@mui/material'
 import { show } from 'features/control/overlay'
 import './AdminBoard.scss'
 import {
@@ -93,7 +94,7 @@ export default function AdminBoardElements({
 
   const handleApprove = async (appId: string) => {
     setActionApprove(true)
-    if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+    if (type === PAGES.SERVICE_ADMIN_BOARD_DETAIL) {
       await approveServiceRequest(appId)
         .unwrap()
         .then(() => {
@@ -140,7 +141,7 @@ export default function AdminBoardElements({
           items={apps}
           onDelete={(appId: string) => {
             setActionApprove(false)
-            if (type === PAGES.SERVICEADMINBOARD_DETAIL) {
+            if (type === PAGES.SERVICE_ADMIN_BOARD_DETAIL) {
               dispatch(show(OVERLAYS.SERVICE_DECLINE_ADMINBOARD, appId))
             } else {
               dispatch(show(OVERLAYS.APP_DECLINE_ADMINBOARD, appId))
@@ -151,7 +152,9 @@ export default function AdminBoardElements({
         />
       ) : (
         <div className="loading-progress">
-          <CircularProgress
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
             size={50}
             sx={{
               color: theme.palette.primary.main,

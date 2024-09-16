@@ -37,7 +37,6 @@ export default function SubHeaderTitle({
   return (
     <Typography
       sx={{ fontFamily: 'LibreFranklin-Light' }}
-      // @ts-expect-error upgraded typescript version
       variant={variant}
       className="section-title"
     >

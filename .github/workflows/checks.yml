@@ -31,10 +31,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Setup Node
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
@@ -42,7 +42,10 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: linter checks
+      - name: Prettier Checks
+        run: yarn pretty:check
+
+      - name: Linter checks
         run: yarn lint
 
       - name: Unit Tests

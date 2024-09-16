@@ -64,14 +64,14 @@ export default function ServiceReleaseProcess() {
   ]
 
   const onStartServiceClick = () => {
-    navigate(`/${PAGES.SERVICERELEASEPROCESS}/form`)
+    navigate(`/${PAGES.SERVICE_RELEASE_PROCESS}/form`)
     dispatch(setServiceReleaseActiveStep())
     dispatch(setServiceId(''))
     dispatch(setServiceStatus(initialState.serviceStatusData))
   }
 
   const onOverviewServiceButton = () => {
-    navigate('/serviceoverview')
+    navigate('/serviceOverview')
   }
 
   const requeredButtons = [

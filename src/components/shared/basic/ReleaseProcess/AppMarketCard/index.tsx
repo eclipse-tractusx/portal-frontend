@@ -834,7 +834,7 @@ export default function AppMarketCard() {
           setAppCardSnackbar(false)
         }}
         onBackIconClick={() => {
-          navigate('/appmanagement')
+          navigate('/appManagement')
         }}
         // Add an ESLint exception until there is a solution
         // eslint-disable-next-line

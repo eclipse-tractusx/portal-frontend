@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@mui/material'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function HeaderSection() {

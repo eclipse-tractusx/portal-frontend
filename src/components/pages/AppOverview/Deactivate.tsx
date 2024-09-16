@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   Typography,
   PageHeader,
@@ -54,12 +53,12 @@ export default function Deactivate() {
     await deactivateApp(app[0].id)
       .unwrap()
       .then(() => {
-        navigate('/appoverview', {
+        navigate('/appOverview', {
           state: 'deactivate-success',
         })
       })
       .catch(() => {
-        navigate('/appoverview', {
+        navigate('/appOverview', {
           state: 'deactivate-error',
         })
       })
@@ -67,9 +66,7 @@ export default function Deactivate() {
 
   return (
     <main className="deactivate-main">
-      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeader title={app?.[0]?.title} topPage={true} headerHeight={200} />
       <section>
         <Typography variant="body2" mb={3} align="center">
           {app?.[0]?.title}
@@ -124,7 +121,7 @@ export default function Deactivate() {
             color="secondary"
             size="small"
             onClick={() => {
-              navigate('/appoverview')
+              navigate('/appOverview')
             }}
           >
             {t('global.actions.cancel')}

@@ -35,7 +35,7 @@ import Box from '@mui/material/Box'
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
-  handleConfirmClick: React.MouseEventHandler
+  handleConfirmClick: (status: boolean) => void
   loading?: boolean
   techUser?: {
     id: string
@@ -138,9 +138,8 @@ const DeleteConfirmationOverlay = ({
           {!loading && (
             <Button
               variant="outlined"
-              disabled={techUser ? !checkBoxSelected : false}
-              onClick={(e) => {
-                handleConfirmClick(e)
+              onClick={() => {
+                handleConfirmClick(checkBoxSelected)
               }}
             >
               {t('content.edcconnector.details.delete')}

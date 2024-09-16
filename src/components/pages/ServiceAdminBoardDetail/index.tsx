@@ -122,7 +122,7 @@ export default function ServiceAdminBoardDetail() {
           color="secondary"
           size="small"
           onClick={() => {
-            navigate(`/${PAGES.SERVICEADMINBOARD}`)
+            navigate(`/${PAGES.SERVICE_ADMIN_BOARD}`)
           }}
         >
           {t('adminboardDetail.action.back')}
@@ -284,7 +284,7 @@ export default function ServiceAdminBoardDetail() {
             color="secondary"
             size="small"
             onClick={() => {
-              navigate('/serviceadminboard')
+              navigate('/serviceAdminBoard')
             }}
           >
             {t('adminboardDetail.backToBoard')}

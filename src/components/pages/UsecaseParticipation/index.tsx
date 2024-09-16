@@ -21,10 +21,11 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
-import { CircularProgress, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import dayjs from 'dayjs'
 import {
   Chip,
+  CircleProgress,
   CustomAccordion,
   StatusTag,
   Tooltips,
@@ -174,11 +175,13 @@ export default function UsecaseParticipation() {
               {t('content.usecaseParticipation.noteDetail')}
             </Typography>
           </div>
-          <div className="usecase-list-main">
+          <div className="useCase-list-main">
             <ul>
               {isLoading ? (
                 <div className="progress-main">
-                  <CircularProgress
+                  <CircleProgress
+                    variant="indeterminate"
+                    colorVariant="primary"
                     size={35}
                     sx={{
                       color: theme.palette.primary.main,
@@ -190,14 +193,14 @@ export default function UsecaseParticipation() {
               ) : (
                 data?.map((item) => {
                   return (
-                    <div className="usecase-list" key={uniqueId(item.useCase)}>
-                      <li className="usecase-list-item">
-                        <div className="usecase-detail">
+                    <div className="useCase-list" key={uniqueId(item.useCase)}>
+                      <li className="useCase-list-item">
+                        <div className="useCase-detail">
                           <PixIcon />
                           <div>
                             <Typography
                               variant="body1"
-                              className="usecase-title"
+                              className="useCase-title"
                             >
                               {item.useCase}
                             </Typography>

@@ -68,7 +68,7 @@ export default function Main() {
   }, [dispatch, searchParams])
 
   if (location.pathname === `/${PAGES.REGISTRATION}`)
-    return <Redirect path="registration" />
+    return <Redirect path={PAGES.REGISTRATION} />
 
   if (
     companyData &&
@@ -80,13 +80,17 @@ export default function Main() {
       ApplicationStatus.UPLOAD_DOCUMENTS,
       ApplicationStatus.VERIFY,
     ].includes(companyData.applicationStatus) &&
-    !location.search.includes('overlay=consent_osp')
+    location.pathname !== `/${PAGES.CONSENT_OSP}`
   ) {
     return (
       <>
         <Header main={[]} user={AccessService.userMenuReg()} />
         <MainSearchOverlay />
-        {location.pathname === '/logout' ? <Logout /> : renderSection()}
+        {location.pathname === `/${PAGES.LOGOUT}` ? (
+          <Logout />
+        ) : (
+          renderSection()
+        )}
         <Footer pages={AccessService.footerMenu()} />
         <MenuInfo main={[]} />
       </>

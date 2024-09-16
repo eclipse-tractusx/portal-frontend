@@ -21,11 +21,13 @@
 import {
   IconButton,
   PageLoadingTable,
+  StatusTag,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   type ServiceAccountListEntry,
+  ServiceAccountStatus,
   ServiceAccountStatusFilter,
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'
@@ -40,6 +42,7 @@ interface FetchHookArgsType {
   statusFilter: string
   expr: string
 }
+type StatusTagColor = 'pending' | 'confirmed' | 'label' | undefined
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
@@ -48,7 +51,9 @@ export const TechnicalUserTable = () => {
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ACTIVE)
+  const [group, setGroup] = useState<string>(
+    ServiceAccountStatusFilter.SHOW_ALL
+  )
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
@@ -68,13 +73,8 @@ export const TechnicalUserTable = () => {
 
   const filterButtons = [
     {
-      buttonText: t('content.usermanagement.technicalUser.tabs.active'),
-      buttonValue: ServiceAccountStatusFilter.ACTIVE,
-      onButtonClick: setView,
-    },
-    {
-      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
-      buttonValue: ServiceAccountStatusFilter.INACTIVE,
+      buttonText: t('content.usermanagement.technicalUser.tabs.showAll'),
+      buttonValue: ServiceAccountStatusFilter.SHOW_ALL,
       onButtonClick: setView,
     },
     {
@@ -88,6 +88,12 @@ export const TechnicalUserTable = () => {
       onButtonClick: setView,
     },
   ]
+
+  const statusColorMap: Record<ServiceAccountStatus, StatusTagColor> = {
+    [ServiceAccountStatus.ACTIVE]: 'confirmed',
+    [ServiceAccountStatus.PENDING]: 'pending',
+    [ServiceAccountStatus.PENDING_DELETION]: 'pending',
+  }
 
   return (
     <div style={{ paddingTop: '30px' }}>
@@ -126,7 +132,7 @@ export const TechnicalUserTable = () => {
           {
             field: 'serviceAccountType',
             headerName: t('global.field.type'),
-            flex: 1,
+            flex: 1.2,
           },
           {
             field: 'offer',
@@ -138,9 +144,22 @@ export const TechnicalUserTable = () => {
           {
             field: 'isOwner',
             headerName: t('global.field.owner'),
-            flex: 1,
+            flex: 0.8,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.isOwner ? 'Yes' : 'No',
+          },
+          {
+            field: 'status',
+            headerName: t('global.field.status'),
+            flex: 1.2,
+            renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
+              <StatusTag
+                color={statusColorMap[row.status]}
+                label={t(
+                  `content.usermanagement.technicalUser.status.${row.status}`
+                )}
+              />
+            ),
           },
           {
             field: 'details',
@@ -155,7 +174,7 @@ export const TechnicalUserTable = () => {
                     //dispatch(show(OVERLAYS.TECHUSER, row.serviceAccountId))
                     {
                       navigate(
-                        `/${PAGES.TECHUSER_DETAILS}/${row.serviceAccountId}`
+                        `/${PAGES.TECH_USER_DETAILS}/${row.serviceAccountId}`
                       )
                     }
                   }

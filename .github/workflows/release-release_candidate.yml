@@ -28,12 +28,12 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "portal-frontend"
-  REF_NAME: "${{ github.ref_name }}"
+  IMAGE_NAMESPACE: 'tractusx'
+  IMAGE_NAME: 'portal-frontend'
+  REF_NAME: '${{ github.ref_name }}'
   # variables needed for scripts/legal-notice.sh
-  SERVER_URL: "${{ github.server_url }}"
-  REPOSITORY: "${{ github.repository }}"
+  SERVER_URL: '${{ github.server_url }}'
+  REPOSITORY: '${{ github.repository }}'
 
 jobs:
   build-and-push-release:
@@ -43,10 +43,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Setup Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
@@ -86,11 +86,11 @@ jobs:
         run: yarn test:ci
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
+        uses: docker/setup-buildx-action@988b5a0280414f521da01fcc63a27aeeb4b104db # v3.6.1
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
@@ -99,9 +99,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
-          images: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-           # Automatically prepare image tags;
-           # semver patter will generate tags like these for example :v1 :v1.2 v1.2.3
+          images:
+            ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+            # Automatically prepare image tags;
+            # semver patter will generate tags like these for example :v1 :v1.2 v1.2.3
           tags: |
             type=raw,value=latest
             type=raw,value=${{ env.REF_NAME }}
@@ -110,7 +111,7 @@ jobs:
             type=semver,pattern=v{{major}}.{{minor}}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        uses: docker/build-push-action@16ebe778df0e7752d2cfcbd924afdbbd89c1a755 # v6.6.1
         with:
           context: .
           file: .conf/Dockerfile.prebuilt
@@ -127,7 +128,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          readme-filepath: ".conf/docker-notice-portal.md"
+          readme-filepath: '.conf/docker-notice-portal.md'
 
   auth-and-dispatch:
     needs: build-and-push-release

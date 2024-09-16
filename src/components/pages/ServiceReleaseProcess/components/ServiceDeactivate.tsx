@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageBreadcrumb } from 'components/shared/frame/PageBreadcrumb/PageBreadcrumb'
 import {
   Typography,
   PageHeader,
@@ -59,12 +58,12 @@ export default function ServiceDeactivate() {
     await deactivateService(service[0].id)
       .unwrap()
       .then(() => {
-        navigate(`/${PAGES.SERVICEOVERVIEW}`, {
+        navigate(`/${PAGES.SERVICE_OVERVIEW}`, {
           state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_SUCCESS,
         })
       })
       .catch(() => {
-        navigate(`/${PAGES.SERVICEOVERVIEW}`, {
+        navigate(`/${PAGES.SERVICE_OVERVIEW}`, {
           state: ServiceDeactivateEnum.SERVICE_DEACTIVATE_ERROR,
         })
       })
@@ -72,18 +71,20 @@ export default function ServiceDeactivate() {
 
   return (
     <main className="deactivate-main">
-      <PageHeader title={service?.[0]?.title} topPage={true} headerHeight={200}>
-        <PageBreadcrumb backButtonVariant="contained" />
-      </PageHeader>
+      <PageHeader
+        title={service?.[0]?.title}
+        topPage={true}
+        headerHeight={200}
+      />
       <section>
         <Typography variant="body2" mb={3} align="center">
           {service?.[0]?.title}
         </Typography>
         <Typography variant="h2" mb={3} align="center">
-          {t('serviceoverview.serviceDeactivate.headerTitle')}
+          {t('serviceOverview.serviceDeactivate.headerTitle')}
         </Typography>
         <Typography variant="body2" align="center">
-          {t('serviceoverview.serviceDeactivate.description')}
+          {t('serviceOverview.serviceDeactivate.description')}
         </Typography>
       </section>
       <div className="mainContainer">
@@ -109,7 +110,7 @@ export default function ServiceDeactivate() {
               <Box sx={{ marginTop: '10%' }}>
                 <Checkbox
                   label={`${t(
-                    'serviceoverview.serviceDeactivate.checkboxLabel'
+                    'serviceOverview.serviceDeactivate.checkboxLabel'
                   )}`}
                   onChange={(e) => {
                     e.target.checked ? setChecked(true) : setChecked(false)
@@ -129,7 +130,7 @@ export default function ServiceDeactivate() {
             size="small"
             color="secondary"
             onClick={() => {
-              navigate('/serviceoverview')
+              navigate('/serviceOverview')
             }}
           >
             {t('global.actions.cancel')}
@@ -138,7 +139,7 @@ export default function ServiceDeactivate() {
             tooltipPlacement="bottom-start"
             tooltipText={
               !checked
-                ? t('serviceoverview.serviceDeactivate.checkboxErrorMsg')
+                ? t('serviceOverview.serviceDeactivate.checkboxErrorMsg')
                 : ''
             }
             children={

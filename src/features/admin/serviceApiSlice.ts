@@ -48,10 +48,17 @@ export interface ServiceAccountCreate {
   roleIds: string[]
 }
 
+export enum ServiceAccountStatus {
+  ACTIVE = 'ACTIVE',
+  PENDING = 'PENDING',
+  PENDING_DELETION = 'PENDING_DELETION',
+}
+
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
+  status: ServiceAccountStatus
   isOwner?: boolean
   offer?: {
     name?: string
@@ -88,8 +95,7 @@ export interface ServiceAccountsResponseType {
 }
 
 export enum ServiceAccountStatusFilter {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  SHOW_ALL = 'show all',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
 }
@@ -134,25 +140,19 @@ export const apiSlice = createApi({
         if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}&isOwner=${isOwner}`
         } else if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.INACTIVE
-        ) {
-          return `${url}&filterForInactive=true`
-        } else if (
-          !isFetchArgs &&
-          fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&isOwner=${isOwner}`
         } else {
@@ -180,7 +180,7 @@ export const apiSlice = createApi({
       number
     >({
       query: (page) =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false`,
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false&userStatus=ACTIVE`,
     }),
   }),
 })
