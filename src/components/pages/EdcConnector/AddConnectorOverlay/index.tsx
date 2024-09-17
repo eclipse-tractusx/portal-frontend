@@ -120,8 +120,10 @@ const AddConnectorOverlay = ({
   const [selected, setSelected] = useState<ConnectorType>({})
 
   useEffect(() => {
-    if (openDialog) reset(formFields)
-  }, [openDialog, reset])
+    if (openDialog || connectorStep === 0) {
+      reset(formFields)
+    }
+  }, [openDialog, reset, connectorStep])
 
   useEffect(() => {
     if (serviceAccounts && serviceAccounts?.meta?.totalPages > page) {

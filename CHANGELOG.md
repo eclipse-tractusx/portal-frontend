@@ -6,6 +6,7 @@
 
 - **Connector Management**
   - fixed technical user selection
+  - fixed customer link selection and fixed resetting values
 
 ## 2.2.0-RC2
 

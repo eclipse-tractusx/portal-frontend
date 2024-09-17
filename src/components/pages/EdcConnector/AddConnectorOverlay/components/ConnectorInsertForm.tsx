@@ -33,7 +33,10 @@ import {
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
-import { ConnectType } from 'features/connector/connectorApiSlice'
+import {
+  ConnectType,
+  type EdcSubscriptionsType,
+} from 'features/connector/connectorApiSlice'
 import { Dropzone } from '../../../../shared/basic/Dropzone'
 import { useEffect, useState } from 'react'
 import './EdcComponentStyles.scss'
@@ -259,6 +262,7 @@ any) => {
   const [selectedValue, setSelectedValue] = useState<string>()
   const [serviceAccountUsers, setServiceAccountUsers] = useState([])
   const [selectedTechnicalUser, setSelectedTechnicalUser] = useState('')
+  const [selectedCustomerLink, setSelectedCustomerLink] = useState('')
 
   useEffect(() => {
     if (fetchServiceAccountUsers)
@@ -277,6 +281,16 @@ any) => {
       setSelectedTechnicalUser(selectedConnectorTechnicalUser[0]?.name)
     }
   }, [serviceAccountUsers])
+
+  useEffect(() => {
+    const selectedCustomer: EdcSubscriptionsType[] = subscriptions?.filter(
+      (item: { subscriptionId: string }) =>
+        item.subscriptionId === getValues().ConnectorSubscriptionId
+    )
+    if (selectedCustomer.length > 0) {
+      setSelectedCustomerLink(selectedCustomer[0].name ?? '')
+    }
+  }, [subscriptions])
 
   const handleTechnicalUserSubmit = () => {
     if (
@@ -612,7 +626,7 @@ any) => {
                   'content.edcconnector.modal.insertform.subscription.error'
                 ),
                 items: subscriptions,
-                defaultSelectValue: {},
+                defaultSelectValue: selectedCustomerLink ?? {},
                 keyTitle: 'name',
               }}
             />
