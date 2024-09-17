@@ -252,10 +252,10 @@ export default function AppOverview() {
   }, [])
 
   return (
-    <div className="appoverview-app">
+    <div className="appOverview-app">
       <MainHeader
-        title={t('content.appoverview.headerTitle')}
-        subTitle={t('content.appoverview.description')}
+        title={t('content.appOverview.headerTitle')}
+        subTitle={t('content.appOverview.description')}
         headerHeight={250}
         subTitleWidth={750}
       />

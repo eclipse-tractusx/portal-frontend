@@ -78,7 +78,7 @@ export const ReleaseProcess = ({
   registerButton,
 }: ReleaseProcessProps) => {
   return (
-    <div className="appoverview-main">
+    <div className="appOverview-main">
       <MainHeader
         title={headerTitle}
         subTitle={headerDescription}
