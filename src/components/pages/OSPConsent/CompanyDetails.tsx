@@ -35,6 +35,7 @@ import {
   type companyRole,
   useFetchAgreementConsentsQuery,
   type AgreementData,
+  type SubmitData,
 } from 'features/registration/registrationApiSlice'
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
@@ -46,6 +47,7 @@ interface CompanyDetailsProps {
   loading: boolean
   handleSubmit: () => void
   submitError: boolean
+  updateConsents: (data: SubmitData) => void
 }
 
 export const CompanyDetails = ({
@@ -53,6 +55,7 @@ export const CompanyDetails = ({
   loading,
   handleSubmit,
   submitError,
+  updateConsents,
 }: CompanyDetailsProps) => {
   const tm = useTranslation().t
   const { t } = useTranslation('registration')
@@ -75,6 +78,13 @@ export const CompanyDetails = ({
   const { data: consentData } = useFetchAgreementConsentsQuery(
     applicationId ?? ''
   )
+
+  useEffect(() => {
+    updateConsents({
+      roles: companyRoleChecked,
+      consents: agreementChecked,
+    })
+  }, [companyRoleChecked, agreementChecked])
 
   useEffect(() => {
     updateSelectedRolesAndAgreement()
@@ -209,7 +219,10 @@ export const CompanyDetails = ({
   const tableData: TableType = {
     head: [t('osp.companyName'), companyDetails?.name ?? ''],
     body: [
-      [t('osp.street'), companyDetails?.streetName ?? ''],
+      [
+        t('osp.street'),
+        `${companyDetails?.streetName ?? ''} ${companyDetails?.streetNumber ?? ''}`,
+      ],
       [t('osp.zip'), companyDetails?.zipCode ?? ''],
       [t('osp.city'), companyDetails?.city ?? ''],
       [t('osp.region'), companyDetails?.region ?? ''],

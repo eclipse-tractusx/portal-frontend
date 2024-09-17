@@ -90,6 +90,7 @@
     "maximum": "Maximum",
     "charactersAllowed": " characters allowed",
     "validCharactersIncludes": "Valid characters includes: ",
+    "spaceAloneNotAllowed": " and spaces alone are not allowed",
     "isMandatory": " is mandatory",
     "fileUploadIsMandatory": "File upload is mandatory",
     "error": {
