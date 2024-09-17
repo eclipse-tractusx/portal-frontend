@@ -587,7 +587,7 @@
         "connectorUrl": "Connector URL"
       },
       "details": {
-        "heading": "Configure Connector",
+        "heading": "Connector Configuration",
         "name": "Name",
         "url": "URL",
         "status": "Status: ",
@@ -599,10 +599,10 @@
         "SdDocument": "SD Document: ",
         "noTechnicalUserAvailable": "No technical user available",
         "errormessage": "Error! Something went wrong",
-        "wantToDeleteConnector": "Do you really want to delete the connector?",
+        "wantToDeleteConnector": "Are you sure you want to delete the registered connector? This action cannot be undone.",
         "connectorDeletedSuccessfully": "Connector has been deleted successfully",
         "delete": "Delete",
-        "configureYourConnectorDetails": "Configure the connector details",
+        "configureYourConnectorDetails": "",
         "learnMore": "Learn More",
         "noDocumentAvailable": "No Document available",
         "selfDescriptionDocument": "Self Description Document",
@@ -666,7 +666,7 @@
       },
       "deletemodal": {
         "title": "Delete Connector",
-        "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
+        "description": "Are you sure you want to delete the registered connector? This action cannot be undone.",
         "techUserdescription": "Are you sure you want to delete the connector? It will be removed from the 'connector discovery' endpoint and the self-description document will be set to inactive. The associated technical user will also be immediately deactivated.",
         "techUserCheckBoxLabel": "Yes, I want to deactivate the connector, which will also delete the technical user.",
         "techDetails": {
@@ -975,7 +975,7 @@
           "managed": "Managed",
           "owned": "Owned"
         },
-        "searchText": "Search by client Id"
+        "searchText": "Search by Client ID"
       },
       "technicalUserDetails": {
         "heading": "Technical User Details",
@@ -1054,7 +1054,7 @@
       "companyName": "Company Name",
       "done": "Done",
       "loading": "Loading",
-      "load": "Load",
+      "load": "Load More",
       "selectIpsText": "Select the type of IdP which should get newly created",
       "addMetaDataText": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, load. then metadata file is getting loaded and respective values will show up below.",
       "idp_meta_description": "Add your metadata URL here, to automatically setup all the idp integration relevant metadata. When clicking, Load then metadata file is getting loaded and respective values will show up below.",
@@ -1873,14 +1873,14 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview",
+      "headerTitle": "Use Case Participation",
       "headerDescription": "Below you can manage your use case participation in Catena-X. Please note: the selection of the use case participation is relevant for data provider and data consumer.",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
-      "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "noteDetail": "Use case participation revocation is currently not enabled. Please contact the platform owner for support.",
       "version": "Version: {{version}}",
       "framework": "Framework",
       "nodocument": "No document available",
@@ -2359,9 +2359,9 @@
       "cancel": "Cancel",
       "decline": "Decline",
       "confirm": "Confirm",
-      "more": "More",
+      "more": "Load More",
       "collapse": "Collapse",
-      "loadmore": "Load more",
+      "loadmore": "Load More",
       "details": "Details",
       "close": "Close",
       "save": "Save",

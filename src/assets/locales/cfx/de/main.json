@@ -595,15 +595,15 @@
         "type": "Typ: ",
         "host": "Gastgeber: ",
         "location": "Standort: ",
-        "technicalUser": "Technischer Benutzer: ",
+        "technicalUser": "Technischer User: ",
         "SdRegistration": "SD-Registrierung: ",
         "SdDocument": "SD-Dokument: ",
-        "noTechnicalUserAvailable": "Kein technischer Benutzer verfügbar",
+        "noTechnicalUserAvailable": "Kein technischer User verfügbar",
         "errormessage": "Fehler! Etwas ist schief gelaufen",
-        "wantToDeleteConnector": "Möchten Sie den Connector wirklich löschen?",
+        "wantToDeleteConnector": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
         "connectorDeletedSuccessfully": "Der Connector wurde erfolgreich gelöscht",
         "delete": "Löschen",
-        "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
+        "configureYourConnectorDetails": "",
         "learnMore": "Learn More",
         "noDocumentAvailable": "Kein Dokument verfügbar",
         "selfDescriptionDocument": "Selbstbeschreibungsdokument",
@@ -664,7 +664,7 @@
       },
       "deletemodal": {
         "title": "Connector löschen",
-        "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
+        "description": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
         "techUserdescription": "Sind Sie sicher, dass Sie den Connector löschen wollen? Er vom Endpunkt „Connector Discovery“ entfernt und das Selbstbeschreibungs-Dokument wird auf inaktiv gesetzt. Der zugehörige technische User wird ebenfalls deaktiviert.",
         "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch auch der technische User gelöscht wird.",
         "techDetails": {
@@ -694,7 +694,7 @@
         "connectAlreadyExistingTechnicalUser": "Verbinden Sie einen bereits vorhandenen technischen Benutzer",
         "createNewTechnicalUser": "Erstellen Sie einen neuen technischen Benutzer",
         "createNewTechnicalUserBtn": "Neuen technischen User erstellen",
-        "createNewTechnicalUserDescription": "Erstellen Sie einen neuen technischen User über die Technische User Management Seite oder durch Klick auf den unten stehenden Button. Bitte beachten Sie, dass der Prozess der Erstellung des technischen Users bis zu 5 Minuten dauern kann, bevor dieser für die Connector-Registrierung bereit ist.",
+        "createNewTechnicalUserDescription": "Erstellen Sie einen neuen technischen User über die Technische User Management Seite oder durch Klick auf den unten stehenden Button. Bitte beachten Sie, dass der Erstellungsprozess des technischen Users bis zu 5 Minuten dauern kann, bevor dieser für die Connector-Registrierung bereit ist.",
         "insertform": {
           "name": {
             "label": "Name*",
@@ -772,7 +772,7 @@
       }
     },
     "partnernetwork": {
-      "headertitle": "Partnernetzwerk",
+      "headertitle": "Partner Netzwerk",
       "headerDescription": "Ihre Übersicht Ihrer Partner innerhalb des Catena-X Netzwerks. ",
       "tabletitle": "Geschäftspartnerdaten",
       "columns": {
@@ -970,10 +970,10 @@
           "showAll": "Alle anzeigen",
           "active": "Aktiv",
           "inactive": "Inaktiv",
-          "managed": "Gelang es",
-          "owned": "Besessen"
+          "managed": "Verwaltet",
+          "owned": "Eigene"
         },
-        "searchText": "Search by client Id"
+        "searchText": "Suche nach Client ID"
       },
       "technicalUserDetails": {
         "heading": "Technischer User Details"
@@ -1070,18 +1070,18 @@
       "multipleUser": "Massen-Upload",
       "multipleUserHeadline": "Mehrere Benutzer per Datei-Upload hinzufügen:",
       "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
-      "technicalUserHeadline": "Technischen Nutzer anfragen",
+      "technicalUserHeadline": "Technischen User anlegen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
       "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
-      "help": "Help",
+      "help": "Hilfe",
       "helperText": "Bitte geben Sie alle erforderlichen Informationen ein, bevor Sie fortfahren.",
       "roleDesc": "Role Description Details",
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "serviceSubHeading": "Wählen Sie eine der folgenden Rollen aus:",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -1907,14 +1907,14 @@
       }
     },
     "usecaseParticipation": {
-      "headerTitle": "Use Case Participation Overview",
+      "headerTitle": "Use Case Teilnahme",
       "headerDescription": "Hier können Sie Ihre Use Case Teilnahme in Catena-X verwalten. Bitte beachten Sie: Die Auswahl der Use Case Teilnahme ist für Data Provider und Data Consumer relevant.",
       "heading": "Use Case Participation",
       "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the usecase participatiance is relevant for data provider and data consumer.",
-      "step1": "You can view your current signed use case participation",
-      "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
-      "note": "Please note: ",
-      "noteDetail": "Please note - use case participation revocation is currently not enabled. Please contact the platform owner for support.",
+      "step1": "Sie können Ihre aktuelle unterzeichnete Use Case Teilnahme einsehen",
+      "step2": "Sie können weitere Use Cases signieren, indem Sie den Dokument-Download auswählen, das Dokument signieren und dasselbe hochladen",
+      "note": "Bitte beachten Sie: ",
+      "noteDetail": "Der Widerruf der Use Case Teilnahme ist derzeit nicht aktiviert. Wenden Sie sich für Unterstützung bitte an den Plattformbesitzer.",
       "version": "Version: {{version}}",
       "framework": "Framework",
       "nodocument": "Kein Dokument vorhanden",
@@ -2386,7 +2386,7 @@
       "cancel": "Abbrechen",
       "decline": "Decline",
       "confirm": "Bestätigen",
-      "more": "Mehr",
+      "more": "Mehr laden",
       "collapse": "Einklappen",
       "loadmore": "Mehr laden",
       "details": "Details",
@@ -2465,22 +2465,20 @@
       "columnMenuUnsort": "Sortierung aufheben",
       "columnMenuSortAsc": "Sort by ASC",
       "columnMenuSortDesc": "Absteigend sortieren",
-
       "columnsPanelTextFieldLabel": "Find column",
       "columnsPanelTextFieldPlaceholder": "Column title",
       "columnsPanelShowAllButton": "Alle zeigen",
       "columnsPanelHideAllButton": "Alle ausblenden",
-
       "filterPanelAddFilter": "Add filter",
       "filterPanelRemoveAll": "Remove all",
       "filterPanelDeleteIconLabel": "Delete",
       "filterPanelLogicOperator": "Logic operator",
-      "filterPanelOperator": "Operator",
+      "filterPanelOperator": "Funktion",
       "filterPanelOperatorAnd": "And",
       "filterPanelOperatorOr": "Or",
       "filterPanelColumns": "Spalten",
       "filterPanelInputLabel": "Wert",
-      "filterPanelInputPlaceholder": "Filter value",
+      "filterPanelInputPlaceholder": "Filter Wert",
       "filterOperatorContains": "enthält",
       "filterOperatorEquals": "ist gleich",
       "filterOperatorStartsWith": "beginnt mit",
