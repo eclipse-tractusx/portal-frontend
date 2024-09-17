@@ -42,13 +42,7 @@ interface FetchHookArgsType {
   statusFilter: string
   expr: string
 }
-type StatusTagColor =
-  | 'pending'
-  | 'confirmed'
-  | 'declined'
-  | 'label'
-  | 'deleted'
-  | undefined
+type StatusTagColor = 'pending' | 'confirmed' | 'label' | undefined
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
@@ -57,7 +51,9 @@ export const TechnicalUserTable = () => {
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(ServiceAccountStatusFilter.ACTIVE)
+  const [group, setGroup] = useState<string>(
+    ServiceAccountStatusFilter.SHOW_ALL
+  )
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
@@ -77,13 +73,8 @@ export const TechnicalUserTable = () => {
 
   const filterButtons = [
     {
-      buttonText: t('content.usermanagement.technicalUser.tabs.active'),
-      buttonValue: ServiceAccountStatusFilter.ACTIVE,
-      onButtonClick: setView,
-    },
-    {
-      buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
-      buttonValue: ServiceAccountStatusFilter.INACTIVE,
+      buttonText: t('content.usermanagement.technicalUser.tabs.showAll'),
+      buttonValue: ServiceAccountStatusFilter.SHOW_ALL,
       onButtonClick: setView,
     },
     {
@@ -100,8 +91,6 @@ export const TechnicalUserTable = () => {
 
   const statusColorMap: Record<ServiceAccountStatus, StatusTagColor> = {
     [ServiceAccountStatus.ACTIVE]: 'confirmed',
-    [ServiceAccountStatus.INACTIVE]: 'declined',
-    [ServiceAccountStatus.DELETED]: 'deleted',
     [ServiceAccountStatus.PENDING]: 'pending',
     [ServiceAccountStatus.PENDING_DELETION]: 'pending',
   }

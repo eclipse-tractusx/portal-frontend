@@ -32,7 +32,7 @@ export default function AddressDetails({
   const companyAddressData = useSelector(companyDataSelector)
   const addressData = [
     {
-      key: t('content.companyData.address.form.companySite.name'),
+      key: t('content.companyData.site.form.site.name'),
       value: companyAddressData.site?.name ?? '',
     },
     {

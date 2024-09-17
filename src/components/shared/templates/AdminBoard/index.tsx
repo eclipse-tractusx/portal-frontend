@@ -40,6 +40,7 @@ import type {
 import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
+import { PAGES } from 'types/Constants'
 
 export interface TabButtonsType {
   buttonText: string
@@ -235,7 +236,7 @@ export default function CommonAdminBoard({
   fetchQuery,
   loadMoreButtonText = 'Load More',
   isDynamicSearchEnabled = false,
-  type = 'adminboarddetail',
+  type = PAGES.APP_ADMIN_BOARD_DETAIL,
   successApproveMsg,
   errorApproveMsg,
   successDeclineMsg,

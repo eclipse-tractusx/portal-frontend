@@ -42,7 +42,6 @@ import {
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
 import { SubscriptionStatus } from 'features/apps/types'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useState } from 'react'
 import './style.scss'
@@ -52,6 +51,7 @@ import { SubscriptionTypes } from 'components/shared/templates/Subscription'
 import { useFetchServiceSubDetailQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Link } from 'react-router-dom'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface AppSubscriptionDetailProps {
   openDialog: boolean
@@ -217,7 +217,7 @@ const AppSubscriptionDetailOverlay = ({
   const renderTenantUrl = (url: string) => {
     if (
       isAppSubscription &&
-      UserService.hasRole(ROLES.APPSTORE_EDIT) &&
+      userHasPortalRole(ROLES.APPSTORE_EDIT) &&
       data?.offerSubscriptionStatus === SubscriptionStatus.ACTIVE
     ) {
       return (
@@ -275,6 +275,81 @@ const AppSubscriptionDetailOverlay = ({
   const technicalDetails: VerticalTableType = {
     head: [t('content.appSubscription.detailOverlay.technicalDetails'), ''],
     body: bodyData,
+  }
+
+  const externalServicesDetails: VerticalTableType = {
+    head: [
+      t('content.appSubscription.detailOverlay.externalServices.heading'),
+      '',
+    ],
+    body: [
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.trustedIssuer.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.trustedIssuer.description'
+          )
+        ),
+        data?.externalService?.trusted_issuer ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.participantId.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.participantId.description'
+          )
+        ),
+        data?.externalService?.participant_id ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.iatpId.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.iatpId.description'
+          )
+        ),
+        data?.externalService?.iatp_id ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.didResolver.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.didResolver.description'
+          )
+        ),
+        data?.externalService?.did_resolver ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementAuthUrl.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementAuthUrl.description'
+          )
+        ),
+        data?.externalService?.decentralIdentityManagementAuthUrl ?? '-',
+      ],
+      [
+        renderTooltipText(
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementServiceUrl.label'
+          ),
+          t(
+            'content.appSubscription.detailOverlay.externalServices.decentralIdentityManagementServiceUrl.description'
+          )
+        ),
+        data?.externalService?.decentralIdentityManagementServiceUrl ?? '-',
+      ],
+    ],
   }
 
   const getActiveSteps = () => {
@@ -370,6 +445,9 @@ const AppSubscriptionDetailOverlay = ({
               </div>
               <div style={{ marginTop: '20px' }}>
                 <VerticalTableNew data={technicalDetails} />
+              </div>
+              <div style={{ marginTop: '20px' }}>
+                <VerticalTableNew data={externalServicesDetails} />
               </div>
             </div>
           )}
