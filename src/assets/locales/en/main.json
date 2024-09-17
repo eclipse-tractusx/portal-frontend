@@ -959,7 +959,10 @@
           "spoc": "SPOC",
           "permission": "Permission",
           "companyServiceAccountTypeID": "Company Service Account Type",
-          "authenticationType": "Authentication Type"
+          "authenticationType": "Authentication Type",
+          "userType": "User Type",
+          "serviceEndpoint": "Service Endpoint",
+          "missingInfoHint": "This information may not be available to older users. Recreate the user to get the complete details."
         },
         "status": {
           "ACTIVE": "ACTIVE",
