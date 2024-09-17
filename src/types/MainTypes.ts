@@ -147,3 +147,10 @@ export const initErrorServiceState: ErrorServiceState = {
   homePageLink: '',
   homeButtonTitle: '',
 }
+
+export const IMAGE_TYPES: Record<string, string> = {
+  '3c': 'image/svg+xml',
+  ffd8ff: 'image/jpeg',
+  '89504e': 'image/png',
+  474946: 'image/gif',
+}
