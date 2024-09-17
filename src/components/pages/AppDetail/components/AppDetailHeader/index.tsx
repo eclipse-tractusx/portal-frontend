@@ -37,7 +37,7 @@ import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
 import { userHasPortalRole } from 'services/AccessService'
 import type { RootState } from 'features/store'
-
+import { resetDialog } from 'features/overlay/slice'
 export interface AppDetailHeaderProps {
   item: AppDetails
 }
@@ -72,6 +72,12 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       setButtonLabel(t('content.appdetail.subscribe'))
     }
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetDialog())
+    }
+  }, [dispatch])
 
   useEffect(() => {
     if (isDialogConfirmed) {
