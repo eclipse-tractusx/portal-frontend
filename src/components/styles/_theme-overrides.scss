@@ -1822,3 +1822,9 @@ p.MuiTypography-root.MuiTypography-body3.description,
     min-width: 350px;
   }
 }
+
+// managed identity wallet
+
+.main-card-container .card-container *{
+  color: $black !important;
+}

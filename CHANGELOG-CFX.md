@@ -6,6 +6,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **Post Merge UI fixes**
+
+  - Manged identity wallet: fix page ui and card text color [PM2-1394](https://cofinity-x.atlassian.net/browse/PM2-1394)
+  - App overview: Translations and styles added [PM2-1392](https://cofinity-x.atlassian.net/browse/PM2-1392)
+  - Service marketplace: button alignment and search [PM2-1391](https://cofinity-x.atlassian.net/browse/PM2-1391)
+
 - **OSP Consent form**
 
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
