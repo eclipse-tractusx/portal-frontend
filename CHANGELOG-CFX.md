@@ -2,6 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## 2.2.0-cfx-1
+
+### Bug Fixes
+
+- **OSP Consent form**
+  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+
 ## 2.0.0-cfx-2
 
 ### Bug Fixes
