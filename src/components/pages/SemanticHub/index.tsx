@@ -34,11 +34,11 @@ import { fetchSemanticModelById } from 'features/semanticModels/actions'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModelImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAssetBase } from 'services/EnvironmentService'
 import type { AppDispatch } from 'features/store'
+import { userHasSemanticHubRole } from 'services/AccessService'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
@@ -137,7 +137,7 @@ export default function SemanticHub() {
               <Typography variant="body2" mb={4}>
                 {t('content.semantichub.introText_1')}
               </Typography>
-              {UserService.hasRole(ROLES.SEMANTICHUB_ADD) && (
+              {userHasSemanticHubRole(ROLES.SEMANTICHUB_ADD) && (
                 <Button
                   onClick={() => {
                     setImportModel(true)

@@ -43,6 +43,7 @@ const dialog = createSlice({
     },
     resetDialog: (state) => {
       state.isConfirmed = false
+      state.isOpen = false
     },
   },
 })

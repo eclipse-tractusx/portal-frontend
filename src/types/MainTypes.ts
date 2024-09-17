@@ -91,22 +91,18 @@ export const initialPaginMeta: PaginMeta = {
 
 export const initialPaginResult = { meta: { ...initialPaginMeta }, content: [] }
 
-export type IPage = {
+export type RestrictedItem = {
   name: string
-  role?: string
+  allowTo?: () => boolean
+}
+
+export type IPage = RestrictedItem & {
   element: JSX.Element
   isRoute?: boolean
   children?: string[]
 }
 
-export type IOverlay = {
-  name: string
-  role?: string
-}
-
-export type IAction = {
-  name: string
-  role?: string
+export type IAction = RestrictedItem & {
   element: JSX.Element
   value?: string
 }
@@ -150,4 +146,11 @@ export const initErrorServiceState: ErrorServiceState = {
   reloadButtonTitle: '',
   homePageLink: '',
   homeButtonTitle: '',
+}
+
+export const IMAGE_TYPES: Record<string, string> = {
+  '3c': 'image/svg+xml',
+  ffd8ff: 'image/jpeg',
+  '89504e': 'image/png',
+  474946: 'image/gif',
 }

@@ -102,7 +102,6 @@ export default function CSVUploadOverlay(): JSX.Element {
         document.body.appendChild(a)
         a.click()
         a.remove()
-        CopySuccess(t('content.companyData.upload.downloadSuccess'))
       })
   }
 

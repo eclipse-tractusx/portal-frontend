@@ -28,7 +28,7 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import { useState } from 'react'
-import UserService from 'services/UserService'
+import { userHasPortalRole } from 'services/AccessService'
 
 export const ActiveUserTable = ({
   addUserResponse,
@@ -43,13 +43,13 @@ export const ActiveUserTable = ({
     <UserList
       sectionTitle={'content.usermanagement.table.headline'}
       addButtonLabel={
-        UserService.hasRole(ROLES.USERMANAGEMENT_ADD)
+        userHasPortalRole(ROLES.USERMANAGEMENT_ADD)
           ? 'content.usermanagement.table.add'
           : ''
       }
       addButtonClick={() => dispatch(show(OVERLAYS.ADD_USER))}
       addMultipleButtonLabel={
-        UserService.hasRole(ROLES.USERMANAGEMENT_ADD)
+        userHasPortalRole(ROLES.USERMANAGEMENT_ADD)
           ? 'content.usermanagement.table.addMultiple'
           : ''
       }
