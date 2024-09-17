@@ -542,6 +542,7 @@ export default function AppMarketCard() {
                   'content.apprelease.appReleaseForm.charactersAllowed'
                 )}`,
               }}
+              maxTextLength={40}
             />
             <CommonConnectorFormInputField
               {...{
@@ -577,6 +578,7 @@ export default function AppMarketCard() {
                   'content.apprelease.appReleaseForm.charactersAllowed'
                 )}`,
               }}
+              maxTextLength={30}
             />
 
             <div className="form-field">
@@ -631,6 +633,7 @@ export default function AppMarketCard() {
                           'content.apprelease.appReleaseForm.charactersAllowed'
                         )}`,
                       }}
+                      maxTextLength={255}
                     />
                   </div>
                 )

@@ -53,6 +53,7 @@ export const ConnectorFormInputField = ({
   handleDelete,
   size,
   errorText,
+  maxTextLength,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -84,6 +85,9 @@ any) => {
               multiline={textarea}
               minRows={textarea && 3}
               maxRows={textarea && 3}
+              inputProps={{
+                maxLength: maxTextLength,
+              }}
               sx={
                 textarea && {
                   '.MuiFilledInput-root': { padding: '0px 12px 0px 0px' },

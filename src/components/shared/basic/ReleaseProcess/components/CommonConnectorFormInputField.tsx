@@ -30,6 +30,7 @@ export default function CommonConnectorFormInputField({
   pattern,
   maxLength = 40,
   minLength = 5,
+  maxTextLength,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
@@ -61,6 +62,7 @@ any) {
               message: rules.maxLength,
             },
           },
+          maxTextLength,
         }}
       />
     </div>
