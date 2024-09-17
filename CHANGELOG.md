@@ -11,6 +11,9 @@
   - Fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
 - **App and Service Admin board**
   - Fix data disappearing issue on re-clicking active tab/filter in app/service admin board [#1100](https://github.com/eclipse-tractusx/portal-frontend/pull/1100)
+- **App & Service Subcription Managment**
+  - Search place holder text updated
+  - Show only available offer names at the top
 
 ## Unreleased 2.2.0-RC3
 
@@ -54,7 +57,6 @@
 - **Technical User Management**
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
-  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
   - Fix OSP consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102/files)
 - **Use Case participation**
   - Removes use cases without verified credentials from the "Use Case Participation" list [#1088](https://github.com/eclipse-tractusx/portal-frontend/pull/1088)
