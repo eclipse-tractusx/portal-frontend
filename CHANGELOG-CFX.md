@@ -16,6 +16,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
   - CHERRY-PICK Fixed missing street number in form [#1084](https://github.com/eclipse-tractusx/portal-frontend/pull/1084)
+  - CHERRY-PICK fix(OSP): Consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102)
 
 - **Service Release Process**
   - CHERRY-PICK fix: de description field is not validating umlauts [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993)

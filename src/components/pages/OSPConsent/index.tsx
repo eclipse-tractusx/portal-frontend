@@ -26,6 +26,7 @@ import {
   useFetchAgreementConsentsQuery,
   useUpdateAgreementConsentsMutation,
   CONSENT_STATUS,
+  type SubmitData,
 } from 'features/registration/registrationApiSlice'
 import './style.scss'
 import { SuccessRegistration } from './SuccessRegistration'
@@ -76,6 +77,11 @@ export const OSPConsent = () => {
           return { ...prev, [next.agreementId]: true }
         }, {})
       )
+  }
+
+  const setConsents = (data: SubmitData) => {
+    setCompanyRoleChecked(data.roles)
+    setAgreementChecked(data.consents)
   }
 
   const handleSubmit = async () => {
@@ -131,6 +137,7 @@ export const OSPConsent = () => {
           loading={loading}
           handleSubmit={handleSubmit}
           submitError={submitError}
+          updateConsents={setConsents}
         />
       )
     }
