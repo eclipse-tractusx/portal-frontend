@@ -248,6 +248,7 @@ const ConnectorInsertForm = ({
   control,
   trigger,
   getValues,
+  resetField,
   selectedService,
   subscriptions,
   fetchServiceAccountUsers,
@@ -368,6 +369,12 @@ any) => {
                 )}
                 onChange={(event) => {
                   setSelectedValue(event.target.value)
+                  resetField('TechnicalUserName', {
+                    defaultValue: '',
+                  })
+                  resetField('TechnicalUserDescription', {
+                    defaultValue: '',
+                  })
                 }}
                 size="small"
                 sx={{

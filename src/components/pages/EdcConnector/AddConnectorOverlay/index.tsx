@@ -109,6 +109,7 @@ const AddConnectorOverlay = ({
     handleSubmit,
     getValues,
     control,
+    resetField,
     trigger,
     formState: { errors },
     reset,
@@ -218,7 +219,14 @@ const AddConnectorOverlay = ({
                 setNewTechnicalUSer={setNewTechnicalUSer}
                 newUserLoading={newUserLoading}
                 newUserSuccess={newUserSuccess}
-                {...{ handleSubmit, control, errors, trigger, getValues }}
+                {...{
+                  handleSubmit,
+                  control,
+                  errors,
+                  trigger,
+                  getValues,
+                  resetField,
+                }}
               />
             </>
           )}
