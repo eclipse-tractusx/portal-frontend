@@ -46,8 +46,8 @@ import { useEffect, useState } from 'react'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import dayjs from 'dayjs'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
-import UserService from 'services/UserService'
 import { SortType } from 'components/pages/CompanyCertificates'
+import { userHasPortalRole } from 'services/AccessService'
 
 export enum StatusTag {
   PENDING = 'Pending',
@@ -209,7 +209,7 @@ export default function CompanyCertificateDetails({
               <Box>
                 <Button
                   disabled={
-                    !UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
+                    !userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
                   }
                   startIcon={<DeleteIcon />}
                   variant="outlined"

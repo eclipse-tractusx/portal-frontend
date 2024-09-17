@@ -38,7 +38,7 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "appAdminBoard": "Admin Board",
     "appUserManagement": "App User Management",
     "userdetails": "User Details",
     "technicalUserManagement": "Technical User Management",
@@ -456,9 +456,39 @@
         "action": "Action"
       },
       "filter": {
-        "requested": "requested",
+        "pending": "pending",
         "active": "active",
+        "inactive": "inactive",
         "showAll": "show all"
+      }
+    },
+    "companySubscriptionsDetail": {
+      "language": "Language",
+      "description": "Description",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "howtouse": {
+        "heading": "Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "privacy": {
+        "heading": "Privacy Policy",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "COMPANY_DATA_ICON": "ApartmentIcon",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
+      },
+      "table": {
+        "connector": "Connector",
+        "technicalUser": "Technical User"
+      },
+      "technicalUser": {
+        "heading": "Technical Details"
       }
     },
     "datamanagement": {
@@ -650,7 +680,7 @@
       "deletemodal": {
         "title": "Delete Connector",
         "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
-        "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected – the technical user will get inactived immediadetly as well when proceeding with the deletion.",
+        "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected - the technical user can be deleted if you select the checkbox below otherwise only the mapping between connector and technical user will be deleted.",
         "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
         "techDetails": {
           "title": "Technical Details",
@@ -927,7 +957,12 @@
           "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
-          "permission": "Permission"
+          "permission": "Permission",
+          "companyServiceAccountTypeID": "Company Service Account Type",
+          "authenticationType": "Authentication Type",
+          "userType": "User Type",
+          "serviceEndpoint": "Service Endpoint",
+          "missingInfoHint": "This information may not be available to older users. Recreate the user to get the complete details."
         },
         "status": {
           "ACTIVE": "ACTIVE",
@@ -944,8 +979,7 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "active": "Active",
-          "inactive": "Inactive",
+          "showAll": "Show All",
           "managed": "Managed",
           "owned": "Owned"
         },
@@ -2236,7 +2270,8 @@
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
-      "changeRoleBtn": "Change Portal Role"
+      "changeRoleBtn": "Change Portal Role",
+      "errorMsg": "You are not authorized to change your own admin roles. Please contact another admin."
     }
   },
   "global": {
@@ -2270,7 +2305,9 @@
       "alias": "Alias",
       "authMethod": "Auth Method",
       "progress": "Progress",
-      "action": "Action"
+      "action": "Action",
+      "ownership": "Ownership",
+      "userType": "Usertype"
     },
     "actions": {
       "cancel": "Cancel",

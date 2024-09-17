@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,31 +17,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from 'features/store'
-import type { IUser } from './types'
-
-const initialState: IUser = {
-  userName: '',
-  name: '',
-  email: '',
-  company: '',
-  tenant: '',
-  roles: [],
-  isAdmin: false,
+.company-subscription-detail-privacy {
+  .privacy-content {
+    margin-bottom: 32px;
+  }
+  .app-policies {
+    padding: 0 20px;
+  }
+  .policies-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: none;
+    margin: 0;
+    .policy-name {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .policy-icon {
+      font-size: 20;
+      margin-right: 5px;
+    }
+  }
 }
-
-const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    setLoggedUser: (_state: IUser, action: PayloadAction<IUser>) => {
-      return action.payload
-    },
-  },
-})
-
-export const { setLoggedUser } = userSlice.actions
-export const userSelector = (state: RootState): IUser => state.user
-
-export default userSlice.reducer

@@ -39,7 +39,7 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "appAdminBoard": "Admin Board",
     "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicalUserManagement": "Technische Benutzer Verwaltung",
@@ -460,9 +460,38 @@
         "action": "Aktion"
       },
       "filter": {
-        "requested": "angefordert",
+        "pending": "ausstehend",
         "active": "aktiv",
-        "showAll": "zeige alles"
+        "inactive": "inaktiv",
+        "showAll": "Alles anzeigen"
+      }
+    },
+    "companySubscriptionsDetail": {
+      "language": "Verfügbare App Sprachen",
+      "description": "Description",
+      "subscribed": "Gezeichnet",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "howtouse": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+      },
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
+      },
+      "table": {
+        "connector": "Verbinder",
+        "technicalUser": "Technischer Benutzer"
+      },
+      "technicalUser": {
+        "heading": "Technischer Details"
       }
     },
     "appOverview": {
@@ -646,7 +675,7 @@
       "deletemodal": {
         "title": "EDC-Connector Löschen",
         "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
-        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist – der technische Benutzer wird ebenfalls sofort inaktiviert, wenn mit dem Löschen fortgefahren wird.",
+        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist. Der technische Benutzer kann gelöscht werden, wenn Sie das Kontrollkästchen unten aktivieren. Andernfalls wird nur die Zuordnung zwischen Connector und technischem Benutzer gelöscht.",
         "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
         "techDetails": {
           "title": "Technical Details",
@@ -923,7 +952,12 @@
           "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
-          "permission": "Berechtigungen"
+          "permission": "Berechtigungen",
+          "companyServiceAccountTypeID": "Firmenservicekontotyp",
+          "authenticationType": "Authentifizierungstyp",
+          "userType": "Benutzertyp",
+          "serviceEndpoint": "Dienstendpunkt",
+          "missingInfoHint": "Diese Informationen stehen älteren Benutzern möglicherweise nicht zur Verfügung. Erstellen Sie den Benutzer neu, um die vollständigen Details zu erhalten."
         },
         "status": {
           "ACTIVE": "AKTIV",
@@ -940,8 +974,7 @@
         "resetCredentialError": "Something went wrong",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
-          "active": "Aktiv",
-          "inactive": "Inaktiv",
+          "showAll": "Alle anzeigen",
           "managed": "Gelang es",
           "owned": "Besessen"
         },
@@ -2264,7 +2297,8 @@
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
-      "changeRoleBtn": "Change Portal Role"
+      "changeRoleBtn": "Change Portal Role",
+      "errorMsg": "Sie sind nicht berechtigt, Ihre eigenen Administrator-Rollen zu ändern. Bitte wenden Sie sich an einen anderen Administrator."
     }
   },
   "global": {
@@ -2296,7 +2330,9 @@
       "alias": "Alias",
       "authMethod": "Auth Method",
       "progress": "Progress",
-      "action": "Action"
+      "action": "Action",
+      "ownership": "Ownership",
+      "userType": "Usertype"
     },
     "actions": {
       "cancel": "Abbrechen",

@@ -42,6 +42,7 @@ import {
   type FetchSubscriptionAppQueryType,
   type SubscribedActiveApps,
   StatusIdEnum,
+  CompanySubscriptionFilterType,
 } from './types'
 
 export const apiSlice = createApi({
@@ -164,9 +165,16 @@ export const apiSlice = createApi({
       PaginResult<SubscribedActiveApps>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) => ({
-        url: `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
-      }),
+      query: (fetchArgs) => {
+        if (
+          fetchArgs.args.statusId &&
+          fetchArgs.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+        ) {
+          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&statusId=${fetchArgs.args.statusId}`
+        } else {
+          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+        }
+      },
     }),
   }),
 })

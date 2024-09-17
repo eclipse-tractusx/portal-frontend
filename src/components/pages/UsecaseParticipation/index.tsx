@@ -53,6 +53,8 @@ export default function UsecaseParticipation() {
   const dispatch = useDispatch()
 
   const { data, refetch, isLoading } = useFetchUsecaseQuery()
+  const useCaseList =
+    data?.filter((usecase) => usecase.verifiedCredentials.length) ?? []
 
   useEffect(() => {
     refetch()
@@ -192,7 +194,7 @@ export default function UsecaseParticipation() {
                   />
                 </div>
               ) : (
-                data?.map((item) => {
+                useCaseList.map((item) => {
                   return (
                     <div className="useCase-list" key={uniqueId(item.useCase)}>
                       <li className="useCase-list-item">
