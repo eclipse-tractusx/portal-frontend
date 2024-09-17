@@ -298,7 +298,6 @@ export default function CommonAdminBoard({
 
   const resetAppCards = useCallback(
     (value: string, type: string) => {
-      setState({ type: ActionKind.SET_APPS_AND_APP_CARDS, payload: [] })
       setState({
         type: ActionKind.SET_REQUEST_BODY,
         payload: {
@@ -468,16 +467,19 @@ export default function CommonAdminBoard({
               refetch={refetch}
             />
           )}
-          {!isFetching && data?.meta && data?.meta?.totalPages > page + 1 && (
-            <div
-              style={{
-                textAlign: 'center',
-                marginTop: '30px',
-              }}
-            >
-              <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
-            </div>
-          )}
+          {!isFetching &&
+            appCards?.length > 0 &&
+            data?.meta &&
+            data?.meta?.totalPages > page + 1 && (
+              <div
+                style={{
+                  textAlign: 'center',
+                  marginTop: '30px',
+                }}
+              >
+                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+              </div>
+            )}
         </div>
         <div style={{ height: '66px' }}></div>
       </div>
