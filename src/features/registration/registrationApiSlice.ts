@@ -111,6 +111,11 @@ export type companyRole = {
   descriptions: { de: string; en: string }
 }
 
+export type SubmitData = {
+  roles: { [key: string]: boolean }
+  consents: { [key: string]: boolean }
+}
+
 export enum CONSENT_STATUS {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
