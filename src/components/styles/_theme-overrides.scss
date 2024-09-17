@@ -18,6 +18,8 @@ $selected-hover: #ededed;
 $secondary-hover: #333333;
 $black: #000000;
 $white: #ffffff;
+$border-color: #dfdfdf;
+$text-disabled: #808080;
 
 body {
 }
@@ -1740,4 +1742,65 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .cx-main-header__content > h2 {
   font-size: 20px !important;
   font-weight: 500 !important;
+}
+
+.app-release-card {
+  .card {
+    border: 1px solid $border-color;
+    .cx-card__top {
+      .cx-card__image {
+        height: 150px !important;
+        .cx-image {
+          height: 100% !important;
+        }
+      }
+    }
+    .cx-card__content--wrapper {
+      background-color: white;
+      margin-bottom: 0px !important;
+      padding: 20px !important;
+      .cx-card__content {
+        padding: 0px !important;
+      }
+      .cx-card__content div:first-child,
+      .cx-card__content div:nth-child(2) {
+        height: unset !important;
+        line-height: unset !important;
+      }
+      .cx-card__content div:first-child .MuiTypography-label3 {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 12px;
+        letter-spacing: 0.5px;
+        word-break: break-word;
+        color: $text-disabled;
+      }
+
+      .cx-card__content div:nth-child(2) .MuiTypography-h5 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        text-align: left;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important; /* For compatibility with older browsers */
+        white-space: normal !important; /* Ensure text wraps */
+        display: -webkit-box; /* Use box layout to support line clamping */
+        -webkit-line-clamp: 2; /* Limit text to 2 lines */
+        -webkit-box-orient: vertical; /* Orient the box vertically */
+        overflow: hidden; /* Hide the overflowed text */
+        text-overflow: ellipsis; /* Optionally, show ellipsis for truncated text */
+        margin-top: 12px !important;
+      }
+      .cx-card__content p {
+        word-break: break-word;
+        margin-top: 8px !important;
+        font-family: Karbon;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 13.2px;
+        text-align: left;
+        color: $color-secondary;
+      }
+    }
+  }
 }

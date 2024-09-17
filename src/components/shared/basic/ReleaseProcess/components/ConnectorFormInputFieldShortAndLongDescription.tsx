@@ -35,6 +35,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
   isRequired = true,
   minLength = 10,
   maxLength = 255,
+  maxTextLength,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
@@ -67,6 +68,7 @@ any) {
               message: rules.maxLength,
             },
           },
+          maxTextLength,
         }}
       />
       <Typography variant="body2" className="form-field" align="right">
