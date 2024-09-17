@@ -3,8 +3,7 @@ $color-primary-dark: #a60f68;
 $color-secondary: #4d4d4d;
 $color-gray: #f6f6f6;
 $mobile-enable-width: 1800px;
-$font-family-primary:
-  'Karbon',
+$font-family-primary: 'Karbon',
   -apple-system,
   'Helvetica Neue',
   Arial,
@@ -21,8 +20,7 @@ $white: #ffffff;
 $border-color: #dfdfdf;
 $text-disabled: #808080;
 
-body {
-}
+body {}
 
 #app {
   position: relative;
@@ -181,8 +179,7 @@ header {
   }
 }
 
-.MenuInfo .MuiBox-root {
-}
+.MenuInfo .MuiBox-root {}
 
 .userMenuInfo {
   .MuiTypography-label2 {
@@ -271,7 +268,7 @@ section {
       }
     }
 
-    > li {
+    >li {
       margin-right: 10px;
       margin-left: 10px;
     }
@@ -352,8 +349,7 @@ section {
 
 // global elements
 .global-background {
-  background: rgba(250, 250, 250, 1) url('/images-cfx/banners/Pattern-Cfx.svg')
-    top right no-repeat;
+  background: rgba(250, 250, 250, 1) url('/images-cfx/banners/Pattern-Cfx.svg') top right no-repeat;
   background-size: contain;
 }
 
@@ -407,6 +403,7 @@ main {
 }
 
 section {
+
   .css-12slnd9,
   .css-zgcvtz {
     background-color: $color-gray !important;
@@ -477,12 +474,12 @@ section {
   .subNavigationContainer {
     .navigationParentContainer {
       .navigationOverlayContainer {
-        > .MuiSvgIcon-root {
+        >.MuiSvgIcon-root {
           color: $color-primary;
           fill: $color-primary;
         }
 
-        > .MuiTypography-h4 {
+        >.MuiTypography-h4 {
           color: $color-primary;
         }
 
@@ -496,7 +493,7 @@ section {
             color: #4d4d4d;
           }
 
-          > div {
+          >div {
             padding: 5px;
             margin-bottom: 5px;
 
@@ -609,23 +606,22 @@ section {
 .app-release-process-form,
 main,
 .my-account {
+
   .css-1ookt9p,
   .css-sbh4ys {
     background: none;
   }
 
-  > .MuiBox-root:not(
-      .app-back,
-      .connector-page-container > .MuiBox-root,
-      .service-back,
-      .service-marketplace-content,
-      .policy-main,
-      .customHeight,
-      .overview-section,
-      .company-certificate-section,
-      .css-8q3uco,
-      .mainWrapper
-    ) {
+  >.MuiBox-root:not(.app-back,
+    .connector-page-container > .MuiBox-root,
+    .service-back,
+    .service-marketplace-content,
+    .policy-main,
+    .customHeight,
+    .overview-section,
+    .company-certificate-section,
+    .css-8q3uco,
+    .mainWrapper) {
     @extend .global-background;
 
     svg {
@@ -640,15 +636,15 @@ main,
 .app-user-management,
 .invite-main-container,
 .adminBoard {
-  > .MuiBox-root {
-    > .MuiBox-root {
+  >.MuiBox-root {
+    >.MuiBox-root {
       background-color: transparent !important;
     }
 
     display: block;
     @extend .global-background;
 
-    > svg {
+    >svg {
       display: none;
     }
   }
@@ -657,8 +653,9 @@ main,
 // header style type 3
 .appSubscription {
   .subDescription {
+
     a,
-    > span {
+    >span {
       color: $color-primary;
     }
   }
@@ -710,6 +707,7 @@ main,
   }
 
   .textNumber .value {
+
     .MuiTypography-h2,
     .MuiTypography-h3,
     .MuiTypography-h4,
@@ -718,11 +716,12 @@ main,
     }
   }
 
-  .group > li {
+  .group>li {
     overflow: hidden;
   }
 
   .MuiBox-root {
+
     a,
     svg {
       color: $color-primary;
@@ -765,8 +764,7 @@ main,
   }
 }
 
-.searchContainer {
-}
+.searchContainer {}
 
 .filterSection {
   .MuiSvgIcon-root {
@@ -838,12 +836,12 @@ table tr td {
     }
 
     .role-list {
-      > span {
+      >span {
         white-space: nowrap;
         font-size: 18px;
       }
 
-      > div {
+      >div {
         margin: 10px 0;
       }
     }
@@ -862,10 +860,11 @@ main {
     border-color: $color-primary;
   }
 
-  > .stage-home {
+  >.stage-home {
     min-height: 630px;
 
     .cx-main-header {
+
       &:before,
       &:after {
         display: none !important;
@@ -891,15 +890,13 @@ main {
       background: none !important;
     }
 
-    .MuiTypography-h1 {
-    }
+    .MuiTypography-h1 {}
 
-    .MuiTypography-h3 {
-    }
+    .MuiTypography-h3 {}
   }
 
-  > .stage-app-store {
-    > .MuiBox-root {
+  >.stage-app-store {
+    >.MuiBox-root {
       // background: none !important;
     }
 
@@ -963,6 +960,7 @@ main {
 .MuiDialogContent-root,
 .marketplace-main {
   table {
+
     tbody,
     thead {
       tr {
@@ -979,8 +977,7 @@ main {
     font-family: $font-family-primary;
   }
 
-  .MuiTypography-body1 {
-  }
+  .MuiTypography-body1 {}
 }
 
 header .search-icon {
@@ -1029,7 +1026,7 @@ header .search-icon {
 
 // steps
 .steps-main {
-  .MuiBox-root > .MuiBox-root {
+  .MuiBox-root>.MuiBox-root {
     .MuiBox-root:first-child {
       div {
         display: flex !important;
@@ -1084,15 +1081,13 @@ header .search-icon {
         }
       }
 
-      .stepHeadline {
-      }
+      .stepHeadline {}
     }
   }
 }
 
 .stepperHint {
-  .hintStep {
-  }
+  .hintStep {}
 }
 
 // modal
@@ -1101,7 +1096,8 @@ header .search-icon {
 }
 
 .dialog-header-main {
-  padding: 56px 80px !important ;
+  padding: 56px 80px !important;
+
   .MuiTypography-h4 {
     font-weight: 400;
   }
@@ -1212,21 +1208,21 @@ footer {
 }
 
 div.container.registration-main {
-  div > p {
+  div>p {
     margin-left: 0;
   }
 
-  div > button.completeBtn {
+  div>button.completeBtn {
     color: $white;
     background-color: $color-primary;
     border: 2px solid transparent;
   }
 
-  div > button.completeBtn:hover {
+  div>button.completeBtn:hover {
     background-color: $color-primary-dark;
   }
 
-  div > div.helpTextReg > p {
+  div>div.helpTextReg>p {
     font-family: Karbon;
     font-size: 18px;
     font-weight: 400;
@@ -1314,7 +1310,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 }
 
 .statusList {
-  .statusLabel > span {
+  .statusLabel>span {
     font-weight: 500;
     line-height: 28px;
   }
@@ -1425,11 +1421,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
   // @extend .global-background;
 }
 
-.page-main-container
-  > .table-container
-  > .MuiBox-root
-  > .MuiDataGrid-root
-  > .MuiBox-root:first-child {
+.page-main-container>.table-container>.MuiBox-root>.MuiDataGrid-root>.MuiBox-root:first-child {
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
@@ -1527,7 +1519,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .cx-content-technical {
   &__table {
     .cx-table__page-loading {
-      > .MuiBox-root {
+      >.MuiBox-root {
         flex-direction: row;
         flex: 0 0 100%;
         justify-content: space-between;
@@ -1546,14 +1538,11 @@ p.MuiTypography-root.MuiTypography-body3.description,
   max-width: 1180px;
   margin: 0 auto;
 
-  &__container {
-  }
+  &__container {}
 
-  &__title {
-  }
+  &__title {}
 
-  &__subtitle {
-  }
+  &__subtitle {}
 
   &__button {
     display: flex;
@@ -1664,8 +1653,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
   &::before {
     content: '';
-    background: url('/images-cfx/page-header/pattern_header.svg') top right
-      no-repeat;
+    background: url('/images-cfx/page-header/pattern_header.svg') top right no-repeat;
     background-size: contain;
     display: block;
     height: 270px;
@@ -1677,8 +1665,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
   &::after {
     content: '';
-    background: url('/images-cfx/page-header/pattern_segment_gradient.svg') top
-      right no-repeat;
+    background: url('/images-cfx/page-header/pattern_segment_gradient.svg') top right no-repeat;
     background-size: contain;
     display: block;
     height: 250px;
@@ -1740,7 +1727,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
-.cx-main-header__content > h2 {
+.cx-main-header__content>h2 {
   font-size: 20px !important;
   font-weight: 500 !important;
 }
@@ -1748,26 +1735,32 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .app-release-card {
   .card {
     border: 1px solid $border-color;
+
     .cx-card__top {
       .cx-card__image {
         height: 150px !important;
+
         .cx-image {
           height: 100% !important;
         }
       }
     }
+
     .cx-card__content--wrapper {
       background-color: white;
       margin-bottom: 0px !important;
       padding: 20px !important;
+
       .cx-card__content {
         padding: 0px !important;
       }
+
       .cx-card__content div:first-child,
       .cx-card__content div:nth-child(2) {
         height: unset !important;
         line-height: unset !important;
       }
+
       .cx-card__content div:first-child .MuiTypography-label3 {
         font-size: 12px;
         font-weight: 500;
@@ -1783,15 +1776,23 @@ p.MuiTypography-root.MuiTypography-body3.description,
         line-height: 24px;
         text-align: left;
         word-break: break-word !important;
-        overflow-wrap: break-word !important; /* For compatibility with older browsers */
-        white-space: normal !important; /* Ensure text wraps */
-        display: -webkit-box; /* Use box layout to support line clamping */
-        -webkit-line-clamp: 2; /* Limit text to 2 lines */
-        -webkit-box-orient: vertical; /* Orient the box vertically */
-        overflow: hidden; /* Hide the overflowed text */
-        text-overflow: ellipsis; /* Optionally, show ellipsis for truncated text */
+        overflow-wrap: break-word !important;
+        /* For compatibility with older browsers */
+        white-space: normal !important;
+        /* Ensure text wraps */
+        display: -webkit-box;
+        /* Use box layout to support line clamping */
+        -webkit-line-clamp: 2;
+        /* Limit text to 2 lines */
+        -webkit-box-orient: vertical;
+        /* Orient the box vertically */
+        overflow: hidden;
+        /* Hide the overflowed text */
+        text-overflow: ellipsis;
+        /* Optionally, show ellipsis for truncated text */
         margin-top: 12px !important;
       }
+
       .cx-card__content p {
         word-break: break-word;
         margin-top: 8px !important;
@@ -1803,5 +1804,21 @@ p.MuiTypography-root.MuiTypography-body3.description,
         color: $color-secondary;
       }
     }
+  }
+}
+
+// search filter grid
+.cx-search-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+
+.cx-search-input {
+  &__text-field {
+    border-radius: 25px;
+    height: 52px;
+    min-width: 350px;
   }
 }

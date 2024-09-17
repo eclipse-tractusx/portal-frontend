@@ -202,6 +202,7 @@ export default function ServiceMarketplace() {
             {t('content.serviceMarketplace.newServices')}
           </Typography>
           <div>
+            <div className='cx-search-grid'>
             <div className="searchContainer">
               <SearchInput
                 placeholder={t('notification.search')}
@@ -221,6 +222,7 @@ export default function ServiceMarketplace() {
                   sortOptions={sortOptions}
                 />
               </div>
+            </div>
             </div>
             {renderServices()}
           </div>
