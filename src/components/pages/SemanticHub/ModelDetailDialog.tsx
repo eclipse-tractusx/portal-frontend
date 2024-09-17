@@ -47,13 +47,13 @@ import {
   changeOpenApiUrl,
   deleteSemanticModelById,
 } from 'features/semanticModels/actions'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { info } from 'services/LogService'
 import { getHeaders } from 'services/RequestService'
 import { Status } from 'features/semanticModels/types'
 import type { AppDispatch } from 'features/store'
+import { userHasSemanticHubRole } from 'services/AccessService'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -114,7 +114,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           info(err)
         })
       setShowDeleteBtn(
-        UserService.hasRole(ROLES.SEMANTICHUB_DELETE) &&
+        userHasSemanticHubRole(ROLES.SEMANTICHUB_DELETE) &&
           model.status === Status.Draft
       )
     }

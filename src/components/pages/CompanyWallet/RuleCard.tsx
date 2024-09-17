@@ -29,6 +29,8 @@ import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 import { getAssetBase } from 'services/EnvironmentService'
+import { userHasSsiCredentialRole } from 'services/AccessService'
+import { ROLES } from 'types/Constants'
 
 type Hash<T> = Record<string, T>
 
@@ -61,6 +63,7 @@ export default function RuleCard({
 
   const canShowRevoke = (item: WalletContent) => {
     return (
+      userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
       item.status === CredentialSubjectStatus.ACTIVE &&
       item?.credentialType !== CredentialType.MEMBERSHIP &&
       item.credentialType !== CredentialType.BUSINESS_PARTNER_NUMBER

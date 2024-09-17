@@ -31,13 +31,12 @@ import {
   useFetchDocumentMutation,
   useFetchServiceStatusQuery,
 } from 'features/serviceManagement/apiSlice'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Divider } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
-import { getAssetBase } from 'services/EnvironmentService'
 import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { type LogData } from 'services/LogService'
@@ -50,6 +49,7 @@ export default function ServiceDetails() {
     refetchOnMountOrArgChange: true,
   }).data
   const [fetchDocument] = useFetchDocumentMutation()
+  const [leadImg, setLeadImg] = useState<string>('')
 
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
@@ -79,6 +79,25 @@ export default function ServiceDetails() {
     }
   }
 
+  const setLeadingImg = async () => {
+    try {
+      const response = await fetchDocument({
+        appId: serviceId,
+        documentId: fetchServiceStatus?.leadPictureId,
+      }).unwrap()
+      const file = response.data
+      setLeadImg(URL.createObjectURL(file))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if (fetchServiceStatus) {
+      setLeadingImg()
+    }
+  }, [fetchServiceStatus])
+
   return (
     <main>
       <div>
@@ -95,7 +114,7 @@ export default function ServiceDetails() {
               <CardHorizontal
                 borderRadius={6}
                 imageAlt="Service Card"
-                imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
+                imagePath={leadImg}
                 label={''}
                 buttonText=""
                 onBtnClick={() => {

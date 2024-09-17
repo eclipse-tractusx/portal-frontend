@@ -25,13 +25,13 @@ import { useParams } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import { show } from 'features/control/overlay'
 import { OVERLAYS, ROLES } from 'types/Constants'
-import UserService from 'services/UserService'
 import './MarketplaceHeader.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
 import { getAssetBase } from 'services/EnvironmentService'
 import { info } from 'services/LogService'
 import { Box } from '@mui/material'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { userHasPortalRole } from 'services/AccessService'
 
 export default function MarketplaceHeader({
   item,
@@ -66,11 +66,7 @@ export default function MarketplaceHeader({
         <Button
           color="primary"
           className="subscribe-btn"
-          disabled={
-            UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
-              ? false
-              : true
-          }
+          disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)}
           onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
         >
           {t('content.appdetail.subscribe')}
