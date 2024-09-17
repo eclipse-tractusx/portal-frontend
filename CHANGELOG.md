@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **OSP Consent form**
+  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+  - Fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
+
+## Unreleased 2.2.0-RC3
+
 ### Feature
 
 - **Roles and Permissions**
@@ -40,8 +48,6 @@
   - Fixed "None" selection issue in Technical Integration -> App Release Process [#1036](https://github.com/eclipse-tractusx/portal-frontend/issues/1036)
 - **Technical User Management**
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
-- **OSP Consent form**
-  - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
 ## 2.2.0
 
