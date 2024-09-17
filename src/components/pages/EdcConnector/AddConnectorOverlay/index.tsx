@@ -235,12 +235,9 @@ const AddConnectorOverlay = ({
           <Button
             variant="outlined"
             onClick={() => {
-              if (connectorStep === 1) {
-                onStepChange()
-              } else {
-                setSelected({})
-                handleOverlayClose()
-              }
+              if (connectorStep === 1) onStepChange()
+              else handleOverlayClose()
+              setSelected({})
             }}
           >
             {connectorStep === 0
