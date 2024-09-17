@@ -7,7 +7,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bug Fixes
 
 - **OSP Consent form**
+
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+
+- **Service Release Process**
+  - CHERRY-PICK fix: de description field is not validating umlauts [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993)
+  - CHERRY-PICK fix: service details de description limitation [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043)
 
 ## 2.0.0-cfx-2
 
