@@ -45,6 +45,7 @@ import {
   setSharingStateInfo,
 } from 'features/companyData/slice'
 import { statusColorMap } from 'utils/dataMapper'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -186,12 +187,19 @@ export const CompanyAddressList = ({
             setPage((i) => i + 1)
           }}
           hideFooterPagination={true}
+          buttons={[
+            {
+              title: t('content.companyData.table.buttonSite'),
+              click: () => {
+                handleSecondButtonClick()
+              },
+              icon: <AddCircleOutlineIcon />,
+            },
+          ]}
           autoFocus={false}
           onButtonClick={handleButtonClick}
           rowsCount={inputs.length + outputs.length}
           buttonLabel={t('content.companyData.table.buttonAddress')}
-          secondButtonLabel={t('content.companyData.table.buttonSite')}
-          onSecondButtonClick={handleSecondButtonClick}
           toolbarVariant="premium"
           searchPlaceholder={t('content.companyData.table.search')}
           columnHeadersBackgroundColor={'#FFFFFF'}
