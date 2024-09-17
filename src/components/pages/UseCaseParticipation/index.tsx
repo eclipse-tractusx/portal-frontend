@@ -144,14 +144,14 @@ export default function UseCaseParticipation() {
   }
 
   return (
-    <main className="usecase-participation">
+    <main className="useCaseParticipation">
       <MainHeader
         title={t('content.usecaseParticipation.headerTitle')}
         subTitle={t('content.usecaseParticipation.headerDescription')}
         headerHeight={250}
         subTitleWidth={750}
       />
-      <div className="usecase-main">
+      <div className="useCase-main">
         <div className="container">
           <div>
             <div className="step1">

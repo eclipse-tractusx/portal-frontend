@@ -589,7 +589,7 @@ section {
 // company roles
 
 .companyRoleUpdate,
-.usecase-participation {
+.useCaseParticipation {
   .container {
     .step1 {
       border-color: $color-primary;
@@ -603,7 +603,7 @@ section {
 
 // header style type 1
 .partner-network-page-container,
-.usecase-participation,
+.useCaseParticipation,
 .companyRoleUpdate,
 .user-details,
 .app-release-process-form,
@@ -1101,6 +1101,7 @@ header .search-icon {
 }
 
 .dialog-header-main {
+  padding: 56px 80px !important ;
   .MuiTypography-h4 {
     font-weight: 400;
   }

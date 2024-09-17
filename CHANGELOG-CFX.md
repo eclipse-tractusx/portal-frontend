@@ -14,6 +14,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK fix: de description field is not validating umlauts [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993)
   - CHERRY-PICK fix: service details de description limitation [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043)
 
+### Change
+
+- **Dataspace Participation**
+  - Use case participation & Partner Network UI/UX and translation changes. [PM2-824](https://cofinity-x.atlassian.net/browse/PM2-824)
+
 ## 2.0.0-cfx-2
 
 ### Bug Fixes
