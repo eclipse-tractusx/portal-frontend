@@ -18,21 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Keycloak from 'keycloak-js'
-import type { IUser } from 'features/user/types'
-import { ROLES } from 'types/Constants'
-import {
-  getCentralIdp,
-  getClientId,
-  getClientIdMiw,
-  getClientIdSsiCredential,
-  getClientIdSemantic,
-  getMiwBase,
-  getRealm,
-} from './EnvironmentService'
+import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
+import { getCentralIdp, getClientId, getRealm } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
-import { store } from 'features/store'
-import { setLoggedUser } from 'features/user/slice'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
@@ -40,41 +28,19 @@ const keycloakConfig: Keycloak.KeycloakConfig = {
   clientId: getClientId(),
 }
 
-const keycloakConfigSemantic: Keycloak.KeycloakConfig = {
-  url: getCentralIdp(),
-  realm: getRealm(),
-  clientId: getClientIdSemantic(),
-}
-
-const keycloakConfigMIW: Keycloak.KeycloakConfig = {
-  url: getMiwBase(),
-  realm: getRealm(),
-  clientId: getClientIdMiw(),
-}
-
-const keycloakConfigSsiCredential: Keycloak.KeycloakConfig = {
-  url: getMiwBase(),
-  realm: getRealm(),
-  clientId: getClientIdSsiCredential(),
-}
-
-// Add an ESLint exception until there is a solution
-
 const KC = new Keycloak(keycloakConfig)
 
 const update = () => {
-  //info(`${getUsername()} updating token`)
   KC.updateToken(600)
     .then((refreshed: boolean) => {
       info(`${getUsername()} token refreshed ${refreshed}`)
-      store.dispatch(setLoggedUser(getLoggedUser()))
     })
     .catch(() => {
       error(`${getUsername()} token refresh failed`)
     })
 }
 
-const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
+const init = (onAuthenticatedCallback: () => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',
@@ -82,8 +48,7 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
     .then((authenticated: boolean) => {
       if (authenticated) {
         info(`${getUsername()} authenticated`)
-        onAuthenticatedCallback(getLoggedUser())
-        store.dispatch(setLoggedUser(getLoggedUser()))
+        onAuthenticatedCallback()
       } else {
         error(`${getUsername()} authentication failed`)
       }
@@ -110,58 +75,21 @@ const getUsername = () => KC.tokenParsed?.preferred_username
 
 const getName = () => KC.tokenParsed?.name
 
-const getEmail = () => KC.tokenParsed?.email
-
 const getCompany = () => KC.tokenParsed?.organisation
 
-const getTenant = () => KC.tokenParsed?.tenant
-
-// Add a more sustainable logic for role management with multiple clients
-// not sustainable because client roles need to be unique across all clients
-const getRoles = (): Array<string> =>
-  KC.tokenParsed?.resource_access?.[keycloakConfig.clientId]?.roles
-    .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigSemantic.clientId]?.roles
-    )
-    .concat(KC.tokenParsed?.resource_access[keycloakConfigMIW.clientId]?.roles)
-    .concat(
-      KC.tokenParsed?.resource_access[keycloakConfigSsiCredential.clientId]
-        ?.roles
-    ) ?? []
-
-const hasRole = (role: string) => getRoles()?.includes(role)
-
-const isAdmin = (): boolean => hasRole(ROLES.CX_ADMIN) ?? false
-
-const isLoggedIn = () => !!KC.token
-
-const getLoggedUser = (): IUser => ({
-  userName: getUsername(),
-  name: getName(),
-  email: getEmail(),
-  company: getCompany(),
-  tenant: getTenant(),
-  roles: getRoles(),
-  isAdmin: isAdmin(),
-  token: getToken(),
-  parsedToken: getParsedToken(),
-})
+const getAccess = (): KeycloakResourceAccess =>
+  KC.tokenParsed?.resource_access ?? {}
 
 const UserService = {
   doLogin,
   doLogout,
+  getAccess,
   getToken,
   getParsedToken,
-  getEmail,
-  getUsername,
   getName,
+  getUsername,
   getCompany,
-  getTenant,
-  getRoles,
-  hasRole,
   init,
-  isAdmin,
-  isLoggedIn,
 }
 
 export default UserService

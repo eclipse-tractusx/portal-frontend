@@ -50,9 +50,7 @@ export interface ServiceAccountCreate {
 
 export enum ServiceAccountStatus {
   ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
   PENDING = 'PENDING',
-  DELETED = 'DELETED',
   PENDING_DELETION = 'PENDING_DELETION',
 }
 
@@ -67,6 +65,7 @@ export interface ServiceAccountListEntry {
   name: string
   status: ServiceAccountStatus
   isOwner?: boolean
+  usertype: UserType
   offer?: {
     name?: string
   }
@@ -105,7 +104,7 @@ export interface ServiceAccountsResponseType {
 }
 
 export enum ServiceAccountStatusFilter {
-  ACTIVE = 'ACTIVE',
+  SHOW_ALL = 'show all',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
 }
@@ -155,19 +154,19 @@ export const apiSlice = createApi({
         if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}&isOwner=${isOwner}`
         } else if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&isOwner=${isOwner}`
         } else {
