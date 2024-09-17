@@ -308,6 +308,42 @@ export default function ServiceMarketplace() {
           <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
         )}
       </div>
+
+      <div className="mainContainer">
+        <div className="mainRow">
+          <Typography className="newServicesTitle" variant="h2">
+            {t('content.serviceMarketplace.newServices')}
+          </Typography>
+          <div>
+            <div className='cx-search-grid'>
+            <div className="searchContainer">
+              <SearchInput
+                placeholder={t('notification.search')}
+                value={searchExpr}
+                autoFocus={false}
+                onChange={doFilter}
+              />
+            </div>
+            <div className="filterSection" onMouseLeave={setModalFalse}>
+              <ViewSelector activeView={selected} views={filterButtons} />
+              <SortImage onClick={setModalTrue} selected={showModal} />
+              <div className="sortSection">
+                <SortOption
+                  show={showModal}
+                  selectedOption={sortOption}
+                  setSortOption={setSortOptionFn}
+                  sortOptions={sortOptions}
+                />
+              </div>
+            </div>
+            </div>
+            {renderServices()}
+          </div>
+        </div>
+      </div>
+      {cardServices && cardServices.length > 2 && (
+        <ServicesElements services={cardServices.slice(indexToSplit)} />
+      )}
     </main>
   )
 }
