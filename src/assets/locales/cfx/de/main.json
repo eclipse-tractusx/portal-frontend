@@ -663,10 +663,10 @@
         "errormessage": "Fehler! Etwas ist schief gelaufen. Der Konnektor wurde nicht angelegt."
       },
       "deletemodal": {
-        "title": "EDC-Connector Löschen",
+        "title": "Connector löschen",
         "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
-        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist – der technische Benutzer wird ebenfalls sofort inaktiviert, wenn mit dem Löschen fortgefahren wird.",
-        "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
+        "techUserdescription": "Sind Sie sicher, dass Sie den Connector löschen wollen? Er vom Endpunkt „Connector Discovery“ entfernt und das Selbstbeschreibungs-Dokument wird auf inaktiv gesetzt. Der zugehörige technische User wird ebenfalls deaktiviert.",
+        "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch auch der technische User gelöscht wird.",
         "techDetails": {
           "title": "Technical Details",
           "name": "Name",

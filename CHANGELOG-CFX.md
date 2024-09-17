@@ -32,6 +32,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Connector Registration**
 
   - Remaining Wording & Copywriting changes of Connector Registration page [PM2-811](https://cofinity-x.atlassian.net/browse/PM2-811)
+  - Delete Modal copy writing changes [PM2-811](https://cofinity-x.atlassian.net/browse/PM2-811)
 
 - **App Access Management**
 
