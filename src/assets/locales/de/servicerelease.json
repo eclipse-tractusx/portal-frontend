@@ -90,6 +90,7 @@
     "maximum": "Maximum",
     "charactersAllowed": " characters allowed",
     "validCharactersIncludes": "Valid characters includes: ",
+    "spaceAloneNotAllowed": " and spaces alone are not allowed",
     "isMandatory": " is mandatory",
     "fileUploadIsMandatory": "File upload is mandatory",
     "error": {
@@ -152,7 +153,7 @@
     "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
     "readMore": "Read More",
     "registerURL": "RegisterURL",
-    "search": "...search by entering the service name here.",
+    "search": "...search by entering the company name here.",
     "noDataMessage": "No data available",
     "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
     "subscribeSuccessMsg": "Subscribed Successfully",
