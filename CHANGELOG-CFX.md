@@ -9,6 +9,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
+### Change
+
+- **Dataspace Participation**
+  - Use case participation & Partner Network UI/UX and translation changes. [PM2-824](https://cofinity-x.atlassian.net/browse/PM2-824)
+
 ## 2.0.0-cfx-2
 
 ### Bug Fixes
