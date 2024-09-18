@@ -6,6 +6,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **User Account**
+  - Updated translation for error msg and styles for disabled checkbox
+
 - **Post Merge UI fixes**
 
   - Manged identity wallet: fix page ui and card text color [PM2-1394](https://cofinity-x.atlassian.net/browse/PM2-1394)

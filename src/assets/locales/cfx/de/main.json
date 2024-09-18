@@ -2345,7 +2345,8 @@
     },
     "userRoles": {
       "title": "Zugewiesene Portal Rollen",
-      "changeRoleBtn": "Portal Rolle ändern"
+      "changeRoleBtn": "Portal Rolle ändern",
+      "errorMsg": "Sie sind nicht berechtigt, Ihre eigenen Administrator-Rollen zu ändern. Bitte wenden Sie sich an einen anderen Administrator."
     }
   },
   "global": {
