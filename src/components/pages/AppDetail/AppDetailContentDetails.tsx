@@ -30,7 +30,6 @@ import AppDetailHeader from './components/AppDetailHeader'
 import AppDetailPrivacy from './components/AppDetailPrivacy'
 import AppDetailDocuments from './components/AppDetailDocuments'
 import AppDetailProvider from './components/AppDetailProvider'
-import AppDetailTags from './components/AppDetailTags'
 import type { AppDetails } from 'features/apps/types'
 import './AppDetail.scss'
 import CommonService from 'services/CommonService'
@@ -76,10 +75,6 @@ export default function AppDetailContentDetails({
     {
       href: '#provider-info',
       title: t('content.appdetail.providerInformation.heading'),
-    },
-    {
-      href: '#tags',
-      title: t('content.appdetail.tags'),
     },
   ]
 
@@ -137,7 +132,6 @@ export default function AppDetailContentDetails({
           <AppDetailTechUserSetup item={item} />
           <AppDetailProvider item={item} />
           <div className="divider-height" />
-          <AppDetailTags item={item} />
           <div className="divider-height" />
         </div>
       </>
