@@ -154,12 +154,10 @@ export const apiSlice = createApi({
     >({
       query: (obj) =>
         `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
-      transformErrorResponse: (res) => {
-        return {
-          status: res.status,
-          data: res.data,
-        }
-      },
+      transformErrorResponse: (res) => ({
+        status: res.status,
+        data: res.data,
+      }),
     }),
     unsubscribeApp: builder.mutation<void, string>({
       query: (subscriptionId) => ({

@@ -80,7 +80,7 @@ export default function CompanySubscriptionDetail() {
   const getSrc = () => {
     if (fetchData?.id && items.app && docId)
       return `${getApiBase()}/api/apps/${fetchData.id}/appDocuments/${docId}`
-    else if (fetchData?.id && items.service && docId)
+    if (fetchData?.id && items.service && docId)
       return `${getApiBase()}/api/services/${
         fetchData.id
       }/serviceDocuments/${docId}`

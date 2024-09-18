@@ -25,6 +25,7 @@ import {
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { type PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import {
+  CompanySubscriptionFilterType,
   type Documents,
   type FetchSubscriptionResponseType,
   type SubscribedActiveApps,
@@ -206,9 +207,11 @@ export const apiSlice = createApi({
       query: (body) => {
         console.log(body)
         const url = `/api/services/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
-        const statusId = body.args.statusId
-          ? `&statusId=${body.args.statusId}`
-          : ''
+        const statusId =
+          body.args.statusId &&
+          body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+            ? `&status=${body.args.statusId}`
+            : ''
         const companyName = body.args.expr
           ? `&companyName=${body.args.expr}`
           : ''

@@ -135,26 +135,19 @@ export default function CompanySubscriptions() {
 
   const onUnsubscribeSubmit = async () => {
     setLoading(true)
-    if (currentActive === 0)
-      await unsubscribeAppMutation(subscriptionId)
-        .unwrap()
-        .then(() => {
-          callSuccess()
-        })
-        .catch(() => {
-          setLoading(false)
-          setEnableErrorMessage(true)
-        })
-    else
-      await unsubscribeServiceMutation(subscriptionId)
-        .unwrap()
-        .then(() => {
-          callSuccess()
-        })
-        .catch(() => {
-          setLoading(false)
-          setEnableErrorMessage(true)
-        })
+    await (
+      currentActive === 0
+        ? unsubscribeAppMutation(subscriptionId)
+        : unsubscribeServiceMutation(subscriptionId)
+    )
+      .unwrap()
+      .then(() => {
+        callSuccess()
+      })
+      .catch(() => {
+        setLoading(false)
+        setEnableErrorMessage(true)
+      })
   }
 
   const handleOverlay = (row: SubscribedActiveApps, enable: boolean) => {
@@ -195,42 +188,40 @@ export default function CompanySubscriptions() {
 
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
-  const renderTable = (query: any) => {
-    return (
-      <div className={'table-container'}>
-        <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
-          sx={{
-            '.MuiDataGrid-cell': {
-              alignContent: 'center !important',
-            },
-          }}
-          autoFocus={false}
-          searchExpr={searchExpr}
-          alignCell="start"
-          defaultFilter={group}
-          filterViews={filterView}
-          toolbarVariant={'searchAndFilter'}
-          hasBorder={false}
-          columnHeadersBackgroundColor={'transparent'}
-          searchPlaceholder={t('content.companySubscriptions.searchName')}
-          searchInputData={searchInputData}
-          onSearch={(expr: string) => {
-            if (expr !== '' && !onValidate(expr)) return
-            setRefresh(Date.now())
-            setSearchExpr(expr)
-          }}
-          searchDebounce={1000}
-          title={''}
-          loadLabel={t('global.actions.more')}
-          fetchHook={query}
-          fetchHookArgs={fetchHookArgs}
-          fetchHookRefresh={refresh}
-          getRowId={(row: { [key: string]: string }) => row.offerId}
-          columns={companySubscriptionsCols}
-        />
-      </div>
-    )
-  }
+  const renderTable = (query: any) => (
+    <div className={'table-container'}>
+      <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
+        sx={{
+          '.MuiDataGrid-cell': {
+            alignContent: 'center !important',
+          },
+        }}
+        autoFocus={false}
+        searchExpr={searchExpr}
+        alignCell="start"
+        defaultFilter={group}
+        filterViews={filterView}
+        toolbarVariant={'searchAndFilter'}
+        hasBorder={false}
+        columnHeadersBackgroundColor={'transparent'}
+        searchPlaceholder={t('content.companySubscriptions.searchName')}
+        searchInputData={searchInputData}
+        onSearch={(expr: string) => {
+          if (expr !== '' && !onValidate(expr)) return
+          setRefresh(Date.now())
+          setSearchExpr(expr)
+        }}
+        searchDebounce={1000}
+        title={''}
+        loadLabel={t('global.actions.more')}
+        fetchHook={query}
+        fetchHookArgs={fetchHookArgs}
+        fetchHookRefresh={refresh}
+        getRowId={(row: { [key: string]: string }) => row.offerId}
+        columns={companySubscriptionsCols}
+      />
+    </div>
+  )
 
   return (
     <main className="page-main-container">

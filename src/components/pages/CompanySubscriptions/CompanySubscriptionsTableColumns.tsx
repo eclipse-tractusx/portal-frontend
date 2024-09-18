@@ -87,20 +87,13 @@ export const CompanySubscriptionsTableColumns = (
       )
   }
 
-  const checkStatus = (row: SubscribedActiveApps) => {
-    return row.status
-  }
-
-  const canShowButton = (row: SubscribedActiveApps) => {
-    const status = checkStatus(row)
-    if (status === SubscriptionStatus.ACTIVE) return true
-    return false
-  }
+  const canShowButton = (row: SubscribedActiveApps) =>
+    row.status === SubscriptionStatus.ACTIVE
 
   const getSource = (row: SubscribedActiveApps) => {
     if (row.image && currentActive === 0)
       return `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${row.image}`
-    else if (row.image && currentActive === 1)
+    if (row.image && currentActive === 1)
       return `${getApiBase()}/api/services/${row.offerId}/serviceDocuments/${
         row.image
       }`

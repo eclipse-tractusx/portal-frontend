@@ -31,8 +31,6 @@ export default function CompanySubscriptionTechnical({
 }>) {
   const { t } = useTranslation()
 
-  console.log(detail)
-
   const tableData = {
     head: [
       t('content.companySubscriptionsDetail.table.connector'),
