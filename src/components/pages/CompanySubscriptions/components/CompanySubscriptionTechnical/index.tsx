@@ -20,14 +20,14 @@
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { StaticTable, Typography } from '@catena-x/portal-shared-components'
-import { type ActiveSubscriptionDetails } from 'features/apps/types'
+import { type FetchSubscriptionResponseType } from 'features/apps/types'
 import { PAGES, ROLES } from 'types/Constants'
 import { userHasPortalRole } from 'services/AccessService'
 
 export default function CompanySubscriptionTechnical({
   detail,
 }: Readonly<{
-  detail: ActiveSubscriptionDetails
+  detail: FetchSubscriptionResponseType
 }>) {
   const { t } = useTranslation()
 

@@ -1,5 +1,7 @@
 # Changelog
 
+## (unreleased) 2.2.0-RC3
+
 ## Unreleased
 
 ### Bugfixes
@@ -31,6 +33,7 @@
 
 - **Company Subscriptions**
   - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
+  - Add a tabular section to show up both app and service subscription data [#1101](https://github.com/eclipse-tractusx/portal-frontend/pull/1101)
 
 ### Bugfixes
 
