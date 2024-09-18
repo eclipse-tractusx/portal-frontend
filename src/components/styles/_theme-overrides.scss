@@ -2,6 +2,7 @@ $color-primary: #d31184;
 $color-primary-dark: #a60f68;
 $color-secondary: #4d4d4d;
 $color-gray: #f6f6f6;
+$color-blue: #1977cc;
 $mobile-enable-width: 1800px;
 $font-family-primary: 'Karbon',
   -apple-system,
@@ -245,6 +246,13 @@ section {
 .document-button-link {
   font-family: $font-family-primary;
   color: $color-secondary !important;
+}
+
+.appdetail-main {
+  .document-button-link {
+    font-family: $font-family-primary;
+    color: $color-blue !important;
+  }
 }
 
 .appCertificate .mainContainer {
