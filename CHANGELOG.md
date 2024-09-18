@@ -62,6 +62,7 @@
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+  - Filter out roles not defined by OSP [#1114](https://github.com/eclipse-tractusx/portal-frontend/pull/1114)
   - Fix OSP consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102/files)
 - **Use Case participation**
   - Removes use cases without verified credentials from the "Use Case Participation" list [#1088](https://github.com/eclipse-tractusx/portal-frontend/pull/1088)
