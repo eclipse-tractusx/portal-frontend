@@ -262,8 +262,8 @@ any) => {
   const { t } = useTranslation()
   const [selectedValue, setSelectedValue] = useState<string>()
   const [serviceAccountUsers, setServiceAccountUsers] = useState([])
-  const [selectedTechnicalUser, setSelectedTechnicalUser] = useState('')
-  const [selectedCustomerLink, setSelectedCustomerLink] = useState('')
+  const [selectedTechnicalUser, setSelectedTechnicalUser] = useState({})
+  const [selectedCustomerLink, setSelectedCustomerLink] = useState({})
 
   useEffect(() => {
     if (fetchServiceAccountUsers)
@@ -279,7 +279,7 @@ any) => {
           i.serviceAccountId === getValues().ConnectorTechnicalUser
       )
     if (selectedConnectorTechnicalUser.length > 0) {
-      setSelectedTechnicalUser(selectedConnectorTechnicalUser[0]?.name)
+      setSelectedTechnicalUser(selectedConnectorTechnicalUser[0])
     }
   }, [serviceAccountUsers])
 
@@ -289,7 +289,7 @@ any) => {
         item.subscriptionId === getValues().ConnectorSubscriptionId
     )
     if (selectedCustomer.length > 0) {
-      setSelectedCustomerLink(selectedCustomer[0].name ?? '')
+      setSelectedCustomerLink(selectedCustomer[0])
     }
   }, [subscriptions])
 
