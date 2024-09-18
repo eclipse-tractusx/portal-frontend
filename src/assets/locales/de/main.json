@@ -2236,7 +2236,8 @@
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
-      "changeRoleBtn": "Change Portal Role"
+      "changeRoleBtn": "Change Portal Role",
+      "errorMsg": "Sie sind nicht berechtigt, Ihre eigenen Administrator-Rollen zu ändern. Bitte wenden Sie sich an einen anderen Administrator."
     }
   },
   "global": {
