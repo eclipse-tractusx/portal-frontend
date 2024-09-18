@@ -153,6 +153,15 @@ export default function EditPortalRoles({ id }: { id: string }) {
                     onChange={(e) => {
                       handleSelectRole(role.role, e.target.checked)
                     }}
+                    sx={{
+                      '&.Mui-disabled': {
+                        color: 'rgba(0, 0, 0, 0.5)',
+                        background: 'none !important',
+                        '& .MuiSvgIcon-root': {
+                          color: 'rgba(0, 0, 0, 0.5)',
+                        },
+                      },
+                    }}
                   />
                 </li>
               ))}
