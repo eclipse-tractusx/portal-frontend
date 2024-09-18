@@ -51,6 +51,7 @@ export enum PAGES {
   TECH_USER_DETAILS = 'techUserDetails',
   IDP_MANAGEMENT = 'idpManagement',
   APPLICATION_REQUESTS = 'applicationRequests',
+  CLEARINGHOUSE_SELF_DESCRIPTION = 'clearinghouseSelfDescription',
   APP_USER_MANAGEMENT = 'appUserManagement',
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
