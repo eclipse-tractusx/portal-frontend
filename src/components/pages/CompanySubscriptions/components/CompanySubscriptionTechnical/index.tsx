@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { StaticTable, Typography } from '@catena-x/portal-shared-components'
 import { type FetchSubscriptionResponseType } from 'features/apps/types'
 import { PAGES, ROLES } from 'types/Constants'
-import UserService from 'services/UserService'
+import { userHasPortalRole } from 'services/AccessService'
 
 export default function CompanySubscriptionTechnical({
   detail,
@@ -54,7 +54,7 @@ export default function CompanySubscriptionTechnical({
         {
           icon: false,
           clickableLink:
-            UserService.hasRole(ROLES.VIEW_USER_ACCOUNT) &&
+            userHasPortalRole(ROLES.VIEW_USER_ACCOUNT) &&
             detail.technicalUserData.length
               ? `/${PAGES.USER_DETAILS}/${detail.technicalUserData[0].id}`
               : undefined,

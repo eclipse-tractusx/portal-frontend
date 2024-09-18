@@ -20,7 +20,7 @@
 import './AppListGroupView.scss'
 import { Box } from '@mui/material'
 import { Cards } from '@catena-x/portal-shared-components'
-import { multiMapBy } from 'utils/multiMapBy'
+import { multiMapBy } from 'utils/dataUtils'
 import { useTranslation } from 'react-i18next'
 import { AppListGroup } from '../AppListGroup'
 import NoItems from 'components/pages/NoItems'

@@ -20,8 +20,8 @@
 
 import { ImageItem } from '@catena-x/portal-shared-components'
 import { useMediaQuery } from '@mui/material'
+import { type CSSProperties } from 'react'
 import '../StaticTemplate.scss'
-import { type SxProps } from '@mui/system'
 
 export default function RenderImage({
   url,
@@ -30,7 +30,7 @@ export default function RenderImage({
   width,
 }: Readonly<{
   url: string
-  additionalStyles?: SxProps
+  additionalStyles?: CSSProperties
   height?: string
   width?: string
 }>) {

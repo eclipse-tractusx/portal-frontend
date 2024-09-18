@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
-import UserService from './UserService'
+import type { IAction, IPage, RestrictedItem, Tree } from 'types/MainTypes'
 import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
@@ -70,17 +69,57 @@ import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDet
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
 import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
 import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
+import type { KeycloakResourceAccess } from 'keycloak-js'
+import { intersectAccess } from 'utils/dataUtils'
+import UserService from './UserService'
+import {
+  getClientId,
+  getClientIdBpdm,
+  getClientIdMiw,
+  getClientIdRegistration,
+  getClientIdSemantic,
+  getClientIdSsiCredential,
+} from './EnvironmentService'
 import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
-let overlayMap: { [overlay: string]: IOverlay }
+let overlayMap: { [overlay: string]: RestrictedItem }
 
-const checkAccess = (element: { name: string; role?: string }): boolean => {
-  if (!element) return false // page doesn't exist
-  const role = element.role
-  if (!role) return true // no permission required for this page
-  return UserService.hasRole(role) // check if user has the required permission
+export const userHasAccess = (required: KeycloakResourceAccess): boolean =>
+  Object.keys(intersectAccess(required, UserService.getAccess())).length > 0
+
+export const userHasClientRole = (
+  client: string,
+  roles: string | Array<string>
+): boolean =>
+  userHasAccess({ [client]: { roles: Array.isArray(roles) ? roles : [roles] } })
+
+export const userHasPortalRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientId(), roles)
+
+export const userHasRegistrationRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdRegistration(), roles)
+
+export const userHasSemanticHubRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdSemantic(), roles)
+
+export const userHasBpdmRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientIdBpdm(), roles)
+
+export const userHasMiwRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientIdMiw(), roles)
+
+export const userHasSsiCredentialRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdSsiCredential(), roles)
+
+const checkAccess = (element: RestrictedItem): boolean => {
+  if (!element) return false // item doesn't exist
+  if (!element.allowTo) return true // no permission required for this item
+  return element.allowTo() // check if permission is granted
 }
 
 export const hasAccess = (page: string) => checkAccess(pageMap[page])
@@ -94,9 +133,7 @@ export const hasAccessOverlay = (overlay: string) =>
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
-const accessToMenuTree = (menu: Tree[] | undefined): any =>
+const accessToMenuTree = (menu: Tree[] | undefined): Tree[] | undefined =>
   menu
     ?.filter((item: Tree) => hasAccess(item.name))
     .map((item: Tree) => ({
@@ -236,7 +273,7 @@ function init() {
     {}
   )
   overlayMap = ALL_OVERLAYS.reduce(
-    (map: { [overlay: string]: IOverlay }, overlay: IOverlay) => {
+    (map: { [overlay: string]: RestrictedItem }, overlay: RestrictedItem) => {
       map[overlay.name] = overlay
       return map
     },
