@@ -24,7 +24,6 @@ import admin from './admin'
 import apps from './apps'
 import control from './control'
 import info from './info'
-import userSliceDep from './user/slice'
 import partnerNetworkSlice from './partnerNetwork/slice'
 import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
@@ -96,7 +95,6 @@ export const reducers = {
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
   companyRoles: updateCompanyRoleSlice.reducer,
-  user: userSliceDep,
   partnerNetwork: partnerNetworkSlice.reducer,
   connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,

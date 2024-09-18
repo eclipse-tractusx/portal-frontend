@@ -317,7 +317,8 @@ export default function OfferPage({
                     )}`,
                     pattern: `${t(
                       'serviceReleaseForm.validCharactersIncludes'
-                    )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'}`,
+                    )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'} 
+                    ${t('serviceReleaseForm.spaceAloneNotAllowed')}`,
                   }}
                   maxLength={longDescriptionMaxLength}
                 />

@@ -472,7 +472,8 @@ export default function OfferCard() {
                         )}`,
                         pattern: `${t(
                           'serviceReleaseForm.validCharactersIncludes'
-                        )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'}`,
+                        )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'}
+                        ${t('serviceReleaseForm.spaceAloneNotAllowed')}`,
                         maxLength: `${t('serviceReleaseForm.maximum')} 120 ${t(
                           'serviceReleaseForm.charactersAllowed'
                         )}`,

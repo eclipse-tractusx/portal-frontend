@@ -22,8 +22,8 @@ import { useEffect } from 'react'
 import { SubNavigation } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import UserService from 'services/UserService'
 import { PAGES, ROLES } from 'types/Constants'
+import { userHasPortalRole } from 'services/AccessService'
 
 export const StageSubNavigation = () => {
   const { t } = useTranslation()
@@ -47,7 +47,7 @@ export const StageSubNavigation = () => {
   return (
     <SubNavigation
       buttonLabel={
-        (UserService.hasRole(ROLES.TECH_USER_VIEW) &&
+        (userHasPortalRole(ROLES.TECH_USER_VIEW) &&
           t('navigation.subNavigation.buttonLabel')) ||
         undefined
       }

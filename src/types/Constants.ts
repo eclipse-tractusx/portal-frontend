@@ -26,8 +26,6 @@ export enum PAGES {
   ROOT = '',
   HOME = 'home',
   REGISTRATION = 'registration',
-  SWAGGER = 'swagger',
-  STORYBOOK = 'storybook',
   APP_SUBSCRIPTION = 'appSubscription',
   APP_ADMIN_BOARD = 'appAdminBoard',
   APP_ADMIN_BOARD_DETAIL = 'appAdminBoardDetail',
@@ -234,6 +232,8 @@ export enum ROLES {
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
+  VIEW_REGISTRATION = 'view_registration',
+  READ_PARTNER = 'read_partner',
 }
 
 export enum HINTS {
