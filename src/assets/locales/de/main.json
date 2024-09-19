@@ -1488,8 +1488,8 @@
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Success",
-      "pending": "Subscription is Pending",
-      "active": "Subscription is Active",
+      "pending": "Das Abonnement steht noch aus",
+      "active": "Das Abonnement ist aktiv",
       "tabs": {
         "request": "Request",
         "active": "Active",
