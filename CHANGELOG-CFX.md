@@ -6,6 +6,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **App Marketplace**
+  - Updated state of a button after app subscription so that it will work for every subscription
+
 - **User Account**
   - Updated translation for error msg and styles for disabled checkbox
 
