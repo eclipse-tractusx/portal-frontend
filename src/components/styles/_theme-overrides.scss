@@ -1839,9 +1839,11 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
 .cx-search-input {
   &__text-field {
-    border-radius: 25px;
-    height: 52px;
-    min-width: 350px;
+    .MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl {
+      border-radius: 25px;
+      height: 52px;
+      min-width: 350px;
+    }
   }
 }
 
@@ -1851,6 +1853,16 @@ p.MuiTypography-root.MuiTypography-body3.description,
   color: $black !important;
 }
 
+
+// cx-overlay
+.cx-overlay {
+  &__short-heading {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    display: block;
+    text-align: center !important;
+  }
+}
 .subscription-overlay-header > div {
   padding: 56px 112px 10px !important;
 }

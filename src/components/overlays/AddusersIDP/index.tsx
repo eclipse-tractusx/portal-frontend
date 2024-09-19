@@ -51,7 +51,6 @@ import {
   storeForm,
 } from 'features/control/form'
 import { error, success } from 'services/NotifyService'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
 import './AddUsersIDP.scss'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
@@ -640,31 +639,6 @@ export const AddusersIDP = ({ id }: { id: string }) => {
             DropArea={renderDropArea}
           />
         </div>
-        <Typography
-          variant="label3"
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            color: '#0088CC',
-            textDecoration: 'underline',
-          }}
-          onClick={() =>
-            window.open(
-              '/documentation/?path=user%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md',
-              '_blank',
-              'noopener'
-            )
-          }
-        >
-          <HelpOutlineIcon
-            sx={{
-              fontSize: '18px',
-              marginRight: '5px',
-            }}
-          />
-          {t('add.learnMore')}
-        </Typography>
       </>
     )
   }

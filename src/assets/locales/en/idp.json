@@ -92,8 +92,8 @@
       "thirdStep": "Connect user profile"
     },
     "created": "Created",
-    "desc": "In the next step, your IdP needs to be activated. <br /><br />To do this, connect your existing Catena-X user <br />with your user ID  in the IdP you just have added.",
-    "label": "Your IdP - User ID",
+    "desc": "To activate your IdP, connect your existing Catena-X user with your user ID in the newly added IdP.",
+    "label": "Your IdP-User ID",
     "hint": "Your existing user ID (not name) on target IDP",
     "success": "IdP got enabled",
     "error": "Something went wrong. IdP got not enabled."
@@ -153,7 +153,7 @@
     "title": "Update/Migrate User Accounts",
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
-    "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
+    "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Cofinity-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP. <br/>All user data and settings are retained and assigned to the correct user. <br/> <br/>To do this, select the file format and download a list of your Cofinity-X users. <br/>Add the corresponding unique user ID from your own IdP to each Cofinity-X user.<br/>Upload the updated file back to Cofinity-X.<br/>This will link the existing Cofinity-X user accounts to the corresponding user account from your own IdP.<br/><br/>Your users can now log in to the Cofinity-X-Portal with their company credentials.",
     "bulkUploadHeading": "Bulk upload process",
     "step1Heading": "Download user list as file. Please select your prefered file type:",
     "step1Intro": "Content current userlist:",
@@ -206,7 +206,7 @@
       "hint": "The IdP alias is a generated value and cannot be changed"
     },
     "authType": {
-      "name": "Authentication type",
+      "name": "Authentication Type",
       "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
     },
     "providerType": {

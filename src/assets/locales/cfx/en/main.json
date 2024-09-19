@@ -1074,7 +1074,7 @@
       "multipleUserSubheadline": "Please use this <1>upload template</1>, to add multiple users via the bulk load.",
       "technicalUserHeadline": "Technical User Creation",
       "technicalUserSubheadline": "Create a technical user by adding the relevant information requested below. Please note that the description is used for your own reference only. In case you have a number of technical users it will help you to differenciate between the technical user accounts.",
-      "technicalUserSubheadlineSuccess": "Congratulations, the technical user got successfully created. Below you can find all the relevant details needed to apply the technical user for your service connection. Please ensure that you keep this secrets confidential.",
+      "technicalUserSubheadlineSuccess": "Technical user successfully created. Below are the details needed for service connection. Please keep this secret confidential.",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Select Portal User Role",
       "help": "Help",

@@ -49,7 +49,8 @@ export const Patterns = {
   URL: urlPattern,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
-  COMPANY_NAME: /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
+  COMPANY_NAME:
+    /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
   personName: personNamePattern,
   name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
   zipcode: /^[A-Z0-9-]{1,8}$/,

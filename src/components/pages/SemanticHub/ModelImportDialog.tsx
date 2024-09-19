@@ -140,7 +140,7 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} disabled={uploading}>
+        <Button variant="outlined" onClick={onClose} disabled={uploading}>
           {t('content.semantichub.importDialog.buttonCancel')}
         </Button>
         <Button onClick={uploadModel} disabled={uploading}>

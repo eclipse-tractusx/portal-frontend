@@ -211,7 +211,7 @@
       "name": "Authentication Type",
       "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
     },
-   "providerType": {
+    "providerType": {
       "name": "Identity Provider Type",
       "placeholder": "Please select a type",
       "hint": "Select provider type for your own company or managed for a third party company",

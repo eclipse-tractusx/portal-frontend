@@ -42,47 +42,47 @@ export default function Organization() {
 
   return (
     <>
-        <MainHeader
+      <MainHeader
         title={t('pages.organization')}
         subTitle={t('content.organization.headlineDescription')}
         headerHeight={250}
         subTitleWidth={750}
       />
-    <main className="organization-main">
-      <div className="organization-section">
-        <MyCompanyInfoComponent />
-        <div className="delete-btn">
-          <Button
-            color="secondary"
-            size="small"
-            variant="outlined"
-            startIcon={<CancelOutlinedIcon />}
-            disabled
-          >
-            {t('content.organization.deleteAccount')}
-          </Button>
-        </div>
-        <div className="certificates-section">
-          <Typography variant="h4">
-            {t('content.organization.certificates')}
-          </Typography>
-          <div className="certificate-items">
-            {certificates?.map((certificate) => (
-              <div key={certificate.companyCertificateType}>
-                {
-                  <ContentCard
-                    title={certificate.companyCertificateType}
-                    chipText={certificate.companyCertificateType}
-                    heading="Business Partner Level: "
-                    detail="N/A"
-                  />
-                }
-              </div>
-            ))}
+      <main className="organization-main">
+        <div className="organization-section">
+          <MyCompanyInfoComponent />
+          <div className="delete-btn">
+            <Button
+              color="secondary"
+              size="small"
+              variant="outlined"
+              startIcon={<CancelOutlinedIcon />}
+              disabled
+            >
+              {t('content.organization.deleteAccount')}
+            </Button>
+          </div>
+          <div className="certificates-section">
+            <Typography variant="h4">
+              {t('content.organization.certificates')}
+            </Typography>
+            <div className="certificate-items">
+              {certificates?.map((certificate) => (
+                <div key={certificate.companyCertificateType}>
+                  {
+                    <ContentCard
+                      title={certificate.companyCertificateType}
+                      chipText={certificate.companyCertificateType}
+                      heading="Business Partner Level: "
+                      detail="N/A"
+                    />
+                  }
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
     </>
   )
 }
