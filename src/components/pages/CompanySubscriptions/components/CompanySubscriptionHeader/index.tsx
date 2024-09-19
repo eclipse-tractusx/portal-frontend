@@ -28,26 +28,18 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import { useTranslation } from 'react-i18next'
-import { useEffect, useState } from 'react'
 import { type AppDetails, SubscriptionStatus } from 'features/apps/types'
-import CommonService from 'services/CommonService'
 import { fetchImageWithToken } from 'services/ImageService'
-import { getApiBase } from 'services/EnvironmentService'
+import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export default function CompanySubscriptionHeader({
   detail,
+  src,
 }: Readonly<{
-  detail: AppDetails
+  detail: AppDetails | ServiceDetailsResponse
+  src: string
 }>) {
   const { t } = useTranslation()
-  const [docId, setDocId] = useState('')
-
-  useEffect(() => {
-    if (detail.leadPictureId) {
-      const id = CommonService.isValidPictureId(detail.leadPictureId)
-      setDocId(id)
-    }
-  }, [detail])
 
   const renderStatusButton = (status: string) => {
     if (status === SubscriptionStatus.ACTIVE)
@@ -102,11 +94,7 @@ export default function CompanySubscriptionHeader({
     <Box className="company-subscription-header">
       <div className="lead-image">
         <Image
-          src={
-            detail?.id && docId
-              ? `${getApiBase()}/api/apps/${detail.id}/appDocuments/${docId}`
-              : LogoGrayData
-          }
+          src={src ?? LogoGrayData}
           alt={detail.title}
           loader={fetchImageWithToken}
         />
@@ -119,7 +107,7 @@ export default function CompanySubscriptionHeader({
         <Typography variant="label2">
           {t('content.companySubscriptionsDetail.language')}:
           <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
-            {detail.languages.length
+            {detail?.languages?.length
               ? detail.languages.map((lang, index) => (
                   <span key={lang}>
                     {` ${index ? ', ' : ''}${lang.toUpperCase()} `}

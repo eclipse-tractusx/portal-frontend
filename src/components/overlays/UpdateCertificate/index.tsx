@@ -259,7 +259,7 @@ export default function UpdateCertificate() {
                               )
                         }
                         onChangeItem={(e) => {
-                          setSelectedCertificate(e.title)
+                          setSelectedCertificate(e.title as string)
                         }}
                         keyTitle={'title'}
                         disabled={certificatetypesArr.length === 1}

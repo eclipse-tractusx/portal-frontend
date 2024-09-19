@@ -1,6 +1,24 @@
 # Changelog
 
+## (unreleased) 2.2.0-RC3
+
 ## Unreleased
+
+### Bugfixes
+
+- **Service Release Process**
+  - Updated description regex & validation error message to prevent only spaces in short & long description
+- **OSP Consent form**
+  - Fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
+- **App and Service Admin board**
+  - Fix data disappearing issue on re-clicking active tab/filter in app/service admin board [#1100](https://github.com/eclipse-tractusx/portal-frontend/pull/1100)
+- **App & Service Subcription Managment**
+  - Search place holder text updated
+  - Show only available offer names at the top
+- **Admin Service Management**
+  - Resolved service title overlap and improved responsiveness on the admin service detail page [#1112](https://github.com/eclipse-tractusx/portal-frontend/pull/1112)
+
+## Unreleased 2.2.0-RC3
 
 ### Feature
 
@@ -15,6 +33,7 @@
 
 - **Company Subscriptions**
   - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
+  - Add a tabular section to show up both app and service subscription data [#1101](https://github.com/eclipse-tractusx/portal-frontend/pull/1101)
 
 ### Bugfixes
 
@@ -22,6 +41,7 @@
 - fixed 400 Bad Request error in App Access Management -> Add Role search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/issues/1057)
 - **Connector Management**
   - fixed technical user selection
+  - updated inconsistent wording during connector deletion [#1098](https://github.com/eclipse-tractusx/portal-frontend/pull/1098)
 - **IDP management**
   - Fixed IDP management page title & description
 - **Technical User**
@@ -37,10 +57,15 @@
   - Fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
 - **App Release Process**:
   - Fixed role upload does not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
+  - Fixed "None" selection issue in Technical Integration -> App Release Process [#1036](https://github.com/eclipse-tractusx/portal-frontend/issues/1036)
 - **Technical User Management**
   - Display technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
 - **OSP Consent form**
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+  - Filter out roles not defined by OSP [#1114](https://github.com/eclipse-tractusx/portal-frontend/pull/1114)
+  - Fix OSP consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102/files)
+- **Use Case participation**
+  - Removes use cases without verified credentials from the "Use Case Participation" list [#1088](https://github.com/eclipse-tractusx/portal-frontend/pull/1088)
 - **User Management**
   - Fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
 

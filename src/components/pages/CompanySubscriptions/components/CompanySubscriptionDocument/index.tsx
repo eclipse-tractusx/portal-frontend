@@ -26,11 +26,12 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { type AppDetails, type Documents } from 'features/apps/types'
 import { download } from 'utils/downloadUtils'
 import 'components/styles/document.scss'
+import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export default function CompanySubscriptionDocument({
   detail,
 }: Readonly<{
-  detail: AppDetails
+  detail: AppDetails | ServiceDetailsResponse
 }>) {
   const { t } = useTranslation()
 
