@@ -178,7 +178,15 @@ export default function SubscriptionElements({
     subscription: CompanySubscriptionData
   ) => {
     if (subscription.offerSubscriptionStatus === SubscriptionStatus.ACTIVE) {
-      return <AddTaskIcon className="statusIcon active" />
+      return (
+        <Tooltips
+          color="dark"
+          tooltipPlacement="top-start"
+          tooltipText={'Subscription is active'}
+        >
+          <AddTaskIcon className="statusIcon active" />
+        </Tooltips>
+      )
     } else if (
       subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
     ) {
@@ -211,7 +219,13 @@ export default function SubscriptionElements({
                     })
               }}
             />
-            <HistoryIcon className="statusIcon pending" />
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.pending')}
+            >
+              <HistoryIcon className="statusIcon pending" />
+            </Tooltips>
           </>
         )
       } else if (

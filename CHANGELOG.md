@@ -1,7 +1,5 @@
 # Changelog
 
-## (unreleased) 2.2.0-RC3
-
 ## Unreleased
 
 ### Bugfixes
@@ -15,6 +13,7 @@
 - **App & Service Subcription Managment**
   - Search place holder text updated
   - Show only available offer names at the top
+  - Implement Hover-Information on the Status Icon of serviceSubscription
 - **Admin Service Management**
   - Resolved service title overlap and improved responsiveness on the admin service detail page [#1112](https://github.com/eclipse-tractusx/portal-frontend/pull/1112)
 
