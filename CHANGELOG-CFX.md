@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bug Fixes
 
 - **User Account**
+
   - Updated translation for error msg and styles for disabled checkbox
 
 - **Post Merge UI fixes**
@@ -26,11 +27,19 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Change
 
 - **Dataspace Participation**
+
   - Use case participation & Partner Network UI/UX and translation changes. [PM2-824](https://cofinity-x.atlassian.net/browse/PM2-824)
+
+- **App & Service Subscription**
+  - Fix filter labels [PM2-508](https://cofinity-x.atlassian.net/browse/PM2-508)
 
 ## 2.0.0-cfx-2
 
 ### Bug Fixes
+
+- **User Account**
+
+  - CHERRY-PICK fix: block user from removing own admin roles [#987] (https://github.com/eclipse-tractusx/portal-frontend/pull/987)
 
 - **App Marketplace**
   - CHERRY-PICK fix: update the onButtonClick logic to avoid clicks after subscribed [#1042](https://github.com/eclipse-tractusx/portal-frontend/pull/1042)
