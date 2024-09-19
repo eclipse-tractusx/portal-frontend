@@ -182,7 +182,7 @@ export default function SubscriptionElements({
         <Tooltips
           color="dark"
           tooltipPlacement="top-start"
-          tooltipText={'Subscription is active'}
+          tooltipText={t('content.appSubscription.active')}
         >
           <AddTaskIcon className="statusIcon active" />
         </Tooltips>

@@ -1488,6 +1488,8 @@
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Success",
+      "pending": "Subscription is Pending",
+      "active": "Subscription is Active",
       "tabs": {
         "request": "Request",
         "active": "Active",
