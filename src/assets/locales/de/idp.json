@@ -50,7 +50,7 @@
     "shortDescriptionText": "Sie bevorzugen wahrscheinlich die Nutzung Ihres eigenen Unternehmens-IDP. Auf dieser Seite können Sie die Föderation erstellen und verwalten. Bei der Registrierung haben wir eine IDP mit einem Benutzereintrag für den Administrator erstellt."
   },
   "add": {
-    "title": "Add your Identity Provider (IdP)",
+    "title": "Identity Provider (IdP) hinzufügen",
     "stepLists": {
       "firstStep": "Create IdP entry",
       "secondStep": "Add IdP data",
@@ -92,8 +92,8 @@
       "thirdStep": "Connect user profile"
     },
     "created": "Created",
-    "desc": "In the next step, your IdP needs to be activated. <br /><br />To do this, connect your existing Catena-X user <br />with your user ID  in the IdP you just have added.",
-    "label": "Your IdP - User ID",
+    "desc": "Um Ihren IdP zu aktivieren, verbinden Sie Ihren bestehenden Catena-X-User mit Ihrer User-ID im neu hinzugefügten IdP.",
+    "label": "Ihre IdP-User ID",
     "hint": "Your existing user ID (not name) on target IDP",
     "success": "IdP got enabled",
     "error": "Something went wrong. IdP got not enabled."
@@ -153,19 +153,26 @@
     "title": "Update/Migrate User Accounts",
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
-    "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
+    "desc1": "Wenn Sie Ihren eigenen Identity Provider erstellen, können Sie Ihre bestehenden Cofinity-X-User mit den in Ihrem eigenen IdP aufgeführten User migrieren/verbinden. Dies wird durch den Keycloak IdP erleichtert.Alle User-Daten und -einstellungen werden beibehalten und dem richtigen User zugewiesen.<br>Wählen Sie dazu das Dateiformat und laden Sie eine Liste Ihrer Cofinity-X-User herunter.<br><br>Fügen Sie jedem Cofinity-X-User die entsprechende eindeutige User-ID von Ihrem eigenen IdP hinzu.<br>Laden Sie die aktualisierte Datei wieder auf Cofinity-X hoch.<br>Dadurch werden die bestehenden Cofinity-X User-Konten mit dem entsprechenden User-Konto aus Ihrem eigenen IdP verknüpft.<br><br>Ihre User können sich nun mit ihren Unternehmensdaten im Cofinity-X-Portal anmelden.",
+    "desc2": "Download the user list; enhance the csv file with the unique user id (available in your own idp) and upload the csv again. With the upload of the own idp user id; the existing user accounts will get linked to the own idp user account with the login of the user on the CX platform.",
+    "desc3": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
     "bulkUploadHeading": "Bulk upload process",
     "step1Heading": "Download user list as file. Please select your prefered file type:",
     "step1Intro": "Content current userlist:",
     "step1ButtonLabel": "Download userlist",
     "pretty": "Pretty",
     "unlinked": "Hide linked",
+    "step1Heading": "User-Liste als Datei herunterladen. Bitte bevorzugten Dateityp auswählen.",
+    "step1Intro": "Inhalt aktuelle User-liste:",
+    "step1ButtonLabel": "User-Liste herunterladen",
+    "step2Heading": "In der heruntergeladenen User-Liste:<br>Ergänzen Sie jeden User-Eintrag mit der jeweiligen ProviderUserID",
+
     "step2Heading": "In downloaded user list:<br />Enrich each user entrie with the respective ProviderUserID",
     "step3Heading": "Upload updated user list here:",
     "drop": {
       "intro": "Upload mapped user list with ProviderUserID",
-      "title": "Drag & drop your files here",
-      "subTitle": "Or browse files on your computer",
+      "title": "Ziehen Sie Ihre Dateien per Drag & Drop hierher",
+      "subTitle": "oder durchsuchen Sie Dateien auf Ihrem Computer.",
       "errorTitle": "Invalid upload",
       "note": "only one CSV or JSON file allowed for upload",
       "fileSizeError": "Uploaded file is too big. Maximum 100KB is allowed"
@@ -211,7 +218,7 @@
       "hint": "The IdP alias is a generated value and cannot be changed"
     },
     "authType": {
-      "name": "Authentication type",
+      "name": "Authentication Type",
       "hint": "Select the authentication type of the new Identity Provider (currently only OIDC is supported)"
     },
     "providerType": {
@@ -348,21 +355,21 @@
     "delete": "Delete",
     "edit": "Edit",
     "configure": "Konfigurieren",
-    "register": "Register Partner",
+    "register": "Partner registrieren",
     "users": "Benutzer",
     "signout": "Sign out",
     "confirm": "Confirm",
     "close": "Close",
-    "cancel": "Cancel",
+    "cancel": "Abbrechen",
     "notnow": "Close, test later",
     "testnow": "Test new IDP login",
     "next": "Next",
     "understood": "Understood",
     "help": "Get help",
-    "back": "Back",
-    "connect": "Connect",
+    "back": "Zurück",
+    "connect": "Verbinden",
     "loading": "Loading...",
-    "uploadUserList": "Upload Updated User List",
+    "uploadUserList": "Aktualisierte User-Liste hochladen",
     "saveMetadata": "Save Metadata"
   }
 }

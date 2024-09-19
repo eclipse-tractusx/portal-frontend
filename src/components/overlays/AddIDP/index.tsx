@@ -265,9 +265,11 @@ export const AddIdp = () => {
             activeStep={1}
           />
         </div>
-        <Trans>
-          <Typography variant="label3">{t('add.desc')}</Typography>
-        </Trans>
+        <div className="cx-overlay__short-heading">
+          <Trans>
+            <Typography variant="label3">{t('add.desc')}</Typography>
+          </Trans>
+        </div>
         <CommonConnectorFormInputField
           {...{
             control,
@@ -297,31 +299,7 @@ export const AddIdp = () => {
           }}
         />
         <AddIDPPrepareForm />
-        <Typography
-          variant="label3"
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            color: '#0088CC',
-            cursor: 'pointer',
-            textDecoration: 'underline',
-          }}
-          onClick={() =>
-            window.open(
-              '/documentation/?path=user%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md',
-              '_blank',
-              'noopener'
-            )
-          }
-        >
-          <HelpOutlineIcon
-            sx={{
-              marginRight: '5px',
-              fontSize: '18px',
-            }}
-          />
-          {t('add.learnMore')}
-        </Typography>
+
         {showError && (
           <Typography
             sx={{

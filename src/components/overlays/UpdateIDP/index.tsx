@@ -31,7 +31,6 @@ import {
 import { useDispatch } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import {
   type IdentityProviderUpdate,
@@ -116,39 +115,16 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
           <Stepper list={steps} showSteps={numberSteps} activeStep={2} />
         </div>
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <Trans>
-            <Typography variant="label3">{t('edit.desc')}</Typography>
-          </Trans>
+
+        <div className="cx-overlay__short-heading">
+          <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <Trans>
+              <Typography variant="label3">{t('edit.desc')}</Typography>
+            </Trans>
+          </div>
+          <Typography variant="label2">{t('edit.addDataHeading')}</Typography>
         </div>
-        <Typography variant="label2">{t('edit.addDataHeading')}</Typography>
         {data && <UpdateIDPContent idp={data} onValid={setIdpUpdateData} />}
-        <Typography
-          variant="label3"
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            color: '#0088CC',
-            textDecoration: 'underline',
-            marginTop: '30px',
-          }}
-          onClick={() =>
-            window.open(
-              '/documentation/?path=user%2F02.+Technical+Integration%2F02.+Identity+Provider+Management%2F02.+Configure+Company+IdP.md',
-              '_blank',
-              'noopener'
-            )
-          }
-        >
-          <HelpOutlineIcon
-            sx={{
-              marginRight: '5px',
-              fontSize: '18px',
-            }}
-          />
-          {t('add.learnMore')}
-        </Typography>
         {showError && (
           <Typography
             variant="label3"

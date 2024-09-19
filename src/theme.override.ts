@@ -517,7 +517,7 @@ export const customTheme = {
 
     MuiCheckbox: {
       styleOverrides: {
-        disabled: {
+        '&.Mui-disabled': {
           color: COLOR_PALETTE.BLACK,
           backgroundColor: COLOR_PALETTE.BLACK,
         },

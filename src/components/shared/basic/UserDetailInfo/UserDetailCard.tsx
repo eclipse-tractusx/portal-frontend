@@ -126,7 +126,7 @@ export const UserDetailCard = ({
           />
         </Box>
       )}
-      <span>
+      <span className="cx-client-secret__box">
         {param === 'clientSecret' && (
           <ContentCopyIcon
             style={{ cursor: 'pointer' }}

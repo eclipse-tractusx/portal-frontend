@@ -895,7 +895,7 @@
       },
       "addMultipleUsers": {
         "heading": "Nutzer Accounts via Massen-Upload hinzufügen",
-        "intro": "Bulk upload process",
+        "intro": "Bulk-Upload-Prozess",
         "step1": {
           "heading": "Laden Sie diese Upload-Vorlage herunter, indem Sie auf das Symbol klicken",
           "buttonLabel": "Vorlage herunterladen"
@@ -1072,7 +1072,7 @@
       "multipleUserSubheadline": "Bitte verwenden Sie dieses <1>Upload-Vorlage</1>, um mehrere Benutzer per Datei hinzuzufügen",
       "technicalUserHeadline": "Technischen User anlegen",
       "technicalUserSubheadline": "Bitte geben Sie die erforderlichen Informationen ein:",
-      "technicalUserSubheadlineSuccess": "Der technische Benutzer wurde mit den folgenden Daten angelegt:",
+      "technicalUserSubheadlineSuccess": "Technischer User erfolgreich angelegt. Unten finden Sie die Details, die für die Serviceverbindung benötigt werden. Bitte behandeln Sie diese Informationen vertraulich.",
       "technicalUserSubheadlineError": "Something went wrong. The technical user did not got created due to a system error. Please try it later again or contact your administrator.",
       "chooseUserRole": "Benutzer-Rolle für den Portalzugriff auswählen",
       "help": "Hilfe",
@@ -2379,9 +2379,9 @@
       "owner": "Owner",
       "offerLink": "Offer Link",
       "alias": "Alias",
-      "authMethod": "Auth Method",
-      "progress": "Progress",
-      "action": "Action"
+      "authMethod": "Auth Methode",
+      "progress": "Fortschritt",
+      "action": "Aktion"
     },
     "actions": {
       "cancel": "Abbrechen",

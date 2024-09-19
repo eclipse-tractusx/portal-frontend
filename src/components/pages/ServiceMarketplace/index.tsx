@@ -315,27 +315,27 @@ export default function ServiceMarketplace() {
             {t('content.serviceMarketplace.newServices')}
           </Typography>
           <div>
-            <div className='cx-search-grid'>
-            <div className="searchContainer">
-              <SearchInput
-                placeholder={t('notification.search')}
-                value={searchExpr}
-                autoFocus={false}
-                onChange={doFilter}
-              />
-            </div>
-            <div className="filterSection" onMouseLeave={setModalFalse}>
-              <ViewSelector activeView={selected} views={filterButtons} />
-              <SortImage onClick={setModalTrue} selected={showModal} />
-              <div className="sortSection">
-                <SortOption
-                  show={showModal}
-                  selectedOption={sortOption}
-                  setSortOption={setSortOptionFn}
-                  sortOptions={sortOptions}
+            <div className="cx-search-grid">
+              <div className="searchContainer">
+                <SearchInput
+                  placeholder={t('notification.search')}
+                  value={searchExpr}
+                  autoFocus={false}
+                  onChange={doFilter}
                 />
               </div>
-            </div>
+              <div className="filterSection" onMouseLeave={setModalFalse}>
+                <ViewSelector activeView={selected} views={filterButtons} />
+                <SortImage onClick={setModalTrue} selected={showModal} />
+                <div className="sortSection">
+                  <SortOption
+                    show={showModal}
+                    selectedOption={sortOption}
+                    setSortOption={setSortOptionFn}
+                    sortOptions={sortOptions}
+                  />
+                </div>
+              </div>
             </div>
             {renderServices()}
           </div>
