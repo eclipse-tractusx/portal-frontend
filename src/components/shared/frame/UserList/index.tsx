@@ -87,7 +87,7 @@ export const UserList = ({
   const searchInputData = useSelector(appManagementSelector)
 
   const validateSearchText = (expr: string) => {
-    const validateExpr = /^[ A-Za-z0-9._!@-]*$/.test(expr)
+    const validateExpr = /^[ A-Za-z0-9._!@+-]*$/.test(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
