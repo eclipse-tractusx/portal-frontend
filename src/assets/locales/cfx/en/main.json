@@ -467,9 +467,9 @@
         "action": "Action"
       },
       "filter": {
-        "requested": "requested",
-        "active": "active",
-        "showAll": "show all"
+        "requested": "Requested",
+        "active": "Active",
+        "showAll": "Show All"
       }
     },
     "datamanagement": {
@@ -2455,7 +2455,7 @@
       "filterPanelColumns": "Columns",
       "filterPanelInputLabel": "Value",
       "filterPanelInputPlaceholder": "Filter value",
-      "filterOperatorContains": "contains111",
+      "filterOperatorContains": "contains",
       "filterOperatorEquals": "equals",
       "filterOperatorStartsWith": "starts with",
       "filterOperatorEndsWith": "ends with",
