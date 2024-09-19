@@ -34,7 +34,7 @@
 - **Company Subscriptions**
   - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
   - Add a tabular section to show up both app and service subscription data [#1101](https://github.com/eclipse-tractusx/portal-frontend/pull/1101)
-  - update API query parameters and fix tab UI scroll
+  - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
 
 ### Bugfixes
 
