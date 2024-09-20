@@ -849,7 +849,7 @@
     },
     "usermanagement": {
       "title": "Benutzer Management",
-      "description": "Hier können Sie dem Unternehmen zugewiesenen Benutzer anzeigen und verwalten. Managen Sie Rollenzuweisung, neue Benutzerkonten sowie Erstellung technischer Nutzer.",
+      "description": "Hier können Sie dem Unternehmen zugewiesenen Benutzer anzeigen und verwalten. Managen Sie Rollenzuweisung, neue Benutzerkonten sowie Erstellung technischer User.",
       "apparea": {
         "headline": "App-Zugriff Management",
         "appsNotAvailable": "Apps sind verfügbar, sobald Geschäftsanwendungen abonniert und aktiviert sind"
@@ -2310,8 +2310,8 @@
   "navigation": {
     "subNavigation": {
       "buttonLabel": "Technische User Management",
-      "link1Label": "Access Management",
-      "link2Label": "Portal User Management"
+      "link1Label": "App-Zugriff Management",
+      "link2Label": "Portal Nutzer Management"
     }
   },
   "notification": {
@@ -2387,7 +2387,7 @@
       "cancel": "Abbrechen",
       "decline": "Decline",
       "confirm": "Bestätigen",
-      "more": "Mehr laden",
+      "more": "Mehr",
       "collapse": "Einklappen",
       "loadmore": "Mehr laden",
       "details": "Details",

@@ -690,7 +690,23 @@ main,
     }
   }
 }
-
+// UserManagement
+.UserManagement {
+  .cx-subnavigation {
+    &__link--button,
+    &__button--wrap {
+      .MuiButton-root {
+        text-transform: none !important;
+        &:focus {
+          color:$white !important;
+          &:hover {
+            background-color: $black !important;
+          }
+        }
+      }
+    }
+  }
+}
 .notifications {
   .searchContainer {
     .MuiOutlinedInput-root {
@@ -1852,7 +1868,6 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .main-card-container .card-container * {
   color: $black !important;
 }
-
 
 // cx-overlay
 .cx-overlay {

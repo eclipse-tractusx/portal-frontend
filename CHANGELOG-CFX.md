@@ -48,6 +48,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App & Service Subscription**
   - Fix filter labels [PM2-508](https://cofinity-x.atlassian.net/browse/PM2-508)
 
+- **User Management**
+  - Header, Translation and Sub-navigation styles updates [PM2-1035](https://cofinity-x.atlassian.net/browse/PM2-1035)
+
 ## 2.0.0-cfx-2
 
 ### Bug Fixes

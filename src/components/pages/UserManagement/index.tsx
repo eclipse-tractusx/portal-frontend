@@ -24,7 +24,6 @@ import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { ActiveUserTable } from './ActiveUserTable'
-import StageSection from './StageSection'
 import { AppArea } from './AppArea'
 import { StageSubNavigation } from './StageSubNavigation/StageSubNavigation'
 import {
@@ -41,6 +40,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import './UserManagement.scss'
 import { useTranslation } from 'react-i18next'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function UserManagement() {
   const { t } = useTranslation()
@@ -62,8 +62,13 @@ export default function UserManagement() {
   }
 
   return (
-    <main className="UserManagement">
-      <StageSection />
+    <main className="UserManagement cx-user-management">
+      <MainHeader
+        title={t('content.usermanagement.title')}
+        subTitle={t('content.usermanagement.description')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       <StageSubNavigation />
       <AppArea />
       <ActiveUserTable addUserResponse={isSuccess} />

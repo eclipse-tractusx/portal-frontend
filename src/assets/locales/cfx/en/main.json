@@ -857,7 +857,7 @@
         "appsNotAvailable": "Apps will be available as soon as business applications are subscribed and activated"
       },
       "table": {
-        "headline": "Identity Management",
+        "headline": "Portal User Management",
         "title": "User List",
         "details": "Details",
         "add": "Add user",
@@ -2281,7 +2281,7 @@
   "navigation": {
     "subNavigation": {
       "buttonLabel": "Technical User Management",
-      "link1Label": "Access Management",
+      "link1Label": "App Access Management",
       "link2Label": "Portal User Management"
     }
   },
@@ -2360,7 +2360,7 @@
       "cancel": "Cancel",
       "decline": "Decline",
       "confirm": "Confirm",
-      "more": "Load More",
+      "more": "More",
       "collapse": "Collapse",
       "loadmore": "Load More",
       "details": "Details",
