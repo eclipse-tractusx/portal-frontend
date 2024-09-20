@@ -64,6 +64,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
+- **File Link Text**
+
+  - Updated color of the Link text for files download [PM2-506](https://github.com/Cofinity-X/portal-frontend/pull/155)
+
 - **Main Header Component**
 
   - To allow the text in MainHeader to be in 3 lines with fixed header height and heading postions [#118](https://github.com/Cofinity-X/portal-frontend/pull/118)
