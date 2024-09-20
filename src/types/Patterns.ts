@@ -61,7 +61,7 @@ export const Patterns = {
     URL: prefixUrlPattern,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
-  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
+  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_+\-.]{3,80}$/,
   partner: {
     COMMERCIAL_REG_NUMBER: /^[a-zA-Z\d-\s]{9}$/,
     VAT_ID: /^[a-zA-Z\d-\s]{8,15}$/,
