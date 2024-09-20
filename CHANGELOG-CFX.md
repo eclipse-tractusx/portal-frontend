@@ -60,7 +60,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK fix: block user from removing own admin roles [#987] (https://github.com/eclipse-tractusx/portal-frontend/pull/987)
 
 - **App Marketplace**
+
   - CHERRY-PICK fix: update the onButtonClick logic to avoid clicks after subscribed [#1042](https://github.com/eclipse-tractusx/portal-frontend/pull/1042)
+
+- **Service Marketplace**
+  - CHERRY-PICK fix(service detail): add missing header image implementation [#992](fix(service detail): add missing header image implementation #992)
 
 ### Change
 
