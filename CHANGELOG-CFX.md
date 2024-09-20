@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **App Marketplace**
+
+  - Updated state of a button after app subscription so that it will work for every subscription
+
 - **User Account**
 
   - Updated translation for error msg and styles for disabled checkbox
@@ -21,15 +25,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
 
 - **Service Release Process**
+
   - CHERRY-PICK fix: de description field is not validating umlauts [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993)
   - CHERRY-PICK fix: service details de description limitation [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043)
+
+- **App Subscription**
+  - Fixed close icon button in Success App subscription screen [PM2-863](https://cofinity-x.atlassian.net/browse/PM2-863)
 
 ### Change
 
 - **Dataspace Participation**
 
   - Use case participation & Partner Network UI/UX and translation changes. [PM2-824](https://cofinity-x.atlassian.net/browse/PM2-824)
+
 - **Technical Setup**
+
   - Technical Ssetup Pages: Technical User Management, Identity Provider, Connector registrsation and Semantic Hub UI/UX and translation changes. [PM2-825](https://cofinity-x.atlassian.net/browse/PM2-825)
 
 - **App & Service Subscription**
