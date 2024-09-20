@@ -110,7 +110,7 @@ export const apiSlice = createApi({
         const serviceType = `serviceTypeId=${body.serviceType}`
         const sortingType = `sorting=${body.sortingType}`
         return {
-          url: `/api/services/active?size${PAGE_SIZE}&page=${body.page}&${
+          url: `/api/services/active?size=${PAGE_SIZE}&page=${body.page}&${
             body.serviceType && serviceType
           }&${body.sortingType && sortingType}`,
         }
