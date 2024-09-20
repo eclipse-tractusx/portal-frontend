@@ -68,10 +68,10 @@ export default function AppStoreSection() {
             size="small"
             disabled={isHeaderNote}
             onClick={() => {
-              navigate('/appmarketplace')
+              navigate('/appMarketplace')
             }}
           >
-            {t('pages.appmarketplace')}
+            {t('pages.appMarketplace')}
           </Button>
         </div>
         <div>
@@ -81,10 +81,10 @@ export default function AppStoreSection() {
             size="small"
             disabled={isHeaderNote}
             onClick={() => {
-              navigate('/servicemarketplace')
+              navigate('/serviceMarketplace')
             }}
           >
-            {t('pages.servicemarketplace')}
+            {t('pages.serviceMarketplace')}
           </Button>
         </div>
       </Stack>
