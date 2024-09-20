@@ -34,6 +34,8 @@
 - **Company Subscriptions**
   - Update and bind API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
   - Add a tabular section to show up both app and service subscription data [#1101](https://github.com/eclipse-tractusx/portal-frontend/pull/1101)
+- **Onboarding Service Provider Management**
+  - Added search to ospm table[#1132](https://github.com/eclipse-tractusx/portal-frontend/pull/1132)
 
 ### Bugfixes
 

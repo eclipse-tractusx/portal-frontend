@@ -94,7 +94,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     .sort((a: IdentityProvider, b: IdentityProvider) =>
       (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
-  const [managedIdpData, setManagedIdpData] = useState(
+  const [idpsManagedData, setIdpsManagedData] = useState(
     idpsData?.filter((a) => a.identityProviderTypeId === IDPCategory.MANAGED)
   )
   const [expr, setExpr] = useState<string>('')
@@ -365,9 +365,9 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       const searchFilter = idpManagedData?.filter(
         (i) => i.alias === value || i.displayName === value
       )
-      setManagedIdpData(searchFilter)
+      setIdpsManagedData(searchFilter)
       setExpr(expr)
-    } else setManagedIdpData(idpManagedData)
+    } else setIdpsManagedData(idpManagedData)
   }
 
   return (
@@ -442,7 +442,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
             isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
         },
       ]}
-      rows={(isManagementOSP ? managedIdpData : idpsData) ?? []}
+      rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
       searchPlaceholder={isManagementOSP ? 'search' : undefined}
