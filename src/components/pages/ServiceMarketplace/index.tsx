@@ -42,6 +42,7 @@ import {
   SortOption,
   CircleProgress,
   ErrorBar,
+  LoadMoreButton,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -50,6 +51,8 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
+import { appToCard } from 'features/apps/mapper'
+import type { AppMarketplaceApp, ProvidedApps } from 'features/apps/types'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -63,39 +66,86 @@ export default function ServiceMarketplace() {
   const [selected, setSelected] = useState<string>('All Services')
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
-
-  let serviceTypeId = ''
-
-  if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
-  } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
-  }
-
-  let sortingType = 'ReleaseDateDesc'
-  if (sortOption === 'provider') {
-    sortingType = 'ProviderDesc'
-  }
-
-  const indexToSplit = 2 //show only 2 services in recommended
-
-  const { data, error, isError, refetch } = useFetchServicesQuery({
+  const [page, setPage] = useState<number>(0)
+  const [group, setGroup] = useState<string>('')
+  const [serviceTypeId, setServiceTypeId] = useState<
+    string | keyof ServiceTypeIdsEnum
+  >('')
+  const [sortingType, setSortingType] = useState<string>('ReleaseDateDesc')
+  const [argsData, setArgsData] = useState({
     page: 0,
     serviceType: serviceTypeId,
     sortingType,
   })
+
+  useEffect(() => {
+    if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
+      setServiceTypeId(ServiceTypeIdsEnum.DATASPACE_SERVICE)
+    } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
+      setServiceTypeId(ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+    }
+  }, [selected])
+
+  useEffect(() => {
+    if (sortOption === 'provider') {
+      setSortingType('ProviderDesc')
+    }
+  }, [sortOption])
+
+  // let serviceTypeId = ''
+
+  // if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
+  //   serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
+  // } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
+  //   serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
+  // }
+
+  // let sortingType = 'ReleaseDateDesc'
+  // if (sortOption === 'provider') {
+  //   sortingType = 'ProviderDesc'
+  // }
+
+  const indexToSplit = 2 //show only 2 services in recommended
+
+  const { data, error, isError, refetch } = useFetchServicesQuery(
+    argsData as any
+  )
   const services = data?.content
+
+  // console.log('services:', services)
 
   // To-Do fix the type issue with status and data from FetchBaseQueryError
   // eslint-disable-next-line
   const servicesError = error as any
 
+  // useEffect(() => {
+  //   services && setCardServices(() => [...services])
+  // }, [services])
+
   useEffect(() => {
-    services && setCardServices(services)
-  }, [services])
+    if (data?.content)
+      setCardServices(
+        data?.meta.page === 0
+          ? setDataInfo(data)
+          : (i: ServiceRequest[]) => i.concat(setDataInfo(data))
+      )
+  }, [data])
+
+  const setDataInfo = (data: ProvidedApps) =>
+    data.content.map((item: AppMarketplaceApp) => appToCard(item))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setSelected(e.currentTarget.value)
+    const viewValue = e.currentTarget.value
+    setSelected(viewValue)
+    setGroup(viewValue)
+    // setArgsData({
+    //   page: 0,
+    //   args: {
+    //     expr: '',
+    //     statusFilter: viewValue,
+    //   },
+    // })
+    setPage(0)
   }
 
   const sortOptions = [
@@ -188,6 +238,14 @@ export default function ServiceMarketplace() {
     )
   }
 
+  const nextPage = () => {
+    setArgsData({
+      ...argsData,
+      page: page + 1,
+    })
+    setPage(page + 1)
+  }
+
   return (
     <main className="serviceMarketplace">
       <div className="mainContainer">
@@ -242,6 +300,11 @@ export default function ServiceMarketplace() {
       {cardServices && cardServices.length > 2 && (
         <ServicesElements services={cardServices.slice(indexToSplit)} />
       )}
+      <div className="load-more-btn">
+        {data?.meta && data?.meta?.totalPages > page + 1 && (
+          <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
+        )}
+      </div>
     </main>
   )
 }
