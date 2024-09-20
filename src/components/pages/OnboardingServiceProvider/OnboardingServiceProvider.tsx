@@ -349,20 +349,22 @@ const OnboardingServiceProvider = () => {
         </Tabs>
         <TabPanel value={activeTab} index={0}>
           <div className="connector-table-container">
-            <Box sx={{ display: 'flex' }}>
-              <Typography variant="h5" sx={{ mr: 5 }}>
-                {t('content.onboardingServiceProvider.userList')}
-              </Typography>
-              <Button
-                size="small"
-                startIcon={<AddCircleOutlineIcon />}
-                onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
-                className="add-idp-btn"
-              >
-                {t('content.onboardingServiceProvider.addIdentityProvider')}
-              </Button>
+            <Box className="ospm">
+              <Box sx={{ display: 'flex' }}>
+                <Button
+                  size="small"
+                  startIcon={<AddCircleOutlineIcon />}
+                  onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+                  className="add-idp-btn"
+                  sx={{ marginLeft: '10px' }}
+                >
+                  {t('content.onboardingServiceProvider.addIdentityProvider')}
+                </Button>
+              </Box>
+              <Box sx={{ mt: '-100px' }}>
+                <IDPList isManagementOSP={true} />
+              </Box>
             </Box>
-            <IDPList isManagementOSP={true} />
           </div>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
@@ -400,7 +402,7 @@ const OnboardingServiceProvider = () => {
                   flex: 1,
                   sortable: false,
                   renderCell: ({ row }: { row: networkCompany }) =>
-                    row?.identityProvider?.[0].alias,
+                    row?.identityProvider?.[0]?.alias,
                 },
                 {
                   field: 'activeUsers',

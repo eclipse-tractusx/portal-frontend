@@ -94,6 +94,10 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     .sort((a: IdentityProvider, b: IdentityProvider) =>
       (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
+  const [managedIdpData, setManagedIdpData] = useState(
+    idpsData?.filter((a) => a.identityProviderTypeId === IDPCategory.MANAGED)
+  )
+  const [expr, setExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
 
@@ -353,6 +357,19 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     )
   }
 
+  const onSearch = (value: string) => {
+    const idpManagedData = idpsData?.filter(
+      (a) => a.identityProviderTypeId === IDPCategory.MANAGED
+    )
+    if (value) {
+      const searchFilter = idpManagedData?.filter(
+        (i) => i.alias === value || i.displayName === value
+      )
+      setManagedIdpData(searchFilter)
+      setExpr(expr)
+    } else setManagedIdpData(idpManagedData)
+  }
+
   return (
     <Table
       rowsCount={idpsData?.length}
@@ -365,7 +382,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       disableDensitySelector={true}
       columnHeadersBackgroundColor={'#ffffff'}
       title=""
-      toolbarVariant="ultimate"
+      toolbarVariant={isManagementOSP ? 'searchAndFilter' : 'ultimate'}
       columns={[
         {
           field: 'displayName',
@@ -425,15 +442,39 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
             isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
         },
       ]}
-      rows={
-        (isManagementOSP
-          ? idpsData?.filter(
-              (a) => a.identityProviderTypeId === IDPCategory.MANAGED
-            )
-          : idpsData) ?? []
-      }
+      rows={(isManagementOSP ? managedIdpData : idpsData) ?? []}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
+      searchPlaceholder={isManagementOSP ? 'search' : undefined}
+      searchExpr={isManagementOSP ? expr : undefined}
+      onSearch={
+        isManagementOSP
+          ? (expr: string) => {
+              isManagementOSP && onSearch(expr)
+              setExpr(expr)
+            }
+          : undefined
+      }
+      searchDebounce={isManagementOSP ? 1000 : undefined}
+      sx={
+        isManagementOSP
+          ? {
+              '.cx-search-input': {
+                right: '10px',
+                position: 'absolute',
+              },
+              '.MuiDataGrid-columnHeadersInner': {
+                fontSize: '16px',
+                fontWeight: '400',
+                backgroundColor: '#E9E9E9',
+              },
+              '.MuiDataGrid-row': {
+                fontSize: '14px',
+                fontWeight: '400',
+              },
+            }
+          : undefined
+      }
     />
   )
 }
