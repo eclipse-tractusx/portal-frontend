@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Onboarding Service Provider Management**
+  - Added search to ospm table[#1132](https://github.com/eclipse-tractusx/portal-frontend/pull/1132)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes

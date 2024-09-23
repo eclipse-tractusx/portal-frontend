@@ -97,7 +97,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const [idpsManagedData, setIdpsManagedData] = useState(
     idpsData?.filter((a) => a.identityProviderTypeId === IDPCategory.MANAGED)
   )
-  const [expr, setExpr] = useState<string>('')
+  const [searchExpr, setSearchExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
 
@@ -366,7 +366,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
         (i) => i.alias === value || i.displayName === value
       )
       setIdpsManagedData(searchFilter)
-      setExpr(expr)
+      setSearchExpr(searchExpr)
     } else setIdpsManagedData(idpManagedData)
   }
 
@@ -446,12 +446,12 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
       searchPlaceholder={isManagementOSP ? 'search' : undefined}
-      searchExpr={isManagementOSP ? expr : undefined}
+      searchExpr={isManagementOSP ? searchExpr : undefined}
       onSearch={
         isManagementOSP
           ? (expr: string) => {
               isManagementOSP && onSearch(expr)
-              setExpr(expr)
+              setSearchExpr(expr)
             }
           : undefined
       }
