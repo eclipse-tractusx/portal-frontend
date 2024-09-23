@@ -46,17 +46,18 @@ import {
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
+  type ServiceRequestAPIResponse,
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
-import { appToCard } from 'features/apps/mapper'
-import type { AppMarketplaceApp, ProvidedApps } from 'features/apps/types'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
+
+const indexToSplit = 2 //show only 2 services in recommended
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
@@ -67,12 +68,15 @@ export default function ServiceMarketplace() {
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
   const [page, setPage] = useState<number>(0)
-  const [group, setGroup] = useState<string>('')
-  const [serviceTypeId, setServiceTypeId] = useState<
-    string | keyof ServiceTypeIdsEnum
-  >('')
+  const [serviceTypeId, setServiceTypeId] = useState<ServiceTypeIdsEnum | ''>(
+    ''
+  )
   const [sortingType, setSortingType] = useState<string>('ReleaseDateDesc')
-  const [argsData, setArgsData] = useState({
+  const [argsData, setArgsData] = useState<{
+    page: number
+    serviceType: ServiceTypeIdsEnum | ''
+    sortingType: string
+  }>({
     page: 0,
     serviceType: serviceTypeId,
     sortingType,
@@ -92,38 +96,16 @@ export default function ServiceMarketplace() {
     }
   }, [sortOption])
 
-  // let serviceTypeId = ''
-
-  // if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-  //   serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
-  // } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
-  //   serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
-  // }
-
-  // let sortingType = 'ReleaseDateDesc'
-  // if (sortOption === 'provider') {
-  //   sortingType = 'ProviderDesc'
-  // }
-
-  const indexToSplit = 2 //show only 2 services in recommended
-
-  const { data, error, isError, refetch } = useFetchServicesQuery(
-    argsData as any
-  )
+  const { data, error, isError, refetch, isFetching } =
+    useFetchServicesQuery(argsData)
   const services = data?.content
-
-  // console.log('services:', services)
 
   // To-Do fix the type issue with status and data from FetchBaseQueryError
   // eslint-disable-next-line
   const servicesError = error as any
 
-  // useEffect(() => {
-  //   services && setCardServices(() => [...services])
-  // }, [services])
-
   useEffect(() => {
-    if (data?.content)
+    if (services)
       setCardServices(
         data?.meta.page === 0
           ? setDataInfo(data)
@@ -131,20 +113,16 @@ export default function ServiceMarketplace() {
       )
   }, [data])
 
-  const setDataInfo = (data: ProvidedApps) =>
-    data.content.map((item: AppMarketplaceApp) => appToCard(item))
+  useEffect(() => {
+    refetch()
+  }, [data, refetch])
+
+  const setDataInfo = (data: ServiceRequestAPIResponse) =>
+    data.content.map((item) => ({ ...item }))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setSelected(viewValue)
-    setGroup(viewValue)
-    // setArgsData({
-    //   page: 0,
-    //   args: {
-    //     expr: '',
-    //     statusFilter: viewValue,
-    //   },
-    // })
     setPage(0)
   }
 
@@ -218,6 +196,14 @@ export default function ServiceMarketplace() {
     setShowModal(true)
   }, [])
 
+  const nextPage = () => {
+    setArgsData({
+      ...argsData,
+      page: page + 1,
+    })
+    setPage(page + 1)
+  }
+
   const renderServices = () => {
     if (services && services.length === 0) return <NoItems />
     if (!services)
@@ -238,67 +224,75 @@ export default function ServiceMarketplace() {
     )
   }
 
-  const nextPage = () => {
-    setArgsData({
-      ...argsData,
-      page: page + 1,
-    })
-    setPage(page + 1)
-  }
-
   return (
     <main className="serviceMarketplace">
-      <div className="mainContainer">
-        <div className="mainRow">
-          <Typography className="newServicesTitle" variant="h2">
-            {t('content.serviceMarketplace.newServices')}
-          </Typography>
-          <Typography className="recommendationsTitle" variant="body1">
-            {t('content.serviceMarketplace.recommendations')}
-          </Typography>
-          <div>
-            <div className="searchContainer">
-              <SearchInput
-                placeholder={t('notification.search')}
-                value={searchExpr}
-                autoFocus={false}
-                onChange={doFilter}
-              />
-            </div>
-            <div className="filterSection" onMouseLeave={setModalFalse}>
-              <ViewSelector activeView={selected} views={filterButtons} />
-              <SortImage onClick={setModalTrue} selected={showModal} />
-              <div className="sortSection">
-                <SortOption
-                  show={showModal}
-                  selectedOption={sortOption}
-                  setSortOption={setSortOptionFn}
-                  sortOptions={sortOptions}
-                />
+      {isFetching ? (
+        <div style={{ textAlign: 'center' }}>
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      ) : (
+        <>
+          <div className="mainContainer">
+            <div className="mainRow">
+              <Typography className="newServicesTitle" variant="h2">
+                {t('content.serviceMarketplace.newServices')}
+              </Typography>
+              <Typography className="recommendationsTitle" variant="body1">
+                {t('content.serviceMarketplace.recommendations')}
+              </Typography>
+              <div>
+                <div className="searchContainer">
+                  <SearchInput
+                    placeholder={t('notification.search')}
+                    value={searchExpr}
+                    autoFocus={false}
+                    onChange={doFilter}
+                  />
+                </div>
+                <div className="filterSection" onMouseLeave={setModalFalse}>
+                  <ViewSelector activeView={selected} views={filterButtons} />
+                  <SortImage onClick={setModalTrue} selected={showModal} />
+                  <div className="sortSection">
+                    <SortOption
+                      show={showModal}
+                      selectedOption={sortOption}
+                      setSortOption={setSortOptionFn}
+                      sortOptions={sortOptions}
+                    />
+                  </div>
+                </div>
+                {!isError ? (
+                  renderServices()
+                ) : (
+                  <ErrorBar
+                    errorText={
+                      servicesError?.data?.status >= 400 &&
+                      servicesError?.data?.status < 500
+                        ? t('content.serviceMarketplace.dataLoadFailed')
+                        : t('content.serviceMarketplace.loadFailed')
+                    }
+                    showButton={
+                      servicesError.code >= 500 &&
+                      servicesError?.data?.status < 600
+                    }
+                    buttonText={t('error.tryAgain')}
+                    handleButton={refetch}
+                  />
+                )}
               </div>
             </div>
-            {!isError ? (
-              renderServices()
-            ) : (
-              <ErrorBar
-                errorText={
-                  servicesError?.data?.status >= 400 &&
-                  servicesError?.data?.status < 500
-                    ? t('content.serviceMarketplace.dataLoadFailed')
-                    : t('content.serviceMarketplace.loadFailed')
-                }
-                showButton={
-                  servicesError.code >= 500 && servicesError?.data?.status < 600
-                }
-                buttonText={t('error.tryAgain')}
-                handleButton={refetch}
-              />
-            )}
           </div>
-        </div>
-      </div>
-      {cardServices && cardServices.length > 2 && (
-        <ServicesElements services={cardServices.slice(indexToSplit)} />
+          {cardServices && cardServices.length > 2 && (
+            <ServicesElements services={cardServices.slice(indexToSplit)} />
+          )}
+        </>
       )}
       <div className="load-more-btn">
         {data?.meta && data?.meta?.totalPages > page + 1 && (
