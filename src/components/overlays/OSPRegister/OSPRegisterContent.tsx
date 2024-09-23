@@ -338,7 +338,7 @@ const OSPRegisterForm = ({
             variant: 'filled',
             clearText: 'clear',
             keyTitle: 'id',
-            onChangeItem: (value: ItemType): void => {
+            onChangeItem: (value): void => {
               updateData({
                 ...data,
                 uniqueIds: [

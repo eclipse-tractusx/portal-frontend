@@ -449,8 +449,8 @@
       "technicalUser": "Technical User",
       "unsubscribe": "Unsubscribe",
       "table": {
-        "appIcon": "App Icon",
-        "appTitle": "App title",
+        "appIcon": "Icon",
+        "appTitle": "Title",
         "status": "Status",
         "details": "Details",
         "action": "Action"
@@ -460,7 +460,8 @@
         "active": "active",
         "inactive": "inactive",
         "showAll": "show all"
-      }
+      },
+      "searchName": "..search by company name here"
     },
     "companySubscriptionsDetail": {
       "language": "Language",

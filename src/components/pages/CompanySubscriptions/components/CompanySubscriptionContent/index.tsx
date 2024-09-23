@@ -22,11 +22,12 @@ import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { ImageGallery, Typography } from '@catena-x/portal-shared-components'
 import { type AppDetails } from 'features/apps/types'
 import CommonService from 'services/CommonService'
+import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export default function CompanySubscriptionContent({
   detail,
 }: Readonly<{
-  detail: AppDetails
+  detail: AppDetails | ServiceDetailsResponse
 }>) {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -44,14 +45,16 @@ export default function CompanySubscriptionContent({
         </Typography>
       </Box>
       <Box className="company-subscription-content-section" id="image-gallery">
-        <ImageGallery
-          gallery={CommonService.imagesAndAppidToImageType(
-            detail.images,
-            detail.id
-          )}
-          maxWidth={isMobile ? 150 : undefined}
-          modalWidth={isMobile ? '300' : '600'}
-        />
+        {detail?.images && (
+          <ImageGallery
+            gallery={CommonService.imagesAndAppidToImageType(
+              detail.images,
+              detail.id
+            )}
+            maxWidth={isMobile ? 150 : undefined}
+            modalWidth={isMobile ? '300' : '600'}
+          />
+        )}
       </Box>
     </>
   )

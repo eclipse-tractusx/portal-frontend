@@ -20,6 +20,10 @@
 import type { CardItems } from '@catena-x/portal-shared-components'
 import type { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import type { UseCaseType } from 'features/appManagement/types'
+import {
+  type OfferSubscriptionStatus,
+  type OfferSubscriptionDataType,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export type ImageType = {
   src: string
@@ -150,6 +154,7 @@ export type AppDetails = AppMarketplaceApp & {
   technicalUserProfile?: {
     [key: string]: string[] | null
   }
+  offerSubscriptionDetailData?: OfferSubscriptionDataType[]
 }
 
 export type Documents = {
@@ -251,9 +256,9 @@ export const initialState: AppsControlState = {
 }
 
 export enum CompanySubscriptionFilterType {
-  PENDING = 'pending',
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  PENDING = 'PENDING',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
   SHOW_ALL = 'show all',
 }
 
@@ -272,4 +277,14 @@ export enum StatusIdEnum {
   InReview = 'InReview',
   WIP = 'WIP',
   All = 'All',
+}
+
+export interface FetchSubscriptionResponseType {
+  id: string
+  offerSubscriptionStatus: OfferSubscriptionStatus
+  name: string
+  provider: string
+  contact: string[]
+  technicalUserData: SubscribeTechnicalUserData[]
+  connectorData: SubscribeConnectorData[]
 }
