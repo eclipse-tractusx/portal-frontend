@@ -5,7 +5,7 @@
 ### Bugfixes
 
 - **Connector Management**
-  - fixed overaly enabling on click of managed connectors(details)
+  - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
 
 ## 2.2.0-alpha.1
 
