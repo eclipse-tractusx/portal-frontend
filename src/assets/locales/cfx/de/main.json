@@ -2277,7 +2277,7 @@
     },
     "onboardingServiceProvider": {
       "headertitle": "Onboarding-Dienstleister-Management",
-      "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "desc": "Konfigurieren Sie neue Identitätsanbieter für die Nutzung Ihrer Anmeldemaske. Fügen Sie Identitätsanbieter hinzu, verwalten Sie diese und behalten Sie den Überblick über den Onboarding-Status Ihrer Kunden.",
       "subDesc1": "OSP-Callback konfiguriert",
       "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
       "tabletitle1": "OSP-Identitätsanbieter (IDPs)",
@@ -2514,7 +2514,8 @@
       "technicalSetup": "Technisches Setup",
       "cxOperator": "CX Operator",
       "appManagement": "App Management",
-      "serviceManagement": "Service Management"
+      "serviceManagement": "Service Management",
+      "onBoardingManagement": "OSP Management"
     }
   },
   "customRegistration": {

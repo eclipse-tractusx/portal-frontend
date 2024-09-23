@@ -46,10 +46,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Technical Ssetup Pages: Technical User Management, Identity Provider, Connector registrsation and Semantic Hub UI/UX and translation changes. [PM2-825](https://cofinity-x.atlassian.net/browse/PM2-825)
 
 - **App & Service Subscription**
+
   - Fix filter labels [PM2-508](https://cofinity-x.atlassian.net/browse/PM2-508)
 
 - **User Management**
+
   - Header, Translation and Sub-navigation styles updates [PM2-1035](https://cofinity-x.atlassian.net/browse/PM2-1035)
+
+- **OSP Management**
+  - Activate OSP management page [PM2-1399s](https://cofinity-x.atlassian.net/browse/PM2-1399)
 
 ## 2.0.0-cfx-2
 
