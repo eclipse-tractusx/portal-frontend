@@ -5,7 +5,7 @@
 ### Change
 
 - **Technical User Details**
-  - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available
+  - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
 
 ## 2.2.0-alpha.1
 
