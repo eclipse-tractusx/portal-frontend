@@ -146,7 +146,7 @@ export default function TechnicalUserDetailsContent({
         newData.authenticationServiceUrl,
         missingInformationHint
       ),
-      copy: newData.authenticationServiceUrl,
+      copy: newData.authenticationServiceUrl ? true : false,
     },
     {
       key: t(
