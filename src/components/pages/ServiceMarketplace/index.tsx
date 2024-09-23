@@ -82,12 +82,6 @@ export default function ServiceMarketplace() {
     sortingType,
   })
 
-  // useEffect(() => {
-  //   if (sortOption === 'provider') {
-  //     setSortingType('ProviderDesc')
-  //   }
-  // }, [sortOption])
-
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
   const services = data?.content
