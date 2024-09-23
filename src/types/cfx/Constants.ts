@@ -8,6 +8,7 @@ export const MENUS = {
   SERVICE_MANAGEMENT: 'serviceManagement',
   TECHNICAL_SETUP: 'technicalSetup',
   CX_OPERATOR: 'cxOperator',
+  ON_BOARDING_MANAGEMENT: 'onBoardingManagement',
 }
 
 export const HELP_LINK = () => {
@@ -103,7 +104,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS = 'companySubscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   // COMPANY_DATA = 'companyData', // Removed
-  // MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider', // Newly Added
+  MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider', // Newly Added
 }
 
 export const FOOTERLINK = {

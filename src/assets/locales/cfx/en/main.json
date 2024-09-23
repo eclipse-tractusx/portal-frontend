@@ -69,7 +69,7 @@
     "mycompany": "My Company",
     "mynotifications": "Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "ManagementOnboardingServiceProvider": "Onboarding Management"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -2247,11 +2247,11 @@
       }
     },
     "onboardingServiceProvider": {
-      "headertitle": "Onboarding Service Provider Management",
-      "desc": "[description] lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "headertitle": "Onboarding Management",
+      "desc": "Configure new identity providers to enable your own login mask for customer authentication. Add, manage, and monitor identity providers and keep track of the onboarding status of your onboarded companies.",
       "subDesc1": "OSP Callback configured",
       "subDesc2": "https://url.lorem.ipsum.dolor.sit.amet",
-      "tabletitle1": "OSP Identity Provider (IDPs)",
+      "tabletitle1": "OSP Identity Provider",
       "tabletitle2": "Customer Overview",
       "userList": "User List",
       "addIdentityProvider": "Add Identity Provider",
@@ -2438,13 +2438,10 @@
       "columnMenuUnsort": "Unsort",
       "columnMenuSortAsc": "Sort by ASC",
       "columnMenuSortDesc": "Sort by DESC",
-
       "columnsPanelTextFieldLabel": "Find column",
       "columnsPanelTextFieldPlaceholder": "Column title",
-
       "columnsPanelShowAllButton": "Show all",
       "columnsPanelHideAllButton": "Hide all",
-
       "filterPanelAddFilter": "Add filter",
       "filterPanelRemoveAll": "Remove all",
       "filterPanelDeleteIconLabel": "Delete",
@@ -2489,7 +2486,8 @@
       "technicalSetup": "Technical Setup",
       "cxOperator": "CX Operator",
       "appManagement": "App Management",
-      "serviceManagement": "Service Management"
+      "serviceManagement": "Service Management",
+      "onBoardingManagement": "OSP Management"
     }
   },
   "common": {

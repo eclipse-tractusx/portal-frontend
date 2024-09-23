@@ -34,7 +34,7 @@ import {
   LoadingButton,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { Box } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import './style.scss'
 import { IDPList } from '../IDPManagement/IDPList'
 import {
@@ -46,10 +46,15 @@ import {
   useUpdateRegistartionStatusCallbackMutation,
 } from 'features/admin/idpApiSlice'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
+import { useDispatch } from 'react-redux'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { type IHashMap } from 'types/MainTypes'
 import { success } from 'services/NotifyService'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { COLOR_PALETTE } from 'theme.override'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
@@ -77,9 +82,10 @@ const OnboardingServiceProvider = () => {
       <Typography
         variant="label3"
         sx={{
-          background: activeTab + 1 === step ? '#0f71cb' : 'white',
-          color: activeTab + 1 === step ? 'white' : '#0f71cb',
-          outline: '2px solid #0f71cb',
+          background:
+            activeTab + 1 === step ? COLOR_PALETTE.PRIMARY : COLOR_PALETTE.GRAY,
+          color: 'white',
+          outline: `2px solid ${activeTab + 1 === step ? COLOR_PALETTE.PRIMARY : COLOR_PALETTE.GRAY}`,
           flex: '0',
           marginRight: '20px',
           borderRadius: '50%',
@@ -131,230 +137,213 @@ const OnboardingServiceProvider = () => {
   }
 
   return (
-    <main className="onboarding-service-page-container">
-      <section>
-        <Dialog
-          open={overlayOpen}
-          additionalModalRootStyles={{
-            width: '60%',
+    <div className="onboarding-service-page-container ">
+      <MainHeader
+        title={t('content.onboardingServiceProvider.headertitle')}
+        subTitle={t('content.onboardingServiceProvider.desc')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
+      <Dialog
+        open={overlayOpen}
+        additionalModalRootStyles={{
+          width: '60%',
+        }}
+      >
+        <DialogHeader
+          title={t('content.onboardingServiceProvider.dialogTitle')}
+          intro={
+            <Box
+              sx={{
+                textAlign: 'center',
+                margin: '50px auto 20px',
+                display: 'grid',
+              }}
+            ></Box>
+          }
+          closeWithIcon={true}
+          onCloseWithIcon={() => {
+            setOverlayOpen(false)
+          }}
+        />
+        <DialogContent
+          sx={{
+            padding: '0px 120px 40px 120px',
           }}
         >
-          <DialogHeader
-            title={t('content.onboardingServiceProvider.dialogTitle')}
-            intro={
-              <Box
+          <>
+            <div style={{ marginTop: '34px' }}>
+              <ValidatingInput
+                name="callbackUrl"
+                label={t('content.onboardingServiceProvider.callbackUrl.name')}
+                value={data?.callbackUrl}
+                validate={(expr) => isURL(expr)}
+                hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
+                debounceTime={0}
+                onValid={checkValidData}
+              />
+            </div>
+            <div style={{ margin: '12px 0' }}>
+              <ValidatingInput
+                name="clientId"
+                label={t('content.onboardingServiceProvider.clientId.name')}
+                value={data?.clientId}
+                hint={t('content.onboardingServiceProvider.clientId.hint')}
+                validate={isIDPClientID}
+                onValid={checkValidData}
+              />
+            </div>
+            <div style={{ margin: '12px 0 30px' }}>
+              <ValidatingInput
+                name="clientSecret"
+                label={t('content.onboardingServiceProvider.clientSecret.name')}
+                value={data?.clientSecret}
+                hint={t('content.onboardingServiceProvider.clientSecret.hint')}
+                type={InputType.password}
+                validate={isIDPClientSecret}
+                onValid={checkValidData}
+              />
+            </div>
+            {showError && (
+              <Typography
+                variant="label3"
                 sx={{
-                  textAlign: 'center',
-                  margin: '50px auto 20px',
-                  display: 'grid',
+                  display: 'flex',
+                  marginTop: '30px',
+                  color: '#d91e18',
+                  border: '1px solid #d91e18',
+                  padding: '20px 40px',
+                  borderRadius: '5px',
                 }}
-              ></Box>
-            }
-            closeWithIcon={true}
-            onCloseWithIcon={() => {
+              >
+                <WarningAmberIcon
+                  sx={{
+                    marginRight: '5px',
+                    fontSize: '18px',
+                  }}
+                />
+                {t('content.onboardingServiceProvider.callbackUrlError')}
+              </Typography>
+            )}
+          </>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => {
               setOverlayOpen(false)
             }}
-          />
-          <DialogContent
-            sx={{
-              padding: '0px 120px 40px 120px',
-            }}
           >
-            <>
-              <div style={{ marginTop: '34px' }}>
-                <ValidatingInput
-                  name="callbackUrl"
-                  label={t(
-                    'content.onboardingServiceProvider.callbackUrl.name'
-                  )}
-                  value={data?.callbackUrl}
-                  validate={(expr) => isURL(expr)}
-                  hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
-                  debounceTime={0}
-                  onValid={checkValidData}
-                />
-              </div>
-              <div style={{ marginTop: '34px' }}>
-                <ValidatingInput
-                  name="authUrl"
-                  label={t('content.onboardingServiceProvider.authUrl.name')}
-                  value={data?.authUrl}
-                  validate={(expr) => isURL(expr)}
-                  hint={t('content.onboardingServiceProvider.authUrl.hint')}
-                  debounceTime={0}
-                  onValid={checkValidData}
-                />
-              </div>
-              <div style={{ margin: '15px 0' }}>
-                <ValidatingInput
-                  name="clientId"
-                  label={t('content.onboardingServiceProvider.clientId.name')}
-                  value={data?.clientId}
-                  hint={t('content.onboardingServiceProvider.clientId.hint')}
-                  validate={isIDPClientID}
-                  onValid={checkValidData}
-                />
-              </div>
-              <div style={{ margin: '12px 0 30px' }}>
-                <ValidatingInput
-                  name="clientSecret"
-                  label={t(
-                    'content.onboardingServiceProvider.clientSecret.name'
-                  )}
-                  value={data?.clientSecret}
-                  hint={t(
-                    'content.onboardingServiceProvider.clientSecret.hint'
-                  )}
-                  validate={isIDPClientSecret}
-                  onValid={checkValidData}
-                />
-              </div>
-              {showError && (
-                <Typography
-                  variant="label3"
-                  sx={{
-                    display: 'flex',
-                    marginTop: '30px',
-                    color: '#d91e18',
-                    border: '1px solid #d91e18',
-                    padding: '20px 40px',
-                    borderRadius: '5px',
-                  }}
-                >
-                  <WarningAmberIcon
-                    sx={{
-                      marginRight: '5px',
-                      fontSize: '18px',
-                    }}
-                  />
-                  {t('content.onboardingServiceProvider.callbackUrlError')}
-                </Typography>
-              )}
-            </>
-          </DialogContent>
-          <DialogActions>
+            {t('global.actions.close')}
+          </Button>
+
+          {loading ? (
+            <LoadingButton
+              color="primary"
+              size="medium"
+              helperText=""
+              helperTextColor="success"
+              label=""
+              loading
+              loadIndicator={t('global.actions.loading')}
+              onButtonClick={() => {
+                // do nothing
+              }}
+              sx={{ marginLeft: '10px' }}
+            />
+          ) : (
             <Button
-              variant="outlined"
-              onClick={() => {
-                setOverlayOpen(false)
-              }}
+              variant="contained"
+              onClick={updateCallbackIDP}
+              disabled={!callbackData}
             >
-              {t('global.actions.close')}
+              {t('global.actions.confirm')}
             </Button>
+          )}
+        </DialogActions>
+      </Dialog>
 
-            {loading ? (
-              <LoadingButton
-                color="primary"
-                size="medium"
-                helperText=""
-                helperTextColor="success"
-                label=""
-                loading
-                loadIndicator={t('global.actions.loading')}
-                onButtonClick={() => {
-                  // do nothing
-                }}
-                sx={{ marginLeft: '10px' }}
-              />
-            ) : (
-              <Button
-                variant="contained"
-                onClick={updateCallbackIDP}
-                disabled={!callbackData}
-              >
-                {t('global.actions.confirm')}
-              </Button>
-            )}
-          </DialogActions>
-        </Dialog>
-
-        <div className="onboarding-service-header">
-          <Typography variant="h2" className="onboarding-service-title">
-            {t('content.onboardingServiceProvider.headertitle')}
-          </Typography>
-          <Typography variant="body2" className="onboarding-service-desc">
-            {t('content.onboardingServiceProvider.desc')}
-          </Typography>
-          <Box
-            sx={{
-              position: 'relative',
-              height: '100%',
-              width: '50%',
-              background: '#F4FBFD',
-              margin: 'auto',
-            }}
-          >
-            <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="body3">
-                {t('content.onboardingServiceProvider.subDesc1')}
-              </Typography>
-              <Typography variant="body3">
-                {callbackData?.callbackUrl ?? data?.callbackUrl}
-              </Typography>
-            </Box>
-            <IconButton
-              aria-label="close"
-              onClick={() => {
-                setOverlayOpen(true)
-              }}
-              sx={{
-                right: '0',
-                position: 'absolute',
-                top: '50%',
-                msTransform: 'translateY(-50%)',
-                transform: 'translateY(-50%)',
-              }}
-            >
-              <ArrowForwardIcon />
-            </IconButton>
-          </Box>
-        </div>
-      </section>
-
-      <Box>
-        <Tabs
-          value={activeTab}
-          onChange={handleTabChange}
-          sx={{ margin: '0 10% 20px' }}
+      <div className="onboarding-service-header">
+        <Box
+          sx={{
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+            background: '#FAFAFA',
+            p: '20px',
+          }}
         >
-          <Tab
-            iconPosition="start"
-            icon={getTabsIcon(1)}
-            aria-controls={`simple-tabpanel-${activeTab}`}
-            id={`simple-tab-${activeTab}`}
-            label={t('content.onboardingServiceProvider.tabletitle1')}
-            sx={{
-              textTransform: 'none',
-              display: 'inline-flex',
-              width: '100%',
-              maxWidth: '550px',
-              '&.Mui-selected': {
-                borderBottom: '3px solid #0f71cb',
-              },
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="body3">
+              {t('content.onboardingServiceProvider.subDesc1')}
+            </Typography>
+            <Typography variant="body3">
+              {callbackData?.callbackUrl ?? data?.callbackUrl}
+            </Typography>
+          </Box>
+          <IconButton
+            aria-label="close"
+            onClick={() => {
+              setOverlayOpen(true)
             }}
-          />
-          <Tab
-            iconPosition="start"
-            icon={getTabsIcon(2)}
-            aria-controls={`simple-tabpanel-${activeTab}`}
-            id={`simple-tab-${activeTab}`}
-            label={t('content.onboardingServiceProvider.tabletitle2')}
             sx={{
-              textTransform: 'none',
-              display: 'inline-flex',
-              width: '100%',
-              maxWidth: '550px',
-              '&.Mui-selected': {
-                borderBottom: '3px solid #0f71cb',
-              },
+              right: '0',
+              position: 'absolute',
+              top: '50%',
+              msTransform: 'translateY(-50%)',
+              transform: 'translateY(-50%)',
             }}
-          />
-        </Tabs>
-        <TabPanel value={activeTab} index={0}>
-          <Box
-            className="connector-table-container"
-            sx={{ border: '1px solid #DCDCDC', borderRadius: '24px' }}
           >
+            <ArrowForwardIcon />
+          </IconButton>
+        </Box>
+      </div>
+      <Box>
+        <Box sx={{ mx: '10%' }}>
+          <Tabs value={activeTab} onChange={handleTabChange}>
+            <Tab
+              iconPosition="start"
+              icon={getTabsIcon(1)}
+              aria-controls={`simple-tabpanel-${activeTab}`}
+              id={`simple-tab-${activeTab}`}
+              label={t('content.onboardingServiceProvider.tabletitle1')}
+              sx={{
+                textTransform: 'none',
+                '&.Mui-selected': {
+                  borderBottom: `6px solid ${COLOR_PALETTE.PRIMARY}`,
+                },
+              }}
+            />
+            <Tab
+              iconPosition="start"
+              icon={getTabsIcon(2)}
+              aria-controls={`simple-tabpanel-${activeTab}`}
+              id={`simple-tab-${activeTab}`}
+              label={t('content.onboardingServiceProvider.tabletitle2')}
+              sx={{
+                textTransform: 'none',
+                '&.Mui-selected': {
+                  borderBottom: `6px solid ${COLOR_PALETTE.PRIMARY}`,
+                },
+              }}
+            />
+          </Tabs>
+          <Divider sx={{ marginTop: '-3px' }} />
+        </Box>
+        <TabPanel value={activeTab} index={0}>
+          <div className="connector-table-container">
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: '20px' }}>
+              <Button
+                size="small"
+                onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+                className="add-idp-btn"
+              >
+                {t('content.onboardingServiceProvider.addIdentityProvider')}
+              </Button>
+            </Box>
+            <Typography variant="h5">
+              {t('content.onboardingServiceProvider.userList')}
+            </Typography>
             <IDPList isManagementOSP={true} />
           </Box>
         </TabPanel>
@@ -408,7 +397,7 @@ const OnboardingServiceProvider = () => {
           </div>
         </TabPanel>
       </Box>
-    </main>
+    </div>
   )
 }
 
