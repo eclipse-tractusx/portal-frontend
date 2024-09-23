@@ -82,19 +82,11 @@ export default function ServiceMarketplace() {
     sortingType,
   })
 
-  useEffect(() => {
-    if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-      setServiceTypeId(ServiceTypeIdsEnum.DATASPACE_SERVICE)
-    } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
-      setServiceTypeId(ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
-    }
-  }, [selected])
-
-  useEffect(() => {
-    if (sortOption === 'provider') {
-      setSortingType('ProviderDesc')
-    }
-  }, [sortOption])
+  // useEffect(() => {
+  //   if (sortOption === 'provider') {
+  //     setSortingType('ProviderDesc')
+  //   }
+  // }, [sortOption])
 
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
@@ -113,15 +105,26 @@ export default function ServiceMarketplace() {
       )
   }, [data])
 
-  useEffect(() => {
-    refetch()
-  }, [data, refetch])
-
   const setDataInfo = (data: ServiceRequestAPIResponse) =>
     data.content.map((item) => ({ ...item }))
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
+    let serviceType: ServiceTypeIdsEnum | '' = ''
+
+    if (viewValue === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
+      serviceType = ServiceTypeIdsEnum.DATASPACE_SERVICE
+    } else if (viewValue === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
+      serviceType = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
+    }
+
+    setServiceTypeId(serviceType)
+    setArgsData((arg) => ({
+      ...arg,
+      serviceType: serviceType ?? '',
+      page: 0,
+    }))
+
     setSelected(viewValue)
     setPage(0)
   }
@@ -184,6 +187,9 @@ export default function ServiceMarketplace() {
   )
 
   const setSortOptionFn = useCallback((value: string) => {
+    if (value === 'provider') {
+      setSortingType('ProviderDesc')
+    }
     setSortOption(value)
     setShowModal(false)
   }, [])
