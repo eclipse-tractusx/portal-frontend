@@ -6,19 +6,10 @@
 
 - **Connector Management**
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
-- **Service Release Process**
-  - Updated description regex & validation error message to prevent only spaces in short & long description
-- **OSP Consent form**
-  - Fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
-- **App and Service Admin board**
-  - Fix data disappearing issue on re-clicking active tab/filter in app/service admin board [#1100](https://github.com/eclipse-tractusx/portal-frontend/pull/1100)
-- **App & Service Subcription Managment**
-  - Search place holder text updated
-  - Show only available offer names at the top
-- **Admin Service Management**
-  - Resolved service title overlap and improved responsiveness on the admin service detail page [#1112](https://github.com/eclipse-tractusx/portal-frontend/pull/1112)
 
 ## 2.2.0-alpha.1
+
+### Bugfixes
 
 ### Feature
 
