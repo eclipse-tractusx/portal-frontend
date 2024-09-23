@@ -1080,7 +1080,8 @@
       "legalPersonDesc": "Overview of companies with missing legal person self-description",
       "connectors": "Connectors",
       "connectorsDesc": "Overview of companies with missing connector self-description",
-      "errorMsg": "Error! Something went wrong"
+      "errorMsg": "Error! Something went wrong",
+      "noDataMsg": "No records found."
     },
     "addUser": {
       "headline": "Add User Account",

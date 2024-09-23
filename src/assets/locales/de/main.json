@@ -1066,6 +1066,18 @@
       "metadata_url_required_error": "Metadaten-URL ist erforderlich",
       "metadata_url_invalid_error": "Bitte geben Sie eine gültige Metadaten-URL ein"
     },
+    "clearinghouseSelfDescription": {
+      "heading": "Status des Selbstbeschreibungsdokuments",
+      "description": "Diese Seite bietet einen Überblick über den aktuellen Stand der Selbstbeschreibungen für Administratoren.",
+      "reprocess": "Wiederaufbereiten",
+      "complianceStatus": "Compliance-Status:",
+      "legalPerson": "Juristische Person",
+      "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Selbstbeschreibung einer juristischen Person",
+      "connectors": "Anschlüsse",
+      "connectorsDesc": "Übersicht über Unternehmen mit fehlender Connector-Selbstbeschreibung",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen",
+      "noDataMsg": "Keine Datensätze gefunden."
+    },
     "addUser": {
       "headline": "Erstelle einen neuen User",
       "subheadline": "Fügen Sie ein neues Benutzerkonto hinzu, indem Sie den Vor- und Nachnamen des Benutzers sowie die E-Mail-Adresse hinterlegen. Wählen Sie unterhalb der Eingabefelder die jeweiligen Benutzerrollen aus, die der Benutzer haben soll. Eine Rolle ist mindestens erforderlich, um dem Benutzer den Zugriff auf das Netzwerk zu ermöglichen.",

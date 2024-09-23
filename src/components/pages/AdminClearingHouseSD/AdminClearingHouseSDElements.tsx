@@ -99,13 +99,17 @@ const AdminclearinghouseSDElements = () => {
 
   useEffect(() => {
     if (isFetchingMoreCompanies) {
-      refetchCompanyData().then(() => { setIsFetchingMoreCompanies(false) })
+      refetchCompanyData().then(() => {
+        setIsFetchingMoreCompanies(false)
+      })
     }
   }, [currentCompanyPage, isFetchingMoreCompanies])
 
   useEffect(() => {
     if (isFetchingMoreConnectors) {
-      refetchConnectors().then(() => { setIsFetchingMoreConnectors(false) })
+      refetchConnectors().then(() => {
+        setIsFetchingMoreConnectors(false)
+      })
     }
   }, [currentConnectorPage, isFetchingMoreConnectors])
 
@@ -227,7 +231,7 @@ const AdminclearinghouseSDElements = () => {
               thickness={8}
             />
           </div>
-        ) : (
+        ) : companyData?.content?.length ? (
           <ul className="company-list-container">
             {companyData?.content?.map(
               (company: ComapnyDataType, index: number) => (
@@ -235,6 +239,10 @@ const AdminclearinghouseSDElements = () => {
               )
             )}
           </ul>
+        ) : (
+          <Typography variant="body1" className="no-data-msg">
+            {t('content.clearinghouseSelfDescription.noDataMsg')}
+          </Typography>
         )}
         <div className="btn-container">
           <Button
@@ -278,7 +286,7 @@ const AdminclearinghouseSDElements = () => {
               thickness={8}
             />
           </div>
-        ) : (
+        ) : connectors?.content?.length ? (
           <div className="connectors-list">
             {connectors?.content?.map((connector, index) => (
               <div key={index} className="connector">
@@ -287,6 +295,10 @@ const AdminclearinghouseSDElements = () => {
               </div>
             ))}
           </div>
+        ) : (
+          <Typography variant="body1" className="no-data-msg">
+            {t('content.clearinghouseSelfDescription.noDataMsg')}
+          </Typography>
         )}
         <div className="btn-container">
           <Button
