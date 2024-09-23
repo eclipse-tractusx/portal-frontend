@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Connector Management**
+  - fixed overaly enabling on click of managed connectors(details)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
