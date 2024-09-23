@@ -751,7 +751,7 @@ export default function AppMarketCard() {
                   'content.apprelease.appMarketCard.salesManagerPlaceholder'
                 )}
                 onChangeItem={(e) => {
-                  e && onSalesManagerChange(e.userId)
+                  e && onSalesManagerChange(e.userId as string)
                 }}
                 keyTitle={'fullName'}
               />

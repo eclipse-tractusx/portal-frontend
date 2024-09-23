@@ -482,7 +482,7 @@ export default function TechnicalIntegration() {
                       'content.apprelease.technicalIntegration.encoding'
                     )}
                     onChangeItem={(e) => {
-                      setSelectedEncoding(e.value)
+                      setSelectedEncoding(e.value as string)
                     }}
                     keyTitle={'title'}
                     disableClearable={true}

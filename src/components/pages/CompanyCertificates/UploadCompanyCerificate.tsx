@@ -155,8 +155,8 @@ export default function UploadCompanyCertificate({
                       'content.companyCertificate.upload.certificateTypePlaceholder'
                     )
               }
-              onChangeItem={(e: CertificateTypes) => {
-                setSelectedCertificateType(e)
+              onChangeItem={(e) => {
+                setSelectedCertificateType(e as CertificateTypes)
               }}
               keyTitle={'certificateType'}
               disabled={certificateTypes?.length === 1}

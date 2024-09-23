@@ -140,9 +140,7 @@ any) => {
               value={value}
               items={items}
               keyTitle={keyTitle}
-              // Add an ESLint exception until there is a solution
-              // eslint-disable-next-line
-              onAddItem={(items: any[]) => {
+              onAddItem={(items) => {
                 trigger(name)
                 onChange(items?.map((item) => item[saveKeyTitle]))
               }}

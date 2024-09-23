@@ -4,6 +4,8 @@
 
 ### Change
 
+- **Shared component**
+  - cherry-picked types issues caused by shared componnent version upgrade [#1113](https://github.com/eclipse-tractusx/portal-frontend/pull/1113)
 - **Company Data Management**
   - integrated /ready api to trigger once the new record is created [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
   - enabled displaying of sharing state error details in the company overlay details page [#958](https://github.com/eclipse-tractusx/portal-frontend/pull/958)
