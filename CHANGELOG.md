@@ -305,6 +305,7 @@
   - enabled showing of appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
 - **Service Marketplace**:
   - enabled showing of appropriate error information to the user along with refetch button [#910](https://github.com/eclipse-tractusx/portal-frontend/pull/910)
+  - fixed service marketplace to display all active available servicesp[#1143](https://github.com/eclipse-tractusx/portal-frontend/issues/1143)
 - **Connector Management**:
   - fixed blank page issue on clicking on details [#925](https://github.com/eclipse-tractusx/portal-frontend/pull/925)
   - updated GET endpoint for 'Connect Company Connector' to consider technical user status [#938](https://github.com/eclipse-tractusx/portal-frontend/pull/938)
