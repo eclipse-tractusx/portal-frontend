@@ -28,6 +28,8 @@
   - implement new UI design for customer detail data overlay
 - **Company Subscription Management**
   - extended the subscription detail page for customer to include more app-related information [#1051](https://github.com/eclipse-tractusx/portal-frontend/pull/1051)
+- **Clearinghouse Self-Description**
+  - Admin UI for Managing SD Document Retriggering
 
 ### Change
 

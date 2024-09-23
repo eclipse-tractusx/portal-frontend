@@ -17,8 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
-import { Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
 import './AdminClearingHouseSD.scss'
 import { Trans } from 'react-i18next'
 import { t } from 'i18next'
@@ -26,15 +25,33 @@ import {
   Button,
   CircleProgress,
   ToggleSwitch,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import {
   type ComapnyDataType,
   useFetchCompanyDataQuery,
   useFetchConnectorsQuery,
+  useTriggerCompanyDataMutation,
+  useTriggerConnectorsMutation,
+  PAGE_SIZE,
 } from 'features/adminClearingHouseSD/adminClearingHouseSDApiSlice'
+import { error } from 'services/NotifyService'
+import { getRequireHttpsUrlPattern } from 'services/EnvironmentService'
 
 const AdminclearinghouseSDElements = () => {
-  const [checked, setChecked] = useState(true)
+  const [checked, setChecked] = useState(
+    JSON.parse(getRequireHttpsUrlPattern())
+  )
+  const [triggerCompanyData] = useTriggerCompanyDataMutation()
+  const [triggerConnectors] = useTriggerConnectorsMutation()
+  const [triggerCDLoading, setTriggerCDLoading] = useState<boolean>(false)
+  const [triggerConnectorsLoading, setTriggerConnectorsLoading] =
+    useState<boolean>(false)
+  const [currentCompanyPage, setCurrentCompanyPage] = useState(0)
+  const [currentConnectorPage, setCurrentConnectorPage] = useState(0)
+  const [isFetchingMoreCompanies, setIsFetchingMoreCompanies] = useState(false)
+  const [isFetchingMoreConnectors, setIsFetchingMoreConnectors] =
+    useState(false)
 
   const handleChange = (newChecked: boolean) => {
     setChecked(newChecked)
@@ -44,21 +61,136 @@ const AdminclearinghouseSDElements = () => {
     data: companyData,
     isFetching: isFetchingCompanyData,
     refetch: refetchCompanyData,
-  } = useFetchCompanyDataQuery({ page: 0 })
+  } = useFetchCompanyDataQuery({ page: currentCompanyPage })
 
   const {
     data: connectors,
     isFetching: isFetchingConnectors,
     refetch: refetchConnectors,
-  } = useFetchConnectorsQuery({ page: 0 })
+  } = useFetchConnectorsQuery({ page: currentConnectorPage })
+
+  // Load more companies
+  const loadMoreCompanies = () => {
+    if (
+      !isFetchingMoreCompanies &&
+      (companyData?.meta?.page ?? 0) < (companyData?.meta?.totalPages ?? 1) - 1
+    ) {
+      const currentItemCount = companyData?.content?.length ?? 0
+      if (currentItemCount % PAGE_SIZE === 0) {
+        setIsFetchingMoreCompanies(true)
+        setCurrentCompanyPage((prev) => prev + 1)
+      }
+    }
+  }
+
+  // Load more connectors
+  const loadMoreConnectors = () => {
+    if (
+      !isFetchingMoreConnectors &&
+      (connectors?.meta?.page ?? 0) < (connectors?.meta?.totalPages ?? 1) - 1
+    ) {
+      const currentItemCount = connectors?.content?.length ?? 0
+      if (currentItemCount % PAGE_SIZE === 0) {
+        setIsFetchingMoreConnectors(true)
+        setCurrentConnectorPage((prev) => prev + 1)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (isFetchingMoreCompanies) {
+      refetchCompanyData().then(() => { setIsFetchingMoreCompanies(false) })
+    }
+  }, [currentCompanyPage, isFetchingMoreCompanies])
+
+  useEffect(() => {
+    if (isFetchingMoreConnectors) {
+      refetchConnectors().then(() => { setIsFetchingMoreConnectors(false) })
+    }
+  }, [currentConnectorPage, isFetchingMoreConnectors])
+
+  // Scroll event to load more data for company list
+  useEffect(() => {
+    const companyContainer = document.querySelector('.company-list-container')
+
+    const handleCompanyScroll = () => {
+      if (companyContainer) {
+        const bottom =
+          companyContainer.scrollTop + companyContainer.clientHeight >=
+          companyContainer.scrollHeight - 10
+
+        if (bottom) {
+          loadMoreCompanies()
+        }
+      }
+    }
+
+    companyContainer?.addEventListener('scroll', handleCompanyScroll)
+
+    return () =>
+      companyContainer?.removeEventListener('scroll', handleCompanyScroll)
+  }, [companyData])
+
+  // Scroll event to load more data for connector list
+  useEffect(() => {
+    const connectorContainer = document.querySelector('.connectors-list')
+
+    const handleConnectorScroll = () => {
+      if (connectorContainer) {
+        const bottom =
+          connectorContainer.scrollHeight - connectorContainer.scrollTop <=
+          connectorContainer.clientHeight + 10
+        if (bottom) {
+          loadMoreConnectors()
+        }
+      }
+    }
+
+    connectorContainer?.addEventListener('scroll', handleConnectorScroll)
+
+    return () =>
+      connectorContainer?.removeEventListener('scroll', handleConnectorScroll)
+  }, [connectors])
+
+  const handleTriggerCompanyData = async () => {
+    setTriggerCDLoading(true)
+    try {
+      await triggerCompanyData().unwrap()
+      refetchCompanyData()
+      setTriggerCDLoading(false)
+    } catch (err) {
+      setTriggerCDLoading(false)
+      error(
+        t('content.clearinghouseSelfDescription.errorMsg'),
+        '',
+        err as object
+      )
+    }
+  }
+
+  const handleTriggerConnectors = async () => {
+    setTriggerConnectorsLoading(true)
+    try {
+      await triggerConnectors().unwrap()
+      refetchConnectors()
+      setTriggerConnectorsLoading(false)
+    } catch (err) {
+      setTriggerConnectorsLoading(false)
+      error(
+        t('content.clearinghouseSelfDescription.errorMsg'),
+        '',
+        err as object
+      )
+    }
+  }
 
   return (
     <div className="admin-container">
-      <Typography variant="h2">
+      <Typography variant="h2" className="heading">
         {t('content.clearinghouseSelfDescription.heading')}
       </Typography>
       <Trans>
-        <Typography variant="h6">
+        <Typography variant="body1" className="description">
           {t('content.clearinghouseSelfDescription.description')}
         </Typography>
       </Trans>
@@ -96,7 +228,7 @@ const AdminclearinghouseSDElements = () => {
             />
           </div>
         ) : (
-          <ul>
+          <ul className="company-list-container">
             {companyData?.content?.map(
               (company: ComapnyDataType, index: number) => (
                 <li key={index}>{company?.name}</li>
@@ -108,10 +240,21 @@ const AdminclearinghouseSDElements = () => {
           <Button
             variant="contained"
             size="small"
-            onClick={() => refetchCompanyData()}
-            disabled={isFetchingCompanyData}
+            onClick={() => handleTriggerCompanyData()}
+            disabled={isFetchingCompanyData || triggerCDLoading}
           >
-            {t('content.clearinghouseSelfDescription.reprocess')}
+            {triggerCDLoading ? (
+              <CircleProgress
+                size={20}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            ) : (
+              t('content.clearinghouseSelfDescription.reprocess')
+            )}
           </Button>
         </div>
       </div>
@@ -149,10 +292,21 @@ const AdminclearinghouseSDElements = () => {
           <Button
             variant="contained"
             size="small"
-            onClick={() => refetchConnectors()}
-            disabled={isFetchingConnectors}
+            onClick={() => handleTriggerConnectors()}
+            disabled={isFetchingConnectors || triggerConnectorsLoading}
           >
-            {t('content.clearinghouseSelfDescription.reprocess')}
+            {triggerConnectorsLoading ? (
+              <CircleProgress
+                size={20}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            ) : (
+              t('content.clearinghouseSelfDescription.reprocess')
+            )}
           </Button>
         </div>
       </div>

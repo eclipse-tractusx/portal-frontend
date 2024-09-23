@@ -20,6 +20,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
+export const PAGE_SIZE = 15
+
 export type PaginationData = {
   totalElements: number
   page: number
@@ -59,22 +61,37 @@ export interface ConnectorsRequestType {
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/clearingHouseSD',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
-  //   tagTypes: ['certificate'],
   endpoints: (builder) => ({
     fetchCompanyData: builder.query<
       CompanyDataResponse,
       CompanyDataRequestType
     >({
       query: ({ page }) =>
-        `/api/administration/companyData/missing-sd-document?page=${page}&size=15`,
+        `/api/administration/companyData/missing-sd-document?page=${page}&size=${PAGE_SIZE}`,
       keepUnusedDataFor: 5,
     }),
     fetchConnectors: builder.query<ConnectorsResponse, ConnectorsRequestType>({
       query: ({ page }) =>
-        `/api/administration/connectors/missing-sd-document?page=${page}&size=15`,
-      //   providesTags: ['certificate'],
+        `/api/administration/connectors/missing-sd-document?page=${page}&size=${PAGE_SIZE}`,
+    }),
+    triggerCompanyData: builder.mutation<CompanyDataResponse, void>({
+      query: () => ({
+        url: '/api/administration/companyData/trigger-self-description',
+        method: 'POST',
+      }),
+    }),
+    triggerConnectors: builder.mutation<ConnectorsResponse, void>({
+      query: () => ({
+        url: '/api/administration/connectors/trigger-self-description',
+        method: 'POST',
+      }),
     }),
   }),
 })
 
-export const { useFetchConnectorsQuery, useFetchCompanyDataQuery } = apiSlice
+export const {
+  useFetchConnectorsQuery,
+  useFetchCompanyDataQuery,
+  useTriggerCompanyDataMutation,
+  useTriggerConnectorsMutation,
+} = apiSlice

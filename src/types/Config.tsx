@@ -400,6 +400,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
+    allowTo: () => userHasPortalRole(ROLES.APPROVE_NEW_PARTNER),
     element: <AdminclearinghouseSD />,
   },
   { name: PAGES.CONTACT, element: <Contact /> },

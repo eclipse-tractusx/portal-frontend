@@ -1079,7 +1079,8 @@
       "legalPerson": "Legal Person",
       "legalPersonDesc": "Overview of companies with missing legal person self-description",
       "connectors": "Connectors",
-      "connectorsDesc": "Overview of companies with missing connector self-description"
+      "connectorsDesc": "Overview of companies with missing connector self-description",
+      "errorMsg": "Error! Something went wrong"
     },
     "addUser": {
       "headline": "Add User Account",
