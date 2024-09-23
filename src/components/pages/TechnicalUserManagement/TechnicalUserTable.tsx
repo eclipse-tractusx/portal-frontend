@@ -30,7 +30,6 @@ import {
   ServiceAccountStatus,
   ServiceAccountStatusFilter,
   useFetchServiceAccountListQuery,
-  UserType,
 } from 'features/admin/serviceApiSlice'
 import { useSelector } from 'react-redux'
 import { PAGES } from 'types/Constants'
@@ -44,11 +43,6 @@ interface FetchHookArgsType {
   expr: string
 }
 type StatusTagColor = 'pending' | 'confirmed' | 'label' | undefined
-
-const userTypeMapping = {
-  [UserType.INTERNAL]: 'INTERNAL',
-  [UserType.EXTERNAL]: 'EXTERNAL',
-}
 
 export const TechnicalUserTable = () => {
   const { t } = useTranslation()
@@ -145,7 +139,7 @@ export const TechnicalUserTable = () => {
             headerName: t('global.field.userType'),
             flex: 1.2,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
-              userTypeMapping[row.usertype] || '-',
+              row.usertype || '-',
           },
           {
             field: 'offer',
