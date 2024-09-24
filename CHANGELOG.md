@@ -7,6 +7,11 @@
 - **Company Subscriptions**
   - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
 
+### Bugfixes
+
+- **Connector Management**
+  - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
