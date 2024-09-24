@@ -120,6 +120,7 @@ export const Patterns = {
     POSTAL_CODE:
       /^(?!.*\s$)(?=[a-zA-Z\d-]{0,10}[-\s]?[a-zA-Z\d-]{0,10}$)[a-zA-Z\d\s-]{2,10}$/,
   },
+  EMAIL_SEARCH: /^[ A-Za-z0-9._!@+-]*$/,
 }
 
 export const isEmpty = (expr: string) => !expr || expr.trim() === ''
