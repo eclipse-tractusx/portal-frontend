@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Customer Data**
+  - Enable CSV upload
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
