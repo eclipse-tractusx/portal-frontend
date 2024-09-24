@@ -25,13 +25,16 @@ import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { Button, PageNotifications } from '@catena-x/portal-shared-components'
 import { show } from 'features/control/overlay'
 import UserService from 'services/UserService'
-import { resetNotification } from 'features/notification/actions'
-import { notificationSelector } from 'features/notification/slice'
+import {
+  notificationSelector,
+  setNotification,
+} from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import './style.scss'
 import { TechnicalUserTable } from './TechnicalUserTable'
 import { getAssetBase } from 'services/EnvironmentService'
+import { initServicetNotifications } from 'types/MainTypes'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()
@@ -39,13 +42,13 @@ export default function TechnicalUserManagement() {
   const dispatch = useDispatch()
 
   const handleCloseNotification = () => {
-    dispatch(resetNotification())
+    dispatch(setNotification(initServicetNotifications))
   }
 
   return (
     <main>
       <PageHeaderWithCrumbs
-        crumbs={[PAGES.USER_MANAGEMENT, PAGES.TECHUSER_MANAGEMENT]}
+        crumbs={[PAGES.USER_MANAGEMENT, PAGES.TECH_USER_MANAGEMENT]}
       />
       <section>
         <div className="content-technical-user">
@@ -65,7 +68,7 @@ export default function TechnicalUserManagement() {
             <Button
               size="small"
               startIcon={<AddCircleOutlineIcon />}
-              onClick={() => dispatch(show(OVERLAYS.ADD_TECHUSER))}
+              onClick={() => dispatch(show(OVERLAYS.ADD_TECH_USER))}
             >
               {t('content.usermanagement.technicalUser.create')}
             </Button>
@@ -79,7 +82,7 @@ export default function TechnicalUserManagement() {
         </div>
 
         <div style={{ paddingTop: '70px' }}>
-          {notification.title && notification.description && (
+          {notification?.title && notification?.description && (
             <PageNotifications
               open={notification.open}
               severity={notification.severity}

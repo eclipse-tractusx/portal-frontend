@@ -108,6 +108,11 @@ export type updateConnectorUrlType = {
   }
 }
 
+type deleteConnectorArgs = {
+  connectorID: string
+  deleteServiceAccount: boolean
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/connector',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -129,11 +134,13 @@ export const apiSlice = createApi({
     fetchConnectorDetails: builder.query<ConnectorDetailsType, string>({
       query: (connectorID) => `/api/administration/Connectors/${connectorID}`,
     }),
-    deleteConnector: builder.mutation<void, string>({
-      query: (connectorID) => ({
-        url: `/api/administration/Connectors/${connectorID}`,
-        method: 'DELETE',
-      }),
+    deleteConnector: builder.mutation<void, deleteConnectorArgs>({
+      query: ({ connectorID, deleteServiceAccount }) => {
+        return {
+          url: `/api/administration/Connectors/${connectorID}?deleteServiceAccount=${deleteServiceAccount}`,
+          method: 'DELETE',
+        }
+      },
     }),
     fetchConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,
@@ -173,6 +180,15 @@ export const apiSlice = createApi({
         body: data.body,
       }),
     }),
+    fetchSdDocument: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/documents/selfDescription/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -186,4 +202,5 @@ export const {
   useFetchOfferSubscriptionsQuery,
   useFetchDecentralIdentityUrlsQuery,
   useUpdateConnectorUrlMutation,
+  useFetchSdDocumentMutation,
 } = apiSlice

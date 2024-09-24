@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,18 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { setLoggedUser } from 'features/user/slice'
-import type { IUser } from 'features/user/types'
-
-export function AuthProvider(props: {
-  children: JSX.Element
-  user: IUser
-}): JSX.Element {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(setLoggedUser(props.user))
-  }, [dispatch, props.user])
-  return <>{props.children}</>
+.app-subscription-overlay {
+  .loading-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 }

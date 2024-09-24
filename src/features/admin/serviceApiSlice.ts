@@ -48,11 +48,19 @@ export interface ServiceAccountCreate {
   roleIds: string[]
 }
 
+export enum ServiceAccountStatus {
+  ACTIVE = 'ACTIVE',
+  PENDING = 'PENDING',
+  PENDING_DELETION = 'PENDING_DELETION',
+}
+
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
+  status: ServiceAccountStatus
   isOwner?: boolean
+  usertype: string
   offer?: {
     name?: string
   }
@@ -70,6 +78,9 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   roles: ServiceAccountRole[]
   connector: ConnectedObject
   offer: ConnectedObject
+  companyServiceAccountTypeId: companyServiceAccountType
+  usertype: string
+  authenticationServiceUrl: string
 }
 
 export type AppRoleCreate = {
@@ -88,10 +99,14 @@ export interface ServiceAccountsResponseType {
 }
 
 export enum ServiceAccountStatusFilter {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  SHOW_ALL = 'show all',
   MANAGED = 'MANAGED',
   OWNED = 'OWNED',
+}
+
+export enum companyServiceAccountType {
+  MANAGED = 'MANAGED',
+  OWNED = 'OWN',
 }
 
 export const apiSlice = createApi({
@@ -134,25 +149,19 @@ export const apiSlice = createApi({
         if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}&isOwner=${isOwner}`
         } else if (
           isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&clientId=${fetchArgs.args!.expr}`
         } else if (
           !isFetchArgs &&
           fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter === ServiceAccountStatusFilter.INACTIVE
-        ) {
-          return `${url}&filterForInactive=true`
-        } else if (
-          !isFetchArgs &&
-          fetchArgs.args.statusFilter &&
-          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.ACTIVE
+          fetchArgs.args.statusFilter !== ServiceAccountStatusFilter.SHOW_ALL
         ) {
           return `${url}&isOwner=${isOwner}`
         } else {
@@ -180,7 +189,7 @@ export const apiSlice = createApi({
       number
     >({
       query: (page) =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false`,
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false&userStatus=ACTIVE`,
     }),
   }),
 })

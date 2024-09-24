@@ -38,8 +38,6 @@ RUN ln -s /tmp/index.html /usr/share/nginx/html/index.html
 # Add env variables inject script and mark as executable
 COPY ./scripts/inject-dynamic-env.sh /docker-entrypoint.d/00-inject-dynamic-env.sh
 RUN chmod +x /docker-entrypoint.d/00-inject-dynamic-env.sh
-# Install bash for env variables inject script
-RUN apk update && apk add --no-cache sed
 # Make nginx owner of /usr/share/nginx/html/ and change to nginx user
 RUN chown -R 101:101 /usr/share/nginx/html/
 # Change to nginx user

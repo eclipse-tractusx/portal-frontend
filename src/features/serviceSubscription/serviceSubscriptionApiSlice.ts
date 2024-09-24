@@ -18,8 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import {
+  type PaginFetchArgs,
+  type PaginResult,
+} from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
+import {
+  CompanySubscriptionFilterType,
+  type Documents,
+  type FetchSubscriptionResponseType,
+  type SubscribedActiveApps,
+} from 'features/apps/types'
 import { type ProcessStep } from 'features/appSubscription/appSubscriptionApiSlice'
+import i18next from 'i18next'
+import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 
 export interface SubscriptionRequestType {
@@ -38,7 +51,7 @@ export interface SubscriptionResponseContentType {
 
 export type SubscriptionContent = {
   offerId: string
-  serviceName: string
+  offerName: string
   companySubscriptionStatuses: SubscriptionResponseContentType[]
 }
 
@@ -90,6 +103,54 @@ export type SubscriptionDetailResponse = {
   processStepTypeId?: ProcessStep
 }
 
+export enum LicenseType {
+  COTS = 'COTS',
+  FOSS = 'FOSS',
+}
+
+export enum OfferSubscriptionStatus {
+  PENDING = 'PENDING',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
+export interface OfferSubscriptionDataType {
+  offerSubscriptionId: string
+  offerSubscriptionStatus: OfferSubscriptionStatus
+}
+
+export enum ServiceTypes {
+  DATASPACE_SERVICE = 'DATASPACE_SERVICE',
+  CONSULTANCY_SERVICE = 'CONSULTANCY_SERVICE',
+}
+
+export interface ServiceDetailsResponse {
+  id: string
+  title: string
+  provider: string
+  contactEmail: string
+  description: string
+  licenseType: LicenseType
+  price: string
+  offerSubscriptionDetailData: OfferSubscriptionDataType[]
+  serviceTypes: ServiceTypes
+  technicalUserProfile: {
+    [key: string]: string[] | null
+  }
+  leadPictureId?: string
+  isSubscribed: string
+  longDescription: string
+  languages: string[]
+  images: string[]
+  privacyPolicies: PrivacyPolicyType[]
+  documents: Documents
+}
+
+export interface SubscriptionServiceRequestType {
+  serviceId: string
+  subscriptionId: string
+}
+
 export const apiSlice = createApi({
   reducerPath: 'rtk/services/serviceSubscription',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -121,7 +182,47 @@ export const apiSlice = createApi({
       SubscriptionDetailRequestBody
     >({
       query: (body) =>
-        `/api/Services/${body.appId}/subscription/${body.subscriptionId}/provider`,
+        `/api/services/${body.appId}/subscription/${body.subscriptionId}/provider`,
+    }),
+    fetchSubscriptionService: builder.query<
+      FetchSubscriptionResponseType,
+      SubscriptionServiceRequestType
+    >({
+      query: (obj) =>
+        `/api/services/${obj.serviceId}/subscription/${obj.subscriptionId}/subscriber`,
+      transformErrorResponse: (res) => {
+        return {
+          status: res.status,
+          data: res.data,
+        }
+      },
+    }),
+    fetchServiceDetails: builder.query<ServiceDetailsResponse, string>({
+      query: (id: string) => `/api/services/${id}?lang=${i18next.language}`,
+    }),
+    fetchCompanyServiceSubscriptions: builder.query<
+      PaginResult<SubscribedActiveApps>,
+      PaginFetchArgs
+    >({
+      query: (body) => {
+        console.log(body)
+        const url = `/api/services/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const statusId =
+          body.args.statusId &&
+          body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+            ? `&status=${body.args.statusId}`
+            : ''
+        const name = body.args.expr ? `&name=${body.args.expr}` : ''
+        return {
+          url: `${url}${statusId}${name}`,
+        }
+      },
+    }),
+    unsubscribeService: builder.mutation<void, string>({
+      query: (subscriptionId) => ({
+        url: `/api/services/${subscriptionId}/unsubscribe`,
+        method: 'PUT',
+      }),
     }),
   }),
 })
@@ -130,4 +231,8 @@ export const {
   useFetchServiceSubscriptionsQuery,
   useFetchServiceFiltersQuery,
   useFetchServiceSubDetailQuery,
+  useFetchSubscriptionServiceQuery,
+  useFetchServiceDetailsQuery,
+  useFetchCompanyServiceSubscriptionsQuery,
+  useUnsubscribeServiceMutation,
 } = apiSlice

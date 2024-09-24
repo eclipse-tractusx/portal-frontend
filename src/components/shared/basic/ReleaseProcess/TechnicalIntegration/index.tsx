@@ -143,7 +143,11 @@ export default function TechnicalIntegration() {
   )
 
   useEffect(() => {
-    setTechUserProfiles(userProfiles)
+    // Set default value as "None" when user profiles don't have any roles
+    // Initially, value is "None"
+    setTechUserProfiles(
+      userProfiles.length > 0 ? userProfiles : [technicalUserNone]
+    )
   }, [userProfiles])
 
   const defaultValues = {
@@ -263,7 +267,10 @@ export default function TechnicalIntegration() {
 
   const csvPreview = (files: File[]) => {
     files
-      .filter((file: File) => file.type === 'text/csv')
+      .filter(
+        (file: File) =>
+          file.type === 'text/csv' || file.type === 'application/vnd.ms-excel'
+      )
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onabort = () => {
@@ -441,7 +448,10 @@ export default function TechnicalIntegration() {
                 csvPreview(files)
                 setUploadFileInfo(files)
               }}
-              acceptFormat={{ 'text/csv': ['.csv'] }}
+              acceptFormat={{
+                'text/csv': ['.csv'],
+                'application/vnd.ms-excel': ['.csv'],
+              }}
               maxFilesToUpload={1}
               enableDeleteOverlay={true}
               deleteOverlayTranslation={{
@@ -494,7 +504,7 @@ export default function TechnicalIntegration() {
                       'content.apprelease.technicalIntegration.encoding'
                     )}
                     onChangeItem={(e) => {
-                      setSelectedEncoding(e.value)
+                      setSelectedEncoding(e.value as string)
                     }}
                     keyTitle={'title'}
                     disableClearable={true}

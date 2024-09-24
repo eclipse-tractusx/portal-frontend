@@ -24,6 +24,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import {
   type AppRole,
@@ -40,6 +41,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
+import UserService from 'services/UserService'
 
 export default function EditPortalRoles({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -58,6 +60,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
   const [allRoles, setAllRoles] = useState<AppRole[]>([])
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
   const [offerId, setOfferId] = useState<string>('')
+  const [allAdminRoles, setAllAdminRoles] = useState<AppRole[]>([])
 
   const [updatePortalRoles] = useUpdatePortalRolesMutation()
 
@@ -67,6 +70,13 @@ export default function EditPortalRoles({ id }: { id: string }) {
       setOfferId(appRoles[0].offerId)
     }
   }, [appRoles])
+
+  useEffect(() => {
+    if (allRoles) {
+      const adminRoles = allRoles.filter((item) => item.role.includes('Admin'))
+      setAllAdminRoles(adminRoles)
+    }
+  }, [allRoles])
 
   useEffect(() => {
     setSelectedRoles(assignedRoles ?? [])
@@ -106,10 +116,16 @@ export default function EditPortalRoles({ id }: { id: string }) {
   }
 
   const checkConfirmButton = () =>
-    assignedRoles &&
-    selectedRoles &&
-    assignedRoles.length === selectedRoles.length &&
-    assignedRoles.every((value) => selectedRoles.includes(value))
+    selectedRoles.length === 0 ||
+    (assignedRoles &&
+      selectedRoles &&
+      assignedRoles.length === selectedRoles.length &&
+      assignedRoles.every((value) => selectedRoles.includes(value)))
+
+  const disabledCheckbox = (currentRole: AppRole) =>
+    UserService.getUsername() === id
+      ? allAdminRoles.includes(currentRole)
+      : false
 
   return (
     <>
@@ -131,6 +147,7 @@ export default function EditPortalRoles({ id }: { id: string }) {
               allRoles.map((role) => (
                 <li key={role.roleId}>
                   <Checkbox
+                    disabled={disabledCheckbox(role)}
                     label={role.role}
                     checked={selectedRoles.indexOf(role.role) !== -1}
                     onChange={(e) => {
@@ -141,6 +158,11 @@ export default function EditPortalRoles({ id }: { id: string }) {
               ))}
           </ul>
         </div>
+        {UserService.getUsername() === id && (
+          <Typography variant="body3" sx={{ mt: 3 }}>
+            {t('shared.userRoles.errorMsg')}
+          </Typography>
+        )}
       </DialogContent>
 
       <DialogActions>

@@ -42,14 +42,14 @@ CLIENT_ID_SSI_CREDENTIAL \
 "
 
 # base sed command: output source file and remove javascript comments
-sed_command="cat ${source_file} | sed -e \"s/^\\\s*\/\/.*//g\""
+sed_command="cat ${source_file} | sed -e \"s@^\\\s*//.*@@g\""
 
 set -- $vars
 while [ -n "$1" ]; do
   var=$1
   # add a replace expression for each variable
-  sed_command="${sed_command} -e \"s/${var}:\s*\\\".*\\\"/${var}: \\\"\${${var}}\\\"/g\""
-  shift                                                                                  
-done   
+  sed_command="${sed_command} -e \"s@${var}:\s*\\\".*\\\"@${var}: \\\"\${${var}}\\\"@g\""
+  shift
+done
 
 echo ${sed_command} | sh > ${target_file}

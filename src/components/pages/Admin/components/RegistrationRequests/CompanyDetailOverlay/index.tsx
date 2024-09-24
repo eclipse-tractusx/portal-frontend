@@ -46,7 +46,6 @@ import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getIntro, getTitle } from './CompanyDetailsHelper'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { type UniqueIdType } from 'features/admin/registration/types'
 import { StatusProgress } from '../registrationTableColumns'
 
@@ -196,38 +195,40 @@ const CompanyDetailOverlay = ({
           {company?.documents && company.documents.length > 0 ? (
             <>
               {company.documents.map(
-                (contract: { documentId: string; documentType: string }) => (
+                (contract: {
+                  documentId: string
+                  documentType: string
+                  documentSize?: number
+                }) => (
                   <Box key={contract.documentId}>
-                    <DropPreviewFile
-                      uploadFile={{
-                        name: contract?.documentType,
-                        status: UploadStatus.UPLOAD_SUCCESS,
-                      }}
-                      translations={{
-                        placeholder: '',
-                        uploadProgress: '',
-                        uploadSuccess: '',
-                        uploadError: '',
-                      }}
-                      onDownload={() => {
-                        void downloadDocument(
-                          contract.documentId,
-                          contract.documentType
-                        )
-                      }}
-                      enableDeleteIcon={false}
-                    />
+                    <div className={'doc-item'}>
+                      <DropPreviewFile
+                        uploadFile={{
+                          name: contract?.documentType,
+                          status: UploadStatus.UPLOAD_SUCCESS,
+                          size: contract?.documentSize,
+                        }}
+                        translations={{
+                          placeholder: '',
+                          uploadProgress: '',
+                          uploadSuccess: '',
+                          uploadError: '',
+                        }}
+                        onDownload={() => {
+                          void downloadDocument(
+                            contract.documentId,
+                            contract.documentType
+                          )
+                        }}
+                        enableDeleteIcon={false}
+                      />
+                    </div>
                   </Box>
                 )
               )}
             </>
           ) : (
-            <Typography
-              sx={{
-                padding: '20px',
-              }}
-              variant="body1"
-            >
+            <Typography sx={{ padding: '20px' }} variant="body3">
               {t('content.admin.registration-requests.overlay.noinfo')}
             </Typography>
           )}
@@ -241,17 +242,25 @@ const CompanyDetailOverlay = ({
       key: '',
       value: (
         <>
-          {selectedCompany?.companyRoles?.map(
-            (role: { companyRole: string }) => (
-              <StatusTag
-                key={role.companyRole}
-                color="label"
-                label={getLocaleStr(role.companyRole)}
-                sx={{
-                  marginRight: '8px',
-                }}
-              />
+          {selectedCompany?.companyRoles?.length > 0 ? (
+            selectedCompany?.companyRoles?.map(
+              (role: { companyRole: string }) => (
+                <StatusTag
+                  key={role.companyRole}
+                  color="label"
+                  label={getLocaleStr(role.companyRole)}
+                  sx={{
+                    marginRight: '10px',
+                  }}
+                />
+              )
             )
+          ) : (
+            <Typography sx={{ padding: '20px' }} variant="body3">
+              {t(
+                'content.admin.registration-requests.overlay.noRolesAvailable'
+              )}
+            </Typography>
           )}
         </>
       ),
@@ -300,12 +309,16 @@ const CompanyDetailOverlay = ({
                   id={`simple-tab-${activeTab}`}
                   aria-controls={`simple-tabpanel-${activeTab}`}
                 />
+                <div className="div-container">
+                  {' '}
+                  <div className="tab-divider" />
+                </div>
                 <Tab
                   icon={getStepIcon('2')}
                   iconPosition="start"
                   sx={{
                     fontSize: '14px',
-                    width: '50%',
+                    width: activeTab ? '50%' : '42%',
                     textTransform: 'capitalize',
                     color: '#111 !important',
                     '&.Mui-selected': {
@@ -316,6 +329,16 @@ const CompanyDetailOverlay = ({
                   id={`simple-tab-${activeTab}`}
                   aria-controls={`simple-tabpanel-${activeTab}`}
                 />
+                <>
+                  {selectedRequest && !activeTab && (
+                    <StatusProgress
+                      application={selectedRequest}
+                      trans={t}
+                      type={false}
+                      isProgressOnly={true}
+                    />
+                  )}
+                </>
               </Tabs>
             </Box>
           </>
@@ -343,34 +366,53 @@ const CompanyDetailOverlay = ({
         ) : (
           <DialogContent
             sx={{
-              padding: '0 120px',
-              marginBottom: 5,
+              padding: activeTab === 0 ? '30px 110px 56px 110px' : '0px 120px',
+              width: '100%',
+              marginBottom: activeTab ? 5 : 0,
             }}
           >
             <TabPanel value={activeTab} index={0}>
-              <Box sx={{ width: '100%', margin: '50px 0' }}>
-                <KeyValueView
-                  cols={2.3}
-                  title={t(
+              <Box sx={{ width: '100%' }} className={'company-details'}>
+                <Typography className="title" variant="h4">
+                  {t(
                     'content.admin.registration-requests.overlay.companydatatitle'
                   )}
-                  items={companyData}
-                />
+                </Typography>
+                {companyData?.map((detail) => (
+                  <div className="detail" key={detail.key}>
+                    <Typography variant="body2" className="detail-name">
+                      {detail.key}
+                    </Typography>
+                    <div></div>
+                    <Typography variant="label2" className="detail-text">
+                      {detail.value}
+                    </Typography>
+                  </div>
+                ))}
               </Box>
               <Box ref={modalElement} sx={{ width: '100%' }}>
-                <KeyValueView
-                  cols={2.3}
-                  title={t('content.admin.registration-requests.overlay.docs')}
-                  items={documentData}
-                />
-                <KeyValueView
-                  cols={2.3}
-                  title={t('content.admin.registration-requests.overlay.roles')}
-                  items={companyRoleData}
-                />
+                <Typography className="title" variant="h4">
+                  {t('content.admin.registration-requests.overlay.docs')}
+                </Typography>
+
+                <div className="document-container">
+                  {documentData?.map((detail) => (
+                    <div key={detail.key}>{detail.value}</div>
+                  ))}
+                </div>
+              </Box>
+              <Box
+                ref={modalElement}
+                className={'role-details'}
+                sx={{ width: '100%' }}
+              >
+                <Typography className="title" variant="h4">
+                  {t('content.admin.registration-requests.overlay.roles')}
+                </Typography>
+                <div>{companyRoleData?.[0]?.value}</div>
               </Box>
             </TabPanel>
-            <TabPanel value={activeTab} index={1}>
+            <TabPanel value={activeTab} index={2}>
               <Box sx={{ width: '100%', height }}>
                 {selectedRequest && (
                   <div

@@ -32,24 +32,21 @@ export default function AddressDetails({
   const companyAddressData = useSelector(companyDataSelector)
   const addressData = [
     {
-      key: t('content.companyData.address.form.companySite.name'),
-      value: companyAddressData.site.name ?? '',
-    },
-    {
-      key: t('content.companyData.address.form.addressTitle.name'),
-      value: companyAddressData.address.name ?? '',
+      key: t('content.companyData.site.form.site.name'),
+      value: companyAddressData.site?.name ?? '',
     },
     {
       key: t('content.companyData.address.form.street.name'),
-      value: companyAddressData.address.physicalPostalAddress.street.name ?? '',
+      value:
+        companyAddressData.address?.physicalPostalAddress.street.name ?? '',
     },
     {
       key: t('content.companyData.address.form.postal.name'),
-      value: companyAddressData.address.physicalPostalAddress.postalCode ?? '',
+      value: companyAddressData.address?.physicalPostalAddress.postalCode ?? '',
     },
     {
       key: t('content.companyData.address.form.city.name'),
-      value: companyAddressData.address.physicalPostalAddress.city ?? '',
+      value: companyAddressData.address?.physicalPostalAddress.city ?? '',
     },
   ]
   return (

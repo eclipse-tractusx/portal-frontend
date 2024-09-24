@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Typography,
   OrderStatusButton,
@@ -26,9 +26,8 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
-import { userSelector } from 'features/user/slice'
 import './AppDetailHeader.scss'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -36,12 +35,9 @@ import { SubscriptionStatus } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
-
-enum Roles {
-  SUBSCRIBE_APPS = 'subscribe_apps',
-  SUBSCRIBE_SERVICE = 'subscribe_service',
-}
-
+import { userHasPortalRole } from 'services/AccessService'
+import type { RootState } from 'features/store'
+import { resetDialog } from 'features/overlay/slice'
 export interface AppDetailHeaderProps {
   item: AppDetails
 }
@@ -56,20 +52,42 @@ export interface ButtonColorType {
 export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const isDialogConfirmed = useSelector(
+    (state: RootState) => state?.dialog?.isConfirmed
+  )
+
   const { appId } = useParams()
-  const user = useSelector(userSelector)
   const [image, setImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [buttonLabel, setButtonLabel] = useState(
+    t('content.appdetail.subscribe')
+  )
 
   const getStatusLabel = (subscribeStatus: string) => {
     if (subscribeStatus === SubscriptionStatus.PENDING) {
-      return t('content.appdetail.requested')
+      setButtonLabel(t('content.appdetail.requested'))
     } else if (subscribeStatus === SubscriptionStatus.ACTIVE) {
-      return t('content.appdetail.subscribed')
+      setButtonLabel(t('content.appdetail.subscribed'))
     } else {
-      return t('content.appdetail.subscribe')
+      setButtonLabel(t('content.appdetail.subscribe'))
     }
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetDialog())
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (isDialogConfirmed) {
+      setButtonLabel(t('content.appdetail.requested'))
+    }
+  }, [isDialogConfirmed])
+
+  useEffect(() => {
+    getStatusLabel(item.isSubscribed ?? SubscriptionStatus.INACTIVE)
+  }, [])
 
   const getBtnColor = (subscribeStatus: string) => {
     let btnColor: ButtonColorType
@@ -92,11 +110,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         break
       default:
         btnColor = {
-          color:
-            user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-            user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
-              ? 'primary'
-              : 'secondary',
+          color: userHasPortalRole(ROLES.SUBSCRIBE_APP_MARKETPLACE)
+            ? 'primary'
+            : 'secondary',
           background1: paletteDefinitions.buttons.darkGrey ?? '',
           background2: paletteDefinitions.buttons.lightGrey ?? '',
           background3: paletteDefinitions.buttons.white ?? '',
@@ -131,22 +147,23 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
 
     return (
       <OrderStatusButton
-        label={getStatusLabel(subscribeStatus)}
+        label={buttonLabel}
         color={btnColor.color}
         buttonData={OrderStatusButtonItems}
         selectable={
           subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1
-            ? true
-            : false
+          userHasPortalRole(ROLES.SUBSCRIBE_APP_MARKETPLACE)
         }
-        onButtonClick={() =>
-          subscribeStatus === SubscriptionStatus.INACTIVE &&
-          user.roles.indexOf(Roles.SUBSCRIBE_APPS) !== -1 &&
-          user.roles.indexOf(Roles.SUBSCRIBE_SERVICE) !== -1 &&
-          dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
-        }
+        onButtonClick={() => {
+          if (buttonLabel === t('content.appdetail.requested')) {
+            return
+          }
+          return (
+            subscribeStatus === SubscriptionStatus.INACTIVE &&
+            userHasPortalRole(ROLES.SUBSCRIBE_APP_MARKETPLACE) &&
+            dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
+          )
+        }}
       />
     )
   }
@@ -192,9 +209,9 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
         <Typography variant="caption1" sx={{ mb: 1, display: 'inherit' }}>
           {item.price}
         </Typography>
-        <div className="usecase">
+        <div className="useCase">
           <Typography variant="label2" sx={{ pb: 1 }}>
-            {t('content.appdetail.usecase')}:
+            {t('content.appdetail.useCase')}:
           </Typography>
           <Typography variant="caption2" sx={{ pb: 1, ml: 1 }}>
             {item.useCases.map((useCase: UseCaseType) => (
@@ -202,7 +219,7 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
             ))}
           </Typography>
         </div>
-        <div className="usecase">
+        <div className="useCase">
           <Typography variant="label2">
             {t('content.appdetail.language')}:
           </Typography>

@@ -52,30 +52,36 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     dispatch(closeOverlay())
     dispatch(updateData(UPDATES.TECHUSER_LIST))
     dispatch(setNotification(notification))
-    navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
+    navigate(`/${PAGES.TECH_USER_MANAGEMENT}`)
   }
 
-  const deleteUserError = (err: unknown) => {
+  // eslint-disable-next-line
+  const deleteUserError = (err: any) => {
     const notification: PageNotificationsProps = {
       open: true,
       severity: SuccessErrorType.ERROR,
       title:
         'content.usermanagement.technicalUser.deleteTechUserNotificationErrorTitle',
-      description: err as string,
+      description: err.data.details[0].message,
     }
     dispatch(closeOverlay())
     dispatch(setNotification(notification))
-    navigate(`/${PAGES.TECHUSER_MANAGEMENT}`)
+    navigate(`/${PAGES.TECH_USER_MANAGEMENT}`)
   }
 
   const handleRemove = async () => {
     if (!data) return
     try {
-      await removeServiceAccount(data.serviceAccountId).unwrap()
-      deleteUserSuccess()
+      await removeServiceAccount(data.serviceAccountId)
+        .unwrap()
+        .then(() => {
+          deleteUserSuccess()
+        })
+        .catch((err) => {
+          deleteUserError(err)
+        })
     } catch (err: unknown) {
       deleteUserError(err)
-      console.log(err)
     }
   }
   return data ? (

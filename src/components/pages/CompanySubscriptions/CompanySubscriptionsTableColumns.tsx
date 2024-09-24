@@ -43,7 +43,8 @@ import './CompanySubscriptions.scss'
 
 export const CompanySubscriptionsTableColumns = (
   t: typeof i18next.t,
-  handleOverlay?: (row: SubscribedActiveApps, enable: boolean) => void
+  handleOverlay?: (row: SubscribedActiveApps, enable: boolean) => void,
+  currentActive?: number
 ): Array<GridColDef> => {
   const navigate = useNavigate()
 
@@ -86,6 +87,19 @@ export const CompanySubscriptionsTableColumns = (
       )
   }
 
+  const canShowButton = (row: SubscribedActiveApps) =>
+    row.status === SubscriptionStatus.ACTIVE
+
+  const getSource = (row: SubscribedActiveApps) => {
+    if (row.image && currentActive === 0)
+      return `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${row.image}`
+    if (row.image && currentActive === 1)
+      return `${getApiBase()}/api/services/${row.offerId}/serviceDocuments/${
+        row.image
+      }`
+    return LogoGrayData
+  }
+
   return [
     {
       field: 'image',
@@ -96,13 +110,7 @@ export const CompanySubscriptionsTableColumns = (
       disableColumnMenu: true,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
         <Image
-          src={
-            row.image
-              ? `${getApiBase()}/api/apps/${row.offerId}/appDocuments/${
-                  row.image
-                }`
-              : LogoGrayData
-          }
+          src={getSource(row)}
           loader={fetchImageWithToken}
           style={{
             objectFit: 'cover',
@@ -146,7 +154,13 @@ export const CompanySubscriptionsTableColumns = (
             onClick={() => {
               navigate(
                 `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
-                { state: row }
+                {
+                  state: {
+                    row,
+                    app: currentActive === 0,
+                    service: currentActive === 1,
+                  },
+                }
               )
             }}
           >
@@ -161,21 +175,20 @@ export const CompanySubscriptionsTableColumns = (
       flex: 2,
       disableColumnMenu: true,
       sortable: false,
-      renderCell: ({ row }: { row: SubscribedActiveApps }) =>
-        row.status === SubscriptionStatus.ACTIVE && (
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ textTransform: 'none' }}
-            onClick={(e) => {
-              handleOverlay?.(row, true)
-              console.log('row.offerId', row.offerId)
-              e.stopPropagation()
-            }}
-          >
-            {t('content.companySubscriptions.unsubscribe')}
-          </Button>
-        ),
+      renderCell: ({ row }: { row: SubscribedActiveApps }) => (
+        <Button
+          variant="contained"
+          size="small"
+          disabled={!canShowButton(row)}
+          sx={{ textTransform: 'none' }}
+          onClick={(e) => {
+            handleOverlay?.(row, true)
+            e.stopPropagation()
+          }}
+        >
+          {t('content.companySubscriptions.unsubscribe')}
+        </Button>
+      ),
     },
   ]
 }

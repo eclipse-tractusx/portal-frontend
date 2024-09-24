@@ -301,8 +301,8 @@ export default function OfferPage({
                     `/${longDescriptionMaxLength}`
                   }
                   patternKey="longDescriptionEN"
-                  patternEN={Patterns.offerPage.longDescriptionEN}
-                  patternDE={Patterns.offerPage.longDescriptionDE}
+                  patternEN={Patterns.offerPage.longDescription}
+                  patternDE={Patterns.offerPage.longDescription}
                   rules={{
                     maxLength: `${t(
                       'serviceReleaseForm.maximum'
@@ -317,11 +317,8 @@ export default function OfferPage({
                     )}`,
                     pattern: `${t(
                       'serviceReleaseForm.validCharactersIncludes'
-                    )} ${
-                      longDesc === 'longDescriptionEN'
-                        ? 'a-zA-Z0-9 !?@&#\'"()[]_-+=<>/*.,;:'
-                        : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'
-                    }`,
+                    )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'} 
+                    ${t('serviceReleaseForm.spaceAloneNotAllowed')}`,
                   }}
                   maxLength={longDescriptionMaxLength}
                 />

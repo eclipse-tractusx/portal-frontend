@@ -30,6 +30,7 @@ import {
   PageSnackbar,
   ErrorBar,
   CircleProgress,
+  LoadMoreButton,
 } from '@catena-x/portal-shared-components'
 import { useTheme, Box } from '@mui/material'
 import {
@@ -38,7 +39,11 @@ import {
   appToCard,
 } from 'features/apps/mapper'
 import { useFetchProvidedAppsQuery } from 'features/apps/apiSlice'
-import { type AppInfo, type AppMarketplaceApp } from 'features/apps/types'
+import {
+  type ProvidedApps,
+  type AppInfo,
+  type AppMarketplaceApp,
+} from 'features/apps/types'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
@@ -58,7 +63,6 @@ export default function AppOverview() {
   const theme = useTheme()
   const dispatch = useDispatch()
 
-  const { data, refetch, isSuccess, isFetching } = useFetchProvidedAppsQuery()
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const [itemCards, setItemCards] = useState<any>([])
@@ -73,6 +77,17 @@ export default function AppOverview() {
   const [filterItem, setFilterItem] = useState<CardItems[]>()
   const [searchExpr, setSearchExpr] = useState<string>('')
 
+  const [page, setPage] = useState<number>(0)
+  const [argsData, setArgsData] = useState({
+    page,
+    args: {
+      expr: '',
+      statusFilter: '',
+    },
+  })
+
+  const { data, isFetching, isSuccess, refetch } =
+    useFetchProvidedAppsQuery(argsData)
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const valueMap: any = {
@@ -107,13 +122,17 @@ export default function AppOverview() {
   }, [itemCards])
 
   useEffect(() => {
-    if (data) {
-      const filterItems = data.content?.map((item: AppMarketplaceApp) =>
-        appToCard(item)
+    dispatch(setCurrentActiveStep())
+    if (data?.content)
+      setCards(
+        data?.meta.page === 0
+          ? setDataInfo(data)
+          : (i: CardItems[]) => i.concat(setDataInfo(data))
       )
-      setCards(filterItems)
-    }
-  }, [data])
+  }, [data, dispatch])
+
+  const setDataInfo = (data: ProvidedApps) =>
+    data.content.map((item: AppMarketplaceApp) => appToCard(item))
 
   const debouncedSearch = useMemo(
     () =>
@@ -157,27 +176,45 @@ export default function AppOverview() {
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
-    debouncedSearch(searchExpr, itemCards, viewValue)
+    setArgsData({
+      page: 0,
+      args: {
+        expr: '',
+        statusFilter: viewValue,
+      },
+    })
+    setPage(0)
+  }
+
+  const nextPage = () => {
+    setArgsData({
+      page: page + 1,
+      args: {
+        expr: '',
+        statusFilter: group,
+      },
+    })
+    setPage(page + 1)
   }
 
   const categoryViews = [
     {
-      buttonText: t('content.appoverview.filter.all'),
+      buttonText: t('content.appOverview.filter.all'),
       buttonValue: '',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.active'),
+      buttonText: t('content.appOverview.filter.active'),
       buttonValue: 'active',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.inactive'),
+      buttonText: t('content.appOverview.filter.inactive'),
       buttonValue: 'inactive',
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.appoverview.filter.wip'),
+      buttonText: t('content.appOverview.filter.wip'),
       buttonValue: 'wip',
       onButtonClick: setView,
     },
@@ -204,9 +241,9 @@ export default function AppOverview() {
   }
 
   return (
-    <div className="appoverview-app">
+    <div className="appOverview-app">
       <PageHeader
-        title={t('content.appoverview.headerTitle')}
+        title={t('content.appOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
       />
@@ -214,10 +251,10 @@ export default function AppOverview() {
         <div className="desc-recently">
           <div className="container">
             <Typography variant="h4" className="desc-heading">
-              {t('content.appoverview.recently.header')}
+              {t('content.appOverview.recently.header')}
             </Typography>
             <Typography variant="body2" className="desc-message">
-              {t('content.appoverview.recently.subheader')}
+              {t('content.appOverview.recently.subheader')}
             </Typography>
             <div className="desc-card">
               <Cards
@@ -244,7 +281,7 @@ export default function AppOverview() {
               variant="h3"
               className="section-title"
             >
-              {t('content.appoverview.title')}
+              {t('content.appOverview.title')}
             </Typography>
 
             <Box sx={{ textAlign: 'center' }}>
@@ -255,7 +292,7 @@ export default function AppOverview() {
                 onChange={(e) => {
                   doSearch(e.target.value)
                 }}
-                placeholder={t('content.appoverview.inputPlaceholder')}
+                placeholder={t('content.appOverview.inputPlaceholder')}
               />
             </Box>
             <div className="view-selector">
@@ -297,6 +334,11 @@ export default function AppOverview() {
                 ))}
             </>
           )}
+          <div className="load-more-btn">
+            {data?.meta && data?.meta?.totalPages > page + 1 && (
+              <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
+            )}
+          </div>
         </div>
       </div>
       {state && (

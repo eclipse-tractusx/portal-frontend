@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -17,17 +16,38 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+import { createSlice } from '@reduxjs/toolkit'
 
-import { type KeycloakTokenParsed } from 'keycloak-js'
-
-export interface IUser {
-  userName: string
-  name: string
-  email: string
-  company: string
-  tenant: string
-  roles: Array<string>
-  isAdmin: boolean
-  token?: string
-  parsedToken?: KeycloakTokenParsed
+interface DialogState {
+  isOpen: boolean
+  isConfirmed: boolean
 }
+
+const initialState: DialogState = {
+  isOpen: false,
+  isConfirmed: false,
+}
+
+const dialog = createSlice({
+  name: 'dialog',
+  initialState,
+  reducers: {
+    openDialog: (state) => {
+      state.isOpen = true
+    },
+    closeDialog: (state) => {
+      state.isOpen = false
+    },
+    confirmDialog: (state) => {
+      state.isConfirmed = true
+    },
+    resetDialog: (state) => {
+      state.isConfirmed = false
+      state.isOpen = false
+    },
+  },
+})
+
+export const { openDialog, closeDialog, confirmDialog, resetDialog } =
+  dialog.actions
+export default dialog

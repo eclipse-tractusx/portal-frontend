@@ -26,22 +26,24 @@ import {
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PAGE_SIZE } from 'types/Constants'
-import type {
-  AppDetails,
-  AppMarketplaceApp,
-  SubscriptionStatusItem,
-  SubscriptionStatusDuplicateItem,
-  ActiveSubscriptionItem,
-  ProvidedApps,
-  DocumentRequestData,
-  SubscriptionAppRequest,
-  AgreementRequest,
-  ActiveSubscription,
-  ActiveSubscriptionDetails,
-  FetchSubscriptionAppQueryType,
-  SubscribedActiveApps,
+import {
+  type AppDetails,
+  type AppMarketplaceApp,
+  type SubscriptionStatusItem,
+  type SubscriptionStatusDuplicateItem,
+  type ActiveSubscriptionItem,
+  type ProvidedApps,
+  type DocumentRequestData,
+  type SubscriptionAppRequest,
+  type AgreementRequest,
+  type ActiveSubscription,
+  type FetchSubscriptionAppQueryType,
+  type SubscribedActiveApps,
+  StatusIdEnum,
+  type FetchSubscriptionResponseType,
+  CompanySubscriptionFilterType,
 } from './types'
+import { PAGE_SIZE } from 'types/Constants'
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
@@ -104,8 +106,16 @@ export const apiSlice = createApi({
         return { data: subscriptionData }
       },
     }),
-    fetchProvidedApps: builder.query<ProvidedApps, void>({
-      query: () => '/api/apps/provided',
+    fetchProvidedApps: builder.query<ProvidedApps, PaginFetchArgs>({
+      query: (fetchArgs) => {
+        const { page, args } = fetchArgs
+        const baseUrl = `/api/apps/provided?page=${page}&size=15`
+        const statusId = args?.statusFilter
+          ? args.statusFilter
+          : StatusIdEnum.All
+        const offerName = args?.expr ? `&offerName=${args.expr}` : ''
+        return `${baseUrl}&statusId=${statusId}${offerName}`
+      },
     }),
     fetchBusinessApps: builder.query<AppMarketplaceApp[], void>({
       query: () => '/api/apps/business',
@@ -139,11 +149,15 @@ export const apiSlice = createApi({
       query: () => '/api/apps/subscribed/activesubscriptions',
     }),
     fetchSubscriptionApp: builder.query<
-      ActiveSubscriptionDetails,
+      FetchSubscriptionResponseType,
       FetchSubscriptionAppQueryType
     >({
       query: (obj) =>
         `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
+      transformErrorResponse: (res) => ({
+        status: res.status,
+        data: res.data,
+      }),
     }),
     unsubscribeApp: builder.mutation<void, string>({
       query: (subscriptionId) => ({
@@ -155,9 +169,18 @@ export const apiSlice = createApi({
       PaginResult<SubscribedActiveApps>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) => ({
-        url: `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`,
-      }),
+      query: (body) => {
+        const url = `/api/apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const statusId =
+          body.args.statusId &&
+          body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+            ? `&status=${body.args.statusId}`
+            : ''
+        const name = body.args.expr ? `&name=${body.args.expr}` : ''
+        return {
+          url: `${url}${statusId}${name}`,
+        }
+      },
     }),
   }),
 })

@@ -22,6 +22,8 @@ import { useEffect } from 'react'
 import { SubNavigation } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { PAGES, ROLES } from 'types/Constants'
+import { userHasPortalRole } from 'services/AccessService'
 
 export const StageSubNavigation = () => {
   const { t } = useTranslation()
@@ -44,9 +46,13 @@ export const StageSubNavigation = () => {
 
   return (
     <SubNavigation
-      buttonLabel={t('navigation.subNavigation.buttonLabel')}
+      buttonLabel={
+        (userHasPortalRole(ROLES.TECH_USER_VIEW) &&
+          t('navigation.subNavigation.buttonLabel')) ||
+        undefined
+      }
       onButtonClick={() => {
-        navigate('/technicaluser')
+        navigate(`/${PAGES.TECH_USER_MANAGEMENT}`)
       }}
       link1Label={t('navigation.subNavigation.link1Label')}
       onLink1Click={() => {
