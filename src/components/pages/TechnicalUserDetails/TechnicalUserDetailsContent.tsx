@@ -31,7 +31,6 @@ import {
   type ServiceAccountDetail,
   type ServiceAccountRole,
   useResetCredentialMutation,
-  UserType,
 } from 'features/admin/serviceApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
@@ -50,11 +49,6 @@ export const statusColorMap: Record<
   [ServiceAccountStatus.ACTIVE]: 'confirmed',
   [ServiceAccountStatus.PENDING]: 'pending',
   [ServiceAccountStatus.PENDING_DELETION]: 'pending',
-}
-
-const userTypeMapping = {
-  [UserType.INTERNAL]: 'INTERNAL',
-  [UserType.EXTERNAL]: 'EXTERNAL',
 }
 
 const getValueWithTooltip = (value: string, tooltipTitle: string) => {
@@ -129,10 +123,7 @@ export default function TechnicalUserDetailsContent({
     },
     {
       key: t('content.usermanagement.technicalUser.detailsPage.userType'),
-      value: getValueWithTooltip(
-        userTypeMapping[newData.usertype],
-        missingInformationHint
-      ),
+      value: getValueWithTooltip(newData.usertype, missingInformationHint),
       copy: false,
     },
     {
