@@ -33,7 +33,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK fix: service details de description limitation [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043)
 
 - **App Subscription**
+
   - Fixed close icon button in Success App subscription screen [PM2-863](https://cofinity-x.atlassian.net/browse/PM2-863)
+
+- **App Release Process**
+  - CHERRY-PICK Retain "None" Option in Technical User Setup After Submission [#1039](https://github.com/eclipse-tractusx/portal-frontend/pull/1039)
 
 ### Change
 
