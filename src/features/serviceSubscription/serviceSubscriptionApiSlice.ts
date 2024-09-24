@@ -212,11 +212,9 @@ export const apiSlice = createApi({
           body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
             ? `&status=${body.args.statusId}`
             : ''
-        const companyName = body.args.expr
-          ? `&companyName=${body.args.expr}`
-          : ''
+        const name = body.args.expr ? `&name=${body.args.expr}` : ''
         return {
-          url: `${url}${statusId}${companyName}`,
+          url: `${url}${statusId}${name}`,
         }
       },
     }),
