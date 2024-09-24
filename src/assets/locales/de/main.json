@@ -1067,14 +1067,14 @@
       "metadata_url_invalid_error": "Bitte geben Sie eine gültige Metadaten-URL ein"
     },
     "clearinghouseSelfDescription": {
-      "heading": "Status des Selbstbeschreibungsdokuments",
+      "heading": "Status der Eigenerklärung",
       "description": "Diese Seite bietet einen Überblick über den aktuellen Stand der Selbstbeschreibungen für Administratoren.",
-      "reprocess": "Wiederaufbereiten",
+      "reprocess": "Nachverarbeiten",
       "complianceStatus": "Compliance-Status:",
       "legalPerson": "Juristische Person",
-      "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Selbstbeschreibung einer juristischen Person",
+      "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung einer juristischen Person",
       "connectors": "Anschlüsse",
-      "connectorsDesc": "Übersicht über Unternehmen mit fehlender Connector-Selbstbeschreibung",
+      "connectorsDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung der Konnektoren",
       "errorMsg": "Fehler! Etwas ist schief gelaufen",
       "noDataMsg": "Keine Datensätze gefunden."
     },
