@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Company Subscriptions**
+  - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
+
 ### Bugfixes
 
 - **Connector Management**

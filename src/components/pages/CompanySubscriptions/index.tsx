@@ -252,7 +252,7 @@ export default function CompanySubscriptions() {
         <Tabs
           value={currentActive}
           onChange={handleTabChange}
-          sx={{ margin: '0 18% 20px' }}
+          sx={{ margin: '0 auto 20px', maxWidth: '1110px', width: '100%' }}
         >
           <Tab
             iconPosition="start"
