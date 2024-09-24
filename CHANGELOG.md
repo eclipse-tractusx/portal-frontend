@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Connector Management**
+  - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
