@@ -453,8 +453,8 @@
       "technicalUser": "Technischer Benutzer",
       "unsubscribe": "Abbestellen",
       "table": {
-        "appIcon": "App-Symbol",
-        "appTitle": "App-Titel",
+        "appIcon": "Symbol",
+        "appTitle": "Titel",
         "status": "Status",
         "details": "Einzelheiten",
         "action": "Aktion"
@@ -462,7 +462,37 @@
       "filter": {
         "requested": "angefordert",
         "active": "aktiv",
-        "showAll": "zeige alles"
+        "inactive": "inaktiv",
+        "showAll": "Alles anzeigen"
+      },
+      "searchName": "..search by company name here"
+    },
+    "companySubscriptionsDetail": {
+      "language": "Verfügbare App Sprachen",
+      "description": "Description",
+      "subscribed": "Gezeichnet",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "howtouse": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+      },
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
+      },
+      "table": {
+        "connector": "Verbinder",
+        "technicalUser": "Technischer Benutzer"
+      },
+      "technicalUser": {
+        "heading": "Technischer Details"
       }
     },
     "appOverview": {

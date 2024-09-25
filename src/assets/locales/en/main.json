@@ -449,8 +449,8 @@
       "technicalUser": "Technical User",
       "unsubscribe": "Unsubscribe",
       "table": {
-        "appIcon": "App Icon",
-        "appTitle": "App title",
+        "appIcon": "Icon",
+        "appTitle": "Title",
         "status": "Status",
         "details": "Details",
         "action": "Action"
@@ -459,7 +459,8 @@
         "requested": "requested",
         "active": "active",
         "showAll": "show all"
-      }
+      },
+      "searchName": "..search by company name here"
     },
     "datamanagement": {
       "message": "Contents of Data Management"

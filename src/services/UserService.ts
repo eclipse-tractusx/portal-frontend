@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import Keycloak from 'keycloak-js'
+import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
 import type { IUser } from 'features/user/types'
 import { ROLES } from 'types/Constants'
 import {
@@ -116,6 +116,9 @@ const getCompany = () => KC.tokenParsed?.organisation
 
 const getTenant = () => KC.tokenParsed?.tenant
 
+const getAccess = (): KeycloakResourceAccess =>
+  KC.tokenParsed?.resource_access ?? {}
+
 // Add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients
 const getRoles = (): Array<string> =>
@@ -150,6 +153,7 @@ const getLoggedUser = (): IUser => ({
 const UserService = {
   doLogin,
   doLogout,
+  getAccess,
   getToken,
   getParsedToken,
   getEmail,

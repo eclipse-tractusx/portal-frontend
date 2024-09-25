@@ -73,6 +73,9 @@ import {
   footerMenuFull,
 } from 'types/cfx/Config'
 import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
+import { intersectAccess } from 'utils/dataUtils'
+import type { KeycloakResourceAccess } from 'keycloak-js'
+import { getClientId } from './EnvironmentService'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -90,11 +93,23 @@ export const hasAccess = (page: string) => checkAccess(pageMap[page])
 export const hasAccessAction = (action: string) =>
   checkAccess(actionMap[action])
 
+export const userHasAccess = (required: KeycloakResourceAccess): boolean =>
+  Object.keys(intersectAccess(required, UserService.getAccess())).length > 0
+
+export const userHasClientRole = (
+  client: string,
+  roles: string | Array<string>
+): boolean =>
+  userHasAccess({ [client]: { roles: Array.isArray(roles) ? roles : [roles] } })
+
 export const hasAccessOverlay = (overlay: string) =>
   checkAccess(overlayMap[overlay])
 
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
+
+export const userHasPortalRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientId(), roles)
 
 // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
