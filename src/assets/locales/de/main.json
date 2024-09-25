@@ -1073,7 +1073,7 @@
       "complianceStatus": "Compliance-Status:",
       "legalPerson": "Juristische Person",
       "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung einer juristischen Person",
-      "connectors": "Anschlüsse",
+      "connectors": "Connectors",
       "connectorsDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung der Konnektoren",
       "errorMsg": "Fehler! Etwas ist schief gelaufen",
       "noDataMsg": "Keine Datensätze gefunden."
