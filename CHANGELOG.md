@@ -16,6 +16,11 @@
 - **Connector Management**
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
 
+### Feature
+
+- **Clearinghouse Self-Description**
+  - Admin UI for Managing SD Document Retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
@@ -33,8 +38,6 @@
 - **Technical User Management**
   - enhanced technical user details [#1030](https://github.com/eclipse-tractusx/portal-frontend/pull/1030), [#1093](https://github.com/eclipse-tractusx/portal-frontend/pull/1093)
   - added Usertype column to technical user management list [#1090](https://github.com/eclipse-tractusx/portal-frontend/pull/1090)
-- **Clearinghouse Self-Description**
-  - Admin UI for Managing SD Document Retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
 
 ### Change
 
