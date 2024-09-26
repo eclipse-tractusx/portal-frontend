@@ -80,7 +80,7 @@ import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 import { MENUS, PAGES } from './Constants'
 import AdminCredential from 'components/pages/AdminCredential'
-//import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
+import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
 
 /**
  * ALL_PAGES
@@ -515,10 +515,10 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-  /*{
+  {
     name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
     element: <OnboardingServiceProvider />,
-  },*/
+  },
 ]
 
 /**
