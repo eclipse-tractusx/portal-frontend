@@ -36,12 +36,10 @@ import {
   PAGE_SIZE,
 } from 'features/adminClearingHouseSD/adminClearingHouseSDApiSlice'
 import { error } from 'services/NotifyService'
-import { getRequireHttpsUrlPattern } from 'services/EnvironmentService'
+import { getClearinghouseConnectDisabled } from 'services/EnvironmentService'
 
 const AdminclearinghouseSDElements = () => {
-  const [checked, setChecked] = useState(
-    JSON.parse(getRequireHttpsUrlPattern())
-  )
+  const [checked, setChecked] = useState(getClearinghouseConnectDisabled())
   const [triggerCompanyData] = useTriggerCompanyDataMutation()
   const [triggerConnectors] = useTriggerConnectorsMutation()
   const [triggerCDLoading, setTriggerCDLoading] = useState<boolean>(false)

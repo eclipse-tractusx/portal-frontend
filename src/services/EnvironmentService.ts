@@ -55,6 +55,9 @@ export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 
 export const getSSICredentialBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
 
+export const getClearinghouseConnectDisabled = () =>
+  ENV.CLEARINGHOUSE_CONNECT_DISABLED === 'false'
+
 const EnvironmentService = {
   getRequireHttpsUrlPattern,
   getRealm,
@@ -72,6 +75,7 @@ const EnvironmentService = {
   getSemanticApiBase,
   getMiwBase,
   getSSICredentialBase,
+  getClearinghouseConnectDisabled,
 }
 
 export default EnvironmentService
