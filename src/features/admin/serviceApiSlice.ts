@@ -54,18 +54,13 @@ export enum ServiceAccountStatus {
   PENDING_DELETION = 'PENDING_DELETION',
 }
 
-export enum UserType {
-  INTERNAL = 'internal',
-  EXTERNAL = 'external',
-}
-
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
   status: ServiceAccountStatus
   isOwner?: boolean
-  usertype: UserType
+  usertype: string
   offer?: {
     name?: string
   }
@@ -84,7 +79,7 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   connector: ConnectedObject
   offer: ConnectedObject
   companyServiceAccountTypeId: companyServiceAccountType
-  usertype: UserType
+  usertype: string
   authenticationServiceUrl: string
 }
 

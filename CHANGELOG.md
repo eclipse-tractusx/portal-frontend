@@ -2,12 +2,23 @@
 
 ## Unreleased
 
-- **App & Service Subcription Managment**
-  - Search place holder text updated
-  - Show only available offer names at the top
-  - Implement Hover-Information on the Status Icon of serviceSubscription
+### Change
+
+- **Technical User Details**
+  - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
+- **Company Subscriptions**
+  - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
+- - **App & Service Subcription Managment**
+  - Search place holder text updated, Show only available offer names at the top and Implement Hover-Information on the Status Icon of serviceSubscription[#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
+
+### Bugfixes
+
+- **Connector Management**
+  - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
+- **Connector Management**
+  - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
 - **Technical User**
-  - Show proper error message on failure of tech user deletion
+  - Show proper error message on failure of tech user deletion[#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
 
 ## 2.2.0-alpha.1
 
