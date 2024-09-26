@@ -219,6 +219,7 @@ export const CompanyDetails = ({
   const tableData: TableType = {
     head: [t('osp.companyName'), companyDetails?.name ?? ''],
     body: [
+      [t('osp.legalName'), companyDetails?.shortName ?? ''],
       [
         t('osp.street'),
         `${companyDetails?.streetName ?? ''} ${companyDetails?.streetNumber ?? ''}`,
@@ -227,6 +228,12 @@ export const CompanyDetails = ({
       [t('osp.city'), companyDetails?.city ?? ''],
       [t('osp.region'), companyDetails?.region ?? ''],
       [t('osp.country'), companyDetails?.countryAlpha2Code ?? ''],
+      [
+        t('osp.companyId'),
+        companyDetails?.uniqueIds?.[0]
+          ? `${companyDetails.uniqueIds[0].type}: ${companyDetails.uniqueIds[0].value}`
+          : '',
+      ],
     ],
   }
 
