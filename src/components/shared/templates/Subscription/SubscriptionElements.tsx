@@ -240,16 +240,28 @@ export default function SubscriptionElements({
               variant="filled"
               onClick={() => handleActivate(subscription.subscriptionId)}
             />
-            <HistoryIcon className="statusIcon pending" />
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.pending')}
+            >
+              <HistoryIcon className="statusIcon pending" />
+            </Tooltips>
           </>
         )
       } else {
         return (
-          <img
-            src={`${getAssetBase()}/images/icons/process.svg`}
-            className="statusIcon"
-            alt="subscription process"
-          />
+          <Tooltips
+            color="dark"
+            tooltipPlacement="top-start"
+            tooltipText={t('content.appSubscription.process')}
+          >
+            <img
+              src={`${getAssetBase()}/images/icons/process.svg`}
+              className="statusIcon"
+              alt="subscription process"
+            />
+          </Tooltips>
         )
       }
     } else {
