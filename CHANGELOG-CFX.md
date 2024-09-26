@@ -32,6 +32,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App Subscription**
   - Fixed close icon button in Success App subscription screen [PM2-863](https://cofinity-x.atlassian.net/browse/PM2-863)
 
+- **App Release Process**
+
+  - CHERRY-PICK Retain "None" Option in Technical User Setup After Submission [#1039](https://github.com/eclipse-tractusx/portal-frontend/pull/1039)
+
+- **Connector Registration**
+  - Fixed click on new technical user button [PM2-1504](https://cofinity-x.atlassian.net/browse/PM2-1504)
+
 ### Change
 
 - **Dataspace Participation**

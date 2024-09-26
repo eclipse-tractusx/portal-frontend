@@ -43,6 +43,8 @@ import { useEffect, useState } from 'react'
 import './style.scss'
 import { ConnectorFormFields } from '.'
 import { type ServiceAccountListEntry } from 'features/admin/serviceApiSlice'
+import { OVERLAYS } from 'types/Constants'
+import { PAGES } from 'types/cfx/Constants'
 
 export const ConnectorFormInput = ({
   control,
@@ -405,9 +407,12 @@ any) => {
                   size="small"
                   sx={{ backgroundColor: '#4D4D4D' }}
                   onClick={() => {
-                    navigate('/technicaluser', {
-                      state: { triggerEvent: true },
-                    })
+                    navigate(
+                      `/${PAGES.TECH_USER_MANAGEMENT}?overlay=${OVERLAYS.ADD_TECH_USER}`,
+                      {
+                        state: { triggerEvent: true },
+                      }
+                    )
                   }}
                 >
                   {t('content.edcconnector.modal.createNewTechnicalUserBtn')}
