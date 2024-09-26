@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **App & Service Subcription Managment**
+  - Search place holder text updated
+  - Show only available offer names at the top
+  - Implement Hover-Information on the Status Icon of serviceSubscription
+- **Technical User**
+  - Show proper error message on failure of tech user deletion
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
