@@ -2,8 +2,22 @@
 
 ## Unreleased
 
+### Change
+
+- **Technical User Details**
+  - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
+- **Company Subscriptions**
+  - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
 - **Customer Data**
   - Enable CSV upload
+  - Revert manual intervention of ready state api
+
+### Bugfixes
+
+- **Connector Management**
+  - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
+- **Connector Management**
+  - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
 
 ## 2.2.0-alpha.1
 
