@@ -1490,7 +1490,7 @@
       "success": "Success",
       "pending": "Das Abonnement steht noch aus",
       "active": "Das Abonnement ist aktiv",
-      "process": "Subscription is in Process",
+      "process": "Das Abonnement ist in Bearbeitung",
       "tabs": {
         "request": "Request",
         "active": "Active",

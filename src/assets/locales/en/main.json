@@ -1458,7 +1458,7 @@
       "success": "Success",
       "pending": "Subscription is Pending",
       "active": "Subscription is Active",
-      "process": "Subscription is in Process",
+      "process": "Subscription is in Progress",
       "tabs": {
         "request": "Request",
         "active": "Active",
