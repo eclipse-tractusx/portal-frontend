@@ -798,7 +798,25 @@ main,
     color: $color-secondary;
   }
 }
+.cx-search-grid {
+  position: relative;
+  z-index: 99;
+}
 
+.serviceMarketplace .filterSection {
+  position: relative;
+  z-index: 90;
+
+  .sortSection {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    z-index: 20;
+    background: #fff;
+    box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2), 0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+  }
+}
 [role='tabpanel'] {
   .MuiGrid-root {
     .MuiTypography-h5 {

@@ -49,6 +49,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
+- **Service Marketplace**
+
+  - Fixed filter sort dropdown menu. [PM2-1543](https://cofinity-x.atlassian.net/browse/PM2-1453)
+
 - **Dataspace Participation**
 
   - Use case participation & Partner Network UI/UX and translation changes. [PM2-824](https://cofinity-x.atlassian.net/browse/PM2-824)
