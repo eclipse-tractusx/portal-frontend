@@ -45,6 +45,7 @@
   - fixed back button navigation to service management instead of navigating to home page[#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
   - updated description regex and validation error message to prevent only spaces in short and long description [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993), [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043), [#1092](https://github.com/eclipse-tractusx/portal-frontend/pull/1092)
   - added missing header image implementation in service details [#992](https://github.com/eclipse-tractusx/portal-frontend/pull/992)
+  - Fixed "None" selection issue in Technical Integration -> Service Release Process [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 - **Application Requests**
   - fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
   - fixed retrigger for DIM wallet creation [#997](https://github.com/eclipse-tractusx/portal-frontend/issues/997)
