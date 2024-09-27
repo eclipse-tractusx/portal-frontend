@@ -51,7 +51,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Service Marketplace**
 
-  - Fixed filter sort dropdown menu. [PM2-1543](https://cofinity-x.atlassian.net/browse/PM2-1453)
+  - Service Marketplace details page missing translations service detail page and UX updates. [PM2-1460](https://cofinity-x.atlassian.net/browse/PM2-1460)
+  - Fixed filter sort dropdown menu in Service Marketplace. [PM2-1543](https://cofinity-x.atlassian.net/browse/PM2-1453)
 
 - **Dataspace Participation**
 
