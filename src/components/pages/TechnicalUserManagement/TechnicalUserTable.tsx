@@ -110,7 +110,7 @@ export const TechnicalUserTable = () => {
                 paddingLeft: '32px',
               },
               '&:last-child': {
-                paddingRight: '28px',
+                paddingRight: '25px',
               },
             },
         }}
@@ -139,12 +139,12 @@ export const TechnicalUserTable = () => {
           {
             field: 'clientId',
             headerName: t('global.field.clientId'),
-            flex: 1.1,
+            flex: 1.15,
           },
           {
             field: 'serviceAccountType',
             headerName: t('global.field.ownership'),
-            flex: 1.15,
+            flex: 1.2,
           },
           {
             field: 'usertype',
@@ -156,21 +156,21 @@ export const TechnicalUserTable = () => {
           {
             field: 'offer',
             headerName: t('global.field.offerLink'),
-            flex: 1.3,
+            flex: 1.25,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.offer ? row.offer?.name : '',
           },
           {
             field: 'isOwner',
             headerName: t('global.field.owner'),
-            flex: 1.1,
+            flex: 1,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.isOwner ? 'Yes' : 'No',
           },
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 1.25,
+            flex: 1,
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <StatusTag
                 color={statusColorMap[row.status]}
@@ -183,7 +183,7 @@ export const TechnicalUserTable = () => {
           {
             field: 'details',
             headerName: t('global.field.details'),
-            flex: 1,
+            flex: 1.1,
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <>
                 <IconButton
