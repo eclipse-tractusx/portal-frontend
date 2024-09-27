@@ -771,14 +771,6 @@ main,
       .MuiTypography-h5 {
         font-size: 24px;
       }
-
-      svg {
-        color: $color-primary;
-
-        path {
-          fill: $color-primary;
-        }
-      }
     }
   }
 }
@@ -1931,4 +1923,38 @@ p.MuiTypography-root.MuiTypography-body3.description,
 }
 .subscription-overlay-header > div {
   padding: 56px 112px 10px !important;
+}
+
+// cx-cards-listing
+.cx-cards-listing {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  &__item {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    &--favorite {
+      .cx-card__icon {
+        svg {
+          color: $color-primary;
+
+          path {
+            fill: $color-primary;
+          }
+        }
+      }
+    }
+
+    .cx-card__content {
+      .cx-typography {
+        font-size: 20px !important;
+      }
+    }
+  }
 }

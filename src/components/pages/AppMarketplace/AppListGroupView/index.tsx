@@ -16,7 +16,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
 import './style.scss'
 import { Box } from '@mui/material'
 import { Cards } from '@catena-x/portal-shared-components'
@@ -42,19 +41,26 @@ export const AppListGroupView = ({
 
   if (!groupKey || groupKey === AppGroup.ALL) {
     return (
-      <Box>
-        <Cards
-          buttonText={t('global.actions.details')}
-          columns={4}
-          imageShape={'round'}
-          imageSize={'small'}
-          items={items}
-          variant={'compact'}
-          expandOnHover={true}
-          imageLoader={fetchImageWithToken}
-          boxClickable={true}
-          showFavIcon={true}
-        />
+      <Box className={'cx-cards-listing'}>
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className={`cx-cards-listing__item ${item.addButtonClicked ? 'cx-cards-listing__item--favorite' : ''}`}
+          >
+            <Cards
+              buttonText={t('global.actions.details')}
+              columns={4}
+              imageShape={'round'}
+              imageSize={'small'}
+              items={[item]}
+              variant={'compact'}
+              expandOnHover={true}
+              imageLoader={fetchImageWithToken}
+              boxClickable={true}
+              showFavIcon={true}
+            />
+          </div>
+        ))}
       </Box>
     )
   }

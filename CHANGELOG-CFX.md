@@ -67,6 +67,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Header, Translation and Sub-navigation styles updates [PM2-1035](https://cofinity-x.atlassian.net/browse/PM2-1035)
 
 - **OSP Management**
+
   - Activate OSP management page [PM2-1399s](https://cofinity-x.atlassian.net/browse/PM2-1399)
 
 ## 2.0.0-cfx-2
