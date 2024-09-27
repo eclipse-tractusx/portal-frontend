@@ -1464,7 +1464,7 @@
       "desc8": "Der gesamte Vorgang wird voraussichtlich innerhalb von 5 Werktagen abgeschlossen sein.",
       "desc9": "Vielen Dank, dass Sie sich für den Service entschieden haben.",
       "noDataMessage": "No data available",
-      "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
+      "subscriptionHeading": ">> Es existieren bereits aktive Abonnements für den Service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
       "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
       "loadFailed": "Laden fehlgeschlagen",
