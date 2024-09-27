@@ -67,6 +67,11 @@ const AdminclearinghouseSDElements = () => {
     refetch: refetchConnectors,
   } = useFetchConnectorsQuery({ page: currentConnectorPage })
 
+  const isCompanyDataAvailable =
+    !isFetchingCompanyData && (companyData?.content?.length ?? 0) > 0
+  const isConnectorsDataAvailable =
+    !isFetchingConnectors && (connectors?.content?.length ?? 0) > 0
+
   // Load more companies
   const loadMoreCompanies = () => {
     if (
@@ -229,13 +234,11 @@ const AdminclearinghouseSDElements = () => {
               thickness={8}
             />
           </div>
-        ) : companyData?.content?.length ? (
+        ) : isCompanyDataAvailable ? (
           <ul className="company-list-container">
-            {companyData?.content?.map(
-              (company: ComapnyDataType, index: number) => (
-                <li key={index}>{company?.name}</li>
-              )
-            )}
+            {companyData?.content?.map((company: ComapnyDataType) => (
+              <li key={company?.companyId}>{company?.name}</li>
+            ))}
           </ul>
         ) : (
           <Typography variant="body1" className="no-data-msg">
@@ -284,10 +287,10 @@ const AdminclearinghouseSDElements = () => {
               thickness={8}
             />
           </div>
-        ) : connectors?.content?.length ? (
+        ) : isConnectorsDataAvailable ? (
           <div className="connectors-list">
-            {connectors?.content?.map((connector, index) => (
-              <div key={index} className="connector">
+            {connectors?.content?.map((connector) => (
+              <div key={connector?.connectorId} className="connector">
                 <span>{connector?.name}</span>
                 <span>{connector?.companyName}</span>
               </div>
