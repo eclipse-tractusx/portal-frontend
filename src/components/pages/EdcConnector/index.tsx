@@ -158,16 +158,12 @@ const EdcConnector = () => {
     setAddConnectorOverlayOpen(false)
   }
 
-  const onTableCellClick = (params: GridCellParams, title: string) => {
+  const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
-    if (
-      params.field === 'details' &&
-      title === t('content.edcconnector.tabletitle')
-    ) {
+    if (params.field === 'details') {
       setOpenDetailsOverlay(true)
       setOverlayData(params.row)
     }
-
     setSelectedConnector(params.row as ConnectorContentAPIResponse)
   }
 
@@ -237,6 +233,10 @@ const EdcConnector = () => {
     setNewUserLoading(false)
   }
 
+  const resetSuccessErrorOverlayState = () => {
+    if (response) setResponse(false)
+    else if (error) setError(false)
+  }
   const showOverlay = (result: boolean) => {
     setLoading(false)
     closeAndResetModalState()
@@ -248,18 +248,23 @@ const EdcConnector = () => {
     }
   }
 
-  const deleteSelectedConnector = async () => {
+  const deleteSelectedConnector = async (status: boolean) => {
     setAction('delete')
     setLoading(true)
-    await deleteConnector(selectedConnector.id ?? '')
+
+    await deleteConnector({
+      connectorID: selectedConnector.id ?? '',
+      deleteServiceAccount: status,
+    })
       .unwrap()
       .then(() => {
-        setDeleteConnectorConfirmModalOpen(false)
         showOverlay(true)
       })
       .catch(() => {
-        setDeleteConnectorConfirmModalOpen(false)
         showOverlay(false)
+      })
+      .finally(() => {
+        setDeleteConnectorConfirmModalOpen(false)
       })
   }
 
@@ -355,15 +360,17 @@ const EdcConnector = () => {
         }}
         overlayData={overlayData}
       />
-      <DeleteConfirmationOverlay
-        openDialog={deleteConnectorConfirmModalOpen}
-        handleOverlayClose={() => {
-          setDeleteConnectorConfirmModalOpen(false)
-        }}
-        handleConfirmClick={() => deleteSelectedConnector()}
-        loading={loading}
-        techUser={selectedConnector?.technicalUser}
-      />
+      {deleteConnectorConfirmModalOpen && (
+        <DeleteConfirmationOverlay
+          openDialog
+          handleOverlayClose={() => {
+            setDeleteConnectorConfirmModalOpen(false)
+          }}
+          handleConfirmClick={(s) => deleteSelectedConnector(s)}
+          loading={loading}
+          techUser={selectedConnector?.technicalUser}
+        />
+      )}
       <AddConnectorOverlay
         openDialog={addConnectorOverlayOpen}
         handleOverlayClose={closeAndResetModalState}
@@ -497,7 +504,7 @@ const EdcConnector = () => {
               getRowId={(row: { [key: string]: string }) => row.id}
               columns={ownConnectorCols}
               onCellClick={(params: GridCellParams) => {
-                onTableCellClick(params, t('content.edcconnector.tabletitle'))
+                onTableCellClick(params)
               }}
             />
           </div>
@@ -514,10 +521,7 @@ const EdcConnector = () => {
               columns={managedConnectorCols}
               noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
-                onTableCellClick(
-                  params,
-                  t('content.edcconnector.managedtabletitle')
-                )
+                onTableCellClick(params)
               }}
             />
           </div>
@@ -527,9 +531,9 @@ const EdcConnector = () => {
         <ServerResponseOverlay
           title={getSuccessTitle()}
           intro={getSuccessIntro()}
-          dialogOpen={true}
+          dialogOpen
           handleCallback={() => {
-            // do nothing
+            resetSuccessErrorOverlayState()
           }}
         >
           <Typography variant="body2"></Typography>
@@ -539,12 +543,12 @@ const EdcConnector = () => {
         <ServerResponseOverlay
           title={getErrorTitle()}
           intro={getErrorIntro()}
-          dialogOpen={true}
+          dialogOpen
           iconComponent={
             <ErrorOutlineIcon sx={{ fontSize: 60 }} color="error" />
           }
           handleCallback={() => {
-            // do nothing
+            resetSuccessErrorOverlayState()
           }}
         >
           <Typography variant="body2"></Typography>

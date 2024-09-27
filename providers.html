@@ -1,0 +1,515 @@
+const data = [
+    {
+        "name": "CX-Operator",
+        "alias": "CX-Operator",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/CX-Operator/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Uniper SE",
+        "alias": "idp2",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp2/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Krones AG",
+        "alias": "idp3",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp3/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "MAN SE",
+        "alias": "idp4",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp4/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SOH Dataspace AG",
+        "alias": "idp6",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp6/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Krones Dup AG",
+        "alias": "idp7",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp7/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Resöüt",
+        "alias": "idp8",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp8/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "4zero Solutions GmbH",
+        "alias": "idp9",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp9/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Saller GmbH",
+        "alias": "idp18",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp18/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Arnsburg Apotheke &quot;Alte Bornheimer Apotheke&quot; e.K.",
+        "alias": "idp19",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp19/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Automotive Cells Co",
+        "alias": "idp20",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp20/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SAP Deutschland SE &amp; Co. KG",
+        "alias": "idp21",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp21/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Continental Automotive Technologies GmbH",
+        "alias": "idp22",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp22/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SAP France",
+        "alias": "idp23",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp23/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SAP Italia S.p.A.",
+        "alias": "idp24",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp24/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SAP Österreich GmbH",
+        "alias": "idp25",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp25/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Covestro Deutschland AG",
+        "alias": "idp26",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp26/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SAP SE",
+        "alias": "idp27",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp27/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Schaeffler AG",
+        "alias": "idp28",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp28/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Schaeffler Technologies AG &amp; Co. KG",
+        "alias": "idp29",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp29/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Schaeffler Engineering GmbH",
+        "alias": "idp30",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp30/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "DatafabriQ UG",
+        "alias": "idp31",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp31/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "B. Fischer AG",
+        "alias": "idp32",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp32/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Siemens Advanta Solutions GmbH",
+        "alias": "idp33",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp33/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Delos Cloud GmbH",
+        "alias": "idp34",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp34/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "BASF Digital Solutions S.L.U.",
+        "alias": "idp35",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp35/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "BASF SE",
+        "alias": "idp36",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp36/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Denso Automotive Deutschland GmbH",
+        "alias": "idp37",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp37/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "BloqSens AG",
+        "alias": "idp38",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp38/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "DENSO CORPORATION",
+        "alias": "idp39",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp39/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "BMW AG",
+        "alias": "idp40",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp40/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "HELLA GmbH &amp; Co. KGaA",
+        "alias": "idp41",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp41/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Detecon International GmbH",
+        "alias": "idp42",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp42/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Capgemini Deutschland GmbH",
+        "alias": "idp43",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp43/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "CatX Service GmbH",
+        "alias": "idp44",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp44/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Eberspächer Controls Esslingen GmbH &amp; Co. KG",
+        "alias": "idp45",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp45/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Hirschmann Automotive GmbH",
+        "alias": "idp46",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp46/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Siemens AG",
+        "alias": "idp47",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp47/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "EJOT SE &amp; Co. KG",
+        "alias": "idp48",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp48/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Hybris GmbH",
+        "alias": "idp49",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp49/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Flex Automotive GmbH",
+        "alias": "idp50",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp50/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Siemens Industry Software GmbH",
+        "alias": "idp51",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp51/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "sovity GmbH",
+        "alias": "idp54",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp54/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SK Inc.",
+        "alias": "idp55",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp55/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Ford Werke GmbH",
+        "alias": "idp56",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp56/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Forvia",
+        "alias": "idp57",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp57/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Spherity GmbH",
+        "alias": "idp58",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp58/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "FORD ESPANA SL",
+        "alias": "idp52",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp52/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "IAV GmbH Ingenieurgesellschaft Auto und Verkehr",
+        "alias": "idp53",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp53/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "IBM Deutschland GmbH",
+        "alias": "idp59",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp59/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Light ds GmbH",
+        "alias": "idp60",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp60/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SSC-Services GmbH",
+        "alias": "idp61",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp61/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "German Edge Cloud GmbH &amp; Co. KG",
+        "alias": "idp62",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp62/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Stellantis N.V.",
+        "alias": "idp63",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp63/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Lisa Dräxlmaier GmbH",
+        "alias": "idp64",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp64/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Harman Becker Automotive Systems GmbH",
+        "alias": "idp65",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp65/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "SupplyOn AG",
+        "alias": "idp66",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp66/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Trebing &amp; Himstedt Prozeßautomation GmbH &amp; Co. KG",
+        "alias": "idp67",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp67/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "T-Systems International GmbH",
+        "alias": "idp68",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp68/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Volkswagen AG",
+        "alias": "idp69",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp69/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "WITTE Automotive GmbH",
+        "alias": "idp70",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp70/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "ZF Friedrichshafen AG",
+        "alias": "idp71",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp71/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Antipodean GmbH",
+        "alias": "idp72",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp72/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Magna International (Germany) GmbH",
+        "alias": "idp73",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp73/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "AROMA GLOBAL 3 d.o.o",
+        "alias": "idp74",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp74/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "MAHLE International GmbH",
+        "alias": "idp75",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp75/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Materna Information &amp; Communications SE",
+        "alias": "idp76",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp76/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Mercedes-Benz Group AG",
+        "alias": "idp77",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp77/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "MHP Management- und IT-Beratung GmbH",
+        "alias": "idp78",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp78/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "NTT Communications Corporation",
+        "alias": "idp79",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp79/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "NTT Germany",
+        "alias": "idp80",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp80/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "NTT Luxembourg PSF SA",
+        "alias": "idp81",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp81/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "NTT Netherlands B.V.",
+        "alias": "idp82",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp82/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "OETINGER Aluminum GmbH",
+        "alias": "idp83",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp83/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Polygran GmbH",
+        "alias": "idp84",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp84/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Pöppelmann Kunststoff-Technik GmbH &amp; Co. KG",
+        "alias": "idp85",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp85/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Contemporary Amperex Technology",
+        "alias": "idp86",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp86/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Renault SAS",
+        "alias": "idp87",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp87/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "RenewEarth Lab Inc",
+        "alias": "idp88",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp88/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Franke Holding AG",
+        "alias": "idp89",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp89/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Rhenus Automotive SE",
+        "alias": "idp90",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp90/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "RITTAL GmbH &amp; Co. KG",
+        "alias": "idp91",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp91/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Robert Bosch GmbH",
+        "alias": "idp92",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp92/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "Robert Bosch Manufacturing Solutions GmbH",
+        "alias": "idp93",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp93/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    {
+        "name": "S1Seven GmbH",
+        "alias": "idp94",
+        "provider": "keycloak-oidc",
+        "url": "/auth/realms/CX-Central/broker/idp94/login?client_id=Cl2-CX-Portal&amp;tab_id=n0o38pB50y8&amp;session_code=oWrl70zGNNgkCIaNN5nRuom6CuEu3DInyHI4Pn7e7AE"
+    },
+    null
+]
+
+console.log(data)

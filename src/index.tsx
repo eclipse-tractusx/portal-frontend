@@ -25,7 +25,6 @@ import { store } from 'features/store'
 import AccessService from 'services/AccessService'
 import I18nService from 'services/I18nService'
 import UserService from 'services/UserService'
-import { AuthProvider } from 'components/AuthProvider'
 import AuthorizingRouter from 'components/AuthorizingRouter'
 import {
   SharedThemeProvider,
@@ -35,15 +34,13 @@ import {
 I18nService.init()
 AccessService.init()
 
-UserService.init((user) => {
+UserService.init(() => {
   createRoot(document.getElementById('app')!).render(
     <StrictMode>
       <SharedCssBaseline />
       <Provider store={store}>
         <SharedThemeProvider>
-          <AuthProvider user={user}>
-            <AuthorizingRouter />
-          </AuthProvider>
+          <AuthorizingRouter />
         </SharedThemeProvider>
       </Provider>
     </StrictMode>

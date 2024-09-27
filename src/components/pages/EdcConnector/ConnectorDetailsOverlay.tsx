@@ -32,7 +32,6 @@ import {
 } from '@catena-x/portal-shared-components'
 import {
   type ConnectorDetailsType,
-  useDeleteConnectorMutation,
   useUpdateConnectorUrlMutation,
   useFetchConnectorDetailsQuery,
   useFetchSdDocumentMutation,
@@ -44,8 +43,8 @@ import { error, success } from 'services/NotifyService'
 import EditIcon from '@mui/icons-material/Edit'
 import Patterns from 'types/Patterns'
 import { download } from 'utils/downloadUtils'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
+import { userHasPortalRole } from 'services/AccessService'
 
 interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
@@ -66,10 +65,6 @@ const ConnectorDetailsOverlay = ({
     error: fetchError,
     refetch,
   } = useFetchConnectorDetailsQuery(overlayData?.id ?? '')
-  const [openDeleteConnector, setOpenDeleteConnector] = useState(false)
-  const [deleteConnectorSuccess, setDeleteConnectorSuccess] = useState(false)
-  const [deleteConnector] = useDeleteConnectorMutation()
-  const [deleteLoading, setDeleteLoading] = useState<boolean>(false)
   const [enableConnectorUrl, setEnableConnectorUrl] = useState(true)
   const [updateConnectorUrl] = useUpdateConnectorUrlMutation()
   const [confirmLoading, setConfirmLoading] = useState(false)
@@ -144,27 +139,6 @@ const ConnectorDetailsOverlay = ({
         error(t('content.edcconnector.details.errormessage'), '', '')
       }
     }
-  }
-
-  const handleDeleteConnector = async () => {
-    setDeleteLoading(true)
-    await deleteConnector(fetchConnectorDetails?.id ?? '')
-      .unwrap()
-      .then(() => {
-        setDeleteConnectorSuccess(true)
-        setDeleteLoading(false)
-      })
-      .catch((err) => {
-        setDeleteConnectorSuccess(false)
-        setDeleteLoading(false)
-        error(
-          err.status === 409
-            ? err.data.title
-            : t('content.edcconnector.details.errormessage'),
-          '',
-          err
-        )
-      })
   }
 
   const handleUrlSubmit = async () => {
@@ -300,86 +274,6 @@ const ConnectorDetailsOverlay = ({
         </Dialog>
       )}
 
-      {openDeleteConnector && (
-        <Dialog
-          open={openDeleteConnector}
-          sx={{
-            '.MuiDialog-paper': {
-              maxWidth: '45%',
-            },
-          }}
-        >
-          <DialogHeader
-            title={t('content.edcconnector.details.deleteConnector')}
-            intro={fetchConnectorDetails?.name ?? ''}
-          />
-          <DialogContent
-            sx={{
-              textAlign: 'center',
-              marginBottom: '25px',
-              padding: '0px 80px 20px 80px',
-            }}
-          >
-            <Typography variant="body2" sx={{ textAlign: 'center' }}>
-              {deleteConnectorSuccess
-                ? t('content.edcconnector.details.connectorDeletedSuccessfully')
-                : t('content.edcconnector.details.wantToDeleteConnector')}
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            {deleteConnectorSuccess ? (
-              <Button
-                variant="outlined"
-                onClick={(e) => {
-                  handleOverlayClose(e)
-                  setOpenDeleteConnector(false)
-                }}
-              >
-                {t('global.actions.close')}
-              </Button>
-            ) : (
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  setOpenDeleteConnector(false)
-                }}
-              >
-                {t('global.actions.cancel')}
-              </Button>
-            )}
-
-            {deleteLoading ? (
-              <Box
-                sx={{
-                  width: '110px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              >
-                <CircleProgress
-                  size={40}
-                  step={1}
-                  interval={0.1}
-                  colorVariant={'primary'}
-                  variant={'indeterminate'}
-                  thickness={8}
-                />
-              </Box>
-            ) : (
-              !deleteConnectorSuccess && (
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    handleDeleteConnector()
-                  }}
-                >
-                  {t('content.edcconnector.details.delete')}
-                </Button>
-              )
-            )}
-          </DialogActions>
-        </Dialog>
-      )}
       <Dialog
         open={openDialog}
         sx={{
@@ -480,7 +374,7 @@ const ConnectorDetailsOverlay = ({
                       setEnableConnectorUrl(false)
                       setEnableUrlApiErrorMsg(false)
                     }}
-                    disabled={!UserService.hasRole(ROLES.MODIFY_CONNECTORS)}
+                    disabled={!userHasPortalRole(ROLES.MODIFY_CONNECTORS)}
                   >
                     <EditIcon
                       sx={{
@@ -619,17 +513,6 @@ const ConnectorDetailsOverlay = ({
                 </Grid>
               </Grid>
               <Divider sx={{ margin: '20px auto', color: 'black' }} />
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  setOpenDeleteConnector(true)
-                }}
-                disabled={!UserService.hasRole(ROLES.DELETE_CONNECTORS)}
-                size="small"
-                sx={{ float: 'right' }}
-              >
-                {t('content.edcconnector.details.deleteConnector')}
-              </Button>
             </>
           )}
         </DialogContent>

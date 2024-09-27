@@ -81,10 +81,10 @@ export const Patterns = {
   offerCard: {
     serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescription: /^.{10,120}$/,
+    shortDescription: /^(?! *$).{10,120}$/,
   },
   offerPage: {
-    longDescription: /^.{9,1999}$/,
+    longDescription: /^(?! *$).{10,1999}$/,
   },
   appPage: {
     longDescriptionEN:

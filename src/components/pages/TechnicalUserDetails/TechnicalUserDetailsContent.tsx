@@ -18,7 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, CircleProgress } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  CircleProgress,
+  StatusTag,
+  Tooltips,
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
@@ -32,8 +37,52 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import SyncIcon from '@mui/icons-material/Sync'
-import { useState } from 'react'
+import { type ComponentProps, useState } from 'react'
 import { error, success } from 'services/NotifyService'
+import { ServiceAccountStatus } from 'features/admin/serviceApiSlice'
+import Info from '@mui/icons-material/Info'
+
+export const statusColorMap: Record<
+  ServiceAccountStatus,
+  ComponentProps<typeof StatusTag>['color']
+> = {
+  [ServiceAccountStatus.ACTIVE]: 'confirmed',
+  [ServiceAccountStatus.PENDING]: 'pending',
+  [ServiceAccountStatus.PENDING_DELETION]: 'pending',
+}
+
+const getValueWithTooltip = (value: string, tooltipTitle: string) => {
+  return (
+    value || (
+      <Tooltips
+        color="dark"
+        tooltipPlacement="bottom-start"
+        tooltipText={tooltipTitle}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            marginRight: '-38px',
+          }}
+        >
+          N/A
+          <Info
+            sx={{
+              width: '2em',
+              fontSize: '19px',
+              color: '#888888',
+              cursor: 'pointer',
+              '&:hover': {
+                color: '#0088CC',
+              },
+            }}
+          />
+        </Box>
+      </Tooltips>
+    )
+  )
+}
 
 export default function TechnicalUserDetailsContent({
   data,
@@ -46,6 +95,9 @@ export default function TechnicalUserDetailsContent({
   const [loading, setLoading] = useState<boolean>(false)
   const [newData, setNewData] = useState<ServiceAccountDetail>(data)
 
+  const missingInformationHint = t(
+    'content.usermanagement.technicalUser.detailsPage.missingInfoHint'
+  )
   const connectedData = [
     {
       key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
@@ -60,6 +112,21 @@ export default function TechnicalUserDetailsContent({
 
   const displayData = [
     {
+      key: t('global.field.status'),
+      value: (
+        <StatusTag
+          color={statusColorMap[newData?.status]}
+          label={newData?.status}
+        />
+      ),
+      copy: false,
+    },
+    {
+      key: t('content.usermanagement.technicalUser.detailsPage.userType'),
+      value: getValueWithTooltip(newData.usertype, missingInformationHint),
+      copy: false,
+    },
+    {
       key: 'ID',
       value: newData.serviceAccountId,
       copy: true,
@@ -72,12 +139,31 @@ export default function TechnicalUserDetailsContent({
       copy: true,
     },
     {
+      key: t(
+        'content.usermanagement.technicalUser.detailsPage.serviceEndpoint'
+      ),
+      value: getValueWithTooltip(
+        newData.authenticationServiceUrl,
+        missingInformationHint
+      ),
+      copy: !!newData.authenticationServiceUrl,
+    },
+    {
+      key: t(
+        'content.usermanagement.technicalUser.detailsPage.companyServiceAccountTypeID'
+      ),
+      value: newData.companyServiceAccountTypeId,
+      copy: false,
+    },
+    {
       key: t('global.field.clientId'),
       value: newData.clientId,
       copy: true,
     },
     {
-      key: t('global.field.authType'),
+      key: t(
+        'content.usermanagement.technicalUser.detailsPage.authenticationType'
+      ),
       value: newData.authenticationType,
     },
     {

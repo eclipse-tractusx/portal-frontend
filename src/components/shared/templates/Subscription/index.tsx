@@ -304,15 +304,6 @@ export default function Subscription({
     appFiltersData = data?.content
   }
 
-  useEffect(() => {
-    if (appFiltersData?.length) {
-      setState({
-        type: ActionKind.SET_APP_FILTERS,
-        payload: appFiltersData,
-      })
-    }
-  }, [appFiltersData, type])
-
   const {
     data,
     refetch,
@@ -330,6 +321,25 @@ export default function Subscription({
       })
     }
   }, [data])
+
+  useEffect(() => {
+    if (data?.content && appFiltersData) {
+      const fillers: AppFiltersResponse[] = []
+      appFiltersData.forEach((item) => {
+        data.content.forEach((base: { offerId: string }) => {
+          if (base.offerId === item.id) {
+            fillers.push(item)
+          }
+        })
+      })
+      if (fillers?.length) {
+        setState({
+          type: ActionKind.SET_APP_FILTERS,
+          payload: fillers,
+        })
+      }
+    }
+  }, [appFiltersData, data])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     let status = ''

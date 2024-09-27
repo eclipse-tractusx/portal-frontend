@@ -40,18 +40,21 @@ interface KeyValueViewProps {
   editLink?: string
 }
 
-const renderValue = (value: DataValue) => (
-  <Typography
-    sx={{
-      fontSize: '14px',
-      color: 'gray',
-      margin: 'auto 0px',
-      wordBreak: 'break-all',
-    }}
-  >
-    {value}
-  </Typography>
-)
+const renderValue = (value: DataValue) =>
+  typeof value === 'string' ? (
+    <Typography
+      sx={{
+        fontSize: '14px',
+        color: 'gray',
+        margin: 'auto 0px',
+        wordBreak: 'break-all',
+      }}
+    >
+      {value}
+    </Typography>
+  ) : (
+    <Box sx={{ margin: 'auto 0px' }}>{value}</Box>
+  )
 
 export const KeyValueView = ({
   cols,
@@ -67,9 +70,9 @@ export const KeyValueView = ({
         sx={{
           cursor: 'pointer',
           display: 'flex',
-          color: copied === item.value ? '#00cc00' : '#eeeeee',
+          color: copied === item.value ? '#00cc00' : '#888888',
           ':hover': {
-            color: copied === item.value ? '#00cc00' : '#cccccc',
+            color: copied === item.value ? '#00cc00' : '#0088CC',
           },
         }}
         onClick={async () => {
@@ -82,11 +85,14 @@ export const KeyValueView = ({
         }}
       >
         {renderValue(item.value ?? '')}
-        <ContentCopyIcon
-          sx={{
-            marginLeft: '10px',
-          }}
-        />
+        {item.value && (
+          <ContentCopyIcon
+            sx={{
+              marginLeft: '10px',
+              fontSize: '18px',
+            }}
+          />
+        )}
       </Box>
     ) : (
       <Box sx={{ marginRight: '34px', textAlign: 'left' }}>
