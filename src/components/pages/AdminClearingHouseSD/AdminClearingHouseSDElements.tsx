@@ -191,6 +191,45 @@ const AdminclearinghouseSDElements = () => {
     }
   }
 
+  const renderCompanyDataContent = () => {
+    return (
+      <>
+        {isCompanyDataAvailable ? (
+          <ul className="company-list-container">
+            {companyData?.content?.map((company: ComapnyDataType) => (
+              <li key={company?.companyId}>{company?.name}</li>
+            ))}
+          </ul>
+        ) : (
+          <Typography variant="body1" className="no-data-msg">
+            {t('content.clearinghouseSelfDescription.noDataMsg')}
+          </Typography>
+        )}
+      </>
+    )
+  }
+
+  const renderConnectorsContent = () => {
+    return (
+      <>
+        {isConnectorsDataAvailable ? (
+          <div className="connectors-list">
+            {connectors?.content?.map((connector) => (
+              <div key={connector?.connectorId} className="connector">
+                <span>{connector?.name}</span>
+                <span>{connector?.companyName}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Typography variant="body1" className="no-data-msg">
+            {t('content.clearinghouseSelfDescription.noDataMsg')}
+          </Typography>
+        )}
+      </>
+    )
+  }
+
   return (
     <div className="admin-container">
       <Typography variant="h2" className="heading">
@@ -234,16 +273,8 @@ const AdminclearinghouseSDElements = () => {
               thickness={8}
             />
           </div>
-        ) : isCompanyDataAvailable ? (
-          <ul className="company-list-container">
-            {companyData?.content?.map((company: ComapnyDataType) => (
-              <li key={company?.companyId}>{company?.name}</li>
-            ))}
-          </ul>
         ) : (
-          <Typography variant="body1" className="no-data-msg">
-            {t('content.clearinghouseSelfDescription.noDataMsg')}
-          </Typography>
+          renderCompanyDataContent()
         )}
         <div className="btn-container">
           <Button
@@ -287,19 +318,8 @@ const AdminclearinghouseSDElements = () => {
               thickness={8}
             />
           </div>
-        ) : isConnectorsDataAvailable ? (
-          <div className="connectors-list">
-            {connectors?.content?.map((connector) => (
-              <div key={connector?.connectorId} className="connector">
-                <span>{connector?.name}</span>
-                <span>{connector?.companyName}</span>
-              </div>
-            ))}
-          </div>
         ) : (
-          <Typography variant="body1" className="no-data-msg">
-            {t('content.clearinghouseSelfDescription.noDataMsg')}
-          </Typography>
+          renderConnectorsContent()
         )}
         <div className="btn-container">
           <Button
