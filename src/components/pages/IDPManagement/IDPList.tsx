@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { MenuItem } from '@mui/material'
@@ -84,6 +84,7 @@ const MenuItemOpenOverlay = ({
 export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const { t } = useTranslation()
   const ti = useTranslation('idp').t
+  const dispatch = useDispatch()
 
   const [disableLoading, setDisableLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState(false)
@@ -100,6 +101,12 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
+
+  useEffect(() => {
+    setIdpsManagedData(
+      idpsData?.filter((a) => a.identityProviderTypeId === IDPCategory.MANAGED)
+    )
+  }, [data])
 
   const doDelete = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -366,7 +373,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
         (i) => i.alias === value || i.displayName === value
       )
       setIdpsManagedData(searchFilter)
-      setSearchExpr(searchExpr)
+      setSearchExpr(value)
     } else setIdpsManagedData(idpManagedData)
   }
 
@@ -381,8 +388,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       disableColumnSelector={true}
       disableDensitySelector={true}
       columnHeadersBackgroundColor={'#ffffff'}
-      title=""
-      toolbarVariant={isManagementOSP ? 'searchAndFilter' : 'ultimate'}
+      title={isManagementOSP ? 'OSP Identity Provider(IDPs)' : ''}
       columns={[
         {
           field: 'displayName',
@@ -456,13 +462,11 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           : undefined
       }
       searchDebounce={isManagementOSP ? 1000 : undefined}
+      onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+      buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
       sx={
         isManagementOSP
           ? {
-              '.cx-search-input': {
-                right: '10px',
-                position: 'absolute',
-              },
               '.MuiDataGrid-columnHeadersInner': {
                 fontSize: '16px',
                 fontWeight: '400',

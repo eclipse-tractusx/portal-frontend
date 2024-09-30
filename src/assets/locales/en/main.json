@@ -461,7 +461,7 @@
         "inactive": "inactive",
         "showAll": "show all"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Language",
