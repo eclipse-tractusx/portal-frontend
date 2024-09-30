@@ -50,7 +50,7 @@ export default function ServiceMarketplaceDetail() {
       <Box className="service-back app-back">
         <BackButton
           backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
+          backButtonVariant="outlined"
           onBackButtonClick={() => {
             dispatch(setSuccessType(false))
             navigate(`/${PAGES.SERVICE_MARKETPLACE}`)

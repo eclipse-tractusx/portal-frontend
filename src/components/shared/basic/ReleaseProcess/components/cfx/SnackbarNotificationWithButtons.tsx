@@ -99,7 +99,7 @@ export default function SnackbarNotificationWithButtons({
       <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
       <BackButton
         backButtonLabel={t('global.actions.back')}
-        backButtonVariant="text"
+        backButtonVariant="outlined"
         onBackButtonClick={() => {
           onBackIconClick?.()
         }}

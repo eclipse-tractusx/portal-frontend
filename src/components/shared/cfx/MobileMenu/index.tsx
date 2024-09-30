@@ -110,7 +110,7 @@ export const MobileMenu = ({
           {children?.length > 0 && (
             <BackButton
               backButtonLabel={t('global.actions.back')}
-              backButtonVariant="text"
+              backButtonVariant="outlined"
               onBackButtonClick={() => {
                 setSelectedChildren([])
               }}

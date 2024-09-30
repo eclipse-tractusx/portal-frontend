@@ -640,7 +640,7 @@ export default function CommonValidateAndPublish({
 
           <BackButton
             backButtonLabel={t('global.actions.back')}
-            backButtonVariant="text"
+            backButtonVariant="outlined"
             onBackButtonClick={() => {
               type === ReleaseProcessTypes.APP_RELEASE
                 ? dispatch(decrement())

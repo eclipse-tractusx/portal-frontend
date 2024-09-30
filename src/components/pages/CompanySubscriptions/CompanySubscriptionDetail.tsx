@@ -93,7 +93,7 @@ export default function CompanySubscriptionDetail() {
         <Box className="company-subscription-back app-back">
           <BackButton
             backButtonLabel={t('global.actions.back')}
-            backButtonVariant="text"
+            backButtonVariant="outlined"
             onBackButtonClick={() => {
               navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
             }}
