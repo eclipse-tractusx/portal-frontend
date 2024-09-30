@@ -222,7 +222,8 @@ export default function AppOverview() {
 
   const doSearch = useCallback(
     (expr: string) => {
-      const validateExpr = /^[ A-Za-z]*$/.test(expr)
+      const validateExpr =
+        /^[ A-Za-z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/.test(expr)
       if (!validateExpr) {
         return
       }
