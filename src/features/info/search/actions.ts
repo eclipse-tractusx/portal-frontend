@@ -175,7 +175,8 @@ const fetchSearch = createAsyncThunk(
           .filter((item: AppMarketplaceApp) =>
             uuid
               ? item.id.match(searchExpr)
-              : item.name?.match(searchExpr) ?? item.provider.match(searchExpr)
+              : (item.name?.match(searchExpr) ??
+                item.provider.match(searchExpr))
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
         // Add an ESLint exception until there is a solution
@@ -192,11 +193,11 @@ const fetchSearch = createAsyncThunk(
         users.content
           .filter((item: TenantUser) =>
             uuid
-              ? searchExpr.exec(item.userEntityId) ??
-                item.companyUserId.match(searchExpr)
-              : item.firstName?.match(searchExpr) ??
+              ? (searchExpr.exec(item.userEntityId) ??
+                item.companyUserId.match(searchExpr))
+              : (item.firstName?.match(searchExpr) ??
                 searchExpr.exec(item.lastName) ??
-                item.email.match(searchExpr)
+                item.email.match(searchExpr))
           )
           .map((item: TenantUser) => userToSearchItem(item)),
       ].flat()
