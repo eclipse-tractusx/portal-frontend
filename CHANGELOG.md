@@ -15,6 +15,8 @@
   - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
 - **Connector Management**
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
+- **Technical User Management**
+  - fixed error message scenario post technical user deletion action
 
 ## 2.2.0-alpha.1
 
