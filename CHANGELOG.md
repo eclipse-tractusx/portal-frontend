@@ -8,8 +8,8 @@
   - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
 - **Company Subscriptions**
   - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
-- - **App & Service Subcription Managment**
-  - Search place holder text updated, Show only available offer names at the top and Implement Hover-Information on the Status Icon of serviceSubscription[#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
+- **App & Service Subcription Managment**
+  - updated search place holder text - showing only available offer names at the top - and implemented hover information on the status icon of service subscription [#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
 
 ### Bugfixes
 
