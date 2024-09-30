@@ -111,6 +111,19 @@ export const Dropzone = ({
     [currentFiles, onChange, handleDelete]
   )
 
+  const handleFileSizeValidator = (file: File) => {
+    if (maxFileSize) {
+      if (file.size > maxFileSize) {
+        return {
+          code: 'size-too-large',
+          message: `File is larger than ${(maxFileSize / 1048576).toFixed(2)} MB`,
+        }
+      }
+      return null
+    }
+    return null
+  }
+
   const {
     getRootProps,
     getInputProps,
@@ -123,7 +136,7 @@ export const Dropzone = ({
     maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
     accept: acceptFormat,
     multiple: !isSingleUpload,
-    maxSize: maxFileSize,
+    validator: handleFileSizeValidator,
   })
 
   let DropAreaComponent = DefaultDropArea
