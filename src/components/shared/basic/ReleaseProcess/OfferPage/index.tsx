@@ -347,7 +347,7 @@ export default function OfferPage({
                     'application/pdf': ['.pdf'],
                   }}
                   maxFilesToUpload={1}
-                  maxFileSize={819200}
+                  maxFileSize={5242880}
                   handleDelete={(documentId: string) => {
                     documentId && deleteDocument(documentId)
                   }}
