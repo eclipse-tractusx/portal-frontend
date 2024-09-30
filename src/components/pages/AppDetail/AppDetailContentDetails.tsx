@@ -91,7 +91,7 @@ export default function AppDetailContentDetails({
             <Box className="app-back">
               <BackButton
                 backButtonLabel={t('global.actions.back')}
-                backButtonVariant="text"
+                backButtonVariant="outlined"
                 onBackButtonClick={() => {
                   nav === 'marketplace'
                     ? navigate(`/${PAGES.APP_MARKETPLACE}`)

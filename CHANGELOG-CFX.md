@@ -130,6 +130,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Fixed UI/UX issues. [PM2-509](https://cofinity-x.atlassian.net/browse/PM2-509)
 
+- Make a consistent back button on entire website [PM2-1142](https://cofinity-x.atlassian.net/browse/PM2-1142)
+
 ## 2.0.0-cfx-1
 
 ## Change

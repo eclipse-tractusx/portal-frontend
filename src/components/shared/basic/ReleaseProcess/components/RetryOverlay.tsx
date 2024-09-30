@@ -74,7 +74,7 @@ const RetryOverlay = ({
           <Box className="buttonSection app-back">
             <BackButton
               backButtonLabel={t('global.actions.back')}
-              backButtonVariant="text"
+              backButtonVariant="outlined"
               onBackButtonClick={(e) => {
                 handleOverlayClose(e)
               }}

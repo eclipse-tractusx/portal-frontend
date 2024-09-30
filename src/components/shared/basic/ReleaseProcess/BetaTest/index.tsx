@@ -79,7 +79,7 @@ export default function BetaTest() {
 
         <BackButton
           backButtonLabel={t('global.actions.back')}
-          backButtonVariant="text"
+          backButtonVariant="outlined"
           onBackButtonClick={() => {
             dispatch(decrement())
           }}
