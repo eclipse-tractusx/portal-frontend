@@ -1963,13 +1963,19 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
-
 // app overview
+.appOverview-app .app-main .app-detail {
+  .cx-card__add-service--title,
+  .cx-card__add-service--title .cx-typography {
+    text-align: center;
+  }
+}
+
 .app-main {
   .overview-section {
     .cx-page-info {
       margin: 20px auto;
-      &__title{
+      &__title {
         margin-top: 40px;
       }
     }
