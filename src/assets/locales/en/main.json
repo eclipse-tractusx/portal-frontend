@@ -2337,7 +2337,8 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Information copied successfully"
     },
     "state": {
       "enabled": "enabled",
