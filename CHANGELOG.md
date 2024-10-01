@@ -18,6 +18,11 @@
 - **Technical User Management**
   - fixed error message scenario post technical user deletion action
 
+### Feature
+
+- **Clearinghouse Self-Description**
+  - Admin UI for Managing SD Document Retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes

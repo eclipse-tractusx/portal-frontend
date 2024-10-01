@@ -21,6 +21,7 @@
     "technicalSetup": "Technical Integration",
     "connectorManagement": "Connector Management",
     "applicationRequests": "Application Requests",
+    "clearinghouseSelfDescription": "Clearinghouse Self-Description",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -1069,6 +1070,18 @@
       "client_secret_invalid_error": "Please enter valid client secret",
       "metadata_url_required_error": "Metadata url is required",
       "metadata_url_invalid_error": "Please enter valid metadata url"
+    },
+    "clearinghouseSelfDescription": {
+      "heading": "Self-Description Document Status",
+      "description": "This page provides an overview of the current status of self-descriptions for administrators.",
+      "reprocess": "Reprocess",
+      "complianceStatus": "Compliance Status:",
+      "legalPerson": "Legal Person",
+      "legalPersonDesc": "Overview of companies with missing legal person self-description",
+      "connectors": "Connectors",
+      "connectorsDesc": "Overview of companies with missing connector self-description",
+      "errorMsg": "Error! Something went wrong",
+      "noDataMsg": "No records found."
     },
     "addUser": {
       "headline": "Add User Account",
