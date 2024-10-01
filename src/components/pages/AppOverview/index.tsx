@@ -21,7 +21,6 @@
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  Typography,
   ViewSelector,
   SearchInput,
   type CardItems,
@@ -58,6 +57,7 @@ import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import NoItems from '../NoItems'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+import PageInfo from 'components/shared/cfx/PageInfo'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -252,12 +252,11 @@ export default function AppOverview() {
       {recentlyChangedApps && recentlyChangedApps.length > 0 ? (
         <div className="desc-recently">
           <div className="container">
-            <Typography variant="h4" className="desc-heading">
-              {t('content.appOverview.recently.header')}
-            </Typography>
-            <Typography variant="body2" className="desc-message">
-              {t('content.appOverview.recently.subheader')}
-            </Typography>
+            <PageInfo
+              title={t('content.appOverview.recently.header')}
+              description={t('content.appOverview.recently.subheader')}
+            />
+
             <div className="desc-card">
               <Cards
                 items={recentlyChangedApps}
@@ -277,13 +276,7 @@ export default function AppOverview() {
       ) : null}
       <div className="app-main">
         <Box className="overview-section">
-          <Typography
-            sx={{ fontFamily: 'LibreFranklin-Light' }}
-            variant="h3"
-            className="section-title"
-          >
-            {t('content.appOverview.title')}
-          </Typography>
+          <PageInfo title={t('content.appOverview.title')} />
         </Box>
 
         <div className="app-detail">
