@@ -1580,7 +1580,7 @@
         "message": "Die Funktion zur Konfiguration der Unternehmens-URL für die automatische Einrichtung ermöglicht es den Betreibern, eine benutzerdefinierte URL einzurichten, die verwendet wird, um automatisch Abonnementanfragen an den Dienstanbieter zu übermitteln, wenn App-Abonnements auf dem Marktplatz ausgelöst werden. Diese Funktion ermöglicht es Betreibern auch, technische Konfigurationselemente abzurufen und das Abonnement zu aktivieren.",
         "endpointConfigured": "Konfigurierter Anbieter-Endpunkt",
         "autosetupURL": "Neue Endpunkt-URL festlegen",
-        "inputPlaceholder": "...enter your setup url",
+        "inputPlaceholder": "URL des Kundenanbieters",
         "providerErrorMessage": "Something went wrong!",
         "providerSuccessMessage": "Details updated successfully.",
         "autoSetupPlaceholder": "URL des Kundenanbieters"
