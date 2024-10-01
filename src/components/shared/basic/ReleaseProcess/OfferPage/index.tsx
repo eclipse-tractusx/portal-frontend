@@ -54,6 +54,7 @@ import type { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { ButtonLabelTypes } from '..'
 import { success, error } from 'services/NotifyService'
+import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -347,7 +348,7 @@ export default function OfferPage({
                     'application/pdf': ['.pdf'],
                   }}
                   maxFilesToUpload={1}
-                  maxFileSize={5242880}
+                  maxFileSize={ALLOWED_MAX_SIZE_DOCUMENT}
                   handleDelete={(documentId: string) => {
                     documentId && deleteDocument(documentId)
                   }}
