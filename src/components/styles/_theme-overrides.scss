@@ -1574,14 +1574,18 @@ p.MuiTypography-root.MuiTypography-body3.description,
   justify-content: center;
   max-width: 1180px;
   margin: 0 auto;
-
+  text-align: center;
   &__container {
   }
 
   &__title {
+    margin-bottom: 20px;
   }
 
   &__subtitle {
+    p {
+      color: $secondary-hover;
+    }
   }
 
   &__button {
@@ -1954,6 +1958,19 @@ p.MuiTypography-root.MuiTypography-body3.description,
     .cx-card__content {
       .cx-typography {
         font-size: 20px !important;
+      }
+    }
+  }
+}
+
+
+// app overview
+.app-main {
+  .overview-section {
+    .cx-page-info {
+      margin: 20px auto;
+      &__title{
+        margin-top: 40px;
       }
     }
   }

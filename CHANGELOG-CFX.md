@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **Your Apps**
+
+  - Updated UI styles in the Your Apps page [PM2-1450](https://cofinity-x.atlassian.net/browse/PM2-1450)
+
 - **App Marketplace**
 
   - Updated state of a button after app subscription so that it will work for every subscription
