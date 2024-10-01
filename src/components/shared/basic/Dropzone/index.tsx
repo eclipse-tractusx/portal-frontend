@@ -32,6 +32,7 @@ import {
 import { type FunctionComponent, useCallback, useState } from 'react'
 import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
+import { CONVERT_TO_MB } from 'types/Constants'
 
 export type DropzoneFile = File & Partial<UploadFile>
 
@@ -112,16 +113,14 @@ export const Dropzone = ({
   )
 
   const handleFileSizeValidator = (file: File) => {
-    if (maxFileSize) {
-      if (file.size > maxFileSize) {
-        return {
+    if (!maxFileSize) return null
+    const fileSizeInMB = (file.size / CONVERT_TO_MB).toFixed(2)
+    return file.size > maxFileSize
+      ? {
           code: 'size-too-large',
-          message: `File is larger than ${(maxFileSize / 1048576).toFixed(2)} MB`,
+          message: `File is larger than ${fileSizeInMB} MB`,
         }
-      }
-      return null
-    }
-    return null
+      : null
   }
 
   const {
