@@ -23,6 +23,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Manged identity wallet: fix page ui and card text color [PM2-1394](https://cofinity-x.atlassian.net/browse/PM2-1394)
   - App overview: Translations and styles added [PM2-1392](https://cofinity-x.atlassian.net/browse/PM2-1392)
   - Service marketplace: button alignment and search [PM2-1391](https://cofinity-x.atlassian.net/browse/PM2-1391)
+  - OSP consent from UI update [PM2-1093](https://cofinity-x.atlassian.net/browse/PM2-1093)
 
 - **OSP Consent form**
 

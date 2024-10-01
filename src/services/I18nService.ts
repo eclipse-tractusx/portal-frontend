@@ -33,8 +33,8 @@ import notificationDE from '../assets/locales/cfx/de/notification.json'
 import notificationEN from '../assets/locales/cfx/en/notification.json'
 import servicereleaseDE from '../assets/locales/cfx/de/servicerelease.json'
 import servicereleaseEN from '../assets/locales/cfx/en/servicerelease.json'
-import registrationDE from '../assets/locales/de/registration.json'
-import registrationEN from '../assets/locales/en/registration.json'
+import registrationDE from '../assets/locales/cfx/de/registration.json'
+import registrationEN from '../assets/locales/cfx/en/registration.json'
 import type { NotificationType } from 'features/notification/types'
 
 const resources = {
