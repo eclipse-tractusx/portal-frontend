@@ -1975,3 +1975,34 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+// app Subscription Autosetup URL
+.appSubscription {
+  .descriptionContainer {
+    margin-bottom: 20px;
+    span {
+      font-weight: 400 !important;
+    }
+  }
+}
+
+.registerUrlMain {
+  .dialog-header-main {
+    h4 {
+      width: 100%;
+    }
+  }
+
+  .manageInputURL {
+    .urlListMain {
+      background: none;
+      padding: 0;
+
+    }
+
+    .urlList {
+      background: #dedede;
+      padding: 18.5px 16px;
+      margin: 0 0 0;
+    }
+  }
+}

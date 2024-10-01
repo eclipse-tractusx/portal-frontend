@@ -1516,7 +1516,7 @@
         "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. This feature also enables operators to retrieve technical configuration elements and activate the subscription.",
         "endpointConfigured": "Configured Provider Endpoint",
         "autosetupURL": "Set a new endpoint URL",
-        "inputPlaceholder": "...enter your setup url",
+        "inputPlaceholder": "URL of the customer tentant",
         "providerErrorMessage": "Something went wrong! Please try it later again.",
         "providerSuccessMessage": "Details updated successfully.",
         "autoSetupPlaceholder": "URL of the customer tentant"

@@ -31,6 +31,7 @@ import {
   PageSnackbar,
   LoadMoreButton,
   CircleProgress,
+  Button,
 } from '@catena-x/portal-shared-components'
 import type {
   AppFiltersResponse,
@@ -507,13 +508,16 @@ export default function Subscription({
                   {readMore}
                 </Typography>
               )}
-              <Typography
-                variant="label3"
+              <Button
+                key="create"
+                color="primary"
+                size="small"
+                className="create-btn"
                 onClick={() => dispatch(show(OVERLAYS.ADD_SERVICE_PROVIDER))}
                 sx={{ cursor: 'pointer' }}
               >
                 {registerURL}
-              </Typography>
+              </Button>
             </div>
           )}
           <div>
