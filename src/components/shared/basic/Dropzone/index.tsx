@@ -121,6 +121,7 @@ export const Dropzone = ({
         : sizeInMB.toFixed(1)
     }
 
+    if (!maxFileSize) return null
     return file.size > maxFileSize
       ? {
           code: 'size-too-large',
