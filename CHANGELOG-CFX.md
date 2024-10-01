@@ -50,7 +50,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed click on new technical user button [PM2-1504](https://cofinity-x.atlassian.net/browse/PM2-1504)
 
 - **Notification Card Text Link translation**
+
   - Notifications card fixed translations [#1039](https://cofinity-x.atlassian.net/browse/PM2-1447?atlOrigin=eyJpIjoiOWI0ZDZhYTJjYjc3NGQxNjg3MjQ5YTJhYzY4NzA3YjEiLCJwIjoiaiJ9)
+
+- **Service Subscription Header headline translation**
+  - Fixed translations for Deutsch and english in servicerelease.json translation [#1039](https://github.com/Cofinity-X/portal-frontend/pull/186)
 
 ### Change
 
