@@ -110,3 +110,14 @@ export enum PAGES {
 export const FOOTERLINK = {
   url: 'https://www.cofinity-x.com/contact',
 }
+
+export const TNC_LINKS = {
+  ACTIVE_PARTICIPANT:
+    'http://144397848.hs-sites-eu1.com/tc-data-provider-consumer',
+  APP_PROVIDER:
+    'http://144397848.hs-sites-eu1.com/tc-application-enablement-service-provider',
+  SERVICE_PROVIDER:
+    'http://144397848.hs-sites-eu1.com/tc-advisory-service-provider',
+  ONBOARDING_SERVICE_PROVIDER:
+    'http://144397848.hs-sites-eu1.com/tc-onboarding-service-provider',
+}

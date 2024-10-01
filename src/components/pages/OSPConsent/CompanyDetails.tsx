@@ -40,6 +40,7 @@ import {
 import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { download } from 'utils/downloadUtils'
+import { TNC_LINKS } from 'types/cfx/Constants'
 import './style.scss'
 
 enum uniqueIdTypeText {
@@ -169,7 +170,7 @@ export const CompanyDetails = ({
     }
   }
 
-  const renderTermsText = (agreement: AgreementData) => {
+  const renderTermsText = (agreement: AgreementData, role: companyRole) => {
     return (
       <>
         <strong>{t('osp.companyRole.TermsAndCondSpan1')} </strong>
@@ -183,7 +184,13 @@ export const CompanyDetails = ({
             // do nothing
           }}
         >
-          {agreement.name}
+          <a
+            href={TNC_LINKS[role.companyRole as keyof typeof TNC_LINKS]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {agreement.name}
+          </a>
         </Typography>{' '}
         <strong>{t('osp.companyRole.TermsAndCondSpan3')}</strong>
       </>
@@ -213,7 +220,7 @@ export const CompanyDetails = ({
                   key={agreement.agreementId}
                 >
                   {agreement.documentId
-                    ? renderTermsText(agreement)
+                    ? renderTermsText(agreement, role)
                     : agreement.name}
                 </Typography>
               ))}
@@ -334,7 +341,10 @@ export const CompanyDetails = ({
       </div>
       <div className="helpdeskText">
         <Trans>
-          <Typography variant="body3">{t('osp.helpText')}</Typography>
+          <Typography variant="body3">
+            {t('osp.helpText')}
+            <a href="mailto: support@cofinity-x.com">support@cofinity-x.com</a>
+          </Typography>
         </Trans>
       </div>
     </div>
