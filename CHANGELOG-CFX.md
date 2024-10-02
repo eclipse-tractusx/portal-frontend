@@ -58,6 +58,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
+- **Your apps**
+
+  - Translations updated for the menu items and on the menu detail pages. [PM2-1066](https://cofinity-x.atlassian.net/browse/PM2-1066)
+
 - **Service Marketplace**
 
   - Service Marketplace details page missing translations service detail page and UX updates. [PM2-1460](https://cofinity-x.atlassian.net/browse/PM2-1460)

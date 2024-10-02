@@ -493,10 +493,10 @@
       },
       "sortOptions": {
         "deactivate": "Deaktivieren",
-        "changeImage": "Bild ändern",
-        "changeDescription": "Beschreibung ändern",
+        "changeImage": "Titelbild ändern",
+        "changeDescription": "Beschreibungen ändern",
         "addRoles": "Rollen hinzufügen",
-        "changeDocuments": "Dokument(e) ändern",
+        "changeDocuments": "Bilder und Dokumente ändern",
         "viewDetails": "Details anzeigen",
         "activate": "aktivieren Sie",
         "delete": "Löschen"
