@@ -28,14 +28,13 @@ import { FOOTERLINK } from 'types/cfx/Constants'
 export const Footer = ({ pages }: { pages: string[] }) => {
   const footerLinks: { [key: string]: string } = {
     imprint: `${FOOTERLINK.url}/imprint/`,
-    privacy: `${FOOTERLINK.url}/data-privacy/`,
-    cookiepolicy: `${FOOTERLINK.url}/data-privacy/#cookies`,
-    contact: `${FOOTERLINK.url}/`,
+    privacy: `${FOOTERLINK.url}/privacy-policy/`,
+    contact: `${FOOTERLINK.url}/contact/`,
   }
 
   const { t } = useTranslation()
   const items = pages.map((page) => ({
-    to: footerLinks[page],
+    to: footerLinks[page.toLocaleLowerCase()],
     title: t(`pages.${page}`),
   }))
   const scrollToTop = () => {

@@ -55,7 +55,7 @@ export enum PAGES {
   IMPRINT = 'imprint',
   PRIVACY = 'privacy',
   TERMS = 'terms',
-  COOKIE_POLICY = 'cookiePolicy',
+  // COOKIE_POLICY = 'cookiePolicy', // Removed
   // SETTINGS = 'settings', // Removed
   // DEVELOPER = 'developer', // Removed
   // TEST = 'test', // Removed
@@ -108,7 +108,7 @@ export enum PAGES {
 }
 
 export const FOOTERLINK = {
-  url: 'https://www.cofinity-x.com/contact',
+  url: 'https://www.cofinity-x.com/',
 }
 
 export const TNC_LINKS = {
