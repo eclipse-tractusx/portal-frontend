@@ -29,7 +29,6 @@ import AppOverviewNew from 'components/pages/AppOverviewNew'
 import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Connector from 'components/pages/Connector'
 import Contact from 'components/pages/Contact'
-import CookiePolicy from 'components/pages/CookiePolicy'
 import EdcConnector from 'components/pages/EdcConnector'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
@@ -385,7 +384,6 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.PRIVACY, element: <Privacy /> },
   { name: PAGES.TERMS, element: <Terms /> },
   { name: PAGES.TEST, element: <Test /> },
-  { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
@@ -854,6 +852,5 @@ export const footerMenuFull = [
   PAGES.IMPRINT,
   PAGES.PRIVACY,
   PAGES.TERMS,
-  PAGES.COOKIE_POLICY,
   PAGES.ABOUTPAGE,
 ]

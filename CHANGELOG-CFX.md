@@ -58,7 +58,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Notifications card fixed translations [#1039](https://cofinity-x.atlassian.net/browse/PM2-1447?atlOrigin=eyJpIjoiOWI0ZDZhYTJjYjc3NGQxNjg3MjQ5YTJhYzY4NzA3YjEiLCJwIjoiaiJ9)
 
 - **Service Subscription Header headline translation**
+
   - Fixed translations for Deutsch and english in servicerelease.json translation [#1039](https://github.com/Cofinity-X/portal-frontend/pull/186)
+
+- **Compliance Footer links updated**
+  - Replaced old footer links with new link [#189](https://cofinity-x.atlassian.net/browse/PM2-1583?atlOrigin=eyJpIjoiOGNkNzlkZTAxN2VhNGYwODk0OTExZWFjNTIwMjg0Y2UiLCJwIjoiaiJ9)
 
 ### Change
 

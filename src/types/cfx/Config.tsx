@@ -25,7 +25,6 @@ import AppMarketplace from 'components/pages/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
 import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Contact from 'components/pages/Contact'
-import CookiePolicy from 'components/pages/CookiePolicy'
 import EdcConnector from 'components/pages/EdcConnector'
 import Home from 'components/pages/Home'
 import Imprint from 'components/pages/Imprint'
@@ -354,7 +353,6 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
   { name: PAGES.TERMS, element: <Terms /> },
-  { name: PAGES.COOKIE_POLICY, element: <CookiePolicy /> },
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
@@ -614,9 +612,4 @@ export const userMenuFull = [
  * lists all the entries that are visible in the footer menu for a user with maximum permissions.
  * it will be restricted by personal user permissions
  */
-export const footerMenuFull = [
-  PAGES.IMPRINT,
-  PAGES.PRIVACY,
-  PAGES.COOKIE_POLICY,
-  PAGES.CONTACT,
-]
+export const footerMenuFull = [PAGES.IMPRINT, PAGES.PRIVACY, PAGES.CONTACT]

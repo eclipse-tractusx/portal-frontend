@@ -60,7 +60,6 @@ export enum PAGES {
   IMPRINT = 'imprint',
   PRIVACY = 'privacy',
   TERMS = 'terms',
-  COOKIE_POLICY = 'cookiePolicy',
   SETTINGS = 'settings',
   DEVELOPER = 'developer',
   TEST = 'test',
