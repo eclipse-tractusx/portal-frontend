@@ -2257,7 +2257,9 @@
       "clientSecret": {
         "name": "Client-Geheimnis",
         "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
-      }
+      },
+      "ospIdentityProvider": "OSP-Identitätsanbieter (IDPs)",
+      "search": "Geben Sie einen Namen oder Alias ​​ein, um zu suchen"
     }
   },
   "navigation": {

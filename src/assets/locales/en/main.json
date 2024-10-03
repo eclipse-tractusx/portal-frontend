@@ -2230,7 +2230,9 @@
       "clientSecret": {
         "name": "Client Secret",
         "hint": "Enter the client secret provided by your IdP"
-      }
+      },
+      "ospIdentityProvider": "OSP Identity Provider(IDPs)",
+      "search": "Enter name or alias to search"
     }
   },
   "navigation": {

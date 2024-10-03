@@ -379,7 +379,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
 
   return (
     <Table
-      rowsCount={idpsData?.length}
+      rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
       hideFooter
       loading={isFetching}
       disableRowSelectionOnClick={true}
@@ -388,7 +388,12 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       disableColumnSelector={true}
       disableDensitySelector={true}
       columnHeadersBackgroundColor={'#ffffff'}
-      title={isManagementOSP ? 'OSP Identity Provider(IDPs)' : ''}
+      title={
+        isManagementOSP
+          ? t('content.onboardingServiceProvider.ospIdentityProvider')
+          : ''
+      }
+      toolbarVariant={isManagementOSP ? undefined : 'ultimate'}
       columns={[
         {
           field: 'displayName',
@@ -451,7 +456,11 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
-      searchPlaceholder={isManagementOSP ? 'search' : undefined}
+      searchPlaceholder={
+        isManagementOSP
+          ? t('content.onboardingServiceProvider.search')
+          : undefined
+      }
       searchExpr={isManagementOSP ? searchExpr : undefined}
       onSearch={
         isManagementOSP
