@@ -18,7 +18,7 @@
 - **Technical User Management**
   - fixed error message scenario post technical user deletion action
 - **Company Subscriptions**
-  - fixed incorrect data display in service company subscriptions
+  - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
 
 ## 2.2.0-alpha.1
 
