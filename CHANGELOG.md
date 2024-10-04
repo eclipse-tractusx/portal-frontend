@@ -184,6 +184,7 @@
 - **App Management**
   - fixed 400 Bad Request error due to search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/pull/1058)
   - added load more button app overview [#1009](https://github.com/eclipse-tractusx/portal-frontend/pull/1009)
+  - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
 
 ## 2.2.0
 
