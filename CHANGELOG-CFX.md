@@ -32,6 +32,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **OSP Consent form**
 
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
+  - Update translation files osp consent form [PM2-1093](https://cofinity-x.atlassian.net/browse/PM2-1093)
 
 - **Service Release Process**
 
