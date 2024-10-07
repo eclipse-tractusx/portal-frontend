@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.3.0-alpha.2
+
 ### Change
 
 - **Technical User Details**
@@ -10,6 +12,11 @@
   - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
 - **App & Service Subscription Management**
   - updated search place holder text - showing only available offer names at the top - and implemented hover information on the status icon of service subscription [#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
+- **Customer Data**
+  - re-enabled CSV upload [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
+  - reverted manual intervention with ready state api [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
+- **Onboarding Service Provider**
+  - enhanced permission and company role validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
 
 ### Bugfixes
 
@@ -17,8 +24,12 @@
   - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
 - **Connector Management**
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
+- **Technical User Management**
+  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
+- **Company Subscriptions**
+  - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
 
-## 2.2.0-alpha.1
+## 2.3.0-alpha.1
 
 ### Bugfixes
 
