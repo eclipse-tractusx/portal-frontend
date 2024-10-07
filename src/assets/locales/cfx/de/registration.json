@@ -1,21 +1,21 @@
 {
   "osp": {
-    "heading": "Registration Summary",
-    "companyHeading": "Company Details",
-    "companyMessage": "Below you can find your company registration details shared by your onboarding provider. Please review the details and proceed to the Company Role selection below before submitting your registration.",
-    "companyName": "Company Name",
+    "heading": "Zusammenfassung der Registrierung",
+    "companyHeading": "Unternehmens-Details",
+    "companyMessage": "Nachfolgend finden Sie Ihre Unternehmensregistrierungsdaten, die von Ihrem Onboarding-Anbieter mitgeteilt wurden. Bitte prüfen Sie die Details und fahren Sie mit der Auswahl der Company Role fort, bevor Sie Ihre Anmeldung abschicken.",
+    "companyName": "Unternehmensname",
     "bmw": "BMW AG",
-    "street": "Street with House Number",
-    "zip": "Postal Code",
-    "city": "City",
+    "street": "Straße & Hausnummer",
+    "zip": "PLZ",
+    "city": "Stadt",
     "region": "Region",
-    "country": "Country",
+    "country": "Land",
     "companyRole": {
-      "title": "Company Role Selection",
-      "subTitle": "Note: Please select at least one role and accept the associated terms and conditions.",
-      "TermsAndCondSpan1": "Yes, I agree to the",
+      "title": "Rollenauswahl",
+      "subTitle": "Hinweis: Bitte wählen Sie mindestens eine Rolle aus und akzeptieren Sie die damit verbundenen Geschäftsbedingungen.",
+      "TermsAndCondSpan1": "Ja, ich habe die",
       "TermsAndCondSpan2": "terms and conditions",
-      "TermsAndCondSpan3": "of the selected role.",
+      "TermsAndCondSpan3": "gelesen und stimme diesen zu.",
       "TermsAndCond2Span1": "Yes, I agree to the",
       "TermsAndCond2Span2": "security regulations",
       "TermsAndCond2Span3": "of the selected role.",
@@ -42,6 +42,6 @@
       "back": "Back to previous page"
     },
     "submitError": "Please agree to all Terms & Conditions of the selected company role(s) before proceeding to the next step.",
-    "helpText": "If you have any questions regarding your registration please contact "
+    "helpText": "Wenn Sie Fragen zu Ihrer Anmeldung haben, wenden Sie sich bitte an "
   }
 }
