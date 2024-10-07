@@ -8,6 +8,9 @@
   - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
 - **Company Subscriptions**
   - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
+- **Customer Data**
+  - re-enabled CSV upload [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
+  - reverted manual intervention with ready state api [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
 - **Onboarding Service Provider**
   - enhanced permission and company role validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
 
