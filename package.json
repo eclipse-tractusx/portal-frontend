@@ -44,7 +44,7 @@
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.7",
     "autosuggest-highlight": "^3.3.4",
-    "axios": "^1.6.8",
+    "axios": "^1.7.4",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.13",
     "i18next": "^23.10.1",
