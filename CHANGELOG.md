@@ -9,7 +9,7 @@
 - **Company Subscriptions**
   - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
 - **Onboarding Service Provider**
-  - enhanced permission validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
+  - enhanced permission and company role validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
 
 ### Bugfixes
 
