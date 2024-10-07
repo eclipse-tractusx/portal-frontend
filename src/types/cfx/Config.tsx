@@ -77,7 +77,7 @@ import CompanyWallet from 'components/pages/CompanyWallet'
 import { OSPConsent } from 'components/pages/OSPConsent'
 import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
-import { MENUS, PAGES } from './Constants'
+import { COMPANY_ROLE, MENUS, PAGES } from './Constants'
 import AdminCredential from 'components/pages/AdminCredential'
 import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
 
@@ -515,6 +515,8 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+    role: ROLES.CONFIGURE_PARTNER_REGISTRATION,
+    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
     element: <OnboardingServiceProvider />,
   },
 ]
@@ -581,13 +583,14 @@ export const mainMenuFullTree = [
       { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
     ],
   },
-  /* {
+  {
     name: MENUS.ON_BOARDING_MANAGEMENT,
+    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
     children: [
       { name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER },
       { name: PAGES.TECH_USER_MANAGEMENT },
     ],
-  },*/
+  },
 ]
 
 /**

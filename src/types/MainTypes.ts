@@ -100,6 +100,7 @@ export type IPage = RestrictedItem & {
   element: JSX.Element
   isRoute?: boolean
   children?: string[]
+  companyRole?: string
 }
 
 export type IAction = RestrictedItem & {
@@ -113,6 +114,7 @@ export interface Tree {
   name: string
   hint?: string
   children?: Tree[]
+  companyRole?: string
 }
 
 export interface MenuItem extends LinkItem, Tree {
