@@ -17,6 +17,8 @@
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
 - **Technical User Management**
   - fixed error message scenario post technical user deletion action
+- **OSP Managament**
+  - fixed hardcoded OSP callback url [#1201](https://github.com/eclipse-tractusx/portal-frontend/pull/1201)
 
 ## 2.2.0-alpha.1
 
