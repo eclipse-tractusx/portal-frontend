@@ -11,6 +11,8 @@
 - **Customer Data**
   - Enable CSV upload
   - Revert manual intervention of ready state api
+- **Onboarding Service Provider**
+  - enhanced permission and company role validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
 
 ### Bugfixes
 
@@ -18,6 +20,10 @@
   - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
 - **Connector Management**
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
+- **Technical User Management**
+  - fixed error message scenario post technical user deletion action
+- **Company Subscriptions**
+  - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
 
 ## 2.2.0-alpha.1
 
