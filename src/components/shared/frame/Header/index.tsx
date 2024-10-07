@@ -49,6 +49,7 @@ import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
 import { setIsHeaderNote } from 'features/home/slice'
+import { getCompanyRoles } from 'utils/companyRoleCheck'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -71,17 +72,22 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const [headerNote, setHeaderNote] = useState(false)
 
   const addTitle = (items: Tree[] | undefined) =>
-    items?.map(
-      (item: Tree): MenuItem => ({
-        ...item,
-        to: `/${item.name}`,
-        title: item.children
-          ? t(`menu.heading.${item.name}`)
-          : t(`pages.${item.name}`),
-        hint: item.hint ? t(`hints.${item.hint}`) : '',
-        children: addTitle(item.children),
-      })
-    )
+    items
+      ?.filter(
+        (item: Tree) =>
+          !item.companyRole || getCompanyRoles().includes(item.companyRole)
+      )
+      .map(
+        (item: Tree): MenuItem => ({
+          ...item,
+          to: `/${item.name}`,
+          title: item.children
+            ? t(`menu.heading.${item.name}`)
+            : t(`pages.${item.name}`),
+          hint: item.hint ? t(`hints.${item.hint}`) : '',
+          children: addTitle(item.children),
+        })
+      )
 
   const menu = addTitle(main) ?? []
 

@@ -97,6 +97,7 @@ export type IPage = {
   element: JSX.Element
   isRoute?: boolean
   children?: string[]
+  companyRole?: string
 }
 
 export type IOverlay = {
@@ -117,6 +118,7 @@ export interface Tree {
   name: string
   hint?: string
   children?: Tree[]
+  companyRole?: string
 }
 
 export interface MenuItem extends LinkItem, Tree {

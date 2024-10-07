@@ -91,6 +91,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **User Management**
 
   - Header, Translation and Sub-navigation styles updates [PM2-1035](https://cofinity-x.atlassian.net/browse/PM2-1035)
+  - Restrict non OSP companies and unauthorised users [PM2-1487](https://cofinity-x.atlassian.net/browse/PM2-1487)
 
 - **OSP Management**
 

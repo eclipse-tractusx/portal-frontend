@@ -232,6 +232,7 @@ export enum ROLES {
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
+  CONFIGURE_PARTNER_REGISTRATION = 'configure_partner_registration',
 }
 
 export enum HINTS {
