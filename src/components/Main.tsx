@@ -92,7 +92,7 @@ export default function Main() {
           renderSection()
         )}
         <Footer pages={AccessService.footerMenu()} />
-        <MenuInfo main={[]} />
+        <MenuInfo main={[]} shouldDisplayMenuItems={false} />
       </>
     )
   }
