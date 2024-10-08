@@ -46,6 +46,9 @@ import {
 } from 'features/companyData/slice'
 import { statusColorMap } from 'utils/dataMapper'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
+import UploadIcon from '@mui/icons-material/Upload'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -194,6 +197,11 @@ export const CompanyAddressList = ({
                 handleSecondButtonClick()
               },
               icon: <AddCircleOutlineIcon />,
+            },
+            {
+              title: t('content.companyData.csvUploadBtn'),
+              click: () => dispatch(show(OVERLAYS.CSV_UPLOAD_OVERLAY)),
+              icon: <UploadIcon />,
             },
           ]}
           autoFocus={false}
