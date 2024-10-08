@@ -27,7 +27,13 @@ import type { MenuItem, Tree } from 'types/MainTypes'
 import { MobileMenu } from 'components/shared/cfx/MobileMenu'
 import { Drawer } from '@mui/material'
 
-export const MenuInfo = ({ main }: { main: Tree[] }) => {
+export const MenuInfo = ({
+  main,
+  shouldDisplayMenuItems,
+}: {
+  main: Tree[]
+  shouldDisplayMenuItems?: boolean
+}) => {
   const { t } = useTranslation()
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
@@ -75,8 +81,9 @@ export const MenuInfo = ({ main }: { main: Tree[] }) => {
           <MobileMenu
             className="userMenuInfo"
             component={Link}
-            divider
+            divider={shouldDisplayMenuItems}
             items={menu}
+            shouldDisplayMenuItems={shouldDisplayMenuItems}
           />
         </div>
       </ClickAwayListener>

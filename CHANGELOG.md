@@ -4,6 +4,8 @@
 
 ### Change
 
+- **Mobile Navigation**
+  - hide notification from mobile sidebar for incomplete registration [#198](https://github.com/Cofinity-X/portal-frontend/pull/198)
 - **Shared component**
   - cherry-picked types issues caused by shared componnent version upgrade [#1113](https://github.com/eclipse-tractusx/portal-frontend/pull/1113)
 - **Company Data Management**

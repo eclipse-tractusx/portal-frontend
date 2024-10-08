@@ -46,6 +46,7 @@ export interface MenuProps extends BoxProps {
   items: MenuItemProps[]
   component?: React.ElementType
   divider?: boolean
+  shouldDisplayMenuItems?: boolean
 }
 
 export const MobileMenu = ({
@@ -53,6 +54,7 @@ export const MobileMenu = ({
   divider,
   component = Link,
   onClick,
+  shouldDisplayMenuItems = true,
   ...props
 }: MenuProps): JSX.Element => {
   const visible = useSelector(appearMenuSelector)
@@ -71,7 +73,6 @@ export const MobileMenu = ({
     setSelectedChildren(item)
     setSelectedSection(title)
   }
-
   const renderHeaderRow = () => {
     switch (selectedSection) {
       case t('pages.account'):
@@ -160,11 +161,13 @@ export const MobileMenu = ({
                   userMenu={userMenu}
                 />
 
-                <NotificationLink
-                  onSelect={onSelectItem}
-                  onClick={onClick}
-                  to={PAGES.NOTIFICATIONS}
-                />
+                {shouldDisplayMenuItems && (
+                  <NotificationLink
+                    onSelect={onSelectItem}
+                    onClick={onClick}
+                    to={PAGES.NOTIFICATIONS}
+                  />
+                )}
                 <LogoutLink
                   onSelect={onSelectItem}
                   onClick={onClick}
