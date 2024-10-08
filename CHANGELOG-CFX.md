@@ -4,6 +4,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## 2.2.0-cfx-1
 
+### New Features
+
+- **App subscription**
+
+  - CHERRY-PICK add external service details in subscription management overlay [#1028](https://github.com/eclipse-tractusx/portal-frontend/pull/1028)
+
 ### Bug Fixes
 
 - **Your Apps**

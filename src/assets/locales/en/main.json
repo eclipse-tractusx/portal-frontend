@@ -1496,7 +1496,34 @@
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
-        "tenantUrlErrorMsg": "Error! Something went wrong"
+        "tenantUrlErrorMsg": "Error! Something went wrong",
+        "externalServices": {
+          "heading": "External Service Details",
+          "trustedIssuer": {
+            "label": "Trusted Issuer",
+            "description": "The trusted issuer responsible for issuing the identity credentials."
+          },
+          "participantId": {
+            "label": "Participant ID",
+            "description": "The unique identifier of the participant in the external system."
+          },
+          "iatpId": {
+            "label": "IATP ID",
+            "description": "The unique identifier of the IATP (Identity and Trust Protocol)."
+          },
+          "didResolver": {
+            "label": "DID Resolver",
+            "description": "The URL of the DID (Decentralized Identifier) resolver used for resolving decentralized identities."
+          },
+          "decentralIdentityManagementAuthUrl": {
+            "label": "Decentralized Identity Management Auth URL",
+            "description": "The URL of the authentication endpoint for the decentralized identity management."
+          },
+          "decentralIdentityManagementServiceUrl": {
+            "label": "Decentralized Identity Management Service URL",
+            "description": "The URL of the service endpoint for the decentralized identity management."
+          }
+        }
       }
     },
     "adminBoard": {
