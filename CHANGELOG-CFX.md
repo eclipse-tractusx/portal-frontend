@@ -19,6 +19,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App subscription**
 
   - Updated translations and fixed UI styles [PM2-1451](https://cofinity-x.atlassian.net/browse/PM2-1451)
+  - Added missing cfx translations external services app subscription overlay [PM2-1645](https://cofinity-x.atlassian.net/browse/PM2-1645)
 
 - **App Marketplace**
 
