@@ -1637,7 +1637,34 @@
         "helpText": "Bei Fragen zu diesen Änderungen wenden Sie sich bitte an:",
         "email": "support@cofinity-x.com",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
-        "tenantUrlErrorMsg": "Error! Something went wrong"
+        "tenantUrlErrorMsg": "Error! Something went wrong",
+        "externalServices": {
+          "heading": "Details zum externen Dienst",
+          "trustedIssuer": {
+            "label": "Vertrauenswürdiger Aussteller",
+            "description": "Der vertrauenswürdige Aussteller, der für die Ausstellung der Identitätsnachweise verantwortlich ist."
+          },
+          "participantId": {
+            "label": "Teilnehmer-ID",
+            "description": "Die eindeutige Kennung des Teilnehmers im externen System."
+          },
+          "iatpId": {
+            "label": "IATP-ID",
+            "description": "Die eindeutige Kennung des IATP-Programms (Identity and Trust Protocol)."
+          },
+          "didResolver": {
+            "label": "DID-Resolver",
+            "description": "Die URL des DID-Resolvers (Decentralized Identifier), der für die Auflösung der dezentralen Identitäten verwendet wird."
+          },
+          "decentralIdentityManagementAuthUrl": {
+            "label": "Auth-URL für dezentrales Identitätsmanagement",
+            "description": "Die URL des Authentifizierungsendpunkts für das dezentrale Identitätsmanagement."
+          },
+          "decentralIdentityManagementServiceUrl": {
+            "label": "Service-URL für dezentrales Identitätsmanagement",
+            "description": "Die URL des Dienstendpunkts für das dezentrale Identitätsmanagement."
+          }
+        }
       }
     },
     "adminBoard": {
