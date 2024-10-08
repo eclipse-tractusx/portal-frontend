@@ -474,6 +474,35 @@
         "requested": "Angefordert",
         "active": "Aktiv",
         "showAll": "Alle Anzeigen"
+      },
+      "searchName": "..search by company name here"
+    },
+    "companySubscriptionsDetail": {
+      "language": "Verfügbare App Sprachen",
+      "description": "Beschreibung",
+      "subscribed": "Abonniert",
+      "requested": "Angefordert",
+      "declined": "Abgelehnt",
+      "howtouse": {
+        "heading": "Nutzungsbedingungen",
+        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+      },
+      "privacy": {
+        "heading": "Datenschutz",
+        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Firmendaten",
+        "USER_DATA": "Benutzerdaten",
+        "LOCATION": "Standort",
+        "BROWSER_HISTORY": "Browserverlauf",
+        "NONE": "Keine"
+      },
+      "table": {
+        "connector": "Connector",
+        "technicalUser": "Technischer User"
+      },
+      "technicalUser": {
+        "heading": "Technische Details"
       }
     },
     "appOverview": {
