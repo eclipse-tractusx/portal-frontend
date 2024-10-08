@@ -39,7 +39,7 @@ import {
 import CommonService from 'services/CommonService'
 import { useState, useEffect } from 'react'
 import CompanySubscriptionTechnical from './components/CompanySubscriptionTechnical'
-import CompanySubscriptionHeader from './components/CompanySubscriptionHeader'
+import CompanySubscriptionHeader from './cfx/CompanySubscriptionHeader'
 import CompanySubscriptionContent from './components/CompanySubscriptionContent'
 import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacyContent'
 import CompanySubscriptionDocument from './components/CompanySubscriptionDocument'
@@ -93,7 +93,7 @@ export default function CompanySubscriptionDetail() {
   }
 
   return (
-    <main className="company-subscription-detail">
+    <div className="company-subscription-detail">
       <Box className="company-subscription-back app-back">
         <BackButton
           backButtonLabel={t('global.actions.back')}
@@ -102,19 +102,24 @@ export default function CompanySubscriptionDetail() {
             navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
           }}
         />
-
-        {error && <Typography variant="body2">{error?.data?.title}</Typography>}
-
-        {data && fetchData && (
-          <>
-            <CompanySubscriptionHeader detail={fetchData} src={getSrc()} />
-            <CompanySubscriptionContent detail={fetchData} />
-            <CompanySubscriptionDocument detail={fetchData} />
-            <CompanySubscriptionPrivacy detail={fetchData} />
-            <CompanySubscriptionTechnical detail={data} />
-          </>
-        )}
       </Box>
-    </main>
+      {error && <Typography variant="body2">{error?.data?.title}</Typography>}
+
+      {data && fetchData && (
+        <>
+          <CompanySubscriptionHeader detail={fetchData} src={getSrc()} />
+          <div className="subscription-container">
+            <div className="details">
+              <CompanySubscriptionContent detail={fetchData} />
+              <CompanySubscriptionDocument detail={fetchData} />
+              <CompanySubscriptionPrivacy detail={fetchData} />
+              {data.technicalUserData?.length > 0 && (
+                <CompanySubscriptionTechnical detail={data} />
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   )
 }

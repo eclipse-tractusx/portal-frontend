@@ -480,8 +480,8 @@
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",
-      "description": "Description",
-      "subscribed": "Gezeichnet",
+      "description": "Beschreibung",
+      "subscribed": "Abonniert",
       "requested": "Angefordert",
       "declined": "Abgelehnt",
       "howtouse": {
@@ -492,18 +492,18 @@
         "heading": "Datenschutz",
         "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
         "notSupportedMessage": "Currently not yet supported",
-        "COMPANY_DATA": "Company Data",
-        "USER_DATA": "User Data",
-        "LOCATION": "Location",
-        "BROWSER_HISTORY": "Browser History",
-        "NONE": "None"
+        "COMPANY_DATA": "Firmendaten",
+        "USER_DATA": "Benutzerdaten",
+        "LOCATION": "Standort",
+        "BROWSER_HISTORY": "Browserverlauf",
+        "NONE": "Keine"
       },
       "table": {
-        "connector": "Verbinder",
-        "technicalUser": "Technischer Benutzer"
+        "connector": "Connector",
+        "technicalUser": "Technischer User"
       },
       "technicalUser": {
-        "heading": "Technischer Details"
+        "heading": "Technische Details"
       }
     },
     "appOverview": {

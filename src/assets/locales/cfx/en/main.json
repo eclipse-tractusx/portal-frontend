@@ -478,18 +478,18 @@
       "message": "Contents of Data Management"
     },
     "companySubscriptionsDetail": {
-      "language": "Verfügbare App Sprachen",
+      "language": "Available app languages:",
       "description": "Description",
-      "subscribed": "Gezeichnet",
-      "requested": "Angefordert",
-      "declined": "Abgelehnt",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
       "howtouse": {
-        "heading": "Nutzungsbedingungen",
-        "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
+        "heading": "Terms and conditions",
+        "message": "The terms and conditions govern the relationship between the app user and the app provider. The terms and conditions, as well as the data models and further information, can be viewed by clicking on the hyperlinks."
       },
       "privacy": {
-        "heading": "Datenschutz",
-        "message": "Die Datenschutzerklärung gibt an, welche Daten die Geschäftsanwendungen erheben, handhaben und verarbeiten. Die nachstehenden Details zeigen explizit, welche Unternehmens-/Benutzerinformationen gesammelt/gespeichert werden.",
+        "heading": "Privacy policy",
+        "message": "The privacy policy specifies which data the business applications collect, handle and process. The details below explicitly show which company/user information is collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
         "USER_DATA": "User Data",
@@ -498,11 +498,11 @@
         "NONE": "None"
       },
       "table": {
-        "connector": "Verbinder",
-        "technicalUser": "Technischer Benutzer"
+        "connector": "Connector",
+        "technicalUser": "Technical User"
       },
       "technicalUser": {
-        "heading": "Technischer Details"
+        "heading": "Technical Details"
       }
     },
     "appOverview": {

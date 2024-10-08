@@ -87,6 +87,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App & Service Subscription**
 
   - Fix filter labels [PM2-508](https://cofinity-x.atlassian.net/browse/PM2-508)
+  - App & Service Subscription detail page updated with translations [PM2-1536](https://cofinity-x.atlassian.net/browse/PM2-1536)
 
 - **User Management**
 
