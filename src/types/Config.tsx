@@ -599,6 +599,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+    allowTo: () => userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION),
     element: <OnboardingServiceProvider />,
   },
 ]
