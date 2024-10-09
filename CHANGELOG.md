@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Technical Support
+
+- **Injection of environment variables to Docker image**
+  - refactored to a more readable and typo resistant implementation using sh - bash and jq are no longer required in image
+
 ## 2.3.0-alpha.2
 
 ### Change
@@ -267,11 +272,6 @@
 - UI Development Needs
   - Onboarding Service Provider Management Board
     - The user interface for the Onboarding Service Provider management board is not yet developed.
-
-### Change
-
-- **Others**
-  - More readable and typo resistant implementation to inject env vars
 
 ## 2.0.0
 
