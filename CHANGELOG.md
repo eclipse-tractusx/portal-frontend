@@ -342,11 +342,7 @@
 - **Scroll Integration**:
   - integrated now scroll-to-top component from shared components for all pages [#872](https://github.com/eclipse-tractusx/portal-frontend/pull/872)
 - **Credential Request**:
-
   - UI improvements such as table headers, joint table columns, type updates, etc. [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/866)
-
-- **Increase Upload File Limit**:
-  - Allowed uplaoded document file limit increase to 5 mb [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1187)
 
 ### Feature
 
