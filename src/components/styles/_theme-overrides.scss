@@ -3,7 +3,7 @@ $color-primary-dark: #a60f68;
 $color-secondary: #4d4d4d;
 $color-gray: #f6f6f6;
 $color-blue: #1977cc;
-$color-black:#000000;
+$color-black: #000000;
 $mobile-enable-width: 1800px;
 $font-family-primary:
   'Karbon',
@@ -22,6 +22,7 @@ $black: #000000;
 $white: #ffffff;
 $border-color: #dfdfdf;
 $text-disabled: #808080;
+$color-orange: #f58220;
 
 body {
 }
@@ -806,7 +807,10 @@ main,
     top: 35px;
     z-index: 20;
     background: #fff;
-    box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2), 0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12);
+    box-shadow:
+      0px 10px 13px -6px rgba(0, 0, 0, 0.2),
+      0px 20px 31px 3px rgba(0, 0, 0, 0.14),
+      0px 8px 38px 7px rgba(0, 0, 0, 0.12);
     border-radius: 15px;
   }
 }
@@ -1875,21 +1879,22 @@ p.MuiTypography-root.MuiTypography-body3.description,
   &__heading--short {
     padding-bottom: 10px;
     b {
-      color: $color-primary
+      color: $color-primary;
     }
 
-    color: $color-primary
+    color: $color-primary;
   }
 
-  .subscriptions-content {}
+  .subscriptions-content {
+  }
 
   .subscription-name {
     border-color: $color-black !important;
   }
 
   .subscription-status {
-    border-color: #F58220;
-    color: #F58220;
+    border-color: $color-orange;
+    color: $color-orange;
     background-color: #f5822030;
 
     .MuiChip-label {
@@ -1905,9 +1910,9 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .service-documents {
   color: $color-primary !important;
   .document-button-link {
-      color: $color-primary !important;
-      font-size: 16px !important;
-    }
+    color: $color-primary !important;
+    font-size: 16px !important;
+  }
 }
 
 // managed identity wallet
@@ -2002,13 +2007,20 @@ p.MuiTypography-root.MuiTypography-body3.description,
     .urlListMain {
       background: none;
       padding: 0;
-
     }
 
     .urlList {
       background: #dedede;
       padding: 18.5px 16px;
       margin: 0 0 0;
+    }
+  }
+}
+
+.cx-card__add-service--icon {
+  svg {
+    path {
+      fill: $color-primary !important;
     }
   }
 }
