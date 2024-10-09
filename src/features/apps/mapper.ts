@@ -80,8 +80,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
 })
 
 export const serviceToCard = (app: ProvidedServiceType): CardItems => ({
-  ...app,
-  statusText: app.status,
+  ...serviceCardStatus(app),
   subtitle: app.provider,
   title: app.name ?? '',
   image: {
@@ -126,6 +125,20 @@ export const appToStatus = (apps: AppMarketplaceApp[]): AppMarketplaceApp[] => {
       return { ...app, status, image }
     })
     .filter((e) => e.status)
+}
+
+export const serviceCardStatus = (app: ProvidedServiceType) => {
+  const status = app.status?.toLocaleLowerCase() as
+    | SubscriptionStatus
+    | undefined
+  const statusText = SubscriptionStatusText[app.status!] || app.status
+  const title = app.name!
+  return {
+    ...app,
+    statusText,
+    status,
+    title,
+  } as CardItems
 }
 
 export const subscribedApps = (apps: ActiveSubscription[]) => {
