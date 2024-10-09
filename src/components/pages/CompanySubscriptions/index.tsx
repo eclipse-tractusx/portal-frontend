@@ -53,6 +53,11 @@ interface FetchHookArgsType {
   expr: string
 }
 
+const translationKeys: Record<number, string> = {
+  0: 'app',
+  1: 'service',
+}
+
 export default function CompanySubscriptions() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -63,9 +68,7 @@ export default function CompanySubscriptions() {
     CompanySubscriptionFilterType.SHOW_ALL
   )
   const searchInputData = useSelector(updateApplicationRequestSelector)
-  const [group, setGroup] = useState<string>(
-    t('content.companySubscriptions.filter.showAll')
-  )
+  const [group, setGroup] = useState<string>()
   const [showUnsubscribeOverlay, setShowUnsubscribeOverlay] =
     useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -190,6 +193,9 @@ export default function CompanySubscriptions() {
     )
   }
 
+  const currentKey = translationKeys[currentActive] || 'app'
+  const placeHolderTranslation = `content.companySubscriptions.${currentKey}.name`
+
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   const renderTable = (query: any) => (
@@ -208,7 +214,7 @@ export default function CompanySubscriptions() {
         toolbarVariant={'searchAndFilter'}
         hasBorder={false}
         columnHeadersBackgroundColor={'transparent'}
-        searchPlaceholder={t('content.companySubscriptions.searchName')}
+        searchPlaceholder={t(placeHolderTranslation)}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
           if (expr !== '' && !onValidate(expr)) return

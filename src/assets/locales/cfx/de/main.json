@@ -475,7 +475,12 @@
         "active": "Aktiv",
         "showAll": "Alle Anzeigen"
       },
-      "searchName": "..search by company name here"
+      "app": {
+        "name": "..search by app name here"
+      },
+      "service": {
+        "name": "..search by service name here"
+      }
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",

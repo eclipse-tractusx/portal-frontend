@@ -470,6 +470,12 @@
         "requested": "Requested",
         "active": "Active",
         "showAll": "Show All"
+      },
+      "app": {
+        "name": "..search by app name here"
+      },
+      "service": {
+        "name": "..search by service name here"
       }
     },
     "datamanagement": {
