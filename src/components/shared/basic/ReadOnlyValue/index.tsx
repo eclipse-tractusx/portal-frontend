@@ -18,15 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import { Typography, Tooltips } from '@catena-x/portal-shared-components'
 import type { IHashMap } from 'types/MainTypes'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useState } from 'react'
+import { success } from 'services/NotifyService'
 
 const CopyValue = ({ value }: { value: string }) => {
   const [copied, setCopied] = useState<boolean>(false)
+  const { t } = useTranslation()
 
   return (
     <Box
@@ -42,6 +45,7 @@ const CopyValue = ({ value }: { value: string }) => {
       onClick={async () => {
         await navigator.clipboard.writeText(value)
         setCopied(true)
+        success(t('global.actions.copyInfoSuccessMessage'))
         setTimeout(() => {
           setCopied(false)
         }, 1000)

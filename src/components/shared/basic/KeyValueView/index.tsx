@@ -20,10 +20,12 @@
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import { success } from 'services/NotifyService'
 
 type DataValue = string | number | JSX.Element | string[]
 
@@ -63,6 +65,7 @@ export const KeyValueView = ({
   editLink,
 }: KeyValueViewProps) => {
   const [copied, setCopied] = useState<string>('')
+  const { t } = useTranslation()
 
   const renderValueItem = (item: ValueItem) =>
     item.copy ? (
@@ -79,6 +82,7 @@ export const KeyValueView = ({
           const value = item.value ?? ''
           await navigator.clipboard.writeText(value as string)
           setCopied(value as string)
+          success(t('global.actions.copyInfoSuccessMessage'))
           setTimeout(() => {
             setCopied('')
           }, 1000)
