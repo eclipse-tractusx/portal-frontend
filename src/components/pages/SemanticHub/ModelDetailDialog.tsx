@@ -49,6 +49,7 @@ import {
 } from 'features/semanticModels/actions'
 import { ROLES } from 'types/Constants'
 import { getSemanticApiBase } from 'services/EnvironmentService'
+import { info } from 'services/LogService'
 import { getHeaders } from 'services/RequestService'
 import { Status } from 'features/semanticModels/types'
 import type { AppDispatch } from 'features/store'
@@ -110,7 +111,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           }
         })
         .catch((err) => {
-          console.log(err)
+          info(err)
         })
       setShowDeleteBtn(
         userHasSemanticHubRole(ROLES.SEMANTICHUB_DELETE) &&
@@ -215,7 +216,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               )}
               {diagramError.length > 0 && (
                 <Typography color="error">
-                  t('content.semantichub.detail.fileError')
+                  {t('content.semantichub.detail.fileError')}
                 </Typography>
               )}
               <Typography variant="h5" mb={2}>

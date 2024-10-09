@@ -21,12 +21,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
+import { error, type LogData } from 'services/LogService'
 
 const fetchItems = createAsyncThunk(`${name}/fetch`, async () => {
   try {
     return await Api.getInstance().getItems()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/fetch error`)
   }
 })

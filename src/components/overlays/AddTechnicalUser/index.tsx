@@ -44,6 +44,7 @@ import { ServerResponseOverlay } from '../ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import './TechnicalUserAddForm.scss'
+import LogService from 'services/LogService'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -63,13 +64,13 @@ export const AddTechnicalUser = () => {
         authenticationType: ServiceAccountType.SECRET,
         roleIds: [formValues.TechnicalUserService],
       }).unwrap()
-      console.log(result)
+      LogService.info('', result)
       setResponse(result)
       setLoading(false)
       setError(false)
       dispatch(updateData(UPDATES.TECHUSER_LIST))
     } catch (err) {
-      console.log(err)
+      LogService.error(err as string)
       setLoading(false)
       setError(true)
     }

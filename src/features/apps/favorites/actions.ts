@@ -21,12 +21,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
+import { error, type LogData } from 'services/LogService'
 
 const fetchItems = createAsyncThunk(`${name}/fetch`, async () => {
   try {
     return await Api.getInstance().getItems()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/fetch api call error`)
   }
 })
@@ -34,8 +35,8 @@ const fetchItems = createAsyncThunk(`${name}/fetch`, async () => {
 const addItem = createAsyncThunk(`${name}/add`, async (id: string) => {
   try {
     return await Api.getInstance().putItem(id)
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/add api call error`)
   }
 })
@@ -43,8 +44,8 @@ const addItem = createAsyncThunk(`${name}/add`, async (id: string) => {
 const removeItem = createAsyncThunk(`${name}/remove`, async (id: string) => {
   try {
     return await Api.getInstance().deleteItem(id)
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/remove api call error`)
   }
 })

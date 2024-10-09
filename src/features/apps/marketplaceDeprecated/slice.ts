@@ -21,6 +21,7 @@
 import type { CardItems } from '@catena-x/portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
+import { info } from 'services/LogService'
 import { fetchActive, fetchLatest, fetchSubscriptionStatus } from './actions'
 import {
   type AppMarketplaceApp,
@@ -124,7 +125,7 @@ export const subscribedAppsSelector = (state: RootState) => {
       )
     })
     .forEach((result: AppMarketplaceApp) => {
-      console.log('result', appToCard(result))
+      info('result', appToCard(result))
       return appToCard(result)
     })
 }

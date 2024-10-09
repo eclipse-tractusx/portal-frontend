@@ -134,7 +134,6 @@ export const SearchResultItem = ({
         },
       }}
       onClick={() => {
-        console.log(item.category)
         switch (item.category) {
           case SearchCategory.PAGE:
             dispatch(setAppear({ SEARCH: false }))

@@ -327,7 +327,7 @@ export const apiSlice = createApi({
         url: `${getSsiBase()}/api/credential/documents/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
-          data: await response.blob(),
+          data: response.ok ? await response.blob() : await response.json(),
         }),
       }),
     }),
@@ -339,7 +339,7 @@ export const apiSlice = createApi({
         url: `/api/administration/documents/frameDocuments/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
-          data: await response.blob(),
+          data: response.ok ? await response.blob() : await response.json(),
         }),
       }),
     }),

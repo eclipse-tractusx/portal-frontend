@@ -30,6 +30,8 @@ import {
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 export default function BoardDocuments({
   type,
@@ -56,8 +58,8 @@ export default function BoardDocuments({
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
 

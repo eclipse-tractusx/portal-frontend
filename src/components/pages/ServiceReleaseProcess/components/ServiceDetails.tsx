@@ -39,6 +39,8 @@ import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
 import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -72,8 +74,8 @@ export default function ServiceDetails() {
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, item.documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
 

@@ -27,6 +27,8 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import '../../AppDetail.scss'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { error } from 'services/NotifyService'
+import { type LogData } from 'services/LogService'
 
 export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   const { t } = useTranslation()
@@ -45,8 +47,8 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
   return (

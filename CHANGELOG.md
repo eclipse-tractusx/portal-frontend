@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Error Handling**
+  - Replaced logs with appropriate handler [#1072](https://github.com/eclipse-tractusx/portal-frontend/pull/1072)
+
 ### Change
 
 - **Service Subscriptions**

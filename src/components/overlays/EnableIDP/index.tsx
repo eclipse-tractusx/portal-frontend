@@ -43,6 +43,7 @@ import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { success } from 'services/NotifyService'
+import { error } from 'services/LogService'
 
 export const EnableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -101,7 +102,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
       }
       setLoading(false)
     } catch (err) {
-      console.log(err)
+      error(err as string)
     }
   }
 

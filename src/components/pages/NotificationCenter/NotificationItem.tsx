@@ -32,6 +32,7 @@ import {
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
+import { info } from 'services/LogService'
 import UserService from 'services/UserService'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './Notifications.scss'
@@ -258,7 +259,7 @@ export default function NotificationItem({
       item.isRead = flag
       setUserRead(flag)
     } catch (error: unknown) {
-      console.log(error)
+      info(error as string)
     }
   }
 
