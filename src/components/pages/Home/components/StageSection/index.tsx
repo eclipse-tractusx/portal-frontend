@@ -22,6 +22,8 @@ import { useTranslation } from 'react-i18next'
 import { getAssetBase } from 'services/EnvironmentService'
 import { SlidingMainHeader } from 'components/shared/frame/SlidingMainHeader/SlidingMainHeader'
 import { useNavigate } from 'react-router-dom'
+import { userHasPortalRole } from 'services/AccessService'
+import { ROLES } from 'types/Constants'
 
 export default function StageSection() {
   const { t } = useTranslation()
@@ -39,6 +41,7 @@ export default function StageSection() {
             handleClick: () => {
               navigate(t('content.home.stage.slider1.navigation'))
             },
+            hasAccess: userHasPortalRole(ROLES.APPMANAGEMENT_VIEW),
           },
           {
             title: t('content.home.stage.slider2.title'),
@@ -57,6 +60,7 @@ export default function StageSection() {
             handleClick: () => {
               navigate(t('content.home.stage.slider3.navigation'))
             },
+            hasAccess: userHasPortalRole(ROLES.APPSTORE_VIEW),
           },
           {
             title: t('content.home.stage.slider4.title'),
@@ -66,6 +70,7 @@ export default function StageSection() {
             handleClick: () => {
               navigate(t('content.home.stage.slider4.navigation'))
             },
+            hasAccess: userHasPortalRole(ROLES.USERMANAGEMENT_VIEW),
           },
         ]}
         stageHeaderInfo={[
