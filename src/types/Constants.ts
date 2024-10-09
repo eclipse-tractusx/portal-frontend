@@ -233,6 +233,7 @@ export enum ROLES {
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
   VIEW_REGISTRATION = 'view_registration',
   READ_PARTNER = 'read_partner',
+  CONFIGURE_PARTNER_REGISTRATION = 'configure_partner_registration',
 }
 
 export enum HINTS {

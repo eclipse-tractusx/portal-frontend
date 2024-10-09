@@ -33,7 +33,10 @@ import {
 } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
-import { ConnectType } from 'features/connector/connectorApiSlice'
+import {
+  ConnectType,
+  type EdcSubscriptionsType,
+} from 'features/connector/connectorApiSlice'
 import { Dropzone } from '../../../../shared/basic/Dropzone'
 import { useEffect, useState } from 'react'
 import './EdcComponentStyles.scss'
@@ -245,6 +248,7 @@ const ConnectorInsertForm = ({
   control,
   trigger,
   getValues,
+  resetField,
   selectedService,
   subscriptions,
   fetchServiceAccountUsers,
@@ -258,7 +262,8 @@ any) => {
   const { t } = useTranslation()
   const [selectedValue, setSelectedValue] = useState<string>()
   const [serviceAccountUsers, setServiceAccountUsers] = useState([])
-  const [selectedTechnicalUser, setSelectedTechnicalUser] = useState('')
+  const [selectedTechnicalUser, setSelectedTechnicalUser] = useState({})
+  const [selectedCustomerLink, setSelectedCustomerLink] = useState({})
 
   useEffect(() => {
     if (fetchServiceAccountUsers)
@@ -274,9 +279,19 @@ any) => {
           i.serviceAccountId === getValues().ConnectorTechnicalUser
       )
     if (selectedConnectorTechnicalUser.length > 0) {
-      setSelectedTechnicalUser(selectedConnectorTechnicalUser[0]?.name)
+      setSelectedTechnicalUser(selectedConnectorTechnicalUser[0])
     }
   }, [serviceAccountUsers])
+
+  useEffect(() => {
+    const selectedCustomer: EdcSubscriptionsType[] = subscriptions?.filter(
+      (item: { subscriptionId: string }) =>
+        item.subscriptionId === getValues().ConnectorSubscriptionId
+    )
+    if (selectedCustomer.length > 0) {
+      setSelectedCustomerLink(selectedCustomer[0])
+    }
+  }, [subscriptions])
 
   const handleTechnicalUserSubmit = () => {
     if (
@@ -354,6 +369,12 @@ any) => {
                 )}
                 onChange={(event) => {
                   setSelectedValue(event.target.value)
+                  resetField('TechnicalUserName', {
+                    defaultValue: '',
+                  })
+                  resetField('TechnicalUserDescription', {
+                    defaultValue: '',
+                  })
                 }}
                 size="small"
                 sx={{
@@ -612,7 +633,7 @@ any) => {
                   'content.edcconnector.modal.insertform.subscription.error'
                 ),
                 items: subscriptions,
-                defaultSelectValue: {},
+                defaultSelectValue: selectedCustomerLink ?? {},
                 keyTitle: 'name',
               }}
             />

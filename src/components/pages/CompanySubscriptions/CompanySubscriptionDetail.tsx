@@ -17,37 +17,75 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { BackButton } from '@catena-x/portal-shared-components'
+import { BackButton, LogoGrayData } from '@catena-x/portal-shared-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import {
   useFetchAppDetailsQuery,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
 import { PAGES } from 'types/Constants'
-import CompanySubscriptionTechnical from './components/CompanySubscriptionTechnical'
-import CompanySubscriptionContent from './components/CompanySubscriptionContent'
-import CompanySubscriptionHeader from './components/CompanySubscriptionHeader'
-import CompanySubscriptionDocument from './components/CompanySubscriptionDocument'
-import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacyContent'
 import './CompanySubscriptions.scss'
+import {
+  useFetchServiceDetailsQuery,
+  useFetchSubscriptionServiceQuery,
+} from 'features/serviceSubscription/serviceSubscriptionApiSlice'
+import CommonService from 'services/CommonService'
+import { useState, useEffect } from 'react'
+import { getApiBase } from 'services/EnvironmentService'
+import CompanySubscriptionTechnical from './components/CompanySubscriptionTechnical'
+import CompanySubscriptionHeader from './components/CompanySubscriptionHeader'
+import CompanySubscriptionContent from './components/CompanySubscriptionContent'
+import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacyContent'
+import CompanySubscriptionDocument from './components/CompanySubscriptionDocument'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
   const { state: items } = useLocation()
   const { t } = useTranslation()
+  const id = items.row.offerId ?? ('' as string)
+  const subscriptionId = items.row.subscriptionId ?? ('' as string)
+  const { data: appData, error: appError } = useFetchSubscriptionAppQuery(
+    { appId: id, subscriptionId },
+    { skip: items.service }
+  )
+  const { data: serviceData, error: serviceError } =
+    useFetchSubscriptionServiceQuery(
+      { serviceId: id, subscriptionId },
+      { skip: items.app }
+    )
+  const { data: fetchAppsData } = useFetchAppDetailsQuery(id, {
+    skip: items.service,
+  })
+  const { data: fetchServicessData } = useFetchServiceDetailsQuery(id, {
+    skip: items.app,
+  })
+  const [docId, setDocId] = useState('')
 
-  const appId = items ? items.offerId : ''
-  const subscriptionId = items ? items.subscriptionId : ''
+  const data = items.app ? appData : serviceData
+  const fetchData = items.app ? fetchAppsData : fetchServicessData
 
-  // Prevent API call when appId does not exist
-  const { data } = appId
-    ? useFetchSubscriptionAppQuery({ appId, subscriptionId })
-    : { data: undefined }
-  const { data: fetchAppsData } = appId
-    ? useFetchAppDetailsQuery(appId)
-    : { data: undefined }
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const error: any = items.app ? appError : serviceError
+
+  useEffect(() => {
+    if (fetchData?.leadPictureId) {
+      const id = CommonService.isValidPictureId(fetchData?.leadPictureId)
+      setDocId(id)
+    }
+  }, [fetchData])
+
+  const getSrc = () => {
+    if (fetchData?.id && items.app && docId)
+      return `${getApiBase()}/api/apps/${fetchData.id}/appDocuments/${docId}`
+    if (fetchData?.id && items.service && docId)
+      return `${getApiBase()}/api/services/${
+        fetchData.id
+      }/serviceDocuments/${docId}`
+    return LogoGrayData
+  }
 
   return (
     <main className="company-subscription-detail">
@@ -61,12 +99,14 @@ export default function CompanySubscriptionDetail() {
             }}
           />
         </Box>
-        {data && fetchAppsData && (
+        {error && <Typography variant="body2">{error?.data?.title}</Typography>}
+
+        {data && fetchData && (
           <>
-            <CompanySubscriptionHeader detail={fetchAppsData} />
-            <CompanySubscriptionContent detail={fetchAppsData} />
-            <CompanySubscriptionDocument detail={fetchAppsData} />
-            <CompanySubscriptionPrivacy detail={fetchAppsData} />
+            <CompanySubscriptionHeader detail={fetchData} src={getSrc()} />
+            <CompanySubscriptionContent detail={fetchData} />
+            <CompanySubscriptionDocument detail={fetchData} />
+            <CompanySubscriptionPrivacy detail={fetchData} />
             <CompanySubscriptionTechnical detail={data} />
           </>
         )}

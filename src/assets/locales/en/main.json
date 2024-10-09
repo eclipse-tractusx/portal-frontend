@@ -449,8 +449,8 @@
       "technicalUser": "Technical User",
       "unsubscribe": "Unsubscribe",
       "table": {
-        "appIcon": "App Icon",
-        "appTitle": "App title",
+        "appIcon": "Icon",
+        "appTitle": "Title",
         "status": "Status",
         "details": "Details",
         "action": "Action"
@@ -460,7 +460,8 @@
         "active": "active",
         "inactive": "inactive",
         "showAll": "show all"
-      }
+      },
+      "searchName": "..search by company name here"
     },
     "companySubscriptionsDetail": {
       "language": "Language",
@@ -681,7 +682,7 @@
         "title": "Delete Connector",
         "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
         "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected - the technical user can be deleted if you select the checkbox below otherwise only the mapping between connector and technical user will be deleted.",
-        "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
+        "techUserCheckBoxLabel": "Yes, I want to delete the connector which will automatically also delete the mentioned technical user.",
         "techDetails": {
           "title": "Technical Details",
           "name": "Name",
@@ -959,7 +960,10 @@
           "spoc": "SPOC",
           "permission": "Permission",
           "companyServiceAccountTypeID": "Company Service Account Type",
-          "authenticationType": "Authentication Type"
+          "authenticationType": "Authentication Type",
+          "userType": "User Type",
+          "serviceEndpoint": "Service Endpoint",
+          "missingInfoHint": "This information may not be available to older users. Recreate the user to get the complete details."
         },
         "status": {
           "ACTIVE": "ACTIVE",
@@ -1439,7 +1443,7 @@
       "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
       "readMore": "Read More",
       "registerURL": "RegisterURL",
-      "search": "...search by entering the app name here.",
+      "search": "...search by entering the company name here.",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -1452,6 +1456,9 @@
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Success",
+      "pending": "Subscription is Pending",
+      "active": "Subscription is Active",
+      "process": "Subscription is in Progress",
       "tabs": {
         "request": "Request",
         "active": "Active",
@@ -2302,7 +2309,9 @@
       "alias": "Alias",
       "authMethod": "Auth Method",
       "progress": "Progress",
-      "action": "Action"
+      "action": "Action",
+      "ownership": "Ownership",
+      "userType": "Usertype"
     },
     "actions": {
       "cancel": "Cancel",

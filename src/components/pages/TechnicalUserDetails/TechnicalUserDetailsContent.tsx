@@ -22,6 +22,7 @@ import {
   Button,
   CircleProgress,
   StatusTag,
+  Tooltips,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
@@ -39,6 +40,7 @@ import SyncIcon from '@mui/icons-material/Sync'
 import { type ComponentProps, useState } from 'react'
 import { error, success } from 'services/NotifyService'
 import { ServiceAccountStatus } from 'features/admin/serviceApiSlice'
+import Info from '@mui/icons-material/Info'
 
 export const statusColorMap: Record<
   ServiceAccountStatus,
@@ -47,6 +49,39 @@ export const statusColorMap: Record<
   [ServiceAccountStatus.ACTIVE]: 'confirmed',
   [ServiceAccountStatus.PENDING]: 'pending',
   [ServiceAccountStatus.PENDING_DELETION]: 'pending',
+}
+
+const getValueWithTooltip = (value: string, tooltipTitle: string) => {
+  return (
+    value || (
+      <Tooltips
+        color="dark"
+        tooltipPlacement="bottom-start"
+        tooltipText={tooltipTitle}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            marginRight: '-38px',
+          }}
+        >
+          N/A
+          <Info
+            sx={{
+              width: '2em',
+              fontSize: '19px',
+              color: '#888888',
+              cursor: 'pointer',
+              '&:hover': {
+                color: '#0088CC',
+              },
+            }}
+          />
+        </Box>
+      </Tooltips>
+    )
+  )
 }
 
 export default function TechnicalUserDetailsContent({
@@ -60,6 +95,9 @@ export default function TechnicalUserDetailsContent({
   const [loading, setLoading] = useState<boolean>(false)
   const [newData, setNewData] = useState<ServiceAccountDetail>(data)
 
+  const missingInformationHint = t(
+    'content.usermanagement.technicalUser.detailsPage.missingInfoHint'
+  )
   const connectedData = [
     {
       key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
@@ -84,6 +122,11 @@ export default function TechnicalUserDetailsContent({
       copy: false,
     },
     {
+      key: t('content.usermanagement.technicalUser.detailsPage.userType'),
+      value: getValueWithTooltip(newData.usertype, missingInformationHint),
+      copy: false,
+    },
+    {
       key: 'ID',
       value: newData.serviceAccountId,
       copy: true,
@@ -94,6 +137,16 @@ export default function TechnicalUserDetailsContent({
       )}`,
       value: newData.name,
       copy: true,
+    },
+    {
+      key: t(
+        'content.usermanagement.technicalUser.detailsPage.serviceEndpoint'
+      ),
+      value: getValueWithTooltip(
+        newData.authenticationServiceUrl,
+        missingInformationHint
+      ),
+      copy: !!newData.authenticationServiceUrl,
     },
     {
       key: t(

@@ -24,6 +24,7 @@ import { Typography } from '@catena-x/portal-shared-components'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { type AppDetails } from 'features/apps/types'
 import './CompanySubscriptionPrivacyContent.scss'
+import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 const policyIcons = {
   [PrivacyPolicyType.COMPANY_DATA]: Apartment,
@@ -36,7 +37,7 @@ const policyIcons = {
 export default function CompanySubscriptionPrivacy({
   detail,
 }: Readonly<{
-  detail: AppDetails
+  detail: AppDetails | ServiceDetailsResponse
 }>) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.companySubscriptionsDetail.privacy',
@@ -58,7 +59,7 @@ export default function CompanySubscriptionPrivacy({
       </div>
       {detail?.privacyPolicies?.length ? (
         <div className="policies-list app-policies">
-          {detail.privacyPolicies.map((policy: PrivacyPolicyType) => (
+          {detail?.privacyPolicies?.map((policy: PrivacyPolicyType) => (
             <Typography
               variant="body2"
               className="policy-name"

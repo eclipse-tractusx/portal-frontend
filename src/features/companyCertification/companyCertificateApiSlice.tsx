@@ -45,7 +45,7 @@ export interface UploadDocumentType {
   expiryDate: string | undefined
 }
 
-export interface CertificateTypes {
+export type CertificateTypes = {
   certificateType: string
   certificateVersion: string
 }

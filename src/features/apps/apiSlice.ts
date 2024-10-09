@@ -26,7 +26,6 @@ import {
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import { PAGE_SIZE } from 'types/Constants'
 import {
   type AppDetails,
   type AppMarketplaceApp,
@@ -38,12 +37,13 @@ import {
   type SubscriptionAppRequest,
   type AgreementRequest,
   type ActiveSubscription,
-  type ActiveSubscriptionDetails,
   type FetchSubscriptionAppQueryType,
   type SubscribedActiveApps,
   StatusIdEnum,
+  type FetchSubscriptionResponseType,
   CompanySubscriptionFilterType,
 } from './types'
+import { PAGE_SIZE } from 'types/Constants'
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
@@ -149,11 +149,15 @@ export const apiSlice = createApi({
       query: () => '/api/apps/subscribed/activesubscriptions',
     }),
     fetchSubscriptionApp: builder.query<
-      ActiveSubscriptionDetails,
+      FetchSubscriptionResponseType,
       FetchSubscriptionAppQueryType
     >({
       query: (obj) =>
         `/api/apps/${obj.appId}/subscription/${obj.subscriptionId}/subscriber`,
+      transformErrorResponse: (res) => ({
+        status: res.status,
+        data: res.data,
+      }),
     }),
     unsubscribeApp: builder.mutation<void, string>({
       query: (subscriptionId) => ({
@@ -165,14 +169,16 @@ export const apiSlice = createApi({
       PaginResult<SubscribedActiveApps>,
       PaginFetchArgs
     >({
-      query: (fetchArgs) => {
-        if (
-          fetchArgs.args.statusId &&
-          fetchArgs.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
-        ) {
-          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}&statusId=${fetchArgs.args.statusId}`
-        } else {
-          return `/api/Apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+      query: (body) => {
+        const url = `/api/apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const statusId =
+          body.args.statusId &&
+          body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
+            ? `&status=${body.args.statusId}`
+            : ''
+        const name = body.args.expr ? `&name=${body.args.expr}` : ''
+        return {
+          url: `${url}${statusId}${name}`,
         }
       },
     }),
