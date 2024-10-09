@@ -72,11 +72,18 @@ export const Header = ({
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
   const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
-  const [submittedOverlayOpen, setSubmittedOverlayOpen] = useState(
-    companyData?.applicationStatus === ApplicationStatus.SUBMITTED
-  )
+  const [submittedOverlayOpen, setSubmittedOverlayOpen] =
+    useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
   const [pages, setPages] = useState<string[]>([])
+
+  useEffect(() => {
+    if (!(companyData && companyDetails)) return
+    setSubmittedOverlayOpen(
+      !companyDetails?.companyRole.includes('OPERATOR') &&
+        companyData?.applicationStatus === ApplicationStatus.SUBMITTED
+    )
+  }, [companyData, companyDetails])
 
   useEffect(() => {
     if (companyDetails?.companyRole.includes('ONBOARDING_SERVICE_PROVIDER')) {
