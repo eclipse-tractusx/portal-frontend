@@ -47,18 +47,15 @@ export default function MyCompanyInfoComponent({
     {
       key: '',
       value: (
-        <>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
           {companyDetails?.companyRole.map((item: string) => (
             <StatusTag
               key={item}
               color="label"
               label={t(`content.companyRolesUpdate.${item}`)}
-              sx={{
-                marginRight: '8px',
-              }}
             />
           ))}
-        </>
+        </Box>
       ),
     },
   ]
