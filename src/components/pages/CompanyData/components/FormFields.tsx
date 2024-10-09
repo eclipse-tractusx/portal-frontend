@@ -274,8 +274,8 @@ export const FormFields = ({
     countryCode: newForm
       ? ''
       : companyData.address.physicalPostalAddress.country,
-    countryIdentifier: newForm ? '' : identifier?.[0]?.type ?? '',
-    identifierNumber: newForm ? '' : identifier?.[0]?.value ?? '',
+    countryIdentifier: newForm ? '' : (identifier?.[0]?.type ?? ''),
+    identifierNumber: newForm ? '' : (identifier?.[0]?.value ?? ''),
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)
