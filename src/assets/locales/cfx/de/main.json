@@ -1415,7 +1415,7 @@
         "headerDescription": "Die Betatests sind derzeit nicht verfügbar. Bitte fahren Sie mit dem nächsten Schritt fort. Sobald die Tests freigegeben sind, werden wir sie mit Ihnen teilen, um app-spezifische Beta-Tests vor der offiziellen Veröffentlichung der App zu ermöglichen.",
         "betaTests": "Beta Tests",
         "technicalIntegrationTest": "Technical Integration Test",
-        "technicalIntegrationTestDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
+        "technicalIntegrationTestDescription": ""
       },
       "validateAndPublish": {
         "headerTitle": "Validieren & Einreichen",
@@ -1948,7 +1948,7 @@
       "errorDescription": "Something went wrong. Please try it later again.",
       "overlay": {
         "title": "Do you really want to change your company's role(s) within Cantena-X?",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "description": "",
         "selectedRolesTitle": "You have selected the following changes to your company's role profile:",
         "role": "Role",
         "added": "Added",
