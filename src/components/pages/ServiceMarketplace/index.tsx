@@ -56,6 +56,12 @@ dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
 
+const serviceTypeIdMapping: Record<string, ServiceTypeIdsEnum> = {
+  [ServiceTypeIdsEnum.DATASPACE_SERVICES]: ServiceTypeIdsEnum.DATASPACE_SERVICE,
+  [ServiceTypeIdsEnum.CONSULTANCY_SERVICES]:
+    ServiceTypeIdsEnum.CONSULTANCY_SERVICE,
+}
+
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -67,14 +73,7 @@ export default function ServiceMarketplace() {
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
 
-  let serviceTypeId = ''
-  if (serviceTypeMapping[selected] === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
-  } else if (
-    serviceTypeMapping[selected] === ServiceTypeIdsEnum.CONSULTANCY_SERVICES
-  ) {
-    serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
-  }
+  const serviceTypeId = serviceTypeIdMapping[serviceTypeMapping[selected]] ?? ''
 
   let sortingType = 'ReleaseDateDesc'
   if (sortOption === 'provider') {

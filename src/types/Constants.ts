@@ -247,9 +247,7 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   // en
   'Dataspace Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
   'Consultancy Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
-  'All Services': ServiceTypeIdsEnum.ALL_SERVICES,
   // de
   'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
   'Beratungs Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
-  'Alle Services': ServiceTypeIdsEnum.ALL_SERVICES,
 }
