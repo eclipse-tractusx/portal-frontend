@@ -472,7 +472,12 @@
         "inactive": "Inactive",
         "showAll": "Show All"
       },
-      "searchName": "..search by company name here"
+      "app": {
+        "name": "..search by app name here"
+      },
+      "service": {
+        "name": "..search by service name here"
+      }
     },
     "datamanagement": {
       "message": "Contents of Data Management"
