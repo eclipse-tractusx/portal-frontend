@@ -59,19 +59,19 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       values: [
         {
           value: DefaultStatus,
-          label: 'All',
+          label: t('content.semantichub.modelTable.status.all'),
         },
         {
           value: 'RELEASED',
-          label: 'Released',
+          label: t('content.semantichub.modelTable.status.released'),
         },
         {
           value: 'DRAFT',
-          label: 'Draft',
+          label: t('content.semantichub.modelTable.status.draft'),
         },
         {
           value: 'DEPRECATED',
-          label: 'Deprecated',
+          label: t('content.semantichub.modelTable.status.deprecated'),
         },
       ],
     },
