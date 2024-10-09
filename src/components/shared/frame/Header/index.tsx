@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Trans, useTranslation } from 'react-i18next'
@@ -49,6 +49,8 @@ import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './Header.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { PAGES } from 'types/Constants'
 
 export const Header = ({
   main,
@@ -69,11 +71,31 @@ export const Header = ({
 
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
-
-  const [submittedOverlayOpen, setSubmittedOverlayOpen] = useState(
-    companyData?.applicationStatus === ApplicationStatus.SUBMITTED
-  )
+  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
+  const [submittedOverlayOpen, setSubmittedOverlayOpen] =
+    useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
+  const [pages, setPages] = useState<string[]>([])
+
+  useEffect(() => {
+    if (!(companyData && companyDetails)) return
+    setSubmittedOverlayOpen(
+      !companyDetails?.companyRole.includes('OPERATOR') &&
+        companyData?.applicationStatus === ApplicationStatus.SUBMITTED
+    )
+  }, [companyData, companyDetails])
+
+  useEffect(() => {
+    if (companyDetails?.companyRole.includes('ONBOARDING_SERVICE_PROVIDER')) {
+      setPages(user)
+    } else {
+      setPages(
+        user.filter(
+          (item) => item !== PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER
+        )
+      )
+    }
+  }, [companyDetails?.companyRole])
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -187,7 +209,7 @@ export const Header = ({
             >
               {t('pages.help')}
             </Button>
-            <UserInfo pages={user} />
+            <UserInfo pages={pages} />
           </div>
         </MainNavigation>
       </header>

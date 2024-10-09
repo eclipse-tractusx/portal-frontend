@@ -220,7 +220,7 @@ export default function CompanySubscriptions() {
         fetchHook={query}
         fetchHookArgs={fetchHookArgs}
         fetchHookRefresh={refresh}
-        getRowId={(row: { [key: string]: string }) => row.offerId}
+        getRowId={(row: { [key: string]: string }) => row.subscriptionId}
         columns={companySubscriptionsCols}
       />
     </div>
