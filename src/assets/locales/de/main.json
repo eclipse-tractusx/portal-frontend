@@ -1455,9 +1455,9 @@
       "recommendations": "Recommendations",
       "allServices": "All Services",
       "tabs": {
-        "all": "Alle Dienstleistungen",
-        "dataspaceService": "Datenraumdienste",
-        "consultancyService": "Beratungsservice"
+        "all": "Alle Services",
+        "dataspaceService": "Datenraum Services",
+        "consultancyService": "Beratungs Services"
       },
       "sortOptions": {
         "new": "Newest First",
