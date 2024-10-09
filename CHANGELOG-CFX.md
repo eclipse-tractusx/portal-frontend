@@ -153,6 +153,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App Release Process**
 
   - Fixed UI/UX issues. [PM2-509](https://cofinity-x.atlassian.net/browse/PM2-509)
+  - Fixed back button issue on first step [PM2-1458](https://cofinity-x.atlassian.net/browse/PM2-1458)
 
 - **App Details**
 - Removed dummy text from the App Detail. [PM2-1024](https://cofinity-x.atlassian.net/browse/PM2-1024)
