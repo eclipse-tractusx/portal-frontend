@@ -178,7 +178,15 @@ export default function SubscriptionElements({
     subscription: CompanySubscriptionData
   ) => {
     if (subscription.offerSubscriptionStatus === SubscriptionStatus.ACTIVE) {
-      return <AddTaskIcon className="statusIcon active" />
+      return (
+        <Tooltips
+          color="dark"
+          tooltipPlacement="top-start"
+          tooltipText={t('content.appSubscription.active')}
+        >
+          <AddTaskIcon className="statusIcon active" />
+        </Tooltips>
+      )
     } else if (
       subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
     ) {
@@ -211,7 +219,13 @@ export default function SubscriptionElements({
                     })
               }}
             />
-            <HistoryIcon className="statusIcon pending" />
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.pending')}
+            >
+              <HistoryIcon className="statusIcon pending" />
+            </Tooltips>
           </>
         )
       } else if (
@@ -226,16 +240,28 @@ export default function SubscriptionElements({
               variant="filled"
               onClick={() => handleActivate(subscription.subscriptionId)}
             />
-            <HistoryIcon className="statusIcon pending" />
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.pending')}
+            >
+              <HistoryIcon className="statusIcon pending" />
+            </Tooltips>
           </>
         )
       } else {
         return (
-          <img
-            src={`${getAssetBase()}/images/icons/process.svg`}
-            className="statusIcon"
-            alt="subscription process"
-          />
+          <Tooltips
+            color="dark"
+            tooltipPlacement="top-start"
+            tooltipText={t('content.appSubscription.process')}
+          >
+            <img
+              src={`${getAssetBase()}/images/icons/process.svg`}
+              className="statusIcon"
+              alt="subscription process"
+            />
+          </Tooltips>
         )
       }
     } else {
