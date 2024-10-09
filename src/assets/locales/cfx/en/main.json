@@ -345,6 +345,14 @@
         "uploadSuccess": "Model successfully uploaded.",
         "deleteSuccess": "Model successfully deleted."
       },
+      "modelTable": {
+        "status": {
+          "all": "All",
+          "released": "Released",
+          "draft": "Draft",
+          "deprecated": "Deprecated"
+        }
+      },
       "table": {
         "title": "Semantic Data Models",
         "searchfielddefaulttext": "Search by name",

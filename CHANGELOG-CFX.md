@@ -96,7 +96,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Technical Setup**
 
-  - Technical Ssetup Pages: Technical User Management, Identity Provider, Connector registrsation and Semantic Hub UI/UX and translation changes. [PM2-825](https://cofinity-x.atlassian.net/browse/PM2-825)
+  - Technical Setup Pages: Technical User Management, Identity Provider, Connector registrsation and Semantic Hub UI/UX and translation changes. [PM2-825](https://cofinity-x.atlassian.net/browse/PM2-825)
 
 - **App & Service Subscription**
 

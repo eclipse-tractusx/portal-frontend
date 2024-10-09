@@ -346,6 +346,14 @@
         "uploadSuccess": "Modell wurde erfolgreich hochgeladen.",
         "deleteSuccess": "Modell wurde erfolgreich gelöscht."
       },
+      "modelTable": {
+        "status": {
+          "all": "Alle",
+          "released": "Freigegeben",
+          "draft": "Entwurf",
+          "deprecated": "Veraltet"
+        }
+      },
       "table": {
         "title": "Semantische Datenmodelle",
         "searchfielddefaulttext": "Suche mit Name",
