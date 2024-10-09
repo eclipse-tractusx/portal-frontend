@@ -240,3 +240,5 @@ export enum HINTS {
   COMING_SOON = 'coming_soon',
   NEW = 'new',
 }
+
+export const CONVERT_TO_MB = 1048576
