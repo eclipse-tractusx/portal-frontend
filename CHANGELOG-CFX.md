@@ -112,6 +112,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Activate OSP management page [PM2-1399s](https://cofinity-x.atlassian.net/browse/PM2-1399)
 
+- **Connector Management**
+  - CHERRY PICK Fixed Managed connector detail overlay issue [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
+
 ## 2.0.0-cfx-2
 
 ### Bug Fixes
