@@ -34,7 +34,6 @@ export enum ServiceTypeIdsEnum {
   DATASPACE_SERVICE = 'DATASPACE_SERVICE',
   DATASPACE_SERVICES = 'Dataspace Services',
   CONSULTANCY_SERVICES = 'Consultancy Services',
-  ALL_SERVICES = 'All Services',
 }
 
 export enum ServiceDeactivateEnum {
