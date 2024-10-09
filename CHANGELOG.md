@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **File Upload**:
+  - changed error text of uploaded file from Byte to MB [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1185)
+
 ## 2.3.0-alpha.2
 
 ### Change
@@ -162,9 +165,6 @@
 - removed unnecessary condition in semantic hub page's table [#979](https://github.com/eclipse-tractusx/portal-frontend/pull/979)
 - fixed unchanged text of button when user requests subscription [#985](https://github.com/eclipse-tractusx/portal-frontend/pull/985)
 - fixed height for "Admin Service Detail" page content [#1001](https://github.com/eclipse-tractusx/portal-frontend/pull/1001)
-
-- **Display Uplaoded file error text in MB**:
-  - Fixed error text of uplaoded file from Byte to MB [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1185)
 
 ### Known Knowns
 
