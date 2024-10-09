@@ -50,6 +50,7 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
+import { serviceTypeMapping } from 'types/Constants'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -60,15 +61,18 @@ export default function ServiceMarketplace() {
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('All Services')
+  const [selected, setSelected] = useState<string>(
+    t('content.serviceMarketplace.tabs.all')
+  )
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
 
   let serviceTypeId = ''
-
-  if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
+  if (serviceTypeMapping[selected] === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
     serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
-  } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
+  } else if (
+    serviceTypeMapping[selected] === ServiceTypeIdsEnum.CONSULTANCY_SERVICES
+  ) {
     serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
   }
 
