@@ -122,6 +122,8 @@
 - **Technical User Management**
   - enhanced technical user details [#1030](https://github.com/eclipse-tractusx/portal-frontend/pull/1030), [#1093](https://github.com/eclipse-tractusx/portal-frontend/pull/1093)
   - added Usertype column to technical user management list [#1090](https://github.com/eclipse-tractusx/portal-frontend/pull/1090)
+- **Numeric and Special Characters for Search in AppOverview**
+  - updated the regex for search validation[#1179] (https://github.com/eclipse-tractusx/portal-frontend/pull/1179)
 
 ### Change
 
