@@ -65,7 +65,6 @@ import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
 import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
-import { PAGES } from 'types/cfx/Constants'
 
 type FormDataType = {
   title: string
@@ -521,7 +520,7 @@ export default function OfferCard() {
           setServiceCardSnackbar(false)
         }}
         onBackIconClick={() => {
-          navigate(`/${PAGES.SERVICE_OVERVIEW}`)
+          navigate(-1)
         }}
         // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
