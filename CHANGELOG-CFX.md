@@ -77,7 +77,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Your Apps**
   - Fixed UI as per the design [#PM2-1459](https://cofinity-x.atlassian.net/browse/PM2-1459)
 - **Placeholder text for App and Service Subscription**
+
   - Replaced relevent text for search for app and service in company subscription [#191](https://cofinity-x.atlassian.net/browse/PM2-1535?atlOrigin=eyJpIjoiN2VhNzc5ZWE0YzE0NDIwZjliZjBmMDZkMTk3YWE5ZjgiLCJwIjoiaiJ9)
+
+- **Your Services**
+- Add new services title make it center [PM2-1459](https://cofinity-x.atlassian.net/browse/PM2-1459)
 
 ### Change
 
