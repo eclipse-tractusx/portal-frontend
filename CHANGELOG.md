@@ -44,7 +44,11 @@
   ### Bugfixes
 
 - **Service Release Process**
+
   - Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
+
+- **Service Management**
+  - Service Management | 400 Bad Request when Clicking 'Load More' Button [#1168](https://github.com/eclipse-tractusx/portal-frontend/issues/1168)
 
 ### Bugfixes
 
@@ -168,8 +172,6 @@
 
   - fixed 400 Bad Request error due to search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/pull/1058)
   - added load more button app overview [#1009](https://github.com/eclipse-tractusx/portal-frontend/pull/1009)
-- **Service Management**
-  - Service Management | 400 Bad Request when Clicking 'Load More' Button [#1168](https://github.com/eclipse-tractusx/portal-frontend/issues/1168)
 
 - **Search Translation for App and Service Subsciption**
   - fixed DE translation for search input in App and Service Subsciption [#1211](https://github.com/eclipse-tractusx/portal-frontend/pull/1211)
