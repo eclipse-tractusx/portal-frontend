@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal, Typography } from '@catena-x/portal-shared-components'
+import {
+  CardHorizontal,
+  LogoGrayData,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -26,7 +30,8 @@ import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice
 import './ServiceMarketplace.scss'
 import { useCallback } from 'react'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
-import { getApiBase, getAssetBase } from 'services/EnvironmentService'
+import { getApiBase } from 'services/EnvironmentService'
+import { leadPictureBasePath } from 'types/Constants'
 
 export default function ServicesElements({
   services,
@@ -83,8 +88,8 @@ export default function ServicesElements({
                       imageAlt="App Card"
                       imagePath={
                         service?.leadPictureId
-                          ? `${getApiBase()}/api/administration/documents/${service.leadPictureId}`
-                          : `${getAssetBase()}/images/content/ServiceMarketplace.png`
+                          ? `${getApiBase()}/${leadPictureBasePath}/${service.leadPictureId}`
+                          : `${LogoGrayData}`
                       }
                       label={service.provider}
                       buttonText="Details"
