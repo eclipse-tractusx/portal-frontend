@@ -158,6 +158,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App Details**
 - Removed dummy text from the App Detail. [PM2-1024](https://cofinity-x.atlassian.net/browse/PM2-1024)
 
+- **App Overview**
+- Increased search delay to improve performance. [PM2-959](https://cofinity-x.atlassian.net/browse/PM2-959)
+
 - Make a consistent back button on entire website [PM2-1142](https://cofinity-x.atlassian.net/browse/PM2-1142)
 
 ## 2.0.0-cfx-1

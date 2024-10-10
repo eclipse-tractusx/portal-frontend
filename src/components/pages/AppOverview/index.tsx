@@ -174,7 +174,7 @@ export default function AppOverview() {
           setFilterItem(itemCards)
         }
         dispatch(setCurrentActiveStep())
-      }, 400),
+      }, 700),
 
     [dispatch, filterItem, group]
   )

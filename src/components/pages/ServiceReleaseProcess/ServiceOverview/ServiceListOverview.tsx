@@ -176,7 +176,7 @@ export default function ServiceListOverview() {
             statusFilter: group,
           },
         })
-      }, 400),
+      }, 700),
     [group, page]
   )
 
@@ -281,8 +281,10 @@ export default function ServiceListOverview() {
                     onCardClick={(item: CardItems) => {
                       const cardItem: CardItemsInterface = item
                       if (
-                        cardItem.status === ProvidedServiceStatusEnum.PENDING ||
-                        cardItem.status === ProvidedServiceStatusEnum.CREATED
+                        cardItem.status?.toLocaleUpperCase() ===
+                          ProvidedServiceStatusEnum.PENDING ||
+                        cardItem.status?.toLocaleUpperCase() ===
+                          ProvidedServiceStatusEnum.CREATED
                       ) {
                         dispatch(setServiceId(item.id ?? ''))
                         navigate(`/${PAGES.SERVICE_RELEASE_PROCESS}/form`)

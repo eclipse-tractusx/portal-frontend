@@ -23,7 +23,11 @@ import {
   type ImageType,
   LogoGrayData,
 } from '@catena-x/portal-shared-components'
-import type { ProvidedServiceType } from 'features/serviceManagement/apiSlice'
+import {
+  ProvidedServiceStatusEnumText,
+  type ProvidedServiceStatusEnum,
+  type ProvidedServiceType,
+} from 'features/serviceManagement/apiSlice'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import {
   type ActiveSubscription,
@@ -128,11 +132,12 @@ export const appToStatus = (apps: AppMarketplaceApp[]): AppMarketplaceApp[] => {
 }
 
 export const serviceCardStatus = (app: ProvidedServiceType) => {
-  const status = app.status?.toLocaleLowerCase() as
-    | SubscriptionStatus
+  const status = app.status.toLocaleLowerCase() as
+    | ProvidedServiceStatusEnum
     | undefined
-  const statusText = SubscriptionStatusText[app.status!] || app.status
+  const statusText = ProvidedServiceStatusEnumText[app.status!] || app.status
   const title = app.name!
+
   return {
     ...app,
     statusText,

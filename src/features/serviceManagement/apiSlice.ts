@@ -113,6 +113,14 @@ export enum ProvidedServiceStatusEnum {
   IN_REVIEW = 'IN_REVIEW',
 }
 
+export enum ProvidedServiceStatusEnumText {
+  CREATED = 'Created',
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
+  PENDING = 'Pending',
+  IN_REVIEW = 'In Review',
+}
+
 export interface ProvidedServiceType {
   id: string
   name: string
