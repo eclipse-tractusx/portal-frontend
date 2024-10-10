@@ -1967,7 +1967,23 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
-
+// technical user 
+.technical-user {
+  &__form-input {
+    .form-input {
+      &:first-child {
+        .MuiInputBase-input.MuiFilledInput-input.MuiInputBase-inputMultiline {
+          height: 24px !important;
+        }
+      }
+      &:nth-child(2) {
+        .MuiInputBase-input.MuiFilledInput-input.MuiInputBase-inputMultiline {
+          height: 50px !important;
+        }
+      }
+    }
+  }
+}
 // app overview
 .appOverview-app .app-main .app-detail {
   .cx-card__add-service--title,

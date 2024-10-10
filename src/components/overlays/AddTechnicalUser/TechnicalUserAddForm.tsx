@@ -553,7 +553,7 @@ export const TechnicalUserAddForm = ({
   const { t } = useTranslation()
 
   return (
-    <Box sx={{ marginBottom: '23px' }}>
+    <Box className={'technical-user__form-input'} sx={{ marginBottom: '23px' }}>
       <form onSubmit={handleSubmit}>
         <div className="form-input">
           <TechnicalUserAddFormTextfield
