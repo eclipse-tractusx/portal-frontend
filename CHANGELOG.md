@@ -7,7 +7,7 @@
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 - **Header**
-  - moved company roles into enum
+  - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
 
 ## 2.3.0-alpha.2
 
