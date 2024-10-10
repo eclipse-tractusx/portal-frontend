@@ -551,8 +551,8 @@
       "details": {
         "longDescription": "Long Description",
         "price": "Price:",
-        "language": "Language:",
-        "useCase": "Use Case:",
+        "language": "Languages:",
+        "useCase": "Use cases:",
         "title": "Submitted App Details",
         "description": "The app {appName} is already submitted for review by the network administrator to publish the app on the market place. Till the review is finished, you can not do any changes to the app"
       },
@@ -1396,9 +1396,9 @@
         "headerTitle": "Validate & Submit",
         "headerDescription": "Below you can find a summary of all your app registration inputs. Please check your entered data carefully before sending the app for release. We will validate your app registration shortly after the app submission.",
         "appDetails": "App Details",
-        "language": "Language :  ",
-        "useCase": "Use Case :  ",
-        "price": "Price :  ",
+        "language": "Languages: ",
+        "useCase": "Use cases: ",
+        "price": "Price: ",
         "conformityDocument": "Conformity Document",
         "documents": "Documents",
         "providerInformation": "Provider Information",
