@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { useDispatch } from 'react-redux'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  Typography,
+  LogoGrayData,
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
@@ -34,7 +38,6 @@ import {
 } from 'features/serviceManagement/apiSlice'
 import { userHasPortalRole } from 'services/AccessService'
 import { useEffect, useState } from 'react'
-import { getAssetBase } from 'services/EnvironmentService'
 
 export default function MarketplaceHeader({
   item,
@@ -66,7 +69,7 @@ export default function MarketplaceHeader({
   useEffect(() => {
     if (item?.leadPictureId) {
       setLeadingImg()
-    } else setLeadImg(`${getAssetBase()}/images/content/ServiceMarketplace.png`)
+    } else setLeadImg(LogoGrayData)
   }, [item])
 
   const getSubscribeBtn = () => {
