@@ -7,6 +7,11 @@
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 
+### Bugfixes
+
+- **Service Management**
+  - Service Management | 400 Bad Request when Clicking 'Load More' Button [#1168](https://github.com/eclipse-tractusx/portal-frontend/issues/1168)
+
 ## 2.3.0-alpha.2
 
 ### Change
