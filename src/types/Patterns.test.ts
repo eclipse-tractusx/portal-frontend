@@ -29,6 +29,7 @@ import {
   isCountryCode,
   isClientID,
   isPersonName,
+  isValidAppOverviewSearch,
 } from './Patterns'
 
 const TESTDATA = {
@@ -214,6 +215,10 @@ const TESTDATA = {
     valid: ['sa-12', 'JSSS', 'Julia12'],
     invalid: ['&^%#@', '!', 'hash &*^#$'],
   },
+  appOverview: {
+    valid: ['sa-12', '1234', 'Test123!@#'],
+    invalid: ['🚀 Rocket!', 'Invalid\nNewLine'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -302,6 +307,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.CLIENTID.invalid.forEach((expr) => {
       expect(isClientID(expr)).toBe(false)
+    })
+  })
+  it('validate appoverview search', () => {
+    TESTDATA.appOverview.valid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(true)
+    })
+    TESTDATA.appOverview.invalid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(false)
     })
   })
 })
