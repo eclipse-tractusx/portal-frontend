@@ -91,7 +91,7 @@ export const Header = ({
     } else {
       setPages(
         user.filter(
-          (item) => item !== PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER
+          (item) => item !== PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT
         )
       )
     }
