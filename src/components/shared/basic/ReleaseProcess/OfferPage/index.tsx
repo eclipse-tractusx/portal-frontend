@@ -61,6 +61,7 @@ type FormDataType = {
   images: []
   providerHomePage: string
   providerContactEmail: string
+  providerPhoneContact: string
 }
 
 export default function OfferPage({
@@ -117,6 +118,7 @@ export default function OfferPage({
       images: fetchServiceStatus?.documents?.ADDITIONAL_DETAILS ?? [],
       providerHomePage: fetchServiceStatus?.providerUri ?? '',
       providerContactEmail: fetchServiceStatus?.contactEmail ?? '',
+      providerPhoneContact: fetchServiceStatus?.contactNumber ?? '',
     }
   }, [fetchServiceStatus])
 
@@ -215,6 +217,7 @@ export default function OfferPage({
       'longDescriptionDE',
       'providerHomePage',
       'providerContactEmail',
+      'providerPhoneContact',
     ])
     if (validateFields) {
       setLoading(true)
@@ -249,6 +252,7 @@ export default function OfferPage({
       price: '',
       providerUri: data.providerHomePage ?? '',
       contactEmail: data.providerContactEmail ?? '',
+      contactNumber: data.providerPhoneContact ?? '',
       leadPictureUri: fetchServiceStatus?.leadPictureUri,
     }
 
@@ -390,6 +394,20 @@ export default function OfferPage({
             label={t('step2.providerContactEmail')}
             pattern={Patterns.MAIL}
             ruleMessage={t('step2.pleaseEnterValidEmail')}
+          />
+        </div>
+
+        <div className="form-field">
+          <ProviderConnectorField
+            {...{
+              control,
+              trigger,
+              errors,
+            }}
+            name="providerPhoneContact"
+            label={t('step2.providerContactPhone')}
+            pattern={Patterns.PHONE}
+            ruleMessage={t('step2.pleaseEnterValidPhone')}
           />
         </div>
       </form>
