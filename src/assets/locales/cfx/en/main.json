@@ -534,10 +534,10 @@
       },
       "sortOptions": {
         "deactivate": "Deactivate",
-        "changeImage": "Change Image",
-        "changeDescription": "Change Description",
+        "changeImage": "Change cover image",
+        "changeDescription": "Change Descriptions",
         "addRoles": "Add Roles",
-        "changeDocuments": "Change Document(s)",
+        "changeDocuments": "Change images and documents",
         "viewDetails": "View Details",
         "activate": "Activate",
         "delete": "Delete"
