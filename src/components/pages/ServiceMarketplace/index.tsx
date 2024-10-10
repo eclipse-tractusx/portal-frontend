@@ -78,7 +78,7 @@ export default function ServiceMarketplace() {
   const [argsData, setArgsData] = useState<{
     page: number
     serviceType: ServiceTypeIdsEnum | ''
-    sortingType: string
+    sortingType: SORTING_TYPE
   }>({
     page: 0,
     serviceType: serviceTypeId,
