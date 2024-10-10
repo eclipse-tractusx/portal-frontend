@@ -21,16 +21,18 @@
 import {
   CardHorizontal,
   CircleProgress,
+  LogoGrayData,
 } from '@catena-x/portal-shared-components'
 import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
-import { getApiBase, getAssetBase } from 'services/EnvironmentService'
+import { getApiBase } from 'services/EnvironmentService'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { leadPictureBasePath } from 'types/Constants'
 
 export default function RecommendedServices({
   services,
@@ -75,8 +77,8 @@ export default function RecommendedServices({
                 imageAlt="App Card"
                 imagePath={
                   service?.leadPictureId
-                    ? `${getApiBase()}/api/administration/documents/${service.leadPictureId}`
-                    : `${getAssetBase()}/images/content/ServiceMarketplace.png`
+                    ? `${getApiBase()}/${leadPictureBasePath}/${service.leadPictureId}`
+                    : `${LogoGrayData}`
                 }
                 label={service.provider}
                 buttonText="Details"
