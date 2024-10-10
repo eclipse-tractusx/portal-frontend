@@ -65,6 +65,7 @@ import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
 import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { PAGES } from 'types/cfx/Constants'
 
 type FormDataType = {
   title: string
@@ -383,9 +384,6 @@ export default function OfferCard() {
                 minLength: `${t('serviceReleaseForm.minimum')} 3 ${t(
                   'serviceReleaseForm.charactersRequired'
                 )}`,
-                pattern: `${t(
-                  'serviceReleaseForm.validCharactersIncludes'
-                )} A-Za-z0-9.:_- @&`,
                 maxLength: `${t('serviceReleaseForm.maximum')} 20 ${t(
                   'serviceReleaseForm.charactersAllowed'
                 )}`,
@@ -469,9 +467,6 @@ export default function OfferCard() {
                         minLength: `${t('serviceReleaseForm.minimum')} 10 ${t(
                           'serviceReleaseForm.charactersRequired'
                         )}`,
-                        pattern: `${t(
-                          'serviceReleaseForm.validCharactersIncludes'
-                        )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'}`,
                         maxLength: `${t('serviceReleaseForm.maximum')} 120 ${t(
                           'serviceReleaseForm.charactersAllowed'
                         )}`,
@@ -520,7 +515,7 @@ export default function OfferCard() {
           setServiceCardSnackbar(false)
         }}
         onBackIconClick={() => {
-          navigate(-1)
+          navigate(`/${PAGES.SERVICE_OVERVIEW}`)
         }}
         // Add an ESLint exception until there is a solution
         // eslint-disable-next-line
