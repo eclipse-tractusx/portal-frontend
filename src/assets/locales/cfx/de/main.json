@@ -1407,7 +1407,7 @@
         "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
         "template": "Vorlage",
         "getHelp": "Get Help",
-        "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
+        "deleteOverlayContent": "Das Löschen kann nicht rückgängig gemacht werden. Möchten Sie dennoch fortfahren?",
         "roleUploadIsMandatory": "Role upload ist obligatorisch",
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
