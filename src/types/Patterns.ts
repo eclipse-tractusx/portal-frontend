@@ -76,7 +76,7 @@ export const Patterns = {
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
   },
   offerCard: {
-    serviceName: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{2,200}$/,
+    serviceName: /^.{1,120}$/,
     serviceType: /^([A-Za-z])$/,
     shortDescription: /^(?! *$).{10,120}$/,
   },
