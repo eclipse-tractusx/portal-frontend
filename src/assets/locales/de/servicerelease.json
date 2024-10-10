@@ -49,9 +49,11 @@
     "note": "Info:",
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
-    "providerContactEmail": "Customer Contact E-Mail",
+    "providerContactEmail": "Kundenkontakt E-Mail",
+    "providerContactPhone": "Kundenkontakt Telefon",
     "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://catena-x.net",
-    "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an"
+    "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an",
+    "pleaseEnterValidPhone": "Bitte geben Sie eine gültige Kundenkontakt Telefonnummer ein"
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
@@ -78,7 +80,10 @@
     "longDescriptionTitleEN": "[Long Description - EN] ",
     "longDescriptionTitleDE": "[Long Description - DE] ",
     "conformityDocument": "Conformity Document",
-    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "website": "Webseite",
+    "email": "E-Mail",
+    "phone": "Telefon"
   },
   "serviceReleaseForm": {
     "headerTitle": "Create Service",

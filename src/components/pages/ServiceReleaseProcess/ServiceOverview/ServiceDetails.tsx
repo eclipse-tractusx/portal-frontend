@@ -282,10 +282,15 @@ export default function ServiceDetails() {
               </Typography>
               <StaticTable
                 data={{
-                  head: ['Homepage', 'E-Mail'],
+                  head: [
+                    t('step4.website'),
+                    t('step4.email'),
+                    t('step4.phone'),
+                  ],
                   body: [
                     [fetchServiceStatus?.providerUri],
                     [fetchServiceStatus?.contactEmail],
+                    [fetchServiceStatus?.contactNumber],
                   ],
                 }}
                 horizontal={true}
