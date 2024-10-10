@@ -465,7 +465,7 @@
         "inactive": "inaktiv",
         "showAll": "Alles anzeigen"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",
@@ -2259,7 +2259,9 @@
       "clientSecret": {
         "name": "Client-Geheimnis",
         "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
-      }
+      },
+      "ospIdentityProvider": "OSP-Identitätsanbieter (IDPs)",
+      "search": "Geben Sie einen Namen oder Alias ​​ein, um zu suchen"
     }
   },
   "navigation": {

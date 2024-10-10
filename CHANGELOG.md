@@ -4,6 +4,8 @@
 
 ### Change
 
+- **Onboarding Service Provider Management**
+  - Added search to ospm table [#1132](https://github.com/eclipse-tractusx/portal-frontend/pull/1132)
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 
