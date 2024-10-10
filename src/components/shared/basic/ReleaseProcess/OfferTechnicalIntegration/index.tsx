@@ -72,7 +72,11 @@ export default function OfferTechnicalIntegration() {
   )
 
   useEffect(() => {
-    setServiceTechUserProfiles(userProfiles)
+    // Set default value as "None" when user profiles don't have any roles
+    // Initially, value is "None"
+    setServiceTechUserProfiles(
+      userProfiles.length > 0 ? userProfiles : [serviceTechnicalUserNone]
+    )
   }, [userProfiles])
 
   const defaultValues = {
