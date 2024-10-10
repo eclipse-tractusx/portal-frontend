@@ -7,6 +7,11 @@
 - **Injection of environment variables to Docker image**
   - refactored to a more readable and typo resistant implementation using sh - bash and jq are no longer required in image [#914](https://github.com/eclipse-tractusx/portal-frontend/pull/914)
 
+### Change
+
+- **Service Subscriptions**
+  - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+
 ## 2.3.0-alpha.2
 
 ### Change
