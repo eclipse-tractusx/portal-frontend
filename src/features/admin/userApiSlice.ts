@@ -85,6 +85,8 @@ export type AdminData = {
 export enum CompanyRoleEnum {
   APP_PROVIDER = 'APP_PROVIDER',
   SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+  ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
+  OPERATOR = 'OPERATOR',
 }
 
 export interface CompanyDetails {
