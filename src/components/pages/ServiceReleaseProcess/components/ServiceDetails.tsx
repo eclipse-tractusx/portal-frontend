@@ -261,10 +261,6 @@ export default function ServiceDetails() {
               <Typography variant="h4" sx={{ mb: 4 }}>
                 {t('step4.providerInformation')}
               </Typography>
-
-              {/* "website": "Webseite",
-        "email": "E-Mail",
-        "phone": "Telefon" */}
               <StaticTable
                 data={{
                   head: [
@@ -275,7 +271,8 @@ export default function ServiceDetails() {
                   body: [
                     [fetchServiceStatus?.providerUri],
                     [fetchServiceStatus?.contactEmail],
-                    [fetchServiceStatus?.contactNumber],
+                    // TODO: contactNumber is null atm and causing build failure. Once BE resolve the issue then will un-comment this line
+                    // [fetchServiceStatus?.contactNumber],
                   ],
                 }}
                 horizontal={true}
