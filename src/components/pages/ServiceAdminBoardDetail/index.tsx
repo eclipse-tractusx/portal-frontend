@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import {
+  BackButton,
   Button,
   StaticTable,
   Typography,
@@ -118,15 +119,13 @@ export default function ServiceAdminBoardDetail() {
   return (
     <div className="service-admin-board-detail">
       <Box className="service-back">
-        <Button
-          color="secondary"
-          size="small"
-          onClick={() => {
+        <BackButton
+          backButtonLabel={t('adminboardDetail.action.back')}
+          backButtonVariant="outlined"
+          onBackButtonClick={() => {
             navigate(`/${PAGES.SERVICE_ADMIN_BOARD}`)
           }}
-        >
-          {t('adminboardDetail.action.back')}
-        </Button>
+        />
       </Box>
       {serviceData && (
         <Box className="service-content">
