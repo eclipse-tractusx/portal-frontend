@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### New Features
 
+- **Business parter invite**
+
+  - CHERRY-PICK allow all language characters symbols [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
+
 - **App subscription**
 
   - CHERRY-PICK add external service details in subscription management overlay [#1028](https://github.com/eclipse-tractusx/portal-frontend/pull/1028)
