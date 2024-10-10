@@ -91,8 +91,14 @@ const TESTDATA = {
     ],
   },
   PHONE: {
-    valid: ['+1 1234567890', '015208561328', '00491522345678'],
-    invalid: ['12345', '12345123aa'],
+    valid: [
+      '+1 123-456-7890',
+      '+49 152 08561111',
+      '+1 (123) 456-7890',
+      '0152 08561111',
+      '015208561111',
+    ],
+    invalid: ['+49 1520856', '+1 (12345) 7890', '+49 1234 567890123', '12345'],
   },
   DOMAIN: {
     valid: [
@@ -413,6 +419,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.appOverview.invalid.forEach((expr) => {
       expect(isValidAppOverviewSearch(expr)).toBe(false)
+    })
+  })
+  it('validate phone number', () => {
+    TESTDATA.PHONE.valid.forEach((expr) => {
+      expect(isValidPhone(expr)).toBe(true)
+    })
+    TESTDATA.CLIENTID.invalid.forEach((expr) => {
+      expect(isValidPhone(expr)).toBe(false)
     })
   })
 })
