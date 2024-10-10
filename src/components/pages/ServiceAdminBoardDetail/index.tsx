@@ -266,6 +266,7 @@ export default function ServiceAdminBoardDetail() {
               head: [
                 t('adminboardDetail.provider.homepage'),
                 t('adminboardDetail.provider.email'),
+                t('adminboardDetail.provider.phone'),
               ],
               body: [
                 [
@@ -274,6 +275,8 @@ export default function ServiceAdminBoardDetail() {
                     : serviceData.providerUri,
                 ],
                 [serviceData?.contactEmail],
+                // TODO: contactNumber is null atm and causing build failure. Once BE resolve the issue then will un-comment this line
+                // [serviceData?.contactNumber],
               ],
             }}
             horizontal={true}

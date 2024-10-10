@@ -264,7 +264,8 @@
       "heading": "Provider Information",
       "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
       "homepage": "Homepage",
-      "email": "E-Mail"
+      "email": "E-Mail",
+      "phone": "Phone"
     },
     "technicalUserSetup": {
       "heading": "Technical User Setup",
