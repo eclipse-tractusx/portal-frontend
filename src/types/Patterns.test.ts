@@ -29,6 +29,7 @@ import {
   isCountryCode,
   isClientID,
   isPersonName,
+  isValidPhone,
 } from './Patterns'
 
 const TESTDATA = {
@@ -66,6 +67,10 @@ const TESTDATA = {
       'not,a@valid@address.com',
       '@mickey.mouse',
     ],
+  },
+  PHONE: {
+    valid: ['+1 1234567890', '015208561328', '00491522345678'],
+    invalid: ['12345', '12345123aa'],
   },
   DOMAIN: {
     valid: [
@@ -302,6 +307,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.CLIENTID.invalid.forEach((expr) => {
       expect(isClientID(expr)).toBe(false)
+    })
+  })
+  it('validate phone number', () => {
+    TESTDATA.PHONE.valid.forEach((expr) => {
+      expect(isValidPhone(expr)).toBe(true)
+    })
+    TESTDATA.CLIENTID.invalid.forEach((expr) => {
+      expect(isValidPhone(expr)).toBe(false)
     })
   })
 })
