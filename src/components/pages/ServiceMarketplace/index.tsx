@@ -52,6 +52,7 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
+import { SORTING_TYPE } from 'types/Constants'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -71,7 +72,9 @@ export default function ServiceMarketplace() {
   const [serviceTypeId, setServiceTypeId] = useState<ServiceTypeIdsEnum | ''>(
     ''
   )
-  const [sortingType, setSortingType] = useState<string>('ReleaseDateDesc')
+  const [sortingType, setSortingType] = useState<SORTING_TYPE>(
+    SORTING_TYPE.RELEASE_DATE_DESC
+  )
   const [argsData, setArgsData] = useState<{
     page: number
     serviceType: ServiceTypeIdsEnum | ''
@@ -182,7 +185,7 @@ export default function ServiceMarketplace() {
 
   const setSortOptionFn = useCallback((value: string) => {
     if (value === 'provider') {
-      setSortingType('ProviderDesc')
+      setSortingType(SORTING_TYPE.PROVIDER_DESC)
     }
     setSortOption(value)
     setShowModal(false)
