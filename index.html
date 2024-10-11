@@ -28,9 +28,10 @@
   <body>
     <div id="app"></div>
     <script>
-
+// Do NOT change ENV attributes without changing them in scripts/inject-dynamic-env.sh as well
 const ENV = {
   REQUIRE_HTTPS_URL_PATTERN: "true",
+  CLEARINGHOUSE_CONNECT_DISABLED: "false",
   PORTAL_ASSETS_URL: "http://localhost:3000/assets",
   PORTAL_BACKEND_URL: "https://portal-backend.example.org",
   CENTRALIDP_URL: "https://centralidp.example.org/auth",

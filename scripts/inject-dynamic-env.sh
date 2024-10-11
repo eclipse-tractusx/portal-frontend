@@ -22,8 +22,11 @@
 source_file=/usr/share/nginx/html/index.html.reference
 target_file=/tmp/index.html
 
+# these environment variables should be set and match the ones in index.html
+# sequence is irrelevant
 vars=" \
 REQUIRE_HTTPS_URL_PATTERN \
+CLEARINGHOUSE_CONNECT_DISABLED \
 CENTRALIDP_URL \
 PORTAL_ASSETS_URL \
 PORTAL_BACKEND_URL \
@@ -52,4 +55,5 @@ while [ -n "$1" ]; do
   shift
 done
 
+# execute the built replace command and write to target file
 echo ${sed_command} | sh > ${target_file}
