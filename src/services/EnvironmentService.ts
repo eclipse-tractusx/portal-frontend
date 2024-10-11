@@ -19,9 +19,11 @@
 
 declare const ENV: Record<string, string>
 
-// get the value of REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
 export const getRequireHttpsUrlPattern = () =>
   ENV.REQUIRE_HTTPS_URL_PATTERN ?? 'true'
+
+export const getClearinghouseConnectDisabled = () =>
+  ENV.CLEARINGHOUSE_CONNECT_DISABLED ?? 'false'
 
 export const getRealm = () => ENV.REALM ?? ''
 
@@ -55,11 +57,9 @@ export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 
 export const getSSICredentialBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
 
-export const getClearinghouseConnectDisabled = () =>
-  ENV.CLEARINGHOUSE_CONNECT_DISABLED === 'false'
-
 const EnvironmentService = {
   getRequireHttpsUrlPattern,
+  getClearinghouseConnectDisabled,
   getRealm,
   getClientId,
   getClientIdRegistration,
@@ -75,7 +75,6 @@ const EnvironmentService = {
   getSemanticApiBase,
   getMiwBase,
   getSSICredentialBase,
-  getClearinghouseConnectDisabled,
 }
 
 export default EnvironmentService
