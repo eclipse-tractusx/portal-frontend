@@ -33,7 +33,7 @@ import type { TenantUser } from 'features/admin/userApiSlice'
 import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
-import Patterns from 'types/Patterns'
+import { isSearchUserEmail } from 'types/Patterns'
 
 interface FetchHookArgsType {
   appId?: string
@@ -88,7 +88,7 @@ export const UserList = ({
   const searchInputData = useSelector(appManagementSelector)
 
   const validateSearchText = (expr: string) => {
-    const validateExpr = Patterns.EMAIL_SEARCH.test(expr)
+    const validateExpr = isSearchUserEmail(expr)
     if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
     return validateExpr
   }
