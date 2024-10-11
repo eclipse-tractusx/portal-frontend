@@ -46,7 +46,7 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row?.bpnl ?? '',
+      valueGetter: ({ row }: { row: BusinessPartner }) => row?.bpn ?? '',
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
@@ -72,8 +72,8 @@ export const PartnerNetworksTableColumns = (
       flex: 1.5,
       sortable: false,
       valueGetter: ({ row }: { row: BusinessPartner }) =>
-        row?.legalAddress?.physicalPostalAddress?.country?.name ??
-        row?.legalAddress?.alternativePostalAddress?.country?.name ??
+        row?.legalEntityAddress?.physicalPostalAddress?.country?.name ??
+        row?.legalEntityAddress?.alternativePostalAddress?.country?.name ??
         '',
     },
     {
@@ -83,12 +83,12 @@ export const PartnerNetworksTableColumns = (
       flex: 0.8,
       align: 'center',
       renderCell: (params) =>
-        params?.row?.bpnl ? (
+        params?.row?.bpn ? (
           <IconButton
             color="secondary"
             size="small"
             style={{ alignSelf: 'center' }}
-            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpnl))}
+            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpn))}
           >
             <ArrowForwardIcon />
           </IconButton>

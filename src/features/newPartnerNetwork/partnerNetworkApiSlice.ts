@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBpdmPoolQuery } from 'utils/rtkUtil'
+import { apiBaseQuery } from 'utils/rtkUtil'
 import type {
   PaginResult,
   PaginFetchArgs,
@@ -28,20 +28,20 @@ import type { BusinessPartner } from './types'
 import { isBPN } from 'types/Patterns'
 
 export interface BusinessPartnerRequest {
-  bpnLs: string[]
+  bpnls: string[]
   legalName: string
 }
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/partnerNetwork',
-  baseQuery: fetchBaseQuery(apiBpdmPoolQuery()),
+  baseQuery: fetchBaseQuery(apiBaseQuery()),
   endpoints: (builder) => ({
     fetchBusinessPartnerAddress: builder.mutation<
       PaginResult<BusinessPartner>,
       BusinessPartnerRequest
     >({
       query: (body) => ({
-        url: '/members/legal-entities/search?page=0&size=10',
+        url: '/api/administration/partnernetwork/legalEntities/search?page=0&size=10',
         method: 'POST',
         body,
       }),
@@ -54,19 +54,20 @@ export const apiSlice = createApi({
         let url = ''
         let body = {}
         if (fetchArgs.args.expr && !isBPN(fetchArgs.args.expr)) {
-          url = `/members/legal-entities/search?page=${fetchArgs.page}&size=10`
+          url = `/api/administration/partnernetwork/legalEntities/search?page=${fetchArgs.page}&size=10`
           body = {
             bpnl: [],
             legalName: fetchArgs.args.expr,
           }
         } else if (isBPN(fetchArgs.args.expr)) {
-          url = `/members/legal-entities/search?page=${fetchArgs.page}&size=10`
+          url = `/api/administration/partnernetwork/legalEntities/search?page=${fetchArgs.page}&size=10`
           body = {
             bpnl: [fetchArgs.args.expr],
             legalName: '',
           }
         } else {
-          url = `/members/legal-entities/search?page=${fetchArgs.page}&size=10`
+          url = `/api/administration/partnernetwork/legalEntities/search?page=${fetchArgs.page}&size=10`
+          body = { bpnls: [''], legalName: '' }
         }
         return {
           url,

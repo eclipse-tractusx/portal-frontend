@@ -34,9 +34,10 @@ export const addCountryAttribute = (
 ) => {
   finalObj.forEach((x: BusinessPartner) => {
     payload.forEach((y: BusinessPartnerAddressResponse) => {
-      if (x.bpnl === y.bpnLegalEntity) {
-        x.legalAddress.alternativePostalAddress = y.alternativePostalAddress
-        x.legalAddress.physicalPostalAddress = y.physicalPostalAddress
+      if (x.bpn === y.bpnLegalEntity) {
+        x.legalEntityAddress.alternativePostalAddress =
+          y.alternativePostalAddress
+        x.legalEntityAddress.physicalPostalAddress = y.physicalPostalAddress
       }
     })
   })
@@ -49,7 +50,7 @@ export const addMemberAttribute = (
 ) => {
   if (queryData) {
     finalObj.forEach((x: BusinessPartner) => {
-      x.member = queryData.includes(x.bpnl)
+      x.member = queryData.includes(x.bpn)
     })
   }
   return finalObj

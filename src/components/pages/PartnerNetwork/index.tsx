@@ -88,6 +88,7 @@ const PartnerNetwork = () => {
 
   const setCountryAttributes = (payload: PaginResult<BusinessPartner>) => {
     let finalObj = JSON.parse(JSON.stringify(payload?.content))
+
     finalObj = addCountryAttribute(
       finalObj,
       payload.content as unknown as BusinessPartnerAddressResponse[]
@@ -97,7 +98,7 @@ const PartnerNetwork = () => {
   }
 
   const fetchAndApply = async (result: string[]) => {
-    await mutationRequest({ bpnLs: result, legalName: '' })
+    await mutationRequest({ bpnls: result, legalName: '' })
       .unwrap()
       .then((payload) => {
         setCountryAttributes(payload)
@@ -139,7 +140,6 @@ const PartnerNetwork = () => {
         headerHeight={250}
         subTitleWidth={750}
       />
-
       <section id="identity-management-id">
         <Table
           autoFocus={false}
@@ -163,7 +163,7 @@ const PartnerNetwork = () => {
           searchDebounce={1000}
           title={t('content.partnernetwork.tabletitle')}
           loadLabel={t('global.actions.loadmore')}
-          getRowId={(row: { bpnl: string }) => row.bpnl ?? ''}
+          getRowId={(row: { bpn: string }) => row.bpn ?? ''}
           columns={columns}
           loading={loading}
           rows={allItems}

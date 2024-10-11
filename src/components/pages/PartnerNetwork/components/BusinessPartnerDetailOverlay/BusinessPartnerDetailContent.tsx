@@ -41,7 +41,7 @@ const BusinessPartnerDetailContent = ({
 }) => {
   const { t } = useTranslation()
   const { data: certificates } = useFetchCompanyCertificateQuery(
-    selectedRowBPN.bpnl
+    selectedRowBPN.bpn
   )
   const [documentId, setDocumentId] = useState<string>('')
   const { data: document } = useFetchDocumentQuery(documentId, {
@@ -63,7 +63,7 @@ const BusinessPartnerDetailContent = ({
     },
     {
       key: t('content.partnernetwork.columns.bpn'),
-      value: selectedRowBPN.bpnl ?? '',
+      value: selectedRowBPN.bpn ?? '',
     },
     {
       key: t('content.partnernetwork.overlay.legalform'),
@@ -71,16 +71,18 @@ const BusinessPartnerDetailContent = ({
     },
     {
       key: t('content.partnernetwork.columns.street'),
-      value: selectedRowBPN.legalAddress?.physicalPostalAddress?.street?.name,
+      value:
+        selectedRowBPN.legalEntityAddress?.physicalPostalAddress?.street?.name,
     },
     {
       key: t('content.partnernetwork.columns.city'),
-      value: `${selectedRowBPN.legalAddress?.physicalPostalAddress?.postalCode} ${selectedRowBPN.legalAddress?.physicalPostalAddress?.city}`,
+      value: `${selectedRowBPN.legalEntityAddress?.physicalPostalAddress?.postalCode} ${selectedRowBPN.legalEntityAddress?.physicalPostalAddress?.city}`,
     },
     {
       key: t('content.partnernetwork.columns.country'),
       value:
-        selectedRowBPN.legalAddress?.physicalPostalAddress?.country?.name ?? '',
+        selectedRowBPN.legalEntityAddress?.physicalPostalAddress?.country
+          ?.name ?? '',
     },
   ]
 

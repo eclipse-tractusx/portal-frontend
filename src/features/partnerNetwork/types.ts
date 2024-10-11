@@ -129,7 +129,7 @@ export interface LegalFormType {
 export interface BusinessPartner {
   score?: number
   legalName: string
-  bpnl: string
+  bpn: string
   member?: boolean
   identifiers: Array<BpdmTypeUUIDKeyPair>
   legalShortName: string
@@ -161,7 +161,7 @@ export interface BusinessPartner {
   currentness: string
   createdAt: string
   updatedAt: string
-  legalAddress: BpdmLegalAddressObject
+  legalEntityAddress: BpdmLegalAddressObject
 }
 
 export interface BusinessPartnerResponse {
@@ -195,13 +195,13 @@ export interface PartnerNetworkInitialState {
 }
 
 export interface PartnerNetworkDataGrid {
-  bpnl: string
+  bpn: string
   legalName: string
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   legalForm: any
   // eslint-disable-next-line
-  legalAddress: any
+  legalEntityAddress: any
   identifiers: Array<BpdmTypeUUIDKeyPair>
 }
 
