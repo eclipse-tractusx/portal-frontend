@@ -79,14 +79,15 @@ export const Patterns = {
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
   },
   offerCard: {
-    serviceName: /^.{1,120}$/,
+    serviceName: /^.{1,20}$/,
     serviceType: /^([A-Za-z])$/,
-    shortDescription: /^.{10,120}$/,
+    shortDescription: /^(?=.*[\s\S]{10,120})[\s\S]*$/,
   },
   offerPage: {
-    longDescription: /^.{10,1999}$/,
+    longDescription: /^(?=.*[\s\S]{10,1999})[\s\S]*$/,
   },
   appPage: {
+    longDescription: /^(?=.*[\s\S]{10,1999})[\s\S]*$/,
     longDescriptionEN:
       /^[^ @=<>*\-+#?%&_:;]([a-zA-Z0-9 !?@&#'"()[\]_\-+=<>/*.,;:%\r\n]){9,1999}$/,
     longDescriptionDE:

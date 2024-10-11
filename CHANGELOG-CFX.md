@@ -92,6 +92,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Service Release**
 
   - regex and error message updated to allow more characters [#416](https://github.com/eclipse-tractusx/portal-frontend/pull/416)
+  - regex updated to allow line breaks for long and short description [#1462](https://github.com/eclipse-tractusx/portal-frontend/pull/1462)
 
 - **Service Request Management**
  
