@@ -70,6 +70,11 @@ export interface ServiceManagementState {
   serviceStatusData: ServiceStatusDataState
 }
 
+export enum SORTING_TYPE {
+  RELEASE_DATE_DESC = 'ReleaseDateDesc',
+  PROVIDER_DESC = 'ProviderDesc',
+}
+
 export const initialState: ServiceManagementState = {
   serviceReleaseActiveStep: 1,
   serviceId: '',
