@@ -247,6 +247,8 @@
   - enabled showing of appropriate error information to the user along with refetch button [#917](https://github.com/eclipse-tractusx/portal-frontend/pull/917)
 - **Admin Board**:
   - fixed role to hide admin board page for service manager [#937](https://github.com/eclipse-tractusx/portal-frontend/pull/937)
+- **Service Overview Inreview filter**:
+  - Introduced filter of in-review in service overview page [#1218](https://github.com/eclipse-tractusx/portal-frontend/pull/1218)
 
 ### Known Knowns
 
