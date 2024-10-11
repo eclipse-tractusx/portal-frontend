@@ -1541,6 +1541,10 @@ p.MuiTypography-root.MuiTypography-body3.description,
       }
     }
   }
+  .app-main > div:first-child > *:first-child {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
 
 .cx-breadcrumbs__links {
@@ -1967,7 +1971,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
-// technical user 
+// technical user
 .technical-user {
   &__form-input {
     .form-input {
