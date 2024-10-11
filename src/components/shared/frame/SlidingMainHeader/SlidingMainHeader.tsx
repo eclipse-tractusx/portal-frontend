@@ -28,6 +28,7 @@ export interface SlidingMainHeaderProps {
     subTitle: string
     imagePath: string
     buttonText: string
+    hasAccess?: boolean
     handleClick: () => void
   }[]
   autoplay?: boolean
