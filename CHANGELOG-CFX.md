@@ -2,7 +2,22 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## 2.2.0-cfx-2
+
+### New Features
+
+- **Business parter invite**
+
+  - CHERRY-PICK allow all language characters symbols [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
+
+- **Partner Network**
+  - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
+
 ## 2.2.0-cfx-1
+
+- **App subscription**
+
+  - CHERRY-PICK add external service details in subscription management overlay [#1028](https://github.com/eclipse-tractusx/portal-frontend/pull/1028)
 
 ### Bug Fixes
 
