@@ -85,6 +85,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Back button make it outlined in Service Request Management [PM2-1143](https://cofinity-x.atlassian.net/browse/PM2-1143)
 
+- **Partner Network**
+
+  - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
+
 ### Change
 
 - **Your apps**

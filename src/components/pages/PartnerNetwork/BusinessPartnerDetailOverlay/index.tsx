@@ -60,7 +60,7 @@ const BusinessPartnerDetailOverlay = ({
             key={t('content.partnernetwork.columns.bpn') as string}
             {...{
               variableName: `${t('content.partnernetwork.columns.bpn')}`,
-              value: selectedRowBPN?.bpnl ?? '',
+              value: selectedRowBPN?.bpn ?? '',
             }}
           />
 
@@ -92,10 +92,10 @@ const BusinessPartnerDetailOverlay = ({
             {...{
               variableName: t('content.partnernetwork.columns.address'),
               value:
-                selectedRowBPN?.legalAddress?.physicalPostalAddress?.country
-                  ?.name ??
-                selectedRowBPN?.legalAddress?.alternativePostalAddress?.country
-                  ?.name ??
+                selectedRowBPN?.legalEntityAddress?.physicalPostalAddress
+                  ?.country?.name ??
+                selectedRowBPN?.legalEntityAddress?.alternativePostalAddress
+                  ?.country?.name ??
                 '',
             }}
           />

@@ -28,7 +28,7 @@ import type {
 export interface BusinessPartner {
   score?: number
   legalName: string
-  bpnl: string
+  bpn: string
   member?: boolean
   identifiers: Array<BpdmTypeUUIDKeyPair>
   legalShortName: string
@@ -58,7 +58,7 @@ export interface BusinessPartner {
   currentness: string
   createdAt: string
   updatedAt: string
-  legalAddress: BpdmLegalAddressObject
+  legalEntityAddress: BpdmLegalAddressObject
 }
 
 export interface FetchBusinessPartnerType {
