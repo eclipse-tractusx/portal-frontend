@@ -241,8 +241,3 @@ export enum HINTS {
   COMING_SOON = 'coming_soon',
   NEW = 'new',
 }
-
-export enum SORTING_TYPE {
-  RELEASE_DATE_DESC = 'ReleaseDateDesc',
-  PROVIDER_DESC = 'ProviderDesc',
-}

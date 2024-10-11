@@ -52,7 +52,7 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
-import { SORTING_TYPE } from 'types/Constants'
+import { SORTING_TYPE } from 'features/serviceManagement/types'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
