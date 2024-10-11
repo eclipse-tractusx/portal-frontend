@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Feature
+
+- **Clearinghouse Self-Description**
+  - Admin UI for Managing SD Document Retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
+
 ### Technical Support
 
 - **Injection of environment variables to Docker image**
