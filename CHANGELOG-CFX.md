@@ -95,7 +95,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - regex updated to allow line breaks for long and short description [#1462](https://github.com/eclipse-tractusx/portal-frontend/pull/1462)
 
 - **Service Request Management**
- 
+
   - Back button make it outlined in Service Request Management [PM2-1143](https://cofinity-x.atlassian.net/browse/PM2-1143)
 
 ### Change
@@ -143,11 +143,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK fix: block user from removing own admin roles [#987] (https://github.com/eclipse-tractusx/portal-frontend/pull/987)
 
 - **App Marketplace**
-
   - CHERRY-PICK fix: update the onButtonClick logic to avoid clicks after subscribed [#1042](https://github.com/eclipse-tractusx/portal-frontend/pull/1042)
-
 - **Service Marketplace**
   - CHERRY-PICK fix(service detail): add missing header image implementation [#992](fix(service detail): add missing header image implementation #992)
+- **Search UI Adjustment in Your Service**
+  - Adjusted spaces around the searchbar in Your Service [#222]https://github.com/Cofinity-X/portal-frontend/pull/222)
 
 ### Change
 
