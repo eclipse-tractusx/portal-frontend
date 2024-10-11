@@ -226,8 +226,8 @@ export default function ChangeDescription() {
                         `/${longDescriptionMaxLength}`
                       }
                       patternKey="longDescriptionEN"
-                      patternEN={Patterns.appPage.longDescriptionEN}
-                      patternDE={Patterns.appPage.longDescriptionDE}
+                      patternEN={Patterns.appPage.longDescription}
+                      patternDE={Patterns.appPage.longDescription}
                       rules={{
                         required:
                           t(`content.apprelease.appPage.${item}`) +
