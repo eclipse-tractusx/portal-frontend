@@ -32,7 +32,8 @@ import {
 import { type FunctionComponent, useCallback, useState } from 'react'
 import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { CONVERT_TO_MB } from 'types/Constants'
+import { CONVERT_TO_MB } from 'types/cfx/Constants'
+import { DROPZONE_ERROR_CODE } from 'types/cfx/Constants'
 
 export type DropzoneFile = File & Partial<UploadFile>
 
@@ -57,6 +58,7 @@ export interface DropzoneProps {
   handleDownload?: () => void
   handleDelete?: (documentId: string) => void
   errorText?: string
+  maxErrorText?: string
 }
 
 export const Dropzone = ({
@@ -75,14 +77,17 @@ export const Dropzone = ({
   handleDownload,
   handleDelete,
   errorText,
+  maxErrorText,
 }: DropzoneProps) => {
   const { t } = useTranslation()
 
   const [dropped, setDropped] = useState<DropzoneFile[]>([])
 
   const currentFiles = files ?? dropped
+  const allowMaxFilesToUpload =
+    Number(maxFilesToUpload ?? 0) - Number(files?.length ?? 0)
 
-  const isSingleUpload = maxFilesToUpload === 1
+  const isSingleUpload = allowMaxFilesToUpload === 1
 
   const isDisabled = currentFiles.length === maxFilesToUpload
 
@@ -138,7 +143,7 @@ export const Dropzone = ({
   } = useDropzone({
     onDropAccepted,
     disabled: isDisabled,
-    maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
+    maxFiles: isSingleUpload ? 0 : allowMaxFilesToUpload,
     accept: acceptFormat,
     multiple: !isSingleUpload,
     validator: handleFileSizeValidator,
@@ -161,11 +166,19 @@ export const Dropzone = ({
   // TODO: read react-dropzone errorCode instead of message and localize
   const errorObj = fileRejections?.[0]?.errors?.[0]
   const fileTypeError =
-    errorObj && fileRejections?.[0]?.errors?.[0].code === 'file-invalid-type'
+    errorObj &&
+    fileRejections?.[0]?.errors?.[0].code ===
+      DROPZONE_ERROR_CODE.FILE_INVALID_TYPE
+  const isMaxFileError =
+    errorObj &&
+    fileRejections?.[0]?.errors?.[0].code === DROPZONE_ERROR_CODE.TOO_MANY_FILES
+
   const errorMessage =
-    !isDragActive && errorObj && !fileTypeError && errorText
+    !isDragActive && errorObj && fileTypeError && errorText
       ? errorText
-      : errorObj?.message
+      : isMaxFileError
+        ? (maxErrorText ?? errorObj?.message)
+        : errorObj?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
     id: file.id,
