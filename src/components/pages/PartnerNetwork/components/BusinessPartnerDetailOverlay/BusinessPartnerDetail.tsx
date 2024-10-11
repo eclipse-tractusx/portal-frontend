@@ -28,7 +28,7 @@ const BusinessPartnerDetail = ({ id }: { id: string }) => {
   const [items, setItems] = useState<BusinessPartner[]>()
   const callApi = async () => {
     await bpMutation({
-      bpnLs: [id],
+      bpnls: [id],
       legalName: '',
     })
       .unwrap()
