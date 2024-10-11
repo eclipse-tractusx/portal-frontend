@@ -556,6 +556,9 @@ export default function AppPage() {
                   errorText={t(
                     'content.apprelease.appReleaseForm.fileSizeError'
                   )}
+                  maxErrorText={t(
+                    'content.apprelease.appReleaseForm.max3Images'
+                  )}
                 />
               )
             }}
