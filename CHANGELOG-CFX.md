@@ -96,6 +96,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed Conformity document rendering issue in App Details [PM2-848](https://cofinity-x.atlassian.net/browse/PM2-848)
 - **Placeholder text for App and Service Subscription**
 
+
   - Replaced relevent text for search for app and service in company subscription [#191](https://cofinity-x.atlassian.net/browse/PM2-1535?atlOrigin=eyJpIjoiN2VhNzc5ZWE0YzE0NDIwZjliZjBmMDZkMTk3YWE5ZjgiLCJwIjoiaiJ9)
 
 - **Your Services**
@@ -111,6 +112,26 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Back button make it outlined in Service Request Management [PM2-1143](https://cofinity-x.atlassian.net/browse/PM2-1143)
   - Fixed Sorting & Filtering issue [PM2-801](https://cofinity-x.atlassian.net/browse/PM2-801)
+
+- **Partner Network**
+
+  - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
+
+- **App & Service Subscription**
+- Fixed service subscription detail issue as per service detail [PM2-1669](https://cofinity-x.atlassian.net/browse/PM2-1669)
+
+- **Your Services**
+
+  - Add new services title make it center [PM2-1459](https://cofinity-x.atlassian.net/browse/PM2-1459)
+
+- **Service Release**
+
+  - regex and error message updated to allow more characters [#416](https://github.com/eclipse-tractusx/portal-frontend/pull/416)
+  - regex updated to allow line breaks for long and short description [#1462](https://github.com/eclipse-tractusx/portal-frontend/pull/1462)
+
+- **Service Request Management**
+
+  - Back button make it outlined in Service Request Management [PM2-1143](https://cofinity-x.atlassian.net/browse/PM2-1143)
 
 - **Partner Network**
 

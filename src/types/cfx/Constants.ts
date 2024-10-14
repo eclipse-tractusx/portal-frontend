@@ -129,6 +129,13 @@ export const COMPANY_ROLE = {
   ONBOARDING_SERVICE_PROVIDER: 'ONBOARDING_SERVICE_PROVIDER',
 }
 
+export const SEARCH_PARAMS = {
+  OFFER_ID: 'oId',
+  SUBSCRIPTION_ID: 'sId',
+  IS_APP: 'a',
+  IS_SERVICE: 's',
+}
+
 export const DATA_SOVEREIGNTY_ID = 'aa0a0000-7fbc-1f2f-817f-bce0502c1015'
 
 export const DROPZONE_ERROR_CODE = {
@@ -136,9 +143,4 @@ export const DROPZONE_ERROR_CODE = {
   TOO_MANY_FILES: 'too-many-files',
 }
 
-export const SEARCH_PARAMS = {
-  OFFER_ID: 'oId',
-  SUBSCRIPTION_ID: 'sId',
-  IS_APP: 'a',
-  IS_SERVICE: 's',
-}
+

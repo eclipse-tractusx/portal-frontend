@@ -25,7 +25,7 @@ import {
   useFetchAppDetailsQuery,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
-import { PAGES, SEARCH_PARAMS } from 'types/cfx/Constants'
+import { PAGES, SEARCH_PARAMS, SEARCH_PARAMS } from 'types/cfx/Constants'
 import './style.scss'
 import {
   type ServiceDetailsResponse,
@@ -40,9 +40,10 @@ import CompanySubscriptionHeader from './CompanySubscriptionHeader'
 import CompanySubscriptionContent from './CompanySubscriptionContent'
 import CompanySubscriptionPrivacy from './CompanySubscriptionPrivacyContent'
 import CompanySubscriptionDocument from './CompanySubscriptionDocument'
-import MarketplaceDocuments from '../ServiceMarketplaceDetail/components/MarketplaceDocuments'
-import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/components/MarketplaceTechnicalUserSetup'
-import MarketplaceProvider from '../ServiceMarketplaceDetail/components/MarketplaceProvider'
+import MarketplaceDocuments from '../ServiceMarketplaceDetail/MarketplaceDocuments'
+import MarketplaceProvider from '../ServiceMarketplaceDetail/MarketplaceProvider'
+import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/MarketplaceTechnicalUserSetup'
+
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
