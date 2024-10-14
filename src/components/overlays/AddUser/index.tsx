@@ -74,17 +74,20 @@ export const AddUser = () => {
   }
 
   const renderAdduserMainContent = () => {
-    return idps &&
-      idps.filter(
-        (idp) =>
-          (idp.identityProviderTypeId === IDPCategory.SHARED ||
-            idp.identityProviderTypeId === IDPCategory.OWN) &&
-          idp.enabled
-      ).length === 1 ? (
-      <AddUserContent idp={idps[0]} />
-    ) : (
-      <AddUserDeny idps={idps} />
+    if (!idps || idps.length === 0) return <AddUserDeny idps={idps} />
+
+    const filteredIdps = idps.filter(
+      (idp) =>
+        (idp.identityProviderTypeId === IDPCategory.SHARED ||
+          idp.identityProviderTypeId === IDPCategory.OWN) &&
+        idp.enabled
     )
+    if (filteredIdps.length === 1) {
+      const [filteredIdp] = filteredIdps 
+      return <AddUserContent idp={filteredIdp} />
+    }
+
+    return <AddUserDeny idps={filteredIdps} />
   }
 
   return (
