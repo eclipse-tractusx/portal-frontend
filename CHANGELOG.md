@@ -6,6 +6,8 @@
 
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+- **Application Request**
+  - display appropriate document information in the company details overlay
 
 ## 2.3.0-alpha.2
 
