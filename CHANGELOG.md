@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Onboarding Service Provider**
+  - add missing fields to form legal name & company identifier[#1151](https://github.com/eclipse-tractusx/portal-frontend/pull/1151)
+
 ## 2.2.0-alpha.1
 
 ### Bugfixes
@@ -61,7 +66,6 @@
   - fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
   - filtered out roles not defined by OSP [#1114](https://github.com/eclipse-tractusx/portal-frontend/pull/1114)
   - fixed OSP consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102/files)
-  - add missing fields to form legal name & company identifier[#1151](https://github.com/eclipse-tractusx/portal-frontend/pull/1151)
 - **Use Case participation**
   - removed use cases without verified credentials from the "Use Case Participation" list [#1088](https://github.com/eclipse-tractusx/portal-frontend/pull/1088)
 - **App & Service Subscription Management**
