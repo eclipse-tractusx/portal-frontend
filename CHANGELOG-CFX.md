@@ -13,6 +13,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Partner Network**
   - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
 
+### Bug Fixes
+
+- **App Management**
+  - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
+
 ### Change
 
 - **Connector Registration**

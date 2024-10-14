@@ -2024,3 +2024,12 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
+.service-marketplace-header {
+  .lead-image {
+    img {
+      border-radius: 16px !important;
+      height: 210px !important;
+    }
+  }
+}

@@ -19,7 +19,12 @@
  ********************************************************************************/
 
 import { useDispatch } from 'react-redux'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  Typography,
+  LogoGrayData,
+  Image,
+} from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
@@ -28,9 +33,12 @@ import { OVERLAYS, ROLES } from 'types/Constants'
 import UserService from 'services/UserService'
 import './MarketplaceHeader.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
-import { getAssetBase } from 'services/EnvironmentService'
 import { Box } from '@mui/material'
-import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import {
+  ServiceTypeIdsEnum,
+  useFetchDocumentMutation,
+} from 'features/serviceManagement/apiSlice'
+import { useEffect, useState } from 'react'
 
 export default function MarketplaceHeader({
   item,
@@ -39,10 +47,31 @@ export default function MarketplaceHeader({
   item: ServiceRequest
   success: boolean
 }) {
+  const [leadImg, setLeadImg] = useState<string>('')
   const { t } = useTranslation()
   const serviceReleaseTranslation = useTranslation('servicerelease').t
   const dispatch = useDispatch()
   const { serviceId } = useParams()
+  const [fetchDocument] = useFetchDocumentMutation()
+
+  const setLeadingImg = async () => {
+    try {
+      const response = await fetchDocument({
+        appId: serviceId,
+        documentId: item?.leadPictureId,
+      }).unwrap()
+      const file = response.data
+      setLeadImg(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    if (item?.leadPictureId) {
+      setLeadingImg()
+    } else setLeadImg(LogoGrayData)
+  }, [item])
 
   const getSubscribeBtn = () => {
     if (success) {
@@ -92,10 +121,7 @@ export default function MarketplaceHeader({
   return (
     <div className="service-marketplace-header">
       <div className="lead-image">
-        <img
-          src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
-          alt={item.title}
-        />
+        <Image src={leadImg} alt={item.title} />
       </div>
       <Box className="marketplace-app-content">
         <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
