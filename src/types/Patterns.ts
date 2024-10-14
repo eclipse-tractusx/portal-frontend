@@ -95,6 +95,7 @@ export const Patterns = {
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
     clientSecret: /^.{1,200}$/,
+    displayName: /^[A-Za-z]+(?:\s[A-Za-z]+)*$/,
   },
   connectors: {
     NAME: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{1,19}$/,
@@ -208,5 +209,7 @@ export const isCompanyVies = (expr: string) =>
   Patterns.companyData.VIES.test(expr)
 export const isPostalCode = (expr: string) =>
   Patterns.companyData.POSTAL_CODE.test(expr)
+export const isValidIDPName = (expr: string) =>
+  Patterns.idp.displayName.test(expr)
 
 export default Patterns
