@@ -95,17 +95,20 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     .sort((a: IdentityProvider, b: IdentityProvider) =>
       (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
-  const [idpsManagedData, setIdpsManagedData] = useState(
-    idpsData?.filter((a) => a.identityProviderTypeId === IDPCategory.MANAGED)
-  )
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
 
-  useEffect(() => {
-    setIdpsManagedData(
-      idpsData?.filter((a) => a.identityProviderTypeId === IDPCategory.MANAGED)
+  const managedIdpsData = () => {
+    return idpsData?.filter(
+      (a) => a.identityProviderTypeId === IDPCategory.MANAGED
     )
+  }
+
+  const [idpsManagedData, setIdpsManagedData] = useState(managedIdpsData)
+
+  useEffect(() => {
+    setIdpsManagedData(managedIdpsData)
   }, [data])
 
   const doDelete = async (
@@ -365,9 +368,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   }
 
   const onSearch = (value: string) => {
-    const idpManagedData = idpsData?.filter(
-      (a) => a.identityProviderTypeId === IDPCategory.MANAGED
-    )
+    const idpManagedData = managedIdpsData()
     if (value) {
       const searchFilter = idpManagedData?.filter(
         (i) => i.alias === value || i.displayName === value
@@ -375,6 +376,18 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       setIdpsManagedData(searchFilter)
       setSearchExpr(value)
     } else setIdpsManagedData(idpManagedData)
+  }
+
+  const style = {
+    '.MuiDataGrid-columnHeadersInner': {
+      fontSize: '16px',
+      fontWeight: '400',
+      backgroundColor: '#E9E9E9',
+    },
+    '.MuiDataGrid-row': {
+      fontSize: '14px',
+      fontWeight: '400',
+    },
   }
 
   return (
@@ -473,21 +486,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       searchDebounce={isManagementOSP ? 1000 : undefined}
       onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
       buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
-      sx={
-        isManagementOSP
-          ? {
-              '.MuiDataGrid-columnHeadersInner': {
-                fontSize: '16px',
-                fontWeight: '400',
-                backgroundColor: '#E9E9E9',
-              },
-              '.MuiDataGrid-row': {
-                fontSize: '14px',
-                fontWeight: '400',
-              },
-            }
-          : undefined
-      }
+      sx={isManagementOSP ? style : undefined}
     />
   )
 }
