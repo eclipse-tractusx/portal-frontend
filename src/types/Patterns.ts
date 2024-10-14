@@ -18,16 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getRequireHttpsUrlPattern } from '../services/EnvironmentService'
-
-// check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to !== 'false' if not set
-const requireHttpsUrlPattern = getRequireHttpsUrlPattern() !== 'false'
+import { isRequireHttpsUrlPattern } from '../services/EnvironmentService'
 
 const DOMAIN =
   /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
 // construct regex patterns for URL based on the REQUIRE_HTTPS_URL_PATTERN environment variable
-const urlProtocol = requireHttpsUrlPattern ? 'https' : 'https?'
+const urlProtocol = isRequireHttpsUrlPattern() ? 'https' : 'https?'
 const urlPattern = new RegExp(
   `^(${urlProtocol})://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
   'i'

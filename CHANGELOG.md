@@ -7,6 +7,16 @@
 - **App Subscription Management**
   - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
 
+### Feature
+
+- **Clearinghouse Self-Description**
+  - Admin UI for Managing SD Document Retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
+
+### Technical Support
+
+- **Injection of environment variables to Docker image**
+  - refactored to a more readable and typo resistant implementation using sh - bash and jq are no longer required in image [#914](https://github.com/eclipse-tractusx/portal-frontend/pull/914)
+
 ### Change
 
 - **Service Subscriptions**
