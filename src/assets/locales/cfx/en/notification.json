@@ -58,11 +58,11 @@
     },
     "SERVICE_RELEASE_APPROVAL": {
       "title": "Service release request approved",
-      "content": "Your release request for service offer {{serviceName}} has been successfully approved and is available on the service marketplace."
+      "content": "Your release request for service offer {{offer}} has been successfully approved and is available on the service marketplace."
     },
     "SERVICE_RELEASE_REJECTION": {
       "title": "Service release request rejected",
-      "content": "Your request for service offer {{serviceName}} has been rejected. Please review your service management board and solve the findings: {{personalMessage}}."
+      "content": "Your request for service offer {{offer}} has been rejected. Please review your service management board and solve the findings: {{personalMessage}}."
     },
     "SERVICE_REQUEST": {
       "title": "Service Subscription Request - Service: {{app}}",
@@ -70,7 +70,7 @@
     },
     "SERVICE_ACTIVATION": {
       "title": "Service request activated",
-      "content": "Your subscription for service offer {{serviceName}} is now active"
+      "content": "Your subscription for service offer {{offer}} is now active"
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
@@ -112,7 +112,8 @@
     "serviceSubscription": "Get there",
     "serviceAdminBoard": "Get there",
     "roleDetails": "Open Role Matrix",
-    "serviceMarketplace": "Get there"
+    "serviceMarketplace": "Get there",
+    "serviceOverview": "Get there"
   },
   "due": "due",
   "search": "Enter your search value",
