@@ -269,8 +269,10 @@ export default function CommonValidateAndPublish({
 
   const renderConformityDocuments = () => {
     return statusData?.documents[
-      type === ReleaseProcessTypes.APP_RELEASE ||
-      type === AppOverviewTypes.APP_OVERVIEW_DETAILS
+      [
+        ReleaseProcessTypes.APP_RELEASE,
+        AppOverviewTypes.APP_OVERVIEW_DETAILS,
+      ].includes(type)
         ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
         : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
     ].map((item: DocumentData) => (
@@ -288,8 +290,10 @@ export default function CommonValidateAndPublish({
 
   const renderDocuments = () => {
     return statusData?.documents[
-      type === ReleaseProcessTypes.APP_RELEASE ||
-      type === AppOverviewTypes.APP_OVERVIEW_DETAILS
+      [
+        ReleaseProcessTypes.APP_RELEASE,
+        AppOverviewTypes.APP_OVERVIEW_DETAILS,
+      ].includes(type)
         ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
         : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
     ]
