@@ -92,6 +92,7 @@ export const Patterns = {
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
     clientSecret: /^.{1,200}$/,
+    displayName: /^[A-Za-z]+(?:\s[A-Za-z]+)*$/,
   },
   connectors: {
     NAME: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{1,19}$/,
@@ -213,5 +214,7 @@ export const isSearchUserEmail = (expr: string) =>
   Patterns.EMAIL_SEARCH.test(expr)
 export const isValidAppOverviewSearch = (expr: string) =>
   Patterns.appOverview.SEARCH.test(expr)
+export const isValidIDPName = (expr: string) =>
+  Patterns.idp.displayName.test(expr)
 
 export default Patterns

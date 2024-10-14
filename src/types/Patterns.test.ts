@@ -31,6 +31,7 @@ import {
   isPersonName,
   isSearchUserEmail,
   isValidAppOverviewSearch,
+  isValidIDPName,
 } from './Patterns'
 
 const TESTDATA = {
@@ -48,6 +49,10 @@ const TESTDATA = {
       'BPNL00000000000015OHJ',
       'BPNL01',
     ],
+  },
+  IDP: {
+    valid: ['Tractusx', 'Tract Usx', 'BPN lannn', 'Foo Bar'],
+    invalid: ['Foo  Bar', ' Foo', 'Bar ', 'Foo@Bar', '1234', '  ', ''],
   },
   MAIL: {
     valid: [
@@ -350,7 +355,6 @@ describe('Input Pattern Tests', () => {
       expect(isClientID(expr)).toBe(false)
     })
   })
-
   it('Validate email search for users', () => {
     TESTDATA.EMAIL_SEARCH.valid.forEach((expr) => {
       expect(isSearchUserEmail(expr)).toBe(true)
@@ -365,6 +369,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.appOverview.invalid.forEach((expr) => {
       expect(isValidAppOverviewSearch(expr)).toBe(false)
+    })
+  })
+  it('validate idp displayName', () => {
+    TESTDATA.IDP.valid.forEach((expr) => {
+      expect(isValidIDPName(expr)).toBe(true)
+    })
+    TESTDATA.CLIENTID.invalid.forEach((expr) => {
+      expect(isValidIDPName(expr)).toBe(false)
     })
   })
 })
