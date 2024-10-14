@@ -13,6 +13,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Partner Network**
   - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
 
+### Change
+
+- **Connector Registration**
+  - Remove hardcoded connector urls [PO-397](https://cofinity-x.atlassian.net/browse/PO-397)
+
 ## 2.2.0-cfx-1
 
 - **App subscription**
