@@ -121,6 +121,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
+- **Release Process apps/services**
+
+  - remove Remove Data Sovereignty Guidelines checkbox and link [PM2-1695](https://cofinity-x.atlassian.net/browse/PM2-1695)
+
 - **Your apps**
 
   - Translations updated for the menu items and on the menu detail pages. [PM2-1066](https://cofinity-x.atlassian.net/browse/PM2-1066)

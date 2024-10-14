@@ -74,6 +74,7 @@ import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import '../../../../pages/AppDetail/AppDetailPrivacy/style.scss'
 import 'components/styles/document.scss'
 import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
+import { DATA_SOVEREIGNTY_ID } from 'types/cfx/Constants'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -580,8 +581,9 @@ export default function CommonValidateAndPublish({
           {consentTitle}
         </Typography>
         <div className="form-field">
-          {statusData?.agreements?.map(
-            (item: { name: string; consentStatus: ConsentStatusEnum }) => (
+          {statusData?.agreements
+            ?.filter((item) => item.id !== DATA_SOVEREIGNTY_ID)
+            .map((item: { name: string; consentStatus: ConsentStatusEnum }) => (
               <div key={item.name}>
                 <Checkbox
                   key={item.name}
@@ -590,8 +592,7 @@ export default function CommonValidateAndPublish({
                   disabled
                 />
               </div>
-            )
-          )}
+            ))}
         </div>
 
         {cxTestRunsTitle && (

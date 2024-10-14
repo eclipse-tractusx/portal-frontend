@@ -69,6 +69,7 @@ import {
 } from 'features/serviceManagement/slice'
 import { ButtonLabelTypes } from '..'
 import { error, success } from 'services/NotifyService'
+import { DATA_SOVEREIGNTY_ID } from 'types/cfx/Constants'
 
 type AgreementDataType = {
   agreementId: string
@@ -458,69 +459,71 @@ export default function CommonContractAndConsent({
         description={stepperDescription}
       />
       <form className="header-description">
-        {agreementData?.map((item) => (
-          <div className="form-field" key={item.agreementId}>
-            <Grid container spacing={1.5}>
-              <Grid item md={1}>
-                <ConnectorFormInputField
-                  {...{
-                    control,
-                    trigger,
-                    errors,
-                    name: item.agreementId,
-                    defaultValues:
-                      item.consentStatus === ConsentStatusEnum.ACTIVE,
-                    label: '',
-                    type: 'checkbox',
-                    rules: {
-                      required: {
-                        value: item.mandatory,
-                        message: `${item.name} ${checkBoxMandatoryText}`,
+        {agreementData
+          ?.filter((item) => item.agreementId !== DATA_SOVEREIGNTY_ID)
+          .map((item) => (
+            <div className="form-field" key={item.agreementId}>
+              <Grid container spacing={1.5}>
+                <Grid item md={1}>
+                  <ConnectorFormInputField
+                    {...{
+                      control,
+                      trigger,
+                      errors,
+                      name: item.agreementId,
+                      defaultValues:
+                        item.consentStatus === ConsentStatusEnum.ACTIVE,
+                      label: '',
+                      type: 'checkbox',
+                      rules: {
+                        required: {
+                          value: item.mandatory,
+                          message: `${item.name} ${checkBoxMandatoryText}`,
+                        },
                       },
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item md={11} sx={{ marginTop: '8px' }}>
-                {item.documentId ? (
-                  <>
-                    <span
-                      className={item.documentId ? 'agreement-span' : ''}
-                      onClick={() =>
-                        handleFrameDocumentDownload(item.name, item.documentId)
-                      }
-                      onKeyDown={() => {
-                        // do nothing
-                      }}
-                    >
-                      {item.name}
-                    </span>
-                    <span style={{ color: 'red' }}>
-                      {item.mandatory ? ' *' : ''}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span>{item.name}</span>
-                    <span style={{ color: 'red' }}>
-                      {item.mandatory ? ' *' : ''}
-                    </span>
-                  </>
-                )}
-
-                <ErrorMessage
-                  errors={errors}
-                  name={item.agreementId}
-                  render={({ message }) => (
-                    <Typography variant="body2" className="file-error-msg">
-                      {message}
-                    </Typography>
+                    }}
+                  />
+                </Grid>
+                <Grid item md={11} sx={{ marginTop: '8px' }}>
+                  {item.documentId ? (
+                    <>
+                      <span
+                        className={item.documentId ? 'agreement-span' : ''}
+                        onClick={() =>
+                          handleFrameDocumentDownload(item.name, item.documentId)
+                        }
+                        onKeyDown={() => {
+                          // do nothing
+                        }}
+                      >
+                        {item.name}
+                      </span>
+                      <span style={{ color: 'red' }}>
+                        {item.mandatory ? ' *' : ''}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{item.name}</span>
+                      <span style={{ color: 'red' }}>
+                        {item.mandatory ? ' *' : ''}
+                      </span>
+                    </>
                   )}
-                />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name={item.agreementId}
+                    render={({ message }) => (
+                      <Typography variant="body2" className="file-error-msg">
+                        {message}
+                      </Typography>
+                    )}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-          </div>
-        ))}
+            </div>
+          ))}
         <ConnectorFormInputFieldImage
           {...{
             control,

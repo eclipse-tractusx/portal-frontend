@@ -129,6 +129,8 @@ export const COMPANY_ROLE = {
   ONBOARDING_SERVICE_PROVIDER: 'ONBOARDING_SERVICE_PROVIDER',
 }
 
+export const DATA_SOVEREIGNTY_ID = 'aa0a0000-7fbc-1f2f-817f-bce0502c1015'
+
 export const DROPZONE_ERROR_CODE = {
   FILE_INVALID_TYPE: 'file-invalid-type',
   TOO_MANY_FILES: 'too-many-files',
