@@ -415,16 +415,6 @@ const EdcConnector = () => {
               <Typography variant="body3">
                 {t('content.edcconnector.subDesc1')}
               </Typography>
-              <Typography variant="body3">
-                {t('content.edcconnector.subDesc2')}
-              </Typography>
-              <Typography variant="body3">
-                {t('content.edcconnector.subDesc3')}
-              </Typography>
-              <Typography variant="body3">
-                {' '}
-                {t('content.edcconnector.subDesc4')}{' '}
-              </Typography>
             </Box>
             <IconButton
               aria-label="close"
