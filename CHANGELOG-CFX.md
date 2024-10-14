@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **User Management**
+
+  - fixed logic for showing user_id for OWN configured IDP [PM2-1671](https://cofinity-x.atlassian.net/browse/PM2-1671)
+
 - **Your Apps**
 
   - Updated UI styles in the Your Apps page [PM2-1450](https://cofinity-x.atlassian.net/browse/PM2-1450)
