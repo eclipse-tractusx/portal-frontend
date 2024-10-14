@@ -31,6 +31,7 @@ import {
   type SubscribedActiveApps,
 } from 'features/apps/types'
 import { type ProcessStep } from 'features/appSubscription/appSubscriptionApiSlice'
+import { type ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
@@ -124,7 +125,7 @@ export enum ServiceTypes {
   CONSULTANCY_SERVICE = 'CONSULTANCY_SERVICE',
 }
 
-export interface ServiceDetailsResponse {
+export interface ServiceDetailsResponse extends ServiceRequest {
   id: string
   title: string
   provider: string
@@ -133,7 +134,7 @@ export interface ServiceDetailsResponse {
   licenseType: LicenseType
   price: string
   offerSubscriptionDetailData: OfferSubscriptionDataType[]
-  serviceTypes: ServiceTypes
+  serviceTypes: string[]
   technicalUserProfile: {
     [key: string]: string[] | null
   }

@@ -31,7 +31,7 @@ import {
 } from 'features/apps/types'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
-import { PAGES } from 'types/cfx/Constants'
+import { PAGES, SEARCH_PARAMS } from 'types/cfx/Constants'
 import { useNavigate } from 'react-router'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import UnpublishedIcon from '@mui/icons-material/Unpublished'
@@ -153,14 +153,7 @@ export const CompanySubscriptionsTableColumns = (
             color="secondary"
             onClick={() => {
               navigate(
-                `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}`,
-                {
-                  state: {
-                    row,
-                    app: currentActive === 0,
-                    service: currentActive === 1,
-                  },
-                }
+                `/${PAGES.COMPANY_SUBSCRIPTIONS_DETAIL}/${row.offerId}?${SEARCH_PARAMS.OFFER_ID}=${row.offerId}&${SEARCH_PARAMS.SUBSCRIPTION_ID}=${row.subscriptionId}&${SEARCH_PARAMS.IS_APP}=${currentActive === 0}&${SEARCH_PARAMS.IS_SERVICE}=${currentActive === 1}`
               )
             }}
           >

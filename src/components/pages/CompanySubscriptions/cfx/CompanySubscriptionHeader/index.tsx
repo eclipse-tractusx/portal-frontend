@@ -32,15 +32,22 @@ import { type AppDetails, SubscriptionStatus } from 'features/apps/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import './CompanySubscriptionHeader.scss'
+import { useSearchParams } from 'react-router-dom'
+import { SEARCH_PARAMS } from 'types/cfx/Constants'
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 
 export default function CompanySubscriptionHeader({
   detail,
   src,
+  status,
 }: Readonly<{
   detail: AppDetails | ServiceDetailsResponse
   src: string
+  status: string
 }>) {
   const { t } = useTranslation()
+  const st = useTranslation('servicerelease').t
+  const [searchParams] = useSearchParams()
 
   const renderStatusButton = (status: string) => {
     if (status === SubscriptionStatus.ACTIVE)
@@ -91,6 +98,17 @@ export default function CompanySubscriptionHeader({
       )
   }
 
+  const getAllServices = (serviceTypes: string[]) => {
+    const newArr: string[] = []
+    serviceTypes?.forEach((serviceType: string) => {
+      if (serviceType === ServiceTypeIdsEnum.CONSULTANCY_SERVICE)
+        newArr.push(st('consultancyService'))
+      if (serviceType === ServiceTypeIdsEnum.DATASPACE_SERVICE)
+        newArr.push(st('dataspaceService'))
+    })
+    return newArr.join(', ')
+  }
+
   return (
     <Box className="company-subscriptions-header">
       <div className="lead-image">
@@ -108,22 +126,28 @@ export default function CompanySubscriptionHeader({
           {detail.title}
         </Typography>
 
-        <div className="useCase">
-          <Typography variant="label2">
-            {t('content.companySubscriptionsDetail.language')}:
-            <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
-              {detail?.languages?.length
-                ? detail.languages.map((lang, index) => (
-                    <span key={lang}>
-                      {` ${index ? ', ' : ''}${lang.toUpperCase()} `}
-                    </span>
-                  ))
-                : ''}
+        {searchParams.get(SEARCH_PARAMS.IS_APP) === 'true' ? (
+          <div className="useCase">
+            <Typography variant="label2">
+              {t('content.companySubscriptionsDetail.language')}:
+              <Typography variant="caption2" sx={{ pb: 2, ml: 1 }}>
+                {detail?.languages?.length
+                  ? detail.languages.map((lang, index) => (
+                      <span key={lang}>
+                        {` ${index ? ', ' : ''}${lang.toUpperCase()} `}
+                      </span>
+                    ))
+                  : ''}
+              </Typography>
             </Typography>
+          </div>
+        ) : (
+          <Typography variant="body2">
+            {getAllServices((detail as ServiceDetailsResponse)?.serviceTypes)}
           </Typography>
-        </div>
+        )}
         <Box display={'flex'} mt={2}>
-          {renderStatusButton(detail.isSubscribed)}
+          {renderStatusButton(status)}
         </Box>
       </Box>
     </Box>
