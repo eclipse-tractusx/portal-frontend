@@ -60,6 +60,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Notification Card Text Link translation**
 
   - Notifications card fixed translations [#1039](https://cofinity-x.atlassian.net/browse/PM2-1447?atlOrigin=eyJpIjoiOWI0ZDZhYTJjYjc3NGQxNjg3MjQ5YTJhYzY4NzA3YjEiLCJwIjoiaiJ9)
+  - Fixed service release notification rendering issue [PM2-937](https://cofinity-x.atlassian.net/browse/PM2-937)
 
 - **Service Subscription Header headline translation**
 

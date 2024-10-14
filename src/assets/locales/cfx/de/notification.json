@@ -58,11 +58,11 @@
     },
     "SERVICE_RELEASE_APPROVAL": {
       "title": "Service Release Anfrage genehmigt",
-      "content": "Ihre Release Anfrage für Service {{serviceName}} wurde erfolgreich genehmigt und ist nun im Service Marktplatz verfügbar."
+      "content": "Ihre Release Anfrage für Service {{offer}} wurde erfolgreich genehmigt und ist nun im Service Marktplatz verfügbar."
     },
     "SERVICE_RELEASE_REJECTION": {
       "title": "Service Release Anfrage abgelehnt",
-      "content": "Ihre Release Anfrage für Service {{serviceName}} wurde abgelehnt. Bitte überprüfen Sie Ihr Service Management Pannel und lösen Sie die Probleme: {{personalMessage}}."
+      "content": "Ihre Release Anfrage für Service {{offer}} wurde abgelehnt. Bitte überprüfen Sie Ihr Service Management Pannel und lösen Sie die Probleme: {{personalMessage}}."
     },
     "SERVICE_REQUEST": {
       "title": "Service Abonnement Anfrage - Service: {{app}}",
@@ -70,7 +70,7 @@
     },
     "SERVICE_ACTIVATION": {
       "title": "Service Anfrage aktiviert.",
-      "content": "Ihr Abonnement für den Service {{serviceName}} ist nun aktiv."
+      "content": "Ihr Abonnement für den Service {{offer}} ist nun aktiv."
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
@@ -112,7 +112,8 @@
     "serviceSubscription": "Get there",
     "serviceAdminBoard": "Get there",
     "roleDetails": "Open Role Matrix",
-    "serviceMarketplace": "Get there"
+    "serviceMarketplace": "Get there",
+    "serviceOverview": "Get there"
   },
   "due": "fällig",
   "search": "...suchen",

@@ -92,6 +92,7 @@ const NotificationContent = ({
   const newUrl = item.contentParsed?.newUrl
   const roles = item.contentParsed?.Roles
   const userEmail = item.contentParsed?.UserEmail
+  const personalMessage = item.contentParsed?.DeclineMessage
 
   return (
     <>
@@ -112,6 +113,7 @@ const NotificationContent = ({
             newUrl,
             roles: roles?.join(', '),
             useremail: userEmail,
+            personalMessage,
           }}
         >
           <NameLink
@@ -216,6 +218,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
           item={item}
           navlinks={[PAGES.SERVICE_ADMIN_BOARD]}
         />
+      )
+    case NotificationType.SERVICE_RELEASE_REJECTION:
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.SERVICE_OVERVIEW]} />
       )
     case NotificationType.ROLE_UPDATE_APP_OFFER:
       return <NotificationContent item={item} />
