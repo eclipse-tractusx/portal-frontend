@@ -217,7 +217,7 @@ export default function CompanySubscriptions() {
         fetchHook={query}
         fetchHookArgs={fetchHookArgs}
         fetchHookRefresh={refresh}
-        getRowId={(row: { [key: string]: string }) => row.offerId}
+        getRowId={(row: { [key: string]: string }) => row.subscriptionId}
         columns={companySubscriptionsCols}
       />
     </div>
@@ -252,7 +252,7 @@ export default function CompanySubscriptions() {
         <Tabs
           value={currentActive}
           onChange={handleTabChange}
-          sx={{ margin: '0 18% 20px' }}
+          sx={{ margin: '0 auto 20px', maxWidth: '1110px', width: '100%' }}
         >
           <Tab
             iconPosition="start"

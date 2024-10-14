@@ -54,18 +54,13 @@ export enum ServiceAccountStatus {
   PENDING_DELETION = 'PENDING_DELETION',
 }
 
-export enum UserType {
-  INTERNAL = 'internal',
-  EXTERNAL = 'external',
-}
-
 export interface ServiceAccountListEntry {
   serviceAccountId: string
   clientId: string
   name: string
   status: ServiceAccountStatus
   isOwner?: boolean
-  usertype: UserType
+  usertype: string
   offer?: {
     name?: string
   }
@@ -84,7 +79,7 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   connector: ConnectedObject
   offer: ConnectedObject
   companyServiceAccountTypeId: companyServiceAccountType
-  usertype: UserType
+  usertype: string
   authenticationServiceUrl: string
 }
 
@@ -135,12 +130,6 @@ export const apiSlice = createApi({
         url: `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
         method: 'DELETE',
       }),
-      // Add an ESLint exception until there is a solution
-      // eslint-disable-next-line
-      transformErrorResponse: (error: any) =>
-        error?.errors?.[
-          'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
-        ]?.[0] ?? i18next.t('error.deleteTechUserNotificationErrorDescription'),
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,

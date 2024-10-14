@@ -109,6 +109,7 @@ const AddConnectorOverlay = ({
     handleSubmit,
     getValues,
     control,
+    resetField,
     trigger,
     formState: { errors },
     reset,
@@ -120,8 +121,10 @@ const AddConnectorOverlay = ({
   const [selected, setSelected] = useState<ConnectorType>({})
 
   useEffect(() => {
-    if (openDialog) reset(formFields)
-  }, [openDialog, reset])
+    if (openDialog || connectorStep === 0) {
+      reset(formFields)
+    }
+  }, [openDialog, reset, connectorStep])
 
   useEffect(() => {
     if (serviceAccounts && serviceAccounts?.meta?.totalPages > page) {
@@ -216,7 +219,14 @@ const AddConnectorOverlay = ({
                 setNewTechnicalUSer={setNewTechnicalUSer}
                 newUserLoading={newUserLoading}
                 newUserSuccess={newUserSuccess}
-                {...{ handleSubmit, control, errors, trigger, getValues }}
+                {...{
+                  handleSubmit,
+                  control,
+                  errors,
+                  trigger,
+                  getValues,
+                  resetField,
+                }}
               />
             </>
           )}
@@ -225,12 +235,9 @@ const AddConnectorOverlay = ({
           <Button
             variant="outlined"
             onClick={() => {
-              if (connectorStep === 1) {
-                onStepChange()
-              } else {
-                setSelected({})
-                handleOverlayClose()
-              }
+              if (connectorStep === 1) onStepChange()
+              else handleOverlayClose()
+              setSelected({})
             }}
           >
             {connectorStep === 0
