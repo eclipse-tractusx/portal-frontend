@@ -18,16 +18,17 @@
  ********************************************************************************/
 
 import { BackButton, LogoGrayData } from '@catena-x/portal-shared-components'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 import {
   useFetchAppDetailsQuery,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
-import { PAGES } from 'types/cfx/Constants'
+import { PAGES, SEARCH_PARAMS } from 'types/cfx/Constants'
 import './style.scss'
 import {
+  type ServiceDetailsResponse,
   useFetchServiceDetailsQuery,
   useFetchSubscriptionServiceQuery,
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
@@ -39,13 +40,26 @@ import CompanySubscriptionHeader from './CompanySubscriptionHeader'
 import CompanySubscriptionContent from './CompanySubscriptionContent'
 import CompanySubscriptionPrivacy from './CompanySubscriptionPrivacyContent'
 import CompanySubscriptionDocument from './CompanySubscriptionDocument'
+import MarketplaceDocuments from '../ServiceMarketplaceDetail/components/MarketplaceDocuments'
+import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/components/MarketplaceTechnicalUserSetup'
+import MarketplaceProvider from '../ServiceMarketplaceDetail/components/MarketplaceProvider'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
-  const { state: items } = useLocation()
+  // const { state: items } = useLocation()
+  const [searchParams] = useSearchParams()
+
+  const items = {
+    row: {
+      offerId: searchParams.get(SEARCH_PARAMS.OFFER_ID),
+      subscriptionId: searchParams.get(SEARCH_PARAMS.SUBSCRIPTION_ID),
+    },
+    app: searchParams.get(SEARCH_PARAMS.IS_APP) === 'true',
+    service: searchParams.get(SEARCH_PARAMS.IS_SERVICE) === 'true',
+  }
   const { t } = useTranslation()
-  const id = items.row.offerId ?? ('' as string)
-  const subscriptionId = items.row.subscriptionId ?? ('' as string)
+  const id = items?.row?.offerId ?? ('' as string)
+  const subscriptionId = items?.row?.subscriptionId ?? ('' as string)
   const { data: appData, error: appError } = useFetchSubscriptionAppQuery(
     { appId: id, subscriptionId },
     { skip: items.service }
@@ -102,14 +116,37 @@ export default function CompanySubscriptionDetail() {
 
       {data && fetchData && (
         <>
-          <CompanySubscriptionHeader detail={fetchData} src={getSrc()} />
+          <CompanySubscriptionHeader
+            detail={fetchData}
+            src={getSrc()}
+            status={data.offerSubscriptionStatus}
+          />
           <div className="subscription-container">
             <div className="details">
-              <CompanySubscriptionContent detail={fetchData} />
-              <CompanySubscriptionDocument detail={fetchData} />
-              <CompanySubscriptionPrivacy detail={fetchData} />
-              {data.technicalUserData?.length > 0 && (
-                <CompanySubscriptionTechnical detail={data} />
+              {items.app ? (
+                <>
+                  <CompanySubscriptionContent detail={fetchData} />
+                  <CompanySubscriptionDocument detail={fetchData} />
+                  <CompanySubscriptionPrivacy detail={fetchData} />
+                  {data.technicalUserData?.length > 0 && (
+                    <CompanySubscriptionTechnical detail={data} />
+                  )}
+                </>
+              ) : (
+                <>
+                  <MarketplaceDocuments
+                    item={fetchData as ServiceDetailsResponse}
+                  />
+                  <div className="divider-height" />
+                  <MarketplaceTechnicalUserSetup
+                    item={fetchData as ServiceDetailsResponse}
+                  />
+                  <div className="divider-height" />
+                  <MarketplaceProvider
+                    item={fetchData as ServiceDetailsResponse}
+                  />
+                  <div className="divider-height" />
+                </>
               )}
             </div>
           </div>

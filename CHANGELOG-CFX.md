@@ -95,6 +95,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
 
+- **App & Service Subscription**
+- Fixed service subscription detail issue as per service detail [PM2-1669](https://cofinity-x.atlassian.net/browse/PM2-1669)
+
 ### Change
 
 - **Your apps**

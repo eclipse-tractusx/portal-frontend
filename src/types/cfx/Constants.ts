@@ -133,3 +133,10 @@ export const DROPZONE_ERROR_CODE = {
   FILE_INVALID_TYPE: 'file-invalid-type',
   TOO_MANY_FILES: 'too-many-files',
 }
+
+export const SEARCH_PARAMS = {
+  OFFER_ID: 'oId',
+  SUBSCRIPTION_ID: 'sId',
+  IS_APP: 'a',
+  IS_SERVICE: 's',
+}
