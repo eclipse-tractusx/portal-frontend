@@ -41,7 +41,7 @@ export default function CompanySubscriptionContent({
           {t('content.companySubscriptionsDetail.description')}
         </Typography>
         <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
-          {detail.longDescription}
+          {detail.longDescription ?? detail.description}
         </Typography>
       </Box>
       <Box className="company-subscription-content-section" id="image-gallery">
