@@ -23,6 +23,7 @@ import {
   Button,
   Typography,
   LogoGrayData,
+  Image,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
@@ -116,7 +117,7 @@ export default function MarketplaceHeader({
   return (
     <div className="service-marketplace-header">
       <div className="lead-image">
-        <img src={leadImg} alt={item.title} />
+        <Image src={leadImg} alt={item.title} />
       </div>
       <Box className="marketplace-app-content">
         <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
