@@ -98,13 +98,9 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
-
-  const managedIdpsData = () => {
-    return idpsData?.filter(
-      (a) => a.identityProviderTypeId === IDPCategory.MANAGED
-    )
-  }
-
+  const managedIdpsData = idpsData?.filter(
+    (a) => a.identityProviderTypeId === IDPCategory.MANAGED
+  )
   const [idpsManagedData, setIdpsManagedData] = useState(managedIdpsData)
 
   useEffect(() => {
@@ -368,7 +364,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   }
 
   const onSearch = (value: string) => {
-    const idpManagedData = managedIdpsData()
+    const idpManagedData = managedIdpsData
     if (value) {
       const searchFilter = idpManagedData?.filter(
         (i) => i.alias === value || i.displayName === value
