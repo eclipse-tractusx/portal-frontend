@@ -6,6 +6,8 @@
 
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+- **Application Request**
+  - add separate end points for downloading company credential document and registration document
 
 ## 2.3.0-alpha.2
 
