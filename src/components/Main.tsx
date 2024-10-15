@@ -136,7 +136,9 @@ export default function Main() {
             user={AccessService.userMenu()}
           />
           <MainSearchOverlay />
-          <Outlet />
+          <div className="initial-main-div">
+            <Outlet />
+          </div>
           <Footer pages={AccessService.footerMenu()} />
           <MainOverlay />
           <MainNotify />

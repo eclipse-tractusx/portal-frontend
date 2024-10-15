@@ -90,6 +90,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Service Request Management**
 
   - Back button make it outlined in Service Request Management [PM2-1143](https://cofinity-x.atlassian.net/browse/PM2-1143)
+  - Fixed Sorting & Filtering issue [PM2-801](https://cofinity-x.atlassian.net/browse/PM2-801)
 
 - **Partner Network**
 

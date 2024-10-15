@@ -62,6 +62,7 @@
   }
 
   .filterSection {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -82,8 +83,8 @@
 
   .sortSection {
     position: absolute;
-    left: 55%;
-    margin-top: 6%;
+    top: 45px;
+    right: -75px;
     background: #f9f9f9;
     box-shadow: 0px 10px 20px rgb(80 80 80 / 30%);
     border-radius: 16px;
