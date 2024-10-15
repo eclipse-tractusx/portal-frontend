@@ -364,14 +364,13 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   }
 
   const onSearch = (value: string) => {
-    const idpManagedData = managedIdpsData
     if (value) {
-      const searchFilter = idpManagedData?.filter(
+      const searchFilter = managedIdpsData?.filter(
         (i) => i.alias === value || i.displayName === value
       )
       setIdpsManagedData(searchFilter)
       setSearchExpr(value)
-    } else setIdpsManagedData(idpManagedData)
+    } else setIdpsManagedData(managedIdpsData)
   }
 
   const style = {
