@@ -6,6 +6,8 @@
 
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+- **App Overview Details**
+  - show confirmity document in separate section and all other available documents in the documents section
 
 ## 2.3.0-alpha.2
 
