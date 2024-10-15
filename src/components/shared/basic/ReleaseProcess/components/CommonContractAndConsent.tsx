@@ -64,7 +64,7 @@ import {
 } from 'features/serviceManagement/slice'
 import { ButtonLabelTypes } from '..'
 import { error, success } from 'services/NotifyService'
-import { DATA_SOVEREIGNTY_ID } from 'types/cfx/Constants'
+import { DATA_SOVEREIGNTY_ID, TNC_LINKS } from 'types/cfx/Constants'
 
 type AgreementDataType = {
   agreementId: string
@@ -131,7 +131,6 @@ export default function CommonContractAndConsent({
   updateDocumentUpload,
   fetchStatusData,
   getDocumentById,
-  fetchFrameDocumentById,
   helpUrl,
   onRefetch,
 }: CommonConsentType) {
@@ -425,21 +424,15 @@ export default function CommonContractAndConsent({
       }
   }
 
-  const handleFrameDocumentDownload = async (
-    documentName: string,
-    documentId: string
-  ) => {
-    if (fetchFrameDocumentById)
-      try {
-        const response = await fetchFrameDocumentById(documentId).unwrap()
-
-        const fileType = response.headers.get('content-type')
-        const file = response.data
-
-        download(file, fileType, documentName)
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-      }
+  const getTncLink = (type: string) => {
+    switch (type) {
+      case 'serviceRelease':
+        return TNC_LINKS.SERVICE_PROVIDER
+      case 'appRelease':
+        return TNC_LINKS.APP_PROVIDER
+      default:
+        return '#'
+    }
   }
 
   return (
@@ -477,17 +470,14 @@ export default function CommonContractAndConsent({
                 <Grid item md={11} sx={{ marginTop: '8px' }}>
                   {item.documentId ? (
                     <>
-                      <span
+                      <a
                         className={item.documentId ? 'agreement-span' : ''}
-                        onClick={() =>
-                          handleFrameDocumentDownload(item.name, item.documentId)
-                        }
-                        onKeyDown={() => {
-                          // do nothing
-                        }}
+                        href={getTncLink(type)}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {item.name}
-                      </span>
+                      </a>
                       <span style={{ color: 'red' }}>
                         {item.mandatory ? ' *' : ''}
                       </span>
