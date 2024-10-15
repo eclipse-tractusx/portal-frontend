@@ -156,6 +156,13 @@ export const apiSlice = createApi({
       query: (filters) =>
         `/api/administration/connectors/managed?page=${filters.page}&size=10`,
     }),
+    fetchProvidedConnectors: builder.query<
+      PaginResult<ConnectorResponseBody>,
+      PaginFetchArgs
+    >({
+      query: (filters) =>
+        `/api/administration/Connectors/provided?page=${filters.page}&size=10`,
+    }),
     fetchOfferSubscriptions: builder.query<EdcSubscriptionsType[], void>({
       query: () => ({
         url: '/api/administration/Connectors/offerSubscriptions?connectorIdSet=false',
@@ -199,6 +206,7 @@ export const {
   useDeleteConnectorMutation,
   useFetchConnectorsQuery,
   useFetchManagedConnectorsQuery,
+  useFetchProvidedConnectorsQuery,
   useFetchOfferSubscriptionsQuery,
   useFetchDecentralIdentityUrlsQuery,
   useUpdateConnectorUrlMutation,
