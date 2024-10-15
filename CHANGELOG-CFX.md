@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### New Features
 
+- **Managed connectors**
+
+  - Enable Provided Connectors for App/Service Providers [#1683](https://cofinity-x.atlassian.net/browse/PM2-1683)
+
 - **Business parter invite**
 
   - CHERRY-PICK allow all language characters symbols [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)

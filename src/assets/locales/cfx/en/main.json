@@ -691,8 +691,10 @@
       "subheadertitle": "Connector",
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
+      "providedtabletitle": "Provided Connectors",
       "noConnectorsMessage": "No registered connectors available",
       "noManagedConnectorsMessage": "No registered connectors available",
+      "noProvidedConnectorsMessage": "No registered connectors available",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register New Connector",
       "snackbar": {
