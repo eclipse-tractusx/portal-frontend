@@ -28,11 +28,9 @@ import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
-import { getApiBase } from 'services/EnvironmentService'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
-import { leadPictureBasePath } from 'types/Constants'
 
 export default function RecommendedServices({
   services,
@@ -77,7 +75,7 @@ export default function RecommendedServices({
                 imageAlt="App Card"
                 imagePath={
                   service?.leadPictureId
-                    ? `${getApiBase()}/${leadPictureBasePath}/${service.leadPictureId}`
+                    ? `${service.leadPictureId}`
                     : `${LogoGrayData}`
                 }
                 label={service.provider}
