@@ -209,7 +209,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
     element: <PartnerNetwork />,
   },
   {
@@ -643,7 +643,7 @@ export const ALL_OVERLAYS: RestrictedItem[] = [
   { name: OVERLAYS.NEWS },
   {
     name: OVERLAYS.PARTNER,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
   },
   {
     name: OVERLAYS.USER,
