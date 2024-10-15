@@ -17,6 +17,11 @@
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 
+### Bugfixes
+
+- **Onboarding Service Provider Management**
+  - fixed blank page issue in customer overview tab
+
 ## 2.3.0-alpha.2
 
 ### Change
