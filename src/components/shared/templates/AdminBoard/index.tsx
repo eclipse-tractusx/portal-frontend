@@ -292,10 +292,12 @@ export default function CommonAdminBoard({
         showModal: false,
       },
     })
-    resetAppCards(
-      value === SortType.TITLE ? SortType.NAMEASC : SortType.DATEDESC,
-      ViewActionEnum.SORTOPTION
-    )
+    if (value !== sortOption) {
+      resetAppCards(
+        value === SortType.TITLE ? SortType.NAMEASC : SortType.DATEDESC,
+        ViewActionEnum.SORTOPTION
+      )
+    }
   }
 
   const resetAppCards = useCallback(
