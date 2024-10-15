@@ -30,8 +30,6 @@ import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice
 import './ServiceMarketplace.scss'
 import { useCallback } from 'react'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
-import { getApiBase } from 'services/EnvironmentService'
-import { leadPictureBasePath } from 'types/Constants'
 
 export default function ServicesElements({
   services,
@@ -88,7 +86,7 @@ export default function ServicesElements({
                       imageAlt="App Card"
                       imagePath={
                         service?.leadPictureId
-                          ? `${getApiBase()}/${leadPictureBasePath}/${service.leadPictureId}`
+                          ? `${service.leadPictureId}`
                           : `${LogoGrayData}`
                       }
                       label={service.provider}
