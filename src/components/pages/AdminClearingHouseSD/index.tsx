@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -17,26 +16,17 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-.form-input {
-  padding: 0;
-}
 
-.helpText {
-  display: flex;
-  color: #0d55af !important;
-  margin-top: 30px !important;
-  text-decoration: none;
-  margin-bottom: 20px !important;
+import AdminclearinghouseSDElements from './AdminClearingHouseSDElements'
 
-  svg {
-    font-size: 20px;
-  }
-}
-
-.technicalUserForm {
-  display: grid;
-
-  .roleDescription {
-    margin: -5px 27px 10px;
-  }
+export default function AdminclearinghouseSD() {
+  return (
+    <main className="appCertificate">
+      <div className="mainContainer">
+        <div className="mainRow">
+          <AdminclearinghouseSDElements />
+        </div>
+      </div>
+    </main>
+  )
 }

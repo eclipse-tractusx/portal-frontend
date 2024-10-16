@@ -490,7 +490,22 @@ export default function Subscription({
           )}
           {!doNotShowAutoSetup && (
             <div className="subDescription">
-              <Typography className="readMore" variant="label3">
+              <Typography
+                className="readMore"
+                variant="label3"
+                sx={{
+                  cursor: 'pointer',
+                  color: '#0088CC',
+                  marginTop: '30px',
+                }}
+                onClick={() =>
+                  window.open(
+                    '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F03.+Subscription+Overview+%28App+Provider%29.md',
+                    '_blank',
+                    'noopener'
+                  )
+                }
+              >
                 {readMore}
               </Typography>
               <Typography
