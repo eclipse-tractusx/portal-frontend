@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **App Subscription Management**
+  - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
+
 ### Feature
 
 - **Clearinghouse Self-Description**
