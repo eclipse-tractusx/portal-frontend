@@ -521,9 +521,7 @@ const EdcConnector = () => {
               columns={managedConnectorCols}
               noRowsMsg={t('content.edcconnector.noManagedConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
-                onTableCellClick(
-                  params
-                )
+                onTableCellClick(params)
               }}
             />
           </div>
@@ -540,9 +538,7 @@ const EdcConnector = () => {
               columns={providedConnectorCols}
               noRowsMsg={t('content.edcconnector.noProvidedConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
-                onTableCellClick(
-                  params
-                )
+                onTableCellClick(params)
               }}
             />
           </div>
