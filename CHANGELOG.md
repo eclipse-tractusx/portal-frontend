@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### BugFixes
+
+- **Service Overview**
+  - search services field should allow speacial chars, digits
+
 ### Feature
 
 - **Clearinghouse Self-Description**
