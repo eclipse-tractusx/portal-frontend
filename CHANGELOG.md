@@ -7,7 +7,7 @@
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 - **App and Service Subscription Management**
-  - show all available active apps/services in the filter section. add heading in each section for the better user experience
+  - show all available active apps/services in the filter section. add heading in each section for the better user experience. show all subscription including inactive in the list [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
 
 ## 2.3.0-alpha.2
 
