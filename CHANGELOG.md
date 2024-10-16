@@ -42,6 +42,11 @@
 - **Service Release Process**
   - Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 
+### Bugfixes
+
+- **Onboarding Service Provider Management**
+  - fixed blank page issue in customer overview tab
+
 ## 2.3.0-alpha.2
 
 ### Change
