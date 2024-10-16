@@ -83,7 +83,7 @@ export const AddUser = () => {
         idp.enabled
     )
     if (filteredIdps.length === 1) {
-      const [filteredIdp] = filteredIdps 
+      const [filteredIdp] = filteredIdps
       return <AddUserContent idp={filteredIdp} />
     }
 

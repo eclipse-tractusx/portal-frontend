@@ -177,7 +177,7 @@ export const Dropzone = ({
     !isDragActive && errorObj && fileTypeError && errorText
       ? errorText
       : isMaxFileError
-        ? (maxErrorText ?? errorObj?.message)
+        ? maxErrorText ?? errorObj?.message
         : errorObj?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({
