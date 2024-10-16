@@ -95,6 +95,7 @@ import {
   userHasSsiCredentialRole,
 } from 'services/AccessService'
 import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
+import AdminclearinghouseSD from 'components/pages/AdminClearingHouseSD'
 
 /**
  * ALL_PAGES
@@ -208,7 +209,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
     element: <PartnerNetwork />,
   },
   {
@@ -396,6 +397,11 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.APPLICATION_REQUESTS,
     allowTo: () => userHasPortalRole(ROLES.SUBMITTED_APPLICATION),
     element: <RegistrationRequests />,
+  },
+  {
+    name: PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
+    allowTo: () => userHasPortalRole(ROLES.APPROVE_NEW_PARTNER),
+    element: <AdminclearinghouseSD />,
   },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
@@ -637,7 +643,7 @@ export const ALL_OVERLAYS: RestrictedItem[] = [
   { name: OVERLAYS.NEWS },
   {
     name: OVERLAYS.PARTNER,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
   },
   {
     name: OVERLAYS.USER,
@@ -830,6 +836,7 @@ export const userMenuFull = [
   PAGES.IDP_MANAGEMENT,
   PAGES.CONNECTOR_MANAGEMENT,
   PAGES.APPLICATION_REQUESTS,
+  PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
@@ -850,6 +857,7 @@ export const userMenuCompany = [
   PAGES.IDP_MANAGEMENT,
   PAGES.CONNECTOR_MANAGEMENT,
   PAGES.APPLICATION_REQUESTS,
+  PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
