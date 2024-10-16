@@ -2,13 +2,32 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
-## 2.2.0-cfx-1
+## 2.2.0-cfx-2
 
 ### New Features
+
+- **Managed connectors**
+
+  - Enable Provided Connectors for App/Service Providers [#1683](https://cofinity-x.atlassian.net/browse/PM2-1683)
 
 - **Business parter invite**
 
   - CHERRY-PICK allow all language characters symbols [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
+
+- **Partner Network**
+  - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
+
+### Bug Fixes
+
+- **App Management**
+  - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
+
+### Change
+
+- **Connector Registration**
+  - Remove hardcoded connector urls [PO-397](https://cofinity-x.atlassian.net/browse/PO-397)
+
+## 2.2.0-cfx-1
 
 - **App subscription**
 
@@ -114,6 +133,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - Fixed service subscription detail issue as per service detail [PM2-1669](https://cofinity-x.atlassian.net/browse/PM2-1669)
 
 ### Change
+
+- **Release Process apps/services**
+
+  - remove Remove Data Sovereignty Guidelines checkbox and link [PM2-1695](https://cofinity-x.atlassian.net/browse/PM2-1695)
 
 - **Your apps**
 

@@ -113,13 +113,13 @@ export const FOOTERLINK = {
 
 export const TNC_LINKS = {
   ACTIVE_PARTICIPANT:
-    'http://144397848.hs-sites-eu1.com/tc-data-provider-consumer',
+    'https://explore.cofinity-x.com/tc-data-provider-consumer',
   APP_PROVIDER:
-    'http://144397848.hs-sites-eu1.com/tc-application-enablement-service-provider',
+    'https://explore.cofinity-x.com/tc-application-enablement-service-provider',
   SERVICE_PROVIDER:
-    'http://144397848.hs-sites-eu1.com/tc-advisory-service-provider',
+    'https://explore.cofinity-x.com/tc-advisory-service-provider',
   ONBOARDING_SERVICE_PROVIDER:
-    'http://144397848.hs-sites-eu1.com/tc-onboarding-service-provider',
+    'https://explore.cofinity-x.com/tc-onboarding-service-provider',
 }
 
 export const COMPANY_ROLE = {
@@ -140,3 +140,5 @@ export const SEARCH_PARAMS = {
   IS_APP: 'a',
   IS_SERVICE: 's',
 }
+
+export const DATA_SOVEREIGNTY_ID = 'aa0a0000-7fbc-1f2f-817f-bce0502c1015'

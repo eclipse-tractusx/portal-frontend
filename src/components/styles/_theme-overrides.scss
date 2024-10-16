@@ -2048,3 +2048,12 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .cx-card__add-service--title {
   text-align: center;
 }
+
+.service-marketplace-header {
+  .lead-image {
+    img {
+      border-radius: 16px !important;
+      height: 210px !important;
+    }
+  }
+}
