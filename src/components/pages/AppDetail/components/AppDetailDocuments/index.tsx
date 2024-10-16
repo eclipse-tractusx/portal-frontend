@@ -26,7 +26,10 @@ import { type AppDetails, type Documents } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import '../../AppDetail.scss'
-import { type DocumentData, DocumentTypeId } from 'features/appManagement/apiSlice'
+import {
+  type DocumentData,
+  DocumentTypeId,
+} from 'features/appManagement/apiSlice'
 
 export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   const { t } = useTranslation()

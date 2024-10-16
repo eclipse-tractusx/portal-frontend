@@ -756,7 +756,7 @@ npm/npmjs/@types/json5/0.0.29, MIT, approved, clearlydefined
 npm/npmjs/@types/lodash.debounce/4.0.9, MIT, approved, clearlydefined
 npm/npmjs/@types/lodash.uniq/4.5.9, MIT, approved, #13930
 npm/npmjs/@types/lodash/4.17.7, MIT, approved, clearlydefined
-npm/npmjs/@types/node/20.11.30, MIT, approved, #13826
+npm/npmjs/@types/node/20.11.30, MIT, approved, clearlydefined
 npm/npmjs/@types/papaparse/5.3.14, MIT, approved, #10964
 npm/npmjs/@types/parse-json/4.0.2, MIT, approved, clearlydefined
 npm/npmjs/@types/prop-types/15.7.11, MIT, approved, #16176
