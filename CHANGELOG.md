@@ -16,6 +16,8 @@
 
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+- **Business Partner Invitation**
+  - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
 
 ### Bugfixes
 
