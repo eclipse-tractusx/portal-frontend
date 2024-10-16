@@ -20,6 +20,7 @@
 ### Change
 
 - **Service Subscriptions**
+
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 - **Business Partner Invitation**
   - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
@@ -33,6 +34,11 @@
 
 - **Company Subscriptions**
   - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
+
+  ### Bugfixes
+
+- **Service Release Process**
+  - Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 
 ## 2.3.0-alpha.2
 
