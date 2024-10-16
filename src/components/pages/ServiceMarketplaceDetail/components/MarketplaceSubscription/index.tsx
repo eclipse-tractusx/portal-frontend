@@ -32,7 +32,11 @@ export default function MarketplaceSubscription({
 
   return (
     <div className="marketplace-subscriptions">
-      <Typography className="marketplace-subscriptions__heading--short" variant="body2" sx={{ color: '#0d55af' }}>
+      <Typography
+        className="marketplace-subscriptions__heading--short"
+        variant="body2"
+        sx={{ color: '#0d55af' }}
+      >
         <b>
           {t('content.serviceMarketplace.subscriptionHeading').replace(
             '{serviceName}',
