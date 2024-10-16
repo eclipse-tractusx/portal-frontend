@@ -240,6 +240,8 @@ export enum HINTS {
   NEW = 'new',
 }
 
+export const leadPictureBasePath = 'api/administration/documents'
+
 export const REVIEW_STAGE_ORDERS = [
   'REGISTRATION_VERIFICATION',
   'BUSINESS_PARTNER_NUMBER',
