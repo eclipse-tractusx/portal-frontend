@@ -52,7 +52,7 @@
 - **Connector Management**
   - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
 - **Technical User Management**
-  - fixed error message scenario post technical user deletion action
+  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
 - **Company Subscriptions**
   - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
   - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
