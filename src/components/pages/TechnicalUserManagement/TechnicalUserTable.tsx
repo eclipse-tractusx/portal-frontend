@@ -106,6 +106,18 @@ export const TechnicalUserTable = () => {
         searchExpr={expr}
         hasBorder={false}
         rowHeight={80}
+        sx={{
+          '.MuiDataGrid-columnHeader, .MuiDataGrid-row .MuiDataGrid-cell[role="cell"]':
+            {
+              padding: '0 15px',
+              '&:first-child': {
+                paddingLeft: '32px',
+              },
+              '&:last-child': {
+                paddingRight: '25px',
+              },
+            },
+        }}
         defaultFilter={group}
         columnHeadersBackgroundColor={'transparent'}
         toolbarVariant={'searchAndFilter'}
@@ -131,12 +143,12 @@ export const TechnicalUserTable = () => {
           {
             field: 'clientId',
             headerName: t('global.field.clientId'),
-            flex: 1.1,
+            flex: 1.15,
           },
           {
             field: 'serviceAccountType',
             headerName: t('global.field.ownership'),
-            flex: 1.15,
+            flex: 1.2,
           },
           {
             field: 'usertype',
@@ -148,21 +160,21 @@ export const TechnicalUserTable = () => {
           {
             field: 'offer',
             headerName: t('global.field.offerLink'),
-            flex: 1.2,
+            flex: 1.25,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.offer ? row.offer?.name : '',
           },
           {
             field: 'isOwner',
             headerName: t('global.field.owner'),
-            flex: 0.9,
+            flex: 1,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
               row.isOwner ? 'Yes' : 'No',
           },
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 1.25,
+            flex: 1,
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <StatusTag
                 color={statusColorMap[row.status]}
@@ -175,7 +187,7 @@ export const TechnicalUserTable = () => {
           {
             field: 'details',
             headerName: t('global.field.details'),
-            flex: 0.9,
+            flex: 1.1,
             renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
               <>
                 <IconButton

@@ -195,7 +195,7 @@ export default function SubscriptionElements({
           <>
             <Chip
               color="primary"
-              label={t('content.appSubscription.configureBtn')}
+              label={t('content.appSubscription.activateBtn')}
               type="plain"
               variant="filled"
               onClick={() => {
