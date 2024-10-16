@@ -52,9 +52,9 @@ export default function CompanySubscriptionTechnical({
         {
           icon: false,
           clickableLink:
-            userHasPortalRole(ROLES.VIEW_USER_ACCOUNT) &&
+            userHasPortalRole(ROLES.TECH_USER_VIEW) &&
             detail.technicalUserData.length
-              ? `/${PAGES.USER_DETAILS}/${detail.technicalUserData[0].id}`
+              ? `/${PAGES.TECH_USER_DETAILS}/${detail.technicalUserData[0].id}`
               : undefined,
         },
       ],

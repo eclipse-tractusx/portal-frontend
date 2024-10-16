@@ -286,7 +286,7 @@ const OnboardingServiceProvider = () => {
                 {t('content.onboardingServiceProvider.subDesc1')}
               </Typography>
               <Typography variant="body3">
-                {t('content.onboardingServiceProvider.subDesc2')}
+                {callbackData?.callbackUrl ?? data?.callbackUrl}
               </Typography>
             </Box>
             <IconButton
