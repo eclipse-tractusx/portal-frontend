@@ -47,6 +47,11 @@
 - **Onboarding Service Provider Management**
   - fixed blank page issue in customer overview tab
 
+### Bugfixes
+
+- **User Menu**
+  - fixed company user menu to display all pages
+
 ## 2.3.0-alpha.2
 
 ### Change
