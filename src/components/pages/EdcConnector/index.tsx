@@ -50,6 +50,7 @@ import {
   useFetchManagedConnectorsQuery,
   type ConnectorDetailsType,
   useFetchProvidedConnectorsQuery,
+  useFetchDecentralIdentityUrlsQuery,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -123,6 +124,8 @@ const EdcConnector = () => {
   const [openDetailsOverlay, setOpenDetailsOverlay] = useState(false)
   const [overlayData, setOverlayData] = useState<ConnectorDetailsType>()
   const [activeTab, setActiveTab] = useState<number>(0)
+
+  const { data: urls } = useFetchDecentralIdentityUrlsQuery()
 
   useEffect(() => {
     if (roles && roles.length > 0)
@@ -416,6 +419,13 @@ const EdcConnector = () => {
               <Typography variant="body3">
                 {t('content.edcconnector.subDesc1')}
               </Typography>
+              <Typography variant="body3">
+                {urls?.decentralIdentityManagementAuthUrl}
+              </Typography>
+              <Typography variant="body3">
+                {urls?.decentralIdentityManagementServiceUrl}
+              </Typography>
+              <Typography variant="body3">{urls?.trusted_issuer}</Typography>
             </Box>
             <IconButton
               aria-label="close"
