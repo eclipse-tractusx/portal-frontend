@@ -142,6 +142,15 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    fetchSsiDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `${getSsiBase()}/api/credential/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
   }),
 })
 
@@ -153,4 +162,5 @@ export const {
   useDeclineCredentialMutation,
   useFetchCertificateTypesQuery,
   useRevokeCredentialMutation,
+  useFetchSsiDocumentByIdMutation,
 } = apiSlice

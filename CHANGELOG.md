@@ -22,6 +22,8 @@
 - **Service Subscriptions**
 
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+- **Application Request**
+  - add separate end points for downloading company credential document and registration document [#1229](https://github.com/eclipse-tractusx/portal-frontend/pull/1229)
 - **Business Partner Invitation**
   - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
 
