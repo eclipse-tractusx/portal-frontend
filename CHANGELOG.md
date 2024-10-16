@@ -22,6 +22,7 @@
 - **Service Subscriptions**
 
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+
 - **Header**
   - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
 - **Application Request**
@@ -37,6 +38,7 @@
 ### Bugfixes
 
 - **Company Subscriptions**
+
   - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
 
   ### Bugfixes
