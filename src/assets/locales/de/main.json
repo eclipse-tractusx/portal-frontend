@@ -624,7 +624,7 @@
         "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
         "learnMore": "Learn More",
         "noDocumentAvailable": "Kein Dokument verfügbar",
-        "selfDescriptionDocument": "Selbstbeschreibungsdokument",
+        "selfDescriptionDocument": "Eigenerklärungsdokument",
         "deleteConnector": "Connector löschen",
         "urlUpdatedSuccessfully": "URL erfolgreich aktualisiert",
         "note": "Bitte beachten Sie:",
@@ -676,7 +676,7 @@
       "deletemodal": {
         "title": "EDC-Connector Löschen",
         "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
-        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist. Der technische Benutzer kann gelöscht werden, wenn Sie das Kontrollkästchen unten aktivieren. Andernfalls wird nur die Zuordnung zwischen Connector und technischem Benutzer gelöscht.",
+        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Eigenerklärungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist. Der technische Benutzer kann gelöscht werden, wenn Sie das Kontrollkästchen unten aktivieren. Andernfalls wird nur die Zuordnung zwischen Connector und technischem Benutzer gelöscht.",
         "techUserCheckBoxLabel": "Ja, ich möchte den Connector löschen, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
         "techDetails": {
           "title": "Technical Details",
@@ -1065,6 +1065,18 @@
       "client_secret_invalid_error": "Bitte geben Sie ein gültiges Client-Secret ein",
       "metadata_url_required_error": "Metadaten-URL ist erforderlich",
       "metadata_url_invalid_error": "Bitte geben Sie eine gültige Metadaten-URL ein"
+    },
+    "clearinghouseSelfDescription": {
+      "heading": "Status der Eigenerklärung",
+      "description": "Diese Seite bietet einen Überblick über den aktuellen Stand der Eigenerklärungen für Administratoren.",
+      "reprocess": "Nachverarbeiten",
+      "complianceStatus": "Compliance-Status:",
+      "legalPerson": "Juristische Person",
+      "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung einer juristischen Person",
+      "connectors": "Connectors",
+      "connectorsDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung der Konnektoren",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen",
+      "noDataMsg": "Keine Datensätze gefunden."
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",
@@ -1847,7 +1859,7 @@
         },
         "SKIPPED": {
           "title": "Von Ihrer Seite sind keine Maßnahmen erforderlich",
-          "description": "Die Erstellung der Selbstbeschreibung wurde absichtlich übersprungen. Dieser Prozess wird vom CX-Operator so bald wie möglich wieder ausgelöst."
+          "description": "Die Erstellung der Eigenerklärung wurde absichtlich übersprungen. Dieser Prozess wird vom CX-Operator so bald wie möglich wieder ausgelöst."
         }
       }
     },
@@ -2370,7 +2382,8 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Information erfolgreich kopiert"
     },
     "state": {
       "enabled": "aktiv",

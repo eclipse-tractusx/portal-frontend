@@ -2,12 +2,29 @@
 
 ## Unreleased
 
+### Feature
+
+- **Clearinghouse Self-Description**
+  - Admin UI for Managing SD Document Retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
+
+### Technical Support
+
+- **Injection of environment variables to Docker image**
+  - refactored to a more readable and typo resistant implementation using sh - bash and jq are no longer required in image [#914](https://github.com/eclipse-tractusx/portal-frontend/pull/914)
+
 ### Change
 
 - **Service Subscriptions**
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
 - **App Overview Details**
   - show confirmity document in separate section and all other available documents in the documents section
+- **Business Partner Invitation**
+  - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
+
+### Bugfixes
+
+- **Partner Network**
+  - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
 
 ## 2.3.0-alpha.2
 
@@ -111,7 +128,10 @@
 - **Notifications**
   - rename translation key from 'appsubscription' to 'appSubscription' [#1054](https://github.com/eclipse-tractusx/portal-frontend/pull/1054)
 - **User Management**
+
   - fixed displaying of user management navigation button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
+  - Fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
+
 - **App Management**
   - fixed 400 Bad Request error due to search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/pull/1058)
   - added load more button app overview [#1009](https://github.com/eclipse-tractusx/portal-frontend/pull/1009)
