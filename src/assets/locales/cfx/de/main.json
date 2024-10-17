@@ -238,8 +238,8 @@
         "addBpn": {
           "successTitle": "Update BPN number successfully completed",
           "successDescription": "Update BPN number successfully completed.",
-          "errorTitle": "Something went wrong",
-          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+          "errorTitle": "Etwas ist schief gelaufen",
+          "errorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator."
         },
         "filter": {
           "all": "Alle",
@@ -616,7 +616,7 @@
     },
     "edcconnector": {
       "columns": {
-        "name": "Connector Name",
+        "name": "Connector-Name",
         "id": "Konnektor-ID",
         "type": "Connector Typ",
         "status": "Status",
@@ -646,7 +646,7 @@
         "connectorDeletedSuccessfully": "Der Connector wurde erfolgreich gelöscht",
         "delete": "Löschen",
         "configureYourConnectorDetails": "",
-        "learnMore": "Learn More",
+        "learnMore": "Lern mehr",
         "noDocumentAvailable": "Kein Dokument verfügbar",
         "selfDescriptionDocument": "Selbstbeschreibungsdokument",
         "deleteConnector": "Connector löschen",
@@ -740,41 +740,41 @@
         "insertform": {
           "name": {
             "label": "Name*",
-            "placeholder": "Connector Name",
+            "placeholder": "Connector-Name",
             "mandatoryError": "Der Connector-Name ist obligatorisch.",
             "tooltipMsg": "Eigener ausgewählter Connector-Name zur Überprüfung",
             "patternError": "Der Connector-Name darf nicht mit Sonderzeichen oder Leerzeichen beginnen. Erlaubte Sonderzeichen sind @_:;%&?,'!."
           },
           "url": {
             "label": "Connector-Katalog-Endpunkt*",
-            "placeholder": "Connector URL",
+            "placeholder": "Connector-URL",
             "mandatoryError": "Die Connector-URL ist obligatorisch.",
             "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "tooltipMsg": "URL des Connector-Endpunkts. Nur https:// Endpunkte sind erlaubt"
           },
           "bpn": {
-            "label": "Connector Owner*",
-            "placeholder": "BPNL's are allowed only",
-            "error": "BPN is mandatory. Valid BPN eg: BPNLXXXXXXXXXXXX",
-            "tooltipMsg": "BPN of the company in which name the connector will be used to generate data offers or consume data"
+            "label": "Connector-Besitzer*",
+            "placeholder": "Nur BPNL’s sind zugelassen",
+            "error": "Die BPN ist obligatorisch. Gültige BPN z. B.: BPNLXXXXXXXXXXXX",
+            "tooltipMsg": "BPN des Unternehmens, in dessen Namen der Connectur zur Erstellung von Datenangeboten oder zum Abruf von Daten verwendet werden soll"
           },
           "country": {
-            "label": "Location*",
-            "placeholder": "Two digit country code",
+            "label": "Standort*",
+            "placeholder": "Zweistelliger Ländercode",
             "mandatoryError": "Der Standort ist obligatorisch",
             "patternError": "Gültiger Code zB: DE, US",
             "tooltipMsg": "Connector Location - Message to be added"
           },
           "doc": {
             "label": "Öffentlicher Authentifizierungsschlüssel/Zertifikat*",
-            "error": "Please use a valid type. e.g. .pem; .cert",
+            "error": "Bitte verwenden Sie einen gültigen Datentyp, z. B. .pem; .cert",
             "tooltipMsg": "Laden Sie das Zertifikat hoch, das die öffentlichen Schlüsselinformationen Ihres Connectors enthält."
           },
           "subscription": {
-            "label": "Customer Link*",
-            "placeholder": "Select the related subscription",
-            "tooltipMsg": "Select the related subscription",
-            "error": "Customer link is mandatory"
+            "label": "Kunden-Link*",
+            "placeholder": "Wählen Sie das entsprechende Abonnement aus",
+            "tooltipMsg": "Wählen Sie das entsprechende Abonnement aus",
+            "error": "Der Kunden-Link ist obligatorisch"
           },
           "technicalUser": {
             "label": "Technischer Benutzer*",
@@ -800,16 +800,16 @@
           "maxLength": "Maxlength ist"
         },
         "create": {
-          "successTitle": "Create connector successfully completed",
-          "successDescription": "Create connector successfully completed.",
-          "errorTitle": "Something went wrong",
-          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+          "successTitle": "Connector-Erstellung erfolgreich abgeschlossen",
+          "successDescription": "Connector-Erstellung erfolgreich abgeschlossen.",
+          "errorTitle": "Etwas ist schief gelaufen",
+          "errorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator."
         },
         "delete": {
-          "successTitle": "Delete connector successfully completed",
-          "successDescription": "Delete connector successfully completed.",
-          "errorTitle": "Something went wrong",
-          "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+          "successTitle": "Connector-Löschung erfolgreich abgeschlossen",
+          "successDescription": "Connector-Löschung erfolgreich abgeschlossen.",
+          "errorTitle": "Etwas ist schief gelaufen",
+          "errorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator."
         }
       }
     },
@@ -1005,8 +1005,8 @@
         "noteDeleteUser": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "confirmDeleteNotificationTitle": "Das Löschen des Benutzers war erfolgreich.",
         "confirmDeleteNotificationDescription": "Die Aktion kann nicht rückgängig gemacht werden. Bitte erstellen Sie einen neuen Benutzer, falls dies erforderlich ist",
-        "deleteTechUserNotificationErrorTitle": "Something went wrong",
-        "resetCredentialError": "Something went wrong",
+        "deleteTechUserNotificationErrorTitle": "Etwas ist schief gelaufen",
+        "resetCredentialError": "Etwas ist schief gelaufen",
         "resetCredentialSuccess": "Credential reset was successful",
         "tabs": {
           "showAll": "Alle anzeigen",
@@ -1027,7 +1027,7 @@
         "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully deleted",
         "successDescription": "The user got successfully deleted. All rights have been disabled. Please note that the user might still be able to use the application for the next 10 minutes. Latest in 10 minutes the user is automatically logged out and a new login attempt will get declined",
-        "errorTitle": "Something went wrong",
+        "errorTitle": "Etwas ist schief gelaufen",
         "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
       },
       "suspendUserConfirm": {
@@ -1037,7 +1037,7 @@
         "note": "Note: Suspended accounts can get reactivated anytime.",
         "successTitle": "User successfully suspended",
         "successDescription": "The user is successfully suspended and all rights are disabled.",
-        "errorTitle": "Something went wrong",
+        "errorTitle": "Etwas ist schief gelaufen",
         "errorDescription": "Your user couldn't get suspended. Please try it later again or contact your administrator."
       },
       "resetPasswordConfirm": {
@@ -1046,7 +1046,7 @@
         "note": "The user {userName} will receive an email to reset the password.",
         "successTitle": "Password Reset successfully triggered",
         "successDescription": "The password reset request got send to {userName}.",
-        "errorTitle": "Something went wrong",
+        "errorTitle": "Etwas ist schief gelaufen",
         "errorDescription": "The password reset was unsuccessful. Please try it later again or contact the administrator."
       },
       "deleteOwnUserConfirm": {
@@ -1056,7 +1056,7 @@
         "note": "Note: If you delete the account now, you wont be able to reactivate it later.",
         "successTitle": "User successfully deleted",
         "successDescription": "Your user got successfully deleted, you will get disconnected within the following 5 seconds.",
-        "errorTitle": "Something went wrong",
+        "errorTitle": "Etwas ist schief gelaufen",
         "errorDescription": "Your user couldn't get deleted. Please try it later again or contact your administrator."
       }
     },
@@ -1225,7 +1225,7 @@
         "title": "Manage User Assigned Portal Role(s)",
         "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
         "successDescription": "Portal Role(s) successfully updated.",
-        "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
+        "errorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator."
       }
     },
     "footer": {
@@ -1486,7 +1486,7 @@
         "proceed": "Weiter"
       },
       "retryOverlay": {
-        "title": "Something went wrong",
+        "title": "Etwas ist schief gelaufen",
         "description": "The data could not get loaded, please try it again or go back to the previous page."
       }
     },
