@@ -92,7 +92,7 @@ export type SubscriptionServiceRequest = {
 
 export type ServiceBody = {
   page: number
-  serviceType: string
+  serviceType?: string
   sortingType: string
 }
 
@@ -111,7 +111,7 @@ export const apiSlice = createApi({
         const sortingType = `sorting=${body.sortingType}`
         return {
           url: `/api/services/active?size=${PAGE_SIZE}&page=${body.page}&${
-            body.serviceType && serviceType
+            (body.serviceType && serviceType) ?? ''
           }&${body.sortingType && sortingType}`,
         }
       },

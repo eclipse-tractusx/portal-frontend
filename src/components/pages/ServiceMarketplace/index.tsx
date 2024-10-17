@@ -69,15 +69,13 @@ export default function ServiceMarketplace() {
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
   const [page, setPage] = useState<number>(0)
-  const [serviceTypeId, setServiceTypeId] = useState<ServiceTypeIdsEnum | ''>(
-    ''
-  )
+  const [serviceTypeId, setServiceTypeId] = useState<ServiceTypeIdsEnum>()
   const [sortingType, setSortingType] = useState<SORTING_TYPE>(
     SORTING_TYPE.RELEASE_DATE_DESC
   )
   const [argsData, setArgsData] = useState<{
     page: number
-    serviceType: ServiceTypeIdsEnum | ''
+    serviceType?: ServiceTypeIdsEnum
     sortingType: SORTING_TYPE
   }>({
     page: 0,
@@ -98,7 +96,8 @@ export default function ServiceMarketplace() {
       setCardServices(
         data?.meta.page === 0
           ? setDataInfo(data)
-          : (i: ServiceRequest[]) => i.concat(setDataInfo(data))
+          : (serviceRequets: ServiceRequest[]) =>
+              serviceRequets.concat(setDataInfo(data))
       )
   }, [data])
 
@@ -107,7 +106,7 @@ export default function ServiceMarketplace() {
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
-    let serviceType: ServiceTypeIdsEnum | '' = ''
+    let serviceType: ServiceTypeIdsEnum | undefined
 
     if (viewValue === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
       serviceType = ServiceTypeIdsEnum.DATASPACE_SERVICE
@@ -118,7 +117,7 @@ export default function ServiceMarketplace() {
     setServiceTypeId(serviceType)
     setArgsData((arg) => ({
       ...arg,
-      serviceType: serviceType ?? '',
+      serviceType,
       page: 0,
     }))
 
