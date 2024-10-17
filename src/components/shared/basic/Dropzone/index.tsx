@@ -113,20 +113,18 @@ export const Dropzone = ({
   )
 
   const handleFileSizeValidator = (file: File) => {
+    if (!maxFileSize) return null
     const formatFileSize = (bytes: number): string => {
       const sizeInMB = bytes / CONVERT_TO_MB
-      if (Number.isInteger(sizeInMB)) {
-        return sizeInMB.toString()
-      } else {
-        return sizeInMB.toFixed(1)
-      }
+      return Number.isInteger(sizeInMB)
+        ? sizeInMB.toString()
+        : sizeInMB.toFixed(1)
     }
 
-    if (!maxFileSize) return null
     return file.size > maxFileSize
       ? {
           code: 'size-too-large',
-          message: `File is larger than ${formatFileSize(maxFileSize)} MB`,
+          message: `${t('shared.dropzone.error.fileTooLarge')} ${formatFileSize(maxFileSize)} MB`,
         }
       : null
   }
