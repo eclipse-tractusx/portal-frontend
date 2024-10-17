@@ -72,8 +72,8 @@ export const Patterns = {
   appMarketCard: {
     appTitle: /^([A-Za-z.:_@&0-9' -]){5,40}$/,
     appProvider: /^([A-Za-z.:_@&0-9' -]){3,30}$/,
-    shortDescriptionEN: /^([a-zA-Z0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
-    shortDescriptionDE: /^([a-zA-ZÀ-ÿ0-9 !?@&#'"()_\-=/*.,;:]){10,255}$/,
+    shortDescriptionEN: /^(?=.*[\s\S]{10,255})[\s\S]*$/,
+    shortDescriptionDE: /^(?=.*[\s\S]{10,255})[\s\S]*$/,
     useCaseCategory: /^([A-Za-z])$/,
     appLanguage: /^([A-Za-z ])$/,
     pricingInformation: /^([A-Za-z0-9/€ ]){1,15}$/,
