@@ -283,7 +283,7 @@ const OnboardingServiceProvider = () => {
                 {t('content.onboardingServiceProvider.subDesc1')}
               </Typography>
               <Typography variant="body3">
-                {t('content.onboardingServiceProvider.subDesc2')}
+                {callbackData?.callbackUrl ?? data?.callbackUrl}
               </Typography>
             </Box>
             <IconButton
@@ -387,7 +387,7 @@ const OnboardingServiceProvider = () => {
                   flex: 1,
                   sortable: false,
                   renderCell: ({ row }: { row: networkCompany }) =>
-                    row?.identityProvider?.[0].alias,
+                    row?.identityProvider?.[0]?.alias,
                 },
                 {
                   field: 'activeUsers',

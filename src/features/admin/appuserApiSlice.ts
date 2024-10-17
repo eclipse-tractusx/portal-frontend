@@ -88,7 +88,7 @@ export const apiSlice = createApi({
     fetchAppUsersSearch: builder.query<PaginResult<TenantUser>, PaginFetchArgs>(
       {
         query: (fetchArgs) => {
-          const emailExpr = `&email=${fetchArgs.args!.expr}`
+          const emailExpr = `&email=${encodeURIComponent(fetchArgs.args!.expr)}`
           return {
             url: `/api/administration/user/owncompany/apps/${
               fetchArgs.args!.appId

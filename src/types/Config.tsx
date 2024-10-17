@@ -209,7 +209,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
     element: <PartnerNetwork />,
   },
   {
@@ -643,7 +643,7 @@ export const ALL_OVERLAYS: RestrictedItem[] = [
   { name: OVERLAYS.NEWS },
   {
     name: OVERLAYS.PARTNER,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
   },
   {
     name: OVERLAYS.USER,
@@ -853,6 +853,7 @@ export const userMenuRegistration = [PAGES.LOGOUT]
 
 export const userMenuCompany = [
   PAGES.ORGANIZATION,
+  PAGES.COMPANY_SUBSCRIPTIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,
   PAGES.CONNECTOR_MANAGEMENT,
@@ -866,6 +867,7 @@ export const userMenuCompany = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
+  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
 ]
 
 /**

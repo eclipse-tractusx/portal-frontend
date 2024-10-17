@@ -49,7 +49,10 @@ import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './Header.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import {
+  CompanyRoleEnum,
+  useFetchOwnCompanyDetailsQuery,
+} from 'features/admin/userApiSlice'
 import { PAGES } from 'types/Constants'
 
 export const Header = ({
@@ -80,13 +83,17 @@ export const Header = ({
   useEffect(() => {
     if (!(companyData && companyDetails)) return
     setSubmittedOverlayOpen(
-      !companyDetails?.companyRole.includes('OPERATOR') &&
+      !companyDetails?.companyRole.includes(CompanyRoleEnum.OPERATOR) &&
         companyData?.applicationStatus === ApplicationStatus.SUBMITTED
     )
   }, [companyData, companyDetails])
 
   useEffect(() => {
-    if (companyDetails?.companyRole.includes('ONBOARDING_SERVICE_PROVIDER')) {
+    if (
+      companyDetails?.companyRole.includes(
+        CompanyRoleEnum.ONBOARDING_SERVICE_PROVIDER
+      )
+    ) {
       setPages(user)
     } else {
       setPages(
