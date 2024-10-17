@@ -99,6 +99,9 @@
         }
         .credential-list {
           list-style: none;
+          .MuiAccordionSummary-root {
+            padding: 0px 16px 0px 0px;
+          }
           .credential-list-item {
             width: 100%;
             margin-bottom: 0;

@@ -21,6 +21,8 @@
 
 - **Partner Network**
   - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
+- **Use Case Participation**
+  - fixed columns alignment ui issue
 
 ## 2.3.0-alpha.2
 
