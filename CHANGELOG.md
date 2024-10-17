@@ -6,6 +6,8 @@
 
 - **App Subscription Management**
   - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
+- **App Overview Details**
+  - show confirmity document in separate section and all other available documents in the documents section [#1235](https://github.com/eclipse-tractusx/portal-frontend/pull/1235)
 
 ### Feature
 
@@ -20,9 +22,7 @@
 ### Change
 
 - **Service Subscriptions**
-
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
-
 - **Header**
   - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
 - **Application Request**
