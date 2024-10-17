@@ -48,7 +48,10 @@ import {
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
-import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import {
+  ServiceTypeIdsEnum,
+  useFetchDocumentMutation,
+} from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
 
 dayjs.extend(isToday)
@@ -63,6 +66,7 @@ export default function ServiceMarketplace() {
   const [selected, setSelected] = useState<string>('All Services')
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
+  const [fetchDocument] = useFetchDocumentMutation()
 
   let serviceTypeId = ''
 
@@ -97,6 +101,38 @@ export default function ServiceMarketplace() {
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
   }
+
+  const getImage = useCallback(
+    async (service: ServiceRequest) => {
+      try {
+        const response = await fetchDocument({
+          appId: service.id,
+          documentId: service.leadPictureId,
+        }).unwrap()
+        const file = response.data
+        return URL.createObjectURL(file)
+      } catch (error) {
+        console.error('Error fetching image:', error)
+        return null
+      }
+    },
+    [fetchDocument]
+  )
+
+  useEffect(() => {
+    if (services && services.length > 0) {
+      const loadImages = async () => {
+        const serviceWithLeadId = await Promise.all(
+          services.map(async (service) => {
+            const img = await getImage(service)
+            return { ...service, leadPictureId: img }
+          })
+        )
+        setCardServices(serviceWithLeadId as ServiceRequest[])
+      }
+      loadImages()
+    }
+  }, [services])
 
   const sortOptions = [
     {

@@ -55,11 +55,17 @@
         gap: 56px;
       }
 
-      .lead-image > img {
-        border-radius: 16px;
-        max-width: 100%;
-        width: 412px;
+      .lead-image {
+        width: 288px;
+        height: 288px;
+        overflow: hidden;
+        & > img {
+          border-radius: 16px;
+          max-width: 100%;
+          width: 412px;
+        }
       }
+
       .service-app-content {
         flex: 1;
       }
