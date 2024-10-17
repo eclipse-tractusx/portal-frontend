@@ -86,6 +86,7 @@ export default function CompanySubscriptions() {
     _e: SyntheticEvent<Element, Event>,
     value: number
   ) => {
+    setRefresh(0)
     setCurrentActive(value)
   }
 
@@ -113,10 +114,12 @@ export default function CompanySubscriptions() {
   ]
 
   useEffect(() => {
-    setFetchHookArgs({
-      statusId: filterStatus,
-      expr: searchExpr,
-    })
+    if (refresh !== 0) {
+      setFetchHookArgs({
+        statusId: filterStatus,
+        expr: searchExpr,
+      })
+    }
   }, [filterStatus, searchExpr])
 
   const onValidate = (expr: string) => {
