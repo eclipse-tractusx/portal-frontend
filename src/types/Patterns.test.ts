@@ -29,6 +29,7 @@ import {
   isCountryCode,
   isClientID,
   isPersonName,
+  isSearchUserEmail,
 } from './Patterns'
 
 const TESTDATA = {
@@ -237,6 +238,23 @@ const TESTDATA = {
     valid: ['sa-12', 'JSSS', 'Julia12'],
     invalid: ['&^%#@', '!', 'hash &*^#$'],
   },
+  EMAIL_SEARCH: {
+    valid: [
+      'john.doe@example.com',
+      'jane_doe123@example.com',
+      'user+tag@example.com',
+      'email@sub.domain.com',
+      'first.last@another-domain.org',
+      'name-with-dash@example-company.com',
+      'name.surname@domain.travel',
+      'name123@domain.ac',
+      'firstname+lastname@example.com',
+      'very.common@example.com',
+      'disposable.style.email.with+symbol@example.com',
+      'admin@admin-portal.co.uk',
+    ],
+    invalid: ['()*&^%$#/\\?><,`~'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -325,6 +343,15 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.CLIENTID.invalid.forEach((expr) => {
       expect(isClientID(expr)).toBe(false)
+    })
+  })
+
+  it('Validate email search for users', () => {
+    TESTDATA.EMAIL_SEARCH.valid.forEach((expr) => {
+      expect(isSearchUserEmail(expr)).toBe(true)
+    })
+    TESTDATA.EMAIL_SEARCH.invalid.forEach((expr) => {
+      expect(isSearchUserEmail(expr)).toBe(false)
     })
   })
 })

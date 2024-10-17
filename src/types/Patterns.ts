@@ -61,7 +61,7 @@ export const Patterns = {
     URL: prefixUrlPattern,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
-  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
+  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_+\-.]{3,80}$/,
   partner: {
     COMMERCIAL_REG_NUMBER: /^[a-zA-Z\d-\s]{9}$/,
     VAT_ID: /^[a-zA-Z\d-\s]{8,15}$/,
@@ -121,6 +121,7 @@ export const Patterns = {
     POSTAL_CODE:
       /^(?!.*\s$)(?=[a-zA-Z\d-]{0,10}[-\s]?[a-zA-Z\d-]{0,10}$)[a-zA-Z\d\s-]{2,10}$/,
   },
+  EMAIL_SEARCH: /^[ A-Za-z0-9._!@+-]*$/,
 }
 
 export const isEmpty = (expr: string) => !expr || expr.trim() === ''
@@ -209,5 +210,7 @@ export const isCompanyVies = (expr: string) =>
   Patterns.companyData.VIES.test(expr)
 export const isPostalCode = (expr: string) =>
   Patterns.companyData.POSTAL_CODE.test(expr)
+export const isSearchUserEmail = (expr: string) =>
+  Patterns.EMAIL_SEARCH.test(expr)
 
 export default Patterns

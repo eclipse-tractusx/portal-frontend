@@ -151,7 +151,7 @@ export const apiSlice = createApi({
       query: (fetchArgs) =>
         `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${
           fetchArgs.page
-        }&email=${fetchArgs.args!.expr}`,
+        }&email=${encodeURIComponent(fetchArgs.args!.expr)}`,
     }),
     fetchUsersRoles: builder.query<PaginResult<TenantUser>, string>({
       query: (companyUserId) =>
