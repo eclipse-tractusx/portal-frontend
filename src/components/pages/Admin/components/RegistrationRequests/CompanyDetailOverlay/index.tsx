@@ -192,9 +192,10 @@ const CompanyDetailOverlay = ({
       key: '',
       value: (
         <>
-          {company?.documents && company.documents.length > 0 ? (
+          {selectedCompany?.documents &&
+          selectedCompany.documents.length > 0 ? (
             <>
-              {company.documents.map(
+              {selectedCompany.documents.map(
                 (contract: {
                   documentId: string
                   documentType: string
