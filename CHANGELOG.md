@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **File Upload**:
+  - changed error text of uploaded file from Byte to MB [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1185)
+
 ### Bugfixes
 
 - **App Subscription Management**
