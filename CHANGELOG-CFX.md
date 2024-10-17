@@ -11,7 +11,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
 
 - **Technical User Management**
+
   - Technical User Management roles description rerendered on language switch [PM2-1144](https://cofinity-x.atlassian.net/browse/PM2-1144)
+
+- **Connector Registration**
+  - Error/Confirmation message, and other translations updated in the Connector Registration page [PM2-1138](https://cofinity-x.atlassian.net/browse/PM2-1138)
 
 ### Change
 
