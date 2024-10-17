@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **App Subscription Management**
+  - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
+- **App Overview Details**
+  - show confirmity document in separate section and all other available documents in the documents section [#1235](https://github.com/eclipse-tractusx/portal-frontend/pull/1235)
+
 ### Feature
 
 - **Clearinghouse Self-Description**
@@ -15,9 +22,13 @@
 ### Change
 
 - **Service Subscriptions**
+
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
-- **App Overview Details**
-  - show confirmity document in separate section and all other available documents in the documents section
+
+- **Header**
+  - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
+- **Application Request**
+  - add separate end points for downloading company credential document and registration document [#1229](https://github.com/eclipse-tractusx/portal-frontend/pull/1229)
 - **Business Partner Invitation**
   - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
 
@@ -25,6 +36,27 @@
 
 - **Partner Network**
   - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
+
+### Bugfixes
+
+- **Company Subscriptions**
+
+  - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
+
+  ### Bugfixes
+
+- **Service Release Process**
+  - Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
+
+### Bugfixes
+
+- **Onboarding Service Provider Management**
+  - fixed blank page issue in customer overview tab
+
+### Bugfixes
+
+- **User Menu**
+  - fixed company user menu to display all pages
 
 ## 2.3.0-alpha.2
 
@@ -52,6 +84,8 @@
   - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
 - **Company Subscriptions**
   - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
+  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
+  - fixed duplicate api records on load [#1206] (https://github.com/eclipse-tractusx/portal-frontend/pull/1206)
 
 ## 2.3.0-alpha.1
 
@@ -133,8 +167,12 @@
   - Fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
 
 - **App Management**
+
   - fixed 400 Bad Request error due to search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/pull/1058)
   - added load more button app overview [#1009](https://github.com/eclipse-tractusx/portal-frontend/pull/1009)
+
+- **Search Translation for App and Service Subsciption**
+  - fixed DE translation for search input in App and Service Subsciption [#1211](https://github.com/eclipse-tractusx/portal-frontend/pull/1211)
 
 ## 2.2.0
 
