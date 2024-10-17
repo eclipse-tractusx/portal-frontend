@@ -118,7 +118,7 @@ export const Dropzone = ({
     return file.size > maxFileSize
       ? {
           code: 'size-too-large',
-          message: `File is larger than ${fileSizeInMB} MB`,
+          message: `${t('shared.dropzone.error.fileTooLarge')} ${fileSizeInMB} MB`,
         }
       : null
   }
