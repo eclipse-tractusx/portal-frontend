@@ -44,7 +44,11 @@
   ### Bugfixes
 
 - **Service Release Process**
+
   - Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
+
+- **Service Management**
+  - Service Management | 400 Bad Request when Clicking 'Load More' Button [#1168](https://github.com/eclipse-tractusx/portal-frontend/issues/1168)
 
 ### Bugfixes
 
