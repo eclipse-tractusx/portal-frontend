@@ -2,6 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## Unreleased
+
+### Bugfixes
+
+- **Company Subscriptions**
+  - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
+
 ## 2.2.0-cfx-2
 
 ### New Features
