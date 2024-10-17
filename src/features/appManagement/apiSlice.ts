@@ -22,7 +22,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { AppStatusDataState } from './types'
 import i18next from 'i18next'
-import { getSsiBase } from 'services/EnvironmentService'
 
 export type useCasesItem = {
   useCaseId: string
@@ -324,7 +323,7 @@ export const apiSlice = createApi({
     }),
     fetchNewDocumentById: builder.mutation({
       query: (documentId) => ({
-        url: `${getSsiBase()}/api/credential/documents/${documentId}`,
+        url: `/api/registration/documents/${documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
           data: await response.blob(),

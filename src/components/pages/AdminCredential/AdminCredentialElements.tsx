@@ -29,9 +29,9 @@ import {
   useRevokeCredentialMutation,
   useFetchCredentialsSearchQuery,
   StatusEnum,
+  useFetchSsiDocumentByIdMutation,
 } from 'features/certification/certificationApiSlice'
 import { download } from 'utils/downloadUtils'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
 import { uniqueId } from 'lodash'
 import { setSearchInput } from 'features/appManagement/actions'
@@ -93,7 +93,7 @@ export default function AdminCredentialElements() {
   const [credentialData, setCredentialData] = useState<CredentialData>()
   const [revokeLoading, setRevokeLoading] = useState<boolean>(false)
 
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [getDocumentById] = useFetchSsiDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
   const [declineCredential] = useDeclineCredentialMutation()
   const [revokeCredential] = useRevokeCredentialMutation()
