@@ -274,7 +274,7 @@ const ConnectorDetailsOverlay = ({
         </Dialog>
       )}
 
-      {!isFetching && !openApiErrorModal && (
+      {!openApiErrorModal && (
         <Dialog
           open={openDialog}
           sx={{
