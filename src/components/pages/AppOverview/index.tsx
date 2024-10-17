@@ -57,6 +57,7 @@ import { fetchImageWithToken } from 'services/ImageService'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import NoItems from '../NoItems'
+import { isValidAppOverviewSearch } from 'types/Patterns'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -222,8 +223,7 @@ export default function AppOverview() {
 
   const doSearch = useCallback(
     (expr: string) => {
-      const validateExpr = /^[ A-Za-z]*$/.test(expr)
-      if (!validateExpr) {
+      if (!isValidAppOverviewSearch(expr)) {
         return
       }
       setSearchExpr(expr)
