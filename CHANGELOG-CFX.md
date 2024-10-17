@@ -20,7 +20,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bug Fixes
 
 - **App Management**
+
   - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
+
+- **Service Release Process**
+  - CHERRY-PICK Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 
 ### Change
 
