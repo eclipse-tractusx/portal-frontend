@@ -73,7 +73,7 @@ export default function ServiceMarketplace() {
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
 
-  const serviceTypeId = serviceTypeIdMapping[serviceTypeMapping[selected]] ?? ''
+  const serviceTypeId = serviceTypeIdMapping[serviceTypeMapping[selected]]
 
   let sortingType = 'ReleaseDateDesc'
   if (sortOption === 'provider') {
