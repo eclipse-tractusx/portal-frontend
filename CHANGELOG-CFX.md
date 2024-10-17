@@ -72,6 +72,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Service marketplace: button alignment and search [PM2-1391](https://cofinity-x.atlassian.net/browse/PM2-1391)
   - OSP consent from UI update [PM2-1093](https://cofinity-x.atlassian.net/browse/PM2-1093)
 
+- **OSP Management**
+
+  - CHERRY-PICK fixed hardcoded OSP callback url [#1201](https://github.com/eclipse-tractusx/portal-frontend/pull/1201)
+
 - **OSP Consent form**
 
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
