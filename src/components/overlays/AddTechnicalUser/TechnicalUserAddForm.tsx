@@ -17,8 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import InputLabel from '@mui/material/InputLabel'
@@ -90,9 +89,12 @@ const TechnicalUserAddFormSelect = ({
   name,
   rules,
 }: FormSelectType) => {
-  const { t } = useTranslation()
-  const roles = useFetchServiceAccountRolesQuery().data
+  const { t, i18n } = useTranslation()
+  const { data: roles, refetch } = useFetchServiceAccountRolesQuery()
   const [selectedValue, setSelectedValue] = useState<string>()
+  useEffect(() => {
+    refetch()
+  }, [i18n.language, refetch])
 
   return (
     <Controller
