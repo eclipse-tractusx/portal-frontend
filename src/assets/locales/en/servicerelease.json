@@ -127,7 +127,8 @@
       "all": "All",
       "active": "Active",
       "inactive": "Inactive",
-      "wip": "WIP"
+      "wip": "WIP",
+      "inreview": "Inreview"
     },
     "addbtn": "Register your Service",
     "submenuNotAvailable": "Sub-Menu is not available.",
