@@ -17,6 +17,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+@import 'src/components/styles/_breakpoints';
+@import 'src/components/styles/_colors';
+
 .service-admin-board-detail {
   min-width: 1440px;
   .service-back {
@@ -33,11 +36,27 @@
       height: 288px;
       display: flex;
       flex-wrap: wrap;
-      .lead-image > img {
-        border-radius: 16px;
-        width: 412px;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+
+      @include media-breakpoint-up(lg) {
+        min-width: 928px;
         height: 288px;
+        gap: 56px;
       }
+
+      .lead-image {
+        width: 288px;
+        height: 288px;
+        overflow: hidden;
+        & > img {
+          border-radius: 16px;
+          max-width: 100%;
+          width: 412px;
+        }
+      }
+
       .service-app-content {
         padding: 68px 0 68px 56px;
       }
