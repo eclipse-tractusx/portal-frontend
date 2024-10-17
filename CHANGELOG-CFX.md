@@ -2,16 +2,21 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
-## Unreleased
+## 2.2.0-cfx-3-hotfix1
 
 ### Bugfixes
 
 - **Company Subscriptions**
+
   - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
 
 - **Technical User Management**
   - Technical User Management roles description rerendered on language switch [PM2-1144](https://cofinity-x.atlassian.net/browse/PM2-1144)
 
+### Change
+
+- **Connector Registration**
+  - Added dynamic connector urls [PM2-1731](https://cofinity-x.atlassian.net/browse/PM2-1731)
 
 ## 2.2.0-cfx-2
 
