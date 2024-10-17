@@ -76,6 +76,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - CHERRY-PICK Retain "None" Option in Technical User Setup After Submission [#1039](https://github.com/eclipse-tractusx/portal-frontend/pull/1039)
   - Fixed Maximum images upload issue in Dropzone [#PM2-1090](https://cofinity-x.atlassian.net/browse/PM2-1090)
+  - Regex updated to allow line breaks for short description EN&DE [#PM2-354](https://cofinity-x.atlassian.net/browse/PM2-354)
 
 - **Connector Registration**
 
