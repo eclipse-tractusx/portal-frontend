@@ -60,7 +60,7 @@ export interface ServiceAccountListEntry {
   name: string
   status: ServiceAccountStatus
   isOwner?: boolean
-  usertype: string
+  userType: string
   offer?: {
     name?: string
   }
