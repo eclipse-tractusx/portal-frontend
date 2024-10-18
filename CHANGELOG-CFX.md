@@ -2,6 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## Unreleased
+
+### Bugfixes
+
+- **Notifications**
+  - Fixed notification rendering issues [PM2-369](https://cofinity-x.atlassian.net/browse/PM2-369)
+
 ## 2.2.0-cfx-3-hotfix1
 
 ### Bugfixes
@@ -48,6 +55,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 
 - **User Management**
+
   - CHERRY-PICK Fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
 
 ### Change
