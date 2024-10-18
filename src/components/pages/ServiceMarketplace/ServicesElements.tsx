@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  CardHorizontal,
-  LogoGrayData,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { CardHorizontal, Typography } from '@catena-x/portal-shared-components'
 import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -30,6 +26,8 @@ import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice
 import './ServiceMarketplace.scss'
 import { useCallback } from 'react'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function ServicesElements({
   services,
@@ -83,12 +81,19 @@ export default function ServicesElements({
                   >
                     <CardHorizontal
                       borderRadius={6}
-                      imageAlt="App Card"
-                      imagePath={
-                        service?.leadPictureId
-                          ? `${service.leadPictureId}`
-                          : `${LogoGrayData}`
-                      }
+                      image={{
+                        src: `${getApiBase()}/api/services/${service.id}/serviceDocuments/${service?.leadPictureId}`,
+                        alt: 'App Card',
+                        style: {
+                          flex: '0 0 33.333333%',
+                          maxWidth: '33.333333%',
+                          minHeight: '200px',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        },
+                      }}
+                      imageLoader={fetchImageWithToken}
                       label={service.provider}
                       buttonText="Details"
                       onBtnClick={() => {

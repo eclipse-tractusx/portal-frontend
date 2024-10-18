@@ -21,7 +21,6 @@
 import {
   CardHorizontal,
   CircleProgress,
-  LogoGrayData,
 } from '@catena-x/portal-shared-components'
 import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -31,6 +30,8 @@ import NoItems from '../NoItems'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { fetchImageWithToken } from 'services/ImageService'
+import { getApiBase } from 'services/EnvironmentService'
 
 export default function RecommendedServices({
   services,
@@ -72,12 +73,19 @@ export default function RecommendedServices({
             <Grid className="recommended-card" key={service.id}>
               <CardHorizontal
                 borderRadius={6}
-                imageAlt="App Card"
-                imagePath={
-                  service?.leadPictureId
-                    ? `${service.leadPictureId}`
-                    : `${LogoGrayData}`
-                }
+                image={{
+                  src: `${getApiBase()}/api/services/${service.id}/serviceDocuments/${service?.leadPictureId}`,
+                  alt: 'App Card',
+                  style: {
+                    flex: '0 0 33.333333%',
+                    maxWidth: '33.333333%',
+                    minHeight: '200px',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  },
+                }}
+                imageLoader={fetchImageWithToken}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => {

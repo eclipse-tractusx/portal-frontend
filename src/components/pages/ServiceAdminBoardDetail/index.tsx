@@ -23,7 +23,6 @@ import {
   StaticTable,
   Typography,
   Image,
-  LogoGrayData,
 } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../AdminBoardDetail/AdminBoardDetail.scss'
@@ -43,6 +42,8 @@ import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { fetchImageWithToken } from 'services/ImageService'
+import { getApiBase } from 'services/EnvironmentService'
 
 enum TableData {
   SUCCESS = 'SUCCESS',
@@ -50,7 +51,6 @@ enum TableData {
 }
 
 export default function ServiceAdminBoardDetail() {
-  const [leadImg, setLeadImg] = useState<string>('')
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
@@ -65,26 +65,6 @@ export default function ServiceAdminBoardDetail() {
       setServiceData(data)
     }
   }, [isFetching, data])
-
-  useEffect(() => {
-    if (serviceData?.leadPictureId) {
-      setLeadingImg()
-    } else setLeadImg(LogoGrayData)
-  }, [serviceData])
-
-  const setLeadingImg = async () => {
-    try {
-      const response = await fetchDocument({
-        appId,
-        documentId: serviceData?.leadPictureId,
-      }).unwrap()
-      const file = response.data
-      setLeadImg(URL.createObjectURL(file))
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   const getTypes = useCallback(() => {
     const newArr: string[] = []
     serviceData?.serviceTypes.forEach((serviceType: string) => {
@@ -153,7 +133,11 @@ export default function ServiceAdminBoardDetail() {
         <Box className="service-content">
           <div className="service-board-header">
             <div className="lead-image">
-              <Image src={leadImg} alt={serviceData.title} />
+              <Image
+                src={`${getApiBase()}/api/services/${appId}/serviceDocuments/${serviceData?.documents?.SERVICE_LEADIMAGE?.[0].documentId}`}
+                alt={serviceData.title}
+                loader={fetchImageWithToken}
+              />
             </div>
             <Box className="service-app-content">
               <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
