@@ -82,7 +82,9 @@ const NotificationContent = ({
   const appId = item.contentParsed?.appId
   const you = UserService.getName()
   const appName = item.contentParsed?.AppName ?? item.contentParsed?.appName
-  const companyName = item.contentParsed?.RequestorCompanyName
+  const companyName =
+    item.contentParsed?.RequestorCompanyName ??
+    item.contentParsed?.RequesterCompanyName
   const offerName = item.contentParsed?.OfferName
   const userName = item.contentParsed?.username
   const coreOfferName = item.contentParsed?.coreOfferName
@@ -211,6 +213,17 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
           item={item}
           navlinks={[PAGES.SERVICE_SUBSCRIPTION]}
         />
+      )
+    case NotificationType.SERVICE_ACTIVATION:
+      return (
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.SERVICE_SUBSCRIPTION]}
+        />
+      )
+    case NotificationType.SERVICE_RELEASE_APPROVAL:
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.SERVICE_OVERVIEW]} />
       )
     case NotificationType.SERVICE_RELEASE_REQUEST:
       return (
