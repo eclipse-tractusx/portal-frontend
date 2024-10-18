@@ -47,6 +47,7 @@ export default function ChangeImage() {
   const { state } = useLocation()
   const items = state
   const [cardImage, setCardImage] = useState('')
+  const [previewLocalCardImage, setPreviewLocalCardImage] = useState('')
   const [enableImageUpload, setEnableImageUpload] = useState(false)
   const [updateImageData] = useUpdateImageDataMutation()
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
@@ -134,6 +135,15 @@ export default function ChangeImage() {
     }
   }
 
+  const cardImageData: string | null = getValues().uploadLeadImage
+
+  useEffect(() => {
+    if (cardImageData) {
+      const blobFile = new Blob([cardImageData], { type: 'image/png' })
+      setPreviewLocalCardImage(URL.createObjectURL(blobFile))
+    }
+  }, [cardImageData])
+
   return (
     <main className="change-image-main">
       <PageHeader title={app?.[0]?.title} headerHeight={200} topPage={true} />
@@ -155,7 +165,7 @@ export default function ChangeImage() {
               <Box sx={{ width: '40%' }}>
                 <Card
                   image={{
-                    src: cardImage,
+                    src: previewLocalCardImage || cardImage,
                   }}
                   title={app[0]?.title || ''}
                   subtitle={app[0]?.provider}
@@ -178,6 +188,9 @@ export default function ChangeImage() {
                     name="uploadLeadImage"
                     isRequired={false}
                     size="small"
+                    handleDelete={() => {
+                      setPreviewLocalCardImage('')
+                    }}
                   />
                 </Box>
               ) : (
