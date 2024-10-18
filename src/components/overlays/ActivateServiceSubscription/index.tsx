@@ -32,17 +32,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import './style.scss'
 import { Box } from '@mui/material'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 import {
   type ActivateSubscriptionResponse,
   useActivateSubscriptionMutation,
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
-import { Link } from 'react-router-dom'
-
-const ProfileHelpURL =
-  '/documentation/?path=user%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
 
 export default function ActivateserviceSubscription({
   offerId,
@@ -244,12 +239,6 @@ export default function ActivateserviceSubscription({
                       {t('serviceSubscription.register.sectionDescription')}
                     </Typography>
                   </Box>
-                  <Link to={ProfileHelpURL} target="_blank">
-                    <Typography variant="body2" className="helpText">
-                      <HelpOutlineIcon />
-                      {t('serviceSubscription.register.help')}
-                    </Typography>
-                  </Link>
                   <Box
                     sx={{
                       marginTop: '30px',

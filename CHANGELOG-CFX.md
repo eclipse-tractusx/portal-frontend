@@ -12,6 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **App & Service Subscription**
 - Fixed missing description in service subscription request detail page [PM2-1753](https://cofinity-x.atlassian.net/browse/PM2-1753)
+- Remove help links from app & service subscription detail [PM2-802](https://cofinity-x.atlassian.net/browse/PM2-802)
 
 ## 2.2.0-cfx-3-hotfix1
 
