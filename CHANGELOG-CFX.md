@@ -63,6 +63,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bug Fixes
 
+- **Application Requests**
+
+  - Adjusted the width of columns, added ellipsis and tooltip on column cells [#233](https://github.com/Cofinity-X/portal-frontend/pull/233)
+
 - **User Management**
 
   - fixed logic for showing user_id for OWN configured IDP [PM2-1671](https://cofinity-x.atlassian.net/browse/PM2-1671)
