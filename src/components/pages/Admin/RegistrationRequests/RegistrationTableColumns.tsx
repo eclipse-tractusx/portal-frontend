@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
+import {
+  IconButton,
+  Tooltips,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
@@ -183,6 +187,14 @@ export const StatusProgress = ({
   }
 }
 
+const tooltipStyles = {
+  margin: '3px 0',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  width: '100%',
+}
+
 // Columns definitions of Registration Request page Data Grid
 export const RegistrationRequestsTableColumns = (
   t: typeof i18next.t,
@@ -197,9 +209,10 @@ export const RegistrationRequestsTableColumns = (
       sortable: false,
       disableColumnMenu: true,
       renderCell: ({ row }: { row: ApplicationRequest }) => (
-        <div>
-          <p style={{ margin: '3px 0' }}>{row.companyName}</p>
-        </div>
+        <Tooltips
+          tooltipText={row.companyName}
+          children={<p style={tooltipStyles}>{row.companyName}</p>}
+        />
       ),
     },
     {
@@ -209,7 +222,10 @@ export const RegistrationRequestsTableColumns = (
       sortable: false,
       disableColumnMenu: true,
       renderCell: ({ row }: { row: ApplicationRequest }) => (
-        <p style={{ margin: '3px 0' }}>{row.email}</p>
+        <Tooltips
+          tooltipText={row.email}
+          children={<p style={tooltipStyles}>{row.email}</p>}
+        />
       ),
     },
     {
@@ -251,21 +267,26 @@ export const RegistrationRequestsTableColumns = (
     {
       field: 'dateCreated',
       headerName: t('content.admin.registration-requests.columns.age'),
-      flex: 1.1,
+      flex: 1.3,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: ApplicationRequest }) => {
+      renderCell: ({ row }: { row: ApplicationRequest }) => {
         const date1 = dayjs(row.dateCreated).format('YYYY-MM-DD')
         const date2 = dayjs()
         const days = date2.diff(date1, 'days')
-        return (
+        const createdDate =
           days + ` ${t('content.admin.registration-requests.columns.days')}`
+        return (
+          <Tooltips
+            tooltipText={createdDate}
+            children={<p style={tooltipStyles}>{createdDate}</p>}
+          />
         )
       },
     },
     {
       field: 'detail',
       headerName: t('content.admin.registration-requests.columns.details'),
-      flex: 1.1,
+      flex: 1.2,
       align: 'center',
       headerAlign: 'center',
       disableColumnMenu: true,
