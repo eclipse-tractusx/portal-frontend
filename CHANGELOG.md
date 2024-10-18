@@ -19,6 +19,8 @@
 
 ### Change
 
+- **Onboarding Service Provider Management**
+  - Removed "User List" from table header, added search to onboarding service provider management table, adjusted design to be identical with customer overview table and fixed action 'disable/enable' status not being updated issue [#1132](https://github.com/eclipse-tractusx/portal-frontend/pull/1132)
 - **Service Subscriptions**
 
   - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
