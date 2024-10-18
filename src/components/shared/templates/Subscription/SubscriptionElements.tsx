@@ -134,11 +134,13 @@ export default function SubscriptionElements({
   type,
   refetch,
   isSuccess,
+  subscriptionHeading,
 }: {
   subscriptions?: SubscriptionContent[]
   type: string
   refetch: () => void
   isSuccess: boolean
+  subscriptionHeading: string
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -276,12 +278,14 @@ export default function SubscriptionElements({
   return (
     <div className="recommended-main">
       {subscriptions?.length ? (
-        <ul className="subscription-list">
-          {subscriptions.map((subscriptionData) => {
-            return subscriptionData.companySubscriptionStatuses.map(
-              (subscription) =>
-                subscription.offerSubscriptionStatus !==
-                  SubscriptionStatus.INACTIVE && (
+        <>
+          <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+            {subscriptionHeading}
+          </Typography>
+          <ul className="subscription-list">
+            {subscriptions.map((subscriptionData) => {
+              return subscriptionData.companySubscriptionStatuses.map(
+                (subscription) => (
                   <li
                     key={subscription.subscriptionId}
                     className="subscription-list-item"
@@ -319,9 +323,10 @@ export default function SubscriptionElements({
                     </div>
                   </li>
                 )
-            )
-          })}
-        </ul>
+              )
+            })}
+          </ul>
+        </>
       ) : (
         <div className="loading-progress">
           <CircleProgress
