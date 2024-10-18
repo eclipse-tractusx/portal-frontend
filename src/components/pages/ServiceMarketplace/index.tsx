@@ -87,7 +87,7 @@ export default function ServiceMarketplace() {
     sortingType: SORTING_TYPE
   }>({
     page: 0,
-    serviceType: serviceTypeId,
+    serviceType: serviceTypeId ?? '',
     sortingType,
   })
 
