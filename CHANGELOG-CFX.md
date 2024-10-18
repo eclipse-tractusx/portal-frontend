@@ -7,7 +7,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bugfixes
 
 - **Notifications**
+
   - Fixed notification rendering issues [PM2-369](https://cofinity-x.atlassian.net/browse/PM2-369)
+
+- **App & Service Subscription**
+- Fixed missing description in service subscription request detail page [PM2-1753](https://cofinity-x.atlassian.net/browse/PM2-1753)
 
 ## 2.2.0-cfx-3-hotfix3
 
