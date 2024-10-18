@@ -137,6 +137,10 @@ export default function CompanySubscriptionDetail() {
                 </>
               ) : (
                 <>
+                  <Typography variant="body2">
+                    {(fetchData as ServiceDetailsResponse)?.description}
+                  </Typography>
+                  <div className="divider-height" />
                   <MarketplaceDocuments
                     item={fetchData as ServiceDetailsResponse}
                   />
