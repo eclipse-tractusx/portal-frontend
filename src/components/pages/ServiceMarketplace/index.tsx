@@ -50,27 +50,30 @@ import {
 import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
+import { serviceTypeMapping } from 'types/Constants'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
+
+const serviceTypeIdMapping: Record<string, ServiceTypeIdsEnum> = {
+  [ServiceTypeIdsEnum.DATASPACE_SERVICES]: ServiceTypeIdsEnum.DATASPACE_SERVICE,
+  [ServiceTypeIdsEnum.CONSULTANCY_SERVICES]:
+    ServiceTypeIdsEnum.CONSULTANCY_SERVICE,
+}
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('All Services')
+  const [selected, setSelected] = useState<string>(
+    t('content.serviceMarketplace.tabs.all')
+  )
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
 
-  let serviceTypeId = ''
-
-  if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
-  } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
-  }
+  const serviceTypeId = serviceTypeIdMapping[serviceTypeMapping[selected]]
 
   let sortingType = 'ReleaseDateDesc'
   if (sortOption === 'provider') {
@@ -81,7 +84,7 @@ export default function ServiceMarketplace() {
 
   const { data, error, isError, refetch } = useFetchServicesQuery({
     page: 0,
-    serviceType: serviceTypeId,
+    serviceType: serviceTypeId ?? '',
     sortingType,
   })
   const services = data?.content
