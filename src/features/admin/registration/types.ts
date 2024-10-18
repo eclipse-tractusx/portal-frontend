@@ -20,6 +20,7 @@
 
 import type { PaginResult } from '@catena-x/portal-shared-components'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
+import { type DocumentMapper } from '../applicationRequestApiSlice'
 
 export const name = 'admin/registration'
 
@@ -63,6 +64,7 @@ export type CompanyDetail = {
   uniqueIds?: Array<UniqueIdType>
   countryAlpha2Code?: string
   companyUser: Array<CompanyUserDetails>
+  documents: Array<DocumentMapper>
 }
 
 export type RegistrationRequestDocument = {
