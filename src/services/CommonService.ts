@@ -57,7 +57,7 @@ const imagesAndAppidToImageType = (
   // eslint-disable-next-line
   images?.map((image: any) => ({
     url: getPictureURL(appId, image.documentId ?? image),
-    text: 'Catena-X',
+    text: 'Cofinity-x',
     loader: fetchImageWithToken,
   }))
 
