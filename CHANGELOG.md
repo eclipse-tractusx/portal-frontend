@@ -23,7 +23,7 @@
 - **Business Partner Invitation**
   - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
 - **Onboarding Service Provider**
-  - removed deprecated page onboardingServiceProvider and every related link
+  - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
 
 ### Bugfixes
 
