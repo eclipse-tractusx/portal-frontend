@@ -1289,7 +1289,7 @@
         "providerPhoneContact": "Provider Phone Contact",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidPhone": "Please enter a valid Customer Contact Number",
+        "pleaseEnterValidPhone": "Bitte geben Sie eine gültige Kundenkontakt Telefonnummer ein",
         "pleaseEnterValidContact": "Bitte fügen Sie eine gültige Telefonnummer im folgenden Format hinzu: „+ xx xxxx xxxxxx“, „+ xxx xxxx-xxxx“, „+xx xxxxxxxxxx“. Hinweis: Es sind weitere Formate zulässig. Die genannten Formate sind die am häufigsten verwendeten Formate.",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
