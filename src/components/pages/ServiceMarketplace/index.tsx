@@ -97,7 +97,6 @@ export default function ServiceMarketplace() {
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value)
   }
-
   const sortOptions = [
     {
       label: t('content.serviceMarketplace.sortOptions.new'),

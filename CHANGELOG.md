@@ -30,12 +30,15 @@
 - **Application Request**
   - add separate end points for downloading company credential document and registration document [#1229](https://github.com/eclipse-tractusx/portal-frontend/pull/1229)
 - **Business Partner Invitation**
+
   - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
 
 ### Bugfixes
 
 - **Partner Network**
   - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
+- **Service Marketplace**
+  - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
 
 ### Bugfixes
 
