@@ -50,8 +50,22 @@ const TESTDATA = {
     ],
   },
   IDP: {
-    valid: ['Tractusx', 'Tract Usx', 'BPN lannn', 'Foo Bar'],
-    invalid: ['Foo  Bar', ' Foo', 'Bar ', 'Foo@Bar', '1234', '  ', ''],
+    valid: [
+      'Tractusx',
+      '0000001234',
+      'Tract Usx123@!',
+      'BPN lannn',
+      'Foo Bar@!',
+    ],
+    invalid: [
+      'Foo  Bar  ',
+      'Foo   Bar',
+      '  FooBar',
+      '   ',
+      'FooBar%',
+      'FooBar$',
+      '0000001234$%',
+    ],
   },
   MAIL: {
     valid: [
@@ -362,7 +376,7 @@ describe('Input Pattern Tests', () => {
     TESTDATA.IDP.valid.forEach((expr) => {
       expect(isValidIDPName(expr)).toBe(true)
     })
-    TESTDATA.CLIENTID.invalid.forEach((expr) => {
+    TESTDATA.IDP.invalid.forEach((expr) => {
       expect(isValidIDPName(expr)).toBe(false)
     })
   })
