@@ -198,7 +198,12 @@
   "field": {
     "display": {
       "name": "Display name",
-      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)"
+      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)",
+      "mandatoryMessage": "Display name field is mandatory",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "charactersRequired": " characters required",
+      "validCharactersIncludes": "Only Alphabetic characters and single space are allowed"
     },
     "alias": {
       "name": "Alias",
