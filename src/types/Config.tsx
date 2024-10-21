@@ -80,7 +80,6 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
-import OSPManagement from 'components/pages/OSPManagement'
 import CompanyWallet from 'components/pages/CompanyWallet'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
 import { OSPConsent } from 'components/pages/OSPConsent'
@@ -559,11 +558,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.ADMIN_CREDENTIAL,
     allowTo: () => userHasSsiCredentialRole(ROLES.DECISION_SSICREDENTIAL),
     element: <AdminCredential />,
-  },
-  {
-    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
-    allowTo: () => userHasPortalRole(ROLES.IDP_VIEW),
-    element: <OSPManagement />,
   },
   {
     name: PAGES.COMPANY_CERTIFICATE,
