@@ -6,16 +6,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **App Release Process**
+
+  - fix: increase image upload size app release process [PM2-347](https://cofinity-x.atlassian.net/browse/PM2-347)
+
 - **Notifications**
 
   - Fixed notification rendering issues [PM2-369](https://cofinity-x.atlassian.net/browse/PM2-369)
 
 - **App & Service Subscription**
-- Fixed missing description in service subscription request detail page [PM2-1753](https://cofinity-x.atlassian.net/browse/PM2-1753)
-- Remove help links from app & service subscription detail [PM2-802](https://cofinity-x.atlassian.net/browse/PM2-802)
+
+  - Fixed missing description in service subscription request detail page [PM2-1753](https://cofinity-x.atlassian.net/browse/PM2-1753)
+  - Remove help links from app & service subscription detail [PM2-802](https://cofinity-x.atlassian.net/browse/PM2-802)
 
 - **App Overview**
-- Replaced cofinity-x with catena-x as image overview text [PM2-1516](https://cofinity-x.atlassian.net/browse/PM2-1516)
+  - Replaced cofinity-x with catena-x as image overview text [PM2-1516](https://cofinity-x.atlassian.net/browse/PM2-1516)
 
 ## 2.2.0-cfx-3-hotfix1
 

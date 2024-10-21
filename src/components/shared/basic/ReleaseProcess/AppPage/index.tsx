@@ -547,7 +547,7 @@ export default function AppPage() {
                     'image/jpeg': [],
                   }}
                   maxFilesToUpload={3}
-                  maxFileSize={819200}
+                  maxFileSize={1000000}
                   DropArea={renderDropArea}
                   handleDelete={(documentId: string) => {
                     setDeleteSuccess(false)

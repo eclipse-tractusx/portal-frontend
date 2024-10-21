@@ -1476,7 +1476,7 @@
         },
         "dataSavedSuccessMessage": "Data saved successfully",
         "errormessage": "Error! Something went wrong",
-        "fileSizeError": "Das hochgeladene Dokument ist zu groß. Maximal 0,8MB sind erlaubt",
+        "fileSizeError": "Das hochgeladene Dokument ist zu groß. Maximal 1MB sind erlaubt",
         "shouldNotStartWith": "and should not start with"
       },
       "footerButtons": {
