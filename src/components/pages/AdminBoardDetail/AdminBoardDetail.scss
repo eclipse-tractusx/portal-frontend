@@ -56,13 +56,11 @@
       }
 
       .lead-image {
-        width: 288px;
-        height: 288px;
+        max-width: 288px;
         overflow: hidden;
         & > img {
           border-radius: 16px;
-          max-width: 100%;
-          width: 412px;
+          width: 100%;
         }
       }
 
