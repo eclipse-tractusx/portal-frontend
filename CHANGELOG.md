@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **File Upload**:
+  - increased size limit for uploaded documents to 5 mb [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1187)
+
 ### Bugfixes
 
 - **App Subscription Management**

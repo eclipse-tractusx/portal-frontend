@@ -242,3 +242,6 @@ export enum HINTS {
   COMING_SOON = 'coming_soon',
   NEW = 'new',
 }
+
+export const ALLOWED_MAX_SIZE_DOCUMENT = 5242880
+export const CONVERT_TO_MB = 1048576
