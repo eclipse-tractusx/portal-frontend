@@ -1561,7 +1561,7 @@
       "description": "Möchten Sie die automatische Einrichtung nutzen? Verbinden Sie Ihren Service, um die Erstellung von Marktplatz-Abonnements zu automatisieren.",
       "readMore": "Read More",
       "registerURL": "Auto-setup URL registrieren",
-      "search": "Search by app title...",
+      "search": "Suche nach Firmennamen",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
