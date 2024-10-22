@@ -200,7 +200,7 @@
       "minimum": "Mindestens",
       "maximum": "Maximal",
       "charactersRequired": " Zeichen erforderlich",
-      "validCharactersIncludes": "Allowed characters: a-zA-Z0-9!?@&#\"()_-=/*.,;: (single spaces only, no double spacing)"
+      "validCharactersIncludes": "Erlaubte Zeichen: a-z, A-Z, 0-9, !?@&#\"()_-=/*.,;: (einfache Leerzeichen, keine doppelten Leerzeichen)"
     },
     "alias": {
       "name": "Alias",
