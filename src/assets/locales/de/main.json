@@ -70,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "onboardingServiceProviderManagement": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -465,7 +465,7 @@
         "inactive": "inaktiv",
         "showAll": "Alles anzeigen"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",
@@ -1487,7 +1487,7 @@
       "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
       "readMore": "Read More",
       "registerURL": "RegisterURL",
-      "search": "...search by entering the company name here.",
+      "search": "Suche nach Firmennamen",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -2271,7 +2271,9 @@
       "clientSecret": {
         "name": "Client-Geheimnis",
         "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
-      }
+      },
+      "ospIdentityProvider": "OSP-Identitätsanbieter (IDPs)",
+      "search": "Geben Sie einen Namen oder Alias ​​ein, um zu suchen"
     }
   },
   "navigation": {
