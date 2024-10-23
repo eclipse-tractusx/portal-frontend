@@ -6,6 +6,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **App Request**
+  - Fixed UI issues in Registration Process pop up [PM2-833](https://cofinity-x.atlassian.net/browse/PM2-833)
 - **App Release Process**
 
   - fix: increase image upload size app release process [PM2-347](https://cofinity-x.atlassian.net/browse/PM2-347)

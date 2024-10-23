@@ -282,7 +282,7 @@ export const ProgressVerificationButton = ({
                   height: '60px',
                   padding: '12px 8px',
                   borderRadius: '6px',
-                  backgroundColor: props?.backgroundColor ?? '#fff',
+                  // backgroundColor: props?.backgroundColor ?? '#fff',
                   color: '#111',
                   fontSize: '14px',
                   outlined: 'none',
