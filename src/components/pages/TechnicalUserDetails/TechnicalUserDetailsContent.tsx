@@ -32,7 +32,7 @@ import {
   type ServiceAccountRole,
   useResetCredentialMutation,
 } from 'features/admin/serviceApiSlice'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
@@ -41,6 +41,7 @@ import { type ComponentProps, useState } from 'react'
 import { error, success } from 'services/NotifyService'
 import { ServiceAccountStatus } from 'features/admin/serviceApiSlice'
 import Info from '@mui/icons-material/Info'
+import { userHasPortalRole } from 'services/AccessService'
 
 export const statusColorMap: Record<
   ServiceAccountStatus,
@@ -194,19 +195,22 @@ export default function TechnicalUserDetailsContent({
     setLoading(false)
   }
 
+  const deleteTechnicalButton = userHasPortalRole(ROLES.TECH_USER_DELETE) && (
+    <Button
+      size="small"
+      variant="outlined"
+      startIcon={<HighlightOffIcon />}
+      onClick={() =>
+        dispatch(show(OVERLAYS.DELETE_TECH_USER, newData.serviceAccountId))
+      }
+    >
+      {t('content.usermanagement.technicalUser.delete')}
+    </Button>
+  )
+
   return (
     <section>
-      <Button
-        size="small"
-        variant="outlined"
-        startIcon={<HighlightOffIcon />}
-        onClick={() =>
-          dispatch(show(OVERLAYS.DELETE_TECH_USER, newData.serviceAccountId))
-        }
-      >
-        {t('content.usermanagement.technicalUser.delete')}
-      </Button>
-
+      {deleteTechnicalButton}
       <Button
         size="small"
         variant="outlined"
