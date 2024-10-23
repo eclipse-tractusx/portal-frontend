@@ -75,7 +75,7 @@
 - **Home**
   - disabled My Apps button for users without permission [#1165](https://github.com/eclipse-tractusx/portal-frontend/issues/1165)
 - **Application Request**
-  - fixed endurl issue in the retriggering of clearing house step
+  - fixed endurl issue in the retriggering of clearing house step [#1268] (https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
 
 ## 2.3.0-alpha.2
 
