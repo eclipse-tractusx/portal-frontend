@@ -7,6 +7,11 @@
 - **Onboarding Service Provider**
   - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
 
+### Bugfixes
+
+- **Semantic Hub**
+  - Fixed semantic hub data on click of filters
+
 ## 2.3.0-alpha.3
 
 ### Change
