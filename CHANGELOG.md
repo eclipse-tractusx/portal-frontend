@@ -10,7 +10,7 @@
 ### Bugfixes
 
 - **Semantic Hub**
-  - Fixed semantic hub data on click of filters
+  - Fixed semantic hub data on click of filters [#1273](https://github.com/eclipse-tractusx/portal-frontend/pull/1273)
 
 ## 2.3.0-alpha.3
 
