@@ -31,7 +31,7 @@ import {
   useFetchDocumentMutation,
   useFetchServiceStatusQuery,
 } from 'features/serviceManagement/apiSlice'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Divider } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -39,6 +39,8 @@ import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
 import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -47,7 +49,6 @@ export default function ServiceDetails() {
     refetchOnMountOrArgChange: true,
   }).data
   const [fetchDocument] = useFetchDocumentMutation()
-  const [leadImg, setLeadImg] = useState<string>('')
 
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
@@ -77,25 +78,6 @@ export default function ServiceDetails() {
     }
   }
 
-  const setLeadingImg = async () => {
-    try {
-      const response = await fetchDocument({
-        appId: serviceId,
-        documentId: fetchServiceStatus?.leadPictureId,
-      }).unwrap()
-      const file = response.data
-      setLeadImg(URL.createObjectURL(file))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    if (fetchServiceStatus) {
-      setLeadingImg()
-    }
-  }, [fetchServiceStatus])
-
   return (
     <main>
       <div>
@@ -111,8 +93,19 @@ export default function ServiceDetails() {
             <div className="imageCard">
               <CardHorizontal
                 borderRadius={6}
-                imageAlt="Service Card"
-                imagePath={leadImg}
+                image={{
+                  src: `${getApiBase()}/api/services/${serviceId}/serviceDocuments/${fetchServiceStatus?.leadPictureId}`,
+                  alt: 'Service Card',
+                  style: {
+                    flex: '0 0 33.333333%',
+                    maxWidth: '33.333333%',
+                    minHeight: '200px',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  },
+                }}
+                imageLoader={fetchImageWithToken}
                 label={''}
                 buttonText=""
                 onBtnClick={() => {

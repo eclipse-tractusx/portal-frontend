@@ -27,10 +27,11 @@ import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './ServiceMarketplace.scss'
 import NoItems from '../NoItems'
-import { getAssetBase } from 'services/EnvironmentService'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { fetchImageWithToken } from 'services/ImageService'
+import { getApiBase } from 'services/EnvironmentService'
 
 export default function RecommendedServices({
   services,
@@ -72,8 +73,19 @@ export default function RecommendedServices({
             <Grid className="recommended-card" key={service.id}>
               <CardHorizontal
                 borderRadius={6}
-                imageAlt="App Card"
-                imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
+                image={{
+                  src: `${getApiBase()}/api/services/${service.id}/serviceDocuments/${service?.leadPictureId}`,
+                  alt: 'App Card',
+                  style: {
+                    flex: '0 0 33.333333%',
+                    maxWidth: '33.333333%',
+                    minHeight: '200px',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  },
+                }}
+                imageLoader={fetchImageWithToken}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => {

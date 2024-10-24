@@ -55,10 +55,28 @@
 - **Dependencies**
   - upgraded app dependencies [#1181](https://github.com/eclipse-tractusx/portal-frontend/pull/1181)
 
+### Change
+
+- **Service Subscriptions**
+
+  - rename 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
+
+- **Header**
+  - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
+- **Application Request**
+  - add separate end points for downloading company credential document and registration document [#1229](https://github.com/eclipse-tractusx/portal-frontend/pull/1229)
+- **Business Partner Invitation**
+
+  - support all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
+
 ### Bugfixes
 
 - **Partner Network**
   - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
+- **Company Subscriptions**
+  - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
+- **Service Release Process**
+  - Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 - **Onboarding Service Provider Management**
   - fixed blank page issue in customer overview tab [#1232](https://github.com/eclipse-tractusx/portal-frontend/pull/1232)
   - fixed hardcoded OSP callback url [#1201](https://github.com/eclipse-tractusx/portal-frontend/pull/1201)
