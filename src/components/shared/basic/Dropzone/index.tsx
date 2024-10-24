@@ -32,6 +32,7 @@ import {
 import { type FunctionComponent, useCallback, useState } from 'react'
 import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
+import { CONVERT_TO_MB } from 'types/Constants'
 
 export type DropzoneFile = File & Partial<UploadFile>
 
@@ -111,6 +112,17 @@ export const Dropzone = ({
     [currentFiles, onChange, handleDelete]
   )
 
+  const handleFileSizeValidator = (file: File) => {
+    if (!maxFileSize) return null
+    const fileSizeInMB = (file.size / CONVERT_TO_MB).toFixed(2)
+    return file.size > maxFileSize
+      ? {
+          code: 'size-too-large',
+          message: `${t('shared.dropzone.error.fileTooLarge')} ${fileSizeInMB} MB`,
+        }
+      : null
+  }
+
   const {
     getRootProps,
     getInputProps,
@@ -123,7 +135,7 @@ export const Dropzone = ({
     maxFiles: isSingleUpload ? 0 : maxFilesToUpload,
     accept: acceptFormat,
     multiple: !isSingleUpload,
-    maxSize: maxFileSize,
+    validator: handleFileSizeValidator,
   })
 
   let DropAreaComponent = DefaultDropArea
