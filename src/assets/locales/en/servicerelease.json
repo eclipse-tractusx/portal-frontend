@@ -53,7 +53,7 @@
     "providerContactPhone": "Customer Contact Phone",
     "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
     "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-    "pleaseEnterValidPhone": "Please enter a valid Customer Contact Phonenumber"
+    "pleaseEnterValidPhone": "Please enter a valid Customer Contact Phone Number"
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
