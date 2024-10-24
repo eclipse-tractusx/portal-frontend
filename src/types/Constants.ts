@@ -100,7 +100,6 @@ export enum PAGES {
   CERTIFICATE_CREDENTIAL = 'certificateCredential',
   DATA_SPACE = 'dataSpace',
   ADMIN_CREDENTIAL = 'adminCredential',
-  ONBOARDING_SERVICE_PROVIDER = 'onboardingServiceProvider',
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',

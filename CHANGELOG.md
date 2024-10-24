@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Onboarding Service Provider**
+  - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
+
 ### Bugfixes
 
 - **Use Case Participation**
