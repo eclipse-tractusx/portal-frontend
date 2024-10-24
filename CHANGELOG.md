@@ -437,7 +437,6 @@
 - **Connector Management**:
   - released connector detail view including change connector url, view SD document, etc. Add details overlay [#848](https://github.com/eclipse-tractusx/portal-frontend/pull/848)
 - **Imprint**:
-
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
 
 ### Technical Support
