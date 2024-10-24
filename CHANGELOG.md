@@ -9,6 +9,8 @@
 
 ### Bugfixes
 
+- **Technical User Management**
+  - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
 - **Semantic Hub**
   - Fixed semantic hub data on click of filters and on click on refresh icon [#1273](https://github.com/eclipse-tractusx/portal-frontend/pull/1273)
 
