@@ -155,7 +155,7 @@ export const TechnicalUserTable = () => {
             headerName: t('global.field.userType'),
             flex: 1.2,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
-              row.usertype || '-',
+              row.userType || '-',
           },
           {
             field: 'offer',

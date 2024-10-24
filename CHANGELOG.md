@@ -6,11 +6,13 @@
 
 - **Onboarding Service Provider**
   - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
-
-### Bugfixed
-
 - **Application Request**
-  - fixed endurl issue in the retriggering of clearing house step [#1268] (https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
+  - align endurl mapping keys with backend for retriggerable processes [#1268](https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
+
+### Bugfixes
+
+- **Technical User Management**
+  - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
 
 ## 2.3.0-alpha.3
 
