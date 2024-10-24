@@ -31,7 +31,6 @@ import {
   Typography,
   CircleProgress,
 } from '@catena-x/portal-shared-components'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
 import { isKeycloakURL } from 'types/Patterns'
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined'
@@ -44,13 +43,7 @@ import { useDispatch } from 'react-redux'
 import './style.scss'
 import type { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
-import { Link } from 'react-router-dom'
 import { useFetchTechnicalUserProfilesQuery } from 'features/appManagement/apiSlice'
-
-const TentantHelpURL =
-  '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F04.+Subscription+Activation+%28App+Provider%29.md'
-const ProfileHelpURL =
-  '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F04.+Subscription+Activation+%28App+Provider%29.md'
 
 interface ActivateSubscriptionProps {
   openDialog: boolean
@@ -249,12 +242,6 @@ const ActivateSubscriptionOverlay = ({
                   'content.appSubscription.activation.addTentalURLDescription'
                 )}
               </Typography>
-              <Link to={TentantHelpURL} target="_blank">
-                <Typography variant="body2" className="helpText">
-                  <HelpOutlineIcon />
-                  {t('pages.help')}
-                </Typography>
-              </Link>
               <Input
                 name="tentant_url"
                 label={
@@ -279,12 +266,6 @@ const ActivateSubscriptionOverlay = ({
                   'content.appSubscription.activation.technicalUserDetailsDescription'
                 )}
               </Typography>
-              <Link to={ProfileHelpURL} target="_blank">
-                <Typography variant="body2" className="helpText">
-                  <HelpOutlineIcon />
-                  {t('pages.help')}
-                </Typography>
-              </Link>
               <div className="technicalUserProfile">
                 <Typography variant="h5" sx={{ marginBottom: '20px' }}>
                   {t(

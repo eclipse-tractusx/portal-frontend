@@ -1444,7 +1444,7 @@
         },
         "dataSavedSuccessMessage": "Data saved successfully",
         "errormessage": "Error! Something went wrong",
-        "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed",
+        "fileSizeError": "Uploaded file is too big. Maximum 1MB is allowed",
         "shouldNotStartWith": "and should not start with"
       },
       "footerButtons": {
@@ -1529,7 +1529,7 @@
       "description": "Do you want to use the auto-setup instead? Connect your service to automate marketplace subscription build.",
       "readMore": "Read More",
       "registerURL": "Register auto-setup URL",
-      "search": "Search by app title...",
+      "search": "Search for company name",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",

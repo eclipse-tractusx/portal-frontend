@@ -112,6 +112,7 @@ export interface NotificationContent {
   AppName?: string
   OfferName?: string
   RequestorCompanyName?: string
+  RequesterCompanyName?: string
   username?: string
   coreOfferName?: string
   appName?: string
