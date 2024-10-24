@@ -2,6 +2,14 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## 2.2.0-cfx-3-hotfix3
+
+### Bugfixes
+
+- **Application Requests**
+
+  - Updated the logic to display documents uploaded while registration [PM2-1759](https://cofinity-x.atlassian.net/browse/PM2-1759)
+
 ## 2.2.0-cfx-3-hotfix1
 
 ### Bugfixes

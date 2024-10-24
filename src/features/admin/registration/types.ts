@@ -63,11 +63,17 @@ export type CompanyDetail = {
   uniqueIds?: Array<UniqueIdType>
   countryAlpha2Code?: string
   companyUser: Array<CompanyUserDetails>
+  documents?: Array<RegistrationRequestDocs>
 }
 
 export type RegistrationRequestDocument = {
   documentType: string
   documentHash: string
+}
+
+export type RegistrationRequestDocs = {
+  documentType: string
+  documentId: string
 }
 
 export type CompanyApplicationInfo = {
