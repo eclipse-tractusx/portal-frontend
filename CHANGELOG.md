@@ -6,6 +6,8 @@
 
 - **Onboarding Service Provider**
   - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
+- **Application Request**
+  - align endurl mapping keys with backend for retriggerable processes [#1268](https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
 
 ### Bugfixes
 
