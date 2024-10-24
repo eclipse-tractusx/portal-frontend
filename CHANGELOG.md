@@ -7,6 +7,11 @@
 - **Onboarding Service Provider**
   - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
 
+### Bugfixes
+
+- **Technical User Management**
+  - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
+
 ## 2.3.0-alpha.3
 
 ### Change
