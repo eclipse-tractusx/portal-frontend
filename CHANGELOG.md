@@ -155,8 +155,6 @@
   - aligned notification page search field color with other pages [#1178](https://github.com/eclipse-tractusx/portal-frontend/issues/1178)
 - **Home**
   - disabled My Apps button for users without permission [#1165](https://github.com/eclipse-tractusx/portal-frontend/issues/1165)
-- **IDP Creation**
-  - display error message for invalid input of displayName [#1264](https://github.com/eclipse-tractusx/portal-frontend/issues/1264)
 
 ## 2.3.0-alpha.2
 
