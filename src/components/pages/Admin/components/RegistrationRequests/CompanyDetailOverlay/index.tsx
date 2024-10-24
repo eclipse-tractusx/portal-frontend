@@ -45,9 +45,12 @@ import {
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
 import { getIntro, getTitle } from './CompanyDetailsHelper'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { useFetchNewRegistrationDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
-import { type UniqueIdType } from 'features/admin/registration/types'
+import {
+  type RegistrationRequestDocs,
+  type UniqueIdType,
+} from 'features/admin/registration/types'
 import { StatusProgress } from '../registrationTableColumns'
 
 interface CompanyDetailOverlayProps {
@@ -72,7 +75,7 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [getDocumentById] = useFetchNewRegistrationDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(selectedActiveTab ?? 0)
   const [height, setHeight] = useState<string>('')
   const { data: checklistData } =
@@ -193,10 +196,11 @@ const CompanyDetailOverlay = ({
       key: '',
       value: (
         <>
-          {company?.documents && company.documents.length > 0 ? (
+          {selectedCompany?.documents &&
+          selectedCompany?.documents.length > 0 ? (
             <>
-              {company.documents.map(
-                (contract: { documentId: string; documentType: string }) => (
+              {selectedCompany?.documents.map(
+                (contract: RegistrationRequestDocs) => (
                   <Box key={contract.documentId}>
                     <DropPreviewFile
                       uploadFile={{

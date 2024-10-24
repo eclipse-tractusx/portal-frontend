@@ -7,7 +7,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bugfixes
 
 - **App Request**
+
   - Fixed UI issues in Registration Process pop up [PM2-833](https://cofinity-x.atlassian.net/browse/PM2-833)
+
 - **App Release Process**
 
   - fix: increase image upload size app release process [PM2-347](https://cofinity-x.atlassian.net/browse/PM2-347)
@@ -22,16 +24,27 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Remove help links from app & service subscription detail [PM2-802](https://cofinity-x.atlassian.net/browse/PM2-802)
 
 - **App Overview**
+
   - Replaced cofinity-x with catena-x as image overview text [PM2-1516](https://cofinity-x.atlassian.net/browse/PM2-1516)
+
 - **Search Translation for App and Service Subsciption**
 
   - fixed DE translation for search input in App and Service Subsciption [#162](https://cofinity-x.atlassian.net/browse/PM2-162?atlOrigin=eyJpIjoiYmY5NWJmODQwYWViNGM5NGIwODRiYzgwNDkxYjkyMGYiLCJwIjoiaiJ9)
 
 - **Service Detail**
-- Fixed broken image ui (#PM2-1744)[https://cofinity-x.atlassian.net/browse/PM2-1744]
+
+  - Fixed broken image ui (#PM2-1744)[https://cofinity-x.atlassian.net/browse/PM2-1744]
 
 - **Service Request Management**
-- Service Management | 400 Bad Request when Clicking 'Load More' Button [#1175](https://github.com/eclipse-tractusx/portal-frontend/pull/1175)
+  - Service Management | 400 Bad Request when Clicking 'Load More' Button [#1175](https://github.com/eclipse-tractusx/portal-frontend/pull/1175)
+
+## 2.2.0-cfx-3-hotfix3
+
+### Bugfixes
+
+- **Application Requests**
+
+  - Updated the logic to display documents uploaded while registration [PM2-1759](https://cofinity-x.atlassian.net/browse/PM2-1759)
 
 ## 2.2.0-cfx-3-hotfix1
 

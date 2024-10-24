@@ -331,6 +331,15 @@ export const apiSlice = createApi({
         }),
       }),
     }),
+    fetchNewRegistrationDocumentById: builder.mutation({
+      query: (documentId) => ({
+        url: `/api/administration/registration/documents/${documentId}`,
+        responseHandler: async (response) => ({
+          headers: response.headers,
+          data: await response.blob(),
+        }),
+      }),
+    }),
     fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
       query: () => '/api/apps/appreleaseprocess/privacyPolicies',
     }),
@@ -455,6 +464,7 @@ export const {
   useUpdateRoleDataMutation,
   useDeleteRolesMutation,
   useFetchNewDocumentByIdMutation,
+  useFetchNewRegistrationDocumentByIdMutation,
   useFetchPrivacyPoliciesQuery,
   useFetchFrameDocumentByIdMutation,
   useFetchUserRolesQuery,
