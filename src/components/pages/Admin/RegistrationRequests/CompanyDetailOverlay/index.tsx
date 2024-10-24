@@ -45,8 +45,11 @@ import {
 import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../CheckList/CheckListFullButtons'
 import { getIntro, getTitle } from './CompanyDetailsHelper'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
-import { type UniqueIdType } from 'features/admin/registration/types'
+import { useFetchNewRegistrationDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import {
+  type RegistrationRequestDocs,
+  type UniqueIdType,
+} from 'features/admin/registration/types'
 import { StatusProgress } from '../RegistrationTableColumns'
 
 interface CompanyDetailOverlayProps {
@@ -71,7 +74,7 @@ const CompanyDetailOverlay = ({
     adminRegistrationSelector
   )
   const [company, setCompany] = useState<ApplicationRequest>()
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [getDocumentById] = useFetchNewRegistrationDocumentByIdMutation()
   const [activeTab, setActiveTab] = useState<number>(selectedActiveTab ?? 0)
   const [height, setHeight] = useState<string>('')
   const { data: checklistData } =
@@ -193,7 +196,7 @@ const CompanyDetailOverlay = ({
       value: (
         <>
           {selectedCompany?.documents &&
-          selectedCompany.documents.length > 0 ? (
+          selectedCompany?.documents.length > 0 ? (
             <>
               {selectedCompany.documents.map(
                 (contract: {

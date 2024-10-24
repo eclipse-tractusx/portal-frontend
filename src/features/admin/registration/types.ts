@@ -72,6 +72,11 @@ export type RegistrationRequestDocument = {
   documentHash: string
 }
 
+export type RegistrationRequestDocs = {
+  documentType: string
+  documentId: string
+}
+
 export type CompanyApplicationInfo = {
   companyName: string
   email: string
