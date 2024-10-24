@@ -202,7 +202,8 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
-    }
+    },
+    "offersHeading": "Services Offered"
   },
   "adminBoard": {
     "headerTitle": "Service request management",

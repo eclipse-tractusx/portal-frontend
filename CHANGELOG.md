@@ -40,6 +40,8 @@
   - updated search place holder text - showing only available offer names at the top - and implemented hover information on the status icon of service subscription [#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
 - **CX-Operator Application**
   - enabled to not show overlay for submitted application to CX-Operator [#1204](https://github.com/eclipse-tractusx/portal-frontend/pull/1204)
+- **App and Service Subscription Management**
+  - show all available active apps/services in the filter section. add heading in each section for the better user experience. show all subscription including inactive in the list [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
 
 ### Feature
 
