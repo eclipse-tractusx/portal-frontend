@@ -30,6 +30,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Service Detail**
 - Fixed broken image ui (#PM2-1744)[https://cofinity-x.atlassian.net/browse/PM2-1744]
 
+- **Service Request Management**
+- Service Management | 400 Bad Request when Clicking 'Load More' Button [#1175](https://github.com/eclipse-tractusx/portal-frontend/pull/1175)
+
 ## 2.2.0-cfx-3-hotfix1
 
 ### Bugfixes
