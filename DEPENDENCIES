@@ -408,9 +408,9 @@ npm/npmjs/-/qs/6.13.0, BSD-3-Clause, approved, clearlydefined
 npm/npmjs/-/querystringify/2.2.0, MIT, approved, clearlydefined
 npm/npmjs/-/queue-microtask/1.2.3, MIT, approved, clearlydefined
 npm/npmjs/-/react-dom/18.3.1, MIT, approved, clearlydefined
-npm/npmjs/-/react-dropzone/14.2.3, MIT, approved, clearlydefined
+npm/npmjs/-/react-dropzone/14.2.3, MIT, approved, #16858
 npm/npmjs/-/react-fast-compare/3.2.2, MIT, approved, clearlydefined
-npm/npmjs/-/react-hook-form/7.53.0, MIT, approved, clearlydefined
+npm/npmjs/-/react-hook-form/7.53.0, MIT, approved, #16857
 npm/npmjs/-/react-i18next/14.1.3, MIT AND Apache-2.0, approved, #13870
 npm/npmjs/-/react-is/16.13.1, MIT, approved, clearlydefined
 npm/npmjs/-/react-is/17.0.2, MIT, approved, clearlydefined

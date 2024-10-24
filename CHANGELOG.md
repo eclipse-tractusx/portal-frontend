@@ -9,6 +9,8 @@
 
 ### Bugfixes
 
+- **Technical User Management**
+  - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
 - **Use Case Participation**
   - fixed columns alignment ui issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
 
