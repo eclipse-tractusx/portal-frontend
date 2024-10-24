@@ -11,6 +11,8 @@
 
 - **Technical User Management**
   - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
+- **User Management**
+  - user table - allow user to scroll horizontally in roles column to view all the added information [#1260](https://github.com/eclipse-tractusx/portal-frontend/pull/1260)
 
 ## 2.3.0-alpha.3
 
