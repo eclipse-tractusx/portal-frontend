@@ -117,7 +117,7 @@ export default function UsecaseParticipation() {
               : 'N/A'}
           </Typography>
         </Trans>
-        {expiryDate.diff(todayDate, 'day') > 0 && (
+        {expiryDate.diff(todayDate, 'day') > 0 ? (
           <Typography variant="body3" className="fifthSection">
             <Chip
               color="secondary"
@@ -135,6 +135,8 @@ export default function UsecaseParticipation() {
               type="plain"
             />
           </Typography>
+        ) : (
+          <div className="fifthSection" />
         )}
       </div>
     )
@@ -238,7 +240,7 @@ export default function UsecaseParticipation() {
                                                 <div
                                                   className="credential-list-item"
                                                   style={{
-                                                    width: '82%',
+                                                    width: '80%',
                                                     textAlign: 'center',
                                                     margin: '0 0 10px',
                                                   }}
