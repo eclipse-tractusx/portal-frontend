@@ -440,9 +440,6 @@
 
   - updated imprint page with anonymized data [#906](https://github.com/eclipse-tractusx/portal-frontend/pull/906)
 
-- **Customer Contact Field**:
-  - Introduced new contact field in New Service Registration and Service Detail [#1214](https://github.com/eclipse-tractusx/portal-frontend/pull/1214)
-
 ### Technical Support
 
 - **Dependencies**:
