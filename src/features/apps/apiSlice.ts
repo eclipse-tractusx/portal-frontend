@@ -176,7 +176,9 @@ export const apiSlice = createApi({
           body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
             ? `&status=${body.args.statusId}`
             : ''
-        const name = body.args.expr ? `&name=${body.args.expr}` : ''
+        const name = body.args.expr
+          ? `&name=${encodeURIComponent(body.args.expr)}`
+          : ''
         return {
           url: `${url}${statusId}${name}`,
         }

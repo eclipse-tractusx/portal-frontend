@@ -30,7 +30,6 @@ import {
   useUnsubscribeAppMutation,
 } from 'features/apps/apiSlice'
 import { type SyntheticEvent, useEffect, useState } from 'react'
-import { isName } from 'types/Patterns'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateApplicationRequestSelector } from 'features/control/updates'
@@ -124,12 +123,6 @@ export default function CompanySubscriptions() {
     })
   }, [filterStatus, searchExpr])
 
-  const onValidate = (expr: string) => {
-    const validateExpr = isName(expr)
-    if (validateExpr) dispatch(setSearchInput({ open: true, text: expr }))
-    return validateExpr
-  }
-
   const callSuccess = () => {
     success(t('content.organization.unsubscribe.unsubscribeSuccess'))
     setLoading(false)
@@ -216,7 +209,8 @@ export default function CompanySubscriptions() {
         searchPlaceholder={t(placeHolderTranslation)}
         searchInputData={searchInputData}
         onSearch={(expr: string) => {
-          if (expr !== '' && !onValidate(expr)) return
+          if (expr === '') return
+          dispatch(setSearchInput({ open: true, text: expr }))
           setRefresh(Date.now())
           setSearchExpr(expr)
         }}
