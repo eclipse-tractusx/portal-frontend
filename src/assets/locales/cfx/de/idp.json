@@ -200,7 +200,7 @@
   },
   "field": {
     "display": {
-      "name": "Display name",
+      "name": "Anzeigename",
       "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)"
     },
     "alias": {
