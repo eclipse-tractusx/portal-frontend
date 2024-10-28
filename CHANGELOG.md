@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Use Case Participation**
+  - fixed columns alignment ui issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
+
 ## 2.3.0-RC1
 
 ### Change
