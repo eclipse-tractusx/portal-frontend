@@ -41,6 +41,8 @@ import {
   ViewSelector,
   SortOption,
   CircleProgress,
+  ErrorBar,
+  LoadMoreButton,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -52,14 +54,14 @@ import {
   useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
+import { SORTING_TYPE } from 'features/serviceManagement/types'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-// import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
-
-// TODO: Code missing
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
+
+const indexToSplit = 2 //show only 2 services in recommended
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
@@ -69,33 +71,29 @@ export default function ServiceMarketplace() {
   const [selected, setSelected] = useState<string>('All Services')
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
-  const [fetchDocument] = useFetchDocumentMutation()
-
-  let serviceTypeId = ''
-
-  if (selected === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.DATASPACE_SERVICE
-  } else if (selected === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
-    serviceTypeId = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
-  }
-
-  let sortingType = 'ReleaseDateDesc'
-  if (sortOption === 'provider') {
-    sortingType = 'ProviderDesc'
-  }
-
-  const indexToSplit = 2 //show only 2 services in recommended
-
-  const { data } = useFetchServicesQuery({
+  const [page, setPage] = useState<number>(0)
+  const [serviceTypeId, setServiceTypeId] = useState<ServiceTypeIdsEnum>()
+  const [sortingType, setSortingType] = useState<SORTING_TYPE>(
+    SORTING_TYPE.RELEASE_DATE_DESC
+  )
+  const [argsData, setArgsData] = useState<{
+    page: number
+    serviceType?: ServiceTypeIdsEnum
+    sortingType: SORTING_TYPE
+  }>({
     page: 0,
     serviceType: serviceTypeId,
     sortingType,
   })
+  const [fetchDocument] = useFetchDocumentMutation()
+
+  const { data, error, isError, refetch, isFetching } =
+    useFetchServicesQuery(argsData)
   const services = data?.content
 
-  useEffect(() => {
-    services && setCardServices(services)
-  }, [services])
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const servicesError = error as any
 
   const getImage = useCallback(
     async (service: ServiceRequest) => {
@@ -114,23 +112,49 @@ export default function ServiceMarketplace() {
     [fetchDocument]
   )
 
-  useEffect(() => {
+  const loadServicesWithImages = useCallback(async () => {
     if (services && services.length > 0) {
-      const loadImages = async () => {
-        const serviceWithLeadId = await Promise.all(
-          services.map(async (service) => {
-            const img = await getImage(service)
-            return { ...service, leadPictureId: img }
-          })
-        )
-        setCardServices(serviceWithLeadId as ServiceRequest[])
-      }
-      loadImages()
+      const serviceWithImages = await Promise.all(
+        services.map(async (service) => {
+          const img = await getImage(service)
+          return { ...service, leadPictureId: img ?? '' }
+        })
+      )
+
+      setCardServices((prevServices: ServiceRequest[]) => {
+        const newServices =
+          data?.meta.page === 0
+            ? serviceWithImages
+            : [...prevServices, ...serviceWithImages]
+
+        return newServices
+      })
     }
-  }, [services])
+  }, [services, data?.meta.page, getImage])
+
+  useEffect(() => {
+    loadServicesWithImages()
+  }, [services, data?.meta.page, getImage])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
-    setSelected(e.currentTarget.value)
+    const viewValue = e.currentTarget.value
+    let serviceType: ServiceTypeIdsEnum | undefined
+
+    if (viewValue === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
+      serviceType = ServiceTypeIdsEnum.DATASPACE_SERVICE
+    } else if (viewValue === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
+      serviceType = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
+    }
+
+    setServiceTypeId(serviceType)
+    setArgsData((arg) => ({
+      ...arg,
+      serviceType,
+      page: 0,
+    }))
+
+    setSelected(viewValue)
+    setPage(0)
   }
 
   const sortOptions = [
@@ -191,6 +215,9 @@ export default function ServiceMarketplace() {
   )
 
   const setSortOptionFn = useCallback((value: string) => {
+    if (value === 'provider') {
+      setSortingType(SORTING_TYPE.PROVIDER_DESC)
+    }
     setSortOption(value)
     setShowModal(false)
   }, [])
@@ -202,6 +229,14 @@ export default function ServiceMarketplace() {
   const setModalTrue = useCallback(() => {
     setShowModal(true)
   }, [])
+
+  const nextPage = () => {
+    setArgsData({
+      ...argsData,
+      page: page + 1,
+    })
+    setPage(page + 1)
+  }
 
   const renderServices = () => {
     if (services && services.length === 0) return <NoItems />
@@ -231,42 +266,78 @@ export default function ServiceMarketplace() {
         headerHeight={250}
         subTitleWidth={750}
       />
-
-      <div className="mainContainer">
-        <div className="mainRow">
-          <Typography className="newServicesTitle" variant="h2">
-            {t('content.serviceMarketplace.newServices')}
-          </Typography>
-          <div>
-            <div className="cx-search-grid">
-              <div className="searchContainer">
-                <SearchInput
-                  placeholder={t('notification.search')}
-                  value={searchExpr}
-                  autoFocus={false}
-                  onChange={doFilter}
-                />
-              </div>
-              <div className="filterSection" onMouseLeave={setModalFalse}>
-                <ViewSelector activeView={selected} views={filterButtons} />
-                <SortImage onClick={setModalTrue} selected={showModal} />
-                <div className="sortSection">
-                  <SortOption
-                    show={showModal}
-                    selectedOption={sortOption}
-                    setSortOption={setSortOptionFn}
-                    sortOptions={sortOptions}
-                  />
+      {isFetching ? (
+        <div style={{ textAlign: 'center' }}>
+          <CircleProgress
+            variant="indeterminate"
+            colorVariant="primary"
+            size={50}
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+          />
+        </div>
+      ) : (
+        <>
+          <div className="mainContainer">
+            <div className="mainRow">
+              <Typography className="newServicesTitle" variant="h2">
+                {t('content.serviceMarketplace.newServices')}
+              </Typography>
+              <div>
+                <div className="cx-search-grid">
+                  <div className="searchContainer">
+                    <SearchInput
+                      placeholder={t('notification.search')}
+                      value={searchExpr}
+                      autoFocus={false}
+                      onChange={doFilter}
+                    />
+                  </div>
+                  <div className="filterSection" onMouseLeave={setModalFalse}>
+                    <ViewSelector activeView={selected} views={filterButtons} />
+                    <SortImage onClick={setModalTrue} selected={showModal} />
+                    <div className="sortSection">
+                      <SortOption
+                        show={showModal}
+                        selectedOption={sortOption}
+                        setSortOption={setSortOptionFn}
+                        sortOptions={sortOptions}
+                      />
+                    </div>
+                  </div>
                 </div>
+                {!isError ? (
+                  renderServices()
+                ) : (
+                  <ErrorBar
+                    errorText={
+                      servicesError?.data?.status >= 400 &&
+                      servicesError?.data?.status < 500
+                        ? t('content.serviceMarketplace.dataLoadFailed')
+                        : t('content.serviceMarketplace.loadFailed')
+                    }
+                    showButton={
+                      servicesError.code >= 500 &&
+                      servicesError?.data?.status < 600
+                    }
+                    buttonText={t('error.tryAgain')}
+                    handleButton={refetch}
+                  />
+                )}
               </div>
             </div>
-            {renderServices()}
           </div>
-        </div>
-      </div>
-      {cardServices && cardServices.length > 2 && (
-        <ServicesElements services={cardServices.slice(indexToSplit)} />
+          {cardServices && cardServices.length > 2 && (
+            <ServicesElements services={cardServices.slice(indexToSplit)} />
+          )}
+        </>
       )}
+      <div className="load-more-btn">
+        {data?.meta && data?.meta?.totalPages > page + 1 && (
+          <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
+        )}
+      </div>
     </main>
   )
 }
