@@ -24,7 +24,6 @@ import { t } from 'i18next'
 import {
   Button,
   CircleProgress,
-  ToggleSwitch,
   Typography,
 } from '@catena-x/portal-shared-components'
 import {
@@ -36,10 +35,8 @@ import {
   PAGE_SIZE,
 } from 'features/adminClearingHouseSD/adminClearingHouseSDApiSlice'
 import { error } from 'services/NotifyService'
-import { isClearinghouseConnectDisabled } from 'services/EnvironmentService'
 
 const AdminclearinghouseSDElements = () => {
-  const [checked, setChecked] = useState(isClearinghouseConnectDisabled())
   const [triggerCompanyData] = useTriggerCompanyDataMutation()
   const [triggerConnectors] = useTriggerConnectorsMutation()
   const [triggerCDLoading, setTriggerCDLoading] = useState<boolean>(false)
@@ -50,10 +47,6 @@ const AdminclearinghouseSDElements = () => {
   const [isFetchingMoreCompanies, setIsFetchingMoreCompanies] = useState(false)
   const [isFetchingMoreConnectors, setIsFetchingMoreConnectors] =
     useState(false)
-
-  const handleChange = (newChecked: boolean) => {
-    setChecked(newChecked)
-  }
 
   const {
     data: companyData,
@@ -241,41 +234,44 @@ const AdminclearinghouseSDElements = () => {
         </Typography>
       </Trans>
 
-      <div className="compliance-status">
-        <Typography variant="h5">
+      <div className="status-section">
+        <Typography variant="h5" className="status-title">
           {t('content.clearinghouseSelfDescription.complianceStatus')}
         </Typography>
-
-        <div className="switch-container">
-          <ToggleSwitch
-            checked={checked}
-            onChange={handleChange}
-            disabled={true}
-          />
+        <div className="status">
+          <span className="status-label">Status</span>
+          <span className="status-indicator active">active</span>
         </div>
       </div>
 
       <div className="section">
-        <Typography variant="h5">
-          {t('content.clearinghouseSelfDescription.legalPerson')}
-        </Typography>
-        <Typography variant="body1">
-          {t('content.clearinghouseSelfDescription.legalPersonDesc')}
-        </Typography>
-        {isFetchingCompanyData ? (
-          <div className="loading-progress">
-            <CircleProgress
-              size={40}
-              step={1}
-              interval={0.1}
-              colorVariant={'primary'}
-              variant={'indeterminate'}
-              thickness={8}
-            />
+        <div className="list-container">
+          <div className="list-title">
+            <Typography variant="h5">
+              {t('content.clearinghouseSelfDescription.legalPerson')}
+            </Typography>
+            <Typography variant="body1">
+              {t('content.clearinghouseSelfDescription.legalPersonDesc')}
+            </Typography>
           </div>
-        ) : (
-          renderCompanyDataContent()
-        )}
+
+          <div className="legal-person-list">
+            {isFetchingCompanyData ? (
+              <div className="loading-progress">
+                <CircleProgress
+                  size={40}
+                  step={1}
+                  interval={0.1}
+                  colorVariant={'primary'}
+                  variant={'indeterminate'}
+                  thickness={8}
+                />
+              </div>
+            ) : (
+              renderCompanyDataContent()
+            )}
+          </div>
+        </div>
         <div className="btn-container">
           <Button
             variant="contained"
@@ -300,27 +296,31 @@ const AdminclearinghouseSDElements = () => {
       </div>
 
       <div className="section">
-        <Typography variant="h5">
-          {t('content.clearinghouseSelfDescription.connectors')}
-        </Typography>
-        <Typography variant="body1">
-          {t('content.clearinghouseSelfDescription.connectorsDesc')}
-        </Typography>
-
-        {isFetchingConnectors ? (
-          <div className="loading-progress">
-            <CircleProgress
-              size={40}
-              step={1}
-              interval={0.1}
-              colorVariant={'primary'}
-              variant={'indeterminate'}
-              thickness={8}
-            />
+        <div className="list-container">
+          <div className="list-title">
+            <Typography variant="h5">
+              {t('content.clearinghouseSelfDescription.connectors')}
+            </Typography>
+            <Typography variant="body1">
+              {t('content.clearinghouseSelfDescription.connectorsDesc')}
+            </Typography>
           </div>
-        ) : (
-          renderConnectorsContent()
-        )}
+
+          {isFetchingConnectors ? (
+            <div className="loading-progress">
+              <CircleProgress
+                size={40}
+                step={1}
+                interval={0.1}
+                colorVariant={'primary'}
+                variant={'indeterminate'}
+                thickness={8}
+              />
+            </div>
+          ) : (
+            renderConnectorsContent()
+          )}
+        </div>
         <div className="btn-container">
           <Button
             variant="contained"
