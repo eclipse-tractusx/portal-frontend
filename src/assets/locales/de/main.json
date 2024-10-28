@@ -2261,8 +2261,12 @@
       "success": "OSP-Rückruf erfolgreich konfiguriert",
       "callbackUrlError": "Fehler beim Konfigurieren des OSP-Rückrufs",
       "callbackUrl": {
-        "name": "Rückruf-URL",
-        "hint": "Geben Sie die Rückruf-URL Ihres IDP ein, die mit „/.well-known/openid-configuration“ endet'"
+        "name": "Configure Registration Status Callback",
+        "hint": "Rückruf-URL ist obligatorisch"
+      },
+      "authUrl": {
+        "name": "Auth URL",
+        "hint": "Auth-URL ist obligatorisch"
       },
       "clientId": {
         "name": "Kunden-ID",
