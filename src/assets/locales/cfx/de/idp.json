@@ -254,7 +254,7 @@
     "configuredAndEnabled": "IdP aktiv. Benutzer können den IdP für die Anmeldung verwenden wenn ihr User Account angelegt wurde..",
     "status1": "ausstehend",
     "status2": "IdP created",
-    "status3": "disabled",
+    "status3": "inaktiv",
     "status4": "aktiv"
   },
   "action": {

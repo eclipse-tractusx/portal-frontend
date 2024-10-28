@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Added Missing Translations**
+
+  - Added missing translations for idp [PM2-1603](https://cofinity-x.atlassian.net/browse/PM2-1603)
+
 - **App Request**
 
   - Fixed UI issues in Registration Process pop up [PM2-833](https://cofinity-x.atlassian.net/browse/PM2-833)

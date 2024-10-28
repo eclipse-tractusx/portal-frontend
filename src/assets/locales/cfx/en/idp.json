@@ -1,6 +1,6 @@
 {
   "idpmanagement": {
-    "title": "IDP Provider Config",
+    "title": "IDP Provider Configuration",
     "addIdpHeadline": "New IdP Connection",
     "addIdpSubheadline": "Enter a name for the new Identity Provider to start the configuration",
     "updateIdpHeadline": "Identity Provider Configuration",
