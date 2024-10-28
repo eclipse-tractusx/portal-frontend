@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+## 2.3.0-RC1
+
+### Change
+
+- **Onboarding Service Provider**
+  - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
+- **Application Request**
+  - aligned endurl mapping keys with backend for retriggerable processes [#1268](https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
+
+### Bugfixes
+
+- **Technical User Management**
+  - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
+- **Semantic Hub**
+  - fixed error on click of filters and on click on refresh icon [#1273](https://github.com/eclipse-tractusx/portal-frontend/pull/1273)
+- **Service Management**
+  - fixed 400 bad request error when clicking 'Load More' button [#1168](https://github.com/eclipse-tractusx/portal-frontend/pull/1168)
+- **Service Marketplace**
+  - fixed displaying of all active available services [#1143](https://github.com/eclipse-tractusx/portal-frontend/issues/1143)
+
 ## 2.3.0-alpha.3
 
 ### Change
