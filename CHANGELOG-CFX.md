@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Connector Registration**
+
+  - Technical users created through Connectors do not appear immediately and only show up after the page is refreshed. [PM2-1606](https://cofinity-x.atlassian.net/browse/PM2-1606)
+
 - **Added Missing Translations**
 
   - Added missing translations for idp [PM2-1603](https://cofinity-x.atlassian.net/browse/PM2-1603)

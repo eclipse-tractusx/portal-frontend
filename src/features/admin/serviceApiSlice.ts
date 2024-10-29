@@ -177,10 +177,10 @@ export const apiSlice = createApi({
     }),
     fetchServiceAccountUsers: builder.query<
       ServiceAccountsResponseType,
-      number
+      { page: number; pageSize?: number }
     >({
-      query: (page) =>
-        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${PAGE_SIZE}&filterForInactive=false&userStatus=ACTIVE`,
+      query: ({ page, pageSize }) =>
+        `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${pageSize ? pageSize : PAGE_SIZE}&filterForInactive=false&userStatus=ACTIVE`,
     }),
   }),
 })

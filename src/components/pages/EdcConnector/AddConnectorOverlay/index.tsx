@@ -43,6 +43,7 @@ import {
   type ServiceAccountListEntry,
   useFetchServiceAccountUsersQuery,
 } from 'features/admin/serviceApiSlice'
+import LoadingProgress from 'components/shared/basic/LoadingProgress'
 
 interface AddCollectorOverlayProps {
   openDialog?: boolean
@@ -101,9 +102,14 @@ const AddConnectorOverlay = ({
   const { data } = useFetchOfferSubscriptionsQuery()
   const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery('')
   const [page, setPage] = useState<number>(0)
-  const { data: serviceAccounts } = useFetchServiceAccountUsersQuery(page)
+  const pageSize = 15
+  const { data: serviceAccounts } = useFetchServiceAccountUsersQuery({
+    page,
+    pageSize,
+  })
   const [newTechnicalUSer, setNewTechnicalUSer] = useState(false)
   const [allAccounts, setAllAccounts] = useState<ServiceAccountListEntry[]>([])
+  const [isLastPageCalled, setIsLastPageCalled] = useState(false)
 
   const {
     handleSubmit,
@@ -132,6 +138,14 @@ const AddConnectorOverlay = ({
     }
   }, [serviceAccounts])
 
+  useEffect(() => {
+    if (page === serviceAccounts?.meta?.totalPages) {
+      setIsLastPageCalled(true)
+    } else {
+      setIsLastPageCalled(false)
+    }
+  }, [page, serviceAccounts?.meta?.totalPages])
+
   const onFormSubmit = async () => {
     const validateFields =
       newTechnicalUSer && !newUserSuccess
@@ -158,6 +172,22 @@ const AddConnectorOverlay = ({
     if (connectorStep === 1) {
       return type === ConnectType.MANAGED_CONNECTOR ? 'managed.' : 'company.'
     } else return ''
+  }
+
+  const showLoader = () => {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          alignContent: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '50px 0px',
+        }}
+      >
+        <LoadingProgress />
+      </Box>
+    )
   }
 
   return (
@@ -206,19 +236,19 @@ const AddConnectorOverlay = ({
                 selectedServiceCallback={onSelect}
               />
             </>
+          ) : isLastPageCalled ? (
+            <ConnectorInsertForm
+              subscriptions={data}
+              selectedService={selected}
+              fetchServiceAccountUsers={allAccounts}
+              onFormSubmitt={onFormSubmit}
+              setNewTechnicalUSer={setNewTechnicalUSer}
+              newUserLoading={newUserLoading}
+              newUserSuccess={newUserSuccess}
+              {...{ handleSubmit, control, errors, trigger }}
+            />
           ) : (
-            <>
-              <ConnectorInsertForm
-                subscriptions={data}
-                selectedService={selected}
-                fetchServiceAccountUsers={allAccounts}
-                onFormSubmitt={onFormSubmit}
-                setNewTechnicalUSer={setNewTechnicalUSer}
-                newUserLoading={newUserLoading}
-                newUserSuccess={newUserSuccess}
-                {...{ handleSubmit, control, errors, trigger }}
-              />
-            </>
+            showLoader()
           )}
         </DialogContent>
         <DialogActions>
