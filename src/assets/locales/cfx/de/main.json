@@ -599,15 +599,21 @@
       "deleteNotSupported": "Role deletion currently not supported."
     },
     "changeDocuments": {
-      "headerTitle": "Update Contract Documents",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "headerTitle": "Bilder und Dokumente ändern",
+      "description": "Hier können Sie Ihre App-Bilder aktualisieren und Dokumente hinzufügen oder entfernen. Nach dem Speichern wird die Änderung sofort auf der App-Detailseite aktualisiert.",
       "successMsg": "Document uploaded successfully",
       "errorMsg": "Error! Something went wrong",
-      "uploadNewDocument": "Upload new document",
+      "uploadNewDocument": "Neues Bild hochladen",
       "uploadNewDocumentDescription": "Hinweis: Es ist nur eine Datei zum Hochladen zulässig",
       "documentDeleteSuccess": "Document deleted successfully",
       "deleteIconTooltip": "Mindestens ein Dokument ist obligatorisch. Laden Sie ein neues Dokument hoch, bevor Sie das Bild entfernen können.",
       "uploadButtonTooltip": "Maximale Anzahl zulässiger Dokumente erreicht. Bitte löschen Sie ein Dokument, bevor Sie ein neues hochladen."
+    },
+    "documentTypes": {
+      "appImage": "App Bilder",
+      "appTechnicalInformation": "Technischer Leitfaden",
+      "appContract": "App Vertrag",
+      "additionalDetails": "Daten Voraussetzungen"
     },
     "appReleaseProcess": {
       "message": "App Release Process Message"

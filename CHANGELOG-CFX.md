@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **App Card Details**
+
+  - Copy text and translations update as per design [PM2-1716](https://cofinity-x.atlassian.net/browse/PM2-1716)
+
 - **Connector Registration**
 
   - Technical users created through Connectors do not appear immediately and only show up after the page is refreshed. [PM2-1606](https://cofinity-x.atlassian.net/browse/PM2-1606)

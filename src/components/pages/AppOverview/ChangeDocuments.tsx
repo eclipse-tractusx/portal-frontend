@@ -136,6 +136,22 @@ export default function ChangeDocuments() {
         }))
   }
 
+  // Helper function to translate enums
+  function getDocumentName(type: DocumentNameType): string {
+    switch (type) {
+      case DocumentNameType.APP_IMAGE:
+        return t('content.documentTypes.appImage')
+      case DocumentNameType.APP_TECHNICAL_INFORMATION:
+        return t('content.documentTypes.appTechnicalInformation')
+      case DocumentNameType.APP_CONTRACT:
+        return t('content.documentTypes.appContract')
+      case DocumentNameType.ADDITIONAL_DETAILS:
+        return t('content.documentTypes.additionalDetails')
+      default:
+        return ''
+    }
+  }
+
   const renderdocs = (
     docType: string,
     documents: DocumentData[],
@@ -160,7 +176,7 @@ export default function ChangeDocuments() {
                   <Tooltips
                     tooltipPlacement="right-end"
                     tooltipText={
-                      docType === DocumentNameType.APP_IMAGE &&
+                      docType === getDocumentName(DocumentNameType.APP_IMAGE) &&
                       documents.length <= 1
                         ? t('content.changeDocuments.deleteIconTooltip')
                         : ''
@@ -171,7 +187,8 @@ export default function ChangeDocuments() {
                           sx={{ height: '18px', width: '18px', float: 'right' }}
                           onClick={() => deleteDocument(doc.documentId)}
                           disabled={
-                            docType === DocumentNameType.APP_IMAGE &&
+                            docType ===
+                              getDocumentName(DocumentNameType.APP_IMAGE) &&
                             documents.length <= 1
                           }
                         >
@@ -187,9 +204,10 @@ export default function ChangeDocuments() {
           <Tooltips
             tooltipPlacement="right-end"
             tooltipText={
-              (docType === DocumentNameType.APP_IMAGE &&
+              (docType === getDocumentName(DocumentNameType.APP_IMAGE) &&
                 documents.length === 3) ||
-              (docType !== DocumentNameType.APP_IMAGE && documents.length === 1)
+              (docType !== getDocumentName(DocumentNameType.APP_IMAGE) &&
+                documents.length === 1)
                 ? t('content.changeDocuments.uploadButtonTooltip')
                 : ''
             }
@@ -205,9 +223,9 @@ export default function ChangeDocuments() {
                   }}
                   sx={{ fontSize: '12px' }}
                   disabled={
-                    (docType === DocumentNameType.APP_IMAGE &&
+                    (docType === getDocumentName(DocumentNameType.APP_IMAGE) &&
                       documents.length === 3) ||
-                    (docType !== DocumentNameType.APP_IMAGE &&
+                    (docType !== getDocumentName(DocumentNameType.APP_IMAGE) &&
                       documents.length === 1)
                   }
                 >
@@ -216,7 +234,7 @@ export default function ChangeDocuments() {
               </span>
             }
           />
-          {docType !== DocumentNameType.ADDITIONAL_DETAILS && (
+          {docType !== getDocumentName(DocumentNameType.ADDITIONAL_DETAILS) && (
             <Divider sx={{ margin: '34px auto' }} />
           )}
         </Box>
@@ -304,22 +322,22 @@ export default function ChangeDocuments() {
             {data?.documents && (
               <>
                 {renderdocs(
-                  DocumentNameType.APP_IMAGE,
+                  getDocumentName(DocumentNameType.APP_IMAGE),
                   data.documents.APP_IMAGE,
                   DocumentTypeId.APP_IMAGE
                 )}
                 {renderdocs(
-                  DocumentNameType.APP_TECHNICAL_INFORMATION,
+                  getDocumentName(DocumentNameType.APP_TECHNICAL_INFORMATION),
                   data.documents.APP_TECHNICAL_INFORMATION,
                   DocumentTypeId.APP_TECHNICAL_INFORMATION
                 )}
                 {renderdocs(
-                  DocumentNameType.APP_CONTRACT,
+                  getDocumentName(DocumentNameType.APP_CONTRACT),
                   data.documents.APP_CONTRACT,
                   DocumentTypeId.APP_CONTRACT
                 )}
                 {renderdocs(
-                  DocumentNameType.ADDITIONAL_DETAILS,
+                  getDocumentName(DocumentNameType.ADDITIONAL_DETAILS),
                   data.documents.ADDITIONAL_DETAILS,
                   DocumentTypeId.ADDITIONAL_DETAILS
                 )}
