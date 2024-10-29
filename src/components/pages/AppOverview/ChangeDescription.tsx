@@ -26,7 +26,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { Box, IconButton, Tab, Tabs } from '@mui/material'
+import { Box, Tab, Tabs } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
 import { error, success } from 'services/NotifyService'
 import ConnectorFormInputFieldShortAndLongDescription from 'components/shared/basic/ReleaseProcess/components/ConnectorFormInputFieldShortAndLongDescription'
@@ -36,7 +36,6 @@ import {
   useFetchDescriptionQuery,
   useSaveDescriptionMutation,
 } from 'features/appManagement/apiSlice'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined'
 import { PAGES } from 'types/cfx/Constants'
 import type { ItemType } from './AddRoles'
@@ -214,9 +213,6 @@ export default function ChangeDescription() {
                           {item === 'longDescriptionEN'
                             ? t('content.changeDescription.longDescriptionEN')
                             : t('content.changeDescription.longDescriptionDE')}
-                          <IconButton sx={{ color: '#939393' }} size="small">
-                            <HelpOutlineIcon />
-                          </IconButton>
                         </>
                       }
                       value={
@@ -268,9 +264,6 @@ export default function ChangeDescription() {
                           {item === 'shortDescriptionEN'
                             ? t('content.changeDescription.shortDescriptionEN')
                             : t('content.changeDescription.shortDescriptionDE')}
-                          <IconButton sx={{ color: '#939393' }} size="small">
-                            <HelpOutlineIcon />
-                          </IconButton>
                         </>
                       }
                       value={
