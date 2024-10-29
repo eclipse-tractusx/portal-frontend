@@ -575,7 +575,7 @@
     },
     "changeDescription": {
       "headerTitle": "Change Descriptions",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "description": "Here you can change the description texts for your app. After saving, the change is immediately updated on the app details page and in the app card.",
       "longDescription": "Long Description",
       "longDescriptionEN": "Long Description - EN *",
       "longDescriptionDE": "Long Description - DE *",

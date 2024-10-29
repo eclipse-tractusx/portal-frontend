@@ -575,14 +575,14 @@
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {
-      "headerTitle": "Change Descriptions",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "headerTitle": "Beschreibungen ändern",
+      "description": "Hier können Sie die Beschreibungstexte für Ihre App ändern. Nach dem Speichern wird die Änderung sofort auf der App Detailseite sowie in der App-Karte aktualisiert.",
       "longDescription": "Detaillierte Beschreibung",
-      "longDescriptionEN": "Long Description - EN *",
-      "longDescriptionDE": "Long Description - DE *",
-      "shortDescription": "Short Description",
-      "shortDescriptionEN": "Short Description - EN *",
-      "shortDescriptionDE": "Short Description - DE *",
+      "longDescriptionEN": "Detaillierte Beschreibung - EN *",
+      "longDescriptionDE": "Detaillierte Beschreibung - DE *",
+      "shortDescription": "Kurzbeschreibung",
+      "shortDescriptionEN": "Kurzbeschreibung - EN *",
+      "shortDescriptionDE": "Kurzbeschreibung - DE *",
       "successMsg": "Successfully changed description",
       "errorMsg": "Unable to change description"
     },
