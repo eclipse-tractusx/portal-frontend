@@ -2261,12 +2261,12 @@
       "success": "OSP-Rückruf erfolgreich konfiguriert",
       "callbackUrlError": "Fehler beim Konfigurieren des OSP-Rückrufs",
       "callbackUrl": {
-        "name": "Configure Registration Status Callback",
-        "hint": "Rückruf-URL ist obligatorisch"
+        "name": "Statusrückruf URL",
+        "hint": "Statusrückruf URL ist verpflichtend"
       },
       "authUrl": {
         "name": "Auth URL",
-        "hint": "Auth-URL ist obligatorisch"
+        "hint": "Statusrückruf URL ist verpflichtend"
       },
       "clientId": {
         "name": "Kunden-ID",

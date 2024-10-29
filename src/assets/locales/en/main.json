@@ -2235,12 +2235,12 @@
       "success": "Successfully configured OSP callback",
       "callbackUrlError": "Failed configuring OSP callback",
       "callbackUrl": {
-        "name": "Configure Registration Status Callback",
-        "hint": "Status Callback Url is mandatory"
+        "name": "Callback URL",
+        "hint": "Status callback URL is mandatory"
       },
       "authUrl": {
         "name": "Auth URL",
-        "hint": "Auth Url is mandatory"
+        "hint": "Auth URL is mandatory"
       },
       "clientId": {
         "name": "Client ID",
