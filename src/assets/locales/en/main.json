@@ -1075,13 +1075,14 @@
       "heading": "Self-Description Document Status",
       "description": "This page provides an overview of the current status of self-descriptions for administrators.",
       "reprocess": "Reprocess",
-      "complianceStatus": "Compliance Status:",
+      "selfDescriptionInterface": "Self-Description Interface",
       "legalPerson": "Legal Person",
       "legalPersonDesc": "Overview of companies with missing legal person self-description",
       "connectors": "Connectors",
       "connectorsDesc": "Overview of companies with missing connector self-description",
       "errorMsg": "Error! Something went wrong",
-      "noDataMsg": "No records found."
+      "noDataMsg": "No records found.",
+      "statusMsg": "The status of the self-description interface can only be changed by the helm-chart configuration"
     },
     "addUser": {
       "headline": "Add User Account",
