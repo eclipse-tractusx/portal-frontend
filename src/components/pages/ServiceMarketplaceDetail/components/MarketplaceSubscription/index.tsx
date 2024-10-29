@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { Chip, Typography } from '@catena-x/portal-shared-components'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './MarketplaceSubscription.scss'
+import { OfferSubscriptionStatus } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export default function MarketplaceSubscription({
   item,
@@ -29,6 +30,19 @@ export default function MarketplaceSubscription({
   item: ServiceRequest
 }) {
   const { t } = useTranslation()
+
+  const renderStatusColor = (status: string) => {
+    switch (status) {
+      case OfferSubscriptionStatus.ACTIVE:
+        return 'success'
+      case OfferSubscriptionStatus.INACTIVE:
+        return 'error'
+      case OfferSubscriptionStatus.PENDING:
+        return 'info'
+      default:
+        return 'default'
+    }
+  }
 
   return (
     <div className="marketplace-subscriptions">
@@ -54,11 +68,7 @@ export default function MarketplaceSubscription({
               <Typography variant="label3">
                 {t('global.field.status')}:
                 <Chip
-                  color={
-                    data.offerSubscriptionStatus === 'ACTIVE'
-                      ? 'success'
-                      : 'info'
-                  }
+                  color={renderStatusColor(data.offerSubscriptionStatus)}
                   label={data.offerSubscriptionStatus}
                   type="plain"
                   variant="outlined"
