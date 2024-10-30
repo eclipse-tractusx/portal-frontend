@@ -37,6 +37,7 @@ import { type GridEventListener } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
 import { isCompanyName } from 'types/Patterns'
+import { PAGES } from 'types/Constants'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -67,6 +68,10 @@ export const RequestList = ({
   const [filterStatus, setFilterStatus] = useState<string>(
     AppFilterType.INREVIEW
   )
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -156,6 +161,7 @@ export const RequestList = ({
         )}${t('content.admin.registration-requests.introText2')}`}
         defaultFilter={group}
         filterViews={filterView}
+        mappedTableSearchTranslation={mappedTableSearchTranslation}
       />
     </section>
   )
