@@ -587,13 +587,14 @@
       "errorMsg": "Unable to change description"
     },
     "addRoles": {
-      "headerTitle": "Load Additional Roles",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "uploadAdditionalRoles": "Upload Additional Roles",
-      "establishedRoles": "Established Roles",
-      "uploadAdditionalRolesDescription": "Note: only one file for upload allowed",
+      "headerTitle": "Weitere Rollen hinzufügen",
+      "description": "Sie können hier weitere Rollen für Ihre App hinzufügen. Nach dem Speichern wird die Änderung sofort für die App aktualisiert. Hinweis: Bestehende oder neu hinzugefügte Rollen können für eine veröffentlichte App nicht bearbeitet oder gelöscht werden.",
+      "uploadAdditionalRoles": "Weitere Rollen hochladen",
+      "establishedRoles": "Festgelegte Rollen",
+      "uploadAdditionalRolesDescription": "Bitte laden Sie die .CSV-Vorlage herunter, ersetzen Sie die Beispiele durch Ihre Rollen und löschen Sie unnötige Inhalte.",
+      "uploadAdditionalRolesDescriptionNote": "Hinweis: Es kann nur eine Datei hochgeladen werden.",
       "newRolesToAdd": "New roles to be added",
-      "confirmButtonDescription": "With clicking the confirm button, the newly added application roles will get added in the top record as well as inside all active apps clients of your app customers.",
+      "confirmButtonDescription": "Wenn Sie auf Bestätigen klicken, werden die neue Rollen zu Ihrer App hinzugefügt und stehen allen aktiven Abonnenten zur Verfügung.",
       "successMsg": "Successfully added roles",
       "errorMsg": "Unable to add roles",
       "deleteNotSupported": "Role deletion currently not supported."
