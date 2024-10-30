@@ -184,7 +184,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         reload={() => {
           setPageNumber(0)
         }}
-        noRowsMsg={t('global.noData.heading')}
+        noRowsMsg={
+          !models.length
+            ? searchValue
+              ? t('shared.table.emptySearchTable')
+              : t('shared.table.emptyTable')
+            : ''
+        }
       />
       <div className="load-more-button-container">
         {modelList?.totalPages !== pageNumber && (

@@ -171,7 +171,6 @@ const PartnerNetwork = () => {
           loading={loading}
           rows={allItems}
           rowsCount={allItems?.length}
-          noRowsMsg={t('content.companyData.table.noRowsMsg')}
           nextPage={() => {
             setPage(page + 1)
           }}
@@ -180,6 +179,13 @@ const PartnerNetwork = () => {
             memberData.meta.page < memberData.meta.totalPages - 1
           }
           hideFooterPagination={true}
+          noRowsMsg={
+            !allItems.length
+              ? expr || bpn
+                ? t('shared.table.emptySearchTable')
+                : t('shared.table.emptyTable')
+              : ''
+          }
         />
       </section>
     </main>
