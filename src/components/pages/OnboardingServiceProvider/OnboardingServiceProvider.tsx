@@ -132,7 +132,7 @@ const OnboardingServiceProvider = () => {
   }
 
   return (
-    <main className="onboarding-service-page-container ">
+    <main className="onboarding-service-page-container">
       <section>
         <Dialog
           open={overlayOpen}
