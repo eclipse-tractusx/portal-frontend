@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **Home Page**
+  - fixed clicking on apps in Home page URL navigation failed.
+
 ## 2.3.0-RC1
 
 ### Change
