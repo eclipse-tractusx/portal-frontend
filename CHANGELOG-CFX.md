@@ -11,6 +11,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Technical user management**
+
+  - Added Active, Inactive filters in technical user management
+
 - **App Card Details**
 
   - Text update and translations added for cover image section [PM2-1713](https://cofinity-x.atlassian.net/browse/PM2-1713)
