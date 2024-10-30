@@ -5,7 +5,7 @@
 ### Bugfixes
 
 - **Home Page**
-  - fixed clicking on apps in Home page URL navigation failed.
+  - fixed clicking on apps in Home page URL navigation failed [#1283](https://github.com/eclipse-tractusx/portal-frontend/pull/1283)
 
 ## 2.3.0-RC1
 
