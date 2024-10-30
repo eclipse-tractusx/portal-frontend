@@ -566,8 +566,8 @@
       "errorMsg": "Error! Something went wrong"
     },
     "changeImage": {
-      "headerTitle": "Change Lead Image",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
+      "headerTitle": "Change Cover Image",
+      "description": "You can change the cover image for your app here. After saving, the change is immediately updated in the App Card.",
       "uploadNewImage": "Upload New Image",
       "successMsg": "Successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"

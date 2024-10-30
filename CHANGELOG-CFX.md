@@ -13,6 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **App Card Details**
 
+  - Text update and translations added for cover image section [PM2-1713](https://cofinity-x.atlassian.net/browse/PM2-1713)
   - Translations and copy update as per design for change documents section [PM2-1714](https://cofinity-x.atlassian.net/browse/PM2-1714)
   - Copy text and translations update as per design [PM2-1716](https://cofinity-x.atlassian.net/browse/PM2-1716)
 

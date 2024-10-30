@@ -567,9 +567,9 @@
       "errorMsg": "Leider hat die Deaktivierung nicht funktioniert. Bitte versuchen sie es später nochmal"
     },
     "changeImage": {
-      "headerTitle": "Change Lead Image",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
-      "uploadNewImage": "Upload New Image",
+      "headerTitle": "Titelbild ändern",
+      "description": "Hier können Sie das Titelbild für Ihre App ändern. Nach dem Speichern wird die Änderung sofort in der App-Karte aktualisiert.",
+      "uploadNewImage": "Neues Bild hochladen",
       "successMsg": "Successfully changed app lead image",
       "errorMsg": "Unable to change the lead image"
     },
