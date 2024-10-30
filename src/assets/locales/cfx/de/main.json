@@ -1779,7 +1779,7 @@
       "buttonConfirm": "Confirm",
       "buttonDecline": "Decline",
       "buttonRetrigger": "Retrigger Process",
-      "buttonOverwrite": "Overwrite Process",
+      "buttonOverwrite": "Override Process",
       "buttonCancel": "Cancel Process",
       "cancel": "Cancel",
       "comments": "Comments",

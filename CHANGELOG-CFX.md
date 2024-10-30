@@ -4,6 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+### Changes
+
+- **CX-Operator**
+  - Change Override instead of Overwrite [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
+
 ### Bugfixes
 
 - **App Card Details**
