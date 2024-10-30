@@ -602,6 +602,7 @@
       "description": "Here you can update your app images and add or remove documents. After saving, the change is immediately updated on the app details page.",
       "successMsg": "Document uploaded successfully",
       "errorMsg": "Error! Something went wrong",
+      "uploadNewImage": "Upload new image",
       "uploadNewDocument": "Upload new document",
       "uploadNewDocumentDescription": "Note: only one file for upload allowed",
       "documentDeleteSuccess": "Document deleted successfully",
@@ -609,10 +610,10 @@
       "uploadButtonTooltip": "Maximum number of allowed documents reached. Please delete one document before uploading a new one."
     },
     "documentTypes": {
-      "appImage": "App Image",
-      "appTechnicalInformation": "App Technical Information",
+      "appImage": "App Images",
+      "appTechnicalInformation": "Technical Guide",
       "appContract": "App Contract",
-      "additionalDetails": "Additional Details"
+      "additionalDetails": "Data Prerequisits"
     },
     "appReleaseProcess": {
       "message": "App Release Process Message"
