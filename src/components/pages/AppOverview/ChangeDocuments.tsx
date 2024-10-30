@@ -229,7 +229,9 @@ export default function ChangeDocuments() {
                       documents.length === 1)
                   }
                 >
-                  {t('content.changeDocuments.uploadNewDocument')}
+                  {docType === getDocumentName(DocumentNameType.APP_IMAGE)
+                    ? t('content.changeDocuments.uploadNewImage')
+                    : t('content.changeDocuments.uploadNewDocument')}
                 </Button>
               </span>
             }
