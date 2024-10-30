@@ -208,21 +208,9 @@ const AddRolesOverlay = ({
                 {t('content.apprelease.technicalIntegration.template')}
               </Button>
             </a>
-            <Button
-              sx={{ ml: 2, fontSize: '16px' }}
-              color="secondary"
-              size="small"
-              variant="contained"
-              onClick={() =>
-                window.open(
-                  '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F04.+Technical+Integration.md',
-                  '_blank',
-                  'noopener'
-                )
-              }
-            >
-              {t('content.apprelease.technicalIntegration.getHelp')}
-            </Button>
+            <Typography variant="body2" sx={{ mt: 2, mb: 2 }}>
+              {t('content.addRoles.uploadAdditionalRolesDescriptionNote')}
+            </Typography>
           </Grid>
           <Controller
             control={control}
