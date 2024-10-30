@@ -48,7 +48,7 @@ import {
   StatusTag,
   Tooltips,
 } from '@catena-x/portal-shared-components'
-import { ROLES } from 'types/Constants'
+import { PAGES, ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 import { userHasSsiCredentialRole } from 'services/AccessService'
 
@@ -97,6 +97,10 @@ export default function AdminCredentialElements() {
   const [approveCredential] = useApproveCredentialMutation()
   const [declineCredential] = useDeclineCredentialMutation()
   const [revokeCredential] = useRevokeCredentialMutation()
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -436,6 +440,7 @@ export default function AdminCredentialElements() {
             setSortOption(value)
           }}
           disableColumnSelector={true}
+          mappedTableSearchTranslation={mappedTableSearchTranslation}
         />
       </div>
     </>
