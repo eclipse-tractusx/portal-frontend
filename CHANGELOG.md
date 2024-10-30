@@ -7,7 +7,7 @@
 - **Use Case Participation**
   - fixed columns alignment ui issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
 - **Home Page**
-  - fixed clicking on apps in Home page URL navigation failed
+  - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
 
 ## 2.3.0-RC1
 
