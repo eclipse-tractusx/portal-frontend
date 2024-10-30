@@ -45,6 +45,7 @@ type SelectedFilter = {
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
+  const [searchExpr, setSearchExpr] = useState<string>('')
   const { modelList, loadingModelList, deleteModelId, uploadedModel, error } =
     useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
@@ -126,6 +127,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         status: selectedFilter.status[0],
       }),
     }
+    setSearchExpr(value)
     dispatch(fetchSemanticModels({ filter }))
   }
 
@@ -202,7 +204,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
             })
           )
         }
-        noRowsMsg={t('global.noData.heading')}
+        noRowsMsg={
+          !models.length
+            ? searchExpr
+              ? t('shared.table.emptySearchTable')
+              : t('shared.table.emptyTable')
+            : ''
+        }
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (

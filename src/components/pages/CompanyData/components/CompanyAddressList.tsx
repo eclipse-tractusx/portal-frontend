@@ -212,7 +212,7 @@ export const CompanyAddressList = ({
           searchPlaceholder={t('content.companyData.table.search')}
           columnHeadersBackgroundColor={'#FFFFFF'}
           searchDebounce={1000}
-          noRowsMsg={t('content.companyData.table.noRowsMsg')}
+          noRowsMsg={t('shared.table.emptyTable')}
           title={t('content.companyData.table.title')}
           getRowId={(row: { [key: string]: string }) => row.createdAt}
           rows={inputs.concat(outputs)}

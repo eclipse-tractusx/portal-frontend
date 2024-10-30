@@ -385,6 +385,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     },
   }
 
+  const rowItems = (isManagementOSP ? idpsManagedData : idpsData) ?? []
+
   return (
     <Table
       rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
@@ -461,7 +463,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
             isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
         },
       ]}
-      rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
+      rows={rowItems}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
       searchPlaceholder={
@@ -482,6 +484,13 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
       buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
       sx={isManagementOSP ? style : undefined}
+      noRowsMsg={
+        !rowItems.length
+          ? searchExpr
+            ? t('shared.table.emptySearchTable')
+            : t('shared.table.emptyTable')
+          : ''
+      }
     />
   )
 }
