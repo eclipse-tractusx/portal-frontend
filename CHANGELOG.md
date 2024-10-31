@@ -45,6 +45,8 @@
   - updated search place holder text - showing only available offer names at the top - and implemented hover information on the status icon of service subscription [#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
 - **CX-Operator Application**
   - enabled to not show overlay for submitted application to CX-Operator [#1204](https://github.com/eclipse-tractusx/portal-frontend/pull/1204)
+- **App Overview Details**
+  - show confirmity document in separate section and all other available documents in the documents section [#1235](https://github.com/eclipse-tractusx/portal-frontend/pull/1235)
 
 ### Feature
 

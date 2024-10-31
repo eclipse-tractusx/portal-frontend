@@ -1242,7 +1242,12 @@
         "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerberechtigung an, die dem technischen Benutzer, der im Rahmen der App-/Dienstaktivierung erstellt wurde, automatisch zugewiesen wird."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert."
+      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert.",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
