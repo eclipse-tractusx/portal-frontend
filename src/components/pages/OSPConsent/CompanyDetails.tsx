@@ -59,7 +59,7 @@ export const CompanyDetails = ({
   updateConsents,
 }: CompanyDetailsProps) => {
   const tm = useTranslation().t
-  const { t } = useTranslation('registration')
+  const { t, i18n } = useTranslation('registration')
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
@@ -286,7 +286,7 @@ export const CompanyDetails = ({
                     <Typography variant={isMobile ? 'body3' : 'body2'}>
                       {
                         role.descriptions[
-                          'en' as keyof typeof role.descriptions
+                          i18n.language as keyof typeof role.descriptions
                         ]
                       }
                     </Typography>
