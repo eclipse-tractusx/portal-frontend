@@ -25,6 +25,7 @@ $text-disabled: #808080;
 $color-orange: #f58220;
 
 body {
+  padding: 0 !important;
 }
 
 #app {
@@ -685,6 +686,7 @@ main,
     }
   }
 }
+
 // UserManagement
 .UserManagement {
   .cx-subnavigation {
@@ -692,8 +694,10 @@ main,
     &__button--wrap {
       .MuiButton-root {
         text-transform: none !important;
+
         &:focus {
           color: $white !important;
+
           &:hover {
             background-color: $black !important;
           }
@@ -702,6 +706,7 @@ main,
     }
   }
 }
+
 .notifications {
   .searchContainer {
     .MuiOutlinedInput-root {
@@ -792,6 +797,7 @@ main,
     color: $color-secondary;
   }
 }
+
 .cx-search-grid {
   position: relative;
   z-index: 99;
@@ -814,6 +820,7 @@ main,
     border-radius: 15px;
   }
 }
+
 [role='tabpanel'] {
   .MuiGrid-root {
     .MuiTypography-h5 {
@@ -1541,6 +1548,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
       }
     }
   }
+
   .app-main > div:first-child > *:first-child {
     padding-left: 20px !important;
     padding-right: 20px !important;
@@ -1583,6 +1591,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
   max-width: 1180px;
   margin: 0 auto;
   text-align: center;
+
   &__container {
   }
 
@@ -1878,10 +1887,12 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
 // marketplace subscriptions detail page
 .marketplace-subscriptions {
   &__heading--short {
     padding-bottom: 10px;
+
     b {
       color: $color-primary;
     }
@@ -1909,6 +1920,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 // service links
 .service-documents {
   color: $color-primary !important;
+
   .document-button-link {
     color: $color-primary !important;
     font-size: 16px !important;
@@ -1930,6 +1942,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
     text-align: center !important;
   }
 }
+
 .subscription-overlay-header > div {
   padding: 56px 112px 10px !important;
 }
@@ -1942,12 +1955,14 @@ p.MuiTypography-root.MuiTypography-body3.description,
   margin-left: -10px;
   -webkit-box-pack: center;
   justify-content: center;
+
   &__item {
     position: relative;
     top: 0px;
     left: 0px;
     padding-right: 10px;
     padding-left: 10px;
+
     &--favorite {
       .cx-card__icon {
         svg {
@@ -1967,6 +1982,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
 // technical user
 .technical-user {
   &__form-input {
@@ -1976,6 +1992,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
           height: 24px !important;
         }
       }
+
       &:nth-child(2) {
         .MuiInputBase-input.MuiFilledInput-input.MuiInputBase-inputMultiline {
           height: 50px !important;
@@ -1984,6 +2001,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
+
 // app overview
 .appOverview-app .app-main .app-detail {
   .cx-card__add-service--title,
@@ -1996,16 +2014,19 @@ p.MuiTypography-root.MuiTypography-body3.description,
   .overview-section {
     .cx-page-info {
       margin: 20px auto;
+
       &__title {
         margin-top: 40px;
       }
     }
   }
 }
+
 // app Subscription Autosetup URL
 .appSubscription {
   .descriptionContainer {
     margin-bottom: 20px;
+
     span {
       font-weight: 400 !important;
     }

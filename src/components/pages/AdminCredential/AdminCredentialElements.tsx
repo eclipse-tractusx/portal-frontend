@@ -43,7 +43,6 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  PageLoadingTable,
   LoadingButton,
   StatusTag,
   Tooltips,
@@ -51,6 +50,8 @@ import {
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
 interface FetchHookArgsType {
   filterType: string
@@ -397,6 +398,8 @@ export default function AdminCredentialElements() {
       <div className="recommended-main">
         <PageLoadingTable<CredentialResponse[], FetchHookArgsType>
           autoFocus={false}
+          tableVariant={TableVariants.SERVER_SIDE}
+          allItemsLoadedHint={t('global.table.allItemsLoadedHint')}
           searchExpr={searchExpr}
           alignCell="start"
           toolbarVariant={'searchAndFilter'}

@@ -2570,7 +2570,9 @@
       "filterOperatorOnOrBefore": "is on or before",
       "filterOperatorIsEmpty": "ist leer",
       "filterOperatorIsNotEmpty": "ist nicht leer",
-      "filterOperatorIsAnyOf": "ist eines von"
+      "filterOperatorIsAnyOf": "ist eines von",
+      "allItemsLoadedHint": "Alle Elemente geladen",
+      "loadMore": "Mehr laden"
     },
     "noData": {
       "heading": "Keine Daten verfügbar",

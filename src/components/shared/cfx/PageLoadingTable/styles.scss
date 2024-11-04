@@ -1,0 +1,109 @@
+$tableHeight: 500px;
+
+.cx-table {
+  min-height: $tableHeight;
+  position: relative;
+
+  &__page-loading {
+    .MuiDataGrid-virtualScroller {
+      overflow: hidden;
+    }
+
+    &--wrapper {
+      position: relative;
+      min-height: $tableHeight;
+    }
+
+    &--loader {
+      position: static;
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--variant {
+      &-server-side {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        margin-top: 100px;
+      }
+
+      &-auto-scroll {
+        position: static;
+        height: 100px;
+        margin-top: 30px;
+      }
+
+      &-load-button {
+        position: static;
+        height: auto;
+      }
+    }
+
+    &--button {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--end {
+      position: relative;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0 20px;
+    }
+
+    .MuiTablePagination-input {
+      border: 1px solid #ededed;
+      border-radius: 4px;
+      position: relative;
+
+      .MuiSelect-select {
+        background: none !important;
+      }
+
+      .MuiSvgIcon-root {
+        color: #4d4d4d !important;
+        top: 3px;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: rgba(28, 27, 31, 1) !important;
+      }
+    }
+
+    .MuiTablePagination-actions {
+      .MuiIconButton-root {
+        color: #4d4d4d !important;
+        border: none !important;
+        box-shadow: none !important;
+
+        &.Mui-disabled {
+          color: #d2d2d2 !important;
+          background: none !important;
+        }
+
+        &:hover {
+          color: rgba(28, 27, 31, 1) !important;
+          background: rgba(77, 77, 77, 0.1) !important;
+        }
+
+        &:focus,
+        &:active {
+          color: rgba(28, 27, 31, 1) !important;
+          background: rgba(77, 77, 77, 0.5) !important;
+        }
+      }
+    }
+  }
+}
