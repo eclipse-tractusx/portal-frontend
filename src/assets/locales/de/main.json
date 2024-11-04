@@ -1070,13 +1070,14 @@
       "heading": "Status der Eigenerklärung",
       "description": "Diese Seite bietet einen Überblick über den aktuellen Stand der Eigenerklärungen für Administratoren.",
       "reprocess": "Nachverarbeiten",
-      "complianceStatus": "Compliance-Status:",
+      "selfDescriptionInterface": "Eigenerklärung Schnittstelle",
       "legalPerson": "Juristische Person",
       "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung einer juristischen Person",
       "connectors": "Connectors",
       "connectorsDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung der Konnektoren",
       "errorMsg": "Fehler! Etwas ist schief gelaufen",
-      "noDataMsg": "Keine Datensätze gefunden."
+      "noDataMsg": "Keine Datensätze gefunden.",
+      "statusMsg": "Der Status der Eigenerklärung Schnittstelle kann nur durch die Helm-Chart-Konfiguration geändert werden"
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",

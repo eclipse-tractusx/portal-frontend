@@ -7,6 +7,11 @@
 - **Use Case Participation**
   - fixed columns alignment ui issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
 
+### Feature
+
+- **Clearinghouse Self-Description**
+  - enhance admin UI for managing SD document retriggering
+
 ## 2.3.0-RC1
 
 ### Change

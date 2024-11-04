@@ -38,10 +38,16 @@
   }
 
   .company-list-container {
-    max-height: 350px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    height: 350px;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .legal-person-list {
+    padding-left: 25px;
   }
 
   .section {
@@ -58,18 +64,35 @@
     }
 
     .connectors-list {
-      gap: 10px;
       margin-top: 24px;
-      max-height: 350px;
-      overflow-y: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      height: 350px;
+      max-width: 100%;
+      overflow: auto;
+      padding: 0;
+      list-style-type: none;
+      padding-left: 25px;
 
       .connector {
         display: flex;
-        gap: 80px;
+        gap: 5px;
         padding: 5px;
         border-radius: 5px;
+        align-items: center;
+
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex: 1;
+        }
+
+        .name {
+          flex: 1;
+        }
+
+        .companyName {
+          flex: 2;
+        }
       }
     }
 
@@ -81,22 +104,47 @@
     }
   }
 
-  .compliance-status {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-    margin-top: 50px;
+  .status-section {
+    margin-bottom: 25px;
 
-    label {
-      margin-right: 10px;
+    .status-title {
+      background-color: rgba(15, 113, 203, 0.05);
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      display: flex;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .status {
+      padding-left: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-label {
       font-weight: bold;
     }
 
     .switch-container {
-      display: flex;
-      align-items: center;
-      margin-left: 5px;
+      background-color: #ffffff;
     }
+  }
+
+  .list-container {
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .list-title {
+    background-color: #f9f9f9;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    padding-left: 25px;
   }
 
   .no-data-msg {
