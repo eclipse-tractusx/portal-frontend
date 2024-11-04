@@ -10,7 +10,7 @@
 ### Feature
 
 - **Clearinghouse Self-Description**
-  - enhance admin UI for managing SD document retriggering
+  - enhance admin UI for managing SD document retriggering [#1292](https://github.com/eclipse-tractusx/portal-frontend/pull/1292)
 
 ## 2.3.0-RC1
 
