@@ -33,6 +33,7 @@ import {
   isValidAppOverviewSearch,
   isValidIDPName,
   isValidPhone,
+  isValidAppOverviewSearch,
 } from './Patterns'
 
 const TESTDATA = {
@@ -404,6 +405,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.CLIENTID.invalid.forEach((expr) => {
       expect(isValidPhone(expr)).toBe(false)
+    })
+  })
+  it('validate appoverview search', () => {
+    TESTDATA.appOverview.valid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(true)
+    })
+    TESTDATA.appOverview.invalid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(false)
     })
   })
 })
