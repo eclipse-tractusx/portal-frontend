@@ -18,28 +18,29 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  IconButton,
-  PageLoadingTable,
-  StatusTag,
-} from '@catena-x/portal-shared-components'
+import { useState, useEffect } from 'react'
+
+import { IconButton, StatusTag } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 import {
   type ServiceAccountListEntry,
   ServiceAccountStatus,
   ServiceAccountStatusFilter,
   useFetchServiceAccountListQuery,
 } from 'features/admin/serviceApiSlice'
-import { useSelector } from 'react-redux'
 import { PAGES } from 'types/cfx/Constants'
 import { updateTechuserSelector } from 'features/control/updates'
-import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import Patterns from 'types/Patterns'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
 interface FetchHookArgsType {
   statusFilter: string
+  size?: string
   expr: string
 }
 type StatusTagColor = 'pending' | 'confirmed' | 'label' | undefined
@@ -108,6 +109,7 @@ export const TechnicalUserTable = () => {
         autoFocus={false}
         searchExpr={expr}
         hasBorder={false}
+        tableVariant={TableVariants.SERVER_SIDE}
         rowHeight={80}
         sx={{
           '.MuiDataGrid-columnHeader, .MuiDataGrid-row .MuiDataGrid-cell[role="cell"]':

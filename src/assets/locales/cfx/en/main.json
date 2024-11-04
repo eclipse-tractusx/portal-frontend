@@ -2543,7 +2543,9 @@
       "filterOperatorOnOrBefore": "is on or before",
       "filterOperatorIsEmpty": "is empty",
       "filterOperatorIsNotEmpty": "is not empty",
-      "filterOperatorIsAnyOf": "is any of"
+      "filterOperatorIsAnyOf": "is any of",
+      "allItemsLoadedHint": "All items have been loaded",
+      "loadMore": "Load More"
     },
     "noData": {
       "heading": "No data available",

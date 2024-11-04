@@ -11,8 +11,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
-- **Technical user management**
+- **Technical User Management**
 
+  - Fixed Pagination and Added Variants for ServerSide, AutoLoadOnScroll and LoadMoreButton for Technical users Mangement page [PM2-1189](https://cofinity-x.atlassian.net/browse/PM2-1189)
   - Added Active, Inactive filters in technical user management
 
 - **App Card Details**

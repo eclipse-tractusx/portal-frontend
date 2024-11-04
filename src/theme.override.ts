@@ -1012,6 +1012,10 @@ export const customTheme = {
           '& .MuiMenuItem-root': {
             fontWeight: 500,
             padding: '14px 14px',
+            boxShadow: 'none !important',
+          },
+          '& .MuiMenuItem-root.Mui-selected': {
+            background: `${COLOR_PALETTE.LIGHT_GRAY} !important`,
           },
           '& .MuiListItem-root': {
             // padding: 0,
@@ -1028,10 +1032,12 @@ export const customTheme = {
           },
         },
         padding: {
-          margin: '10px 0',
+          margin: '0',
+          padding: '0',
         },
       },
     },
+
     MuiListItem: {
       styleOverrides: {
         root: {

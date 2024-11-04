@@ -19,13 +19,14 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiBaseQuery } from 'utils/rtkUtil'
 import i18next from 'i18next'
-import { PAGE_SIZE } from 'types/Constants'
 import type {
   PaginFetchArgs,
   PaginResult,
 } from '@catena-x/portal-shared-components'
+
+import { apiBaseQuery } from 'utils/rtkUtil'
+import { PAGE_SIZE } from 'types/Constants'
 
 export enum ServiceAccountType {
   SECRET = 'SECRET',
@@ -112,7 +113,9 @@ export enum companyServiceAccountType {
   MANAGED = 'MANAGED',
   OWNED = 'OWN',
 }
-
+export interface PaginFetchArgsExtended extends PaginFetchArgs {
+  size?: number
+}
 export const apiSlice = createApi({
   reducerPath: 'rtk/admin/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
@@ -137,11 +140,11 @@ export const apiSlice = createApi({
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (fetchArgs) => {
         const isFetchArgs = fetchArgs.args && fetchArgs.args.expr !== ''
-        const url = `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+        const url = `/api/administration/serviceaccount/owncompany/serviceaccounts?size=${fetchArgs.size ?? PAGE_SIZE}&page=${fetchArgs.page}`
         const isOwner =
           fetchArgs.args!.statusFilter === ServiceAccountStatusFilter.OWNED
         if (

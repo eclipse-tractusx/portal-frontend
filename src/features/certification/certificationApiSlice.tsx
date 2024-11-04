@@ -18,8 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type PaginFetchArgsExtended } from 'features/admin/serviceApiSlice'
+
 import { getSsiBase } from 'services/EnvironmentService'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
@@ -104,23 +105,24 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ['certificate'],
     }),
-    fetchCredentialsSearch: builder.query<CredentialResponse[], PaginFetchArgs>(
-      {
-        query: (fetchArgs) => {
-          if (fetchArgs.args.filterType && fetchArgs.args.sortingType) {
-            return `${getSsiBase()}/api/issuer?page=${
-              fetchArgs.page
-            }&size=${PAGE_SIZE}&sorting=${
-              fetchArgs.args.sortingType ?? ''
-            }&companySsiDetailStatusId=${fetchArgs.args.filterType}`
-          } else {
-            return `${getSsiBase()}/api/issuer?page=${
-              fetchArgs.page
-            }&size=${PAGE_SIZE}`
-          }
-        },
-      }
-    ),
+    fetchCredentialsSearch: builder.query<
+      CredentialResponse[],
+      PaginFetchArgsExtended
+    >({
+      query: (fetchArgs) => {
+        if (fetchArgs.args.filterType && fetchArgs.args.sortingType) {
+          return `${getSsiBase()}/api/issuer?page=${
+            fetchArgs.page
+          }&size=${fetchArgs.size ?? PAGE_SIZE}&sorting=${
+            fetchArgs.args.sortingType ?? ''
+          }&companySsiDetailStatusId=${fetchArgs.args.filterType}`
+        } else {
+          return `${getSsiBase()}/api/issuer?page=${
+            fetchArgs.page
+          }&size=${fetchArgs.size ?? PAGE_SIZE}`
+        }
+      },
+    }),
     approveCredential: builder.mutation<boolean, string>({
       query: (credentialId) => ({
         url: `${getSsiBase()}/api/issuer/${credentialId}/approval`,
