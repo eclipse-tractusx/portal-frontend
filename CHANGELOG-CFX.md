@@ -11,6 +11,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **OSP Management**
+
+  - Update translations logic for Consent OSP roles [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
+
 - **Technical User Management**
 
   - Fixed Pagination and Added Variants for ServerSide, AutoLoadOnScroll and LoadMoreButton for Technical users Mangement page [PM2-1189](https://cofinity-x.atlassian.net/browse/PM2-1189)
