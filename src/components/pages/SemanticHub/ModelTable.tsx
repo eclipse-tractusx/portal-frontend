@@ -49,6 +49,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
+  const [searchText, setSearchText] = useState<string>('')
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
     status: [DefaultStatus],
   })
@@ -86,7 +87,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       }),
     }
     dispatch(fetchSemanticModels({ filter }))
-  }, [dispatch, pageNumber])
+  }, [dispatch])
 
   useEffect(() => {
     if (deleteModelId.length > 0) {
@@ -113,11 +114,16 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
 
   const onFilterReset = () => {
     //Reset PageNumber back to 0
-    dispatch(fetchSemanticModels({ filter: { page: 0, pageSize: rowCount } }))
+    dispatch(
+      fetchSemanticModels({
+        filter: { page: 0, pageSize: rowCount, namespaceFilter: searchText },
+      })
+    )
   }
 
   const onSearch = (value: string) => {
     setModels([])
+    setSearchText(value)
     const filter: FilterParams = {
       page: 0,
       pageSize: rowCount,
@@ -132,8 +138,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const onFilter = (selectedFilter: SelectedFilter) => {
     setModels([])
     //Reset PageNumber back to 0
-    setPageNumber(0)
     setSelectedFilter(selectedFilter)
+    setPageNumber(0)
     if (selectedFilter.status[0] !== DefaultStatus) {
       dispatch(
         fetchSemanticModels({
@@ -141,12 +147,27 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
             page: 0,
             pageSize: rowCount,
             status: selectedFilter.status[0],
+            namespaceFilter: searchText,
           },
         })
       )
     } else {
       onFilterReset()
     }
+  }
+
+  const onLoadMore = () => {
+    const page = pageNumber + 1
+    setPageNumber(page)
+    const filter = {
+      page,
+      pageSize: rowCount,
+      namespaceFilter: searchText,
+      ...(selectedFilter.status[0] !== DefaultStatus && {
+        status: selectedFilter.status[0],
+      }),
+    }
+    dispatch(fetchSemanticModels({ filter }))
   }
   const columns = SemanticModelTableColumns(t, onModelSelect)
   const errorObj = {
@@ -180,6 +201,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
           'content.semantichub.table.searchfielddefaulttext'
         )}
         toolbarVariant="ultimate"
+        searchExpr={searchText}
         toolbar={{
           onSearch,
           onFilter,
@@ -205,10 +227,10 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         noRowsMsg={t('global.noData.heading')}
       />
       <div className="load-more-button-container">
-        {modelList.totalPages !== pageNumber && (
+        {modelList.totalItems > models.length && !loadingModelList && (
           <LoadMoreButton
             onClick={() => {
-              setPageNumber((prevState) => prevState + 1)
+              onLoadMore()
             }}
             sx={{ mt: 4 }}
           />

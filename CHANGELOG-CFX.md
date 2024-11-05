@@ -68,6 +68,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed broken image ui (#PM2-1744)[https://cofinity-x.atlassian.net/browse/PM2-1744]
   - Fixed service detail status issue (#PM2-1745)[https://cofinity-x.atlassian.net/browse/PM2-1745]
 
+- **Service Request Management**
+
+  - Service Management | 400 Bad Request when Clicking 'Load More' Button [#1175](https://github.com/eclipse-tractusx/portal-frontend/pull/1175)
+
+- **Sematic Hub**
+  - Sematic Hub | Fixed search text issue (PM2-1709)[https://cofinity-x.atlassian.net/browse/PM2-1709]
+
+## 2.2.0-cfx-3-hotfix3
+
+### Bugfixes
+
+- **Application Requests**
+
+  - Updated the logic to display documents uploaded while registration [PM2-1759](https://cofinity-x.atlassian.net/browse/PM2-1759)
+
 ## 2.2.0-cfx-3-hotfix1
 
 ### Bugfixes
