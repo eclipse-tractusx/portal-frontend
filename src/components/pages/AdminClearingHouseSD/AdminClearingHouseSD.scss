@@ -108,11 +108,10 @@
     margin-bottom: 25px;
 
     .status-title {
-      background-color: rgba(15, 113, 203, 0.05);
+      background-color: #edf0f4;
       padding: 20px 25px;
       margin-bottom: 20px;
       display: flex;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .status {
@@ -132,17 +131,14 @@
   }
 
   .list-container {
-    border: 1px solid #ccc;
+    border: 1px solid rgb(220, 220, 220);
     overflow: hidden;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
   }
 
   .list-title {
     background-color: #f9f9f9;
     padding: 15px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     padding-left: 25px;
   }
