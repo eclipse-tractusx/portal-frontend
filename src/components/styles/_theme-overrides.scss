@@ -800,18 +800,13 @@ main,
 
 .cx-search-grid {
   position: relative;
-  z-index: 99;
 }
 
 .serviceMarketplace .filterSection {
-  position: relative;
-  z-index: 90;
-
   .sortSection {
     position: absolute;
     right: 0;
-    top: 35px;
-    z-index: 20;
+    top: 40px;
     background: #fff;
     box-shadow:
       0px 10px 13px -6px rgba(0, 0, 0, 0.2),
