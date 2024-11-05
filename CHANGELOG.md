@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+## 2.3.0-RC2
+
+### Bugfixes
+
+- **Application Request**
+  - fixed documents not getting displayed [#1223](https://github.com/eclipse-tractusx/portal-frontend/pull/1223)
+- **Use Case Participation**
+  - fixed columns alignment UI issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
+- **App Overview Details**
+  - fixed displaying of conformity document in separate section and all other available documents in the documents section [#1235](https://github.com/eclipse-tractusx/portal-frontend/pull/1235)
+- **App and Service Subscription Management** [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
+  - fixed showing of all available active apps/services in the filter section
+  - added heading in each section for the better user experience
+  - fixed showing of all subscriptions including inactive one in the list
+- **App Overview**
+  - updated the regex for search validation for numeric and special characters [#1179] (https://github.com/eclipse-tractusx/portal-frontend/pull/1179)
+
 ## 2.3.0-RC1
 
 ### Change
