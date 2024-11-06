@@ -5,7 +5,7 @@
 ### Bugfixes
 
 - **App Registration Process**
-  - fixed wrong api calling to download documents
+  - fixed wrong api calling to download documents [#1299](https://github.com/eclipse-tractusx/portal-frontend/pull/1299)
 
 ## 2.3.0-RC2
 
