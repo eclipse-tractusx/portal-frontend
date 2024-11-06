@@ -7,7 +7,7 @@
 ### Bugfixes
 
 - **Company Data**
-  - fixed empty sharing state reponse issue.
+  - fixed empty sharing state response issue. Handle table to display no data from server [#1300] (https://github.com/eclipse-tractusx/portal-frontend/pull/1300)
 
 ## 2.3.0-RC2
 
