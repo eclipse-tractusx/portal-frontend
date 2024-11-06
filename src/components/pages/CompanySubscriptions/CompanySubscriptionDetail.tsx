@@ -61,11 +61,13 @@ export default function CompanySubscriptionDetail() {
   const { t } = useTranslation()
   const id = items?.row?.offerId ?? ('' as string)
   const subscriptionId = items?.row?.subscriptionId ?? ('' as string)
-  const { data: appData, error: appError } = useFetchSubscriptionAppQuery(
-    { appId: id, subscriptionId },
-    { skip: items.service }
-  )
-  const { data: serviceData, error: serviceError } =
+  const { data: appSubscriberData, error: appError } =
+    useFetchSubscriptionAppQuery(
+      { appId: id, subscriptionId },
+      { skip: items.service }
+    )
+
+  const { data: serviceSubscriberData, error: serviceError } =
     useFetchSubscriptionServiceQuery(
       { serviceId: id, subscriptionId },
       { skip: items.app }
@@ -78,7 +80,7 @@ export default function CompanySubscriptionDetail() {
   })
   const [docId, setDocId] = useState('')
 
-  const data = items.app ? appData : serviceData
+  const subscriberData = items.app ? appSubscriberData : serviceSubscriberData
   const fetchData = items.app ? fetchAppsData : fetchServicessData
 
   // To-Do fix the type issue with status and data from FetchBaseQueryError
@@ -115,12 +117,12 @@ export default function CompanySubscriptionDetail() {
       </Box>
       {error && <Typography variant="body2">{error?.data?.title}</Typography>}
 
-      {data && fetchData && (
+      {subscriberData && fetchData && (
         <>
           <CompanySubscriptionHeader
             detail={fetchData}
             src={getSrc()}
-            status={data.offerSubscriptionStatus}
+            status={subscriberData.offerSubscriptionStatus}
           />
           <div className="subscription-container">
             <div className="details">
@@ -129,8 +131,8 @@ export default function CompanySubscriptionDetail() {
                   <CompanySubscriptionContent detail={fetchData} />
                   <CompanySubscriptionDocument detail={fetchData} />
                   <CompanySubscriptionPrivacy detail={fetchData} />
-                  {data.technicalUserData?.length > 0 && (
-                    <CompanySubscriptionTechnical detail={data} />
+                  {subscriberData.technicalUserData?.length > 0 && (
+                    <CompanySubscriptionTechnical detail={subscriberData} />
                   )}
                 </>
               ) : (

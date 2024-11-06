@@ -23,7 +23,7 @@ $white: #ffffff;
 $border-color: #dfdfdf;
 $text-disabled: #808080;
 $color-orange: #f58220;
-
+$link-color: #0088cc;
 body {
   padding: 0 !important;
 }
@@ -2059,4 +2059,18 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
 .cx-card__add-service--title {
   text-align: center;
+}
+
+.service-marketplace-header {
+  .lead-image {
+    img {
+      border-radius: 16px !important;
+      height: 210px !important;
+    }
+  }
+}
+
+.technical-user-link {
+  color: $link-color;
+  cursor: pointer;
 }
