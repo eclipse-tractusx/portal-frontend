@@ -2186,7 +2186,11 @@
       "callbackUrlError": "Failed configuring OSP callback",
       "callbackUrl": {
         "name": "Callback URL",
-        "hint": "Enter the callback URL from your IDP that ends with '/.well-known/openid-configuration'"
+        "hint": "Status callback URL is mandatory"
+      },
+      "authUrl": {
+        "name": "Auth URL",
+        "hint": "Auth URL is mandatory"
       },
       "clientId": {
         "name": "Client ID",

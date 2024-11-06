@@ -77,6 +77,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Sematic Hub**
   - Sematic Hub | Fixed search text issue (PM2-1709)[https://cofinity-x.atlassian.net/browse/PM2-1709]
+- **OSP registartion callback URL**
+  - Added Auth-Url field in Configure Idp MetaDatab Overlay (PM2-1788)[https://cofinity-x.atlassian.net/browse/PM2-1788]
 
 ## 2.2.0-cfx-3-hotfix3
 

@@ -104,9 +104,6 @@ const OnboardingServiceProvider = () => {
     )
   }
 
-  const isWellknownMetadata = (expr: string) =>
-    isURL(expr) && expr.endsWith('.well-known/openid-configuration')
-
   const updateCallbackIDP = async () => {
     if (!(data && callbackData)) return
     setLoading(true)
@@ -125,14 +122,17 @@ const OnboardingServiceProvider = () => {
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
     const formValid =
-      current.callbackUrl && current.clientId && current.clientSecret
+      current.callbackUrl &&
+      current.clientId &&
+      current.clientSecret &&
+      current.authUrl
     setCallbackData(
       formValid
         ? {
             callbackUrl: current.callbackUrl,
             clientId: current.clientId,
             clientSecret: current.clientSecret,
-            authUrl: '',
+            authUrl: current.authUrl,
           }
         : undefined
     )
@@ -180,13 +180,24 @@ const OnboardingServiceProvider = () => {
                 name="callbackUrl"
                 label={t('content.onboardingServiceProvider.callbackUrl.name')}
                 value={data?.callbackUrl}
-                validate={(expr) => isWellknownMetadata(expr)}
+                validate={(expr) => isURL(expr)}
                 hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
                 debounceTime={0}
                 onValid={checkValidData}
               />
             </div>
-            <div style={{ margin: '12px 0' }}>
+            <div style={{ marginTop: '34px' }}>
+              <ValidatingInput
+                name="authUrl"
+                label={t('content.onboardingServiceProvider.authUrl.name')}
+                value={data?.authUrl}
+                validate={(expr) => isURL(expr)}
+                hint={t('content.onboardingServiceProvider.authUrl.hint')}
+                debounceTime={0}
+                onValid={checkValidData}
+              />
+            </div>
+            <div style={{ margin: '15px 0' }}>
               <ValidatingInput
                 name="clientId"
                 label={t('content.onboardingServiceProvider.clientId.name')}
