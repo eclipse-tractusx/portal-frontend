@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **App Registration Process**
+  - fixed wrong api calling to download documents
+
 ## 2.3.0-RC2
 
 ### Bugfixes
