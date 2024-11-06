@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 2.3.0-RC3
+
+### Bugfixes
+
+- **Company Data**
+  - fixed empty sharing state reponse issue.
+
 ## 2.3.0-RC2
 
 ### Bugfixes
