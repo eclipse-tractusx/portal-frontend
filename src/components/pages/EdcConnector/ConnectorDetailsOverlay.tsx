@@ -199,6 +199,7 @@ const ConnectorDetailsOverlay = ({
             closeWithIcon={true}
             onCloseWithIcon={(e) => {
               setOpenApiErrorModal(false)
+              setEnableUrlApiErrorMsg(false)
               handleOverlayClose(e)
             }}
           />
@@ -243,6 +244,7 @@ const ConnectorDetailsOverlay = ({
               variant="outlined"
               onClick={(e) => {
                 setOpenApiErrorModal(false)
+                setEnableUrlApiErrorMsg(false)
                 handleOverlayClose(e)
               }}
             >
@@ -483,11 +485,41 @@ const ConnectorDetailsOverlay = ({
                     </Grid>
                   )
                 })}
-                <Grid container sx={{ mt: 0, alignContent: 'left' }}>
-                  <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
-                    <Typography variant="body2" sx={{ textAlign: 'left' }}>
-                      {t('content.edcconnector.details.SdDocument')}
-                    </Typography>
+                <>
+                  <Grid container sx={{ mt: 0, alignContent: 'left' }}>
+                    <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
+                      <Typography variant="body2" sx={{ textAlign: 'left' }}>
+                        {t('content.edcconnector.details.SdDocument')}
+                      </Typography>
+                    </Grid>
+                    <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
+                      <Typography variant="body2" sx={{ textAlign: 'left' }}>
+                        {fetchConnectorDetails?.selfDescriptionDocumentId ===
+                        null ? (
+                          t('content.edcconnector.details.noDocumentAvailable')
+                        ) : (
+                          <Box sx={{ display: 'flex' }}>
+                            <ArticleOutlinedIcon
+                              sx={{ color: '#9c9c9c', mr: 1 }}
+                            />
+                            <button
+                              className="document-button-link"
+                              onClick={() =>
+                                fetchConnectorDetails?.selfDescriptionDocumentId &&
+                                handleDownloadFn(
+                                  fetchConnectorDetails?.selfDescriptionDocumentId,
+                                  t('content.edcconnector.details.SdDocument')
+                                )
+                              }
+                            >
+                              {t(
+                                'content.edcconnector.details.selfDescriptionDocument'
+                              )}
+                            </button>
+                          </Box>
+                        )}
+                      </Typography>
+                    </Grid>
                   </Grid>
                   <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
                     <Typography variant="body2" sx={{ textAlign: 'left' }}>
@@ -517,7 +549,7 @@ const ConnectorDetailsOverlay = ({
                       )}
                     </Typography>
                   </Grid>
-                </Grid>
+                </>
                 <Divider sx={{ margin: '20px auto', color: 'black' }} />
               </>
             )}
@@ -528,6 +560,7 @@ const ConnectorDetailsOverlay = ({
               onClick={(e) => {
                 handleOverlayClose(e)
                 setUrlErrorMsg('')
+                setEnableUrlApiErrorMsg(false)
               }}
             >
               {t('global.actions.close')}
