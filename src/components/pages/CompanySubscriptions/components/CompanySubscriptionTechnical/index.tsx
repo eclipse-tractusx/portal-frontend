@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box } from '@mui/material'
+import { Box, Link } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { StaticTable, Typography } from '@catena-x/portal-shared-components'
 import { type FetchSubscriptionResponseType } from 'features/apps/types'
@@ -31,6 +31,25 @@ export default function CompanySubscriptionTechnical({
 }>) {
   const { t } = useTranslation()
 
+  const RenderTechnicalUsersComponent = () => (
+    <>
+      {detail.technicalUserData.map((data) => (
+        <Link
+          target="_blank"
+          href={
+            userHasPortalRole(ROLES.TECH_USER_VIEW)
+              ? `/${PAGES.TECH_USER_DETAILS}/${data.id}`
+              : ''
+          }
+        >
+          <Typography variant="body3" className="technical-user-link">
+            {data.name}
+          </Typography>
+        </Link>
+      ))}
+    </>
+  )
+
   const tableData = {
     head: [
       t('content.companySubscriptionsDetail.table.connector'),
@@ -39,9 +58,7 @@ export default function CompanySubscriptionTechnical({
     body: [
       [
         !detail.connectorData.length ? '' : detail.connectorData[0].name,
-        !detail.technicalUserData.length
-          ? ''
-          : detail.technicalUserData[0].name,
+        RenderTechnicalUsersComponent as unknown as string,
       ],
     ],
     edit: [
@@ -51,11 +68,6 @@ export default function CompanySubscriptionTechnical({
         },
         {
           icon: false,
-          clickableLink:
-            userHasPortalRole(ROLES.TECH_USER_VIEW) &&
-            detail.technicalUserData.length
-              ? `/${PAGES.TECH_USER_DETAILS}/${detail.technicalUserData[0].id}`
-              : undefined,
         },
       ],
     ],

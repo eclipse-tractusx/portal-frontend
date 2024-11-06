@@ -52,6 +52,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed missing description in service subscription request detail page [PM2-1753](https://cofinity-x.atlassian.net/browse/PM2-1753)
   - Remove help links from app & service subscription detail [PM2-802](https://cofinity-x.atlassian.net/browse/PM2-802)
   - Fixed searching issue [#PM2-1663](https://cofinity-x.atlassian.net/browse/PM2-1663)
+  - Fixed technical users rendering issue in detail page [PM2-1755](https://cofinity-x.atlassian.net/browse/PM2-1755)
 
 - **App Overview**
 
