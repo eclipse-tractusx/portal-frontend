@@ -237,6 +237,7 @@ export enum ROLES {
   READ_PARTNER_MEMBER = 'read_partner_member',
   APPROVE_NEW_PARTNER = 'approve_new_partner',
   CONFIGURE_PARTNER_REGISTRATION = 'configure_partner_registration',
+  UNSUBSCRIBE_APPS = 'unsubscribe_apps',
 }
 
 export enum HINTS {

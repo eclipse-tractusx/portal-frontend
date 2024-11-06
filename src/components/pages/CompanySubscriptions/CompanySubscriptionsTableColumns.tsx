@@ -40,6 +40,8 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import type i18next from 'i18next'
 import { Box } from '@mui/material'
 import './style.scss'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/Constants'
 
 export const CompanySubscriptionsTableColumns = (
   t: typeof i18next.t,
@@ -88,7 +90,8 @@ export const CompanySubscriptionsTableColumns = (
   }
 
   const canShowButton = (row: SubscribedActiveApps) =>
-    row.status === SubscriptionStatus.ACTIVE
+    row.status === SubscriptionStatus.ACTIVE &&
+    UserService.hasRole(ROLES.UNSUBSCRIBE_APPS)
 
   const getSource = (row: SubscribedActiveApps) => {
     if (row.image && currentActive === 0)
