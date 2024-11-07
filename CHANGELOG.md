@@ -2,12 +2,10 @@
 
 ## Unreleased
 
-## 2.3.0-RC3
-
 ### Bugfixes
 
-- **Company Data**
-  - fixed empty sharing state response issue. Handle table to display no data from server [#1300] (https://github.com/eclipse-tractusx/portal-frontend/pull/1300)
+- **Home Page**
+  - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
 
 ## 2.3.0-RC2
 
