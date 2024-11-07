@@ -96,36 +96,45 @@ const TechnicalUserAddFormSelect = ({
   const [roleError, setRoleError] = useState<boolean>(false)
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
 
-  const selectCheckboxRoles = (
-    role: string,
-    select: boolean,
-    type?: string
-  ) => {
+  const selectCheckboxRoles = (role: string, select: boolean) => {
     if (selectedRoles && selectedRoles[0] === externalRoles?.[0].roleId) {
-      if (type === 'checkbox') setSelectedRoles([...[], role])
-      else return [...[], role]
+      setSelectedRoles([...[], role])
     } else {
       const isSelected = selectedRoles?.includes(role)
       if (isSelected && selectedRoles.length === 1) setRoleError(true)
       if (!isSelected && select) {
-        if (type === 'checkbox') setSelectedRoles([...selectedRoles, role])
-        else return [...selectedRoles, role]
+        setSelectedRoles([...selectedRoles, role])
       } else if (isSelected && !select) {
         const oldRoles = [...selectedRoles]
         oldRoles.splice(oldRoles.indexOf(role), 1)
-        if (type === 'checkbox') setSelectedRoles([...oldRoles])
-        else return [...oldRoles]
+        setSelectedRoles([...oldRoles])
       }
     }
   }
 
   const selectRoles = (role: string, select: boolean, type: string) => {
     if (type === 'checkbox') {
-      selectCheckboxRoles(role, select, type)
+      selectCheckboxRoles(role, select)
     } else if (type === 'radio') {
       setSelectedRoles([...[], role])
     }
     if (selectedRoles.length === 0) setRoleError(false)
+  }
+
+  const selectCheckboxOnChange = (role: string, select: boolean) => {
+    if (selectedRoles && selectedRoles[0] === externalRoles?.[0].roleId) {
+      return [...[], role]
+    } else {
+      const isSelected = selectedRoles?.includes(role)
+      if (isSelected && selectedRoles.length === 1) setRoleError(true)
+      if (!isSelected && select) {
+        return [...selectedRoles, role]
+      } else if (isSelected && !select) {
+        const oldRoles = [...selectedRoles]
+        oldRoles.splice(oldRoles.indexOf(role), 1)
+        return [...oldRoles]
+      }
+    }
   }
 
   return (
@@ -158,7 +167,9 @@ const TechnicalUserAddFormSelect = ({
                   onChange={(e) => {
                     selectRoles(role.roleId, e.target.checked, 'checkbox')
                     trigger(name)
-                    onChange(selectCheckboxRoles(role.roleId, e.target.checked))
+                    onChange(
+                      selectCheckboxOnChange(role.roleId, e.target.checked)
+                    )
                   }}
                   size="small"
                   value={selectedRoles}
