@@ -2286,7 +2286,7 @@
       "uploadSuccess": "Uploaded",
       "uploadProgess": "Uploaded % of % files",
       "error": {
-        "fileTooLarge": "File is Larger than"
+        "fileTooLarge": "File is larger than"
       }
     },
     "userRoles": {
