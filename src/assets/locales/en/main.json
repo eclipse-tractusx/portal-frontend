@@ -2289,7 +2289,10 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
-      "uploadProgess": "Uploaded % of % files"
+      "uploadProgess": "Uploaded % of % files",
+      "error": {
+        "fileTooLarge": "File is larger than"
+      }
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
