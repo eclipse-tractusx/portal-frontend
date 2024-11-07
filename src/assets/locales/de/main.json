@@ -1096,15 +1096,19 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "note": "<strong>Notiz:</strong> Die Auswahl sowohl interner als auch externer Benutzer für denselben Dienst ist nicht möglich.",
+          "internalRoles": "Interne Rollen:",
+          "externalRoles": "Externe Rollen:",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "roleMandatory": "Die Rolle des technischen Benutzers ist obligatorisch",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
+            "username": "Bitte geben Sie den Benutzernamen ein.",
             "description": "Bitte geben Sie eine Beschreibung ein."
           }
         }

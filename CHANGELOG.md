@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Technical Uaer Management**
+  - enhanced technical user management creation page by role type
+
 ## 2.3.0-RC2
 
 ### Bugfixes
