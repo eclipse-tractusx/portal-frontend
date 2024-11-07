@@ -69,8 +69,6 @@
   - aligned notification page search field color with other pages [#1178](https://github.com/eclipse-tractusx/portal-frontend/issues/1178)
 - **Home**
   - disabled My Apps button for users without permission [#1165](https://github.com/eclipse-tractusx/portal-frontend/issues/1165)
-- **Connector Management**
-  - do not show regular overlay when error detail is shown. refetch connector details to fix cache issue in the details overlay [#1251](https://github.com/eclipse-tractusx/portal-frontend/pull/1251)
 
 ## 2.3.0-alpha.2
 
