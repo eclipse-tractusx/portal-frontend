@@ -7,7 +7,7 @@
 ### Bugfixes
 
 - **App Details Overlay**
-  - updated condition to view conformity documents in details overaly
+  - updated condition to view conformity documents in details overlay [#1304] (https://github.com/eclipse-tractusx/portal-frontend/pull/1304)
 
 ## 2.3.0-RC2
 
