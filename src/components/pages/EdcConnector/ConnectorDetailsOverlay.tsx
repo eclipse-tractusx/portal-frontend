@@ -197,6 +197,7 @@ const ConnectorDetailsOverlay = ({
             closeWithIcon={true}
             onCloseWithIcon={(e) => {
               setOpenApiErrorModal(false)
+              setEnableUrlApiErrorMsg(false)
               handleOverlayClose(e)
             }}
           />
@@ -241,6 +242,7 @@ const ConnectorDetailsOverlay = ({
               variant="outlined"
               onClick={(e) => {
                 setOpenApiErrorModal(false)
+                setEnableUrlApiErrorMsg(false)
                 handleOverlayClose(e)
               }}
             >
@@ -505,6 +507,7 @@ const ConnectorDetailsOverlay = ({
             onClick={(e) => {
               handleOverlayClose(e)
               setUrlErrorMsg('')
+              setEnableUrlApiErrorMsg(false)
             }}
           >
             {t('global.actions.close')}
