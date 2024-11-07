@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 2.3.0-RC3
+
+### Bugfixes
+
+- **App Details Overlay**
+  - updated condition to view conformity documents in details overaly
+
 ## 2.3.0-RC2
 
 ### Bugfixes
