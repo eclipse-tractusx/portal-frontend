@@ -2,12 +2,10 @@
 
 ## Unreleased
 
-## 2.3.0-RC3
-
 ### Bugfixes
 
-- **App Details Overlay**
-  - updated condition to view conformity documents in details overlay [#1304] (https://github.com/eclipse-tractusx/portal-frontend/pull/1304)
+- **Home Page**
+  - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
 
 ## 2.3.0-RC2
 
