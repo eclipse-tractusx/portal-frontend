@@ -11,8 +11,6 @@
 
 ### Bugfixes
 
-- **App Subscription Management**
-  - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
 - **Application Request**
   - fixed documents not getting displayed [#1223](https://github.com/eclipse-tractusx/portal-frontend/pull/1223)
 - **Use Case Participation**
