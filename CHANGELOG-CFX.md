@@ -82,7 +82,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **OSP registartion callback URL**
   - Added Auth-Url field in Configure Idp MetaDatab Overlay (PM2-1788)[https://cofinity-x.atlassian.net/browse/PM2-1788]
 - **Technical Setup | Connector Management**
+
   - Edit URL error message persists in connector configuration [#307](https://github.com/Cofinity-X/portal-frontend/pull/307)
+
+- **App Marketplace Management**
+  - Fixed document upload and delete success message on DE [PM2-1823](https://cofinity-x.atlassian.net/browse/PM2-1823)
 
 ## 2.2.0-cfx-3-hotfix3
 
