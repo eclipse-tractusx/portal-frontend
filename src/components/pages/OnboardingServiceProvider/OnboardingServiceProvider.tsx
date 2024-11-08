@@ -62,7 +62,7 @@ const OnboardingServiceProvider = () => {
   const [activeTab, setActiveTab] = useState<number>(0)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const { data } = useFetchRegistartionStatusCallbackQuery()
+  const { data, refetch } = useFetchRegistartionStatusCallbackQuery()
   const [loading, setLoading] = useState(false)
   const [updateRegistartionStatusCallback] =
     useUpdateRegistartionStatusCallbackMutation()
@@ -111,6 +111,8 @@ const OnboardingServiceProvider = () => {
       await updateRegistartionStatusCallback(callbackData).unwrap()
       success(t('content.onboardingServiceProvider.success'))
       setOverlayOpen(false)
+      setCallbackData(undefined)
+      refetch()
     } catch (err) {
       setShowError(true)
     }
