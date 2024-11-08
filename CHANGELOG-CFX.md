@@ -203,6 +203,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK fix(OSP): Consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102)
   - CHERRY-PICK Filter out roles not defined by OSP [#1114](https://github.com/eclipse-tractusx/portal-frontend/pull/1114)
   - Update translation files osp consent form [PM2-1093](https://cofinity-x.atlassian.net/browse/PM2-1093)
+  - Update logic for multiple unique identifiers [PM2-1419](https://cofinity-x.atlassian.net/browse/PM2-1419)
 
 - **Service Release Process**
 
