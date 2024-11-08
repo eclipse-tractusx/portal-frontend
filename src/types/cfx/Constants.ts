@@ -142,3 +142,10 @@ export const SEARCH_PARAMS = {
 }
 
 export const DATA_SOVEREIGNTY_ID = 'aa0a0000-7fbc-1f2f-817f-bce0502c1015'
+
+export const YOUR_APP_STATE = {
+  DEACTIVATE_SUCCESS: 'deactivate-success',
+  CHANGE_IMAGE_SUCCESS: 'change-image-success',
+  CHANGE_DESCRIPTION_SUCCESS: 'change-description-success',
+  ADD_ROLES_SUCCESS: 'add-roles-success',
+}

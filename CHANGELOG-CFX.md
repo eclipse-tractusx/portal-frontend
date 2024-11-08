@@ -58,6 +58,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App Overview**
 
   - Replaced cofinity-x with catena-x as image overview text [PM2-1516](https://cofinity-x.atlassian.net/browse/PM2-1516)
+  - Removed Incorrect Message Displayed on Update Add Apps [PM2-1820](https://cofinity-x.atlassian.net/browse/PM2-1820)
 
 - **Search Translation for App and Service Subsciption**
 

@@ -58,6 +58,7 @@ import NoItems from '../NoItems'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 import PageInfo from 'components/shared/cfx/PageInfo'
+import { YOUR_APP_STATE } from 'types/cfx/Constants'
 
 export default function AppOverview() {
   const { t } = useTranslation()
@@ -98,10 +99,10 @@ export default function AppOverview() {
   }
 
   useEffect(() => {
-    state === 'deactivate-success' && refetch()
-    state === 'change-image-success' && refetch()
-    state === 'change-description-success' && refetch()
-    state === 'add-roles-success' && refetch()
+    state === YOUR_APP_STATE.DEACTIVATE_SUCCESS && refetch()
+    state === YOUR_APP_STATE.CHANGE_IMAGE_SUCCESS && refetch()
+    state === YOUR_APP_STATE.CHANGE_DESCRIPTION_SUCCESS && refetch()
+    state === YOUR_APP_STATE.ADD_ROLES_SUCCESS && refetch()
   }, [state, refetch])
 
   useEffect(() => {
@@ -333,22 +334,14 @@ export default function AppOverview() {
           </div>
         </div>
       </div>
-      {state && (
+      {state === YOUR_APP_STATE.DEACTIVATE_SUCCESS && (
         <PageSnackbar
           open={state !== ''}
           onCloseNotification={() => {
             // do nothing
           }}
-          severity={
-            state === 'deactivate-success'
-              ? SuccessErrorType.SUCCESS
-              : SuccessErrorType.ERROR
-          }
-          description={
-            state === 'deactivate-success'
-              ? t('content.deactivate.successMsg')
-              : t('content.deactivate.errorMsg')
-          }
+          severity={SuccessErrorType.SUCCESS}
+          description={t('content.deactivate.successMsg')}
           showIcon={true}
           autoClose={true}
         />

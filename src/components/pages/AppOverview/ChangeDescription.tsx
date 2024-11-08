@@ -114,8 +114,10 @@ export default function ChangeDescription() {
           success(t('content.changeDescription.successMsg'))
         })
         .catch((err) => {
-          setIsLoading(false)
           error(t('content.changeDescription.errorMsg'), '', err)
+        })
+        .finally(() => {
+          setIsLoading(false)
         })
     }
   }
