@@ -14,6 +14,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **OSP Management**
 
   - Update translations logic for Consent OSP roles [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
+  - Fixed osp idp config detail information on re-opening overlay [PM2-1847](https://cofinity-x.atlassian.net/browse/PM2-1847)
 
 - **Technical User Management**
 

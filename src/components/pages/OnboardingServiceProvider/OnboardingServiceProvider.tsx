@@ -60,6 +60,7 @@ const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
+  const dispatch = useDispatch()
   const { data, refetch } = useFetchRegistartionStatusCallbackQuery()
   const [loading, setLoading] = useState(false)
   const [updateRegistartionStatusCallback] =
