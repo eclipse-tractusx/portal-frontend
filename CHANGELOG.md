@@ -4,8 +4,8 @@
 
 ### Bugfixes
 
-
 - **Onboarding Service Provider**
+
   - add missing fields to form legal name & company identifier[#1151](https://github.com/eclipse-tractusx/portal-frontend/pull/1151)
 
 - **App Subscription Management**
