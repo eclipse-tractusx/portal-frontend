@@ -100,7 +100,6 @@ export enum PAGES {
   CERTIFICATE_CREDENTIAL = 'certificateCredential',
   DATA_SPACE = 'dataSpace',
   ADMIN_CREDENTIAL = 'adminCredential',
-  ONBOARDING_SERVICE_PROVIDER = 'onboardingServiceProvider',
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
@@ -108,7 +107,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS = 'companySubscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   COMPANY_DATA = 'companyData',
-  MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider',
+  ONBOARDING_SERVICE_PROVIDER_MANAGEMENT = 'onboardingServiceProviderManagement',
 }
 
 export enum OVERLAYS {

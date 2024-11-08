@@ -70,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "onboardingServiceProviderManagement": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -462,7 +462,7 @@
         "inactive": "inactive",
         "showAll": "show all"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Language",
@@ -1211,7 +1211,12 @@
         "message": "The technical user profile defined below displays the user permission which the technical user created as part of the app/service activation gets automatically assigned."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by your company"
+      "subscribedTooltip": "The app is already subscribed by your company",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -2245,7 +2250,9 @@
       "clientSecret": {
         "name": "Client Secret",
         "hint": "Enter the client secret provided by your IdP"
-      }
+      },
+      "ospIdentityProvider": "OSP Identity Provider(IDPs)",
+      "search": "Enter name or alias to search"
     }
   },
   "navigation": {

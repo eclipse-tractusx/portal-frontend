@@ -80,7 +80,6 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
-import OSPManagement from 'components/pages/OSPManagement'
 import CompanyWallet from 'components/pages/CompanyWallet'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
 import { OSPConsent } from 'components/pages/OSPConsent'
@@ -561,11 +560,6 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminCredential />,
   },
   {
-    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
-    allowTo: () => userHasPortalRole(ROLES.IDP_VIEW),
-    element: <OSPManagement />,
-  },
-  {
     name: PAGES.COMPANY_CERTIFICATE,
     allowTo: () => userHasPortalRole(ROLES.COMPANY_CERTIFICATE_VIEW),
     element: <CompanyCertificates />,
@@ -604,7 +598,7 @@ export const ALL_PAGES: IPage[] = [
     element: <CompanyData />,
   },
   {
-    name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+    name: PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
     allowTo: () => userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION),
     element: <OnboardingServiceProvider />,
   },
@@ -845,7 +839,7 @@ export const userMenuFull = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
-  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+  PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
   PAGES.LOGOUT,
 ]
 
@@ -867,7 +861,7 @@ export const userMenuCompany = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
-  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+  PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
 ]
 
 /**
