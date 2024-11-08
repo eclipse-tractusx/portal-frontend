@@ -601,12 +601,12 @@
     "changeDocuments": {
       "headerTitle": "Bilder und Dokumente ändern",
       "description": "Hier können Sie Ihre App-Bilder aktualisieren und Dokumente hinzufügen oder entfernen. Nach dem Speichern wird die Änderung sofort auf der App-Detailseite aktualisiert.",
-      "successMsg": "Document uploaded successfully",
+      "successMsg": "Dokument erfolgreich hochgeladen",
       "errorMsg": "Error! Something went wrong",
       "uploadNewImage": "Neues Bild hochladen",
       "uploadNewDocument": "Neues Dokument hochladen",
       "uploadNewDocumentDescription": "Hinweis: Es ist nur eine Datei zum Hochladen zulässig",
-      "documentDeleteSuccess": "Document deleted successfully",
+      "documentDeleteSuccess": "Dokument erfolgreich gelöscht ",
       "deleteIconTooltip": "Mindestens ein Dokument ist obligatorisch. Laden Sie ein neues Dokument hoch, bevor Sie das Bild entfernen können.",
       "uploadButtonTooltip": "Maximale Anzahl zulässiger Dokumente erreicht. Bitte löschen Sie ein Dokument, bevor Sie ein neues hochladen."
     },
