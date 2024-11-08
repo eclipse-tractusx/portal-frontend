@@ -138,6 +138,13 @@ export const SEARCH_PARAMS = {
 
 export const DATA_SOVEREIGNTY_ID = 'aa0a0000-7fbc-1f2f-817f-bce0502c1015'
 
+export const YOUR_APP_STATE = {
+  DEACTIVATE_SUCCESS: 'deactivate-success',
+  CHANGE_IMAGE_SUCCESS: 'change-image-success',
+  CHANGE_DESCRIPTION_SUCCESS: 'change-description-success',
+  ADD_ROLES_SUCCESS: 'add-roles-success',
+}
+
 export const DROPZONE_ERROR_CODE = {
   FILE_INVALID_TYPE: 'file-invalid-type',
   TOO_MANY_FILES: 'too-many-files',
