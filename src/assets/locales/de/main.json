@@ -714,10 +714,10 @@
           },
           "url": {
             "label": "Connector-Katalog-Endpunkt*",
-            "placeholder": "Connector URL",
+            "placeholder": "Example: https://connector.control.plane/api/v1/dsp",
             "mandatoryError": "Die Connector-URL ist obligatorisch.",
             "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "tooltipMsg": "Base URL of the Catalog Service endpoint of a DSP Connector, e.g., https://connector.control.plane/{catalogPath}."
           },
           "bpn": {
             "label": "Connector Owner*",
@@ -2270,8 +2270,12 @@
       "success": "OSP-Rückruf erfolgreich konfiguriert",
       "callbackUrlError": "Fehler beim Konfigurieren des OSP-Rückrufs",
       "callbackUrl": {
-        "name": "Rückruf-URL",
-        "hint": "Geben Sie die Rückruf-URL Ihres IDP ein, die mit „/.well-known/openid-configuration“ endet'"
+        "name": "Statusrückruf URL",
+        "hint": "Statusrückruf URL ist verpflichtend"
+      },
+      "authUrl": {
+        "name": "Auth URL",
+        "hint": "Statusrückruf URL ist verpflichtend"
       },
       "clientId": {
         "name": "Kunden-ID",
@@ -2319,7 +2323,10 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
-      "uploadProgess": "Uploaded % of % files"
+      "uploadProgess": "Uploaded % of % files",
+      "error": {
+        "fileTooLarge": "Datei ist größer als"
+      }
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",

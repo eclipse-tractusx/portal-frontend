@@ -7,6 +7,11 @@
 - **Technical Uaer Management**
   - enhanced technical user management creation page by role type [#1303](https://github.com/eclipse-tractusx/portal-frontend/pull/1303)
 
+### Bugfixes
+
+- **Home Page**
+  - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
+
 ## 2.3.0-RC2
 
 ### Bugfixes

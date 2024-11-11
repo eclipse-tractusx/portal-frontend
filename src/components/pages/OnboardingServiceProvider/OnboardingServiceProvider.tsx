@@ -97,9 +97,6 @@ const OnboardingServiceProvider = () => {
     )
   }
 
-  const isWellknownMetadata = (expr: string) =>
-    isURL(expr) && expr.endsWith('.well-known/openid-configuration')
-
   const updateCallbackIDP = async () => {
     if (!(data && callbackData)) return
     setLoading(true)
@@ -127,7 +124,7 @@ const OnboardingServiceProvider = () => {
             callbackUrl: current.callbackUrl,
             clientId: current.clientId,
             clientSecret: current.clientSecret,
-            authUrl: '',
+            authUrl: current.authUrl,
           }
         : undefined
     )
@@ -135,7 +132,7 @@ const OnboardingServiceProvider = () => {
   }
 
   return (
-    <main className="onboarding-service-page-container ">
+    <main className="onboarding-service-page-container">
       <section>
         <Dialog
           open={overlayOpen}
@@ -172,13 +169,24 @@ const OnboardingServiceProvider = () => {
                     'content.onboardingServiceProvider.callbackUrl.name'
                   )}
                   value={data?.callbackUrl}
-                  validate={(expr) => isWellknownMetadata(expr)}
+                  validate={(expr) => isURL(expr)}
                   hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
                   debounceTime={0}
                   onValid={checkValidData}
                 />
               </div>
-              <div style={{ margin: '12px 0' }}>
+              <div style={{ marginTop: '34px' }}>
+                <ValidatingInput
+                  name="authUrl"
+                  label={t('content.onboardingServiceProvider.authUrl.name')}
+                  value={data?.authUrl}
+                  validate={(expr) => isURL(expr)}
+                  hint={t('content.onboardingServiceProvider.authUrl.hint')}
+                  debounceTime={0}
+                  onValid={checkValidData}
+                />
+              </div>
+              <div style={{ margin: '15px 0' }}>
                 <ValidatingInput
                   name="clientId"
                   label={t('content.onboardingServiceProvider.clientId.name')}
