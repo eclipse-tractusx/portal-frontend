@@ -200,6 +200,7 @@ const ConnectorDetailsOverlay = ({
             onCloseWithIcon={(e) => {
               setOpenApiErrorModal(false)
               handleOverlayClose(e)
+              setEnableUrlApiErrorMsg(false)
             }}
           />
           <DialogContent
@@ -244,6 +245,7 @@ const ConnectorDetailsOverlay = ({
               onClick={(e) => {
                 setOpenApiErrorModal(false)
                 handleOverlayClose(e)
+                setEnableUrlApiErrorMsg(false)
               }}
             >
               {t('global.actions.close')}
@@ -528,6 +530,7 @@ const ConnectorDetailsOverlay = ({
               onClick={(e) => {
                 handleOverlayClose(e)
                 setUrlErrorMsg('')
+                setEnableUrlApiErrorMsg(false)
               }}
             >
               {t('global.actions.close')}
