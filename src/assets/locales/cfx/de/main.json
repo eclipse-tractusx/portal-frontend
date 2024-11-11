@@ -594,7 +594,7 @@
       "uploadAdditionalRolesDescriptionNote": "Hinweis: Es kann nur eine Datei hochgeladen werden.",
       "newRolesToAdd": "New roles to be added",
       "confirmButtonDescription": "Wenn Sie auf Bestätigen klicken, werden die neue Rollen zu Ihrer App hinzugefügt und stehen allen aktiven Abonnenten zur Verfügung.",
-      "successMsg": "Successfully added roles",
+      "successMsg": "Rollen erfolgreich hinzugefügt",
       "errorMsg": "Unable to add roles",
       "deleteNotSupported": "Role deletion currently not supported."
     },
