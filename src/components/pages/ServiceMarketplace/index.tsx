@@ -124,7 +124,6 @@ export default function ServiceMarketplace() {
     setSelected(viewValue)
     setPage(0)
   }
-
   const sortOptions = [
     {
       label: t('content.serviceMarketplace.sortOptions.new'),
