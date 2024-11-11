@@ -365,8 +365,10 @@ export default function CommonValidateAndPublish({
         {type === ReleaseProcessTypes.SERVICE_RELEASE && (
           <CardHorizontal
             borderRadius={6}
-            imageAlt="Service Card"
-            imagePath={cardImage ?? LogoGrayData}
+            image={{
+              alt: 'Service Card',
+              src: cardImage ?? LogoGrayData,
+            }}
             label={''}
             buttonText=""
             onBtnClick={() => {
