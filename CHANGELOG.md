@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Technical Uaer Management**
+  - enhanced technical user management creation page by role type [#1303](https://github.com/eclipse-tractusx/portal-frontend/pull/1303)
+
 ### Bugfixes
 
 - **Home Page**
