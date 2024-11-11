@@ -11,6 +11,8 @@
 
 - **Home Page**
   - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
+- **App Registration Process**
+  - fixed wrong api calling to download documents [#1299](https://github.com/eclipse-tractusx/portal-frontend/pull/1299)
 
 ## 2.3.0-RC2
 
