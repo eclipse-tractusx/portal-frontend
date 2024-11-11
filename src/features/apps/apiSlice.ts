@@ -20,7 +20,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
   LogoGrayData,
-  type PaginFetchArgs,
   type PaginResult,
 } from '@catena-x/portal-shared-components'
 import i18next from 'i18next'
@@ -44,6 +43,7 @@ import {
   CompanySubscriptionFilterType,
 } from './types'
 import { PAGE_SIZE } from 'types/Constants'
+import { type PaginFetchArgsExtended } from 'features/admin/serviceApiSlice'
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
@@ -106,7 +106,7 @@ export const apiSlice = createApi({
         return { data: subscriptionData }
       },
     }),
-    fetchProvidedApps: builder.query<ProvidedApps, PaginFetchArgs>({
+    fetchProvidedApps: builder.query<ProvidedApps, PaginFetchArgsExtended>({
       query: (fetchArgs) => {
         const { page, args } = fetchArgs
         const baseUrl = `/api/apps/provided?page=${page}&size=15`
@@ -167,10 +167,10 @@ export const apiSlice = createApi({
     }),
     fetchSubscribedActiveAppsStatus: builder.query<
       PaginResult<SubscribedActiveApps>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (body) => {
-        const url = `/api/apps/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const url = `/api/apps/subscribed/subscription-status?size=${body.size ?? PAGE_SIZE}&page=${body.page}`
         const statusId =
           body.args.statusId &&
           body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL

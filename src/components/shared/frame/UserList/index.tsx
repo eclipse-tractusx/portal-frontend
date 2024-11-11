@@ -24,7 +24,6 @@ import { useTranslation } from 'react-i18next'
 import {
   IconButton,
   StatusTag,
-  PageLoadingTable,
   type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -34,6 +33,8 @@ import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 import { isSearchUserEmail } from 'types/Patterns'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { getClientId } from 'services/EnvironmentService'
 
 interface FetchHookArgsType {
@@ -102,6 +103,7 @@ export const UserList = ({
     <section id="identity-management-id" className="user-management-section">
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
       <PageLoadingTable<TenantUser, FetchHookArgsType>
+        tableVariant={TableVariants.SERVER_SIDE}
         autoFocus={false}
         onButtonClick={addButtonClick}
         buttonLabel={t(addButtonLabel)}

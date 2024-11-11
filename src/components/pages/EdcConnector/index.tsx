@@ -26,7 +26,6 @@ import UserService from 'services/UserService'
 import {
   Typography,
   PageSnackbar,
-  PageLoadingTable,
   Button,
   IconButton,
   Tabs,
@@ -69,6 +68,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { ProvidedConnectorTableColumns } from './edcProvidedConnectorTableColumns'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -495,6 +496,7 @@ const EdcConnector = () => {
         <TabPanel value={activeTab} index={0}>
           <div className="connector-table-container">
             <PageLoadingTable<ConnectorResponseBody, unknown>
+              tableVariant={TableVariants.SERVER_SIDE}
               toolbarVariant="premium"
               title={t('content.edcconnector.tabletitle')}
               loadLabel={t('global.actions.more')}
@@ -512,6 +514,7 @@ const EdcConnector = () => {
         <TabPanel value={activeTab} index={1}>
           <div className="connector-table-container">
             <PageLoadingTable<ConnectorResponseBody, unknown>
+              tableVariant={TableVariants.SERVER_SIDE}
               toolbarVariant="premium"
               title={t('content.edcconnector.managedtabletitle')}
               loadLabel={t('global.actions.more')}
@@ -529,6 +532,7 @@ const EdcConnector = () => {
         <TabPanel value={activeTab} index={2}>
           <div className="connector-table-container">
             <PageLoadingTable<ConnectorResponseBody, unknown>
+              tableVariant={TableVariants.SERVER_SIDE}
               toolbarVariant="premium"
               title={t('content.edcconnector.providedtabletitle')}
               loadLabel={t('global.actions.more')}

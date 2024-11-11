@@ -106,10 +106,10 @@ export const TechnicalUserTable = () => {
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry, FetchHookArgsType>
+        tableVariant={TableVariants.SERVER_SIDE}
         autoFocus={false}
         searchExpr={expr}
         hasBorder={false}
-        tableVariant={TableVariants.SERVER_SIDE}
         rowHeight={80}
         sx={{
           '.MuiDataGrid-columnHeader, .MuiDataGrid-row .MuiDataGrid-cell[role="cell"]':

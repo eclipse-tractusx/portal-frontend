@@ -18,11 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  type PaginFetchArgs,
-  type PaginResult,
-} from '@catena-x/portal-shared-components'
+import { type PaginResult } from '@catena-x/portal-shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { type PaginFetchArgsExtended } from 'features/admin/serviceApiSlice'
 import { type PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import {
   CompanySubscriptionFilterType,
@@ -203,11 +201,11 @@ export const apiSlice = createApi({
     }),
     fetchCompanyServiceSubscriptions: builder.query<
       PaginResult<SubscribedActiveApps>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (body) => {
         console.log(body)
-        const url = `/api/services/subscribed/subscription-status?size=${PAGE_SIZE}&page=${body.page}`
+        const url = `/api/services/subscribed/subscription-status?size=${body.size ?? PAGE_SIZE}&page=${body.page}`
         const statusId =
           body.args.statusId &&
           body.args.statusId !== CompanySubscriptionFilterType.SHOW_ALL
