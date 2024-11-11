@@ -19,13 +19,11 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type {
-  PaginResult,
-  PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import { type InviteData } from './registration/types'
+import { type PaginFetchArgsExtended } from './serviceApiSlice'
 
 export enum CompanyInviteStatus {
   PENDING = 'PENDING',
@@ -48,12 +46,12 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchInviteSearch: builder.query<
       PaginResult<CompanyInvite>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (fetchArgs) =>
         `api/administration/registration/applicationsWithStatus?page=${
           fetchArgs.page
-        }&size=${PAGE_SIZE}&companyName=${fetchArgs.args!.expr}`,
+        }&size=${fetchArgs.size ?? PAGE_SIZE}&companyName=${fetchArgs.args!.expr}`,
     }),
     sendInvite: builder.mutation<void, InviteData>({
       query: (data: InviteData) => ({

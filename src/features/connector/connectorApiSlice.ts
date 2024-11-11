@@ -20,10 +20,9 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import type {
-  PaginFetchArgs,
-  PaginResult,
-} from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@catena-x/portal-shared-components'
+import { type PaginFetchArgsExtended } from 'features/admin/serviceApiSlice'
+import { PAGE_SIZE } from 'types/Constants'
 
 export enum ConnectType {
   MANAGED_CONNECTOR = 'MANAGED_CONNECTOR',
@@ -144,24 +143,24 @@ export const apiSlice = createApi({
     }),
     fetchConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (filters) =>
-        `/api/administration/Connectors?page=${filters.page}&size=10`,
+        `/api/administration/Connectors?page=${filters.page}&size=${filters.size ?? PAGE_SIZE}`,
     }),
     fetchManagedConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (filters) =>
-        `/api/administration/connectors/managed?page=${filters.page}&size=10`,
+        `/api/administration/connectors/managed?page=${filters.page}&size=${filters.size ?? PAGE_SIZE}`,
     }),
     fetchProvidedConnectors: builder.query<
       PaginResult<ConnectorResponseBody>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (filters) =>
-        `/api/administration/Connectors/provided?page=${filters.page}&size=10`,
+        `/api/administration/Connectors/provided?page=${filters.page}&size=${filters.size ?? PAGE_SIZE}`,
     }),
     fetchOfferSubscriptions: builder.query<EdcSubscriptionsType[], void>({
       query: () => ({

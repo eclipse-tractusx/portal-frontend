@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { PageLoadingTable, StatusTag } from '@catena-x/portal-shared-components'
+import { StatusTag } from '@catena-x/portal-shared-components'
 import type { GridRowId } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
@@ -30,6 +30,8 @@ import { updatePartnerSelector } from 'features/control/updates'
 import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
 import Patterns from 'types/Patterns'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
 interface FetchHookArgsType {
   appId: string | undefined
@@ -52,6 +54,7 @@ export default function UserListContent() {
 
   return (
     <PageLoadingTable<TenantUser, FetchHookArgsType>
+      tableVariant={TableVariants.SERVER_SIDE}
       toolbarVariant={'premium'}
       columnHeadersBackgroundColor={'transparent'}
       searchExpr={expr}

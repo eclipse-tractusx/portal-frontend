@@ -25,7 +25,6 @@ import {
   Tabs,
   Tab,
   TabPanel,
-  PageLoadingTable,
   DialogActions,
   Button,
   DialogHeader,
@@ -56,6 +55,8 @@ import { success } from 'services/NotifyService'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { COLOR_PALETTE } from 'theme.override'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
@@ -366,6 +367,7 @@ const OnboardingServiceProvider = () => {
         <TabPanel value={activeTab} index={1}>
           <div className="connector-table-container">
             <PageLoadingTable<networkCompany, { expr: string }>
+              tableVariant={TableVariants.SERVER_SIDE}
               toolbarVariant="premium"
               title={t('content.onboardingServiceProvider.tabletitle2')}
               loadLabel={t('global.actions.more')}

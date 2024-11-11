@@ -20,7 +20,6 @@
 
 import {
   IconButton,
-  PageLoadingTable,
   type PaginFetchArgs,
 } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,6 +32,8 @@ import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
 import { isCompanyName } from 'types/Patterns'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 
 interface FetchHookArgsType {
   expr: string
@@ -71,6 +72,7 @@ export const InviteList = ({
   return (
     <section id="identity-management-id">
       <PageLoadingTable<CompanyInvite, FetchHookArgsType>
+        tableVariant={TableVariants.SERVER_SIDE}
         autoFocus={false}
         searchExpr={searchExpr}
         toolbarVariant="premium"

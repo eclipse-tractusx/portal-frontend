@@ -397,8 +397,8 @@ export default function AdminCredentialElements() {
       </Dialog>
       <div className="recommended-main">
         <PageLoadingTable<CredentialResponse[], FetchHookArgsType>
-          autoFocus={false}
           tableVariant={TableVariants.SERVER_SIDE}
+          autoFocus={false}
           allItemsLoadedHint={t('global.table.allItemsLoadedHint')}
           searchExpr={searchExpr}
           alignCell="start"

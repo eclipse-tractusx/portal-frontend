@@ -18,7 +18,6 @@
  ********************************************************************************/
 
 import {
-  PageLoadingTable,
   Tab,
   TabPanel,
   Tabs,
@@ -47,6 +46,8 @@ import {
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
 import { COLOR_PALETTE } from 'theme.override'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
 interface FetchHookArgsType {
   statusId: string
@@ -193,6 +194,7 @@ export default function CompanySubscriptions() {
   const renderTable = (query: any) => (
     <div className={'table-container'}>
       <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
+        tableVariant={TableVariants.SERVER_SIDE}
         sx={{
           '.MuiDataGrid-cell': {
             alignContent: 'center !important',

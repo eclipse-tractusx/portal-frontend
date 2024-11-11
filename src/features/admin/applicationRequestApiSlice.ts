@@ -20,11 +20,9 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import type {
-  PaginResult,
-  PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@catena-x/portal-shared-components'
 import { PAGE_SIZE } from 'types/Constants'
+import { type PaginFetchArgsExtended } from './serviceApiSlice'
 
 export enum ApplicationRequestStatus {
   CREATED = 'CREATED',
@@ -216,7 +214,7 @@ export const apiSlice = createApi({
     }),
     fetchCompanySearch: builder.query<
       PaginResult<ApplicationRequest>,
-      PaginFetchArgs
+      PaginFetchArgsExtended
     >({
       query: (fetchArgs) => {
         const isFetchArgs = fetchArgs?.args?.expr
@@ -225,7 +223,7 @@ export const apiSlice = createApi({
           fetchArgs.args.statusFilter &&
           fetchArgs.args.statusFilter !== AppFilterType.ALL
         ) {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+          return `/api/administration/registration/applications?size=${fetchArgs.size ?? PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyName=${
             fetchArgs.args!.expr
@@ -235,7 +233,7 @@ export const apiSlice = createApi({
           fetchArgs.args.statusFilter &&
           fetchArgs.args.statusFilter !== AppFilterType.ALL
         ) {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+          return `/api/administration/registration/applications?size=${fetchArgs.size ?? PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyApplicationStatusFilter=${fetchArgs.args!.statusFilter}`
         } else if (
@@ -243,11 +241,11 @@ export const apiSlice = createApi({
           (fetchArgs.args.statusFilter &&
             fetchArgs.args.statusFilter === AppFilterType.ALL)
         ) {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${
+          return `/api/administration/registration/applications?size=${fetchArgs.size ?? PAGE_SIZE}&page=${
             fetchArgs.page
           }&companyName=${fetchArgs.args!.expr}`
         } else {
-          return `/api/administration/registration/applications?size=${PAGE_SIZE}&page=${fetchArgs.page}`
+          return `/api/administration/registration/applications?size=${fetchArgs.size ?? PAGE_SIZE}&page=${fetchArgs.page}`
         }
       },
     }),

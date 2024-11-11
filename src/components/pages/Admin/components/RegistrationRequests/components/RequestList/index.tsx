@@ -18,10 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  PageLoadingTable,
-  type PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+import { type PaginFetchArgs } from '@catena-x/portal-shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
@@ -37,6 +34,8 @@ import { type GridEventListener } from '@mui/x-data-grid'
 import './RequestListStyle.scss'
 import { refetch } from 'features/admin/registration/slice'
 import { isCompanyName } from 'types/Patterns'
+import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
 interface FetchHookArgsType {
   statusFilter: string
@@ -123,6 +122,7 @@ export const RequestList = ({
   return (
     <div id="registration-section-id">
       <PageLoadingTable<ApplicationRequest, FetchHookArgsType>
+        tableVariant={TableVariants.SERVER_SIDE}
         sx={{
           '.MuiDataGrid-cell': {
             alignContent: 'center !important',
