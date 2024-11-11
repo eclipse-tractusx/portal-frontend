@@ -582,7 +582,7 @@
       "shortDescription": "Kurzbeschreibung",
       "shortDescriptionEN": "Kurzbeschreibung - EN *",
       "shortDescriptionDE": "Kurzbeschreibung - DE *",
-      "successMsg": "Successfully changed description",
+      "successMsg": "Beschreibung erfolgreich geändert",
       "errorMsg": "Unable to change description"
     },
     "addRoles": {
