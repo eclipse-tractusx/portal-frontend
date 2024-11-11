@@ -570,7 +570,7 @@
       "headerTitle": "Change Cover Image",
       "description": "You can change the cover image for your app here. After saving, the change is immediately updated in the App Card.",
       "uploadNewImage": "Upload New Image",
-      "successMsg": "Successfully changed app lead image",
+      "successMsg": "Successfully changed app cover image",
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {

@@ -571,7 +571,7 @@
       "headerTitle": "Titelbild ändern",
       "description": "Hier können Sie das Titelbild für Ihre App ändern. Nach dem Speichern wird die Änderung sofort in der App-Karte aktualisiert.",
       "uploadNewImage": "Neues Bild hochladen",
-      "successMsg": "Successfully changed app lead image",
+      "successMsg": "App-Titelbild erfolgreich geändert",
       "errorMsg": "Unable to change the lead image"
     },
     "changeDescription": {
