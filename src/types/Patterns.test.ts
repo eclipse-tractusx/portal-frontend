@@ -29,6 +29,8 @@ import {
   isCountryCode,
   isClientID,
   isPersonName,
+  isSearchUserEmail,
+  isValidAppOverviewSearch,
 } from './Patterns'
 
 const TESTDATA = {
@@ -153,6 +155,29 @@ const TESTDATA = {
       'La Poste S.A.',
       'JPMORGAN ASIA-PACIFIC ADVANTAGE HYBRID FUND (QDII)',
       'Currency £$€¥¢',
+      'ACE 9 SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ',
+      '摩根亚太优势混合型证券投资基金 (QDII)',
+      '삼성', // Samsung
+      '三', // Samsung
+      'Czech: ČĎŇŘŠŤŽ',
+      'Estonian: ÄÖÜŠŽ',
+      'Slovak: ĽĹŔŠŤŽ',
+      'Polish: ĄĆĘŁŃÓŚŹŻ',
+      'Hungarian: ÁÉÍÓÖŐÚÜŰ',
+      'Romanian: ÂÎŞŢ',
+      'Bulgarian: ЙЪЬ',
+      'Greek: ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ',
+      'Turkish: ÇĞİıÖŞÜ',
+      'Arabic: ابتثجحخدذرزسشصضطظعغفقكلمنهوي',
+      'Hebrew: שלום עולם',
+      'Hindi: अआइईउऊऋएऐओऔकखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषस',
+      'Tamil: அஆஇஈஉஊஎஏஐஒஓஔகஙசஞடணதநனபமயரலவழளஷஸஹ',
+      'Japanese: あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん',
+      'Chinese: 你好 世界',
+      'Korean: 안녕하세요 세계',
+      'Thai: สวัสดีชาวโลก', // Thai does not seem to work even with /p{L} and required additional range
+      'Vietnamese: ăâắáấàằầảẳẩãẵẫạặậđêéếèềẻểẽễẹệíìỉĩịôơóốớòồờỏổởõỗỡọộợưúứùừủửũữụựýỳỷỹỵ',
+      'Singapore: 你好 世界',
     ],
     invalid: [
       ' BMW',
@@ -213,6 +238,27 @@ const TESTDATA = {
   CLIENTID: {
     valid: ['sa-12', 'JSSS', 'Julia12'],
     invalid: ['&^%#@', '!', 'hash &*^#$'],
+  },
+  EMAIL_SEARCH: {
+    valid: [
+      'john.doe@example.com',
+      'jane_doe123@example.com',
+      'user+tag@example.com',
+      'email@sub.domain.com',
+      'first.last@another-domain.org',
+      'name-with-dash@example-company.com',
+      'name.surname@domain.travel',
+      'name123@domain.ac',
+      'firstname+lastname@example.com',
+      'very.common@example.com',
+      'disposable.style.email.with+symbol@example.com',
+      'admin@admin-portal.co.uk',
+    ],
+    invalid: ['()*&^%$#/\\?><,`~'],
+  },
+  appOverview: {
+    valid: ['sa-12', '1234', 'Test123!@#'],
+    invalid: ['🚀 Rocket!', 'Invalid\nNewLine'],
   },
 }
 
@@ -302,6 +348,23 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.CLIENTID.invalid.forEach((expr) => {
       expect(isClientID(expr)).toBe(false)
+    })
+  })
+
+  it('Validate email search for users', () => {
+    TESTDATA.EMAIL_SEARCH.valid.forEach((expr) => {
+      expect(isSearchUserEmail(expr)).toBe(true)
+    })
+    TESTDATA.EMAIL_SEARCH.invalid.forEach((expr) => {
+      expect(isSearchUserEmail(expr)).toBe(false)
+    })
+  })
+  it('validate appoverview search', () => {
+    TESTDATA.appOverview.valid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(true)
+    })
+    TESTDATA.appOverview.invalid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(false)
     })
   })
 })

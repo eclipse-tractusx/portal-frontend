@@ -47,7 +47,7 @@ export const Patterns = {
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
-    /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
+    /^(?!.*\s$)([\p{L}\u0E00-\u0E7F\d\p{Sc}@%*+_\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/u,
   personName: personNamePattern,
   name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
   zipcode: /^[A-Z0-9-]{1,8}$/,
@@ -58,7 +58,7 @@ export const Patterns = {
     URL: prefixUrlPattern,
     MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@/,
   },
-  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_\-.]{3,80}$/,
+  SEARCH: /^[a-zA-ZÀ-ÿ0-9 !?@&_+\-.]{3,80}$/,
   partner: {
     COMMERCIAL_REG_NUMBER: /^[a-zA-Z\d-\s]{9}$/,
     VAT_ID: /^[a-zA-Z\d-\s]{8,15}$/,
@@ -116,6 +116,10 @@ export const Patterns = {
     EORI: /^[A-Z]{2}[A-Za-z0-9]{1,15}$/,
     POSTAL_CODE:
       /^(?!.*\s$)(?=[a-zA-Z\d-]{0,10}[-\s]?[a-zA-Z\d-]{0,10}$)[a-zA-Z\d\s-]{2,10}$/,
+  },
+  EMAIL_SEARCH: /^[ A-Za-z0-9._!@+-]*$/,
+  appOverview: {
+    SEARCH: /^[ A-Za-z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
   },
 }
 
@@ -205,5 +209,9 @@ export const isCompanyVies = (expr: string) =>
   Patterns.companyData.VIES.test(expr)
 export const isPostalCode = (expr: string) =>
   Patterns.companyData.POSTAL_CODE.test(expr)
+export const isSearchUserEmail = (expr: string) =>
+  Patterns.EMAIL_SEARCH.test(expr)
+export const isValidAppOverviewSearch = (expr: string) =>
+  Patterns.appOverview.SEARCH.test(expr)
 
 export default Patterns

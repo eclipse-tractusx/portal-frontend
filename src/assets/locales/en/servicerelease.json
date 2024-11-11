@@ -153,7 +153,7 @@
     "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
     "readMore": "Read More",
     "registerURL": "RegisterURL",
-    "search": "...search by entering the company name here.",
+    "search": "Search for company name",
     "noDataMessage": "No data available",
     "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
     "subscribeSuccessMsg": "Subscribed Successfully",
@@ -202,7 +202,8 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
-    }
+    },
+    "offersHeading": "Services Offered"
   },
   "adminBoard": {
     "headerTitle": "Service request management",
