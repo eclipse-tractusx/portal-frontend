@@ -265,7 +265,9 @@ const AdminclearinghouseSDElements = () => {
 
       <div className="status-section">
         <Typography variant="h5" className="status-title">
-          {t('content.clearinghouseSelfDescription.selfDescriptionInterface')}
+          {t(
+            'content.clearinghouseSelfDescription.selfDescriptionFactoryInterface'
+          )}
         </Typography>
         <div className="status">
           <span className="status-label">Status</span>
