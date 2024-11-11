@@ -274,260 +274,267 @@ const ConnectorDetailsOverlay = ({
         </Dialog>
       )}
 
-      <Dialog
-        open={openDialog}
-        sx={{
-          '.MuiDialog-paper': {
-            maxWidth: '45%',
-          },
-        }}
-      >
-        <DialogHeader
-          title={t('content.edcconnector.details.heading')}
-          intro={fetchConnectorDetails?.name ?? ''}
-        />
-        <DialogContent
+      {!openApiErrorModal && (
+        <Dialog
+          open={openDialog}
           sx={{
-            textAlign: 'center',
-            marginBottom: '25px',
-            padding: '0px 80px 20px 80px',
+            '.MuiDialog-paper': {
+              maxWidth: '45%',
+            },
           }}
         >
-          {isFetching ? (
-            <div
-              style={{
-                width: '100%',
-                height: '500px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <CircleProgress
-                colorVariant="primary"
-                size={80}
-                thickness={8}
-                variant="indeterminate"
-              />
-            </div>
-          ) : (
-            <>
-              <Box sx={{ display: 'inline-flex', textAlign: 'center' }}>
-                <Typography variant="body2" sx={{ mt: 1, mr: 2 }}>
-                  {t(
-                    'content.edcconnector.details.configureYourConnectorDetails'
+          <DialogHeader
+            title={t('content.edcconnector.details.heading')}
+            intro={fetchConnectorDetails?.name ?? ''}
+          />
+          <DialogContent
+            sx={{
+              textAlign: 'center',
+              marginBottom: '25px',
+              padding: '0px 80px 20px 80px',
+            }}
+          >
+            {isFetching ? (
+              <div
+                style={{
+                  width: '100%',
+                  height: '500px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <CircleProgress
+                  colorVariant="primary"
+                  size={80}
+                  thickness={8}
+                  variant="indeterminate"
+                />
+              </div>
+            ) : (
+              <>
+                <Box sx={{ display: 'inline-flex', textAlign: 'center' }}>
+                  <Typography variant="body2" sx={{ mt: 1, mr: 2 }}>
+                    {t(
+                      'content.edcconnector.details.configureYourConnectorDetails'
+                    )}
+                  </Typography>
+                  <Button
+                    onClick={() => {}}
+                    variant="outlined"
+                    size="small"
+                    disabled
+                  >
+                    {t('content.edcconnector.details.learnMore')}
+                  </Button>
+                </Box>
+                <Grid container spacing={2}>
+                  <Grid xs={12} item>
+                    <Input
+                      label={
+                        <Typography variant="body2">
+                          {t('content.edcconnector.details.name')}
+                        </Typography>
+                      }
+                      value={fetchConnectorDetails?.name ?? ''}
+                      disabled={true}
+                      sx={{ mb: 2 }}
+                    />
+                  </Grid>
+                  <Grid xs={11} item>
+                    <Input
+                      label={
+                        <Typography variant="body2">
+                          {t('content.edcconnector.details.url')}
+                        </Typography>
+                      }
+                      value={connectorUrlValue}
+                      disabled={enableConnectorUrl}
+                      onChange={(e) => {
+                        validateURL(e.target.value)
+                      }}
+                    />
+                    <Typography
+                      variant="label3"
+                      sx={{
+                        color: '#d32f2f',
+                        mb: 2,
+                        float: 'left',
+                      }}
+                    >
+                      {urlErrorMsg}
+                    </Typography>
+                  </Grid>
+                  <Grid xs={1} item>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        mt: 8,
+                      }}
+                      onClick={() => {
+                        setEnableConnectorUrl(false)
+                        setEnableUrlApiErrorMsg(false)
+                      }}
+                      disabled={!userHasPortalRole(ROLES.MODIFY_CONNECTORS)}
+                    >
+                      <EditIcon
+                        sx={{
+                          color: '#0f71cb',
+                          cursor: 'pointer',
+                        }}
+                      />
+                    </IconButton>
+                  </Grid>
+                  {!enableConnectorUrl && (
+                    <>
+                      <Typography variant="label3">
+                        {t('content.edcconnector.details.note')}
+                      </Typography>
+                      <Typography variant="caption3" sx={{ textAlign: 'left' }}>
+                        {t('content.edcconnector.details.noteDesc')}
+                      </Typography>
+                      <Box
+                        sx={{
+                          textAlign: 'center',
+                          margin: '16px auto',
+                          display: 'flex',
+                        }}
+                      >
+                        <Button
+                          variant="outlined"
+                          onClick={() => {
+                            setEnableConnectorUrl(true)
+                            setConnectorUrlValue(
+                              fetchConnectorDetails?.connectorUrl ?? ''
+                            )
+                          }}
+                          size="small"
+                          sx={{ mr: 2 }}
+                        >
+                          {t('global.actions.cancel')}
+                        </Button>
+                        {confirmLoading ? (
+                          <LoadingButton
+                            size="small"
+                            variant="contained"
+                            onButtonClick={() => {
+                              // do nothing
+                            }}
+                            loading={confirmLoading}
+                            label={t('global.actions.confirm')}
+                            loadIndicator="Loading..."
+                          />
+                        ) : (
+                          <Button
+                            variant="outlined"
+                            onClick={handleUrlSubmit}
+                            size="small"
+                            disabled={urlErrorMsg !== ''}
+                          >
+                            {t('global.actions.submit')}
+                          </Button>
+                        )}
+                      </Box>
+                    </>
                   )}
-                </Typography>
-                <Button
-                  onClick={() => {}}
-                  variant="outlined"
-                  size="small"
-                  disabled
-                >
-                  {t('content.edcconnector.details.learnMore')}
-                </Button>
-              </Box>
-              <Grid container spacing={2}>
-                <Grid xs={12} item>
-                  <Input
-                    label={
-                      <Typography variant="body2">
-                        {t('content.edcconnector.details.name')}
-                      </Typography>
-                    }
-                    value={fetchConnectorDetails?.name ?? ''}
-                    disabled={true}
-                    sx={{ mb: 2 }}
-                  />
                 </Grid>
-                <Grid xs={11} item>
-                  <Input
-                    label={
-                      <Typography variant="body2">
-                        {t('content.edcconnector.details.url')}
-                      </Typography>
-                    }
-                    value={connectorUrlValue}
-                    disabled={enableConnectorUrl}
-                    onChange={(e) => {
-                      validateURL(e.target.value)
-                    }}
-                  />
+                {enableUrlApiErrorMsg && (
                   <Typography
                     variant="label3"
                     sx={{
                       color: '#d32f2f',
-                      mb: 2,
-                      float: 'left',
                     }}
                   >
-                    {urlErrorMsg}
+                    {t('content.edcconnector.details.urlErrorMessage')}
                   </Typography>
-                </Grid>
-                <Grid xs={1} item>
-                  <IconButton
-                    size="small"
-                    sx={{
-                      mt: 8,
-                    }}
-                    onClick={() => {
-                      setEnableConnectorUrl(false)
-                      setEnableUrlApiErrorMsg(false)
-                    }}
-                    disabled={!userHasPortalRole(ROLES.MODIFY_CONNECTORS)}
-                  >
-                    <EditIcon
-                      sx={{
-                        color: '#0f71cb',
-                        cursor: 'pointer',
-                      }}
-                    />
-                  </IconButton>
-                </Grid>
-                {!enableConnectorUrl && (
-                  <>
-                    <Typography variant="label3">
-                      {t('content.edcconnector.details.note')}
-                    </Typography>
-                    <Typography variant="caption3" sx={{ textAlign: 'left' }}>
-                      {t('content.edcconnector.details.noteDesc')}
-                    </Typography>
-                    <Box
-                      sx={{
-                        textAlign: 'center',
-                        margin: '16px auto',
-                        display: 'flex',
-                      }}
-                    >
-                      <Button
-                        variant="outlined"
-                        onClick={() => {
-                          setEnableConnectorUrl(true)
-                          setConnectorUrlValue(
-                            fetchConnectorDetails?.connectorUrl ?? ''
-                          )
-                        }}
-                        size="small"
-                        sx={{ mr: 2 }}
-                      >
-                        {t('global.actions.cancel')}
-                      </Button>
-                      {confirmLoading ? (
-                        <LoadingButton
-                          size="small"
-                          variant="contained"
-                          onButtonClick={() => {
-                            // do nothing
-                          }}
-                          loading={confirmLoading}
-                          label={t('global.actions.confirm')}
-                          loadIndicator="Loading..."
-                        />
-                      ) : (
-                        <Button
-                          variant="outlined"
-                          onClick={handleUrlSubmit}
-                          size="small"
-                          disabled={urlErrorMsg !== ''}
-                        >
-                          {t('global.actions.submit')}
-                        </Button>
-                      )}
-                    </Box>
-                  </>
                 )}
-              </Grid>
-              {enableUrlApiErrorMsg && (
-                <Typography
-                  variant="label3"
-                  sx={{
-                    color: '#d32f2f',
-                  }}
-                >
-                  {t('content.edcconnector.details.urlErrorMessage')}
-                </Typography>
-              )}
-              <Divider sx={{ margin: '20px auto', color: 'black' }} />
-              {detailsData.map((item) => {
-                return (
-                  <Grid
-                    container
-                    sx={{ mt: 0, alignContent: 'left' }}
-                    key={item.key}
-                  >
-                    <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
-                      <Typography variant="body2" sx={{ textAlign: 'left' }}>
-                        {item.key}
-                      </Typography>
-                    </Grid>
-
-                    {item.key ===
-                    t('content.edcconnector.details.SdRegistration') ? (
-                      <Grid item sx={{ ml: 0, mr: 0, float: 'left' }} xs={1}>
-                        <Checkbox
-                          checked={item.value !== null}
-                          disabled={item.value === null}
-                        />
-                      </Grid>
-                    ) : (
-                      <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
+                <Divider sx={{ margin: '20px auto', color: 'black' }} />
+                {detailsData.map((item) => {
+                  return (
+                    <Grid
+                      container
+                      sx={{ mt: 0, alignContent: 'left' }}
+                      key={item.key}
+                    >
+                      <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
                         <Typography variant="body2" sx={{ textAlign: 'left' }}>
-                          {item.value}
+                          {item.key}
                         </Typography>
                       </Grid>
-                    )}
+
+                      {item.key ===
+                      t('content.edcconnector.details.SdRegistration') ? (
+                        <Grid item sx={{ ml: 0, mr: 0, float: 'left' }} xs={1}>
+                          <Checkbox
+                            checked={item.value !== null}
+                            disabled={item.value === null}
+                          />
+                        </Grid>
+                      ) : (
+                        <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
+                          <Typography
+                            variant="body2"
+                            sx={{ textAlign: 'left' }}
+                          >
+                            {item.value}
+                          </Typography>
+                        </Grid>
+                      )}
+                    </Grid>
+                  )
+                })}
+                <Grid container sx={{ mt: 0, alignContent: 'left' }}>
+                  <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
+                    <Typography variant="body2" sx={{ textAlign: 'left' }}>
+                      {t('content.edcconnector.details.SdDocument')}
+                    </Typography>
                   </Grid>
-                )
-              })}
-              <Grid container sx={{ mt: 0, alignContent: 'left' }}>
-                <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
-                  <Typography variant="body2" sx={{ textAlign: 'left' }}>
-                    {t('content.edcconnector.details.SdDocument')}
-                  </Typography>
+                  <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
+                    <Typography variant="body2" sx={{ textAlign: 'left' }}>
+                      {fetchConnectorDetails?.selfDescriptionDocumentId ===
+                      null ? (
+                        t('content.edcconnector.details.noDocumentAvailable')
+                      ) : (
+                        <Box sx={{ display: 'flex' }}>
+                          <ArticleOutlinedIcon
+                            sx={{ color: '#9c9c9c', mr: 1 }}
+                          />
+                          <button
+                            className="document-button-link"
+                            onClick={() =>
+                              fetchConnectorDetails?.selfDescriptionDocumentId &&
+                              handleDownloadFn(
+                                fetchConnectorDetails?.selfDescriptionDocumentId,
+                                t('content.edcconnector.details.SdDocument')
+                              )
+                            }
+                          >
+                            {t(
+                              'content.edcconnector.details.selfDescriptionDocument'
+                            )}
+                          </button>
+                        </Box>
+                      )}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
-                  <Typography variant="body2" sx={{ textAlign: 'left' }}>
-                    {fetchConnectorDetails?.selfDescriptionDocumentId ===
-                    null ? (
-                      t('content.edcconnector.details.noDocumentAvailable')
-                    ) : (
-                      <Box sx={{ display: 'flex' }}>
-                        <ArticleOutlinedIcon sx={{ color: '#9c9c9c', mr: 1 }} />
-                        <button
-                          className="document-button-link"
-                          onClick={() =>
-                            fetchConnectorDetails?.selfDescriptionDocumentId &&
-                            handleDownloadFn(
-                              fetchConnectorDetails?.selfDescriptionDocumentId,
-                              t('content.edcconnector.details.SdDocument')
-                            )
-                          }
-                        >
-                          {t(
-                            'content.edcconnector.details.selfDescriptionDocument'
-                          )}
-                        </button>
-                      </Box>
-                    )}
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Divider sx={{ margin: '20px auto', color: 'black' }} />
-            </>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button
-            variant="outlined"
-            onClick={(e) => {
-              handleOverlayClose(e)
-              setUrlErrorMsg('')
-            }}
-          >
-            {t('global.actions.close')}
-          </Button>
-        </DialogActions>
-      </Dialog>
+                <Divider sx={{ margin: '20px auto', color: 'black' }} />
+              </>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={(e) => {
+                handleOverlayClose(e)
+                setUrlErrorMsg('')
+              }}
+            >
+              {t('global.actions.close')}
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </div>
   )
 }

@@ -356,6 +356,7 @@ const EdcConnector = () => {
       <ConnectorDetailsOverlay
         openDialog={openDetailsOverlay}
         handleOverlayClose={() => {
+          setOverlayData(undefined)
           setOpenDetailsOverlay(false)
         }}
         overlayData={overlayData}
