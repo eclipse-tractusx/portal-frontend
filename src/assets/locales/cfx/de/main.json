@@ -596,7 +596,7 @@
       "confirmButtonDescription": "Wenn Sie auf Bestätigen klicken, werden die neue Rollen zu Ihrer App hinzugefügt und stehen allen aktiven Abonnenten zur Verfügung.",
       "successMsg": "Rollen erfolgreich hinzugefügt",
       "errorMsg": "Unable to add roles",
-      "deleteNotSupported": "Role deletion currently not supported."
+      "deleteNotSupported": "Das Löschen von Rollen wird derzeit nicht unterstützt"
     },
     "changeDocuments": {
       "headerTitle": "Bilder und Dokumente ändern",
@@ -1412,7 +1412,7 @@
         "password": "Password",
         "username": "Username",
         "successfullyUploadedAppRoles": "Erfolgreich hochgeladene App-Rollen",
-        "incorrectCSVFileFormat": "CSV file formatting incorrect. Please recheck the columns inside the csv",
+        "incorrectCSVFileFormat": "Die csv-Datei ist nicht korrekt formatiert. Bitte überprüfen Sie die Spalten in der csv-Datei",
         "template": "Vorlage",
         "getHelp": "Get Help",
         "deleteOverlayContent": "Das Löschen kann nicht rückgängig gemacht werden. Möchten Sie dennoch fortfahren?",

@@ -65,6 +65,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed german translation in german version [PM2-1822](https://cofinity-x.atlassian.net/browse/PM2-1822)
   - Added missing translation for change description of success message [PM2-1821](https://cofinity-x.atlassian.net/browse/PM2-1821)
   - Added missing translation for cover image of success message [PM2-1819](https://cofinity-x.atlassian.net/browse/PM2-1819)
+  - added missing german translation for add role success message [PM2-1810](https://cofinity-x.atlassian.net/browse/PM2-1810)
 
 - **Search Translation for App and Service Subsciption**
 
