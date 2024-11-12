@@ -70,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "onboardingServiceProviderManagement": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -465,7 +465,7 @@
         "inactive": "inaktiv",
         "showAll": "Alles anzeigen"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",
@@ -714,10 +714,10 @@
           },
           "url": {
             "label": "Connector-Katalog-Endpunkt*",
-            "placeholder": "Connector URL",
+            "placeholder": "Example: https://connector.control.plane/api/v1/dsp",
             "mandatoryError": "Die Connector-URL ist obligatorisch.",
             "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "tooltipMsg": "Base URL of the Catalog Service endpoint of a DSP Connector, e.g., https://connector.control.plane/{catalogPath}."
           },
           "bpn": {
             "label": "Connector Owner*",
@@ -1070,13 +1070,14 @@
       "heading": "Status der Eigenerklärung",
       "description": "Diese Seite bietet einen Überblick über den aktuellen Stand der Eigenerklärungen für Administratoren.",
       "reprocess": "Nachverarbeiten",
-      "complianceStatus": "Compliance-Status:",
+      "selfDescriptionFactoryInterface": "Self-Description Factory Schnittstelle",
       "legalPerson": "Juristische Person",
       "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung einer juristischen Person",
       "connectors": "Connectors",
       "connectorsDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung der Konnektoren",
       "errorMsg": "Fehler! Etwas ist schief gelaufen",
-      "noDataMsg": "Keine Datensätze gefunden."
+      "noDataMsg": "Keine Datensätze gefunden.",
+      "statusMsg": "Der Status der Self-Description Factory Schnittstelle kann nur durch Konfiguration (siehe Installationsanleitung) geändert werden"
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",
@@ -1096,15 +1097,19 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "note": "<strong>Notiz:</strong> Die Auswahl sowohl interner als auch externer Benutzer für denselben Dienst ist nicht möglich.",
+          "internalRoles": "Interne Rollen:",
+          "externalRoles": "Externe Rollen:",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "roleMandatory": "Die Rolle des technischen Benutzers ist obligatorisch",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
+            "username": "Bitte geben Sie den Benutzernamen ein.",
             "description": "Bitte geben Sie eine Beschreibung ein."
           }
         }
@@ -1242,7 +1247,12 @@
         "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerberechtigung an, die dem technischen Benutzer, der im Rahmen der App-/Dienstaktivierung erstellt wurde, automatisch zugewiesen wird."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert."
+      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert.",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -1487,7 +1497,7 @@
       "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
       "readMore": "Read More",
       "registerURL": "RegisterURL",
-      "search": "...search by entering the company name here.",
+      "search": "Suche nach Firmennamen",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -2261,8 +2271,12 @@
       "success": "OSP-Rückruf erfolgreich konfiguriert",
       "callbackUrlError": "Fehler beim Konfigurieren des OSP-Rückrufs",
       "callbackUrl": {
-        "name": "Rückruf-URL",
-        "hint": "Geben Sie die Rückruf-URL Ihres IDP ein, die mit „/.well-known/openid-configuration“ endet'"
+        "name": "Statusrückruf URL",
+        "hint": "Statusrückruf URL ist verpflichtend"
+      },
+      "authUrl": {
+        "name": "Auth URL",
+        "hint": "Statusrückruf URL ist verpflichtend"
       },
       "clientId": {
         "name": "Kunden-ID",
@@ -2271,7 +2285,9 @@
       "clientSecret": {
         "name": "Client-Geheimnis",
         "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
-      }
+      },
+      "ospIdentityProvider": "OSP-Identitätsanbieter (IDPs)",
+      "search": "Geben Sie einen Namen oder Alias ​​ein, um zu suchen"
     }
   },
   "navigation": {
@@ -2308,7 +2324,10 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
-      "uploadProgess": "Uploaded % of % files"
+      "uploadProgess": "Uploaded % of % files",
+      "error": {
+        "fileTooLarge": "Datei ist größer als"
+      }
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",
@@ -2377,7 +2396,8 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Information erfolgreich kopiert"
     },
     "state": {
       "enabled": "aktiv",

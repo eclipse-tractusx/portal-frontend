@@ -85,6 +85,8 @@ export type AdminData = {
 export enum CompanyRoleEnum {
   APP_PROVIDER = 'APP_PROVIDER',
   SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+  ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
+  OPERATOR = 'OPERATOR',
 }
 
 export interface CompanyDetails {
@@ -151,7 +153,7 @@ export const apiSlice = createApi({
       query: (fetchArgs) =>
         `/api/administration/user/owncompany/users?status=ACTIVE&size=${PAGE_SIZE}&page=${
           fetchArgs.page
-        }&email=${fetchArgs.args!.expr}`,
+        }&email=${encodeURIComponent(fetchArgs.args!.expr)}`,
     }),
     fetchUsersRoles: builder.query<PaginResult<TenantUser>, string>({
       query: (companyUserId) =>

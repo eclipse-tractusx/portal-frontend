@@ -46,10 +46,6 @@ import {
   useUpdateRegistartionStatusCallbackMutation,
 } from 'features/admin/idpApiSlice'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import { useDispatch } from 'react-redux'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
 import { type IHashMap } from 'types/MainTypes'
@@ -60,8 +56,7 @@ const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
-  const dispatch = useDispatch()
-  const { data } = useFetchRegistartionStatusCallbackQuery()
+  const { data, refetch } = useFetchRegistartionStatusCallbackQuery()
   const [loading, setLoading] = useState(false)
   const [updateRegistartionStatusCallback] =
     useUpdateRegistartionStatusCallbackMutation()
@@ -102,9 +97,6 @@ const OnboardingServiceProvider = () => {
     )
   }
 
-  const isWellknownMetadata = (expr: string) =>
-    isURL(expr) && expr.endsWith('.well-known/openid-configuration')
-
   const updateCallbackIDP = async () => {
     if (!(data && callbackData)) return
     setLoading(true)
@@ -112,6 +104,8 @@ const OnboardingServiceProvider = () => {
       await updateRegistartionStatusCallback(callbackData).unwrap()
       success(t('content.onboardingServiceProvider.success'))
       setOverlayOpen(false)
+      setCallbackData(undefined)
+      refetch()
     } catch (err) {
       setShowError(true)
     }
@@ -130,7 +124,7 @@ const OnboardingServiceProvider = () => {
             callbackUrl: current.callbackUrl,
             clientId: current.clientId,
             clientSecret: current.clientSecret,
-            authUrl: '',
+            authUrl: current.authUrl,
           }
         : undefined
     )
@@ -138,7 +132,7 @@ const OnboardingServiceProvider = () => {
   }
 
   return (
-    <main className="onboarding-service-page-container ">
+    <main className="onboarding-service-page-container">
       <section>
         <Dialog
           open={overlayOpen}
@@ -175,13 +169,24 @@ const OnboardingServiceProvider = () => {
                     'content.onboardingServiceProvider.callbackUrl.name'
                   )}
                   value={data?.callbackUrl}
-                  validate={(expr) => isWellknownMetadata(expr)}
+                  validate={(expr) => isURL(expr)}
                   hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
                   debounceTime={0}
                   onValid={checkValidData}
                 />
               </div>
-              <div style={{ margin: '12px 0' }}>
+              <div style={{ marginTop: '34px' }}>
+                <ValidatingInput
+                  name="authUrl"
+                  label={t('content.onboardingServiceProvider.authUrl.name')}
+                  value={data?.authUrl}
+                  validate={(expr) => isURL(expr)}
+                  hint={t('content.onboardingServiceProvider.authUrl.hint')}
+                  debounceTime={0}
+                  onValid={checkValidData}
+                />
+              </div>
+              <div style={{ margin: '15px 0' }}>
                 <ValidatingInput
                   name="clientId"
                   label={t('content.onboardingServiceProvider.clientId.name')}
@@ -286,7 +291,7 @@ const OnboardingServiceProvider = () => {
                 {t('content.onboardingServiceProvider.subDesc1')}
               </Typography>
               <Typography variant="body3">
-                {t('content.onboardingServiceProvider.subDesc2')}
+                {callbackData?.callbackUrl ?? data?.callbackUrl}
               </Typography>
             </Box>
             <IconButton
@@ -348,22 +353,12 @@ const OnboardingServiceProvider = () => {
           />
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          <div className="connector-table-container">
-            <Box sx={{ display: 'flex' }}>
-              <Typography variant="h5" sx={{ mr: 5 }}>
-                {t('content.onboardingServiceProvider.userList')}
-              </Typography>
-              <Button
-                size="small"
-                startIcon={<AddCircleOutlineIcon />}
-                onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
-                className="add-idp-btn"
-              >
-                {t('content.onboardingServiceProvider.addIdentityProvider')}
-              </Button>
-            </Box>
+          <Box
+            className="connector-table-container"
+            sx={{ border: '1px solid #DCDCDC', borderRadius: '24px' }}
+          >
             <IDPList isManagementOSP={true} />
-          </div>
+          </Box>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
           <div className="connector-table-container">
@@ -400,7 +395,7 @@ const OnboardingServiceProvider = () => {
                   flex: 1,
                   sortable: false,
                   renderCell: ({ row }: { row: networkCompany }) =>
-                    row?.identityProvider?.[0].alias,
+                    row?.identityProvider?.[0]?.alias,
                 },
                 {
                   field: 'activeUsers',
