@@ -62,7 +62,7 @@ export const AddTechnicalUser = () => {
         name: formValues.TechnicalUserName,
         description: formValues.TechnicalUserDescription,
         authenticationType: ServiceAccountType.SECRET,
-        roleIds: [formValues.TechnicalUserService],
+        roleIds: formValues.TechnicalUserService,
       }).unwrap()
       setResponse(result)
       setLoading(false)
@@ -78,7 +78,7 @@ export const AddTechnicalUser = () => {
 
   const defaultFormFieldValues = {
     TechnicalUserName: '',
-    TechnicalUserService: 'none',
+    TechnicalUserService: [''],
     TechnicalUserDescription: '',
   }
   const {

@@ -39,6 +39,7 @@ export interface ServiceAccountRole {
   roleId: string
   roleDescription: string
   roleName: string
+  roleType: string
 }
 
 export interface ServiceAccountCreate {

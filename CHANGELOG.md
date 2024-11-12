@@ -2,8 +2,17 @@
 
 ## Unreleased
 
+### Change
+
+- **Technical Uaer Management**
+  - enhanced technical user management creation page by role type [#1303](https://github.com/eclipse-tractusx/portal-frontend/pull/1303)
+
 ### Bugfixes
 
+- **Home Page**
+  - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
+- **App Registration Process**
+  - fixed wrong api calling to download documents [#1299](https://github.com/eclipse-tractusx/portal-frontend/pull/1299)
 - **Error Handling**
   - Replaced logs with appropriate handler [#1072](https://github.com/eclipse-tractusx/portal-frontend/pull/1072)
 
@@ -23,6 +32,11 @@
   - fixed showing of all subscriptions including inactive one in the list
 - **App Overview**
   - updated the regex for search validation for numeric and special characters [#1179] (https://github.com/eclipse-tractusx/portal-frontend/pull/1179)
+
+### Feature
+
+- **Clearinghouse Self-Description**
+  - enhance admin UI for managing SD document retriggering [#1292](https://github.com/eclipse-tractusx/portal-frontend/pull/1292)
 
 ## 2.3.0-RC1
 
