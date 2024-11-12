@@ -86,11 +86,13 @@ export const Header = ({
     )
   }, [companyData, companyDetails])
 
+  const { companyRoles = [] } = getCompanyRoles()
+
   const addTitle = (items: Tree[] | undefined) =>
     items
       ?.filter(
         (item: Tree) =>
-          !item.companyRole || getCompanyRoles().includes(item.companyRole)
+          !item.companyRole || companyRoles?.includes(item.companyRole)
       )
       .map(
         (item: Tree): MenuItem => ({
