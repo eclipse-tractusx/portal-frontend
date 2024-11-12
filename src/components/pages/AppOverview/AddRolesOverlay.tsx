@@ -30,7 +30,6 @@ import {
   type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
-import { PAGES } from 'types/cfx/Constants'
 import { Box, Grid } from '@mui/material'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import { Controller, useForm } from 'react-hook-form'
@@ -39,12 +38,11 @@ import { isString } from 'lodash'
 import { ErrorType } from 'features/appManagement/types'
 import { useState } from 'react'
 import { useUpdateActiveAppMutation } from 'features/appManagement/apiSlice'
-import { useNavigate } from 'react-router-dom'
 import { error, success } from 'services/NotifyService'
 
 interface AddRolesOverlayProps {
   openDialog: boolean
-  handleOverlayClose: () => void
+  handleOverlayClose: (isRoleUpdated?: boolean) => void
   appId: string
 }
 const AddRolesOverlay = ({
@@ -53,7 +51,6 @@ const AddRolesOverlay = ({
   appId,
 }: AddRolesOverlayProps) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
 
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   const [rolesDescription, setRolesDescription] = useState<string[]>([])
@@ -150,9 +147,7 @@ const AddRolesOverlay = ({
     await updateActiveApp(updatedData)
       .unwrap()
       .then(() => {
-        navigate(`/${PAGES.APP_OVERVIEW}`, {
-          state: 'add-roles-success',
-        })
+        handleOverlayClose(true)
         success(t('content.addRoles.successMsg'))
       })
       .catch((err) => {
