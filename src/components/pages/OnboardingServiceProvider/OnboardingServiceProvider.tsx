@@ -373,7 +373,7 @@ const OnboardingServiceProvider = () => {
               loadLabel={t('global.actions.more')}
               fetchHook={useFetchCompaniesListQuery}
               getRowId={(row: { [key: string]: string }) =>
-                row.applicationStatus
+                row.applicationDateCreated
               }
               columns={[
                 {
