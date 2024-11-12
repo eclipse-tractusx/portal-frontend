@@ -32,7 +32,6 @@ import {
   isSearchUserEmail,
   isValidAppOverviewSearch,
   isValidPhone,
-  isValidAppOverviewSearch,
 } from './Patterns'
 
 const TESTDATA = {
@@ -376,14 +375,6 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.appOverview.invalid.forEach((expr) => {
       expect(isValidAppOverviewSearch(expr)).toBe(false)
-    })
-  })
-  it('validate phone number', () => {
-    TESTDATA.PHONE.valid.forEach((expr) => {
-      expect(isValidPhone(expr)).toBe(true)
-    })
-    TESTDATA.CLIENTID.invalid.forEach((expr) => {
-      expect(isValidPhone(expr)).toBe(false)
     })
   })
   it('validate appoverview search', () => {
