@@ -24,10 +24,12 @@ on:
     branches: [main]
     paths:
       - yarn.lock
+      - DEPENDENCIES
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - yarn.lock
+      - DEPENDENCIES
   workflow_dispatch:
 
 jobs:
