@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **App Overview**
+  - Fix lead image preview issue in apps overview [#1255](https://github.com/eclipse-tractusx/portal-frontend/pull/1255)
+
 ### Change
 
 - **Technical Uaer Management**
