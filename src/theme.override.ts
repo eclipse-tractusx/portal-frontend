@@ -586,12 +586,7 @@ export const customTheme = {
         disableRipple: true,
       },
       styleOverrides: {
-        root: {
-          '&.Mui-disabled': {
-            background: `${COLOR_PALETTE.GRAY} !important`,
-            color: `${COLOR_PALETTE.WHITE} !important`,
-          },
-        },
+        root: {},
       },
     },
 
