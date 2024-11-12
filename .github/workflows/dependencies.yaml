@@ -24,10 +24,14 @@ on:
     branches: [main]
     paths:
       - yarn.lock
+      - DEPENDENCIES
+      - .github/workflows/dependencies.yaml
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - yarn.lock
+      - DEPENDENCIES
+      - .github/workflows/dependencies.yaml
   workflow_dispatch:
 
 jobs:
