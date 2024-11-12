@@ -33,7 +33,6 @@ import {
   isValidAppOverviewSearch,
   isValidIDPName,
   isValidPhone,
-  isValidAppOverviewSearch,
 } from './Patterns'
 
 const TESTDATA = {

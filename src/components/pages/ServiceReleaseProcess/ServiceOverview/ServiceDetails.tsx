@@ -290,12 +290,8 @@ export default function ServiceDetails() {
                   body: [
                     [fetchServiceStatus?.providerUri],
                     [fetchServiceStatus?.contactEmail],
-<<<<<<< HEAD
                     // TODO: contactNumber is null atm and causing build failure. Once BE resolve the issue then will un-comment this line
                     // [fetchServiceStatus?.contactNumber],
-=======
-                    [fetchServiceStatus?.contactNumber],
->>>>>>> e39c0f9e (new: introduced new field of customer contact in service)
                   ],
                 }}
                 horizontal={true}
