@@ -157,13 +157,18 @@ export default function AddRoles() {
           {t('content.addRoles.description')}
         </Typography>
       </section>
-      <AddRolesOverlay
-        openDialog={addRolesOverlayOpen}
-        handleOverlayClose={() => {
-          setAddRolesOverlayOpen(false)
-        }}
-        appId={appId ?? ''}
-      />
+      {addRolesOverlayOpen && (
+        <AddRolesOverlay
+          openDialog={addRolesOverlayOpen}
+          handleOverlayClose={(isRoleUpdated) => {
+            if (isRoleUpdated) {
+              refetch()
+            }
+            setAddRolesOverlayOpen(false)
+          }}
+          appId={appId ?? ''}
+        />
+      )}
       <div className="main-container">
         <div className="main-row">
           <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>

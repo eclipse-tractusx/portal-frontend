@@ -67,6 +67,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Added missing translation for change description of success message [PM2-1821](https://cofinity-x.atlassian.net/browse/PM2-1821)
   - Added missing translation for cover image of success message [PM2-1819](https://cofinity-x.atlassian.net/browse/PM2-1819)
   - added missing german translation for add role success message [PM2-1810](https://cofinity-x.atlassian.net/browse/PM2-1810)
+  - Fixed redirection issue after role updates in your apps [PM2-1806](https://cofinity-x.atlassian.net/browse/PM2-1806)
 
 - **Search Translation for App and Service Subsciption**
 
