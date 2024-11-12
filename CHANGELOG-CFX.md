@@ -68,6 +68,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - added missing german translation for add role success message [PM2-1810](https://cofinity-x.atlassian.net/browse/PM2-1810)
   - Fixed redirection issue after role updates in your apps [PM2-1806](https://cofinity-x.atlassian.net/browse/PM2-1806)
   - Fixed misaligned hover effect on Add Role page [PM2-1809](https://cofinity-x.atlassian.net/browse/PM2-1809)
+  - Fixed misaligned hover effect on changes images and documents [PM2-1817](https://cofinity-x.atlassian.net/browse/PM2-1817)
 
 - **Search Translation for App and Service Subsciption**
 
