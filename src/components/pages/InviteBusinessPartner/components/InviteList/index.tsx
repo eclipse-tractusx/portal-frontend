@@ -33,6 +33,7 @@ import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
 import { isCompanyName } from 'types/Patterns'
+import { PAGES } from 'types/Constants'
 
 interface FetchHookArgsType {
   expr: string
@@ -57,6 +58,10 @@ export const InviteList = ({
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(updateInviteSelector)
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const validateSearchText = (expr: string) => {
     const validateExpr = isCompanyName(expr)
@@ -135,6 +140,7 @@ export const InviteList = ({
             ),
           },
         ]}
+        mappedTableSearchTranslation={mappedTableSearchTranslation}
       />
     </section>
   )

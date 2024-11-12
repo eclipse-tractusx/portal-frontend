@@ -46,6 +46,7 @@ import {
   useUnsubscribeServiceMutation,
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
+import { PAGES } from 'types/Constants'
 
 interface FetchHookArgsType {
   statusId: string
@@ -74,6 +75,11 @@ export default function CompanySubscriptions() {
   const [unsubscribeServiceMutation] = useUnsubscribeServiceMutation()
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
   const [currentActive, setCurrentActive] = useState<number>(0)
+
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -222,6 +228,7 @@ export default function CompanySubscriptions() {
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.subscriptionId}
         columns={companySubscriptionsCols}
+        mappedTableSearchTranslation={mappedTableSearchTranslation}
       />
     </div>
   )

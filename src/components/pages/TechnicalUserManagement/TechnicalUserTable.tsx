@@ -20,8 +20,8 @@
 
 import {
   IconButton,
-  PageLoadingTable,
   StatusTag,
+  PageLoadingTable,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -54,6 +54,12 @@ export const TechnicalUserTable = () => {
   const [group, setGroup] = useState<string>(
     ServiceAccountStatusFilter.SHOW_ALL
   )
+
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
+
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
     setGroup(viewValue)
@@ -208,6 +214,7 @@ export const TechnicalUserTable = () => {
             ),
           },
         ]}
+        mappedTableSearchTranslation={mappedTableSearchTranslation}
       />
     </div>
   )

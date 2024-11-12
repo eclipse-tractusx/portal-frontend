@@ -65,6 +65,7 @@ import ConnectorDetailsOverlay from './ConnectorDetailsOverlay'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
+import { PAGES } from 'types/Constants'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -107,6 +108,10 @@ const EdcConnector = () => {
   const [notificationMessage, setNotificationMessage] = useState<string>(
     t('content.edcconnector.snackbar.successmessage')
   )
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
   const [
     viewConfigurationDetailsOverlayOpen,
     setViewConfigurationDetailsOverlayOpen,
@@ -506,6 +511,7 @@ const EdcConnector = () => {
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}
+              mappedTableSearchTranslation={mappedTableSearchTranslation}
             />
           </div>
         </TabPanel>
@@ -523,6 +529,7 @@ const EdcConnector = () => {
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}
+              mappedTableSearchTranslation={mappedTableSearchTranslation}
             />
           </div>
         </TabPanel>
