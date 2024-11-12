@@ -28,12 +28,12 @@ import {
   useUpdateAgreementConsentsMutation,
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
-  useFetchNewDocumentByIdMutation,
   useFetchFrameDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
@@ -48,7 +48,7 @@ export default function ContractAndConsent() {
   const { data: fetchAppStatus } = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export default function ContractAndConsent() {
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchAppStatus ?? undefined}
-        getDocumentById={getDocumentById}
+        getDocumentById={fetchDocumentById}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={
           '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F03.+Terms%26Conditions.md'

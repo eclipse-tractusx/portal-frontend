@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { MenuItem } from '@mui/material'
@@ -84,6 +84,7 @@ const MenuItemOpenOverlay = ({
 export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   const { t } = useTranslation()
   const ti = useTranslation('idp').t
+  const dispatch = useDispatch()
 
   const [disableLoading, setDisableLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState(false)
@@ -94,8 +95,17 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     .sort((a: IdentityProvider, b: IdentityProvider) =>
       (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
+  const [searchExpr, setSearchExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
+  const managedIdpsData = idpsData?.filter(
+    (a) => a.identityProviderTypeId === IDPCategory.MANAGED
+  )
+  const [idpsManagedData, setIdpsManagedData] = useState(managedIdpsData)
+
+  useEffect(() => {
+    setIdpsManagedData(managedIdpsData)
+  }, [data])
 
   const doDelete = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -353,9 +363,31 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     )
   }
 
+  const onSearch = (value: string) => {
+    if (value) {
+      const searchFilter = managedIdpsData?.filter(
+        (i) => i.alias === value || i.displayName === value
+      )
+      setIdpsManagedData(searchFilter)
+      setSearchExpr(value)
+    } else setIdpsManagedData(managedIdpsData)
+  }
+
+  const style = {
+    '.MuiDataGrid-columnHeadersInner': {
+      fontSize: '16px',
+      fontWeight: '400',
+      backgroundColor: '#E9E9E9',
+    },
+    '.MuiDataGrid-row': {
+      fontSize: '14px',
+      fontWeight: '400',
+    },
+  }
+
   return (
     <Table
-      rowsCount={idpsData?.length}
+      rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
       hideFooter
       loading={isFetching}
       disableRowSelectionOnClick={true}
@@ -364,8 +396,12 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       disableColumnSelector={true}
       disableDensitySelector={true}
       columnHeadersBackgroundColor={'#ffffff'}
-      title=""
-      toolbarVariant="ultimate"
+      title={
+        isManagementOSP
+          ? t('content.onboardingServiceProvider.ospIdentityProvider')
+          : ''
+      }
+      toolbarVariant={isManagementOSP ? undefined : 'ultimate'}
       columns={[
         {
           field: 'displayName',
@@ -425,15 +461,27 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
             isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
         },
       ]}
-      rows={
-        (isManagementOSP
-          ? idpsData?.filter(
-              (a) => a.identityProviderTypeId === IDPCategory.MANAGED
-            )
-          : idpsData) ?? []
-      }
+      rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
+      searchPlaceholder={
+        isManagementOSP
+          ? t('content.onboardingServiceProvider.search')
+          : undefined
+      }
+      searchExpr={isManagementOSP ? searchExpr : undefined}
+      onSearch={
+        isManagementOSP
+          ? (expr: string) => {
+              isManagementOSP && onSearch(expr)
+              setSearchExpr(expr)
+            }
+          : undefined
+      }
+      searchDebounce={isManagementOSP ? 1000 : undefined}
+      onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+      buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
+      sx={isManagementOSP ? style : undefined}
     />
   )
 }

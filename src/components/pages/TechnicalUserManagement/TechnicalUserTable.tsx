@@ -61,14 +61,18 @@ export const TechnicalUserTable = () => {
   }
 
   useEffect(() => {
-    setRefresh(Date.now())
+    if (update !== 0) {
+      setRefresh(Date.now())
+    }
   }, [update])
 
   useEffect(() => {
-    setFetchHookArgs({
-      statusFilter: group,
-      expr,
-    })
+    if (refresh !== 0) {
+      setFetchHookArgs({
+        statusFilter: group,
+        expr,
+      })
+    }
   }, [group, expr])
 
   const filterButtons = [
@@ -151,7 +155,7 @@ export const TechnicalUserTable = () => {
             headerName: t('global.field.userType'),
             flex: 1.2,
             valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
-              row.usertype || '-',
+              row.userType || '-',
           },
           {
             field: 'offer',
