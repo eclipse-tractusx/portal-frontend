@@ -247,14 +247,10 @@ export const ProgressVerificationButton = ({
 
   const getButtonTitle = () => {
     if (
-      (props.retriggerableProcessSteps &&
-        props.retriggerableProcessSteps.indexOf(
-          RetriggerableProcessSteps.TRIGGER_OVERRIDE_CLEARING_HOUSE
-        ) > -1) ??
-      (props.retriggerableProcessSteps &&
-        props.retriggerableProcessSteps.indexOf(
-          RetriggerableProcessSteps.OVERRIDE_BUSINESS_PARTNER_NUMBER
-        ) > -1)
+      props.retriggerableProcessSteps &&
+      props.retriggerableProcessSteps.indexOf(
+        RetriggerableProcessSteps.MANUAL_TRIGGER_OVERRIDE_CLEARING_HOUSE
+      ) > -1
     ) {
       return t('content.checklistOverlay.buttonOverwrite')
     }

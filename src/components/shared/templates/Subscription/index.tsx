@@ -259,6 +259,8 @@ interface SubscriptionType {
   currentSuccessType: (state: RootState) => boolean
   loadMoreButtonText?: string
   type?: string
+  activeAppHeading?: string
+  subscriptionHeading?: string
 }
 
 export default function Subscription({
@@ -277,6 +279,8 @@ export default function Subscription({
   currentSuccessType,
   loadMoreButtonText = 'Load More',
   type = SubscriptionTypes.APP_SUBSCRIPTION,
+  activeAppHeading = 'Apps Offered',
+  subscriptionHeading = 'Subscriptions',
 }: SubscriptionType) {
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -323,23 +327,13 @@ export default function Subscription({
   }, [data])
 
   useEffect(() => {
-    if (data?.content && appFiltersData) {
-      const fillers: AppFiltersResponse[] = []
-      appFiltersData.forEach((item) => {
-        data.content.forEach((base: { offerId: string }) => {
-          if (base.offerId === item.id) {
-            fillers.push(item)
-          }
-        })
+    if (appFiltersData?.length) {
+      setState({
+        type: ActionKind.SET_APP_FILTERS,
+        payload: appFiltersData,
       })
-      if (fillers?.length) {
-        setState({
-          type: ActionKind.SET_APP_FILTERS,
-          payload: fillers,
-        })
-      }
     }
-  }, [appFiltersData, data])
+  }, [appFiltersData, type])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     let status = ''
@@ -490,7 +484,22 @@ export default function Subscription({
           )}
           {!doNotShowAutoSetup && (
             <div className="subDescription">
-              <Typography className="readMore" variant="label3">
+              <Typography
+                className="readMore"
+                variant="label3"
+                sx={{
+                  cursor: 'pointer',
+                  color: '#0088CC',
+                  marginTop: '30px',
+                }}
+                onClick={() =>
+                  window.open(
+                    '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F03.+Subscription+Overview+%28App+Provider%29.md',
+                    '_blank',
+                    'noopener'
+                  )
+                }
+              >
                 {readMore}
               </Typography>
               <Typography
@@ -537,24 +546,27 @@ export default function Subscription({
               </div>
             </div>
             {appFilters && appFilters.length > 0 && (
-              <div className="appFilterSection">
-                {appFilters.map((app: AppFiltersResponse) => {
-                  return (
-                    <Typography
-                      className={`appName ${
-                        activeAppFilter === app.id ? 'activeFilter' : ''
-                      }`}
-                      variant="body3"
-                      onClick={() => {
-                        handleActiveAppFilter(app.id)
-                      }}
-                      key={app.id}
-                    >
-                      {app.name}
-                    </Typography>
-                  )
-                })}
-              </div>
+              <>
+                <Typography variant="h4">{activeAppHeading}</Typography>
+                <div className="appFilterSection">
+                  {appFilters.map((app: AppFiltersResponse) => {
+                    return (
+                      <Typography
+                        className={`appName ${
+                          activeAppFilter === app.id ? 'activeFilter' : ''
+                        }`}
+                        variant="body3"
+                        onClick={() => {
+                          handleActiveAppFilter(app.id)
+                        }}
+                        key={app.id}
+                      >
+                        {app.name}
+                      </Typography>
+                    )
+                  })}
+                </div>
+              </>
             )}
             {isFetching ? (
               <div className="loading-progress">
@@ -573,6 +585,7 @@ export default function Subscription({
                 type={type}
                 refetch={refetch}
                 isSuccess={apiSuccess}
+                subscriptionHeading={subscriptionHeading}
               />
             )}
           </div>

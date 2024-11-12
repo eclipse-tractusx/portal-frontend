@@ -80,7 +80,6 @@ import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
-import OSPManagement from 'components/pages/OSPManagement'
 import CompanyWallet from 'components/pages/CompanyWallet'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
 import { OSPConsent } from 'components/pages/OSPConsent'
@@ -95,6 +94,7 @@ import {
   userHasSsiCredentialRole,
 } from 'services/AccessService'
 import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
+import AdminclearinghouseSD from 'components/pages/AdminClearingHouseSD'
 
 /**
  * ALL_PAGES
@@ -208,7 +208,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
     element: <PartnerNetwork />,
   },
   {
@@ -397,6 +397,11 @@ export const ALL_PAGES: IPage[] = [
     allowTo: () => userHasPortalRole(ROLES.SUBMITTED_APPLICATION),
     element: <RegistrationRequests />,
   },
+  {
+    name: PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
+    allowTo: () => userHasPortalRole(ROLES.APPROVE_NEW_PARTNER),
+    element: <AdminclearinghouseSD />,
+  },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
@@ -555,11 +560,6 @@ export const ALL_PAGES: IPage[] = [
     element: <AdminCredential />,
   },
   {
-    name: PAGES.ONBOARDING_SERVICE_PROVIDER,
-    allowTo: () => userHasPortalRole(ROLES.IDP_VIEW),
-    element: <OSPManagement />,
-  },
-  {
     name: PAGES.COMPANY_CERTIFICATE,
     allowTo: () => userHasPortalRole(ROLES.COMPANY_CERTIFICATE_VIEW),
     element: <CompanyCertificates />,
@@ -598,7 +598,7 @@ export const ALL_PAGES: IPage[] = [
     element: <CompanyData />,
   },
   {
-    name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+    name: PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
     allowTo: () => userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION),
     element: <OnboardingServiceProvider />,
   },
@@ -637,7 +637,7 @@ export const ALL_OVERLAYS: RestrictedItem[] = [
   { name: OVERLAYS.NEWS },
   {
     name: OVERLAYS.PARTNER,
-    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER),
+    allowTo: () => userHasBpdmRole(ROLES.READ_PARTNER_MEMBER),
   },
   {
     name: OVERLAYS.USER,
@@ -830,6 +830,7 @@ export const userMenuFull = [
   PAGES.IDP_MANAGEMENT,
   PAGES.CONNECTOR_MANAGEMENT,
   PAGES.APPLICATION_REQUESTS,
+  PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
@@ -838,7 +839,7 @@ export const userMenuFull = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
-  PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
+  PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
   PAGES.LOGOUT,
 ]
 
@@ -846,10 +847,12 @@ export const userMenuRegistration = [PAGES.LOGOUT]
 
 export const userMenuCompany = [
   PAGES.ORGANIZATION,
+  PAGES.COMPANY_SUBSCRIPTIONS,
   PAGES.USER_MANAGEMENT,
   PAGES.IDP_MANAGEMENT,
   PAGES.CONNECTOR_MANAGEMENT,
   PAGES.APPLICATION_REQUESTS,
+  PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
   PAGES.INVITE,
   PAGES.COMPANY_ROLE,
   PAGES.USECASE_PARTICIPATION,
@@ -858,6 +861,7 @@ export const userMenuCompany = [
   PAGES.COMPANY_CERTIFICATE,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
+  PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
 ]
 
 /**

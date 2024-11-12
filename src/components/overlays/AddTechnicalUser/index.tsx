@@ -64,7 +64,6 @@ export const AddTechnicalUser = () => {
         authenticationType: ServiceAccountType.SECRET,
         roleIds: [formValues.TechnicalUserService],
       }).unwrap()
-      LogService.info('', result)
       setResponse(result)
       setLoading(false)
       setError(false)

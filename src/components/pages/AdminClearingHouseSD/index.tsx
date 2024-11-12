@@ -17,41 +17,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.onboarding-service-page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
+import AdminclearinghouseSDElements from './AdminClearingHouseSDElements'
 
-.ospm {
-  border: 1px solid #dcdcdc;
-  border-radius: 24px;
-  padding: 32px 0px 0px;
-}
-
-.onboarding-service-header {
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-
-  .onboarding-service-title {
-    text-align: center;
-    padding-bottom: 20px;
-    position: relative;
-  }
-
-  .onboarding-service-title::after {
-    content: '';
-    width: 70px;
-    border-bottom: 2px solid;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .onboarding-service-desc {
-    width: 74%;
-    margin: 50px auto;
-  }
+export default function AdminclearinghouseSD() {
+  return (
+    <main className="appCertificate">
+      <div className="mainContainer">
+        <div className="mainRow">
+          <AdminclearinghouseSDElements />
+        </div>
+      </div>
+    </main>
+  )
 }

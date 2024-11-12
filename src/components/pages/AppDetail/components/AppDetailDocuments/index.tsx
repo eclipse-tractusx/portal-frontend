@@ -26,7 +26,10 @@ import { type AppDetails, type Documents } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import '../../AppDetail.scss'
-import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import {
+  type DocumentData,
+  DocumentTypeId,
+} from 'features/appManagement/apiSlice'
 import { error } from 'services/NotifyService'
 import { type LogData } from 'services/LogService'
 
@@ -53,6 +56,35 @@ export default function AppDetailDocuments({ item }: { item: AppDetails }) {
   }
   return (
     <div id="documents">
+      <div className="margin-h-40">
+        <Typography variant="h3">
+          {t('content.appdetail.document.conformityDocument')}
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 3 }}>
+          {t('content.appdetail.document.conformityDocumentsDescription')}
+        </Typography>
+        {item?.documents?.[DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS] ? (
+          item?.documents[DocumentTypeId.CONFORMITY_APPROVAL_BUSINESS_APPS].map(
+            (item: DocumentData) => (
+              <li key={item.documentId} className="document-list doc-list">
+                <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
+                <button
+                  className="document-button-link"
+                  onClick={() =>
+                    handleDownloadClick(item.documentId, item.documentName)
+                  }
+                >
+                  {item.documentName}
+                </button>
+              </li>
+            )
+          )
+        ) : (
+          <Typography variant="body2" className="not-available">
+            {t('content.appdetail.document.noDocumentsAvailable')}
+          </Typography>
+        )}
+      </div>
       <div className="divider-height" />
       <Typography variant="h3">
         {t('content.appdetail.howtouse.heading')}

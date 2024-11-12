@@ -21,6 +21,7 @@
     "technicalSetup": "Technical Integration",
     "connectorManagement": "Connector Management",
     "applicationRequests": "Application Requests",
+    "clearinghouseSelfDescription": "Clearinghouse Self-Description",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -69,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "onboardingServiceProviderManagement": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -461,7 +462,7 @@
         "inactive": "inactive",
         "showAll": "show all"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Language",
@@ -1070,6 +1071,18 @@
       "metadata_url_required_error": "Metadata url is required",
       "metadata_url_invalid_error": "Please enter valid metadata url"
     },
+    "clearinghouseSelfDescription": {
+      "heading": "Self-Description Document Status",
+      "description": "This page provides an overview of the current status of self-descriptions for administrators.",
+      "reprocess": "Reprocess",
+      "complianceStatus": "Compliance Status:",
+      "legalPerson": "Legal Person",
+      "legalPersonDesc": "Overview of companies with missing legal person self-description",
+      "connectors": "Connectors",
+      "connectorsDesc": "Overview of companies with missing connector self-description",
+      "errorMsg": "Error! Something went wrong",
+      "noDataMsg": "No records found."
+    },
     "addUser": {
       "headline": "Add User Account",
       "subheadline": "Add a new user account by adding the user first and last name as well as the email address. Below the input fields select the respective user roles which the user should have. One role is minimum needed to enable the user to access the network.",
@@ -1198,7 +1211,12 @@
         "message": "The technical user profile defined below displays the user permission which the technical user created as part of the app/service activation gets automatically assigned."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by your company"
+      "subscribedTooltip": "The app is already subscribed by your company",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -1443,7 +1461,7 @@
       "description": "Do you wan't to rather use the autosetup; connect your service to automate marketplace subscription build",
       "readMore": "Read More",
       "registerURL": "RegisterURL",
-      "search": "...search by entering the company name here.",
+      "search": "Search for company name",
       "noDataMessage": "No data available",
       "subscriptionHeading": ">> there are already active subscriptions for the service {serviceName}",
       "subscribeSuccessMsg": "Subscribed Successfully",
@@ -2232,7 +2250,9 @@
       "clientSecret": {
         "name": "Client Secret",
         "hint": "Enter the client secret provided by your IdP"
-      }
+      },
+      "ospIdentityProvider": "OSP Identity Provider(IDPs)",
+      "search": "Enter name or alias to search"
     }
   },
   "navigation": {
@@ -2339,7 +2359,8 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Information copied successfully"
     },
     "state": {
       "enabled": "enabled",
