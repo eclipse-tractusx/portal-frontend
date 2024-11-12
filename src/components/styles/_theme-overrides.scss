@@ -2074,3 +2074,9 @@ p.MuiTypography-root.MuiTypography-body3.description,
   color: $link-color;
   cursor: pointer;
 }
+
+.change-image-document-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -169,7 +169,10 @@ export default function ChangeDocuments() {
           <Box sx={{ mb: '20px', mt: '10px' }}>
             {documents?.map((doc: DocumentData) => {
               return (
-                <div key={doc.documentId}>
+                <div
+                  key={doc.documentId}
+                  className="change-image-document-item"
+                >
                   <Typography variant="label4" sx={{ ml: '28px' }}>
                     {doc.documentName}
                   </Typography>
@@ -182,19 +185,16 @@ export default function ChangeDocuments() {
                         : ''
                     }
                     children={
-                      <span style={{ float: 'right' }}>
-                        <IconButton
-                          sx={{ height: '18px', width: '18px', float: 'right' }}
-                          onClick={() => deleteDocument(doc.documentId)}
-                          disabled={
-                            docType ===
-                              getDocumentName(DocumentNameType.APP_IMAGE) &&
-                            documents.length <= 1
-                          }
-                        >
-                          <DeleteOutlinedIcon />
-                        </IconButton>
-                      </span>
+                      <IconButton
+                        onClick={() => deleteDocument(doc.documentId)}
+                        disabled={
+                          docType ===
+                            getDocumentName(DocumentNameType.APP_IMAGE) &&
+                          documents.length <= 1
+                        }
+                      >
+                        <DeleteOutlinedIcon />
+                      </IconButton>
                     }
                   />
                 </div>
