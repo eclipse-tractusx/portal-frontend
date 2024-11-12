@@ -40,6 +40,8 @@ import {
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
 import { Link } from 'react-router-dom'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 const ProfileHelpURL =
   '/documentation/?path=user%2F05.+Service%28s%29%2F03.+Service+Subscription%2F01.+Service+Subscription.md'
@@ -75,7 +77,7 @@ export default function ActivateserviceSubscription({
     [data]
   )
 
-  const handleConfrim = async () => {
+  const handleConfirm = async () => {
     setLoading(true)
     try {
       const result = await subscribe({
@@ -85,9 +87,9 @@ export default function ActivateserviceSubscription({
       setActivationResponse(true)
       setTechuserInfo(result)
       setLoading(false)
-    } catch (error) {
+    } catch (e) {
       setLoading(false)
-      console.log(error)
+      error('ERROR ON SERVICE SUBSCRIPTION', '', e as LogData)
     }
   }
 
@@ -296,7 +298,7 @@ export default function ActivateserviceSubscription({
                 sx={{ marginLeft: '10px' }}
               />
             ) : (
-              <Button variant="contained" onClick={() => handleConfrim()}>
+              <Button variant="contained" onClick={() => handleConfirm()}>
                 {t('serviceSubscription.register.confirm')}
               </Button>
             )}

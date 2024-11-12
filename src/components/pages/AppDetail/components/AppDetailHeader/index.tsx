@@ -34,6 +34,7 @@ import { useEffect, useState } from 'react'
 import { SubscriptionStatus } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
+import { error } from 'services/LogService'
 import type { UseCaseType } from 'features/appManagement/types'
 import { userHasPortalRole } from 'services/AccessService'
 import type { RootState } from 'features/store'
@@ -183,8 +184,8 @@ export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
       }).unwrap()
       const file = response.data
       setImage(URL.createObjectURL(file))
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      error(e as string)
     }
   }
 

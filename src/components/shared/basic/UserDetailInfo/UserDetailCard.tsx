@@ -32,6 +32,7 @@ import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { useParams } from 'react-router-dom'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { info } from 'services/LogService'
 
 export type UserDetail = {
   companyUserId: string
@@ -74,7 +75,7 @@ export const UserDetailCard = ({
   const copyText = (value: string | string[]) => {
     setCopied(true)
     navigator.clipboard.writeText(value as string).catch((err) => {
-      console.log(err)
+      info(err)
     })
   }
 

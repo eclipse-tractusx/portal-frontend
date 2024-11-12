@@ -25,6 +25,7 @@ import {
 import { useEffect, useState } from 'react'
 import { getApiBase, getAssetBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
+import { info } from 'services/LogService'
 
 export default function ImageTest() {
   const style = { margin: '10px', width: '240px', height: '240px' }
@@ -37,7 +38,7 @@ export default function ImageTest() {
         setData(URL.createObjectURL(new Blob([buffer], { type: 'image/png' })))
       })
       .catch((err) => {
-        console.log(err)
+        info(err)
       })
   }, [])
 
