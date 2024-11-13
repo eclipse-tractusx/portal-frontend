@@ -56,13 +56,13 @@ export const apiSlice = createApi({
         if (fetchArgs.args.expr && !isBPN(fetchArgs.args.expr)) {
           url = `/api/administration/partnernetwork/legalEntities/search?page=${fetchArgs.page}&size=10`
           body = {
-            bpnl: [],
+            bpnls: [''],
             legalName: fetchArgs.args.expr,
           }
         } else if (isBPN(fetchArgs.args.expr)) {
           url = `/api/administration/partnernetwork/legalEntities/search?page=${fetchArgs.page}&size=10`
           body = {
-            bpnl: [fetchArgs.args.expr],
+            bpnls: [fetchArgs.args.expr],
             legalName: '',
           }
         } else {
