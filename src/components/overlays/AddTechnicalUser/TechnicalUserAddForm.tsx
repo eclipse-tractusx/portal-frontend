@@ -176,7 +176,9 @@ const TechnicalUserAddFormSelect = ({
                 'content.addUser.technicalUser.addOverlay.internalRoles'
               )}
               checked={selectedRoleType === RoleType.Internal}
-              onChange={() => { setSelectedRoleType(RoleType.Internal) }}
+              onChange={() => {
+                setSelectedRoleType(RoleType.Internal)
+              }}
               name="radio-buttons"
               value={selectedRoleType}
               size="small"
@@ -219,7 +221,9 @@ const TechnicalUserAddFormSelect = ({
                 'content.addUser.technicalUser.addOverlay.externalRoles'
               )}
               checked={selectedRoleType === RoleType.External}
-              onChange={() => { setSelectedRoleType(RoleType.External) }}
+              onChange={() => {
+                setSelectedRoleType(RoleType.External)
+              }}
               name="radio-buttons"
               value={selectedRoleType}
               size="small"
