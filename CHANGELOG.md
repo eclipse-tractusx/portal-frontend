@@ -6,7 +6,7 @@
 
 ### Bugfixes
 
-- **Consent OSP**
+- **Home Page**
   - fixed VAT ID/identifier in the OSP Consent Form, and update roles translations on language switch [#1323](https://github.com/eclipse-tractusx/portal-frontend/issues/1323)
 
 ## 2.3.0-RC3
