@@ -111,8 +111,10 @@ export default function ServiceDetails() {
             <div className="imageCard">
               <CardHorizontal
                 borderRadius={6}
-                imageAlt="Service Card"
-                imagePath={leadImg}
+                image={{
+                  alt: 'Service Card',
+                  src: leadImg,
+                }}
                 label={''}
                 buttonText=""
                 onBtnClick={() => {
