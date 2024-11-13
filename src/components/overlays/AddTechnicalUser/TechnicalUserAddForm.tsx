@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import { Trans, useTranslation } from 'react-i18next'
 import InputLabel from '@mui/material/InputLabel'
@@ -82,6 +82,11 @@ export type FormAddType = {
   limit?: number
 }
 
+enum RoleType {
+  Internal = 'Internal',
+  External = 'External',
+}
+
 const TechnicalUserAddFormSelect = ({
   control,
   trigger,
@@ -91,10 +96,21 @@ const TechnicalUserAddFormSelect = ({
 }: FormSelectType) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
-  const internalRoles = roles?.filter((role) => role.roleType === 'Internal')
-  const externalRoles = roles?.filter((role) => role.roleType === 'External')
+  const internalRoles = roles?.filter(
+    (role) => role.roleType === RoleType.Internal
+  )
+  const externalRoles = roles?.filter(
+    (role) => role.roleType === RoleType.External
+  )
   const [roleError, setRoleError] = useState<boolean>(false)
   const [selectedRoles, setSelectedRoles] = useState<string[]>([])
+  const [selectedRoleType, setSelectedRoleType] = useState<string>(
+    RoleType.Internal
+  )
+
+  useEffect(() => {
+    setSelectedRoles([])
+  }, [selectedRoleType])
 
   const selectCheckboxRoles = (role: string, select: boolean) => {
     if (selectedRoles && selectedRoles[0] === externalRoles?.[0].roleId) {
@@ -150,67 +166,104 @@ const TechnicalUserAddFormSelect = ({
             </Typography>
           </InputLabel>
           <Trans>
-            <Typography variant="body2">
+            <Typography variant="body2" sx={{ marginBottom: '10px' }}>
               {t('content.addUser.technicalUser.addOverlay.note')}
             </Typography>
           </Trans>
-          <Box sx={{ margin: '10px 0px' }}>
-            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-              {t('content.addUser.technicalUser.addOverlay.internalRoles')}
-            </Typography>
-            {internalRoles?.map((role: ServiceAccountRole) => (
-              <>
-                <Checkbox
-                  key={role.roleId}
-                  label={role.roleName}
-                  checked={selectedRoles.indexOf(role.roleId) !== -1}
-                  onChange={(e) => {
-                    selectRoles(role.roleId, e.target.checked, 'checkbox')
-                    trigger(name)
-                    onChange(
-                      selectCheckboxOnChange(role.roleId, e.target.checked)
-                    )
-                  }}
-                  size="small"
-                  value={selectedRoles}
-                />
-                <Typography variant="body3" className="roleDescription">
-                  {role.roleDescription ?? '-'}
-                </Typography>
-              </>
-            ))}
+          <Box>
+            <Radio
+              label={t(
+                'content.addUser.technicalUser.addOverlay.internalRoles'
+              )}
+              checked={selectedRoleType === RoleType.Internal}
+              onChange={() => {
+                setSelectedRoleType(RoleType.Internal)
+              }}
+              name="radio-buttons"
+              value={selectedRoleType}
+              size="small"
+            />
+            <Box sx={{ pl: '28px' }}>
+              <Typography variant="body3" sx={{ marginBottom: '10px' }}>
+                {t(
+                  'content.addUser.technicalUser.addOverlay.internalRolesDescription'
+                )}
+              </Typography>
+              {internalRoles?.map((role: ServiceAccountRole) => (
+                <>
+                  <Box className="roles">
+                    <Checkbox
+                      key={role.roleId}
+                      label={role.roleName}
+                      checked={selectedRoles.indexOf(role.roleId) !== -1}
+                      onChange={(e) => {
+                        selectRoles(role.roleId, e.target.checked, 'checkbox')
+                        trigger(name)
+                        onChange(
+                          selectCheckboxOnChange(role.roleId, e.target.checked)
+                        )
+                      }}
+                      size="small"
+                      value={selectedRoles}
+                      disabled={selectedRoleType === RoleType.External}
+                    />
+                  </Box>
+                  <Typography variant="body3" className="roleDescription">
+                    {role.roleDescription ?? '-'}
+                  </Typography>
+                </>
+              ))}
+            </Box>
           </Box>
-          <Box sx={{ margin: '10px 0px' }}>
-            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-              {t('content.addUser.technicalUser.addOverlay.externalRoles')}
-            </Typography>
-            {externalRoles?.map((role: ServiceAccountRole) => (
-              <>
-                <Radio
-                  label={role.roleName}
-                  key={role.roleId}
-                  checked={
-                    selectedRoles &&
-                    selectedRoles[0] === externalRoles?.[0].roleId
-                  }
-                  onChange={(e) => {
-                    selectRoles(role.roleId, e.target.checked, 'radio')
-                    trigger(name)
-                    onChange([...[], role.roleId])
-                  }}
-                  name="radio-buttons"
-                  value={selectedRoles}
-                  size="small"
-                />
-
-                <Typography variant="body3" className="roleDescription">
-                  {role.roleDescription ?? '-'}
-                </Typography>
-              </>
-            ))}
+          <Box>
+            <Radio
+              label={t(
+                'content.addUser.technicalUser.addOverlay.externalRoles'
+              )}
+              checked={selectedRoleType === RoleType.External}
+              onChange={() => {
+                setSelectedRoleType(RoleType.External)
+              }}
+              name="radio-buttons"
+              value={selectedRoleType}
+              size="small"
+            />
+            <Box sx={{ pl: '28px' }}>
+              <Typography variant="body2" sx={{ marginBottom: '10px' }}>
+                {t(
+                  'content.addUser.technicalUser.addOverlay.externalRolesDescription'
+                )}
+              </Typography>
+              {externalRoles?.map((role: ServiceAccountRole) => (
+                <>
+                  <Box className="roles">
+                    <Radio
+                      label={role.roleName}
+                      key={role.roleId}
+                      checked={
+                        selectedRoles &&
+                        selectedRoles[0] === externalRoles?.[0].roleId
+                      }
+                      onChange={(e) => {
+                        selectRoles(role.roleId, e.target.checked, 'radio')
+                        trigger(name)
+                        onChange([...[], role.roleId])
+                      }}
+                      name="radio-buttons"
+                      value={selectedRoles}
+                      size="small"
+                      disabled={selectedRoleType === RoleType.Internal}
+                    />
+                  </Box>
+                  <Typography variant="body3" className="roleDescription">
+                    {role.roleDescription ?? '-'}
+                  </Typography>
+                </>
+              ))}
+            </Box>
           </Box>
           {roleError && (
-            <Typography variant="body2" className="file-error-msg">
+            <Typography variant="body3" className="file-error-msg">
               {t('content.addUser.technicalUser.addOverlay.roleMandatory')}
             </Typography>
           )}

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Technical User Management**
+  - enhanced UI of technical user management creation page [#1322](https://github.com/eclipse-tractusx/portal-frontend/pull/1322)
+
 ## 2.3.0-RC3
 
 ### Change
