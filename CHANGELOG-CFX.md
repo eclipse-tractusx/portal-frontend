@@ -98,7 +98,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Edit URL error message persists in connector configuration [#307](https://github.com/Cofinity-X/portal-frontend/pull/307)
 
 - **App Marketplace Management**
+
   - Fixed document upload and delete success message on DE [PM2-1823](https://cofinity-x.atlassian.net/browse/PM2-1823)
+
+- **Partner Network**
+
+  - Fixed incorrect post api object keys and structure for company search [PM2-1841](https://cofinity-x.atlassian.net/browse/PM2-1841)
 
 ## 2.2.0-cfx-3-hotfix3
 
