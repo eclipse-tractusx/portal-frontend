@@ -68,6 +68,7 @@ import {
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
+import { ALLOWED_IMG_SIZE_MB } from 'types/Constants'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -547,7 +548,7 @@ export default function AppPage() {
                     'image/jpeg': [],
                   }}
                   maxFilesToUpload={3}
-                  maxFileSize={1000000}
+                  maxFileSize={ALLOWED_IMG_SIZE_MB}
                   DropArea={renderDropArea}
                   handleDelete={(documentId: string) => {
                     setDeleteSuccess(false)

@@ -2423,7 +2423,10 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Hochgeladen",
-      "uploadProgess": "% von % Dateien hochgeladen"
+      "uploadProgess": "% von % Dateien hochgeladen",
+      "error": {
+        "fileTooLarge": "Datei ist größer als"
+      }
     },
     "userRoles": {
       "title": "Zugewiesene Portal Rollen",
