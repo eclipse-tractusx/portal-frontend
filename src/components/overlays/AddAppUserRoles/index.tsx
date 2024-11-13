@@ -44,7 +44,10 @@ import {
   type UserRoleRequest,
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
-import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import {
+  setRolesToAdd,
+  setSelectedUserToAdd,
+} from 'features/admin/userDeprecated/actions'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 
@@ -71,6 +74,7 @@ export default function AddAppUserRoles() {
       try {
         await updateUserRoles(data).unwrap()
         dispatch(setUserRoleResp(SuccessErrorType.SUCCESS))
+        clearUsersAndRoles()
       } catch (err) {
         dispatch(setUserRoleResp(SuccessErrorType.ERROR))
       }
@@ -80,7 +84,12 @@ export default function AddAppUserRoles() {
 
   const handleCancel = () => {
     dispatch(show(OVERLAYS.NONE, ''))
+    clearUsersAndRoles()
+  }
+
+  const clearUsersAndRoles = () => {
     dispatch(setRolesToAdd([]))
+    dispatch(setSelectedUserToAdd([]))
   }
 
   const AddStepsList = [
