@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Technical User Management**
+  - enhanced UI of technical user management creation page
+
 ## 2.3.0-RC3
 
 ### Change

@@ -1102,9 +1102,11 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "note": "<strong>Note:</strong> Selection of both internal and external users for the same service is not possible.",
-          "internalRoles": "Internal Roles :",
-          "externalRoles": "External Roles :",
+          "note": "Note: Selection of both internal and external users for the same service is not possible.",
+          "internalRoles": "Internal technical user",
+          "internalRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
+          "externalRoles": "External technical user",
+          "externalRolesDescription": "External technical user are created in external environment therefore can only have one role",
           "username": "Username*",
           "description": "Description*",
           "spocHeadline": "Single Point of Contact (SPoC)",
