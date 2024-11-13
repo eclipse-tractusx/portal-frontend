@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 2.3.0-RC4
+
+### Change
+
+- **Technical User Management**
+  - enhanced UI of technical user management creation page [#1322](https://github.com/eclipse-tractusx/portal-frontend/pull/1322)
+
+### Technical Support
+
+- fixed Trivy scan to comply with latest state of TRG 8.04 [portal#467](https://github.com/eclipse-tractusx/portal/issues/467)
+
 ## 2.3.0-RC3
 
 ### Change
