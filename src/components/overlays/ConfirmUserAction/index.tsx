@@ -215,7 +215,6 @@ export const ConfirmUserAction = ({
         <DeleteUserContent
           header={messageMap[title as keyof MessageMapType].header}
           subHeader={messageMap[title as keyof MessageMapType].subHeader}
-          subHeaderTitle={messageMap[title as keyof MessageMapType].subHeader}
           subHeaderNote={
             messageMap[title as keyof MessageMapType].subHeaderNote
           }
