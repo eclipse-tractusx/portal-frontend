@@ -80,8 +80,10 @@ export default function ServicesElements({
                   >
                     <CardHorizontal
                       borderRadius={6}
-                      imageAlt="App Card"
-                      imagePath={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
+                      image={{
+                        alt: 'App Card',
+                        src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
+                      }}
                       label={service.provider}
                       buttonText="Details"
                       onBtnClick={() => {

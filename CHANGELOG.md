@@ -2,6 +2,55 @@
 
 ## Unreleased
 
+## 2.3.0-RC4
+
+### Change
+
+- **Technical User Management**
+  - enhanced UI of technical user management creation page [#1322](https://github.com/eclipse-tractusx/portal-frontend/pull/1322)
+
+### Technical Support
+
+- fixed Trivy scan to comply with latest state of TRG 8.04 [portal#467](https://github.com/eclipse-tractusx/portal/issues/467)
+
+## 2.3.0-RC3
+
+### Change
+
+- **Technical User Management**
+  - enhanced technical user management creation page by role type [#1303](https://github.com/eclipse-tractusx/portal-frontend/pull/1303)
+- **Clearinghouse Self-Description**
+  - enhanced admin UI for managing SD document retriggering [#1292](https://github.com/eclipse-tractusx/portal-frontend/pull/1292)
+
+### Technical Support
+
+- upgraded shared components [#1316](https://github.com/eclipse-tractusx/portal-frontend/pull/1316)
+
+### Bugfixes
+
+- **Home Page**
+  - fixed clicking on apps in home page URL navigation failing [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
+- **App Registration Process**
+  - fixed wrong api call to download documents [#1299](https://github.com/eclipse-tractusx/portal-frontend/pull/1299)
+- **File Upload**:
+  - changed error text of uploaded file from Byte to MB [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1185)
+- **App Overview**
+  - fixed lead image preview issue [#1255](https://github.com/eclipse-tractusx/portal-frontend/pull/1255)
+- **Connector Management**
+  - changed to not showing regular overlay when error detail is shown; refetch connector details to fix cache issue in the details overlay [#1251](https://github.com/eclipse-tractusx/portal-frontend/pull/1251)
+  - updated tooltip and placeholder text [#1315](https://github.com/eclipse-tractusx/portal-frontend/pull/1315)
+  - fixed editing URL error message [#1314](https://github.com/eclipse-tractusx/portal-frontend/pull/1314)
+- **OSP Management**
+  - added new field of auth URL in IdP config creation [#1280](https://github.com/eclipse-tractusx/portal-frontend/pull/1280)
+- **App Details Overlay**
+  - enhanced condition to view conformity documents in details overlay [#1304](https://github.com/eclipse-tractusx/portal-frontend/pull/1304)
+- **Company Data**
+  - fixed empty sharing state response issue; update the condition to handle the same [#1300](https://github.com/eclipse-tractusx/portal-frontend/pull/1300)
+- **Service Release Process**
+  - fixed wrong api calling to download documents [#1318](https://github.com/eclipse-tractusx/portal-frontend/pull/1318)
+- **User Management**
+  - allowed user to scroll horizontally in roles column to view all the added information in user table [#1260](https://github.com/eclipse-tractusx/portal-frontend/pull/1260)
+
 ## 2.3.0-RC2
 
 ### Bugfixes

@@ -276,7 +276,8 @@ export default function CommonValidateAndPublish({
 
   const renderConformityDocuments = () => {
     return statusData?.documents[
-      type === ReleaseProcessTypes.APP_RELEASE
+      type === ReleaseProcessTypes.APP_RELEASE ||
+      type === AppOverviewTypes.APP_OVERVIEW_DETAILS
         ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
         : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
     ].map((item: DocumentData) => (
@@ -294,7 +295,8 @@ export default function CommonValidateAndPublish({
 
   const renderDocuments = () => {
     return statusData?.documents[
-      type === ReleaseProcessTypes.APP_RELEASE
+      type === ReleaseProcessTypes.APP_RELEASE ||
+      type === AppOverviewTypes.APP_OVERVIEW_DETAILS
         ? DocumentTypeText.CONFORMITY_APPROVAL_BUSINESS_APPS
         : DocumentTypeText.CONFORMITY_APPROVAL_SERVICES
     ]
@@ -365,8 +367,10 @@ export default function CommonValidateAndPublish({
         {type === ReleaseProcessTypes.SERVICE_RELEASE && (
           <CardHorizontal
             borderRadius={6}
-            imageAlt="Service Card"
-            imagePath={cardImage ?? LogoGrayData}
+            image={{
+              alt: 'Service Card',
+              src: cardImage ?? LogoGrayData,
+            }}
             label={''}
             buttonText=""
             onBtnClick={() => {
