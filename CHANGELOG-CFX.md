@@ -116,6 +116,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Introduced filter of in-review in service overview page [#411](https://cofinity-x.atlassian.net/browse/PM2-411)
   - **User Management**
   - Fixed: CHERRY-PICK Prevented admins from proceeding with role assignment without selecting a user. [#1270](https://github.com/eclipse-tractusx/portal-frontend/pull/1270)
+  - Removed extra confirmation messages from the delete dialog. [#PM2-1580](https://cofinity-x.atlassian.net/browse/PM2-1580)
 
 ## 2.2.0-cfx-3-hotfix3
 
