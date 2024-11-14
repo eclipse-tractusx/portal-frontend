@@ -15,6 +15,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Company Subscriptions**
+
+  - fix text hidden for disabled buttons in Company Subscriptions page [#1892](https://cofinity-x.atlassian.net/browse/PM2-1892)
+
 - **Service Marketplace**
 
   - add providerUri in the provider details page in Service Marketplace [PM2-868](https://cofinity-x.atlassian.net/browse/PM2-868)

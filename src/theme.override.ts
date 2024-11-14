@@ -898,6 +898,9 @@ export const customTheme = {
           '& .Mui-disabled': {
             color: COLOR_PALETTE.GRAY,
           },
+          '& .MuiButton-root.Mui-disabled': {
+            color: COLOR_PALETTE.WHITE,
+          },
           '& .MuiDataGrid-cellContent': {
             fontSize: 16,
           },
