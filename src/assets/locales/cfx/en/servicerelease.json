@@ -144,7 +144,8 @@
       "active": "Active",
       "inactive": "Inactive",
       "created": "Created",
-      "wip": "WIP"
+      "wip": "WIP",
+      "inreview": "Inreview"
     },
     "addbtn": "Register new service",
     "submenuNotAvailable": "Sub-Menu is not available.",

@@ -124,7 +124,8 @@
       "all": "Alle",
       "active": "Aktiv",
       "inactive": "Inaktiv",
-      "wip": "In Arbeit"
+      "wip": "In Arbeit",
+      "inreview": "wird überprüft"
     },
     "headerTitle": "Service Overview - Own managed service offers",
     "inputPlaceholder": "Suchen Sie nach Services",

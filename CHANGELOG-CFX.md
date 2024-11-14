@@ -110,6 +110,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Fixed incorrect post api object keys and structure for company search [PM2-1841](https://cofinity-x.atlassian.net/browse/PM2-1841)
 
+- **Service Marketplace**
+
+- **Service Release | Overview Inreview filter**:
+  - Introduced filter of in-review in service overview page [#411](https://cofinity-x.atlassian.net/browse/PM2-411)
+
 ## 2.2.0-cfx-3-hotfix3
 
 ### Bugfixes
