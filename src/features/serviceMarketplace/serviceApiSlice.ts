@@ -49,6 +49,7 @@ export type ServiceRequest = {
   serviceTypes: string[]
   serviceTypeIds?: string[]
   provider: string
+  providerUri: string
   leadPictureUri: string
   leadPictureId?: string
   contactEmail: string
