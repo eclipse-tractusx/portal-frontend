@@ -223,12 +223,9 @@ export const CompanyDetails = ({
     )
   }
 
-  const checkUniqueIdType = (type: string): string => {
-    return (
-      uniqueIdTypeText[type as keyof typeof uniqueIdTypeText] ??
-      uniqueIdTypeText.VAT_ID
-    )
-  }
+  const checkUniqueIdType = (type: string): string =>
+    uniqueIdTypeText[type as keyof typeof uniqueIdTypeText] ??
+    uniqueIdTypeText.VAT_ID
   const tableData: TableType = {
     head: [t('osp.companyName'), companyDetails?.name ?? ''],
     body: [
