@@ -237,9 +237,10 @@ export const CompanyDetails = ({
       [t('osp.city'), companyDetails?.city ?? ''],
       [t('osp.region'), companyDetails?.region ?? ''],
       [t('osp.country'), companyDetails?.countryAlpha2Code ?? ''],
-      ...(companyDetails?.uniqueIds?.map((id) =>
-        [checkUniqueIdType(id.type as string), id.value]
-      ) ?? []),
+      ...(companyDetails?.uniqueIds?.map((id) => [
+        checkUniqueIdType(id.type as string),
+        id.value,
+      ]) ?? []),
     ],
   }
 
