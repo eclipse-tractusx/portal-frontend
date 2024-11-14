@@ -4,8 +4,6 @@
 
 ### Bugfixes
 
-- **Service Overview**
-  - search services field should allow speacial chars, digits
 - **Home Page**
   - fixed clicking on apps in Home page URL navigation failed [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
 
