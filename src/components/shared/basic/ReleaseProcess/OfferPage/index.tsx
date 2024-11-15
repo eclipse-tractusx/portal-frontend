@@ -449,7 +449,7 @@ export default function OfferPage({
             name="providerPhoneContact"
             label={t('step2.providerContactPhone')}
             pattern={Patterns.PHONE}
-            ruleMessage={t('step2.pleaseEnterValidPhone')}
+            ruleMessage={t('step2.pleaseEnterValidContact')}
           />
         </div>
       </form>
