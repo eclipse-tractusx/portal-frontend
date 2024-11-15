@@ -21,27 +21,19 @@
 import Main from 'components/Main'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFound from 'components/pages/NotFound'
+import AccessService from 'services/AccessService'
 import ScrollToTop from '../utils/scrollToTop'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
 import DeleteCompany from './pages/DeleteCompany'
-import { type IPage } from 'types/MainTypes'
-import useAccessiblePages from 'hooks/useAccessiblePages'
 
 const AuthorizingRouter = () => {
-  const { accessiblePages, isLoading: isLoadingCompanyRoles } =
-    useAccessiblePages()
-
-  if (isLoadingCompanyRoles) {
-    return null
-  }
-
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="error" element={<ErrorBoundary />} />
         <Route path="/" element={<Main />}>
-          {accessiblePages.map((page: IPage) => page.element)}
+          {AccessService.permittedRoutes()}
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route path="/decline" element={<DeleteCompany />} />

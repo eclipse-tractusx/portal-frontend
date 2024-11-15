@@ -92,7 +92,7 @@ export const Header = ({
     items
       ?.filter(
         (item: Tree) =>
-          !item.companyRole || companyRoles?.includes(item.companyRole)
+          !item.companyRole || getCompanyRoles().includes(item.companyRole)
       )
       .map(
         (item: Tree): MenuItem => ({
