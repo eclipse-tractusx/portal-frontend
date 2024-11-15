@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Bugfixes
+
+- **App Merketplace**
+  - fixed updating of favourites in app marketplace
+
 ## 2.3.0-RC4
 
 ### Change
