@@ -53,7 +53,7 @@
     "providerContactPhone": "Kundenkontakt Telefon",
     "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://catena-x.net",
     "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an",
-    "pleaseEnterValidContact": "Bitte geben Sie eine gültige Telefonnummer in einem der folgenden Formate ein: '+xx xxxxxxxxxx' oder '+xxxxxxxxxx'. Hinweis: Vermeiden Sie bitte doppelte Leerzeichen und Sonderzeichen"
+    "pleaseEnterValidContact": "Bitte geben Sie eine gültige Kontaktnummer in einem der folgenden Formate ein: '+xx xxxxxxxxxx' oder '+xxxxxxxxxx'. Hinweis: Vermeiden Sie bitte doppelte Leerzeichen und Sonderzeichen"
   },
   "step3": {
     "headerTitle": "Agreements and Consent",

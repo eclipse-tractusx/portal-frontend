@@ -1289,7 +1289,7 @@
         "providerPhoneContact": "Provider Phone Contact",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Bitte geben Sie eine gültige Telefonnummer in einem der folgenden Formate ein: '+xx xxxxxxxxxx' oder '+xxxxxxxxxx'. Hinweis: Vermeiden Sie bitte doppelte Leerzeichen und Sonderzeichen",
+        "pleaseEnterValidContact": "Bitte geben Sie eine gültige Kontaktnummer in einem der folgenden Formate ein: '+xx xxxxxxxxxx' oder '+xxxxxxxxxx'. Hinweis: Vermeiden Sie bitte doppelte Leerzeichen und Sonderzeichen",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",

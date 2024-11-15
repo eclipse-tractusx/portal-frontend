@@ -53,7 +53,7 @@
     "providerContactPhone": "Customer Contact Phone",
     "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
     "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-    "pleaseEnterValidContact": "Please enter a valid phone number in one of the following formats: '+xx xxxxxxxxxx' or '+xxxxxxxxxx'. Note: Avoid double spaces or special characters."
+    "pleaseEnterValidContact": "Please enter a valid contact number in one of the following formats: '+xx xxxxxxxxxx' or '+xxxxxxxxxx'. Note: Avoid double spaces or special characters."
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
