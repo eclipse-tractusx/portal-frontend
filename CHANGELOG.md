@@ -5,7 +5,7 @@
 ### Bugfixes
 
 - **App Merketplace**
-  - fixed updating of favourites in app marketplace
+  - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
 
 ## 2.3.0-RC4
 
