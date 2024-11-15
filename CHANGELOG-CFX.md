@@ -27,7 +27,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Update translations logic for Consent OSP roles [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
   - Fixed osp idp config detail information on re-opening overlay [PM2-1847](https://cofinity-x.atlassian.net/browse/PM2-1847)
-  - Fixed osp onboarding management glitch of "something went wrong" [PM2-1793](https://cofinity-x.atlassian.net/browse/PM2-1793)
   - Fixed osp customer overview table incorrect unique id [PM2-1803]https://cofinity-x.atlassian.net/browse/PM2-1803
   - Fixed osp onboarding Management Header Title Transation [PM2-1647](https://cofinity-x.atlassian.net/browse/PM2-1647)
 

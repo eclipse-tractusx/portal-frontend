@@ -71,13 +71,11 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   )
   const [headerNote, setHeaderNote] = useState(false)
 
-  const { companyRoles = [] } = getCompanyRoles()
-
   const addTitle = (items: Tree[] | undefined) =>
     items
       ?.filter(
         (item: Tree) =>
-          !item.companyRole || companyRoles?.includes(item.companyRole)
+          !item.companyRole || getCompanyRoles().includes(item.companyRole)
       )
       .map(
         (item: Tree): MenuItem => ({
