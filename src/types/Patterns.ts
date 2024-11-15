@@ -41,7 +41,7 @@ export const Patterns = {
   LABEL: /^[a-z0-9-_ ]{1,80}$/i,
   BPN: /^BPNL[0-9A-Z]{12}$/i,
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*))@(([a-z0-9-]+\.)+[a-z]{2,})$/,
-  PHONE: /^(\+?\d{1,3})?\s?\(?\d{3}\)?[.\s-]?\d{3}[.\s-]?\d{4,7}$/,
+  PHONE: /^\+([1-9][0-9]{0,2})\s?[0-9]{6,14}$/,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
   URL: urlPattern,
