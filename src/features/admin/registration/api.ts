@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { getApiBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 import type { InviteData, CompanyDetail, InvitesDataGrid } from './types'
 import { getHeaders } from 'services/RequestService'
 import { PAGE_SIZE } from 'types/Constants'

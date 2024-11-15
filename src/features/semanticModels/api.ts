@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import qs from 'qs'
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 import type {
   FilterParams,
   ModelList,
