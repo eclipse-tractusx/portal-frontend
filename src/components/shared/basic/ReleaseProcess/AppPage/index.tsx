@@ -699,9 +699,10 @@ export default function AppPage() {
             }}
             name="providerPhoneContact"
             label={t('content.apprelease.appPage.providerPhoneContact')}
-            validate={(value: string) =>
-              value === '' || phone(value.replace(/^00/, '+')).isValid
-            }
+            pattern={Patterns.PHONE}
+            ruleMessage={t(
+              'content.apprelease.appPage.pleaseEnterValidContact'
+            )}
           />
           {errors.providerPhoneContact &&
             errors?.providerPhoneContact.type === 'validate' && (

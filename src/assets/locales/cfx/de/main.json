@@ -1375,7 +1375,7 @@
         "providerPhoneContact": "Kundenkontakt Telefonnummer",
         "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - z.B.: https://www.cofinity-x.com",
         "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Kundenkontakt E-Mail ein",
-        "pleaseEnterValidContact": "Bitte fügen Sie eine gültige Telefonnummer im folgenden Format hinzu: „+ xx xxxx xxxxxx“, „+ xxx xxxx-xxxx“, „+xx xxxxxxxxxx“. Hinweis: Es sind weitere Formate zulässig. Die genannten Formate sind die am häufigsten verwendeten Formate.",
+        "pleaseEnterValidContact": "Bitte geben Sie eine gültige Kontaktnummer in einem der folgenden Formate ein: '+xx xxxxxxxxxx' oder '+xxxxxxxxxx'. Hinweis: Vermeiden Sie bitte doppelte Leerzeichen und Sonderzeichen",
         "privacyInformation": "Datenschutzinformationen",
         "privacyInformationDescription": "Die Datenschutzinformationen werden verwendet, um Datenarten anzuzeigen, die die App auf der Detailseite der App sammeln kann. Sie können mehrere Optionen auswählen ODER „keine“ wählen.",
         "privacyInfoError": "Fehler - Daten konnten nicht geladen werden. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator.",
