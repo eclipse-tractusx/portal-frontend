@@ -39,6 +39,7 @@ import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
 import UserService from 'services/UserService'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { isLowerEnvironment } from 'services/UserService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
