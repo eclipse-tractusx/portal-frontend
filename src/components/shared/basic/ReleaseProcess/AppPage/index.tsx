@@ -67,7 +67,6 @@ import {
 } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
-import { phone } from 'phone'
 import { ALLOWED_IMG_SIZE_MB } from 'types/Constants'
 
 type FormDataType = {
@@ -654,9 +653,10 @@ export default function AppPage() {
             }}
             name="providerPhoneContact"
             label={t('content.apprelease.appPage.providerPhoneContact')}
-            validate={(value: string) =>
-              value === '' || phone(value.replace(/^00/, '+')).isValid
-            }
+            pattern={Patterns.PHONE}
+            ruleMessage={t(
+              'content.apprelease.appPage.pleaseEnterValidContact'
+            )}
           />
           {errors.providerPhoneContact &&
             errors?.providerPhoneContact.type === 'validate' && (

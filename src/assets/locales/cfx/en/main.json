@@ -1344,7 +1344,7 @@
         "providerPhoneContact": "Customer Contact Phone Number",
         "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
-        "pleaseEnterValidContact": "Please add a valid phone number and in the following format: “+ xx xxxx xxxxxx”, “+ xxx xxxx-xxxx”, “+xx xxxxxxxxxx”. Note: more formats are allowed, mentioned formats are the most used formats.",
+        "pleaseEnterValidContact": "Please enter a valid contact number in one of the following formats: '+xx xxxxxxxxxx' or '+xxxxxxxxxx'. Note: Avoid double spaces or special characters.",
         "privacyInformation": "Privacy Information",
         "privacyInformationDescription": "The privacy information is used to display data types the app may collect on the app detail page. You may select several options OR select “none”.",
         "privacyInfoError": "Error - values couldn't get fetched. Please try it later again or contact your administrator.",

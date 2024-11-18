@@ -84,6 +84,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed misaligned hover effect on Add Role page [PM2-1809](https://cofinity-x.atlassian.net/browse/PM2-1809)
   - Fixed misaligned hover effect on changes images and documents [PM2-1817](https://cofinity-x.atlassian.net/browse/PM2-1817)
   - Fixed allowed max image size [PM2-347](https://cofinity-x.atlassian.net/browse/PM2-347)
+  - Fixed phone regex and error message for app registration [PM2-1855](https://cofinity-x.atlassian.net/browse/PM2-1855)
 
 - **Search Translation for App and Service Subsciption**
 

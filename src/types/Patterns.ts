@@ -43,6 +43,7 @@ export const Patterns = {
   ID: /^[a-z0-9_.@-]{1,80}$/i,
   LABEL: /^[a-z0-9-_ ]{1,80}$/i,
   BPN: /^BPNL[0-9A-Z]{12}$/i,
+  PHONE: /^\+([1-9]\d{0,2})\s?\d{6,17}$/,
   MAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*))@(([a-z0-9-]+\.)+[a-z]{2,})$/,
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
@@ -212,5 +213,6 @@ export const isPostalCode = (expr: string) =>
   Patterns.companyData.POSTAL_CODE.test(expr)
 export const isSearchUserEmail = (expr: string) =>
   Patterns.EMAIL_SEARCH.test(expr)
+export const isValidPhone = (expr: string) => Patterns.PHONE.test(expr)
 
 export default Patterns
