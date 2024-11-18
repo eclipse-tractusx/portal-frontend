@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Changes
 
+- **Credential Request Overview**
+
+  - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
+
 - **App Overview**
 
   - Fix lead image preview issue in apps overview [#1365](https://cofinity-x.atlassian.net/browse/PM2-1365)
