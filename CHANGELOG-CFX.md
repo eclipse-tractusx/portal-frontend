@@ -59,6 +59,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 
   - Fixed notification rendering issues [PM2-369](https://cofinity-x.atlassian.net/browse/PM2-369)
+  - Fixed notifications mark as read issue [PM2-1006](https://cofinity-x.atlassian.net/browse/PM2-1006)
 
 - **App & Service Subscription**
 

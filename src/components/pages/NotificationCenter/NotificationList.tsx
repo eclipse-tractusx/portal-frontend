@@ -27,11 +27,16 @@ import dayjs from 'dayjs'
 import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { useGetNotificationsQuery } from 'features/notification/apiSlice'
+import {
+  apiSlice,
+  TAG,
+  useGetNotificationsQuery,
+} from 'features/notification/apiSlice'
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { notificationFetchSelector, setMeta } from 'features/notification/slice'
 import NotificationPager from './NotificationPager'
+import { useEffect } from 'react'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -40,7 +45,7 @@ dayjs.extend(relativeTime)
 const NotificationItems = ({ items }: { items: CXNotificationContent[] }) => {
   return (
     <ul className="group">
-      {items.map((item: CXNotificationContent) => (
+      {[...items].map((item: CXNotificationContent) => (
         <NotificationItem key={item.id} item={item} />
       ))}
     </ul>
@@ -59,7 +64,14 @@ const NotificationGroup = ({
     ...fetchArgs,
     page,
   })
+  useEffect(() => {
+    return () => {
+      dispatch(apiSlice.util.invalidateTags([TAG.ITEMS]))
+    }
+  }, [])
+
   if (data) dispatch(setMeta(data.meta))
+
   return (
     <ul className="group">
       <NotificationItems items={data?.content ?? []} />

@@ -35,11 +35,7 @@ export default function SubHeaderTitle({
   const { t } = useTranslation()
 
   return (
-    <Typography
-      sx={{ fontFamily: 'LibreFranklin-Light' }}
-      variant={variant}
-      className="section-title"
-    >
+    <Typography variant={variant} className="section-title">
       {`${t(title, params ?? {})}`}
     </Typography>
   )

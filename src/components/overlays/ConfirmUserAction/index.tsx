@@ -212,23 +212,25 @@ export const ConfirmUserAction = ({
   return (
     <>
       {data && canHideOverlay() && (
-        <DeleteUserContent
-          header={messageMap[title as keyof MessageMapType].header}
-          subHeader={messageMap[title as keyof MessageMapType].subHeader}
-          subHeaderNote={
-            messageMap[title as keyof MessageMapType].subHeaderNote
-          }
-          subHeaderDescription={
-            messageMap[title as keyof MessageMapType].subHeaderDescription
-          }
-          handleConfirm={handleConfirm}
-          confirmTitle={
-            title === 'resetPassword' || title === 'suspend'
-              ? t('global.actions.confirm')
-              : t('global.actions.delete')
-          }
-          showLoader={loading}
-        />
+        <div className="user-menu-dialogs">
+          <DeleteUserContent
+            header={messageMap[title as keyof MessageMapType].header}
+            subHeader={messageMap[title as keyof MessageMapType].subHeader}
+            subHeaderNote={
+              messageMap[title as keyof MessageMapType].subHeaderNote
+            }
+            subHeaderDescription={
+              messageMap[title as keyof MessageMapType].subHeaderDescription
+            }
+            handleConfirm={handleConfirm}
+            confirmTitle={
+              title === 'resetPassword' || title === 'suspend'
+                ? t('global.actions.confirm')
+                : t('global.actions.delete')
+            }
+            showLoader={loading}
+          />
+        </div>
       )}
       {response && (
         <ServerResponseOverlay

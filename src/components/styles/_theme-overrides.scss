@@ -2080,3 +2080,18 @@ p.MuiTypography-root.MuiTypography-body3.description,
   justify-content: space-between;
   align-items: center;
 }
+
+.user-menu-dialogs {
+  .dialog-header-main {
+    .cx-dialog__title {
+      font-size: 23px !important;
+      font-weight: 600 !important;
+    }
+  }
+  .remove-object-content {
+    h6 {
+      font-size: 14px !important;
+      font-weight: 400 !important;
+    }
+  }
+}
