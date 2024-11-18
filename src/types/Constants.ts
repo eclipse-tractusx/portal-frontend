@@ -260,7 +260,7 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   'Consultancy Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
   // de
   'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
-  'Beratungs Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+  Beratungsservices: ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
 }
 
 export const CONVERT_TO_MB = 1048576
