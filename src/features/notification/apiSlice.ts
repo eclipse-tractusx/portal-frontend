@@ -40,7 +40,7 @@ export interface NotificationReadType {
   flag: boolean
 }
 
-enum TAG {
+export enum TAG {
   ITEMS = 'ITEMS',
   META = 'META',
 }
