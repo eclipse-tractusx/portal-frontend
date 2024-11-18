@@ -215,7 +215,8 @@ export default function SubscriptionElements({
           </>
         )
       } else if (
-        subscription.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+        subscription.processStepTypeId ===
+        ProcessStep.TRIGGER_ACTIVATE_SUBSCRIPTION
       ) {
         return (
           <>
