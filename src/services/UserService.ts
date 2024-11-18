@@ -20,7 +20,7 @@
 
 import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
 import type { IUser } from 'features/user/types'
-import { ROLES } from 'types/Constants'
+import { PORTAL_HIGHER_ENVIRONMENT_URL, ROLES } from 'types/Constants'
 import {
   getCentralIdp,
   getClientId,
@@ -150,6 +150,11 @@ const getLoggedUser = (): IUser => ({
   parsedToken: getParsedToken(),
 })
 
+export const isHigherEnvironment = () =>
+  window.location.origin === PORTAL_HIGHER_ENVIRONMENT_URL
+
+export const isLowerEnvironment = () => !isHigherEnvironment()
+
 const UserService = {
   doLogin,
   doLogout,
@@ -166,6 +171,8 @@ const UserService = {
   init,
   isAdmin,
   isLoggedIn,
+  isHigherEnvironment,
+  isLowerEnvironment,
 }
 
 export default UserService

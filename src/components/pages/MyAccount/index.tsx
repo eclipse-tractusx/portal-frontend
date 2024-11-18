@@ -39,6 +39,7 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { isLowerEnvironment } from 'services/UserService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -93,20 +94,22 @@ export default function MyAccount() {
       {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
 
       {/* TODO: DEV only needs to be removed when going PROD */}
-      <section>
-        <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-          >
-            <Typography>{t('content.account.token')}</Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{ marginBottom: '20px' }}>
-            <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
-          </AccordionDetails>
-        </Accordion>
-      </section>
+      {isLowerEnvironment() && (
+        <section>
+          <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              <Typography>{t('content.account.token')}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ marginBottom: '20px' }}>
+              <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
+            </AccordionDetails>
+          </Accordion>
+        </section>
+      )}
     </main>
   )
 }
