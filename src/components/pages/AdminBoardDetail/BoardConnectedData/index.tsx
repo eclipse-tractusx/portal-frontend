@@ -19,18 +19,46 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
-import './BoardSecurityInfo.scss'
+import {
+  Typography,
+  StaticTable,
+  type TableType,
+} from '@catena-x/portal-shared-components'
+import './style.scss'
 
-export default function BoardSecurityInfo() {
+export default function BoardConnectedData() {
   const { t } = useTranslation('', {
-    keyPrefix: 'content.adminboardDetail.securityInfo',
+    keyPrefix: 'content.adminboardDetail.connectedData',
   })
 
+  const tableData1: TableType = {
+    head: [t('linked'), t('notLinked')],
+    body: [
+      ['Personal Information', 'Lorem Personal Information'],
+      ['Used Content', 'Ipsum Used Content'],
+      ['Catena X Account Data', 'Lorem Catena X Account Data'],
+      ['Diagnostic Data'],
+    ],
+  }
+
+  const tableData2: TableType = {
+    head: [t('linked'), t('notLinked')],
+    body: [['Usage Data', '--.--']],
+  }
+
   return (
-    <div className="board-security">
+    <div className="board-data">
       <Typography variant="h4">{t('heading')}</Typography>
-      <Typography variant="body2">{t('message')}</Typography>
+      <Typography variant="body2" className="data-content">
+        {t('message')}
+      </Typography>
+      <div className="mb-30">
+        <StaticTable data={tableData1} horizontal={false} />
+      </div>
+      <Typography variant="body2" className="data-content">
+        {t('message2')}
+      </Typography>
+      <StaticTable data={tableData2} horizontal={false} />
     </div>
   )
 }

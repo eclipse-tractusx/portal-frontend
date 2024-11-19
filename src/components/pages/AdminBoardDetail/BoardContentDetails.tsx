@@ -25,14 +25,14 @@ import {
   ImageGallery,
   Typography,
 } from '@catena-x/portal-shared-components'
-import BoardHeader from './components/BoardHeader'
-import BoardDocuments from './components/BoardDocuments'
-import BoardProvider from './components/BoardProvider'
+import BoardHeader from './BoardHeader'
+import BoardDocuments from './BoardDocuments'
+import BoardProvider from './BoardProvider'
 import { type AppDetails, DocumentTypeText } from 'features/apps/types'
 import CommonService from 'services/CommonService'
-import BoardPrivacy from './components/BoardPrivacy'
-import BoardRoles from './components/BoardRoles'
-import BoardTechnicalUserSetup from './components/BoardTechnicalUserSetup'
+import BoardPrivacy from './BoardPrivacy'
+import BoardRoles from './BoardRoles'
+import BoardTechnicalUserSetup from './BoardTechnicalUserSetup'
 import { PAGES } from 'types/Constants'
 import './style.scss'
 

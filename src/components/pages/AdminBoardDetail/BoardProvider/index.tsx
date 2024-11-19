@@ -24,41 +24,32 @@ import {
   StaticTable,
   type TableType,
 } from '@catena-x/portal-shared-components'
-import './BoardConnectedData.scss'
+import type { AppDetails } from 'features/apps/types'
+import './style.scss'
+import { Box } from '@mui/material'
 
-export default function BoardConnectedData() {
+export default function BoardProvider({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {
-    keyPrefix: 'content.adminboardDetail.connectedData',
+    keyPrefix: 'content.adminboardDetail.providerInformation',
   })
 
-  const tableData1: TableType = {
-    head: [t('linked'), t('notLinked')],
+  const tableData: TableType = {
+    head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
-      ['Personal Information', 'Lorem Personal Information'],
-      ['Used Content', 'Ipsum Used Content'],
-      ['Catena X Account Data', 'Lorem Catena X Account Data'],
-      ['Diagnostic Data'],
+      [item.provider],
+      [item.providerUri === 'ERROR' ? '' : item.providerUri],
+      [item.contactEmail],
+      [item.contactNumber],
     ],
   }
 
-  const tableData2: TableType = {
-    head: [t('linked'), t('notLinked')],
-    body: [['Usage Data', '--.--']],
-  }
-
   return (
-    <div className="board-data">
-      <Typography variant="h4">{t('heading')}</Typography>
-      <Typography variant="body2" className="data-content">
-        {t('message')}
-      </Typography>
-      <div className="mb-30">
-        <StaticTable data={tableData1} horizontal={false} />
-      </div>
-      <Typography variant="body2" className="data-content">
-        {t('message2')}
-      </Typography>
-      <StaticTable data={tableData2} horizontal={false} />
+    <div className="adminboard-provider">
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h3">{t('heading')}</Typography>
+        <Typography variant="body2">{t('message')}</Typography>
+      </Box>
+      <StaticTable data={tableData} horizontal={true} />
     </div>
   )
 }

@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
-import './BoardHeader.scss'
+import './style.scss'
 import { Grid } from '@mui/material'
 
 enum CardDetails {

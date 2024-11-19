@@ -25,7 +25,7 @@ import 'components/styles/document.scss'
 import { type AppDetails, type Documents } from 'features/apps/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
-import '../../style.scss'
+import '../style.scss'
 import {
   type DocumentData,
   DocumentTypeId,

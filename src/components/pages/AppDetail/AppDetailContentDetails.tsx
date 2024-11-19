@@ -27,7 +27,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './AppDetailHeader'
-import AppDetailPrivacy from './components/AppDetailPrivacy'
+import AppDetailPrivacy from './AppDetailPrivacy'
 import AppDetailDocuments from './AppDetailDocuments'
 import AppDetailProvider from './AppDetailProvider'
 import AppDetailTags from './AppDetailTags'

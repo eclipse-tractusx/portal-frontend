@@ -19,7 +19,7 @@
 
 import StageSection from './StageSection'
 import AppListSection from './AppListSection'
-import SearchSection from './components/SearchSection'
+import SearchSection from './SearchSection'
 import HeaderSection from './HeaderSection'
 import { Box } from '@mui/material'
 import PageService from 'services/PageService'

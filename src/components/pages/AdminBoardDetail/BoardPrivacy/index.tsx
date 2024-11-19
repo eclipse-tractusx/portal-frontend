@@ -23,7 +23,7 @@ import { Typography } from '@catena-x/portal-shared-components'
 import { uniqueId } from 'lodash'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import type { AppDetails } from 'features/apps/types'
-import './BoardPrivacy.scss'
+import './style.scss'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 
 export default function BoardPrivacy({ item }: { item: AppDetails }) {

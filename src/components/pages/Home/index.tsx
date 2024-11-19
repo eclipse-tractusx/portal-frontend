@@ -18,10 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import NewsSection from './components/NewsSection'
-import BusinessApplicationsSection from './components/BusinessApplicationsSection'
-import StageSection from './components/StageSection'
-import AppStoreSection from './components/AppStoreSection'
+import NewsSection from './NewsSection'
+import BusinessApplicationsSection from './BusinessApplicationsSection'
+import StageSection from './StageSection'
+import AppStoreSection from './AppStoreSection'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './style.scss'

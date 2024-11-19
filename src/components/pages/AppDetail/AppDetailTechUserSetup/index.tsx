@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/types'
 import { Grid } from '@mui/material'
-import '../../style.scss'
+import '../style.scss'
 
 export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
   const { t } = useTranslation('')

@@ -21,7 +21,7 @@
 import { Chip, Typography } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/types'
 import './style.scss'
-import '../../style.scss'
+import '../style.scss'
 import { useTranslation } from 'react-i18next'
 
 export default function AppDetailTags({ item }: { item: AppDetails }) {

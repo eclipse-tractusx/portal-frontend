@@ -19,37 +19,18 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import {
-  Typography,
-  StaticTable,
-  type TableType,
-} from '@catena-x/portal-shared-components'
-import type { AppDetails } from 'features/apps/types'
-import './BoardProvider.scss'
-import { Box } from '@mui/material'
+import { Typography } from '@catena-x/portal-shared-components'
+import './style.scss'
 
-export default function BoardProvider({ item }: { item: AppDetails }) {
+export default function BoardSecurityInfo() {
   const { t } = useTranslation('', {
-    keyPrefix: 'content.adminboardDetail.providerInformation',
+    keyPrefix: 'content.adminboardDetail.securityInfo',
   })
 
-  const tableData: TableType = {
-    head: [t('appProvider'), t('website'), t('email'), t('phone')],
-    body: [
-      [item.provider],
-      [item.providerUri === 'ERROR' ? '' : item.providerUri],
-      [item.contactEmail],
-      [item.contactNumber],
-    ],
-  }
-
   return (
-    <div className="adminboard-provider">
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h3">{t('heading')}</Typography>
-        <Typography variant="body2">{t('message')}</Typography>
-      </Box>
-      <StaticTable data={tableData} horizontal={true} />
+    <div className="board-security">
+      <Typography variant="h4">{t('heading')}</Typography>
+      <Typography variant="body2">{t('message')}</Typography>
     </div>
   )
 }

@@ -19,13 +19,13 @@
  ********************************************************************************/
 
 import { Typography } from '@catena-x/portal-shared-components'
-import MarketplaceHeader from './components/MarketplaceHeader'
-import MarketplaceProvider from './components/MarketplaceProvider'
-import MarketplaceSubscription from './components/MarketplaceSubscription'
+import MarketplaceHeader from './MarketplaceHeader'
+import MarketplaceProvider from './MarketplaceProvider'
+import MarketplaceSubscription from './MarketplaceSubscription'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './style.scss'
-import MarketplaceDocuments from './components/MarketplaceDocuments'
-import MarketplaceTechnicalUserSetup from './components/MarketplaceTechnicalUserSetup'
+import MarketplaceDocuments from './MarketplaceDocuments'
+import MarketplaceTechnicalUserSetup from './MarketplaceTechnicalUserSetup'
 
 export default function MarketplaceContentDetails({
   item,

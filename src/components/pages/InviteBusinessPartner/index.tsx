@@ -37,7 +37,7 @@ import {
   useFetchInviteSearchQuery,
   useSendInviteMutation,
 } from 'features/admin/inviteApiSlice'
-import { InviteList } from './components/InviteList'
+import { InviteList } from './InviteList'
 
 export enum ProcessingType {
   BUSY = 'BUSY',
