@@ -914,7 +914,7 @@
         "details": "Details",
         "add": "Add user",
         "addMultiple": "Add Multiple users",
-        "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
+        "noRowsMsg": "No users without assigned roles available. All users have at least one app role assigned."
       },
       "appUserDetails": {
         "headline": "App Access Management - {{app}}",
@@ -929,7 +929,7 @@
         "table": {
           "headline": "Identity Management",
           "title": "App Users",
-          "add": "Add Role",
+          "add": "Add Roles for multiple users",
           "buttonTooltip": "Function disabled since no app roles are available",
           "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
@@ -1151,10 +1151,10 @@
       }
     },
     "addUserRight": {
-      "headline": "Assign app roles to your user(s)",
+      "headline": "Add Roles for multiple users",
       "noRolesFound": "No user roles found",
-      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "selectUsersDescription": "In Step 1, select the users to assign the app roles to and confirm by clicking the button at the bottom. In Step 2, choose the roles for the selected users",
+      "addRolesDescription": "In Step 2, select the users to assign the app roles to and confirm by clicking the button at the bottom. In Step 2, choose the roles for the selected users",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",

@@ -80,7 +80,7 @@ export default function UserListContent() {
         {
           field: 'name',
           headerName: t('global.field.name'),
-          flex: 4,
+          flex: 3,
           valueGetter: ({ row }: { row: TenantUser }) =>
             `${row.firstName} ${row.lastName}`,
         },
@@ -88,7 +88,7 @@ export default function UserListContent() {
         {
           field: 'status',
           headerName: t('global.field.status'),
-          flex: 2,
+          flex: 2.5,
           renderCell: ({ value: status }) => {
             return (
               <StatusTag color="label" label={t(`global.field.${status}`)} />
