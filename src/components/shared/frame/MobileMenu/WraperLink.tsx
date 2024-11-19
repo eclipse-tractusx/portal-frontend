@@ -18,26 +18,15 @@
  ********************************************************************************/
 
 import { Box, Link, ListItem } from '@mui/material'
-import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import { t } from 'i18next'
-import './MobileMenu.scss'
+import './style.scss'
 
-export interface CompanyMenuTypes {
-  to: string
-  title: string
-}
-
-interface MyCompanyLinkProps {
-  onSelect: (title: string, children: CompanyMenuTypes[]) => void
-  companyMenu: CompanyMenuTypes[]
-}
-
-export const MyCompanyLink = ({
-  onSelect,
-  companyMenu,
-  ...props
-}: MyCompanyLinkProps): JSX.Element => {
+export const WraperLink = ({
+  children,
+  onClick,
+}: {
+  children: JSX.Element
+  onClick: () => void
+}): JSX.Element => {
   return (
     <Box
       sx={{
@@ -47,9 +36,7 @@ export const MyCompanyLink = ({
           backgroundColor: 'rgba(15, 113, 203, 0.05)',
         },
       }}
-      onClick={() => {
-        onSelect(t('pages.mycompany'), companyMenu)
-      }}
+      onClick={onClick}
     >
       <ListItem
         sx={{
@@ -59,7 +46,6 @@ export const MyCompanyLink = ({
         <Link
           className="titleBox"
           sx={{
-            width: '100%',
             color: 'text.primary',
             ':hover': {
               color: 'primary.dark',
@@ -68,22 +54,8 @@ export const MyCompanyLink = ({
               },
             },
           }}
-          {...props}
         >
-          <Box>
-            <BusinessRoundedIcon
-              sx={{
-                color: '#0f71cb',
-                width: '30px',
-                height: '30px',
-                marginRight: '10px',
-              }}
-            />
-            {t('pages.mycompany')}
-          </Box>
-          <KeyboardArrowRightIcon
-            sx={{ color: 'icon.icon02', marginRight: '10px' }}
-          />
+          {children}
         </Link>
       </ListItem>
     </Box>

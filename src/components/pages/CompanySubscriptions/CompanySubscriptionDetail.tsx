@@ -26,7 +26,7 @@ import {
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
 import { PAGES } from 'types/Constants'
-import './CompanySubscriptions.scss'
+import './style.scss'
 import {
   useFetchServiceDetailsQuery,
   useFetchSubscriptionServiceQuery,

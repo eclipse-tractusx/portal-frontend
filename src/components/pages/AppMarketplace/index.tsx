@@ -24,7 +24,7 @@ import HeaderSection from './components/HeaderSection'
 import { Box } from '@mui/material'
 import PageService from 'services/PageService'
 import { useRef } from 'react'
-import './AppMarketplace.scss'
+import './style.scss'
 
 export default function AppMarketplace() {
   const reference = PageService.registerReference('AppList', useRef(null))

@@ -20,7 +20,7 @@
 import type { MenuItemProps } from './MenuItem'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Link as LinkRouter } from 'react-router-dom'
-import './MobileMenu.scss'
+import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { t } from 'i18next'

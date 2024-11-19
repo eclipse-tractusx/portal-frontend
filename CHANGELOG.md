@@ -6,6 +6,8 @@
 
 - **App Marketplace**
   - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
+- **Src Folder**
+  - renamed files in src/components folder to common naming style
 
 ## 2.3.0-RC4
 

@@ -43,11 +43,11 @@ import {
   useFetchCheckListDetailsQuery,
 } from 'features/admin/applicationRequestApiSlice'
 import { download } from 'utils/downloadUtils'
-import CheckListFullButtons from '../components/CheckList/CheckListFullButtons'
+import CheckListFullButtons from '../CheckList/CheckListFullButtons'
 import { getIntro, getTitle } from './CompanyDetailsHelper'
 import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { type UniqueIdType } from 'features/admin/registration/types'
-import { StatusProgress } from '../registrationTableColumns'
+import { StatusProgress } from '../RegistrationTableColumns'
 
 interface CompanyDetailOverlayProps {
   openDialog?: boolean

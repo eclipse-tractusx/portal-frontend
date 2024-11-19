@@ -32,7 +32,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit'
 import type i18next from 'i18next'
 import { Progress } from 'components/shared/basic/Progress'
-import './RegistrationRequests.scss'
+import './style.scss'
 
 interface StatusProgressProps {
   application: ApplicationRequest

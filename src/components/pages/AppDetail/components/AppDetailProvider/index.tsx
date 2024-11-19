@@ -25,7 +25,7 @@ import {
   type TableType,
 } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/types'
-import '../../AppDetail.scss'
+import '../../style.scss'
 
 export default function AppDetailProvider({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {

@@ -18,14 +18,14 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import './menu-info.scss'
+import './style.scss'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import CloseIcon from '@mui/icons-material/Close'
-import { MobileMenu } from 'components/shared/MobileMenu'
+import { MobileMenu } from 'components/shared/frame/MobileMenu'
 import { Drawer } from '@mui/material'
 
 export const MenuInfo = ({ main }: { main: Tree[] | undefined }) => {

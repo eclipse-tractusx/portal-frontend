@@ -19,11 +19,11 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography, Button } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
+import './style.scss'
 import EastIcon from '@mui/icons-material/East'
 import { useNavigate } from 'react-router'
 
-export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
+export default function CompanyWalletSubNavigationHeader(): JSX.Element {
   const { t } = useTranslation()
   const navigate = useNavigate()
 

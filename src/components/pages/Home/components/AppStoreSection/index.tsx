@@ -26,7 +26,7 @@ import {
   type CardItems,
 } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
-import './app-store-section.scss'
+import './style.scss'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import { fetchImageWithToken } from 'services/ImageService'

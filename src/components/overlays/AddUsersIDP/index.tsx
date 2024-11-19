@@ -53,7 +53,7 @@ import {
 import { error, success } from 'services/NotifyService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import DownloadIcon from '@mui/icons-material/Download'
-import './AddUsersIDP.scss'
+import './style.scss'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import Papa from 'papaparse'
 
@@ -124,7 +124,7 @@ const SelectFormat = ({
   )
 }
 
-const AddusersIDPResponse = ({
+const AddUsersIDPResponse = ({
   csvData,
   response,
 }: {
@@ -202,7 +202,7 @@ const AddusersIDPResponse = ({
   )
 }
 
-export const AddusersIDP = ({ id }: { id: string }) => {
+export const AddUsersIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
   const dispatch = useDispatch()
   const idpData = useFetchIDPDetailQuery(id).data
@@ -693,7 +693,7 @@ export const AddusersIDP = ({ id }: { id: string }) => {
       />
       <DialogContent>
         {userResponse?.data ? (
-          <AddusersIDPResponse csvData={csvData} response={userResponse.data} />
+          <AddUsersIDPResponse csvData={csvData} response={userResponse.data} />
         ) : (
           renderContent()
         )}

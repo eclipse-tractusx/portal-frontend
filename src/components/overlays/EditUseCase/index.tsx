@@ -39,7 +39,7 @@ import { Dropzone } from '../../shared/basic/Dropzone'
 import './style.scss'
 import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 
-export default function EditUsecase({
+export default function EditUseCase({
   id: verifiedCredentialTypeId,
   title: credentialType,
 }: {

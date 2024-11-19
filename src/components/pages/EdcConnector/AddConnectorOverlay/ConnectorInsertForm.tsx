@@ -37,10 +37,10 @@ import {
   ConnectType,
   type EdcSubscriptionsType,
 } from 'features/connector/connectorApiSlice'
-import { Dropzone } from '../../../../shared/basic/Dropzone'
+import { Dropzone } from '../../../shared/basic/Dropzone'
 import { useEffect, useState } from 'react'
-import './EdcComponentStyles.scss'
-import { ConnectorFormFields } from '..'
+import './style.scss'
+import { ConnectorFormFields } from '.'
 import { type ServiceAccountListEntry } from 'features/admin/serviceApiSlice'
 
 export const ConnectorFormInput = ({

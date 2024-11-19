@@ -23,7 +23,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'
-import './news-section.scss'
+import './style.scss'
 import type { AppDispatch } from 'features/store'
 
 export default function NewsSection() {

@@ -54,13 +54,13 @@ import { UpdateIDP } from 'components/overlays/UpdateIDP'
 import { EnableIDP } from 'components/overlays/EnableIDP'
 import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess'
 import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
-import { AddusersIDP } from 'components/overlays/AddusersIDP'
+import { AddUsersIDP } from 'components/overlays/AddUsersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
 import EditPortalRoles from 'components/overlays/EditPortalRoles'
 import ServiceDeclineAdminboard from 'components/overlays/DeclineAdminboard/ServiceDeclineAdminboard'
 import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDeclineAdminboard'
 import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
-import EditUsecase from 'components/overlays/EditUsecase'
+import EditUseCase from 'components/overlays/EditUseCase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
 import AddMultipleUser from 'components/overlays/AddMultipleUser'
 import { OSPRegister } from 'components/overlays/OSPRegister'
@@ -205,7 +205,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.DISABLE_MANAGED_IDP:
       return <DisableManagedIDP id={overlay.id} />
     case OVERLAYS.ADDUSERS_IDP:
-      return <AddusersIDP id={overlay.id} />
+      return <AddUsersIDP id={overlay.id} />
     case OVERLAYS.DELETE_MANAGED_IDP:
       return <DeleteManagedIDP id={overlay.id} />
     case OVERLAYS.REGISTER_OSP:
@@ -235,7 +235,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.UPDATE_COMPANY_ROLE:
       return <UpdateCompanyRole roles={overlay.roles ?? []} />
     case OVERLAYS.EDIT_USECASE:
-      return <EditUsecase id={overlay.id} title={overlay.title ?? ''} />
+      return <EditUseCase id={overlay.id} title={overlay.title ?? ''} />
     case OVERLAYS.UPDATE_CERTIFICATE:
       return <UpdateCertificate />
     case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:

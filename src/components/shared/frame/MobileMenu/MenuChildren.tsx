@@ -22,7 +22,7 @@ import { Typography } from '@catena-x/portal-shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import type { MenuItemProps } from './MenuItem'
 
-import './MobileMenu.scss'
+import './style.scss'
 import { t } from 'i18next'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>

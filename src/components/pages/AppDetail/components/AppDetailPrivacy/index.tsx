@@ -25,7 +25,7 @@ import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import './AppDetailPrivacy.scss'
 import type { AppDetails } from 'features/apps/types'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
-import '../../AppDetail.scss'
+import '../../style.scss'
 
 export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
   const { t } = useTranslation('', {

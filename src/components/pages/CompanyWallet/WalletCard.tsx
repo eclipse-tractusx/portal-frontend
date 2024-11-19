@@ -24,7 +24,7 @@ import {
 } from 'features/compayWallet/companyWalletApiSlice'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
-import './CompanyWallet.scss'
+import './style.scss'
 
 export default function WalletCard({
   wallet,

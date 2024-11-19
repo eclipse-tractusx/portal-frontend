@@ -21,7 +21,7 @@
 import { ImageItem } from '@catena-x/portal-shared-components'
 import { useMediaQuery } from '@mui/material'
 import { type CSSProperties } from 'react'
-import '../StaticTemplate.scss'
+import '../style.scss'
 
 export default function RenderImage({
   url,

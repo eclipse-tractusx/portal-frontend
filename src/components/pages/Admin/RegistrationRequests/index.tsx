@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import { fetchCompanyDetail } from 'features/admin/registration/actions'
-import './RegistrationRequests.scss'
+import './style.scss'
 import type { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
 import ConfirmationOverlay from './ConfirmationOverlay/ConfirmationOverlay'
@@ -34,7 +34,7 @@ import {
   useFetchCompanySearchQuery,
   useUpdateBPNMutation,
 } from 'features/admin/applicationRequestApiSlice'
-import { RequestList } from './components/RequestList'
+import { RequestList } from './RequestList'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'

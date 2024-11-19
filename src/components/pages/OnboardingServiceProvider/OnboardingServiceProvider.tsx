@@ -35,7 +35,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
-import './OnboardingServiceProvider.scss'
+import './style.scss'
 import { IDPList } from '../IDPManagement/IDPList'
 import {
   type networkCompany,

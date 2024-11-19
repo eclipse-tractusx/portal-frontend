@@ -24,7 +24,7 @@ import StageSection from './components/StageSection'
 import AppStoreSection from './components/AppStoreSection'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import './Home.scss'
+import './style.scss'
 
 export default function Home() {
   return (

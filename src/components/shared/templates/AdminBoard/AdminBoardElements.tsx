@@ -27,7 +27,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme } from '@mui/material'
 import { show } from 'features/control/overlay'
-import './AdminBoard.scss'
+import './style.scss'
 import {
   type AppContent,
   useApproveRequestMutation,

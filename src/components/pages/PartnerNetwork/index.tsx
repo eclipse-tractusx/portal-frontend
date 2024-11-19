@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
+import './style.scss'
 import { useTranslation } from 'react-i18next'
 import {
   useFetchBusinessPartnersMutation,

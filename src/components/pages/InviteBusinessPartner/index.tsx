@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './InviteBusinessPartner.scss'
+import './style.scss'
 import {
   Button,
   Dialog,

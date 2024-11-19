@@ -23,7 +23,7 @@ import { SectionHeader } from 'components/shared/frame/SectionHeader'
 import { useTranslation } from 'react-i18next'
 import NotificationFilter from './NotificationFilter'
 import NotificationSearch from './NotificationSearch'
-import './Notifications.scss'
+import './style.scss'
 
 export default function NotificationCenter() {
   const { t } = useTranslation('notification')

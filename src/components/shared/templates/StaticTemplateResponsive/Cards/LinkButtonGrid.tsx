@@ -20,7 +20,7 @@
 
 import { QuickLinks } from '@catena-x/portal-shared-components'
 import type { ProviderProps } from '../StaticTypes'
-import '../StaticTemplate.scss'
+import '../style.scss'
 
 export default function LinkButtonGrid({
   provider,

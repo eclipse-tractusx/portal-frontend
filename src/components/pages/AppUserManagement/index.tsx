@@ -41,7 +41,7 @@ import {
   useFetchAppRolesQuery,
 } from 'features/admin/appuserApiSlice'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import './AppUserManagement.scss'
+import './style.scss'
 
 export default function AppUserManagement() {
   const { t } = useTranslation()

@@ -41,13 +41,13 @@ import {
   type UsecaseResponse,
   type VerifiedCredentialsData,
 } from 'features/usecase/usecaseApiSlice'
-import './UsecaseParticipation.scss'
+import './style.scss'
 import {
   type SSIDetailData,
   StatusEnum,
 } from 'features/certification/certificationApiSlice'
 
-export default function UsecaseParticipation() {
+export default function UseCaseParticipation() {
   const { t } = useTranslation()
   const theme = useTheme()
   const dispatch = useDispatch()

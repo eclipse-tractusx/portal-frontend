@@ -32,9 +32,9 @@ import {
   type ApplicationRequest,
   type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
-import { RegistrationRequestsTableColumns } from '../../registrationTableColumns'
+import { RegistrationRequestsTableColumns } from '../RegistrationTableColumns'
 import { type GridEventListener } from '@mui/x-data-grid'
-import './RequestListStyle.scss'
+import './style.scss'
 import { refetch } from 'features/admin/registration/slice'
 import { isCompanyName } from 'types/Patterns'
 

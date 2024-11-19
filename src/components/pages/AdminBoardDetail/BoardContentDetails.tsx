@@ -34,7 +34,7 @@ import BoardPrivacy from './components/BoardPrivacy'
 import BoardRoles from './components/BoardRoles'
 import BoardTechnicalUserSetup from './components/BoardTechnicalUserSetup'
 import { PAGES } from 'types/Constants'
-import './AdminBoardDetail.scss'
+import './style.scss'
 
 export default function BoardContentDetails({ item }: { item: AppDetails }) {
   const { t } = useTranslation()

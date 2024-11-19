@@ -23,7 +23,7 @@ import MarketplaceHeader from './components/MarketplaceHeader'
 import MarketplaceProvider from './components/MarketplaceProvider'
 import MarketplaceSubscription from './components/MarketplaceSubscription'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './Marketplace.scss'
+import './style.scss'
 import MarketplaceDocuments from './components/MarketplaceDocuments'
 import MarketplaceTechnicalUserSetup from './components/MarketplaceTechnicalUserSetup'
 
