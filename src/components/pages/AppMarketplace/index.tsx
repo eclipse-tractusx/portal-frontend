@@ -17,10 +17,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import StageSection from './components/StageSection'
-import AppListSection from './components/AppListSection'
+import StageSection from './StageSection'
+import AppListSection from './AppListSection'
 import SearchSection from './components/SearchSection'
-import HeaderSection from './components/HeaderSection'
+import HeaderSection from './HeaderSection'
 import { Box } from '@mui/material'
 import PageService from 'services/PageService'
 import { useRef } from 'react'

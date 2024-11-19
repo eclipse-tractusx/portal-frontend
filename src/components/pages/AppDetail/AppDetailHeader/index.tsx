@@ -26,7 +26,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
-import './AppDetailHeader.scss'
+import './style.scss'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useParams } from 'react-router-dom'

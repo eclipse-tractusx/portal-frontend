@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './AppListGroupView.scss'
+import './style.scss'
 import { Box } from '@mui/material'
 import { Cards } from '@catena-x/portal-shared-components'
 import { multiMapBy } from 'utils/dataUtils'
