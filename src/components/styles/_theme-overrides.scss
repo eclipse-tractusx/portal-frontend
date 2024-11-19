@@ -24,6 +24,7 @@ $border-color: #dfdfdf;
 $text-disabled: #808080;
 $color-orange: #f58220;
 $link-color: #0088cc;
+
 body {
   padding: 0 !important;
 }
@@ -2088,10 +2089,17 @@ p.MuiTypography-root.MuiTypography-body3.description,
       font-weight: 600 !important;
     }
   }
+
   .remove-object-content {
     h6 {
       font-size: 14px !important;
       font-weight: 400 !important;
     }
   }
+}
+
+/* document */
+
+#documents .not-available {
+  text-align: center;
 }
