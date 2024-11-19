@@ -25,7 +25,7 @@ import {
   type TableType,
 } from '@catena-x/portal-shared-components'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './MarketplaceProvider.scss'
+import './style.scss'
 
 export default function MarketplaceProvider({
   item,

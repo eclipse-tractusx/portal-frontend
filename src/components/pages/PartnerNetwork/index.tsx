@@ -40,7 +40,7 @@ import {
   isContentPresent,
   addCountryAttribute,
   addMemberAttribute,
-} from './components/PartnerList/helper'
+} from './PartnerList/Helper'
 import { type BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
 
 const PartnerNetwork = () => {

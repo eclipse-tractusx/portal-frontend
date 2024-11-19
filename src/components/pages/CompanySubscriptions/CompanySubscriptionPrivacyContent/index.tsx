@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { type AppDetails } from 'features/apps/types'
-import './CompanySubscriptionPrivacyContent.scss'
+import './style.scss'
 import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 const policyIcons = {

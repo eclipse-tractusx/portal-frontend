@@ -24,7 +24,7 @@ import {
   CardHorizontal,
   StaticTable,
 } from '@catena-x/portal-shared-components'
-import './ServiceDetail.scss'
+import './style.scss'
 import 'components/styles/document.scss'
 import {
   ServiceTypeIdsEnum,

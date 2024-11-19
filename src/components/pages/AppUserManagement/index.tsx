@@ -25,8 +25,8 @@ import { useParams } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import AppUserDetailsHeader from './components/AppUserDetailsHeader'
-import { AppUserDetailsTable } from './components/AppUserDetailsTable'
+import AppUserDetailsHeader from './AppUserDetailsHeader'
+import { AppUserDetailsTable } from './AppUserDetailsTable'
 import {
   Dialog,
   DialogContent,

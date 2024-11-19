@@ -25,7 +25,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import type { AppRole } from 'features/admin/appuserApiSlice'
-import './AppUserDetailsHeader.scss'
+import './style.scss'
 
 export interface AppUserDetailsHeaderProps {
   roles?: AppRole[]
