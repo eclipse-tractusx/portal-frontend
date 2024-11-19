@@ -911,7 +911,7 @@
         "details": "Details",
         "add": "User hinzufügen",
         "addMultiple": "Mehrere User hinzufügen",
-        "noRowsMsg": "No unassigned user available. All users have at least one app role assigned."
+        "noRowsMsg": "Keine Nutzer ohne zugewiesene Rollen verfügbar. Alle Nutzer haben mindestens eine App-Rolle zugewiesen."
       },
       "appUserDetails": {
         "headline": "App Zugriffsmanagement - {{app}}",
@@ -926,7 +926,7 @@
         "table": {
           "headline": "Benutzermanagement",
           "title": "Benutzer Liste",
-          "add": "Benutzerrolle hinzufügen",
+          "add": "Rollen für mehrere User hinzufügen",
           "buttonTooltip": "Funktion deaktiviert, da keine App-Rollen verfügbar sind",
           "noRowsMsg": "No users assigned till now. Start to assign by clicking on Add Role"
         },
@@ -1148,10 +1148,10 @@
       }
     },
     "addUserRight": {
-      "headline": "Assign app roles to your user(s)",
+      "headline": "Rollen für mehrere User hinzufügen",
       "noRolesFound": "No user roles found",
-      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "selectUsersDescription": "In Schritt 1 wählen Sie die User aus und bestätigen mit dem Button unten. In Schritt 2 wählen Sie die Rollen für die User.",
+      "addRolesDescription": "In Schritt 2 wählen Sie die User aus und bestätigen mit dem Button unten. In Schritt 2 wählen Sie die Rollen für die User.",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",

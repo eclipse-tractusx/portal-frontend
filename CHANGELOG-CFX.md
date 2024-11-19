@@ -133,7 +133,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed authentication json issue on prod [PM2-1750](https://cofinity-x.atlassian.net/browse/PM2-1750)
 
 - **App Subscription**
+
   - Fixed activation app subscription button issue [PM2-1850](https://cofinity-x.atlassian.net/browse/PM2-1850)
+
+- **App Roles**
+  - Fixed DE & EN translation issue on app roles [PM2-1082](https://cofinity-x.atlassian.net/browse/PM2-1082)
 
 ## 2.2.0-cfx-3-hotfix3
 
