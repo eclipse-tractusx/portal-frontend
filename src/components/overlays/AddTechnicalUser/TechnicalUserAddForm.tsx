@@ -18,16 +18,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import InputLabel from '@mui/material/InputLabel'
 import { type Control, Controller, type FieldErrors } from 'react-hook-form'
-import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import { Radio, Typography } from '@catena-x/portal-shared-components'
+import { Checkbox, Radio, Typography } from '@catena-x/portal-shared-components'
 import {
   type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,
@@ -35,7 +34,7 @@ import {
 
 export type DefaultFormFieldValuesType = {
   TechnicalUserName: string
-  TechnicalUserService: string
+  TechnicalUserService: string[]
   TechnicalUserDescription: string
 }
 
@@ -49,7 +48,7 @@ export type FormSelectType = {
   ) => void
   errors: FieldErrors<{
     TechnicalUserName: string
-    TechnicalUserService: string
+    TechnicalUserService: string[]
     TechnicalUserDescription: string
   }>
   name:
@@ -69,7 +68,7 @@ export type FormAddType = {
   ) => void
   errors: FieldErrors<{
     TechnicalUserName: string
-    TechnicalUserService: string
+    TechnicalUserService: string[]
     TechnicalUserDescription: string
   }>
   helperText: string
@@ -83,6 +82,11 @@ export type FormAddType = {
   limit?: number
 }
 
+enum RoleType {
+  Internal = 'Internal',
+  External = 'External',
+}
+
 const TechnicalUserAddFormSelect = ({
   control,
   trigger,
@@ -92,7 +96,62 @@ const TechnicalUserAddFormSelect = ({
 }: FormSelectType) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
-  const [selectedValue, setSelectedValue] = useState<string>()
+  const internalRoles = roles?.filter(
+    (role) => role.roleType === RoleType.Internal
+  )
+  const externalRoles = roles?.filter(
+    (role) => role.roleType === RoleType.External
+  )
+  const [roleError, setRoleError] = useState<boolean>(false)
+  const [selectedRoles, setSelectedRoles] = useState<string[]>([])
+  const [selectedRoleType, setSelectedRoleType] = useState<string>(
+    RoleType.Internal
+  )
+
+  useEffect(() => {
+    setSelectedRoles([])
+  }, [selectedRoleType])
+
+  const selectCheckboxRoles = (role: string, select: boolean) => {
+    if (selectedRoles && selectedRoles[0] === externalRoles?.[0].roleId) {
+      setSelectedRoles([...[], role])
+    } else {
+      const isSelected = selectedRoles?.includes(role)
+      if (isSelected && selectedRoles.length === 1) setRoleError(true)
+      if (!isSelected && select) {
+        setSelectedRoles([...selectedRoles, role])
+      } else if (isSelected && !select) {
+        const oldRoles = [...selectedRoles]
+        oldRoles.splice(oldRoles.indexOf(role), 1)
+        setSelectedRoles([...oldRoles])
+      }
+    }
+  }
+
+  const selectRoles = (role: string, select: boolean, type: string) => {
+    if (type === 'checkbox') {
+      selectCheckboxRoles(role, select)
+    } else if (type === 'radio') {
+      setSelectedRoles([...[], role])
+    }
+    if (selectedRoles.length === 0) setRoleError(false)
+  }
+
+  const selectCheckboxOnChange = (role: string, select: boolean) => {
+    if (selectedRoles && selectedRoles[0] === externalRoles?.[0].roleId) {
+      return [...[], role]
+    } else {
+      const isSelected = selectedRoles?.includes(role)
+      if (isSelected && selectedRoles.length === 1) setRoleError(true)
+      if (!isSelected && select) {
+        return [...selectedRoles, role]
+      } else if (isSelected && !select) {
+        const oldRoles = [...selectedRoles]
+        oldRoles.splice(oldRoles.indexOf(role), 1)
+        return [...oldRoles]
+      }
+    }
+  }
 
   return (
     <Controller
@@ -106,39 +165,107 @@ const TechnicalUserAddFormSelect = ({
               {t('content.addUser.technicalUser.addOverlay.service')}
             </Typography>
           </InputLabel>
-          <Typography variant="body2">
-            {t('content.addUser.technicalUser.addOverlay.serviceSubHeading')}
-          </Typography>
-          {roles?.map((role: ServiceAccountRole) => (
-            <>
-              <Radio
-                key={role.roleId}
-                name="radio-buttons"
-                label={role.roleName}
-                checked={selectedValue === role.roleId}
-                value={role.roleId}
-                onChange={(event) => {
-                  setSelectedValue(event.target.value)
-                  trigger(name)
-                  onChange(event)
-                }}
-                size="small"
-                sx={{
-                  display: 'flex',
-                  fontFamily: 'LibreFranklin-Light !important',
-                }}
-              />
-              <Typography variant="body3" className="roleDescription">
-                {role.roleDescription ?? '-'}
+          <Trans>
+            <Typography variant="body2" sx={{ marginBottom: '10px' }}>
+              {t('content.addUser.technicalUser.addOverlay.note')}
+            </Typography>
+          </Trans>
+          <Box>
+            <Radio
+              label={t(
+                'content.addUser.technicalUser.addOverlay.internalRoles'
+              )}
+              checked={selectedRoleType === RoleType.Internal}
+              onChange={() => {
+                setSelectedRoleType(RoleType.Internal)
+              }}
+              name="radio-buttons"
+              value={selectedRoleType}
+              size="small"
+            />
+            <Box sx={{ pl: '28px' }}>
+              <Typography variant="body3" sx={{ marginBottom: '10px' }}>
+                {t(
+                  'content.addUser.technicalUser.addOverlay.internalRolesDescription'
+                )}
               </Typography>
-            </>
-          ))}
-          {!!errors[name as keyof Object] && (
-            <FormHelperText
-              sx={{ marginBottom: '23px', color: 'danger.danger' }}
-            >
-              {t('content.addUser.technicalUser.addOverlay.error.select')}
-            </FormHelperText>
+              {internalRoles?.map((role: ServiceAccountRole) => (
+                <>
+                  <Box className="roles">
+                    <Checkbox
+                      key={role.roleId}
+                      label={role.roleName}
+                      checked={selectedRoles.indexOf(role.roleId) !== -1}
+                      onChange={(e) => {
+                        selectRoles(role.roleId, e.target.checked, 'checkbox')
+                        trigger(name)
+                        onChange(
+                          selectCheckboxOnChange(role.roleId, e.target.checked)
+                        )
+                      }}
+                      size="small"
+                      value={selectedRoles}
+                      disabled={selectedRoleType === RoleType.External}
+                    />
+                  </Box>
+                  <Typography variant="body3" className="roleDescription">
+                    {role.roleDescription ?? '-'}
+                  </Typography>
+                </>
+              ))}
+            </Box>
+          </Box>
+          <Box>
+            <Radio
+              label={t(
+                'content.addUser.technicalUser.addOverlay.externalRoles'
+              )}
+              checked={selectedRoleType === RoleType.External}
+              onChange={() => {
+                setSelectedRoleType(RoleType.External)
+              }}
+              name="radio-buttons"
+              value={selectedRoleType}
+              size="small"
+            />
+            <Box sx={{ pl: '28px' }}>
+              <Typography variant="body2" sx={{ marginBottom: '10px' }}>
+                {t(
+                  'content.addUser.technicalUser.addOverlay.externalRolesDescription'
+                )}
+              </Typography>
+              {externalRoles?.map((role: ServiceAccountRole) => (
+                <>
+                  <Box className="roles">
+                    <Radio
+                      label={role.roleName}
+                      key={role.roleId}
+                      checked={
+                        selectedRoles &&
+                        selectedRoles[0] === externalRoles?.[0].roleId
+                      }
+                      onChange={(e) => {
+                        selectRoles(role.roleId, e.target.checked, 'radio')
+                        trigger(name)
+                        onChange([...[], role.roleId])
+                      }}
+                      name="radio-buttons"
+                      value={selectedRoles}
+                      size="small"
+                      disabled={selectedRoleType === RoleType.Internal}
+                    />
+                  </Box>
+                  <Typography variant="body3" className="roleDescription">
+                    {role.roleDescription ?? '-'}
+                  </Typography>
+                </>
+              ))}
+            </Box>
+          </Box>
+          {roleError && (
+            <Typography variant="body3" className="file-error-msg">
+              {t('content.addUser.technicalUser.addOverlay.roleMandatory')}
+            </Typography>
           )}
         </Box>
       )}
@@ -220,7 +347,7 @@ export const TechnicalUserAddForm = ({
   control: Control<DefaultFormFieldValuesType>
   errors: FieldErrors<{
     TechnicalUserName: string
-    TechnicalUserService: string
+    TechnicalUserService: string[]
     TechnicalUserDescription: string
   }>
   // Add an ESLint exception until there is a solution
@@ -253,7 +380,7 @@ export const TechnicalUserAddForm = ({
               ),
               label: t('content.addUser.technicalUser.addOverlay.username'),
               helperText: t(
-                'content.addUser.technicalUser.addOverlay.error.description'
+                'content.addUser.technicalUser.addOverlay.error.username'
               ),
             }}
           />
@@ -288,7 +415,6 @@ export const TechnicalUserAddForm = ({
               name: 'TechnicalUserService',
               rules: {
                 required: true,
-                validate: (value: string) => value !== 'none',
               },
             }}
           />

@@ -53,19 +53,27 @@ import SortImage from 'components/shared/frame/SortImage'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
 import { SORTING_TYPE } from 'features/serviceManagement/types'
+import { serviceTypeMapping } from 'types/Constants'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
 
 const indexToSplit = 2 //show only 2 services in recommended
+const serviceTypeIdMapping: Record<string, ServiceTypeIdsEnum> = {
+  [ServiceTypeIdsEnum.DATASPACE_SERVICES]: ServiceTypeIdsEnum.DATASPACE_SERVICE,
+  [ServiceTypeIdsEnum.CONSULTANCY_SERVICES]:
+    ServiceTypeIdsEnum.CONSULTANCY_SERVICE,
+}
 
 export default function ServiceMarketplace() {
   const { t } = useTranslation()
   const theme = useTheme()
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string>('All Services')
+  const [selected, setSelected] = useState<string>(
+    t('content.serviceMarketplace.tabs.all')
+  )
   const [sortOption, setSortOption] = useState<string>('new')
   const [cardServices, setCardServices] = useState<ServiceRequest[]>([])
   const [page, setPage] = useState<number>(0)
@@ -106,18 +114,11 @@ export default function ServiceMarketplace() {
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
-    let serviceType: ServiceTypeIdsEnum | undefined
-
-    if (viewValue === ServiceTypeIdsEnum.DATASPACE_SERVICES) {
-      serviceType = ServiceTypeIdsEnum.DATASPACE_SERVICE
-    } else if (viewValue === ServiceTypeIdsEnum.CONSULTANCY_SERVICES) {
-      serviceType = ServiceTypeIdsEnum.CONSULTANCY_SERVICE
-    }
-
+    const serviceType = serviceTypeIdMapping[serviceTypeMapping[viewValue]]
     setServiceTypeId(serviceType)
     setArgsData((arg) => ({
       ...arg,
-      serviceType,
+      serviceType: serviceType ?? undefined,
       page: 0,
     }))
 

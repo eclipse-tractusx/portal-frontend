@@ -720,10 +720,10 @@
           },
           "url": {
             "label": "Connector Catalogue Endpoint*",
-            "placeholder": "Connector URL",
+            "placeholder": "Example: https://connector.control.plane/api/v1/dsp",
             "mandatoryError": "Connector URL is mandatory.",
             "patternError": "Enter a valid url - eg: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "tooltipMsg": "Base URL of the Catalog Service endpoint of a DSP Connector, e.g., https://connector.control.plane/{catalogPath}."
           },
           "bpn": {
             "label": "Connector Owner*",
@@ -1075,13 +1075,14 @@
       "heading": "Self-Description Document Status",
       "description": "This page provides an overview of the current status of self-descriptions for administrators.",
       "reprocess": "Reprocess",
-      "complianceStatus": "Compliance Status:",
+      "selfDescriptionFactoryInterface": "Self-Description Factory Interface",
       "legalPerson": "Legal Person",
       "legalPersonDesc": "Overview of companies with missing legal person self-description",
       "connectors": "Connectors",
       "connectorsDesc": "Overview of companies with missing connector self-description",
       "errorMsg": "Error! Something went wrong",
-      "noDataMsg": "No records found."
+      "noDataMsg": "No records found.",
+      "statusMsg": "The status of the self-description factory interface can only be changed by configuration (see installation manual)"
     },
     "addUser": {
       "headline": "Add User Account",
@@ -1101,16 +1102,22 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "note": "Note: Selection of both internal and external users for the same service is not possible.",
+          "internalRoles": "Internal technical user",
+          "internalRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
+          "externalRoles": "External technical user",
+          "externalRolesDescription": "External technical user are created in external environment therefore can only have one role",
           "username": "Username*",
           "description": "Description*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "roleMandatory": "Technical user Role is mandatory",
           "error": {
             "select": "Please select a value.",
-            "description": "Please enter a description."
+            "username": "Please enter username.",
+            "description": "Please enter description."
           }
         }
       }
@@ -1211,7 +1218,12 @@
         "message": "The technical user profile defined below displays the user permission which the technical user created as part of the app/service activation gets automatically assigned."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by your company"
+      "subscribedTooltip": "The app is already subscribed by your company",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -2236,7 +2248,11 @@
       "callbackUrlError": "Failed configuring OSP callback",
       "callbackUrl": {
         "name": "Callback URL",
-        "hint": "Enter the callback URL from your IDP that ends with '/.well-known/openid-configuration'"
+        "hint": "Status callback URL is mandatory"
+      },
+      "authUrl": {
+        "name": "Auth URL",
+        "hint": "Auth URL is mandatory"
       },
       "clientId": {
         "name": "Client ID",
@@ -2284,7 +2300,10 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Uploaded",
-      "uploadProgess": "Uploaded % of % files"
+      "uploadProgess": "Uploaded % of % files",
+      "error": {
+        "fileTooLarge": "File is larger than"
+      }
     },
     "userRoles": {
       "title": "Assigned Catena-X Portal Roles",

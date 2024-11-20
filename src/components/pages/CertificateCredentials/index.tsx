@@ -116,7 +116,7 @@ export default function CertificateCredentials() {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const { data } = useFetchCertificatesQuery()
+  const { data, isFetching } = useFetchCertificatesQuery()
   const { data: certificateTypes } = useFetchCertificateTypesQuery()
 
   const [{ searchExpr, showModal, selected, sortOption }, setState] =
@@ -260,7 +260,15 @@ export default function CertificateCredentials() {
                 />
               )}
             </div>
-            {data && <CertificateElements data={data} />}
+            {data?.length ? (
+              <CertificateElements data={data} />
+            ) : (
+              !isFetching && (
+                <Typography variant="body1" className="noData">
+                  {t('content.certificates.noData')}
+                </Typography>
+              )
+            )}
           </div>
 
           <div style={{ height: '66px' }}></div>
