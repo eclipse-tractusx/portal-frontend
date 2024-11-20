@@ -37,7 +37,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed osp idp config detail information on re-opening overlay [PM2-1847](https://cofinity-x.atlassian.net/browse/PM2-1847)
   - Fixed osp customer overview table incorrect unique id [PM2-1803]https://cofinity-x.atlassian.net/browse/PM2-1803
   - Fixed osp onboarding Management Header Title Transation [PM2-1647](https://cofinity-x.atlassian.net/browse/PM2-1647)
+  - Fixed disabled submit button osp callback url form [PM2-1901](https://cofinity-x.atlassian.net/browse/PM2-1901)
   - Fixed osp managament customer overview table type error [PM2-1899](https://cofinity-x.atlassian.net/browse/PM2-1899)
+
 
 - **Technical User Management**
 

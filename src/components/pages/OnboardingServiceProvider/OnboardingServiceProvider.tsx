@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { type SyntheticEvent, useState } from 'react'
+import { type SyntheticEvent, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Typography,
@@ -141,6 +141,11 @@ const OnboardingServiceProvider = () => {
     )
     return true
   }
+
+  useEffect(() => {
+    const current: IHashMap<string> = { ...data }
+    setFormData(current)
+  }, [data])
 
   return (
     <div className="onboarding-service-page-container ">
