@@ -144,6 +144,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **App Roles**
   - Fixed DE & EN translation issue on app roles [PM2-1082](https://cofinity-x.atlassian.net/browse/PM2-1082)
+  - Fixed Add roles for multiple User by row selection [PM2-1912](https://cofinity-x.atlassian.net/browse/PM2-1912)
 
 ## 2.2.0-cfx-3-hotfix3
 

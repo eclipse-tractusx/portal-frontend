@@ -166,18 +166,15 @@ export const PageLoadingTable = function <Row, Args>({
         }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function checkEmptyIdentityProvider(payloads: any[]): any[] {
-    return payloads.map((payload) => {
+    payloads?.forEach((payload) => {
       if (
-        Array.isArray(payload.identityProvider) &&
-        payload.identityProvider.length === 0
+        Array.isArray(payload?.identityProvider) &&
+        payload?.identityProvider.length === 0
       ) {
-        return {
-          ...payload,
-          identityProvider: null,
-        }
+        payload.identityProvider = null
       }
-      return payload
     })
+    return payloads
   }
 
   return (
