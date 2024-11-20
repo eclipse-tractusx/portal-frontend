@@ -126,25 +126,15 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         </div>
         {data && <UpdateIDPContent idp={data} onValid={setIdpUpdateData} />}
         {showError && (
-          <Typography
-            variant="label3"
-            sx={{
-              display: 'flex',
-              marginTop: '30px',
-              color: '#d91e18',
-              border: '1px solid #d91e18',
-              padding: '20px 40px',
-              borderRadius: '5px',
-            }}
-          >
-            <WarningAmberIcon
-              sx={{
-                marginRight: '5px',
-                fontSize: '18px',
-              }}
-            />
-            {t('add.metadataError')}
-          </Typography>
+          <Trans>
+            <Typography
+              className="error-version__html error-version__update-idp"
+              variant="label3"
+            >
+              <WarningAmberIcon />
+              {t('add.metadataErrorGeneral')}
+            </Typography>
+          </Trans>
         )}
       </DialogContent>
       <DialogActions>

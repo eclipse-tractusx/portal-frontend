@@ -22,11 +22,13 @@
   text-align: center;
   width: 100%;
   margin: 0 auto;
+
   .idp-management-title {
     text-align: center;
     padding-bottom: 20px;
     position: relative;
   }
+
   .idp-management-title::after {
     content: '';
     width: 70px;
@@ -36,13 +38,16 @@
     left: 50%;
     transform: translateX(-50%);
   }
+
   .idp-management-desc {
     width: 74%;
     margin: 50px auto;
   }
+
   img {
     border-radius: 10px;
   }
+
   .add-idp-btn {
     margin-top: 30px;
     text-transform: capitalize;
@@ -131,6 +136,7 @@
 
 .progress-section {
   display: flex;
+
   .number {
     color: white;
     border-radius: 50%;
@@ -141,6 +147,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     svg {
       font-size: 20px;
     }
@@ -152,11 +159,30 @@
     box-shadow: none;
     font-size: 12px;
     padding: 8px !important;
+
     &:hover {
       box-shadow: none;
     }
+
     &:focus {
       box-shadow: none;
     }
+  }
+}
+
+/* IDP Management*/
+.error-version__html {
+  display: flex;
+  color: #d91e18;
+  padding: 20px 40px;
+  margin-top: 30px;
+  border: 1px solid #d91e18;
+  border-radius: 5px;
+  line-height: 1.4;
+  margin: 30px 0 0 !important;
+
+  .MuiSvgIcon-root {
+    font-size: 28px;
+    margin-right: 12px;
   }
 }

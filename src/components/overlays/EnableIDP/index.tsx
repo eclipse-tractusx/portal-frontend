@@ -153,25 +153,15 @@ export const EnableIDP = ({ id }: { id: string }) => {
           {t('add.learnMore')}
         </Typography>
         {showError && (
-          <Typography
-            variant="label3"
-            sx={{
-              display: 'flex',
-              marginTop: '30px',
-              border: '1px solid #d91e18',
-              borderRadius: '5px',
-              color: '#d91e18',
-              padding: '20px 40px',
-            }}
-          >
-            <WarningAmberIcon
-              sx={{
-                marginRight: '5px',
-                fontSize: '18px',
-              }}
-            />
-            {t('add.metadataError')}
-          </Typography>
+          <Trans>
+            <Typography
+              className="error-version__html error-version__enable-idp"
+              variant="label3"
+            >
+              <WarningAmberIcon />
+              {t('add.metadataError')}
+            </Typography>
+          </Trans>
         )}
       </DialogContent>
       <DialogActions>

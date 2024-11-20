@@ -60,7 +60,9 @@
     "learnMore": "Learn More",
     "success": "IdP erstellt",
     "error": "Failed to create IdP",
-    "metadataError": "Um einen MANAGED Identity Provider einzurichten, benötigen Sie die Rolle 'Onboarding Service Provider'. Für weitere Informationen wenden Sie sich bitte an support@cofinity-x.com"
+    "metadataError": "Identity Provider (idP) Konfiguration fehlgeschlage <br/>Der Identity Provider konnte aufgrund ungültiger Eingaben nicht erstellt werden. Bitte überprüfen Sie Ihre Konfiguration und versuchen Sie es erneut. Bei weiteren Fragen kontaktieren Sie bitte support@cofinity-x.com",
+    "metadataErrorManaged": "Um einen MANAGED Identity Provider einzurichten, benötigen Sie die Rolle „Onboarding Service Provider“. Für weitere Informationen wenden Sie sich bitte an support@cofinity-x.com",
+    "metadataErrorGeneral": "Identity Provider (idP) Konfiguration fehlgeschlage <br/>Der Identity Provider konnte aufgrund ungültiger Eingaben nicht erstellt werden. Bitte überprüfen Sie Ihre Konfiguration und versuchen Sie es erneut. Bei weiteren Fragen kontaktieren Sie bitte support@cofinity-x.com"
   },
   "delete": {
     "title": "Delete IdP Connection",
@@ -163,7 +165,6 @@
     "step1Intro": "Inhalt aktuelle User-liste:",
     "step1ButtonLabel": "User-Liste herunterladen",
     "step2Heading": "In der heruntergeladenen User-Liste:<br>Ergänzen Sie jeden User-Eintrag mit der jeweiligen ProviderUserID",
-
     "drop": {
       "intro": "Upload mapped user list with ProviderUserID",
       "title": "Ziehen Sie Ihre Dateien per Drag & Drop hierher",

@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Changes
 
+- **IDP Management**
+
+  - Fixed managed/own IDP generic error message, logic and translations [PM2-1760](https://cofinity-x.atlassian.net/browse/PM2-1760)
+
 - **Credential Request Overview**
 
   - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
