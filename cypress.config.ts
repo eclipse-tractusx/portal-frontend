@@ -30,7 +30,7 @@ export default defineConfig({
     backendUrl: 'https://portal-backend.example.org',
     user: {
       email: 'user@email.com',
-      password: 'password',
+      password: '',
     },
     keycloak: {
       centralUrl: 'https://centralidp.example.org/auth',
