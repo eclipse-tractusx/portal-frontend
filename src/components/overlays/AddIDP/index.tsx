@@ -301,25 +301,15 @@ export const AddIdp = () => {
         <AddIDPPrepareForm />
 
         {showError && (
-          <Typography
-            sx={{
-              display: 'flex',
-              color: '#d91e18',
-              padding: '20px 40px',
-              marginTop: '30px',
-              border: '1px solid #d91e18',
-              borderRadius: '5px',
-            }}
-            variant="label3"
-          >
-            <WarningAmberIcon
-              sx={{
-                fontSize: '18px',
-                marginRight: '5px',
-              }}
-            />
-            {t('add.metadataError')}
-          </Typography>
+          <Trans>
+            <Typography
+              className="error-version__html error-version__add-idp"
+              variant="label3"
+            >
+              <WarningAmberIcon />
+              {t('add.metadataErrorManaged')}
+            </Typography>
+          </Trans>
         )}
       </DialogContent>
       <DialogActions>
