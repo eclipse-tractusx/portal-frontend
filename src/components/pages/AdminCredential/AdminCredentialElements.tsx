@@ -395,7 +395,7 @@ export default function AdminCredentialElements() {
           )}
         </DialogActions>
       </Dialog>
-      <div className="recommended-main">
+      <div className="recommended-main admin-credential-element__box">
         <PageLoadingTable<CredentialResponse[], FetchHookArgsType>
           tableVariant={TableVariants.SERVER_SIDE}
           autoFocus={false}
