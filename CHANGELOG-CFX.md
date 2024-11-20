@@ -40,7 +40,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed disabled submit button osp callback url form [PM2-1901](https://cofinity-x.atlassian.net/browse/PM2-1901)
   - Fixed osp managament customer overview table type error [PM2-1899](https://cofinity-x.atlassian.net/browse/PM2-1899)
 
-
 - **Technical User Management**
 
   - Fixed Pagination and Added Variants for ServerSide, AutoLoadOnScroll and LoadMoreButton for Technical users Mangement page [PM2-1189](https://cofinity-x.atlassian.net/browse/PM2-1189)
