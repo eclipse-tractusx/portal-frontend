@@ -405,7 +405,7 @@ const OnboardingServiceProvider = () => {
                   flex: 1,
                   sortable: false,
                   renderCell: ({ row }: { row: networkCompany }) =>
-                    row?.identityProvider?.[0].alias,
+                    row?.identityProvider?.[0]?.alias ?? 'No IDP available',
                 },
                 {
                   field: 'activeUsers',

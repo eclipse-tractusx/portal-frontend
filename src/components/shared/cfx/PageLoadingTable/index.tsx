@@ -164,18 +164,6 @@ export const PageLoadingTable = function <Row, Args>({
           hideFooter: true,
           rowsCountMax: maxRows,
         }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function checkEmptyIdentityProvider(payloads: any[]): any[] {
-    payloads?.forEach((payload) => {
-      if (
-        Array.isArray(payload?.identityProvider) &&
-        payload?.identityProvider.length === 0
-      ) {
-        payload.identityProvider = null
-      }
-    })
-    return payloads
-  }
 
   return (
     <>
@@ -184,7 +172,7 @@ export const PageLoadingTable = function <Row, Args>({
           reload={refetch}
           error={error}
           className="cx-table__page-loading"
-          rows={checkEmptyIdentityProvider(items)}
+          rows={items}
           loading={loading && !items.length}
           paginationMode={'server'}
           {...paginationProps} // Conditionally applied props
