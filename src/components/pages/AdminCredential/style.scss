@@ -97,6 +97,7 @@
   .approveDeclineBtn {
     display: flex;
     align-items: center;
+
     .statusBtn {
       border-radius: 20px;
       padding: 4px 10px;
@@ -118,6 +119,7 @@
       min-width: auto;
       padding: 0;
       border-radius: 0;
+
       p {
         margin: 0;
       }
@@ -148,6 +150,8 @@
   }
 }
 
-.cx-search-input {
-  display: none;
+.admin-credential-element__box {
+  .cx-search-input {
+    display: none;
+  }
 }
