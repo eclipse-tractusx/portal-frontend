@@ -22,8 +22,10 @@ import { OVERLAYS } from 'types/Constants'
 import { PageNotifications } from '@catena-x/portal-shared-components'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { show } from 'features/control/overlay'
-import { resetNotification } from 'features/notification/actions'
-import { notificationSelector } from 'features/notification/slice'
+import {
+  notificationSelector,
+  resetNotification,
+} from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import './style.scss'
