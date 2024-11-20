@@ -187,7 +187,9 @@ export default function AddMultipleUser() {
             setCsvData(csvData)
             csvData[0].push('Roles')
             for (let i = 0; i < csvData.length; i++) {
-              if (i !== 0) csvData[i].push(roles.toString())
+              if (i !== 0) {
+                csvData[i] = [...csvData[i].concat(roles)]
+              }
             }
             handleAddUserAPICall(csvData)
           },
