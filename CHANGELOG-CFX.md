@@ -135,6 +135,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - **User Management**
   - Fixed: CHERRY-PICK Prevented admins from proceeding with role assignment without selecting a user. [#1270](https://github.com/eclipse-tractusx/portal-frontend/pull/1270)
   - Removed extra confirmation messages from the delete dialog. [#PM2-1580](https://cofinity-x.atlassian.net/browse/PM2-1580)
+  - Fixed issue on bulk upload multiple role selection [PM2-1400](https://cofinity-x.atlassian.net/browse/PM2-1400)
 
   - **Your Account**
   - Fixed authentication json issue on prod [PM2-1750](https://cofinity-x.atlassian.net/browse/PM2-1750)
