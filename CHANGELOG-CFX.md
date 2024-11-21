@@ -2,9 +2,21 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## Unreleased
+
+### Bugfixes
+
+- **Cookie Policy**
+
+  - Load cookie policy script after user login [PM2-1851](https://cofinity-x.atlassian.net/browse/PM2-1851)
+
 ## 2.2.0-cfx-4
 
 ### Changes
+
+- **Cookie Policy**
+
+  - Load cookie policy script after user login [PM2-1851](https://cofinity-x.atlassian.net/browse/PM2-1851)
 
 - **IDP Management**
 
