@@ -4,6 +4,10 @@
 
 ### Bugfixes
 
+- **Onboarding Service Provider**
+
+  - Add missing short name field osp consent form [#1341](https://github.com/eclipse-tractusx/portal-frontend/pull/1341)
+
 - **App Marketplace**
   - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
 
