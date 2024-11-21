@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import qs from 'qs'
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 import type { BusinessPartnerResponse, BusinessPartner } from './types'
 import { getApiBase, getBpdmPoolApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'

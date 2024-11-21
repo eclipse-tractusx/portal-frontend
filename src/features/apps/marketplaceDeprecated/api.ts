@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { getApiBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 import type { SubscribedApps } from './types'
 import { getHeaders } from 'services/RequestService'
 import type { AppMarketplaceApp } from '../types'

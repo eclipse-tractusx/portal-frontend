@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+
 export const PAGE_SIZE = 10
 
 export const INTERVAL_CHECK_NOTIFICATIONS = 60000
@@ -243,3 +245,12 @@ export enum HINTS {
 }
 
 export const CONVERT_TO_MB = 1048576
+
+export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
+  // en
+  'Dataspace Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
+  'Consultancy Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+  // de
+  'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
+  'Beratungs Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+}

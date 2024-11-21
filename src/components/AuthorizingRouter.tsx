@@ -22,7 +22,7 @@ import Main from 'components/Main'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFound from 'components/pages/NotFound'
 import AccessService from 'services/AccessService'
-import ScrollToTop from '../utils/ScrollToTop'
+import ScrollToTop from '../utils/scrollToTop'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
 import DeleteCompany from './pages/DeleteCompany'
 
