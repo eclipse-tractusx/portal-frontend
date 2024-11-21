@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **OSP consent**
+
+  - Remove function causing empty download [PM2-1792](https://cofinity-x.atlassian.net/browse/PM2-1792)
+
 - **Cookie Policy**
 
   - Load cookie policy script after user login [PM2-1851](https://cofinity-x.atlassian.net/browse/PM2-1851)
