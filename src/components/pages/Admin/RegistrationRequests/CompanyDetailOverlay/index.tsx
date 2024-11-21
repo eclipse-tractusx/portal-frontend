@@ -286,63 +286,61 @@ const CompanyDetailOverlay = ({
             onCloseWithIcon: handleOverlayClose,
           }}
         >
-          <>
-            <Box
-              sx={{
-                width: '80%',
-                margin: '0 auto',
-              }}
-            >
-              <Tabs value={activeTab} onChange={handleChange}>
-                <Tab
-                  icon={getStepIcon('1')}
-                  iconPosition="start"
-                  sx={{
-                    fontSize: '14px',
-                    width: '50%',
-                    textTransform: 'capitalize',
-                    color: '#111 !important',
-                    '&.Mui-selected': {
-                      borderBottom: '3px solid #0f71cb',
-                    },
-                  }}
-                  label={t('content.admin.registration-requests.overlay.tab1')}
-                  id={`simple-tab-${activeTab}`}
-                  aria-controls={`simple-tabpanel-${activeTab}`}
-                />
-                <div className="div-container">
-                  {' '}
-                  <div className="tab-divider" />
-                </div>
-                <Tab
-                  icon={getStepIcon('2')}
-                  iconPosition="start"
-                  sx={{
-                    fontSize: '14px',
-                    width: activeTab ? '50%' : '42%',
-                    textTransform: 'capitalize',
-                    color: '#111 !important',
-                    '&.Mui-selected': {
-                      borderBottom: '3px solid #0f71cb',
-                    },
-                  }}
-                  label={t('content.admin.registration-requests.overlay.tab2')}
-                  id={`simple-tab-${activeTab}`}
-                  aria-controls={`simple-tabpanel-${activeTab}`}
-                />
-                <>
-                  {selectedRequest && !activeTab && (
-                    <StatusProgress
-                      application={selectedRequest}
-                      trans={t}
-                      type={false}
-                      isProgressOnly={true}
-                    />
-                  )}
-                </>
-              </Tabs>
-            </Box>
-          </>
+          <Box
+            sx={{
+              width: '80%',
+              margin: '0 auto',
+            }}
+          >
+            <Tabs value={activeTab} onChange={handleChange}>
+              <Tab
+                icon={getStepIcon('1')}
+                iconPosition="start"
+                sx={{
+                  fontSize: '14px',
+                  width: '50%',
+                  textTransform: 'capitalize',
+                  color: '#111 !important',
+                  '&.Mui-selected': {
+                    borderBottom: '3px solid #0f71cb',
+                  },
+                }}
+                label={t('content.admin.registration-requests.overlay.tab1')}
+                id={`simple-tab-${activeTab}`}
+                aria-controls={`simple-tabpanel-${activeTab}`}
+              />
+              <div className="div-container">
+                {' '}
+                <div className="tab-divider" />
+              </div>
+              <Tab
+                icon={getStepIcon('2')}
+                iconPosition="start"
+                sx={{
+                  fontSize: '14px',
+                  width: activeTab ? '50%' : '42%',
+                  textTransform: 'capitalize',
+                  color: '#111 !important',
+                  '&.Mui-selected': {
+                    borderBottom: '3px solid #0f71cb',
+                  },
+                }}
+                label={t('content.admin.registration-requests.overlay.tab2')}
+                id={`simple-tab-${activeTab}`}
+                aria-controls={`simple-tabpanel-${activeTab}`}
+              />
+              <>
+                {selectedRequest && !activeTab && (
+                  <StatusProgress
+                    application={selectedRequest}
+                    trans={t}
+                    type={false}
+                    isProgressOnly={true}
+                  />
+                )}
+              </>
+            </Tabs>
+          </Box>
         </DialogHeader>
 
         {detailLoading ? (

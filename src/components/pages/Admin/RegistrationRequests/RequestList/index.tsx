@@ -30,7 +30,6 @@ import { updateApplicationRequestSelector } from 'features/control/updates'
 import {
   AppFilterType,
   type ApplicationRequest,
-  type ProgressButtonsType,
 } from 'features/admin/applicationRequestApiSlice'
 import { RegistrationRequestsTableColumns } from '../RegistrationTableColumns'
 import { type GridEventListener } from '@mui/x-data-grid'
@@ -55,7 +54,6 @@ export const RequestList = ({
   loaded: number
   showConfirmOverlay?: (applicationId: string) => void
   onConfirmationCancel?: (applicationId: string, name: string) => void
-  onChipButtonSelect?: (button: ProgressButtonsType, id: string) => void
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()

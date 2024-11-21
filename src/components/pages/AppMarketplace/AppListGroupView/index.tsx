@@ -69,14 +69,12 @@ export const AppListGroupView = ({
   )
 
   return (
-    <>
-      <ul className="AppListGroupView">
-        {Object.entries(group).map((v) => (
-          <li key={v[0]}>
-            <AppListGroup category={v[0]} items={v[1]} />
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="AppListGroupView">
+      {Object.entries(group).map((v) => (
+        <li key={v[0]}>
+          <AppListGroup category={v[0]} items={v[1]} />
+        </li>
+      ))}
+    </ul>
   )
 }

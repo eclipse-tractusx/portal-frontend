@@ -128,55 +128,53 @@ export default function ServiceDetails() {
             </div>
           </div>
           <div className="textContainer">
-            <>
-              <Typography variant="h4" sx={{ mb: 4 }}>
-                {t('step4.appDetails')}
-              </Typography>
-              {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
-                <div key={item}>
-                  {item === 'longDescriptionEN' ? (
-                    <Typography
-                      sx={{
-                        marginBottom: '40px',
-                      }}
-                      variant="body2"
-                      style={{ whiteSpace: 'pre-line' }}
-                      className="form-field"
-                    >
-                      <span style={{ fontWeight: 'bold' }}>
-                        {t('step4.longDescriptionTitleEN')}
-                      </span>
-                      {
-                        fetchServiceStatus?.descriptions?.filter(
-                          (lang: { languageCode: string }) =>
-                            lang.languageCode === 'en'
-                        )[0]?.longDescription
-                      }
-                    </Typography>
-                  ) : (
-                    <Typography
-                      sx={{
-                        marginBottom: '40px',
-                      }}
-                      variant="body2"
-                      className="form-field"
-                      style={{ whiteSpace: 'pre-line' }}
-                    >
-                      <span style={{ fontWeight: 'bold' }}>
-                        {t('step4.longDescriptionTitleDE')}
-                      </span>
-                      {
-                        fetchServiceStatus?.descriptions?.filter(
-                          (lang: { languageCode: string }) =>
-                            lang.languageCode === 'de'
-                        )[0]?.longDescription
-                      }
-                    </Typography>
-                  )}
-                </div>
-              ))}
-              <Divider className="verify-validate-form-divider" />
-            </>
+            <Typography variant="h4" sx={{ mb: 4 }}>
+              {t('step4.appDetails')}
+            </Typography>
+            {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
+              <div key={item}>
+                {item === 'longDescriptionEN' ? (
+                  <Typography
+                    sx={{
+                      marginBottom: '40px',
+                    }}
+                    variant="body2"
+                    style={{ whiteSpace: 'pre-line' }}
+                    className="form-field"
+                  >
+                    <span style={{ fontWeight: 'bold' }}>
+                      {t('step4.longDescriptionTitleEN')}
+                    </span>
+                    {
+                      fetchServiceStatus?.descriptions?.filter(
+                        (lang: { languageCode: string }) =>
+                          lang.languageCode === 'en'
+                      )[0]?.longDescription
+                    }
+                  </Typography>
+                ) : (
+                  <Typography
+                    sx={{
+                      marginBottom: '40px',
+                    }}
+                    variant="body2"
+                    className="form-field"
+                    style={{ whiteSpace: 'pre-line' }}
+                  >
+                    <span style={{ fontWeight: 'bold' }}>
+                      {t('step4.longDescriptionTitleDE')}
+                    </span>
+                    {
+                      fetchServiceStatus?.descriptions?.filter(
+                        (lang: { languageCode: string }) =>
+                          lang.languageCode === 'de'
+                      )[0]?.longDescription
+                    }
+                  </Typography>
+                )}
+              </div>
+            ))}
+            <Divider className="verify-validate-form-divider" />
             <div className="margin-h-40">
               <Typography variant="h4" sx={{ mb: 4 }}>
                 {t('step4.conformityDocument')}

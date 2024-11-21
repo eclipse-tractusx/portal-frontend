@@ -24,6 +24,7 @@ import { Controller } from 'react-hook-form'
 import {
   Button,
   DropArea,
+  type DropAreaProps,
   Input,
   LoadingButton,
   Radio,
@@ -65,6 +66,10 @@ export const ConnectorFormInput = ({
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
+  const renderDropArea = (props: DropAreaProps) => {
+    return <DropArea {...props} size="normal" />
+  }
+
   return (
     <>
       {type === 'dropzone' && (
@@ -119,57 +124,55 @@ any) => {
                 }}
                 errorText={helperText}
                 DropStatusHeader={false}
-                DropArea={(props) => <DropArea {...props} size="small" />}
+                DropArea={renderDropArea}
               />
             )}
           />
         </>
       )}
       {type === 'input' && (
-        <>
-          <Controller
-            render={({ field: { onChange, value } }) => {
-              return (
-                <Input
-                  tooltipMessage={tooltipMsg}
-                  sx={{
-                    paddingTop: '10px',
-                  }}
-                  error={!!errors[name]}
-                  helperText={errors?.[name]?.message}
-                  label={label}
-                  placeholder={placeholder}
-                  onChange={(event) => {
-                    trigger(name)
-                    onChange(event)
-                  }}
-                  value={value}
-                  disabled={disable}
-                />
-              )
-            }}
-            name={name}
-            control={control}
-            rules={{
-              required: {
-                value: true,
-                message: rules.required,
-              },
-              minLength: {
-                value: minLength,
-                message: rules.minLength,
-              },
-              pattern: {
-                value: pattern,
-                message: rules.pattern,
-              },
-              maxLength: {
-                value: maxLength,
-                message: rules.maxLength,
-              },
-            }}
-          />
-        </>
+        <Controller
+          render={({ field: { onChange, value } }) => {
+            return (
+              <Input
+                tooltipMessage={tooltipMsg}
+                sx={{
+                  paddingTop: '10px',
+                }}
+                error={!!errors[name]}
+                helperText={errors?.[name]?.message}
+                label={label}
+                placeholder={placeholder}
+                onChange={(event) => {
+                  trigger(name)
+                  onChange(event)
+                }}
+                value={value}
+                disabled={disable}
+              />
+            )
+          }}
+          name={name}
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: rules.required,
+            },
+            minLength: {
+              value: minLength,
+              message: rules.minLength,
+            },
+            pattern: {
+              value: pattern,
+              message: rules.pattern,
+            },
+            maxLength: {
+              value: maxLength,
+              message: rules.maxLength,
+            },
+          }}
+        />
       )}
       {type === 'select' && (
         <>
