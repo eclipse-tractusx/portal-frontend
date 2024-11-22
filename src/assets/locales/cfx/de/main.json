@@ -1150,7 +1150,7 @@
       "headline": "Rollen für mehrere User hinzufügen",
       "noRolesFound": "No user roles found",
       "selectUsersDescription": "In Schritt 1 wählen Sie die User aus und bestätigen mit dem Button unten. In Schritt 2 wählen Sie die Rollen für die User.",
-      "addRolesDescription": "In Schritt 2 wählen Sie die User aus und bestätigen mit dem Button unten. In Schritt 2 wählen Sie die Rollen für die User.",
+      "addRolesDescription": "In Schritt 1 wählen Sie die User aus und bestätigen mit dem Button unten. In Schritt 2 wählen Sie die Rollen für die User.",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",

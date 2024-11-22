@@ -2103,3 +2103,74 @@ p.MuiTypography-root.MuiTypography-body3.description,
 #documents .not-available {
   text-align: center;
 }
+.user-management-roles-tag {
+  width: 100%; /* Fallback */
+  width: -moz-available; /* For older versions of Firefox */
+  width: -webkit-fill-available; /* For WebKit browsers */
+  width: stretch; /* Standardized version */
+
+  .reference-container {
+    display: hidden;
+    position: absolute;
+    z-index: -999;
+
+    .reference-role-tag {
+      background-color: white !important;
+      color: white !important;
+    }
+  }
+
+  .statusTag {
+    margin-bottom: 0px !important;
+  }
+  .status-more {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+    font-weight: 500;
+    font-family: 'Karbon', Arial, Sans-serif, Serif;
+    font-size: 18px;
+    padding: 6px 12px;
+    line-height: 140%;
+    color: #dfdfdf;
+    max-width: 100%;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    height: 32px;
+    color: #000000;
+    background-color: #dfdfdf;
+    border-radius: 16px;
+    white-space: nowrap;
+    -webkit-transition:
+      background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition:
+      background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    cursor: unset;
+    outline: 0;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    border: 0;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 6px;
+    height: 37px;
+    margin-bottom: 10px;
+    background-color: #000000;
+    color: #dfdfdf;
+  }
+}

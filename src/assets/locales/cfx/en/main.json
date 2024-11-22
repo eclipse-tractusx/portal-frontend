@@ -1153,8 +1153,8 @@
     "addUserRight": {
       "headline": "Add Roles for multiple users",
       "noRolesFound": "No user roles found",
-      "selectUsersDescription": "In Step 1, select the users to assign the app roles to and confirm by clicking the button at the bottom. In Step 2, choose the roles for the selected users",
-      "addRolesDescription": "In Step 2, select the users to assign the app roles to and confirm by clicking the button at the bottom. In Step 2, choose the roles for the selected users",
+      "selectUsersDescription": "In Step 1, select the users to assign the app roles to and confirm by clicking the button at the bottom. In Step 2, choose the roles for the selected users.",
+      "addRolesDescription": "In Step 1, select the users to assign the app roles to and confirm by clicking the button at the bottom. In Step 2, choose the roles for the selected users",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",
