@@ -39,7 +39,7 @@ let CI: CompanyDetails = {
 }
 
 const init = (onCompanyDetailsCallback: () => void) => {
-  fetch(`${getApiBase()}/api/administration/companydata/ownCompanyDetails`, {
+  fetch(`${getApiBase()}api/administration/companydata/ownCompanyDetails`, {
     method: 'GET',
     headers: {
       authorization: `Bearer ${UserService.getToken()}`,
