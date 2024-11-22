@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **OSP consent**
 
   - Remove function causing empty download [PM2-1792](https://cofinity-x.atlassian.net/browse/PM2-1792)
+  - CHERRY-PICK add missing short name field osp consent form [#1341](https://github.com/eclipse-tractusx/portal-frontend/pull/1341)
 
 - **Cookie Policy**
 
