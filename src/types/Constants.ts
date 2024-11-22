@@ -254,3 +254,11 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
   'Beratungs Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
 }
+
+export enum COMPANY_ROLES {
+  ACTIVE_PARTICIPANT = 'ACTIVE_PARTICIPANT',
+  APP_PROVIDER = 'APP_PROVIDER',
+  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+  OPERATOR = 'OPERATOR',
+  ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
+}

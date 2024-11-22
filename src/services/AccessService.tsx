@@ -81,6 +81,7 @@ import {
   getClientIdSsiCredential,
 } from './EnvironmentService'
 import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
+import { getCompanyRoles } from './CompanyService'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -97,6 +98,9 @@ export const userHasClientRole = (
 
 export const userHasPortalRole = (roles: string | Array<string>): boolean =>
   userHasClientRole(getClientId(), roles)
+
+export const companyHasRole = (role: string): boolean =>
+  getCompanyRoles().includes(role)
 
 export const userHasRegistrationRole = (
   roles: string | Array<string>
@@ -294,6 +298,7 @@ const AccessService = {
   userMenuReg,
   footerMenu,
   userMenuComp,
+  companyHasRole,
 }
 
 export default AccessService
