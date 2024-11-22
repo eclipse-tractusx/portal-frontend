@@ -35,6 +35,7 @@ import { appManagementSelector } from 'features/appManagement/slice'
 import { isSearchUserEmail } from 'types/Patterns'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { OverLappingStatusTag } from 'components/shared/cfx/OverLappingStatusTag'
 
 interface FetchHookArgsType {
   appId?: string
@@ -42,12 +43,6 @@ interface FetchHookArgsType {
   userRoleResponse?: boolean | string
   role?: boolean
   addUserResponse?: boolean
-}
-
-interface RoleType {
-  roleId: string
-  clientId: string
-  roleName: string
 }
 
 export const UserList = ({
@@ -151,17 +146,9 @@ export const UserList = ({
             field: 'roles',
             headerName: t('global.field.role'),
             flex: 4,
-            renderCell: ({ value: roles }) =>
-              roles.length
-                ? roles.map((role: RoleType | string) => (
-                    <StatusTag
-                      key={typeof role === 'string' ? role : role.roleId}
-                      color="label"
-                      label={typeof role === 'string' ? role : role.roleName}
-                      className="statusTag"
-                    />
-                  ))
-                : '',
+            renderCell: ({ value: roles }) => (
+              <OverLappingStatusTag roles={roles} />
+            ),
           },
           {
             field: 'details',
