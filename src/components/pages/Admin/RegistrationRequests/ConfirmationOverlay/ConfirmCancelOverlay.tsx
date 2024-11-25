@@ -68,8 +68,8 @@ const ConfirmaCancelOverlay = ({
   const onDecline = async (text: string) => {
     setLoading(true)
     await declineRequest({
-      applicationId: selectedRequestId ? selectedRequestId : '',
-      comment: text ? text : '',
+      applicationId: selectedRequestId ?? '',
+      comment: text ?? '',
     })
       .unwrap()
       .then(() => {
@@ -96,14 +96,14 @@ const ConfirmaCancelOverlay = ({
           <DialogHeader
             title={t(
               'content.admin.registration-requests.confirmCancelModal.title'
-            ).replace('{companyName}', companyName ? companyName : '')}
+            ).replace('{companyName}', companyName ?? '')}
           />
           <DialogContent>
             <div style={{ textAlign: 'center' }}>
               <Typography variant="body1">
                 {t(
                   'content.admin.registration-requests.confirmCancelModal.description'
-                ).replace('{companyName}', companyName ? companyName : '')}
+                ).replace('{companyName}', companyName ?? '')}
               </Typography>
               <Typography
                 variant="body1"
