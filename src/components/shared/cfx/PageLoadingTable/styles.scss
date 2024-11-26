@@ -9,6 +9,10 @@ $tableHeight: 500px;
       overflow: hidden;
     }
 
+    h5 span {
+      display: none;
+    }
+
     &--wrapper {
       position: relative;
       min-height: $tableHeight;

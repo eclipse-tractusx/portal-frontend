@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Table component**
+
+  - Hide unnecessary row count in title [PM2-2043](https://cofinity-x.atlassian.net/browse/PM2-2043)
+
 - **OSP Management**
 
   - Update osp mgmt table column name to alias [PM2-1921](https://cofinity-x.atlassian.net/browse/PM2-1921)
