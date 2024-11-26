@@ -13,7 +13,7 @@
 - **IDP Management**
   - fixed shared IdP to remove 'configure' option as its not viable [#1356](https://github.com/eclipse-tractusx/portal-frontend/pull/1356)
 - **Connector Management**
-  - fixed URL update in connector details
+  - fixed URL update in connector details [#1373](https://github.com/eclipse-tractusx/portal-frontend/pull/1373)
 
 ## 2.3.0-RC4
 
