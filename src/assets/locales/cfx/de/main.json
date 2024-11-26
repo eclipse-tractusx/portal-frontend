@@ -2366,7 +2366,7 @@
       "table": {
         "customerName": "Kundenname",
         "status": "Status",
-        "idpName": "IDP-Name",
+        "idpName": "Alias",
         "users": "Anzahl der Benutzer"
       },
       "success": "OSP-Rückruf erfolgreich konfiguriert",

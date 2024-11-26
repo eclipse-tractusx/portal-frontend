@@ -6,6 +6,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **OSP Management**
+
+  - Update osp mgmt table column name to alias [PM2-1921](https://cofinity-x.atlassian.net/browse/PM2-1921)
+
 - **OSP consent**
 
   - Remove function causing empty download [PM2-1792](https://cofinity-x.atlassian.net/browse/PM2-1792)

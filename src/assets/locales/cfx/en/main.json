@@ -2339,7 +2339,7 @@
       "table": {
         "customerName": "Customer Name",
         "status": "Status",
-        "idpName": "IDP name",
+        "idpName": "Alias",
         "users": "# of users"
       },
       "success": "Successfully configured OSP callback",
