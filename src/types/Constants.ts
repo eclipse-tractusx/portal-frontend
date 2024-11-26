@@ -266,4 +266,4 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
 export const CONVERT_TO_MB = 1048576
 export const ALLOWED_IMG_SIZE_MB = 1048576
 
-export const PORTAL_HIGHER_ENVIRONMENT_URL = 'https://myportal.confinity-x.com'
+export const PORTAL_HIGHER_ENVIRONMENT_URL = 'https://myportal.cofinity-x.com'
