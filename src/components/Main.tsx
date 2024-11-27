@@ -98,6 +98,11 @@ export default function Main() {
         <MenuInfo main={[]} shouldDisplayMenuItems={false} />
       </>
     )
+  } else if (
+    companyData?.applicationStatus === ApplicationStatus.SUBMITTED &&
+    location.pathname === `/${PAGES.CONSENT_OSP}`
+  ) {
+    return <Redirect path={PAGES.HOME} />
   }
 
   if (error)
