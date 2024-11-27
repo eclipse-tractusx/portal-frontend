@@ -93,6 +93,7 @@ export interface AppManagementState {
   searchInput: SearchInputState
   currentActiveStep: number
   appId: string
+  appRedirectStatus: boolean
   appStatusData: AppStatusDataState
 }
 
@@ -103,6 +104,7 @@ export const initialState: AppManagementState = {
   },
   currentActiveStep: 1,
   appId: '',
+  appRedirectStatus: true,
   appStatusData: {
     title: '',
     provider: '',

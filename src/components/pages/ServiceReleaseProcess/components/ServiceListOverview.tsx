@@ -50,7 +50,10 @@ import {
   setServiceStatus,
 } from 'features/serviceManagement/actions'
 import { useDispatch } from 'react-redux'
-import { setServiceReleaseActiveStep } from 'features/serviceManagement/slice'
+import {
+  setServiceRedirectStatus,
+  setServiceReleaseActiveStep,
+} from 'features/serviceManagement/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { Box, useTheme } from '@mui/material'
 import { initialState } from 'features/serviceManagement/types'
@@ -199,6 +202,12 @@ export default function ServiceListOverview() {
     dispatch(setServiceReleaseActiveStep())
     dispatch(setServiceStatus(initialState.serviceStatusData))
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(setServiceRedirectStatus(true))
+    }
+  }, [])
 
   return (
     <main>

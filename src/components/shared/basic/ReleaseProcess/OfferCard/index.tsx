@@ -25,7 +25,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -45,6 +45,7 @@ import {
   serviceIdSelector,
   serviceStatusDataSelector,
   serviceReleaseStepIncrement,
+  serviceRedirectStatusSelector,
 } from 'features/serviceManagement/slice'
 import {
   type CreateServiceStep1Item,
@@ -84,6 +85,7 @@ export default function OfferCard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
+  const redirectStatus = useSelector(serviceRedirectStatusSelector)
   const [serviceCardNotification, setServiceCardNotification] = useState(false)
   const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
   const serviceStatusData = useSelector(serviceStatusDataSelector)
@@ -107,6 +109,7 @@ export default function OfferCard() {
   const [imageData, setImageData] = useState({})
   const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
   const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
+  const hasDispatched = useRef(false)
 
   useEffect(() => {
     setShowRetryOverlay(serviceId && isError ? true : false)
@@ -229,6 +232,20 @@ export default function OfferCard() {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     reset(defaultValues)
   }, [dispatch, fetchServiceStatus, defaultValues, reset])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchServiceStatus?.title &&
+      fetchServiceStatus?.serviceTypeIds?.length &&
+      fetchServiceStatus?.descriptions[0]?.shortDescription &&
+      fetchServiceStatus?.descriptions[1]?.shortDescription &&
+      redirectStatus
+    ) {
+      dispatch(serviceReleaseStepIncrement())
+      hasDispatched.current = true
+    }
+  }, [fetchServiceStatus, hasDispatched])
 
   const handleSave = async (
     apiBody: CreateServiceStep1Item,
