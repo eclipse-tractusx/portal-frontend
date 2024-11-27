@@ -92,16 +92,16 @@ export default function FavoriteItem({
       rating={item.rating}
       price={item.price}
       onButtonClick={() => {
-        handleButtonClick(item.id!)
+        handleButtonClick(item.id)
       }}
       onSecondaryButtonClick={() => {
-        handleSecondaryButtonClick(item.id!)
+        handleSecondaryButtonClick(item.id)
       }}
       addButtonClicked={true}
       onClick={
         cardClick
           ? () => {
-              handleButtonClick(item.id!)
+              handleButtonClick(item.id)
             }
           : () => null
       }

@@ -55,7 +55,7 @@ export default function AppListSection() {
     useFetchFavoriteAppsQuery()
   const control = useSelector(appsControlSelector)
   const [list, setList] = useState<AppMarketplaceApp[]>([])
-  const [favList, setFavlist] = useState<string[]>([])
+  const [favList, setFavList] = useState<string[]>([])
 
   // To-Do fix the type issue with status and data from FetchBaseQueryError
   // eslint-disable-next-line
@@ -83,7 +83,7 @@ export default function AppListSection() {
       i.addButtonClicked = favs?.includes(i.id)
     })
     setList(d)
-    setFavlist(favs)
+    setFavList(favs)
   }
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export default function AppListSection() {
               navigate(`/appdetail/${card.id}`)
             },
             onSecondaryButtonClick: (e: React.MouseEvent) => {
-              addOrRemoveFavorite(e, card.id!)
+              addOrRemoveFavorite(e, card.id)
             },
             addButtonClicked: card.addButtonClicked,
             description: card.description,

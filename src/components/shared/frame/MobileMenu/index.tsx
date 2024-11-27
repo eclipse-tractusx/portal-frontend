@@ -64,7 +64,7 @@ export const MobileMenu = ({
   const [userMenu, setUserMenu] = useState<string[]>(
     AccessService.userMenuComp()
   )
-  const [children, setSelectedChildren] = useState<MenuItemProps[]>([])
+  const [children, setChildren] = useState<MenuItemProps[]>([])
   const [selectedSection, setSelectedSection] = useState<string>('')
 
   const addTitle = (items: string[]): CompanyMenuTypes[] =>
@@ -76,7 +76,7 @@ export const MobileMenu = ({
   const companyMenu = addTitle(userMenu) ?? []
 
   const onSelectItem = (title: string, item: MenuItemProps[]): void => {
-    setSelectedChildren(item)
+    setChildren(item)
     setSelectedSection(title)
   }
 
@@ -135,7 +135,7 @@ export const MobileMenu = ({
               dispatch(setAppear({ MENU: !visible }))
             }}
             onHide={() => {
-              setSelectedChildren([])
+              setChildren([])
             }}
             component={component}
           >

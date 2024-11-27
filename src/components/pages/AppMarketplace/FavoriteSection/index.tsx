@@ -61,7 +61,7 @@ export default function FavoriteSection() {
           hasBorder={false}
         >
           {active
-            .filter((item) => favorites.includes(item.id!))
+            .filter((item) => favorites.includes(item.id))
             .map((item) => appToCard(item))
             .map((item) => (
               <FavoriteItem
