@@ -10,8 +10,6 @@
 
 - **App Marketplace**
   - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
-- **Src Folder**
-  - renamed files in src/components folder to common naming style
 - **IDP Management**
   - fixed shared IdP to remove 'configure' option as its not viable [#1356](https://github.com/eclipse-tractusx/portal-frontend/pull/1356)
 
