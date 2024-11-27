@@ -33,8 +33,8 @@ export default function AppDetailTags({
   return (
     <div id="tags" className="appdetail-tags">
       <Typography variant="h3"> {t('content.appdetail.tags')}: </Typography>
-      {tags.map((tag, i) => (
-        <Chip key={i} label={tag} withIcon={false} type="plain" />
+      {tags.map((tag, index) => (
+        <Chip key={index} label={tag} withIcon={false} type="plain" />
       ))}
     </div>
   )

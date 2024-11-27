@@ -106,8 +106,11 @@ export default function BusinessApplicationsSection() {
             data.length < 4 &&
             new Array(4 - data.length)
               .fill(true)
-              .map((_item, i) => (
-                <EmptyBox key={i} text={t('content.home.emptyCards.title')} />
+              .map((_item, index) => (
+                <EmptyBox
+                  key={index}
+                  text={t('content.home.emptyCards.title')}
+                />
               ))}
         </Carousel>
       </section>
