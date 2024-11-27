@@ -24,7 +24,7 @@ import { Grid } from '@mui/material'
 import { uniqueId } from 'lodash'
 import type { AppDetails } from 'features/apps/types'
 
-export default function BoardRoles({ item }: { item: AppDetails }) {
+export default function BoardRoles({ item }: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation()
   return (
     <>

@@ -28,7 +28,9 @@ import type { AppDetails } from 'features/apps/types'
 import './style.scss'
 import { Box } from '@mui/material'
 
-export default function BoardProvider({ item }: { item: AppDetails }) {
+export default function BoardProvider({
+  item,
+}: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.adminboardDetail.providerInformation',
   })

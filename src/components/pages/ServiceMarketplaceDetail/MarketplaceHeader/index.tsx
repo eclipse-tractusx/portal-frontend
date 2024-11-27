@@ -35,10 +35,10 @@ import { userHasPortalRole } from 'services/AccessService'
 export default function MarketplaceHeader({
   item,
   success,
-}: {
+}: Readonly<{
   item: ServiceRequest
   success: boolean
-}) {
+}>) {
   const { t } = useTranslation()
   const serviceReleaseTranslation = useTranslation('servicerelease').t
   const dispatch = useDispatch()

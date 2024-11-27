@@ -36,7 +36,7 @@ export interface AppDetailHeaderProps {
   item: AppDetails
 }
 
-export default function BoardHeader({ item }: AppDetailHeaderProps) {
+export default function BoardHeader({ item }: Readonly<AppDetailHeaderProps>) {
   const { t } = useTranslation()
   const [image, setImage] = useState('')
   const [fetchDocumentById] = useFetchDocumentByIdMutation()

@@ -49,7 +49,9 @@ export interface ButtonColorType {
   background3: string
 }
 
-export default function AppDetailHeader({ item }: AppDetailHeaderProps) {
+export default function AppDetailHeader({
+  item,
+}: Readonly<AppDetailHeaderProps>) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const isDialogConfirmed = useSelector(

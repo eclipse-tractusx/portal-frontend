@@ -25,9 +25,9 @@ import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice
 
 export default function MarketplaceTechnicalUserSetup({
   item,
-}: {
+}: Readonly<{
   item: ServiceRequest
-}) {
+}>) {
   const { t } = useTranslation('')
 
   const getTechUserInfo = (data: string[] | null) => {

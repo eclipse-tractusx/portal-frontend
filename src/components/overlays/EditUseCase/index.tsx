@@ -42,10 +42,10 @@ import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 export default function EditUseCase({
   id: verifiedCredentialTypeId,
   title: credentialType,
-}: {
+}: Readonly<{
   id: string
   title: string
-}) {
+}>) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
   const [uploadedFile, setUploadedFile] = useState<File>()

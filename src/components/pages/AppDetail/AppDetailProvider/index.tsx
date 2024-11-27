@@ -27,7 +27,9 @@ import {
 import type { AppDetails } from 'features/apps/types'
 import '../style.scss'
 
-export default function AppDetailProvider({ item }: { item: AppDetails }) {
+export default function AppDetailProvider({
+  item,
+}: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.providerInformation',
   })

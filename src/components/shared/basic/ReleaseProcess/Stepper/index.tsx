@@ -29,11 +29,11 @@ export default function ReleaseStepper({
   activePage,
   stepsList,
   numberOfSteps,
-}: {
+}: Readonly<{
   activePage: number
   stepsList: StepType[]
   numberOfSteps: number
-}) {
+}>) {
   return (
     <Stepper
       list={stepsList}

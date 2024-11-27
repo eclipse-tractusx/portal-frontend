@@ -53,7 +53,7 @@ export default function CheckList({
   alignRow = 'center',
   onButtonClick,
   selectedButton,
-}: CheckListProps) {
+}: Readonly<CheckListProps>) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] =
     useState<ProgressButtonsType[]>()

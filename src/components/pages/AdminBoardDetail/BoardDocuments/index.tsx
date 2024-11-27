@@ -35,11 +35,11 @@ export default function BoardDocuments({
   type,
   appId,
   documents,
-}: {
+}: Readonly<{
   type: string
   appId: string
   documents: Documents
-}) {
+}>) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()

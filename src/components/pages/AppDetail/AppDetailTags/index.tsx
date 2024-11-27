@@ -24,7 +24,9 @@ import './style.scss'
 import '../style.scss'
 import { useTranslation } from 'react-i18next'
 
-export default function AppDetailTags({ item }: { item: AppDetails }) {
+export default function AppDetailTags({
+  item,
+}: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation()
 
   const tags = item.tags

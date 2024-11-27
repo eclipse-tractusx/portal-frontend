@@ -24,7 +24,9 @@ import type { AppDetails } from 'features/apps/types'
 import { Grid } from '@mui/material'
 import '../style.scss'
 
-export default function AppDetailTechUserSetup({ item }: { item: AppDetails }) {
+export default function AppDetailTechUserSetup({
+  item,
+}: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation('')
 
   const getAppDetailTechUserData = (data: string[] | null) => {

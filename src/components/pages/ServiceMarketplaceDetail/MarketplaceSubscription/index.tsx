@@ -25,9 +25,9 @@ import './style.scss'
 
 export default function MarketplaceSubscription({
   item,
-}: {
+}: Readonly<{
   item: ServiceRequest
-}) {
+}>) {
   const { t } = useTranslation()
 
   return (

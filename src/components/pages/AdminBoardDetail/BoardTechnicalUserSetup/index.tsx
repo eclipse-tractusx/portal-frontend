@@ -25,9 +25,9 @@ import type { AppDetails } from 'features/apps/types'
 
 export default function BoardTechnicalUserSetup({
   item,
-}: {
+}: Readonly<{
   item: AppDetails
-}) {
+}>) {
   const { t } = useTranslation()
 
   const getTechnicalUserData = (data: string[] | null) => {

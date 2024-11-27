@@ -32,9 +32,9 @@ import { DocumentTypeId } from 'features/appManagement/apiSlice'
 
 export default function MarketplaceDocuments({
   item,
-}: {
+}: Readonly<{
   item: ServiceRequest
-}) {
+}>) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentMutation()

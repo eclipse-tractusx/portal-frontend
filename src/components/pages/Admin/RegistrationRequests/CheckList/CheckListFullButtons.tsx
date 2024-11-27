@@ -39,7 +39,7 @@ interface CheckListFullButtonsProps {
 export default function CheckListFullButtons({
   progressButtons,
   selectedRequestId,
-}: CheckListFullButtonsProps) {
+}: Readonly<CheckListFullButtonsProps>) {
   const { t } = useTranslation()
   const [checkListButtons, setCheckListButtons] =
     useState<ProgressButtonsType[]>()

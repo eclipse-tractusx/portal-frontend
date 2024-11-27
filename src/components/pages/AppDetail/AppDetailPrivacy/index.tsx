@@ -27,7 +27,9 @@ import type { AppDetails } from 'features/apps/types'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import '../style.scss'
 
-export default function AppDetailPrivacy({ item }: { item: AppDetails }) {
+export default function AppDetailPrivacy({
+  item,
+}: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.privacy',
   })

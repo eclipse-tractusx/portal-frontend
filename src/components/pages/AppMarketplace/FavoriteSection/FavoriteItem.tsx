@@ -39,7 +39,7 @@ export default function FavoriteItem({
   item,
   expandOnHover,
   cardClick,
-}: FavoriteItemProps) {
+}: Readonly<FavoriteItemProps>) {
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
   const [cardImage, setCardImage] = useState('')

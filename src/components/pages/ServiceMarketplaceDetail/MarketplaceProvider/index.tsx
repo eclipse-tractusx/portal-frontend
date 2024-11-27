@@ -29,9 +29,9 @@ import './style.scss'
 
 export default function MarketplaceProvider({
   item,
-}: {
+}: Readonly<{
   item: ServiceRequest
-}) {
+}>) {
   const { t } = useTranslation('', {
     keyPrefix: 'content.appdetail.providerInformation',
   })

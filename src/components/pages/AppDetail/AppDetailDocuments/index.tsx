@@ -31,7 +31,9 @@ import {
   DocumentTypeId,
 } from 'features/appManagement/apiSlice'
 
-export default function AppDetailDocuments({ item }: { item: AppDetails }) {
+export default function AppDetailDocuments({
+  item,
+}: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation()
 
   const [getDocumentById] = useFetchDocumentByIdMutation()

@@ -35,7 +35,7 @@ export interface AppUserDetailsHeaderProps {
 export default function AppUserDetailsHeader({
   roles,
   error,
-}: AppUserDetailsHeaderProps) {
+}: Readonly<AppUserDetailsHeaderProps>) {
   const { t } = useTranslation()
 
   return (
