@@ -53,8 +53,9 @@ export interface ServiceStatusDataState {
   useCase?: UseCaseType[]
   provider?: string
   agreements?: {
-    consentStatus: ConsentStatusEnum
+    id: string
     name: string
+    consentStatus: ConsentStatusEnum
   }[]
   technicalUserProfile?: {
     [key: string]: string[] | null
