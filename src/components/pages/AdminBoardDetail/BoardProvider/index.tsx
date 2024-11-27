@@ -35,7 +35,7 @@ export default function BoardProvider({
     keyPrefix: 'content.adminboardDetail.providerInformation',
   })
 
-  const tableData: TableType = {
+  const boardProviderDetails: TableType = {
     head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
       [item.provider],
@@ -51,7 +51,7 @@ export default function BoardProvider({
         <Typography variant="h3">{t('heading')}</Typography>
         <Typography variant="body2">{t('message')}</Typography>
       </Box>
-      <StaticTable data={tableData} horizontal={true} />
+      <StaticTable data={boardProviderDetails} horizontal={true} />
     </div>
   )
 }

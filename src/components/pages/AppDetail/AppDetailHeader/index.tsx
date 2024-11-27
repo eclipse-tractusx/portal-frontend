@@ -128,19 +128,19 @@ export default function AppDetailHeader({
     const btnColor = getBtnColor(subscribeStatus)
     const OrderStatusButtonItems = [
       {
-        isIcon: subscribeStatus === SubscriptionStatus.INACTIVE ? false : true,
+        isIcon: subscribeStatus !== SubscriptionStatus.INACTIVE,
         buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
         zIndex: 4,
         backgroundColor: btnColor.background1,
       },
       {
-        isIcon: subscribeStatus !== SubscriptionStatus.ACTIVE ? false : true,
+        isIcon: subscribeStatus === SubscriptionStatus.ACTIVE,
         buttonLabel: t('content.appdetail.buttons.appDeployed'),
         zIndex: 3,
         backgroundColor: btnColor.background2,
       },
       {
-        isIcon: subscribeStatus !== SubscriptionStatus.ACTIVE ? false : true,
+        isIcon: subscribeStatus === SubscriptionStatus.ACTIVE,
         buttonLabel: t('content.appdetail.buttons.activation'),
         zIndex: 2,
         backgroundColor: btnColor.background3,
