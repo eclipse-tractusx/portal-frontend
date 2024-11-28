@@ -44,35 +44,33 @@ export default function MarketplaceHeader({
   const dispatch = useDispatch()
   const { serviceId } = useParams()
 
-  const getSubscribeBtn = () => {
-    if (success) {
-      setTimeout(() => {
-        dispatch(setSuccessType(false))
-      }, 5000)
-      return (
-        <Button
-          color="success"
-          className="subscribe-btn"
-          onClick={() => {
-            console.log('click function')
-          }}
-        >
-          {t('content.appdetail.subscribed')}
-        </Button>
-      )
-    } else {
-      return (
-        <Button
-          color="primary"
-          className="subscribe-btn"
-          disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)}
-          onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
-        >
-          {t('content.appdetail.subscribe')}
-        </Button>
-      )
-    }
+  const getSubscribedBtn = () => {
+    setTimeout(() => {
+      dispatch(setSuccessType(false))
+    }, 5000)
+    return (
+      <Button
+        color="success"
+        className="subscribe-btn"
+        onClick={() => {
+          console.log('click function')
+        }}
+      >
+        {t('content.appdetail.subscribed')}
+      </Button>
+    )
   }
+
+  const getSubscribeBtn = () => (
+    <Button
+      color="primary"
+      className="subscribe-btn"
+      disabled={!userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)}
+      onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
+    >
+      {t('content.appdetail.subscribe')}
+    </Button>
+  )
 
   const getAllServices = (serviceTypeIds: string[]) => {
     const newArr: string[] = []
@@ -106,7 +104,7 @@ export default function MarketplaceHeader({
         <Typography variant="body2" sx={{ pb: '18px' }}>
           {item.price}
         </Typography>
-        {getSubscribeBtn()}
+        {success ? getSubscribedBtn() : getSubscribeBtn()}
       </Box>
     </div>
   )

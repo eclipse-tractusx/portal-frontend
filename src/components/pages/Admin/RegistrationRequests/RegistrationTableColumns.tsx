@@ -228,7 +228,7 @@ export const RegistrationRequestsTableColumns = (
           </span>
           {row.applicationStatus === ApplicationRequestStatus.SUBMITTED &&
             !row.bpn && (
-              <span
+              <div
                 style={{
                   paddingTop: '2px',
                 }}
@@ -242,7 +242,7 @@ export const RegistrationRequestsTableColumns = (
                 }}
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
-              </span>
+              </div>
             )}
         </div>
       ),

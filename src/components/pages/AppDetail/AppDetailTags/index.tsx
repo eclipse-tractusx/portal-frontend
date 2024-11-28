@@ -23,6 +23,7 @@ import type { AppDetails } from 'features/apps/types'
 import './style.scss'
 import '../style.scss'
 import { useTranslation } from 'react-i18next'
+import { uniqueId } from 'lodash'
 
 export default function AppDetailTags({
   item,
@@ -33,8 +34,8 @@ export default function AppDetailTags({
   return (
     <div id="tags" className="appdetail-tags">
       <Typography variant="h3"> {t('content.appdetail.tags')}: </Typography>
-      {tags.map((tag, index) => (
-        <Chip key={index} label={tag} withIcon={false} type="plain" />
+      {tags.map((tag) => (
+        <Chip key={uniqueId(tag)} label={tag} withIcon={false} type="plain" />
       ))}
     </div>
   )
