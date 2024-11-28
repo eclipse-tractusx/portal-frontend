@@ -84,6 +84,7 @@ npm/npmjs/-/cssom/0.3.8, MIT, approved, clearlydefined
 npm/npmjs/-/cssom/0.5.0, MIT, approved, clearlydefined
 npm/npmjs/-/cssstyle/2.3.0, MIT, approved, clearlydefined
 npm/npmjs/-/csstype/3.1.3, MIT, approved, #11847
+npm/npmjs/-/cypress/13.15.2, MIT AND BSD-3-Clause AND Apache-2.0 AND MPL-2.0, approved, #17385
 npm/npmjs/-/data-urls/3.0.2, MIT, approved, clearlydefined
 npm/npmjs/-/data-view-buffer/1.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/data-view-byte-length/1.0.1, MIT, approved, clearlydefined
@@ -112,6 +113,7 @@ npm/npmjs/-/dom-accessibility-api/0.6.3, MIT, approved, clearlydefined
 npm/npmjs/-/dom-helpers/5.2.1, MIT, approved, clearlydefined
 npm/npmjs/-/domexception/4.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/dot-case/3.0.4, MIT, approved, clearlydefined
+npm/npmjs/-/ecc-jsbn/0.1.2, , approved, #17389
 npm/npmjs/-/ejs/3.1.10, Apache-2.0, approved, #1373
 npm/npmjs/-/electron-to-chromium/1.5.29, ISC, approved, #16342
 npm/npmjs/-/emittery/0.13.1, MIT, approved, clearlydefined
@@ -498,10 +500,13 @@ npm/npmjs/-/svg-parser/2.0.4, MIT, approved, clearlydefined
 npm/npmjs/-/symbol-tree/3.2.4, MIT, approved, clearlydefined
 npm/npmjs/-/test-exclude/6.0.0, ISC, approved, clearlydefined
 npm/npmjs/-/text-table/0.2.0, MIT, approved, clearlydefined
+npm/npmjs/-/tldts-core/6.1.61, MIT, approved, #17388
+npm/npmjs/-/tldts/6.1.61, MIT, approved, #17386
 npm/npmjs/-/tmpl/1.0.5, BSD-3-Clause, approved, clearlydefined
 npm/npmjs/-/to-fast-properties/2.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/to-regex-range/5.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/tough-cookie/4.1.4, BSD-3-Clause AND MIT, approved, #8743
+npm/npmjs/-/tough-cookie/5.0.0, CC-BY-3.0 AND BSD-3-Clause AND MIT, approved, #17387
 npm/npmjs/-/tr46/3.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/ts-api-utils/1.3.0, MIT, approved, clearlydefined
 npm/npmjs/-/ts-jest/29.2.5, MIT, approved, clearlydefined
