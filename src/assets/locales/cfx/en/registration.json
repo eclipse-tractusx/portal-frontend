@@ -4,6 +4,7 @@
     "companyHeading": "Company Details",
     "companyMessage": "Below you can find your company registration details shared by your onboarding provider. Please review the details and proceed to the Company Role selection below before submitting your registration.",
     "companyName": "Company Name",
+    "legalName": "Legal Name (short)",
     "bmw": "BMW AG",
     "street": "Street with House Number",
     "zip": "Postal Code",
