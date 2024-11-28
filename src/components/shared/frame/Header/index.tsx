@@ -50,6 +50,8 @@ import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
 import { setIsHeaderNote } from 'features/home/slice'
 import { getCompanyRoles } from 'utils/companyRoleCheck'
+import UserService from 'services/UserService'
+import { ROLES } from 'types/Constants'
 
 export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
   const { t } = useTranslation()
@@ -75,7 +77,9 @@ export const Header = ({ main, user }: { main: Tree[]; user: string[] }) => {
     items
       ?.filter(
         (item: Tree) =>
-          !item.companyRole || getCompanyRoles().includes(item.companyRole)
+          !item.companyRole ||
+          (getCompanyRoles().includes(item.companyRole) &&
+            UserService.hasRole(ROLES.CONFIGURE_PARTNER_REGISTRATION))
       )
       .map(
         (item: Tree): MenuItem => ({

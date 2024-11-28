@@ -13,6 +13,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **OSP Management**
 
   - Update osp mgmt table column name to alias [PM2-1921](https://cofinity-x.atlassian.net/browse/PM2-1921)
+  - Hide osp mgmt navigation tab from non I.T.admins [PM2-2059](https://cofinity-x.atlassian.net/browse/PM2-2059)
 
 - **OSP consent**
 
