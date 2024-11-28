@@ -228,7 +228,7 @@ export const RegistrationRequestsTableColumns = (
           </span>
           {row.applicationStatus === ApplicationRequestStatus.SUBMITTED &&
             !row.bpn && (
-              <div
+              <span
                 style={{
                   paddingTop: '2px',
                 }}
@@ -240,9 +240,10 @@ export const RegistrationRequestsTableColumns = (
                 onKeyDown={() => {
                   // do nothing
                 }}
+                role="button"
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
-              </div>
+              </span>
             )}
         </div>
       ),
