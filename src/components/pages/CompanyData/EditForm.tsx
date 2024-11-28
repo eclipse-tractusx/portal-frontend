@@ -134,17 +134,21 @@ export default function EditForm({
     setLoading(false)
   }
 
+  const getTitle = () => {
+    if (isAddress) return t('content.companyData.address.title')
+    else return t('content.companyData.site.title')
+  }
+
+  const getEditTitle = () => {
+    if (isAddress) return t('content.companyData.address.editTitle')
+    else return t('content.companyData.site.editTitle')
+  }
+
   return (
     <Box>
       <Dialog open={open}>
         <DialogHeader
-          title={
-            newForm
-              ? t(`content.companyData.${isAddress ? 'address' : 'site'}.title`)
-              : t(
-                  `content.companyData.${isAddress ? 'address' : 'site'}.editTitle`
-                )
-          }
+          title={newForm ? getTitle() : getEditTitle()}
           intro={description}
           closeWithIcon={true}
           onCloseWithIcon={handleClose}
