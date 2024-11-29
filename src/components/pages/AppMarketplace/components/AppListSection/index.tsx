@@ -51,7 +51,8 @@ export default function AppListSection() {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { data, error, isError, refetch } = useFetchActiveAppsQuery()
-  const { data: favoriteItems } = useFetchFavoriteAppsQuery()
+  const { data: favoriteItems, refetch: refetchFavoriteApps } =
+    useFetchFavoriteAppsQuery()
   const control = useSelector(appsControlSelector)
   const [list, setList] = useState<AppMarketplaceApp[]>([])
   const [favList, setFavlist] = useState<string[]>([])
@@ -94,6 +95,7 @@ export default function AppListSection() {
       const d = cloneDeep(data)
       arrangeDataList(d, favoriteItems)
     }
+    refetchFavoriteApps()
   }, [data, favoriteItems])
 
   const renderProgress = () => (

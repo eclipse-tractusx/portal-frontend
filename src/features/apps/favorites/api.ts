@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { getApiBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 import { getHeaders } from 'services/RequestService'
 
 export class Api extends HttpClient {

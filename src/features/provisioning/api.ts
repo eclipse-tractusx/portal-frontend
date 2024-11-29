@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 import type { ProvisionIdentityProviderData } from './types'
 import UserService from 'services/UserService'
 import { getApiBase } from 'services/EnvironmentService'

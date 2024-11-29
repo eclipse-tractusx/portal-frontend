@@ -20,7 +20,7 @@
 
 import type { CardItems } from '@catena-x/portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/HttpClient'
+import { HttpClient } from 'utils/httpClient'
 
 export class Api extends HttpClient {
   private static classInstance?: Api
