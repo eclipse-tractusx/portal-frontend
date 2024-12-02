@@ -155,12 +155,12 @@ export default function EditForm({
         <DialogContent>
           <FormFields
             newForm={newForm}
-            isAddress={isAddress}
-            onValid={(form: { body: CompanyDataFieldsType } | undefined) =>
-              { isAddress
+            onValid={(form: { body: CompanyDataFieldsType } | undefined) => {
+              isAddress
                 ? handleAddressValidation(form)
-                : handleSiteValidation(form) }
-            }
+                : handleSiteValidation(form)
+            }}
+            isAddress={isAddress}
           />
         </DialogContent>
         <DialogActions>
