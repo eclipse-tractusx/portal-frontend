@@ -38,6 +38,7 @@ import {
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
+  useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
@@ -54,6 +55,8 @@ import type { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { ButtonLabelTypes } from '..'
 import { success, error } from 'services/NotifyService'
+import { download } from 'utils/downloadUtils'
+import { type FileState } from 'features/serviceManagement/types'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -84,6 +87,7 @@ export default function OfferPage({
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
+  const [fetchDocumentById] = useFetchDocumentMutation()
 
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -267,6 +271,25 @@ export default function OfferPage({
     setLoading(false)
   }
 
+  const handleDownload = async (value: FileState[]) => {
+    const documentId = value[0].id
+    const documentName = value[0].name
+    if (fetchDocumentById)
+      try {
+        const response = await fetchDocumentById({
+          appId: serviceId,
+          documentId,
+        }).unwrap()
+
+        const fileType = response.headers.get('content-type')
+        const file = response.data
+
+        download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
+
   return (
     <div className="app-page">
       <ReleaseStepHeader
@@ -348,6 +371,7 @@ export default function OfferPage({
                   }}
                   maxFilesToUpload={1}
                   maxFileSize={819200}
+                  handleDownload={() => handleDownload(value)}
                   handleDelete={(documentId: string) => {
                     documentId && deleteDocument(documentId)
                   }}
