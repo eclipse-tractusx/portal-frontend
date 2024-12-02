@@ -69,7 +69,8 @@
     "mycompany": "My Company",
     "mynotifications": "Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Management"
+    "ManagementOnboardingServiceProvider": "Onboarding Management",
+    "ospTechnicalUserManagement": "Technical User Management"
   },
   "overlays": {
     "invite": "Invite new Business Partner",

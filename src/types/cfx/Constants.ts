@@ -105,6 +105,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   // COMPANY_DATA = 'companyData', // Removed
   MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider', // Newly Added
+  OSP_TECHNICAL_USER_MANAGEMENT = 'ospTechnicalUserManagement',
 }
 
 export const FOOTERLINK = {

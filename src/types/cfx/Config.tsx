@@ -519,6 +519,11 @@ export const ALL_PAGES: IPage[] = [
     companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
     element: <OnboardingServiceProvider />,
   },
+  {
+    name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT,
+    role: ROLES.TECH_USER_VIEW,
+    element: <TechnicalUserManagement />,
+  },
 ]
 
 /**
@@ -588,7 +593,7 @@ export const mainMenuFullTree = [
     companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
     children: [
       { name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER },
-      { name: PAGES.TECH_USER_MANAGEMENT },
+      { name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT },
     ],
   },
 ]
