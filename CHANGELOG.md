@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Change
+
+- **Company Data**
+  - show error message in company data edit overlay screen [#1385] (https://github.com/eclipse-tractusx/portal-frontend/pull/1385)
+
 ### Bugfixes
 
 - **Onboarding Service Provider**
