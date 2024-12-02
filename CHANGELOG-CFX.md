@@ -32,7 +32,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed over lapping issue on user management roles chips [PM2-242](https://cofinity-x.atlassian.net/browse/PM2-242)
 
 - **Your Account**
+
   - Fixed authentication json issue on beta [PM2-2078](https://cofinity-x.atlassian.net/browse/PM2-2078)
+
+- **Main Navigation**
+  - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
 
 ## 2.2.0-cfx-4
 
