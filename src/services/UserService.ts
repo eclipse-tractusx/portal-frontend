@@ -20,7 +20,7 @@
 
 import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
 import type { IUser } from 'features/user/types'
-import { PORTAL_HIGHER_ENVIRONMENT_URL, ROLES } from 'types/Constants'
+import { ROLES } from 'types/Constants'
 import {
   getCentralIdp,
   getClientId,
@@ -33,6 +33,10 @@ import {
 import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
 import { setLoggedUser } from 'features/user/slice'
+import {
+  PORTAL_BETA_ENVIRONMENT_URL,
+  PORTAL_PROD_ENVIRONMENT_URL,
+} from 'types/cfx/Constants'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
@@ -151,7 +155,8 @@ const getLoggedUser = (): IUser => ({
 })
 
 export const isHigherEnvironment = () =>
-  window.location.origin === PORTAL_HIGHER_ENVIRONMENT_URL
+  window.location.origin === PORTAL_PROD_ENVIRONMENT_URL ||
+  window.location.origin === PORTAL_BETA_ENVIRONMENT_URL
 
 export const isLowerEnvironment = () => !isHigherEnvironment()
 

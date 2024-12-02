@@ -150,3 +150,6 @@ export const YOUR_APP_STATE = {
   CHANGE_DESCRIPTION_SUCCESS: 'change-description-success',
   ADD_ROLES_SUCCESS: 'add-roles-success',
 }
+
+export const PORTAL_PROD_ENVIRONMENT_URL = 'https://myportal.cofinity-x.com'
+export const PORTAL_BETA_ENVIRONMENT_URL = 'https://portal.beta.cofinity-x.com'

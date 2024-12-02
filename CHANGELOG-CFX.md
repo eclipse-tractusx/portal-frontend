@@ -28,7 +28,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Load cookie policy script after user login [PM2-1851](https://cofinity-x.atlassian.net/browse/PM2-1851)
 
 - **User Management**
+
   - Fixed over lapping issue on user management roles chips [PM2-242](https://cofinity-x.atlassian.net/browse/PM2-242)
+
+- **Your Account**
+  - Fixed authentication json issue on beta [PM2-2078](https://cofinity-x.atlassian.net/browse/PM2-2078)
 
 ## 2.2.0-cfx-4
 
