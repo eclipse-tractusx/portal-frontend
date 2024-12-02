@@ -266,7 +266,6 @@ export default function ServiceListOverview() {
                     newButtonText={t('serviceOverview.addbtn')}
                     onNewCardButton={onNewServiceCardClick}
                     onCardClick={(item: CardItems) => {
-                      // TODO: workaround - fix CardItems type
                       const cardItem: CardItemsInterface = item
                       if (
                         cardItem.status === ProvidedServiceStatusEnum.PENDING ||

@@ -134,15 +134,14 @@ export default function EditForm({
     setLoading(false)
   }
 
-  const getTitle = () => {
-    if (isAddress) return t('content.companyData.address.title')
-    else return t('content.companyData.site.title')
-  }
-
-  const getEditTitle = () => {
-    if (isAddress) return t('content.companyData.address.editTitle')
-    else return t('content.companyData.site.editTitle')
-  }
+  const getTitle = () =>
+    isAddress
+      ? t('content.companyData.address.title')
+      : t('content.companyData.site.title')
+  const getEditTitle = () =>
+    isAddress
+      ? t('content.companyData.address.editTitle')
+      : t('content.companyData.site.editTitle')
 
   return (
     <Box>
