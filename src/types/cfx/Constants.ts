@@ -146,6 +146,9 @@ export const YOUR_APP_STATE = {
   ADD_ROLES_SUCCESS: 'add-roles-success',
 }
 
+export const PORTAL_PROD_ENVIRONMENT_URL = 'https://myportal.cofinity-x.com'
+export const PORTAL_BETA_ENVIRONMENT_URL = 'https://portal.beta.cofinity-x.com'
+
 export const DROPZONE_ERROR_CODE = {
   FILE_INVALID_TYPE: 'file-invalid-type',
   TOO_MANY_FILES: 'too-many-files',

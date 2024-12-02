@@ -273,5 +273,3 @@ export const REVIEW_STAGE_ORDERS = [
   'SELF_DESCRIPTION_LP',
   'APPLICATION_ACTIVATION',
 ]
-
-export const PORTAL_HIGHER_ENVIRONMENT_URL = 'https://myportal.cofinity-x.com'
