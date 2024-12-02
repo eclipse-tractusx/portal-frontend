@@ -66,6 +66,7 @@ import RetryOverlay from '../components/RetryOverlay'
 import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { PAGES } from 'types/Constants'
+import { download } from 'utils/downloadUtils'
 
 type FormDataType = {
   title: string
@@ -178,6 +179,23 @@ export default function OfferCard() {
     },
     [fetchDocumentById, serviceId, setValue]
   )
+
+  const handleDownload = async (documentName: string, documentId: string) => {
+    if (fetchDocumentById)
+      try {
+        const response = await fetchDocumentById({
+          appId: serviceId,
+          documentId,
+        }).unwrap()
+
+        const fileType = response.headers.get('content-type')
+        const file = response.data
+
+        download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
 
   useEffect(() => {
     if (serviceStatusData?.documents?.SERVICE_LEADIMAGE?.[0].documentId) {
@@ -497,6 +515,7 @@ export default function OfferCard() {
               note={t('serviceReleaseForm.note')}
               requiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
               isRequired={false}
+              handleDownload={handleDownload}
               handleDelete={(documentId: string) => {
                 setImageData({})
                 documentId && deleteDocument(documentId)
