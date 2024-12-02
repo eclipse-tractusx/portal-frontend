@@ -35,6 +35,7 @@ import {
   type CompanyDataType,
   useUpdateCompanySiteAndAddressMutation,
   type CompanyDataFieldsType,
+  type SharingStateType,
 } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
 import {
@@ -53,6 +54,7 @@ interface FormDetailsProps {
   readonly isAddress?: boolean
   readonly handleConfirm: () => void
   readonly newForm?: boolean
+  readonly errorInfo?: SharingStateType
 }
 
 export default function EditForm({
@@ -62,6 +64,7 @@ export default function EditForm({
   isAddress = false,
   newForm = false,
   handleConfirm,
+  errorInfo,
 }: FormDetailsProps) {
   const { t } = useTranslation()
   const [loading, setLoading] = useState<boolean>(false)
@@ -165,6 +168,17 @@ export default function EditForm({
             }}
             isAddress={isAddress}
           />
+          {errorInfo && (
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: '18px',
+                color: '#d32f2f',
+              }}
+            >
+              {errorInfo.sharingErrorMessage}
+            </Typography>
+          )}
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose}>
