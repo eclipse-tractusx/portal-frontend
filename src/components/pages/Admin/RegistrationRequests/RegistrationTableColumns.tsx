@@ -33,6 +33,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import type i18next from 'i18next'
 import { Progress } from 'components/shared/basic/Progress'
 import './style.scss'
+import { Box } from '@mui/material'
 
 interface StatusProgressProps {
   application: ApplicationRequest
@@ -228,7 +229,7 @@ export const RegistrationRequestsTableColumns = (
           </span>
           {row.applicationStatus === ApplicationRequestStatus.SUBMITTED &&
             !row.bpn && (
-              <div
+              <Box
                 style={{
                   paddingTop: '2px',
                 }}
@@ -240,10 +241,9 @@ export const RegistrationRequestsTableColumns = (
                 onKeyDown={() => {
                   // do nothing
                 }}
-                role="button"
               >
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
-              </div>
+              </Box>
             )}
         </div>
       ),

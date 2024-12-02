@@ -425,6 +425,65 @@ export const AddUsersIDP = ({ id }: { id: string }) => {
     [dispatch, t]
   )
 
+  const renderOnLoad = (reader: FileReader, acceptedFile: DropzoneFile) => {
+    if (!reader.result) return
+    if (!acceptedFile.type.includes(format.toLowerCase())) {
+      //checking selected format is similar to uploaded file format
+      error(t(`state.${IDPState.ERROR_INVALID_FORMAT}`))
+      setStatus(false)
+      setUploadedFile(undefined)
+      return
+    }
+    if (format === FileFormat.JSON && typeof reader.result === 'string') {
+      //if file is JSON
+      const content = JSON.stringify(json2csv(JSON.parse(reader.result)))
+      const JSONData = JSON.parse(reader.result)
+      const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
+      if (
+        !jsonHeaderList.reduce(
+          (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
+          true
+        )
+      ) {
+        error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+        setStatus(false)
+        setTimeout(() => {
+          setStatus(undefined)
+        }, 3000)
+        setUploadedFile(undefined)
+        return
+      }
+      setCsvData(csv2json(content))
+      storeData(JSON.stringify(csv2json(content)))
+    } else {
+      //if file is CSV
+      const content = JSON.stringify(reader.result)
+      Papa.parse(acceptedFile, {
+        skipEmptyLines: true,
+        complete: function (results) {
+          const csvData: Array<Array<string>> = results.data as Array<
+            Array<string>
+          >
+          if (
+            !csvHeaderList.reduce(
+              (a, c, i) => a && csvData[0][i].toLowerCase() === c.toLowerCase(),
+              true
+            )
+          ) {
+            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
+            setStatus(false)
+            setTimeout(() => {
+              setStatus(undefined)
+            }, 3000)
+            setUploadedFile(undefined)
+          }
+        },
+      })
+      setCsvData(csv2json(content))
+      storeData(JSON.stringify(csv2json(content)))
+    }
+  }
+
   const onDrop = useCallback(
     (acceptedFile: DropzoneFile) => {
       if (!acceptedFile) {
@@ -439,63 +498,7 @@ export const AddUsersIDP = ({ id }: { id: string }) => {
         console.log('file reading has failed')
       }
       reader.onload = () => {
-        if (!reader.result) return
-        if (!acceptedFile.type.includes(format.toLowerCase())) {
-          //checking selected format is similar to uploaded file format
-          error(t(`state.${IDPState.ERROR_INVALID_FORMAT}`))
-          setStatus(false)
-          setUploadedFile(undefined)
-          return
-        }
-        if (format === FileFormat.JSON && typeof reader.result === 'string') {
-          //if file is JSON
-          const content = JSON.stringify(json2csv(JSON.parse(reader.result)))
-          const JSONData = JSON.parse(reader.result)
-          const jsonKeys = JSONData.map((obj: FileData) => Object.keys(obj))[0]
-          if (
-            !jsonHeaderList.reduce(
-              (a, c, i) => a && jsonKeys[i].toLowerCase() === c.toLowerCase(),
-              true
-            )
-          ) {
-            error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-            setStatus(false)
-            setTimeout(() => {
-              setStatus(undefined)
-            }, 3000)
-            setUploadedFile(undefined)
-            return
-          }
-          setCsvData(csv2json(content))
-          storeData(JSON.stringify(csv2json(content)))
-        } else {
-          //if file is CSV
-          const content = JSON.stringify(reader.result)
-          Papa.parse(acceptedFile, {
-            skipEmptyLines: true,
-            complete: function (results) {
-              const csvData: Array<Array<string>> = results.data as Array<
-                Array<string>
-              >
-              if (
-                !csvHeaderList.reduce(
-                  (a, c, i) =>
-                    a && csvData[0][i].toLowerCase() === c.toLowerCase(),
-                  true
-                )
-              ) {
-                error(t(`state.${IDPState.ERROR_FILE_HEADER}`))
-                setStatus(false)
-                setTimeout(() => {
-                  setStatus(undefined)
-                }, 3000)
-                setUploadedFile(undefined)
-              }
-            },
-          })
-          setCsvData(csv2json(content))
-          storeData(JSON.stringify(csv2json(content)))
-        }
+        renderOnLoad(reader, acceptedFile)
       }
       setUploadedFile(acceptedFile)
       reader.readAsText(acceptedFile)
