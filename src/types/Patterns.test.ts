@@ -31,6 +31,7 @@ import {
   isPersonName,
   isSearchUserEmail,
   isValidAppOverviewSearch,
+  isValidPhone,
 } from './Patterns'
 
 const TESTDATA = {
@@ -67,6 +68,27 @@ const TESTDATA = {
       'a@b.c',
       'not,a@valid@address.com',
       '@mickey.mouse',
+    ],
+  },
+  PHONE: {
+    valid: [
+      '+1 123456789',
+      '+44 1234567890',
+      '+11234567890',
+      '+491746734234',
+      '+49 1746734234',
+      '+49 3012345678',
+      '+81312345678',
+      '+82212345678',
+      '+447123456789',
+    ],
+    invalid: [
+      '123456789324324324332',
+      '+1 (12345) 7890',
+      '+0 123 456',
+      '+12345678abc',
+      '+81 31234-5678',
+      '+447123456789 ',
     ],
   },
   DOMAIN: {
@@ -350,7 +372,6 @@ describe('Input Pattern Tests', () => {
       expect(isClientID(expr)).toBe(false)
     })
   })
-
   it('Validate email search for users', () => {
     TESTDATA.EMAIL_SEARCH.valid.forEach((expr) => {
       expect(isSearchUserEmail(expr)).toBe(true)
@@ -365,6 +386,22 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.appOverview.invalid.forEach((expr) => {
       expect(isValidAppOverviewSearch(expr)).toBe(false)
+    })
+  })
+  it('validate appoverview search', () => {
+    TESTDATA.appOverview.valid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(true)
+    })
+    TESTDATA.appOverview.invalid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(false)
+    })
+  })
+  it('validate phone number', () => {
+    TESTDATA.PHONE.valid.forEach((expr) => {
+      expect(isValidPhone(expr)).toBe(true)
+    })
+    TESTDATA.CLIENTID.invalid.forEach((expr) => {
+      expect(isValidPhone(expr)).toBe(false)
     })
   })
 })
