@@ -83,6 +83,11 @@ export interface DescriptionState {
   shortDescription: string
 }
 
+export interface FileState {
+  id: string
+  name: string
+}
+
 export interface AgreementState {
   id: string
   name: string
