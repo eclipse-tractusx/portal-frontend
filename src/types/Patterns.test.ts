@@ -31,6 +31,7 @@ import {
   isPersonName,
   isSearchUserEmail,
   isValidPhone,
+  isValidIDPName,
 } from './Patterns'
 
 const TESTDATA = {
@@ -69,6 +70,19 @@ const TESTDATA = {
       '+81 31234-5678',
       '+447123456789 ',
     ],
+  },
+  IDP: {
+    valid: [
+      'Tractusx',
+      'Tract Usx',
+      'BPN lannn',
+      'Foo Bar',
+      'Foo@Bar',
+      'Foo!()Bar',
+      'Foo!() Bar',
+      'xyz',
+    ],
+    invalid: ['Foo  Bar', 'Bar  ', '  ', 'ab'],
   },
   MAIL: {
     valid: [
@@ -367,7 +381,6 @@ describe('Input Pattern Tests', () => {
       expect(isClientID(expr)).toBe(false)
     })
   })
-
   it('Validate email search for users', () => {
     TESTDATA.EMAIL_SEARCH.valid.forEach((expr) => {
       expect(isSearchUserEmail(expr)).toBe(true)
@@ -382,6 +395,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.CLIENTID.invalid.forEach((expr) => {
       expect(isValidPhone(expr)).toBe(false)
+    })
+  })
+  it('validate idp displayName', () => {
+    TESTDATA.IDP.valid.forEach((expr) => {
+      expect(isValidIDPName(expr)).toBe(true)
+    })
+    TESTDATA.IDP.invalid.forEach((expr) => {
+      expect(isValidIDPName(expr)).toBe(false)
     })
   })
 })

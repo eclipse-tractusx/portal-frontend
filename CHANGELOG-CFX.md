@@ -50,6 +50,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Fixed managed/own IDP generic error message, logic and translations [PM2-1760](https://cofinity-x.atlassian.net/browse/PM2-1760)
 
+- **IDP Creation**
+
+  - display error message for invalid input of displayName [#435](https://cofinity-x.atlassian.net/browse/PM2-435)
+
 - **Credential Request Overview**
 
   - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
