@@ -455,7 +455,7 @@ export default function AppMarketCard() {
     if (fetchDocumentById)
       try {
         const response = await fetchDocumentById({
-          appId: appId,
+          appId,
           documentId,
         }).unwrap()
 

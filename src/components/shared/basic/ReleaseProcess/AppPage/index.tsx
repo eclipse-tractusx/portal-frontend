@@ -476,7 +476,7 @@ export default function AppPage() {
     if (fetchDocumentById)
       try {
         const response = await fetchDocumentById({
-          appId: appId,
+          appId,
           documentId,
         }).unwrap()
 
@@ -496,7 +496,7 @@ export default function AppPage() {
     if (fetchDocumentById)
       try {
         const response = await fetchDocumentById({
-          appId: appId,
+          appId,
           documentId,
         }).unwrap()
 
