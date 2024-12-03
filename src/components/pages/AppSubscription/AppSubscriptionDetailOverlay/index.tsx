@@ -109,7 +109,7 @@ const AppSubscriptionDetailOverlay = ({
 
   const getStatus = () => {
     if (
-      data?.processStepTypeId === ProcessStep.START_AUTOSETUP ||
+      data?.processStepTypeId === ProcessStep.AWAIT_START_AUTOSETUP ||
       data?.processStepTypeId === ProcessStep.TRIGGER_PROVIDER
     ) {
       return t('content.appSubscription.detailOverlay.subscriptionInitiated')

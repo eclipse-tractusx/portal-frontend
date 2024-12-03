@@ -156,6 +156,7 @@ const ConnectorDetailsOverlay = ({
         .unwrap()
         .then(() => {
           success(t('content.edcconnector.details.urlUpdatedSuccessfully'))
+          refetch()
           setEnableConnectorUrl(true)
         })
         .catch(() => {
