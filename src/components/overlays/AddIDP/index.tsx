@@ -49,12 +49,13 @@ import {
   setName,
 } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
-import { ValidatingInput } from '../CXValidatingOverlay/ValidatingInput'
-import { isName } from 'types/Patterns'
+import Patterns from 'types/Patterns'
 import { getCentralIdp } from 'services/EnvironmentService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { success } from 'services/NotifyService'
+import CommonConnectorFormInputField from 'components/shared/basic/ReleaseProcess/components/CommonConnectorFormInputField'
+import { useForm } from 'react-hook-form'
 
 const SelectIdpProviderType = () => {
   const { t } = useTranslation('idp')
@@ -161,35 +162,18 @@ const SelectIdpAuthType = () => {
   )
 }
 
-const AddIDPPrepareForm = () => {
-  const { t } = useTranslation('idp')
-  const dispatch = useDispatch()
-
-  return (
-    <>
-      <ValidatingInput
-        name="name"
-        label={t('field.display.name')}
-        tooltipMessage={t('field.display.hint')}
-        validate={isName}
-        onValid={(_name, value) => {
-          if (!value) return
-          dispatch(setName(value))
-        }}
-      />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <SelectIdpAuthType />
-        <SelectIdpProviderType />
-      </div>
-    </>
-  )
-}
+const AddIDPPrepareForm = () => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    }}
+  >
+    <SelectIdpAuthType />
+    <SelectIdpProviderType />
+  </div>
+)
 
 export const AddIdp = () => {
   const { t } = useTranslation('idp')
@@ -201,6 +185,21 @@ export const AddIdp = () => {
   const [addIdp] = useAddIDPMutation()
   const [updateIdp] = useUpdateIDPMutation()
 
+  const defaultFormFieldValues = {
+    displayName: idpData.name,
+  }
+
+  const {
+    handleSubmit,
+    control,
+    trigger,
+    formState: { errors, isValid },
+    getValues,
+  } = useForm({
+    defaultValues: defaultFormFieldValues,
+    mode: 'onChange',
+  })
+
   const doCreateIDP = async () => {
     setLoading(true)
     try {
@@ -211,7 +210,7 @@ export const AddIdp = () => {
       const idpUpdateData: IdentityProviderUpdate = {
         identityProviderId: idp.identityProviderId,
         body: {
-          displayName: idpData.name,
+          displayName: getValues()?.displayName,
           oidc: {
             metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
             clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
@@ -223,7 +222,7 @@ export const AddIdp = () => {
       }
       await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
-      success(t('add.success'), idpData.name)
+      success(t('add.success'), getValues()?.displayName)
     } catch (err) {
       setShowError(true)
     }
@@ -269,6 +268,34 @@ export const AddIdp = () => {
         <Trans>
           <Typography variant="label3">{t('add.desc')}</Typography>
         </Trans>
+        <CommonConnectorFormInputField
+          {...{
+            control,
+            trigger,
+            errors,
+          }}
+          name="displayName"
+          pattern={Patterns.idp.displayName}
+          trigger={() => dispatch(setName(getValues().displayName))}
+          maxLength={40}
+          minLength={3}
+          label={
+            <>
+              {t('field.display.name')}
+              <span style={{ color: 'red' }}> *</span>
+            </>
+          }
+          rules={{
+            required: `${t('field.display.mandatoryMessage')}`,
+            minLength: `${t('field.display.minimum')} 3 ${t(
+              'field.display.charactersRequired'
+            )}`,
+            pattern: `${t('field.display.validCharactersIncludes')}`,
+            maxLength: `${t('field.display.maximum')} 40 ${t(
+              'field.display.charactersRequired'
+            )}`,
+          }}
+        />
         <AddIDPPrepareForm />
         <Typography
           variant="label3"
@@ -338,8 +365,8 @@ export const AddIdp = () => {
         ) : (
           <Button
             variant="contained"
-            disabled={!idpData.name}
-            onClick={() => doCreateIDP()}
+            disabled={!isValid}
+            onClick={handleSubmit(() => doCreateIDP())}
           >
             {t('action.createIdp')}
           </Button>
