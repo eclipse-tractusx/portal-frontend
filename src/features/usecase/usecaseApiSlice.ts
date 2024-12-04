@@ -36,6 +36,7 @@ export type VerifiedCredentialsData = {
 
 export type UsecaseResponse = {
   useCase: string
+  status: string
   description: string
   credentialType: string
   verifiedCredentials: VerifiedCredentialsData[]
@@ -52,8 +53,9 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery(apiBaseQuery()),
   tagTypes: ['usecase'],
   endpoints: (builder) => ({
-    fetchUsecase: builder.query<UsecaseResponse[], void>({
-      query: () => `${getSsiBase()}/api/issuer/useCaseParticipation`,
+    fetchUsecase: builder.query<UsecaseResponse[], string>({
+      query: (status) =>
+        `${getSsiBase()}/api/issuer/useCaseParticipation?status=${status}`,
       providesTags: ['usecase'],
     }),
     addUsecase: builder.mutation<void, UsecaseRequest>({

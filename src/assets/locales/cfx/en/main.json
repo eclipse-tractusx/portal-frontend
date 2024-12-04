@@ -1967,6 +1967,9 @@
       "nodocument": "No document available",
       "expiry": "Expiry: {{expiry}}",
       "request": "Request",
+      "viewCredentials": "View crededentials",
+      "active": "Active",
+      "expired": "Expired",
       "editUsecase": {
         "title": "Initiate use case participation by confirming the the use case frame agreement for {{usecaseName}}",
         "description": "Cofinity-X will approve your participation within 48 hours and generate the necessary credentials for your wallet. Once approved, you can begin exchanging data with other Use Case participants.",

@@ -11,6 +11,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Usecase Participation**
+
+  - Add filtered options to usecase participation list [PM2-1888](https://cofinity-x.atlassian.net/browse/PM2-1888)
+
 - **Table component**
 
   - Hide unnecessary row count in title [PM2-2043](https://cofinity-x.atlassian.net/browse/PM2-2043)

@@ -1999,6 +1999,9 @@
       "nodocument": "Kein Dokument vorhanden",
       "expiry": "Expiry: {{expiry}}",
       "request": "Request",
+      "viewCredentials": "Credentials anzeigen",
+      "active": "Aktiv",
+      "expired": "Verfallen",
       "editUsecase": {
         "title": "Initiierung der Use-Case-Teilnahme durch Bestätigung der Use-Case-Rahmenvereinbarung für {{usecaseName}}",
         "description": "Cofinity-X wird Ihre Teilnahme innerhalb von 48 Stunden genehmigen und die erforderlichen Anmeldedaten für Ihre Wallet generieren. Nach der Genehmigung können Sie mit dem Austausch von Daten mit anderen Use Case-Teilnehmern beginnen.",
