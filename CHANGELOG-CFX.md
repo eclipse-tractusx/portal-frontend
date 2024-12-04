@@ -11,16 +11,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
-- **Business Partner Explorer**
-  - BP explorer table set to show for companies with correct roles [PM2-2143](https://cofinity-x.atlassian.net/browse/PM2-2143)
-  - Enable Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
-  - Removed the edit button in Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
-  - Fix payload for the site in BP explorer [PM2-2155](https://cofinity-x.atlassian.net/browse/PM2-2155)
-
-## 2.2.0-cfx-5
-
-### Bugfixes
-
 - **Table component**
 
   - Hide unnecessary row count in title [PM2-2043](https://cofinity-x.atlassian.net/browse/PM2-2043)
