@@ -142,6 +142,7 @@ export default function Main() {
           <Header
             main={AccessService.mainMenuTree()}
             user={AccessService.userMenu()}
+            userMenuWithChildren={AccessService.userMenuWithChild()}
           />
           <MainSearchOverlay />
           <div className="initial-main-div">
@@ -150,7 +151,11 @@ export default function Main() {
           <Footer pages={AccessService.footerMenu()} />
           <MainOverlay />
           <MainNotify />
-          <MenuInfo main={AccessService.mainMenuTree()} />
+          <MenuInfo
+            main={AccessService.mainMenuTree().concat(
+              AccessService.userMenuWithChild()
+            )}
+          />
         </>
       )}
     </>

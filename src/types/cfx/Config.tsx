@@ -588,14 +588,6 @@ export const mainMenuFullTree = [
       { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
     ],
   },
-  {
-    name: MENUS.ON_BOARDING_MANAGEMENT,
-    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
-    children: [
-      { name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER },
-      { name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT },
-    ],
-  },
 ]
 
 /**
@@ -612,6 +604,17 @@ export const userMenuFull = [
   PAGES.COMPANY_WALLET,
   PAGES.NOTIFICATIONS,
   PAGES.LOGOUT,
+]
+
+export const userMenuWithChildren = [
+  {
+    name: MENUS.ON_BOARDING_MANAGEMENT,
+    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
+    children: [
+      { name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER },
+      { name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT },
+    ],
+  },
 ]
 
 /**
