@@ -145,34 +145,58 @@ header {
 }
 
 // desktop nav enabled start
-@media (min-width: 1499px) {
-  #app {
-    position: relative;
-    // margin-top: 0;
-  }
+.user-is-admin {
+  @media (min-width: 1440px) {
+    header {
+      display: block;
+      background: #fff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: auto;
+      right: auto;
+      max-width: 1800px;
+    }
 
-  header {
-    display: block;
-    background: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    left: auto;
-    right: auto;
-    max-width: 1800px;
-  }
+    main .customHeight {
+      top: 85px !important;
+    }
 
-  main .customHeight {
-    top: 85px !important;
-  }
+    .mobileHeader,
+    .mobileNav {
+      display: none;
+    }
 
-  .mobileHeader,
-  .mobileNav {
-    display: none;
+    .mobile-search-icon {
+      display: none;
+    }
   }
+}
+.user-is-not-admin {
+  @media (min-width: 1280px) {
+    header {
+      display: block;
+      background: #fff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: auto;
+      right: auto;
+      max-width: 1800px;
+    }
 
-  .mobile-search-icon {
-    display: none;
+    main .customHeight {
+      top: 85px !important;
+    }
+
+    .mobileHeader,
+    .mobileNav {
+      display: none;
+    }
+
+    .mobile-search-icon {
+      display: none;
+    }
   }
 }
 
@@ -1418,7 +1442,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1499px) {
+@media (min-width: 1024px) and (max-width: 1440px) {
   .mainHeaderContainer {
     .mainHeaderTitle {
       padding: 0px 100px !important;

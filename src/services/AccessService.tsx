@@ -153,6 +153,8 @@ const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
 
+const userMenuWithChild = () => accessToMenuTree(userMenuWithChildren)
+
 const userMenuReg = () => accessToMenu(userMenuRegistration)
 
 const userMenuComp = () => accessToMenu(userMenuCompany)
@@ -314,6 +316,7 @@ const AccessService = {
   footerMenu,
   userMenuComp,
   companyHasRole,
+  userMenuWithChild,
 }
 
 export default AccessService

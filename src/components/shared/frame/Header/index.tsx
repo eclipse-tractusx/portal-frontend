@@ -58,9 +58,11 @@ import { ROLES } from 'types/Constants'
 export const Header = ({
   main,
   user,
+  userMenuWithChildren,
 }: {
   main: Tree[] | undefined
   user: string[]
+  userMenuWithChildren?: Tree[] | undefined
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -111,6 +113,8 @@ export const Header = ({
       )
 
   const menu = addTitle(main) ?? []
+
+  const menuWithChild = addTitle(userMenuWithChildren) ?? []
 
   const activeMenuBucket = useMemo(() => {
     return menu.find((item) => {
@@ -208,71 +212,75 @@ export const Header = ({
 
   return (
     <>
-      <header>
-        <MainNavigation
-          items={menu}
-          component={NavLink}
-          activeMenu={activeMenuBucket}
-        >
-          <Link to={'/'} className="logo">
-            <img
-              src={ImageReferences.logo.url}
-              alt={ImageReferences.logo.alt}
-            />
-          </Link>
-          <div className="d-flex">
+      <div
+        className={`${UserService.isAdmin() ? 'user-is-admin' : 'user-is-not-admin'}`}
+      >
+        <header>
+          <MainNavigation
+            items={menu}
+            component={NavLink}
+            activeMenu={activeMenuBucket}
+          >
+            <Link to={'/'} className="logo">
+              <img
+                src={ImageReferences.logo.url}
+                alt={ImageReferences.logo.alt}
+              />
+            </Link>
+            <div className="d-flex">
+              <div
+                onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
+                className="search-icon"
+                onKeyUp={() => {
+                  // do nothing
+                }}
+              >
+                <SearchIcon className="searchIcon" />
+              </div>
+              <Button
+                size="small"
+                color="secondary"
+                variant="outlined"
+                onClick={() => {
+                  window.open(HELP_LINK(), 'documentation', 'noreferrer')
+                }}
+                className="documentation"
+              >
+                {t('pages.help')}
+              </Button>
+              <UserInfo pages={user} menuWithChild={menuWithChild} />
+            </div>
+          </MainNavigation>
+        </header>
+        <div className="mobileNav">
+          <div className="mobileHeader">
+            <Link to={'/'} className="logo-mobile">
+              <img
+                src={ImageReferences.logoMobile.url}
+                alt={ImageReferences.logoMobile.alt}
+              />
+            </Link>
+          </div>
+          <div className="mobileHeaderRight">
             <div
               onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
-              className="search-icon"
-              onKeyUp={() => {
+              className="mobile-search-icon"
+              onKeyDown={() => {
                 // do nothing
               }}
             >
               <SearchIcon className="searchIcon" />
             </div>
-            <Button
-              size="small"
-              color="secondary"
-              variant="outlined"
-              onClick={() => {
-                window.open(HELP_LINK(), 'documentation', 'noreferrer')
+            <Box
+              onClick={() => dispatch(setAppear({ MENU: !appearShow }))}
+              className="mobile-search-icon"
+              onKeyDown={() => {
+                // do nothing
               }}
-              className="documentation"
             >
-              {t('pages.help')}
-            </Button>
-            <UserInfo pages={user} />
+              <MenuIcon className="searchIcon" />
+            </Box>
           </div>
-        </MainNavigation>
-      </header>
-      <div className="mobileNav">
-        <div className="mobileHeader">
-          <Link to={'/'} className="logo-mobile">
-            <img
-              src={ImageReferences.logoMobile.url}
-              alt={ImageReferences.logoMobile.alt}
-            />
-          </Link>
-        </div>
-        <div className="mobileHeaderRight">
-          <div
-            onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
-            className="mobile-search-icon"
-            onKeyDown={() => {
-              // do nothing
-            }}
-          >
-            <SearchIcon className="searchIcon" />
-          </div>
-          <Box
-            onClick={() => dispatch(setAppear({ MENU: !appearShow }))}
-            className="mobile-search-icon"
-            onKeyDown={() => {
-              // do nothing
-            }}
-          >
-            <MenuIcon className="searchIcon" />
-          </Box>
         </div>
       </div>
       {headerNote && renderRegistrationNoteSection()}
