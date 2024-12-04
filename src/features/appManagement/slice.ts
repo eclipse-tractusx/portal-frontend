@@ -53,6 +53,10 @@ const managementSlice = createSlice({
       ...state,
       appStatusData: action.payload,
     }),
+    setAppRedirectStatus: (state, action) => ({
+      ...state,
+      appRedirectStatus: action.payload,
+    }),
   },
 })
 
@@ -68,7 +72,15 @@ export const appIdSelector = (state: RootState): string =>
 export const appStatusDataSelector = (state: RootState): AppStatusDataState =>
   state.management.appStatusData
 
-export const { increment, decrement, setCurrentActiveStep, setApplicationId } =
-  managementSlice.actions
+export const appRedirectStatusSelector = (state: RootState): boolean =>
+  state.management.appRedirectStatus
+
+export const {
+  increment,
+  decrement,
+  setCurrentActiveStep,
+  setApplicationId,
+  setAppRedirectStatus,
+} = managementSlice.actions
 
 export default managementSlice
