@@ -53,7 +53,6 @@ import {
   CompanyRoleEnum,
   useFetchOwnCompanyDetailsQuery,
 } from 'features/admin/userApiSlice'
-import { PAGES } from 'types/Constants'
 
 export const Header = ({
   main,
@@ -78,7 +77,6 @@ export const Header = ({
   const [submittedOverlayOpen, setSubmittedOverlayOpen] =
     useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
-  const [pages, setPages] = useState<string[]>([])
 
   useEffect(() => {
     if (!(companyData && companyDetails)) return
@@ -87,22 +85,6 @@ export const Header = ({
         companyData?.applicationStatus === ApplicationStatus.SUBMITTED
     )
   }, [companyData, companyDetails])
-
-  useEffect(() => {
-    if (
-      companyDetails?.companyRole.includes(
-        CompanyRoleEnum.ONBOARDING_SERVICE_PROVIDER
-      )
-    ) {
-      setPages(user)
-    } else {
-      setPages(
-        user.filter(
-          (item) => item !== PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT
-        )
-      )
-    }
-  }, [companyDetails?.companyRole])
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -216,7 +198,7 @@ export const Header = ({
             >
               {t('pages.help')}
             </Button>
-            <UserInfo pages={pages} />
+            <UserInfo pages={user} />
           </div>
         </MainNavigation>
       </header>
