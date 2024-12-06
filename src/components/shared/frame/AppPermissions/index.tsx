@@ -62,7 +62,7 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
           type="plain"
           variant="filled"
           withIcon={false}
-          sx={{ marginLeft: '10px' }}
+          sx={{ marginLeft: '10px', marginTop: '5px' }}
         />
       ))}
     </>
