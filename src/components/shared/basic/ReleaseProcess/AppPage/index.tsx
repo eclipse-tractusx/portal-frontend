@@ -64,14 +64,13 @@ import {
   ErrorType,
   type LanguageStatusType,
   type UseCaseType,
-  type FileState,
 } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
-import { extractFileData } from 'utils/fileUtils'
+import { type FileState, extractFileData } from 'utils/fileUtils'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 
 type FormDataType = {
@@ -476,16 +475,10 @@ export default function AppPage() {
     documentName: FileState[] | string,
     documentId?: string
   ) => {
-    let docId: string
-    let docName: string
-
-    if (Array.isArray(documentName)) {
-      docName = documentName[0].name
-      docId = documentName[0].id
-    } else {
-      docName = documentName
-      docId = documentId!
-    }
+    const docId = Array.isArray(documentName) ? documentName[0].id : documentId!
+    const docName = Array.isArray(documentName)
+      ? documentName[0].name
+      : documentName
 
     if (fetchDocumentById) {
       try {

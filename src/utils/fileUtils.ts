@@ -17,6 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+export interface FileState {
+  id: string
+  name: string
+}
+
 interface FileResponse {
   headers: Headers
   data: Blob
