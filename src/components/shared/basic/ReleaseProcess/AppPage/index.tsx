@@ -71,6 +71,7 @@ import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -470,43 +471,35 @@ export default function AppPage() {
     }
   }
 
-  const handleDownload = async (value: FileState[]) => {
-    const documentId = value[0].id
-    const documentName = value[0].name
-    if (fetchDocumentById)
-      try {
-        const response = await fetchDocumentById({
-          appId,
-          documentId,
-        }).unwrap()
-
-        const fileType = response.headers.get('content-type')
-        const file = response.data
-
-        download(file, fileType, documentName)
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-      }
-  }
-
-  const handleDownloadFile = async (
-    documentName: string,
-    documentId: string
+  const handleDownload = async (
+    documentName: FileState[] | string,
+    documentId?: string
   ) => {
-    if (fetchDocumentById)
+    let docId: string
+    let docName: string
+
+    if (Array.isArray(documentName)) {
+      docName = documentName[0].name
+      docId = documentName[0].id
+    } else {
+      docName = documentName
+      docId = documentId!
+    }
+
+    if (fetchDocumentById) {
       try {
         const response = await fetchDocumentById({
           appId,
-          documentId,
+          documentId: docId,
         }).unwrap()
 
-        const fileType = response.headers.get('content-type')
-        const file = response.data
+        const { fileType, file } = extractFileData(response)
 
-        download(file, fileType, documentName)
+        download(file, fileType, docName)
       } catch (error) {
         console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
       }
+    }
   }
 
   return (
@@ -642,7 +635,7 @@ export default function AppPage() {
                   maxFileSize: 819200,
                   size: 'small',
                 }}
-                handleDownload={handleDownloadFile}
+                handleDownload={handleDownload}
                 handleDelete={(documentId: string) => {
                   setDeleteSuccess(false)
                   documentId && deleteAppReleaseDocument(documentId)

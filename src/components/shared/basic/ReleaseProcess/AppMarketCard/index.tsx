@@ -75,6 +75,7 @@ import {
 } from 'features/appManagement/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
 
 type FormDataType = {
   title: string
@@ -459,8 +460,7 @@ export default function AppMarketCard() {
           documentId,
         }).unwrap()
 
-        const fileType = response.headers.get('content-type')
-        const file = response.data
+        const { fileType, file } = extractFileData(response)
 
         download(file, fileType, documentName)
       } catch (error) {
