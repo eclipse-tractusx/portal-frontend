@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import './AdminClearingHouseSD.scss'
+import './style.scss'
 import { Trans } from 'react-i18next'
 import { t } from 'i18next'
 import {

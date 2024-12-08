@@ -28,7 +28,7 @@ import { useCallback, useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import ReleaseStepper, {
   type StepType,
-} from 'components/shared/basic/ReleaseProcess/stepper'
+} from 'components/shared/basic/ReleaseProcess/Stepper'
 import AppMarketCard from '../AppMarketCard'
 import AppPage from '../AppPage'
 import ContractAndConsent from '../ContractAndConsent'

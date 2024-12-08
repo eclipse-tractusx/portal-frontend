@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import './SlidingMainHeader.scss'
+import './style.scss'
 import { Button, Typography } from '@catena-x/portal-shared-components'
 
 export interface HeaderProps {

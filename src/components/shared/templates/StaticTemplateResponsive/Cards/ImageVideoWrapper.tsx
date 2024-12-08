@@ -20,7 +20,7 @@
 
 import type { ReactElement } from 'react'
 import type { ProviderProps } from '../StaticTypes'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 
 export default function ImageVideoWrapper({

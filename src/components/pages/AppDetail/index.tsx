@@ -21,7 +21,7 @@
 import { useParams } from 'react-router-dom'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import AppDetailContentDetails from './AppDetailContentDetails'
-import './AppDetail.scss'
+import './style.scss'
 import { useSelector } from 'react-redux'
 import { currentSuccessType } from 'features/serviceMarketplace/slice'
 import { useEffect } from 'react'

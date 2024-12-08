@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import type { ProviderProps } from '../StaticTypes'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import RenderImage from './RenderImage'
 import { Box } from '@mui/material'
 

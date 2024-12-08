@@ -25,7 +25,7 @@ import {
   Button,
 } from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
-import './CompanyCertificate.scss'
+import './style.scss'
 import { ROLES } from 'types/Constants'
 import CompanyCertificateElements from './CompanyCertificateElements'
 import {

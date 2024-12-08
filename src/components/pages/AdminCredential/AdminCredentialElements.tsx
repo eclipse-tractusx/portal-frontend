@@ -20,7 +20,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import './AdminCredential.scss'
+import './style.scss'
 import {
   type CredentialData,
   type CredentialResponse,
