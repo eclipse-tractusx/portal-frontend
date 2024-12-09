@@ -2099,11 +2099,16 @@ p.MuiTypography-root.MuiTypography-body3.description,
 #documents .not-available {
   text-align: center;
 }
+
 .user-management-roles-tag {
-  width: 100%; /* Fallback */
-  width: -moz-available; /* For older versions of Firefox */
-  width: -webkit-fill-available; /* For WebKit browsers */
-  width: stretch; /* Standardized version */
+  width: 100%;
+  /* Fallback */
+  width: -moz-available;
+  /* For older versions of Firefox */
+  width: -webkit-fill-available;
+  /* For WebKit browsers */
+  width: stretch;
+  /* Standardized version */
 
   .reference-container {
     display: hidden;
@@ -2119,6 +2124,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
   .statusTag {
     margin-bottom: 0px !important;
   }
+
   .status-more {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2168,5 +2174,21 @@ p.MuiTypography-root.MuiTypography-body3.description,
     margin-bottom: 10px;
     background-color: #000000;
     color: #dfdfdf;
+  }
+}
+
+// organization page
+.organization-main {
+  .cx-table {
+    background-image: none !important;
+    background-color: #fff !important;
+
+    .MuiBox-root .MuiButton-root svg {
+      display: block !important;
+    }
+
+    .MuiDataGrid-root .MuiIconButton-root svg {
+      display: block !important;
+    }
   }
 }

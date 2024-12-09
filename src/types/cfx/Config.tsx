@@ -80,6 +80,7 @@ import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/Com
 import { COMPANY_ROLE, MENUS, PAGES } from './Constants'
 import AdminCredential from 'components/pages/AdminCredential'
 import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
+import CompanyData from 'components/pages/CompanyData'
 
 /**
  * ALL_PAGES
@@ -514,6 +515,11 @@ export const ALL_PAGES: IPage[] = [
     ),
   },
   {
+    name: PAGES.COMPANY_DATA,
+    role: ROLES.MY_ORGANIZATION_VIEW,
+    element: <CompanyData />,
+  },
+  {
     name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
     role: ROLES.CONFIGURE_PARTNER_REGISTRATION,
     companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
@@ -610,6 +616,7 @@ export const userMenuFull = [
   PAGES.ORGANIZATION,
   // PAGES.COMPANY_ROLE, // For now we are removing this page
   PAGES.COMPANY_WALLET,
+  PAGES.COMPANY_DATA,
   PAGES.NOTIFICATIONS,
   PAGES.LOGOUT,
 ]
