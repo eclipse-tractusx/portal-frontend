@@ -9,6 +9,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Main Navigation**
 
   - New breakpoint added for the main navigation at 1699px [PM2-2072](https://cofinity-x.atlassian.net/browse/PM2-2072)
+  - Applied Company role condition on the Mobile Sidebar [PM2-2114](https://cofinity-x.atlassian.net/browse/PM2-2114)
 
 - **Identity Provider Configuration**
   - Reset the Add IDP form value on creation [PM2-2090](https://cofinity-x.atlassian.net/browse/PM2-2090)
