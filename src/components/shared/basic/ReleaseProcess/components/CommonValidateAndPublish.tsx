@@ -40,7 +40,11 @@ import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
+import {
+  decrement,
+  increment,
+  setAppRedirectStatus,
+} from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   type DocumentData,
@@ -62,6 +66,7 @@ import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepDecrement,
   serviceReleaseStepIncrement,
+  setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
@@ -206,6 +211,16 @@ export default function CommonValidateAndPublish({
       download(file, fileType, documentName)
     } catch (error) {
       console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
+  }
+
+  const onBackIconClick = () => {
+    if (type === ReleaseProcessTypes.APP_RELEASE) {
+      dispatch(setAppRedirectStatus(false))
+      dispatch(decrement())
+    } else {
+      dispatch(setServiceRedirectStatus(false))
+      dispatch(serviceReleaseStepDecrement())
     }
   }
 
@@ -652,14 +667,7 @@ export default function CommonValidateAndPublish({
           >
             {helpText}
           </Button>
-          <IconButton
-            color="secondary"
-            onClick={() =>
-              type === ReleaseProcessTypes.APP_RELEASE
-                ? dispatch(decrement())
-                : dispatch(serviceReleaseStepDecrement())
-            }
-          >
+          <IconButton color="secondary" onClick={onBackIconClick}>
             <KeyboardArrowLeftIcon />
           </IconButton>
           {loading ? (

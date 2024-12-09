@@ -31,7 +31,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
@@ -54,6 +54,7 @@ import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   appStatusDataSelector,
   increment,
 } from 'features/appManagement/slice'
@@ -96,6 +97,8 @@ export default function AppMarketCard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
+  const hasDispatched = useRef(false)
   const [pageScrolled, setPageScrolled] = useState(false)
   const [deleteSuccess, setDeleteSuccess] = useState(false)
 
@@ -213,6 +216,23 @@ export default function AppMarketCard() {
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus?.title &&
+      fetchAppStatus.provider &&
+      fetchAppStatus.descriptions[0]?.shortDescription &&
+      fetchAppStatus.descriptions[1]?.shortDescription &&
+      fetchAppStatus.useCase?.length &&
+      fetchAppStatus.supportedLanguageCodes?.length &&
+      fetchAppStatus.documents?.APP_LEADIMAGE?.length &&
+      appRedirectStatus
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   useEffect(() => {
     if (salesManagerList.length > 0) {

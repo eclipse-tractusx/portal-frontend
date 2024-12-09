@@ -19,9 +19,13 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { appIdSelector } from 'features/appManagement/slice'
+import {
+  appIdSelector,
+  appRedirectStatusSelector,
+  increment,
+} from 'features/appManagement/slice'
 import {
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
@@ -29,6 +33,7 @@ import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
   useFetchFrameDocumentByIdMutation,
+  ConsentStatusEnum,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
@@ -38,6 +43,8 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
   const fetchConsentData = useFetchConsentDataQuery(appId ?? '', {
@@ -54,6 +61,24 @@ export default function ContractAndConsent() {
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus?.agreements &&
+      fetchAppStatus.agreements[0]?.consentStatus ===
+        ConsentStatusEnum.ACTIVE &&
+      fetchAppStatus.agreements[1]?.consentStatus ===
+        ConsentStatusEnum.ACTIVE &&
+      fetchAppStatus.agreements[2]?.consentStatus ===
+        ConsentStatusEnum.ACTIVE &&
+      fetchAppStatus.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS?.length &&
+      appRedirectStatus
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   return (
     <div className="contract-consent">

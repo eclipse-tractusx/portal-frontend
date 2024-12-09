@@ -33,12 +33,14 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import { Box, Grid, useMediaQuery, useTheme, Divider } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   decrement,
   increment,
+  setAppRedirectStatus,
 } from 'features/appManagement/slice'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
@@ -61,6 +63,7 @@ import { ButtonLabelTypes } from '..'
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
   const [
     technicalIntegrationNotification,
     setTechnicalIntegrationNotification,
@@ -70,6 +73,7 @@ export default function TechnicalIntegration() {
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   const [rolesDescription, setRolesDescription] = useState<string[]>([])
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
@@ -371,8 +375,17 @@ export default function TechnicalIntegration() {
 
   const onBackIconClick = () => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    dispatch(setAppRedirectStatus(false))
     dispatch(decrement())
   }
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (data && data.length > 0 && appRedirectStatus) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, data, hasDispatched])
 
   return (
     <>
