@@ -219,14 +219,14 @@ export const RegistrationRequestsTableColumns = (
       sortable: false,
       disableColumnMenu: true,
       renderCell: ({ row }: { row: ApplicationRequest }) => (
-        <div className="bpn-edit-flex">
-          <span
+        <Box className="bpn-edit-flex">
+          <Box
             style={{
               marginRight: '30px',
             }}
           >
             {row.bpn}
-          </span>
+          </Box>
           {row.applicationStatus === ApplicationRequestStatus.SUBMITTED &&
             !row.bpn && (
               <Box
@@ -245,7 +245,7 @@ export const RegistrationRequestsTableColumns = (
                 <EditIcon sx={{ color: '#d1d1d1', cursor: 'pointer' }} />
               </Box>
             )}
-        </div>
+        </Box>
       ),
     },
     {
