@@ -22,11 +22,9 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, Checkbox } from '@catena-x/portal-shared-components'
 import { Box, Grid } from '@mui/material'
-import {
-  type CompanyDetails,
-  CompanyRoleEnum,
-} from 'features/admin/userApiSlice'
+import { type CompanyDetails } from 'features/admin/userApiSlice'
 import { ConnectType } from 'features/connector/connectorApiSlice'
+import { COMPANY_ROLES } from 'types/Constants'
 
 // Static content
 // Add Connector Button action modal first step content
@@ -62,11 +60,9 @@ const ConnectorTypeSelection = ({
         !ownCompanyDetails?.companyRole ||
         ownCompanyDetails?.companyRole?.length === 0 ||
         (!ownCompanyDetails?.companyRole.includes(
-          CompanyRoleEnum.SERVICE_PROVIDER
+          COMPANY_ROLES.SERVICE_PROVIDER
         ) &&
-          !ownCompanyDetails?.companyRole.includes(
-            CompanyRoleEnum.APP_PROVIDER
-          )),
+          !ownCompanyDetails?.companyRole.includes(COMPANY_ROLES.APP_PROVIDER)),
       disableDescription: t(
         'content.edcconnector.modal.managed.disableDescription'
       ),

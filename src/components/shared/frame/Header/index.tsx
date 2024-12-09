@@ -49,10 +49,8 @@ import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './Header.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
-import {
-  CompanyRoleEnum,
-  useFetchOwnCompanyDetailsQuery,
-} from 'features/admin/userApiSlice'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { COMPANY_ROLES } from 'types/Constants'
 
 export const Header = ({
   main,
@@ -81,7 +79,7 @@ export const Header = ({
   useEffect(() => {
     if (!(companyData && companyDetails)) return
     setSubmittedOverlayOpen(
-      !companyDetails?.companyRole.includes(CompanyRoleEnum.OPERATOR) &&
+      !companyDetails?.companyRole.includes(COMPANY_ROLES.OPERATOR) &&
         companyData?.applicationStatus === ApplicationStatus.SUBMITTED
     )
   }, [companyData, companyDetails])
