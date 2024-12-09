@@ -259,7 +259,7 @@ export const AddIdp = () => {
           }}
           name="displayName"
           pattern={Patterns.idp.displayName}
-          trigger={() => dispatch(setName(getValues().displayName))}
+          onChangeDispatch={(val: string) => dispatch(setName(val))}
           maxLength={30}
           minLength={3}
           label={

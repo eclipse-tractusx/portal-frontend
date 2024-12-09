@@ -31,6 +31,7 @@ export default function CommonConnectorFormInputField({
   maxLength = 40,
   minLength = 5,
   maxTextLength,
+  onChangeDispatch,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
@@ -43,6 +44,7 @@ any) {
           errors,
           name,
           label,
+          onChangeDispatch,
           type: 'input',
           rules: {
             required: {
