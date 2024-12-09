@@ -54,6 +54,7 @@ export const ConnectorFormInputField = ({
   size,
   errorText,
   maxTextLength,
+  onChangeDispatch,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -81,6 +82,7 @@ any) => {
               onChange={(event) => {
                 trigger(name)
                 onChange(event)
+                onChangeDispatch?.(event?.target.value)
               }}
               multiline={textarea}
               minRows={textarea && 3}
