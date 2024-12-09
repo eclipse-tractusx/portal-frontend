@@ -226,7 +226,7 @@
     },
     "metadata": {
       "name": "Metadata URL",
-      "hint": "Enter the metadata URL from your IDP that ends with '/.well-known/openid-configuration'"
+      "hint": "Enter the metadata URL from your IDP that starts with 'https://' and ends with '/.well-known/openid-configuration'"
     },
     "clientId": {
       "name": "Client ID",
