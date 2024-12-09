@@ -103,7 +103,7 @@ export enum PAGES {
   CONSENT_OSP = 'consentOsp',
   COMPANY_SUBSCRIPTIONS = 'companySubscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
-  // COMPANY_DATA = 'companyData', // Removed
+  COMPANY_DATA = 'companyData',
   MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider', // Newly Added
   OSP_TECHNICAL_USER_MANAGEMENT = 'ospTechnicalUserManagement',
 }

@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Business Partner Explorer**
+
+  - Enable Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
+
 ### Bugfixes
 
 - **Table component**
