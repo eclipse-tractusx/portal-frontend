@@ -33,6 +33,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Update osp mgmt table column name to alias [PM2-1921](https://cofinity-x.atlassian.net/browse/PM2-1921)
   - Hide osp mgmt navigation tab from non I.T.admins [PM2-2059](https://cofinity-x.atlassian.net/browse/PM2-2059)
   - Fixed routing issue for the Technical User Management [PM2-1472](https://cofinity-x.atlassian.net/browse/PM2-1472)
+  - Add meta url https hint to cfx translation files [PM2-1903](https://cofinity-x.atlassian.net/browse/PM2-1903)
 
 - **OSP consent**
 
