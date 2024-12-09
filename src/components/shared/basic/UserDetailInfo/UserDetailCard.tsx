@@ -32,6 +32,7 @@ import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { useParams } from 'react-router-dom'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { useTranslation } from 'react-i18next'
 
 export type UserDetail = {
   companyUserId: string
@@ -70,6 +71,7 @@ export const UserDetailCard = ({
   const { userId } = useParams()
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
   const [copied, setCopied] = useState<boolean>(false)
+  const { t } = useTranslation()
 
   const copyText = (value: string | string[]) => {
     setCopied(true)
@@ -147,11 +149,13 @@ export const UserDetailCard = ({
     param === 'status' ? (
       <>
         <span style={{ marginRight: '10px', fontSize: '14px' }}>
-          {value?.label} :
+          <strong>{value?.label}</strong> :
         </span>
         <Chip
           color="secondary"
-          label={value?.value}
+          label={
+            value?.value ? t(`content.account.statusInfo.${value.value}`) : ''
+          }
           type="plain"
           variant="filled"
           withIcon={false}

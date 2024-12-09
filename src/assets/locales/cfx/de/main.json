@@ -1208,7 +1208,7 @@
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "personalInfo": {
-        "title": "Persönliche Information",
+        "title": "Persönliche Informationen",
         "name": "Name",
         "surname": "Nachname",
         "email": "E-Mail",
@@ -1217,13 +1217,14 @@
       "statusInfo": {
         "title": "Status-Informationen",
         "status": "Status",
+        "ACTIVE": "AKTIV",
         "userCreated": "Benutzer angelegt"
       },
       "issuerInfo": {
         "title": "Aussteller-Informationen",
         "organisation": "Organisation",
         "adminName": "Admin name",
-        "adminMail": "Admin e-Mail"
+        "adminMail": "Admin E-Mail"
       },
       "appPermissionTable": {
         "title": "App Berechtigungen",
