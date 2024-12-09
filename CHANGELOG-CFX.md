@@ -7,7 +7,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### CHanges
 
 - **Main Navigation**
+
   - New breakpoint added for the main navigation at 1699px [PM2-2072](https://cofinity-x.atlassian.net/browse/PM2-2072)
+
+- **Identity Provider Configuration**
+  - Reset the Add IDP form value on creation [PM2-2090](https://cofinity-x.atlassian.net/browse/PM2-2090)
 
 ### Bugfixes
 

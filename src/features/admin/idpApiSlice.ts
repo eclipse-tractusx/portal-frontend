@@ -227,6 +227,7 @@ export const slice = createSlice({
       ...state,
       providerType: action.payload,
     }),
+    resetIDPSlice: () => initialState,
   },
 })
 
@@ -336,7 +337,8 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { setName, setAuthType, setProviderType } = slice.actions
+export const { setName, setAuthType, setProviderType, resetIDPSlice } =
+  slice.actions
 
 export const {
   useFetchIDPListQuery,
