@@ -51,7 +51,14 @@ import Test from 'components/pages/Test'
 import UserManagement from 'components/pages/UserManagement'
 import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
-import { ACTIONS, HINTS, OVERLAYS, PAGES, ROLES } from './Constants'
+import {
+  ACTIONS,
+  COMPANY_ROLES,
+  HINTS,
+  OVERLAYS,
+  PAGES,
+  ROLES,
+} from './Constants'
 import type { IAction, RestrictedItem, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
@@ -87,6 +94,7 @@ import CompanySubscriptions from 'components/pages/CompanySubscriptions'
 import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/CompanySubscriptionDetail'
 import CompanyData from 'components/pages/CompanyData'
 import {
+  companyHasRole,
   userHasBpdmRole,
   userHasPortalRole,
   userHasRegistrationRole,
@@ -599,7 +607,9 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
-    allowTo: () => userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION),
+    allowTo: () =>
+      userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION) &&
+      companyHasRole(COMPANY_ROLES.ONBOARDING_SERVICE_PROVIDER),
     element: <OnboardingServiceProvider />,
   },
 ]
