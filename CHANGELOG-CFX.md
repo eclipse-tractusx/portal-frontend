@@ -56,10 +56,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Main Navigation**
 
+
   - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
 
-- **IDP Display Name**
-  - IDP Display Name and error messages limit [PM2-2091](https://cofinity-x.atlassian.net/browse/PM2-2091)
+- **Technical User Management**
+  - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
 
 ## 2.2.0-cfx-4
 
