@@ -16,6 +16,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Your account**
+
+  - UI updates and translations [PM2-1099](https://cofinity-x.atlassian.net/browse/PM2-1099)
+
 - **Usecase Participation**
 
   - Add filtered options to usecase participation list [PM2-1888](https://cofinity-x.atlassian.net/browse/PM2-1888)

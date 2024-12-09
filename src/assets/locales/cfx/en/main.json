@@ -1185,13 +1185,14 @@
       "statusInfo": {
         "title": "Status Information",
         "status": "Status",
-        "userCreated": "User Created"
+        "ACTIVE": "ACTIVE",
+        "userCreated": "User created"
       },
       "issuerInfo": {
         "title": "Issuer Information",
         "organisation": "Organisation",
         "adminName": "Admin name",
-        "adminMail": "Admin e-Mail"
+        "adminMail": "Admin E-Mail"
       },
       "appPermissionTable": {
         "title": "App Permissions",
