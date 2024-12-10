@@ -32,9 +32,12 @@ export default defineConfig({
       email: 'user@email.com',
       password: '',
     },
+    company: {
+      name: 'Company name to search',
+    },
     keycloak: {
-      centralUrl: 'https://centralidp.example.org/auth',
-      sharedUrl: 'https://sharedidp.example.org/auth',
+      centralUrl: 'centralidp.example.org',
+      sharedUrl: 'sharedidp.example.org',
     },
   },
 })

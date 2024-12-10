@@ -35,16 +35,14 @@ Cypress.Commands.add('login', (usertype) => {
   cy.session(
     [usertype],
     () => {
+      const companyName = Cypress.env('company').name
       cy.visit(Cypress.env('baseUrl'))
-
       // Perform login on Keycloak login page
       cy.origin(Cypress.env('keycloak').centralUrl, () => {
         // Click the login button to be redirected to Keycloak
-        cy.get('input[placeholder="Enter your company name"]').type(
-          'CX-operator'
-        ) // Update selector based on your app
+        cy.get('input[placeholder="Enter your company name"]').type(companyName) // Update selector based on your app
 
-        cy.get('li').find('div').contains('CX-Operator').click()
+        cy.get('li').find('div').contains(companyName).click()
       })
 
       cy.origin(
