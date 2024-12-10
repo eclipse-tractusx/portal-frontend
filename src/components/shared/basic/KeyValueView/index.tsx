@@ -36,7 +36,7 @@ import {
 interface KeyValueViewProps {
   cols: number
   title: string
-  items: Array<ValueItem>
+  items: ValueItem | Array<ValueItem>
   editLink?: string
   setTechnicalUserDetailList?: Dispatch<SetStateAction<ValueItem[]>>
 }
@@ -104,10 +104,12 @@ export const KeyValueView = ({
         {item.showHideButton && setTechnicalUserDetailList && (
           <Box
             onClick={() => {
-              const updatedItems = items.map((itm) =>
-                itm.key === item.key ? { ...itm, masked: !itm.masked } : itm
-              )
-              setTechnicalUserDetailList(updatedItems)
+              if (Array.isArray(items)) {
+                const updatedItems = items.map((itm) =>
+                  itm.key === item.key ? { ...itm, masked: !itm.masked } : itm
+                )
+                setTechnicalUserDetailList(updatedItems)
+              }
             }}
             sx={{
               color: item.masked ? '#eeeeee' : '#cccccc',
