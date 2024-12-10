@@ -19,6 +19,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Your account**
 
   - UI updates and translations [PM2-1099](https://cofinity-x.atlassian.net/browse/PM2-1099)
+  - Fixed button hover effect according to CX design [PM2-141](https://cofinity-x.atlassian.net/browse/PM2-141)
 
 - **Usecase Participation**
 
