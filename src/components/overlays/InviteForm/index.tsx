@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './InviteForm.scss'
+import './style.scss'
 import type { InviteData } from 'features/admin/registration/types'
 import {
   Button,

@@ -26,7 +26,7 @@ import {
   ApplicationStatus,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
-import './RegistrationStatus.scss'
+import './style.scss'
 
 export default function RegistrationStatus() {
   const { t } = useTranslation()

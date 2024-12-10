@@ -21,7 +21,7 @@
 import Redirect from 'components/actions/Redirect'
 import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
-import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
+import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
 import AppMarketplace from 'components/pages/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
@@ -62,22 +62,22 @@ import {
 import type { IAction, RestrictedItem, IPage } from './MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
-import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
+import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/AppReleaseProcessForm'
 import CompanyRoles from 'components/pages/CompanyRoles'
 import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
 import AdminBoard from 'components/pages/AdminBoard'
 import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
-import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
+import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/ServiceReleaseProcessForm'
 import RoleDetails from 'components/pages/RoleDetails'
-import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
-import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
+import ServiceOverview from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceListOverview'
+import ServiceDetails from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceDetails'
 import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
-import UsecaseParticipation from 'components/pages/UsecaseParticipation'
+import UseCaseParticipation from 'components/pages/UseCaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
 import CertificateCredentials from 'components/pages/CertificateCredentials'
@@ -85,7 +85,7 @@ import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 import DataSpace from 'components/pages/DataSpace'
 import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
-import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
+import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import CompanyWallet from 'components/pages/CompanyWallet'
 import CompanyCertificates from 'components/pages/CompanyCertificates'
@@ -554,7 +554,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.USECASE_PARTICIPATION,
     allowTo: () => userHasPortalRole(ROLES.REQUEST_SSICREDENTIAL),
-    element: <UsecaseParticipation />,
+    element: <UseCaseParticipation />,
   },
   {
     name: PAGES.CERTIFICATE_CREDENTIAL,

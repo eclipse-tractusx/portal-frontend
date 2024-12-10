@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
-import './AdminCredential.scss'
+import './style.scss'
 import AdminCredentialElements from './AdminCredentialElements'
 
 export default function AdminCredential() {

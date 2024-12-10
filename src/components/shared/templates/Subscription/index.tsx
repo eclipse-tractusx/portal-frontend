@@ -38,7 +38,7 @@ import type {
   SubscriptionRequestBody,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import { currentProviderSuccessType } from 'features/serviceProvider/slice'
-import './Subscription.scss'
+import './style.scss'
 import SubscriptionElements from './SubscriptionElements'
 import type { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import type { RootState } from 'features/store'

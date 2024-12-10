@@ -21,7 +21,7 @@ import NewSearchSection from './NewSearchSection'
 import { appearSearchSelector, setAppear } from 'features/control/appear'
 import { useSelector, useDispatch } from 'react-redux'
 import SearchResultSection from './SearchResultSection'
-import './Search.scss'
+import './style.scss'
 import { Dialog } from '@mui/material'
 
 export default function MainSearchOverlay() {

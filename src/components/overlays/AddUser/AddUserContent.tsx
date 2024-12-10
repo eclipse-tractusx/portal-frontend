@@ -35,7 +35,7 @@ import {
 } from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
-import './AddUserOverlay.scss'
+import './style.scss'
 import { SingleUserContent } from './SingleUserContent'
 import {
   setAddUserError,

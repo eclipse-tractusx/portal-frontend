@@ -33,7 +33,7 @@ import UserListContent from './UserListContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
-import './AddAppUserRoles.scss'
+import './style.scss'
 import {
   rolesToAddSelector,
   selectedUserSelector,

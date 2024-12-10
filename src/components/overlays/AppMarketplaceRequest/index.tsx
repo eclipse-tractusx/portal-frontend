@@ -35,7 +35,7 @@ import {
   useFetchAgreementsQuery,
 } from 'features/apps/apiSlice'
 import { closeOverlay } from 'features/control/overlay'
-import './AppMarketplaceRequest.scss'
+import './style.scss'
 import { error } from 'services/NotifyService'
 import { AgreementStatus } from '../UpdateCompanyRole'
 import { type AgreementRequest } from 'features/apps/types'

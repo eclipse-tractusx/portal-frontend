@@ -31,7 +31,7 @@ import { show } from 'features/control/overlay'
 import { type OVERLAYS, PAGES } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
-import { MenuInfo } from './pages/Home/components/MenuInfo'
+import { MenuInfo } from './pages/Home/MenuInfo'
 import {
   ApplicationStatus,
   ApplicationType,

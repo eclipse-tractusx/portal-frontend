@@ -26,7 +26,7 @@ import {
   ContentCard,
 } from '@catena-x/portal-shared-components'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
-import './Organization.scss'
+import './style.scss'
 import { FilterType, SortType } from '../CompanyCertificates'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 

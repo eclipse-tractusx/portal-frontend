@@ -26,7 +26,7 @@ import { SearchResultItem } from '../SearchResultItem'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { useState } from 'react'
-import './SearchResultGroup.scss'
+import './style.scss'
 
 const SearchResultList = styled(List)<{ component?: React.ElementType }>({
   '& .MuiListItemButton-root': {
