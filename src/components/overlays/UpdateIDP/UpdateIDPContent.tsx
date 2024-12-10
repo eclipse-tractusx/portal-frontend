@@ -31,7 +31,6 @@ import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ReadOnlyValue from 'components/shared/basic/ReadOnlyValue'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
-import { InputType } from 'components/shared/basic/Input/BasicInput'
 import {
   StaticTable,
   type TableType,
@@ -118,9 +117,7 @@ const UpdateIDPForm = ({
         <ValidatingInput
           name="secret"
           label={t('field.clientSecret.name')}
-          value={idp.oidc?.hasClientSecret ? '******' : ''}
           hint={t('field.clientSecret.hint')}
-          type={InputType.password}
           validate={isIDPClientSecret}
           onValid={onChange}
         />
