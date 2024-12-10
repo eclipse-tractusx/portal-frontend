@@ -20,7 +20,7 @@
 
 import type { ProviderProps } from '../StaticTypes'
 import ImageVideoWrapper from './ImageVideoWrapper'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import ReactPlayer from 'react-player'
 
 export default function TextVideoSideBySide({

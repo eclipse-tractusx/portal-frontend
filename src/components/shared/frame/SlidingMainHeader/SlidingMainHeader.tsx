@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Header } from './Header'
-import './SlidingMainHeader.scss'
+import './style.scss'
 import Slider from 'react-slick'
 import { Box } from '@mui/material'
 

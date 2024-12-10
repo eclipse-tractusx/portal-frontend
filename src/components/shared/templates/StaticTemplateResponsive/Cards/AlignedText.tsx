@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import type { subSectionsType } from '../StaticTypes'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import TitleDescriptionAndSectionlink from './TitleDescriptionAndSectionlink'
 
 export default function AlignedText({

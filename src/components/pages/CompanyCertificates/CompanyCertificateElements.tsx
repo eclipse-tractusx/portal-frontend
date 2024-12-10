@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Grid } from '@mui/material'
-import './CompanyCertificate.scss'
+import './style.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import CompanyCertificateCard from './CompanyCertificateCard'
 export default function CompanyCertificateElements({
