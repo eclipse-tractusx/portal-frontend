@@ -28,17 +28,21 @@ import {
   UserAvatar,
   Typography,
   PageHeader,
+  BackButton,
 } from '@catena-x/portal-shared-components'
+
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { UserDetailInfo } from 'components/shared/basic/UserDetailInfo'
 import { useFetchUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function UserDetail() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { userId } = useParams()
   const dispatch = useDispatch()
   const { data } = useFetchUserDetailsQuery(userId ?? '')
@@ -63,6 +67,13 @@ export default function UserDetail() {
 
   return (
     <main className="user-details">
+      <BackButton
+        backButtonLabel={t('global.actions.back')}
+        backButtonVariant="outlined"
+        onBackButtonClick={() => {
+          navigate(`/${PAGES.USER_MANAGEMENT}`)
+        }}
+      />
       <PageHeader
         title={t('content.account.userAccount')}
         topPage={false}

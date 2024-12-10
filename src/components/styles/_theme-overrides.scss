@@ -1721,6 +1721,21 @@ p.MuiTypography-root.MuiTypography-body3.description,
   overflow: hidden;
 }
 
+.user-details {
+  position: relative;
+  .cx-button__back {
+    position: absolute;
+    top: 35px;
+    left: 25px;
+    z-index: 1;
+  }
+  .cx-page-header {
+    .cx-page-header__title {
+      margin-left: 10px;
+    }
+  }
+}
+
 // cx-main-header
 .cx-main-header {
   background: rgba(250, 250, 250, 1) !important;
