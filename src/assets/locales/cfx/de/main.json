@@ -1232,8 +1232,8 @@
         "appProvider": "App Anbieter"
       },
       "editRoles": {
-        "title": "Manage User Assigned Portal Role(s)",
-        "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
+        "title": "Zugewiesene Portalrolle(n) ändern",
+        "subtitle": "Bitte wählen Sie zusätzliche Rollen für den Benutzer aus oder heben Sie die Auswahl einer Rolle auf, um sie zu entfernen. Mindestens eine Rolle muss ausgewählt werden.",
         "successDescription": "Portal Role(s) successfully updated.",
         "errorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator."
       }
