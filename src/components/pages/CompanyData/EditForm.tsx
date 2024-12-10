@@ -159,9 +159,9 @@ export default function EditForm({
           <FormFields
             newForm={newForm}
             onValid={(form: { body: CompanyDataFieldsType } | undefined) => {
-              isAddress
-                ? handleAddressValidation(form)
-                : handleSiteValidation(form)
+              ;(isAddress ? handleAddressValidation : handleSiteValidation)(
+                form
+              )
             }}
             isAddress={isAddress}
           />
