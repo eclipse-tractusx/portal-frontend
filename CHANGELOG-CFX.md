@@ -50,6 +50,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **User Management**
 
   - Fixed over lapping issue on user management roles chips [PM2-242](https://cofinity-x.atlassian.net/browse/PM2-242)
+  - Fixed added back button in User Detail Management [PM2-1049](https://cofinity-x.atlassian.net/browse/PM2-1049)
 
 - **Your Account**
 
