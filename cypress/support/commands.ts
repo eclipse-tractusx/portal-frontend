@@ -38,12 +38,21 @@ Cypress.Commands.add('login', (usertype) => {
       const companyName = Cypress.env('company').name
       cy.visit(Cypress.env('baseUrl'))
       // Perform login on Keycloak login page
-      cy.origin(Cypress.env('keycloak').centralUrl, () => {
-        // Click the login button to be redirected to Keycloak
-        cy.get('input[placeholder="Enter your company name"]').type(companyName) // Update selector based on your app
+      cy.origin(
+        Cypress.env('keycloak').centralUrl,
+        { args: { companyName } },
+        ({ companyName }) => {
+          // Click the login button to be redirected to Keycloak
+          cy.get('input[placeholder="Enter your company name"]').type(
+            companyName
+          ) // Update selector based on your app
 
-        cy.get('li').find('div').contains(companyName).click()
-      })
+          cy.get('li')
+            .find('div')
+            .contains(companyName, { matchCase: false })
+            .click()
+        }
+      )
 
       cy.origin(
         Cypress.env('keycloak').sharedUrl,
