@@ -222,6 +222,9 @@ export default function CompanySubscriptions() {
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.subscriptionId}
         columns={companySubscriptionsCols}
+        onClearSearch={() => {
+          setSearchExpr('')
+        }}
       />
     </div>
   )
