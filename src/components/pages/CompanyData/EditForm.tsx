@@ -159,6 +159,7 @@ export default function EditForm({
           <FormFields
             newForm={newForm}
             onValid={(form: { body: CompanyDataFieldsType } | undefined) => {
+              //to fix sonarcloud issue, earlier code is rewritten as below, which was initially->isAddress ? handleAddressValidation(form) : handleSiteValidation(form)
               ;(isAddress ? handleAddressValidation : handleSiteValidation)(
                 form
               )
