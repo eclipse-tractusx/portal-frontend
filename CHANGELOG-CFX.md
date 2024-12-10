@@ -86,9 +86,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
 
 - **App Overview**
-
   - Fix lead image preview issue in apps overview [#1365](https://cofinity-x.atlassian.net/browse/PM2-1365)
-
+- **Numeric and Special Characters for Search in AppOverview**
+  - updated the regex for search validation[#345] (https://cofinity-x.atlassian.net/browse/PM2-345)
 - **CX-Operator**
   - Change Override instead of Overwrite [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
 

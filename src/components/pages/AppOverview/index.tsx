@@ -55,11 +55,11 @@ import { fetchImageWithToken } from 'services/ImageService'
 import { setCurrentActiveStep } from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import NoItems from '../NoItems'
+import { isValidAppOverviewSearch } from 'types/Patterns'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 import PageInfo from 'components/shared/cfx/PageInfo'
 import { YOUR_APP_STATE } from 'types/cfx/Constants'
-
 export default function AppOverview() {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -224,8 +224,7 @@ export default function AppOverview() {
 
   const doSearch = useCallback(
     (expr: string) => {
-      const validateExpr = /^[ A-Za-z]*$/.test(expr)
-      if (!validateExpr) {
+      if (!isValidAppOverviewSearch(expr)) {
         return
       }
       setSearchExpr(expr)
