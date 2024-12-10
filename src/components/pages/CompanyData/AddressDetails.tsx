@@ -33,20 +33,21 @@ export default function AddressDetails({
   const addressData = [
     {
       key: t('content.companyData.site.form.site.name'),
-      value: companyAddressData.site?.name ?? '',
+      value: companyAddressData?.site?.name ?? '',
     },
     {
       key: t('content.companyData.address.form.street.name'),
       value:
-        companyAddressData.address?.physicalPostalAddress.street.name ?? '',
+        companyAddressData?.address?.physicalPostalAddress?.street.name ?? '',
     },
     {
       key: t('content.companyData.address.form.postal.name'),
-      value: companyAddressData.address?.physicalPostalAddress.postalCode ?? '',
+      value:
+        companyAddressData?.address?.physicalPostalAddress?.postalCode ?? '',
     },
     {
       key: t('content.companyData.address.form.city.name'),
-      value: companyAddressData.address?.physicalPostalAddress.city ?? '',
+      value: companyAddressData?.address?.physicalPostalAddress?.city ?? '',
     },
   ]
   return (
@@ -85,7 +86,7 @@ export default function AddressDetails({
                 width: '200px',
               }}
             >
-              {data.key}
+              {data?.key}
             </Typography>
 
             <Typography
@@ -95,7 +96,7 @@ export default function AddressDetails({
                 marginLeft: '20%',
               }}
             >
-              {data.value}
+              {data?.value}
             </Typography>
           </Box>
         ))}

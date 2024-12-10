@@ -81,8 +81,8 @@ const UpdateForm = ({
     useState<UniqueIdentifier[]>()
 
   useEffect(() => {
-    const current = identifiers.filter(
-      (item) => item.label === data.countryIdentifier
+    const current = identifiers?.filter(
+      (item) => item?.label === data?.countryIdentifier
     )
     setDefaultIdentifier(current)
   }, [identifiers, data])
@@ -95,7 +95,7 @@ const UpdateForm = ({
           label={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.site.name`
           )}
-          value={data.siteName ?? ''}
+          value={data?.siteName ?? ''}
           validate={isName}
           hint={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.site.hint`
@@ -114,7 +114,7 @@ const UpdateForm = ({
           label={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`
           )}
-          value={data.street ?? ''}
+          value={data?.street ?? ''}
           hint={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.street.hint`
           )}
@@ -133,7 +133,7 @@ const UpdateForm = ({
           label={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.city.name`
           )}
-          value={data.city ?? ''}
+          value={data?.city ?? ''}
           hint={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.city.hint`
           )}
@@ -152,7 +152,7 @@ const UpdateForm = ({
           label={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`
           )}
-          value={data.countryCode ?? ''}
+          value={data?.countryCode ?? ''}
           hint={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.hint`
           )}
@@ -171,7 +171,7 @@ const UpdateForm = ({
           label={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.name`
           )}
-          value={data.postalCode ?? ''}
+          value={data?.postalCode ?? ''}
           hint={t(
             `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.hint`
           )}
@@ -217,7 +217,7 @@ const UpdateForm = ({
               label={t(
                 'content.companyData.address.form.identifierNumber.name'
               )}
-              value={data.identifierNumber ?? ''}
+              value={data?.identifierNumber ?? ''}
               hint={t('content.companyData.address.form.identifierNumber.hint')}
               validate={(expr) =>
                 isCompanyCommercialRegNumber(expr) ||
@@ -258,24 +258,24 @@ export const FormFields = ({
     skip: code === '',
   })
 
-  const identifier = companyData.identifiers.filter(
-    (item) => item.type !== null && item.type !== ''
+  const identifier = companyData?.identifiers?.filter(
+    (item) => item?.type !== null && item?.type !== ''
   )
 
   const data: CompanyDataFieldsType = {
-    siteName: newForm ? '' : companyData.site.name,
+    siteName: newForm ? '' : companyData?.site?.name,
     street: newForm
       ? ''
-      : companyData.address.physicalPostalAddress.street.name,
+      : companyData?.address?.physicalPostalAddress?.street?.name,
     postalCode: newForm
       ? ''
-      : companyData.address.physicalPostalAddress.postalCode,
-    city: newForm ? '' : companyData.address.physicalPostalAddress.city,
+      : companyData?.address?.physicalPostalAddress?.postalCode,
+    city: newForm ? '' : companyData?.address?.physicalPostalAddress?.city,
     countryCode: newForm
       ? ''
-      : companyData.address.physicalPostalAddress.country,
-    countryIdentifier: newForm ? '' : (identifier?.[0]?.type ?? ''),
-    identifierNumber: newForm ? '' : (identifier?.[0]?.value ?? ''),
+      : companyData?.address?.physicalPostalAddress?.country,
+    countryIdentifier: newForm ? '' : identifier?.[0]?.type ?? '',
+    identifierNumber: newForm ? '' : identifier?.[0]?.value ?? '',
   }
   const [formData, setFormData] = useState<IHashMap<string>>(
     responseToForm(data)
@@ -286,14 +286,14 @@ export const FormFields = ({
     current[key] = value!
     setFormData(current)
     const formValid =
-      current.siteName &&
-      isName(current.siteName) &&
-      current.street &&
-      isStreet(current.street) &&
-      current.city &&
-      isCity(current.city)
-    current.postalCode && isPostalCode(current.postalCode)
-    current.countryCode && isCountry(current.countryCode)
+      current?.siteName &&
+      isName(current?.siteName) &&
+      current?.street &&
+      isStreet(current?.street) &&
+      current?.city &&
+      isCity(current?.city)
+    current?.postalCode && isPostalCode(current?.postalCode)
+    current?.countryCode && isCountry(current?.countryCode)
     onValid(
       formValid
         ? {
@@ -305,8 +305,8 @@ export const FormFields = ({
   }
 
   useEffect(() => {
-    if (formData.countryCode !== '') {
-      setCode(formData.countryCode)
+    if (formData?.countryCode !== '') {
+      setCode(formData?.countryCode)
     }
   }, [formData])
 
