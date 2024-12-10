@@ -19,9 +19,13 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { serviceIdSelector } from 'features/serviceManagement/slice'
+import {
+  serviceRedirectStatusSelector,
+  serviceIdSelector,
+  serviceReleaseStepIncrement,
+} from 'features/serviceManagement/slice'
 import {
   useUpdateServiceAgreementConsentsMutation,
   useFetchServiceStatusQuery,
@@ -30,6 +34,7 @@ import {
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
   useFetchDocumentMutation,
+  ConsentStatusEnum,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
@@ -39,6 +44,8 @@ export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
+  const redirectStatus = useSelector(serviceRedirectStatusSelector)
+  const hasDispatched = useRef(false)
   const fetchAgreementData = useFetchServiceAgreementDataQuery().data
   const fetchConsentData = useFetchServiceConsentDataQuery(serviceId ?? '').data
   const [updateAgreementConsents] = useUpdateServiceAgreementConsentsMutation()
@@ -55,6 +62,20 @@ export default function OfferContractAndConsent() {
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
   }, [dispatch, fetchServiceStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchServiceStatus?.agreements?.length &&
+      fetchServiceStatus?.agreements[0]?.consentStatus ===
+        ConsentStatusEnum.ACTIVE &&
+      fetchServiceStatus?.documents?.CONFORMITY_APPROVAL_SERVICES?.length &&
+      redirectStatus
+    ) {
+      dispatch(serviceReleaseStepIncrement())
+      hasDispatched.current = true
+    }
+  }, [fetchServiceStatus, hasDispatched])
 
   return (
     <div className="contract-consent">
