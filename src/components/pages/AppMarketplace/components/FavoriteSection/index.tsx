@@ -46,7 +46,7 @@ export default function FavoriteSection() {
     <Box
       sx={{
         position: 'absolute',
-        top: '100px',
+        top: '50px',
         right: `${favoriteSectionPosition}px !important`,
       }}
     >
@@ -56,7 +56,7 @@ export default function FavoriteSection() {
         <CarouselBox
           title={t('content.appstore.favoriteSection.myFavorite')}
           itemWidth={266}
-          itemHeight={255}
+          itemHeight={250}
           backgroundColor={'rgba(255, 255, 255, 0.2)'}
           hasBorder={false}
         >
