@@ -70,7 +70,7 @@ import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
-import { type FileState, extractFileData } from 'utils/fileUtils'
+import { extractFileData } from 'utils/fileUtils'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 
 type FormDataType = {
@@ -471,10 +471,7 @@ export default function AppPage() {
     }
   }
 
-  const handleDownload = async (
-    documentName: FileState[] | string,
-    documentId?: string
-  ) => {
+  const handleDownload = async (documentName: string, documentId?: string) => {
     const docId = Array.isArray(documentName) ? documentName[0].id : documentId!
     const docName = Array.isArray(documentName)
       ? documentName[0].name

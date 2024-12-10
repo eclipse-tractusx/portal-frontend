@@ -17,17 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export interface FileState {
-  id: string
-  name: string
-}
-
-interface FileResponse {
-  headers: Headers
-  data: Blob
-}
-
-export const extractFileData = (response: FileResponse) => {
+export const extractFileData = (response: { headers: Headers; data: Blob }) => {
   const fileType = response.headers.get('content-type')!
   const file = response?.data
   return { fileType, file }
