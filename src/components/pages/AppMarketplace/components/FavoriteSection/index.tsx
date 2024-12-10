@@ -56,7 +56,7 @@ export default function FavoriteSection() {
         <CarouselBox
           title={t('content.appstore.favoriteSection.myFavorite')}
           itemWidth={266}
-          itemHeight={225}
+          itemHeight={255}
           backgroundColor={'rgba(255, 255, 255, 0.2)'}
           hasBorder={false}
         >
