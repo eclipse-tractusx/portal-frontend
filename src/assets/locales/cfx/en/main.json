@@ -1201,7 +1201,7 @@
       },
       "editRoles": {
         "title": "Manage User Assigned Portal Role(s)",
-        "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
+        "subtitle": "Please choose additional roles for the user or deselect any role to unassign. At least one role must be selected.",
         "successDescription": "Portal Role(s) successfully updated.",
         "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
       }
