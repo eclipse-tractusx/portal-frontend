@@ -85,7 +85,8 @@ export default function DetailsOverlay({
           {isSite ? (
             <SiteDetails onEdit={onEdit} />
           ) : (
-            <AddressDetails onEdit={onEdit} />
+            /* TODO: removed the edit button as per requirement */
+            <AddressDetails />
           )}
         </DialogContent>
       </Dialog>

@@ -7,6 +7,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Business Partner Explorer**
 
   - Enable Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
+  - Removed the edit button in Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
 
 ### Bugfixes
 
