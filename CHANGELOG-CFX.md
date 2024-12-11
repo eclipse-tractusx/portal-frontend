@@ -2,7 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
-## Unreleased
+## 2.2.0-cfx-5
 
 - **Business Partner Explorer**
   - BP explorer table set to show for companies with correct roles [PM2-2143](https://cofinity-x.atlassian.net/browse/PM2-2143)
@@ -42,11 +42,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed authentication json issue on beta [PM2-2078](https://cofinity-x.atlassian.net/browse/PM2-2078)
 
 - **Main Navigation**
+
   - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
-
-## 2.2.0-cfx-5
-
-### Bugfixes
 
 - **IDP Display Name**
   - IDP Display Name and error messages limit [PM2-2091](https://cofinity-x.atlassian.net/browse/PM2-2091)
