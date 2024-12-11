@@ -68,6 +68,10 @@ import {
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
+import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -108,6 +112,7 @@ export default function AppPage() {
   const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
   const [saveApp] = useSaveAppMutation()
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -466,6 +471,28 @@ export default function AppPage() {
     }
   }
 
+  const handleDownload = async (documentName: string, documentId?: string) => {
+    const docId = Array.isArray(documentName) ? documentName[0].id : documentId!
+    const docName = Array.isArray(documentName)
+      ? documentName[0].name
+      : documentName
+
+    if (fetchDocumentById) {
+      try {
+        const response = await fetchDocumentById({
+          appId,
+          documentId: docId,
+        }).unwrap()
+
+        const { fileType, file } = extractFileData(response)
+
+        download(file, fileType, docName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+    }
+  }
+
   return (
     <div className="app-page">
       <ReleaseStepHeader
@@ -547,8 +574,9 @@ export default function AppPage() {
                     'image/jpeg': [],
                   }}
                   maxFilesToUpload={3}
-                  maxFileSize={819200}
+                  maxFileSize={ALLOWED_MAX_SIZE_DOCUMENT}
                   DropArea={renderDropArea}
+                  handleDownload={() => handleDownload(value)}
                   handleDelete={(documentId: string) => {
                     setDeleteSuccess(false)
                     documentId && deleteAppReleaseDocument(documentId)
@@ -598,6 +626,7 @@ export default function AppPage() {
                   maxFileSize: 819200,
                   size: 'small',
                 }}
+                handleDownload={handleDownload}
                 handleDelete={(documentId: string) => {
                   setDeleteSuccess(false)
                   documentId && deleteAppReleaseDocument(documentId)

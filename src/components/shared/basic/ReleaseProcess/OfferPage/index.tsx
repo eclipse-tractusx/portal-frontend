@@ -57,6 +57,7 @@ import { ButtonLabelTypes } from '..'
 import { success, error } from 'services/NotifyService'
 import { download } from 'utils/downloadUtils'
 import { type FileState } from 'features/serviceManagement/types'
+import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -370,7 +371,7 @@ export default function OfferPage({
                     'application/pdf': ['.pdf'],
                   }}
                   maxFilesToUpload={1}
-                  maxFileSize={819200}
+                  maxFileSize={ALLOWED_MAX_SIZE_DOCUMENT}
                   handleDownload={() => handleDownload(value)}
                   handleDelete={(documentId: string) => {
                     documentId && deleteDocument(documentId)

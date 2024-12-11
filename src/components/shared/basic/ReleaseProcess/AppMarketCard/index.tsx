@@ -74,6 +74,8 @@ import {
   type UseCaseType,
 } from 'features/appManagement/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
 
 type FormDataType = {
   title: string
@@ -450,6 +452,22 @@ export default function AppMarketCard() {
     await updateDocumentUpload(data).unwrap()
   }
 
+  const handleDownload = async (documentName: string, documentId: string) => {
+    if (fetchDocumentById)
+      try {
+        const response = await fetchDocumentById({
+          appId,
+          documentId,
+        }).unwrap()
+
+        const { fileType, file } = extractFileData(response)
+
+        download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
+
   return (
     <div className="app-market-card">
       <RetryOverlay
@@ -811,6 +829,7 @@ export default function AppMarketCard() {
               requiredText={t(
                 'content.apprelease.appReleaseForm.fileUploadIsMandatory'
               )}
+              handleDownload={handleDownload}
               handleDelete={(documentId: string) => {
                 setCardImage(LogoGrayData)
                 documentId && deleteAppReleaseDocument(documentId)
