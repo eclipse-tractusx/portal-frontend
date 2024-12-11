@@ -58,6 +58,7 @@ import { success, error } from 'services/NotifyService'
 import { download } from 'utils/downloadUtils'
 import { type FileState } from 'features/serviceManagement/types'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
+import { extractFileData } from 'utils/fileUtils'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -282,8 +283,7 @@ export default function OfferPage({
           documentId,
         }).unwrap()
 
-        const fileType = response.headers.get('content-type')
-        const file = response.data
+        const { fileType, file } = extractFileData(response)
 
         download(file, fileType, documentName)
       } catch (error) {

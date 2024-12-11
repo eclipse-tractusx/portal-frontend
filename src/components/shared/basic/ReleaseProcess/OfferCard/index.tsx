@@ -67,6 +67,7 @@ import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { PAGES } from 'types/Constants'
 import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
 
 type FormDataType = {
   title: string
@@ -188,8 +189,7 @@ export default function OfferCard() {
           documentId,
         }).unwrap()
 
-        const fileType = response.headers.get('content-type')
-        const file = response.data
+        const { fileType, file } = extractFileData(response)
 
         download(file, fileType, documentName)
       } catch (error) {
