@@ -61,7 +61,7 @@ export interface CompanyDataResponse {
 
 export interface CompanyDataType {
   externalId: string
-  nameParts: [string]
+  nameParts: [] | [string] | undefined | null
   identifiers: [
     {
       type: string | undefined | null
