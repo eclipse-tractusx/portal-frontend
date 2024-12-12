@@ -58,18 +58,18 @@ export const AddTechUserForm = ({
 }: AddTechUserFormProps) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
-  const internalRoles = roles?.filter(
+  const internalUserRoles = roles?.filter(
     (role) => role.roleType === RoleType.Internal
   )
-  const externalRoles = roles?.filter(
+  const externalUserRoles = roles?.filter(
     (role) => role.roleType === RoleType.External
   )
-  const [selectedRoles, setSelectedRoles] = useState<string[]>([])
+  const [selectedUserRoles, setSelectedUserRoles] = useState<string[]>([])
   const [selectedRoleType, setSelectedRoleType] = useState<string>('')
 
   useEffect(() => {
     if (userProfiles.length > 0) {
-      setSelectedRoles(() => {
+      setSelectedUserRoles(() => {
         const roles = []
         for (const obj of userProfiles) {
           roles.push(obj.roleId)
@@ -77,21 +77,24 @@ export const AddTechUserForm = ({
         return roles
       })
     } else {
-      setSelectedRoles([])
+      setSelectedUserRoles([])
     }
   }, [userProfiles])
 
   const selectCheckboxRoles = (role: string, select: boolean) => {
-    if (selectedRoles && selectedRoles[0] === externalRoles?.[0].roleId) {
-      setSelectedRoles([...[], role])
+    if (
+      selectedUserRoles &&
+      selectedUserRoles[0] === externalUserRoles?.[0].roleId
+    ) {
+      setSelectedUserRoles([...[], role])
     } else {
-      const isSelected = selectedRoles?.includes(role)
-      if (!isSelected && select) {
-        setSelectedRoles([...selectedRoles, role])
-      } else if (isSelected && !select) {
-        const oldRoles = [...selectedRoles]
-        oldRoles.splice(oldRoles.indexOf(role), 1)
-        setSelectedRoles([...oldRoles])
+      const isRoleSelected = selectedUserRoles?.includes(role)
+      if (!isRoleSelected && select) {
+        setSelectedUserRoles([...selectedUserRoles, role])
+      } else if (isRoleSelected && !select) {
+        const oldUserRoles = [...selectedUserRoles]
+        oldUserRoles.splice(oldUserRoles.indexOf(role), 1)
+        setSelectedUserRoles([...oldUserRoles])
       }
     }
   }
@@ -100,7 +103,7 @@ export const AddTechUserForm = ({
     if (type === 'checkbox') {
       selectCheckboxRoles(role, select)
     } else if (type === 'radio') {
-      setSelectedRoles([...[], role])
+      setSelectedUserRoles([...[], role])
     }
   }
 
@@ -131,7 +134,7 @@ export const AddTechUserForm = ({
           <Box className={'radio-container'}>
             <Radio
               label={t(
-                'content.addUser.technicalUser.addOverlay.internalRoles'
+                'content.addUser.technicalUser.addOverlay.internalUserRoles'
               )}
               checked={selectedRoleType === RoleType.Internal}
               onChange={() => {
@@ -148,7 +151,7 @@ export const AddTechUserForm = ({
                 marginBottom: '10px',
               }}
             >
-              {t('content.addUser.technicalUser.addOverlay.internalRoles')}
+              {t('content.addUser.technicalUser.addOverlay.internalUserRoles')}
             </Typography>
             {selectedRoleType && selectedRoleType !== RoleType.NONE && (
               <Box
@@ -156,18 +159,18 @@ export const AddTechUserForm = ({
                   marginLeft: '30px',
                 }}
               >
-                {internalRoles?.map((role: ServiceAccountRole) => (
+                {internalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
                     <Box className="roles">
                       <Checkbox
                         key={role.roleId}
                         label={role.roleName}
-                        checked={selectedRoles.indexOf(role.roleId) !== -1}
+                        checked={selectedUserRoles.indexOf(role.roleId) !== -1}
                         onChange={(e) => {
                           selectRoles(role.roleId, e.target.checked, 'checkbox')
                         }}
                         size="medium"
-                        value={selectedRoles}
+                        value={selectedUserRoles}
                         disabled={selectedRoleType === RoleType.External}
                       />
                     </Box>
@@ -185,7 +188,7 @@ export const AddTechUserForm = ({
             )}
             <Radio
               label={t(
-                'content.addUser.technicalUser.addOverlay.externalRoles'
+                'content.addUser.technicalUser.addOverlay.externalUserRoles'
               )}
               checked={selectedRoleType === RoleType.External}
               onChange={() => {
@@ -202,7 +205,7 @@ export const AddTechUserForm = ({
                 marginBottom: '10px',
               }}
             >
-              {t('content.addUser.technicalUser.addOverlay.externalRoles')}
+              {t('content.addUser.technicalUser.addOverlay.externalUserRoles')}
             </Typography>
             {selectedRoleType && selectedRoleType !== RoleType.NONE && (
               <Box
@@ -210,21 +213,21 @@ export const AddTechUserForm = ({
                   marginLeft: '30px',
                 }}
               >
-                {externalRoles?.map((role: ServiceAccountRole) => (
+                {externalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
                     <Box className="roles">
                       <Radio
                         label={role.roleName}
                         key={role.roleId}
                         checked={
-                          selectedRoles &&
-                          selectedRoles[0] === externalRoles?.[0].roleId
+                          selectedUserRoles &&
+                          selectedUserRoles[0] === externalUserRoles?.[0].roleId
                         }
                         onChange={(e) => {
                           selectRoles(role.roleId, e.target.checked, 'radio')
                         }}
                         name="radio-buttons"
-                        value={selectedRoles}
+                        value={selectedUserRoles}
                         size="small"
                         disabled={selectedRoleType === RoleType.Internal}
                       />
@@ -271,7 +274,7 @@ export const AddTechUserForm = ({
               handleConfirm(
                 selectedRoleType === RoleType.NONE
                   ? [RoleType.NONE]
-                  : selectedRoles
+                  : selectedUserRoles
               )
             }}
           >
