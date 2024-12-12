@@ -1363,7 +1363,17 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+        "table": {
+          "addtechUserButton": "Neuen technischen Benutzer hinzufügen",
+          "title": "Technical Users",
+          "type": "Type",
+          "role": "Role"
+        },
+        "form": {
+          "title": "Neuen technischen Benutzer hinzufügen",
+          "intro": "Wählen Sie „intern“ oder „extern“ und fahren Sie mit dem Hinzufügen neuer technischer Benutzer fort"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -2399,7 +2409,8 @@
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
-      "copyInfoSuccessMessage": "Information erfolgreich kopiert"
+      "copyInfoSuccessMessage": "Information erfolgreich kopiert",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "aktiv",

@@ -1332,7 +1332,17 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical user needed to run the app/service)",
+        "table": {
+          "addtechUserButton": "Add New Technical User",
+          "title": "Technical Users",
+          "type": "Type",
+          "role": "Role"
+        },
+        "form": {
+          "title": "Add new Technical User",
+          "intro": "Select internal or external and continue to add new technical user"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -2374,7 +2384,8 @@
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
-      "copyInfoSuccessMessage": "Information copied successfully"
+      "copyInfoSuccessMessage": "Information copied successfully",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "enabled",
