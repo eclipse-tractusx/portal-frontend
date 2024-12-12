@@ -236,6 +236,7 @@ export enum ROLES {
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
   CONFIGURE_PARTNER_REGISTRATION = 'configure_partner_registration',
   UNSUBSCRIBE_APPS = 'unsubscribe_apps',
+  VIEW_CLIENT_ROLES = 'view_client_roles',
 }
 
 export enum HINTS {

@@ -922,7 +922,8 @@
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen",
-          "noRoles": "Derzeit sind keine App-Rollen vorhanden. Keine Zuordnung möglich."
+          "noRoles": "Derzeit sind keine App-Rollen vorhanden. Keine Zuordnung möglich.",
+          "noPermission": "Ihre aktuelle Rolle erlaubt es Ihnen nicht, Benutzerrollen hinzuzufügen oder zu ändern. Wenn Sie der Auffassung sind, dass Sie einen Zugang benötigen, wenden Sie sich bitte an Ihren Administrator, um Hilfe zu erhalten."
         },
         "table": {
           "headline": "Benutzermanagement",

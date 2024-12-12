@@ -926,7 +926,8 @@
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the “Role Description” field. To add the user role to an existing active company user, please use the “add role” button below the “Available Role” area.",
-          "noRoles": "No app roles are currently existing. No assignment possible."
+          "noRoles": "No app roles are currently existing. No assignment possible.",
+          "noPermission": "Your current role doesn’t allow you to add or change user roles. If you think you need access, please reach out to your administrator for assistance"
         },
         "table": {
           "headline": "Identity Management",
