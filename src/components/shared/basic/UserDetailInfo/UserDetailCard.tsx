@@ -22,7 +22,7 @@ import { useState } from 'react'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, List, ListItem } from '@mui/material'
 import {
-  Chip,
+  StatusTag,
   IconButton,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -151,14 +151,11 @@ export const UserDetailCard = ({
         <span style={{ marginRight: '10px', fontSize: '14px' }}>
           <strong>{value?.label}</strong> :
         </span>
-        <Chip
-          color="secondary"
+        <StatusTag
+          color={value?.value === 'ACTIVE' ? 'confirmed' : 'declined'}
           label={
             value?.value ? t(`content.account.statusInfo.${value.value}`) : ''
           }
-          type="plain"
-          variant="filled"
-          withIcon={false}
         />
       </>
     ) : (
