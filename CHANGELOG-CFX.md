@@ -69,6 +69,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Technical User Management**
   - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+  - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
 
 ## 2.2.0-cfx-4
 
@@ -76,7 +77,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Cookie Policy**
 
-  - Load cookie policy script after user login [PM2-1851](https://cofinity-x.atlassian.net/browse/PM2-1851)
+  - Load cookie policy script after user login [PM2-140](https://cofinity-x.atlassian.net/browse/PM2-140)
 
 - **IDP Management**
 
