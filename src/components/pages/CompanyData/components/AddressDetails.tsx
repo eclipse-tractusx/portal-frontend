@@ -17,36 +17,33 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Divider } from '@mui/material'
+import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 
-export default function AddressDetails({
-  onEdit,
-}: {
-  readonly onEdit: () => void
-}) {
+export default function AddressDetails() {
   const { t } = useTranslation()
   const companyAddressData = useSelector(companyDataSelector)
   const addressData = [
     {
       key: t('content.companyData.site.form.site.name'),
-      value: companyAddressData.site?.name ?? '',
+      value: companyAddressData?.site?.name ?? '',
     },
     {
       key: t('content.companyData.address.form.street.name'),
       value:
-        companyAddressData.address?.physicalPostalAddress.street.name ?? '',
+        companyAddressData?.address?.physicalPostalAddress?.street.name ?? '',
     },
     {
       key: t('content.companyData.address.form.postal.name'),
-      value: companyAddressData.address?.physicalPostalAddress.postalCode ?? '',
+      value:
+        companyAddressData?.address?.physicalPostalAddress?.postalCode ?? '',
     },
     {
       key: t('content.companyData.address.form.city.name'),
-      value: companyAddressData.address?.physicalPostalAddress.city ?? '',
+      value: companyAddressData?.address?.physicalPostalAddress?.city ?? '',
     },
   ]
   return (
@@ -85,7 +82,7 @@ export default function AddressDetails({
                 width: '200px',
               }}
             >
-              {data.key}
+              {data?.key}
             </Typography>
 
             <Typography
@@ -95,27 +92,12 @@ export default function AddressDetails({
                 marginLeft: '20%',
               }}
             >
-              {data.value}
+              {data?.value}
             </Typography>
           </Box>
         ))}
       </Box>
-      <Divider
-        sx={{
-          borderColor: '#111111',
-          margin: '0px 5%',
-        }}
-      />
-      <Box
-        sx={{
-          textAlign: 'center',
-          marginTop: '50px',
-        }}
-      >
-        <Button size="medium" onClick={onEdit}>
-          {t('global.actions.edit')}
-        </Button>
-      </Box>
+      {/* TODO: removed the edit button as per requirement */}
     </Box>
   )
 }

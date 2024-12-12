@@ -101,6 +101,7 @@ export interface SAMLType {
 export interface AddIDPRequest {
   protocol: IDPAuthType
   identityProviderTypeId: string
+  displayName: string
 }
 
 export interface IdentityProviderUpdateBody {
@@ -259,7 +260,7 @@ export const apiSlice = createApi({
     }),
     addIDP: builder.mutation<IdentityProvider, AddIDPRequest>({
       query: (data: AddIDPRequest) => ({
-        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${data.protocol}&typeId=${data.identityProviderTypeId}`,
+        url: `/api/administration/identityprovider/owncompany/identityproviders?protocol=${data.protocol}&typeId=${data.identityProviderTypeId}&displayName=${data.displayName}`,
         method: 'POST',
       }),
       invalidatesTags: [TAGS.IDP],

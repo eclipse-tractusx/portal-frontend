@@ -4,7 +4,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
-### CHanges
+### Changes
 
 - **Main Navigation**
 
@@ -28,6 +28,21 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Usecase Participation**
 
   - Add filtered options to usecase participation list [PM2-1888](https://cofinity-x.atlassian.net/browse/PM2-1888)
+
+- **Technical User Management**
+
+  - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+  - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+
+- **Business Partner Explorer**
+  - BP explorer table set to show for companies with correct roles [PM2-2143](https://cofinity-x.atlassian.net/browse/PM2-2143)
+  - Enable Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
+  - Removed the edit button in Business Partner Explorer [PM2-2119](https://cofinity-x.atlassian.net/browse/PM2-2119)
+  - Fix payload for the site in BP explorer [PM2-2155](https://cofinity-x.atlassian.net/browse/PM2-2155)
+
+## 2.2.0-cfx-5
+
+### Bugfixes
 
 - **Table component**
 
@@ -66,9 +81,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
 
-- **Technical User Management**
-  - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
-  - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+- **IDP Display Name**
+  - IDP Display Name and error messages limit [PM2-2091](https://cofinity-x.atlassian.net/browse/PM2-2091)
 
 ## 2.2.0-cfx-4
 

@@ -34,13 +34,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'
 import {
-  type IdentityProviderUpdate,
   IDPAuthType,
   IDPProviderType,
-  OIDCAuthMethod,
-  OIDCSignatureAlgorithm,
   useAddIDPMutation,
-  useUpdateIDPMutation,
   idpAddAuthTypeSelector,
   idpAddProviderTypeSelector,
   setProviderType,
@@ -51,7 +47,6 @@ import {
 } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import Patterns from 'types/Patterns'
-import { getCentralIdp } from 'services/EnvironmentService'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { success } from 'services/NotifyService'
@@ -184,7 +179,6 @@ export const AddIdp = () => {
   const [showError, setShowError] = useState(false)
 
   const [addIdp] = useAddIDPMutation()
-  const [updateIdp] = useUpdateIDPMutation()
 
   const defaultFormFieldValues = {
     displayName: idpData.name,
@@ -208,21 +202,8 @@ export const AddIdp = () => {
       const idp = await addIdp({
         protocol: idpData.authType,
         identityProviderTypeId: idpData.providerType,
+        displayName: idpData.name,
       }).unwrap()
-      const idpUpdateData: IdentityProviderUpdate = {
-        identityProviderId: idp.identityProviderId,
-        body: {
-          displayName: getValues()?.displayName,
-          oidc: {
-            metadataUrl: `${getCentralIdp()}/realms/CX-Central/.well-known/openid-configuration`,
-            clientAuthMethod: OIDCAuthMethod.SECRET_BASIC,
-            clientId: '',
-            secret: '',
-            signatureAlgorithm: OIDCSignatureAlgorithm.ES256,
-          },
-        },
-      }
-      await updateIdp(idpUpdateData).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
       resetState()
       success(t('add.success'), getValues()?.displayName)
@@ -287,8 +268,8 @@ export const AddIdp = () => {
           }}
           name="displayName"
           pattern={Patterns.idp.displayName}
-          trigger={() => dispatch(setName(getValues().displayName))}
-          maxLength={40}
+          onChangeDispatch={(val: string) => dispatch(setName(val))}
+          maxLength={30}
           minLength={3}
           label={
             <>
@@ -302,7 +283,7 @@ export const AddIdp = () => {
               'field.display.charactersRequired'
             )}`,
             pattern: `${t('field.display.validCharactersIncludes')}`,
-            maxLength: `${t('field.display.maximum')} 40 ${t(
+            maxLength: `${t('field.display.maximum')} 30 ${t(
               'field.display.charactersRequired'
             )}`,
           }}

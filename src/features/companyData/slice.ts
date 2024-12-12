@@ -36,7 +36,7 @@ export interface CompanyDataState {
 
 export const companyDataInitialData: CompanyDataType = {
   externalId: '',
-  nameParts: [''],
+  nameParts: [],
   identifiers: [
     {
       type: null,
