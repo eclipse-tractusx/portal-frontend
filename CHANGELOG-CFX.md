@@ -30,6 +30,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Add filtered options to usecase participation list [PM2-1888](https://cofinity-x.atlassian.net/browse/PM2-1888)
 
 - **Technical User Management**
+
   - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
   - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
 
