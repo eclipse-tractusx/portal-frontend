@@ -49,7 +49,7 @@ export const TechUserTable = ({
       searchPlaceholder={''}
       columnHeadersBackgroundColor={'#FFFFFF'}
       searchDebounce={1000}
-      noRowsMsg={'No tech user added'}
+      noRowsMsg={t('content.apprelease.technicalIntegration.table.noRoles')}
       title={t('content.apprelease.technicalIntegration.table.title')}
       getRowId={(row: { [key: string]: string }) => row.roleId}
       rows={profiles ?? []}

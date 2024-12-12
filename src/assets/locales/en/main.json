@@ -1334,14 +1334,19 @@
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "none (no technical user needed to run the app/service)",
         "table": {
-          "addtechUserButton": "Add New Technical User",
+          "addtechUserButton": "Configure Technical User",
           "title": "Technical Users",
           "type": "Type",
-          "role": "Role"
+          "role": "Role",
+          "noRoles": "No technical users added"
         },
         "form": {
-          "title": "Add new Technical User",
-          "intro": "Select internal or external and continue to add new technical user"
+          "title": "Configure Technical User",
+          "intro": "Select internal or external roles and continue to configure technical user",
+          "internalUserRoles": "Internal technical user",
+          "internalUserRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical user",
+          "externalUserRolesDescription": "External technical user are created in external environment therefore can only have one role"
         }
       },
       "betaTest": {

@@ -1368,11 +1368,16 @@
           "addtechUserButton": "Neuen technischen Benutzer hinzufügen",
           "title": "Technical Users",
           "type": "Type",
-          "role": "Role"
+          "role": "Role",
+          "noRoles": "Keine technischen Benutzer hinzugefügt"
         },
         "form": {
-          "title": "Neuen technischen Benutzer hinzufügen",
-          "intro": "Wählen Sie „intern“ oder „extern“ und fahren Sie mit dem Hinzufügen neuer technischer Benutzer fort"
+          "title": "Technischen Benutzer konfigurieren",
+          "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzers fort",
+          "internalUserRoles": "Interner technischer Benutzer",
+          "internalUserRolesDescription": "Interne technische Benutzer werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzer werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben"
         }
       },
       "betaTest": {

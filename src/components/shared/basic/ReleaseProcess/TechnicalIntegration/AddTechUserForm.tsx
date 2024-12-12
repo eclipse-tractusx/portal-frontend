@@ -134,7 +134,7 @@ export const AddTechUserForm = ({
           <Box className={'radio-container'}>
             <Radio
               label={t(
-                'content.addUser.technicalUser.addOverlay.internalUserRoles'
+                'content.apprelease.technicalIntegration.form.internalUserRoles'
               )}
               checked={selectedRoleType === RoleType.Internal}
               onChange={() => {
@@ -151,7 +151,9 @@ export const AddTechUserForm = ({
                 marginBottom: '10px',
               }}
             >
-              {t('content.addUser.technicalUser.addOverlay.internalUserRoles')}
+              {t(
+                'content.apprelease.technicalIntegration.form.internalUserRolesDescription'
+              )}
             </Typography>
             {selectedRoleType && selectedRoleType !== RoleType.NONE && (
               <Box
@@ -188,7 +190,7 @@ export const AddTechUserForm = ({
             )}
             <Radio
               label={t(
-                'content.addUser.technicalUser.addOverlay.externalUserRoles'
+                'content.apprelease.technicalIntegration.form.externalUserRoles'
               )}
               checked={selectedRoleType === RoleType.External}
               onChange={() => {
@@ -205,7 +207,9 @@ export const AddTechUserForm = ({
                 marginBottom: '10px',
               }}
             >
-              {t('content.addUser.technicalUser.addOverlay.externalUserRoles')}
+              {t(
+                'content.apprelease.technicalIntegration.form.externalUserRolesDescription'
+              )}
             </Typography>
             {selectedRoleType && selectedRoleType !== RoleType.NONE && (
               <Box

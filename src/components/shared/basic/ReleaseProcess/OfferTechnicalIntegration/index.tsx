@@ -119,7 +119,6 @@ export default function OfferTechnicalIntegration() {
   const [showTechUser, setShowTechUser] = useState<boolean>(false)
 
   const handleUserProfiles = async (roles: string[]) => {
-    console.log(roles)
     setShowTechUser(false)
     setLoading(true)
     const updateData = {
