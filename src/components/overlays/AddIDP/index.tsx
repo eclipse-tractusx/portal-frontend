@@ -43,6 +43,7 @@ import {
   setAuthType,
   idpAddSelector,
   setName,
+  resetIDPSlice,
 } from 'features/admin/idpApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import Patterns from 'types/Patterns'
@@ -188,6 +189,7 @@ export const AddIdp = () => {
     control,
     trigger,
     formState: { errors, isValid },
+    reset,
     getValues,
   } = useForm({
     defaultValues: defaultFormFieldValues,
@@ -203,6 +205,7 @@ export const AddIdp = () => {
         displayName: idpData.name,
       }).unwrap()
       dispatch(show(OVERLAYS.UPDATE_IDP, idp.identityProviderId))
+      resetState()
       success(t('add.success'), getValues()?.displayName)
     } catch (err) {
       setShowError(true)
@@ -226,13 +229,21 @@ export const AddIdp = () => {
     },
   ]
 
+  const resetState = () => {
+    reset(defaultFormFieldValues)
+    dispatch(resetIDPSlice())
+  }
+
   return (
     <>
       <DialogHeader
         title={t('add.title')}
         intro=""
         closeWithIcon={true}
-        onCloseWithIcon={() => dispatch(closeOverlay())}
+        onCloseWithIcon={() => {
+          resetState()
+          dispatch(closeOverlay())
+        }}
       />
       <DialogContent>
         <div style={{ width: '70%', margin: '0 auto 40px' }}>
@@ -292,7 +303,13 @@ export const AddIdp = () => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            resetState()
+            dispatch(closeOverlay())
+          }}
+        >
           {t('action.cancel')}
         </Button>
         {loading ? (

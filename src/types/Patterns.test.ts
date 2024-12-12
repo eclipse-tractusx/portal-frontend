@@ -32,6 +32,7 @@ import {
   isSearchUserEmail,
   isValidPhone,
   isValidIDPName,
+  isValidAppOverviewSearch,
 } from './Patterns'
 
 const TESTDATA = {
@@ -291,6 +292,10 @@ const TESTDATA = {
     ],
     invalid: ['()*&^%$#/\\?><,`~'],
   },
+  appOverview: {
+    valid: ['sa-12', '1234', 'Test123!@#'],
+    invalid: ['🚀 Rocket!', 'Invalid\nNewLine'],
+  },
 }
 
 describe('Input Pattern Tests', () => {
@@ -403,6 +408,14 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.IDP.invalid.forEach((expr) => {
       expect(isValidIDPName(expr)).toBe(false)
+    })
+  })
+  it('validate appoverview search', () => {
+    TESTDATA.appOverview.valid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(true)
+    })
+    TESTDATA.appOverview.invalid.forEach((expr) => {
+      expect(isValidAppOverviewSearch(expr)).toBe(false)
     })
   })
 })

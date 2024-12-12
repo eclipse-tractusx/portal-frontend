@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { PageNotifications } from '@catena-x/portal-shared-components'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { show } from 'features/control/overlay'
@@ -33,6 +33,7 @@ import { TechnicalUserTable } from './TechnicalUserTable'
 import PageInfo from 'components/shared/cfx/PageInfo'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { userHasPortalRole } from 'services/AccessService'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()
@@ -61,14 +62,15 @@ export default function TechnicalUserManagement() {
         subTitleWidth={900}
       />
       <section>
-        <PageInfo
-          description={t(
-            'content.usermanagement.technicalUser.shortDescriptionText'
-          )}
-          buttonLabel={t('content.usermanagement.technicalUser.create')}
-          buttonAction={() => dispatch(show(OVERLAYS.ADD_TECH_USER))}
-        />
-
+        {userHasPortalRole(ROLES.TECH_USER_ADD) && (
+          <PageInfo
+            description={t(
+              'content.usermanagement.technicalUser.shortDescriptionText'
+            )}
+            buttonLabel={t('content.usermanagement.technicalUser.create')}
+            buttonAction={() => dispatch(show(OVERLAYS.ADD_TECH_USER))}
+          />
+        )}
         <div className="cx-content-technical__container">
           {notification.title && notification.description && (
             <div className="cx-content-technical__notifications">

@@ -926,7 +926,8 @@
         "header": {
           "title": "App Roles",
           "subtitle": "Below you can find an overview of the available app roles as well as a role description by selectiong the “Role Description” field. To add the user role to an existing active company user, please use the “add role” button below the “Available Role” area.",
-          "noRoles": "No app roles are currently existing. No assignment possible."
+          "noRoles": "No app roles are currently existing. No assignment possible.",
+          "noPermission": "Your current role doesn’t allow you to add or change user roles. If you think you need access, please reach out to your administrator for assistance"
         },
         "table": {
           "headline": "Identity Management",
@@ -1185,13 +1186,14 @@
       "statusInfo": {
         "title": "Status Information",
         "status": "Status",
-        "userCreated": "User Created"
+        "ACTIVE": "ACTIVE",
+        "userCreated": "User created"
       },
       "issuerInfo": {
         "title": "Issuer Information",
         "organisation": "Organisation",
         "adminName": "Admin name",
-        "adminMail": "Admin e-Mail"
+        "adminMail": "Admin E-Mail"
       },
       "appPermissionTable": {
         "title": "App Permissions",
@@ -1200,7 +1202,7 @@
       },
       "editRoles": {
         "title": "Manage User Assigned Portal Role(s)",
-        "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
+        "subtitle": "Please choose additional roles for the user or deselect any role to unassign. At least one role must be selected.",
         "successDescription": "Portal Role(s) successfully updated.",
         "errorDescription": "Something went wrong. Please try it later again or contact your administrator."
       }
@@ -1967,6 +1969,9 @@
       "nodocument": "No document available",
       "expiry": "Expiry: {{expiry}}",
       "request": "Request",
+      "viewCredentials": "View crededentials",
+      "active": "Active",
+      "expired": "Expired",
       "editUsecase": {
         "title": "Initiate use case participation by confirming the the use case frame agreement for {{usecaseName}}",
         "description": "Cofinity-X will approve your participation within 48 hours and generate the necessary credentials for your wallet. Once approved, you can begin exchanging data with other Use Case participants.",

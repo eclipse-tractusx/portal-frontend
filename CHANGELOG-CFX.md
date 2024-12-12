@@ -4,7 +4,34 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+### Changes
+
+- **Main Navigation**
+
+  - New breakpoint added for the main navigation at 1699px [PM2-2072](https://cofinity-x.atlassian.net/browse/PM2-2072)
+  - Applied Company role condition on the Mobile Sidebar [PM2-2114](https://cofinity-x.atlassian.net/browse/PM2-2114)
+
+- **Identity Provider Configuration**
+  - Reset the Add IDP form value on creation [PM2-2090](https://cofinity-x.atlassian.net/browse/PM2-2090)
+
 ### Bugfixes
+
+- **App access management**
+
+  - Added message for unauthorised non-admin users [PM2-1449](https://cofinity-x.atlassian.net/browse/PM2-1449)
+
+- **Your account**
+
+  - UI updates and translations [PM2-1099](https://cofinity-x.atlassian.net/browse/PM2-1099)
+  - Fixed button hover effect according to CX design [PM2-141](https://cofinity-x.atlassian.net/browse/PM2-141)
+
+- **Usecase Participation**
+
+  - Add filtered options to usecase participation list [PM2-1888](https://cofinity-x.atlassian.net/browse/PM2-1888)
+
+- **Technical User Management**
+  - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+  - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
 
 - **Business Partner Explorer**
   - BP explorer table set to show for companies with correct roles [PM2-2143](https://cofinity-x.atlassian.net/browse/PM2-2143)
@@ -25,6 +52,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Update osp mgmt table column name to alias [PM2-1921](https://cofinity-x.atlassian.net/browse/PM2-1921)
   - Hide osp mgmt navigation tab from non I.T.admins [PM2-2059](https://cofinity-x.atlassian.net/browse/PM2-2059)
   - Fixed routing issue for the Technical User Management [PM2-1472](https://cofinity-x.atlassian.net/browse/PM2-1472)
+  - Add meta url https hint to cfx translation files [PM2-1903](https://cofinity-x.atlassian.net/browse/PM2-1903)
 
 - **OSP consent**
 
@@ -39,7 +67,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **User Management**
 
+  - Update subtitle copywriting text in assigning Portal role Modal [PM2-1067](https://cofinity-x.atlassian.net/browse/PM2-1067)
   - Fixed over lapping issue on user management roles chips [PM2-242](https://cofinity-x.atlassian.net/browse/PM2-242)
+  - Fixed added back button in User Detail Management [PM2-1049](https://cofinity-x.atlassian.net/browse/PM2-1049)
+  - Fixed DE Translation of the title and subtitle in assigning Portal role Modal [PM2-1065](https://cofinity-x.atlassian.net/browse/PM2-1065)
 
 - **Your Account**
 
@@ -58,7 +89,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Cookie Policy**
 
-  - Load cookie policy script after user login [PM2-1851](https://cofinity-x.atlassian.net/browse/PM2-1851)
+  - Load cookie policy script after user login [PM2-140](https://cofinity-x.atlassian.net/browse/PM2-140)
 
 - **IDP Management**
 
@@ -73,9 +104,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
 
 - **App Overview**
-
   - Fix lead image preview issue in apps overview [#1365](https://cofinity-x.atlassian.net/browse/PM2-1365)
-
+- **Numeric and Special Characters for Search in AppOverview**
+  - updated the regex for search validation[#345] (https://cofinity-x.atlassian.net/browse/PM2-345)
 - **CX-Operator**
   - Change Override instead of Overwrite [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
 

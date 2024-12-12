@@ -608,9 +608,9 @@ export const customTheme = {
             background: COLOR_PALETTE.GRAY,
           },
           ':focus': {
-            boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
-            color: COLOR_PALETTE.WHITE,
-            backgroundColor: COLOR_PALETTE.SECONDARY,
+            // boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
+            // color: COLOR_PALETTE.WHITE,
+            // backgroundColor: COLOR_PALETTE.SECONDARY,
           },
           ':active': {
             boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
@@ -653,10 +653,13 @@ export const customTheme = {
           borderColor: COLOR_PALETTE.SECONDARY,
           color: COLOR_PALETTE.SECONDARY,
           ':hover': {
-            color: COLOR_PALETTE.SECONDARY_HOVER,
+            // color: COLOR_PALETTE.SECONDARY_HOVER,
             borderColor: COLOR_PALETTE.SECONDARY_HOVER,
             borderWidth: 2,
-            backgroundColor: 'transparent',
+            // backgroundColor: 'transparent',
+            boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
+            color: COLOR_PALETTE.WHITE,
+            backgroundColor: COLOR_PALETTE.SECONDARY,
           },
           ':disabled': {
             borderColor: COLOR_PALETTE.LIGHT_GRAY,

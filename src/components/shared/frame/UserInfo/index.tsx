@@ -35,11 +35,19 @@ import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
 import { useDispatch } from 'react-redux'
-import { Box, styled } from '@mui/material'
+import { Box, Divider, styled, useTheme } from '@mui/material'
 import { Menu } from 'components/shared/generic'
+import type { MenuItemProps } from 'components/shared/generic/Menu/MenuItem'
 
-export const UserInfo = ({ pages }: { pages: string[] }) => {
+export const UserInfo = ({
+  pages,
+  menuWithChild,
+}: {
+  pages: string[]
+  menuWithChild: MenuItemProps[]
+}) => {
   const { t } = useTranslation()
+  const { spacing } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
@@ -100,6 +108,18 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
+        <Menu
+          items={menuWithChild}
+          component={Link}
+          subMenuDivider={true}
+          onClick={openCloseMenu}
+        />
+        <>
+          {menuWithChild.length > 0 ? (
+            <Divider sx={{ margin: spacing(1, 1) }} />
+          ) : null}
+        </>
+
         <Menu
           component={Link}
           onClick={openCloseMenu}

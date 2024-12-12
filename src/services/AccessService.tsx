@@ -71,6 +71,7 @@ import {
   userMenuFull,
   ALL_PAGES,
   footerMenuFull,
+  userMenuWithChildren,
 } from 'types/cfx/Config'
 import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 import { intersectAccess } from 'utils/dataUtils'
@@ -128,6 +129,8 @@ const accessToMenuTree = (menu: Tree[] | undefined): any =>
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
+
+const userMenuWithChild = () => accessToMenuTree(userMenuWithChildren)
 
 const userMenuReg = () => accessToMenu(userMenuRegistration)
 
@@ -289,6 +292,7 @@ const AccessService = {
   userMenuReg,
   footerMenu,
   userMenuComp,
+  userMenuWithChild,
 }
 
 export default AccessService

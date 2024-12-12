@@ -26,6 +26,9 @@ import ClickAwayListener from '@mui/material/ClickAwayListener'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import { MobileMenu } from 'components/shared/cfx/MobileMenu'
 import { Drawer } from '@mui/material'
+import { getCompanyRoles } from 'utils/companyRoleCheck'
+import { ROLES } from 'types/Constants'
+import UserService from 'services/UserService'
 
 export const MenuInfo = ({
   main,
@@ -38,17 +41,24 @@ export const MenuInfo = ({
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
   const addTitle = (items: Tree[] | undefined) =>
-    items?.map(
-      (item: Tree): MenuItem => ({
-        ...item,
-        to: `/${item.name}`,
-        title: item.children
-          ? t(`menu.heading.${item.name}`)
-          : t(`pages.${item.name}`),
-        hint: item.hint ? t(`hints.${item.hint}`) : '',
-        children: addTitle(item.children),
-      })
-    )
+    items
+      ?.filter(
+        (item: Tree) =>
+          !item.companyRole ||
+          (getCompanyRoles().includes(item.companyRole) &&
+            UserService.hasRole(ROLES.CONFIGURE_PARTNER_REGISTRATION))
+      )
+      .map(
+        (item: Tree): MenuItem => ({
+          ...item,
+          to: `/${item.name}`,
+          title: item.children
+            ? t(`menu.heading.${item.name}`)
+            : t(`pages.${item.name}`),
+          hint: item.hint ? t(`hints.${item.hint}`) : '',
+          children: addTitle(item.children),
+        })
+      )
 
   const menu = addTitle(main) ?? []
 

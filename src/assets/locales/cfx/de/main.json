@@ -922,7 +922,8 @@
         "header": {
           "title": "App Rollen",
           "subtitle": "Für die App stehen folgende Rollen zur Verfügung. Über das Feld 'Rollenbeschreibung' können sie detailierte Informationen zu den Rechten der Rollen erhalten. Um eine Rolle einem User hinzuzufügen, nutzen Sie bitte den Button 'Add Role' unter den Rollenbeschreibungen",
-          "noRoles": "Derzeit sind keine App-Rollen vorhanden. Keine Zuordnung möglich."
+          "noRoles": "Derzeit sind keine App-Rollen vorhanden. Keine Zuordnung möglich.",
+          "noPermission": "Ihre aktuelle Rolle erlaubt es Ihnen nicht, Benutzerrollen hinzuzufügen oder zu ändern. Wenn Sie der Auffassung sind, dass Sie einen Zugang benötigen, wenden Sie sich bitte an Ihren Administrator, um Hilfe zu erhalten."
         },
         "table": {
           "headline": "Benutzermanagement",
@@ -1209,7 +1210,7 @@
       "resetPswrdUnsuccessfulError": "The password reset was unsuccessful. An issue occurred. Please try It later again",
       "resetPswrdPermissionsError": "Reset of the password was unsuccessful due to missing permissions.",
       "personalInfo": {
-        "title": "Persönliche Information",
+        "title": "Persönliche Informationen",
         "name": "Name",
         "surname": "Nachname",
         "email": "E-Mail",
@@ -1218,13 +1219,14 @@
       "statusInfo": {
         "title": "Status-Informationen",
         "status": "Status",
+        "ACTIVE": "AKTIV",
         "userCreated": "Benutzer angelegt"
       },
       "issuerInfo": {
         "title": "Aussteller-Informationen",
         "organisation": "Organisation",
         "adminName": "Admin name",
-        "adminMail": "Admin e-Mail"
+        "adminMail": "Admin E-Mail"
       },
       "appPermissionTable": {
         "title": "App Berechtigungen",
@@ -1232,8 +1234,8 @@
         "appProvider": "App Anbieter"
       },
       "editRoles": {
-        "title": "Manage User Assigned Portal Role(s)",
-        "subtitle": "Please select additional roles for the user or unselect any role which should get unassigned. Minimum one role need to get selected.",
+        "title": "Zugewiesene Portalrolle(n) ändern",
+        "subtitle": "Bitte wählen Sie zusätzliche Rollen für den Benutzer aus oder heben Sie die Auswahl einer Rolle auf, um sie zu entfernen. Mindestens eine Rolle muss ausgewählt werden.",
         "successDescription": "Portal Role(s) successfully updated.",
         "errorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie Ihren Administrator."
       }
@@ -1999,6 +2001,9 @@
       "nodocument": "Kein Dokument vorhanden",
       "expiry": "Expiry: {{expiry}}",
       "request": "Request",
+      "viewCredentials": "Credentials anzeigen",
+      "active": "Aktiv",
+      "expired": "Verfallen",
       "editUsecase": {
         "title": "Initiierung der Use-Case-Teilnahme durch Bestätigung der Use-Case-Rahmenvereinbarung für {{usecaseName}}",
         "description": "Cofinity-X wird Ihre Teilnahme innerhalb von 48 Stunden genehmigen und die erforderlichen Anmeldedaten für Ihre Wallet generieren. Nach der Genehmigung können Sie mit dem Austausch von Daten mit anderen Use Case-Teilnehmern beginnen.",

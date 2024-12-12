@@ -124,6 +124,9 @@ export const Patterns = {
       /^(?!.*\s$)(?=[a-zA-Z\d-]{0,10}[-\s]?[a-zA-Z\d-]{0,10}$)[a-zA-Z\d\s-]{2,10}$/,
   },
   EMAIL_SEARCH: /^[ A-Za-z0-9._!@+-]*$/,
+  appOverview: {
+    SEARCH: /^[ A-Za-z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
+  },
 }
 
 export const isEmpty = (expr: string) => !expr || expr.trim() === ''
@@ -217,5 +220,7 @@ export const isSearchUserEmail = (expr: string) =>
 export const isValidIDPName = (expr: string) =>
   Patterns.idp.displayName.test(expr)
 export const isValidPhone = (expr: string) => Patterns.PHONE.test(expr)
+export const isValidAppOverviewSearch = (expr: string) =>
+  Patterns.appOverview.SEARCH.test(expr)
 
 export default Patterns

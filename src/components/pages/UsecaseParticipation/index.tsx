@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation, Trans } from 'react-i18next'
@@ -30,6 +30,7 @@ import {
   StatusTag,
   Tooltips,
   Typography,
+  ViewSelector,
 } from '@catena-x/portal-shared-components'
 import PixIcon from '@mui/icons-material/Pix'
 import LaunchIcon from '@mui/icons-material/Launch'
@@ -52,8 +53,25 @@ export default function UsecaseParticipation() {
   const { t } = useTranslation()
   const theme = useTheme()
   const dispatch = useDispatch()
+  const [status, setStatus] = useState('Active')
+  const { data, refetch, isLoading } = useFetchUsecaseQuery(status)
 
-  const { data, refetch, isLoading } = useFetchUsecaseQuery()
+  const filterOptions = [
+    {
+      buttonText: t('content.usecaseParticipation.active'),
+      buttonValue: 'Active',
+      onButtonClick: () => {
+        setStatus('Active')
+      },
+    },
+    {
+      buttonText: t('content.usecaseParticipation.expired'),
+      buttonValue: 'Expired',
+      onButtonClick: () => {
+        setStatus('Expired')
+      },
+    },
+  ]
 
   useEffect(() => {
     refetch()
@@ -174,6 +192,12 @@ export default function UsecaseParticipation() {
             <Typography variant="caption2">
               {t('content.usecaseParticipation.noteDetail')}
             </Typography>
+          </div>
+          <div className="filters">
+            <Typography variant="label2" className="detail">
+              {t('content.usecaseParticipation.viewCredentials')}
+            </Typography>
+            <ViewSelector activeView={status} align="" views={filterOptions} />
           </div>
           <div className="useCase-list-main">
             <ul>

@@ -138,7 +138,10 @@ export const UserList = ({
             flex: 3,
             renderCell: ({ value: status }) => {
               return (
-                <StatusTag color="label" label={t(`global.field.${status}`)} />
+                <StatusTag
+                  color={status === 'ACTIVE' ? 'confirmed' : 'declined'}
+                  label={t(`global.field.${status}`)}
+                />
               )
             },
           },
