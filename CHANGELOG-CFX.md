@@ -16,6 +16,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **App access management**
+
+  - Added message for unauthorised non-admin users [PM2-1449](https://cofinity-x.atlassian.net/browse/PM2-1449)
+
 - **Your account**
 
   - UI updates and translations [PM2-1099](https://cofinity-x.atlassian.net/browse/PM2-1099)

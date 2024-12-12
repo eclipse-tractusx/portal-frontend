@@ -238,6 +238,7 @@ export enum ROLES {
   APPROVE_NEW_PARTNER = 'approve_new_partner',
   CONFIGURE_PARTNER_REGISTRATION = 'configure_partner_registration',
   UNSUBSCRIBE_APPS = 'unsubscribe_apps',
+  VIEW_CLIENT_ROLES = 'view_client_roles',
 }
 
 export enum HINTS {

@@ -26,6 +26,8 @@ import {
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import type { AppRole } from 'features/admin/appuserApiSlice'
 import './style.scss'
+import { userHasPortalRole } from 'services/AccessService'
+import { ROLES } from 'types/Constants'
 
 export interface AppUserDetailsHeaderProps {
   roles?: AppRole[]
@@ -56,7 +58,7 @@ export default function AppUserDetailsHeader({
 
       <div className="app-user-details-header-roles-section">
         {roles?.length ? (
-          roles.map((role) => {
+          roles?.map((role) => {
             return (
               <div className="wrapper" key={role.role}>
                 <div key={role.role} className="app-user-details-header-role">
@@ -75,7 +77,9 @@ export default function AppUserDetailsHeader({
           })
         ) : (
           <Typography variant="body2" className="no-roles">
-            {t('content.usermanagement.appUserDetails.header.noRoles')}
+            {userHasPortalRole(ROLES.VIEW_CLIENT_ROLES)
+              ? t('content.usermanagement.appUserDetails.header.noRoles')
+              : t('content.usermanagement.appUserDetails.header.noPermission')}
           </Typography>
         )}
       </div>
