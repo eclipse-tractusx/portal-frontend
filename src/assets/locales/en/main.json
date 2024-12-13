@@ -1332,7 +1332,22 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical user needed to run the app/service)",
+        "table": {
+          "addtechUserButton": "Configure Technical User",
+          "title": "Technical Users",
+          "type": "Type",
+          "role": "Role",
+          "noRoles": "No technical users added"
+        },
+        "form": {
+          "title": "Configure Technical User",
+          "intro": "Select internal or external roles and continue to configure technical user",
+          "internalUserRoles": "Internal technical user",
+          "internalUserRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical user",
+          "externalUserRolesDescription": "External technical user are created in external environment therefore can only have one role"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -2375,7 +2390,8 @@
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
-      "copyInfoSuccessMessage": "Information copied successfully"
+      "copyInfoSuccessMessage": "Information copied successfully",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "enabled",

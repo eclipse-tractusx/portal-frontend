@@ -1363,7 +1363,22 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+        "table": {
+          "addtechUserButton": "Neuen technischen Benutzer hinzufügen",
+          "title": "Technical Users",
+          "type": "Type",
+          "role": "Role",
+          "noRoles": "Keine technischen Benutzer hinzugefügt"
+        },
+        "form": {
+          "title": "Technischen Benutzer konfigurieren",
+          "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzers fort",
+          "internalUserRoles": "Interner technischer Benutzer",
+          "internalUserRolesDescription": "Interne technische Benutzer werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzer werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -2400,7 +2415,8 @@
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
-      "copyInfoSuccessMessage": "Information erfolgreich kopiert"
+      "copyInfoSuccessMessage": "Information erfolgreich kopiert",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "aktiv",
