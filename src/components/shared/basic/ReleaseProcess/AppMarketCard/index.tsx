@@ -74,10 +74,11 @@ import {
   type LanguageStatusType,
   type UseCaseType,
 } from 'features/appManagement/types'
-import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
 import { isStepCompleted } from '../AppStepHelper'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 type FormDataType = {
   title: string
@@ -138,7 +139,6 @@ export default function AppMarketCard() {
     salesManagerType[]
   >([defaultSalesManagerValue])
   const [salesManagerId, setSalesManagerId] = useState<string | null>(null)
-  const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [cardImage, setCardImage] = useState(LogoGrayData)
   const {
     data: fetchAppStatus,
@@ -274,40 +274,6 @@ export default function AppMarketCard() {
       }
     }
   }, [cardImageData])
-
-  useEffect(() => {
-    if (appStatusData?.documents?.APP_LEADIMAGE?.[0].documentId) {
-      void fetchCardImage(
-        appStatusData?.documents?.APP_LEADIMAGE[0].documentId,
-        appStatusData?.documents?.APP_LEADIMAGE[0].documentName
-      )
-    }
-    reset(defaultValues)
-  }, [appStatusData])
-
-  const setFileStatus = (
-    documentId: string,
-    documentName: string,
-    status: UploadFileStatus
-  ) => {
-    setValue('uploadImage.leadPictureUri', {
-      id: documentId,
-      name: documentName,
-      status,
-    } as unknown as string | null)
-  }
-
-  const fetchCardImage = async (documentId: string, documentName: string) => {
-    try {
-      const response = await fetchDocumentById({ appId, documentId }).unwrap()
-      const file = response.data
-      setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
-      setCardImage(URL.createObjectURL(file))
-    } catch (error) {
-      setFileStatus(documentId, documentName, UploadStatus.UPLOAD_SUCCESS)
-      console.error(error, 'ERROR WHILE FETCHING IMAGE')
-    }
-  }
 
   const cardAppTitle =
     getValues().title ??
@@ -529,9 +495,18 @@ export default function AppMarketCard() {
               label={cardAppProvider ?? ''}
               title={cardAppTitle}
               image={{
-                alt: cardImageAlt,
-                src: cardImage,
+                src: `${getApiBase()}/api/services/${appId}/serviceDocuments/${appStatusData?.documents?.APP_LEADIMAGE?.[0].documentId}`,
+                alt: 'App Card',
+                style: {
+                  flex: '0 0 33.333333%',
+                  maxWidth: '33.333333%',
+                  minHeight: '200px',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                },
               }}
+              imageLoader={fetchImageWithToken}
               borderRadius={0}
               description={cardDescription}
               backgroundColor="#F3F3F3"
