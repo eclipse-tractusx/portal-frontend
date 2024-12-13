@@ -43,3 +43,11 @@ Within the Cypress Test Runner:
 - For any issues with environment variables:
   - Confirm the variables are properly defined in the `env` section of `cypress.config`.
   - Use `Cypress.env('VARIABLE_NAME')` in test files to access environment variables.
+
+## NOTICE
+
+This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+- SPDX-License-Identifier: Apache-2.0
+- SPDX-FileCopyrightText: 2024 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/portal-frontend
