@@ -79,6 +79,7 @@ import { extractFileData } from 'utils/fileUtils'
 import { isStepCompleted } from '../AppStepHelper'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 type FormDataType = {
   title: string
@@ -105,6 +106,7 @@ export default function AppMarketCard() {
   const hasDispatched = useRef(false)
   const [pageScrolled, setPageScrolled] = useState(false)
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const useCasesListData = useFetchUseCasesQuery().data
   const useCasesList = useMemo(() => useCasesListData ?? [], [useCasesListData])
