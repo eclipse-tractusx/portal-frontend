@@ -77,6 +77,7 @@ import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
 import { getApiBase } from 'services/EnvironmentService'
 import { fetchImageWithToken } from 'services/ImageService'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 
 type FormDataType = {
   title: string
@@ -101,6 +102,7 @@ export default function AppMarketCard() {
   const appId = useSelector(appIdSelector)
   const [pageScrolled, setPageScrolled] = useState(false)
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const useCasesListData = useFetchUseCasesQuery().data
   const useCasesList = useMemo(() => useCasesListData ?? [], [useCasesListData])
