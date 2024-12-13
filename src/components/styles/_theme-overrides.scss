@@ -172,6 +172,7 @@ header {
     }
   }
 }
+
 .user-is-not-admin {
   @media (min-width: 1280px) {
     header {
@@ -720,11 +721,22 @@ main,
       .MuiButton-root {
         text-transform: none !important;
 
-        &:focus {
-          color: $white !important;
+        &.MuiButton-textPrimary {
+          border: 2px solid transparent;
+          box-shadow: none !important;
+          color: $black !important;
 
           &:hover {
-            background-color: $black !important;
+            background-color: $selected-hover !important;
+          }
+
+          &:active {
+            border-color: $border-color !important;
+          }
+
+          &:focus {
+            border-color: $border-color !important;
+            background-color: $white !important;
           }
         }
       }
@@ -1727,12 +1739,14 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
 .user-details {
   position: relative;
+
   .cx-button__back {
     position: absolute;
     top: 35px;
     left: 25px;
     z-index: 1;
   }
+
   .cx-page-header {
     .cx-page-header__title {
       margin-left: 10px;
