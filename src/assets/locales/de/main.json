@@ -1513,6 +1513,7 @@
       "success": "Success",
       "pending": "Das Abonnement steht noch aus",
       "active": "Das Abonnement ist aktiv",
+      "inactive": "Das Abonnement ist inaktiv",
       "process": "Das Abonnement ist in Bearbeitung",
       "tabs": {
         "request": "Request",
