@@ -24,9 +24,10 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './style.scss'
-import { getAssetBase } from 'services/EnvironmentService'
 import { useCallback } from 'react'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function ServicesElements({
   services,
@@ -81,9 +82,18 @@ export default function ServicesElements({
                     <CardHorizontal
                       borderRadius={6}
                       image={{
+                        src: `${getApiBase()}/api/services/${service.id}/serviceDocuments/${service?.leadPictureId}`,
                         alt: 'App Card',
-                        src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
+                        style: {
+                          flex: '0 0 33.333333%',
+                          maxWidth: '33.333333%',
+                          minHeight: '200px',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        },
                       }}
+                      imageLoader={fetchImageWithToken}
                       label={service.provider}
                       buttonText="Details"
                       onBtnClick={() => {
