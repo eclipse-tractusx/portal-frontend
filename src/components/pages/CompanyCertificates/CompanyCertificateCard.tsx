@@ -23,7 +23,7 @@ import {
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
-import './CompanyCertificate.scss'
+import './style.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box, ClickAwayListener } from '@mui/material'
 import { useState } from 'react'

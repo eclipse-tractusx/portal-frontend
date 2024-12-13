@@ -33,7 +33,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
-import './Organization.scss'
+import './style.scss'
 import { type SubscribeTechnicalUserData } from 'features/apps/types'
 import {
   OfferSubscriptionStatus,

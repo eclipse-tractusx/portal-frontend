@@ -30,7 +30,7 @@ import {
   LoadMoreButton,
   CircleProgress,
 } from '@catena-x/portal-shared-components'
-import './AdminBoard.scss'
+import './style.scss'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
 import type {

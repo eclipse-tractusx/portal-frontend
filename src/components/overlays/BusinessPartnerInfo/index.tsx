@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import BusinessPartnerDetail from 'components/pages/PartnerNetwork/components/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
+import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import {
   Button,
   DialogActions,

@@ -19,7 +19,7 @@
 
 import type { CardDetailsProps, ProviderProps } from '../StaticTypes'
 import RenderImage from './RenderImage'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import AlignedText from './AlignedText'
 import { Typography } from '@catena-x/portal-shared-components'
 import { Trans } from 'react-i18next'

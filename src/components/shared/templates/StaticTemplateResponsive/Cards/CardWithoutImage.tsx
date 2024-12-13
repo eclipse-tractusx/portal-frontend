@@ -21,7 +21,7 @@
 import type { CardDetailsProps } from '../StaticTypes'
 import CardWithText from './CardWithText'
 import { Box } from '@mui/material'
-import '../StaticTemplate.scss'
+import '../style.scss'
 
 export default function CardWithoutImage({
   detail,

@@ -38,7 +38,7 @@ import {
   type CompanyRolesResponse,
   useFetchRolesQuery,
 } from 'features/companyRoles/companyRoleApiSlice'
-import './CompanyRoleUpdate.scss'
+import './style.scss'
 import {
   cancelOverlayType,
   updateRoleErrorType,

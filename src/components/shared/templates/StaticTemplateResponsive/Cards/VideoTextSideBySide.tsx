@@ -20,7 +20,7 @@
 
 import type { ProviderProps } from '../StaticTypes'
 import { IconButton, Typography } from '@catena-x/portal-shared-components'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import ReactPlayer from 'react-player'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { Trans } from 'react-i18next'
