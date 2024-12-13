@@ -51,6 +51,15 @@ export const statusColorMap: Record<
   [ServiceAccountStatus.PENDING_DELETION]: 'pending',
 }
 
+export type DataValue = string | number | JSX.Element | string[]
+export interface ValueItem {
+  key?: DataValue
+  value: DataValue
+  copy?: boolean
+  showHideButton?: boolean
+  masked?: boolean
+}
+
 const getValueWithTooltip = (value: string, tooltipTitle: string) => {
   return (
     value || (
@@ -94,23 +103,12 @@ export default function TechnicalUserDetailsContent({
   const [mutationRequest] = useResetCredentialMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [newData, setNewData] = useState<ServiceAccountDetail>(data)
-
   const missingInformationHint = t(
     'content.usermanagement.technicalUser.detailsPage.missingInfoHint'
   )
-  const connectedData = [
-    {
-      key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
-      value: newData?.connector?.name ?? 'N/A',
-    },
-    {
-      key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),
-      value: newData?.offer?.name ?? 'N/A',
-      copy: !!newData.offer?.name,
-    },
-  ]
-
-  const displayData = [
+  const [technicalUserDetailList, setTechnicalUserDetailList] = useState<
+    Array<ValueItem>
+  >([
     {
       key: t('global.field.status'),
       value: (
@@ -159,6 +157,8 @@ export default function TechnicalUserDetailsContent({
       key: t('global.field.clientId'),
       value: newData.clientId,
       copy: true,
+      showHideButton: true,
+      masked: true,
     },
     {
       key: t(
@@ -170,6 +170,20 @@ export default function TechnicalUserDetailsContent({
       key: t('global.field.secret'),
       value: newData.secret,
       copy: true,
+      showHideButton: true,
+      masked: true,
+    },
+  ])
+
+  const connectedData = [
+    {
+      key: t('content.usermanagement.technicalUser.detailsPage.connectorLink'),
+      value: newData?.connector?.name ?? 'N/A',
+    },
+    {
+      key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),
+      value: newData?.offer?.name ?? 'N/A',
+      copy: !!newData.offer?.name,
     },
   ]
 
@@ -286,7 +300,8 @@ export default function TechnicalUserDetailsContent({
             title={t(
               'content.usermanagement.technicalUser.detailsPage.userDetails'
             )}
-            items={displayData}
+            items={technicalUserDetailList}
+            setTechnicalUserDetailList={setTechnicalUserDetailList}
           />
         </Box>
         <Box
