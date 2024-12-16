@@ -75,7 +75,7 @@ export const Menu = ({
                       onClick={onClick}
                       isActive={isActive}
                       key={uniqueId('Menu')}
-                      showNotificationCount={item.to === 'notifications'}
+                      showNotificationCount={item.to === '/notifications'}
                       notificationInfo={notificationInfo}
                     />
                   )
@@ -98,7 +98,7 @@ export const Menu = ({
               isActive={isActive}
               onClick={onClick}
               key={uniqueId('Menu')}
-              showNotificationCount={item.to === 'notifications'}
+              showNotificationCount={item.to === '/notifications'}
               notificationInfo={notificationInfo}
             />
           )

@@ -63,7 +63,7 @@ export const MenuItem = ({
 }: MenuItemProps) => {
   const [open, setOpen] = useState(false)
   const notificationColor = notificationInfo?.isNotificationAlert
-    ? theme.palette.danger.dangerBadge
+    ? theme.palette.success.main
     : theme.palette.brand.brand02
   const onMouseEnter = () => {
     setOpen(true)
@@ -135,14 +135,12 @@ export const MenuItem = ({
             <Typography
               sx={{
                 fontWeight: '500',
-                fontSize: '0.75rem',
-                minWidth: '20px',
                 padding: '2px 6px',
-                height: '20px',
-                borderRadius: '10px',
+                borderRadius: '50px',
                 background: notificationColor,
-                color: 'white',
+                color: 'white !important',
               }}
+              className="notification-badge-text"
             >
               {notificationInfo?.notificationCount}
             </Typography>
