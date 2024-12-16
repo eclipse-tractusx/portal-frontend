@@ -1199,13 +1199,13 @@ footer {
 
 .mainNavigation {
   .menuItem {
-    .MuiTypography-root {
+    .MuiTypography-root:not(.notification-badge-text) {
       font-size: 18px !important;
       font-weight: 500 !important;
       color: $secondary-hover;
     }
 
-    :hover {
+    :not(.notification-badge-text):hover {
       background-color: $selected-hover !important;
       border-radius: 8px;
       color: $secondary-hover !important;
@@ -1215,7 +1215,7 @@ footer {
       color: $color-primary !important;
 
       // not working
-      :hover {
+      :not(.notification-badge-text):hover {
         color: $color-primary !important;
       }
     }
@@ -2247,5 +2247,15 @@ p.MuiTypography-root.MuiTypography-body3.description,
     .MuiDataGrid-root .MuiIconButton-root svg {
       display: block !important;
     }
+  }
+}
+
+.notification-badge-text {
+  font-size: 0.75rem !important;
+}
+
+.cx-avatar__badge {
+  .MuiBadge-badge {
+    background-color: #6ba13c !important;
   }
 }
