@@ -585,13 +585,11 @@ export const mainMenuFullTree = [
     ],
   },
   {
-    name: MENUS.CX_OPERATOR, // New Section
+    name: MENUS.ON_BOARDING_MANAGEMENT,
+    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
     children: [
-      { name: PAGES.INVITE },
-      { name: PAGES.APPLICATION_REQUESTS },
-      { name: PAGES.ADMIN_CREDENTIAL },
-      { name: PAGES.ADMINBOARD }, // Admin Board -> App Marketplace
-      { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
+      { name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER },
+      { name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT },
     ],
   },
 ]
@@ -615,11 +613,13 @@ export const userMenuFull = [
 
 export const userMenuWithChildren = [
   {
-    name: MENUS.ON_BOARDING_MANAGEMENT,
-    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
+    name: MENUS.CX_OPERATOR, // New Section
     children: [
-      { name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER },
-      { name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT },
+      { name: PAGES.INVITE },
+      { name: PAGES.APPLICATION_REQUESTS },
+      { name: PAGES.ADMIN_CREDENTIAL },
+      { name: PAGES.ADMINBOARD }, // Admin Board -> App Marketplace
+      { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
     ],
   },
 ]
