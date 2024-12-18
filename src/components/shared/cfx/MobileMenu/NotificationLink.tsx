@@ -22,10 +22,10 @@ import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useEffect, useState } from 'react'
-import { theme } from '@catena-x/portal-shared-components'
 import '../../MobileMenu/MobileMenu.scss'
 import { t } from 'i18next'
 import { useNavigate } from 'react-router-dom'
+import { useTheme } from '@mui/material'
 
 interface NotificationBadgeType {
   notificationCount: number
@@ -44,6 +44,7 @@ export const NotificationLink = ({
   ...props
 }: NotificationLinkProps): JSX.Element => {
   const navigate = useNavigate()
+  const theme = useTheme()
 
   const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
@@ -73,7 +74,7 @@ export const NotificationLink = ({
   }, [data])
 
   const notificationColor = notificationInfo?.isNotificationAlert
-    ? theme.palette.success.main
+    ? theme.palette.danger.dangerBadge
     : theme.palette.brand.brand02
 
   return (
