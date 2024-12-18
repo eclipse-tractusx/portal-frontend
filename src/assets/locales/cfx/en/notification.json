@@ -74,7 +74,9 @@
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
-      "content": "Dear {{username}}, \n\nYour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}\n\n"
+      "content": "Dear {{username}}, \n\nYour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\nRemoved Roles: {{removedRoles}}\n\n",
+      "onlyAdd": "Dear {{username}}, \n\nYour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nNew Roles: {{addedRoles}} \n\n",
+      "onlyRemove": "Dear {{username}}, \n\nYour portal user roles got updated by your company administrator. With the change of the role assignment your access rights have changed. You can find more details regarding the role change impact by having a look at the portal role matrix and role description (Link available below) \n\nRemoved Roles: {{removedRoles}}\n\n"
     },
     "ROLE_UPDATE_APP_OFFER": {
       "title": "Assigned User Roles Updated - {{app}}",
