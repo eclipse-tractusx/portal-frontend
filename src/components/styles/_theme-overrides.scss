@@ -1250,7 +1250,7 @@ footer {
   }
 
   .MuiAvatar-circular.MuiAvatar-colorDefault {
-    background-color: $color-primary !important;
+    // background-color: $color-primary !important;
   }
 }
 
@@ -2252,10 +2252,4 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
 .notification-badge-text {
   font-size: 0.75rem !important;
-}
-
-.cx-avatar__badge {
-  .MuiBadge-badge {
-    background-color: #6ba13c !important;
-  }
 }
