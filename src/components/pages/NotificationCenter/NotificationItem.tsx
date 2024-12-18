@@ -29,7 +29,7 @@ import {
   type CXNotificationContent,
   NotificationType,
 } from 'features/notification/types'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
@@ -96,12 +96,26 @@ const NotificationContent = ({
   const userEmail = item.contentParsed?.UserEmail
   const personalMessage = item.contentParsed?.DeclineMessage
 
+  const contentType = useMemo(() => {
+    const isRoleAdded = !!addedRoles
+    const isRoleUpdated = !!removedRoles
+    const isRoleUpdateNotification =
+      item.typeId === NotificationType.ROLE_UPDATE_CORE_OFFER
+    if (
+      !isRoleUpdateNotification ||
+      (isRoleUpdateNotification && isRoleAdded && isRoleUpdated)
+    )
+      return 'content'
+    else if (isRoleUpdated && isRoleUpdateNotification) return 'onlyRemove'
+    else if (isRoleAdded && isRoleUpdateNotification) return 'onlyAdd'
+  }, [item, addedRoles, removedRoles])
+
   return (
     <>
       <div>
         <Trans
           ns="notification"
-          i18nKey={`item.${item.typeId}.content`}
+          i18nKey={`item.${item.typeId}.${contentType}`}
           values={{
             you,
             app: appName,
