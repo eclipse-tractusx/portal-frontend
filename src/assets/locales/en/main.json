@@ -1332,7 +1332,10 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical user needed to run the app/service)",
+        "userVisibilityHeader": "3. Technical User Visibility",
+        "userVisibilityDescription": "this option will disable the subscriber's ability to view security information of the technical users created for them. This option requires subscribers to accept this situation if they wish to subscribe",
+        "userVisibilityTerms": "Disable the visibility of technical user data for subscribers"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",

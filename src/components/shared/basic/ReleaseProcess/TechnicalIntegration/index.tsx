@@ -130,6 +130,8 @@ export default function TechnicalIntegration() {
     },
   ]
 
+  const [userVisibility, setUserVisibility] = useState<boolean>(false)
+
   useEffect(() => {
     csvPreview(uploadFileInfo)
   }, [selectedEncoding])
@@ -698,6 +700,29 @@ export default function TechnicalIntegration() {
             )}
           </Typography>
         )}
+        <Divider className="form-divider" />
+        <Typography variant="h5" mb={2}>
+          <>
+            {t('content.apprelease.technicalIntegration.userVisibilityHeader')}
+            <span style={{ color: 'red' }}> *</span>
+          </>
+        </Typography>
+        <Typography variant="body2" mb={4}>
+          {t(
+            'content.apprelease.technicalIntegration.userVisibilityDescription'
+          )}
+        </Typography>
+        <Box>
+          <Checkbox
+            checked={userVisibility}
+            label={t(
+              'content.apprelease.technicalIntegration.userVisibilityTerms'
+            )}
+            onChange={(e) => {
+              setUserVisibility(e.target.checked)
+            }}
+          />
+        </Box>
       </form>
       <SnackbarNotificationWithButtons
         pageNotification={technicalIntegrationNotification}

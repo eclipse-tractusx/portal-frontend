@@ -1363,7 +1363,10 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+        "userVisibilityHeader": "3. Technical User Visibility",
+        "userVisibilityDescription": "Diese Option deaktiviert die Möglichkeit des Abonnenten, Sicherheitsinformationen der für ihn erstellten technischen Benutzer anzuzeigen. Bei dieser Option müssen Abonnenten diese Situation akzeptieren, wenn sie ein Abonnement abschließen möchten",
+        "userVisibilityTerms": "Deaktivieren Sie die Sichtbarkeit technischer Benutzerdaten für Abonnenten"
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
