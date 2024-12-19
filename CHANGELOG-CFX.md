@@ -83,6 +83,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Update subtitle copywriting text in assigning Portal role Modal [PM2-1067](https://cofinity-x.atlassian.net/browse/PM2-1067)
   - Fixed over lapping issue on user management roles chips [PM2-242](https://cofinity-x.atlassian.net/browse/PM2-242)
+  - Change status tag badge color to refelct cfx styles [PM2-1449](https://cofinity-x.atlassian.net/browse/PM2-1449)
   - Fixed added back button in User Detail Management [PM2-1049](https://cofinity-x.atlassian.net/browse/PM2-1049)
   - Fixed DE Translation of the title and subtitle in assigning Portal role Modal [PM2-1065](https://cofinity-x.atlassian.net/browse/PM2-1065)
 

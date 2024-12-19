@@ -2177,6 +2177,8 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
   .statusTag {
     margin-bottom: 0px !important;
+    background-color: #dfdfdf !important;
+    color: #000 !important;
   }
 
   .status-more {
@@ -2206,7 +2208,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
     -webkit-justify-content: center;
     justify-content: center;
     height: 32px;
-    color: #000000;
+    color: #000;
     background-color: #dfdfdf;
     border-radius: 16px;
     white-space: nowrap;
