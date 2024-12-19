@@ -184,11 +184,7 @@ export default function OfferTechnicalIntegration() {
 
   useEffect(() => {
     if (hasDispatched.current) return
-    if (
-      fetchServiceStatus?.technicalUserProfile &&
-      Object.keys(fetchServiceStatus?.technicalUserProfile).length !== 0 &&
-      redirectStatus
-    ) {
+    if (redirectStatus) {
       dispatch(serviceReleaseStepIncrement())
       hasDispatched.current = true
     }

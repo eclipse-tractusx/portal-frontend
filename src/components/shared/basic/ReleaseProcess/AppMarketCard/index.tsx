@@ -227,6 +227,7 @@ export default function AppMarketCard() {
       fetchAppStatus.useCase?.length &&
       fetchAppStatus.supportedLanguageCodes?.length &&
       fetchAppStatus.documents?.APP_LEADIMAGE?.length &&
+      fetchAppStatus.price &&
       appRedirectStatus
     ) {
       dispatch(increment())
