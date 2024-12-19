@@ -85,7 +85,7 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
     }
   }
   return data ? (
-    <>
+    <div className="user-menu-dialogs">
       <DeleteUserContent
         header={`${t('global.actions.delete')} ${t(
           'global.objects.techuser'
@@ -100,6 +100,6 @@ export const DeleteTechnicalUser = ({ id }: { id: string }) => {
         handleConfirm={handleRemove}
         confirmTitle={t('global.actions.delete')}
       />
-    </>
+    </div>
   ) : null
 }

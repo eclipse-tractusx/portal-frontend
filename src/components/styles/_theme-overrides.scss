@@ -2139,6 +2139,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
 .user-menu-dialogs {
   .dialog-header-main {
     .cx-dialog__title {
+      text-align: center !important;
       font-size: 23px !important;
       font-weight: 600 !important;
     }
@@ -2146,9 +2147,15 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
   .remove-object-content {
     h6 {
-      font-size: 14px !important;
-      font-weight: 400 !important;
+      text-align: center !important;
+      font-size: 18px !important;
+      font-weight: 600 !important;
+      padding-bottom: 20px !important;
     }
+  }
+
+  .cx-dialog__header {
+    padding-bottom: 0px !important;
   }
 }
 

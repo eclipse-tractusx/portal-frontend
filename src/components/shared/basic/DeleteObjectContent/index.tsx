@@ -62,12 +62,14 @@ export default function DeleteObjectContent({
           <SubHeaderTitle className="confirm" title={subHeader} variant="h6" />
         )}
         {subHeaderTitle && (
-          <SubHeaderTitle title={subHeaderTitle} variant="h5" />
+          <SubHeaderTitle title={subHeaderTitle} variant="body1" />
         )}
         {subHeaderDescription && (
-          <SubHeaderTitle title={subHeaderDescription} variant="h5" />
+          <SubHeaderTitle title={subHeaderDescription} variant="body1" />
         )}
-        {subHeaderNote && <SubHeaderTitle title={subHeaderNote} variant="h5" />}
+        {subHeaderNote && (
+          <SubHeaderTitle title={subHeaderNote} variant="body1" />
+        )}
       </DialogContent>
 
       <DialogActions>
