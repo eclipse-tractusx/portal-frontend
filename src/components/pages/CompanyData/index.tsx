@@ -23,6 +23,8 @@ import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
 import EditForm from './EditForm'
 import { useDispatch } from 'react-redux'
 import { setCompanyPageRefetch } from 'features/companyData/slice'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { t } from 'i18next'
 
 export default function CompanyData() {
   const [showOverlay, setShowOverlay] = useState({
@@ -40,38 +42,48 @@ export default function CompanyData() {
   }
 
   return (
-    <main className="organization-main">
-      <div className="organization-section">
-        <MyCompanyInfoComponent editable={false} />
-      </div>
-      <CompanyAddressList
-        handleButtonClick={() => {
-          setShowOverlay((old) => {
-            old.address = true
-            return { ...old }
-          })
-        }}
-        handleSecondButtonClick={() => {
-          setShowOverlay((old) => {
-            old.site = true
-            return { ...old }
-          })
-        }}
-        handleConfirm={() => {
-          dispatch(setCompanyPageRefetch(true))
-        }}
-      />
-      <EditForm
-        newForm={true}
-        isAddress={showOverlay.address}
-        handleClose={() => {
-          updateOverlay()
-        }}
-        open={showOverlay.address || showOverlay.site}
-        handleConfirm={() => {
-          dispatch(setCompanyPageRefetch(true))
-        }}
-      />
-    </main>
+    <>
+      <main className="organization-main organization-main-page-container organization-main__bpx">
+        <MainHeader
+          title={t('pages.organization')}
+          subTitle={t('content.organization.headlineDescription')}
+          headerHeight={250}
+          subTitleWidth={750}
+        />
+        <div className="organization-section ">
+          <MyCompanyInfoComponent editable={false} />
+        </div>
+        <div className="bpx-section">
+          <CompanyAddressList
+            handleButtonClick={() => {
+              setShowOverlay((old) => {
+                old.address = true
+                return { ...old }
+              })
+            }}
+            handleSecondButtonClick={() => {
+              setShowOverlay((old) => {
+                old.site = true
+                return { ...old }
+              })
+            }}
+            handleConfirm={() => {
+              dispatch(setCompanyPageRefetch(true))
+            }}
+          />
+          <EditForm
+            newForm={true}
+            isAddress={showOverlay.address}
+            handleClose={() => {
+              updateOverlay()
+            }}
+            open={showOverlay.address || showOverlay.site}
+            handleConfirm={() => {
+              dispatch(setCompanyPageRefetch(true))
+            }}
+          />
+        </div>
+      </main>
+    </>
   )
 }

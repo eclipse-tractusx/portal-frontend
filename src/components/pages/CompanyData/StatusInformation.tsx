@@ -90,8 +90,8 @@ export default function StatusInformation({
             sx={{
               marginRight: '0 !important',
               margin: '0 auto',
-              width: '100px',
-              maxWidth: '100px',
+              width: '130px',
+              maxWidth: '150px',
             }}
           />
         </Box>

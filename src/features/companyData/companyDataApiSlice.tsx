@@ -59,6 +59,16 @@ export interface CompanyDataResponse {
   content: CompanyDataType[]
 }
 
+export interface CompanyAddressListProps {
+  handleButtonClick: () => void
+  handleSecondButtonClick: () => void
+  handleConfirm: () => void
+}
+
+export interface PaginationModel {
+  pageSize: number
+  page: number
+}
 export interface CompanyDataType {
   externalId: string
   nameParts: [] | [string] | undefined | null
@@ -210,6 +220,10 @@ export enum SharingStateStatusType {
   Error = 'Error',
   Initial = 'Initial',
 }
+export enum ApiDataType {
+  INPUTS = 'inputs',
+  OUTPUTS = 'outputs',
+}
 
 export interface ReadyStateRequestBody {
   externalIds: string[]
@@ -217,11 +231,18 @@ export interface ReadyStateRequestBody {
 
 interface SharingStateRequest {
   page: number
+  size: number
+}
+interface PageSize {
+  ids: string[] | void
+  page?: number
+  size?: number
 }
 
 enum TAGS {
   SHARING = 'sharing',
 }
+const pageSizeFallback: number = 10
 
 export const apiSlice = createApi({
   reducerPath: 'rtk/companyData',
@@ -231,7 +252,7 @@ export const apiSlice = createApi({
     fetchSharingState: builder.query<SharingStateResponse, SharingStateRequest>(
       {
         query: (obj) => ({
-          url: `/sharing-state?page=${obj.page}&size=100`,
+          url: `/sharing-state?page=${obj.page ?? 0}&size=${obj.size ?? pageSizeFallback}`,
         }),
         keepUnusedDataFor: 5,
         providesTags: [TAGS.SHARING],
@@ -239,22 +260,22 @@ export const apiSlice = createApi({
     ),
     fetchInputCompanyBusinessPartners: builder.mutation<
       CompanyDataResponse,
-      string[] | void
+      PageSize
     >({
       query: (val) => ({
-        url: '/input/business-partners/search?page=0&size=100',
+        url: `/input/business-partners/search?page=${val.page ?? 0}&size=${val.size ?? pageSizeFallback}`,
         method: 'POST',
-        body: val,
+        body: val.ids,
       }),
     }),
     fetchOutputCompanyBusinessPartners: builder.mutation<
       CompanyDataResponse,
-      string[] | void
+      PageSize
     >({
       query: (val) => ({
-        url: '/output/business-partners/search?page=0&size=100',
+        url: `/output/business-partners/search?page=${val.page ?? 0}&size=${val.size ?? pageSizeFallback}`,
         method: 'POST',
-        body: val,
+        body: val.ids,
       }),
     }),
     updateCompanySiteAndAddress: builder.mutation<
