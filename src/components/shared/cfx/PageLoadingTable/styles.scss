@@ -25,6 +25,7 @@ $tableHeight: 500px;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: none !important;
     }
 
     &--variant {
@@ -108,6 +109,12 @@ $tableHeight: 500px;
           background: rgba(77, 77, 77, 0.5) !important;
         }
       }
+    }
+  }
+
+  &__no-footer {
+    .MuiDataGrid-footerContainer {
+      display: none !important;
     }
   }
 }

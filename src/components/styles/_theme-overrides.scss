@@ -633,6 +633,7 @@ section {
 
 // header style type 1
 .partner-network-page-container,
+.organization-main-page-container,
 .useCaseParticipation,
 .companyRoleUpdate,
 .user-details,
@@ -2230,22 +2231,66 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
+.padding-left-right-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 // organization page
 .organization-main {
   .cx-table {
     background-image: none !important;
     background-color: #fff !important;
 
-    .MuiBox-root .MuiButton-root svg {
-      display: block !important;
+    .MuiBox-root .MuiButton-root {
+      text-transform: capitalize;
+
+      svg {
+        display: block !important;
+      }
     }
 
     .MuiDataGrid-root .MuiIconButton-root svg {
       display: block !important;
     }
   }
+
+  &__bpx {
+    max-width: 100%;
+    padding: 0;
+
+    .bpx-section {
+      padding: 40px 30px 60px !important;
+      margin: 0;
+    }
+
+    .cx-table__page-loading--loader {
+      display: none;
+    }
+
+    .table-section {
+      padding: 0 15px;
+      margin: 0;
+
+      > .MuiBox-root {
+        padding: 0 15px;
+
+        > .MuiBox-root {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
 }
 
 .notification-badge-text {
   font-size: 0.75rem !important;
+}
+
+.cx-avatar__badge {
+  .MuiBadge-badge {
+    background-color: #6ba13c !important;
+  }
 }
