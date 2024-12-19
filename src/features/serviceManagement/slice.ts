@@ -43,6 +43,10 @@ const serviceManagementSlice = createSlice({
       ...state,
       serviceId: action.payload,
     }),
+    setServiceRedirectStatus: (state, action) => ({
+      ...state,
+      serviceRedirectStatus: action.payload,
+    }),
   },
 })
 
@@ -51,6 +55,9 @@ export const serviceReleaseActiveStep = (state: RootState): number =>
 
 export const serviceIdSelector = (state: RootState): string =>
   state.serviceManagement.serviceId
+
+export const serviceRedirectStatusSelector = (state: RootState): boolean =>
+  state.serviceManagement.serviceRedirectStatus
 
 export const serviceStatusDataSelector = (
   state: RootState
@@ -61,6 +68,7 @@ export const {
   serviceReleaseStepDecrement,
   setServiceReleaseActiveStep,
   setServiceId,
+  setServiceRedirectStatus,
 } = serviceManagementSlice.actions
 
 export default serviceManagementSlice

@@ -52,7 +52,11 @@ export interface ServiceStatusDataState {
   supportedLanguageCodes?: string[]
   useCase?: UseCaseType[]
   provider?: string
-  agreements?: []
+  agreements?: {
+    id: string
+    name: string
+    consentStatus: ConsentStatusEnum
+  }[]
   technicalUserProfile?: {
     [key: string]: string[] | null
   }
@@ -67,6 +71,7 @@ export interface AgreementState {
 export interface ServiceManagementState {
   serviceReleaseActiveStep: number
   serviceId: string
+  serviceRedirectStatus: boolean
   serviceStatusData: ServiceStatusDataState
 }
 
@@ -83,6 +88,7 @@ export interface FileState {
 export const initialState: ServiceManagementState = {
   serviceReleaseActiveStep: 1,
   serviceId: '',
+  serviceRedirectStatus: true,
   serviceStatusData: {
     id: '',
     title: '',
