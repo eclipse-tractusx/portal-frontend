@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { Box, List, ListItem } from '@mui/material'
+import { Box, List, ListItem, useTheme } from '@mui/material'
 import {
   StatusTag,
   IconButton,
@@ -48,6 +48,7 @@ export type UserDetail = {
 export interface UserCardProps {
   cardAction?: React.MouseEventHandler
   cardCategory?: string
+  cardSubCategory?: string
   cardContentItems: UserItems
   variant?: 'wide'
 }
@@ -65,9 +66,11 @@ export const UserDetailCard = ({
   cardAction,
   cardCategory,
   cardContentItems,
+  cardSubCategory,
   variant,
 }: UserCardProps) => {
   const dispatch = useDispatch()
+  const theme = useTheme()
   const { userId } = useParams()
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
   const [copied, setCopied] = useState<boolean>(false)
@@ -187,23 +190,63 @@ export const UserDetailCard = ({
           )}
         </Box>
       )}
+      {cardSubCategory && (
+        <Box
+          sx={{
+            alignItems: 'center',
+            backgroundColor: theme.palette.background.background09,
+            display: 'flex',
+            paddingBottom: '10px',
+            paddingLeft: '20px',
+            paddingRight: '14px',
+          }}
+        >
+          <Typography sx={{ typography: 'body3' }}>
+            {cardSubCategory}
+          </Typography>
+        </Box>
+      )}
       <List>
-        {Object.entries(cardContentItems).map(([k, v], i) => (
-          <ListItem
-            key={i}
-            disableGutters
-            sx={{
-              borderBottom: '1px solid',
-              borderColor: 'rgb(220, 220, 220)',
-              color: 'rgb(136, 136, 136)',
-              fontFamily: 'LibreFranklin-Light',
-              padding: k === 'status' ? '14.5px 20px' : '20px',
-              fontSize: '14px',
-            }}
-          >
-            {renderContentSwitch(k, v)}
-          </ListItem>
-        ))}
+        {Object.entries(cardContentItems).map(([k, v], i) => {
+          if (k === 'adminMail' && Array.isArray(v?.value)) {
+            return (
+              <>
+                {v?.value.map((item, index) => {
+                  return (
+                    <ListItem
+                      key={item + index}
+                      disableGutters
+                      sx={{
+                        borderBottom: '1px solid',
+                        borderColor: 'rgb(220, 220, 220)',
+                        color: 'rgb(136, 136, 136)',
+                        padding: '10px 20px',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {item}
+                    </ListItem>
+                  )
+                })}
+              </>
+            )
+          }
+          return (
+            <ListItem
+              key={i}
+              disableGutters
+              sx={{
+                borderBottom: '1px solid',
+                borderColor: 'rgb(220, 220, 220)',
+                color: 'rgb(136, 136, 136)',
+                padding: k === 'status' ? '14.5px 20px' : '20px',
+                fontSize: '14px',
+              }}
+            >
+              {renderContentSwitch(k, v)}
+            </ListItem>
+          )
+        })}
       </List>
     </Box>
   )

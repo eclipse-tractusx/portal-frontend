@@ -32,6 +32,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - UI updates and translations [PM2-1099](https://cofinity-x.atlassian.net/browse/PM2-1099)
   - Fixed button hover effect according to CX design [PM2-141](https://cofinity-x.atlassian.net/browse/PM2-141)
   - Removed unwanted box shadows from the User details [PM2-141](https://cofinity-x.atlassian.net/browse/PM2-141)
+  - Change rendering layout of admin email's [PM2-1103](https://cofinity-x.atlassian.net/browse/PM2-1103)
 
 - **Usecase Participation**
 
