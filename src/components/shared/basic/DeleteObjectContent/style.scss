@@ -19,17 +19,8 @@
  ********************************************************************************/
 
 .remove-object-content {
-  * {
-    width: fit-content;
-    text-align: center;
-  }
-
-  h6 {
-    font-weight: bold !important;
-    margin: 0 auto;
-  }
-
-  h5 {
-    margin: 20px auto 20px auto !important;
+  .section-title {
+    text-align: center !important;
+    margin: 20px 0px !important;
   }
 }

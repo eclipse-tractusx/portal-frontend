@@ -23,6 +23,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Delete overlay**
+
+  - Fix inconsistent styling [PM2-1938](https://cofinity-x.atlassian.net/browse/PM2-1938)
+
 - **App access management**
 
   - Added message for unauthorised non-admin users [PM2-1449](https://cofinity-x.atlassian.net/browse/PM2-1449)
