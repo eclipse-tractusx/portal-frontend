@@ -57,6 +57,7 @@ export const UserDetailInfo = ({
             <UserDetailCard
               cardCategory={card.cardCategory}
               cardContentItems={card.cardContentItems}
+              cardSubCategory={card.cardSubCategory}
               key={i}
             />
           ))}
