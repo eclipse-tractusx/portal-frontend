@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,29 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/httpClient'
-import type { AppDetails } from './types'
-import i18next from 'i18next'
-import { getHeaders } from 'services/RequestService'
-
-export class Api extends HttpClient {
-  private static classInstance?: Api
-
-  public constructor() {
-    super(getApiBase())
-  }
-
-  public static getInstance() {
-    if (!this.classInstance) {
-      this.classInstance = new Api()
-    }
-    return this.classInstance
-  }
-
-  public getItem = (appId: string) =>
-    this.instance.get<AppDetails>(
-      `/api/apps/${appId}?lang=${i18next.language}`,
-      getHeaders()
-    )
+export const extractFileData = (response: { headers: Headers; data: Blob }) => {
+  const fileType = response.headers.get('content-type')!
+  const file = response?.data
+  return { fileType, file }
 }

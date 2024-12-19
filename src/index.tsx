@@ -30,19 +30,22 @@ import {
   SharedThemeProvider,
   SharedCssBaseline,
 } from '@catena-x/portal-shared-components'
+import CompanyService from 'services/CompanyService'
 
 I18nService.init()
 AccessService.init()
 
 UserService.init(() => {
-  createRoot(document.getElementById('app')!).render(
-    <StrictMode>
-      <SharedCssBaseline />
-      <Provider store={store}>
-        <SharedThemeProvider>
-          <AuthorizingRouter />
-        </SharedThemeProvider>
-      </Provider>
-    </StrictMode>
-  )
+  CompanyService.init(() => {
+    createRoot(document.getElementById('app')!).render(
+      <StrictMode>
+        <SharedCssBaseline />
+        <Provider store={store}>
+          <SharedThemeProvider>
+            <AuthorizingRouter />
+          </SharedThemeProvider>
+        </Provider>
+      </StrictMode>
+    )
+  })
 })

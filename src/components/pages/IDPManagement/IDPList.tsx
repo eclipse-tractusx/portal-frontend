@@ -263,7 +263,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
-          {menuItems.configure}
+          {idp.identityProviderTypeId !== IDPCategory.SHARED &&
+            menuItems.configure}
           {isManaged && idp.enabled && menuItems.register}
           {idp.oidc?.clientId && menuItems.enableToggle}
           {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}

@@ -2,188 +2,16 @@
 
 ## Unreleased
 
-## 2.3.0-RC4
-
-### Change
-
-- **Technical User Management**
-  - enhanced UI of technical user management creation page [#1322](https://github.com/eclipse-tractusx/portal-frontend/pull/1322)
-
-### Technical Support
-
-- fixed Trivy scan to comply with latest state of TRG 8.04 [portal#467](https://github.com/eclipse-tractusx/portal/issues/467)
-
-## 2.3.0-RC3
-
-### Change
-
-- **Technical User Management**
-  - enhanced technical user management creation page by role type [#1303](https://github.com/eclipse-tractusx/portal-frontend/pull/1303)
-- **Clearinghouse Self-Description**
-  - enhanced admin UI for managing SD document retriggering [#1292](https://github.com/eclipse-tractusx/portal-frontend/pull/1292)
-
-### Technical Support
-
-- upgraded shared components [#1316](https://github.com/eclipse-tractusx/portal-frontend/pull/1316)
-
 ### Bugfixes
-
-- **Home Page**
-  - fixed clicking on apps in home page URL navigation failing [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
-- **App Registration Process**
-  - fixed wrong api call to download documents [#1299](https://github.com/eclipse-tractusx/portal-frontend/pull/1299)
-- **File Upload**:
-  - changed error text of uploaded file from Byte to MB [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1185)
-- **App Overview**
-  - fixed lead image preview issue [#1255](https://github.com/eclipse-tractusx/portal-frontend/pull/1255)
-- **Connector Management**
-  - changed to not showing regular overlay when error detail is shown; refetch connector details to fix cache issue in the details overlay [#1251](https://github.com/eclipse-tractusx/portal-frontend/pull/1251)
-  - updated tooltip and placeholder text [#1315](https://github.com/eclipse-tractusx/portal-frontend/pull/1315)
-  - fixed editing URL error message [#1314](https://github.com/eclipse-tractusx/portal-frontend/pull/1314)
-- **OSP Management**
-  - added new field of auth URL in IdP config creation [#1280](https://github.com/eclipse-tractusx/portal-frontend/pull/1280)
-- **App Details Overlay**
-  - enhanced condition to view conformity documents in details overlay [#1304](https://github.com/eclipse-tractusx/portal-frontend/pull/1304)
-- **Company Data**
-  - fixed empty sharing state response issue; update the condition to handle the same [#1300](https://github.com/eclipse-tractusx/portal-frontend/pull/1300)
-- **Service Release Process**
-  - fixed wrong api calling to download documents [#1318](https://github.com/eclipse-tractusx/portal-frontend/pull/1318)
-- **User Management**
-  - allowed user to scroll horizontally in roles column to view all the added information in user table [#1260](https://github.com/eclipse-tractusx/portal-frontend/pull/1260)
-
-## 2.3.0-RC2
-
-### Bugfixes
-
-- **Application Request**
-  - fixed documents not getting displayed [#1223](https://github.com/eclipse-tractusx/portal-frontend/pull/1223)
-- **Use Case Participation**
-  - fixed columns alignment UI issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
-- **App Overview Details**
-  - fixed displaying of conformity document in separate section and all other available documents in the documents section [#1235](https://github.com/eclipse-tractusx/portal-frontend/pull/1235)
-- **App and Service Subscription Management** [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
-  - fixed showing of all available active apps/services in the filter section
-  - added heading in each section for the better user experience
-  - fixed showing of all subscriptions including inactive one in the list
-- **App Overview**
-  - updated the regex for search validation for numeric and special characters [#1179] (https://github.com/eclipse-tractusx/portal-frontend/pull/1179)
-
-## 2.3.0-RC1
-
-### Change
 
 - **Onboarding Service Provider**
-  - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
-- **Application Request**
-  - aligned endurl mapping keys with backend for retriggerable processes [#1268](https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
-
-### Bugfixes
-
-- **Technical User Management**
-  - fixed usertype column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
-- **Semantic Hub**
-  - fixed error on click of filters and on click on refresh icon [#1273](https://github.com/eclipse-tractusx/portal-frontend/pull/1273)
-- **Service Management**
-  - fixed 400 bad request error when clicking 'Load More' button [#1168](https://github.com/eclipse-tractusx/portal-frontend/pull/1168)
-- **Service Marketplace**
-  - fixed displaying of all active available services [#1143](https://github.com/eclipse-tractusx/portal-frontend/issues/1143)
-
-## 2.3.0-alpha.3
-
-### Change
-
-- **Onboarding Service Provider Management**
-  - removed "User List" from table header, added search to onboarding service provider management table, adjusted design to be identical with customer overview table and fixed action 'disable/enable' status not being updated issue [#1132](https://github.com/eclipse-tractusx/portal-frontend/pull/1132)
-- **Service Subscriptions**
-  - renamed 'Configure' button to 'Activate' button [#1150](https://github.com/eclipse-tractusx/portal-frontend/pull/1150)
-- **Header**
-  - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
-- **Business Partner Invitation**
-  - enabled support for all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
-- **Keycloak**
-  - upgraded keycloak-js library to version 25 to align with Keycloak server version [#1262](https://github.com/eclipse-tractusx/portal-frontend/pull/1262)
-- **App & Service Subscription Management**
-  - updated search place holder text - showing only available offer names at the top - and implemented hover information on the status icon of service subscription [#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
-- **CX-Operator Application**
-  - enabled to not show overlay for submitted application to CX-Operator [#1204](https://github.com/eclipse-tractusx/portal-frontend/pull/1204)
-
-### Feature
-
-- **Clearinghouse Self-Description**
-  - added admin UI for managing SD Document retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
-
-### Technical Support
-
-- **Injection of environment variables to Docker image**
-  - refactored to a more readable and typo resistant implementation using sh - bash and jq are no longer required in image [#914](https://github.com/eclipse-tractusx/portal-frontend/pull/914)
-- **Notifications**
-  - harmonized notification translation keys with constants [#1192](https://github.com/eclipse-tractusx/portal-frontend/pull/1192)
-- **Dependencies**
-  - upgraded app dependencies [#1181](https://github.com/eclipse-tractusx/portal-frontend/pull/1181)
-
-### Bugfixes
-
-- **Partner Network**
-  - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
-- **Onboarding Service Provider Management**
-  - fixed blank page issue in customer overview tab [#1232](https://github.com/eclipse-tractusx/portal-frontend/pull/1232)
-  - fixed hardcoded OSP callback url [#1201](https://github.com/eclipse-tractusx/portal-frontend/pull/1201)
-- **Hamburger Menu**
-  - fixed hamburger menu to display all pages [#1240](https://github.com/eclipse-tractusx/portal-frontend/pull/1240)
-- **Company Subscriptions**
-  - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
-  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
-  - fixed duplicate api records on load [#1206](https://github.com/eclipse-tractusx/portal-frontend/pull/1206), [#1207](https://github.com/eclipse-tractusx/portal-frontend/pull/1207)
-  - fixed DE translation for search input in App and Service Subscription [#1211](https://github.com/eclipse-tractusx/portal-frontend/pull/1211)
-- **App Subscription Management**
-  - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
-- **Service Release Process**
-  - fixed "None" selection issue in Technical Integration [#1212](https://github.com/eclipse-tractusx/portal-frontend/pull/1212)
-- **Application Request**
-  - added separate endpoints for downloading company credential document and registration document [#1229](https://github.com/eclipse-tractusx/portal-frontend/pull/1229)
-- **User Management**
-  - fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
+  - added missing short name field osp consent form [#1341](https://github.com/eclipse-tractusx/portal-frontend/pull/1341)
 - **App Marketplace**
-  - unified card design in marketplace to list view style [#1194](https://github.com/eclipse-tractusx/portal-frontend/issues/1194)
-- **Technical User Details**
-  - added notification on copy action [#1188](https://github.com/eclipse-tractusx/portal-frontend/issues/1188)
-- **Technical User Table**
-  - prevent overlap between text and sort icon [#1160](https://github.com/eclipse-tractusx/portal-frontend/issues/1160)
-- **My Company**
-  - fixed text overlap issue at company roles [#1180](https://github.com/eclipse-tractusx/portal-frontend/issues/1180)
-- **Notifications**
-  - aligned notification page search field color with other pages [#1178](https://github.com/eclipse-tractusx/portal-frontend/issues/1178)
-- **Home**
-  - disabled My Apps button for users without permission [#1165](https://github.com/eclipse-tractusx/portal-frontend/issues/1165)
+  - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
+- **IdP Management**
+  - fixed shared IdP to remove 'configure' option as its not viable [#1356](https://github.com/eclipse-tractusx/portal-frontend/pull/1356)
 
-## 2.3.0-alpha.2
-
-### Change
-
-- **Technical User Details**
-  - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
-- **Company Subscriptions**
-  - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
-- **Customer Data**
-  - re-enabled CSV upload [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
-  - reverted manual intervention with ready state api [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
-- **Onboarding Service Provider**
-  - enhanced permission and company role validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
-
-### Bugfixes
-
-- **Connector Management**
-  - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
-- **Connector Management**
-  - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
-- **Technical User Management**
-  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
-- **Company Subscriptions**
-  - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
-
-## 2.3.0-alpha.1
-
-### Bugfixes
+## 2.3.0
 
 ### Feature
 
@@ -197,19 +25,61 @@
   - added external service detail in subscription management detail overlay [#1028](https://github.com/eclipse-tractusx/portal-frontend/pull/1028)
 - **Technical User Management**
   - enhanced technical user details [#1030](https://github.com/eclipse-tractusx/portal-frontend/pull/1030), [#1093](https://github.com/eclipse-tractusx/portal-frontend/pull/1093)
-  - added Usertype column to technical user management list [#1090](https://github.com/eclipse-tractusx/portal-frontend/pull/1090)
+  - added user type column to technical user management list [#1090](https://github.com/eclipse-tractusx/portal-frontend/pull/1090)
+- **Clearinghouse Self-Description**
+  - added admin UI for managing SD Document retriggering [#1141](https://github.com/eclipse-tractusx/portal-frontend/pull/1141)
 
 ### Change
 
-- **Company Subscriptions**
-  - updated and bound API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
-  - added a tabular section to show up both app and service subscription data [#1101](https://github.com/eclipse-tractusx/portal-frontend/pull/1101)
 - **Roles and Permissions**
   - enabled more fine grained permission checks by client id and roles [#873](https://github.com/eclipse-tractusx/portal-frontend/pull/873)
 - **App Subscription**
   - removed subscribe_service requirement for app subscription [#1013](https://github.com/eclipse-tractusx/portal-frontend/pull/1013)
+  - changed enum value to start app activation [#1013](https://github.com/eclipse-tractusx/portal-frontend/pull/1013)
+- **App & Service Subscription Management**
+  - updated search place holder text - showing only available offer names at the top - and implemented hover information on the status icon of service subscription [#1130](https://github.com/eclipse-tractusx/portal-frontend/pull/1130)
+- **Service Subscriptions**
+  - renamed 'Configure' button to 'Activate' button [#1344](https://github.com/eclipse-tractusx/portal-frontend/pull/1344)
+- **Company Subscriptions**
+  - updated and bound API with filter options [#1062](https://github.com/eclipse-tractusx/portal-frontend/pull/1062)
+  - added a tabular section to show up both app and service subscription data [#1101](https://github.com/eclipse-tractusx/portal-frontend/pull/1101)
+  - update API query parameters and fix tab UI scroll [#1131](https://github.com/eclipse-tractusx/portal-frontend/pull/1131)
 - **User Management**
   - blocked user from removing own admin roles [#987](https://github.com/eclipse-tractusx/portal-frontend/pull/987)
+- **Technical User Management**
+  - enhanced UI of technical user management creation page [#1322](https://github.com/eclipse-tractusx/portal-frontend/pull/1322)
+  - enhanced technical user management creation page by role type [#1303](https://github.com/eclipse-tractusx/portal-frontend/pull/1303)
+- **Technical User Details**
+  - updated technical user details with user type and service endpoint fields. Also, updated copy icon color for better view and made copy icon available only when value is available [#1137](https://github.com/eclipse-tractusx/portal-frontend/pull/1137)
+- **Company Data**
+  - re-enabled CSV upload [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
+  - reverted manual intervention with ready state api [#1144](https://github.com/eclipse-tractusx/portal-frontend/pull/1144)
+- **Onboarding Service Provider**
+  - enhanced permission and company role validation for Onboarding Service Provider [#1176](https://github.com/eclipse-tractusx/portal-frontend/pull/1176)
+  - removed "User List" from table header, added search to onboarding service provider management table, adjusted design to be identical with customer overview table and fixed action 'disable/enable' status not being updated issue [#1132](https://github.com/eclipse-tractusx/portal-frontend/pull/1132)
+  - removed deprecated page onboardingServiceProvider and every related link [#1261](https://github.com/eclipse-tractusx/portal-frontend/pull/1261)
+- **Business Partner Invitation**
+  - enabled support for all language characters for company names [#1189](https://github.com/eclipse-tractusx/portal-frontend/pull/1189)
+- **Application Request**
+  - aligned endurl mapping keys with backend for retriggerable processes [#1268](https://github.com/eclipse-tractusx/portal-frontend/pull/1268)
+- **CX-Operator Application**
+  - enabled to not show overlay for submitted application to CX-Operator [#1204](https://github.com/eclipse-tractusx/portal-frontend/pull/1204)
+- **Clearinghouse Self-Description**
+  - enhanced admin UI for managing SD document retriggering [#1292](https://github.com/eclipse-tractusx/portal-frontend/pull/1292)
+- **Keycloak**
+  - upgraded keycloak-js library to version 25 to align with Keycloak server version [#1262](https://github.com/eclipse-tractusx/portal-frontend/pull/1262)
+- **Header**
+  - moved company roles into enum [#1213](https://github.com/eclipse-tractusx/portal-frontend/pull/1213)
+
+### Technical Support
+
+- **Injection of environment variables to Docker image**
+  - refactored to a more readable and typo resistant implementation using sh - bash and jq are no longer required in image [#914](https://github.com/eclipse-tractusx/portal-frontend/pull/914)
+- **Notifications**
+  - harmonized notification translation keys with constants [#1192](https://github.com/eclipse-tractusx/portal-frontend/pull/1192)
+- **Dependencies**
+  - upgraded app dependencies [#1181](https://github.com/eclipse-tractusx/portal-frontend/pull/1181)
+  - upgraded shared components [#1316](https://github.com/eclipse-tractusx/portal-frontend/pull/1316)
 
 ### Bugfixes
 
@@ -220,46 +90,114 @@
   - fixed technical user selection [#1085](https://github.com/eclipse-tractusx/portal-frontend/issues/1085)
   - updated inconsistent wording during connector deletion [#1098](https://github.com/eclipse-tractusx/portal-frontend/pull/1098)
   - updated SD document download API to fix downloading SD document issue [#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
-- **Service Release Process**
-  - fixed back button navigation to service management instead of navigating to home page[#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
-  - updated description regex and validation error message to prevent only spaces in short and long description [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993), [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043), [#1092](https://github.com/eclipse-tractusx/portal-frontend/pull/1092)
-  - added missing header image implementation in service details [#992](https://github.com/eclipse-tractusx/portal-frontend/pull/992)
+  - fixed overlay enabling on click of managed connectors(details) [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
+  - fixed customer link selection and fixed resetting values [#1119](https://github.com/eclipse-tractusx/portal-frontend/pull/1119)
+  - changed to not showing regular overlay when error detail is shown; refetch connector details to fix cache issue in the details overlay [#1251](https://github.com/eclipse-tractusx/portal-frontend/pull/1251)
+  - updated tooltip and placeholder text [#1315](https://github.com/eclipse-tractusx/portal-frontend/pull/1315)
+  - fixed editing URL error message [#1314](https://github.com/eclipse-tractusx/portal-frontend/pull/1314)
+- **Partner Network**
+  - changed role to access page [#1234](https://github.com/eclipse-tractusx/portal-frontend/pull/1234)
+- **Company Data**
+  - fixed empty sharing state response issue; update the condition to handle the same [#1300](https://github.com/eclipse-tractusx/portal-frontend/pull/1300)
 - **Application Requests**
   - fixed 'activeTab' conditions to load data for Tab-2(Registration Process) [#1050](https://github.com/eclipse-tractusx/portal-frontend/pull/1050)
   - fixed retrigger for DIM wallet creation [#997](https://github.com/eclipse-tractusx/portal-frontend/issues/997)
-- **App Release Process**:
-  - fixed role upload not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
-  - fixed "None" selection issue in technical integration [#1036](https://github.com/eclipse-tractusx/portal-frontend/issues/1036)
-  - fixed onClick of "Overview My Apps" button not working in App Release Process screen [#1023](https://github.com/eclipse-tractusx/portal-frontend/pull/1023)
+  - fixed documents not getting displayed [#1223](https://github.com/eclipse-tractusx/portal-frontend/pull/1223)
+  - added separate endpoints for downloading company credential document and registration document [#1229](https://github.com/eclipse-tractusx/portal-frontend/pull/1229)
 - **Technical User Management**
   - enabled displaying of appropriate error message [#1069](https://github.com/eclipse-tractusx/portal-frontend/pull/1069)
   - fixed closing page notification bar issue [#1069](https://github.com/eclipse-tractusx/portal-frontend/pull/1069)
   - displayed technicalUserManagement button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
+  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
+  - fixed user type column to display data from API [#1253](https://github.com/eclipse-tractusx/portal-frontend/pull/1253)
+- **Technical User Details**
+  - added notification on copy action [#1188](https://github.com/eclipse-tractusx/portal-frontend/issues/1188)
+- **Technical User Table**
+  - prevent overlap between text and sort icon [#1160](https://github.com/eclipse-tractusx/portal-frontend/issues/1160)
 - **Onboarding Service Provider**
   - displayed invited company name in OSP consent form (previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
   - fixed missing street number in form [#1081](https://github.com/eclipse-tractusx/portal-frontend/issues/1081)
   - filtered out roles not defined by OSP [#1114](https://github.com/eclipse-tractusx/portal-frontend/pull/1114)
   - fixed OSP consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102/files)
+  - fixed blank page issue in customer overview tab [#1232](https://github.com/eclipse-tractusx/portal-frontend/pull/1232)
+  - fixed hardcoded OSP callback url [#1201](https://github.com/eclipse-tractusx/portal-frontend/pull/1201)
+  - added new field of auth URL in IdP config creation [#1280](https://github.com/eclipse-tractusx/portal-frontend/pull/1280)
+- **User Management**
+  - fixed displaying of user management navigation button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
+  - fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
+  - allowed user to scroll horizontally in roles column to view all the added information in user table [#1260](https://github.com/eclipse-tractusx/portal-frontend/pull/1260)
 - **Use Case participation**
   - removed use cases without verified credentials from the "Use Case Participation" list [#1088](https://github.com/eclipse-tractusx/portal-frontend/pull/1088)
-- **App & Service Subscription Management**
+  - fixed columns alignment UI issue [#1247](https://github.com/eclipse-tractusx/portal-frontend/pull/1247)
+- **App Release Process**:
+  - fixed role upload not work using Firefox [#1003](https://github.com/eclipse-tractusx/portal-frontend/pull/1003)
+  - fixed "None" selection issue in technical integration [#1036](https://github.com/eclipse-tractusx/portal-frontend/issues/1036)
+  - fixed onClick of "Overview My Apps" button not working in App Release Process screen [#1023](https://github.com/eclipse-tractusx/portal-frontend/pull/1023)
+  - fixed wrong api call to download documents [#1299](https://github.com/eclipse-tractusx/portal-frontend/pull/1299)
+- **App Marketplace**
+  - unified card design in marketplace to list view style [#1194](https://github.com/eclipse-tractusx/portal-frontend/issues/1194)
+- **App Overview**
+  - updated the regex for search validation for numeric and special characters [#1179] (https://github.com/eclipse-tractusx/portal-frontend/pull/1179)
+  - fixed lead image preview issue [#1255](https://github.com/eclipse-tractusx/portal-frontend/pull/1255)
+- **App Overview Details**
+  - fixed displaying of conformity document in separate section and all other available documents in the documents section [#1235](https://github.com/eclipse-tractusx/portal-frontend/pull/1235)
+- **App Details Overlay**
+  - enhanced condition to view conformity documents in details overlay [#1304](https://github.com/eclipse-tractusx/portal-frontend/pull/1304)
+- **App Subscription Management**
+  - fixed 'read more' link by adding link [#1200](https://github.com/eclipse-tractusx/portal-frontend/pull/1200)
+- **App Management**
+  - fixed 400 Bad Request error due to search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/pull/1058)
+  - added load more button app overview [#1009](https://github.com/eclipse-tractusx/portal-frontend/pull/1009)
+- **Service Marketplace**
+  - fixed displaying of all active available services [#1143](https://github.com/eclipse-tractusx/portal-frontend/issues/1143)
+- **Service Management**
+  - fixed 400 bad request error when clicking 'Load More' button [#1168](https://github.com/eclipse-tractusx/portal-frontend/pull/1168)
+- **Service Release Process**
+  - fixed back button navigation to service management instead of navigating to home page[#1038](https://github.com/eclipse-tractusx/portal-frontend/pull/1038)
+  - updated description regex and validation error message to prevent only spaces in short and long description [#993](https://github.com/eclipse-tractusx/portal-frontend/pull/993), [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043), [#1092](https://github.com/eclipse-tractusx/portal-frontend/pull/1092)
+  - added missing header image implementation in service details [#992](https://github.com/eclipse-tractusx/portal-frontend/pull/992)
+  - fixed wrong api calling to download documents [#1318](https://github.com/eclipse-tractusx/portal-frontend/pull/1318)
+  - fixed "None" selection issue in Technical Integration [#1212](https://github.com/eclipse-tractusx/portal-frontend/pull/1212)
+- **App and Service Subscription Management**
   - updated search placeholder text [#1111](https://github.com/eclipse-tractusx/portal-frontend/pull/1111)
   - enabled displaying of only available offer names at the top [#1111](https://github.com/eclipse-tractusx/portal-frontend/pull/1111)
   - resolved blank page issue after activating service subscription request [#1005](https://github.com/eclipse-tractusx/portal-frontend/pull/1005)
   - updated the onButtonClick logic to avoid clicks after subscribed [#1042](https://github.com/eclipse-tractusx/portal-frontend/pull/1042)
   - update service subscription management page role [#1047](https://github.com/eclipse-tractusx/portal-frontend/pull/1047)
   - fixed subscription if user goes back to listing and subscribes to another app [#1095](https://github.com/eclipse-tractusx/portal-frontend/pull/1095)
+  - fixed showing of all available active apps/services in the filter section [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
+  - added heading in each section for the better user experience [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
+  - fixed showing of all subscriptions including inactive one in the list [#1246](https://github.com/eclipse-tractusx/portal-frontend/pull/1246)
 - **App and Service Admin board**
   - fixed data disappearing issue on re-clicking active tab/filter in app/service admin board [#1100](https://github.com/eclipse-tractusx/portal-frontend/pull/1100)
   - resolved service title overlap and improved responsiveness on the admin service detail page [#1112](https://github.com/eclipse-tractusx/portal-frontend/pull/1112)
   - changed app adminBoard and adminBoardDetail route [#1049](https://github.com/eclipse-tractusx/portal-frontend/pull/1049)
+- **Company Subscriptions**
+  - fixed incorrect data display in service company subscriptions [#1191](https://github.com/eclipse-tractusx/portal-frontend/pull/1191)
+  - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
+  - fixed error message scenario post technical user deletion action [#1164](https://github.com/eclipse-tractusx/portal-frontend/pull/1164)
+  - fixed duplicate api records on load [#1206](https://github.com/eclipse-tractusx/portal-frontend/pull/1206), [#1207](https://github.com/eclipse-tractusx/portal-frontend/pull/1207)
+  - fixed DE translation for search input in App and Service Subscription [#1211](https://github.com/eclipse-tractusx/portal-frontend/pull/1211)
+- **My Company**
+  - fixed text overlap issue at company roles [#1180](https://github.com/eclipse-tractusx/portal-frontend/issues/1180)
 - **Notifications**
   - rename translation key from 'appsubscription' to 'appSubscription' [#1054](https://github.com/eclipse-tractusx/portal-frontend/pull/1054)
-- **User Management**
-  - fixed displaying of user management navigation button based on role validation [#1073](https://github.com/eclipse-tractusx/portal-frontend/pull/1073)
-- **App Management**
-  - fixed 400 Bad Request error due to search filter [#1057](https://github.com/eclipse-tractusx/portal-frontend/pull/1058)
-  - added load more button app overview [#1009](https://github.com/eclipse-tractusx/portal-frontend/pull/1009)
+  - aligned notification page search field color with other pages [#1178](https://github.com/eclipse-tractusx/portal-frontend/issues/1178)
+- **Semantic Hub**
+  - fixed error on click of filters and on click on refresh icon [#1273](https://github.com/eclipse-tractusx/portal-frontend/pull/1273)
+- **Hamburger Menu**
+  - fixed hamburger menu to display all pages [#1240](https://github.com/eclipse-tractusx/portal-frontend/pull/1240)
+- **Home Page**
+  - disabled My Apps button for users without permission [#1165](https://github.com/eclipse-tractusx/portal-frontend/issues/1165)
+  - fixed clicking on apps in home page URL navigation failing [#1285](https://github.com/eclipse-tractusx/portal-frontend/pull/1285)
+- **File Upload**:
+  - changed error text of uploaded file from Byte to MB [#866](https://github.com/eclipse-tractusx/portal-frontend/pull/1185)
+
+### Known Knowns
+
+- Please refer to the [list of open bugs](https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- Feature Support and Development for auto-setup Process Worker: there is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
+- During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
 
 ## 2.2.0
 

@@ -245,6 +245,7 @@ export enum HINTS {
 }
 
 export const CONVERT_TO_MB = 1048576
+export const ALLOWED_MAX_SIZE_DOCUMENT = 5242880
 
 export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   // en
@@ -253,4 +254,12 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   // de
   'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
   'Beratungs Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+}
+
+export enum COMPANY_ROLES {
+  ACTIVE_PARTICIPANT = 'ACTIVE_PARTICIPANT',
+  APP_PROVIDER = 'APP_PROVIDER',
+  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+  OPERATOR = 'OPERATOR',
+  ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
 }

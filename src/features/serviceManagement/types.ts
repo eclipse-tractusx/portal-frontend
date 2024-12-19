@@ -80,6 +80,11 @@ export enum SORTING_TYPE {
   PROVIDER_DESC = 'ProviderDesc',
 }
 
+export interface FileState {
+  id: string
+  name: string
+}
+
 export const initialState: ServiceManagementState = {
   serviceReleaseActiveStep: 1,
   serviceId: '',

@@ -1,6 +1,6 @@
 {
   "name": "@catena-x/portal-frontend",
-  "version": "v2.3.0-RC4",
+  "version": "v2.3.0",
   "description": "Catena-X Portal Frontend",
   "author": "Catena-X Contributors",
   "license": "Apache-2.0",
@@ -86,6 +86,7 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "cypress": "^13.15.2",
     "eslint": "^8.57.0",
     "eslint-config-love": "^43.1.0",
     "eslint-config-prettier": "^9.1.0",
@@ -121,6 +122,7 @@
     "start:docker": "IMAGE=$npm_package_config_image  && docker run --rm -d -p 3001:8080 --name cx-portal $IMAGE",
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
     "build:legal-notice": "bash scripts/legal-notice.sh",
-    "build:copy-legal-info": "cp LICENSE NOTICE.md DEPENDENCIES SECURITY.md public/"
+    "build:copy-legal-info": "cp LICENSE NOTICE.md DEPENDENCIES SECURITY.md public/",
+    "cy:open": "cypress open"
   }
 }

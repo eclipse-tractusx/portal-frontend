@@ -190,9 +190,23 @@ export default function SubscriptionElements({
         </Tooltips>
       )
     } else if (
+      subscription.offerSubscriptionStatus === SubscriptionStatus.INACTIVE
+    ) {
+      return (
+        <Tooltips
+          color="dark"
+          tooltipPlacement="top-start"
+          tooltipText={t('content.appSubscription.inactive')}
+        >
+          <HistoryIcon className="statusIcon inactive" />
+        </Tooltips>
+      )
+    } else if (
       subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
     ) {
-      if (subscription.processStepTypeId === ProcessStep.START_AUTOSETUP) {
+      if (
+        subscription.processStepTypeId === ProcessStep.AWAIT_START_AUTOSETUP
+      ) {
         return (
           <>
             <Chip

@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,29 +17,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/httpClient'
-import type { AppDetails } from './types'
-import i18next from 'i18next'
-import { getHeaders } from 'services/RequestService'
+describe('Validate authentication for home page', () => {
+  beforeEach(() => {
+    cy.login('user')
+  })
 
-export class Api extends HttpClient {
-  private static classInstance?: Api
-
-  public constructor() {
-    super(getApiBase())
-  }
-
-  public static getInstance() {
-    if (!this.classInstance) {
-      this.classInstance = new Api()
-    }
-    return this.classInstance
-  }
-
-  public getItem = (appId: string) =>
-    this.instance.get<AppDetails>(
-      `/api/apps/${appId}?lang=${i18next.language}`,
-      getHeaders()
-    )
-}
+  it('should visit home page after login', () => {
+    cy.visit(Cypress.env('baseUrl'))
+      .get('.copyright')
+      .should('have.text', 'Copyright © Catena-X Automotive Network')
+  })
+})

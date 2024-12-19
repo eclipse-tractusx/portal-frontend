@@ -129,6 +129,7 @@ export default function ServiceListOverview() {
       },
     })
     setPage(0)
+    setSearchExpr('')
   }
 
   const statusFilterViews = [
@@ -175,10 +176,6 @@ export default function ServiceListOverview() {
 
   const onSearch = useCallback(
     (expr: string) => {
-      const validateExpr = /^[ A-Za-z]*$/.test(expr)
-      if (!validateExpr) {
-        return
-      }
       setSearchExpr(expr)
       debouncedSearch(expr)
     },

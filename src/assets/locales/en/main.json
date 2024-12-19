@@ -1482,6 +1482,7 @@
       "success": "Success",
       "pending": "Subscription is Pending",
       "active": "Subscription is Active",
+      "inactive": "Subscription is Inactive",
       "process": "Subscription is in Progress",
       "tabs": {
         "request": "Request",

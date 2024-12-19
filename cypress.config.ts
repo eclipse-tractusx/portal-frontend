@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,29 +17,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { getApiBase } from 'services/EnvironmentService'
-import { HttpClient } from 'utils/httpClient'
-import type { AppDetails } from './types'
-import i18next from 'i18next'
-import { getHeaders } from 'services/RequestService'
+import { defineConfig } from 'cypress'
 
-export class Api extends HttpClient {
-  private static classInstance?: Api
-
-  public constructor() {
-    super(getApiBase())
-  }
-
-  public static getInstance() {
-    if (!this.classInstance) {
-      this.classInstance = new Api()
-    }
-    return this.classInstance
-  }
-
-  public getItem = (appId: string) =>
-    this.instance.get<AppDetails>(
-      `/api/apps/${appId}?lang=${i18next.language}`,
-      getHeaders()
-    )
-}
+export default defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+  },
+  env: {
+    baseUrl: 'http://localhost:3001',
+    backendUrl: 'https://portal-backend.example.org',
+    user: {
+      email: 'user@email.com',
+      password: '',
+    },
+    company: {
+      name: 'Company name to search',
+    },
+    keycloak: {
+      centralUrl: 'centralidp.example.org',
+      sharedUrl: 'sharedidp.example.org',
+    },
+  },
+})

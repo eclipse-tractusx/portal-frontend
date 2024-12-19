@@ -95,6 +95,7 @@ export default function DetailsOverlay({
           handleClose={handleClose}
           open={edit}
           handleConfirm={handleConfirm}
+          errorInfo={sharingStateErrorInfo}
         />
       )}
     </Box>
