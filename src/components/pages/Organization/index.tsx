@@ -20,25 +20,13 @@
 
 import { useTranslation } from 'react-i18next'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
-import {
-  Button,
-  Typography,
-  ContentCard,
-} from '@catena-x/portal-shared-components'
-import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
+import { Button } from '@catena-x/portal-shared-components'
 import './Organization.scss'
-import { FilterType, SortType } from '../CompanyCertificates'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function Organization() {
   const { t } = useTranslation()
-
-  const certificates = useFetchCertificatesQuery({
-    filter: FilterType.ACTIVE,
-    sortOption: SortType.CertificateTypeAsc,
-    page: 0,
-  }).data?.content
 
   return (
     <>
@@ -61,25 +49,6 @@ export default function Organization() {
             >
               {t('content.organization.deleteAccount')}
             </Button>
-          </div>
-          <div className="certificates-section">
-            <Typography variant="h4">
-              {t('content.organization.certificates')}
-            </Typography>
-            <div className="certificate-items">
-              {certificates?.map((certificate) => (
-                <div key={certificate.companyCertificateType}>
-                  {
-                    <ContentCard
-                      title={certificate.companyCertificateType}
-                      chipText={certificate.companyCertificateType}
-                      heading="Business Partner Level: "
-                      detail="N/A"
-                    />
-                  }
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </main>

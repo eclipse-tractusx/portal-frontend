@@ -19,7 +19,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Identity Provider Configuration**
   - Reset the Add IDP form value on creation [PM2-2090](https://cofinity-x.atlassian.net/browse/PM2-2090)
 - **User Menu**
+
   - Display the notification count on the user menu [PM2-2071](https://cofinity-x.atlassian.net/browse/PM2-2071)
+
+- **Your account**
+  - Remove non functioning certificate section [2187](https://cofinity-x.atlassian.net/browse/PM2-2187)
 
 ### Bugfixes
 
