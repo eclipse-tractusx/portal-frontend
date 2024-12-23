@@ -20,7 +20,8 @@
 
 import {
   CardHorizontal,
-  CircleProgress,
+  CircleProgress,   LogoGrayData,
+
 } from '@catena-x/portal-shared-components'
 import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -73,9 +74,15 @@ export default function RecommendedServices({
               <CardHorizontal
                 borderRadius={6}
                 image={{
+                  src: service?.leadPictureUri
+                    ? `${service.id}`
+                    : `${LogoGrayData}`,
                   alt: 'App Card',
-                  src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
                 }}
+                // image={{
+                //   alt: 'App Card',
+                //   src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
+                // }}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => {

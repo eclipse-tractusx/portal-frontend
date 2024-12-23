@@ -84,6 +84,12 @@ export default function ServicesElements({
                         alt: 'App Card',
                         src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
                       }}
+                      // image={{
+                      //   src: service?.leadPictureId
+                      //     ? `${service.leadPictureId}`
+                      //     : `${LogoGrayData}`,
+                      //   alt: 'App Card',
+                      // }}
                       label={service.provider}
                       buttonText="Details"
                       onBtnClick={() => {
