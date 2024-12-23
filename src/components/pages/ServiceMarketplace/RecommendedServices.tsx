@@ -72,12 +72,12 @@ export default function RecommendedServices({
             <Grid className="recommended-card" key={service.id}>
               <CardHorizontal
                 borderRadius={6}
-                imageAlt="App Card"
-                imagePath={
-                  service?.leadPictureId
+                image={{
+                  src: service?.leadPictureId
                     ? `${service.leadPictureId}`
-                    : `${LogoGrayData}`
-                }
+                    : `${LogoGrayData}`,
+                  alt: 'App Card',
+                }}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => {

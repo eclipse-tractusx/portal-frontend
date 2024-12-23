@@ -28,6 +28,7 @@ import {
   SortOption,
   LoadMoreButton,
   CircleProgress,
+  type StatusVariants,
 } from '@catena-x/portal-shared-components'
 import './AdminBoard.scss'
 import AdminBoardElements from './AdminBoardElements'
@@ -41,6 +42,7 @@ import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
+import { ProvidedServiceStatusEnumText } from 'features/serviceManagement/apiSlice'
 
 export interface TabButtonsType {
   buttonText: string
@@ -401,6 +403,18 @@ export default function CommonAdminBoard({
     navigate(`/${type}/${id}`)
   }
 
+  const updatedAppCards = useMemo(() => {
+    return (
+      appCards.map((app: ServiceContent) => ({
+        ...app,
+        name: app.name!,
+        status: app.status.toLowerCase() as StatusVariants,
+        // @ts-expect-error This is a temporary fix until we refactor the code
+        statusText: ProvidedServiceStatusEnumText[app.status],
+      })) ?? []
+    )
+  }, [appCards])
+
   return (
     <div className="adminBoard">
       <MainHeader
@@ -466,7 +480,7 @@ export default function CommonAdminBoard({
             </div>
           ) : (
             <AdminBoardElements
-              apps={appCards}
+              apps={updatedAppCards}
               onClick={onViewDetails}
               type={type}
               successApproveMsg={successApproveMsg}

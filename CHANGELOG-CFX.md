@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Shared Component**
+
+  - Version updated to 3.7.2
+
 - **UI/UX**
 
   - Add button hover effect in sub navigation [PM2-137](https://cofinity-x.atlassian.net/browse/PM2-137)

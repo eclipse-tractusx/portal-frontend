@@ -495,8 +495,10 @@ export default function AppMarketCard() {
             <CardHorizontal
               label={cardAppProvider ?? ''}
               title={cardAppTitle}
-              imagePath={cardImage}
-              imageAlt={cardImageAlt}
+              image={{
+                src: cardImage,
+                alt: cardImageAlt,
+              }}
               borderRadius={0}
               description={cardDescription}
               backgroundColor="#F3F3F3"

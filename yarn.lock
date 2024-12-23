@@ -343,10 +343,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@catena-x/portal-shared-components@^3.6.1":
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.6.1.tgz#750438522b65d4c59976404044cd75fd5883649c"
-  integrity sha512-mmOETT9z3vDSa/xyM1i+F2N9k20GuqXuW54oF/I7FB7iHAegJbNedj0gaFH4E7LHJQGP9vHtGQ6J4X73ndrsRg==
+"@catena-x/portal-shared-components@^3.7.2":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-3.7.3.tgz#65e43d3e3fb9e89d12057c12c9308720e46421ff"
+  integrity sha512-bfr7LphG60r4QhJ2oxvBkJ61/7TosG6eOxW0GhmZDP9kX5QLlQphwjpW82n65g9QZvxCrJ4D/sTLkRagi4u48g==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     "@emotion/react" "^11.11.4"
@@ -5169,11 +5169,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-phone@^3.1.49:
-  version "3.1.49"
-  resolved "https://registry.yarnpkg.com/phone/-/phone-3.1.49.tgz#607672cbb2a7e6808b800ce597ab98640c6708f8"
-  integrity sha512-S+rHWXSQrllK5eQwz0sDbwfxQ2PzennWPgsP/jdpEPH3k7P5IBJZYjvYfU8e/RF5AwKCgOtzbTGTGJcBSLJVVw==
 
 picocolors@^1.0.0:
   version "1.0.0"
