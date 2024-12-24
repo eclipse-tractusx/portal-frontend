@@ -59,7 +59,10 @@ export const userDetailsToCards = (
   },
   {
     cardCategory:
-      t('content.account.issuerInfo.title') + ' ' + parsedToken?.organisation,
+      t('content.account.issuerInfo.title') +
+      ' (' +
+      parsedToken?.organisation +
+      ')',
     cardSubCategory: t('content.account.issuerInfo.adminMail'),
     cardContentItems: {
       adminMail: {
