@@ -16,31 +16,35 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import PermIdentityIcon from '@mui/icons-material/PermIdentity'
+
+import LogoutIcon from '@mui/icons-material/Logout'
+import { t } from 'i18next'
 import { MenuItem, type MenuItemProps } from './MenuItem'
 import './MobileMenu.scss'
-import { t } from 'i18next'
+import { useNavigate } from 'react-router-dom'
 
-interface ProfileLinkProps {
+type LinkItem = Partial<Record<'href' | 'to', string>>
+
+interface LogoutLinkProps extends LinkItem {
   onSelect?: (title: string, children: MenuItemProps[]) => void
   onClick?: React.MouseEventHandler
-  userMenu: MenuItemProps[]
 }
 
-export const ProfileLink = ({
+export const LogoutLink = ({
   onSelect,
-  userMenu,
-}: ProfileLinkProps): JSX.Element => {
+  onClick,
+  ...props
+}: LogoutLinkProps): JSX.Element => {
+  const navigate = useNavigate()
   return (
     <MenuItem
-      title={t('pages.account')}
+      title={t('pages.logout')}
+      isSeparate={true}
       onClick={() => {
-        if (onSelect) onSelect(t('pages.account'), userMenu)
+        if (props.to) navigate(props.to)
       }}
-      children={userMenu}
-      onSelect={onSelect}
       icon={
-        <PermIdentityIcon
+        <LogoutIcon
           sx={{
             height: 18,
             width: 18,

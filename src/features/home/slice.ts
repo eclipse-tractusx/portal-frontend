@@ -1,5 +1,6 @@
 /********************************************************************************
- * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 BMW Group AG
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -16,37 +17,24 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import PermIdentityIcon from '@mui/icons-material/PermIdentity'
-import { MenuItem, type MenuItemProps } from './MenuItem'
-import './MobileMenu.scss'
-import { t } from 'i18next'
 
-interface ProfileLinkProps {
-  onSelect?: (title: string, children: MenuItemProps[]) => void
-  onClick?: React.MouseEventHandler
-  userMenu: MenuItemProps[]
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
+import type { IHome } from './types'
+
+const initialState: IHome = {
+  headerNote: false,
 }
 
-export const ProfileLink = ({
-  onSelect,
-  userMenu,
-}: ProfileLinkProps): JSX.Element => {
-  return (
-    <MenuItem
-      title={t('pages.account')}
-      onClick={() => {
-        if (onSelect) onSelect(t('pages.account'), userMenu)
-      }}
-      children={userMenu}
-      onSelect={onSelect}
-      icon={
-        <PermIdentityIcon
-          sx={{
-            height: 18,
-            width: 18,
-          }}
-        />
-      }
-    />
-  )
-}
+export const homeSlice = createSlice({
+  name: 'home',
+  initialState,
+  reducers: {
+    setIsHeaderNote: (_state: IHome, action: PayloadAction<IHome>) => {
+      return action.payload
+    },
+  },
+})
+
+export const { setIsHeaderNote } = homeSlice.actions
+export const homeSelector = (state: RootState): IHome => state.home

@@ -75,6 +75,7 @@ import companyDataSlice from './companyData/slice'
 
 import languageSlice from './language/slice'
 import { apiSlice as usecaseApiSlice } from './usecase/usecaseApiSlice'
+import { homeSlice } from './home/slice'
 
 export const reducers = {
   admin,
@@ -134,6 +135,7 @@ export const reducers = {
   [companyCertificateApiSlice.reducerPath]: companyCertificateApiSlice.reducer,
   [staticContentApiSlice.reducerPath]: staticContentApiSlice.reducer,
   [companyDataApiSlice.reducerPath]: companyDataApiSlice.reducer,
+  [homeSlice.reducerPath]: homeSlice.reducer,
 }
 
 export const store = configureStore({

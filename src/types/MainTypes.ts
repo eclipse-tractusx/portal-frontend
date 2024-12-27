@@ -113,6 +113,7 @@ export interface Tree {
   name: string
   hint?: string
   children?: Tree[]
+  companyRole?: string
 }
 
 export interface MenuItem extends LinkItem, Tree {

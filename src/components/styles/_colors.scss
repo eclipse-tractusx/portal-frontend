@@ -36,7 +36,8 @@ $colors: (
   text-secondary: #252525,
   text-tertiary: #888888,
   text-quaternary: #a2a2a2,
-  text-quinary: #2962ba
+  text-quinary: #2962ba,
+  secondary-hover: #333333
 );
 
 @function color($key) {

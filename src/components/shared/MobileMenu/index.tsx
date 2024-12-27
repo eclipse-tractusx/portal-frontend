@@ -25,28 +25,27 @@ import {
   useTheme,
   Link,
 } from '@mui/material'
-import uniqueId from 'lodash/uniqueId'
 import { MenuItem, type MenuItemProps } from './MenuItem'
 import AccessService from 'services/AccessService'
-import {
-  ApplicationStatus,
-  useFetchApplicationsQuery,
-} from 'features/registration/registrationApiSlice'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProfileLink } from './ProfileLink'
 import { NotificationLink } from './NotificationLink'
-import { type CompanyMenuTypes, MyCompanyLink } from './MyCompanyLink'
 import { MenuSubItems } from './MenuChildren'
 import { MenuFooter } from './MenuFooter'
 import { t } from 'i18next'
 import { PAGES } from 'types/Constants'
+import { BackButton, Typography } from '@catena-x/portal-shared-components'
+import UserService from 'services/UserService'
+import CloseIcon from '@mui/icons-material/Close'
+import { LogoutLink } from './LogoutLink'
 
 export interface MenuProps extends BoxProps {
   items: MenuItemProps[]
   component?: React.ElementType
   divider?: boolean
+  shouldDisplayMenuItems?: boolean
 }
 
 export const MobileMenu = ({
@@ -54,107 +53,158 @@ export const MobileMenu = ({
   divider,
   component = Link,
   onClick,
+  shouldDisplayMenuItems = true,
   ...props
 }: MenuProps): JSX.Element => {
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
   const { spacing } = useTheme()
-  const { data } = useFetchApplicationsQuery()
-  const companyData = data?.[0]
-  const [userMenu, setUserMenu] = useState<string[]>(
-    AccessService.userMenuComp()
-  )
+
   const [children, setSelectedChildren] = useState<MenuItemProps[]>([])
   const [selectedSection, setSelectedSection] = useState<string>('')
 
-  const addTitle = (items: string[]): CompanyMenuTypes[] =>
-    items?.map((item: string) => ({
-      to: JSON.parse(JSON.stringify(item)),
-      title: t(`pages.${JSON.parse(JSON.stringify(item))}`),
-    }))
-
-  const companyMenu = addTitle(userMenu) ?? []
+  const userMenu = AccessService.userMenu().map((link) => ({
+    to: `/${link}`,
+    title: t(`pages.${link}`),
+  }))
 
   const onSelectItem = (title: string, item: MenuItemProps[]): void => {
     setSelectedChildren(item)
     setSelectedSection(title)
   }
 
-  useEffect(() => {
-    if (
-      companyData != null &&
-      Object.values([
-        ApplicationStatus.CREATED,
-        ApplicationStatus.ADD_COMPANY_DATA,
-        ApplicationStatus.INVITE_USER,
-        ApplicationStatus.SELECT_COMPANY_ROLE,
-        ApplicationStatus.UPLOAD_DOCUMENTS,
-        ApplicationStatus.VERIFY,
-      ]).includes(companyData.applicationStatus)
-    ) {
-      setUserMenu(AccessService.userMenuReg())
+  const renderHeaderRow = () => {
+    switch (selectedSection) {
+      case t('pages.account'):
+        return (
+          <Box
+            sx={{
+              backgroundColor: '#fff',
+              borderBottom: '1px solid',
+              borderColor: 'border.border01',
+              padding: spacing(1, 1),
+            }}
+          >
+            <Typography
+              variant="label1"
+              sx={{ color: 'text.secondary', display: 'block' }}
+            >
+              {UserService.getName()}
+            </Typography>
+            <Typography variant="label2" sx={{ fontWeight: 500 }}>
+              {UserService.getCompany()}
+              {AccessService.isAdmin() ? (
+                <> &nbsp;( {t('common.roles.admin')} )</>
+              ) : null}
+            </Typography>
+          </Box>
+        )
+      default:
+        return null
     }
-  }, [companyData])
+  }
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        justifyContent: 'space-between',
-      }}
-      {...props}
-    >
-      <Box>
-        {children.length === 0 && (
-          <>
-            <List sx={{ padding: 0 }}>
-              {items?.map((item) => (
-                <MenuItem
-                  {...item}
-                  component={component}
-                  menuProps={props}
-                  Menu={MobileMenu}
-                  onSelect={onSelectItem}
-                  onClick={onClick}
-                  key={uniqueId('Menu')}
-                />
-              ))}
-            </List>
-            {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-            <ProfileLink to={PAGES.ACCOUNT} />
-            <NotificationLink to={PAGES.NOTIFICATIONS} />
-            <MyCompanyLink companyMenu={companyMenu} onSelect={onSelectItem} />
-          </>
-        )}
-        {children?.length > 0 && (
-          <MenuSubItems
-            title={selectedSection}
-            onClick={() => {
-              dispatch(setAppear({ MENU: !visible }))
-            }}
-            onHide={() => {
-              setSelectedChildren([])
-            }}
-            component={component}
-          >
-            {children}
-          </MenuSubItems>
-        )}
-      </Box>
+    <>
+      <div className="topRow">
+        <div>
+          {children?.length > 0 && (
+            <BackButton
+              backButtonLabel={t('global.actions.back')}
+              backButtonVariant="outlined"
+              onBackButtonClick={() => {
+                setSelectedChildren([])
+              }}
+            />
+          )}
+        </div>
+        <CloseIcon
+          onClick={() => dispatch(setAppear({ MENU: !visible }))}
+          sx={{
+            color: 'icon.icon02',
+          }}
+          className="closeIcon"
+        />
+      </div>
+
+      <Divider sx={{ mx: 1 }} />
+
       <Box
         sx={{
-          position: 'fixed',
-          bottom: '0px',
-          background: '#fff',
-          width: '280px',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          justifyContent: 'space-between',
         }}
+        {...props}
       >
-        {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
-        <MenuFooter />
+        <Box>
+          {children.length === 0 && (
+            <>
+              <List sx={{ padding: spacing(0, 1) }}>
+                {items?.map((item, index) => (
+                  <MenuItem
+                    {...item}
+                    component={component}
+                    menuProps={props}
+                    Menu={MobileMenu}
+                    onSelect={onSelectItem}
+                    onClick={onClick}
+                    key={'Menu' + index}
+                  />
+                ))}
+                {divider && <Divider sx={{ margin: spacing(1, 0) }} />}
+
+                <ProfileLink
+                  onSelect={onSelectItem}
+                  onClick={onClick}
+                  userMenu={userMenu}
+                />
+
+                {shouldDisplayMenuItems && (
+                  <NotificationLink
+                    onSelect={onSelectItem}
+                    onClick={onClick}
+                    to={PAGES.NOTIFICATIONS}
+                  />
+                )}
+                <LogoutLink
+                  onSelect={onSelectItem}
+                  onClick={onClick}
+                  to={`/${PAGES.LOGOUT}`}
+                />
+              </List>
+            </>
+          )}
+          {children?.length > 0 && (
+            <MenuSubItems
+              title={selectedSection}
+              onClick={() => {
+                dispatch(setAppear({ MENU: !visible }))
+              }}
+              onHide={() => {
+                setSelectedChildren([])
+              }}
+              component={component}
+              headerRowComponent={renderHeaderRow()}
+            >
+              {children}
+            </MenuSubItems>
+          )}
+        </Box>
+        <Box
+          sx={{
+            position: 'fixed',
+            bottom: 0,
+            background: 'common.white',
+            width: '280px',
+          }}
+        >
+          {divider && <Divider sx={{ margin: spacing(0, 1) }} />}
+          <MenuFooter />
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }
 

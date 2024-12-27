@@ -17,13 +17,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Box, Link, useTheme } from '@mui/material'
+import { Box, Divider, Link, useTheme } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import type { MenuItemProps } from './MenuItem'
-
+import { MenuItem, type MenuItemProps } from './MenuItem'
 import './MobileMenu.scss'
-import { t } from 'i18next'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -33,87 +30,71 @@ export interface MenuSubItemsProps extends LinkItem {
   children: MenuItemProps[]
   component: React.ElementType
   title: string
+  headerRowComponent?: React.ReactNode
 }
 
 export const MenuSubItems = ({
   onClick,
-  onHide,
   children,
   component = Link,
-  title,
+  headerRowComponent,
 }: MenuSubItemsProps): JSX.Element => {
   const { spacing } = useTheme()
   return (
     <Box
       sx={{
-        marginBottom: '55px',
+        px: 1,
+        py: 0,
+        paddingTop: 1,
+        ':hover': {
+          borderRadius: spacing(1, 1),
+        },
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          marginLeft: '20px',
-          cursor: 'pointer',
-          marginBottom: '20px',
-          alignItems: 'center',
-        }}
-        onClick={onHide}
-      >
-        <KeyboardArrowLeftIcon sx={{ color: 'icon.icon02' }} />
-        <Typography
-          className="font-libre"
-          sx={{
-            paddingLeft: '5px',
-            fontSize: '12px',
-            textTransform: 'lowercase',
-          }}
-          variant="body2"
-        >
-          {t('global.actions.back')}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          paddingLeft: '25px',
-          paddingBottom: '10px',
-          paddingTop: '15px',
-        }}
-      >
-        <Typography
-          variant="label2"
-          sx={{
-            fontWeight: '600',
-            fontSize: '14px',
-          }}
-        >
-          {title}
-        </Typography>
-      </Box>
-      {children?.map((item) => (
-        <Link
-          component={component}
-          key={item.title}
-          className="titleBox"
-          sx={{
-            color: 'text.primary',
-            alignItems: 'center',
-            padding: spacing(1.5, 2),
-            marginLeft: '10px',
-            ':hover': {
-              backgroundColor: 'rgba(15, 113, 203, 0.05)',
-              color: 'primary.dark',
-              '.MuiSvgIcon-root': {
-                color: 'primary.dark',
-              },
-            },
-          }}
-          onClick={onClick}
-          {...item}
-        >
-          {item.title}
-        </Link>
-      ))}
+      {headerRowComponent ? <Box>{headerRowComponent}</Box> : null}
+      {children?.map((item, index) => {
+        if (item.children) {
+          return (
+            <>
+              <Box
+                sx={{
+                  paddingLeft: 1,
+                  paddingBottom: '10px',
+                  paddingTop: '15px',
+                }}
+              >
+                <Typography variant="h6" sx={{ textTransform: 'uppercase' }}>
+                  {item.title}
+                </Typography>
+              </Box>
+              {item.children.map((childItem) => {
+                return (
+                  <MenuItem
+                    key={childItem.title}
+                    component={component}
+                    onSelect={onClick}
+                    onClick={onClick}
+                    {...childItem}
+                  />
+                )
+              })}
+
+              {index + 1 !== children.length && (
+                <Divider sx={{ margin: spacing(1, 1) }} />
+              )}
+            </>
+          )
+        }
+        return (
+          <MenuItem
+            key={item.title}
+            component={component}
+            onSelect={onClick}
+            onClick={onClick}
+            {...item}
+          />
+        )
+      })}
     </Box>
   )
 }

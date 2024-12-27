@@ -18,12 +18,11 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Typography, LanguageSwitch } from '@catena-x/portal-shared-components'
+import { LanguageSwitch, Button } from '@catena-x/portal-shared-components'
 import { useDispatch } from 'react-redux'
 import i18next, { changeLanguage, t } from 'i18next'
 import I18nService from 'services/I18nService'
 import { setLanguage } from 'features/language/actions'
-import UserService from 'services/UserService'
 
 export const MenuFooter = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -32,9 +31,9 @@ export const MenuFooter = (): JSX.Element => {
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignContent: 'center',
         alignItems: 'center',
-        cursor: 'pointer',
+        py: 0.5,
+        px: 1,
       }}
     >
       <LanguageSwitch
@@ -45,46 +44,22 @@ export const MenuFooter = (): JSX.Element => {
           changeLanguage(key)
         }}
       />
-      <Box
-        onClick={() => {
-          window.open(
-            `${document.location.origin}/documentation/`,
-            'documentation',
-            'noreferrer'
-          )
-        }}
-      >
-        <Typography
-          sx={{
-            paddingLeft: '10px',
-            fontSize: '14px',
-            fontFamily:
-              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+      <Box sx={{ pr: 1 }}>
+        <Button
+          size="small"
+          color="secondary"
+          variant="outlined"
+          onClick={() => {
+            window.open(
+              `${document.location.origin}/documentation/`,
+              'documentation',
+              'noreferrer'
+            )
           }}
-          variant="body2"
+          className="documentation"
         >
           {t('pages.help')}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          marginRight: '20px',
-        }}
-        onClick={() => {
-          UserService.doLogout()
-        }}
-      >
-        <Typography
-          sx={{
-            paddingLeft: '10px',
-            fontSize: '14px',
-            fontFamily:
-              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
-          }}
-          variant="body2"
-        >
-          {t('pages.logout')}
-        </Typography>
+        </Button>
       </Box>
     </Box>
   )

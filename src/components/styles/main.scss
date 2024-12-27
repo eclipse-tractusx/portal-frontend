@@ -34,9 +34,14 @@ body {
 }
 
 #app {
+  position: relative;
+  padding-top: 85px !important;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  flex: 1;
+}
+.initial-main-div {
+  flex: 1;
 }
 
 main {
@@ -99,4 +104,59 @@ a {
 
 .app-back button {
   text-transform: capitalize;
+}
+
+.cx-main-navigation__wrapper {
+  .cx-list-item-header-item {
+    .MuiTypography-root:not(.notification-badge-text) {
+      font-size: 18px !important;
+      font-weight: 500 !important;
+      color: color(secondary-hover);
+    }
+
+    :not(.notification-badge-text):hover {
+      background-color: color(secondary-hover) !important;
+      border-radius: 8px;
+      color: color(secondary-hover) !important;
+    }
+
+    .active {
+      color: color(color-primary) !important;
+
+      :not(.notification-badge-text):hover {
+        color: color(color-primary) !important;
+      }
+    }
+
+    .MuiListItem-root a .active {
+      :hover {
+        color: color(color-primary) !important;
+      }
+    }
+  }
+
+  .cx-list-item-header {
+    .MuiTypography-root {
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      color: color(black);
+    }
+  }
+
+  .UserInfo {
+    .MuiTypography-label3 {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .MuiTypography-label4 {
+      font-weight: 500;
+      font-size: 16px;
+      color: color(color-secondary);
+    }
+  }
+
+  .MuiAvatar-circular.MuiAvatar-colorDefault {
+    // background-color: $color-primary !important;
+  }
 }

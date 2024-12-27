@@ -53,8 +53,9 @@ import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
 import {
   ACTIONS,
+  COMPANY_ROLE,
   COMPANY_ROLES,
-  HINTS,
+  MENUS,
   OVERLAYS,
   PAGES,
   ROLES,
@@ -772,55 +773,57 @@ export const ALL_ACTIONS: IAction[] = [
  * it will be restricted by personal user permissions
  */
 export const mainMenuFullTree = [
-  { name: PAGES.HOME },
   {
-    name: PAGES.INTRODUCTION,
+    name: MENUS.DATASPACE_PARTICIPATION,
     children: [
-      { name: PAGES.INTRODUCTION_PARTICIPANT, hint: HINTS.NEW },
-      { name: PAGES.INTRODUCTION_APP_PROVIDER, hint: HINTS.NEW },
-      { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, hint: HINTS.NEW },
-      { name: PAGES.INTRODUCTION_CONFORMITY_BODY, hint: HINTS.NEW },
-      { name: PAGES.INTRODUCTION_OSP_BODY, hint: HINTS.NEW },
+      { name: PAGES.PARTNER_NETWORK },
+      { name: PAGES.USECASE_PARTICIPATION },
     ],
   },
   {
-    name: PAGES.USE_CASE,
-    children: [{ name: PAGES.USE_CASE_TRACABILITY, hint: HINTS.NEW }],
-  },
-  {
-    name: PAGES.DATA_SPACE,
-  },
-  {
-    name: PAGES.MARKETPLACE,
+    name: MENUS.MARKETPLACE,
     children: [
       { name: PAGES.APP_MARKETPLACE },
-      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
+      { name: PAGES.SERVICE_MARKETPLACE },
+      { name: PAGES.COMPANY_SUBSCRIPTIONS },
     ],
   },
   {
-    name: PAGES.DATA_MANAGEMENT,
-    children: [{ name: PAGES.SEMANTICHUB }],
-  },
-  { name: PAGES.PARTNER_NETWORK },
-  {
-    name: PAGES.APP_MANAGEMENT,
+    name: MENUS.MARKETPLACE_MANAGEMENT,
     children: [
-      { name: PAGES.APP_OVERVIEW, hint: HINTS.NEW },
-      { name: PAGES.APP_RELEASE_PROCESS },
-      { name: PAGES.APP_SUBSCRIPTION, hint: HINTS.NEW },
-      { name: PAGES.APP_ADMIN_BOARD, hint: HINTS.NEW },
-    ],
-  },
-  {
-    name: PAGES.SERVICE_MANAGEMENT,
-    children: [
-      { name: PAGES.SERVICE_OVERVIEW, hint: HINTS.NEW },
-      { name: PAGES.SERVICE_RELEASE_PROCESS, hint: HINTS.NEW },
       {
-        name: PAGES.SERVICE_SUBSCRIPTION,
-        hint: HINTS.NEW,
+        name: MENUS.APP_MANAGEMENT,
+        children: [
+          { name: PAGES.APP_OVERVIEW },
+          { name: PAGES.APP_RELEASE_PROCESS },
+          { name: PAGES.APP_SUBSCRIPTION },
+        ],
       },
-      { name: PAGES.SERVICE_ADMIN_BOARD, hint: HINTS.NEW },
+      {
+        name: MENUS.SERVICE_MANAGEMENT,
+        children: [
+          { name: PAGES.SERVICE_OVERVIEW },
+          { name: PAGES.SERVICE_RELEASE_PROCESS },
+          { name: PAGES.SERVICE_SUBSCRIPTION },
+        ],
+      },
+    ],
+  },
+  {
+    name: MENUS.TECHNICAL_SETUP,
+    children: [
+      { name: PAGES.TECH_USER_MANAGEMENT },
+      { name: PAGES.IDP_MANAGEMENT },
+      { name: PAGES.CONNECTOR_MANAGEMENT },
+      { name: PAGES.SEMANTICHUB },
+    ],
+  },
+  {
+    name: MENUS.ON_BOARDING_MANAGEMENT,
+    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
+    children: [
+      { name: PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT },
+      { name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT },
     ],
   },
 ]
@@ -833,24 +836,25 @@ export const mainMenuFullTree = [
  */
 export const userMenuFull = [
   PAGES.ACCOUNT,
-  PAGES.ORGANIZATION,
-  PAGES.COMPANY_SUBSCRIPTIONS,
-  PAGES.NOTIFICATIONS,
   PAGES.USER_MANAGEMENT,
-  PAGES.IDP_MANAGEMENT,
-  PAGES.CONNECTOR_MANAGEMENT,
-  PAGES.APPLICATION_REQUESTS,
-  PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
-  PAGES.INVITE,
-  PAGES.COMPANY_ROLE,
-  PAGES.USECASE_PARTICIPATION,
-  PAGES.CERTIFICATE_CREDENTIAL,
-  PAGES.ADMIN_CREDENTIAL,
-  PAGES.COMPANY_CERTIFICATE,
+  PAGES.ORGANIZATION,
   PAGES.COMPANY_WALLET,
   PAGES.COMPANY_DATA,
-  PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT,
+  PAGES.NOTIFICATIONS,
   PAGES.LOGOUT,
+]
+
+export const userMenuWithChildren = [
+  {
+    name: MENUS.CX_OPERATOR,
+    children: [
+      { name: PAGES.INVITE },
+      { name: PAGES.APPLICATION_REQUESTS },
+      { name: PAGES.ADMIN_CREDENTIAL },
+      { name: PAGES.APP_ADMIN_BOARD },
+      { name: PAGES.SERVICE_ADMIN_BOARD },
+    ],
+  },
 ]
 
 export const userMenuRegistration = [PAGES.LOGOUT]

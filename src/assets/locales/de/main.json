@@ -2461,5 +2461,17 @@
   "hints": {
     "coming_soon": "Coming soon",
     "new": "New"
+  },
+  "menu": {
+    "heading": {
+      "dataSpaceParticipation": "Datenraum Teilnahme",
+      "marketplace": "Marktplatz",
+      "marketplaceManagement": "Marktplatz Management",
+      "technicalSetup": "Technisches Setup",
+      "cxOperator": "CX Operator",
+      "appManagement": "App Management",
+      "serviceManagement": "Service Management",
+      "onBoardingManagement": "OSP"
+    }
   }
 }

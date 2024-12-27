@@ -17,18 +17,15 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@mui/material'
-import type { MenuItemProps } from './MenuItem'
+import { MenuItem, type MenuItemProps } from './MenuItem'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
+import { theme } from '@catena-x/portal-shared-components'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useEffect, useState } from 'react'
-import { theme } from '@catena-x/portal-shared-components'
-import { Link as LinkRouter } from 'react-router-dom'
 import './MobileMenu.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { t } from 'i18next'
-import { WraperLink } from './WraperLink'
+import { useNavigate } from 'react-router-dom'
 
 interface NotificationBadgeType {
   notificationCount: number
@@ -38,21 +35,25 @@ interface NotificationBadgeType {
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
 interface NotificationLinkProps extends LinkItem {
-  onSelect?: (children: MenuItemProps) => void
+  onSelect?: (title: string, children: MenuItemProps[]) => void
+  onClick?: React.MouseEventHandler
 }
 
 export const NotificationLink = ({
   onSelect,
   ...props
 }: NotificationLinkProps): JSX.Element => {
-  const dispatch = useDispatch()
-  const visible = useSelector(appearMenuSelector)
+  const navigate = useNavigate()
+
   const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,
   })
 
   const [notificationInfo, setNotificationInfo] =
-    useState<NotificationBadgeType>()
+    useState<NotificationBadgeType>({
+      isNotificationAlert: false,
+      notificationCount: 0,
+    })
 
   useEffect(() => {
     if (
@@ -76,37 +77,25 @@ export const NotificationLink = ({
     : theme.palette.brand.brand02
 
   return (
-    <WraperLink
-      onClick={() => {
-        dispatch(setAppear({ MENU: !visible }))
+    <MenuItem
+      {...props}
+      title={t('pages.mynotifications')}
+      notificationInfo={{
+        ...notificationInfo,
+        notificationColor,
       }}
-    >
-      <>
-        <div
-          className="badgeBox"
-          style={{
-            marginRight: '12px',
-            marginLeft: '3px',
-            backgroundColor: notificationColor,
+      isSeparate={true}
+      onClick={() => {
+        if (props.to) navigate(props.to)
+      }}
+      icon={
+        <NotificationsNoneIcon
+          sx={{
+            height: 18,
+            width: 18,
           }}
-        >
-          <Typography
-            sx={{
-              paddingRight: '12px',
-            }}
-            variant="body2"
-          >
-            {notificationInfo?.notificationCount}
-          </Typography>
-        </div>
-        <LinkRouter
-          className="link-router-text"
-          to={props.to ?? '/'}
-          {...props}
-        >
-          {t('pages.mynotifications')}
-        </LinkRouter>
-      </>
-    </WraperLink>
+        />
+      }
+    />
   )
 }

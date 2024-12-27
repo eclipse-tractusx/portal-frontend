@@ -21,9 +21,9 @@
 import { useRef, useState, useEffect } from 'react'
 import {
   LanguageSwitch,
+  Menu,
   UserAvatar,
   UserMenu,
-  UserNav,
   type NotificationBadgeType,
 } from '@catena-x/portal-shared-components'
 import UserService from 'services/UserService'
@@ -36,9 +36,16 @@ import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { setLanguage } from 'features/language/actions'
 import { useDispatch } from 'react-redux'
-import { Box } from '@mui/material'
+import { Box, Divider, styled } from '@mui/material'
+import type { MenuItemProps } from '@catena-x/portal-shared-components/dist/components/basic/Menu/MenuItem'
 
-export const UserInfo = ({ pages }: { pages: string[] }) => {
+export const UserInfo = ({
+  pages,
+  menuWithChild,
+}: {
+  pages: string[]
+  menuWithChild: MenuItemProps[]
+}) => {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const avatar = useRef<HTMLDivElement>(null)
@@ -49,7 +56,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
   const [notificationInfo, setNotificationInfo] =
     useState<NotificationBadgeType>()
   const menu = pages.map((link) => ({
-    to: link,
+    to: `/${link}`,
     title: t(`pages.${link}`),
   }))
 
@@ -89,18 +96,26 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
           isNotificationAlert={notificationInfo?.isNotificationAlert}
         />
       </div>
-      <UserMenu
+      <UserMenuStyled
         open={menuOpen}
         sx={{
           top: '60px',
-          width: '256px',
+          width: 300,
           position: 'absolute',
         }}
         userName={UserService.getName()}
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
-        <UserNav
+        <Menu
+          items={menuWithChild}
+          component={Link}
+          subMenuDivider={true}
+          onClick={openCloseMenu}
+        />
+        <>{menuWithChild.length > 0 ? <Divider /> : null}</>
+
+        <Menu
           component={Link}
           onClick={openCloseMenu}
           divider
@@ -115,7 +130,27 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
             changeLanguage(key)
           }}
         />
-      </UserMenu>
+      </UserMenuStyled>
     </Box>
   )
 }
+
+const UserMenuStyled = styled(UserMenu)(
+  ({ theme }) => `
+  .MuiBox-root {
+    background-color: ${theme.palette.common.white};
+    .MuiTypography-label3{
+      font-size: 20px !important;
+      font-weight: 600;
+      padding-bottom: 8px;
+
+    }
+
+    .MuiTypography-label4 {
+      font-size: 16px !important;
+      font-weight: 500;
+      color: ${theme.palette.secondary.main}
+    }
+  }
+  `
+)

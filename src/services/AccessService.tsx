@@ -35,8 +35,9 @@ import {
   userMenuFull,
   userMenuRegistration,
   userMenuCompany,
+  userMenuWithChildren,
 } from 'types/Config'
-import { OVERLAYS } from 'types/Constants'
+import { OVERLAYS, ROLES } from 'types/Constants'
 import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
 import AddAppUserRoles from 'components/overlays/AddAppUserRoles'
 import EditAppUserRoles from 'components/overlays/EditAppUserRoles'
@@ -137,23 +138,32 @@ export const hasAccessOverlay = (overlay: string) =>
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
-const accessToMenuTree = (menu: Tree[] | undefined): Tree[] | undefined =>
+const accessToMenuTree = (menu: Tree[]): Tree[] =>
   menu
-    ?.filter((item: Tree) => hasAccess(item.name))
+    ?.filter((item: Tree) => {
+      return item.children ?? hasAccess(item.name)
+    })
     .map((item: Tree) => ({
       ...item,
-      children: accessToMenuTree(item.children),
+      children: item.children ? accessToMenuTree(item.children) : undefined,
     }))
+    .filter((item) => {
+      return !item.children || (item.children && item.children.length > 0)
+    })
 
 const mainMenuTree = () => accessToMenuTree(mainMenuFullTree)
 
 const userMenu = () => accessToMenu(userMenuFull)
+
+const userMenuWithChild = () => accessToMenuTree(userMenuWithChildren)
 
 const userMenuReg = () => accessToMenu(userMenuRegistration)
 
 const userMenuComp = () => accessToMenu(userMenuCompany)
 
 const footerMenu = () => accessToMenu(footerMenuFull)
+
+const isAdmin = () => userHasPortalRole(ROLES.CX_ADMIN)
 
 const permittedRoutes = () =>
   ALL_PAGES.filter((page: IPage) => hasAccess(page.name)).map((p) => p.element)
@@ -299,6 +309,8 @@ const AccessService = {
   footerMenu,
   userMenuComp,
   companyHasRole,
+  userMenuWithChild,
+  isAdmin,
 }
 
 export default AccessService

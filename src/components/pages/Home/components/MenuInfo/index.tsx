@@ -24,11 +24,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import type { MenuItem, Tree } from 'types/MainTypes'
-import CloseIcon from '@mui/icons-material/Close'
 import { MobileMenu } from 'components/shared/MobileMenu'
 import { Drawer } from '@mui/material'
 
-export const MenuInfo = ({ main }: { main: Tree[] | undefined }) => {
+export const MenuInfo = ({
+  main,
+  shouldDisplayMenuItems,
+}: {
+  main: Tree[]
+  shouldDisplayMenuItems?: boolean
+}) => {
   const { t } = useTranslation()
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
@@ -37,7 +42,9 @@ export const MenuInfo = ({ main }: { main: Tree[] | undefined }) => {
       (item: Tree): MenuItem => ({
         ...item,
         to: `/${item.name}`,
-        title: t(`pages.${item.name}`),
+        title: item.children
+          ? t(`menu.heading.${item.name}`)
+          : t(`pages.${item.name}`),
         hint: item.hint ? t(`hints.${item.hint}`) : '',
         children: addTitle(item.children),
       })
@@ -71,18 +78,12 @@ export const MenuInfo = ({ main }: { main: Tree[] | undefined }) => {
         }}
       >
         <div className="MenuInfo">
-          <CloseIcon
-            onClick={() => dispatch(setAppear({ MENU: !visible }))}
-            sx={{
-              color: '#B6B6B6',
-            }}
-            className="closeIcon"
-          />
           <MobileMenu
             className="userMenuInfo"
             component={Link}
-            divider
+            divider={shouldDisplayMenuItems}
             items={menu}
+            shouldDisplayMenuItems={shouldDisplayMenuItems}
           />
         </div>
       </ClickAwayListener>

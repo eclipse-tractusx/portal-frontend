@@ -24,20 +24,56 @@
   z-index: 999;
   background: #fff;
   right: 0px;
-  width: 280px;
+  width: 280px !important;
   padding: 10px 0px;
-  height: 99%;
+}
+.dep {
+  transition: all 3s ease-out;
 }
 
-.closeIcon {
-  position: absolute;
-  right: 10px;
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
 .userMenuInfo {
-  margin-top: 20px;
-}
+  .MuiTypography-label2 {
+    font-size: 18px;
+  }
+  .MuiLink-root,
+  .MuiListItem-root {
+    font-weight: 500;
+    border-radius: 0;
+    color: #000000 !important;
+    width: 100%;
 
-.dep {
-  transition: all 3s ease-out;
+    &:hover {
+      border-radius: 8px;
+      background-color: #ededed;
+      color: #000000 !important;
+      cursor: pointer;
+
+      .MuiSvgIcon-root {
+        color: #000000 !important;
+        background-color: #ededed;
+      }
+      .MuiListItemAvatar-root {
+        .MuiSvgIcon-root {
+          color: white !important;
+          background-color: inherit;
+
+          path {
+            fill: white !important;
+          }
+        }
+      }
+
+      .badgeBox,
+      a {
+        color: #000000 !important;
+      }
+    }
+  }
 }

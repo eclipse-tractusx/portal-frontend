@@ -50,7 +50,7 @@ header {
     padding-left: 5px;
   }
 }
-@media (min-width: 1499px) {
+@media (min-width: 1440px) {
   .mobileHeader,
   .mobileNav {
     display: none;
@@ -67,7 +67,7 @@ header {
 }
 
 //mobile layout
-@media (max-width: 1499px) {
+@media (max-width: 1440px) {
   header {
     display: none;
   }
@@ -108,5 +108,163 @@ header {
     color: #0f71cb;
     position: relative;
     z-index: -9;
+  }
+}
+
+header {
+  display: none;
+}
+
+.mobileHeader,
+.mobileNav {
+  display: block;
+}
+
+.mobile-search-icon {
+  display: block;
+}
+
+.mobileNav {
+  display: flex;
+  justify-content: space-between;
+  position: static;
+  z-index: 999;
+  width: 100%;
+  margin-top: 0;
+  align-items: center;
+  background: #fff;
+  padding: 10px 5px;
+  border-bottom: 2px solid #f6f6f6;
+
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: auto;
+  max-width: 1800px;
+  height: 85px;
+
+  .MuiSvgIcon-root {
+    color: #4d4d4d;
+
+    path {
+      fill: #4d4d4d;
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 140px;
+  margin-top: 4px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.logo-mobile {
+  display: flex;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 0px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.mobileHeaderRight {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  position: relative;
+  right: 0px;
+  z-index: -9;
+  top: 5px;
+}
+
+.mobileHeader {
+  display: flex;
+  z-index: 999;
+  width: auto;
+  height: auto;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.mobileHeader img {
+  width: auto;
+  height: 30px;
+}
+
+.mobile-search-icon {
+  margin-right: 10px;
+  color: #d31184;
+  position: relative;
+  z-index: -9;
+  cursor: pointer;
+}
+
+// desktop nav enabled start
+.user-is-admin {
+  @media (min-width: 1440px) {
+    header {
+      display: block;
+      background: #fff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: auto;
+      right: auto;
+      max-width: 1800px;
+    }
+
+    main .customHeight {
+      top: 85px !important;
+    }
+
+    .mobileHeader,
+    .mobileNav {
+      display: none;
+    }
+
+    .mobile-search-icon {
+      display: none;
+    }
+  }
+}
+
+.user-is-not-admin {
+  @media (min-width: 1280px) {
+    header {
+      display: block;
+      background: #fff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: auto;
+      right: auto;
+      max-width: 1800px;
+    }
+
+    main .customHeight {
+      top: 85px !important;
+    }
+
+    .mobileHeader,
+    .mobileNav {
+      display: none;
+    }
+
+    .mobile-search-icon {
+      display: none;
+    }
   }
 }

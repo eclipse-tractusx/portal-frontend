@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import i18next from 'i18next'
 
 export const PAGE_SIZE = 10
 
@@ -110,6 +111,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   COMPANY_DATA = 'companyData',
   ONBOARDING_SERVICE_PROVIDER_MANAGEMENT = 'onboardingServiceProviderManagement',
+  OSP_TECHNICAL_USER_MANAGEMENT = 'ospTechnicalUserManagement',
 }
 
 export enum OVERLAYS {
@@ -263,3 +265,29 @@ export enum COMPANY_ROLES {
   OPERATOR = 'OPERATOR',
   ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
 }
+
+export const MENUS = {
+  DATASPACE_PARTICIPATION: 'dataSpaceParticipation',
+  MARKETPLACE: 'marketplace',
+  MARKETPLACE_MANAGEMENT: 'marketplaceManagement',
+  APP_MANAGEMENT: 'appManagement',
+  SERVICE_MANAGEMENT: 'serviceManagement',
+  TECHNICAL_SETUP: 'technicalSetup',
+  CX_OPERATOR: 'cxOperator',
+  ON_BOARDING_MANAGEMENT: 'onBoardingManagement',
+}
+
+export const COMPANY_ROLE = {
+  ACTIVE_PARTICIPANT: 'ACTIVE_PARTICIPANT',
+  APP_PROVIDER: 'APP_PROVIDER',
+  SERVICE_PROVIDER: 'SERVICE_PROVIDER',
+  ONBOARDING_SERVICE_PROVIDER: 'ONBOARDING_SERVICE_PROVIDER',
+}
+
+export const HELP_LINK = () => {
+  // TODO: in future we need to replace 323675-portal-marketplace with specific section of this page
+  return `https://intercom-help.eu/catena-x/${i18next.language}/collections/323675-portal-marketplace`
+}
+
+export const DOCUMENTATION_HELP_LINK = (path: string) =>
+  `https://intercom-help.eu/catena-x/?path=${path}`
