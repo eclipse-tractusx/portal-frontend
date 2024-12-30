@@ -1291,6 +1291,7 @@
         "heading": "Anbieterinformationen",
         "message": "Folgend finden Sie alle notwendigen Informationen zum direkten Kontakt zum Anbieter.",
         "appProvider": "App Anbieter",
+        "serviceProvider": "Service Anbieter",
         "website": "Webseite",
         "email": "E-Mail",
         "phone": "Telefon"
