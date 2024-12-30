@@ -1260,6 +1260,7 @@
         "heading": "Provider Information",
         "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
         "appProvider": "App Provider",
+        "serviceProvider": "Service Provider",
         "website": "Provider Homepage",
         "email": "Email",
         "phone": "Phone"

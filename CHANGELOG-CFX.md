@@ -31,6 +31,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Service detail page**
+
+  - updated incorrect provider information table label [PM2-2191](https://cofinity-x.atlassian.net/browse/PM2-2191)
+
 - **Delete overlay**
 
   - Fix inconsistent styling [PM2-1938](https://cofinity-x.atlassian.net/browse/PM2-1938)
