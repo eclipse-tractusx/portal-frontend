@@ -17,17 +17,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-export default {
-  preset: 'ts-jest',
-  testEnvironment: 'jest-environment-jsdom',
-  testMatch: ['**/*.test.ts', '**/*.test.tsx', '**/*.test.js', '**/*.test.jsx'],
-  transform: {
-    '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.jest.json' }],
+import { defineConfig } from 'cypress'
+
+export default defineConfig({
+  e2e: {
+    setupNodeEvents() {
+      // implement node event listeners here
+    },
+    experimentalModifyObstructiveThirdPartyCode: true,
+    chromeWebSecurity: false,
   },
-  moduleNameMapper: {
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__ mocks __/fileMock.js',
+  env: {
+    baseUrl: 'http://localhost:3001',
+    backendUrl: 'https://portal-backend.development.cofinity-x.com',
+    companyName: 'Cofinity-X GmbH',
+    userEmail: '',
+    userPassword: '',
+    adminEmail: '',
+    adminPassword: '',
+    keycloak: {
+      centralUrl: 'https://centralidp.development.cofinity-x.com/auth',
+      sharedUrl: 'https://sharedidp.development.cofinity-x.com/auth',
+    },
   },
-  globals: {
-    ENV: true,
-  },
-}
+})

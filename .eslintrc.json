@@ -1,5 +1,11 @@
 {
-  "ignorePatterns": ["*.config.ts", "*.test.tsx", "*.stories.tsx"],
+  "ignorePatterns": [
+    "*.config.ts",
+    "*.test.tsx",
+    "*.stories.tsx",
+    "cypress/**"
+  ],
+
   "env": {
     "browser": true,
     "es2021": true
@@ -21,7 +27,7 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "parserOptions": {
-        "project": ["./tsconfig.json"]
+        "project": ["./tsconfig.json", "./cypress/tsconfig.json"]
       },
       "rules": {
         "linebreak-style": ["error", "unix"],
