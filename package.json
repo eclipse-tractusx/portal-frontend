@@ -74,6 +74,7 @@
     "@testing-library/react": "^14.2.2",
     "@testing-library/user-event": "^14.5.2",
     "@types/autosuggest-highlight": "^3.2.3",
+    "@types/cypress": "^1.1.6",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.14",
     "@types/lodash.debounce": "^4.0.9",
@@ -125,6 +126,6 @@
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
     "build:legal-notice": "bash scripts/legal-notice.sh",
     "build:copy-legal-info": "cp LICENSE NOTICE.md DEPENDENCIES SECURITY.md public/",
-    "cy:open": "cypress open"
+    "cy": "cypress open"
   }
 }

@@ -1,5 +1,11 @@
 {
-  "ignorePatterns": ["*.config.ts", "*.test.tsx", "*.stories.tsx"],
+  "ignorePatterns": [
+    "*.config.ts",
+    "*.test.tsx",
+    "*.stories.tsx",
+    "cypress/**"
+  ],
+
   "env": {
     "browser": true,
     "es2021": true

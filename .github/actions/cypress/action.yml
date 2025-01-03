@@ -1,0 +1,44 @@
+name: 'Run Cypress Test'
+description: 'Build and publish a Docker Image to DockerHub'
+inputs:
+  config-file:
+    required: true
+    default: 'cypress.config.ts'
+    description: 'Path of cypress config file'
+
+  debug:
+    required: false
+    default: 'false'
+    description: Enables debug logs at cypress if set to "true".
+
+  user-email:
+    required: true
+    description: 'Keycloak user for login test'
+
+  user-password:
+    required: true
+    description: 'Keycloak password for login test'
+
+  environment-subdomain:
+    required: true
+    default: 'development'
+    description: 'Portal environment subdomain name'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Replace Portal Frontend Urls
+      shell: bash
+      run: |
+        sed -i "s|development.cofinity-x.com|${{ inputs.environment-subdomain }}.cofinity-x.com|g" index.html
+    - name: Cypress
+      uses: cypress-io/github-action@57b70560982e6a11d23d4b8bec7f8a487cdbb71b # v6.7.8
+      with:
+        config-file: ${{ inputs.config-file }}
+        start: 'yarn start'
+      env:
+        CYPRESS_CONFIG_FILE: ${{ inputs.config-file }}
+        CYPRESS_userEmail: ${{ inputs.user-email }}
+        CYPRESS_userPassword: ${{ inputs.user-password }}
+        # Enables debug logs on cypress
+        DEBUG: ${{ inputs.debug == 'true' && '@cypress/github-action' || '' }}

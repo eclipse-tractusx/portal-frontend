@@ -18,7 +18,7 @@
  ********************************************************************************/
 /* eslint-disable @typescript-eslint/no-namespace */
 
-export {}
+import { USER_TYPES } from './constants'
 
 declare global {
   namespace Cypress {
@@ -30,47 +30,30 @@ declare global {
 }
 
 // @ref https://on.cypress.io/custom-commands
-Cypress.Commands.add('login', (usertype) => {
+Cypress.Commands.add('login', (currentUserType) => {
   // creating a session for user login
   cy.session(
-    [usertype],
+    [currentUserType],
     () => {
-      const companyName = Cypress.env('company').name
       cy.visit(Cypress.env('baseUrl'))
+
+      const companyName = Cypress.env('companyName')
+
       // Perform login on Keycloak login page
-      cy.origin(
-        Cypress.env('keycloak').centralUrl,
-        { args: { companyName } },
-        ({ companyName }) => {
-          // Click the login button to be redirected to Keycloak
-          cy.get('input[placeholder="Enter your company name"]').type(
-            companyName
-          ) // Update selector based on your app
+      cy.get('input[placeholder="Enter your company name"]').type(companyName) // Update selector based on your app
+      cy.get('.idp-name').contains(companyName).click()
 
-          cy.get('li')
-            .find('div')
-            .contains(companyName, { matchCase: false })
-            .click()
-        }
-      )
-
-      cy.origin(
-        Cypress.env('keycloak').sharedUrl,
-        { args: { usertype } },
-        ({ usertype }) => {
-          const currentUsername =
-            usertype === 'admin'
-              ? Cypress.env('admin').email
-              : Cypress.env('user').email
-          const currentPassword =
-            usertype === 'admin'
-              ? Cypress.env('admin').password
-              : Cypress.env('user').password
-          cy.get('#username').should('exist').type(currentUsername)
-          cy.get('#password').type(currentPassword)
-          cy.get('#kc-login').click() // Submit the Keycloak form
-        }
-      )
+      const currentUsername =
+        currentUserType === USER_TYPES.ADMIN
+          ? Cypress.env('adminEmail')
+          : Cypress.env('userEmail')
+      const currentPassword =
+        currentUserType === USER_TYPES.ADMIN
+          ? Cypress.env('adminPassword')
+          : Cypress.env('userPassword')
+      cy.get('#username').should('exist').type(currentUsername)
+      cy.get('#password').type(currentPassword)
+      cy.get('#kc-login').click() // Submit the Keycloak form
     },
     { cacheAcrossSpecs: true }
   )

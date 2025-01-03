@@ -21,23 +21,23 @@ import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
+    setupNodeEvents() {
       // implement node event listeners here
     },
+    experimentalModifyObstructiveThirdPartyCode: true,
+    chromeWebSecurity: false,
   },
   env: {
     baseUrl: 'http://localhost:3001',
-    backendUrl: 'https://portal-backend.example.org',
-    user: {
-      email: 'user@email.com',
-      password: '',
-    },
-    company: {
-      name: 'Company name to search',
-    },
+    backendUrl: 'https://portal-backend.development.cofinity-x.com',
+    companyName: 'Cofinity-X GmbH',
+    userEmail: '',
+    userPassword: '',
+    adminEmail: '',
+    adminPassword: '',
     keycloak: {
-      centralUrl: 'centralidp.example.org',
-      sharedUrl: 'sharedidp.example.org',
+      centralUrl: 'https://centralidp.development.cofinity-x.com/auth',
+      sharedUrl: 'https://sharedidp.development.cofinity-x.com/auth',
     },
   },
 })
