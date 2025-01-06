@@ -35,6 +35,8 @@ import EditForm from './EditForm'
 import { AddressType } from 'features/companyData/companyDataApiSlice'
 import SiteDetails from './SiteDetails'
 import AddressDetails from './AddressDetails'
+import { t } from 'i18next'
+import { Trans } from 'react-i18next'
 
 interface FormDetailsProps {
   readonly open: boolean
@@ -63,25 +65,17 @@ export default function DetailsOverlay({
       <Dialog open={!edit}>
         <DialogHeader
           title={title}
-          intro={description}
+          intro={
+            <Trans i18nKey={description} components={{ linebreak: <br /> }} />
+          }
           closeWithIcon={true}
           onCloseWithIcon={handleClose}
         />
         <DialogContent>
           <StatusInformation error={sharingStateErrorInfo} />
-          <Divider
-            sx={{
-              borderColor: '#111111',
-              margin: '0px 5%',
-            }}
-          />
+          <Divider className={'cx-company-data__details--divider'} />
           <CompanyInfo />
-          <Divider
-            sx={{
-              borderColor: '#111111',
-              margin: '0px 5%',
-            }}
-          />
+          <Divider className={'cx-company-data__details--divider'} />
           {isSite ? (
             <SiteDetails onEdit={onEdit} />
           ) : (
@@ -92,6 +86,7 @@ export default function DetailsOverlay({
       </Dialog>
       {edit && (
         <EditForm
+          description={t('content.companyData.site.description')}
           isAddress={!isSite}
           handleClose={handleClose}
           open={edit}

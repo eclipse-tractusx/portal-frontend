@@ -39,6 +39,7 @@ const ValidatingInput = ({
   name = '',
   label = '',
   hint = '',
+  placeholder = '',
   value = '',
   onValue,
   type = InputType.text,
@@ -93,6 +94,7 @@ const ValidatingInput = ({
         name,
         label,
         hint,
+        placeholder,
         value,
         onValue,
         type,
@@ -100,7 +102,7 @@ const ValidatingInput = ({
         toggleHide,
         errorMessage,
       }}
-      {...(color === Colors.error ? { errorMessage: hint } : {})}
+      {...(color === Colors.error ? { errorMessage } : {})}
       style={{
         ...style,
         borderBottom: `2px solid ${color}`,

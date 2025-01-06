@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+
 import {
   type CompanyDataType,
   SharingStateStatusType,
@@ -32,6 +33,7 @@ import {
   type SharingStateType,
   type PaginationModel,
   type CompanyAddressListProps,
+  BpnType,
 } from 'features/companyData/companyDataApiSlice'
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -48,6 +50,7 @@ import {
 } from 'features/companyData/slice'
 import { statusColorMap } from 'utils/dataMapper'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import dayjs from 'dayjs'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -84,6 +87,7 @@ export const CompanyAddressList = ({
     new Set()
   )
   const [fetchedInputIds, setFetchedInputIds] = useState<Set<string>>(new Set())
+  const [bpnType, setBpnType] = useState<string>('')
 
   const getInputItems = async () => {
     const params = sharingStates
@@ -191,10 +195,12 @@ export const CompanyAddressList = ({
       )
       .filter((state) => state.externalId === params.row.externalId)
     const status = getStatus(params.row.externalId)
+    const bpnType = getBpnTypeLabel(params.row as CompanyDataType) // Get the BPN type
     setDetails(true)
     dispatch(setSelectedCompanyStatus(status))
     dispatch(setSelectedCompanyData(params.row))
     if (sharingStateInfo) dispatch(setSharingStateInfo(sharingStateInfo[0]))
+    setBpnType(bpnType)
   }
 
   const renderIcon = (status: string | undefined) => {
@@ -219,6 +225,13 @@ export const CompanyAddressList = ({
   if (error && 'status' in error) {
     errorObj.status = error.status as number
   }
+
+  function getBpnTypeLabel(row: CompanyDataType): string {
+    return row.address.addressType === AddressType.SiteMainAddress
+      ? t('content.companyData.table.bpnTypeSite')
+      : t('content.companyData.table.bpnTypeAddress')
+  }
+
   const columns: GridColDef[] = [
     {
       field: 'site',
@@ -233,26 +246,47 @@ export const CompanyAddressList = ({
       headerAlign: 'left',
       align: 'left',
       headerName: t('content.companyData.table.location'),
-      flex: 2,
+      flex: 2.5,
       valueGetter: ({ row }: { row: CompanyDataType }) =>
         row.address
-          ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''} ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.country ?? ''}`
+          ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''}, ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
           : '',
+    },
+    {
+      field: 'bpn',
+      headerAlign: 'left',
+      align: 'left',
+      headerName: t('content.companyData.table.bpn'),
+      flex: 1.5,
+      valueGetter: ({ row }: { row: CompanyDataType }) =>
+        row?.legalEntity?.legalEntityBpn,
     },
     {
       field: 'type',
       headerAlign: 'left',
       align: 'left',
       headerName: t('content.companyData.table.type'),
-      flex: 1,
+      flex: 1.5,
+      valueGetter: ({ row }: { row: CompanyDataType }) => getBpnTypeLabel(row),
+    },
+    {
+      field: 'processDate',
+      headerAlign: 'left',
+      align: 'left',
+      headerName: t('content.companyData.table.processDate'),
+      flex: 1.5,
       valueGetter: ({ row }: { row: CompanyDataType }) =>
-        row.address.addressType === AddressType.SiteMainAddress ? 'S' : 'A',
+        dayjs(row.createdAt).format('YYYY-MM-DD | HH:mm:ss'),
     },
     {
       field: 'status',
       headerName: t('content.companyData.table.status'),
       align: 'left',
       flex: 1,
+      valueGetter: ({ row }: { row: CompanyDataType }) =>
+        statusColorMap[getStatus(row.externalId) as SharingStateStatusType],
+      sortable: true,
+      hideSortIcons: true,
       renderCell: ({ row }: { row: CompanyDataType }) => {
         const status = getStatus(row.externalId)
         return (
@@ -289,6 +323,7 @@ export const CompanyAddressList = ({
       headerName: t('content.companyData.table.details'),
       align: 'left',
       flex: 1,
+      hideSortIcons: true,
       renderCell: () => {
         return (
           <IconButton
@@ -311,11 +346,12 @@ export const CompanyAddressList = ({
 
   const paginationProps = {
     onPaginationModelChange: handlePaginationModelChange,
-    pageSizeOptions: [5, 10, 15],
+    pageSizeOptions: [10, 25, 50, 100],
     paginationModel: { pageSize, page },
     initialState: { pagination: { paginationModel: { pageSize, page } } },
   }
 
+  // console.log(bpnType)
   return (
     <>
       <Table
@@ -326,6 +362,7 @@ export const CompanyAddressList = ({
             setPage((prev) => prev + 1)
           }
         }}
+        autoHeight={true}
         hideFooterPagination={false}
         {...paginationProps}
         rowCount={rowCount}
@@ -359,7 +396,16 @@ export const CompanyAddressList = ({
       />
       {details && (
         <DetailsOverlay
-          title={t('content.companyData.label')}
+          title={
+            bpnType === BpnType.Address
+              ? t('content.companyData.titleAddress')
+              : t('content.companyData.titleSite')
+          }
+          description={
+            bpnType === BpnType.Address
+              ? t('content.companyData.descriptionAddress')
+              : t('content.companyData.descriptionSite')
+          }
           handleClose={() => {
             setDetails(false)
           }}

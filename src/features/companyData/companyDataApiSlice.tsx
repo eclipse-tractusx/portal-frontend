@@ -32,6 +32,10 @@ export enum AddressType {
   SiteMainAddress = 'SiteMainAddress',
   AdditionalAddress = 'AdditionalAddress',
 }
+export enum BpnType {
+  Address = 'Address (A)',
+  Site = 'Site (S)',
+}
 
 export type CompanyDataFieldsType = {
   siteName: string | undefined | null

@@ -32,16 +32,17 @@ export enum InputType {
 }
 
 export enum Colors {
-  main = 'black',
+  main = '#4D4D4D',
   secondary = '#aaaaaa',
-  error = '#aa0000',
-  success = 'darkblue',
+  error = '#B62100',
+  success = '#6BA13C',
 }
 
 export type BasicInputProps = {
   name?: string
   label?: string
   hint?: string
+  placeholder?: string
   value?: string
   onValue?: (value: string) => void
   type?: InputType
@@ -71,6 +72,7 @@ const BasicInput = ({
   name = '',
   label = '',
   hint = '',
+  placeholder = '',
   value = '',
   onValue,
   type = InputType.text,
@@ -128,6 +130,7 @@ const BasicInput = ({
       </div>
       <div className="actionWrapper">
         <input
+          placeholder={placeholder}
           ref={ref}
           style={{
             ...BasicInputStyle,
@@ -173,7 +176,10 @@ const BasicInput = ({
         </div>
       </div>
       {!valid && (
-        <div style={{ width: '100%', height: '12px' }}>
+        <div
+          className={'cx-error-text'}
+          style={{ width: '100%', height: '12px' }}
+        >
           {
             // eslint-disable-next-line
             (errorMessage || focus) && (

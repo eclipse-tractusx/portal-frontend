@@ -1173,7 +1173,7 @@ header .search-icon {
 }
 
 .dialog-header-main {
-  padding: 56px 80px !important;
+  padding: 40px 40px !important;
 
   .MuiTypography-h4 {
     font-weight: 400;
@@ -2253,6 +2253,10 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
     .MuiBox-root .MuiButton-root {
       text-transform: capitalize;
+      // TO TEST
+      position: absolute;
+      right: 30px;
+      top: 30px;
 
       svg {
         display: block !important;
@@ -2271,6 +2275,29 @@ p.MuiTypography-root.MuiTypography-body3.description,
     .bpx-section {
       padding: 40px 30px 60px !important;
       margin: 0;
+
+      .cx-table {
+        .MuiDataGrid-autoHeight {
+          min-height: 792px;
+        }
+
+        .MuiChip-root {
+          min-width: 120px;
+          width: auto;
+        }
+      }
+    }
+
+    .organization-section .main-title.cx-bpx__subtitle {
+      text-align: left;
+      font-size: 24px;
+      padding-right: 30px;
+      padding-left: 30px;
+      margin: 0 0 10px;
+
+      &::after {
+        display: none;
+      }
     }
 
     .cx-table__page-loading--loader {
@@ -2294,7 +2321,187 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
-.notification-badge-text {
+// company data
+.cx-company-data {
+  &__details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 20px 0;
+
+    &--address,
+    &--site {
+      flex-direction: column;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    &--left {
+      width: 250px;
+      font-weight: 500;
+      min-width: 250px;
+
+      p {
+        font-size: 18px;
+        font-weight: inherit;
+      }
+    }
+
+    &--right {
+      font-weight: normal;
+      font-size: 18px;
+      color: #333;
+
+      p {
+        font-size: 18px;
+        color: #333;
+        margin: 4px 0;
+      }
+
+      .MuiChip-root {
+        margin-bottom: 0;
+        padding: 0 10px;
+        border-radius: 10px;
+      }
+    }
+
+    &--divider {
+      border-color: #111111;
+    }
+
+    &--heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-size: 18px;
+
+      .MuiTypography-root {
+        font-size: 18px;
+      }
+
+      .heading-h2 {
+        font-size: 20px;
+        margin: 16px 0;
+      }
+    }
+
+    &--listing {
+      width: 100%;
+    }
+
+    &--item {
+      display: flex;
+      width: 100%;
+      min-height: 40px;
+      align-items: center;
+    }
+
+    &--actions {
+      text-align: center;
+      width: 100%;
+      margin: 70px 0 0;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 150px;
+        background: #fafafa;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: auto;
+      }
+    }
+  }
+
+  &__errors {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 8px 0 0;
+
+    &--item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &--typography {
+      font-size: 18px !important;
+      color: #d32f2f !important;
+    }
+  }
+
+  &__error-block {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 8px 0 0;
+    border-radius: 4px;
+    border: 2px solid #b62100;
+    flex-direction: column;
+
+    &--heading {
+      padding: 10px 16px 4px;
+      font-size: 16px;
+
+      .error-note {
+        color: #d32f2f !important;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 140%;
+        padding-right: 5px;
+      }
+
+      .error-desc {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+        color: #333333;
+      }
+    }
+
+    &--list {
+      list-style-type: disc !important;
+      list-style-position: outside !important;
+      margin-left: 50px !important;
+      margin-bottom: 20px !important;
+
+      &-item {
+        display: list-item !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+
+        .MuiTypography-root {
+          font-size: 16px !important;
+          font-style: normal;
+          font-weight: 500;
+          color: #333333 !important;
+        }
+      }
+    }
+
+    &--item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &--typography {
+      font-size: 18px !important;
+      color: #d32f2f !important;
+    }
+  }
+}
+
+.cx-line-break {
+  display: block;
+}
+
+d .notification-badge-text {
   font-size: 0.75rem !important;
 }
 

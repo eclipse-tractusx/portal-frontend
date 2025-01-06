@@ -896,6 +896,12 @@ export const customTheme = {
           fontSize: 16,
           fontFamily: FONT_PALETTE.PRIMARY,
         },
+        virtualScroller: {
+          textAlign: 'center',
+          '& .MuiDataGrid-overlayWrapperInner': {
+            textAlign: 'center',
+          },
+        },
         cell: {
           fontSize: 16,
           '& .Mui-disabled': {

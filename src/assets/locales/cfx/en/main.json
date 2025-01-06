@@ -689,10 +689,10 @@
         "clientId": "Client ID of your technical user",
         "secret": "Secret",
         "section": {
-          "text1": "*iatp.sts.oauth.token_url: the token endpoint of the decentral identity management instance.",
-          "text2": "*iatp.sts.oauth.client.id: technical user client ID of your technical user for the specific connector.",
+          "text1": "*iatp.sts.oauth.token_url: the token endpoint of the decentral identity management instance.",
+          "text2": "*iatp.sts.oauth.client.id: technical user client ID of your technical user for the specific connector.",
           "text3": "Ensure you separate the technical users - each connector one technical user.",
-          "text4": "*iatp.sts.oauth.client.secret_alias: alias under which you saved your DIM client",
+          "text4": "*iatp.sts.oauth.client.secret_alias: alias under which you saved your DIM client",
           "text5": "secret in the vault. Inside the vault the secret of the technical user defined above should be stored.",
           "text6": "*iatp.sts.dim.url: base url of you decentral identity management instance."
         }
@@ -2198,9 +2198,14 @@
     },
     "companyData": {
       "label": "Company Data",
+      "titleAddress": "Address information",
+      "descriptionAddress": "View your address information below. Use the 'Edit' button to make changes.  <linebreak/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
+      "titleSite": "Site information",
+      "descriptionSite": "View your site information below. Use the 'Edit' button to make changes.  <linebreak/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
+
       "csvUploadBtn": "Upload CSV",
       "statusInfo": {
-        "title": "Status Information"
+        "title": "Site information status"
       },
       "upload": {
         "title": "Upload CSV",
@@ -2215,7 +2220,7 @@
         "downloadSuccess": "CSV template download successfully"
       },
       "companyInfo": {
-        "title": "Company Name",
+        "title": "Legal entity information",
         "legalEntityName": "Legal Entity Name",
         "legalEntityNumber": "Legal Entity Number",
         "legalEntityNameTooltip": "Legal Entity Name",
@@ -2227,110 +2232,164 @@
         "title": "Sites and addresses",
         "buttonSite": "add site",
         "buttonAddress": "add address",
-        "site": "Site Name",
+        "site": "Site name",
         "location": "Location",
+        "bpn": "BPN",
+        "processDate": "Process date",
+        "bpnTypeSite": "Site (S)",
+        "bpnTypeAddress": "Address (A)",
         "search": "search address / site",
-        "noRowsMsg": "No Data yet",
-        "type": "Type",
+        "noRowsMsg": "No site added yet. After submitting site information, data will be validated by the Cofinity-X Golden Record Service. ",
+        "type": "BPN Type",
         "status": "Status",
         "details": "Details"
       },
       "site": {
-        "title": "Create new site",
-        "editTitle": "Edit Site",
-        "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+        "title": "Add new site",
+        "editTitle": "Edit site information",
+        "description": "After saving, your data will be revalidated by the BPDM process.",
         "form": {
           "site": {
-            "name": "Site Name",
-            "hint": "Site Name",
-            "error": "Please enter valid Site Name"
+            "name": "Site name",
+            "hint": "Site name",
+            "placeholder": "Enter site name",
+            "error": "Please enter valid site name"
           },
           "street": {
-            "name": "Street with House Number",
-            "hint": "Street with House Number",
-            "error": "Please enter valid Street with House Number"
+            "name": "Street name",
+            "hint": "Street name",
+            "placeholder": "Enter street name",
+            "error": "Please enter valid street name"
+          },
+          "houseNumber": {
+            "name": "House number",
+            "hint": "House number",
+            "placeholder": "Enter house number",
+            "error": "Please enter valid house number"
           },
           "postal": {
-            "name": "Postal Code",
-            "hint": "Postal Code",
-            "error": "Please enter valid Postal Code"
+            "name": "Postal code",
+            "hint": "Postal code",
+            "placeholder": "Enter postal code",
+            "error": "Please enter valid postal code"
           },
           "city": {
             "name": "City",
             "hint": "City",
-            "error": "Please enter valid City"
+            "placeholder": "Enter city",
+            "error": "Please enter valid city"
           },
           "countryCode": {
-            "name": "Country Code",
-            "hint": "Country Code",
-            "error": "Please enter valid Country Code"
+            "name": "Country",
+            "hint": "Country",
+            "placeholder": "Select country",
+            "error": "Please enter valid country"
           },
           "countryIdentifier": {
-            "name": "Country Identifier",
-            "hint": "Country Identifier",
-            "error": "Please enter valid Country Identifier"
+            "name": "Country identifier",
+            "hint": "Country identifier",
+            "placeholder": "Enter country identifier",
+            "error": "Please enter valid country identifier"
           },
           "identifierNumber": {
             "name": "Identifier Number",
             "hint": "Identifier Number",
-            "error": "Please enter valid Identifier Number"
+            "placeholder": "Enter identifier number",
+            "error": "Please enter valid identifier Number"
+          },
+          "bpns": {
+            "name": "BPNS",
+            "hint": "BPNS",
+            "placeholder": "Enter BPNS",
+            "error": "Please enter valid BPNS"
           }
+        },
+        "errorGroup": {
+          "errorNote": "Plese note:",
+          "errorDescription": "to prevent further errors in the re-validation, please make sure that your site information:",
+          "error1": "does not contain natural person information",
+          "error2": "can be matched to a legal entity or an address",
+          "error3": "links to a clear legal entity",
+          "error4": "fulfills mandatory validation rules",
+          "error5": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
+          "error6": "does not contain unknown special characters"
         }
       },
       "address": {
         "title": "Create new address",
-        "editTitle": "Edit Address",
+        "editTitle": "Edit address",
         "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
         "form": {
           "site": {
             "name": "Select company / site",
             "hint": "Select company / site",
+            "placeholder": "Select company / site",
             "error": "Please enter valid company / site"
           },
           "addressTitle": {
-            "name": "Address Title",
-            "hint": "Address Title",
-            "error": "Please enter valid Address Title"
+            "name": "Address title",
+            "hint": "Address title",
+            "placeholder": "Enter address",
+            "error": "Please enter valid address title"
           },
           "street": {
-            "name": "Street with House Number",
-            "hint": "Street with House Number",
-            "error": "Please enter valid Street with House Number"
+            "name": "Street name",
+            "hint": "Street name",
+            "placeholder": "Enter street name",
+            "error": "Please enter valid street name"
+          },
+          "houseNumber": {
+            "name": "House number",
+            "hint": "House number",
+            "placeholder": "Enter house number",
+            "error": "Please enter valid house number"
           },
           "postal": {
-            "name": "Postal Code",
-            "hint": "Postal Code",
-            "error": "Please enter valid Postal Code"
+            "name": "Postal code",
+            "hint": "Postal code",
+            "placeholder": "Enter postal code",
+            "error": "Please enter valid postal code"
           },
           "city": {
             "name": "City",
             "hint": "City",
-            "error": "Please enter valid City"
+            "placeholder": "Enter city",
+            "error": "Please enter valid city"
           },
           "countryCode": {
-            "name": "Country Code",
-            "hint": "Country Code",
-            "error": "Please enter valid Country Code"
+            "name": "Country",
+            "hint": "Country",
+            "placeholder": "Select country",
+            "error": "Please enter valid country"
           },
           "countryIdentifier": {
-            "name": "Country Identifier",
-            "hint": "Country Identifier",
-            "error": "Please enter valid Country Identifier"
+            "name": "Country identifier",
+            "hint": "Country identifier",
+            "placeholder": "Enter country identifier",
+            "error": "Please enter valid country identifier"
           },
           "identifierNumber": {
-            "name": "Identifier Number",
-            "hint": "Identifier Number",
-            "error": "Please enter valid Identifier Number"
+            "name": "Identifier number",
+            "hint": "Identifier number",
+            "placeholder": "Enter identifier number",
+            "error": "Please enter valid identifier number"
           }
         }
       },
       "success": {
-        "title": "Create {name}",
-        "description": "The changes have been successfully saved"
+        "title": "{name} information submitted for validation ",
+        "description": "Your site data is now being validated by the Cofinity-X Golden Record Service. You can track the validation status in the list on the main page. Use the 'Details' button to view or edit your data. Please note, editing your data will restart the validation process."
       },
       "error": {
         "title": "Create {name}",
         "description": "The changes could not be saved. Please try again"
+      },
+      "pageHeader": {
+        "title": "Your company",
+        "description": "View your company details and roles in Catena-X. Add site information for Cofinity-X Golden Record Service validation. Successful validated details, including BPNS and site address, will be shared with Business Partner Explorer subscribers for enhanced data quality."
+      },
+      "companyInformation": {
+        "title": "Company information"
       }
     },
     "onboardingServiceProvider": {
@@ -2468,6 +2527,8 @@
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
+
+      "saveSubmit": "Save & submit",
       "no": "No",
       "yes": "Yes",
       "next": "Next",

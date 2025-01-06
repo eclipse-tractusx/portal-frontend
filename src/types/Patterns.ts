@@ -54,6 +54,7 @@ export const Patterns = {
     /^(?!.*\s$)([\p{L}\u0E00-\u0E7F\d\p{Sc}@%*+_\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/u,
   personName: personNamePattern,
   name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
+  sitename: /^[^\s].{0,38}\S$/i,
   zipcode: /^[A-Z0-9-]{1,8}$/,
   streetNumber: /^[0-9A-Za-z- ]{1,20}$/,
   regionName: /^[0-9A-Za-z- ]{2,20}$/,
@@ -142,6 +143,8 @@ export const isExtID = (expr: string) =>
   Patterns.EXTID.test(expr) || isUUID(expr)
 export const isCompanyName = (expr: string) => Patterns.COMPANY_NAME.test(expr)
 export const isName = (expr: string) => Patterns.name.test(expr)
+export const isSiteName = (expr: string) => Patterns.sitename.test(expr)
+
 export const isCityName = isName
 export const isStreetName = isName
 export const isRegionName = (expr: string) => Patterns.regionName.test(expr)

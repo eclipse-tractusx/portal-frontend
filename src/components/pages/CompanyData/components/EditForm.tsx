@@ -150,7 +150,6 @@ export default function EditForm({
       setLoading(false)
     }
   }
-
   const getTitle = () => {
     if (newForm) {
       return isAddress
@@ -193,7 +192,9 @@ export default function EditForm({
               variant="contained"
               onClick={handleSubmit}
             >
-              {t('global.actions.confirm')}
+              {newForm
+                ? t('global.actions.save')
+                : t('global.actions.saveSubmit')}
             </Button>
           )}
           {loading && (

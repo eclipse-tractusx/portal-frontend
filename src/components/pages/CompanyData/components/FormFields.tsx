@@ -23,7 +23,7 @@ import {
   isCompanyCommercialRegNumber,
   isCountry,
   isCompanyEori,
-  isName,
+  isSiteName,
   isStreet,
   isCompanyVatID,
   isCompanyVies,
@@ -40,6 +40,7 @@ import {
   useFetchUniqueIdentifierQuery,
 } from 'features/admin/userApiSlice'
 import { SelectList } from './SelectList'
+import Grid from '@mui/material/Grid'
 
 const responseToForm = (data: CompanyDataFieldsType) => {
   const form: IHashMap<string> = {}
@@ -89,150 +90,168 @@ const UpdateForm = ({
 
   return (
     <>
-      <div style={{ marginTop: '34px' }}>
-        <ValidatingInput
-          name="siteName"
-          label={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.site.name`
-          )}
-          value={data?.siteName ?? ''}
-          validate={isName}
-          hint={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.site.hint`
-          )}
-          errorMessage={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.site.error`
-          )}
-          onValid={onChange}
-          onInvalid={onChange}
-          skipInitialValidation={newForm}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="street"
-          label={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`
-          )}
-          value={data?.street ?? ''}
-          hint={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.street.hint`
-          )}
-          validate={isStreet}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.street.error`
-          )}
-          skipInitialValidation={newForm}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="city"
-          label={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.city.name`
-          )}
-          value={data?.city ?? ''}
-          hint={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.city.hint`
-          )}
-          validate={isCity}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.city.error`
-          )}
-          skipInitialValidation={newForm}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="countryCode"
-          label={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`
-          )}
-          value={data?.countryCode ?? ''}
-          hint={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.hint`
-          )}
-          validate={isCountry}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.error`
-          )}
-          skipInitialValidation={newForm}
-        />
-      </div>
-      <div style={{ margin: '12px 0' }}>
-        <ValidatingInput
-          name="postalCode"
-          label={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.name`
-          )}
-          value={data?.postalCode ?? ''}
-          hint={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.hint`
-          )}
-          validate={isPostalCode}
-          onValid={onChange}
-          onInvalid={onChange}
-          errorMessage={t(
-            `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.error`
-          )}
-          skipInitialValidation={newForm}
-        />
-      </div>
-      {isAddress && (
-        <>
-          <div
-            style={{
-              marginTop: '-20px',
-              marginBottom: '25px',
-            }}
-          >
-            <SelectList
-              error={false}
-              helperText={t(
-                'content.companyData.address.form.countryIdentifier.hint'
-              )}
-              defaultValue={defaultIdentifier?.[0]}
-              items={identifiers}
+      <Grid container spacing={2} sx={{ marginTop: '0' }}>
+        <Grid item xs={12} md={12}>
+          <div className="cx-form-field">
+            <ValidatingInput
+              name="siteName"
               label={t(
-                'content.companyData.address.form.countryIdentifier.name'
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.site.name`
               )}
+              value={data?.siteName ?? ''}
+              validate={isSiteName}
+              errorMessage={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.site.error`
+              )}
+              onValid={onChange}
+              onInvalid={onChange}
+              skipInitialValidation={newForm}
               placeholder={t(
-                'content.companyData.address.form.countryIdentifier.name'
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.site.placeholder`
               )}
-              onChangeItem={(val) => {
-                onChange('countryIdentifier', val.label)
-              }}
-              keyTitle={'label'}
             />
           </div>
-          <div style={{ margin: '12px 0' }}>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <div className="cx-form-field">
             <ValidatingInput
-              name="identifierNumber"
+              name="street"
               label={t(
-                'content.companyData.address.form.identifierNumber.name'
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`
               )}
-              value={data?.identifierNumber ?? ''}
-              hint={t('content.companyData.address.form.identifierNumber.hint')}
-              validate={(expr) =>
-                isCompanyCommercialRegNumber(expr) ||
-                isCompanyVatID(expr) ||
-                isCompanyVies(expr) ||
-                isCompanyEori(expr)
-              }
+              value={data?.street ?? ''}
+              validate={isStreet}
               onValid={onChange}
               onInvalid={onChange}
               errorMessage={t(
-                'content.companyData.address.form.identifierNumber.error'
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.street.error`
               )}
               skipInitialValidation={newForm}
+              placeholder={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.street.placeholder`
+              )}
             />
           </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div className="cx-form-field">
+            <ValidatingInput
+              name="postalCode"
+              label={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.name`
+              )}
+              value={data?.postalCode ?? ''}
+              validate={isPostalCode}
+              onValid={onChange}
+              onInvalid={onChange}
+              errorMessage={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.error`
+              )}
+              skipInitialValidation={newForm}
+              placeholder={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.placeholder`
+              )}
+            />
+          </div>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <div className="cx-form-field">
+            <ValidatingInput
+              name="city"
+              label={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.city.name`
+              )}
+              value={data?.city ?? ''}
+              validate={isCity}
+              onValid={onChange}
+              onInvalid={onChange}
+              errorMessage={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.city.error`
+              )}
+              skipInitialValidation={newForm}
+              placeholder={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.city.placeholder`
+              )}
+            />
+          </div>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <div className="cx-form-field">
+            <ValidatingInput
+              name="countryCode"
+              label={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`
+              )}
+              value={data?.countryCode ?? ''}
+              validate={isCountry}
+              onValid={onChange}
+              onInvalid={onChange}
+              errorMessage={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.error`
+              )}
+              skipInitialValidation={newForm}
+              placeholder={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.placeholder`
+              )}
+            />
+          </div>
+        </Grid>
+      </Grid>
+
+      {isAddress && (
+        <>
+          <Grid item xs={12} md={12}>
+            <div
+              className="cx-form-field"
+              style={{
+                marginTop: '-20px',
+                marginBottom: '25px',
+              }}
+            >
+              <SelectList
+                error={false}
+                helperText={t(
+                  'content.companyData.address.form.countryIdentifier.hint'
+                )}
+                defaultValue={defaultIdentifier?.[0]}
+                items={identifiers}
+                label={t(
+                  'content.companyData.address.form.countryIdentifier.name'
+                )}
+                placeholder={t(
+                  'content.companyData.address.form.countryIdentifier.name'
+                )}
+                onChangeItem={(val) => {
+                  onChange('countryIdentifier', val.label)
+                }}
+                keyTitle={'label'}
+              />
+            </div>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <div className="cx-form-field">
+              <ValidatingInput
+                name="identifierNumber"
+                label={t(
+                  'content.companyData.address.form.identifierNumber.name'
+                )}
+                value={data?.identifierNumber ?? ''}
+                validate={(expr) =>
+                  isCompanyCommercialRegNumber(expr) ||
+                  isCompanyVatID(expr) ||
+                  isCompanyVies(expr) ||
+                  isCompanyEori(expr)
+                }
+                onValid={onChange}
+                onInvalid={onChange}
+                errorMessage={t(
+                  'content.companyData.address.form.identifierNumber.error'
+                )}
+                skipInitialValidation={newForm}
+              />
+            </div>
+          </Grid>
         </>
       )}
     </>
@@ -248,6 +267,9 @@ export const FormFields = ({
   newForm: boolean
   isAddress: boolean
 }) => {
+  console.log(
+    `content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`
+  )
   const companyData = useSelector(companyDataSelector)
 
   const [code, setCode] = useState<string>(
@@ -287,7 +309,7 @@ export const FormFields = ({
     setFormData(current)
     const formValid =
       current?.siteName &&
-      isName(current?.siteName) &&
+      isSiteName(current?.siteName) &&
       current?.street &&
       isStreet(current?.street) &&
       current?.city &&
