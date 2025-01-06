@@ -51,70 +51,33 @@ export default function SiteDetails({
       attr: t('content.companyData.site.form.countryCode.name'),
       val: companySiteData.address.physicalPostalAddress.country ?? '',
     },
+    {
+      attr: t('content.companyData.site.form.bpns.name'),
+      val: companySiteData?.legalEntity.legalEntityBpn ?? '-',
+    },
   ]
   return (
-    <Box>
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: '18px',
-          marginTop: '50px',
-          padding: '0px 10%',
-        }}
-      >
-        {t('content.companyData.companyInfo.siteTitle')}
-      </Typography>
-      <Box
-        sx={{
-          marginBottom: '50px',
-        }}
-      >
-        {siteData.map((item) => (
-          <Box
-            key={item.attr}
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              marginBottom: '30px',
-              marginTop: '30px',
-              padding: '0px 10%',
-            }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '18px',
-                width: '200px',
-              }}
-            >
-              {item.attr}
-            </Typography>
+    <Box className={'cx-company-data__details cx-company-data__details--site'}>
+      <Box className={'cx-company-data__details--heading'}>
+        <Typography variant="h3" className="heading-h2">
+          {t('content.companyData.companyInfo.siteTitle')}
+        </Typography>
+      </Box>
 
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '18px',
-                marginLeft: '20%',
-              }}
-            >
-              {item.val}
-            </Typography>
+      <Box className={'cx-company-data__details--listing'}>
+        {siteData.map((item) => (
+          <Box className={'cx-company-data__details--item'} key={item.attr}>
+            <Box className={'cx-company-data__details--left'}>
+              <Typography variant="body1">{item.attr}</Typography>
+            </Box>
+            <Box className={'cx-company-data__details--right'}>
+              <Typography variant="body1">{item.val}</Typography>
+            </Box>
           </Box>
         ))}
       </Box>
-      <Divider
-        sx={{
-          borderColor: '#111111',
-          margin: '0px 5%',
-        }}
-      />
-      <Box
-        sx={{
-          textAlign: 'center',
-          marginTop: '50px',
-        }}
-      >
+      <Divider className={'cx-company-data__details--divider'} />
+      <Box className={'cx-company-data__details--actions'}>
         <Button size="medium" onClick={onEdit}>
           {t('global.actions.edit')}
         </Button>

@@ -45,55 +45,33 @@ export default function AddressDetails() {
       key: t('content.companyData.address.form.city.name'),
       value: companyAddressData?.address?.physicalPostalAddress?.city ?? '',
     },
+    {
+      key: t('content.companyData.address.form.countryCode.name'),
+      value: companyAddressData?.address?.physicalPostalAddress?.country ?? '',
+    },
+    {
+      key: t('content.companyData.site.form.bpns.name'),
+      value: companyAddressData?.legalEntity.legalEntityBpn ?? '-',
+    },
   ]
   return (
-    <Box>
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: '18px',
-          marginTop: '50px',
-          padding: '0px 10%',
-        }}
-      >
-        {t('content.companyData.companyInfo.addressTitle')}
-      </Typography>
-      <Box
-        sx={{
-          marginBottom: '50px',
-        }}
-      >
+    <Box
+      className={'cx-company-data__details cx-company-data__details--address'}
+    >
+      <Box className={'cx-company-data__details--heading'}>
+        <Typography variant="h3" className="heading-h2">
+          {t('content.companyData.companyInfo.addressTitle')}
+        </Typography>
+      </Box>
+      <Box className={'cx-company-data__details--listing'}>
         {addressData.map((data) => (
-          <Box
-            key={data.key}
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              marginBottom: '30px',
-              marginTop: '30px',
-              padding: '0px 10%',
-            }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '18px',
-                width: '200px',
-              }}
-            >
-              {data?.key}
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '18px',
-                marginLeft: '20%',
-              }}
-            >
-              {data?.value}
-            </Typography>
+          <Box className={'cx-company-data__details--item'} key={data.key}>
+            <Box className={'cx-company-data__details--left'}>
+              <Typography variant="body1">{data?.key}</Typography>
+            </Box>
+            <Box className={'cx-company-data__details--right'}>
+              <Typography variant="body1">{data?.value}</Typography>
+            </Box>
           </Box>
         ))}
       </Box>

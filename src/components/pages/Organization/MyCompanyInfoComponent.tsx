@@ -62,8 +62,8 @@ export default function MyCompanyInfoComponent({
 
   return (
     <>
-      <Typography variant="h2" className="main-title">
-        {t('pages.organization')}
+      <Typography variant="h2" className="main-title cx-bpx__subtitle">
+        {t('content.companyData.companyInformation.title')}
       </Typography>
 
       <div className="table-section">

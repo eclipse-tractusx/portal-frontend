@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Chip, Typography } from '@catena-x/portal-shared-components'
-import { Box } from '@mui/material'
+import { Box, List, ListItem } from '@mui/material'
 import { statusSelector } from 'features/companyData/slice'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -46,37 +46,30 @@ export default function StatusInformation({
     Initial: <HourglassBottomIcon />,
     Error: <WarningAmberIcon />,
   }
+  const validationPoints: string[] = [
+    'content.companyData.site.errorGroup.error1',
+    'content.companyData.site.errorGroup.error2',
+    'content.companyData.site.errorGroup.error3',
+    'content.companyData.site.errorGroup.error4',
+    'content.companyData.site.errorGroup.error5',
+    'content.companyData.site.errorGroup.error6',
+  ]
 
   return (
     <>
       <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          marginBottom: '50px',
-          padding: '0px 10%',
-          marginTop: '50px',
-        }}
+        className={'cx-company-data__details cx-company-data__details--status'}
       >
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: '18px',
-            width: '200px',
-          }}
-        >
-          {t('content.companyData.statusInfo.title')}
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            marginLeft: '20%',
-            flexDirection: 'column',
-          }}
-        >
+        <Box className={'cx-company-data__details--left'}>
+          <Box className={'cx-company-data__details--heading'}>
+            <Typography variant="body1">
+              {t('content.companyData.statusInfo.title')}
+            </Typography>
+          </Box>
+        </Box>
+        <Box className={'cx-company-data__details--right'}>
           <Chip
+            className={'cx-company-data__details--chip'}
             icon={statusIcon[status]}
             color={
               status
@@ -87,50 +80,49 @@ export default function StatusInformation({
             label={status}
             size="medium"
             withIcon={true}
-            sx={{
-              marginRight: '0 !important',
-              margin: '0 auto',
-              width: '130px',
-              maxWidth: '150px',
-            }}
           />
+          {error && (
+            <Box className={'cx-company-data__errors'}>
+              <Box className={'cx-company-data__errors--box'}>
+                <Typography
+                  className={'cx-company-data__errors--typography'}
+                  variant="body1"
+                >
+                  {error.sharingErrorMessage}
+                </Typography>
+              </Box>
+            </Box>
+          )}
         </Box>
       </Box>
       {error && (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-            marginBottom: '50px',
-            padding: '0px 10%',
-            marginTop: '50px',
-          }}
-        >
-          <Box
-            sx={{
-              width: '200px',
-            }}
-          ></Box>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              marginLeft: '20%',
-              flexDirection: 'column',
-            }}
+        <Box className={'cx-company-data__error-block'}>
+          <Typography
+            variant="body1"
+            className={'cx-company-data__error-block--heading'}
           >
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '18px',
-                width: '200px',
-                color: '#d32f2f',
-              }}
-            >
-              {error.sharingErrorMessage}
-            </Typography>
-          </Box>
+            <span className="error-note">
+              {t('content.companyData.site.errorGroup.errorNote')}
+            </span>
+            <span className="error-desc">
+              {t('content.companyData.site.errorGroup.errorDescription')}
+            </span>
+          </Typography>
+          <List className={'cx-company-data__error-block--list'}>
+            {validationPoints.map((point, index) => (
+              <ListItem
+                key={index}
+                className={'cx-company-data__error-block--list-item'}
+              >
+                <Typography
+                  className={'cx-company-data__error-block--typography'}
+                  variant="body1"
+                >
+                  {t(point)}
+                </Typography>
+              </ListItem>
+            ))}
+          </List>
         </Box>
       )}
     </>

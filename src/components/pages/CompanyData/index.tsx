@@ -45,8 +45,8 @@ export default function CompanyData() {
     <>
       <main className="organization-main organization-main-page-container organization-main__bpx">
         <MainHeader
-          title={t('pages.organization')}
-          subTitle={t('content.organization.headlineDescription')}
+          title={t('content.companyData.pageHeader.title')}
+          subTitle={t('content.companyData.pageHeader.description')}
           headerHeight={250}
           subTitleWidth={750}
         />
@@ -77,6 +77,7 @@ export default function CompanyData() {
             handleClose={() => {
               updateOverlay()
             }}
+            description={t('content.companyData.site.description')}
             open={showOverlay.address || showOverlay.site}
             handleConfirm={() => {
               dispatch(setCompanyPageRefetch(true))

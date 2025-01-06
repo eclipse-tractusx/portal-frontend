@@ -19,9 +19,9 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
+import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import { useTranslation } from 'react-i18next'
-import LabelWithTooltips from './LabelWithTooltips'
 
 export default function CompanyInfo() {
   const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
@@ -29,39 +29,20 @@ export default function CompanyInfo() {
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        marginBottom: '30px',
-        padding: '0px 10%',
-        marginTop: '50px',
-      }}
+      className={'cx-company-data__details cx-company-data__details--status'}
     >
-      <Typography
-        variant="body1"
-        sx={{
-          fontSize: '18px',
-          width: '200px',
-        }}
-      >
-        {t('content.companyData.companyInfo.title')}
-      </Typography>
-      <Box
-        sx={{
-          marginLeft: '20%',
-        }}
-      >
-        <LabelWithTooltips
-          value={companyDetails?.shortName}
-          label={t('content.companyData.companyInfo.legalEntityNameTooltip')}
-          tooltipMsg={t('content.companyData.companyInfo.legalEntityName')}
-        />
-        <LabelWithTooltips
-          value={companyDetails?.bpn}
-          label={t('content.companyData.companyInfo.legalEntityNumberTooltip')}
-          tooltipMsg={t('content.companyData.companyInfo.legalEntityNumber')}
-        />
+      <Box className={'cx-company-data__details--left'}>
+        <Box className={'cx-company-data__details--heading'}>
+          <Typography variant="body1">
+            {t('content.companyData.companyInfo.title')}
+          </Typography>
+        </Box>
+      </Box>
+      <Box className={'cx-company-data__details--right'}>
+        <Typography variant="body1">{companyDetails?.shortName}</Typography>
+        <Typography variant="body1">
+          <CopyToClipboard text={companyDetails?.bpn} />
+        </Typography>
       </Box>
     </Box>
   )

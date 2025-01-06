@@ -46,7 +46,6 @@ export default function LabelWithTooltips({
           variant="h2"
           sx={{
             fontSize: '16px',
-            color: '#111111',
             fontWeight: '400',
             paddingRight: '10px',
           }}
@@ -73,7 +72,6 @@ export default function LabelWithTooltips({
         variant="body1"
         sx={{
           fontSize: '16px',
-          color: '#111111',
           fontWeight: '400',
           paddingRight: '10px',
         }}
