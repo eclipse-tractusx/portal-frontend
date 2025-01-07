@@ -113,6 +113,7 @@
     "nextStepSubHeading": "To test the new IdP, please do the following:",
     "step1Heading": "Klicken Sie auf die Schaltfläche „Abmelden“, um sich von Ihrem aktuellen Konto abzumelden",
     "step2Heading": "Anschließend wählen Sie auf der Login-Seite den neu erstellten Identity-Provider-Login „{{idpDisplayname}}“ aus. Und melden Sie sich mit Ihren persönlichen Zugangsdaten an, die Sie für diesen IdP verwendet haben.",
+    "note": "Please note:",
     "or": "OR",
     "successText": "If the test succeeds, <br />... commence user migration <br />... deactivate old IdP",
     "failText": "If the test fails,<br />please “sign in” with your “old” <br />Catena-X user and check the settings <br />of your new IdP. "
@@ -152,12 +153,14 @@
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
     "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
-    "desc2": "Download the user list; enhance the csv file with the unique user id (available in your own idp) and upload the csv again. With the upload of the own idp user id; the existing user accounts will get linked to the own idp user account with the login of the user on the CX platform.",
-    "desc3": "Specify their user ID (not name) at the new target IDP in the field 'UserId'",
-    "preview": "Preview User Export",
-    "download": "Download",
+    "bulkUploadHeading": "Bulk upload process",
+    "step1Heading": "Download user list as file. Please select your prefered file type:",
+    "step1Intro": "Content current userlist:",
+    "step1ButtonLabel": "Download userlist",
     "pretty": "Pretty",
     "unlinked": "Hide linked",
+    "step2Heading": "In downloaded user list:<br />Enrich each user entrie with the respective ProviderUserID",
+    "step3Heading": "Upload updated user list here:",
     "drop": {
       "intro": "Upload mapped user list with ProviderUserID",
       "title": "Drag & drop your files here",
@@ -212,7 +215,12 @@
     },
     "providerType": {
       "name": "Identity Provider Type",
-      "placeholder": "Please select a type"
+      "placeholder": "Please select a type",
+      "hint": "Select provider type for your own company or managed for a third party company",
+      "option": {
+        "OWN": "create an IdP connection to your company IdP for yourself",
+        "MANAGED": "create a managed IdP connection for a third party"
+      }
     },
     "redirectUri": {
       "name": "Redirect URL",
@@ -237,6 +245,22 @@
     "copy": {
       "hint": "click to copy"
     },
+    "company": { "name": "company", "hint": "company" },
+    "extid": { "name": "extid", "hint": "extid" },
+    "bpn": { "name": "bpn", "hint": "bpn" },
+    "country": { "name": "country", "hint": "country" },
+    "region": { "name": "region", "hint": "region" },
+    "zipcode": { "name": "zipcode", "hint": "zipcode" },
+    "city": { "name": "city", "hint": "city" },
+    "streetName": { "name": "street", "hint": "street" },
+    "streetNumber": { "name": "street no", "hint": "street no" },
+    "uniqueId": { "name": "unique id", "hint": "unique id" },
+    "uniqeIdValue": { "name": "uid value", "hint": "uid value" },
+    "providerId": { "name": "provider id", "hint": "provider id" },
+    "email": { "name": "email", "hint": "email" },
+    "firstName": { "name": "first name", "hint": "first name" },
+    "lastName": { "name": "last name", "hint": "last name" },
+    "companyRoles": { "name": "company roles", "hint": "company roles" },
     "not": "not",
     "configured": "configured",
     "enabled": "enabled",
@@ -251,16 +275,48 @@
     "status3": "disabled",
     "status4": "active"
   },
+  "osp": {
+    "steps": {
+      "one": {
+        "text": "done",
+        "title": "Create"
+      },
+      "two": {
+        "text": "done",
+        "title": "Configure"
+      },
+      "three": {
+        "text": "done",
+        "title": "Register"
+      },
+      "four": {
+        "text": "done",
+        "title": "Next Steps"
+      }
+    },
+    "register": {
+      "title": "Register Partner",
+      "desc": "Please Note: This registration form only serves as a mock, that allows to register partners. In the future this functionality is not planned to exist further. The partner registration will then happen utilizing a technical user.",
+      "error": "Error submitting registration",
+      "success": "Registration successful"
+    },
+    "register_next": {
+      "title": "Next Steps",
+      "desc": "{Description of next steps}",
+      "body1": "Registration of IDP {{id}} successful. Now do ..."
+    }
+  },
   "action": {
     "actions": "Actions",
-    "create": "Add Identity Provider",
     "createIdp": "Create IdP entry",
+    "create": "Add Identity Provider",
     "details": "Details",
     "enable": "Enable",
     "disable": "Disable",
     "delete": "Delete",
     "edit": "Edit",
     "configure": "Configure",
+    "register": "Register Partner",
     "users": "Users",
     "signout": "Sign out",
     "confirm": "Confirm",
