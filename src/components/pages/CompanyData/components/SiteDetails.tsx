@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { Button, Typography } from '@catena-x/portal-shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
+import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
 
 export default function SiteDetails({
   onEdit,
@@ -52,8 +53,8 @@ export default function SiteDetails({
       val: companySiteData.address.physicalPostalAddress.country ?? '',
     },
     {
-      attr: t('content.companyData.site.form.bpns.name'),
-      val: companySiteData?.legalEntity.legalEntityBpn ?? '-',
+      attr: t('content.companyData.site.bpns.name'),
+      val: companySiteData?.site.siteBpn ?? '-',
     },
   ]
   return (
@@ -71,7 +72,11 @@ export default function SiteDetails({
               <Typography variant="body1">{item.attr}</Typography>
             </Box>
             <Box className={'cx-company-data__details--right'}>
-              <Typography variant="body1">{item.val}</Typography>
+              {item.val === companySiteData?.site?.siteBpn ? (
+                <CopyToClipboard text={companySiteData?.site?.siteBpn} />
+              ) : (
+                <Typography variant="body1">{item.val}</Typography>
+              )}
             </Box>
           </Box>
         ))}

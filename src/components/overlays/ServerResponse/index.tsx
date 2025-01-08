@@ -21,10 +21,13 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import {
+  Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogHeader,
 } from '@catena-x/portal-shared-components'
+import { t } from 'i18next'
 
 interface ServerResponseOverlayProps {
   title: string
@@ -46,7 +49,7 @@ export const ServerResponseOverlay = ({
   const [open, setOpen] = useState<boolean>(dialogOpen)
 
   return (
-    <div>
+    <div className="cx-server-response-overlay">
       <Dialog open={open}>
         <DialogHeader
           title={title}
@@ -62,6 +65,17 @@ export const ServerResponseOverlay = ({
         <DialogContent>
           <Box>{children}</Box>
         </DialogContent>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setOpen(false)
+              if (handleCallback) handleCallback()
+            }}
+          >
+            {t('global.actions.close')}
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   )

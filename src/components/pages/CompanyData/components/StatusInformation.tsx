@@ -22,13 +22,14 @@ import { Box, List, ListItem } from '@mui/material'
 import { statusSelector } from 'features/companyData/slice'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import type {
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import DoneIcon from '@mui/icons-material/Done'
+import {
   SharingStateStatusType,
-  SharingStateType,
+  type SharingStateType,
 } from 'features/companyData/companyDataApiSlice'
+
 import { statusColorMap } from 'utils/dataMapper'
 
 export default function StatusInformation({
@@ -40,11 +41,11 @@ export default function StatusInformation({
   const status = useSelector(statusSelector)
 
   const statusIcon: Record<string, JSX.Element> = {
-    Success: <CheckCircleIcon />,
-    Pending: <HourglassBottomIcon />,
-    Ready: <HourglassBottomIcon />,
-    Initial: <HourglassBottomIcon />,
-    Error: <WarningAmberIcon />,
+    Success: <DoneIcon />,
+    Pending: <HourglassEmptyIcon />,
+    Ready: <HourglassEmptyIcon />,
+    Initial: <HourglassEmptyIcon />,
+    Error: <ErrorOutlineIcon />,
   }
   const validationPoints: string[] = [
     'content.companyData.site.errorGroup.error1',
@@ -54,7 +55,19 @@ export default function StatusInformation({
     'content.companyData.site.errorGroup.error5',
     'content.companyData.site.errorGroup.error6',
   ]
+  const statusDisplayMap: Record<SharingStateStatusType, string> = {
+    [SharingStateStatusType.Success]: 'Success',
+    [SharingStateStatusType.Ready]: 'Ready',
+    [SharingStateStatusType.Pending]: 'Processing',
+    [SharingStateStatusType.Initial]: 'Processing',
+    [SharingStateStatusType.Error]: 'Error',
+    [SharingStateStatusType.Default]: '',
+  }
 
+  function filterStatus(status: string | undefined): string {
+    if (!status) return SharingStateStatusType.Initial
+    return statusDisplayMap[status as SharingStateStatusType] ?? status
+  }
   return (
     <>
       <Box
@@ -77,7 +90,7 @@ export default function StatusInformation({
                 : 'error'
             }
             variant="filled"
-            label={status}
+            label={filterStatus(status)}
             size="medium"
             withIcon={true}
           />

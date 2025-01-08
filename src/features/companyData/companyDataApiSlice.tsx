@@ -37,6 +37,11 @@ export enum BpnType {
   Site = 'Site (S)',
 }
 
+export enum dataType {
+  Address = 'Address',
+  Site = 'Site',
+}
+
 export type CompanyDataFieldsType = {
   siteName: string | undefined | null
   street: string | undefined | null
@@ -223,6 +228,7 @@ export enum SharingStateStatusType {
   Pending = 'Pending',
   Error = 'Error',
   Initial = 'Initial',
+  Default = 'Default',
 }
 export enum ApiDataType {
   INPUTS = 'inputs',

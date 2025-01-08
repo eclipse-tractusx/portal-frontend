@@ -35,9 +35,9 @@ import {
   type CompanyAddressListProps,
   BpnType,
 } from 'features/companyData/companyDataApiSlice'
-import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import DoneIcon from '@mui/icons-material/Done'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { type GridColDef, type GridCellParams } from '@mui/x-data-grid'
 import DetailsOverlay from './DetailsOverlay'
@@ -100,7 +100,6 @@ export const CompanyAddressList = ({
           !fetchedInputIds.has(state.externalId)
       )
       .map((state) => state.externalId)
-
     if (params && params?.length > 0) {
       await inputRequest({ ids: params, page: 0, size: pageSize })
         .unwrap()
@@ -195,7 +194,7 @@ export const CompanyAddressList = ({
       )
       .filter((state) => state.externalId === params.row.externalId)
     const status = getStatus(params.row.externalId)
-    const bpnType = getBpnTypeLabel(params.row as CompanyDataType) // Get the BPN type
+    const bpnType = getBpnTypeLabel(params.row as CompanyDataType)
     setDetails(true)
     dispatch(setSelectedCompanyStatus(status))
     dispatch(setSelectedCompanyData(params.row))
@@ -206,13 +205,13 @@ export const CompanyAddressList = ({
   const renderIcon = (status: string | undefined) => {
     switch (status) {
       case SharingStateStatusType.Success:
-        return <CheckCircleIcon />
+        return <DoneIcon />
       case SharingStateStatusType.Pending:
       case SharingStateStatusType.Initial:
       case SharingStateStatusType.Ready:
-        return <HourglassBottomIcon />
+        return <HourglassEmptyIcon />
       default:
-        return <WarningAmberIcon />
+        return <ErrorOutlineIcon />
     }
   }
 
@@ -232,6 +231,20 @@ export const CompanyAddressList = ({
       : t('content.companyData.table.bpnTypeAddress')
   }
 
+  const statusDisplayMap: Record<SharingStateStatusType, string> = {
+    [SharingStateStatusType.Success]: 'Success',
+    [SharingStateStatusType.Ready]: 'Ready',
+    [SharingStateStatusType.Pending]: 'Processing',
+    [SharingStateStatusType.Initial]: 'Processing',
+    [SharingStateStatusType.Error]: 'Error',
+    [SharingStateStatusType.Default]: '',
+  }
+
+  function filterStatus(status: string | undefined): string {
+    if (!status) return SharingStateStatusType.Initial
+    return statusDisplayMap[status as SharingStateStatusType] ?? status
+  }
+
   const columns: GridColDef[] = [
     {
       field: 'site',
@@ -249,7 +262,7 @@ export const CompanyAddressList = ({
       flex: 2.5,
       valueGetter: ({ row }: { row: CompanyDataType }) =>
         row.address
-          ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''}, ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
+          ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''}${row.address.physicalPostalAddress.street?.houseNumber ? ' ' + row.address.physicalPostalAddress.street?.houseNumber : ''}, ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.city ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
           : '',
     },
     {
@@ -282,7 +295,7 @@ export const CompanyAddressList = ({
       field: 'status',
       headerName: t('content.companyData.table.status'),
       align: 'left',
-      flex: 1,
+      flex: 2,
       valueGetter: ({ row }: { row: CompanyDataType }) =>
         statusColorMap[getStatus(row.externalId) as SharingStateStatusType],
       sortable: true,
@@ -304,7 +317,7 @@ export const CompanyAddressList = ({
                   : 'error'
               }
               variant="filled"
-              label={status}
+              label={filterStatus(status)}
               size="medium"
               withIcon={true}
               sx={{
@@ -321,8 +334,8 @@ export const CompanyAddressList = ({
     {
       field: 'details',
       headerName: t('content.companyData.table.details'),
-      align: 'left',
-      flex: 1,
+      align: 'right',
+      flex: 0.7,
       hideSortIcons: true,
       renderCell: () => {
         return (
@@ -351,10 +364,10 @@ export const CompanyAddressList = ({
     initialState: { pagination: { paginationModel: { pageSize, page } } },
   }
 
-  // console.log(bpnType)
   return (
     <>
       <Table
+        className="cx-table__page-loading cx-table__compact-data"
         loading={isFetching || isOutputLoading || isInputLoading}
         hasMore={data && data.totalPages > page + 1}
         nextPage={() => {

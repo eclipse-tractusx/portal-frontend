@@ -2245,6 +2245,18 @@ p.MuiTypography-root.MuiTypography-body3.description,
   padding-right: 30px;
 }
 
+.cx-table {
+  &__compact-data {
+    .MuiDataGrid-main {
+      .MuiDataGrid-columnHeader,
+      .MuiDataGrid-cell {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+  }
+}
+
 // organization page
 .organization-main {
   .cx-table {
@@ -2362,6 +2374,16 @@ p.MuiTypography-root.MuiTypography-body3.description,
         margin-bottom: 0;
         padding: 0 10px;
         border-radius: 10px;
+
+        &:hover {
+          color: #fff !important;
+          background: #4d4d4d !important;
+
+          svg {
+            color: #fff !important;
+            fill: #fff !important;
+          }
+        }
       }
     }
 
@@ -2493,6 +2515,28 @@ p.MuiTypography-root.MuiTypography-body3.description,
     &--typography {
       font-size: 18px !important;
       color: #d32f2f !important;
+    }
+  }
+}
+
+.organization-main__bpx .bpx-section .cx-table {
+  .MuiChip-root.cx-color-default {
+    background-color: #4d4d4d !important;
+    color: #ffffff !important;
+
+    svg {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.MuiDialog-container .cx-company-data__details--right {
+  .MuiChip-colorDefault {
+    background-color: #4d4d4d !important;
+    color: #ffffff !important;
+
+    svg {
+      color: #ffffff !important;
     }
   }
 }

@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
+import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
 
 export default function AddressDetails() {
   const { t } = useTranslation()
@@ -50,8 +51,8 @@ export default function AddressDetails() {
       value: companyAddressData?.address?.physicalPostalAddress?.country ?? '',
     },
     {
-      key: t('content.companyData.site.form.bpns.name'),
-      value: companyAddressData?.legalEntity.legalEntityBpn ?? '-',
+      key: t('content.companyData.address.bpna.name'),
+      value: companyAddressData?.address?.addressBpn ?? '-',
     },
   ]
   return (
@@ -70,7 +71,13 @@ export default function AddressDetails() {
               <Typography variant="body1">{data?.key}</Typography>
             </Box>
             <Box className={'cx-company-data__details--right'}>
-              <Typography variant="body1">{data?.value}</Typography>
+              {data.value === companyAddressData?.address?.addressBpn ? (
+                <CopyToClipboard
+                  text={companyAddressData?.address?.addressBpn}
+                />
+              ) : (
+                <Typography variant="body1">{data?.value}</Typography>
+              )}
             </Box>
           </Box>
         ))}
