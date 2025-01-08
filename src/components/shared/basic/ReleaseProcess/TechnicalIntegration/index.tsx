@@ -58,6 +58,11 @@ import { ErrorType } from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
 import { ButtonLabelTypes } from '..'
 
+type RoleDesT = {
+  desEN: string
+  desDE: string
+}
+
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -68,7 +73,7 @@ export default function TechnicalIntegration() {
   const [technicalIntegrationSnackbar, setTechnicalIntegrationSnackbar] =
     useState<boolean>(false)
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
-  const [rolesDescription, setRolesDescription] = useState<string[]>([])
+  const [rolesDescription, setRolesDescription] = useState<RoleDesT[]>([])
   const appId = useSelector(appIdSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -266,6 +271,7 @@ export default function TechnicalIntegration() {
   }
 
   const csvPreview = (files: File[]) => {
+    const roleDescriptions: RoleDesT[] = []
     files
       .filter(
         (file: File) =>
@@ -288,20 +294,32 @@ export default function TechnicalIntegration() {
             .map((item) => item)
 
           if (
-            CSVCells[0] === 'roles;description\r' ||
-            CSVCells[0] === 'roles;description'
+            CSVCells[0] === 'roles;description_en;description_de\r' ||
+            CSVCells[0] === 'roles;description_en;description_de'
           ) {
             const roles = str
               ?.split('\n')
               .filter((item) => item !== '')
               .map((item) => item.substring(0, item.indexOf(';')))
-            const roleDescription = str
-              ?.split('\n')
-              .filter((item) => item !== '')
-              .map((item) => item.substring(item.indexOf(';') + 1))
+
+            const normalizedString = str.replace(/\r\n/g, '\n')
+            const lines = normalizedString.split('\n')
+
+            for (const line of lines.slice(1)) {
+              const parts = line.split(';')
+              const desEN = parts[1] || ''
+              const desDE = parts[2] || ''
+
+              if (desEN && desDE) {
+                roleDescriptions.push({
+                  desEN,
+                  desDE,
+                })
+              }
+            }
 
             setRolesPreviews(roles?.splice(1))
-            setRolesDescription(roleDescription?.splice(1))
+            setRolesDescription(roleDescriptions)
             setUploadCSVError(false)
           } else {
             setRolesPreviews([])
@@ -314,10 +332,9 @@ export default function TechnicalIntegration() {
   }
 
   const postRoles = async () => {
-    const rolesDescriptionData = rolesPreviews.map((data, i) => [
-      data,
-      rolesDescription[i],
-    ])
+    const rolesDescriptionData: [string, RoleDesT][] = rolesPreviews.map(
+      (data, i) => [data, rolesDescription[i]]
+    )
 
     const updateRolesData = {
       appId,
@@ -326,7 +343,11 @@ export default function TechnicalIntegration() {
         descriptions: [
           {
             languageCode: 'en',
-            description: item[1],
+            description: item[1]?.desEN,
+          },
+          {
+            languageCode: 'de',
+            description: item[1]?.desDE,
           },
         ],
       })),
@@ -547,9 +568,22 @@ export default function TechnicalIntegration() {
                         ),
                         color: 'white',
                         children: (
-                          <Typography variant="caption3">
-                            {rolesDescription?.[index]}
-                          </Typography>
+                          <>
+                            <Typography
+                              variant="caption3"
+                              sx={{
+                                display: 'block',
+                                marginBottom: 2,
+                              }}
+                            >
+                              {rolesDescription?.[index]?.desEN &&
+                                `EN: ${rolesDescription?.[index]?.desEN}`}
+                            </Typography>
+                            <Typography variant="caption3">
+                              {rolesDescription?.[index]?.desDE &&
+                                `DE: ${rolesDescription?.[index]?.desDE}`}
+                            </Typography>
+                          </>
                         ),
                       },
                     ]}
