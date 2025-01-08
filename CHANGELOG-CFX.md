@@ -15,6 +15,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Changes
 
+- **BP Explorer**
+
+  - Enable BPX data provisioning in your company page [PM2-2212](https://cofinity-x.atlassian.net/browse/PM2-2212)
+  - BPX data provisioning feature add [PM2-2184](https://cofinity-x.atlassian.net/browse/PM2-2184)
+
 - **Main Navigation**
 
   - New breakpoint added for the main navigation at 1699px [PM2-2072](https://cofinity-x.atlassian.net/browse/PM2-2072)

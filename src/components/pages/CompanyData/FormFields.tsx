@@ -267,9 +267,6 @@ export const FormFields = ({
   newForm: boolean
   isAddress: boolean
 }) => {
-  console.log(
-    `content.companyData.${isAddress ? 'address' : 'site'}.form.street.name`
-  )
   const companyData = useSelector(companyDataSelector)
 
   const [code, setCode] = useState<string>(

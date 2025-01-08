@@ -32,12 +32,14 @@ type StatusColorType =
   | 'info'
   | 'primary'
   | 'error'
+  | 'default'
   | undefined
 
 export const statusColorMap: Record<SharingStateStatusType, StatusColorType> = {
   [SharingStateStatusType.Success]: 'success',
-  [SharingStateStatusType.Initial]: 'warning',
-  [SharingStateStatusType.Pending]: 'info',
+  [SharingStateStatusType.Initial]: 'default',
+  [SharingStateStatusType.Pending]: 'default',
+  [SharingStateStatusType.Default]: 'default',
   [SharingStateStatusType.Ready]: 'primary',
   [SharingStateStatusType.Error]: 'error',
 }

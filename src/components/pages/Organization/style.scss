@@ -44,13 +44,17 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
     .table-section {
       display: flex;
     }
+
     .delete-btn {
       text-align: center;
+      margin-top: 50px;
       margin-bottom: 50px;
     }
+
     .certificates-section {
       .certificate-items {
         margin-top: 50px;
@@ -59,11 +63,14 @@
       }
     }
   }
+
   @media (max-width: 767px) {
     margin-top: 50px;
+
     .table-section {
       flex-wrap: wrap;
     }
+
     .table-section > * {
       width: 100%;
     }

@@ -65,9 +65,7 @@ export default function DetailsOverlay({
       <Dialog open={!edit}>
         <DialogHeader
           title={title}
-          intro={
-            <Trans i18nKey={description} components={{ linebreak: <br /> }} />
-          }
+          intro={<Trans>{description}</Trans>}
           closeWithIcon={true}
           onCloseWithIcon={handleClose}
         />
@@ -86,7 +84,7 @@ export default function DetailsOverlay({
       </Dialog>
       {edit && (
         <EditForm
-          description={t('content.companyData.site.description')}
+          description={t('content.companyData.site.editDescription')}
           isAddress={!isSite}
           handleClose={handleClose}
           open={edit}

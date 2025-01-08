@@ -50,6 +50,8 @@ export enum COLOR_PALETTE {
   WARNING_DARK = '#B95B09',
   GRAY = '#A6A6A6',
   LIGHT_GRAY = '#F6F6F6',
+  DARK_GRAY = '#A6A6A6',
+
   BOX_SHADOW = 'rgba(223, 223, 223,1)',
 }
 export enum TEXT_PALETTE {
@@ -125,13 +127,19 @@ export const paletteDefinitions = {
     light: COLOR_PALETTE.INFO_LIGHT,
     contrastText: COLOR_PALETTE.BLACK,
   },
+
   warning: {
     main: COLOR_PALETTE.WARNING,
     dark: COLOR_PALETTE.WARNING_DARK,
     light: COLOR_PALETTE.WARNING_LIGHT,
     contrastText: COLOR_PALETTE.WHITE,
   },
-
+  default: {
+    main: COLOR_PALETTE.GRAY,
+    dark: COLOR_PALETTE.LIGHT_GRAY,
+    light: COLOR_PALETTE.DARK_GRAY,
+    contrastText: COLOR_PALETTE.WHITE,
+  },
   icon: {
     icon01: '#939393',
     icon02: '#B6B6B6',

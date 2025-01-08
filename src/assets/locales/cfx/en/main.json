@@ -14,7 +14,7 @@
     "partnerNetwork": "Partner Network",
     "connector": "Connector",
     "account": "Your Account",
-    "organization": "Your Company",
+    "organization": "Your company",
     "notifications": "Notifications",
     "userManagement": "User Management",
     "idpManagement": "Identity Provider Configuration",
@@ -419,7 +419,7 @@
       }
     },
     "organization": {
-      "headlineDescription": "Here you can view all the details about your company and its roles within the Catena-X dataspace.",
+      "headlineDescription": "View your company details and roles in Catena-X. Add site information for Cofinity-X Golden Record Service validation. Successful validated details, including BPNS and site address, will be shared with Business Partner Explorer subscribers for enhanced data quality.",
       "unsubscribe": {
         "title": "Unsubscribe Business Application / Service",
         "descriptionNote": "Please note: the unsubscription is not revertible",
@@ -2198,9 +2198,9 @@
     "companyData": {
       "label": "Company Data",
       "titleAddress": "Address information",
-      "descriptionAddress": "View your address information below. Use the 'Edit' button to make changes.  <linebreak/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
+      "descriptionAddress": "View your address information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
       "titleSite": "Site information",
-      "descriptionSite": "View your site information below. Use the 'Edit' button to make changes.  <linebreak/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
+      "descriptionSite": "View your site information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
 
       "csvUploadBtn": "Upload CSV",
       "statusInfo": {
@@ -2228,7 +2228,7 @@
         "siteTitle": "Site"
       },
       "table": {
-        "title": "Sites and addresses",
+        "title": "Your Sites",
         "buttonSite": "add site",
         "buttonAddress": "add address",
         "site": "Site name",
@@ -2245,8 +2245,12 @@
       },
       "site": {
         "title": "Add new site",
+        "description": "Please enter your site information (e.g., plant, warehouse, office) below. Click 'Submit' to provide your data for the Golden Record validation process. After approval, a BPNS will be generated for access by other Catena-X participants. You can monitor the status and edit your data on the main page.",
         "editTitle": "Edit site information",
-        "description": "After saving, your data will be revalidated by the BPDM process.",
+        "editDescription": "After saving, your data will be revalidated by the BPDM process.",
+        "bpns": {
+          "name": "BPNS"
+        },
         "form": {
           "site": {
             "name": "Site name",
@@ -2295,12 +2299,6 @@
             "hint": "Identifier Number",
             "placeholder": "Enter identifier number",
             "error": "Please enter valid identifier Number"
-          },
-          "bpns": {
-            "name": "BPNS",
-            "hint": "BPNS",
-            "placeholder": "Enter BPNS",
-            "error": "Please enter valid BPNS"
           }
         },
         "errorGroup": {
@@ -2316,8 +2314,12 @@
       },
       "address": {
         "title": "Create new address",
-        "editTitle": "Edit address",
-        "description": "[Description] ... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+        "description": "Please enter your address information below. Click 'Submit' to provide your data for the Golden Record validation process. After approval, a BPNS will be generated for access by other Catena-X participants. You can monitor the status and edit your data on the main page.",
+        "editTitle": "Edit address information",
+        "editDescription": "After saving, your data will be revalidated by the BPDM process.",
+        "bpna": {
+          "name": "BPNA"
+        },
         "form": {
           "site": {
             "name": "Select company / site",

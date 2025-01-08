@@ -24,6 +24,7 @@ import { Button } from '@catena-x/portal-shared-components'
 import './style.scss'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
+import CompanyData from '../CompanyData'
 
 export default function Organization() {
   const { t } = useTranslation()
@@ -36,7 +37,7 @@ export default function Organization() {
         headerHeight={250}
         subTitleWidth={750}
       />
-      <main className="organization-main">
+      <main className="organization-main organization-main-page-container organization-main__bpx">
         <div className="organization-section">
           <MyCompanyInfoComponent />
           <div className="delete-btn">
@@ -51,6 +52,7 @@ export default function Organization() {
             </Button>
           </div>
         </div>
+        <CompanyData />
       </main>
     </>
   )

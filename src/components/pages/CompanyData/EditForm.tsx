@@ -36,6 +36,7 @@ import {
   useUpdateCompanySiteAndAddressMutation,
   type CompanyDataFieldsType,
   type SharingStateType,
+  dataType,
 } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
 import {
@@ -189,7 +190,7 @@ export default function EditForm({
               onClick={handleSubmit}
             >
               {newForm
-                ? t('global.actions.save')
+                ? t('global.actions.submit')
                 : t('global.actions.saveSubmit')}
             </Button>
           )}
@@ -219,9 +220,12 @@ export default function EditForm({
             isAddress
               ? t('content.companyData.success.title').replace(
                   '{name}',
-                  'address'
+                  dataType.Address
                 )
-              : t('content.companyData.success.title').replace('{name}', 'site')
+              : t('content.companyData.success.title').replace(
+                  '{name}',
+                  dataType.Site
+                )
           }
           intro={t('content.companyData.success.description')}
           dialogOpen={true}
@@ -240,9 +244,12 @@ export default function EditForm({
             isAddress
               ? t('content.companyData.error.title').replace(
                   '{name}',
-                  'address'
+                  dataType.Address
                 )
-              : t('content.companyData.error.title').replace('{name}', 'site')
+              : t('content.companyData.error.title').replace(
+                  '{name}',
+                  dataType.Site
+                )
           }
           intro={t('content.companyData.error.description')}
           dialogOpen={true}
