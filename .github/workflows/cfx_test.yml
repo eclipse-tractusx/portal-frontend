@@ -70,3 +70,5 @@ jobs:
           user-email: ${{ secrets.CYPRESS_USER_EMAIL }}
           user-password: ${{ secrets.CYPRESS_USER_PASSWORD }}
           environment-subdomain: 'development'
+        env:
+          CYPRESS_INSTALL_BINARY: 0
