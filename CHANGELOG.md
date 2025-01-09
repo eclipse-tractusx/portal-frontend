@@ -4,8 +4,6 @@
 
 ### Bugfixes
 
-- **User Management**
-  - filter out app permissions from user list [#1391](https://github.com/eclipse-tractusx/portal-frontend/issues/1391)
 - **Onboarding Service Provider**
   - added missing short name field osp consent form [#1341](https://github.com/eclipse-tractusx/portal-frontend/pull/1341)
 - **App Marketplace**
