@@ -133,7 +133,6 @@ export const CompanyAddressList = ({
   }
 
   useEffect(() => {
-    // refetchSharingState()
     if (refetch) {
       setInputs([])
       setOutputs([])
@@ -143,7 +142,7 @@ export const CompanyAddressList = ({
     }
     getInputItems()
     getOutputItems()
-  }, [page, pageSize])
+  }, [page, pageSize, refetch])
 
   useEffect(() => {
     setInputs([])
