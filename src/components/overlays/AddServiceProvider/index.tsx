@@ -24,10 +24,8 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  Input,
   LoadingButton,
   PageSnackbar,
-  Typography,
 } from '@catena-x/portal-shared-components'
 import { closeOverlay } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
@@ -38,17 +36,17 @@ import {
   useAddServiceProviderMutation,
   useFetchServiceProviderQuery,
 } from 'features/serviceProvider/serviceProviderApiSlice'
-import Patterns from 'types/Patterns'
+import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { setSuccessType } from 'features/serviceProvider/slice'
-import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 
 export default function AddServiceProvider() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [inputURL, setInputURL] = useState<string | null>(null)
+  const [inputURL] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [deleteLoading, setDeleteLoading] = useState(false)
-  const [UrlErrorMsg, setUrlErrorMessage] = useState('')
+  //const [deleteLoading, setDeleteLoading] = useState(false)
+  const [UrlErrorMsg] = useState('')
   const [saveErrorMsg, setSaveErrorMessage] = useState(false)
 
   const { data, refetch } = useFetchServiceProviderQuery()
@@ -58,19 +56,19 @@ export default function AddServiceProvider() {
     dispatch(setSuccessType(false))
   }, [refetch, dispatch])
 
-  const addInputURL = (value: string) => {
-    setInputURL(value ?? null)
-    if (!value) return
-    if (!Patterns.URL.test(value.trim())) {
-      setUrlErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
-    } else {
-      setUrlErrorMessage('')
-    }
-  }
+  // const addInputURL = (value: string) => {
+  //   setInputURL(value ?? null)
+  //   if (!value) return
+  //   if (!Patterns.URL.test(value.trim())) {
+  //     setUrlErrorMessage(t('content.appSubscription.pleaseEnterValidURL'))
+  //   } else {
+  //     setUrlErrorMessage('')
+  //   }
+  // }
 
   const addURL = async () => {
     if (inputURL) setLoading(true)
-    else setDeleteLoading(true)
+    // else setDeleteLoading(true)
     try {
       await addServiceProvider({ url: inputURL }).unwrap()
       dispatch(setSuccessType(true))
@@ -96,55 +94,47 @@ export default function AddServiceProvider() {
         <div className="manageInputURL">
           {data ? (
             <>
-              <div className="urlListMain">
-                <Typography variant="body2">
-                  {t('content.appSubscription.register.endpointConfigured')}
-                </Typography>
-                <div className="urlList">
-                  {data?.url ? (
-                    <>
-                      {deleteLoading ? (
-                        <CircleProgress
-                          colorVariant="primary"
-                          interval={800}
-                          iteration
-                          size={20}
-                          step={100}
-                          thickness={1}
-                          variant="indeterminate"
-                        />
-                      ) : (
-                        <DeleteIcon
-                          onClick={() => {
-                            addURL()
-                          }}
-                          className="deleteIcon"
-                        />
-                      )}
-                      <Typography variant="label2" className="urlDetail">
-                        {data.url}
-                      </Typography>
-                    </>
-                  ) : (
-                    '-'
-                  )}
-                </div>
-              </div>
-              <Input
-                label={
-                  <Typography variant="body2">
-                    {t('content.appSubscription.register.autosetupURL')}
-                  </Typography>
-                }
-                placeholder={t(
-                  'content.appSubscription.register.inputPlaceholder'
-                )}
-                onChange={(e) => {
-                  addInputURL(e.target.value)
-                }}
-                value={inputURL}
+              <ValidatingInput
+                name="autoSetupURL"
+                label={t('content.appSubscription.register.autoSetupURL.name')}
+                value={data?.url}
+                hint={t('content.appSubscription.register.autoSetupURL.hint')}
+                onValid={() => {}}
+                validate={(expr) => isURL(expr)}
               />
-              <p className="error">{UrlErrorMsg}</p>
+              <ValidatingInput
+                name="callbackUrl"
+                label={t('content.appSubscription.register.callbackUrl.name')}
+                value={data?.autoSetupCallbackUrl}
+                hint={t('content.appSubscription.register.callbackUrl.hint')}
+                errorMessage="invalid"
+                validate={(expr) => isURL(expr)}
+                onValid={() => {}}
+              />
+              <ValidatingInput
+                name="authUrl"
+                label={t('content.appSubscription.register.authUrl.name')}
+                value={data?.authUrl}
+                hint={t('content.appSubscription.register.authUrl.hint')}
+                validate={(expr) => isURL(expr)}
+                onValid={() => {}}
+              />
+              <ValidatingInput
+                name="clientId"
+                label={t('content.appSubscription.register.clientId.name')}
+                value={data?.clientId}
+                hint={t('content.appSubscription.register.clientId.hint')}
+                validate={isIDPClientID}
+                onValid={() => {}}
+              />
+              <ValidatingInput
+                name="clientSecret"
+                label={t('content.appSubscription.register.clientSecret.name')}
+                value={data?.clientSecret}
+                hint={t('content.appSubscription.register.clientSecret.hint')}
+                validate={isIDPClientSecret}
+                onValid={() => {}}
+              />
             </>
           ) : (
             <div className="progress">
