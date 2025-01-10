@@ -19,8 +19,6 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
-import { Button } from '@catena-x/portal-shared-components'
 import './Organization.scss'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
@@ -40,17 +38,6 @@ export default function Organization() {
       <main className="organization-main organization-main-page-container organization-main__bpx">
         <div className="organization-section">
           <MyCompanyInfoComponent />
-          <div className="delete-btn">
-            <Button
-              color="secondary"
-              size="small"
-              variant="outlined"
-              startIcon={<CancelOutlinedIcon />}
-              disabled
-            >
-              {t('content.organization.deleteAccount')}
-            </Button>
-          </div>
         </div>
         <CompanyData />
       </main>
