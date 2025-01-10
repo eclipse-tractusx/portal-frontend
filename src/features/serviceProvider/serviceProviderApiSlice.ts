@@ -31,6 +31,10 @@ export type ServiceProviderAPIResponse = {
   id: string
   companyId: string
   url: string
+  autoSetupCallbackUrl: string
+  authUrl: string
+  clientId: string
+  clientSecret: string
 }
 
 export type AgreementRequest = {

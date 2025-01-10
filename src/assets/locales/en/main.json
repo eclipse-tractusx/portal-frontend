@@ -1525,12 +1525,31 @@
       },
       "register": {
         "heading": "Configuration Autosetup URL",
-        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. This feature also enables operators to retrieve technical configuration elements and activate the subscription.",
+        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. \n\n This auto setup callback URL configuration feature also enables operators to retrieve technical configuration elements and activate the subscription.",
         "endpointConfigured": "Configured Provider Endpoint",
-        "autosetupURL": "Set a new endpoint URL",
         "inputPlaceholder": "...enter your setup url",
         "providerErrorMessage": "Something went wrong! Please try it later again.",
-        "providerSuccessMessage": "Details updated successfully."
+        "providerSuccessMessage": "Details updated successfully.",
+        "autoSetupURL": {
+          "name": "Auto setup URL",
+          "hint": "Enter the Auto setup URL to recieve the subscription details of user"
+        },
+        "callbackUrl": {
+          "name": "Auto setup callback URL",
+          "hint": "Enter the callback URL to recieve technical user details"
+        },
+        "authUrl": {
+          "name": "Auth URL",
+          "hint": "Enter the auth token url provided by your IdP"
+        },
+        "clientId": {
+          "name": "Client ID",
+          "hint": "Enter the client ID provided by your IdP"
+        },
+        "clientSecret": {
+          "name": "Client Secret",
+          "hint": "Enter the client secret provided by your IdP"
+        }
       },
       "activation": {
         "heading": "Activate App Subscription",
