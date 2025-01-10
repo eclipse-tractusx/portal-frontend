@@ -51,7 +51,7 @@ export const Patterns = {
     /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
   personName: personNamePattern,
   name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
-  sitename: /^[^\s].{0,38}\S$/i,
+  sitename: /^[^\s].{0,163}\S$/i,
   zipcode: /^[A-Z0-9-]{1,8}$/,
   streetNumber: /^[0-9A-Za-z- ]{1,20}$/,
   regionName: /^[0-9A-Za-z- ]{2,20}$/,
