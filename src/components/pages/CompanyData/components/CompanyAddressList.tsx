@@ -176,12 +176,31 @@ export const CompanyAddressList = ({
   }, [data])
 
   useEffect(() => {
-    const combined = [...inputs, ...outputs]
-    const uniqueCombined = Array.from(
-      new Map(combined.map((item) => [item.externalId, item])).values()
-    )
-    setCombinedRows(uniqueCombined)
-  }, [inputs, outputs])
+    if (data?.content) {
+      const combined = [...inputs, ...outputs]
+
+      const uniqueCombined = Array.from(
+        new Map(combined.map((item) => [item.externalId, item])).values()
+      )
+      const sortOrderMap = new Map(
+        data.content.map((item, index) => [item.externalId, index])
+      )
+      uniqueCombined.sort((a, b) => {
+        const getSortKey = (item: CompanyDataType) => {
+          const order = sortOrderMap.get(item.externalId) ?? Infinity
+          const date = new Date(item.createdAt ?? 0).getTime()
+          return [order, date]
+        }
+
+        const [orderA, dateA] = getSortKey(a)
+        const [orderB, dateB] = getSortKey(b)
+
+        return orderA - orderB || dateA - dateB
+      })
+
+      setCombinedRows(uniqueCombined)
+    }
+  }, [inputs, outputs, data])
 
   const getStatus = (id: string) =>
     sharingStates?.find((state) => id === state.externalId)?.sharingStateType
