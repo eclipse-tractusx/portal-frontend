@@ -21,7 +21,6 @@
     "technicalSetup": "Technical Integration",
     "connectorManagement": "Connector Management",
     "applicationRequests": "Application Requests",
-    "clearinghouseSelfDescription": "Clearinghouse Self-Description",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -440,6 +439,9 @@
       "deleteAccount": "Delete Account",
       "certificates": "Certificates/Documents"
     },
+    "datamanagement": {
+      "message": "Contents of Data Management"
+    },
     "companySubscriptions": {
       "headertitle": "App & Service Subscriptions",
       "tableTitle": "Subscribed Apps",
@@ -479,7 +481,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
@@ -492,9 +493,6 @@
       "technicalUser": {
         "heading": "Technical Details"
       }
-    },
-    "datamanagement": {
-      "message": "Contents of Data Management"
     },
     "appOverview": {
       "headerTitle": "My Apps",
@@ -1195,7 +1193,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
