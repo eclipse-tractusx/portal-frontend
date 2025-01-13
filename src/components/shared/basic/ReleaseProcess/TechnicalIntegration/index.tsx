@@ -20,11 +20,9 @@
 
 import {
   Button,
-  Checkbox,
   Chip,
   CustomAccordion,
   LoadingButton,
-  Radio,
   SelectList,
   Typography,
 } from '@catena-x/portal-shared-components'
@@ -57,6 +55,8 @@ import SnackbarNotificationWithButtons from '../components/SnackbarNotificationW
 import { ErrorType } from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
 import { ButtonLabelTypes } from '..'
+import { TechUserTable } from './TechUserTable'
+import { AddTechUserForm } from './AddTechUserForm'
 
 type RoleDesT = {
   desEN: string
@@ -175,32 +175,6 @@ export default function TechnicalIntegration() {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
-  const handleCheckedUserProfiles = (item: string, select: boolean) => {
-    if (techUserProfiles && techUserProfiles[0] === technicalUserNone) {
-      setTechUserProfiles([...[], item])
-    } else {
-      const isSelected = techUserProfiles?.includes(item)
-      let selectedProfiles: string[] = []
-      if (!isSelected && select) {
-        selectedProfiles = [...techUserProfiles, item]
-      } else if (isSelected && !select) {
-        const oldTechUserProfiles = [...techUserProfiles]
-        oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item), 1)
-        selectedProfiles = [...oldTechUserProfiles]
-      }
-      setEnableUserProfilesErrorMessage(selectedProfiles?.length === 0)
-      setTechUserProfiles(selectedProfiles)
-    }
-  }
-
-  const selectUserProfiles = (type: string, select: boolean, item: string) => {
-    if (type === 'checkbox') {
-      handleCheckedUserProfiles(item, select)
-    } else if (type === 'radio') {
-      setTechUserProfiles([...[], item])
-    }
-  }
-
   const handleSaveSuccess = (buttonLabel: string) => {
     setEnableUserProfilesErrorMessage(false)
     setEnableErrorMessage(false)
@@ -218,10 +192,7 @@ export default function TechnicalIntegration() {
     )
   }
 
-  const onIntegrationSubmit = async (
-    _submitData: unknown,
-    buttonLabel: string
-  ) => {
+  const onIntegrationSubmit = (_submitData: unknown, buttonLabel: string) => {
     if (
       buttonLabel === ButtonLabelTypes.SAVE &&
       (data?.length === 0 || techUserProfiles.length === 0)
@@ -230,43 +201,6 @@ export default function TechnicalIntegration() {
       techUserProfiles.length === 0 && setEnableUserProfilesErrorMessage(true)
     } else if (handleSaveAndProceed()) {
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED && dispatch(increment())
-    } else if (
-      !(
-        techUserProfiles.length === userProfiles.length &&
-        techUserProfiles.every((item) => userProfiles?.includes(item))
-      )
-    ) {
-      setLoading(true)
-      const updateData = {
-        appId,
-        body: [
-          {
-            technicalUserProfileId:
-              fetchTechnicalUserProfiles?.[0]?.technicalUserProfileId ?? null,
-            userRoleIds:
-              techUserProfiles && techUserProfiles[0] === technicalUserNone
-                ? []
-                : techUserProfiles,
-          },
-        ],
-      }
-
-      if (updateData)
-        await saveTechnicalUserProfiles(updateData)
-          .unwrap()
-          .then(() => {
-            handleSaveSuccess(buttonLabel)
-          })
-          .catch((err) => {
-            error(
-              t(
-                'content.apprelease.technicalIntegration.technicalUserProfileError'
-              ),
-              '',
-              err
-            )
-          })
-      setLoading(false)
     }
   }
 
@@ -393,6 +327,39 @@ export default function TechnicalIntegration() {
   const onBackIconClick = () => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
     dispatch(decrement())
+  }
+
+  const [showAddTechUser, setShowAddTechUser] = useState<boolean>(false)
+
+  const handletechUserProfiles = async (roles: string[]) => {
+    setShowAddTechUser(false)
+    setLoading(true)
+    setTechUserProfiles(roles)
+    const updateData = {
+      appId,
+      body: [
+        {
+          technicalUserProfileId:
+            fetchTechnicalUserProfiles?.[0]?.technicalUserProfileId ?? null,
+          userRoleIds: roles && roles[0] === technicalUserNone ? [] : roles,
+        },
+      ],
+    }
+    await saveTechnicalUserProfiles(updateData)
+      .unwrap()
+      .then(() => {
+        handleSaveSuccess(ButtonLabelTypes.SAVE)
+      })
+      .catch((err) => {
+        error(
+          t(
+            'content.apprelease.technicalIntegration.technicalUserProfileError'
+          ),
+          '',
+          err
+        )
+      })
+    setLoading(false)
   }
 
   return (
@@ -696,35 +663,24 @@ export default function TechnicalIntegration() {
         <Typography variant="body2" mb={4}>
           {t('content.apprelease.technicalIntegration.step2HeaderDescription')}
         </Typography>
-        <Grid container spacing={1.5} item>
-          {fetchUserRoles?.map((item) => (
-            <Grid item md={12} className="userRoles" key={item.roleId}>
-              <Checkbox
-                label={`${item.roleName} (${item.roleDescription ?? ''})`}
-                checked={techUserProfiles.some((role) => item.roleId === role)}
-                onChange={(e) => {
-                  selectUserProfiles('checkbox', e.target.checked, item.roleId)
-                }}
-                size="small"
-              />
-            </Grid>
-          ))}
-          <Grid item md={12} className="userRoles">
-            <Radio
-              name="radio-buttons"
-              size="small"
-              checked={
-                techUserProfiles && techUserProfiles[0] === technicalUserNone
-              }
-              label={`${t(
-                'content.apprelease.technicalIntegration.noneOption'
-              )}`}
-              onChange={(e) => {
-                selectUserProfiles('radio', e.target.checked, technicalUserNone)
-              }}
-            />
-          </Grid>
-        </Grid>
+        {fetchTechnicalUserProfiles && (
+          <TechUserTable
+            userProfiles={fetchTechnicalUserProfiles}
+            handleAddTechUser={() => {
+              setShowAddTechUser(true)
+            }}
+          />
+        )}
+        {fetchUserRoles && showAddTechUser && fetchTechnicalUserProfiles && (
+          <AddTechUserForm
+            userProfiles={fetchTechnicalUserProfiles[0]?.userRoles ?? []}
+            handleClose={() => {
+              setShowAddTechUser(false)
+            }}
+            handleConfirm={handletechUserProfiles}
+          />
+        )}
+
         {enableUserProfilesErrorMessage && (
           <Typography variant="body2" className="file-error-msg">
             {t(
@@ -739,12 +695,12 @@ export default function TechnicalIntegration() {
         setPageNotification={setTechnicalIntegrationNotification}
         setPageSnackbar={setTechnicalIntegrationSnackbar}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) =>
+        onSave={handleSubmit((data) => {
           onIntegrationSubmit(data, ButtonLabelTypes.SAVE)
-        )}
-        onSaveAndProceed={handleSubmit((data) =>
+        })}
+        onSaveAndProceed={handleSubmit((data) => {
           onIntegrationSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
-        )}
+        })}
         pageNotificationsObject={{
           title: t('content.apprelease.appReleaseForm.error.title'),
           description: t('content.apprelease.appReleaseForm.error.message'),
