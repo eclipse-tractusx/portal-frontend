@@ -50,12 +50,16 @@ interface DeleteConfirmationOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
   overlayData?: ConnectorDetailsType
+  // Add an ESLint exception until there is a solution
+  // eslint-disable-next-line
+  updateTableConnectorURL: any
 }
 
 const ConnectorDetailsOverlay = ({
   openDialog = false,
   handleOverlayClose,
   overlayData,
+  updateTableConnectorURL,
 }: DeleteConfirmationOverlayProps) => {
   const { t } = useTranslation()
   const [fetchSDDocument] = useFetchSdDocumentMutation()
@@ -158,6 +162,7 @@ const ConnectorDetailsOverlay = ({
           success(t('content.edcconnector.details.urlUpdatedSuccessfully'))
           refetch()
           setEnableConnectorUrl(true)
+          updateTableConnectorURL(true)
         })
         .catch(() => {
           setEnableUrlApiErrorMsg(true)
