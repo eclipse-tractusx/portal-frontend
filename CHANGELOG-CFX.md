@@ -37,6 +37,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **User management**
+
+  - CHERRY PICK Filter out app permissions from portal roles list [#1392](https://github.com/eclipse-tractusx/portal-frontend/pull/1392)
+
 - **Service detail page**
 
   - updated incorrect provider information table label [PM2-2191](https://cofinity-x.atlassian.net/browse/PM2-2191)
