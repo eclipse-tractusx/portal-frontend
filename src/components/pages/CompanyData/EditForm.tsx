@@ -95,6 +95,8 @@ export default function EditForm({
     inputParams.address.physicalPostalAddress.city = form.body.city
     inputParams.address.physicalPostalAddress.country = form.body.countryCode
     inputParams.address.physicalPostalAddress.street.name = form.body.street
+    inputParams.address.physicalPostalAddress.street.houseNumber =
+      form.body.houseNumber
     setInput(inputParams)
   }
 

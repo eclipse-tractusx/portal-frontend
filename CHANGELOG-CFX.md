@@ -19,6 +19,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Enable BPX data provisioning in your company page [PM2-2212](https://cofinity-x.atlassian.net/browse/PM2-2212)
   - BPX data provisioning feature add [PM2-2184](https://cofinity-x.atlassian.net/browse/PM2-2184)
+  - BPX data add separate HouseNumber optional field and Country list as dropdown [PM2-2265](https://cofinity-x.atlassian.net/browse/PM2-2265)
 
 - **Main Navigation**
 
