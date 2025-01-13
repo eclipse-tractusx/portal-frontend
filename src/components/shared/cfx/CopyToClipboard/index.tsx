@@ -60,7 +60,7 @@ export const CopyToClipboard = ({ text }: CopyToClipboardProps) => {
         >
           <Box
             sx={{
-              fontSize: '16px',
+              fontSize: '18px',
               marginRight: '5px',
             }}
           >
@@ -72,7 +72,7 @@ export const CopyToClipboard = ({ text }: CopyToClipboardProps) => {
             }}
             sx={{
               cursor: 'pointer',
-              fontSize: '16px',
+              fontSize: '18px',
             }}
           />
         </Box>

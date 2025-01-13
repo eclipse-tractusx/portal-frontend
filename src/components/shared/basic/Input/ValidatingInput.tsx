@@ -33,6 +33,7 @@ export type ValidatingInputProps = BasicInputProps & {
   onValid?: (name: string, value: string) => void
   onInvalid?: (name: string, value: string) => void
   skipInitialValidation?: boolean
+  required?: boolean
 }
 
 const ValidatingInput = ({
@@ -49,6 +50,7 @@ const ValidatingInput = ({
   style,
   debounceTime = 250,
   validate,
+  required = true,
   onValid,
   onInvalid,
   skipInitialValidation = false,
@@ -58,7 +60,7 @@ const ValidatingInput = ({
   const [valid, setValid] = useState<boolean>(true)
   const immediateValidate = useCallback(
     (expr: string) => {
-      const isValid = validate(expr)
+      const isValid = required ? validate(expr) : expr === '' || validate(expr)
       setColor(isValid ? Colors.success : Colors.error)
       setValid(isValid)
       if (isValid && onValid) onValid(name, expr)
@@ -78,14 +80,18 @@ const ValidatingInput = ({
         return
       }
       setCurrentValue(expr)
-      if (debounceTime === 0) immediateValidate(expr)
-      else debouncedValidate(expr)
+      if (required || expr !== '') {
+        if (debounceTime === 0) immediateValidate(expr)
+        else debouncedValidate(expr)
+      }
     },
     [debounceTime, debouncedValidate, immediateValidate]
   )
 
   useEffect(() => {
-    if (!skipInitialValidation) debouncedValidate(value)
+    if (!skipInitialValidation && (required || value !== '')) {
+      debouncedValidate(value)
+    }
   }, [value])
 
   return (

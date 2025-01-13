@@ -45,6 +45,7 @@ export enum dataType {
 export type CompanyDataFieldsType = {
   siteName: string | undefined | null
   street: string | undefined | null
+  houseNumber?: string | undefined | null
   postalCode: string | undefined | null
   city: string | undefined | null
   countryCode: string | undefined | null

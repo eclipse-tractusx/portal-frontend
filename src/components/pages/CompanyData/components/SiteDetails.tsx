@@ -23,38 +23,57 @@ import { Button, Typography } from '@catena-x/portal-shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
+import useCountryList from './useCountryList'
 
 export default function SiteDetails({
   onEdit,
 }: {
   readonly onEdit: () => void
 }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const companySiteData = useSelector(companyDataSelector)
+  const { countryListMap } = useCountryList(i18n)
   const siteData = [
     {
       attr: t('content.companyData.site.form.site.name'),
-      val: companySiteData.site.name ?? '',
+      val: companySiteData?.site?.name ?? '',
     },
     {
       attr: t('content.companyData.site.form.street.name'),
-      val: companySiteData.address.physicalPostalAddress.street?.name ?? '',
+      val: companySiteData?.address?.physicalPostalAddress?.street?.name ?? '',
+    },
+    {
+      attr: t('content.companyData.site.form.houseNumber.name'),
+      val:
+        companySiteData?.address?.physicalPostalAddress?.street?.houseNumber ??
+        '',
     },
     {
       attr: t('content.companyData.site.form.postal.name'),
-      val: companySiteData.address.physicalPostalAddress.postalCode ?? '',
+      val: companySiteData?.address?.physicalPostalAddress?.postalCode ?? '',
     },
     {
       attr: t('content.companyData.site.form.city.name'),
-      val: companySiteData.address.physicalPostalAddress.city ?? '',
+      val: companySiteData?.address?.physicalPostalAddress?.city ?? '',
     },
     {
       attr: t('content.companyData.site.form.countryCode.name'),
-      val: companySiteData.address.physicalPostalAddress.country ?? '',
+      val:
+        countryListMap.find(
+          (item) =>
+            item.code ===
+            companySiteData?.address?.physicalPostalAddress?.country
+        )?.label +
+          ', ' +
+          companySiteData?.address?.physicalPostalAddress?.country || '',
     },
     {
       attr: t('content.companyData.site.bpns.name'),
-      val: companySiteData?.site.siteBpn ?? '-',
+      val: companySiteData?.site?.siteBpn ? (
+        <CopyToClipboard text={companySiteData?.site?.siteBpn} />
+      ) : (
+        '-'
+      ),
     },
   ]
   return (
@@ -72,11 +91,7 @@ export default function SiteDetails({
               <Typography variant="body1">{item.attr}</Typography>
             </Box>
             <Box className={'cx-company-data__details--right'}>
-              {item.val === companySiteData?.site?.siteBpn ? (
-                <CopyToClipboard text={companySiteData?.site?.siteBpn} />
-              ) : (
-                <Typography variant="body1">{item.val}</Typography>
-              )}
+              <Typography variant="body1">{item.val}</Typography>
             </Box>
           </Box>
         ))}

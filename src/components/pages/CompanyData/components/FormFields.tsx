@@ -28,6 +28,7 @@ import {
   isCompanyVatID,
   isCompanyVies,
   isPostalCode,
+  isStreetNumber,
 } from 'types/Patterns'
 import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
@@ -41,11 +42,13 @@ import {
 } from 'features/admin/userApiSlice'
 import { SelectList } from './SelectList'
 import Grid from '@mui/material/Grid'
+import useCountryList from './useCountryList'
 
 const responseToForm = (data: CompanyDataFieldsType) => {
   const form: IHashMap<string> = {}
   form.siteName = data.siteName ?? ''
   form.street = data.street ?? ''
+  form.houseNumber = data.houseNumber ?? ''
   form.postalCode = data.postalCode ?? ''
   form.city = data.city ?? ''
   form.countryCode = data.countryCode ?? ''
@@ -57,6 +60,7 @@ const responseToForm = (data: CompanyDataFieldsType) => {
 const formToUpdate = (form: IHashMap<string>) => ({
   siteName: form.siteName,
   street: form.street,
+  houseNumber: form.houseNumber,
   postalCode: form.postalCode,
   city: form.city,
   countryCode: form.countryCode,
@@ -77,7 +81,8 @@ const UpdateForm = ({
   newForm: boolean
   isAddress: boolean
 }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
   const [defaultIdentifier, setDefaultIdentifier] =
     useState<UniqueIdentifier[]>()
 
@@ -87,6 +92,8 @@ const UpdateForm = ({
     )
     setDefaultIdentifier(current)
   }, [identifiers, data])
+
+  const { defaultCountry, countryListMap } = useCountryList(i18n)
 
   return (
     <>
@@ -109,11 +116,11 @@ const UpdateForm = ({
               placeholder={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.site.placeholder`
               )}
+              required={true}
             />
           </div>
         </Grid>
-
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <div className="cx-form-field">
             <ValidatingInput
               name="street"
@@ -131,10 +138,32 @@ const UpdateForm = ({
               placeholder={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.street.placeholder`
               )}
+              required={true}
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
+          <div className="cx-form-field">
+            <ValidatingInput
+              name="houseNumber"
+              label={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.houseNumber.name`
+              )}
+              value={data?.houseNumber ?? ''}
+              validate={(value) => !value || isStreetNumber(value)} // Optional validation
+              onValid={onChange}
+              onInvalid={onChange}
+              errorMessage={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.houseNumber.error`
+              )}
+              skipInitialValidation={newForm}
+              placeholder={t(
+                `content.companyData.${isAddress ? 'address' : 'site'}.form.houseNumber.placeholder`
+              )}
+            />
+          </div>
+        </Grid>
+        <Grid item xs={12} md={4}>
           <div className="cx-form-field">
             <ValidatingInput
               name="postalCode"
@@ -152,6 +181,7 @@ const UpdateForm = ({
               placeholder={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.postal.placeholder`
               )}
+              required={true}
             />
           </div>
         </Grid>
@@ -173,27 +203,35 @@ const UpdateForm = ({
               placeholder={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.city.placeholder`
               )}
+              required={true}
             />
           </div>
         </Grid>
         <Grid item xs={12} md={4}>
-          <div className="cx-form-field">
-            <ValidatingInput
-              name="countryCode"
+          <div className="cx-form-field cx-form-field__select">
+            <SelectList
+              popperHeight={165}
+              error={false}
+              defaultValue={
+                countryListMap.find((item) => item.code === data?.countryCode)
+                  ?.label
+              }
+              focused={
+                !!countryListMap.find((item) => item.code === data?.countryCode)
+                  ?.label
+              }
+              items={countryListMap}
               label={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`
               )}
-              value={data?.countryCode ?? ''}
-              validate={isCountry}
-              onValid={onChange}
-              onInvalid={onChange}
-              errorMessage={t(
-                `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.error`
-              )}
-              skipInitialValidation={newForm}
               placeholder={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.placeholder`
               )}
+              onChangeItem={(val) => {
+                onChange('countryCode', val.code)
+              }}
+              keyTitle={'label'}
+              defaultChecked={defaultCountry === 'true'}
             />
           </div>
         </Grid>
@@ -249,6 +287,7 @@ const UpdateForm = ({
                   'content.companyData.address.form.identifierNumber.error'
                 )}
                 skipInitialValidation={newForm}
+                required={false}
               />
             </div>
           </Grid>
@@ -286,6 +325,9 @@ export const FormFields = ({
     street: newForm
       ? ''
       : companyData?.address?.physicalPostalAddress?.street?.name,
+    houseNumber: newForm
+      ? ''
+      : companyData?.address?.physicalPostalAddress?.street?.houseNumber,
     postalCode: newForm
       ? ''
       : companyData?.address?.physicalPostalAddress?.postalCode,
@@ -304,15 +346,19 @@ export const FormFields = ({
     const current: IHashMap<string> = { ...formData }
     current[key] = value!
     setFormData(current)
+
     const formValid =
       current?.siteName &&
       isSiteName(current?.siteName) &&
+      (!current?.houseNumber || isStreetNumber(current?.houseNumber)) &&
       current?.street &&
       isStreet(current?.street) &&
       current?.city &&
-      isCity(current?.city)
-    current?.postalCode && isPostalCode(current?.postalCode)
-    current?.countryCode && isCountry(current?.countryCode)
+      isCity(current?.city) &&
+      current?.postalCode &&
+      isPostalCode(current?.postalCode) &&
+      current?.countryCode &&
+      isCountry(current?.countryCode)
     onValid(
       formValid
         ? {
@@ -320,6 +366,7 @@ export const FormFields = ({
           }
         : undefined
     )
+
     return false
   }
 

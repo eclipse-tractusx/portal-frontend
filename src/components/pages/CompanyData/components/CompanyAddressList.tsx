@@ -139,7 +139,7 @@ export const CompanyAddressList = ({
     }
     getInputItems()
     getOutputItems()
-  }, [page, pageSize, refetch])
+  }, [page, pageSize, inputs, outputs, refetch])
 
   useEffect(() => {
     setInputs([])
@@ -248,6 +248,11 @@ export const CompanyAddressList = ({
       ? t('content.companyData.table.bpnTypeSite')
       : t('content.companyData.table.bpnTypeAddress')
   }
+  function getBpnActualBpn(row: CompanyDataType): string {
+    return row.address?.addressType === AddressType.SiteMainAddress
+      ? row.site?.siteBpn ?? '-'
+      : row.address.addressBpn ?? '-'
+  }
 
   const statusDisplayMap: Record<SharingStateStatusType, string> = {
     [SharingStateStatusType.Success]: 'Success',
@@ -259,7 +264,6 @@ export const CompanyAddressList = ({
   }
 
   function filterStatus(status: string | undefined): string {
-    if (!status) return SharingStateStatusType.Initial
     return statusDisplayMap[status as SharingStateStatusType] ?? status
   }
 
@@ -289,8 +293,8 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.bpn'),
       flex: 1.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) =>
-        row?.legalEntity?.legalEntityBpn,
+
+      valueGetter: ({ row }: { row: CompanyDataType }) => getBpnActualBpn(row),
     },
     {
       field: 'type',

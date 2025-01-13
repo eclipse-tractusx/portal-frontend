@@ -2296,6 +2296,7 @@ p.MuiTypography-root.MuiTypography-body3.description,
         .MuiChip-root {
           min-width: 120px;
           width: auto;
+          max-width: 100%;
         }
       }
     }
@@ -2552,5 +2553,35 @@ d .notification-badge-text {
 .cx-avatar__badge {
   .MuiBadge-badge {
     background-color: #6ba13c !important;
+  }
+}
+
+.cx-form-field__select {
+  .cx-multi-select__select-input {
+    .cx-form-control {
+      > .MuiBox-root {
+        padding: 0;
+        margin: 0;
+
+        .MuiFormLabel-root {
+          margin: 0;
+          font-size: 14px;
+          line-height: 100%;
+          letter-spacing: 0;
+          font-weight: 600;
+          font-family: 'Karbon', Arial, Sans-serif, Serif;
+          color: #4d4d4d;
+          text-align: left;
+          margin-right: 10px;
+          display: flex;
+          margin-top: 10px;
+          min-height: 25px;
+        }
+      }
+
+      .MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline {
+        background-color: #eeeeee;
+      }
+    }
   }
 }

@@ -65,7 +65,6 @@ export default function StatusInformation({
   }
 
   function filterStatus(status: string | undefined): string {
-    if (!status) return SharingStateStatusType.Initial
     return statusDisplayMap[status as SharingStateStatusType] ?? status
   }
   return (

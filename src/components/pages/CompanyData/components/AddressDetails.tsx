@@ -23,10 +23,11 @@ import { Typography } from '@catena-x/portal-shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
-
+import useCountryList from './useCountryList'
 export default function AddressDetails() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const companyAddressData = useSelector(companyDataSelector)
+  const { countryListMap } = useCountryList(i18n)
   const addressData = [
     {
       key: t('content.companyData.site.form.site.name'),
@@ -35,7 +36,13 @@ export default function AddressDetails() {
     {
       key: t('content.companyData.address.form.street.name'),
       value:
-        companyAddressData?.address?.physicalPostalAddress?.street.name ?? '',
+        companyAddressData?.address?.physicalPostalAddress?.street?.name ?? '',
+    },
+    {
+      key: t('content.companyData.address.form.houseNumber.name'),
+      value:
+        companyAddressData?.address?.physicalPostalAddress?.street
+          ?.houseNumber ?? '',
     },
     {
       key: t('content.companyData.address.form.postal.name'),
@@ -48,11 +55,22 @@ export default function AddressDetails() {
     },
     {
       key: t('content.companyData.address.form.countryCode.name'),
-      value: companyAddressData?.address?.physicalPostalAddress?.country ?? '',
+      value:
+        countryListMap.find(
+          (item) =>
+            item.code ===
+            companyAddressData?.address?.physicalPostalAddress?.country
+        )?.label +
+          ', ' +
+          companyAddressData?.address?.physicalPostalAddress?.country || '',
     },
     {
       key: t('content.companyData.address.bpna.name'),
-      value: companyAddressData?.address?.addressBpn ?? '-',
+      value: companyAddressData?.address?.addressBpn ? (
+        <CopyToClipboard text={companyAddressData?.address?.addressBpn} />
+      ) : (
+        '-'
+      ),
     },
   ]
   return (
@@ -71,13 +89,7 @@ export default function AddressDetails() {
               <Typography variant="body1">{data?.key}</Typography>
             </Box>
             <Box className={'cx-company-data__details--right'}>
-              {data.value === companyAddressData?.address?.addressBpn ? (
-                <CopyToClipboard
-                  text={companyAddressData?.address?.addressBpn}
-                />
-              ) : (
-                <Typography variant="body1">{data?.value}</Typography>
-              )}
+              <Typography variant="body1">{data?.value}</Typography>
             </Box>
           </Box>
         ))}

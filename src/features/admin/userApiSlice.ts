@@ -183,6 +183,9 @@ export const apiSlice = createApi({
         url: `/api/registration/company/country/${alpha2Code}/uniqueidentifiers`,
       }),
     }),
+    fetchCountryList: builder.query<unknown, void>({
+      query: () => '/api/registration/staticdata/countrylist',
+    }),
   }),
 })
 
@@ -200,6 +203,7 @@ export const {
   useDeleteMyUserMutation,
   useResetPasswordMutation,
   useFetchUniqueIdentifierQuery,
+  useFetchCountryListQuery,
 } = apiSlice
 
 const name = 'admin/user/add'
