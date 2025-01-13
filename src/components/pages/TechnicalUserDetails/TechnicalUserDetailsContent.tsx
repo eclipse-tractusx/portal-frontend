@@ -30,7 +30,10 @@ import {
 import { OVERLAYS } from 'types/Constants'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
-import { KeyValueView } from 'components/shared/basic/KeyValueView'
+import {
+  KeyValueView,
+  type ValueItem,
+} from 'components/shared/basic/KeyValueView'
 import SyncIcon from '@mui/icons-material/Sync'
 import { useState } from 'react'
 import { error, success } from 'services/NotifyService'
@@ -45,6 +48,38 @@ export default function TechnicalUserDetailsContent({
   const [mutationRequest] = useResetCredentialMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [newData, setNewData] = useState<ServiceAccountDetail>(data)
+  const [technicalUserDetailList, setTechnicalUserDetailList] = useState<
+    Array<ValueItem>
+  >([
+    {
+      key: 'ID',
+      value: newData.serviceAccountId,
+      copy: true,
+    },
+    {
+      key: `${t('content.usermanagement.technicalUser.tableTechnicalUser')}`,
+      value: newData.name,
+      copy: true,
+    },
+    {
+      key: t('global.field.clientId'),
+      value: newData.clientId,
+      copy: true,
+      showHideButton: true,
+      masked: true,
+    },
+    {
+      key: t('global.field.authType'),
+      value: newData.authenticationType,
+    },
+    {
+      key: t('global.field.secret'),
+      value: newData.secret,
+      copy: true,
+      showHideButton: true,
+      masked: true,
+    },
+  ])
 
   const connectedData = [
     {
@@ -55,33 +90,6 @@ export default function TechnicalUserDetailsContent({
       key: t('content.usermanagement.technicalUser.detailsPage.offerLink'),
       value: newData?.offer?.name ?? 'N/A',
       copy: !!newData.offer?.name,
-    },
-  ]
-
-  const displayData = [
-    {
-      key: 'ID',
-      value: newData.serviceAccountId,
-      copy: true,
-    },
-    {
-      key: t('content.usermanagement.technicalUser.tableTechnicalUser'),
-      value: newData.name,
-      copy: true,
-    },
-    {
-      key: t('global.field.clientId'),
-      value: newData.clientId,
-      copy: true,
-    },
-    {
-      key: t('global.field.authType'),
-      value: newData.authenticationType,
-    },
-    {
-      key: t('global.field.secret'),
-      value: newData.secret,
-      copy: true,
     },
   ]
 
@@ -198,7 +206,8 @@ export default function TechnicalUserDetailsContent({
             title={t(
               'content.usermanagement.technicalUser.detailsPage.userDetails'
             )}
-            items={displayData}
+            items={technicalUserDetailList}
+            setTechnicalUserDetailList={setTechnicalUserDetailList}
           />
         </Box>
         <Box

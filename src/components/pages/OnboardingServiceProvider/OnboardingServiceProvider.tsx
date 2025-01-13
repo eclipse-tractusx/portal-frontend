@@ -49,7 +49,6 @@ import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
-import { InputType } from 'components/shared/basic/Input/BasicInput'
 import { type IHashMap } from 'types/MainTypes'
 import { success } from 'services/NotifyService'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -221,7 +220,6 @@ const OnboardingServiceProvider = () => {
                 label={t('content.onboardingServiceProvider.clientSecret.name')}
                 value={data?.clientSecret}
                 hint={t('content.onboardingServiceProvider.clientSecret.hint')}
-                type={InputType.password}
                 validate={isIDPClientSecret}
                 onValid={checkValidData}
               />

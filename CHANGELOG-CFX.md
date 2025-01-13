@@ -63,6 +63,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
   - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+  - Masking client secret [PM2-113](https://cofinity-x.atlassian.net/browse/PM2-113)
 
 - **Business Partner Explorer**
 

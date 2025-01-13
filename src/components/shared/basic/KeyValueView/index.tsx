@@ -18,19 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useState, type Dispatch, type SetStateAction } from 'react'
 import { Link } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import { success } from 'services/NotifyService'
+import { useTranslation } from 'react-i18next'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 type DataValue = string | number | JSX.Element | string[]
 
-interface ValueItem {
+export interface ValueItem {
   key?: DataValue
   value: DataValue
   copy?: boolean
+  showHideButton?: boolean
+  masked?: boolean
 }
 
 interface KeyValueViewProps {
@@ -38,61 +44,96 @@ interface KeyValueViewProps {
   title: string
   items: ValueItem | Array<ValueItem>
   editLink?: string
+  setTechnicalUserDetailList?: Dispatch<SetStateAction<ValueItem[]>>
 }
 
-const renderValue = (value: DataValue) => (
-  <Typography
-    sx={{
-      fontSize: '14px',
-      color: 'gray',
-      margin: 'auto 0px',
-      wordBreak: 'break-all',
-    }}
-  >
-    {value}
-  </Typography>
-)
+const renderValue = (value: DataValue, masked: boolean = false) => {
+  const maskedText = masked ? '*****' : value
+  return (
+    <Typography
+      sx={{
+        fontSize: '14px',
+        color: 'gray',
+        margin: 'auto 0px',
+        wordBreak: 'break-all',
+      }}
+    >
+      {maskedText}
+    </Typography>
+  )
+}
 
 export const KeyValueView = ({
   cols,
   title,
   items,
   editLink,
+  setTechnicalUserDetailList,
 }: KeyValueViewProps) => {
   const [copied, setCopied] = useState<string>('')
+  const { t } = useTranslation()
 
-  const renderValueItem = (item: ValueItem) =>
-    item.copy ? (
+  const renderValueItem = (item: ValueItem) => (
+    <Box>
       <Box
         sx={{
           cursor: 'pointer',
-          display: 'flex',
-          color: copied === item.value ? '#00cc00' : '#eeeeee',
-          ':hover': {
-            color: copied === item.value ? '#00cc00' : '#cccccc',
-          },
-        }}
-        onClick={async () => {
-          const value = item.value ?? ''
-          await navigator.clipboard.writeText(value as string)
-          setCopied(value as string)
-          setTimeout(() => {
-            setCopied('')
-          }, 1000)
+          display: 'inline-flex',
         }}
       >
-        {renderValue(item.value ?? '')}
-        <ContentCopyIcon
-          sx={{
-            marginLeft: '10px',
-          }}
-        />
+        {renderValue(item.value ?? '', item?.masked)}
+        {item?.copy && (
+          <Box
+            sx={{
+              color: copied === item.value ? '#00cc00' : '#eeeeee',
+              ':hover': {
+                color: copied === item.value ? '#00cc00' : '#cccccc',
+              },
+            }}
+            onClick={async () => {
+              const value = item.value ?? ''
+              await navigator.clipboard.writeText(value as string)
+              setCopied(value as string)
+              success(t('global.actions.copyInfoSuccessMessage'))
+              setTimeout(() => {
+                setCopied('')
+              }, 1000)
+            }}
+          >
+            <ContentCopyIcon
+              sx={{
+                marginLeft: '10px',
+              }}
+            />
+          </Box>
+        )}
+        {item.showHideButton && setTechnicalUserDetailList && (
+          <Box
+            onClick={() => {
+              if (Array.isArray(items)) {
+                const updatedItems = items.map((itm) =>
+                  itm.key === item.key ? { ...itm, masked: !itm.masked } : itm
+                )
+                setTechnicalUserDetailList(updatedItems)
+              }
+            }}
+            sx={{
+              color: item.masked ? '#eeeeee' : '#cccccc',
+              ':hover': {
+                color: '#cccccc',
+              },
+            }}
+          >
+            {item.masked ? (
+              <VisibilityOffIcon style={{ marginLeft: '8px' }} />
+            ) : (
+              <VisibilityIcon style={{ marginLeft: '8px' }} />
+            )}
+          </Box>
+        )}
       </Box>
-    ) : (
-      <Box sx={{ marginRight: '34px', textAlign: 'left' }}>
-        {renderValue(item.value)}
-      </Box>
-    )
+    </Box>
+  )
 
   return (
     <Box
