@@ -22,7 +22,7 @@ import CardWithImage from './CardWithImage'
 import CardWithoutImage from './CardWithoutImage'
 import type { ProviderProps, CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
-import '../StaticTemplate.scss'
+import '../style.scss'
 
 export default function CardGrid({
   provider,

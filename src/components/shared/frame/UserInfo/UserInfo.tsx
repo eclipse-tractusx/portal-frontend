@@ -30,7 +30,7 @@ import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import './UserInfo.scss'
+import './style.scss'
 
 export const UserInfo = ({ pages }: { pages: string[] }) => {
   const { t } = useTranslation()

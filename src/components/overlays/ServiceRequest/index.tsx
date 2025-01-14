@@ -34,7 +34,7 @@ import {
   useFetchAgreementsQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import { closeOverlay } from 'features/control/overlay'
-import './ServiceRequest.scss'
+import './style.scss'
 import { error } from 'services/NotifyService'
 import { AgreementStatus } from '../UpdateCompanyRole'
 

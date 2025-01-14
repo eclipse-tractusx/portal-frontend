@@ -19,7 +19,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
+import './style.scss'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import { useEffect, useState } from 'react'

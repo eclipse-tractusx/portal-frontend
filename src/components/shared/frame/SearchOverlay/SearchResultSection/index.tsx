@@ -23,7 +23,7 @@ import {
   searchItemSelector,
 } from 'features/info/search/slice'
 import { SearchResult } from 'components/shared/basic/SearchResult'
-import './search-result-section.scss'
+import './style.scss'
 import { Typography } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { clearSearch } from 'features/info/search/actions'

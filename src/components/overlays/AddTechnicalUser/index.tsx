@@ -43,7 +43,7 @@ import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetai
 import { ServerResponseOverlay } from '../ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import './TechnicalUserAddForm.scss'
+import './style.scss'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
