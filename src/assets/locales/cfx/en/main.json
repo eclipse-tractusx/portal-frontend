@@ -14,7 +14,7 @@
     "partnerNetwork": "Partner Network",
     "connector": "Connector",
     "account": "Your Account",
-    "organization": "Your company",
+    "organization": "Your Company",
     "notifications": "Notifications",
     "userManagement": "User Management",
     "idpManagement": "Identity Provider Configuration",
@@ -419,6 +419,7 @@
       }
     },
     "organization": {
+      "title": "Your company",
       "headlineDescription": "View your company details and roles in Catena-X. Add site information for Cofinity-X Golden Record Service validation. Successful validated details, including BPNS and site address, will be shared with Business Partner Explorer subscribers for enhanced data quality.",
       "unsubscribe": {
         "title": "Unsubscribe Business Application / Service",
@@ -2376,7 +2377,7 @@
       },
       "success": {
         "title": "{name} information submitted for validation ",
-        "description": "Your site data will now be processed by the Cofinity-X Golden Record Service. This can take up to 48 hours.  You can monitor the status on the main page. If adjustments to your data are necessary, click the 'Details' button to view or edit your information. Please note, editing your data will restart the validation process."
+        "description": "Your site data will now be processed by the Cofinity-X Golden Record Service. This can take up to 48 hours. You can monitor the status on the main page. If adjustments to your data are necessary, click the 'Details' button to view or edit your information. Please note, editing your data will restart the validation process."
       },
       "error": {
         "title": "Create {name}",
@@ -2472,6 +2473,12 @@
     }
   },
   "global": {
+    "tooltips": {
+      "copy": {
+        "success": "Text copied to clipboard!",
+        "fail": "Failed to copy text to clipboard."
+      }
+    },
     "field": {
       "first": "First Name",
       "last": "Last Name",
