@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import './SectionHeader.scss'
+import './style.scss'
 import { Typography } from '@catena-x/portal-shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 

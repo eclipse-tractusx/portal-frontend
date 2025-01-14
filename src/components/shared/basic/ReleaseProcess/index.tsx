@@ -25,7 +25,7 @@ import {
   ProcessList,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import './ReleaseProcess.scss'
+import './style.scss'
 
 type RequerementStepType = {
   neuButton: string

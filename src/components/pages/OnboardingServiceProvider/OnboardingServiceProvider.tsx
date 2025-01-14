@@ -35,7 +35,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
-import './OnboardingServiceProvider.scss'
+import './style.scss'
 import { IDPList } from '../IDPManagement/IDPList'
 import {
   type networkCompany,
@@ -47,7 +47,6 @@ import {
 } from 'features/admin/idpApiSlice'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
-import { InputType } from 'components/shared/basic/Input/BasicInput'
 import { type IHashMap } from 'types/MainTypes'
 import { success } from 'services/NotifyService'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -206,7 +205,6 @@ const OnboardingServiceProvider = () => {
                   hint={t(
                     'content.onboardingServiceProvider.clientSecret.hint'
                   )}
-                  type={InputType.password}
                   validate={isIDPClientSecret}
                   onValid={checkValidData}
                 />

@@ -35,7 +35,7 @@ import {
   type TenantUserDetails,
   useFetchUserDetailsQuery,
 } from 'features/admin/userApiSlice'
-import './UserRole.scss'
+import './style.scss'
 import {
   currentUserRoleResp,
   SuccessErrorType,

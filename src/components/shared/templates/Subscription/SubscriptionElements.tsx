@@ -36,7 +36,7 @@ import {
   useActivateSubscriptionMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
-import './Subscription.scss'
+import './style.scss'
 import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'
 import ActivateSubscriptionOverlay from 'components/pages/AppSubscription/ActivateSubscriptionOverlay'
 import { useState, useReducer } from 'react'
@@ -187,6 +187,18 @@ export default function SubscriptionElements({
           tooltipText={t('content.appSubscription.active')}
         >
           <AddTaskIcon className="statusIcon active" />
+        </Tooltips>
+      )
+    } else if (
+      subscription.offerSubscriptionStatus === SubscriptionStatus.INACTIVE
+    ) {
+      return (
+        <Tooltips
+          color="dark"
+          tooltipPlacement="top-start"
+          tooltipText={t('content.appSubscription.inactive')}
+        >
+          <HistoryIcon className="statusIcon inactive" />
         </Tooltips>
       )
     } else if (

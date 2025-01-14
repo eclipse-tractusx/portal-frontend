@@ -29,8 +29,8 @@ import {
   CircleProgress,
   Typography,
 } from '@catena-x/portal-shared-components'
-import ConnectorTypeSelection from './components/ConnectorTypeSelection'
-import ConnectorInsertForm from './components/ConnectorInsertForm'
+import ConnectorTypeSelection from './ConnectorTypeSelection'
+import ConnectorInsertForm from './ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import {
   type ConnectorType,
@@ -111,7 +111,7 @@ const AddConnectorOverlay = ({
     control,
     resetField,
     trigger,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     defaultValues: formFields,
@@ -247,7 +247,7 @@ const AddConnectorOverlay = ({
           {!loading && (
             <Button
               variant="contained"
-              disabled={selected?.id ? false : true}
+              disabled={!(selected?.id && isValid)}
               onClick={() => {
                 connectorStep === 0 && selected?.id
                   ? handleConfirmClick(selected)
