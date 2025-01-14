@@ -2201,7 +2201,6 @@
       "descriptionAddress": "View your address information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
       "titleSite": "Site information",
       "descriptionSite": "View your site information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
-
       "csvUploadBtn": "Upload CSV",
       "statusInfo": {
         "title": "Site information status"
@@ -2304,12 +2303,9 @@
         "errorGroup": {
           "errorNote": "Plese note:",
           "errorDescription": "to prevent further errors in the re-validation, please make sure that your site information:",
-          "error1": "does not contain natural person information",
-          "error2": "can be matched to a legal entity or an address",
-          "error3": "links to a clear legal entity",
-          "error4": "fulfills mandatory validation rules",
-          "error5": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
-          "error6": "does not contain unknown special characters"
+          "error1": "does not contain natural person information",
+          "error2": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
+          "error3": "does not contain unknown special characters"
         }
       },
       "address": {
@@ -2521,7 +2517,6 @@
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
-
       "saveSubmit": "Save & submit",
       "no": "No",
       "yes": "Yes",

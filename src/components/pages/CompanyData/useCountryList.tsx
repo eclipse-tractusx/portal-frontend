@@ -8,10 +8,11 @@ const useCountryList = (i18n: { language: string }) => {
   const { data: countryList } = useFetchCountryListQuery() as {
     data?: Country[]
   }
+
   const countryListMap: CountryListMap[] = countryList
     ? countryList.map((country) => {
         const englishName = country.countryName.find(
-          (name) => name.language === 'en'
+          (name) => name.language === globalLanaguage.ENGLISH
         )?.value
 
         return {
@@ -21,6 +22,18 @@ const useCountryList = (i18n: { language: string }) => {
       })
     : []
 
+  const getCountryByCode = (
+    countryList: CountryListMap[],
+    countryCode: string
+  ): CountryListMap | undefined => {
+    return (
+      countryList.find((country) => country.code === countryCode) ?? {
+        label: '',
+        code: '',
+      }
+    )
+  }
+
   useEffect(() => {
     const index = i18n.language === globalLanaguage.GERMAN ? 0 : 1
 
@@ -28,7 +41,11 @@ const useCountryList = (i18n: { language: string }) => {
     setDefaultCountry(country?.code ?? '')
   }, [i18n.language, countryListMap])
 
-  return { defaultCountry, countryListMap }
+  const selectedCountry = (countryCode: string): CountryListMap | undefined => {
+    return getCountryByCode(countryListMap, countryCode)
+  }
+
+  return { defaultCountry, countryListMap, selectedCountry }
 }
 
 export default useCountryList

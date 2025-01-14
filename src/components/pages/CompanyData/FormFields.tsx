@@ -93,7 +93,8 @@ const UpdateForm = ({
     setDefaultIdentifier(current)
   }, [identifiers, data])
 
-  const { defaultCountry, countryListMap } = useCountryList(i18n)
+  const { countryListMap, selectedCountry } = useCountryList(i18n)
+  const matchedCountry = selectedCountry(data?.countryCode ?? '')
 
   return (
     <>
@@ -212,14 +213,7 @@ const UpdateForm = ({
             <SelectList
               popperHeight={165}
               error={false}
-              defaultValue={
-                countryListMap.find((item) => item.code === data?.countryCode)
-                  ?.label
-              }
-              focused={
-                !!countryListMap.find((item) => item.code === data?.countryCode)
-                  ?.label
-              }
+              defaultValue={matchedCountry ?? ''}
               items={countryListMap}
               label={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.countryCode.name`
@@ -231,7 +225,6 @@ const UpdateForm = ({
                 onChange('countryCode', val.code)
               }}
               keyTitle={'label'}
-              defaultChecked={defaultCountry === 'true'}
             />
           </div>
         </Grid>
