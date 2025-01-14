@@ -50,7 +50,7 @@ const ValidatingInput = ({
   style,
   debounceTime = 250,
   validate,
-  required = true,
+  required,
   onValid,
   onInvalid,
   skipInitialValidation = false,
@@ -80,7 +80,7 @@ const ValidatingInput = ({
         return
       }
       setCurrentValue(expr)
-      if (required || expr !== '') {
+      if (required ?? expr !== '') {
         if (debounceTime === 0) immediateValidate(expr)
         else debouncedValidate(expr)
       }
@@ -89,7 +89,7 @@ const ValidatingInput = ({
   )
 
   useEffect(() => {
-    if (!skipInitialValidation && (required || value !== '')) {
+    if (!skipInitialValidation && (required ?? value !== '')) {
       debouncedValidate(value)
     }
   }, [value])
@@ -107,6 +107,7 @@ const ValidatingInput = ({
         disabled,
         toggleHide,
         errorMessage,
+        required,
       }}
       {...(color === Colors.error ? { errorMessage } : {})}
       style={{

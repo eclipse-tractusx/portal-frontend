@@ -2560,6 +2560,19 @@ d .notification-badge-text {
   }
 }
 
+.cx-multi-select__select-input {
+  &--required {
+    .MuiFormLabel-root {
+      &::after {
+        content: '*';
+        color: #d32f2f;
+        font-size: 14px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
 .cx-form-field__select {
   .cx-multi-select__select-input {
     .cx-form-control {

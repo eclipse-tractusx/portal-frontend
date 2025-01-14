@@ -51,6 +51,7 @@ export type BasicInputProps = {
   errorMessage?: string
   style?: React.CSSProperties
   valid?: boolean
+  required?: boolean
 }
 
 const BasicInputStyle = {
@@ -81,6 +82,7 @@ const BasicInput = ({
   errorMessage,
   style,
   valid,
+  required,
 }: BasicInputProps) => {
   const ref = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState<boolean>(type === InputType.password)
@@ -111,6 +113,17 @@ const BasicInput = ({
             sx={{ textAlign: 'left', marginRight: '10px', color: Colors.main }}
           >
             {label}
+            {required && (
+              <span
+                style={{
+                  color: Colors.error,
+                  marginLeft: '5px',
+                  fontSize: '14px',
+                }}
+              >
+                *
+              </span>
+            )}
           </Typography>
         )}
         {hint && (

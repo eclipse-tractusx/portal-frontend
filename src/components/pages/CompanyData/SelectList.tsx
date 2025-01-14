@@ -38,6 +38,7 @@ interface SelectListProps extends Omit<TextFieldProps, 'variant'> {
   noOptionsText?: string
   defaultValue?: unknown
   disableClearable?: boolean
+  required?: boolean
   // eslint-disable-next-line
   onChangeItem: (items: any) => void
 }
@@ -59,6 +60,7 @@ export const SelectList = ({
   clearText = 'Clear',
   noOptionsText = 'No Options',
   onChangeItem,
+  required,
 }: SelectListProps) => {
   const selectHeight = popperHeight ? `${popperHeight}px` : 'auto'
   // Add an ESLint exception until there is a solution
@@ -75,7 +77,7 @@ export const SelectList = ({
 
   return (
     <Autocomplete
-      className="cx-select-list"
+      className="cx-select-list cx-multi-select__select-input--required"
       id="singleSelectList"
       sx={{ width: '100%' }}
       clearText={clearText}
@@ -113,6 +115,7 @@ export const SelectList = ({
             error={error}
             disabled={disabled}
             keyTitle={keyTitle}
+            required={required}
           />
         )
       }}
