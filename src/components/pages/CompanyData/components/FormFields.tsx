@@ -161,6 +161,7 @@ const UpdateForm = ({
               placeholder={t(
                 `content.companyData.${isAddress ? 'address' : 'site'}.form.houseNumber.placeholder`
               )}
+              required={false}
             />
           </div>
         </Grid>
@@ -225,6 +226,7 @@ const UpdateForm = ({
                 onChange('countryCode', val.code)
               }}
               keyTitle={'label'}
+              required={true}
             />
           </div>
         </Grid>
