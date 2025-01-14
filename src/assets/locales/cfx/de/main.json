@@ -420,6 +420,7 @@
       }
     },
     "organization": {
+      "title": "Your company",
       "headlineDescription": "Hier können Sie alle Details zu Ihrem Unternehmen und seinen Rollen innerhalb des Catena-X-Datenraums einsehen.",
       "unsubscribe": {
         "title": "Geschäftsanwendung/Dienst abbestellen",

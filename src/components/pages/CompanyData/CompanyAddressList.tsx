@@ -39,7 +39,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import DoneIcon from '@mui/icons-material/Done'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { type GridColDef, type GridCellParams } from '@mui/x-data-grid'
+import { type GridColDef } from '@mui/x-data-grid'
 import DetailsOverlay from './DetailsOverlay'
 import {
   companyRefetch,
@@ -54,6 +54,7 @@ import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import UploadIcon from '@mui/icons-material/Upload'
 import dayjs from 'dayjs'
+import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -208,17 +209,17 @@ export const CompanyAddressList = ({
   const getStatus = (id: string) =>
     sharingStates?.find((state) => id === state.externalId)?.sharingStateType
 
-  const onRowClick = (params: GridCellParams) => {
+  const onRowClick = (row: CompanyDataType) => {
     const sharingStateInfo = sharingStates
       ?.filter(
         (state) => state.sharingStateType === SharingStateStatusType.Error
       )
-      .filter((state) => state.externalId === params.row.externalId)
-    const status = getStatus(params.row.externalId)
-    const bpnType = getBpnTypeLabel(params.row as CompanyDataType)
+      .filter((state) => state.externalId === row.externalId)
+    const status = getStatus(row.externalId)
+    const bpnType = getBpnTypeLabel(row as CompanyDataType)
     setDetails(true)
     dispatch(setSelectedCompanyStatus(status))
-    dispatch(setSelectedCompanyData(params.row))
+    dispatch(setSelectedCompanyData(row))
     if (sharingStateInfo) dispatch(setSharingStateInfo(sharingStateInfo[0]))
     setBpnType(bpnType)
   }
@@ -297,7 +298,12 @@ export const CompanyAddressList = ({
       headerName: t('content.companyData.table.bpn'),
       flex: 1.5,
 
-      valueGetter: ({ row }: { row: CompanyDataType }) => getBpnActualBpn(row),
+      renderCell: ({ row }: { row: CompanyDataType }) =>
+        getBpnActualBpn(row) !== '-' ? (
+          <CopyToClipboard text={getBpnActualBpn(row)} />
+        ) : (
+          '-'
+        ),
     },
     {
       field: 'type',
@@ -362,12 +368,12 @@ export const CompanyAddressList = ({
       align: 'right',
       flex: 0.7,
       hideSortIcons: true,
-      renderCell: () => {
+      renderCell: ({ row }: { row: CompanyDataType }) => {
         return (
           <IconButton
             color="secondary"
             onClick={() => {
-              // do nothing
+              onRowClick(row)
             }}
           >
             <ArrowForwardIcon />
@@ -437,7 +443,8 @@ export const CompanyAddressList = ({
         // getRowId={(row: CompanyDataType) => row.externalId}
         rows={combinedRows}
         columns={columns}
-        onCellClick={onRowClick}
+        onCellClick={() => {}}
+        disableRowSelectionOnClick
         error={errorObj.status === 0 ? null : errorObj}
         disableColumnMenu
       />

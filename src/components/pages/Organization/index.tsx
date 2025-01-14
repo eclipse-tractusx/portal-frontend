@@ -30,7 +30,7 @@ export default function Organization() {
   return (
     <>
       <MainHeader
-        title={t('pages.organization')}
+        title={t('content.organization.title')}
         subTitle={t('content.organization.headlineDescription')}
         headerHeight={250}
         subTitleWidth={750}

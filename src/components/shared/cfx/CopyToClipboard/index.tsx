@@ -17,10 +17,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { PageSnackbar } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import { Box } from '@mui/material'
-import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import { Box, Tooltip } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 
 interface CopyToClipboardProps {
@@ -28,24 +27,28 @@ interface CopyToClipboardProps {
 }
 
 export const CopyToClipboard = ({ text }: CopyToClipboardProps) => {
-  const [copySuccess, setCopySuccess] = useState<boolean | null>(null)
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const { t } = useTranslation()
+
+  const [tooltipOpen, setTooltipOpen] = useState(false)
+  const [tooltipMessage, setTooltipMessage] = useState('')
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text).then(
       () => {
-        setCopySuccess(true)
-        setSnackbarOpen(true)
+        setTooltipMessage(t('global.tooltips.copy.success'))
+        setTooltipOpen(true)
+        setTimeout(() => {
+          setTooltipOpen(false)
+        }, 1000)
       },
       () => {
-        setCopySuccess(false)
-        setSnackbarOpen(true)
+        setTooltipMessage(t('global.tooltips.copy.fail'))
+        setTooltipOpen(true)
+        setTimeout(() => {
+          setTooltipOpen(false)
+        }, 1000)
       }
     )
-  }
-
-  const handleCloseSnackbar = () => {
-    setSnackbarOpen(false)
   }
 
   return (
@@ -66,33 +69,24 @@ export const CopyToClipboard = ({ text }: CopyToClipboardProps) => {
           >
             {text}
           </Box>
-          <ContentCopyIcon
-            onClick={() => {
-              handleCopy(text)
-            }}
-            sx={{
-              cursor: 'pointer',
-              fontSize: '18px',
-            }}
-          />
+          <Tooltip
+            title={tooltipMessage}
+            open={tooltipOpen}
+            placement="right"
+            disableHoverListener
+          >
+            <ContentCopyIcon
+              onClick={() => {
+                handleCopy(text)
+              }}
+              sx={{
+                cursor: 'pointer',
+                fontSize: '18px',
+              }}
+            />
+          </Tooltip>
         </Box>
       )}
-
-      {/* Snackbar for feedback */}
-      <PageSnackbar
-        open={snackbarOpen}
-        onCloseNotification={handleCloseSnackbar}
-        severity={
-          copySuccess ? SuccessErrorType.SUCCESS : SuccessErrorType.ERROR
-        }
-        description={
-          copySuccess
-            ? 'Text copied to clipboard!'
-            : 'Failed to copy text to clipboard.'
-        }
-        showIcon={true}
-        autoClose={true}
-      />
     </>
   )
 }
