@@ -51,9 +51,6 @@ export default function StatusInformation({
     'content.companyData.site.errorGroup.error1',
     'content.companyData.site.errorGroup.error2',
     'content.companyData.site.errorGroup.error3',
-    'content.companyData.site.errorGroup.error4',
-    'content.companyData.site.errorGroup.error5',
-    'content.companyData.site.errorGroup.error6',
   ]
   const statusDisplayMap: Record<SharingStateStatusType, string> = {
     [SharingStateStatusType.Success]: 'Success',
