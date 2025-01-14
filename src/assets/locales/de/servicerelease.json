@@ -121,6 +121,8 @@
     "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceOverview": {
+    "headerTitle": "Service Overview - Own managed service offers",
+    "inputPlaceholder": "Suchen Sie nach Services",
     "filter": {
       "all": "Alle",
       "active": "Aktiv",
@@ -128,8 +130,6 @@
       "wip": "In Arbeit",
       "inreview": "wird überprüft"
     },
-    "headerTitle": "Service Overview - Own managed service offers",
-    "inputPlaceholder": "Suchen Sie nach Services",
     "addbtn": "Registrieren Sie Ihre Services",
     "submenuNotAvailable": "Untermenü ist nicht verfügbar.",
     "sortOptions": {
