@@ -360,6 +360,9 @@ const EdcConnector = () => {
           setOpenDetailsOverlay(false)
         }}
         overlayData={overlayData}
+        updateTableConnectorURL={(data: boolean) => {
+          data && setRefresh(Date.now())
+        }}
       />
       {deleteConnectorConfirmModalOpen && (
         <DeleteConfirmationOverlay
