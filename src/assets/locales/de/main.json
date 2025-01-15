@@ -792,7 +792,7 @@
         "uniqueid": "Eindeutige ID",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Member",
+        "cxparticipant": "Aktiver Teilnehmer",
         "address": "Anschrift",
         "identifiers": "Identifiers"
       },
