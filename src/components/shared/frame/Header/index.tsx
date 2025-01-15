@@ -216,7 +216,7 @@ export const Header = ({
           <MainNavigation
             items={menu}
             component={NavLink}
-            activeMenu={activeMenuBucket}
+            activePathname={activeMenuBucket}
             navigationUnstyled={true}
           >
             <Link to={'/'} className="logo">
