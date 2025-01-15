@@ -50,8 +50,8 @@ import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import { COMPANY_ROLES, HELP_LINK, ROLES } from 'types/Constants'
 import { getCompanyRoles } from 'services/CompanyService'
 import AccessService, { userHasPortalRole } from 'services/AccessService'
-import { ImageReferences } from 'types/ImageReferences'
 import { setIsHeaderNote } from 'features/home/slice'
+import { Logo } from '../Logo'
 
 export const Header = ({
   main,
@@ -220,10 +220,7 @@ export const Header = ({
             navigationUnstyled={true}
           >
             <Link to={'/'} className="logo">
-              <img
-                src={ImageReferences.logo.url}
-                alt={ImageReferences.logo.alt}
-              />
+              <Logo />
             </Link>
             <div className="d-flex">
               <div
@@ -253,10 +250,7 @@ export const Header = ({
         <div className="mobileNav">
           <div className="mobileHeader">
             <Link to={'/'} className="logo-mobile">
-              <img
-                src={ImageReferences.logoMobile.url}
-                alt={ImageReferences.logoMobile.alt}
-              />
+              <Logo />
             </Link>
           </div>
           <div className="mobileHeaderRight">

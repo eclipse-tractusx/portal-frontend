@@ -18,12 +18,9 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { NavLink } from 'react-router-dom'
 import { Image } from '@catena-x/portal-shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 
 export const Logo = () => (
-  <NavLink to="/">
-    <Image src={`${getAssetBase()}/images/logos/cx-text.svg`} />
-  </NavLink>
+  <Image src={`${getAssetBase()}/images/logos/cx-text.svg`} />
 )
