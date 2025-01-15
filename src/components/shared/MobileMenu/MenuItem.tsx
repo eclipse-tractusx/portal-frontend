@@ -132,7 +132,6 @@ export const MenuItem = ({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-
           typography: 'body2',
           textDecoration: 'none',
           whiteSpace: 'nowrap',
