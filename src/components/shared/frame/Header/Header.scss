@@ -120,14 +120,9 @@ header {
   display: block;
 }
 
-.mobile-search-icon {
-  display: block;
-}
-
 .mobileNav {
   display: flex;
   justify-content: space-between;
-  position: static;
   z-index: 999;
   width: 100%;
   margin-top: 0;
@@ -135,7 +130,6 @@ header {
   background: #fff;
   padding: 10px 5px;
   border-bottom: 2px solid #f6f6f6;
-
   position: fixed;
   top: 0;
   left: auto;
@@ -205,6 +199,7 @@ header {
 }
 
 .mobile-search-icon {
+  display: block;
   margin-right: 10px;
   color: #d31184;
   position: relative;
