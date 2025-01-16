@@ -53,14 +53,17 @@ export default function StatusInformation({
     'content.companyData.site.errorGroup.error3',
   ]
   const statusDisplayMap: Record<SharingStateStatusType, string> = {
-    [SharingStateStatusType.Success]: 'Success',
-    [SharingStateStatusType.Ready]: 'Ready',
-    [SharingStateStatusType.Pending]: 'Processing',
-    [SharingStateStatusType.Initial]: 'Processing',
-    [SharingStateStatusType.Error]: 'Error',
+    [SharingStateStatusType.Success]: t('content.companyData.status.success'),
+    [SharingStateStatusType.Ready]: t('content.companyData.status.ready'),
+    [SharingStateStatusType.Pending]: t(
+      'content.companyData.status.processing'
+    ),
+    [SharingStateStatusType.Initial]: t(
+      'content.companyData.status.processing'
+    ),
+    [SharingStateStatusType.Error]: t('content.companyData.status.error'),
     [SharingStateStatusType.Default]: '',
   }
-
   function filterStatus(status: string | undefined): string {
     return statusDisplayMap[status as SharingStateStatusType] ?? status
   }

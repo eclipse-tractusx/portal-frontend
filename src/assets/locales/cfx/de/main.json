@@ -420,8 +420,8 @@
       }
     },
     "organization": {
-      "title": "Your company",
-      "headlineDescription": "Hier können Sie alle Details zu Ihrem Unternehmen und seinen Rollen innerhalb des Catena-X-Datenraums einsehen.",
+      "title": "Ihr Unternehmen",
+      "headlineDescription": "Hier finden Sie Ihre Unternehmensdaten und Catena-X Rollen. Fügen Sie Standortdaten hinzu, die durch den Cofinity-X Golden Record Service validiert werden. Erfolgreich verifizierte Adressen sowie deren BPNS werden mit Business Partner Explorer-Abonnenten geteilt.",
       "unsubscribe": {
         "title": "Geschäftsanwendung/Dienst abbestellen",
         "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
@@ -690,12 +690,12 @@
         "clientId": "Client-ID Ihres technischen Benutzers",
         "secret": "Geheimnis",
         "section": {
-          "text1": "*iatp.sts.oauth.token_url: der Token-Endpunkt der dezentralen Identitätsverwaltungsinstanz.",
-          "text2": "*iatp.sts.oauth.client.id: Client-ID des technischen Benutzers Ihres technischen Benutzers für den spezifischen Connector.",
+          "text1": "*iatp.sts.oauth.token_url: der Token-Endpunkt der dezentralen Identitätsverwaltungsinstanz.",
+          "text2": "*iatp.sts.oauth.client.id: Client-ID des technischen Benutzers Ihres technischen Benutzers für den spezifischen Connector.",
           "text3": "Stellen Sie sicher, dass Sie die technischen Benutzer trennen – jeder Connector ist ein technischer Benutzer.",
-          "text4": "*iatp.sts.oauth.client.secret_alias: Alias, unter dem Sie Ihren DIM-Client gespeichert haben",
+          "text4": "*iatp.sts.oauth.client.secret_alias: Alias, unter dem Sie Ihren DIM-Client gespeichert haben",
           "text5": "Geheimnis im Tresor. Im Tresor sollte das Geheimnis des oben definierten technischen Benutzers gespeichert werden.",
-          "text6": "*iatp.sts.dim.url: Basis-URL Ihrer dezentralen Identitätsverwaltungsinstanz."
+          "text6": "*iatp.sts.dim.url: Basis-URL Ihrer dezentralen Identitätsverwaltungsinstanz."
         }
       },
       "helpText": "Get some help",
@@ -2232,11 +2232,17 @@
       "label": "Company Data",
       "titleAddress": "Address information",
       "descriptionAddress": "View your address information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
-      "titleSite": "Site information",
-      "descriptionSite": "View your site information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
+      "titleSite": "Standort Informationen",
+      "descriptionSite": "Hier sehen Sie alle Standort Informationen. Klicken Sie „Bearbeiten“, um Änderungen vorzunehmen. <br/>Hinweis: Nach dem Speichern werden Ihre Daten erneut vom Golden Record Service überprüft.",
       "csvUploadBtn": "Upload CSV",
       "statusInfo": {
-        "title": "Status Information"
+        "title": "Standort Information Status"
+      },
+      "status": {
+        "success": "Bestätigt",
+        "processing": "Bearbeitung",
+        "error": "Fehler",
+        "ready": "Bereit"
       },
       "upload": {
         "title": "Upload CSV",
@@ -2251,32 +2257,32 @@
         "downloadSuccess": "CSV template download successfully"
       },
       "companyInfo": {
-        "title": "Legal entity information",
+        "title": "Juristische Einheit Informationen",
         "legalEntityName": "Legal Entity Name",
         "legalEntityNumber": "Legal Entity Number",
         "legalEntityNameTooltip": "Legal Entity Name",
         "legalEntityNumberTooltip": "Legal Entity Number",
         "addressTitle": "Address",
-        "siteTitle": "Site"
+        "siteTitle": "Standort Informationen"
       },
       "table": {
-        "title": "Your Sites",
-        "buttonSite": "add site",
+        "title": "Ihre Standorte",
+        "buttonSite": "Standort hinzufügen",
         "buttonAddress": "add address",
-        "site": "Site name",
-        "location": "Location",
+        "site": "Standort Name",
+        "location": "Standort",
         "bpn": "BPN",
-        "processDate": "Process date",
+        "processDate": "Vorgangsdatum",
         "bpnTypeSite": "Site (S)",
         "bpnTypeAddress": "Address (A)",
         "search": "search address / site",
         "noRowsMsg": "No site added yet. After submitting site information, data will be validated by the Cofinity-X Golden Record Service. ",
-        "type": "BPN Type",
+        "type": "BPN Typ",
         "status": "Status",
         "details": "Details"
       },
       "site": {
-        "title": "Add new site",
+        "title": "Neuen Standort hinzufügen",
         "description": "Please enter your site information (e.g., plant, warehouse, office) below. Click 'Submit' to provide your data for the Golden Record validation process. After approval, a BPNS will be generated for access by other Catena-X participants. You can monitor the status and edit your data on the main page.",
         "editTitle": "Edit site information",
         "editDescription": "After saving, your data will be revalidated by the BPDM process.",
@@ -2285,40 +2291,40 @@
         },
         "form": {
           "site": {
-            "name": "Site name",
-            "hint": "Site name",
-            "placeholder": "Enter site name",
-            "error": "Please enter valid site name"
+            "name": "Standort Name",
+            "hint": "Standort Name",
+            "placeholder": "Standort Name eingeben",
+            "error": "Please enter valid Standort Name"
           },
           "street": {
-            "name": "Street name",
-            "hint": "Street name",
-            "placeholder": "Enter street name",
-            "error": "Please enter valid street name"
+            "name": "Straße",
+            "hint": "Straße",
+            "placeholder": "Straßenname eingeben",
+            "error": "Please enter valid Straße"
           },
           "houseNumber": {
-            "name": "House number",
-            "hint": "House number",
-            "placeholder": "Enter house number",
-            "error": "Please enter valid house number"
+            "name": "Hausnummer",
+            "hint": "Hausnummer",
+            "placeholder": "Hausnummer eingeben",
+            "error": "Bitte gültige Hausnummer eingeben"
           },
           "postal": {
-            "name": "Postal code",
-            "hint": "Postal code",
-            "placeholder": "Enter postal code",
-            "error": "Please enter valid postal code"
+            "name": "PLZ",
+            "hint": "PLZ",
+            "placeholder": "PLZ eingeben",
+            "error": "Bitte gültige Postleitzahl eingeben"
           },
           "city": {
-            "name": "City",
-            "hint": "City",
-            "placeholder": "Enter city",
-            "error": "Please enter valid city"
+            "name": "Stadt",
+            "hint": "Stadt",
+            "placeholder": "Stadt eingeben",
+            "error": "Bitte gültige Stadt eingeben"
           },
           "countryCode": {
-            "name": "Country",
-            "hint": "Country",
-            "placeholder": "Select country",
-            "error": "Please enter valid country"
+            "name": "Land",
+            "hint": "Land",
+            "placeholder": "Land auswählen",
+            "error": "Bitte gültiges Land auswählen"
           },
           "countryIdentifier": {
             "name": "Country identifier",
@@ -2330,16 +2336,16 @@
             "name": "Identifier Number",
             "hint": "Identifier Number",
             "placeholder": "Enter identifier number",
-            "error": "Please enter valid identifier Number"
+            "error": "Bitte gültige Identifikationsnummer eingeben"
           }
         }
       },
       "errorGroup": {
-        "errorNote": "Plese note:",
-        "errorDescription": "to prevent further errors in the re-validation, please make sure that your site information:",
-        "error1": "does not contain natural person information",
-        "error2": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
-        "error3": "does not contain unknown special characters"
+        "errorNote": "Hinweis:",
+        "errorDescription": "um weitere Fehler bei der erneuten Validierung zu vermeiden, stellen Sie bitte sicher, dass Ihre Standortinformationen:",
+        "error1": "keine Informationen über natürliche Personen enthalten",
+        "error2": "nicht aus einem Land stammen, das im Golden Record-Prozess nicht verarbeitet werden darf (Beispiel: Brasilien)",
+        "error3": "keine unbekannten Sonderzeichen enthalten"
       },
       "address": {
         "title": "Create new address",
@@ -2351,46 +2357,46 @@
         },
         "form": {
           "site": {
-            "name": "Select company / site",
-            "hint": "Select company / site",
-            "placeholder": "Select company / site",
-            "error": "Please enter valid company / site"
+            "name": "Unternehmen/Standort auswählen",
+            "hint": "Unternehmen/Standort auswählen",
+            "placeholder": "Unternehmen/Standort auswählen",
+            "error": "Bitte gültiges Unternehmen/Standort eingeben"
           },
           "addressTitle": {
-            "name": "Address title",
-            "hint": "Address title",
-            "placeholder": "Enter address",
-            "error": "Please enter valid address title"
+            "name": "Adresstitel",
+            "hint": "Adresstitel",
+            "placeholder": "Adresse eingeben",
+            "error": "Bitte gültigen Adresstitel eingeben"
           },
           "street": {
-            "name": "Street name",
-            "hint": "Street name",
-            "placeholder": "Enter street name",
-            "error": "Please enter valid street name"
+            "name": "Straße",
+            "hint": "Straße",
+            "placeholder": "Straßenname eingeben",
+            "error": "Bitte gültige Straße eingeben"
           },
           "houseNumber": {
-            "name": "House number",
-            "hint": "House number",
-            "placeholder": "Enter house number",
-            "error": "Please enter valid house number"
+            "name": "Hausnummer",
+            "hint": "Hausnummer",
+            "placeholder": "Enter Hausnummer",
+            "error": "Bitte gültige Hausnummer eingeben"
           },
           "postal": {
-            "name": "Postal code",
-            "hint": "Postal code",
-            "placeholder": "Enter postal code",
-            "error": "Please enter valid postal code"
+            "name": "PLZ",
+            "hint": "PLZ",
+            "placeholder": "PLZ eingeben",
+            "error": "Bitte gültige Postleitzahl eingeben"
           },
           "city": {
-            "name": "City",
-            "hint": "City",
-            "placeholder": "Enter city",
-            "error": "Please enter valid city"
+            "name": "Stadt",
+            "hint": "Stadt",
+            "placeholder": "Stadt eingeben",
+            "error": "Bitte gültige Stadt eingeben"
           },
           "countryCode": {
-            "name": "Country",
-            "hint": "Country",
-            "placeholder": "Select country",
-            "error": "Please enter valid country"
+            "name": "Land",
+            "hint": "Land",
+            "placeholder": "Land auswählen",
+            "error": "Bitte gültiges Land auswählen"
           },
           "countryIdentifier": {
             "name": "Country identifier",
@@ -2407,19 +2413,19 @@
         }
       },
       "success": {
-        "title": "{name} information submitted for validation ",
-        "description": "Your site data will now be processed by the Cofinity-X Golden Record Service. This can take up to 48 hours. You can monitor the status on the main page. If adjustments to your data are necessary, click the 'Details' button to view or edit your information. Please note, editing your data will restart the validation process."
+        "title": "Validierung der {name} Informationen gestartet ",
+        "description": " Ihre Standortdaten werden nun vom Cofinity-X Golden Record Service bearbeitet. Dies kann bis zu 48 Stunden dauern. Sie können den Status auf der Hauptseite verfolgen. Sollten Anpassungen Ihrer Daten erforderlich sein, klicken Sie bitte auf die Schaltfläche „Details”, um Ihre Informationen anzusehen oder zu bearbeiten. Bitte beachten Sie, dass das Bearbeiten Ihrer Daten den Validierungsprozess neu startet."
       },
       "error": {
         "title": "Create {name}",
         "description": "The changes could not be saved. Please try again"
       },
       "pageHeader": {
-        "title": "Your company",
-        "description": "View your company details and roles in Catena-X. Add site information for Cofinity-X Golden Record Service validation. Successful validated details, including BPNS and site address, will be shared with Business Partner Explorer subscribers for enhanced data quality."
+        "title": "Ihr Unternehmen",
+        "description": "Hier finden Sie Ihre Unternehmensdaten und Catena-X Rollen. Fügen Sie Standortdaten hinzu, die durch den Cofinity-X Golden Record Service validiert werden. Erfolgreich verifizierte Adressen sowie deren BPNS werden mit Business Partner Explorer-Abonnenten geteilt.Hier finden Sie Ihre Unternehmensdaten und Catena-X Rollen. Fügen Sie Standortdaten hinzu, die durch den Cofinity-X Golden Record Service validiert werden. Erfolgreich verifizierte Adressen sowie deren BPNS werden mit Business Partner Explorer-Abonnenten geteilt."
       },
       "companyInformation": {
-        "title": "Company information"
+        "title": "Unternehmensinformationen"
       }
     },
     "onboardingServiceProvider": {
@@ -2512,7 +2518,7 @@
       "DELETED": "DELETED",
       "name": "Name",
       "details": "Details",
-      "edit": "Edit",
+      "edit": "Bearbeiten",
       "userName": "Benutzername",
       "clientId": "Client ID",
       "authType": "Auth Type",
@@ -2549,7 +2555,7 @@
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
-      "saveSubmit": "Save & submit",
+      "saveSubmit": "Speichern & absenden",
       "no": "No",
       "yes": "Yes",
       "next": "Weiter",
@@ -2559,7 +2565,7 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Bearbeiten"
     },
     "state": {
       "enabled": "aktiv",
