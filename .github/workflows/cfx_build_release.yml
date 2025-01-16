@@ -19,9 +19,9 @@ on:
 env:
   TARGET_REPOSITORY: portal-charts
   TARGET_BRANCH: main
-  VALUES_FILE: portal/dev/values-dev.yaml
+  VALUES_FILE: portal/dev/values.yaml
   WORKFLOW_ID: cfx-generic-version-bump.yaml
-  IMAGE_TAG_PROPERTY: .frontend.portal.image.portaltag
+  IMAGE_TAG_PROPERTY: .portal.frontend.portal.image.portaltag
 
 concurrency:
   # cancel older running jobs on the same branch
