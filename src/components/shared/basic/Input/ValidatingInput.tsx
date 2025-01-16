@@ -60,7 +60,7 @@ const ValidatingInput = ({
   const [valid, setValid] = useState<boolean>(true)
   const immediateValidate = useCallback(
     (expr: string) => {
-      const isValid = required ? validate(expr) : expr === '' || validate(expr)
+      const isValid = validate(expr)
       setColor(isValid ? Colors.success : Colors.error)
       setValid(isValid)
       if (isValid && onValid) onValid(name, expr)
@@ -80,18 +80,14 @@ const ValidatingInput = ({
         return
       }
       setCurrentValue(expr)
-      if (required ?? expr !== '') {
-        if (debounceTime === 0) immediateValidate(expr)
-        else debouncedValidate(expr)
-      }
+      if (debounceTime === 0) immediateValidate(expr)
+      else debouncedValidate(expr)
     },
     [debounceTime, debouncedValidate, immediateValidate]
   )
 
   useEffect(() => {
-    if (!skipInitialValidation && (required ?? value !== '')) {
-      debouncedValidate(value)
-    }
+    if (!skipInitialValidation) debouncedValidate(value)
   }, [value])
 
   return (
