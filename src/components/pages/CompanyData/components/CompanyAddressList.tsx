@@ -131,16 +131,29 @@ export const CompanyAddressList = ({
   }
 
   useEffect(() => {
-    if (refetch) {
+    const initializeData = async () => {
       setInputs([])
       setOutputs([])
+      setFetchedInputIds(new Set())
+      setFetchedOutputIds(new Set())
       setPage(0)
-      refetchSharingState()
-      dispatch(setCompanyPageRefetch(false))
+
+      try {
+        const sharingStateResult = await refetchSharingState().unwrap()
+        setSharingStates(sharingStateResult.content || [])
+
+        await Promise.all([getInputItems(), getOutputItems()])
+      } catch (error) {
+        console.error('Error during refetching:', error)
+      } finally {
+        dispatch(setCompanyPageRefetch(false))
+      }
     }
-    getInputItems()
-    getOutputItems()
-  }, [page, pageSize, inputs, outputs, refetch])
+
+    if (refetch) {
+      initializeData()
+    }
+  }, [refetch])
 
   useEffect(() => {
     setInputs([])
@@ -432,7 +445,6 @@ export const CompanyAddressList = ({
         noRowsMsg={t('content.companyData.table.noRowsMsg')}
         title={t('content.companyData.table.title')}
         getRowId={(row: { [key: string]: string }) => row.createdAt}
-        // getRowId={(row: CompanyDataType) => row.externalId}
         rows={combinedRows}
         columns={columns}
         onCellClick={() => {}}
