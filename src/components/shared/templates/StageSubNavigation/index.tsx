@@ -22,7 +22,7 @@ import {
   ParentSubNavigation,
   NewSubNavigation,
 } from '@catena-x/portal-shared-components'
-import '../Templates.scss'
+import '../style.scss'
 import { Box, useMediaQuery } from '@mui/material'
 import { type SubNavigationType } from 'features/staticContent/staticContentApiSlice'
 

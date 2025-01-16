@@ -25,7 +25,7 @@ import { t } from 'i18next'
 import { useFetchBoardAppDetailsQuery } from 'features/adminBoard/adminBoardApiSlice'
 import BoardContentDetails from './BoardContentDetails'
 import { PAGES } from 'types/Constants'
-import './AdminBoardDetail.scss'
+import './style.scss'
 
 export default function AdminBoardDetail() {
   const navigate = useNavigate()

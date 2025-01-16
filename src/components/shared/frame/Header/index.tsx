@@ -46,7 +46,7 @@ import {
 import { UserInfo } from '../UserInfo'
 import { Logo } from '../Logo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
-import './Header.scss'
+import './style.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'

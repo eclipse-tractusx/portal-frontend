@@ -34,7 +34,7 @@ import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useRemoveIDPMutation } from 'features/admin/idpApiSlice'
 
-import './idpdelete.scss'
+import './style.scss'
 
 interface Status {
   error: boolean

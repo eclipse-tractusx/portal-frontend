@@ -17,10 +17,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CompanyAddressList } from './components/CompanyAddressList'
+import { CompanyAddressList } from './CompanyAddressList'
 import { useState } from 'react'
 import MyCompanyInfoComponent from '../Organization/MyCompanyInfoComponent'
-import EditForm from './components/EditForm'
+import EditForm from './EditForm'
 import { useDispatch } from 'react-redux'
 import { setCompanyPageRefetch } from 'features/companyData/slice'
 
