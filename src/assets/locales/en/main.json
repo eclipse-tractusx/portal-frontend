@@ -1467,7 +1467,8 @@
       "statusHeading": "For a better transparency, the subscription status bar will be available in the app detail page - you can check the subscription status when opening the app detail page from the app marketplace.",
       "desc8": "The entire process is expected to complete within 5 business days.",
       "desc9": "Thank you for choosing the service.",
-      "errorMessage": "The subscription was unsuccessful; please contact your administrator."
+      "errorMessage": "The subscription was unsuccessful; please contact your administrator.",
+      "techUserTerms": "By confirming the terms, you accept the technical user will be created for you under the ownership of the service provider"
     },
     "techUser": {
       "details": {

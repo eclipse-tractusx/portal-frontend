@@ -155,6 +155,7 @@ export type AppDetails = AppMarketplaceApp & {
     [key: string]: string[] | null
   }
   offerSubscriptionDetailData?: OfferSubscriptionDataType[]
+  displayTechnicalUser: boolean
 }
 
 export type Documents = {

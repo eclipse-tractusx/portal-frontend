@@ -37,6 +37,7 @@ import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
 import { error } from 'services/NotifyService'
 import { AgreementStatus } from '../UpdateCompanyRole'
+import { useFetchServiceDetailsQuery } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export default function ServiceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
@@ -46,6 +47,7 @@ export default function ServiceRequest({ id }: { id: string }) {
     []
   )
   const { data: serviceAgreements } = useFetchAgreementsQuery(id ?? '')
+  const { data: item } = useFetchServiceDetailsQuery(id)
   const [addSubscribeService] = useAddSubscribeServiceMutation()
   const [serviceSubscriptionOverlay, setServiceSubscriptionOverlay] =
     useState<boolean>(true)
@@ -121,6 +123,11 @@ export default function ServiceRequest({ id }: { id: string }) {
             <Typography variant="h5">
               {t('content.serviceMarketplace.termsHeading')}
             </Typography>
+            {item?.displayTechnicalUser && (
+              <Typography variant="body2" sx={{ mb: '20px' }}>
+                {t('content.appMarketplace.techUserTerms')}
+              </Typography>
+            )}
             {serviceAgreements && serviceAgreements.length > 0 ? (
               <ul className="agreements-list">
                 {serviceAgreements?.map((agreement, index) => (

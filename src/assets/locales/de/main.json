@@ -1467,7 +1467,8 @@
       "statusHeading": "Für eine bessere Transparenz wird die Abonnementstatusleiste auf der App-Detailseite verfügbar sein. Sie können den Abonnementstatus überprüfen, wenn Sie die App-Detailseite über den App-Marktplatz öffnen.",
       "desc8": "Der gesamte Vorgang wird voraussichtlich innerhalb von 5 Werktagen abgeschlossen sein.",
       "desc9": "Vielen Dank, dass Sie sich für den Service entschieden haben.",
-      "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator."
+      "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator.",
+      "techUserTerms": "Durch die Bestätigung der Bedingungen akzeptieren Sie, dass der technische Benutzer im Eigentum des Dienstanbieters für Sie erstellt wird"
     },
     "techUser": {
       "details": {

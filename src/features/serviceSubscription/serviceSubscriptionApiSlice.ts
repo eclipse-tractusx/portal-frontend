@@ -144,6 +144,7 @@ export interface ServiceDetailsResponse {
   images: string[]
   privacyPolicies: PrivacyPolicyType[]
   documents: Documents
+  displayTechnicalUser: boolean
 }
 
 export interface SubscriptionServiceRequestType {

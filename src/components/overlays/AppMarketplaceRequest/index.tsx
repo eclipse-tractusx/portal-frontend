@@ -33,6 +33,7 @@ import { useState } from 'react'
 import {
   useAddSubscribeAppMutation,
   useFetchAgreementsQuery,
+  useFetchAppDetailsQuery,
 } from 'features/apps/apiSlice'
 import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
@@ -45,6 +46,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { data: agreements } = useFetchAgreementsQuery(id ?? '')
+  const { data: item } = useFetchAppDetailsQuery(id)
   const [addSubscribeApp] = useAddSubscribeAppMutation()
 
   const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
@@ -142,6 +144,11 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
             <Typography variant="h5">
               {t('content.appMarketplace.termsHeading')}
             </Typography>
+            {item?.displayTechnicalUser && (
+              <Typography variant="body2" sx={{ mb: '20px' }}>
+                {t('content.appMarketplace.techUserTerms')}
+              </Typography>
+            )}
             {agreements && agreements.length > 0 ? (
               <ul className="agreements-list">
                 {agreements?.map((agreement, index) => (
