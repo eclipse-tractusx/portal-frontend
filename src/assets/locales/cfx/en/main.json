@@ -695,7 +695,7 @@
           "text3": "Ensure you separate the technical users - each connector one technical user.",
           "text4": "*iatp.sts.oauth.client.secret_alias: alias under which you saved your DIM client",
           "text5": "secret in the vault. Inside the vault the secret of the technical user defined above should be stored.",
-          "text6": "*iatp.sts.dim.url: base url of you decentral identity management instance."
+          "text6": "*iatp.sts.dim.url: base url of you decentral identity management instance."
         }
       },
       "helpText": "Get some help",
@@ -2207,6 +2207,12 @@
       "statusInfo": {
         "title": "Site information status"
       },
+      "status": {
+        "success": "Success",
+        "processing": "Processing",
+        "error": "Error",
+        "ready": "Ready"
+      },
       "upload": {
         "title": "Upload CSV",
         "fileSizeError": "Uploaded file is too big. Maximum 1MB is allowed",
@@ -2286,7 +2292,7 @@
           "countryCode": {
             "name": "Country",
             "hint": "Country",
-            "placeholder": "Select country",
+            "placeholder": "Please select",
             "error": "Please enter valid country"
           },
           "countryIdentifier": {
@@ -2305,9 +2311,9 @@
         "errorGroup": {
           "errorNote": "Plese note:",
           "errorDescription": "to prevent further errors in the re-validation, please make sure that your site information:",
-          "error1": "does not contain natural person information",
-          "error2": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
-          "error3": "does not contain unknown special characters"
+          "error1": "does not contain natural person information",
+          "error2": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
+          "error3": "does not contain unknown special characters"
         }
       },
       "address": {
