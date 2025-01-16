@@ -55,7 +55,7 @@
   .verify-app-release-card {
     width: 290px !important;
     padding-left: 0px !important;
-    > div:first-child {
+    > div:first-of-type {
       height: auto !important;
       min-height: 351.4px !important;
       margin-bottom: 0 !important;

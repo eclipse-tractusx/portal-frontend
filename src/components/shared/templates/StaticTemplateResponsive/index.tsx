@@ -270,14 +270,14 @@ export const StaticTemplateResponsive = ({
   window.addEventListener('scroll', checkScrollTop)
   return (
     <div>
-      {sectionInfo?.map((provider: ProviderProps) => {
+      {sectionInfo?.map((provider: ProviderProps, i: number) => {
         return (
           <div
             className="sectionContainer"
             style={{
               backgroundColor: provider.backgroundColor,
             }}
-            key={provider.id}
+            key={`${provider.id}-${i}`}
             id={`${provider.id}`}
           >
             <div className="sectionSubContainer">
