@@ -56,6 +56,7 @@ import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { COLOR_PALETTE } from 'theme.override'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
+import { InputType } from 'components/shared/basic/Input/BasicInput'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
@@ -222,6 +223,7 @@ const OnboardingServiceProvider = () => {
                 hint={t('content.onboardingServiceProvider.clientSecret.hint')}
                 validate={isIDPClientSecret}
                 onValid={checkValidData}
+                type={InputType.password}
               />
             </div>
             {showError && (

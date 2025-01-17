@@ -41,10 +41,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - CHERRY PICK Filter out app permissions from portal roles list [#1392](https://github.com/eclipse-tractusx/portal-frontend/pull/1392)
 
+- **IDP**
+  - Input field password toggle for OSP and IDP overlay [PM2-2332](https://cofinity-x.atlassian.net/browse/PM2-2332)
 - **Service detail page**
-
   - updated incorrect provider information table label [PM2-2191](https://cofinity-x.atlassian.net/browse/PM2-2191)
-
 - **Delete overlay**
 
   - Fix inconsistent styling [PM2-1938](https://cofinity-x.atlassian.net/browse/PM2-1938)
