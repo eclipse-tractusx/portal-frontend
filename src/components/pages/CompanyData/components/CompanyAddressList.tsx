@@ -255,6 +255,7 @@ export const CompanyAddressList = ({
 
   if (error && 'status' in error) {
     errorObj.status = error.status as number
+    return false
   }
 
   function getBpnTypeLabel(row: CompanyDataType): string {
@@ -408,7 +409,6 @@ export const CompanyAddressList = ({
     paginationModel: { pageSize, page },
     initialState: { pagination: { paginationModel: { pageSize, page } } },
   }
-
   return (
     <>
       <Table
