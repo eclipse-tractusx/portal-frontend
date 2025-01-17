@@ -27,7 +27,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { FormFields } from './FormFields'
 import { useTranslation } from 'react-i18next'
 import {
@@ -45,7 +45,7 @@ import {
 } from 'features/companyData/slice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, isEqual } from 'lodash'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 
 interface FormDetailsProps {
@@ -82,7 +82,7 @@ export default function EditForm({
     skip: !newForm,
   })
   const [input, setInput] = useState<CompanyDataType>(companyDataInitialData)
-  const inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
+  let inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
 
   if (companyInfo) {
     inputParams.externalId = `${companyInfo?.bpn}_${new Date().toISOString()}`
@@ -107,6 +107,7 @@ export default function EditForm({
     if (form) {
       inputParams.site.name = form.body.siteName
       inputParams.address.addressType = AddressType.SiteMainAddress
+
       getFilledData(form)
     }
   }
@@ -139,6 +140,10 @@ export default function EditForm({
     }
     setLoading(false)
   }
+  // const isDataUnchanged = () => isEqual(input, inputParams)
+  const isDataUnchanged = useMemo(() => {
+    return isEqual(input, inputParams)
+  }, [input, inputParams])
 
   const getTitle = () =>
     isAddress
@@ -187,7 +192,7 @@ export default function EditForm({
           </Button>
           {!loading && (
             <Button
-              disabled={!isValid}
+              disabled={!isValid || isDataUnchanged}
               variant="contained"
               onClick={handleSubmit}
             >
