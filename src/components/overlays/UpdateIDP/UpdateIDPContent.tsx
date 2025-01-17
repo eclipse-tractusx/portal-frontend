@@ -36,6 +36,7 @@ import {
   type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
+import { InputType } from 'components/shared/basic/Input/BasicInput'
 
 const isWellknownMetadata = (expr: string) =>
   isURL(expr) && expr.endsWith('.well-known/openid-configuration')
@@ -120,6 +121,7 @@ const UpdateIDPForm = ({
           hint={t('field.clientSecret.hint')}
           validate={isIDPClientSecret}
           onValid={onChange}
+          type={InputType.password}
         />
       </div>
       <Typography variant="label2">{t('edit.metaDataHeading')}</Typography>
