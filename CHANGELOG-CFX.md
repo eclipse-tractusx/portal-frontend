@@ -37,6 +37,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfixes
 
+- **Identity Provider Configuration**
+
+  - Disable button if any field is invalid [PM2-2213](https://cofinity-x.atlassian.net/browse/PM2-2213)
+
 - **User management**
 
   - CHERRY PICK Filter out app permissions from portal roles list [#1392](https://github.com/eclipse-tractusx/portal-frontend/pull/1392)

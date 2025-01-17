@@ -102,6 +102,7 @@ const UpdateIDPForm = ({
           hint={t('field.metadata.hint')}
           debounceTime={0}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -112,6 +113,7 @@ const UpdateIDPForm = ({
           hint={t('field.clientId.hint')}
           validate={isIDPClientID}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <div style={{ margin: '12px 0 30px' }}>
@@ -121,6 +123,7 @@ const UpdateIDPForm = ({
           hint={t('field.clientSecret.hint')}
           validate={isIDPClientSecret}
           onValid={onChange}
+          onInvalid={onChange}
           type={InputType.password}
         />
       </div>
@@ -146,16 +149,15 @@ export const UpdateIDPContent = ({
   onValid: (form: IdentityProviderUpdate | undefined) => void
 }) => {
   const [formData, setFormData] = useState<IHashMap<string>>(idpToForm(idp))
-
   const checkData = (key: string, value: string | undefined): boolean => {
     const current: IHashMap<string> = { ...formData }
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
     const formValid =
       current.displayName &&
-      current.metadataUrl &&
-      current.clientId &&
-      current.secret &&
+      isWellknownMetadata(current.metadataUrl) &&
+      isIDPClientID(current.clientId) &&
+      isIDPClientSecret(current.secret) &&
       current.clientAuthMethod
     onValid(
       formValid
@@ -167,6 +169,5 @@ export const UpdateIDPContent = ({
     )
     return true
   }
-
   return <UpdateIDPForm idp={idp} onChange={checkData} />
 }
