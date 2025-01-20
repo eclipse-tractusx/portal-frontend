@@ -275,8 +275,8 @@ export default function AdminCredentialElements() {
       field: 'document',
       headerName: t('content.adminCertificate.table.document'),
       flex: 2,
-      renderCell: ({ row }: { row: CredentialData }) => {
-        ;<>
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <>
           {row.documents?.map((document) => (
             <div
               className={
@@ -304,7 +304,7 @@ export default function AdminCredentialElements() {
             </div>
           ))}
         </>
-      },
+      ),
     },
     {
       field: 'credentialDetailId',
