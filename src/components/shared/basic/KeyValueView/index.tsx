@@ -43,7 +43,7 @@ interface KeyValueViewProps {
 
 const renderValue = (value: DataValue, masked: boolean = false) => {
   const maskedText = masked ? '*****' : value
-  return (
+  return typeof maskedText === 'string' ? (
     <Typography
       sx={{
         fontSize: '14px',
@@ -54,6 +54,8 @@ const renderValue = (value: DataValue, masked: boolean = false) => {
     >
       {maskedText}
     </Typography>
+  ) : (
+    <>{maskedText}</>
   )
 }
 
