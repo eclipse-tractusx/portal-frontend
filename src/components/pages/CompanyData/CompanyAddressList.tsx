@@ -241,12 +241,14 @@ export const CompanyAddressList = ({
     switch (status) {
       case SharingStateStatusType.Success:
         return <DoneIcon />
+      case SharingStateStatusType.Error:
+        return <ErrorOutlineIcon />
       case SharingStateStatusType.Pending:
       case SharingStateStatusType.Initial:
       case SharingStateStatusType.Ready:
         return <HourglassEmptyIcon />
       default:
-        return <ErrorOutlineIcon />
+        return <HourglassEmptyIcon />
     }
   }
 
@@ -282,7 +284,9 @@ export const CompanyAddressList = ({
       'content.companyData.status.processing'
     ),
     [SharingStateStatusType.Error]: t('content.companyData.status.error'),
-    [SharingStateStatusType.Default]: '',
+    [SharingStateStatusType.Default]: t(
+      'content.companyData.status.processing'
+    ),
   }
 
   function filterStatus(status: string | undefined): string {
@@ -363,10 +367,13 @@ export const CompanyAddressList = ({
               color={
                 status
                   ? statusColorMap[status as SharingStateStatusType]
-                  : 'error'
+                  : 'default'
               }
               variant="filled"
-              label={filterStatus(status)}
+              label={
+                filterStatus(status) ??
+                t('content.companyData.status.processing')
+              }
               size="medium"
               withIcon={true}
               sx={{

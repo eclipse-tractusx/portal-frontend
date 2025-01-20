@@ -46,6 +46,8 @@ export default function StatusInformation({
     Ready: <HourglassEmptyIcon />,
     Initial: <HourglassEmptyIcon />,
     Error: <ErrorOutlineIcon />,
+    Default: <HourglassEmptyIcon />,
+    undefined: <HourglassEmptyIcon />,
   }
   const validationPoints: string[] = [
     'content.companyData.site.errorGroup.error1',
@@ -62,7 +64,9 @@ export default function StatusInformation({
       'content.companyData.status.processing'
     ),
     [SharingStateStatusType.Error]: t('content.companyData.status.error'),
-    [SharingStateStatusType.Default]: '',
+    [SharingStateStatusType.Default]: t(
+      'content.companyData.status.processing'
+    ),
   }
   function filterStatus(status: string | undefined): string {
     return statusDisplayMap[status as SharingStateStatusType] ?? status
@@ -86,10 +90,12 @@ export default function StatusInformation({
             color={
               status
                 ? statusColorMap[status as SharingStateStatusType]
-                : 'error'
+                : 'default'
             }
             variant="filled"
-            label={filterStatus(status)}
+            label={
+              filterStatus(status) ?? t('content.companyData.status.processing')
+            }
             size="medium"
             withIcon={true}
           />
