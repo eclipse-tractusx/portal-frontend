@@ -796,7 +796,7 @@
         "uniqueid": "Unique ID",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member",
+        "cxparticipant": "Active Participant",
         "address": "Address",
         "identifiers": "Identifiers"
       },
