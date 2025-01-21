@@ -29,3 +29,9 @@
 // ***********************************************************
 
 import './commands'
+import { USER_TYPES } from '../support/constants'
+
+before(() => {
+  // Perform login once before all test files
+  cy.login(USER_TYPES.USER)
+})

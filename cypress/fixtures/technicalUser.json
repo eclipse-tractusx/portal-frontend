@@ -1,0 +1,14 @@
+{
+  "roles": [
+    "Registration External",
+    "Semantic Model Management",
+    "BPDM Pool Consumer",
+    "Identity Wallet Management",
+    "Dataspace Discovery",
+    "Offer Management",
+    "BPDM Sharing Output Consumer",
+    "BPDM Sharing Input Consumer",
+    "CX Membership Info"
+  ],
+  "description": "This is test description for technical user - {randomString}"
+}
