@@ -615,37 +615,17 @@ export const customTheme = {
           '&.Mui-disabled': {
             background: COLOR_PALETTE.GRAY,
           },
-          ':focus': {
-            // boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
-            // color: COLOR_PALETTE.WHITE,
-            // backgroundColor: COLOR_PALETTE.SECONDARY,
-          },
+
           ':active': {
             boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
             color: COLOR_PALETTE.WHITE,
             backgroundColor: COLOR_PALETTE.SECONDARY,
-          },
-          ':hover': {
-            // boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
           },
 
           '& .MuiButton-icon .MuiCircularProgress-root .MuiCircularProgress-circle':
             {
               color: COLOR_PALETTE.WHITE,
             },
-          // '&.MuiButton-outlined': {
-          //   backgroundColor: COLOR_PALETTE.PRIMARY,
-          //   color: COLOR_PALETTE.WHITE,
-          // },
-          // '&.MuiButton-outlined:hover': {
-          //   backgroundColor: COLOR_PALETTE.PRIMARY_HOVER,
-          //   color: COLOR_PALETTE.WHITE,
-          // },
-          // '&.MuiButton-contained': {
-          //   color: COLOR_PALETTE.SECONDARY,
-          //   backgroundColor: COLOR_PALETTE.WHITE,
-          //   borderColor: `${COLOR_PALETTE.SECONDARY} !important`,
-          // },
         },
         sizeLarge: {
           padding: '14px 40px',
@@ -661,11 +641,8 @@ export const customTheme = {
           borderColor: COLOR_PALETTE.SECONDARY,
           color: COLOR_PALETTE.SECONDARY,
           ':hover': {
-            // color: COLOR_PALETTE.SECONDARY_HOVER,
             borderColor: COLOR_PALETTE.SECONDARY_HOVER,
             borderWidth: 2,
-            // backgroundColor: 'transparent',
-            boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
             color: COLOR_PALETTE.WHITE,
             backgroundColor: COLOR_PALETTE.SECONDARY,
           },
@@ -768,7 +745,6 @@ export const customTheme = {
           ':hover': {
             backgroundColor: COLOR_PALETTE.BLACK,
             color: COLOR_PALETTE.WHITE,
-            // boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
           },
           ':focus': {
             boxShadow: `0px 0px 0px 2px ${COLOR_PALETTE.BOX_SHADOW}`,
