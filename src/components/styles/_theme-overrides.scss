@@ -364,6 +364,18 @@ section {
       background-color: $color-gray;
     }
   }
+
+  .cx-card__horizontal {
+    .cx-image {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      min-height: 200px;
+      object-fit: cover;
+      background-size: cover;
+      background-position: center;
+      background-size: cover;
+    }
+  }
 }
 
 // drop file

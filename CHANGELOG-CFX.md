@@ -81,7 +81,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fix payload for the site in BP explorer [PM2-2155](https://cofinity-x.atlassian.net/browse/PM2-2155)
 
 - **Notifications**
+
   - Fix update role notifications UI [PM2-938](https://cofinity-x.atlassian.net/browse/PM2-938)
+
+- **Service Marketplace**
+  - Fix borken listing card UI [PM2-2402](https://cofinity-x.atlassian.net/browse/PM2-2402)
 
 ## 2.2.0-cfx-5
 
