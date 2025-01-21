@@ -1,10 +1,6 @@
 import { USER_TYPES } from '../support/constants'
 
 describe('Validate authentication for home page', () => {
-  beforeEach(() => {
-    cy.login(USER_TYPES.USER)
-  })
-
   it('should visit home page after login', () => {
     cy.visit(Cypress.env('baseUrl'))
     cy.get('#usercentrics-root')
