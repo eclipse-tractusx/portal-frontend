@@ -2277,7 +2277,7 @@
         "bpnTypeSite": "Site (S)",
         "bpnTypeAddress": "Address (A)",
         "search": "search address / site",
-        "noRowsMsg": "No site added yet. After submitting site information, data will be validated by the Cofinity-X Golden Record Service. ",
+        "noRowsMsg": "Kein Standort hinzugefügt. Nach dem Übermitteln der Standortdaten werden die Informationen vom Cofinity-X Golden Record Service überprüft.",
         "type": "BPN Typ",
         "status": "Status",
         "details": "Details"
@@ -2339,14 +2339,14 @@
             "placeholder": "Enter identifier number",
             "error": "Bitte gültige Identifikationsnummer eingeben"
           }
+        },
+        "errorGroup": {
+          "errorNote": "Hinweis:",
+          "errorDescription": "um weitere Fehler bei der erneuten Validierung zu vermeiden, stellen Sie bitte sicher, dass Ihre Standortinformationen:",
+          "error1": "keine Informationen über natürliche Personen enthalten",
+          "error2": "nicht aus einem Land stammen, das im Golden Record-Prozess nicht verarbeitet werden darf (Beispiel: Brasilien)",
+          "error3": "keine unbekannten Sonderzeichen enthalten"
         }
-      },
-      "errorGroup": {
-        "errorNote": "Hinweis:",
-        "errorDescription": "um weitere Fehler bei der erneuten Validierung zu vermeiden, stellen Sie bitte sicher, dass Ihre Standortinformationen:",
-        "error1": "keine Informationen über natürliche Personen enthalten",
-        "error2": "nicht aus einem Land stammen, das im Golden Record-Prozess nicht verarbeitet werden darf (Beispiel: Brasilien)",
-        "error3": "keine unbekannten Sonderzeichen enthalten"
       },
       "address": {
         "title": "Create new address",
