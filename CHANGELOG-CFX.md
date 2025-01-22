@@ -85,7 +85,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fix update role notifications UI [PM2-938](https://cofinity-x.atlassian.net/browse/PM2-938)
 
 - **Service Marketplace**
+
   - Fix borken listing card UI [PM2-2402](https://cofinity-x.atlassian.net/browse/PM2-2402)
+
+- **Service Release Process**
+  - Fix borken image preview on step of verify & submit [PM2-2404](https://cofinity-x.atlassian.net/browse/PM2-2404)
 
 ## 2.2.0-cfx-5
 
