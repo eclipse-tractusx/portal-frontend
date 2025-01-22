@@ -342,6 +342,16 @@ section {
   }
 }
 
+.app-release-process-form {
+  .cx-card__horizontal {
+    .cx-image {
+      object-fit: cover;
+      height: 250px;
+      width: 400px;
+    }
+  }
+}
+
 // grid cards
 
 .services-card,
