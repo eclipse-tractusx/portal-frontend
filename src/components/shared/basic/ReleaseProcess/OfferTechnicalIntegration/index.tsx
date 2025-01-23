@@ -120,36 +120,36 @@ export default function OfferTechnicalIntegration() {
   }
 
   const [showAddTechUser, setShowAddTechUser] = useState<boolean>(false)
-  const [createNewTechUserProfile, setCreateNewTechUserProfile] =
+  const [addNewTechUserProfile, setAddNewTechUserProfile] =
     useState<boolean>(false)
   const [selectedTechUser, setSelectedTechUser] =
     useState<TechnicalUserProfiles | null>(null)
 
-  const getBody = (roles: string[]) => {
+  const getBodyParams = (roles: string[]) => {
     const body: TechnicalUserProfileBody[] = []
     if (data) {
-      data.forEach((x) => {
-        const userRoleIds: string[] = []
-        x.userRoles.forEach((y) => {
-          userRoleIds.push(y.roleId)
+      data.forEach((techUserInfo) => {
+        const ids: string[] = []
+        techUserInfo.userRoles.forEach((roleObj) => {
+          ids.push(roleObj.roleId)
           if (
             selectedTechUser?.technicalUserProfileId ===
-            x.technicalUserProfileId
+            techUserInfo.technicalUserProfileId
           ) {
             body.push({
-              technicalUserProfileId: x.technicalUserProfileId,
+              technicalUserProfileId: techUserInfo.technicalUserProfileId,
               userRoleIds: roles,
             })
           } else {
             body.push({
-              technicalUserProfileId: x.technicalUserProfileId,
-              userRoleIds,
+              technicalUserProfileId: techUserInfo.technicalUserProfileId,
+              userRoleIds: ids,
             })
           }
         })
       })
     }
-    if (createNewTechUserProfile) {
+    if (addNewTechUserProfile) {
       body.push({
         technicalUserProfileId: null,
         userRoleIds: roles,
@@ -162,15 +162,16 @@ export default function OfferTechnicalIntegration() {
     const body: TechnicalUserProfileBody[] = []
     setLoading(true)
     if (data) {
-      const trimmedArray = data.filter(
-        (x) => x.technicalUserProfileId !== row.technicalUserProfileId
+      const finalyArray = data.filter(
+        (techUserInfo) =>
+          techUserInfo.technicalUserProfileId !== row.technicalUserProfileId
       )
-      trimmedArray.forEach((x) => {
+      finalyArray.forEach((techUserInfo) => {
         const userRoleIds: string[] = []
-        x.userRoles.forEach((y) => {
-          userRoleIds.push(y.roleId)
+        techUserInfo.userRoles.forEach((roleObj) => {
+          userRoleIds.push(roleObj.roleId)
           body.push({
-            technicalUserProfileId: x.technicalUserProfileId,
+            technicalUserProfileId: techUserInfo.technicalUserProfileId,
             userRoleIds,
           })
         })
@@ -189,7 +190,9 @@ export default function OfferTechnicalIntegration() {
     const updateData = {
       serviceId,
       body:
-        roles && roles[0] === serviceTechnicalUserNone ? [] : getBody(roles),
+        roles && roles[0] === serviceTechnicalUserNone
+          ? []
+          : getBodyParams(roles),
     }
     handleApiCall(updateData)
   }
@@ -206,7 +209,7 @@ export default function OfferTechnicalIntegration() {
         error(t('technicalIntegration.technicalUserProfileError'), '', err)
       })
     setLoading(false)
-    setCreateNewTechUserProfile(false)
+    setAddNewTechUserProfile(false)
     setSelectedTechUser(null)
   }
 
@@ -228,11 +231,11 @@ export default function OfferTechnicalIntegration() {
           <TechUserTable
             userProfiles={data}
             handleAddTechUser={() => {
-              setCreateNewTechUserProfile(true)
+              setAddNewTechUserProfile(true)
               setShowAddTechUser(true)
             }}
             handleEdit={(row: TechnicalUserProfiles) => {
-              setCreateNewTechUserProfile(false)
+              setAddNewTechUserProfile(false)
               setSelectedTechUser(row)
               setShowAddTechUser(true)
             }}
@@ -252,7 +255,7 @@ export default function OfferTechnicalIntegration() {
               setShowAddTechUser(false)
             }}
             handleConfirm={handletechUserProfiles}
-            createNewTechUserProfile={createNewTechUserProfile}
+            createNewTechUserProfile={addNewTechUserProfile}
           />
         )}
 
