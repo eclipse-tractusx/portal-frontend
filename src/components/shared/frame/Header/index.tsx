@@ -49,7 +49,7 @@ import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
 import { setIsHeaderNote } from 'features/home/slice'
-import { getCompanyRoles } from 'utils/companyRoleCheck'
+import { companySelector } from 'features/companyAccess/slice'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 
@@ -81,12 +81,14 @@ export const Header = ({
   )
   const [headerNote, setHeaderNote] = useState(false)
 
+  const companyRoles = useSelector(companySelector)
+
   const addTitle = (items: Tree[] | undefined) =>
     items
       ?.filter(
         (item: Tree) =>
           !item.companyRole ||
-          (getCompanyRoles().includes(item.companyRole) &&
+          (companyRoles.includes(item.companyRole) &&
             UserService.hasRole(ROLES.CONFIGURE_PARTNER_REGISTRATION))
       )
       .map(

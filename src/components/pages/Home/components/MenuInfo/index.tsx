@@ -26,9 +26,9 @@ import ClickAwayListener from '@mui/material/ClickAwayListener'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import { MobileMenu } from 'components/shared/cfx/MobileMenu'
 import { Drawer } from '@mui/material'
-import { getCompanyRoles } from 'utils/companyRoleCheck'
 import { ROLES } from 'types/Constants'
 import UserService from 'services/UserService'
+import { companySelector } from 'features/companyAccess/slice'
 
 export const MenuInfo = ({
   main,
@@ -40,12 +40,13 @@ export const MenuInfo = ({
   const { t } = useTranslation()
   const visible = useSelector(appearMenuSelector)
   const dispatch = useDispatch()
+  const companyRoles = useSelector(companySelector)
   const addTitle = (items: Tree[] | undefined) =>
     items
       ?.filter(
         (item: Tree) =>
           !item.companyRole ||
-          (getCompanyRoles().includes(item.companyRole) &&
+          (companyRoles.includes(item.companyRole) &&
             UserService.hasRole(ROLES.CONFIGURE_PARTNER_REGISTRATION))
       )
       .map(

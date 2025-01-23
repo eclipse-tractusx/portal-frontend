@@ -77,7 +77,6 @@ import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
 import { intersectAccess } from 'utils/dataUtils'
 import type { KeycloakResourceAccess } from 'keycloak-js'
 import { getClientId } from './EnvironmentService'
-import { getCompanyRoles } from 'utils/companyRoleCheck'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
@@ -138,13 +137,11 @@ const userMenuComp = () => accessToMenu(userMenuCompany)
 
 const footerMenu = () => accessToMenu(footerMenuFull)
 
-const permittedRoutes = () => {
-  const companyRoles = getCompanyRoles()
+const permittedRoutes = (companyRoles: string[]) => {
   const providerCheck = ALL_PAGES.filter(
     (page: IPage) =>
       !page.companyRole || companyRoles?.includes(page.companyRole)
   )
-
   const accessiblePages = providerCheck.filter((page: IPage) =>
     hasAccess(page.name)
   )

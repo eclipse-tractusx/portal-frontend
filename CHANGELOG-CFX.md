@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **OSP Management**
+
+  - Fixed OSP managent refresh glitch [PM2-1793](https://cofinity-x.atlassian.net/browse/PM2-1793)
+
 - **Shared Component**
 
   - Version updated to 3.7.2
