@@ -24,7 +24,7 @@ import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { success } from 'services/NotifyService'
+import { error, success } from 'services/NotifyService'
 import { useTranslation } from 'react-i18next'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
@@ -48,7 +48,8 @@ interface KeyValueViewProps {
 }
 
 const renderValue = (value: DataValue, masked: boolean = false) => {
-  const maskedText = masked ? '*****' : value
+  const maskedText =
+    masked && typeof value === 'string' ? '*'.repeat(value.length) : value
   return (
     <Typography
       sx={{
@@ -91,13 +92,18 @@ export const KeyValueView = ({
               },
             }}
             onClick={async () => {
-              const value = item.value ?? ''
-              await navigator.clipboard.writeText(value as string)
-              setCopied(value as string)
-              success(t('global.actions.copyInfoSuccessMessage'))
-              setTimeout(() => {
-                setCopied('')
-              }, 1000)
+              try {
+                const value = item.value ?? ''
+                await navigator.clipboard.writeText(value as string)
+                setCopied(value as string)
+                success(t('global.actions.copyInfoSuccessMessage'))
+              } catch (err) {
+                error(t('global.actions.copyInfoErrorMessage'))
+              } finally {
+                setTimeout(() => {
+                  setCopied('')
+                }, 1000)
+              }
             }}
           >
             <ContentCopyIcon
