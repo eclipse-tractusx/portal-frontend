@@ -42,6 +42,7 @@ interface AddTechUserFormProps {
   userProfiles: {
     roleId: string
     roleName: string
+    type: string
   }[]
   createNewTechUserProfile: boolean
 }

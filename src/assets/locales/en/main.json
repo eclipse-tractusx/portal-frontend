@@ -1323,28 +1323,28 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select at least one technical user setup",
+        "technicalUserSetupMandatory": "Please select at least one technical userprofile setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)",
+        "noneOption": "none (no technical userprofile needed to run the app/service)",
         "table": {
           "addtechUserButton": "Add Technical Userprofile",
           "title": "Technical Userprofile",
           "name": "Technical user profile",
           "type": "Type",
           "role": "Role",
-          "noRoles": "No technical users added"
+          "noRoles": "No technical userprofiles added"
         },
         "form": {
-          "title": "Configure Technical User",
-          "intro": "Select internal or external roles and continue to configure technical user",
-          "internalUserRoles": "Internal technical user",
-          "internalUserRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
-          "externalUserRoles": "External technical user",
-          "externalUserRolesDescription": "External technical user are created in external environment therefore can only have one role"
+          "title": "Configure Technical Userprofile",
+          "intro": "Select internal or external roles and continue to configure technical userprofile",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role"
         }
       },
       "betaTest": {

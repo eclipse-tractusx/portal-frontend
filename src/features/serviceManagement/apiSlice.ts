@@ -157,6 +157,7 @@ export type technicalUserProfile = {
   userRoles: {
     roleId: string
     roleName: string
+    type: string
   }[]
 }
 
