@@ -86,8 +86,8 @@ export const TechUserTable = ({
         },
         {
           field: 'roleName',
-          headerAlign: 'left',
-          align: 'left',
+          headerAlign: 'center',
+          align: 'center',
           headerName: t('content.apprelease.technicalIntegration.table.role'),
           flex: 2,
           valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
@@ -96,8 +96,8 @@ export const TechUserTable = ({
         {
           field: 'edit',
           headerAlign: 'left',
-          align: 'center',
-          headerName: '',
+          align: 'left',
+          headerName: t('content.apprelease.technicalIntegration.table.action'),
           flex: 1,
           renderCell: ({ row }: { row: TechnicalUserProfiles }) => (
             <Box

@@ -1336,7 +1336,8 @@
           "name": "Technical user profile",
           "type": "Type",
           "role": "Role",
-          "noRoles": "No technical userprofiles added"
+          "noRoles": "No technical userprofiles added",
+          "action": "Action"
         },
         "form": {
           "title": "Configure Technical Userprofile",

@@ -1336,7 +1336,8 @@
           "name": "Technisches Benutzerprofil",
           "type": "Type",
           "role": "Role",
-          "noRoles": "Keine technischen Benutzerprofile hinzugefügt"
+          "noRoles": "Keine technischen Benutzerprofile hinzugefügt",
+          "action": "Action"
         },
         "form": {
           "title": "Technisches Benutzerprofil konfigurieren",
