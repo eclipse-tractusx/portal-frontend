@@ -24,6 +24,8 @@ import SnackbarNotificationWithButtons from '../components/SnackbarNotificationW
 import { Grid } from '@mui/material'
 import {
   ServiceTypeIdsEnum,
+  type TechnicalUserProfileBody,
+  type updateTechnicalUserProfile,
   useFetchServiceStatusQuery,
   useFetchServiceTechnicalUserProfilesQuery,
   useFetchServiceUserRolesQuery,
@@ -42,6 +44,7 @@ import { setServiceStatus } from 'features/serviceManagement/actions'
 import { error, success } from 'services/NotifyService'
 import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
 import { AddTechUserForm } from '../TechnicalIntegration/AddTechUserForm'
+import { type TechnicalUserProfiles } from 'features/appManagement/types'
 
 export default function OfferTechnicalIntegration() {
   const { t } = useTranslation('servicerelease')
@@ -116,33 +119,95 @@ export default function OfferTechnicalIntegration() {
     dispatch(serviceReleaseStepDecrement())
   }
 
-  const [showTechUser, setShowTechUser] = useState<boolean>(false)
+  const [showAddTechUser, setShowAddTechUser] = useState<boolean>(false)
+  const [createNewTechUserProfile, setCreateNewTechUserProfile] =
+    useState<boolean>(false)
+  const [selectedTechUser, setSelectedTechUser] =
+    useState<TechnicalUserProfiles | null>(null)
 
-  const handleUserProfiles = async (roles: string[]) => {
-    setShowTechUser(false)
+  const getBody = (roles: string[]) => {
+    const body: TechnicalUserProfileBody[] = []
+    if (data) {
+      data.forEach((x) => {
+        const userRoleIds: string[] = []
+        x.userRoles.forEach((y) => {
+          userRoleIds.push(y.roleId)
+          if (
+            selectedTechUser?.technicalUserProfileId ===
+            x.technicalUserProfileId
+          ) {
+            body.push({
+              technicalUserProfileId: x.technicalUserProfileId,
+              userRoleIds: roles,
+            })
+          } else {
+            body.push({
+              technicalUserProfileId: x.technicalUserProfileId,
+              userRoleIds,
+            })
+          }
+        })
+      })
+    }
+    if (createNewTechUserProfile) {
+      body.push({
+        technicalUserProfileId: null,
+        userRoleIds: roles,
+      })
+    }
+    return body
+  }
+
+  const handleDelete = (row: TechnicalUserProfiles) => {
+    const body: TechnicalUserProfileBody[] = []
+    setLoading(true)
+    if (data) {
+      const trimmedArray = data.filter(
+        (x) => x.technicalUserProfileId !== row.technicalUserProfileId
+      )
+      trimmedArray.forEach((x) => {
+        const userRoleIds: string[] = []
+        x.userRoles.forEach((y) => {
+          userRoleIds.push(y.roleId)
+          body.push({
+            technicalUserProfileId: x.technicalUserProfileId,
+            userRoleIds,
+          })
+        })
+      })
+    }
+    const updateData = {
+      serviceId,
+      body,
+    }
+    handleApiCall(updateData)
+  }
+
+  const handletechUserProfiles = (roles: string[]) => {
+    setShowAddTechUser(false)
     setLoading(true)
     const updateData = {
       serviceId,
-      body: [
-        {
-          technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
-          userRoleIds:
-            roles && roles[0] === serviceTechnicalUserNone ? [] : roles,
-        },
-      ],
+      body:
+        roles && roles[0] === serviceTechnicalUserNone ? [] : getBody(roles),
     }
-    if (updateData)
-      await saveServiceTechnicalUserProfiles(updateData)
-        .unwrap()
-        .then(() => {
-          setErrorMessage(false)
-          refetch()
-          success(t('serviceReleaseForm.dataSavedSuccessMessage'))
-        })
-        .catch((err) => {
-          error(t('technicalIntegration.technicalUserProfileError'), '', err)
-        })
+    handleApiCall(updateData)
+  }
+
+  const handleApiCall = async (updateData: updateTechnicalUserProfile) => {
+    await saveServiceTechnicalUserProfiles(updateData)
+      .unwrap()
+      .then(() => {
+        setErrorMessage(false)
+        refetch()
+        success(t('serviceReleaseForm.dataSavedSuccessMessage'))
+      })
+      .catch((err) => {
+        error(t('technicalIntegration.technicalUserProfileError'), '', err)
+      })
     setLoading(false)
+    setCreateNewTechUserProfile(false)
+    setSelectedTechUser(null)
   }
 
   return (
@@ -163,17 +228,31 @@ export default function OfferTechnicalIntegration() {
           <TechUserTable
             userProfiles={data}
             handleAddTechUser={() => {
-              setShowTechUser(true)
+              setCreateNewTechUserProfile(true)
+              setShowAddTechUser(true)
+            }}
+            handleEdit={(row: TechnicalUserProfiles) => {
+              setCreateNewTechUserProfile(false)
+              setSelectedTechUser(row)
+              setShowAddTechUser(true)
+            }}
+            handleDelete={(row: TechnicalUserProfiles) => {
+              handleDelete(row)
             }}
           />
         )}
-        {fetchServiceUserRoles && showTechUser && data && (
+        {fetchServiceUserRoles && showAddTechUser && data && (
           <AddTechUserForm
-            userProfiles={data[0]?.userRoles ?? []}
+            userProfiles={
+              selectedTechUser
+                ? selectedTechUser.userRoles
+                : (data[0]?.userRoles ?? [])
+            }
             handleClose={() => {
-              setShowTechUser(false)
+              setShowAddTechUser(false)
             }}
-            handleConfirm={handleUserProfiles}
+            handleConfirm={handletechUserProfiles}
+            createNewTechUserProfile={createNewTechUserProfile}
           />
         )}
 

@@ -144,12 +144,14 @@ export type serviceUserRolesType = {
   roleDescription: string | null
 }
 
+export interface TechnicalUserProfileBody {
+  technicalUserProfileId: string | null
+  userRoleIds: string[]
+}
+
 export type updateTechnicalUserProfile = {
   serviceId: string
-  body: {
-    technicalUserProfileId: string | null
-    userRoleIds: string[]
-  }[]
+  body: TechnicalUserProfileBody[]
 }
 
 export type technicalUserProfile = {
