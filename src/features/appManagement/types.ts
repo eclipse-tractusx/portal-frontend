@@ -96,6 +96,17 @@ export interface AppManagementState {
   appStatusData: AppStatusDataState
 }
 
+export interface UserRoleType {
+  roleId: string
+  roleName: string
+  type: string
+}
+
+export interface TechnicalUserProfiles {
+  technicalUserProfileId: string
+  userRoles: UserRoleType[]
+}
+
 export const initialState: AppManagementState = {
   searchInput: {
     open: false,

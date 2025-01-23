@@ -19,24 +19,25 @@
 
 import { t } from 'i18next'
 import { Table } from '@catena-x/portal-shared-components'
-import { type technicalUserProfiles } from 'features/appManagement/apiSlice'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import { Box } from '@mui/material'
+import { type TechnicalUserProfiles } from 'features/appManagement/types'
+import { findIndex } from 'lodash'
 
 interface TechUserTableProps {
-  userProfiles: technicalUserProfiles[]
+  userProfiles: TechnicalUserProfiles[]
   handleAddTechUser: () => void
-}
-
-interface UserRoleType {
-  roleId: string
-  roleName: string
-  type: string
+  handleDelete: (row: TechnicalUserProfiles) => void
+  handleEdit: (row: TechnicalUserProfiles) => void
 }
 
 export const TechUserTable = ({
   userProfiles,
   handleAddTechUser,
+  handleDelete,
+  handleEdit,
 }: TechUserTableProps) => {
-  const profiles = userProfiles?.[0]?.userRoles
   return (
     <Table
       hideFooterPagination={true}
@@ -51,18 +52,37 @@ export const TechUserTable = ({
       searchDebounce={1000}
       noRowsMsg={t('content.apprelease.technicalIntegration.table.noRoles')}
       title={t('content.apprelease.technicalIntegration.table.title')}
-      getRowId={(row: { [key: string]: string }) => row.roleId}
-      rows={profiles ?? []}
-      rowsCount={profiles?.length ?? 0}
+      getRowId={(row: { [key: string]: string }) => row.technicalUserProfileId}
+      rows={userProfiles ?? []}
+      rowsCount={userProfiles?.length ?? 0}
       onCellClick={() => {}}
       columns={[
+        {
+          field: 'name',
+          headerAlign: 'left',
+          align: 'left',
+          headerName: t('content.apprelease.technicalIntegration.table.name'),
+          flex: 2,
+          valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
+            t('content.apprelease.technicalIntegration.table.name') +
+            ' ' +
+            (findIndex(
+              userProfiles,
+              (e) => {
+                return e.technicalUserProfileId == row.technicalUserProfileId
+              },
+              0
+            ) +
+              1),
+        },
         {
           field: 'type',
           headerAlign: 'left',
           align: 'left',
           headerName: t('content.apprelease.technicalIntegration.table.type'),
-          flex: 1.5,
-          valueGetter: ({ row }: { row: UserRoleType }) => row.type,
+          flex: 1,
+          valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
+            row.userRoles[0]?.type,
         },
         {
           field: 'roleName',
@@ -70,7 +90,53 @@ export const TechUserTable = ({
           align: 'left',
           headerName: t('content.apprelease.technicalIntegration.table.role'),
           flex: 2,
-          valueGetter: ({ row }: { row: UserRoleType }) => row.roleName,
+          valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
+            row.userRoles.map((x) => x.roleName.split('"')).toString(),
+        },
+        {
+          field: 'edit',
+          headerAlign: 'left',
+          align: 'center',
+          headerName: '',
+          flex: 1,
+          renderCell: ({ row }: { row: TechnicalUserProfiles }) => (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                placeItems: 'center',
+              }}
+            >
+              <EditOutlinedIcon
+                sx={{
+                  color: '#adadad',
+                  ':hover': {
+                    color: 'blue',
+                    cursor: 'pointer',
+                  },
+                }}
+                onClick={() => {
+                  handleEdit(row)
+                }}
+              />
+
+              <DeleteOutlineIcon
+                sx={{
+                  color: '#adadad',
+                  marginLeft: '10px',
+                  ':hover': {
+                    color: 'blue',
+                    cursor: 'pointer',
+                  },
+                }}
+                onClick={() => {
+                  handleDelete(row)
+                }}
+              />
+            </Box>
+          ),
         },
       ]}
       disableColumnMenu

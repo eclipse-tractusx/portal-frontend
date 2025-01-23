@@ -1331,8 +1331,9 @@
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
         "table": {
-          "addtechUserButton": "Neuen technischen Benutzer hinzufügen",
-          "title": "Technical Users",
+          "addtechUserButton": "Technisches Benutzerprofil hinzufügen",
+          "title": "Technisches Benutzerprofil",
+          "name": "Technisches Benutzerprofil",
           "type": "Type",
           "role": "Role",
           "noRoles": "Keine technischen Benutzer hinzugefügt"

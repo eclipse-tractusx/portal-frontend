@@ -49,10 +49,15 @@ import {
   useSaveTechnicalUserProfilesMutation,
   useUpdateRoleDataMutation,
   type updateRolePayload,
+  type UpdateTechnicalUserProfileBody,
+  type updateTechnicalUserProfiles,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
-import { ErrorType } from 'features/appManagement/types'
+import {
+  ErrorType,
+  type TechnicalUserProfiles,
+} from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
 import { ButtonLabelTypes } from '..'
 import { TechUserTable } from './TechUserTable'
@@ -330,21 +335,81 @@ export default function TechnicalIntegration() {
   }
 
   const [showAddTechUser, setShowAddTechUser] = useState<boolean>(false)
+  const [createNewTechUserProfile, setCreateNewTechUserProfile] =
+    useState<boolean>(false)
+  const [selectedTechUser, setSelectedTechUser] =
+    useState<TechnicalUserProfiles | null>(null)
 
-  const handletechUserProfiles = async (roles: string[]) => {
+  const getBody = (roles: string[]) => {
+    const body: UpdateTechnicalUserProfileBody[] = []
+    if (fetchTechnicalUserProfiles) {
+      fetchTechnicalUserProfiles.forEach((x) => {
+        const userRoleIds: string[] = []
+        x.userRoles.forEach((y) => {
+          userRoleIds.push(y.roleId)
+          if (
+            selectedTechUser?.technicalUserProfileId ===
+            x.technicalUserProfileId
+          ) {
+            body.push({
+              technicalUserProfileId: x.technicalUserProfileId,
+              userRoleIds: roles,
+            })
+          } else {
+            body.push({
+              technicalUserProfileId: x.technicalUserProfileId,
+              userRoleIds,
+            })
+          }
+        })
+      })
+    }
+    if (createNewTechUserProfile) {
+      body.push({
+        technicalUserProfileId: null,
+        userRoleIds: roles,
+      })
+    }
+    return body
+  }
+
+  const handleDelete = (row: TechnicalUserProfiles) => {
+    const body: UpdateTechnicalUserProfileBody[] = []
+    setLoading(true)
+    if (fetchTechnicalUserProfiles) {
+      const trimmedArray = fetchTechnicalUserProfiles.filter(
+        (x) => x.technicalUserProfileId !== row.technicalUserProfileId
+      )
+      trimmedArray.forEach((x) => {
+        const userRoleIds: string[] = []
+        x.userRoles.forEach((y) => {
+          userRoleIds.push(y.roleId)
+          body.push({
+            technicalUserProfileId: x.technicalUserProfileId,
+            userRoleIds,
+          })
+        })
+      })
+    }
+    const updateData = {
+      appId,
+      body,
+    }
+    handleApiCall(updateData)
+  }
+
+  const handletechUserProfiles = (roles: string[]) => {
     setShowAddTechUser(false)
     setLoading(true)
     setTechUserProfiles(roles)
     const updateData = {
       appId,
-      body: [
-        {
-          technicalUserProfileId:
-            fetchTechnicalUserProfiles?.[0]?.technicalUserProfileId ?? null,
-          userRoleIds: roles && roles[0] === technicalUserNone ? [] : roles,
-        },
-      ],
+      body: roles && roles[0] === technicalUserNone ? [] : getBody(roles),
     }
+    handleApiCall(updateData)
+  }
+
+  const handleApiCall = async (updateData: updateTechnicalUserProfiles) => {
     await saveTechnicalUserProfiles(updateData)
       .unwrap()
       .then(() => {
@@ -360,6 +425,8 @@ export default function TechnicalIntegration() {
         )
       })
     setLoading(false)
+    setCreateNewTechUserProfile(false)
+    setSelectedTechUser(null)
   }
 
   return (
@@ -667,17 +734,31 @@ export default function TechnicalIntegration() {
           <TechUserTable
             userProfiles={fetchTechnicalUserProfiles}
             handleAddTechUser={() => {
+              setCreateNewTechUserProfile(true)
               setShowAddTechUser(true)
+            }}
+            handleEdit={(row: TechnicalUserProfiles) => {
+              setCreateNewTechUserProfile(false)
+              setSelectedTechUser(row)
+              setShowAddTechUser(true)
+            }}
+            handleDelete={(row: TechnicalUserProfiles) => {
+              handleDelete(row)
             }}
           />
         )}
         {fetchUserRoles && showAddTechUser && fetchTechnicalUserProfiles && (
           <AddTechUserForm
-            userProfiles={fetchTechnicalUserProfiles[0]?.userRoles ?? []}
+            userProfiles={
+              selectedTechUser
+                ? selectedTechUser.userRoles
+                : (fetchTechnicalUserProfiles[0]?.userRoles ?? [])
+            }
             handleClose={() => {
               setShowAddTechUser(false)
             }}
             handleConfirm={handletechUserProfiles}
+            createNewTechUserProfile={createNewTechUserProfile}
           />
         )}
 

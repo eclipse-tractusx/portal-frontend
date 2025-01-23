@@ -1331,8 +1331,9 @@
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "none (no technical user needed to run the app/service)",
         "table": {
-          "addtechUserButton": "Configure Technical User",
-          "title": "Technical Users",
+          "addtechUserButton": "Add Technical Userprofile",
+          "title": "Technical Userprofile",
+          "name": "Technical user profile",
           "type": "Type",
           "role": "Role",
           "noRoles": "No technical users added"
