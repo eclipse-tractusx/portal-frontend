@@ -25,15 +25,19 @@ import AccessService from 'services/AccessService'
 import ScrollToTop from '../utils/scrollToTop'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
 import DeleteCompany from './pages/DeleteCompany'
+import { useSelector } from 'react-redux'
+import { companySelector } from 'features/companyAccess/slice'
 
 const AuthorizingRouter = () => {
+  const companyRoles = useSelector(companySelector)
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="error" element={<ErrorBoundary />} />
         <Route path="/" element={<Main />}>
-          {AccessService.permittedRoutes()}
+          {AccessService.permittedRoutes(companyRoles)}
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route path="/decline" element={<DeleteCompany />} />
