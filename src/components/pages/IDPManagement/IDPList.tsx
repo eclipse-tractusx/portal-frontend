@@ -445,7 +445,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'enabled',
           headerName: t('global.field.status'),
           flex: 2,
-          valueGetter: ({ row }: { row: IdentityProvider }) =>
+          valueGetter: ({ row }) => getStatus(row.enabled, row.oidc?.clientId),
             getStatus(row.enabled, row.oidc?.clientId),
           renderCell: (params) => {
             const status = params.value
