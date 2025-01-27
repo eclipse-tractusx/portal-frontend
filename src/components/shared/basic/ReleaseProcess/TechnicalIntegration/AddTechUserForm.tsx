@@ -71,7 +71,9 @@ export const AddTechUserForm = ({
   const [selectedRoleType, setSelectedRoleType] = useState<string>('')
 
   useEffect(() => {
-    if (userProfiles.length > 0 && !createNewTechUserProfile) {
+    if (createNewTechUserProfile) {
+      setSelectedUserRoles([])
+    } else if (userProfiles.length > 0) {
       setSelectedUserRoles(() => {
         const roles = []
         for (const obj of userProfiles) {
