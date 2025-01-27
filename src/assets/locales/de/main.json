@@ -1329,7 +1329,7 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technisches benutzerprofile notwendig)",
+        "noneOption": "Nicht notwendig (für die Integration ist kein technisches benutzerprofil notwendig)",
         "table": {
           "addtechUserButton": "Technisches Benutzerprofil hinzufügen",
           "title": "Technisches Benutzerprofil",
