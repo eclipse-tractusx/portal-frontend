@@ -280,13 +280,13 @@ export default function AdminCredentialElements() {
           {row.documents?.map((document) => (
             <div
               className={
-                !document.documentId ? 'document-disabled' : 'documenticon-main'
+                document.documentId ? 'documenticon-main' : 'document-disabled'
               }
               key={document.documentId || document.documentName}
               title={
-                !document.documentId
-                  ? t('content.adminCertificate.noDocumentAvailable')
-                  : ''
+                document.documentId
+                  ? ''
+                  : t('content.adminCertificate.noDocumentAvailable')
               }
             >
               <ArticleOutlinedIcon
