@@ -1335,7 +1335,7 @@
           "title": "Technical Userprofile",
           "name": "Technical user profile",
           "type": "Type",
-          "role": "Role",
+          "role": "Roles",
           "noRoles": "No technical userprofiles added",
           "action": "Action"
         },
