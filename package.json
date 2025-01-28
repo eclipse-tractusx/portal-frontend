@@ -52,7 +52,7 @@
     "keycloak-js": "^23.0.7",
     "lodash.debounce": "^4.0.8",
     "lodash.uniq": "^4.5.0",
-    "nanoid": "^5.0.7",
+    "nanoid": "^5.0.9",
     "papaparse": "^5.4.1",
     "qs": "^6.12.3",
     "react": "^18.2.0",
