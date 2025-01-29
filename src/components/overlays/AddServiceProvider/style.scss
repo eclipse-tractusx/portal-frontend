@@ -27,19 +27,6 @@
   .urlListMain {
     background-color: #dedede;
     padding: 20px;
-    .urlList {
-      display: flex;
-      margin-top: 10px;
-      .deleteIcon {
-        cursor: pointer;
-      }
-      .deleteIcon:hover {
-        color: #0f71cb;
-      }
-      .urlDetail {
-        margin-left: 10px;
-      }
-    }
   }
   .progress {
     display: flex;
@@ -50,6 +37,12 @@
     padding: 0 80px;
     .error {
       color: #e93333;
+    }
+    .deleteIcon {
+      cursor: pointer;
+    }
+    .deleteIcon:hover {
+      color: #0f71cb;
     }
   }
 }

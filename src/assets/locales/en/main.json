@@ -1528,27 +1528,33 @@
         "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. \n\n This auto setup callback URL configuration feature also enables operators to retrieve technical configuration elements and activate the subscription.",
         "endpointConfigured": "Configured Provider Endpoint",
         "inputPlaceholder": "...enter your setup url",
+        "deleteAutoSetup": "Delete the existing configuration of Auto setup",
         "providerErrorMessage": "Something went wrong! Please try it later again.",
         "providerSuccessMessage": "Details updated successfully.",
         "autoSetupURL": {
           "name": "Auto setup URL",
-          "hint": "Enter the Auto setup URL to recieve the subscription details of user"
+          "hint": "Enter the Auto setup valid URL to recieve the subscription details of user",
+          "error": "Enter the valid URL format"
         },
         "callbackUrl": {
           "name": "Auto setup callback URL",
-          "hint": "Enter the callback URL to recieve technical user details"
+          "hint": "Enter the callback valid URL to recieve technical user details",
+          "error": "Enter the valid URL format"
         },
         "authUrl": {
           "name": "Auth URL",
-          "hint": "Enter the auth token url provided by your IdP"
+          "hint": "Enter the auth token valid URL provided by your IdP",
+          "error": "Enter the valid URL format"
         },
         "clientId": {
           "name": "Client ID",
-          "hint": "Enter the client ID provided by your IdP"
+          "hint": "Enter the client ID provided by your IdP",
+          "error": "Enter the valid client ID"
         },
         "clientSecret": {
           "name": "Client Secret",
-          "hint": "Enter the client secret provided by your IdP"
+          "hint": "Enter the client secret provided by your IdP",
+          "error": "Enter the valid client secret"
         }
       },
       "activation": {
