@@ -51,7 +51,7 @@ export type UniqueIdType = {
 
 export type CompanyDetail = {
   companyId: string
-  name: string
+  legalName: string
   bpn: string
   lastChanged: string
   taxId: string

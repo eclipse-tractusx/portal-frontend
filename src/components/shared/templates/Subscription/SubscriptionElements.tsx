@@ -220,7 +220,7 @@ export default function SubscriptionElements({
                       appId: subscriptionData.offerId,
                       subscriptionId: subscription.subscriptionId,
                       title: subscriptionData.offerName,
-                      companyName: subscription.companyName,
+                      companyName: subscription.shortLegalName ?? '',
                       bpnNumber: subscription.bpnNumber,
                     })
                   : setState({
@@ -230,7 +230,7 @@ export default function SubscriptionElements({
                         offerId: subscriptionData.offerId,
                         isTechUser: subscription.technicalUser,
                         overlay: true,
-                        companyName: subscription.companyName,
+                        companyName: subscription.shortLegalName ?? '',
                       },
                     })
               }}
@@ -305,7 +305,7 @@ export default function SubscriptionElements({
                     className="subscription-list-item"
                   >
                     <Typography variant="body3" className="firstSection">
-                      {subscription.companyName}
+                      {subscription.shortLegalName ?? ''}
                     </Typography>
                     <Typography variant="body3" className="secondSection">
                       {subscriptionData.offerName}

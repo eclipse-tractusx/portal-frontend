@@ -63,7 +63,8 @@ export type CompanyDetails = {
   companyId: string
   bpn: string
   name: string
-  shortName: string
+  shortLegalName: string
+  legalName: string
   city: string
   region: string
   streetAdditional: string

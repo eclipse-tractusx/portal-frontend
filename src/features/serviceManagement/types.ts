@@ -51,7 +51,8 @@ export interface ServiceStatusDataState {
   contactNumber?: string
   supportedLanguageCodes?: string[]
   useCase?: UseCaseType[]
-  provider?: string
+  shortLegalName?: string
+  legalName?: string
   agreements?: []
   technicalUserProfile?: {
     [key: string]: string[] | null

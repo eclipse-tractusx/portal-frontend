@@ -93,7 +93,7 @@ export default function MarketplaceHeader({
       </div>
       <Box className="marketplace-app-content">
         <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
-          {item.provider}
+          {item.shortLegalName ?? ''}
         </Typography>
         <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
           {item.title}

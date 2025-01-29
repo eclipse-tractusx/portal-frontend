@@ -106,7 +106,7 @@ const ConnectorDetailsOverlay = ({
     },
     {
       key: t('content.edcconnector.details.host'),
-      value: fetchConnectorDetails?.hostCompanyName ?? '',
+      value: fetchConnectorDetails?.shortLegalName ?? '',
     },
     {
       key: t('content.edcconnector.details.location'),

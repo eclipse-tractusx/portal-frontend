@@ -129,7 +129,7 @@ export const CompanySubscriptionsTableColumns = (
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
         <Box sx={{ display: 'grid' }}>
           <Typography variant="body3">{row.name}</Typography>
-          <Typography variant="body3">{row.provider}</Typography>
+          <Typography variant="body3">{row.shortLegalName ?? ''}</Typography>
         </Box>
       ),
     },

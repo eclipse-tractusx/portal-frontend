@@ -71,6 +71,7 @@ export type SubscriptionDetailResponse = {
     decentralIdentityManagementAuthUrl: string
     decentralIdentityManagementServiceUrl: string
   }
+  shortLegalName?: string
 }
 
 export type UserRoles = {
@@ -93,7 +94,7 @@ export type MetaBody = {
 export type CompanySubscriptionData = {
   bpnNumber: string
   companyId: string
-  companyName: string
+  shortLegalName: string
   subscriptionId: string
   offerSubscriptionStatus: string
   technicalUser?: boolean

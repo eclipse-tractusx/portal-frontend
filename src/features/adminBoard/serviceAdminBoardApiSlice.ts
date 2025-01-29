@@ -71,7 +71,7 @@ export interface ServiceDetailsType {
   id: string
   title: string
   serviceTypes: string[]
-  provider: string
+  shortLegalName: string
   descriptions: {
     languageCode: string
     longDescription: string

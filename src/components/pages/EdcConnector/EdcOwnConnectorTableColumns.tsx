@@ -31,6 +31,7 @@ export const OwnConnectorTableColumns = (): Array<GridColDef> => {
       flex: 1,
       sortable: false,
       disableColumnMenu: true,
+      valueGetter: (params) => params.row.shortLegalName,
     },
   ]
 }

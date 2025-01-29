@@ -94,6 +94,8 @@ export const InviteList = ({
             headerName: t('content.invite.columns.companyName'),
             flex: 1.5,
             sortable: false,
+            valueGetter: ({ row }: { row: CompanyInvite }) =>
+              row.legalName ?? '',
           },
           {
             field: 'firstAndLastName',

@@ -127,7 +127,8 @@ export enum ServiceTypes {
 export interface ServiceDetailsResponse {
   id: string
   title: string
-  provider: string
+  shortLegalName: string
+  legalName: string
   contactEmail: string
   description: string
   licenseType: LicenseType

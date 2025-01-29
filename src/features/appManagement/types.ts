@@ -46,7 +46,8 @@ export type UseCaseType = {
 
 export interface AppStatusDataState {
   title: string
-  provider?: string
+  shortLegalName?: string
+  legalName?: string
   leadPictureId?: string
   providerName?: string
   useCase?: UseCaseType[]

@@ -25,7 +25,8 @@ export const name = 'apps/marketplace'
 export type AppMarketplaceApp = {
   id: string
   title: string
-  provider: string
+  legalName?: string
+  shortLegalName?: string
   leadPictureUri: string
   shortDescription: string
   useCases: UseCaseType[]

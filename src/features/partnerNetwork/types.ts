@@ -132,7 +132,7 @@ export interface BusinessPartner {
   bpnl: string
   member?: boolean
   identifiers: Array<BpdmTypeUUIDKeyPair>
-  legalShortName: string
+  shortLegalName: string
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
   legalForm: any

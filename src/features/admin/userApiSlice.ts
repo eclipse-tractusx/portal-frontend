@@ -90,7 +90,8 @@ export interface CompanyDetails {
   countryDe: string
   name: string
   region: string
-  shortName: string
+  shortLegalName: string
+  legalName: string
   streetAdditional: string
   streetName: string
   streetNumber: string

@@ -58,7 +58,8 @@ export type AppItem = {
 export type AppMarketplaceApp = {
   id: string
   title: string
-  provider: string
+  shortLegalName?: string
+  legalName?: string
   leadPictureUri: string
   shortDescription: string
   useCases: UseCaseType[]
@@ -265,7 +266,7 @@ export enum CompanySubscriptionFilterType {
 export interface SubscribedActiveApps {
   offerId: string
   name: string
-  provider: string
+  shortLegalName: string
   status: string
   subscriptionId: string
   image: string

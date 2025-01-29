@@ -36,7 +36,7 @@ export interface CompanyInvite {
   applicationId: string
   applicationStatus: CompanyInviteStatus
   dateCreated: Date
-  companyName: string
+  legalName: string
   email: string
   firstName: string
   lastName: string

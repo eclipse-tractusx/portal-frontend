@@ -101,7 +101,7 @@ export default function CompanySubscriptionHeader({
       </div>
       <Box className="content">
         <div>
-          <Typography variant="h5">{detail.provider}</Typography>
+          <Typography variant="h5">{detail.shortLegalName ?? ''}</Typography>
           <Typography variant="h4">{detail.title}</Typography>
         </div>
         <Typography variant="label2">

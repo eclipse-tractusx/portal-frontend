@@ -139,7 +139,7 @@ export default function ServiceAdminBoardDetail() {
             </div>
             <Box className="service-app-content">
               <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
-                {serviceData.provider}
+                {serviceData.shortLegalName ?? ''}
               </Typography>
               <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
                 {serviceData.title}

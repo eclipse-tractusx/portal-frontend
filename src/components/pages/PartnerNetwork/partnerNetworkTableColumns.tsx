@@ -39,7 +39,9 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row?.legalName ?? '',
+
+      valueGetter: ({ row }: { row: BusinessPartner }) =>
+        row?.shortLegalName ?? '',
     },
     {
       field: 'legalEntity.bpn',

@@ -17,7 +17,9 @@ export default function MyCompanyInfoComponent({
   const companyData = [
     {
       key: t('content.organization.companyDetails.companyName'),
-      value: companyDetails?.shortName ?? 'N/A',
+      value:
+        `${companyDetails?.shortLegalName ?? ''}${companyDetails?.legalName ? ` (${companyDetails.legalName})` : ''}` ||
+        'N/A',
     },
     {
       key: t('content.organization.companyDetails.bpn'),

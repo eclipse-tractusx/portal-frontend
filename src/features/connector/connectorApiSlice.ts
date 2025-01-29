@@ -90,7 +90,7 @@ export interface ConnectorDetailsType {
   type: string
   status: string
   hostId: string
-  hostCompanyName: string
+  shortLegalName: string
   connectorUrl: string
   technicalUser: null | {
     id: string

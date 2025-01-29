@@ -197,7 +197,7 @@ export default function AppDetailHeader({
       </div>
       <div className="content">
         <Typography variant="caption2" sx={{ pb: '6px' }}>
-          {item.provider}
+          {item.shortLegalName ?? ''}
         </Typography>
         <Typography variant="h2" sx={{ pb: '8px', lineHeight: '48px' }}>
           {item.title}

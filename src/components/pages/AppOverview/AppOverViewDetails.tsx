@@ -65,7 +65,7 @@ export default function AppOverViewDetails({
       providerTableData: {
         head: ['App Provider', 'Homepage', 'E-Mail', 'Phone'],
         body: [
-          [item?.providerName],
+          [item?.shortLegalName],
           [item?.providerUri],
           [item?.contactEmail],
           [item?.contactNumber],

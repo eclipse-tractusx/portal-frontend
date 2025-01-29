@@ -150,7 +150,7 @@ const AppSubscriptionDetailOverlay = ({
       ],
       [
         `${t('content.appSubscription.detailOverlay.customer')}`,
-        getValue(data?.customer),
+        getValue(data?.shortLegalName ?? ''),
       ],
       [
         `${t('content.appSubscription.detailOverlay.bpn')}`,

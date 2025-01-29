@@ -37,7 +37,7 @@ export default function AppDetailProvider({
   const tableData: TableType = {
     head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
-      [item.provider],
+      [item.shortLegalName ?? ''],
       [item.providerUri === 'ERROR' ? '' : item.providerUri],
       [item.contactEmail],
       [item.contactNumber],

@@ -163,7 +163,7 @@ const CompanyDetailOverlay = ({
   const companyData = [
     {
       key: t('content.partnernetwork.columns.name'),
-      value: selectedCompany?.name ?? '',
+      value: selectedCompany?.legalName ?? '',
     },
     {
       key: t('content.partnernetwork.columns.bpn'),

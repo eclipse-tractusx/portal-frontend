@@ -324,7 +324,7 @@ export default function CommonValidateAndPublish({
                   src: cardImage ?? LogoGrayData,
                 }}
                 title={statusData?.title ?? ''}
-                subtitle={statusData?.provider}
+                subtitle={statusData?.shortLegalName ?? ''}
                 description={
                   statusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>

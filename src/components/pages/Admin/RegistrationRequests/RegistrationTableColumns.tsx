@@ -198,7 +198,7 @@ export const RegistrationRequestsTableColumns = (
       disableColumnMenu: true,
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <div>
-          <p style={{ margin: '3px 0' }}>{row.companyName}</p>
+          <p style={{ margin: '3px 0' }}>{row.legalName ?? ''}</p>
         </div>
       ),
     },
