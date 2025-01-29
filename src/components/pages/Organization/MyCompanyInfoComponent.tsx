@@ -26,7 +26,7 @@ export default function MyCompanyInfoComponent({
     {
       key: t('content.organization.companyDetails.street'),
       value: companyDetails
-        ? companyDetails.streetName + ' ' + companyDetails.streetNumber
+        ? companyDetails.streetName + ' ' + (companyDetails.streetNumber ?? '')
         : 'N/A',
     },
     {
