@@ -21,7 +21,6 @@
     "technicalSetup": "Technical Integration",
     "connectorManagement": "Connector Management",
     "applicationRequests": "Application Requests",
-    "clearinghouseSelfDescription": "Clearinghouse Self-Description",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -440,6 +439,9 @@
       "deleteAccount": "Delete Account",
       "certificates": "Certificates/Documents"
     },
+    "datamanagement": {
+      "message": "Contents of Data Management"
+    },
     "companySubscriptions": {
       "headertitle": "App & Service Subscriptions",
       "tableTitle": "Subscribed Apps",
@@ -479,7 +481,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
@@ -492,9 +493,6 @@
       "technicalUser": {
         "heading": "Technical Details"
       }
-    },
-    "datamanagement": {
-      "message": "Contents of Data Management"
     },
     "appOverview": {
       "headerTitle": "My Apps",
@@ -798,7 +796,7 @@
         "uniqueid": "Unique ID",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member",
+        "cxparticipant": "Active Participant",
         "address": "Address",
         "identifiers": "Identifiers"
       },
@@ -1195,7 +1193,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
@@ -1332,7 +1329,22 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical user needed to run the app/service)",
+        "table": {
+          "addtechUserButton": "Configure Technical User",
+          "title": "Technical Users",
+          "type": "Type",
+          "role": "Role",
+          "noRoles": "No technical users added"
+        },
+        "form": {
+          "title": "Configure Technical User",
+          "intro": "Select internal or external roles and continue to configure technical user",
+          "internalUserRoles": "Internal technical user",
+          "internalUserRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical user",
+          "externalUserRolesDescription": "External technical user are created in external environment therefore can only have one role"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -2375,7 +2387,8 @@
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
-      "copyInfoSuccessMessage": "Information copied successfully"
+      "copyInfoSuccessMessage": "Information copied successfully",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "enabled",

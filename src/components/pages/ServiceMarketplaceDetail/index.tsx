@@ -30,7 +30,7 @@ import {
   setSuccessType,
 } from 'features/serviceMarketplace/slice'
 import { PAGES } from 'types/Constants'
-import './Marketplace.scss'
+import './style.scss'
 
 export default function ServiceMarketplaceDetail() {
   const navigate = useNavigate()

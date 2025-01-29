@@ -30,7 +30,7 @@ import {
   Tooltips,
 } from '@catena-x/portal-shared-components'
 import SortImage from 'components/shared/frame/SortImage'
-import './CertificateCredentials.scss'
+import './style.scss'
 import { OVERLAYS } from 'types/Constants'
 import {
   useFetchCertificateTypesQuery,

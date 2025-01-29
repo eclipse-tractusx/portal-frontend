@@ -20,7 +20,7 @@
 import { Grid } from '@mui/material'
 import type { CertificateResponse } from 'features/certification/certificationApiSlice'
 import { CertificateCard } from 'components/shared/basic/CertificateCard'
-import './CertificateCredentials.scss'
+import './style.scss'
 
 export default function CertificateElements({
   data,

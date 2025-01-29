@@ -33,7 +33,7 @@ import {
   useDeclineRegistrationMutation,
   useFetchDeclineDataQuery,
 } from 'features/deleteCompany/deleteCompanyApiSlice'
-import './DeleteCompany.scss'
+import './style.scss'
 
 export default function DeleteCompany() {
   const { t } = useTranslation()

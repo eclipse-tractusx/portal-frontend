@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Checkbox, Radio } from '@catena-x/portal-shared-components'
+import { Typography } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
@@ -42,6 +42,8 @@ import { useForm } from 'react-hook-form'
 import { ButtonLabelTypes } from '..'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import { error, success } from 'services/NotifyService'
+import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
+import { AddTechUserForm } from '../TechnicalIntegration/AddTechUserForm'
 
 export default function OfferTechnicalIntegration() {
   const { t } = useTranslation('servicerelease')
@@ -92,36 +94,7 @@ export default function OfferTechnicalIntegration() {
     mode: 'onChange',
   })
 
-  const handleUserProfiles = (item: string, checked: boolean) => {
-    if (
-      serviceTechUserProfiles &&
-      serviceTechUserProfiles[0] === serviceTechnicalUserNone
-    ) {
-      setServiceTechUserProfiles([...[], item])
-    } else {
-      const isSelected = serviceTechUserProfiles?.includes(item)
-      let selectedProfiles: string[] = []
-      if (!isSelected && checked) {
-        selectedProfiles = [...serviceTechUserProfiles, item]
-      } else if (isSelected && !checked) {
-        const oldTechUserProfiles = [...serviceTechUserProfiles]
-        oldTechUserProfiles.splice(oldTechUserProfiles.indexOf(item), 1)
-        selectedProfiles = [...oldTechUserProfiles]
-      }
-      setErrorMessage(selectedProfiles?.length === 0)
-      setServiceTechUserProfiles(selectedProfiles)
-    }
-  }
-
-  const selectProfiles = (type: string, checked: boolean, item: string) => {
-    if (type === 'radio') {
-      setServiceTechUserProfiles([...[], item])
-    } else if (type === 'checkbox') {
-      handleUserProfiles(item, checked)
-    }
-  }
-
-  const onSubmit = async (_submitData: unknown, buttonLabel: string) => {
+  const onSubmit = (_submitData: unknown, buttonLabel: string) => {
     if (
       !fetchServiceStatus?.serviceTypeIds.every((item) =>
         [`${ServiceTypeIdsEnum.CONSULTANCY_SERVICE}`]?.includes(item)
@@ -139,40 +112,6 @@ export default function OfferTechnicalIntegration() {
     ) {
       buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED &&
         dispatch(serviceReleaseStepIncrement())
-    } else if (
-      !(
-        serviceTechUserProfiles.length === userProfiles.length &&
-        serviceTechUserProfiles.every((item) => userProfiles?.includes(item))
-      )
-    ) {
-      setLoading(true)
-      const updateData = {
-        serviceId,
-        body: [
-          {
-            technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
-            userRoleIds:
-              serviceTechUserProfiles &&
-              serviceTechUserProfiles[0] === serviceTechnicalUserNone
-                ? []
-                : serviceTechUserProfiles,
-          },
-        ],
-      }
-      if (updateData)
-        await saveServiceTechnicalUserProfiles(updateData)
-          .unwrap()
-          .then(() => {
-            setErrorMessage(false)
-            refetch()
-            buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED
-              ? dispatch(serviceReleaseStepIncrement())
-              : success(t('serviceReleaseForm.dataSavedSuccessMessage'))
-          })
-          .catch((err) => {
-            error(t('technicalIntegration.technicalUserProfileError'), '', err)
-          })
-      setLoading(false)
     }
   }
 
@@ -180,6 +119,35 @@ export default function OfferTechnicalIntegration() {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     dispatch(setServiceRedirectStatus(false))
     dispatch(serviceReleaseStepDecrement())
+  }
+
+  const [showTechUser, setShowTechUser] = useState<boolean>(false)
+
+  const handleUserProfiles = async (roles: string[]) => {
+    setShowTechUser(false)
+    setLoading(true)
+    const updateData = {
+      serviceId,
+      body: [
+        {
+          technicalUserProfileId: data?.[0]?.technicalUserProfileId ?? null,
+          userRoleIds:
+            roles && roles[0] === serviceTechnicalUserNone ? [] : roles,
+        },
+      ],
+    }
+    if (updateData)
+      await saveServiceTechnicalUserProfiles(updateData)
+        .unwrap()
+        .then(() => {
+          setErrorMessage(false)
+          refetch()
+          success(t('serviceReleaseForm.dataSavedSuccessMessage'))
+        })
+        .catch((err) => {
+          error(t('technicalIntegration.technicalUserProfileError'), '', err)
+        })
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -204,40 +172,23 @@ export default function OfferTechnicalIntegration() {
       </Grid>
 
       <form className="header-description">
-        <Grid container spacing={1.5} item>
-          {fetchServiceUserRoles?.map((item) => (
-            <Grid item md={12} className="userRoles" key={item.roleId}>
-              <Checkbox
-                label={`${item.roleName} (${item.roleDescription ?? ''})`}
-                checked={serviceTechUserProfiles.some(
-                  (role) => item.roleId === role
-                )}
-                onChange={(e) => {
-                  selectProfiles('checkbox', e.target.checked, item.roleId)
-                }}
-                size="small"
-              />
-            </Grid>
-          ))}
-          <Grid item md={12} className="userRoles">
-            <Radio
-              name="radio-buttons"
-              size="small"
-              checked={
-                serviceTechUserProfiles &&
-                serviceTechUserProfiles[0] === serviceTechnicalUserNone
-              }
-              label={`${t('technicalIntegration.noneOption')}`}
-              onChange={(e) => {
-                selectProfiles(
-                  'radio',
-                  e.target.checked,
-                  serviceTechnicalUserNone
-                )
-              }}
-            />
-          </Grid>
-        </Grid>
+        {data && (
+          <TechUserTable
+            userProfiles={data}
+            handleAddTechUser={() => {
+              setShowTechUser(true)
+            }}
+          />
+        )}
+        {fetchServiceUserRoles && showTechUser && data && (
+          <AddTechUserForm
+            userProfiles={data[0]?.userRoles ?? []}
+            handleClose={() => {
+              setShowTechUser(false)
+            }}
+            handleConfirm={handleUserProfiles}
+          />
+        )}
 
         {errorMessage && (
           <Typography variant="body2" className="file-error-msg">
@@ -258,10 +209,12 @@ export default function OfferTechnicalIntegration() {
         pageSnackbar={techIntegrationSnackbar}
         setPageSnackbar={setTechIntegrationSnackbar}
         onBackIconClick={onBackIconClick}
-        onSave={handleSubmit((data) => onSubmit(data, ButtonLabelTypes.SAVE))}
-        onSaveAndProceed={handleSubmit((data) =>
+        onSave={handleSubmit((data) => {
+          onSubmit(data, ButtonLabelTypes.SAVE)
+        })}
+        onSaveAndProceed={handleSubmit((data) => {
           onSubmit(data, ButtonLabelTypes.SAVE_AND_PROCEED)
-        )}
+        })}
         isValid={serviceTechUserProfiles?.length > 0}
         loader={loading}
         helpUrl={

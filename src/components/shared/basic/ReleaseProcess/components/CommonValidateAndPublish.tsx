@@ -72,7 +72,7 @@ import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
-import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
+import '../../../../pages/AppDetail/AppDetailPrivacy/style.scss'
 import 'components/styles/document.scss'
 
 export interface DefaultValueType {

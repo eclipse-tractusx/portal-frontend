@@ -19,14 +19,14 @@
 
 import { useTranslation, Trans } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
+import './style.scss'
 import {
   type WalletContent,
   useFetchCompanyWalletQuery,
   CredentialType,
   useRevokeCredentialMutation,
 } from 'features/compayWallet/companyWalletApiSlice'
-import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
+import CompanyWalletSubNavigationHeader from './CompanyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
 import { useEffect, useState } from 'react'
@@ -101,7 +101,7 @@ export default function CompanyWallet(): JSX.Element {
             </div>
             {isSuccess && (
               <>
-                <ComapnyWalletSubNavigationHeader />
+                <CompanyWalletSubNavigationHeader />
                 <div className="container">
                   <RuleCard
                     handleRevoke={(id) => {
