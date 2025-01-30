@@ -20,8 +20,9 @@
 
 import { NavLink } from 'react-router-dom'
 import { Image } from '@catena-x/portal-shared-components'
+
 export const Logo = () => (
   <NavLink to="/">
-    <Image src="/arena-logo.svg" />
+    <Image src="/arena-logo.svg" width="500px" height="auto" />
   </NavLink>
 )
