@@ -74,7 +74,7 @@ export default function BoardHeader({ item }: Readonly<AppDetailHeaderProps>) {
       </div>
       <div className="content">
         <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
-          {item.shortLegalName ?? ''}
+          {item.shortLegalName}
         </Typography>
         <Typography variant="h2" sx={{ mb: 1.5, mt: 1.5 }}>
           {item.title}

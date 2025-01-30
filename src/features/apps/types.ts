@@ -58,6 +58,7 @@ export type AppItem = {
 export type AppMarketplaceApp = {
   id: string
   title: string
+  provider?: string
   shortLegalName?: string
   legalName?: string
   leadPictureUri: string
@@ -135,6 +136,7 @@ export type DocumentData = {
 }
 
 export type AppDetails = AppMarketplaceApp & {
+  shortLegalName: string
   providerUri: string
   contactEmail: string
   contactNumber: string

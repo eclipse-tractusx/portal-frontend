@@ -111,7 +111,7 @@ export interface NotificationContent {
   userId?: string
   AppName?: string
   OfferName?: string
-  RequestorCompanyName?: string
+  shortLegalName?: string
   username?: string
   coreOfferName?: string
   appName?: string

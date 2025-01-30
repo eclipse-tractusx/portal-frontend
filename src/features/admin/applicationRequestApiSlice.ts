@@ -145,6 +145,7 @@ export interface ApplicationRequest {
   applicationStatus: ApplicationRequestStatus
   dateCreated: string
   legalName: string
+  companyName: string
   email: string
   bpn: string
   documents: Array<DocumentMapper>

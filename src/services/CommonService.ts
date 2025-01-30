@@ -38,7 +38,7 @@ const getPrice = (app: AppMarketplaceApp) =>
 
 const appToCard = (app: AppMarketplaceApp): AppMarketplaceCard => ({
   ...app,
-  subtitle: app.provider,
+  subtitle: app.shortLegalName,
   title: getName(app),
   description: getDescription(app),
   price: getPrice(app),

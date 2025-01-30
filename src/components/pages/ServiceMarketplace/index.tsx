@@ -164,7 +164,9 @@ export default function ServiceMarketplace() {
               ? services?.filter(
                   (card: ServiceRequest) =>
                     card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                    card.provider.toLowerCase().includes(expr.toLowerCase()) ||
+                    card.shortLegalName
+                      .toLowerCase()
+                      .includes(expr.toLowerCase()) ||
                     card?.description.toLowerCase().includes(expr.toLowerCase())
                 )
               : services

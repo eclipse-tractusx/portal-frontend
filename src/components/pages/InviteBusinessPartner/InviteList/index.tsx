@@ -129,7 +129,10 @@ export const InviteList = ({
                 disabled={true}
                 color="secondary"
                 onClick={() => {
-                  console.log('on details click: Company Name', row.companyName)
+                  console.log(
+                    'on details click: Company Name',
+                    row?.legalName ?? ''
+                  )
                 }}
               >
                 <ArrowForwardIcon />

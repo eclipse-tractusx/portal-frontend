@@ -48,8 +48,8 @@ export type ServiceRequest = {
   title: string
   serviceTypes: string[]
   serviceTypeIds?: string[]
-  shortLegalName?: string
-  legalName?: string
+  shortLegalName: string
+  legalName: string
   providerUri: string
   leadPictureUri: string
   contactEmail: string

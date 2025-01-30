@@ -39,7 +39,7 @@ export default function MarketplaceProvider({
   const tableData: TableType = {
     head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
-      [item.shortLegalName ?? ''],
+      [item.shortLegalName],
       [item.providerUri],
       [item.contactEmail],
       [item.phone],

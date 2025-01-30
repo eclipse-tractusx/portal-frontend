@@ -123,7 +123,7 @@ export default function AppOverViewDetails({
                 src: cardImage || LogoGrayData, // To-Do : Update this with actual data when new api is available
               }}
               title={item.title}
-              subtitle={item.provider}
+              subtitle={item.shortLegalName}
               description={getDescription(item)}
               imageSize="normal"
               imageShape="square"

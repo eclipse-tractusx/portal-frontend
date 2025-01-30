@@ -76,7 +76,7 @@ export default function RecommendedServices({
                   alt: 'App Card',
                   src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
                 }}
-                label={service.shortLegalName ?? ''}
+                label={service.shortLegalName}
                 buttonText="Details"
                 onBtnClick={() => {
                   handleClick(service.id)

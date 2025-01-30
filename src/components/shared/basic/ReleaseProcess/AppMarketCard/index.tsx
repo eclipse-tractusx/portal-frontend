@@ -157,7 +157,7 @@ export default function AppMarketCard() {
   const defaultValues = useMemo(() => {
     return {
       title: appStatusData?.title,
-      provider: appStatusData?.provider,
+      provider: appStatusData?.shortLegalName,
       price: appStatusData?.price,
       useCaseCategory: appStatusData?.useCase,
       appLanguage: appStatusData?.supportedLanguageCodes,

@@ -106,7 +106,8 @@ export const initialState: AppManagementState = {
   appId: '',
   appStatusData: {
     title: '',
-    provider: '',
+    shortLegalName: '',
+    legalName: '',
     leadPictureId: '',
     providerName: '',
     useCase: [],

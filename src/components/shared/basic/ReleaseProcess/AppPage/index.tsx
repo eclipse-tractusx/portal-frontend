@@ -387,7 +387,7 @@ export default function AppPage() {
         },
       ],
       title: statusData.title ?? '',
-      provider: statusData.provider ?? '',
+      provider: statusData.shortLegalName ?? '',
       salesManagerId: statusData.salesManagerId ?? null,
       useCaseIds: statusData.useCase?.map((item: UseCaseType) => item.id) ?? [],
       supportedLanguageCodes: statusData.supportedLanguageCodes ?? [],

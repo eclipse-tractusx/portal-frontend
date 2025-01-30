@@ -46,7 +46,7 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
       >
         {data ? data.title : id}
         <span style={{ marginLeft: '20px', color: '#cccccc' }}>
-          {data?.shortLegalName ?? ''}
+          {data?.shortLegalName}
         </span>
       </span>
     )

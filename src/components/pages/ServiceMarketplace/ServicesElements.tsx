@@ -84,7 +84,7 @@ export default function ServicesElements({
                         alt: 'App Card',
                         src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
                       }}
-                      label={service.provider}
+                      label={service.shortLegalName}
                       buttonText="Details"
                       onBtnClick={() => {
                         handleClick(service.id)

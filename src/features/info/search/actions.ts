@@ -176,7 +176,7 @@ const fetchSearch = createAsyncThunk(
             uuid
               ? searchExpr.exec(item.id)
               : ((item.name && searchExpr.exec(item.name)) ??
-                (item.provider && searchExpr.exec(item.provider)))
+                (item.shortLegalName && searchExpr.exec(item.shortLegalName)))
           )
           .map((item: AppMarketplaceApp) => appToSearchItem(item)),
         // Add an ESLint exception until there is a solution

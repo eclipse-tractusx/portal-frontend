@@ -38,7 +38,7 @@ export default function BoardProvider({
   const boardProviderDetails: TableType = {
     head: [t('appProvider'), t('website'), t('email'), t('phone')],
     body: [
-      [item.shortLegalName ?? ''],
+      [item.shortLegalName],
       [item.providerUri === 'ERROR' ? '' : item.providerUri],
       [item.contactEmail],
       [item.contactNumber],

@@ -116,6 +116,7 @@ export interface ProvidedServiceType {
   id: string
   name: string
   provider: string
+  shortLegalName: string
   status: ProvidedServiceStatusEnum
   leadPictureId?: string
 }

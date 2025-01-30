@@ -45,7 +45,7 @@ export const actionToSearchItem = (item: string): SearchItem => ({
 export const appToSearchItem = (item: AppMarketplaceApp): SearchItem => ({
   ...item,
   category: SearchCategory.APP,
-  description: item.provider,
+  description: item.shortLegalName,
   title: item.name ?? '-',
 })
 

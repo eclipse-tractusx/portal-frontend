@@ -87,7 +87,7 @@ export default function EditForm({
     inputParams.externalId = `${companyInfo?.bpn}_${new Date().toISOString()}`
     inputParams.legalEntity.legalEntityBpn = companyInfo?.bpn
     inputParams.legalEntity.legalName = companyInfo?.name
-    inputParams.legalEntity.shortName = companyInfo?.shortName
+    inputParams.legalEntity.shortName = companyInfo?.shortLegalName
   }
   const getFilledData = (form: { body: CompanyDataFieldsType }) => {
     inputParams.address.physicalPostalAddress.postalCode = form.body.postalCode

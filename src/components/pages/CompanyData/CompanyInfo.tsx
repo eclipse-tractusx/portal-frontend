@@ -53,7 +53,7 @@ export default function CompanyInfo() {
         }}
       >
         <LabelWithTooltips
-          value={companyDetails?.shortName}
+          value={companyDetails?.shortLegalName}
           label={t('content.companyData.companyInfo.legalEntityNameTooltip')}
           tooltipMsg={t('content.companyData.companyInfo.legalEntityName')}
         />

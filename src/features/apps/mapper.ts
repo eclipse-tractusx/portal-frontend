@@ -65,7 +65,7 @@ export const getAppImage = (appid: string, image: string): ImageType => ({
 // mapper to create the app card used for the my business application section
 export const appToCard = (app: AppMarketplaceApp): CardItems => ({
   ...app,
-  subtitle: app.provider,
+  subtitle: app.shortLegalName,
   title: app.name ?? '',
   description: app.shortDescription === 'ERROR' ? '' : app.shortDescription,
   price: app.price === 'ERROR' ? '' : app.price,
@@ -82,7 +82,7 @@ export const appToCard = (app: AppMarketplaceApp): CardItems => ({
 export const serviceToCard = (app: ProvidedServiceType): CardItems => ({
   ...app,
   statusText: app.status,
-  subtitle: app.provider,
+  subtitle: app.shortLegalName,
   title: app.name ?? '',
   image: {
     src: app.leadPictureId
