@@ -19,10 +19,42 @@
  ********************************************************************************/
 
 import { NavLink } from 'react-router-dom'
-import { Image } from '@catena-x/portal-shared-components'
 
 export const Logo = () => (
-  <NavLink to="/">
-    <Image src="/arena-logo.svg" width="500px" height="auto" />
+  <NavLink to="/" style={{ textDecoration: 'none' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column', // Logo oben, Text unten
+        alignItems: 'center',
+        textAlign: 'center',
+        gap: '5px', // Abstand zwischen Logo und Text vergrößern
+        padding: '10px',
+      }}
+    >
+      {/* Logo */}
+      <img
+        src={'/src/assets/logo/arena-logo.svg'}
+        alt="logo"
+        style={{ objectFit: 'contain', width: '250px', height: 'auto' }}
+      />
+
+      {/* Text unter dem Logo */}
+      <span
+        style={{
+          fontSize: '14px', // Schriftgröße erhöhen
+          fontWeight: 'bold',
+          color: '#333', // Dunklere Farbe für bessere Lesbarkeit
+          whiteSpace: 'normal', // Zeilenumbrüche erlauben
+          textAlign: 'center', // Text mittig ausrichten
+          maxWidth: '80%', // Breite begrenzen für bessere Lesbarkeit
+          lineHeight: '1.5', // Mehr Abstand zwischen Zeilen
+          padding: '5px', // Mehr Abstand um den Text
+        }}
+      >
+        Tractus-X implementation of Release 24.08, but bypassing DS Factory and
+        Clearing House.
+      </span>
+    </div>
   </NavLink>
-)
+
