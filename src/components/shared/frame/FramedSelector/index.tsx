@@ -19,7 +19,6 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-
 import './style.scss'
 
 export interface Buttons {
@@ -63,15 +62,25 @@ export const FramedSelector = ({ views, activeView }: FramedSelectorProps) => {
               onButtonClick(buttonValue)
             }}
           >
-            <Typography className="title" variant="h4">
-              {buttonText}:
-            </Typography>
-            <Box className="textNumber">
+            <Box>
+              <Typography className="title" variant="h4">
+                {buttonText}:
+              </Typography>
               <Typography variant="body2">{buttonDescription}</Typography>
-              <Box className="value">
-                <Typography variant="h4">{countTitle}</Typography>
-                <Typography variant="h2">{count}</Typography>
-              </Box>
+            </Box>
+            <Box className="textNumber">
+              <Typography
+                className={`count ${activeView.toLowerCase() === buttonValue.toLowerCase() ? 'active' : ''}`}
+                variant="h2"
+              >
+                {count}
+              </Typography>
+              <Typography
+                className={`count ${activeView.toLowerCase() === buttonValue.toLowerCase() ? 'active' : ''}`}
+                variant="h4"
+              >
+                {countTitle}
+              </Typography>
             </Box>
           </Box>
         )

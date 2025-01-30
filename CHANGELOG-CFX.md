@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Notifications**
+
+  - Fix notification card as per wirefame [PM2-1498](https://cofinity-x.atlassian.net/browse/PM2-1498)
+
 - **OSP Management**
 
   - Fixed OSP managent refresh glitch [PM2-1793](https://cofinity-x.atlassian.net/browse/PM2-1793)

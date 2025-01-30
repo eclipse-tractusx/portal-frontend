@@ -22,30 +22,41 @@
   justify-content: center;
   margin-top: 20px;
   cursor: pointer;
+
   .frameButton {
     margin: 0px 10px;
     width: 25%;
     padding: 20px;
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     .title {
       margin-bottom: 10px;
     }
+
     .textNumber {
       display: flex;
-    }
-    .value {
-      padding-left: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      align-content: center;
-      h2,
-      h4 {
-        color: #0f71cb;
-        text-transform: lowercase;
+      align-items: flex-end;
+      margin-top: 10px;
+      width: 100%;
+
+      .count {
+        margin-right: 10px;
       }
+
+      .textNumber h4,
+      .textNumber h2 {
+        margin: 0;
+      }
+
       h2 {
         font-size: 32px;
+      }
+
+      .active {
+        color: #d31184;
       }
     }
   }
