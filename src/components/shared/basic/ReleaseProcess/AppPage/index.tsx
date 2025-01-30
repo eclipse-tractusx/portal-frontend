@@ -74,6 +74,7 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
+import { isStepCompleted } from '../AppStepHelper'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -172,11 +173,8 @@ export default function AppPage() {
   useEffect(() => {
     if (hasDispatched.current) return
     if (
-      fetchAppStatus?.descriptions[0]?.longDescription &&
-      fetchAppStatus.descriptions[1]?.longDescription &&
-      fetchAppStatus.images?.length &&
-      fetchAppStatus?.privacyPolicies?.length &&
-      appRedirectStatus
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 2, appRedirectStatus)
     ) {
       dispatch(increment())
       hasDispatched.current = true

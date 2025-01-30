@@ -69,6 +69,7 @@ import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { PAGES } from 'types/Constants'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../OfferStepHelper'
 
 type FormDataType = {
   title: string
@@ -254,11 +255,8 @@ export default function OfferCard() {
   useEffect(() => {
     if (hasDispatched.current) return
     if (
-      fetchServiceStatus?.title &&
-      fetchServiceStatus?.serviceTypeIds?.length &&
-      fetchServiceStatus?.descriptions[0]?.shortDescription &&
-      fetchServiceStatus?.descriptions[1]?.shortDescription &&
-      redirectStatus
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 1, redirectStatus)
     ) {
       dispatch(serviceReleaseStepIncrement())
       hasDispatched.current = true

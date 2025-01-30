@@ -30,13 +30,12 @@ import {
   useSaveServiceTechnicalUserProfilesMutation,
 } from 'features/serviceManagement/apiSlice'
 import {
-  serviceRedirectStatusSelector,
   serviceIdSelector,
   serviceReleaseStepDecrement,
   serviceReleaseStepIncrement,
   setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
-import { useState, useMemo, useEffect, useRef } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { ButtonLabelTypes } from '..'
@@ -49,8 +48,6 @@ export default function OfferTechnicalIntegration() {
   const { t } = useTranslation('servicerelease')
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
-  const redirectStatus = useSelector(serviceRedirectStatusSelector)
-  const hasDispatched = useRef(false)
   const fetchServiceUserRoles = useFetchServiceUserRolesQuery().data
   const [serviceTechUserProfiles, setServiceTechUserProfiles] = useState<
     string[]
@@ -149,14 +146,6 @@ export default function OfferTechnicalIntegration() {
         })
     setLoading(false)
   }
-
-  useEffect(() => {
-    if (hasDispatched.current) return
-    if (redirectStatus) {
-      dispatch(serviceReleaseStepIncrement())
-      hasDispatched.current = true
-    }
-  }, [fetchServiceStatus])
 
   return (
     <>

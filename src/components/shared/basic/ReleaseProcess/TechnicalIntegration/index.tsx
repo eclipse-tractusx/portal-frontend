@@ -59,6 +59,7 @@ import { error, success } from 'services/NotifyService'
 import { ButtonLabelTypes } from '..'
 import { TechUserTable } from './TechUserTable'
 import { AddTechUserForm } from './AddTechUserForm'
+import { isStepCompleted } from '../AppStepHelper'
 
 type RoleDesT = {
   desEN: string
@@ -369,7 +370,10 @@ export default function TechnicalIntegration() {
 
   useEffect(() => {
     if (hasDispatched.current) return
-    if (data && data.length > 0 && appRedirectStatus) {
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 4, appRedirectStatus, data)
+    ) {
       dispatch(increment())
       hasDispatched.current = true
     }

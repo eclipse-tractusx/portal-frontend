@@ -77,6 +77,7 @@ import {
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../AppStepHelper'
 
 type FormDataType = {
   title: string
@@ -222,15 +223,8 @@ export default function AppMarketCard() {
   useEffect(() => {
     if (hasDispatched.current) return
     if (
-      fetchAppStatus?.title &&
-      fetchAppStatus.provider &&
-      fetchAppStatus.descriptions[0]?.shortDescription &&
-      fetchAppStatus.descriptions[1]?.shortDescription &&
-      fetchAppStatus.useCase?.length &&
-      fetchAppStatus.supportedLanguageCodes?.length &&
-      fetchAppStatus.documents?.APP_LEADIMAGE?.length &&
-      fetchAppStatus.price &&
-      appRedirectStatus
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 1, appRedirectStatus)
     ) {
       dispatch(increment())
       hasDispatched.current = true

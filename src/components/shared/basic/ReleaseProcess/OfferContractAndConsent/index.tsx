@@ -34,11 +34,11 @@ import {
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
   useFetchDocumentMutation,
-  ConsentStatusEnum,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
 import { useFetchFrameDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { isStepCompleted } from '../OfferStepHelper'
 
 export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
@@ -66,11 +66,8 @@ export default function OfferContractAndConsent() {
   useEffect(() => {
     if (hasDispatched.current) return
     if (
-      fetchServiceStatus?.agreements?.length &&
-      fetchServiceStatus?.agreements[0]?.consentStatus ===
-        ConsentStatusEnum.ACTIVE &&
-      fetchServiceStatus?.documents?.CONFORMITY_APPROVAL_SERVICES?.length &&
-      redirectStatus
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 3, redirectStatus)
     ) {
       dispatch(serviceReleaseStepIncrement())
       hasDispatched.current = true

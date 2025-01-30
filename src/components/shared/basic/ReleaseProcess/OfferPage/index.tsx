@@ -61,6 +61,7 @@ import { download } from 'utils/downloadUtils'
 import { type FileState } from 'features/serviceManagement/types'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../OfferStepHelper'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -281,9 +282,8 @@ export default function OfferPage({
   useEffect(() => {
     if (hasDispatched.current) return
     if (
-      fetchServiceStatus?.descriptions[0]?.longDescription &&
-      fetchServiceStatus?.descriptions[1]?.longDescription &&
-      redirectStatus
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 2, redirectStatus)
     ) {
       dispatch(serviceReleaseStepIncrement())
       hasDispatched.current = true

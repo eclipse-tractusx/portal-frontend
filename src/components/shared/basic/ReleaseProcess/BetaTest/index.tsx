@@ -43,6 +43,7 @@ import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { getAssetBase } from 'services/EnvironmentService'
+import { isStepCompleted } from '../AppStepHelper'
 
 export default function BetaTest() {
   const { t } = useTranslation()
@@ -66,7 +67,10 @@ export default function BetaTest() {
 
   useEffect(() => {
     if (hasDispatched.current) return
-    if (fetchAppStatus && appRedirectStatus) {
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 5, appRedirectStatus)
+    ) {
       dispatch(increment())
       hasDispatched.current = true
     }

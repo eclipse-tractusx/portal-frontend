@@ -33,12 +33,12 @@ import {
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
   useFetchFrameDocumentByIdMutation,
-  ConsentStatusEnum,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { isStepCompleted } from '../AppStepHelper'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
@@ -65,15 +65,8 @@ export default function ContractAndConsent() {
   useEffect(() => {
     if (hasDispatched.current) return
     if (
-      fetchAppStatus?.agreements &&
-      fetchAppStatus.agreements[0]?.consentStatus ===
-        ConsentStatusEnum.ACTIVE &&
-      fetchAppStatus.agreements[1]?.consentStatus ===
-        ConsentStatusEnum.ACTIVE &&
-      fetchAppStatus.agreements[2]?.consentStatus ===
-        ConsentStatusEnum.ACTIVE &&
-      fetchAppStatus.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS?.length &&
-      appRedirectStatus
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 3, appRedirectStatus)
     ) {
       dispatch(increment())
       hasDispatched.current = true
