@@ -59,7 +59,9 @@ const BusinessPartnerDetailContent = ({
   const companyData = [
     {
       key: t('content.partnernetwork.columns.name'),
-      value: `${selectedRowBPN?.shortLegalName ?? ''} (${selectedRowBPN?.legalName ?? ''})`,
+      value:
+        `${selectedRowBPN?.shortLegalName ?? ''}${selectedRowBPN?.legalName ? ` (${selectedRowBPN.legalName})` : ''}` ||
+        'N/A',
     },
     {
       key: t('content.partnernetwork.columns.bpn'),
