@@ -990,7 +990,7 @@
         "tableTechnicalUser": "Technischer User Name",
         "create": "Technischen User anlegen",
         "delete": "Technischen User entfernen",
-        "credentialReset": "Credential Reset",
+        "credentialReset": "Credential zurücksetzen",
         "headline": "Technical User Management {{company}}",
         "descriptionHeader": "Technischer User Management",
         "descriptionText": "Der technische Benutzer ist eine Identität, die ein Unternehmen verwenden kann, um sich mit CX-Backend-Diensten ohne ständige Trennung zu verbinden. Zum Beispiel ist ein technischer Run-As-Benutzer erforderlich, um sich mit der Registrierung für digitale Zwillinge oder dem semantischen Modell zu verbinden.",

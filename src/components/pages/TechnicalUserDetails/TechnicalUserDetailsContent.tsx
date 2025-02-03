@@ -48,6 +48,7 @@ export default function TechnicalUserDetailsContent({
   const [mutationRequest] = useResetCredentialMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [newData, setNewData] = useState<ServiceAccountDetail>(data)
+
   const [technicalUserDetailList, setTechnicalUserDetailList] = useState<
     Array<ValueItem>
   >([
@@ -126,11 +127,16 @@ export default function TechnicalUserDetailsContent({
       >
         {t('content.usermanagement.technicalUser.delete')}
       </Button>
-
       <Button
         size="small"
         variant="outlined"
-        disabled={loading}
+        disabled={
+          loading ||
+          newData.roles.some(
+            (role: ServiceAccountRole) =>
+              role.roleName === 'Identity Wallet Management'
+          )
+        }
         startIcon={
           loading ? (
             <CircleProgress
@@ -153,7 +159,6 @@ export default function TechnicalUserDetailsContent({
       >
         {t('content.usermanagement.technicalUser.credentialReset')}
       </Button>
-
       <Box
         sx={{
           display: 'flex',

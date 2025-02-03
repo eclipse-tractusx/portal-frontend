@@ -993,7 +993,7 @@
         "serviceaccount": "Service Account",
         "tableTechnicalUser": "Service Account Name",
         "create": "Create Technical User",
-        "delete": "Delete this technical User",
+        "delete": "Delete Technical User",
         "credentialReset": "Credential Reset",
         "headline": "Technical user management {{company}}",
         "descriptionHeader": "Technical user management",
