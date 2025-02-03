@@ -106,6 +106,7 @@ export default function TechnicalUserDetailsContent({
   const missingInformationHint = t(
     'content.usermanagement.technicalUser.detailsPage.missingInfoHint'
   )
+
   const [technicalUserDetailList, setTechnicalUserDetailList] = useState<
     Array<ValueItem>
   >([
@@ -218,11 +219,16 @@ export default function TechnicalUserDetailsContent({
       >
         {t('content.usermanagement.technicalUser.delete')}
       </Button>
-
       <Button
         size="small"
         variant="outlined"
-        disabled={loading}
+        disabled={
+          loading ||
+          newData.roles.some(
+            (role: ServiceAccountRole) =>
+              role.roleName === 'Identity Wallet Management'
+          )
+        }
         startIcon={
           loading ? (
             <CircleProgress
@@ -245,7 +251,6 @@ export default function TechnicalUserDetailsContent({
       >
         {t('content.usermanagement.technicalUser.credentialReset')}
       </Button>
-
       <Box
         sx={{
           display: 'flex',
