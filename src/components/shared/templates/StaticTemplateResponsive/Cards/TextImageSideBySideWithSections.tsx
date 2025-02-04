@@ -110,7 +110,7 @@ export default function TextImageSideBySideWithSections({
             {provider?.subDescriptions?.sections?.length > 0 &&
               provider?.subDescriptions?.sections.map(
                 (section: { title: string; link: string; value: string }) => (
-                  <>
+                  <div key={section.title}>
                     <Typography>
                       <Trans
                         key={section.title}
@@ -134,7 +134,7 @@ export default function TextImageSideBySideWithSections({
                     >
                       {section.value}
                     </Typography>
-                  </>
+                  </div>
                 )
               )}
           </>
