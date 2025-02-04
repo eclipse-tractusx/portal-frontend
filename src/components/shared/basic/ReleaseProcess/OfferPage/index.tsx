@@ -29,7 +29,7 @@ import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -47,6 +47,8 @@ import {
   serviceIdSelector,
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
+  setServiceRedirectStatus,
+  serviceRedirectStatusSelector,
 } from 'features/serviceManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -59,6 +61,7 @@ import { download } from 'utils/downloadUtils'
 import { type FileState } from 'features/serviceManagement/types'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
 import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../OfferStepHelper'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -78,6 +81,8 @@ export default function OfferPage({
   const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
+  const redirectStatus = useSelector(serviceRedirectStatusSelector)
+  const hasDispatched = useRef(false)
   const longDescriptionMaxLength = 2000
   const { data: fetchServiceStatus, refetch } = useFetchServiceStatusQuery(
     serviceId ?? ' ',
@@ -102,6 +107,7 @@ export default function OfferPage({
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+    dispatch(setServiceRedirectStatus(false))
     dispatch(serviceReleaseStepDecrement())
   }
 
@@ -272,6 +278,17 @@ export default function OfferPage({
     }
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 2, redirectStatus)
+    ) {
+      dispatch(serviceReleaseStepIncrement())
+      hasDispatched.current = true
+    }
+  }, [fetchServiceStatus, hasDispatched])
 
   const handleDownload = async (value: FileState[]) => {
     const documentId = value[0].id

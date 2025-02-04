@@ -31,12 +31,14 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import { Box, Grid, useMediaQuery, useTheme, Divider } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   decrement,
   increment,
+  setAppRedirectStatus,
 } from 'features/appManagement/slice'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import { isString } from 'lodash'
@@ -57,6 +59,7 @@ import { error, success } from 'services/NotifyService'
 import { ButtonLabelTypes } from '..'
 import { TechUserTable } from './TechUserTable'
 import { AddTechUserForm } from './AddTechUserForm'
+import { isStepCompleted } from '../AppStepHelper'
 
 type RoleDesT = {
   desEN: string
@@ -66,6 +69,7 @@ type RoleDesT = {
 export default function TechnicalIntegration() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
   const [
     technicalIntegrationNotification,
     setTechnicalIntegrationNotification,
@@ -75,6 +79,7 @@ export default function TechnicalIntegration() {
   const [rolesPreviews, setRolesPreviews] = useState<string[]>([])
   const [rolesDescription, setRolesDescription] = useState<RoleDesT[]>([])
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
@@ -326,6 +331,7 @@ export default function TechnicalIntegration() {
 
   const onBackIconClick = () => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    dispatch(setAppRedirectStatus(false))
     dispatch(decrement())
   }
 
@@ -361,6 +367,17 @@ export default function TechnicalIntegration() {
       })
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 4, appRedirectStatus, data)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, data, hasDispatched])
 
   return (
     <>

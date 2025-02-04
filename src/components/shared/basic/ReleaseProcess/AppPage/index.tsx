@@ -35,14 +35,16 @@ import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   appStatusDataSelector,
   decrement,
   increment,
+  setAppRedirectStatus,
 } from 'features/appManagement/slice'
 import {
   DocumentTypeId,
@@ -72,6 +74,7 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
 import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
+import { isStepCompleted } from '../AppStepHelper'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -89,7 +92,9 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
 
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
@@ -164,6 +169,17 @@ export default function AppPage() {
         setSelectedPrivacyPolicies(fetchAppStatus?.privacyPolicies)
     }
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 2, appRedirectStatus)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
@@ -410,6 +426,7 @@ export default function AppPage() {
 
   const onBackIconClick = () => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    dispatch(setAppRedirectStatus(false))
     dispatch(decrement())
   }
 

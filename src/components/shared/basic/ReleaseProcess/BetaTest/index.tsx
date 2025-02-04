@@ -31,29 +31,50 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   decrement,
   increment,
+  setAppRedirectStatus,
 } from 'features/appManagement/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { getAssetBase } from 'services/EnvironmentService'
+import { isStepCompleted } from '../AppStepHelper'
 
 export default function BetaTest() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
   const [betaTestNotification, setBetaTestNotification] = useState(false)
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   }).data
 
+  const onBackIconClick = () => {
+    dispatch(setAppRedirectStatus(false))
+    dispatch(decrement())
+  }
+
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 5, appRedirectStatus)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   return (
     <>
@@ -134,7 +155,7 @@ export default function BetaTest() {
         >
           {t('content.apprelease.footerButtons.help')}
         </Button>
-        <IconButton onClick={() => dispatch(decrement())} color="secondary">
+        <IconButton onClick={onBackIconClick} color="secondary">
           <KeyboardArrowLeftIcon />
         </IconButton>
         <Button

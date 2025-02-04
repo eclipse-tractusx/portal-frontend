@@ -33,6 +33,7 @@ import {
   serviceIdSelector,
   serviceReleaseStepDecrement,
   serviceReleaseStepIncrement,
+  setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
 import { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -113,6 +114,7 @@ export default function OfferTechnicalIntegration() {
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+    dispatch(setServiceRedirectStatus(false))
     dispatch(serviceReleaseStepDecrement())
   }
 

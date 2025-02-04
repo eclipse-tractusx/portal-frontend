@@ -31,7 +31,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
   useFetchUseCasesQuery,
@@ -54,6 +54,7 @@ import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   appStatusDataSelector,
   increment,
 } from 'features/appManagement/slice'
@@ -76,6 +77,7 @@ import {
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../AppStepHelper'
 
 type FormDataType = {
   title: string
@@ -98,6 +100,8 @@ export default function AppMarketCard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
+  const hasDispatched = useRef(false)
   const [pageScrolled, setPageScrolled] = useState(false)
   const [deleteSuccess, setDeleteSuccess] = useState(false)
 
@@ -215,6 +219,17 @@ export default function AppMarketCard() {
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 1, appRedirectStatus)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   useEffect(() => {
     if (salesManagerList.length > 0) {

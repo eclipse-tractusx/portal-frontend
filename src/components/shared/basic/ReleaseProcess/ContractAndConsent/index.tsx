@@ -19,9 +19,13 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { appIdSelector } from 'features/appManagement/slice'
+import {
+  appIdSelector,
+  appRedirectStatusSelector,
+  increment,
+} from 'features/appManagement/slice'
 import {
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
@@ -34,10 +38,13 @@ import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { isStepCompleted } from '../AppStepHelper'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
   const fetchConsentData = useFetchConsentDataQuery(appId ?? '', {
@@ -54,6 +61,17 @@ export default function ContractAndConsent() {
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 3, appRedirectStatus)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   return (
     <div className="contract-consent">
