@@ -27,9 +27,10 @@ import { findIndex } from 'lodash'
 
 interface TechUserTableProps {
   userProfiles: TechnicalUserProfiles[]
-  handleAddTechUser: () => void
-  handleDelete: (row: TechnicalUserProfiles) => void
-  handleEdit: (row: TechnicalUserProfiles) => void
+  handleAddTechUser?: () => void
+  handleDelete?: (row: TechnicalUserProfiles) => void
+  handleEdit?: (row: TechnicalUserProfiles) => void
+  disableActions?: boolean
 }
 
 export const TechUserTable = ({
@@ -37,6 +38,7 @@ export const TechUserTable = ({
   handleAddTechUser,
   handleDelete,
   handleEdit,
+  disableActions = false,
 }: TechUserTableProps) => {
   return (
     <Table
@@ -89,7 +91,7 @@ export const TechUserTable = ({
           headerAlign: 'center',
           align: 'center',
           headerName: t('content.apprelease.technicalIntegration.table.role'),
-          flex: 2,
+          flex: disableActions ? 2.5 : 2,
           valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
             row.userRoles.map((x) => x.roleName.split('"')).toString(),
         },
@@ -97,45 +99,51 @@ export const TechUserTable = ({
           field: 'edit',
           headerAlign: 'left',
           align: 'left',
-          headerName: t('content.apprelease.technicalIntegration.table.action'),
-          flex: 1,
+          headerName: disableActions
+            ? ''
+            : t('content.apprelease.technicalIntegration.table.action'),
+          flex: disableActions ? 0 : 1,
           renderCell: ({ row }: { row: TechnicalUserProfiles }) => (
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                placeItems: 'center',
-              }}
-            >
-              <EditOutlinedIcon
-                sx={{
-                  color: '#adadad',
-                  ':hover': {
-                    color: 'blue',
-                    cursor: 'pointer',
-                  },
-                }}
-                onClick={() => {
-                  handleEdit(row)
-                }}
-              />
+            <>
+              {!disableActions && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    placeItems: 'center',
+                  }}
+                >
+                  <EditOutlinedIcon
+                    sx={{
+                      color: '#adadad',
+                      ':hover': {
+                        color: 'blue',
+                        cursor: 'pointer',
+                      },
+                    }}
+                    onClick={() => {
+                      handleEdit && handleEdit(row)
+                    }}
+                  />
 
-              <DeleteOutlineIcon
-                sx={{
-                  color: '#adadad',
-                  marginLeft: '10px',
-                  ':hover': {
-                    color: 'blue',
-                    cursor: 'pointer',
-                  },
-                }}
-                onClick={() => {
-                  handleDelete(row)
-                }}
-              />
-            </Box>
+                  <DeleteOutlineIcon
+                    sx={{
+                      color: '#adadad',
+                      marginLeft: '10px',
+                      ':hover': {
+                        color: 'blue',
+                        cursor: 'pointer',
+                      },
+                    }}
+                    onClick={() => {
+                      handleDelete && handleDelete(row)
+                    }}
+                  />
+                </Box>
+              )}
+            </>
           ),
         },
       ]}

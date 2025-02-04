@@ -28,6 +28,7 @@ import {
   useFetchAppStatusQuery,
   useFetchAppRolesDataQuery,
   useSubmitappMutation,
+  useFetchTechnicalUserProfilesQuery,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonValidateAndPublish from '../components/CommonValidateAndPublish'
@@ -44,6 +45,9 @@ export default function ValidateAndPublish({
   const [submitapp] = useSubmitappMutation()
   const appId = useSelector(appIdSelector)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const { data: technicalUserProfiles } = useFetchTechnicalUserProfilesQuery(
+    appId ?? ''
+  )
 
   const fetchAppStatus = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
@@ -100,6 +104,7 @@ export default function ValidateAndPublish({
         fetchDocumentById={fetchDocumentById}
         showSubmitPage={showSubmitPage}
         submitData={submitapp}
+        techUserProfiles={technicalUserProfiles ?? []}
         validateAndPublishItemText="content.apprelease.validateAndPublish"
         detailsText={t('content.apprelease.validateAndPublish.appDetails')}
         longDescriptionTitleEN={t(

@@ -1342,9 +1342,9 @@
         "form": {
           "title": "Technisches Benutzerprofil konfigurieren",
           "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzerprofils fort",
-          "internalUserRoles": "Internes technischer Benutzerprofil",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
           "internalUserRolesDescription": "Interne technische Benutzerprofile werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
-          "externalUserRoles": "Externers technischer Benutzer",
+          "externalUserRoles": "Externer technischer Benutzer",
           "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben"
         }
       },
