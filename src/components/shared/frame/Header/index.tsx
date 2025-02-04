@@ -33,7 +33,7 @@ import {
   Typography,
 } from '@catena-x/portal-shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
-import { getAssetBase } from 'services/EnvironmentService'
+//import {getAssetBase } from 'services/EnvironmentService'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,
@@ -203,7 +203,7 @@ export const Header = ({
       <div className="mobileNav">
         <div className="mobileHeader">
 
-          <img src={`src/assets/logo/arena-logo.svg`} alt="logo" style={{ objectFit: "contain", width: "100px", height: "50px" }} />
+          <img src={`src/assets/logo/arena-logo.svg`} alt="logo" style={{ objectFit: "contain", width: "50px", height: "50px" }} />
         </div>
         <div className="mobileHeaderRight">
           <div

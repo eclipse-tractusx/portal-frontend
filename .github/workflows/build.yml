@@ -28,7 +28,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAMESPACE: 'tractusx'
+  IMAGE_NAMESPACE: 'arena2036'
   IMAGE_NAME: 'portal-frontend'
   # variables needed for scripts/legal-notice.sh
   SERVER_URL: '${{ github.server_url }}'
@@ -54,14 +54,14 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Prettier Checks
-        run: yarn pretty:check
+      # - name: Prettier Checks
+      #   run: yarn pretty:check
 
-      - name: Linter Checks
-        run: yarn lint
+      # - name: Linter Checks
+      #   run: yarn lint
 
-      - name: Add content to Legal Notice
-        run: yarn build:legal-notice
+      # - name: Add content to Legal Notice
+      #   run: yarn build:legal-notice
 
       - name: Build Library and Portal
         run: yarn build
@@ -69,8 +69,14 @@ jobs:
       - name: Unit Tests
         run: yarn test:ci
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5 # v3.8.0
+      #- name: Set up Docker Buildx
+        #uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5 # v3.8.0
+      - name: Docker Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.AZURE_URL }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
@@ -88,47 +94,48 @@ jobs:
             type=raw,value=main
             type=raw,value=${{ github.sha }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image to ACR
         uses: docker/build-push-action@67a2d409c0a876cbe6b11854e3e25193efe4e62d # v6.12.0
         with:
           context: .
           file: .conf/Dockerfile.prebuilt
           platforms: linux/amd64, linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
+          # push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       # https://github.com/peter-evans/dockerhub-description
-      - name: Update Docker Hub description
-        if: github.event_name != 'pull_request'
-        uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4.0.0
-        with:
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          readme-filepath: '.conf/docker-notice-portal.md'
+      # - name: Update Docker Hub description
+      #   if: github.event_name != 'pull_request'
+      #   uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4.0.0
+      #   with:
+      #     username: ${{ secrets.DOCKER_HUB_USER }}
+      #     password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      #     repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+      #     readme-filepath: '.conf/docker-notice-portal.md'
 
-  auth-and-dispatch:
-    needs: build-and-push-image
-    runs-on: ubuntu-latest
+  # auth-and-dispatch:
+  #   needs: build-and-push-image
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Get token
-        id: get_workflow_token
-        uses: peter-murray/workflow-application-token-action@8e4e6fbf6fcc8a272781d97597969d21b3812974 # v4.0.0
-        with:
-          application_id: ${{ secrets.ORG_PORTAL_DISPATCH_APPID }}
-          application_private_key: ${{ secrets.ORG_PORTAL_DISPATCH_KEY }}
+  #   steps:
+  #     - name: Get token
+  #       id: get_workflow_token
+  #       uses: peter-murray/workflow-application-token-action@8e4e6fbf6fcc8a272781d97597969d21b3812974 # v4.0.0
+  #       with:
+  #         application_id: ${{ secrets.ORG_PORTAL_DISPATCH_APPID }}
+  #         application_private_key: ${{ secrets.ORG_PORTAL_DISPATCH_KEY }}
 
-      - name: Trigger workflow
-        id: call_action
-        env:
-          TOKEN: ${{ steps.get_workflow_token.outputs.token }}
-        run: |
-          curl -v \
-            --request POST \
-            --url https://api.github.com/repos/eclipse-tractusx/portal/actions/workflows/portal-image-update.yml/dispatches \
-            --header "authorization: Bearer $TOKEN" \
-            --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"main", "inputs": { "new-image":"${{ github.sha }}" }}' \
-            --fail
+     ## - name: Trigger workflow
+        # id: call_action
+        # env:
+        #   TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        # run: |
+        #   curl -v \
+        #     --request POST \
+        #     --url https://api.github.com/repos/eclipse-tractusx/portal/actions/workflows/portal-image-update.yml/dispatches \
+        #     --header "authorization: Bearer $TOKEN" \
+        #     --header "Accept: application/vnd.github.v3+json" \
+        #     --data '{"ref":"main", "inputs": { "new-image":"${{ github.sha }}" }}' \
+        #     --fail

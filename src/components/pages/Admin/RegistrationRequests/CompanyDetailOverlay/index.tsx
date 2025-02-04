@@ -142,7 +142,7 @@ const CompanyDetailOverlay = ({
       <Typography
         variant="label3"
         sx={{
-          background: '#0f71cb',
+          background: '#ffffff',
           color: 'white',
           flex: '0',
           width: '20px',

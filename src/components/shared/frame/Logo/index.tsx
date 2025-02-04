@@ -17,44 +17,27 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 export const Logo = () => (
   <NavLink to="/" style={{ textDecoration: 'none' }}>
     <div
       style={{
         display: 'flex',
-        flexDirection: 'column', // Logo oben, Text unten
+        flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
-        gap: '5px', // Abstand zwischen Logo und Text vergrößern
-        padding: '10px',
+        gap: '5px',
+        padding: '0px',
+        marginTop: '-20px', // Move logo up
+        marginLeft: '-10px',
       }}
     >
-      {/* Logo */}
       <img
         src={'/src/assets/logo/arena-logo.svg'}
         alt="logo"
-        style={{ objectFit: 'contain', width: '250px', height: 'auto' }}
+        style={{ objectFit: 'contain', width: '400px', height: 'auto' }}
       />
-
-      {/* Text unter dem Logo */}
-      <span
-        style={{
-          fontSize: '14px', // Schriftgröße erhöhen
-          fontWeight: 'bold',
-          color: '#333', // Dunklere Farbe für bessere Lesbarkeit
-          whiteSpace: 'normal', // Zeilenumbrüche erlauben
-          textAlign: 'center', // Text mittig ausrichten
-          maxWidth: '80%', // Breite begrenzen für bessere Lesbarkeit
-          lineHeight: '1.5', // Mehr Abstand zwischen Zeilen
-          padding: '5px', // Mehr Abstand um den Text
-        }}
-      >
-        Tractus-X implementation of Release 24.08, but bypassing DS Factory and
-        Clearing House.
-      </span>
     </div>
   </NavLink>
-
+)
