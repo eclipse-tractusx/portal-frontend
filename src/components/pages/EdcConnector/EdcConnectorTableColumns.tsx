@@ -112,7 +112,7 @@ export const ConnectorTableColumns = (
       flex: 1,
       sortable: false,
       disableColumnMenu: true,
-      align: 'center',
+      align: 'left',
       headerAlign: 'center',
     },
     {
