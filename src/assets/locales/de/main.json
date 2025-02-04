@@ -2028,6 +2028,7 @@
     "adminCertificate": {
       "headline": "Credential Request Overview",
       "search": "Suchen via Name der Firma",
+      "noDocumentAvailable": "Kein Dokument verfügbar",
       "tabs": {
         "all": "Alle",
         "pending": "Ausstehend",
