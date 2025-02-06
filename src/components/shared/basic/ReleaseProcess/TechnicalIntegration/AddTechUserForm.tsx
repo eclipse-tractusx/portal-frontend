@@ -42,7 +42,9 @@ interface AddTechUserFormProps {
   userProfiles: {
     roleId: string
     roleName: string
+    type: string
   }[]
+  createNewTechUserProfile: boolean
 }
 
 enum RoleType {
@@ -55,6 +57,7 @@ export const AddTechUserForm = ({
   handleClose,
   handleConfirm,
   userProfiles,
+  createNewTechUserProfile,
 }: AddTechUserFormProps) => {
   const { t } = useTranslation()
   const roles = useFetchServiceAccountRolesQuery().data
@@ -68,7 +71,7 @@ export const AddTechUserForm = ({
   const [selectedRoleType, setSelectedRoleType] = useState<string>('')
 
   useEffect(() => {
-    if (userProfiles.length > 0) {
+    if (userProfiles.length > 0 && !createNewTechUserProfile) {
       setSelectedUserRoles(() => {
         const roles = []
         for (const obj of userProfiles) {

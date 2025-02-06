@@ -1329,21 +1329,23 @@
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+        "noneOption": "Nicht notwendig (für die Integration ist kein technisches Benutzerprofil notwendig)",
         "table": {
-          "addtechUserButton": "Neuen technischen Benutzer hinzufügen",
-          "title": "Technical Users",
+          "addtechUserButton": "Technisches Benutzerprofil hinzufügen",
+          "title": "Technisches Benutzerprofil",
+          "name": "Technisches Benutzerprofil",
           "type": "Type",
-          "role": "Role",
-          "noRoles": "Keine technischen Benutzer hinzugefügt"
+          "role": "Roles",
+          "noRoles": "Keine technischen Benutzerprofile hinzugefügt",
+          "action": "Action"
         },
         "form": {
-          "title": "Technischen Benutzer konfigurieren",
-          "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzers fort",
-          "internalUserRoles": "Interner technischer Benutzer",
-          "internalUserRolesDescription": "Interne technische Benutzer werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
+          "title": "Technisches Benutzerprofil konfigurieren",
+          "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzerprofils fort",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
+          "internalUserRolesDescription": "Interne technische Benutzerprofile werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
           "externalUserRoles": "Externer technischer Benutzer",
-          "externalUserRolesDescription": "Externe technische Benutzer werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben"
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben"
         }
       },
       "betaTest": {
