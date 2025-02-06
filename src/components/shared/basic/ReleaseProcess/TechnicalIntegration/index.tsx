@@ -344,24 +344,20 @@ export default function TechnicalIntegration() {
     const body: UpdateTechnicalUserProfileBody[] = []
     if (fetchTechnicalUserProfiles) {
       fetchTechnicalUserProfiles.forEach((x) => {
-        const userRoleIds: string[] = []
-        x.userRoles.forEach((y) => {
-          userRoleIds.push(y.roleId)
-          if (
-            selectedTechUser?.technicalUserProfileId ===
-            x.technicalUserProfileId
-          ) {
-            body.push({
-              technicalUserProfileId: x.technicalUserProfileId,
-              userRoleIds: roles,
-            })
-          } else {
-            body.push({
-              technicalUserProfileId: x.technicalUserProfileId,
-              userRoleIds,
-            })
-          }
-        })
+        if (
+          selectedTechUser?.technicalUserProfileId === x.technicalUserProfileId
+        ) {
+          body.push({
+            technicalUserProfileId: x.technicalUserProfileId,
+            userRoleIds: roles,
+          })
+        } else {
+          const userRoleIds: string[] = x.userRoles.map((y) => y.roleId)
+          body.push({
+            technicalUserProfileId: x.technicalUserProfileId,
+            userRoleIds,
+          })
+        }
       })
     }
     if (createNewTechUserProfile) {
@@ -381,13 +377,10 @@ export default function TechnicalIntegration() {
         (x) => x.technicalUserProfileId !== row.technicalUserProfileId
       )
       trimmedArray.forEach((x) => {
-        const userRoleIds: string[] = []
-        x.userRoles.forEach((y) => {
-          userRoleIds.push(y.roleId)
-          body.push({
-            technicalUserProfileId: x.technicalUserProfileId,
-            userRoleIds,
-          })
+        const userRoleIds: string[] = x.userRoles.map((y) => y.roleId)
+        body.push({
+          technicalUserProfileId: x.technicalUserProfileId,
+          userRoleIds,
         })
       })
     }

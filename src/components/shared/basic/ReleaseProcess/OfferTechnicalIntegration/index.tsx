@@ -129,9 +129,7 @@ export default function OfferTechnicalIntegration() {
     const body: TechnicalUserProfileBody[] = []
     if (data) {
       data.forEach((techUserInfo) => {
-        const ids: string[] = []
         techUserInfo.userRoles.forEach((roleObj) => {
-          ids.push(roleObj.roleId)
           if (
             selectedTechUser?.technicalUserProfileId ===
             techUserInfo.technicalUserProfileId
@@ -141,6 +139,8 @@ export default function OfferTechnicalIntegration() {
               userRoleIds: roles,
             })
           } else {
+            const ids: string[] = []
+            ids.push(roleObj.roleId)
             body.push({
               technicalUserProfileId: techUserInfo.technicalUserProfileId,
               userRoleIds: ids,
@@ -167,13 +167,12 @@ export default function OfferTechnicalIntegration() {
           techUserInfo.technicalUserProfileId !== row.technicalUserProfileId
       )
       finalyArray.forEach((techUserInfo) => {
-        const userRoleIds: string[] = []
-        techUserInfo.userRoles.forEach((roleObj) => {
-          userRoleIds.push(roleObj.roleId)
-          body.push({
-            technicalUserProfileId: techUserInfo.technicalUserProfileId,
-            userRoleIds,
-          })
+        const userRoleIds: string[] = techUserInfo.userRoles.map(
+          (roleObj) => roleObj.roleId
+        )
+        body.push({
+          technicalUserProfileId: techUserInfo.technicalUserProfileId,
+          userRoleIds,
         })
       })
     }
