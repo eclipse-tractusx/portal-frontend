@@ -256,8 +256,8 @@ export const AddTechUserForm = ({
                     <Box
                       className="roles"
                       sx={{
-                        display: 'inline-flex',
                         alignItems: 'center',
+                        display: 'inline-flex',
                         justifyContent: 'center',
                       }}
                     >
@@ -274,16 +274,16 @@ export const AddTechUserForm = ({
                       />
                       {role.accessiblyByProviderOnly && (
                         <Tooltips
-                          tooltipPlacement="right"
                           tooltipText={t(
                             'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
                           )}
+                          tooltipPlacement="right"
                           children={
                             <VisibilityOffIcon
                               sx={{
+                                marginLeft: '-5px !important',
                                 fontSize: '16px',
                                 cursor: 'pointer',
-                                marginLeft: '-5px !important',
                               }}
                             />
                           }
