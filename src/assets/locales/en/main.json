@@ -1343,7 +1343,8 @@
           "internalUserRoles": "Internal technical user",
           "internalUserRolesDescription": "Internal technical user are created in the direct environment of the portal therefore can have multiple roles",
           "externalUserRoles": "External technical user",
-          "externalUserRolesDescription": "External technical user are created in external environment therefore can only have one role"
+          "externalUserRolesDescription": "External technical user are created in external environment therefore can only have one role",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers"
         }
       },
       "betaTest": {

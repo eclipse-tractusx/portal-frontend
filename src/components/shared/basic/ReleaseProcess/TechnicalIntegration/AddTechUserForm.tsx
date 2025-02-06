@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   Radio,
+  Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
@@ -35,6 +36,7 @@ import {
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 interface AddTechUserFormProps {
   handleClose: () => void
@@ -163,7 +165,14 @@ export const AddTechUserForm = ({
               >
                 {externalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles">
+                    <Box
+                      className="roles"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
                       <Radio
                         label={role.roleName}
                         key={role.roleId}
@@ -179,6 +188,23 @@ export const AddTechUserForm = ({
                         size="small"
                         disabled={selectedRoleType === RoleType.Internal}
                       />
+                      {role.accessiblyByProviderOnly && (
+                        <Tooltips
+                          tooltipPlacement="right"
+                          tooltipText={t(
+                            'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
+                          )}
+                          children={
+                            <VisibilityOffIcon
+                              sx={{
+                                fontSize: '16px',
+                                cursor: 'pointer',
+                                marginLeft: '-5px !important',
+                              }}
+                            />
+                          }
+                        />
+                      )}
                     </Box>
                     <Typography
                       variant="body3"
@@ -227,7 +253,14 @@ export const AddTechUserForm = ({
               >
                 {internalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles">
+                    <Box
+                      className="roles"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
                       <Checkbox
                         key={role.roleId}
                         label={role.roleName}
@@ -239,6 +272,23 @@ export const AddTechUserForm = ({
                         value={selectedUserRoles}
                         disabled={selectedRoleType === RoleType.External}
                       />
+                      {role.accessiblyByProviderOnly && (
+                        <Tooltips
+                          tooltipPlacement="right"
+                          tooltipText={t(
+                            'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
+                          )}
+                          children={
+                            <VisibilityOffIcon
+                              sx={{
+                                fontSize: '16px',
+                                cursor: 'pointer',
+                                marginLeft: '-5px !important',
+                              }}
+                            />
+                          }
+                        />
+                      )}
                     </Box>
                     <Typography
                       variant="body3"
