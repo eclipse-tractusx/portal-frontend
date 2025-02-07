@@ -276,10 +276,20 @@ export default function AdminCredentialElements() {
       field: 'document',
       headerName: t('content.adminCertificate.table.document'),
       flex: 2,
-      renderCell: ({ row }: { row: CredentialData }) =>
-        row.documents?.map((document) => {
-          return (
-            <div className="documenticon-main" key={document.documentId}>
+      renderCell: ({ row }: { row: CredentialData }) => (
+        <>
+          {row.documents?.map((document) => (
+            <div
+              className={
+                document.documentId ? 'documenticon-main' : 'document-disabled'
+              }
+              key={document.documentId || document.documentName}
+              title={
+                document.documentId
+                  ? ''
+                  : t('content.adminCertificate.noDocumentAvailable')
+              }
+            >
               <ArticleOutlinedIcon
                 className={`${
                   document.documentId ? 'document-icon' : 'document-disabled'
@@ -293,8 +303,9 @@ export default function AdminCredentialElements() {
                 }
               />
             </div>
-          )
-        }),
+          ))}
+        </>
+      ),
     },
     {
       field: 'credentialDetailId',

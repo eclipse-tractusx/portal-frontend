@@ -1953,6 +1953,7 @@
     "adminCertificate": {
       "headline": "Credential Request Overview",
       "search": "...search for Company Name",
+      "noDocumentAvailable": "No Document available",
       "tabs": {
         "all": "All",
         "pending": "Pending",

@@ -1903,49 +1903,6 @@
         "success": "Usecase document upload has been done successfully."
       }
     },
-    "adminCertificate": {
-      "headline": "Credential Request Overview",
-      "search": "Suchen via Name der Firma",
-      "tabs": {
-        "all": "Alle",
-        "pending": "Ausstehend",
-        "active": "Aktiv",
-        "inactive": "Inaktiv",
-        "revoked": "Widerrufen"
-      },
-      "sort": {
-        "bpnlasc": "Business Partner Asc",
-        "bpnldesc": "Business Partner Desc"
-      },
-      "table": {
-        "crendentialType": "Type",
-        "companyInfo": "Company Info",
-        "certificate": "Zertifikat",
-        "document": "Dokumente",
-        "status": "Status",
-        "action": "Aktion",
-        "type": {
-          "TRACEABILITY_FRAMEWORK": "Traceability",
-          "PCF_FRAMEWORK": "PCF Framework",
-          "BEHAVIOR_TWIN_FRAMEWORK": "Behaviour Twin Framework",
-          "DISMANTLER_CERTIFICATE": "Dismantler Certificate",
-          "SUSTAINABILITY_FRAMEWORK": "Sustainability Framework",
-          "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
-          "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
-        },
-        "revoke": "Widerrufen"
-      },
-      "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
-      "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
-      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator.",
-      "revokeOverlay": {
-        "title": "Revoke Credential",
-        "description": "Revoking a credential cannot be undone.",
-        "subDesc": "Do you want to revoke the credential:",
-        "success": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird.",
-        "error": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuche Sie es später erneut."
-      }
-    },
     "certificates": {
       "heading": "Zertifikate",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
@@ -2053,6 +2010,50 @@
         "active": "Certificate is Active",
         "inactive": "Certificate is Inactive",
         "warning": "Certificate is exprired or about to expire"
+      }
+    },
+    "adminCertificate": {
+      "headline": "Credential Request Overview",
+      "search": "Suchen via Name der Firma",
+      "noDocumentAvailable": "Kein Dokument verfügbar",
+      "tabs": {
+        "all": "Alle",
+        "pending": "Ausstehend",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "revoked": "Widerrufen"
+      },
+      "sort": {
+        "bpnlasc": "Business Partner Asc",
+        "bpnldesc": "Business Partner Desc"
+      },
+      "table": {
+        "crendentialType": "Type",
+        "companyInfo": "Company Info",
+        "certificate": "Zertifikat",
+        "document": "Dokumente",
+        "status": "Status",
+        "action": "Aktion",
+        "type": {
+          "TRACEABILITY_FRAMEWORK": "Traceability",
+          "PCF_FRAMEWORK": "PCF Framework",
+          "BEHAVIOR_TWIN_FRAMEWORK": "Behaviour Twin Framework",
+          "DISMANTLER_CERTIFICATE": "Dismantler Certificate",
+          "SUSTAINABILITY_FRAMEWORK": "Sustainability Framework",
+          "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
+          "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
+        },
+        "revoke": "Widerrufen"
+      },
+      "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
+      "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
+      "errorMessage": "Etwas ist schief gelaufen. Bitte kontaktieren sie ihren Administrator.",
+      "revokeOverlay": {
+        "title": "Revoke Credential",
+        "description": "Revoking a credential cannot be undone.",
+        "subDesc": "Do you want to revoke the credential:",
+        "success": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird.",
+        "error": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuche Sie es später erneut."
       }
     },
     "companyWallet": {

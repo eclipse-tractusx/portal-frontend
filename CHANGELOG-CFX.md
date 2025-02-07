@@ -170,6 +170,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Credential Request Overview**
 
   - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
+  - disabled the document download icon for unavailable documents [CS-2775] (https://cofinity-x.atlassian.net/browse/CS-2775)
 
 - **App Overview**
   - Fix lead image preview issue in apps overview [#1365](https://cofinity-x.atlassian.net/browse/PM2-1365)
