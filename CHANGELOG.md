@@ -38,8 +38,12 @@
   - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
   - fixed my favorites truncated images in app marketplace [#1396](https://github.com/eclipse-tractusx/portal-frontend/pull/1396)
 - **IdP Management**
+
   - fixed shared IdP to remove 'configure' option as its not viable [#1356](https://github.com/eclipse-tractusx/portal-frontend/pull/1356)
+  - fixed IdP table status filter to sort by alphabetical order [#1443](https://github.com/eclipse-tractusx/portal-frontend/pull/1443)
+
   - added hint for invalid input of display name [#1264](https://github.com/eclipse-tractusx/portal-frontend/issues/1264)
+
 - **Connector Management**
   - fixed URL update in connector details [#1373](https://github.com/eclipse-tractusx/portal-frontend/pull/1373)
   - fixed confirm button is enabled mandatory fields not being entered [#1389](https://github.com/eclipse-tractusx/portal-frontend/pull/1389)
@@ -51,9 +55,10 @@
   - fixed truncated chip button issue in the app permissions section [#1372](https://github.com/eclipse-tractusx/portal-frontend/pull/1372)
 - **App Registration Process**:
   - fixed wrong api calling to download documents [#1386](https://github.com/eclipse-tractusx/portal-frontend/pull/1386)
-- **App Subscription**:
+- **App & Service Subscription**:
   - fixed the status is showing incorrect [#1402](https://github.com/eclipse-tractusx/portal-frontend/pull/1402)
   - fixed closing of overlay on click of close icon [#1413](https://github.com/eclipse-tractusx/portal-frontend/pull/1413)
+  - remove search string on clean search method [#1293](https://github.com/eclipse-tractusx/portal-frontend/pull/1293)
 - **Service Release Process**:
   - fixed wrong api calling to download documents for all steps [#1384](https://github.com/eclipse-tractusx/portal-frontend/pull/1384)
 - **App Access Management**
@@ -66,6 +71,8 @@
   - remove react warnings [#1434](https://github.com/eclipse-tractusx/portal-frontend/pull/1434)
 - **Credential Management**
   - disable document download button for unavailable documents [#1439](https://github.com/eclipse-tractusx/portal-frontend/pull/1439)
+- **Technical Integration**
+  - enabled multiple tech user creation feature in technical integration step in app and service release process [#1441](https://github.com/eclipse-tractusx/portal-frontend/pull/1441)
 
 ### Technical Support
 
@@ -75,6 +82,8 @@
   - removed customised logic to check company role info in osp page and header component. use company role check in config file to allow user to navigate to osp page[#1390](https://github.com/eclipse-tractusx/portal-frontend/pull/1390)
 - **Cypress E2E Tests**
   - add cypress setup [#1357](https://github.com/eclipse-tractusx/portal-frontend/pull/1357)
+- **Dependencies**
+  - update app dependencies [#1308](https://github.com/eclipse-tractusx/portal-frontend/pull/1308), [#1307](https://github.com/eclipse-tractusx/portal-frontend/pull/1307), [#1362](https://github.com/eclipse-tractusx/portal-frontend/pull/1362), [#1416](https://github.com/eclipse-tractusx/portal-frontend/pull/1416), [#1424](https://github.com/eclipse-tractusx/portal-frontend/pull/1424), [#1405](https://github.com/eclipse-tractusx/portal-frontend/pull/1405), [#1437](https://github.com/eclipse-tractusx/portal-frontend/pull/1437)
 
 ## 2.3.0
 
