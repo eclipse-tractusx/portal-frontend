@@ -123,6 +123,18 @@ export const AddTechUserForm = ({
     }
   }
 
+  const renderAccessibleByProvider = () => {
+    return (
+      <Tooltips
+        tooltipPlacement="right"
+        tooltipText={t(
+          'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
+        )}
+        children={<VisibilityOffIcon sx={iconStyle} />}
+      />
+    )
+  }
+
   return (
     <div>
       <Dialog
@@ -195,15 +207,8 @@ export const AddTechUserForm = ({
                         size="small"
                         disabled={selectedRoleType === RoleType.Internal}
                       />
-                      {role.accessiblyByProviderOnly && (
-                        <Tooltips
-                          tooltipPlacement="right"
-                          tooltipText={t(
-                            'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
-                          )}
-                          children={<VisibilityOffIcon sx={iconStyle} />}
-                        />
-                      )}
+                      {role.accessiblyByProviderOnly &&
+                        renderAccessibleByProvider()}
                     </Box>
                     <Typography
                       variant="body3"
@@ -264,15 +269,8 @@ export const AddTechUserForm = ({
                         value={selectedUserRoles}
                         disabled={selectedRoleType === RoleType.External}
                       />
-                      {role.accessiblyByProviderOnly && (
-                        <Tooltips
-                          tooltipText={t(
-                            'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
-                          )}
-                          tooltipPlacement="right"
-                          children={<VisibilityOffIcon sx={iconStyle} />}
-                        />
-                      )}
+                      {role.accessiblyByProviderOnly &&
+                        renderAccessibleByProvider()}
                     </Box>
                     <Typography
                       variant="body3"
