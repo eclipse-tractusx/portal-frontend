@@ -2,14 +2,88 @@
 
 ## Unreleased
 
+## 2.4.0-RC1
+
+### Feature
+
+- **Service Release**:
+  - Introduced filter of in-review in service overview page [#1218](https://github.com/eclipse-tractusx/portal-frontend/pull/1218)
+- **Company Roles**
+  - introduced company service to enforce page access based on the available company roles in the api response [#1361](https://github.com/eclipse-tractusx/portal-frontend/pull/1361)
+- **File Upload**:
+  - increased size limit for uploaded documents to 5 mb [#1187](https://github.com/eclipse-tractusx/portal-frontend/pull/1187)
+- **Service Marketplace**
+  - allowed special chars and digits in search services field [#1242](https://github.com/eclipse-tractusx/portal-frontend/pull/1242)
+- **Locales**
+  - unused translations for locales files are removed and missing translations are added [#1421](https://github.com/eclipse-tractusx/portal-frontend/pull/1421)
+  - improve partner network page copywriting [#1433](https://github.com/eclipse-tractusx/portal-frontend/pull/1433)
+- **App & Service Release Process**:
+  - enabled resuming to the last edited page during App/Service release process [#1376](https://github.com/eclipse-tractusx/portal-frontend/pull/1376)
+
 ### Bugfixes
 
+- **User Management**
+  - prevent admins from proceeding further without user [#1270](https://github.com/eclipse-tractusx/portal-frontend/pull/1270)
+  - remove non portal roles from user list [#1392](https://github.com/eclipse-tractusx/portal-frontend/pull/1392)
+- **Service Marketplace**:
+  - add providerUri in the provider details page [#1327](https://github.com/eclipse-tractusx/portal-frontend/issues/1267)
+  - fixed service filtering for DE language [#1209](https://github.com/eclipse-tractusx/portal-frontend/pull/1209)
+- **Consent OSP**
+  - add missing identifier field in the OSP consent form is the company details information [#1325](https://github.com/eclipse-tractusx/portal-frontend/pull/1325)
+- **Certificate Credentials**
+  - text message not shown when no data is available [#1333](https://github.com/eclipse-tractusx/portal-frontend/pull/1333)
 - **Onboarding Service Provider**
   - added missing short name field osp consent form [#1341](https://github.com/eclipse-tractusx/portal-frontend/pull/1341)
 - **App Marketplace**
   - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
+  - fixed my favorites truncated images in app marketplace [#1396](https://github.com/eclipse-tractusx/portal-frontend/pull/1396)
 - **IdP Management**
+
   - fixed shared IdP to remove 'configure' option as its not viable [#1356](https://github.com/eclipse-tractusx/portal-frontend/pull/1356)
+  - fixed IdP table status filter to sort by alphabetical order [#1443](https://github.com/eclipse-tractusx/portal-frontend/pull/1443)
+
+  - added hint for invalid input of display name [#1264](https://github.com/eclipse-tractusx/portal-frontend/issues/1264)
+
+- **Connector Management**
+  - fixed URL update in connector details [#1373](https://github.com/eclipse-tractusx/portal-frontend/pull/1373)
+  - fixed confirm button is enabled mandatory fields not being entered [#1389](https://github.com/eclipse-tractusx/portal-frontend/pull/1389)
+  - fixed table connector URL update after updating and closing the overlay [#1420](https://github.com/eclipse-tractusx/portal-frontend/pull/1420)
+  - fixed connector URL alignment in connector management page [#1461](https://github.com/eclipse-tractusx/portal-frontend/pull/1461)
+- **Company Data**
+  - fixed displaying of error message in company data edit overlay screen [#1385](https://github.com/eclipse-tractusx/portal-frontend/pull/1385)
+- **User Management Details**
+  - fixed truncated chip button issue in the app permissions section [#1372](https://github.com/eclipse-tractusx/portal-frontend/pull/1372)
+- **App Registration Process**:
+  - fixed wrong api calling to download documents [#1386](https://github.com/eclipse-tractusx/portal-frontend/pull/1386)
+- **App & Service Subscription**:
+  - fixed the status is showing incorrect [#1402](https://github.com/eclipse-tractusx/portal-frontend/pull/1402)
+  - fixed closing of overlay on click of close icon [#1413](https://github.com/eclipse-tractusx/portal-frontend/pull/1413)
+  - remove search string on clean search method [#1293](https://github.com/eclipse-tractusx/portal-frontend/pull/1293)
+- **Service Release Process**:
+  - fixed wrong api calling to download documents for all steps [#1384](https://github.com/eclipse-tractusx/portal-frontend/pull/1384)
+- **App Access Management**
+  - added support to fetch German language translation from CSV file template for app User role [#1288](https://github.com/eclipse-tractusx/portal-frontend/issues/1288)
+- **Technical User**
+  - introduced masking for sensitive information in technical user detail section [#1399](https://github.com/eclipse-tractusx/portal-frontend/issues/1399)
+  - enhance user experience by providing table and overlay in add technical user flow. list current users in the table. allow user to edit the list in an overlay implementation [#1401](https://github.com/eclipse-tractusx/portal-frontend/pull/1401)
+- **React**
+  - fix dom nesting [#1435](https://github.com/eclipse-tractusx/portal-frontend/pull/1435)
+  - remove react warnings [#1434](https://github.com/eclipse-tractusx/portal-frontend/pull/1434)
+- **Credential Management**
+  - disable document download button for unavailable documents [#1439](https://github.com/eclipse-tractusx/portal-frontend/pull/1439)
+- **Technical Integration**
+  - enabled multiple tech user creation feature in technical integration step in app and service release process [#1441](https://github.com/eclipse-tractusx/portal-frontend/pull/1441)
+
+### Technical Support
+
+- **Refactoring**
+  - rename files to common naming style [#1339](https://github.com/eclipse-tractusx/portal-frontend/pull/1339)
+  - renamed files in src/components directory to common naming style [#1351](https://github.com/eclipse-tractusx/portal-frontend/pull/1351)
+  - removed customised logic to check company role info in osp page and header component. use company role check in config file to allow user to navigate to osp page[#1390](https://github.com/eclipse-tractusx/portal-frontend/pull/1390)
+- **Cypress E2E Tests**
+  - add cypress setup [#1357](https://github.com/eclipse-tractusx/portal-frontend/pull/1357)
+- **Dependencies**
+  - update app dependencies [#1308](https://github.com/eclipse-tractusx/portal-frontend/pull/1308), [#1307](https://github.com/eclipse-tractusx/portal-frontend/pull/1307), [#1362](https://github.com/eclipse-tractusx/portal-frontend/pull/1362), [#1416](https://github.com/eclipse-tractusx/portal-frontend/pull/1416), [#1424](https://github.com/eclipse-tractusx/portal-frontend/pull/1424), [#1405](https://github.com/eclipse-tractusx/portal-frontend/pull/1405), [#1437](https://github.com/eclipse-tractusx/portal-frontend/pull/1437)
 
 ## 2.3.0
 

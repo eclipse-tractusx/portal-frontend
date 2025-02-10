@@ -29,6 +29,7 @@ import {
   ServiceTypeIdsEnum,
   useFetchDocumentMutation,
   useFetchServiceStatusQuery,
+  useFetchServiceTechnicalUserProfilesQuery,
   useSubmitServiceMutation,
 } from 'features/serviceManagement/apiSlice'
 
@@ -44,6 +45,9 @@ export default function OfferValidateAndPublish({
   const fetchServiceStatus = useFetchServiceStatusQuery(serviceId, {
     refetchOnMountOrArgChange: true,
   }).data
+
+  const { data: technicalUserProfiles } =
+    useFetchServiceTechnicalUserProfilesQuery(serviceId ?? '')
 
   const defaultValues = useMemo(() => {
     return {
@@ -80,6 +84,7 @@ export default function OfferValidateAndPublish({
           stepperDescription={t('step4.headerDescription')}
           statusData={fetchServiceStatus}
           id={serviceId}
+          techUserProfiles={technicalUserProfiles ?? []}
           fetchDocumentById={fetchDocumentById}
           showSubmitPage={showSubmitPage}
           submitData={submitService}
