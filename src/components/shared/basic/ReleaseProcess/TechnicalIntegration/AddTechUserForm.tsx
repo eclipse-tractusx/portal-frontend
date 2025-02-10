@@ -68,6 +68,17 @@ export const AddTechUserForm = ({
   )
   const [selectedUserRoles, setSelectedUserRoles] = useState<string[]>([])
   const [selectedRoleType, setSelectedRoleType] = useState<string>('')
+  const boxStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+
+  const iconStyle = {
+    marginLeft: '-5px !important',
+    fontSize: '16px',
+    cursor: 'pointer',
+  }
 
   useEffect(() => {
     if (userProfiles.length > 0) {
@@ -165,14 +176,7 @@ export const AddTechUserForm = ({
               >
                 {externalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box
-                      className="roles"
-                      sx={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
+                    <Box className="roles" sx={boxStyle}>
                       <Radio
                         label={role.roleName}
                         key={role.roleId}
@@ -194,15 +198,7 @@ export const AddTechUserForm = ({
                           tooltipText={t(
                             'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
                           )}
-                          children={
-                            <VisibilityOffIcon
-                              sx={{
-                                fontSize: '16px',
-                                cursor: 'pointer',
-                                marginLeft: '-5px !important',
-                              }}
-                            />
-                          }
+                          children={<VisibilityOffIcon sx={iconStyle} />}
                         />
                       )}
                     </Box>
@@ -253,14 +249,7 @@ export const AddTechUserForm = ({
               >
                 {internalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box
-                      className="roles"
-                      sx={{
-                        alignItems: 'center',
-                        display: 'inline-flex',
-                        justifyContent: 'center',
-                      }}
-                    >
+                    <Box className="roles" sx={boxStyle}>
                       <Checkbox
                         key={role.roleId}
                         label={role.roleName}
@@ -278,15 +267,7 @@ export const AddTechUserForm = ({
                             'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
                           )}
                           tooltipPlacement="right"
-                          children={
-                            <VisibilityOffIcon
-                              sx={{
-                                marginLeft: '-5px !important',
-                                fontSize: '16px',
-                                cursor: 'pointer',
-                              }}
-                            />
-                          }
+                          children={<VisibilityOffIcon sx={iconStyle} />}
                         />
                       )}
                     </Box>
