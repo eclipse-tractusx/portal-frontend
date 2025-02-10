@@ -77,12 +77,6 @@ export const AddTechUserForm = ({
     justifyContent: 'center',
   }
 
-  const iconStyle = {
-    marginLeft: '-5px !important',
-    fontSize: '16px',
-    cursor: 'pointer',
-  }
-
   useEffect(() => {
     if (userProfiles.length > 0 && !createNewTechUserProfile) {
       setSelectedUserRoles(() => {
@@ -130,7 +124,15 @@ export const AddTechUserForm = ({
         tooltipText={t(
           'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
         )}
-        children={<VisibilityOffIcon sx={iconStyle} />}
+        children={
+          <VisibilityOffIcon
+            sx={{
+              marginLeft: '-5px !important',
+              fontSize: '16px',
+              cursor: 'pointer',
+            }}
+          />
+        }
       />
     )
   }
