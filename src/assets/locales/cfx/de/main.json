@@ -2262,8 +2262,7 @@
         "legalEntityNumber": "Legal Entity Number",
         "legalEntityNameTooltip": "Legal Entity Name",
         "legalEntityNumberTooltip": "Legal Entity Number",
-        "addressTitle": "Address",
-        "siteTitle": "Standort Informationen"
+        "addressTitle": "Address"
       },
       "table": {
         "title": "Ihre Standorte",

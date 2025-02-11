@@ -2230,8 +2230,7 @@
         "legalEntityNumber": "Legal Entity Number",
         "legalEntityNameTooltip": "Legal Entity Name",
         "legalEntityNumberTooltip": "Legal Entity Number",
-        "addressTitle": "Address",
-        "siteTitle": "Site"
+        "addressTitle": "Address"
       },
       "table": {
         "title": "Your Sites",
