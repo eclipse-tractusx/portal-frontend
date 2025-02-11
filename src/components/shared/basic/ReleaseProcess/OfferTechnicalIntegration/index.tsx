@@ -185,7 +185,7 @@ export default function OfferTechnicalIntegration() {
       serviceId,
       body,
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'delete')
   }
 
   const handletechUserProfiles = (roles: string[]) => {
@@ -198,20 +198,32 @@ export default function OfferTechnicalIntegration() {
           ? []
           : getBodyParams(roles),
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'update')
   }
 
-  const handleApiCall = async (updateData: updateTechnicalUserProfile) => {
+  const handleApiCall = async (
+    updateData: updateTechnicalUserProfile,
+    action: string
+  ) => {
     await saveServiceTechnicalUserProfiles(updateData)
       .unwrap()
       .then(() => {
         setErrorMessage(false)
         refetch()
-        success(t('serviceReleaseForm.dataSavedSuccessMessage'))
+        action === 'delete'
+          ? success(t('technicalIntegration.userProfileDeleteSuccessMessage'))
+          : success(t('serviceReleaseForm.dataSavedSuccessMessage'))
       })
       .catch((err) => {
-        error(t('technicalIntegration.technicalUserProfileError'), '', err)
+        error(
+          t(
+            `technicalIntegration.${action === 'delete' ? 'technicalUserProfileDeleteError' : 'technicalUserProfileError'}`
+          ),
+          '',
+          err
+        )
       })
+    action === 'delete' && setDeleteTechnicalUserProfile(false)
     setLoading(false)
     setAddNewTechUserProfile(false)
     setSelectedTechUser(null)

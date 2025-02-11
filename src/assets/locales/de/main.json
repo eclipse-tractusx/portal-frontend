@@ -1326,10 +1326,12 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Fehler beim Löschen des technischen Benutzerprofils",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "Nicht notwendig (für die Integration ist kein technisches Benutzerprofil notwendig)",
+        "userProfileDeleteSuccessMessage": "Technisches Benutzerprofil erfolgreich gelöscht",
         "table": {
           "addtechUserButton": "Technisches Benutzerprofil hinzufügen",
           "title": "Technisches Benutzerprofil",

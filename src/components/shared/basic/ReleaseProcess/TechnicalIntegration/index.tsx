@@ -188,12 +188,21 @@ export default function TechnicalIntegration() {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
-  const handleSaveSuccess = (buttonLabel: string) => {
+  const handleSaveSuccess = (buttonLabel: string, action: string) => {
     setEnableUserProfilesErrorMessage(false)
     setEnableErrorMessage(false)
     refetchTechnicalUserProfiles()
     if (buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED) dispatch(increment())
-    else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
+    else
+      action === 'delete'
+        ? success(
+            t(
+              'content.apprelease.technicalIntegration.userProfileDeleteSuccessMessage'
+            )
+          )
+        : success(
+            t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+          )
   }
 
   const handleSaveAndProceed = () => {
@@ -397,7 +406,7 @@ export default function TechnicalIntegration() {
       appId,
       body,
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'delete')
   }
 
   const handletechUserProfiles = (roles: string[]) => {
@@ -408,24 +417,28 @@ export default function TechnicalIntegration() {
       appId,
       body: roles && roles[0] === technicalUserNone ? [] : getBody(roles),
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'update')
   }
 
-  const handleApiCall = async (updateData: updateTechnicalUserProfiles) => {
+  const handleApiCall = async (
+    updateData: updateTechnicalUserProfiles,
+    action: string
+  ) => {
     await saveTechnicalUserProfiles(updateData)
       .unwrap()
       .then(() => {
-        handleSaveSuccess(ButtonLabelTypes.SAVE)
+        handleSaveSuccess(ButtonLabelTypes.SAVE, action)
       })
       .catch((err) => {
         error(
           t(
-            'content.apprelease.technicalIntegration.technicalUserProfileError'
+            `content.apprelease.technicalIntegration.${action === 'delete' ? 'technicalUserProfileDeleteError' : 'technicalUserProfileError'}`
           ),
           '',
           err
         )
       })
+    action === 'delete' && setDeleteTechnicalUserProfile(false)
     setLoading(false)
     setCreateNewTechUserProfile(false)
     setSelectedTechUser(null)

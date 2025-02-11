@@ -109,7 +109,7 @@ export const TechUserTable = ({
                 additionalStyles={{
                   display: 'block',
                 }}
-                tooltipPlacement="top-end"
+                tooltipPlacement="top-start"
                 tooltipText={row.userRoles
                   .map((role) => role.roleName)
                   .join(', ')}
