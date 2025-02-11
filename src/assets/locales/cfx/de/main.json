@@ -2239,6 +2239,7 @@
       "statusInfo": {
         "title": "Standort Information Status"
       },
+
       "status": {
         "success": "Bestätigt",
         "processing": "Bearbeitung",
@@ -2284,8 +2285,8 @@
       "site": {
         "title": "Neuen Standort hinzufügen",
         "description": "Please enter your site information (e.g., plant, warehouse, office) below. Click 'Submit' to provide your data for the Golden Record validation process. After approval, a BPNS will be generated for access by other Catena-X participants. You can monitor the status and edit your data on the main page.",
-        "editTitle": "Edit site information",
-        "editDescription": "After saving, your data will be revalidated by the BPDM process.",
+        "editTitle": "Standort Informationen bearbeiten",
+        "editDescription": "Nach dem Speichern werden Ihre Daten erneut vom Golden Record Service überprüft.",
         "bpns": {
           "name": "BPNS"
         },
@@ -2413,6 +2414,8 @@
         }
       },
       "success": {
+        "addressName": "Adresse",
+        "siteName": "Standort",
         "title": "Validierung der {name} Informationen gestartet ",
         "description": " Ihre Standortdaten werden nun vom Cofinity-X Golden Record Service bearbeitet. Dies kann bis zu 48 Stunden dauern. Sie können den Status auf der Hauptseite verfolgen. Sollten Anpassungen Ihrer Daten erforderlich sein, klicken Sie bitte auf die Schaltfläche „Details”, um Ihre Informationen anzusehen oder zu bearbeiten. Bitte beachten Sie, dass das Bearbeiten Ihrer Daten den Validierungsprozess neu startet."
       },

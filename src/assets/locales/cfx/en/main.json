@@ -2381,6 +2381,8 @@
         }
       },
       "success": {
+        "addressName": "Address",
+        "siteName": "Site",
         "title": "{name} information submitted for validation ",
         "description": "Your site data will now be processed by the Cofinity-X Golden Record Service. This can take up to 48 hours. You can monitor the status on the main page. If adjustments to your data are necessary, click the 'Details' button to view or edit your information. Please note, editing your data will restart the validation process."
       },
