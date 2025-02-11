@@ -65,6 +65,7 @@ import { ButtonLabelTypes } from '..'
 import { TechUserTable } from './TechUserTable'
 import { AddTechUserForm } from './AddTechUserForm'
 import { isStepCompleted } from '../AppStepHelper'
+import DeleteTechnicalUserProfileOverlay from './DeleteTechnicalUserProfileOverlay'
 
 type RoleDesT = {
   desEN: string
@@ -144,6 +145,8 @@ export default function TechnicalIntegration() {
       value: 'US-ASCII',
     },
   ]
+  const [deleteTechnicalUserProfile, setDeleteTechnicalUserProfile] =
+    useState<boolean>(false)
 
   useEffect(() => {
     csvPreview(uploadFileInfo)
@@ -441,6 +444,18 @@ export default function TechnicalIntegration() {
 
   return (
     <>
+      {deleteTechnicalUserProfile && (
+        <DeleteTechnicalUserProfileOverlay
+          openDialog
+          handleOverlayClose={() => {
+            setDeleteTechnicalUserProfile(false)
+          }}
+          handleDeleteClick={() => {
+            console.log('sel', selectedTechUser)
+            selectedTechUser && handleDelete(selectedTechUser)
+          }}
+        />
+      )}
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
@@ -753,7 +768,8 @@ export default function TechnicalIntegration() {
               setShowAddTechUser(true)
             }}
             handleDelete={(row: TechnicalUserProfiles) => {
-              handleDelete(row)
+              setDeleteTechnicalUserProfile(true)
+              setSelectedTechUser(row)
             }}
           />
         )}

@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { t } from 'i18next'
-import { Table } from '@catena-x/portal-shared-components'
+import { Table, Tooltips } from '@catena-x/portal-shared-components'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { Box } from '@mui/material'
@@ -89,11 +89,40 @@ export const TechUserTable = ({
         {
           field: 'roleName',
           headerAlign: 'center',
-          align: 'center',
+          align: 'left',
           headerName: t('content.apprelease.technicalIntegration.table.role'),
           flex: disableActions ? 2.5 : 2,
-          valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
-            row.userRoles.map((x) => x.roleName.split('"')).toString(),
+          renderCell: ({ row }: { row: TechnicalUserProfiles }) => {
+            const roleNames = row.userRoles.map((role) => role.roleName)
+            const roles = roleNames.join(', ')
+            const charLimit = 200 / 10
+            const maxLength = Math.floor(charLimit)
+            let displayedRoles = roles
+            let remainingCount = 0
+            if (roles.length > maxLength) {
+              displayedRoles = roles.slice(0, maxLength) + '...'
+              remainingCount =
+                roleNames.length - displayedRoles.split(',').length
+            }
+            return (
+              <Tooltips
+                additionalStyles={{
+                  display: 'block',
+                }}
+                tooltipPlacement="top-end"
+                tooltipText={row.userRoles
+                  .map((role) => role.roleName)
+                  .join(', ')}
+                children={
+                  <span>
+                    {remainingCount > 0
+                      ? displayedRoles + ' +' + remainingCount
+                      : displayedRoles}
+                  </span>
+                }
+              />
+            )
+          },
         },
         {
           field: 'edit',
