@@ -120,7 +120,7 @@ export const AddTechUserForm = ({
   const renderAccessibleByProvider = () => {
     return (
       <Tooltips
-        tooltipPlacement="right"
+        tooltipPlacement="right-start"
         tooltipText={t(
           'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
         )}
@@ -209,7 +209,7 @@ export const AddTechUserForm = ({
                         size="small"
                         disabled={selectedRoleType === RoleType.Internal}
                       />
-                      {role.accessiblyByProviderOnly &&
+                      {role.onlyAccessibleByProvider &&
                         renderAccessibleByProvider()}
                     </Box>
                     <Typography
@@ -271,7 +271,7 @@ export const AddTechUserForm = ({
                         value={selectedUserRoles}
                         disabled={selectedRoleType === RoleType.External}
                       />
-                      {role.accessiblyByProviderOnly &&
+                      {role.onlyAccessibleByProvider &&
                         renderAccessibleByProvider()}
                     </Box>
                     <Typography
