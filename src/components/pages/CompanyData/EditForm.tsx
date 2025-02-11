@@ -227,11 +227,11 @@ export default function EditForm({
             isAddress
               ? t('content.companyData.success.title').replace(
                   '{name}',
-                  dataType.Address
+                  t('content.companyData.success.addressName')
                 )
               : t('content.companyData.success.title').replace(
                   '{name}',
-                  dataType.Site
+                  t('content.companyData.success.siteName')
                 )
           }
           intro={t('content.companyData.success.description')}
