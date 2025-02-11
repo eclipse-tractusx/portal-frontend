@@ -451,7 +451,6 @@ export default function TechnicalIntegration() {
             setDeleteTechnicalUserProfile(false)
           }}
           handleDeleteClick={() => {
-            console.log('sel', selectedTechUser)
             selectedTechUser && handleDelete(selectedTechUser)
           }}
         />
