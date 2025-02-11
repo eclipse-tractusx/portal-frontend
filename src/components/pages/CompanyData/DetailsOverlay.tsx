@@ -86,7 +86,9 @@ export default function DetailsOverlay({
         <EditForm
           description={t('content.companyData.site.editDescription')}
           isAddress={!isSite}
-          handleClose={handleClose}
+          handleClose={() => {
+            setEdit(false)
+          }}
           open={edit}
           handleConfirm={handleConfirm}
           errorInfo={sharingStateErrorInfo}
