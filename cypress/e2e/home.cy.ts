@@ -1,21 +1,34 @@
-import { USER_TYPES } from '../support/constants'
+import '../support/commands'
 
-describe('Validate authentication for home page', () => {
-  it('should visit home page after login', () => {
+describe('Cookies User Consent', () => {
+  beforeEach(() => {
+    // Clear cookies and local storage before each test to ensure a clean state for script execution
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.login(
+      Cypress.env('companyName'),
+      Cypress.env('userEmail'),
+      Cypress.env('userPassword')
+    )
     cy.visit(Cypress.env('baseUrl'))
-    cy.get('#usercentrics-root')
+  })
+
+  it('should load GTM script', () => {
+    cy.get('script[id="gtm-script"]').should('exist')
+  })
+
+  it('should load home page', () => {
+    cy.get('.home').should('be.visible')
+  })
+
+  it('should load Usercentrics dialog and its buttons', () => {
+    cy.get('#usercentrics-cmp-ui')
       .shadow()
-      .find('[data-testid="uc-accept-all-button"]')
-      .click()
+      .find('#uc-main-dialog')
+      .should('exist')
 
-    cy.get('.home').should('exist')
+    cy.get('#usercentrics-cmp-ui').shadow().find('#more').should('exist')
 
-    cy.get('.app-store-section h2')
-      .first()
-      .should('have.text', 'New Applications')
-
-    cy.get('.business-applications-section h2')
-      .first()
-      .should('have.text', 'Your Accessible Apps')
+    cy.get('#usercentrics-cmp-ui').shadow().find('#accept').should('exist')
   })
 })

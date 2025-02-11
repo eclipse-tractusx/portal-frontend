@@ -43,7 +43,6 @@ import Redirect from './actions/Redirect'
 import { OSPConsent } from './pages/OSPConsent'
 import { PAGES } from 'types/cfx/Constants'
 import { Footer } from './shared/cfx/Footer'
-import loadUserCentrics from 'utils/loadUserCentrics'
 
 export default function Main() {
   const { t } = useTranslation()
@@ -54,8 +53,6 @@ export default function Main() {
 
   const { data, isLoading, error } = useFetchApplicationsQuery()
   const companyData = data?.[0]
-
-  loadUserCentrics()
 
   const renderSection = () => {
     return companyData?.applicationType === ApplicationType.INTERNAL ? (

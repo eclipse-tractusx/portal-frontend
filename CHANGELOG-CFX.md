@@ -4,6 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Analytics**
+
+  - Add Hotjar script through GTM
+  - Load different GTM containers per environment
+
 - **Notifications**
 
   - Fix notification card as per wirefame [PM2-1498](https://cofinity-x.atlassian.net/browse/PM2-1498)

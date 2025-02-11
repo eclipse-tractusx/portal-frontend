@@ -21,23 +21,19 @@ import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
-    setupNodeEvents() {
-      // implement node event listeners here
-    },
     experimentalModifyObstructiveThirdPartyCode: true,
     chromeWebSecurity: false,
   },
+  // Input below only env values that need to be the same across all machines, otherwise use cypress.env.json on your local machine
   env: {
     baseUrl: 'http://localhost:3001',
     backendUrl: 'https://portal-backend.development.cofinity-x.com',
-    companyName: 'Cofinity-X GmbH',
-    userEmail: '',
-    userPassword: '',
-    adminEmail: '',
-    adminPassword: '',
     keycloak: {
       centralUrl: 'https://centralidp.development.cofinity-x.com/auth',
       sharedUrl: 'https://sharedidp.development.cofinity-x.com/auth',
     },
+    companyName: 'Cofinity-X GmbH',
+    userEmail: '',
+    userPassword: '',
   },
 })

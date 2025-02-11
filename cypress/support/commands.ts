@@ -18,46 +18,57 @@
  ********************************************************************************/
 /* eslint-disable @typescript-eslint/no-namespace */
 
-import { USER_TYPES } from './constants'
+export {}
 
 declare global {
   namespace Cypress {
-    interface Chainable {
-      login: (userType: string) => Chainable<void>
-      snackbarAlert: (msg: string) => Chainable<void>
+    interface Chainable<Subject = any> {
+      login: (
+        companyName: string,
+        userEmail: string,
+        userPassword: string
+      ) => Chainable<Subject>
+      loginWithSession: (
+        companyName: string,
+        userEmail: string,
+        userPassword: string
+      ) => Chainable<Subject>
+      snackbarAlert: (msg: string) => Chainable<Subject>
     }
   }
 }
 
-// @ref https://on.cypress.io/custom-commands
-Cypress.Commands.add('login', (currentUserType) => {
-  // creating a session for user login
-  cy.session(
-    [currentUserType],
-    () => {
-      cy.visit(Cypress.env('baseUrl'))
+Cypress.Commands.add(
+  'login',
+  (companyName: string, userEmail: string, userPassword: string) => {
+    // Perform login on Keycloak login page
+    cy.visit(Cypress.env('baseUrl'))
+    cy.get('input[placeholder="Enter your company name"]').type(companyName)
+    cy.get('.idp-name').contains(companyName).click()
+    cy.get('#username').should('exist').type(userEmail)
+    cy.get('#password').type(userPassword)
+    cy.get('#kc-login').click() // Submit the Keycloak form
+  }
+)
 
-      const companyName = Cypress.env('companyName')
-
-      // Perform login on Keycloak login page
-      cy.get('input[placeholder="Enter your company name"]').type(companyName) // Update selector based on your app
-      cy.get('.idp-name').contains(companyName).click()
-
-      const currentUsername =
-        currentUserType === USER_TYPES.ADMIN
-          ? Cypress.env('adminEmail')
-          : Cypress.env('userEmail')
-      const currentPassword =
-        currentUserType === USER_TYPES.ADMIN
-          ? Cypress.env('adminPassword')
-          : Cypress.env('userPassword')
-      cy.get('#username').should('exist').type(currentUsername)
-      cy.get('#password').type(currentPassword)
-      cy.get('#kc-login').click() // Submit the Keycloak form
-    },
-    { cacheAcrossSpecs: true }
-  )
-})
+Cypress.Commands.add(
+  'loginWithSession',
+  (companyName: string, userEmail: string, userPassword: string) => {
+    cy.session(
+      [userEmail, userPassword],
+      () => {
+        // Perform login on Keycloak login page
+        cy.visit(Cypress.env('baseUrl'))
+        cy.get('input[placeholder="Enter your company name"]').type(companyName)
+        cy.get('.idp-name').contains(companyName).click()
+        cy.get('#username').should('exist').type(userEmail)
+        cy.get('#password').type(userPassword)
+        cy.get('#kc-login').click() // Submit the Keycloak form
+      },
+      { cacheAcrossSpecs: true }
+    )
+  }
+)
 
 Cypress.Commands.add('snackbarAlert', (text) => {
   cy.get('.MuiSnackbar-root')

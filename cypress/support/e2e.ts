@@ -28,10 +28,10 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import './commands'
-import { USER_TYPES } from '../support/constants'
+// Keep this commented out to avoid login on every test file
+// /* import './commands'
 
-before(() => {
-  // Perform login once before all test files
-  cy.login(USER_TYPES.USER)
-})
+// before(() => {
+//   // Perform login once before all test files
+//   cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'))
+// }) */
