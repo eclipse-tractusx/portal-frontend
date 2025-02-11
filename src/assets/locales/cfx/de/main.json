@@ -2230,14 +2230,14 @@
       "notSupportedDescription": "You can close the screen now or redirect to the portal >> get to the platform"
     },
     "companyData": {
-      "label": "Company Data",
-      "titleAddress": "Address information",
-      "descriptionAddress": "View your address information below. Use the 'Edit' button to make changes. <br/>Note: After saving, your data will be revalidated by the Golden Record Service. ",
+      "label": "Unternehmensdaten",
+      "titleAddress": "Addresse Informationen",
+      "descriptionAddress": "Hier sehen Sie alle Standort Informationen. Klicken Sie „Bearbeiten“, um Änderungen vorzunehmen.  <br/>Hinweis: Nach dem Speichern werden Ihre Daten erneut vom Golden Record Service überprüft. ",
       "titleSite": "Standort Informationen",
       "descriptionSite": "Hier sehen Sie alle Standort Informationen. Klicken Sie „Bearbeiten“, um Änderungen vorzunehmen. <br/>Hinweis: Nach dem Speichern werden Ihre Daten erneut vom Golden Record Service überprüft.",
       "csvUploadBtn": "Upload CSV",
       "statusInfo": {
-        "title": "Standort Information Status"
+        "title": "Standort Informationen Status"
       },
 
       "status": {
@@ -2264,7 +2264,8 @@
         "legalEntityNumber": "Legal Entity Number",
         "legalEntityNameTooltip": "Legal Entity Name",
         "legalEntityNumberTooltip": "Legal Entity Number",
-        "addressTitle": "Address"
+        "addressTitle": "Addresse Informationen",
+        "siteTitle": "Standort Informationen"
       },
       "table": {
         "title": "Ihre Standorte",

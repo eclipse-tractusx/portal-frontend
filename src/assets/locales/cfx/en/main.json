@@ -2308,7 +2308,7 @@
           }
         },
         "errorGroup": {
-          "errorNote": "Plese note:",
+          "errorNote": "Please note:",
           "errorDescription": "to prevent further errors in the re-validation, please make sure that your site information:",
           "error1": "does not contain natural person information",
           "error2": "is not part of a country that is not allowed to be processed by the GR process (example: Brazil)",
