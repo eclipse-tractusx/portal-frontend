@@ -71,6 +71,7 @@ import { apiSlice as registrationApiSlice } from './registration/registrationApi
 import { apiSlice as companyCertificateApiSlice } from './companyCertification/companyCertificateApiSlice'
 import { apiSlice as staticContentApiSlice } from './staticContent/staticContentApiSlice'
 import { apiSlice as companyDataApiSlice } from './companyData/companyDataApiSlice'
+import { apiSlice as semanticApiSlice } from './semanticModels/apiSlice'
 import companyDataSlice from './companyData/slice'
 
 import languageSlice from './language/slice'
@@ -120,6 +121,7 @@ export const reducers = {
   [partnerNetworkPortalApiSlice.reducerPath]:
     partnerNetworkPortalApiSlice.reducer,
   [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
+  [semanticApiSlice.reducerPath]: semanticApiSlice.reducer,
   [serviceManagementApiSlice.reducerPath]: serviceManagementApiSlice.reducer,
   [serviceSubscriptionApiSlice.reducerPath]:
     serviceSubscriptionApiSlice.reducer,
@@ -158,6 +160,7 @@ export const store = configureStore({
       .concat(partnerNetworkApiSlice.middleware)
       .concat(partnerNetworkPortalApiSlice.middleware)
       .concat(connectorApiSlice.middleware)
+      .concat(semanticApiSlice.middleware)
       .concat(serviceManagementApiSlice.middleware)
       .concat(serviceSubscriptionApiSlice.middleware)
       .concat(serviceAdminBoardApiSlice.middleware)
