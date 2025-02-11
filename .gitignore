@@ -9,6 +9,8 @@ storybook
 *.tar.gz
 *.ignore
 .DS_Store
+.env
+*.env.*
 
 # Add legal info files during build
 
@@ -16,3 +18,8 @@ public/LICENSE
 public/DEPENDENCIES
 public/NOTICE.md
 public/SECURITY.md
+
+# Add cypress test results  
+cypress/screenshots
+cypress/videos
+cypress/downloads
