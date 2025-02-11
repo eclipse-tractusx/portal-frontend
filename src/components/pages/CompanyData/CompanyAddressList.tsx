@@ -419,6 +419,7 @@ export const CompanyAddressList = ({
     paginationModel: { pageSize, page },
     initialState: { pagination: { paginationModel: { pageSize, page } } },
   }
+
   return (
     <>
       <Table
@@ -430,7 +431,7 @@ export const CompanyAddressList = ({
             setPage((prev) => prev + 1)
           }
         }}
-        autoHeight={true}
+        autoHeight={false}
         hideFooterPagination={false}
         {...paginationProps}
         rowCount={rowCount}

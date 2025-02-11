@@ -42,6 +42,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - BPX site detail overlay close after edit [PM2-2428](https://cofinity-x.atlassian.net/browse/PM2-2428)
   - BPN font size updated [PM2-2425](https://cofinity-x.atlassian.net/browse/PM2-2425)
   - Removed Site Sub-heading as Text from detail overlay [PM2-2427](https://cofinity-x.atlassian.net/browse/PM2-2427)
+  - BPX removed fixed table height [PM2-2260](https://cofinity-x.atlassian.net/browse/PM2-2260)
 
 - **Main Navigation**
 
