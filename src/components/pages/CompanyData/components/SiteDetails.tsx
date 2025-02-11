@@ -78,12 +78,6 @@ export default function SiteDetails({
   ]
   return (
     <Box className={'cx-company-data__details cx-company-data__details--site'}>
-      <Box className={'cx-company-data__details--heading'}>
-        <Typography variant="h3" className="heading-h2">
-          {t('content.companyData.companyInfo.siteTitle')}
-        </Typography>
-      </Box>
-
       <Box className={'cx-company-data__details--listing'}>
         {siteData.map((item) => (
           <Box className={'cx-company-data__details--item'} key={item.attr}>

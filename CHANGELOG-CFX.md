@@ -35,6 +35,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - BPX data add separate HouseNumber optional field and Country list as dropdown [PM2-2265](https://cofinity-x.atlassian.net/browse/PM2-2265)
   - BPX site detail overlay close after edit [PM2-2428](https://cofinity-x.atlassian.net/browse/PM2-2428)
   - BPN font size updated [PM2-2425](https://cofinity-x.atlassian.net/browse/PM2-2425)
+  - Removed Site Sub-heading as Text from detail overlay [PM2-2427](https://cofinity-x.atlassian.net/browse/PM2-2427)
 
 - **Main Navigation**
 
