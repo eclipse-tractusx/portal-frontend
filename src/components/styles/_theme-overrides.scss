@@ -2542,6 +2542,12 @@ p.MuiTypography-root.MuiTypography-body3.description,
   }
 }
 
+.bpx-section {
+  .cx-table__page-loading .MuiDataGrid-virtualScroller {
+    min-height: 50px !important;
+  }
+}
+
 .organization-main__bpx .bpx-section .cx-table {
   .MuiChip-root.cx-color-default {
     background-color: #4d4d4d !important;
