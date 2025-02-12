@@ -18,13 +18,13 @@
  ********************************************************************************/
 
 import { t } from 'i18next'
-import { Table } from '@catena-x/portal-shared-components'
+import { Table, Tooltips } from '@catena-x/portal-shared-components'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { Box } from '@mui/material'
 import { type TechnicalUserProfiles } from 'features/appManagement/types'
 import { findIndex } from 'lodash'
-
+import InfoIcon from '@mui/icons-material/Info'
 interface TechUserTableProps {
   userProfiles: TechnicalUserProfiles[]
   handleAddTechUser?: () => void
@@ -115,8 +115,30 @@ export const TechUserTable = ({
                     placeItems: 'center',
                   }}
                 >
+                  <Tooltips
+                    additionalStyles={{
+                      cursor: 'pointer',
+                      height: '24px',
+                    }}
+                    tooltipPlacement="top-start"
+                    tooltipText={'maja maado ranga'}
+                    children={
+                      <div>
+                        <InfoIcon
+                          sx={{
+                            color: '#adadad',
+                            ':hover': {
+                              color: 'blue',
+                              cursor: 'pointer',
+                            },
+                          }}
+                        />
+                      </div>
+                    }
+                  />
                   <EditOutlinedIcon
                     sx={{
+                      marginLeft: '10px',
                       color: '#adadad',
                       ':hover': {
                         color: 'blue',

@@ -1337,7 +1337,8 @@
           "type": "Type",
           "role": "Roles",
           "noRoles": "No technical userprofiles added",
-          "action": "Action"
+          "action": "Action",
+          "visibility": "Visibility for endcustomer"
         },
         "form": {
           "title": "Configure Technical Userprofile",
