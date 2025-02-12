@@ -46,6 +46,7 @@ import { error, success } from 'services/NotifyService'
 import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
 import { AddTechUserForm } from '../TechnicalIntegration/AddTechUserForm'
 import { type TechnicalUserProfiles } from 'features/appManagement/types'
+import DeleteTechnicalUserProfileOverlay from '../TechnicalIntegration/DeleteTechnicalUserProfileOverlay'
 
 export default function OfferTechnicalIntegration() {
   const { t } = useTranslation('servicerelease')
@@ -71,6 +72,8 @@ export default function OfferTechnicalIntegration() {
   const [saveServiceTechnicalUserProfiles] =
     useSaveServiceTechnicalUserProfilesMutation()
   const serviceTechnicalUserNone = 'NONE'
+  const [deleteTechnicalUserProfile, setDeleteTechnicalUserProfile] =
+    useState<boolean>(false)
 
   const userProfiles = useMemo(
     () => data?.[0]?.userRoles.map((i: { roleId: string }) => i.roleId) ?? [],
@@ -182,7 +185,7 @@ export default function OfferTechnicalIntegration() {
       serviceId,
       body,
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'delete')
   }
 
   const handletechUserProfiles = (roles: string[]) => {
@@ -195,20 +198,32 @@ export default function OfferTechnicalIntegration() {
           ? []
           : getBodyParams(roles),
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'update')
   }
 
-  const handleApiCall = async (updateData: updateTechnicalUserProfile) => {
+  const handleApiCall = async (
+    updateData: updateTechnicalUserProfile,
+    action: string
+  ) => {
     await saveServiceTechnicalUserProfiles(updateData)
       .unwrap()
       .then(() => {
         setErrorMessage(false)
         refetch()
-        success(t('serviceReleaseForm.dataSavedSuccessMessage'))
+        action === 'delete'
+          ? success(t('technicalIntegration.userProfileDeleteSuccessMessage'))
+          : success(t('serviceReleaseForm.dataSavedSuccessMessage'))
       })
       .catch((err) => {
-        error(t('technicalIntegration.technicalUserProfileError'), '', err)
+        error(
+          t(
+            `technicalIntegration.${action === 'delete' ? 'technicalUserProfileDeleteError' : 'technicalUserProfileError'}`
+          ),
+          '',
+          err
+        )
       })
+    action === 'delete' && setDeleteTechnicalUserProfile(false)
     setLoading(false)
     setAddNewTechUserProfile(false)
     setSelectedTechUser(null)
@@ -216,6 +231,17 @@ export default function OfferTechnicalIntegration() {
 
   return (
     <>
+      {deleteTechnicalUserProfile && (
+        <DeleteTechnicalUserProfileOverlay
+          openDialog
+          handleDeleteClick={() => {
+            selectedTechUser && handleDelete(selectedTechUser)
+          }}
+          handleOverlayClose={() => {
+            setDeleteTechnicalUserProfile(false)
+          }}
+        />
+      )}
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('technicalIntegration.headerTitle')}
       </Typography>
@@ -241,7 +267,8 @@ export default function OfferTechnicalIntegration() {
               setShowAddTechUser(true)
             }}
             handleDelete={(row: TechnicalUserProfiles) => {
-              handleDelete(row)
+              setDeleteTechnicalUserProfile(true)
+              setSelectedTechUser(row)
             }}
           />
         )}
