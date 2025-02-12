@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   Radio,
+  Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
@@ -35,6 +36,7 @@ import {
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 interface AddTechUserFormProps {
   handleClose: () => void
@@ -69,6 +71,11 @@ export const AddTechUserForm = ({
   )
   const [selectedUserRoles, setSelectedUserRoles] = useState<string[]>([])
   const [selectedRoleType, setSelectedRoleType] = useState<string>('')
+  const boxStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 
   useEffect(() => {
     if (userProfiles.length > 0 && !createNewTechUserProfile) {
@@ -108,6 +115,26 @@ export const AddTechUserForm = ({
     } else if (type === 'radio') {
       setSelectedUserRoles([...[], role])
     }
+  }
+
+  const renderAccessibleByProvider = () => {
+    return (
+      <Tooltips
+        tooltipPlacement="right-start"
+        tooltipText={t(
+          'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
+        )}
+        children={
+          <VisibilityOffIcon
+            sx={{
+              marginLeft: '-5px !important',
+              fontSize: '16px',
+              cursor: 'pointer',
+            }}
+          />
+        }
+      />
+    )
   }
 
   return (
@@ -166,7 +193,7 @@ export const AddTechUserForm = ({
               >
                 {externalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles">
+                    <Box className="roles" sx={boxStyle}>
                       <Radio
                         label={role.roleName}
                         key={role.roleId}
@@ -182,6 +209,8 @@ export const AddTechUserForm = ({
                         size="small"
                         disabled={selectedRoleType === RoleType.Internal}
                       />
+                      {role.onlyAccessibleByProvider &&
+                        renderAccessibleByProvider()}
                     </Box>
                     <Typography
                       variant="body3"
@@ -230,7 +259,7 @@ export const AddTechUserForm = ({
               >
                 {internalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles">
+                    <Box className="roles" sx={boxStyle}>
                       <Checkbox
                         key={role.roleId}
                         label={role.roleName}
@@ -242,6 +271,8 @@ export const AddTechUserForm = ({
                         value={selectedUserRoles}
                         disabled={selectedRoleType === RoleType.External}
                       />
+                      {role.onlyAccessibleByProvider &&
+                        renderAccessibleByProvider()}
                     </Box>
                     <Typography
                       variant="body3"
