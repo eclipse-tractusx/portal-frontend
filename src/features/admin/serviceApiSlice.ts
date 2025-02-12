@@ -40,6 +40,7 @@ export interface ServiceAccountRole {
   roleDescription: string
   roleName: string
   roleType: string
+  onlyAccessibleByProvider: boolean
 }
 
 export interface ServiceAccountCreate {
