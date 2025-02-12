@@ -1326,10 +1326,12 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Fehler beim Löschen des technischen Benutzerprofils",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "Nicht notwendig (für die Integration ist kein technisches Benutzerprofil notwendig)",
+        "userProfileDeleteSuccessMessage": "Technisches Benutzerprofil erfolgreich gelöscht",
         "table": {
           "addtechUserButton": "Technisches Benutzerprofil hinzufügen",
           "title": "Technisches Benutzerprofil",
@@ -1345,7 +1347,12 @@
           "internalUserRoles": "Internes technisches Benutzerprofil",
           "internalUserRolesDescription": "Interne technische Benutzerprofile werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
           "externalUserRoles": "Externer technischer Benutzer",
-          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben"
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar."
+        },
+        "deleteOverlay": {
+          "title": "Technisches Benutzerprofil löschen",
+          "description": "Sind Sie sicher, dass Sie das ausgewählte technische Benutzerprofil löschen möchten?"
         }
       },
       "betaTest": {

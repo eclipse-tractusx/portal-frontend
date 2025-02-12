@@ -65,6 +65,7 @@ import { ButtonLabelTypes } from '..'
 import { TechUserTable } from './TechUserTable'
 import { AddTechUserForm } from './AddTechUserForm'
 import { isStepCompleted } from '../AppStepHelper'
+import DeleteTechnicalUserProfileOverlay from './DeleteTechnicalUserProfileOverlay'
 
 type RoleDesT = {
   desEN: string
@@ -144,6 +145,8 @@ export default function TechnicalIntegration() {
       value: 'US-ASCII',
     },
   ]
+  const [deleteTechnicalUserProfile, setDeleteTechnicalUserProfile] =
+    useState<boolean>(false)
 
   useEffect(() => {
     csvPreview(uploadFileInfo)
@@ -185,12 +188,21 @@ export default function TechnicalIntegration() {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
 
-  const handleSaveSuccess = (buttonLabel: string) => {
+  const handleSaveSuccess = (buttonLabel: string, action: string) => {
     setEnableUserProfilesErrorMessage(false)
     setEnableErrorMessage(false)
     refetchTechnicalUserProfiles()
     if (buttonLabel === ButtonLabelTypes.SAVE_AND_PROCEED) dispatch(increment())
-    else success(t('content.apprelease.appReleaseForm.dataSavedSuccessMessage'))
+    else
+      action === 'delete'
+        ? success(
+            t(
+              'content.apprelease.technicalIntegration.userProfileDeleteSuccessMessage'
+            )
+          )
+        : success(
+            t('content.apprelease.appReleaseForm.dataSavedSuccessMessage')
+          )
   }
 
   const handleSaveAndProceed = () => {
@@ -394,7 +406,7 @@ export default function TechnicalIntegration() {
       appId,
       body,
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'delete')
   }
 
   const handletechUserProfiles = (roles: string[]) => {
@@ -405,24 +417,28 @@ export default function TechnicalIntegration() {
       appId,
       body: roles && roles[0] === technicalUserNone ? [] : getBody(roles),
     }
-    handleApiCall(updateData)
+    handleApiCall(updateData, 'update')
   }
 
-  const handleApiCall = async (updateData: updateTechnicalUserProfiles) => {
+  const handleApiCall = async (
+    updateData: updateTechnicalUserProfiles,
+    action: string
+  ) => {
     await saveTechnicalUserProfiles(updateData)
       .unwrap()
       .then(() => {
-        handleSaveSuccess(ButtonLabelTypes.SAVE)
+        handleSaveSuccess(ButtonLabelTypes.SAVE, action)
       })
       .catch((err) => {
         error(
           t(
-            'content.apprelease.technicalIntegration.technicalUserProfileError'
+            `content.apprelease.technicalIntegration.${action === 'delete' ? 'technicalUserProfileDeleteError' : 'technicalUserProfileError'}`
           ),
           '',
           err
         )
       })
+    action === 'delete' && setDeleteTechnicalUserProfile(false)
     setLoading(false)
     setCreateNewTechUserProfile(false)
     setSelectedTechUser(null)
@@ -441,6 +457,17 @@ export default function TechnicalIntegration() {
 
   return (
     <>
+      {deleteTechnicalUserProfile && (
+        <DeleteTechnicalUserProfileOverlay
+          openDialog
+          handleOverlayClose={() => {
+            setDeleteTechnicalUserProfile(false)
+          }}
+          handleDeleteClick={() => {
+            selectedTechUser && handleDelete(selectedTechUser)
+          }}
+        />
+      )}
       <Typography variant="h3" mt={10} mb={4} align="center">
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
@@ -753,7 +780,8 @@ export default function TechnicalIntegration() {
               setShowAddTechUser(true)
             }}
             handleDelete={(row: TechnicalUserProfiles) => {
-              handleDelete(row)
+              setDeleteTechnicalUserProfile(true)
+              setSelectedTechUser(row)
             }}
           />
         )}
