@@ -1337,14 +1337,15 @@
           "type": "Type",
           "role": "Roles",
           "noRoles": "Keine technischen Benutzerprofile hinzugefügt",
-          "action": "Action",
-          "visibility": "Visibility for endcustomer"
+          "action": "Action"
         },
         "form": {
           "title": "Technisches Benutzerprofil konfigurieren",
           "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzerprofils fort",
           "internalUserRoles": "Internes technisches Benutzerprofil",
-          "internalUserRolesDescription": "Interne technische Benutzerprofile werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
           "externalUserRoles": "Externer technischer Benutzer",
           "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
           "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar."

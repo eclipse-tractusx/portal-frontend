@@ -24,7 +24,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { Box } from '@mui/material'
 import { type TechnicalUserProfiles } from 'features/appManagement/types'
 import { findIndex } from 'lodash'
-import InfoIcon from '@mui/icons-material/Info'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 interface TechUserTableProps {
   userProfiles: TechnicalUserProfiles[]
   handleAddTechUser?: () => void
@@ -103,70 +103,80 @@ export const TechUserTable = ({
             ? ''
             : t('content.apprelease.technicalIntegration.table.action'),
           flex: disableActions ? 0 : 1,
-          renderCell: ({ row }: { row: TechnicalUserProfiles }) => (
-            <>
-              {!disableActions && (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'flex-start',
-                    alignItems: 'center',
-                    placeItems: 'center',
-                  }}
-                >
-                  <Tooltips
-                    additionalStyles={{
-                      cursor: 'pointer',
-                      height: '24px',
-                    }}
-                    tooltipPlacement="top-start"
-                    tooltipText={'maja maado ranga'}
-                    children={
-                      <div>
-                        <InfoIcon
-                          sx={{
-                            color: '#adadad',
-                            ':hover': {
-                              color: 'blue',
-                              cursor: 'pointer',
-                            },
-                          }}
-                        />
-                      </div>
-                    }
-                  />
-                  <EditOutlinedIcon
+          renderCell: ({ row }: { row: TechnicalUserProfiles }) => {
+            const flag = row.userRoles.find(
+              (val) => val.accessiblyByProviderOnly
+            )
+            return (
+              <>
+                {!disableActions && (
+                  <Box
                     sx={{
-                      marginLeft: '10px',
-                      color: '#adadad',
-                      ':hover': {
-                        color: 'blue',
-                        cursor: 'pointer',
-                      },
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                      alignItems: 'center',
+                      placeItems: 'center',
                     }}
-                    onClick={() => {
-                      handleEdit && handleEdit(row)
-                    }}
-                  />
+                  >
+                    <EditOutlinedIcon
+                      sx={{
+                        color: '#adadad',
+                        ':hover': {
+                          color: 'blue',
+                          cursor: 'pointer',
+                        },
+                      }}
+                      onClick={() => {
+                        handleEdit && handleEdit(row)
+                      }}
+                    />
 
-                  <DeleteOutlineIcon
-                    sx={{
-                      color: '#adadad',
-                      marginLeft: '10px',
-                      ':hover': {
-                        color: 'blue',
-                        cursor: 'pointer',
-                      },
-                    }}
-                    onClick={() => {
-                      handleDelete && handleDelete(row)
-                    }}
-                  />
-                </Box>
-              )}
-            </>
-          ),
+                    <DeleteOutlineIcon
+                      sx={{
+                        color: '#adadad',
+                        marginLeft: '10px',
+                        ':hover': {
+                          color: 'blue',
+                          cursor: 'pointer',
+                        },
+                      }}
+                      onClick={() => {
+                        handleDelete && handleDelete(row)
+                      }}
+                    />
+
+                    {flag && (
+                      <Tooltips
+                        additionalStyles={{
+                          cursor: 'pointer',
+                        }}
+                        tooltipPlacement="top-start"
+                        tooltipText={t(
+                          'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
+                        )}
+                        children={
+                          <div>
+                            <VisibilityOffIcon
+                              sx={{
+                                marginTop: '5px',
+                                marginLeft: '10px',
+                                color: '#adadad',
+                                ':hover': {
+                                  color: 'blue',
+                                  cursor: 'pointer',
+                                },
+                              }}
+                            />
+                          </div>
+                        }
+                      />
+                    )}
+                  </Box>
+                )}
+              </>
+            )
+          },
         },
       ]}
       disableColumnMenu
