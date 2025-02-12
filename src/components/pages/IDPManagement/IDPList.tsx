@@ -135,7 +135,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     } else if (enabled && clientId) {
       status = `${ti('field.status4')}`
     }
-    return <StatusTag color="label" label={status} />
+    return status
   }
 
   const renderMenu = (idp: IdentityProvider) => {
@@ -398,8 +398,11 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'enabled',
           headerName: t('global.field.status'),
           flex: 2,
-          renderCell: ({ row }: { row: IdentityProvider }) =>
-            getStatus(row.enabled, row.oidc?.clientId),
+          valueGetter: ({ row }) => getStatus(row.enabled, row.oidc?.clientId),
+          renderCell: (params) => {
+            const status = params.value
+            return <StatusTag color="label" label={status} />
+          },
         },
         {
           field: 'details',
