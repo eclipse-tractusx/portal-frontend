@@ -270,6 +270,9 @@ export const CompanyAddressList = ({
       ? row.site?.siteBpn ?? '-'
       : row.address.addressBpn ?? '-'
   }
+  function getSiteActualName(row: CompanyDataType): string {
+    return row.site?.name ?? row.address?.name ?? ''
+  }
 
   const statusDisplayMap: Record<SharingStateStatusType, string> = {
     [SharingStateStatusType.Success]: t('content.companyData.status.success'),
@@ -297,7 +300,8 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.site'),
       flex: 1.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) => row.site?.name ?? '',
+      valueGetter: ({ row }: { row: CompanyDataType }) =>
+        getSiteActualName(row),
     },
     {
       field: 'address',
@@ -316,7 +320,9 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.bpn'),
       flex: 1.5,
-
+      valueGetter: ({ row }: { row: CompanyDataType }) =>
+        getBpnActualBpn(row) ?? '',
+      sortable: true,
       renderCell: ({ row }: { row: CompanyDataType }) =>
         getBpnActualBpn(row) !== '-' ? (
           <CopyToClipboard text={getBpnActualBpn(row)} />
