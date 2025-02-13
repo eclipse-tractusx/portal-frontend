@@ -134,7 +134,6 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     setSelectedFilter(selectedFilter)
     if (selectedFilter.status[0] === DefaultStatus) {
       onFilterReset()
-      
     }
   }
 
@@ -182,7 +181,9 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         getRowId={(row: { urn: string | undefined }) => uniqueId(row.urn)}
         hasBorder={false}
         error={errorObj}
-        reload={() => { setPageNumber(0) }}
+        reload={() => {
+          setPageNumber(0)
+        }}
         noRowsMsg={t('global.noData.heading')}
       />
       <div className="load-more-button-container">
