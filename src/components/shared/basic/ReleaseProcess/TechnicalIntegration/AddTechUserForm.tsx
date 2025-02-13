@@ -130,6 +130,7 @@ export const AddTechUserForm = ({
               marginLeft: '-5px !important',
               fontSize: '16px',
               cursor: 'pointer',
+              color: '#adadad',
             }}
           />
         }
