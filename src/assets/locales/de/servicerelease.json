@@ -64,7 +64,9 @@
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
     "technicalUserProfileError": "Error while updating technical user profiles",
-    "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+    "technicalUserProfileDeleteError": "Fehler beim Löschen des technischen Benutzerprofils",
+    "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+    "userProfileDeleteSuccessMessage": "Technisches Benutzerprofil erfolgreich gelöscht"
   },
   "step4": {
     "headerTitle": "Validate & Publish",

@@ -1326,10 +1326,12 @@
         "technicalUserSetupMandatory": "Please select at least one technical userprofile setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Error while deleting technical user profile",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "none (no technical userprofile needed to run the app/service)",
+        "userProfileDeleteSuccessMessage": "Technical userprofile deleted successfully",
         "table": {
           "addtechUserButton": "Add Technical Userprofile",
           "title": "Technical Userprofile",
@@ -1347,6 +1349,10 @@
           "externalUserRoles": "External technical userprofile",
           "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
           "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers"
+        },
+        "deleteOverlay": {
+          "title": "Delete technical userprofile",
+          "description": "Are you sure you want to delete selected technical userprofile?"
         }
       },
       "betaTest": {
