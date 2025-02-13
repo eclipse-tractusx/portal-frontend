@@ -19,20 +19,21 @@
  ********************************************************************************/
 
 import { Table } from '@catena-x/portal-shared-components'
-import { fetchSemanticModels } from 'features/semanticModels/actions'
-import { semanticModelsSelector } from 'features/semanticModels/slice'
 import {
-  type FilterParams,
+  useDeleteModelByIdMutation,
+  useGetModelsQuery,
+} from 'features/semanticModels/apiSlice'
+import {
   type SemanticModel,
   DefaultStatus,
 } from 'features/semanticModels/types'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
 import uniqueId from 'lodash/uniqueId'
-import type { AppDispatch } from 'features/store'
+import { useSelector } from 'react-redux'
+import { semanticModelsSelector } from 'features/semanticModels/slice'
 
 interface ModelTableProps {
   onModelSelect: (id: string) => void
@@ -44,11 +45,9 @@ type SelectedFilter = {
 
 const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch<AppDispatch>()
-  const { modelList, loadingModelList, deleteModelId, uploadedModel, error } =
-    useSelector(semanticModelsSelector)
   const [models, setModels] = useState<SemanticModel[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
+  const [searchValue, setSearchValue] = useState<string>('')
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
     status: [DefaultStatus],
   })
@@ -77,87 +76,78 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     },
   ]
 
-  useEffect(() => {
-    const filter = {
-      page: pageNumber,
-      pageSize: rowCount,
-      ...(selectedFilter.status[0] !== DefaultStatus && {
-        status: selectedFilter.status[0],
-      }),
-    }
-    dispatch(fetchSemanticModels({ filter }))
-  }, [dispatch, pageNumber])
+  const {
+    data: modelList,
+    isLoading: loadingModelList,
+    error: modelListError,
+  } = useGetModelsQuery({
+    page: pageNumber,
+    pageSize: rowCount,
+    namespaceFilter: searchValue,
+    status:
+      selectedFilter.status[0] !== DefaultStatus
+        ? selectedFilter.status[0]
+        : undefined,
+  })
+
+  const [deleteModelById] = useDeleteModelByIdMutation()
+
+  const { uploadedModel } = useSelector(semanticModelsSelector)
 
   useEffect(() => {
-    if (deleteModelId.length > 0) {
+    if (modelList) {
+      if (pageNumber === 0) {
+        setModels(modelList.items)
+      } else {
+        setModels((prevModels) => [...prevModels, ...modelList.items])
+      }
+    }
+  }, [modelList, pageNumber])
+
+  useEffect(() => {
+    if (deleteModelById.length > 0) {
       setModels((prevModels) =>
-        prevModels.filter((model) => model.urn !== deleteModelId)
+        prevModels.filter((model) => model.urn !== deleteModelById.toString())
       )
     }
-  }, [deleteModelId])
+  }, [deleteModelById])
 
   useEffect(() => {
-    if (uploadedModel !== null) {
+    if (uploadedModel) {
       setModels((prevModels) => [uploadedModel, ...prevModels])
     }
   }, [uploadedModel])
 
-  useEffect(() => {
-    if (models.length > 0 && pageNumber > 0) {
-      if (modelList.items.length > 0)
-        setModels((prevModels) => prevModels.concat(modelList.items))
-    } else {
-      setModels(modelList.items)
-    }
-  }, [modelList])
-
   const onFilterReset = () => {
-    //Reset PageNumber back to 0
-    dispatch(fetchSemanticModels({ filter: { page: 0, pageSize: rowCount } }))
+    setPageNumber(0)
+    setSelectedFilter({ status: [DefaultStatus] })
   }
 
   const onSearch = (value: string) => {
+    setSearchValue(value)
     setModels([])
-    const filter: FilterParams = {
-      page: 0,
-      pageSize: rowCount,
-      namespaceFilter: value,
-      ...(selectedFilter.status[0] !== DefaultStatus && {
-        status: selectedFilter.status[0],
-      }),
-    }
-    dispatch(fetchSemanticModels({ filter }))
   }
 
   const onFilter = (selectedFilter: SelectedFilter) => {
     setModels([])
-    //Reset PageNumber back to 0
     setPageNumber(0)
     setSelectedFilter(selectedFilter)
-    if (selectedFilter.status[0] !== DefaultStatus) {
-      dispatch(
-        fetchSemanticModels({
-          filter: {
-            page: 0,
-            pageSize: rowCount,
-            status: selectedFilter.status[0],
-          },
-        })
-      )
-    } else {
+    if (selectedFilter.status[0] === DefaultStatus) {
       onFilterReset()
     }
   }
+
   const columns = SemanticModelTableColumns(t, onModelSelect)
+
   const errorObj = {
     status: 0,
     message: '',
   }
 
-  if (error) {
-    errorObj.status = Number(error)
+  if (modelListError) {
+    errorObj.status = Number(modelListError)
     errorObj.message =
-      Number(error) >= 400 && Number(error) < 500
+      Number(modelListError) >= 400 && Number(modelListError) < 500
         ? t('global.errors.dataLoadFailed')
         : t('global.errors.loadFailed')
   }
@@ -166,7 +156,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     <section>
       <Table
         autoFocus={false}
-        rowsCount={modelList.totalItems}
+        rowsCount={modelList?.totalItems}
         hideFooter
         loading={loadingModelList}
         disableRowSelectionOnClick={true}
@@ -191,21 +181,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         getRowId={(row: { urn: string | undefined }) => uniqueId(row.urn)}
         hasBorder={false}
         error={errorObj}
-        reload={() =>
-          dispatch(
-            fetchSemanticModels({
-              filter: {
-                page: 0,
-                pageSize: rowCount,
-                status: selectedFilter.status[0],
-              },
-            })
-          )
-        }
+        reload={() => {
+          setPageNumber(0)
+        }}
         noRowsMsg={t('global.noData.heading')}
       />
       <div className="load-more-button-container">
-        {modelList.totalPages !== pageNumber && (
+        {modelList?.totalPages !== pageNumber && (
           <LoadMoreButton
             onClick={() => {
               setPageNumber((prevState) => prevState + 1)
