@@ -36,6 +36,7 @@ import { isSearchUserEmail } from 'types/Patterns'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { getClientId } from 'services/EnvironmentService'
+import { OverLappingStatusTag } from 'components/shared/cfx/OverLappingStatusTag'
 
 interface FetchHookArgsType {
   appId?: string
@@ -43,12 +44,6 @@ interface FetchHookArgsType {
   userRoleResponse?: boolean | string
   role?: boolean
   addUserResponse?: boolean
-}
-
-interface RoleType {
-  roleId: string
-  clientId: string
-  roleName: string
 }
 
 export const UserList = ({
@@ -155,31 +150,19 @@ export const UserList = ({
             field: 'roles',
             headerName: t('global.field.role'),
             flex: 4,
-            renderCell: ({ value: roles }) => (
-              <span
-                style={{
-                  overflowX: 'scroll',
-                  scrollbarWidth: 'none',
-                }}
-              >
-                {roles.length
-                  ? roles
-                      .filter(
-                        (role: RoleType | string) =>
-                          typeof role !== 'string' &&
-                          role.clientId === getClientId()
-                      )
-                      .map((role: RoleType) => (
-                        <StatusTag
-                          key={role.roleId}
-                          color="label"
-                          label={role.roleName}
-                          className="statusTag"
-                        />
-                      ))
-                  : ''}
-              </span>
-            ),
+            renderCell: ({ value: roles }) => {
+              if (
+                Array.isArray(roles) &&
+                roles.some((role) => role.hasOwnProperty('clientId'))
+              ) {
+                const filteredRoles = roles.filter(
+                  (role) =>
+                    typeof role !== 'string' && role.clientId === getClientId()
+                )
+                return <OverLappingStatusTag roles={filteredRoles} />
+              }
+              return <OverLappingStatusTag roles={roles} />
+            },
           },
           {
             field: 'details',
