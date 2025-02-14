@@ -37,6 +37,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import { groupBy } from 'lodash'
 
 interface AddTechUserFormProps {
   handleClose: () => void
@@ -51,6 +52,7 @@ interface AddTechUserFormProps {
 
 enum RoleType {
   Internal = 'Internal',
+  InternalOnlyVisible = 'InternalOnlyVisible',
   External = 'External',
   NONE = 'NONE',
 }
@@ -66,6 +68,9 @@ export const AddTechUserForm = ({
   const internalUserRoles = roles?.filter(
     (role) => role.roleType === RoleType.Internal
   )
+  const grouped = groupBy(internalUserRoles, 'onlyAccessibleByProvider')
+  const internalUserRolesVisible = grouped.true
+  const internalUserRolesNotVisible = grouped.false
   const externalUserRoles = roles?.filter(
     (role) => role.roleType === RoleType.External
   )
@@ -208,7 +213,10 @@ export const AddTechUserForm = ({
                         name="radio-buttons"
                         value={selectedUserRoles}
                         size="small"
-                        disabled={selectedRoleType === RoleType.Internal}
+                        disabled={
+                          selectedRoleType === RoleType.Internal ||
+                          selectedRoleType === RoleType.InternalOnlyVisible
+                        }
                       />
                       {role.onlyAccessibleByProvider &&
                         renderAccessibleByProvider()}
@@ -218,7 +226,8 @@ export const AddTechUserForm = ({
                       sx={{
                         marginLeft: '30px',
                         color:
-                          selectedRoleType === RoleType.External
+                          selectedRoleType === RoleType.Internal ||
+                          selectedRoleType === RoleType.InternalOnlyVisible
                             ? 'rgba(0, 0, 0, 0.38)'
                             : 'initial',
                       }}
@@ -258,7 +267,81 @@ export const AddTechUserForm = ({
                   marginLeft: '30px',
                 }}
               >
-                {internalUserRoles?.map((role: ServiceAccountRole) => (
+                {internalUserRolesNotVisible?.map(
+                  (role: ServiceAccountRole) => (
+                    <Box key={role.roleId}>
+                      <Box className="roles" sx={boxStyle}>
+                        <Checkbox
+                          key={role.roleId}
+                          label={role.roleName}
+                          checked={
+                            selectedUserRoles.indexOf(role.roleId) !== -1
+                          }
+                          onChange={(e) => {
+                            selectRoles(
+                              role.roleId,
+                              e.target.checked,
+                              'checkbox'
+                            )
+                          }}
+                          size="medium"
+                          value={selectedUserRoles}
+                          disabled={
+                            selectedRoleType === RoleType.External ||
+                            selectedRoleType === RoleType.InternalOnlyVisible
+                          }
+                        />
+                        {role.onlyAccessibleByProvider &&
+                          renderAccessibleByProvider()}
+                      </Box>
+                      <Typography
+                        variant="body3"
+                        sx={{
+                          marginLeft: '30px',
+                          color:
+                            selectedRoleType === RoleType.External ||
+                            selectedRoleType === RoleType.InternalOnlyVisible
+                              ? 'rgba(0, 0, 0, 0.38)'
+                              : 'initial',
+                        }}
+                      >
+                        {role.roleDescription}
+                      </Typography>
+                    </Box>
+                  )
+                )}
+              </Box>
+            )}
+            <Radio
+              label={t(
+                'content.apprelease.technicalIntegration.form.internalUserRolesOnlyVisible'
+              )}
+              checked={selectedRoleType === RoleType.InternalOnlyVisible}
+              onChange={() => {
+                setSelectedRoleType(RoleType.InternalOnlyVisible)
+              }}
+              name="radio-button"
+              value={selectedRoleType}
+              size="medium"
+            />
+            <Typography
+              variant="body3"
+              sx={{
+                marginLeft: '30px',
+                marginBottom: '10px',
+              }}
+            >
+              {t(
+                'content.apprelease.technicalIntegration.form.internalUserRolesDescriptionOnlyVisible'
+              )}
+            </Typography>
+            {selectedRoleType && selectedRoleType !== RoleType.NONE && (
+              <Box
+                sx={{
+                  marginLeft: '30px',
+                }}
+              >
+                {internalUserRolesVisible?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
                     <Box className="roles" sx={boxStyle}>
                       <Checkbox
@@ -270,17 +353,19 @@ export const AddTechUserForm = ({
                         }}
                         size="medium"
                         value={selectedUserRoles}
-                        disabled={selectedRoleType === RoleType.External}
+                        disabled={
+                          selectedRoleType === RoleType.External ||
+                          selectedRoleType === RoleType.Internal
+                        }
                       />
-                      {role.onlyAccessibleByProvider &&
-                        renderAccessibleByProvider()}
                     </Box>
                     <Typography
                       variant="body3"
                       sx={{
                         marginLeft: '30px',
                         color:
-                          selectedRoleType === RoleType.External
+                          selectedRoleType === RoleType.External ||
+                          selectedRoleType === RoleType.Internal
                             ? 'rgba(0, 0, 0, 0.38)'
                             : 'initial',
                       }}
