@@ -96,27 +96,54 @@ export const AddTechUserForm = ({
     }
   }, [userProfiles])
 
-  const selectCheckboxRoles = (role: string, select: boolean) => {
+  const handleCheckboxRoles = (role: string, select: boolean) => {
+    const isRoleSelected = selectedUserRoles?.includes(role)
+    if (!isRoleSelected && select) {
+      setSelectedUserRoles([...selectedUserRoles, role])
+    } else if (isRoleSelected && !select) {
+      const oldUserRoles = [...selectedUserRoles]
+      oldUserRoles.splice(oldUserRoles.indexOf(role), 1)
+      setSelectedUserRoles([...oldUserRoles])
+    }
+  }
+
+  const selectCheckboxRoles = (
+    role: string,
+    select: boolean,
+    roleType?: string
+  ) => {
     if (
       selectedUserRoles &&
       selectedUserRoles[0] === externalUserRoles?.[0].roleId
     ) {
       setSelectedUserRoles([...[], role])
-    } else {
-      const isRoleSelected = selectedUserRoles?.includes(role)
-      if (!isRoleSelected && select) {
-        setSelectedUserRoles([...selectedUserRoles, role])
-      } else if (isRoleSelected && !select) {
-        const oldUserRoles = [...selectedUserRoles]
-        oldUserRoles.splice(oldUserRoles.indexOf(role), 1)
-        setSelectedUserRoles([...oldUserRoles])
-      }
+    } else if (roleType === 'internalRolesVisible') {
+      if (
+        selectedUserRoles.every((id) =>
+          internalUserRolesVisible.some((role) => role.roleId === id)
+        )
+      )
+        handleCheckboxRoles(role, select)
+      else setSelectedUserRoles([...[], role])
+    } else if (roleType === 'internalRolesNotVisible') {
+      if (
+        selectedUserRoles.every((id) =>
+          internalUserRolesNotVisible.some((role) => role.roleId === id)
+        )
+      )
+        handleCheckboxRoles(role, select)
+      else setSelectedUserRoles([...[], role])
     }
   }
 
-  const selectRoles = (role: string, select: boolean, type: string) => {
+  const selectRoles = (
+    role: string,
+    select: boolean,
+    type: string,
+    roleType?: string
+  ) => {
     if (type === 'checkbox') {
-      selectCheckboxRoles(role, select)
+      selectCheckboxRoles(role, select, roleType)
     } else if (type === 'radio') {
       setSelectedUserRoles([...[], role])
     }
@@ -281,7 +308,8 @@ export const AddTechUserForm = ({
                             selectRoles(
                               role.roleId,
                               e.target.checked,
-                              'checkbox'
+                              'checkbox',
+                              'internalRolesNotVisible'
                             )
                           }}
                           size="medium"
@@ -349,7 +377,12 @@ export const AddTechUserForm = ({
                         label={role.roleName}
                         checked={selectedUserRoles.indexOf(role.roleId) !== -1}
                         onChange={(e) => {
-                          selectRoles(role.roleId, e.target.checked, 'checkbox')
+                          selectRoles(
+                            role.roleId,
+                            e.target.checked,
+                            'checkbox',
+                            'internalRolesVisible'
+                          )
                         }}
                         size="medium"
                         value={selectedUserRoles}

@@ -1346,7 +1346,7 @@
           "intro": "Select internal or external roles and continue to configure technical userprofile",
           "internalUserRoles": "Internal technical userprofile",
           "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile.The technical users created from this profile will  be visible to the customer and provider!",
-          "internalUserRolesOnlyVisible": "Internal Technical User Profile (Visible Only to Providers)",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
           "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
           "externalUserRoles": "External technical userprofile",
           "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
