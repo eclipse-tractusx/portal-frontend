@@ -67,6 +67,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **User management**
 
   - CHERRY PICK Filter out app permissions from portal roles list [#1392](https://github.com/eclipse-tractusx/portal-frontend/pull/1392)
+  - Fix missing roles in app access user tabe [PM2-2535](https://cofinity-x.atlassian.net/browse/PM2-2535)
 
 - **IDP**
   - Input field password toggle for OSP and IDP overlay [PM2-2332](https://cofinity-x.atlassian.net/browse/PM2-2332)
