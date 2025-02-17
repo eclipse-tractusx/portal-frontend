@@ -343,6 +343,7 @@ export const AddTechUserForm = ({
               style={{
                 display: 'flex',
                 justifyContent: 'flex-start',
+                alignItems: 'center',
               }}
             >
               <Radio
