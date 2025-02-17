@@ -160,9 +160,12 @@ export const AddTechUserForm = ({
           <VisibilityOffIcon
             sx={{
               marginLeft: '-5px !important',
-              fontSize: '16px',
+              fontSize: '22px',
               cursor: 'pointer',
               color: '#adadad',
+              ':hover': {
+                color: '#000',
+              },
             }}
           />
         }
@@ -245,8 +248,6 @@ export const AddTechUserForm = ({
                           selectedRoleType === RoleType.InternalOnlyVisible
                         }
                       />
-                      {role.onlyAccessibleByProvider &&
-                        renderAccessibleByProvider()}
                     </Box>
                     <Typography
                       variant="body3"
@@ -319,8 +320,6 @@ export const AddTechUserForm = ({
                             selectedRoleType === RoleType.InternalOnlyVisible
                           }
                         />
-                        {role.onlyAccessibleByProvider &&
-                          renderAccessibleByProvider()}
                       </Box>
                       <Typography
                         variant="body3"
@@ -340,18 +339,26 @@ export const AddTechUserForm = ({
                 )}
               </Box>
             )}
-            <Radio
-              label={t(
-                'content.apprelease.technicalIntegration.form.internalUserRolesOnlyVisible'
-              )}
-              checked={selectedRoleType === RoleType.InternalOnlyVisible}
-              onChange={() => {
-                setSelectedRoleType(RoleType.InternalOnlyVisible)
+            <Box
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
               }}
-              name="radio-button"
-              value={selectedRoleType}
-              size="medium"
-            />
+            >
+              <Radio
+                label={t(
+                  'content.apprelease.technicalIntegration.form.internalUserRolesOnlyVisible'
+                )}
+                checked={selectedRoleType === RoleType.InternalOnlyVisible}
+                onChange={() => {
+                  setSelectedRoleType(RoleType.InternalOnlyVisible)
+                }}
+                name="radio-button"
+                value={selectedRoleType}
+                size="medium"
+              />
+              {renderAccessibleByProvider()}
+            </Box>
             <Typography
               variant="body3"
               sx={{
