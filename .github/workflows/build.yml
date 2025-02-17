@@ -22,6 +22,10 @@
 name: build
 
 on:
+#for testing purpouses
+  pull_request:
+    branches:
+      - 'main'
   push:
     branches:
       - 'main'
