@@ -2625,3 +2625,41 @@ d .notification-badge-text {
     }
   }
 }
+
+.idp-management-table {
+  .MuiTablePagination-select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-right: 24px;
+    min-width: 16px;
+    height: auto;
+    min-height: 1.4375em;
+  }
+  .MuiTablePagination-select:hover {
+    border-color: $color-black;
+    border-radius: 4px;
+  }
+  .MuiTablePagination-select.MuiSelect-select {
+    background-color: white;
+    border-radius: 4px;
+  }
+  .MuiTablePagination-input {
+    color: $color-black;
+  }
+  .MuiTablePagination-selectIcon {
+    color: $color-secondary;
+  }
+
+  .MuiTablePagination-actions .MuiIconButton-root {
+    color: $color-secondary;
+    border: transparent;
+    box-shadow: none;
+  }
+
+  .MuiTablePagination-actions .MuiIconButton-root:active,
+  .MuiTablePagination-actions .MuiIconButton-root:hover {
+    background-color: #4d4d4d1a;
+    border: transparent;
+    box-shadow: none;
+  }
+}
