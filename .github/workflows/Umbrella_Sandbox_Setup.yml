@@ -2,6 +2,9 @@
 name: Umbrella Sandbox Setup
 
 on:
+  pull_request:
+    branches:
+      - 'main'
   push:
     branches:
       - 'main'
@@ -14,64 +17,64 @@ jobs:
       NODE_IMAGE: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
       HELM_VERSION: ${{ github.event.inputs.helm_version || 'latest' }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Kubernetes KinD Cluster
-      uses: container-tools/kind-action@0ad70e2299366b0e1552c7240f4e4567148f723e
-      with:
-        version: v0.20.0
-        node_image: ${{ env.NODE_IMAGE }}
+      - name: Kubernetes KinD Cluster
+        uses: container-tools/kind-action@0ad70e2299366b0e1552c7240f4e4567148f723e
+        with:
+          version: v0.20.0
+          node_image: ${{ env.NODE_IMAGE }}
 
-    - name: Verify Cluster
-      run: |
-        kubectl cluster-info
-        kubectl get nodes -o wide
+      - name: Verify Cluster
+        run: |
+          kubectl cluster-info
+          kubectl get nodes -o wide
 
-    - name: Set up Helm
-      uses: azure/setup-helm@v4.1.0
-      with:
-        version: ${{ env.HELM_VERSION }}
+      - name: Set up Helm
+        uses: azure/setup-helm@v4.1.0
+        with:
+          version: ${{ env.HELM_VERSION }}
 
-    - name: Build portal frontend
-      uses: docker/build-push-action@v4.1.0
-      with:
-        context: .
-        file: ./.conf/Dockerfile.full
-        push: true
-        tags: kind-registry:5000/portal-frontend:testing
+      - name: Build portal frontend
+        uses: docker/build-push-action@v4.1.0
+        with:
+          context: .
+          file: ./.conf/Dockerfile.full
+          push: true
+          tags: kind-registry:5000/portal-frontend:testing
 
-    - name: Add Tractus-X Helm Repository
-      run: |
-        helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-        helm repo update
+      - name: Add Tractus-X Helm Repository
+        run: |
+          helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
+          helm repo update
 
-    - name: Install Umbrella Chart Portal Subset
-      run: |
-        helm install \
-        --set portal.enabled=true,centralidp.enabled=true,sharedidp.enabled=true umbrella tractusx-dev/umbrella \
-        --set portal.frontend.image.repository=kind-registry:5000/portal-frontend --set portal.frontend.image.tag=testing \
-        --namespace umbrella --create-namespace
+      - name: Install Umbrella Chart Portal Subset
+        run: |
+          helm install \
+          --set portal.enabled=true,centralidp.enabled=true,sharedidp.enabled=true umbrella tractusx-dev/umbrella \
+          --set portal.frontend.image.repository=kind-registry:5000/portal-frontend --set portal.frontend.image.tag=testing \
+          --namespace umbrella --create-namespace
 
-    - name: Verify Deployment
-      run: |
-        kubectl get pods -n umbrella
-        helm ls --namespace umbrella
+      - name: Verify Deployment
+        run: |
+          kubectl get pods -n umbrella
+          helm ls --namespace umbrella
 
-    - name: Install Node.js for Cypress
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Install Node.js for Cypress
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Install Cypress Dependencies
-      run: |
-        npm install cypress --legacy-peer-deps
+      - name: Install Cypress Dependencies
+        run: |
+          npm install cypress --legacy-peer-deps
 
-    - name: Cleanup Resources
-      if: always()
-      run: |
-        helm uninstall umbrella --namespace umbrella || true
-        kubectl delete namespace umbrella || true
-        kind delete cluster || true
+      - name: Cleanup Resources
+        if: always()
+        run: |
+          helm uninstall umbrella --namespace umbrella || true
+          kubectl delete namespace umbrella || true
+          kind delete cluster || true
