@@ -22,7 +22,7 @@
 name: build
 
 on:
-#for testing purpouses
+  #for testing purpouses
   pull_request:
     branches:
       - 'main'
