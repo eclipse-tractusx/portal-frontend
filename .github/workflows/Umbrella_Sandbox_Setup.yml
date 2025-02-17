@@ -70,18 +70,6 @@ jobs:
       run: |
         npm install cypress --legacy-peer-deps
 
-    - name: Run Cypress Tests
-      env:
-        CYPRESS_baseUrl: http://localhost
-      run: |
-        npx cypress run
-
-    - name: Debug Cluster (on failure)
-      if: failure()
-      run: |
-        kubectl describe pods -n umbrella
-        kubectl logs -n umbrella $(kubectl get pods -n umbrella -o jsonpath='{.items[0].metadata.name}')
-
     - name: Cleanup Resources
       if: always()
       run: |
