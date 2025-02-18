@@ -364,7 +364,6 @@ const TechnicalUserAddFormSelect = ({
                 value={selectedRoleType}
                 size="medium"
               />
-
               <Tooltips
                 tooltipPlacement="right-start"
                 tooltipText={t(
@@ -404,18 +403,18 @@ const TechnicalUserAddFormSelect = ({
               >
                 {internalRolesVisible?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles" sx={boxStyle}>
+                    <Box sx={boxStyle} className="roles">
                       <Checkbox
-                        key={role.roleId}
                         label={role.roleName}
+                        key={role.roleId}
                         checked={selectedRoles.indexOf(role.roleId) !== -1}
+                        size="medium"
+                        value={selectedRoles}
+                        disabled={
+                          selectedRoleType === RoleType.External ||
+                          selectedRoleType === RoleType.Internal
+                        }
                         onChange={(e) => {
-                          selectRoles(
-                            role.roleId,
-                            e.target.checked,
-                            'checkbox',
-                            'internalRolesVisible'
-                          )
                           trigger(name)
                           onChange(
                             selectCheckboxOnChange(
@@ -423,25 +422,25 @@ const TechnicalUserAddFormSelect = ({
                               e.target.checked
                             )
                           )
+                          selectRoles(
+                            role.roleId,
+                            e.target.checked,
+                            'checkbox',
+                            'internalRolesVisible'
+                          )
                         }}
-                        size="medium"
-                        value={selectedRoles}
-                        disabled={
-                          selectedRoleType === RoleType.External ||
-                          selectedRoleType === RoleType.Internal
-                        }
                       />
                     </Box>
                     <Typography
-                      variant="body3"
                       sx={{
-                        ml: '30px',
                         color:
                           selectedRoleType === RoleType.External ||
                           selectedRoleType === RoleType.Internal
                             ? 'rgba(0, 0, 0, 0.38)'
                             : 'initial',
+                        ml: '30px',
                       }}
+                      variant="body3"
                     >
                       {role.roleDescription}
                     </Typography>
