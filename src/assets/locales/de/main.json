@@ -1524,13 +1524,38 @@
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "register": {
-        "heading": "Configuration Autosetup URL",
-        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. This feature also enables operators to retrieve technical configuration elements and activate the subscription.",
-        "endpointConfigured": "Configured Provider Endpoint",
-        "autosetupURL": "Set a new endpoint URL",
-        "inputPlaceholder": "...enter your setup url",
-        "providerErrorMessage": "Something went wrong!",
-        "providerSuccessMessage": "Details updated successfully."
+        "heading": "Konfiguration Autosetup URL",
+        "message": "Die Funktion zur Konfiguration der URL für die automatische Einrichtung des Unternehmens ermöglicht es den Betreibern, eine benutzerdefinierte URL einzurichten, die verwendet wird, um automatisch Abonnementanfragen an den Dienstanbieter zu übermitteln, wenn App-Abonnements auf dem Marketplace ausgelöst werden. \n\n Diese URL-Konfigurationsfunktion für die automatische Einrichtung ermöglicht es Betreibern auch, technische Konfigurationselemente abzurufen und das Abonnement zu aktivieren.",
+        "endpointConfigured": "Konfigurierter Anbieter-Endpunkt",
+        "inputPlaceholder": "...Geben Sie Ihre Einrichtungsurl ein",
+        "deleteAutoSetup": "Löschen Sie die bestehende Konfiguration von Auto-Setup",
+        "providerErrorMessage": "Es ist ein Fehler aufgetreten! Bitte versuchen Sie es später noch einmal.",
+        "providerSuccessMessage": "Details erfolgreich aktualisiert.",
+        "autoSetupURL": {
+          "name": "URL automatisch einrichten",
+          "hint": "Geben Sie die für die automatische Einrichtung gültige URL ein, um die Abonnementdetails des Benutzers zu erhalten.",
+          "error": "Geben Sie das gültige URL-Format ein"
+        },
+        "callbackUrl": {
+          "name": "Rückruf-URL für die automatische Einrichtung",
+          "hint": "Geben Sie die gültige Rückruf-URL ein, um die technischen Benutzerdaten zu erhalten.",
+          "error": "Geben Sie das gültige URL-Format ein"
+        },
+        "authUrl": {
+          "name": "Autorisierungs-URL",
+          "hint": "Geben Sie die von Ihrem IdP bereitgestellte URL für das Authentifizierungstoken ein.",
+          "error": "Geben Sie das gültige URL-Format ein"
+        },
+        "clientId": {
+          "name": "Client ID",
+          "hint": "Geben Sie die von Ihrem IdP bereitgestellte Client-ID ein.",
+          "error": "Geben Sie die gültige Client-ID ein"
+        },
+        "clientSecret": {
+          "name": "Client Secret",
+          "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein.",
+          "error": "Geben Sie das gültige Client-Geheimnis ein"
+        }
       },
       "activation": {
         "heading": "Activate App Subscription",
