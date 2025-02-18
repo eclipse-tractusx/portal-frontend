@@ -43,6 +43,7 @@ import Redirect from './actions/Redirect'
 import { OSPConsent } from './pages/OSPConsent'
 import { PAGES } from 'types/cfx/Constants'
 import { Footer } from './shared/cfx/Footer'
+import { getAssetBase } from 'services/EnvironmentService'
 
 export default function Main() {
   const { t } = useTranslation()
@@ -53,6 +54,20 @@ export default function Main() {
 
   const { data, isLoading, error } = useFetchApplicationsQuery()
   const companyData = data?.[0]
+
+  useEffect(() => {
+    const cssId = 'cfx-fonts'
+    if (!document.getElementById(cssId)) {
+      const head = document.getElementsByTagName('head')[0]
+      const link = document.createElement('link')
+      link.id = cssId
+      link.rel = 'stylesheet'
+      link.type = 'text/css'
+      link.href = `${getAssetBase()}/fonts-cfx/karbon/stylesheet.css`
+      link.media = 'all'
+      head.appendChild(link)
+    }
+  }, [])
 
   const renderSection = () => {
     return companyData?.applicationType === ApplicationType.INTERNAL ? (
