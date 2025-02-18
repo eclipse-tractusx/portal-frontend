@@ -31,21 +31,41 @@ import {
   SharedCssBaseline,
 } from '@catena-x/portal-shared-components'
 import CompanyService from 'services/CompanyService'
+import ErrorBoundary from 'components/pages/ErrorBoundary'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 I18nService.init()
 AccessService.init()
 
 UserService.init(() => {
-  CompanyService.init(() => {
-    createRoot(document.getElementById('app')!).render(
-      <StrictMode>
-        <SharedCssBaseline />
-        <Provider store={store}>
-          <SharedThemeProvider>
-            <AuthorizingRouter />
-          </SharedThemeProvider>
-        </Provider>
-      </StrictMode>
-    )
-  })
+  CompanyService.init(
+    () => {
+      createRoot(document.getElementById('app')!).render(
+        <StrictMode>
+          <SharedCssBaseline />
+          <Provider store={store}>
+            <SharedThemeProvider>
+              <AuthorizingRouter />
+            </SharedThemeProvider>
+          </Provider>
+        </StrictMode>
+      )
+    },
+    () => {
+      createRoot(document.getElementById('app')!).render(
+        <StrictMode>
+          <SharedCssBaseline />
+          <Provider store={store}>
+            <SharedThemeProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="*" element={<ErrorBoundary />} />
+                </Routes>
+              </BrowserRouter>
+            </SharedThemeProvider>
+          </Provider>
+        </StrictMode>
+      )
+    }
+  )
 })
