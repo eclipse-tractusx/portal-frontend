@@ -1114,7 +1114,7 @@
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
-          "roleMandatory": "Technical user Role is mandatory",
+          "roleMandatory": "Technical user role is mandatory",
           "error": {
             "select": "Please select a value.",
             "username": "Please enter username.",
