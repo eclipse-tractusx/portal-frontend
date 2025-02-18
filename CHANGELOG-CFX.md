@@ -33,6 +33,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Changes
 
+- **CFX fonts**
+
+  - Added Karbon fonts to portal [PM2-2525](https://cofinity-x.atlassian.net/browse/PM2-2525)
+
 - **BP Explorer**
 
   - Enable BPX data provisioning in your company page [PM2-2212](https://cofinity-x.atlassian.net/browse/PM2-2212)
