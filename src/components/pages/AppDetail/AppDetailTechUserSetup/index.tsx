@@ -21,34 +21,17 @@
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import type { AppDetails } from 'features/apps/types'
-import { Grid } from '@mui/material'
 import '../style.scss'
+import { useFetchTechnicalUserProfilesQuery } from 'features/appManagement/apiSlice'
+import { TechUserTable } from 'components/shared/basic/ReleaseProcess/TechnicalIntegration/TechUserTable'
 
 export default function AppDetailTechUserSetup({
   item,
 }: Readonly<{ item: AppDetails }>) {
   const { t } = useTranslation('')
-
-  const getAppDetailTechUserData = (data: string[] | null) => {
-    return data && data?.length > 0 ? (
-      data?.map((role: string) => (
-        <Grid spacing={2} sx={{ margin: '0px' }} key={role} container>
-          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
-            <Typography variant="label3">* {role}</Typography>
-          </Grid>
-        </Grid>
-      ))
-    ) : (
-      <Grid margin={'0px'} container spacing={2}>
-        <Typography
-          sx={{ textAlign: 'center', width: '100%' }}
-          variant="label3"
-        >
-          {t('global.errors.noTechnicalUserProfilesAvailable')}
-        </Typography>
-      </Grid>
-    )
-  }
+  const { data: technicalUserProfiles } = useFetchTechnicalUserProfilesQuery(
+    item.id ?? ''
+  )
 
   return (
     <div id="technical-user-setup">
@@ -59,8 +42,11 @@ export default function AppDetailTechUserSetup({
       <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.appdetail.technicalUserSetup.message')}
       </Typography>
-      {item.technicalUserProfile &&
-        getAppDetailTechUserData(Object.values(item?.technicalUserProfile)[0])}
+
+      <TechUserTable
+        userProfiles={technicalUserProfiles ?? []}
+        disableActions={true}
+      />
     </div>
   )
 }
