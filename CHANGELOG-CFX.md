@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Environment Service**
+
+  - Refactored function to get environments to be included in Environment service [PM2-2484](https://cofinity-x.atlassian.net/browse/PM2-2484)
+
 - **Analytics**
 
   - Add Hotjar script through GTM

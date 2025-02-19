@@ -39,7 +39,7 @@ import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-import { isLowerEnvironment } from 'services/UserService'
+import { getEnvironment } from 'services/EnvironmentService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
@@ -47,6 +47,7 @@ export default function MyAccount() {
   const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
   const dispatch = useDispatch()
+  const environment = getEnvironment()
 
   const handleDeleteUser = () =>
     dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, data?.companyUserId, 'ownUser'))
@@ -94,7 +95,7 @@ export default function MyAccount() {
       {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
 
       {/* TODO: DEV only needs to be removed when going PROD */}
-      {isLowerEnvironment() && (
+      {environment !== 'PRODUCTION' && environment !== 'BETA' && (
         <section>
           <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
             <AccordionSummary

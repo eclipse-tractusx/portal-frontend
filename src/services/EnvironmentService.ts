@@ -17,6 +17,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import {
+  PORTAL_BETA_ENVIRONMENT_URL,
+  PORTAL_PRODUCTION_ENVIRONMENT_URL,
+  PORTAL_INTEGRATION_ENVIRONMENT_URL,
+  PORTAL_TEST_ENVIRONMENT_URL,
+  PORTAL_DEVELOPMENT_ENVIRONMENT_URL,
+} from '../types/cfx/Constants'
+
 declare const ENV: Record<string, string>
 
 // get the value of REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
@@ -51,6 +59,23 @@ export const getMiwBase = () => ENV.MANAGED_IDENTITY_WALLETS_NEW_URL ?? ''
 
 export const getSSICredentialBase = () => ENV.SSI_CREDENTIAL_URL ?? ''
 
+export const getEnvironment = () => {
+  switch (window.location.origin) {
+    case PORTAL_PRODUCTION_ENVIRONMENT_URL:
+      return 'PRODUCTION'
+    case PORTAL_BETA_ENVIRONMENT_URL:
+      return 'BETA'
+    case PORTAL_INTEGRATION_ENVIRONMENT_URL:
+      return 'INTEGRATION'
+    case PORTAL_TEST_ENVIRONMENT_URL:
+      return 'TEST'
+    case PORTAL_DEVELOPMENT_ENVIRONMENT_URL:
+      return 'DEVELOPMENT'
+    default:
+      return 'UNKNOWN'
+  }
+}
+
 const EnvironmentService = {
   getRequireHttpsUrlPattern,
   getRealm,
@@ -66,6 +91,7 @@ const EnvironmentService = {
   getSemanticApiBase,
   getMiwBase,
   getSSICredentialBase,
+  getEnvironment,
 }
 
 export default EnvironmentService

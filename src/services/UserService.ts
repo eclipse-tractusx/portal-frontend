@@ -33,10 +33,6 @@ import {
 import { type LogData, error, info } from './LogService'
 import { store } from 'features/store'
 import { setLoggedUser } from 'features/user/slice'
-import {
-  PORTAL_BETA_ENVIRONMENT_URL,
-  PORTAL_PROD_ENVIRONMENT_URL,
-} from 'types/cfx/Constants'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
@@ -154,12 +150,6 @@ const getLoggedUser = (): IUser => ({
   parsedToken: getParsedToken(),
 })
 
-export const isHigherEnvironment = () =>
-  window.location.origin === PORTAL_PROD_ENVIRONMENT_URL ||
-  window.location.origin === PORTAL_BETA_ENVIRONMENT_URL
-
-export const isLowerEnvironment = () => !isHigherEnvironment()
-
 const UserService = {
   doLogin,
   doLogout,
@@ -176,8 +166,6 @@ const UserService = {
   init,
   isAdmin,
   isLoggedIn,
-  isHigherEnvironment,
-  isLowerEnvironment,
 }
 
 export default UserService
