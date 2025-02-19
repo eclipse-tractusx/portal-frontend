@@ -419,7 +419,7 @@
         },
         "subscribed": "Gezeichnet",
         "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
-        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen. Ich bin mir meiner zugrunde liegenden vertraglichen Vereinbarungen mit dem Drittanbieter dieser Anwendung/dieses Dienstes bewusst, insbesondere was die Kündigungsfristen betrifft. Durch die Abmeldung werden diese Vereinbarungen nicht außer Kraft gesetzt.",
         "buttonText": "Abbestellen",
         "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
         "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",

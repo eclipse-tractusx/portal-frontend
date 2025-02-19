@@ -419,7 +419,7 @@
         },
         "subscribed": "Subscribed",
         "checkBoxLabel": "Yes, I agree to unsubscribe from this application / service.",
-        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
+        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process. I am aware of my underlying contractual agreements with the third-party provider of this application / service, such as notice periods in particular. Unsubscribing does not override these agreements.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
         "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
