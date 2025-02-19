@@ -21,6 +21,8 @@
 import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
 import { getCentralIdp, getClientId, getRealm } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
+import { store } from 'features/store'
+import { setLoggedUser } from 'features/user/slice'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),

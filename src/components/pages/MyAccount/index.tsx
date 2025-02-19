@@ -39,12 +39,13 @@ import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
 import UserService from 'services/UserService'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-import { isLowerEnvironment } from 'services/UserService'
+import { getEnvironment } from 'services/EnvironmentService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
   const { data } = useFetchOwnUserDetailsQuery()
   const dispatch = useDispatch()
+  const environment = getEnvironment()
 
   const handleDeleteUser = () =>
     dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, data?.companyUserId, 'ownUser'))
@@ -97,20 +98,22 @@ export default function MyAccount() {
       )}
 
       {/* TODO: DEV only needs to be removed when going PROD */}
-      <section>
-        <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-          >
-            <Typography>{t('content.account.token')}</Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{ marginBottom: '20px' }}>
+      {environment !== 'PRODUCTION' && environment !== 'BETA' && (
+        <section>
+          <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              <Typography>{t('content.account.token')}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ marginBottom: '20px' }}>
             <pre>{JSON.stringify(UserService.getParsedToken(), null, 2)}</pre>
-          </AccordionDetails>
-        </Accordion>
-      </section>
+            </AccordionDetails>
+          </Accordion>
+        </section>
+      )}
     </main>
   )
 }
