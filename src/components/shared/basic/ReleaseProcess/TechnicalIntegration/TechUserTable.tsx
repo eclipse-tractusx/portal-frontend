@@ -89,7 +89,7 @@ export const TechUserTable = ({
         {
           field: 'roleName',
           headerAlign: 'center',
-          align: 'left',
+          align: disableActions ? 'center' : 'left',
           headerName: t('content.apprelease.technicalIntegration.table.role'),
           flex: disableActions ? 2.5 : 2,
           renderCell: ({ row }: { row: TechnicalUserProfiles }) => {

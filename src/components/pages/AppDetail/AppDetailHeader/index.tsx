@@ -163,7 +163,7 @@ export default function AppDetailHeader({
           return (
             subscribeStatus === SubscriptionStatus.INACTIVE &&
             userHasPortalRole(ROLES.SUBSCRIBE_APP_MARKETPLACE) &&
-            dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId))
+            dispatch(show(OVERLAYS.APPMARKETPLACE_REQUEST, appId ?? item.id))
           )
         }}
       />
