@@ -100,21 +100,17 @@ const UnSubscribeOverlay = ({
         }}
       >
         <div className="unsubscribeOverlay">
-          <DialogHeader
-            title={t('content.organization.unsubscribe.title')}
-            intro={error ? '' : `For ${data?.name}`}
-          />
+          <DialogHeader title={t('content.organization.unsubscribe.title')} />
           <DialogContent>
             <div
               style={{
                 textAlign: 'center',
+                marginTop: '20px',
+                marginBottom: '30px',
               }}
             >
               <Typography variant="body3">
-                {t('content.organization.unsubscribe.descriptionNote')}
-              </Typography>
-              <Typography variant="body3">
-                {t('content.organization.unsubscribe.description')}
+                {error ? '' : `${data?.name}`}
               </Typography>
             </div>
             <Box sx={{ mt: '20px' }}>
@@ -185,6 +181,17 @@ const UnSubscribeOverlay = ({
                           padding: '44px 0 12px 0',
                         }}
                       >
+                        <Typography variant="body2" sx={{ mb: 2 }}>
+                          <span style={{ fontWeight: 'bold' }}>
+                            {t(
+                              'content.organization.unsubscribe.checkBoxDescriptionAlert'
+                            )}
+                          </span>{' '}
+                          {t(
+                            'content.organization.unsubscribe.checkBoxLabelDescription'
+                          )}
+                        </Typography>
+
                         <Checkbox
                           label={t(
                             'content.organization.unsubscribe.checkBoxLabel'
@@ -194,11 +201,6 @@ const UnSubscribeOverlay = ({
                             setCheckBoxSelected(!checkBoxSelected)
                           }}
                         />
-                        <Typography variant="body2" sx={{ ml: 4 }}>
-                          {t(
-                            'content.organization.unsubscribe.checkBoxLabelDescription'
-                          )}
-                        </Typography>
                       </Box>
                     </>
                   )}
