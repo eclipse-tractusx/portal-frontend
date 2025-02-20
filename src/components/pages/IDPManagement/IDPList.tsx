@@ -403,7 +403,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'displayName',
           headerName: t('global.field.name'),
           flex: 3,
-          valueGetter: ({ row }: { row: IdentityProvider }) =>
+          valueGetter: ({ row }) =>
             row.displayName ?? (
               <>
                 <ReportProblemIcon color="error" fontSize="small" />
