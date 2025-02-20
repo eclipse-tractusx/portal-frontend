@@ -381,6 +381,19 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     },
   }
 
+  const getDisplayName = (row: IdentityProvider) => {
+    if (row.displayName) return row.displayName
+    else
+      return (
+        <>
+          <ReportProblemIcon color="error" fontSize="small" />
+          <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+            {ti('field.error')}
+          </Typography>
+        </>
+      )
+  }
+
   return (
     <Table
       rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
@@ -403,15 +416,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'displayName',
           headerName: t('global.field.name'),
           flex: 3,
-          valueGetter: ({ row }) =>
-            row.displayName ?? (
-              <>
-                <ReportProblemIcon color="error" fontSize="small" />
-                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                  {ti('field.error')}
-                </Typography>
-              </>
-            ),
+          valueGetter: ({ row }) => getDisplayName(row),
         },
         {
           field: 'alias',
