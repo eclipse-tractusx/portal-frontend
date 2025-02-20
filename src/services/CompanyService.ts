@@ -38,10 +38,7 @@ let CI: CompanyDetails = {
   companyRole: [],
 }
 
-const init = (
-  onCompanyDetailsCallback: () => void,
-  onCompanyErrorCallback: () => void
-) => {
+const init = (onCompanyDetailsCallback: () => void) => {
   fetch(`${getApiBase()}/api/administration/companydata/ownCompanyDetails`, {
     method: 'GET',
     headers: {
@@ -55,7 +52,7 @@ const init = (
     })
     .catch((error) => {
       console.log(error)
-      onCompanyErrorCallback()
+      onCompanyDetailsCallback()
     })
 }
 

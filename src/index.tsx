@@ -47,12 +47,7 @@ const MainRouter = () => (
 )
 
 UserService.init(() => {
-  CompanyService.init(
-    () => {
-      createRoot(document.getElementById('app')!).render(<MainRouter />)
-    },
-    () => {
-      createRoot(document.getElementById('app')!).render(<MainRouter />)
-    }
-  )
+  CompanyService.init(() => {
+    createRoot(document.getElementById('app')!).render(<MainRouter />)
+  })
 })
