@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { PartnerNetworkApi } from '../../partnerNetwork/api'
+import { apiSlice } from '../../partnerNetwork/apiSlice'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
 import { Api as UserApi } from 'features/admin/userDeprecated/api'
 import { Api as NewsApi } from 'features/info/news/api'
@@ -69,8 +69,9 @@ const getSinglePartnerResult = (partner: BusinessPartner) => ({
   contentSize: 1,
   content: [{ businessPartner: partner }],
 })
-
-const searchForExpression = async function (expr: string) {
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+const searchForExpression = async function (expr: string, dispatch: any) {
   if (!expr || expr.length < 3) {
     return await Promise.all([
       emptyPageResult,
@@ -88,11 +89,16 @@ const searchForExpression = async function (expr: string) {
       emptyActionResult,
       emptyAppResult,
       Patterns.BPN.test(expr)
-        ? getSinglePartnerResult(
-            await PartnerNetworkApi.getInstance().getBusinessPartnerByBpn(
+        ? dispatch(
+            apiSlice.endpoints.getBusinessPartnerByBpn.initiate(
               expr.toUpperCase()
             )
           )
+            .unwrap()
+            .then((response: BusinessPartner) =>
+              getSinglePartnerResult(response)
+            )
+            .catch(() => emptyPartnerResult)
         : emptyPartnerResult,
       emptyNewsResult,
       emptyUserResult,
@@ -133,12 +139,14 @@ const searchForExpression = async function (expr: string) {
       AppsApi.getInstance()
         .getActive()
         .catch(() => emptyAppResult),
-      PartnerNetworkApi.getInstance()
-        .getAllBusinessPartner({
+      dispatch(
+        apiSlice.endpoints.getAllBusinessPartners.initiate({
           name: expr,
           page: 0,
           size: 5,
         })
+      )
+        .unwrap()
         .catch(() => emptyPartnerResult),
       NewsApi.getInstance()
         .getItems()
@@ -154,13 +162,13 @@ const clearSearch = createAction(`${name}/clear`)
 
 const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
-  async (expr: string): Promise<SearchItem[]> => {
+  async (expr: string, { dispatch }): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
     const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
-        await searchForExpression(trexpr)
+        await searchForExpression(trexpr, dispatch)
       return [
         pages
           .filter((item: string) => hasAccess(item))
