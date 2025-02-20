@@ -277,8 +277,8 @@ export const AddIdp = () => {
           name="displayName"
           pattern={Patterns.idp.displayName}
           trigger={() => dispatch(setName(getValues().displayName))}
-          maxLength={40}
-          minLength={3}
+          maxLength={30}
+          minLength={2}
           label={
             <>
               {t('field.display.name')}
@@ -287,11 +287,11 @@ export const AddIdp = () => {
           }
           rules={{
             required: `${t('field.display.mandatoryMessage')}`,
-            minLength: `${t('field.display.minimum')} 3 ${t(
+            minLength: `${t('field.display.minimum')} 2 ${t(
               'field.display.charactersRequired'
             )}`,
             pattern: `${t('field.display.validCharactersIncludes')}`,
-            maxLength: `${t('field.display.maximum')} 40 ${t(
+            maxLength: `${t('field.display.maximum')} 30 ${t(
               'field.display.charactersRequired'
             )}`,
           }}
