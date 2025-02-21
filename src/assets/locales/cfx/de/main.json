@@ -420,22 +420,19 @@
       }
     },
     "organization": {
-      "title": "Ihr Unternehmen",
-      "headlineDescription": "Hier finden Sie Ihre Unternehmensdaten und Catena-X Rollen. Fügen Sie Standortdaten hinzu, die durch den Cofinity-X Golden Record Service validiert werden. Erfolgreich verifizierte Adressen sowie deren BPNS werden mit Business Partner Explorer-Abonnenten geteilt.",
       "unsubscribe": {
-        "title": "Geschäftsanwendung/Dienst abbestellen",
-        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
-        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
+        "title": "App/Service Abonnement beenden",
         "table": {
-          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
-          "app": "Bewerbungs-/Diensttitel:",
+          "listOfConnectedObjects": "App/Service Details:",
+          "app": "App/Service Titel:",
           "status": "Aktueller Status:",
-          "connector": "Verbinder:",
-          "techUser": "Technischer Benutzer:"
+          "connector": "Connector:",
+          "techUser": "Technischer User:"
         },
         "subscribed": "Gezeichnet",
-        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
-        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "checkBoxLabel": "Ich bestätige, dass ich den Hinweis gelesen habe und das App/Service Abonnement beenden möchte.",
+        "checkBoxDescriptionAlert": "Hinweis:",
+        "checkBoxLabelDescription": "Dieser Schritt kann nicht rückgängig gemacht werden. Wenn Sie das Abo beenden, gelten weiterhin Ihre Vereinbarungen mit den Drittanbietern, einschließlich Kündigungsfristen.",
         "buttonText": "Abbestellen",
         "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
         "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
