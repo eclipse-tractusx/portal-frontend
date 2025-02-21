@@ -419,22 +419,19 @@
       }
     },
     "organization": {
-      "title": "Your company",
-      "headlineDescription": "View your company details and roles in Catena-X. Add site information for Cofinity-X Golden Record Service validation. Successful validated details, including BPNS and site address, will be shared with Business Partner Explorer subscribers for enhanced data quality.",
       "unsubscribe": {
-        "title": "Unsubscribe Business Application / Service",
-        "descriptionNote": "Please note: the unsubscription is not revertible",
-        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
+        "title": "Unsubscribe Business Application/Service",
         "table": {
-          "listOfConnectedObjects": "List of connected objects:",
-          "app": "Application / Service title:",
+          "listOfConnectedObjects": "Application/Service Details:",
+          "app": "Application/Service Title:",
           "status": "Current Status:",
           "connector": "Connector:",
           "techUser": "Technical User:"
         },
         "subscribed": "Subscribed",
-        "checkBoxLabel": "Yes, I agree to unsubscribe from this application / service.",
-        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
+        "checkBoxLabel": "I confirm I have read the notice and still wish to unsubscribe from this application/service.",
+        "checkBoxDescriptionAlert": "Please note:",
+        "checkBoxLabelDescription": "Unsubscribing cannot be undone. When you unsubscribe, your agreements with third-party providers, including notice periods, still apply.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
         "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
