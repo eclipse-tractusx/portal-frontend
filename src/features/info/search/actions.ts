@@ -22,7 +22,7 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
 import { Api as UserApi } from 'features/admin/userDeprecated/api'
-import { Api as NewsApi } from 'features/info/news/api'
+import { apiSlice } from 'features/info/news/apiSlice'
 import {
   actionToSearchItem,
   appToSearchItem,
@@ -70,7 +70,9 @@ const getSinglePartnerResult = (partner: BusinessPartner) => ({
   content: [{ businessPartner: partner }],
 })
 
-const searchForExpression = async function (expr: string) {
+// Add an ESLint exception until there is a solution
+// eslint-disable-next-line
+const searchForExpression = async function (expr: string, dispatch: any) {
   if (!expr || expr.length < 3) {
     return await Promise.all([
       emptyPageResult,
@@ -140,9 +142,14 @@ const searchForExpression = async function (expr: string) {
           size: 5,
         })
         .catch(() => emptyPartnerResult),
-      NewsApi.getInstance()
-        .getItems()
-        .catch(() => emptyNewsResult),
+      dispatch(apiSlice.endpoints.getItems.initiate())
+        .unwrap()
+        .then((response: SearchItem) => {
+          return response
+        })
+        .catch(() => {
+          return emptyNewsResult
+        }),
       UserApi.getInstance()
         .getTenantUsers()
         .catch(() => emptyUserResult),
@@ -154,13 +161,13 @@ const clearSearch = createAction(`${name}/clear`)
 
 const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
-  async (expr: string): Promise<SearchItem[]> => {
+  async (expr: string, { dispatch }): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
     const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
-        await searchForExpression(trexpr)
+        await searchForExpression(trexpr, dispatch)
       return [
         pages
           .filter((item: string) => hasAccess(item))

@@ -59,6 +59,7 @@ import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerN
 import { apiSlice as partnerNetworkPortalApiSlice } from './newPartnerNetwork/partnerNetworkPortalApiSlice'
 import { apiSlice as connectorApiSlice } from './connector/connectorApiSlice'
 import { apiSlice as serviceManagementApiSlice } from './serviceManagement/apiSlice'
+import { apiSlice as newsApiSlice } from './info/news/apiSlice'
 import serviceSubscriptionSlice from './serviceSubscription/slice'
 import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/serviceSubscriptionApiSlice'
 import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdminBoardApiSlice'
@@ -121,6 +122,7 @@ export const reducers = {
     partnerNetworkPortalApiSlice.reducer,
   [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
   [serviceManagementApiSlice.reducerPath]: serviceManagementApiSlice.reducer,
+  [newsApiSlice.reducerPath]: newsApiSlice.reducer,
   [serviceSubscriptionApiSlice.reducerPath]:
     serviceSubscriptionApiSlice.reducer,
   [serviceAdminBoardApiSlice.reducerPath]: serviceAdminBoardApiSlice.reducer,
@@ -159,6 +161,7 @@ export const store = configureStore({
       .concat(partnerNetworkPortalApiSlice.middleware)
       .concat(connectorApiSlice.middleware)
       .concat(serviceManagementApiSlice.middleware)
+      .concat(newsApiSlice.middleware)
       .concat(serviceSubscriptionApiSlice.middleware)
       .concat(serviceAdminBoardApiSlice.middleware)
       .concat(companyRoleApiSlice.middleware)
