@@ -26,8 +26,8 @@ import { apiSlice } from './apiSlice'
 import { initialState, name } from './types'
 
 export const slice = createSlice({
-  name: name,
-  initialState: initialState,
+  name,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
