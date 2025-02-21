@@ -25,7 +25,6 @@ import apps from './apps'
 import control from './control'
 import info from './info'
 import partnerNetworkSlice from './partnerNetwork/slice'
-import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
 import images from './images/slice'
@@ -96,7 +95,6 @@ export const reducers = {
   semanticModels: modelsSlice.reducer,
   companyRoles: updateCompanyRoleSlice.reducer,
   partnerNetwork: partnerNetworkSlice.reducer,
-  connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
   languageSlice: languageSlice.reducer,
