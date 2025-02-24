@@ -61,7 +61,13 @@ const ValidatingInput = ({
   const immediateValidate = useCallback(
     (expr: string) => {
       const isValid = validate(expr)
-      setColor(isValid ? Colors.success : Colors.error)
+      setColor(
+        isValid
+          ? !required && expr === ''
+            ? Colors.secondary
+            : Colors.success
+          : Colors.error
+      )
       setValid(isValid)
       if (isValid && onValid) onValid(name, expr)
       else if (!isValid && onInvalid) onInvalid(name, expr)
