@@ -28,9 +28,23 @@ on:
       - main
 
 jobs:
-  setup-sandbox:
+  debug-workflow:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Debug Workflow Run Info
+        env:
+          WORKFLOW_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          WORKFLOW_STATUS: ${{ github.event.workflow_run.status }}
+        run: |
+          echo "Triggered by workflow: $WORKFLOW_NAME"
+          echo "Workflow conclusion: $WORKFLOW_CONCLUSION"
+          echo "Workflow status: $WORKFLOW_STATUS"
+
+  setup-sandbox:
+    needs: debug-workflow
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
     env:
       NODE_IMAGE: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
       HELM_VERSION: ${{ github.event.inputs.helm_version || 'latest' }}
