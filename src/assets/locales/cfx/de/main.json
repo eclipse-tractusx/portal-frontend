@@ -2004,12 +2004,13 @@
       "active": "Aktiv",
       "expired": "Verfallen",
       "editUsecase": {
-        "title": "Initiierung der Use-Case-Teilnahme durch Bestätigung der Use-Case-Rahmenvereinbarung für {{usecaseName}}",
-        "description": "Cofinity-X wird Ihre Teilnahme innerhalb von 48 Stunden genehmigen und die erforderlichen Anmeldedaten für Ihre Wallet generieren. Nach der Genehmigung können Sie mit dem Austausch von Daten mit anderen Use Case-Teilnehmern beginnen.",
+        "title": "Neuen Credential beantragen",
+        "description": "Cofinity-X genehmigt Ihren Antrag innerhalb von 48 Stunden, und der Credential wird zu Ihrer Wallet hinzugefügt. Sie können dann Daten mit anderen Dataspace-Teilnehmern austauschen.",
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
-        "checkboxLabel": "Ja, ich bestätige, dass ich teilnehmen möchte.",
+        "checkboxLabel": "Ich habe die <1>Rahmenvereinbarung</1> gelesen und akzeptiere sie.",
         "error": "Something went wrong!",
-        "success": "Usecase document upload has been done successfully."
+        "success": "Usecase document upload has been done successfully.",
+        "linkText": "Rahmenvereinbarung"
       }
     },
     "adminCertificate": {
@@ -2186,9 +2187,14 @@
       "MEMBERSHIP": "Membership",
       "subnavigation": {
         "title": "Wallet-Operationen :",
-        "button1": "Fordnern Sie neue Use Case-Anmeldeinformationen an",
+        "button1": "Neuen Credential beantragen",
+        "button1description": "Um einen neuen Credential zu beantragen, müssen Sie die Rahmenvereinbarung akzeptieren. Bitte prüfen Sie die Bedingungen sorgfältig, bevor Sie fortfahren.",
         "button2": "Fordern Sie einen neuen Firmenausweis an",
-        "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)"
+        "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)",
+        "button4": "Neue Berechtigung anfordern"
+      },
+      "credentialType": {
+        "DATA_EXCHANGE_GOVERNANCE_CREDENTIAL": "<strong>DataExchangeGovernance</strong><br/>DataExchangeGovernance Credentials werden verwendet, um die unternehmensübergreifende Kommunikation über Connectors und die Datenverhandlung zu ermöglichen."
       },
       "expiry": "Ablauf: ",
       "others": "Sonstige",
@@ -2548,6 +2554,7 @@
       "cancel": "Abbrechen",
       "decline": "Decline",
       "confirm": "Bestätigen",
+      "proceed": "Fortfahren",
       "more": "Mehr",
       "collapse": "Einklappen",
       "loadmore": "Mehr laden",
@@ -2563,6 +2570,7 @@
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
+      "request": "Beantragen",
       "saveSubmit": "Speichern & absenden",
       "no": "No",
       "yes": "Yes",

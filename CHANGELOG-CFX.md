@@ -38,6 +38,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Add button hover effect in sub navigation [PM2-137](https://cofinity-x.atlassian.net/browse/PM2-137)
   - Keep OSP Management on the Main Navigation [PM2-2175](https://cofinity-x.atlassian.net/browse/PM2-2175)
   - CFX - Improve Partners Network page copywriting [PM2-2414](https://cofinity-x.atlassian.net/browse/PM2-2414)
+  - Overlay implemented for requesting new credentials [CS-2967] (https://cofinity-x.atlassian.net/browse/CS-2967)
 
 ### Changes
 

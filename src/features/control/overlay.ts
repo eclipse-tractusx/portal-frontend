@@ -31,6 +31,7 @@ export type OverlayState = {
   status?: boolean
   subTitle?: string
   roles?: string[]
+  link?: string
 }
 
 const initialState = {
@@ -57,7 +58,8 @@ const show = createAction(
     title?: string,
     status?: boolean,
     subTitle?: string,
-    roles?: string[]
+    roles?: string[],
+    link?: string
   ) => ({
     payload: {
       type,
@@ -66,6 +68,7 @@ const show = createAction(
       status,
       subTitle,
       roles,
+      link,
     },
   })
 )

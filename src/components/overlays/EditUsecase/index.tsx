@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useDispatch } from 'react-redux'
 import {
@@ -40,9 +40,11 @@ import { generateDummyPdf } from 'utils/cfxPdfGenerator'
 export default function EditUsecase({
   id: verifiedCredentialTypeId,
   title: credentialType,
+  link,
 }: {
   id: string
   title: string
+  link?: string
 }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<typeof store.dispatch>()
@@ -84,34 +86,51 @@ export default function EditUsecase({
 
   return (
     <>
-      <DialogHeader
-        {...{
-          title: i18next.t('content.usecaseParticipation.editUsecase.title', {
-            usecaseName: credentialType,
-          }),
-          intro: i18next.t(
-            'content.usecaseParticipation.editUsecase.description',
-            { usecaseName: credentialType }
-          ),
-          closeWithIcon: true,
-          onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
-        }}
-      />
+      <div className="cx-edit-usecase-overlay">
+        <DialogHeader
+          {...{
+            title: i18next.t('content.usecaseParticipation.editUsecase.title', {
+              usecaseName: credentialType,
+            }),
+            intro: i18next.t(
+              'content.usecaseParticipation.editUsecase.description',
+              { usecaseName: credentialType }
+            ),
+            closeWithIcon: true,
+            onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
+          }}
+        />
 
-      <DialogContent>
-        <div className="edit-usecase">
-          <div className="checkbox-confirmation">
-            <Checkbox
-              label={`${t(
-                'content.usecaseParticipation.editUsecase.checkboxLabel'
-              )}`}
-              onChange={(e) => {
-                setChecked(e.target.checked)
-              }}
-            />
+        <DialogContent>
+          <div className="edit-usecase">
+            <div className="checkbox-confirmation">
+              <Checkbox
+                checked={checked}
+                onChange={(e) => {
+                  setChecked(e.target.checked)
+                }}
+              />
+              <label htmlFor="agreement-checkbox">
+                <Trans
+                  i18nKey="content.usecaseParticipation.editUsecase.checkboxLabel"
+                  components={{
+                    1: (
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: 'blue', textDecoration: 'underline' }}
+                      >
+                        {t('content.usecaseParticipation.editUsecase.linkText')}
+                      </a>
+                    ),
+                  }}
+                />
+              </label>
+            </div>
           </div>
-        </div>
-      </DialogContent>
+        </DialogContent>
+      </div>
 
       <DialogActions>
         <Button

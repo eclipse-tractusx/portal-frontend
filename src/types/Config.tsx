@@ -69,7 +69,7 @@ import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
 import CompanyRoleUpdate from 'components/pages/CompanyRoleUpdate'
-import UsecaseParticipation from 'components/pages/UsecaseParticipation'
+// import UsecaseParticipation from 'components/pages/UsecaseParticipation'
 import AboutPage from 'components/pages/AboutPage'
 import ChangeImage from 'components/pages/AppOverview/ChangeImage'
 import CertificateCredentials from 'components/pages/CertificateCredentials'
@@ -518,11 +518,6 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.COMPANY_ROLE,
     role: ROLES.UPDATE_COMPANY_ROLE,
     element: <CompanyRoleUpdate />,
-  },
-  {
-    name: PAGES.USECASE_PARTICIPATION,
-    role: ROLES.REQUEST_SSICREDENTIAL,
-    element: <UsecaseParticipation />,
   },
   {
     name: PAGES.CERTIFICATE_CREDENTIAL,

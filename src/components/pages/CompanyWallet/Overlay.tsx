@@ -34,6 +34,9 @@ interface OverlayProps {
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler
   loading: boolean
+  children?: JSX.Element | JSX.Element[] | null
+  showConfirmButton?: boolean
+  className?: string
 }
 
 const Overlay = ({
@@ -43,6 +46,9 @@ const Overlay = ({
   handleOverlayClose,
   handleConfirmClick,
   loading,
+  children,
+  showConfirmButton = true,
+  className,
 }: OverlayProps) => {
   const { t } = useTranslation()
 
@@ -55,8 +61,13 @@ const Overlay = ({
         },
       }}
     >
-      <DialogHeader title={title} />
-      <DialogContent>{description}</DialogContent>
+      <div className={`${className}`}>
+        <div className="cx-dialog-header-content">
+          <DialogHeader title={title} />
+          <DialogContent>{description}</DialogContent>
+        </div>
+        {children && <DialogContent>{children}</DialogContent>}
+      </div>
       <DialogActions>
         <Button
           variant="outlined"
@@ -68,12 +79,13 @@ const Overlay = ({
         </Button>
         {!loading ? (
           <Button
+            disabled={!showConfirmButton}
             variant="contained"
             onClick={(e) => {
               handleConfirmClick(e)
             }}
           >
-            {t('global.actions.confirm')}
+            {t('global.actions.proceed')}
           </Button>
         ) : (
           <Box
