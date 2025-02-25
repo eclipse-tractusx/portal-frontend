@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiSlice } from '../../partnerNetwork/apiSlice'
+import { apiSlice as PartnerNetworkApiSlice } from '../../partnerNetwork/apiSlice'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
 import { Api as UserApi } from 'features/admin/userDeprecated/api'
 import { Api as NewsApi } from 'features/info/news/api'
@@ -48,6 +48,7 @@ import {
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
+import { store } from 'features/store'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -71,7 +72,7 @@ const getSinglePartnerResult = (partner: BusinessPartner) => ({
 })
 // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
-const searchForExpression = async function (expr: string, dispatch: any) {
+const searchForExpression = async function (expr: string) {
   if (!expr || expr.length < 3) {
     return await Promise.all([
       emptyPageResult,
@@ -89,11 +90,12 @@ const searchForExpression = async function (expr: string, dispatch: any) {
       emptyActionResult,
       emptyAppResult,
       Patterns.BPN.test(expr)
-        ? dispatch(
-            apiSlice.endpoints.getBusinessPartnerByBpn.initiate(
-              expr.toUpperCase()
+        ? store
+            .dispatch(
+              PartnerNetworkApiSlice.endpoints.getBusinessPartnerByBpn.initiate(
+                expr.toUpperCase()
+              )
             )
-          )
             .unwrap()
             .then((response: BusinessPartner) =>
               getSinglePartnerResult(response)
@@ -139,13 +141,14 @@ const searchForExpression = async function (expr: string, dispatch: any) {
       AppsApi.getInstance()
         .getActive()
         .catch(() => emptyAppResult),
-      dispatch(
-        apiSlice.endpoints.getAllBusinessPartners.initiate({
-          name: expr,
-          page: 0,
-          size: 5,
-        })
-      )
+      store
+        .dispatch(
+          PartnerNetworkApiSlice.endpoints.getAllBusinessPartners.initiate({
+            name: expr,
+            page: 0,
+            size: 5,
+          })
+        )
         .unwrap()
         .catch(() => emptyPartnerResult),
       NewsApi.getInstance()
@@ -162,13 +165,13 @@ const clearSearch = createAction(`${name}/clear`)
 
 const fetchSearch = createAsyncThunk(
   `${name}/fetch`,
-  async (expr: string, { dispatch }): Promise<SearchItem[]> => {
+  async (expr: string): Promise<SearchItem[]> => {
     const trexpr = expr.trim()
     const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
       const [pages, overlays, actions, apps, partners, news, users] =
-        await searchForExpression(trexpr, dispatch)
+        await searchForExpression(trexpr)
       return [
         pages
           .filter((item: string) => hasAccess(item))
