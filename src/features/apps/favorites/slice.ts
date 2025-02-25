@@ -57,7 +57,7 @@ const slice = createSlice({
       }
     )
     builder.addMatcher(apiSlice.endpoints.addItem.matchFulfilled, (state) => {
-      state.items.push(state.change!)
+      state.items.push(state.change ?? '')
       state.change = null
       state.request = RequestState.OK
       state.error = ''

@@ -94,8 +94,8 @@ export default function AppListSection() {
   }
 
   const arrangeDataList = (d: AppMarketplaceApp[], favs: string[]) => {
-    d.forEach((i) => {
-      i.addButtonClicked = favs.includes(i.id)
+    d?.forEach((i: AppMarketplaceApp) => {
+      i.addButtonClicked = favs?.includes(i.id)
     })
     setList(d)
     setFavList(favs)
@@ -139,7 +139,7 @@ export default function AppListSection() {
     list ? (
       <AppListGroupView
         items={list
-          .filter(
+          ?.filter(
             (app) =>
               app?.name?.toLowerCase().includes(control.search.toLowerCase()) ??
               app?.title?.toLowerCase().includes(control.search.toLowerCase())

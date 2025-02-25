@@ -28,6 +28,7 @@ import {
   type AppMarketplaceState,
   type SubscribedApps,
 } from './types'
+import { type CardItems } from '@catena-x/portal-shared-components'
 
 enum Status {
   ACTIVE = 'ACTIVE',
@@ -106,10 +107,10 @@ const slice = createSlice({
 export const stateSelector = (state: RootState): AppMarketplaceState =>
   state.apps.marketplace
 
-export const activeSelector = (state: RootState) =>
+export const activeSelector = (state: RootState): CardItems[] =>
   state.apps.marketplace.items.map((app: AppMarketplaceApp) => appToCard(app))
 
-export const latestSelector = (state: RootState) =>
+export const latestSelector = (state: RootState): CardItems[] =>
   state.apps.marketplace.latest.map((app: AppMarketplaceApp) => appToCard(app))
 
 export const subscribedStatusSelector = (state: RootState) =>
