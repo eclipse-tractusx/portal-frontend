@@ -30,6 +30,7 @@ import {
   ServiceTypeIdsEnum,
   useFetchDocumentMutation,
   useFetchServiceStatusQuery,
+  useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -39,6 +40,7 @@ import { useParams } from 'react-router-dom'
 import { download } from 'utils/downloadUtils'
 import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { TechUserTable } from 'components/shared/basic/ReleaseProcess/TechnicalIntegration/TechUserTable'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -48,6 +50,8 @@ export default function ServiceDetails() {
   }).data
   const [fetchDocument] = useFetchDocumentMutation()
   const [leadImg, setLeadImg] = useState<string>('')
+  const { data: technicalUserProfiles } =
+    useFetchServiceTechnicalUserProfilesQuery(serviceId ?? '')
 
   const getServiceTypes = useCallback(() => {
     const newArr: string[] = []
@@ -256,6 +260,21 @@ export default function ServiceDetails() {
                 )}
               </ul>
             </div>
+
+            <Divider className="verify-validate-form-divider" />
+            <div className="margin-h-40">
+              <Typography variant="h4">
+                {t('adminboardDetail.technicalUserSetup.heading')}
+              </Typography>
+              <Typography variant="body2" className="form-field" sx={{ mb: 4 }}>
+                {t('adminboardDetail.technicalUserSetup.message')}
+              </Typography>
+              <TechUserTable
+                userProfiles={technicalUserProfiles ?? []}
+                disableActions={true}
+              />
+            </div>
+
             <Divider className="verify-validate-form-divider" />
             <div className="margin-h-40">
               <Typography variant="h4" sx={{ mb: 4 }}>
