@@ -1971,10 +1971,11 @@
       "active": "Active",
       "expired": "Expired",
       "editUsecase": {
-        "title": "Initiate use case participation by confirming the the use case frame agreement for {{usecaseName}}",
-        "description": "Cofinity-X will approve your participation within 48 hours and generate the necessary credentials for your wallet. Once approved, you can begin exchanging data with other Use Case participants.",
+        "title": "Request new credential",
+        "description": "Cofinity-X approves your request within 48 hours and the credential will be added to your wallet. You can then exchange data with other dataspace participants.",
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
-        "checkboxLabel": "Yes, I confirm that I would like to participate.",
+        "checkboxLabel": "I have read and accept the <1>framework agreement</1>.",
+        "linkText": "framework agreement",
         "error": "Something went wrong!",
         "success": "Usecase document upload has been done successfully."
       }
@@ -2153,9 +2154,14 @@
       "MEMBERSHIP": "Membership",
       "subnavigation": {
         "title": "Wallet operations :",
-        "button1": "Request new Use Case Credential",
+        "button1": "Request new Credential",
+        "button1description": "To request a new credential, you must accept the framework agreement. Please review the terms carefully before proceeding.",
         "button2": "Request new Company Credential",
-        "button3": "Get more details of VCs (coming soon)"
+        "button3": "Get more details of VCs (coming soon)",
+        "button4": "Request new credential"
+      },
+      "credentialType": {
+        "DATA_EXCHANGE_GOVERNANCE_CREDENTIAL": "<strong>DataExchangeGovernance</strong><br/>DataExchangeGovernance credentials are being used to enable cross-company connector communication and data negotiation."
       },
       "expiry": "Expiry: ",
       "others": "Others",
@@ -2514,6 +2520,7 @@
       "cancel": "Cancel",
       "decline": "Decline",
       "confirm": "Confirm",
+      "proceed": "Proceed",
       "more": "More",
       "collapse": "Collapse",
       "loadmore": "Load More",
@@ -2528,6 +2535,7 @@
       "confirmDelete": "Are you sure you want to delete {{ object }} {{ name }}?",
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
+      "request": "Request",
       "saveSubmit": "Save & submit",
       "no": "No",
       "yes": "Yes",

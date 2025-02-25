@@ -253,7 +253,13 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.UPDATE_COMPANY_ROLE:
       return <UpdateCompanyRole roles={overlay.roles ?? []} />
     case OVERLAYS.EDIT_USECASE:
-      return <EditUseCase id={overlay.id} title={overlay.title ?? ''} />
+      return (
+        <EditUseCase
+          id={overlay.id}
+          title={overlay.title ?? ''}
+          link={overlay.link ?? ''}
+        />
+      )
     case OVERLAYS.UPDATE_CERTIFICATE:
       return <UpdateCertificate />
     case OVERLAYS.COMPANY_CERTIFICATE_DETAILS:

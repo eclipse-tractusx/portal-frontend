@@ -24,6 +24,7 @@ $border-color: #dfdfdf;
 $text-disabled: #808080;
 $color-orange: #f58220;
 $link-color: #0088cc;
+$color-success: #6ba13c;
 
 body {
   padding: 0 !important;
@@ -2661,5 +2662,98 @@ d .notification-badge-text {
     background-color: #4d4d4d1a;
     border: transparent;
     box-shadow: none;
+  }
+}
+
+.cx-edit-usecase-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 100px;
+  gap: 40px;
+
+  .edit-usecase {
+    padding: 0 10px;
+    .checkbox-confirmation {
+      margin-top: 0 !important;
+      .MuiCheckbox-root.Mui-checked .MuiSvgIcon-root {
+        color: #fff !important;
+        fill: $color-success !important;
+        margin: 0;
+      }
+    }
+  }
+
+  .dialog-header-main {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .MuiDialogContent-root {
+    padding: 0 !important;
+    width: 100%;
+  }
+}
+
+.credential-list-item {
+  padding: 10px 0;
+
+  .cx-credentials {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+
+    .framework {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+
+      svg {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+// wallet request overlay styles
+.cx-dialog-header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.cx-overlay-header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 100px;
+  gap: 40px;
+
+  .dialog-header-main {
+    padding: 0 !important;
+    font-size: 32px;
+    line-height: 110px;
+  }
+
+  .MuiDialogContent-root {
+    font-size: 18px;
+    padding: 0 10px !important;
+    width: 100%;
+  }
+
+  .MuiFormControl-root {
+    width: 100% !important;
+  }
+
+  .MuiFormControlLabel-root {
+    display: flex;
+    justify-content: start;
+    align-items: start;
   }
 }
