@@ -70,8 +70,7 @@ const getSinglePartnerResult = (partner: BusinessPartner) => ({
   contentSize: 1,
   content: [{ businessPartner: partner }],
 })
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
+
 const searchForExpression = async function (expr: string) {
   if (!expr || expr.length < 3) {
     return await Promise.all([
