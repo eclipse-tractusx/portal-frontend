@@ -440,7 +440,11 @@ export const AddTechUserForm = ({
             {t('global.actions.close')}
           </Button>
           <Button
-            disabled={!selectedRoleType}
+            disabled={
+              !selectedRoleType ||
+              (selectedRoleType !== RoleType.NONE &&
+                selectedUserRoles.length === 0)
+            }
             variant="contained"
             onClick={() => {
               handleConfirm(
