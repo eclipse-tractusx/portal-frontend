@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Clickjacking Vulnerability**
+
+  - Fix Clickjacking Vulnerability for iframe embedding [PM2-2416](https://cofinity-x.atlassian.net/browse/PM2-2416)
+
 - **Company Subscription Management**
 
   - Fix Cofinity-X copywriting on app/service unsubscribe screen [PM2-2575](https://cofinity-x.atlassian.net/browse/PM2-2575)

@@ -36,6 +36,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { cofinityTheme } from 'theme.override'
 import { ThemeProvider } from '@mui/material'
 import { CompanyProvider } from 'components/CompanyProvider'
+import ClickjackingProtection from './utils/ClickjackingProtection'
 
 I18nService.init()
 AccessService.init()
@@ -45,7 +46,8 @@ UserService.init(() => {
     () => {
       createRoot(document.getElementById('app')!).render(
         <StrictMode>
-          <SharedCssBaseline />
+          <ClickjackingProtection />
+      <SharedCssBaseline />
           <Provider store={store}>
           <SharedThemeProvider themeDesign={cofinityTheme}>
               <CompanyProvider user={user}>
