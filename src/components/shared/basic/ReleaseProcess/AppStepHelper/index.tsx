@@ -29,6 +29,12 @@ export function isStepCompleted(
   appRedirectStatus: boolean,
   data?: updateRolePayload[]
 ) {
+  console.log('data>', data)
+  console.log(
+    'fetchAppStatus>',
+    fetchAppStatus?.technicalUserProfile &&
+      Object.keys(fetchAppStatus?.technicalUserProfile)?.length
+  )
   switch (step) {
     case 1:
       return (
@@ -63,7 +69,13 @@ export function isStepCompleted(
         appRedirectStatus
       )
     case 4:
-      return data && data.length > 0 && appRedirectStatus
+      return (
+        data &&
+        data.length > 0 &&
+        fetchAppStatus?.technicalUserProfile &&
+        Object.keys(fetchAppStatus?.technicalUserProfile)?.length &&
+        appRedirectStatus
+      )
     case 5:
       return fetchAppStatus && appRedirectStatus
     default:
