@@ -34,6 +34,7 @@ import {
 import { cofinityTheme } from 'theme.override'
 import { ThemeProvider } from '@mui/material'
 import { CompanyProvider } from 'components/CompanyProvider'
+import ClickjackingProtection from './utils/ClickjackingProtection'
 
 I18nService.init()
 AccessService.init()
@@ -41,6 +42,7 @@ AccessService.init()
 UserService.init((user) => {
   createRoot(document.getElementById('app')!).render(
     <StrictMode>
+      <ClickjackingProtection />
       <SharedCssBaseline />
       <Provider store={store}>
         <SharedThemeProvider themeDesign={cofinityTheme}>
