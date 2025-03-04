@@ -51,18 +51,6 @@ jobs:
       - name: Generate Dependencies file
         run: java -jar ./scripts/download/org.eclipse.dash.licenses-1.1.1.jar yarn.lock -project automotive.tractusx -summary DEPENDENCIES || true
 
-      - name: Check if dependencies were changed
-        id: dependencies-changed
-        run: |
-          changed=$(git diff DEPENDENCIES)
-          if [[ -n "$changed" ]]; then
-            echo "dependencies changed"
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "dependencies not changed"
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Check for restricted dependencies
         run: |
           restricted=$(grep ' restricted,' DEPENDENCIES || true)
@@ -70,16 +58,12 @@ jobs:
             echo "The following dependencies are restricted: $restricted"
             exit 1
           fi
-        if: steps.dependencies-changed.outputs.changed == 'true'
 
       - name: Upload DEPENDENCIES file
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
           path: DEPENDENCIES
-        if: steps.dependencies-changed.outputs.changed == 'true'
 
       - name: Signal need to update DEPENDENCIES
         run: |
           echo "Dependencies need to be updated (updated DEPENDENCIES file has been uploaded to workflow run)"
-          exit 1
-        if: steps.dependencies-changed.outputs.changed == 'true'
