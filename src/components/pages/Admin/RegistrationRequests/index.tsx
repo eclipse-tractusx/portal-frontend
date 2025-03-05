@@ -21,8 +21,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
-import { useDispatch } from 'react-redux'
-import { fetchCompanyDetail } from 'features/admin/registration/actions'
 import './style.scss'
 import type { GridCellParams } from '@mui/x-data-grid'
 import CompanyDetailOverlay from './CompanyDetailOverlay'
@@ -39,7 +37,7 @@ import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
-import type { AppDispatch } from 'features/store'
+import { useGetCompanyDetailQuery } from 'features/admin/registration/apiSlice'
 
 enum TableField {
   DETAIL = 'detail',
@@ -48,8 +46,6 @@ enum TableField {
 
 export default function RegistrationRequests() {
   const { t } = useTranslation()
-
-  const dispatch = useDispatch<AppDispatch>()
 
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
 
@@ -79,6 +75,11 @@ export default function RegistrationRequests() {
     useState<boolean>(false)
   const [selectedRequestName, setSelectedRequestName] = useState<string>('')
   const [selectedActiveTab, setSelectedActiveTab] = useState<number>(0)
+
+  const { refetch } = useGetCompanyDetailQuery(selectedRequestId ?? '', {
+    skip: !selectedRequestId,
+  })
+
   const onTableCellClick = (params: GridCellParams) => {
     // Show overlay only when detail field clicked
     if (
@@ -87,7 +88,7 @@ export default function RegistrationRequests() {
     ) {
       setSelectedRequestId(params.row.applicationId)
       setSelectedRequest(params.row)
-      dispatch(fetchCompanyDetail(params.row.applicationId))
+      refetch()
       setOverlayOpen(true)
       setSelectedActiveTab(params.field === TableField.DETAIL ? 0 : 2)
     }

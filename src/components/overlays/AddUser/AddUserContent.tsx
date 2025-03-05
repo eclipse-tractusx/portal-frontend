@@ -32,7 +32,9 @@ import { UserRoles } from './UserRoles'
 import {
   rolesToAddSelector,
   usersToAddSelector,
-} from 'features/admin/userDeprecated/slice'
+
+  setRolesToAdd,
+  setUsersToAdd} from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
@@ -43,10 +45,6 @@ import {
   useAddTenantUsersMutation,
   useAddUserIdpMutation,
 } from 'features/admin/userApiSlice'
-import {
-  setRolesToAdd,
-  setUsersToAdd,
-} from 'features/admin/userDeprecated/actions'
 import { type IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
 import type { IHashMap } from 'types/MainTypes'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'

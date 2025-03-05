@@ -37,17 +37,15 @@ import './style.scss'
 import {
   rolesToAddSelector,
   selectedUserSelector,
-} from 'features/admin/userDeprecated/slice'
+
+  setRolesToAdd,
+  setSelectedUserToAdd} from 'features/admin/userDeprecated/slice'
 import {
   setUserRoleResp,
   useUpdateUserRolesMutation,
   type UserRoleRequest,
   SuccessErrorType,
 } from 'features/admin/appuserApiSlice'
-import {
-  setRolesToAdd,
-  setSelectedUserToAdd,
-} from 'features/admin/userDeprecated/actions'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 
