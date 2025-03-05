@@ -41,6 +41,7 @@ import {
   useRemoveItemMutation,
 } from 'features/apps/favorites/apiSlice'
 import { useSelector } from 'react-redux'
+import { error } from 'services/NotifyService'
 
 export const label = 'AppList'
 
@@ -51,7 +52,12 @@ export default function AppListSection() {
   const location = useLocation()
 
   const navigate = useNavigate()
-  const { data, error, isError, refetch } = useFetchActiveAppsQuery()
+  const {
+    data,
+    error: fetchError,
+    isError,
+    refetch,
+  } = useFetchActiveAppsQuery()
   const { data: favoriteItems, refetch: refetchFavoriteApps } =
     useFetchFavoriteAppsQuery()
 
@@ -64,7 +70,7 @@ export default function AppListSection() {
 
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
-  const activeAppsError = error as any
+  const activeAppsError = fetchError as any
 
   const checkIsFavorite = (appId: string) => favList?.includes(appId)
 
@@ -80,7 +86,13 @@ export default function AppListSection() {
           arrangeDataList(list, favs)
           refetchFavoriteApps()
         })
-        .catch(console.error)
+        .catch((err) => {
+          error(
+            t('content.appstore.appOverviewSection.errorMsg'),
+            '',
+            err as object
+          )
+        })
     } else {
       addItem(appId)
         .unwrap()
@@ -89,7 +101,13 @@ export default function AppListSection() {
           arrangeDataList(list, favs)
           refetchFavoriteApps()
         })
-        .catch(console.error)
+        .catch((err) => {
+          error(
+            t('content.appstore.appOverviewSection.errorMsg'),
+            '',
+            err as object
+          )
+        })
     }
   }
 

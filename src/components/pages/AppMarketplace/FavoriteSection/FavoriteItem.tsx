@@ -25,6 +25,8 @@ import { useState, useEffect } from 'react'
 import CommonService from 'services/CommonService'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { useRemoveItemMutation } from 'features/apps/favorites/apiSlice'
+import { error } from 'services/NotifyService'
+import { t } from 'i18next'
 interface FavoriteItemProps {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
@@ -50,8 +52,8 @@ export default function FavoriteItem({
       .then(() => {
         setAddedToFavorite(!addedToFavorite)
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        error(t('content.appstore.favoriteSection.errorMsg'), '', err as object)
       })
   }
 
