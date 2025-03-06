@@ -21,11 +21,10 @@ name: Umbrella Sandbox Setup
 
 on:
   workflow_run:
-    workflows: ['build']
-    branches:
-      - 'main'
+    workflows: 
+      - build
     types:
-      - 'completed'
+      - completed
 
 jobs:
   debug-workflow:
