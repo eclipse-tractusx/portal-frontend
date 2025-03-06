@@ -20,6 +20,7 @@
 name: Umbrella Sandbox Setup
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: [ "build" ]
     types:
