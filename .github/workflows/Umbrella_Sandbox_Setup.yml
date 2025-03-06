@@ -20,9 +20,10 @@
 name: Umbrella Sandbox Setup
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
   workflow_run:
-    workflows: [ "build" ]
+    workflows:
+      - build
     types:
       - completed
 
@@ -43,7 +44,7 @@ jobs:
   setup-sandbox:
     needs: debug-workflow
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
       NODE_IMAGE: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
       HELM_VERSION: ${{ github.event.inputs.helm_version || 'latest' }}
@@ -85,9 +86,9 @@ jobs:
       - name: Install Umbrella Chart Portal Subset
         run: |
           helm install \
-          --set portal.enabled=true,centralidp.enabled=true,sharedidp.enabled=true umbrella tractusx-dev/umbrella \
-          --set portal.frontend.image.repository=kind-registry:5000/portal-frontend --set portal.frontend.image.tag=testing \
-          --namespace umbrella --create-namespace
+            --set portal.enabled=true,centralidp.enabled=true,sharedidp.enabled=true umbrella tractusx-dev/umbrella \
+            --set portal.frontend.image.repository=kind-registry:5000/portal-frontend --set portal.frontend.image.tag=testing \
+            --namespace umbrella --create-namespace
 
       - name: Verify Deployment
         run: |
