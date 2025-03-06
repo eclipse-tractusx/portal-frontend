@@ -43,7 +43,6 @@ jobs:
   setup-sandbox:
     needs: debug-workflow
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
       NODE_IMAGE: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
       HELM_VERSION: ${{ github.event.inputs.helm_version || 'latest' }}
