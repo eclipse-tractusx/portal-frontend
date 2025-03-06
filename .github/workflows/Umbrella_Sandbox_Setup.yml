@@ -22,9 +22,9 @@ name: Umbrella Sandbox Setup
 on:
   workflow_run:
     workflows: 
-      - build
+      - 'build'
     types:
-      - completed
+      - 'completed'
 
 jobs:
   debug-workflow:
