@@ -30,9 +30,8 @@ import { OVERLAYS } from 'types/Constants'
 export default function UserInfo({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
-  const userInfo = useSelector(UserdetailSelector)
-
-  useFetchAnyQuery(id)
+  const storedUserInfo = useSelector(UserdetailSelector)
+  const { data: userInfo } = useFetchAnyQuery(id)
 
   return (
     <>
@@ -45,7 +44,7 @@ export default function UserInfo({ id }: { id: string }) {
       />
 
       <DialogContent>
-        <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+        <pre>{JSON.stringify(userInfo ?? storedUserInfo, null, 2)}</pre>
       </DialogContent>
     </>
   )
