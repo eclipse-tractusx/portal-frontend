@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography, PageSnackbar } from '@catena-x/portal-shared-components'
 import './style.scss'
@@ -80,15 +80,19 @@ export default function RegistrationRequests() {
     skip: !selectedRequestId,
   })
 
+  useEffect(() => {
+    if (selectedRequestId) {
+      refetch()
+    }
+  }, [selectedRequestId, refetch])
+
   const onTableCellClick = (params: GridCellParams) => {
-    // Show overlay only when detail field clicked
     if (
       params.field === TableField.DETAIL ||
       params.field === TableField.STATUS
     ) {
       setSelectedRequestId(params.row.applicationId)
       setSelectedRequest(params.row)
-      refetch()
       setOverlayOpen(true)
       setSelectedActiveTab(params.field === TableField.DETAIL ? 0 : 2)
     }
