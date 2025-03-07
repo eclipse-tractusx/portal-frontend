@@ -22,26 +22,25 @@ import { Checkbox, Alert } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
-import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import { setRolesToAdd } from 'features/admin/userDeprecated/slice'
 import { useFetchAppRolesQuery } from 'features/admin/appuserApiSlice'
 import { useParams } from 'react-router-dom'
+import { type RootState } from 'features/store'
 
 export const AppRoles = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const roles = useSelector(rolesToAddSelector)
   const { appId } = useParams()
   const { data } = useFetchAppRolesQuery(appId ?? '')
 
   const selectRole = (roleName: string, select: boolean) => {
+    const roles = useSelector((state: RootState) => state.admin.user.rolesToAdd)
     const isSelected = roles.includes(roleName)
     if (!isSelected && select) {
       dispatch(setRolesToAdd([...roles, roleName]))
     } else if (isSelected && !select) {
-      const oldRoles = [...roles]
-      oldRoles.splice(oldRoles.indexOf(roleName), 1)
-      dispatch(setRolesToAdd([...oldRoles]))
+      const updatedRoles = roles.filter((role) => role !== roleName)
+      dispatch(setRolesToAdd(updatedRoles))
     }
   }
 

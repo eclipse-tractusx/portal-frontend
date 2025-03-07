@@ -19,21 +19,18 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
+import { apiSlice } from './apiSlice'
 import {
   name,
   initialState,
   type AdminUserDetailState,
-  type UserDetail,
   InitialUserDetail,
+  type UserDetail,
+  type PutBpnArgs,
+  type DeleteBpnArgs,
 } from './types'
-import {
-  deleteUserBpn,
-  fetchAny,
-  fetchOwn,
-  putBusinessPartnerNumber,
-} from './actions'
-import type { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
+import type { RootState } from 'features/store'
 
 const pending = (state: AdminUserDetailState) => ({
   ...state,
@@ -66,49 +63,62 @@ export const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchOwn.pending, pending)
-    builder.addCase(fetchOwn.fulfilled, fulfilled)
-    builder.addCase(fetchOwn.rejected, rejected)
+    builder.addMatcher(apiSlice.endpoints.fetchOwn.matchPending, pending)
+    builder.addMatcher(apiSlice.endpoints.fetchOwn.matchFulfilled, fulfilled)
+    builder.addMatcher(apiSlice.endpoints.fetchOwn.matchRejected, rejected)
 
-    builder.addCase(fetchAny.pending, pending)
-    builder.addCase(fetchAny.fulfilled, fulfilled)
-    builder.addCase(fetchAny.rejected, rejected)
+    builder.addMatcher(apiSlice.endpoints.fetchAny.matchPending, pending)
+    builder.addMatcher(apiSlice.endpoints.fetchAny.matchFulfilled, fulfilled)
+    builder.addMatcher(apiSlice.endpoints.fetchAny.matchRejected, rejected)
 
-    builder.addCase(putBusinessPartnerNumber.pending, (state) => ({
-      ...state,
-      request: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(putBusinessPartnerNumber.fulfilled, (state, action) => ({
-      ...state,
-      data: {
-        ...state.data,
-        bpn: [...state.data.bpn, action.meta.arg.inputBPN],
-      },
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(putBusinessPartnerNumber.rejected, (state, action) => ({
-      ...state,
-      request: RequestState.ERROR,
-      error: action.error.message!,
-    }))
-    builder.addCase(deleteUserBpn.fulfilled, (state, action) => {
-      state.request = RequestState.OK
-      state.data = {
-        ...state.data,
-        bpn: state.data.bpn.filter((item) => item !== action.meta.arg.bpn),
+    builder.addMatcher(
+      apiSlice.endpoints.putBusinessPartnerNumber.matchPending,
+      (state) => ({
+        ...state,
+        request: RequestState.SUBMIT,
+        error: '',
+      })
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.putBusinessPartnerNumber.matchFulfilled,
+      (state, action) => {
+        const { inputBPN }: PutBpnArgs = action.meta.arg.originalArgs
+
+        return {
+          ...state,
+          data: {
+            ...state.data,
+            bpn: [...state.data.bpn, inputBPN],
+          },
+          request: RequestState.OK,
+          error: '',
+        }
       }
-    })
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.putBusinessPartnerNumber.matchRejected,
+      (state, action) => ({
+        ...state,
+        request: RequestState.ERROR,
+        error: action.error.message!,
+      })
+    )
+
+    builder.addMatcher(
+      apiSlice.endpoints.deleteUserBpn.matchFulfilled,
+      (state, action) => {
+        const { bpn }: DeleteBpnArgs = action.meta.arg.originalArgs
+        state.request = RequestState.OK
+        state.data.bpn = state.data.bpn.filter((item) => item !== bpn)
+      }
+    )
   },
 })
 
 export const UserdetailSelector = (state: RootState): UserDetail =>
   state.admin.userOwn.data
-
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
-export const resetSelector = (state: RootState): any => state.admin.userOwn
+export const resetSelector = (state: RootState): AdminUserDetailState =>
+  state.admin.userOwn
 
 const Slice = { slice }
 
