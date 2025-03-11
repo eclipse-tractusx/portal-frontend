@@ -24,11 +24,12 @@ import {
   CredentialType,
   type WalletContent,
 } from 'features/compayWallet/companyWalletApiSlice'
-import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
-import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
+import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined'
 import { getAssetBase } from 'services/EnvironmentService'
+import useFormattedDate from 'hooks/useFormattedDate'
+import { useMemo } from 'react'
 
 type Hash<T> = Record<string, T>
 
@@ -40,17 +41,33 @@ export default function RuleCard({
   readonly handleRevoke: (id: string) => void
 }): JSX.Element {
   const { t } = useTranslation()
-  const keys = Object.keys(sections)
+  const { formatDate } = useFormattedDate()
+
+  const keys = useMemo(() => Object.keys(sections), [sections])
+
   const getBgColor = (item: WalletContent) => {
     if (item?.status === CredentialSubjectStatus.ACTIVE) {
-      return '#004F4B'
+      return '#DBEBB0'
     } else if (
       item?.status === CredentialSubjectStatus.INACTIVE ||
       item?.status === CredentialSubjectStatus.REVOKED
     ) {
-      return '#FEE7E2'
+      return '#A6A6A6'
     } else {
-      return '#FFA600'
+      return '#fdb913'
+    }
+  }
+
+  const getTextColor = (item: WalletContent) => {
+    if (item?.status === CredentialSubjectStatus.ACTIVE) {
+      return '#406124'
+    } else if (
+      item?.status === CredentialSubjectStatus.INACTIVE ||
+      item?.status === CredentialSubjectStatus.REVOKED
+    ) {
+      return '#fff'
+    } else {
+      return '#785707'
     }
   }
 
@@ -83,14 +100,7 @@ export default function RuleCard({
           >
             {key.split('_').join(' ')}
           </Typography>
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              paddingLeft: '0px',
-            }}
-            className="grid-layout"
-          >
+          <Grid container spacing={0} className="grid-layout">
             {sections[key]?.map((item: WalletContent, index) => (
               <Grid
                 item
@@ -99,56 +109,61 @@ export default function RuleCard({
                 md={4}
                 className="main-rule-card-container"
                 key={item.expiryDate ?? index}
-                sx={{
-                  paddingLeft: '20px !important',
-                }}
               >
                 <Box className="gradient-container">
                   <Box
                     key={item.expiryDate ?? index}
-                    className="rule-card-container"
+                    className={`rule-card-container ${
+                      item?.status === CredentialSubjectStatus.INACTIVE ||
+                      item?.status === CredentialSubjectStatus.REVOKED
+                        ? 'cx-revoked-rule-card-container'
+                        : ''
+                    }`}
                     sx={{
-                      backgroundColor:
-                        item?.status === CredentialSubjectStatus.INACTIVE ||
-                        item?.status === CredentialSubjectStatus.REVOKED
-                          ? '#EAEAEA'
-                          : '#deeeef',
+                      border: '1.5px solid #d2d2d2',
                     }}
                   >
                     <Box className="circle-container">
-                      <Typography
-                        sx={{
-                          color:
-                            item?.status !== CredentialSubjectStatus.INACTIVE &&
-                            item?.status !== CredentialSubjectStatus.REVOKED
-                              ? '#fff !important'
-                              : '#FF532F !important',
-                          backgroundColor: getBgColor(item),
-                        }}
-                        className="text"
-                        variant="body2"
-                      >
-                        {getStatus(item?.status)}
-                      </Typography>
                       <img
                         src={`${getAssetBase()}/images/logos/logo_tractus-x.svg`}
                         alt="tractus x logo"
                         style={{
-                          width: 40,
+                          width: 25,
                         }}
                       />
+                      <Typography
+                        sx={{
+                          color: getTextColor(item),
+                          backgroundColor: getBgColor(item),
+                          padding: '0 !important',
+                          fontSize: '12px',
+                          height: '20px',
+                          lineHeight: 'normal',
+                        }}
+                        variant="body2"
+                      >
+                        {getStatus(item?.status)}
+                      </Typography>
                     </Box>
-                    <Typography className="text" variant="h4">
-                      {item?.credentialType.split('_').join(' ')}
-                    </Typography>
-                    <Box className="revoke-container">
-                      <div>
+                    <div className="cx-flex-description-container">
+                      <Typography className="text" variant="h4">
+                        {item?.credentialType.split('_').join(' ')}
+                      </Typography>
+                      {item?.version && (
                         <Typography className="text" variant="body3">
+                          {t('content.companyWallet.version')}: {item.version}
+                        </Typography>
+                      )}
+                    </div>
+                    <Box className="revoke-container">
+                      <div className="cx-flex-description-container">
+                        <Typography className="text" variant="body3">
+                          {t('content.companyWallet.issuer')}
                           {item.authority}
                         </Typography>
                         <Typography className="text" variant="body3">
                           {t('content.companyWallet.expiry')}
-                          {dayjs(item.expiryDate).format('YYYY-MM-DD')}
+                          {formatDate(item?.expiryDate)}
                         </Typography>
                       </div>
                       {canShowRevoke(item) && (
@@ -161,12 +176,30 @@ export default function RuleCard({
                                 handleRevoke(item.credentialDetailId)
                               }}
                             >
-                              <SettingsBackupRestoreIcon
+                              <Typography
                                 sx={{
-                                  color: '#c84f4f',
+                                  border: '1px solid #c84f4f',
                                   cursor: 'pointer',
+                                  borderRadius: '100px',
+                                  width: 'auto',
+                                  fontSize: '12px',
+                                  color: '#c84f4f !important',
+                                  display: 'flex',
+                                  padding: '7px 7px 7px 6px',
+                                  height: '27px',
+                                  justifyContent: 'center',
+                                  alignItems: 'center',
                                 }}
-                              />
+                                variant="body2"
+                              >
+                                <ConfirmationNumberOutlinedIcon
+                                  sx={{
+                                    color: '#c84f4f',
+                                  }}
+                                  className="cx-revoke-icon"
+                                />
+                                {t('content.adminCertificate.table.deactivate')}
+                              </Typography>
                             </Box>
                           }
                         />

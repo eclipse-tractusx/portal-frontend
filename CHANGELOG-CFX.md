@@ -43,6 +43,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Keep OSP Management on the Main Navigation [PM2-2175](https://cofinity-x.atlassian.net/browse/PM2-2175)
   - CFX - Improve Partners Network page copywriting [PM2-2414](https://cofinity-x.atlassian.net/browse/PM2-2414)
   - Overlay implemented for requesting new credentials [CS-2967] (https://cofinity-x.atlassian.net/browse/CS-2967)
+  - Wallet UI resdesigned [CS-2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
+  - Version info added to credential cards [CS2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
 
 ### Changes
 

@@ -2044,7 +2044,8 @@
           "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
           "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
         },
-        "revoke": "Widerrufen"
+        "revoke": "Widerrufen",
+        "deactivate": "Deaktivieren"
       },
       "approvedMessage": "Anmeldeinformationsanfrage erfolgreich angenommen.",
       "declinedMessage": "Anmeldeinformationsanfrage wurde abgelehnt.",
@@ -2169,10 +2170,10 @@
     "companyWallet": {
       "heading": "Firmen-Wallet",
       "description": "Die Wallet speichert Ihre sichere Identität und die von Ihnen ausgestellten überprüfbaren Credentials wie Ihre Mitgliedschafts- und BPN-Credentials. Dies ermöglicht es den Teilnehmern des Catena-X-Netzwerks, Ihre Identität als Grundlage für den Datenaustausch mit Ihnen zu bestätigen.",
-      "activate": "Connected",
-      "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
-      "error": "Nicht verbunden",
-      "errorDescription": "Wallet-Mandant konnte nicht gefunden werden.",
+      "activate": "Verbunden",
+      "activateDescription": "Catena-X Wallet ist aktiv",
+      "error": "Verbindungsfehler",
+      "errorDescription": "Catena-X Wallet Mandant nicht gefunden",
       "inactive": "Nicht verbunden",
       "inactiveDescription": "Sie haben Ihr Catena-X-Wallet nicht aktiviert.",
       "TRACEABILITY_FRAMEWORK": "Traceability Framework",
@@ -2185,6 +2186,7 @@
       "DEMAND_AND_CAPACITY_MANAGEMENT": "Demad And Capacity Management",
       "BUSINESS_PARTNER_DATA_MANAGEMENT": "Business Partner Data Management",
       "MEMBERSHIP": "Membership",
+      "membership": "CATENA-X MITGLIEDSCHAFT CREDENTIAL",
       "subnavigation": {
         "title": "Wallet-Operationen :",
         "button1": "Neuen Credential beantragen",
@@ -2197,8 +2199,10 @@
         "DATA_EXCHANGE_GOVERNANCE_CREDENTIAL": "<strong>DataExchangeGovernance</strong><br/>DataExchangeGovernance Credentials werden verwendet, um die unternehmensübergreifende Kommunikation über Connectors und die Datenverhandlung zu ermöglichen."
       },
       "expiry": "Ablauf: ",
+      "issuer": "Aussteller: ",
+      "version": "Version",
       "others": "Sonstige",
-      "revokeHint": "Revoke Credential",
+      "revokeHint": "Deactivate Credential",
       "confirmOverlay": {
         "title": "Confirm Revoke",
         "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
