@@ -22,7 +22,7 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
 import { Api as UserApi } from 'features/admin/userDeprecated/api'
-import { Api as NewsApi } from 'features/info/news/api'
+import { apiSlice as NewsApi } from 'features/info/news/apiSlice'
 import {
   actionToSearchItem,
   appToSearchItem,
@@ -48,6 +48,7 @@ import {
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
+import { store } from 'features/store'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -140,8 +141,12 @@ const searchForExpression = async function (expr: string) {
           size: 5,
         })
         .catch(() => emptyPartnerResult),
-      NewsApi.getInstance()
-        .getItems()
+      store
+        .dispatch(NewsApi.endpoints.getItems.initiate())
+        .unwrap()
+        .then((response: CardItems[]) => {
+          return response
+        })
         .catch(() => emptyNewsResult),
       UserApi.getInstance()
         .getTenantUsers()

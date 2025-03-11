@@ -24,22 +24,16 @@ import {
   DialogHeader,
 } from '@catena-x/portal-shared-components'
 import { show } from 'features/control/overlay'
-import { fetchItems } from 'features/info/news/actions'
-import { itemsSelector } from 'features/info/news/slice'
+import { useGetItemsQuery } from 'features/info/news/apiSlice'
 import type { AppDispatch } from 'features/store'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
 
 export default function NewsDetail({ id }: { id: string }) {
   const { t } = useTranslation()
+  const { data: items = [] } = useGetItemsQuery()
   const dispatch = useDispatch<AppDispatch>()
-  const items = useSelector(itemsSelector)
-
-  useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
 
   return (
     <>

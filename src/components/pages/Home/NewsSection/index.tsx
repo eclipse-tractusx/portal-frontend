@@ -19,20 +19,11 @@
  ********************************************************************************/
 
 import { Cards } from '@catena-x/portal-shared-components'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from 'features/info/news/actions'
-import { itemsSelector } from 'features/info/news/slice'
 import './style.scss'
-import type { AppDispatch } from 'features/store'
+import { useGetItemsQuery } from 'features/info/news/apiSlice'
 
 export default function NewsSection() {
-  const dispatch = useDispatch<AppDispatch>()
-  const items = useSelector(itemsSelector)
-
-  useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
+  const { data: items = [] } = useGetItemsQuery()
 
   return (
     <section className="news-section">
