@@ -2120,7 +2120,8 @@
           "FRAMEWORK_AGREEMENT_QUALITY": "Framework Agreement Quality",
           "BUSINESS_PARTNER_NUMBER": " Business Partner Number"
         },
-        "revoke": "Revoke"
+        "revoke": "Revoke",
+        "deactivate": "Deactivate"
       },
       "approvedMessage": "Credential Request Accepted successfully.",
       "declinedMessage": "Credential Request Declined successfully.",
@@ -2137,9 +2138,9 @@
       "heading": "Company Wallet",
       "description": "The wallet stores your secure identity and issued verifiable credentials like your Membership and BPN credentials. This enables participants on the  Catena-X network to confirm your identity as a foundation to exchange data with you.",
       "activate": "Connected",
-      "activateDescription": "You have activated your Catena-X wallet.",
-      "error": "Not Connected",
-      "errorDescription": "Wallet tenant not found.",
+      "activateDescription": "Catena-X wallet is active",
+      "error": "Connection error",
+      "errorDescription": "Catena-X wallet tenant not found",
       "inactive": "Not Connected",
       "inactiveDescription": "You have not activated your Catena-X wallet.",
       "TRACEABILITY_FRAMEWORK": "Traceability Framework",
@@ -2152,6 +2153,7 @@
       "DEMAND_AND_CAPACITY_MANAGEMENT": "Demad And Capacity Management",
       "BUSINESS_PARTNER_DATA_MANAGEMENT": "Business Partner Data Management",
       "MEMBERSHIP": "Membership",
+      "membership": "CATENA-X MEMBERSHIP CREDENTIAL",
       "subnavigation": {
         "title": "Wallet operations :",
         "button1": "Request new Credential",
@@ -2164,8 +2166,10 @@
         "DATA_EXCHANGE_GOVERNANCE_CREDENTIAL": "<strong>DataExchangeGovernance</strong><br/>DataExchangeGovernance credentials are being used to enable cross-company connector communication and data negotiation."
       },
       "expiry": "Expiry: ",
+      "issuer": "Issuer: ",
       "others": "Others",
-      "revokeHint": "Revoke Credential",
+      "version": "Version",
+      "revokeHint": "Deactivate Credential",
       "confirmOverlay": {
         "title": "Confirm Revoke",
         "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"

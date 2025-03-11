@@ -91,10 +91,13 @@ export default function CompanyWallet(): JSX.Element {
         {isSuccess || isError ? (
           <>
             <div className="container">
-              <WalletCard
-                isError={activeWallet.length === 0 || isError}
-                wallet={activeWallet[0]}
-              />
+              <div style={{ padding: '0 20px' }}>
+                <WalletCard
+                  isError={activeWallet.length === 0 || isError}
+                  wallet={activeWallet[0]}
+                />
+                <div className="cx-divider"></div>
+              </div>
             </div>
             {isSuccess && (
               <>

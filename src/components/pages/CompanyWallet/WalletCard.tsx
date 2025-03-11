@@ -18,13 +18,11 @@
  ********************************************************************************/
 
 import { Typography } from '@catena-x/portal-shared-components'
-import {
-  CredentialSubjectStatus,
-  type WalletContent,
-} from 'features/compayWallet/companyWalletApiSlice'
-import dayjs from 'dayjs'
+import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
+import classNames from 'classnames'
+import useFormattedDate from 'hooks/useFormattedDate'
 
 export default function WalletCard({
   wallet,
@@ -34,8 +32,7 @@ export default function WalletCard({
   readonly isError: boolean
 }): JSX.Element {
   const { t } = useTranslation()
-
-  const status = wallet?.status === CredentialSubjectStatus.ACTIVE
+  const { formatDate } = useFormattedDate()
 
   const getMessge = () => {
     if (isError) {
@@ -44,54 +41,40 @@ export default function WalletCard({
         message: t('content.companyWallet.errorDescription'),
       }
     } else {
-      return status
-        ? {
-            info: t('content.companyWallet.activate'),
-            message: t('content.companyWallet.activateDescription'),
-          }
-        : {
-            info: '',
-            message: '',
-          }
+      return {
+        info: t('content.companyWallet.activate'),
+        message: t('content.companyWallet.activateDescription'),
+      }
     }
   }
 
   const current = getMessge()
 
-  const getBgColor = () => {
-    if (isError) {
-      return '#EBC6C6'
-    } else {
-      return status ? '#004f4b' : '#EAEAEA'
-    }
-  }
-
-  const bgColor = getBgColor()
-
-  const getTextColor = () => {
-    if (isError) {
-      return '#FFFFFF'
-    } else {
-      return status ? '#00AA55' : '#FF532F'
-    }
-  }
-
-  const textColor = getTextColor()
-
   const type = isError ? 'Unknown' : wallet?.credentialType
+
+  /**reusable typography styles */
+  const typographyStyles = {
+    title: {
+      fontWeight: 600,
+      fontSize: '28px',
+      lineHeight: '28px',
+    },
+    descriptionText: {
+      textAlign: 'left',
+      color: '#ffffff',
+      fontSize: '17px',
+      fontWeight: '500',
+    },
+  }
 
   return (
     <div
-      className="wrapper-container"
-      style={{
-        backgroundColor: isError ? 'red' : '#00aa55',
-      }}
+      className={classNames('wrapper-container', { 'cx-error-bg': isError })}
     >
       <div
-        style={{
-          backgroundColor: bgColor,
-        }}
-        className="main-card-container"
+        className={classNames('main-card-container', {
+          'cx-error-border': isError,
+        })}
       >
         <div className="card-container">
           <div className="icon-text">
@@ -104,35 +87,32 @@ export default function WalletCard({
                 }}
               />
             </div>
-            <Typography variant="body2">{type}</Typography>
-            <Typography variant="caption1">{wallet?.authority}</Typography>
-          </div>
-          {wallet?.expiryDate && (
-            <div>
-              <Typography
-                sx={{
-                  textAlign: 'left',
-                  color: '#ffffff',
-                }}
-                variant="body2"
-              >
-                {t('content.companyWallet.expiry')}
-                {dayjs(wallet?.expiryDate).format('YYYY-MM-DD')}
+            {type && (
+              <Typography variant="body2" sx={typographyStyles.title}>
+                {t(`content.companyWallet.${type.toLowerCase()}`)}
               </Typography>
-            </div>
-          )}
+            )}
+            {wallet?.expiryDate && (
+              <div className="cx-description-container">
+                <Typography sx={typographyStyles.descriptionText}>
+                  {t('content.companyWallet.issuer')}
+                  {wallet?.authority}
+                </Typography>
+                <Typography
+                  sx={typographyStyles.descriptionText}
+                  variant="body2"
+                >
+                  {t('content.companyWallet.expiry')}
+                  {formatDate(wallet?.expiryDate)}
+                </Typography>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="status-container">
         <div className="info">
-          <Typography
-            variant="body1"
-            sx={{
-              color: textColor,
-              paddingLeft: '10px',
-              fontWeight: '600',
-            }}
-          >
+          <Typography variant="body1" sx={typographyStyles.descriptionText}>
             {current?.info}
           </Typography>
         </div>

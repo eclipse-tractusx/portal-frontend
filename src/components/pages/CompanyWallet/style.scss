@@ -16,7 +16,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-
 @media (min-width: 700px) {
   .companywallet-main {
     .companywallet-section {
@@ -79,7 +78,6 @@
         text-align: left;
 
         p {
-          padding-top: 10px;
           color: #ffffff;
         }
 
@@ -138,9 +136,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-top: 0px;
         min-width: 300px;
         max-width: 300px;
-        margin-top: 0px;
 
         .text {
           color: #111111;
@@ -219,8 +217,8 @@
     .card-container {
       height: 200px;
       width: 350px;
-      border-radius: 32px;
       padding: 20px 0px 20px;
+      border-radius: 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -285,12 +283,9 @@
 
     .main-rule-card-container {
       max-width: 300px;
-
       .rule-card-container {
         height: 204px;
-        width: auto;
         border-radius: 20px;
-        padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -322,7 +317,7 @@
   justify-content: space-between;
 
   p {
-    padding: 5px;
+    padding: 5px !important;
     text-align: center !important;
     border-radius: 100px;
     width: 80px;
@@ -362,7 +357,6 @@
 }
 
 .gradient-container {
-  margin-top: 30px;
   min-width: 302px;
   border-radius: 20px;
   padding: 1px;
