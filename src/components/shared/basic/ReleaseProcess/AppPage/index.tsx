@@ -69,7 +69,6 @@ import {
 } from 'features/appManagement/types'
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
-import { phone } from 'phone'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
@@ -696,9 +695,10 @@ export default function AppPage() {
             }}
             name="providerPhoneContact"
             label={t('content.apprelease.appPage.providerPhoneContact')}
-            validate={(value: string) =>
-              value === '' || phone(value.replace(/^00/, '+')).isValid
-            }
+            pattern={Patterns.PHONE}
+            ruleMessage={t(
+              'content.apprelease.appPage.pleaseEnterValidContact'
+            )}
           />
           {errors.providerPhoneContact &&
             errors?.providerPhoneContact.type === 'validate' && (
