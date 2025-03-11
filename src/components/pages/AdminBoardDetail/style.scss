@@ -55,10 +55,12 @@
         gap: 56px;
       }
 
-      .lead-image > img {
-        border-radius: 16px;
-        max-width: 100%;
-        width: 412px;
+      .lead-image {
+        max-width: 288px;
+        & > img {
+          border-radius: 16px;
+          width: 100%;
+        }
       }
       .service-app-content {
         flex: 1;
