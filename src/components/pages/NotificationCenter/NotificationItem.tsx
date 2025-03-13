@@ -113,7 +113,7 @@ const NotificationContent = ({
             newUrl,
             roles: roles?.join(', '),
             useremail: userEmail,
-            serviceName: serviceName,
+            serviceName,
           }}
         >
           <NameLink
