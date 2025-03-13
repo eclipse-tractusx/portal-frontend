@@ -20,28 +20,17 @@
 name: Umbrella Sandbox Setup
 
 on:
-  workflow_run:
-    workflows:
-      - build
-    types:
-      - completed
+  #for testing purpouses
+  pull_request:
+    branches:
+      - 'main'
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
 
 jobs:
-  debug-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Debug Workflow Run Info
-        env:
-          WORKFLOW_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
-          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
-          WORKFLOW_STATUS: ${{ github.event.workflow_run.status }}
-        run: |
-          echo "Triggered by workflow: $WORKFLOW_NAME"
-          echo "Workflow conclusion: $WORKFLOW_CONCLUSION"
-          echo "Workflow status: $WORKFLOW_STATUS"
-
   setup-sandbox:
-    needs: debug-workflow
     runs-on: ubuntu-latest
     env:
       NODE_IMAGE: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
