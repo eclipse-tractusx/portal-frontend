@@ -452,8 +452,8 @@
       },
       "deleteAccount": "Account löschen",
       "certificates": "Zertifikate/Dokumente",
-      "title": "Your Company",
-      "headlineDescription": "View your company details and roles in Catena-X. Add site information for Cofinity-X Golden Record Service validation. Successful validated deatils, including BPNS and site address, will be shared with Business Partner Explorer subscribers for enhanced data quality."
+      "title": "Ihr Unternehmen",
+      "headlineDescription": "Hier finden Sie Ihre Unternehmensdaten und Catena-X Rollen. Fügen Sie Standortdaten hinzu, die durch den Cofinity-X Golden Record Service validiert werden. Erfolgreich verifizierte Adressen sowie deren BPNS werden mit Business Partner Explorer-Abonnenten geteilt."
     },
     "datamanagement": {
       "message": "Inhalte vom Datenmanagement"
