@@ -47,6 +47,14 @@ jobs:
           version: v0.20.0
           node_image: ${{ env.NODE_IMAGE }}
 
+      - name: Enable Ingress in KinD
+        run: |
+          kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
+          kubectl wait --namespace ingress-nginx \
+            --for=condition=ready pod \
+            --selector=app.kubernetes.io/component=controller \
+            --timeout=90s
+
       - name: Verify Cluster
         run: |
           kubectl cluster-info
