@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^3.7.5",
+    "@catena-x/portal-shared-components": "^3.7.6",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@hookform/error-message": "^2.0.1",
@@ -54,7 +54,7 @@
     "lodash.uniq": "^4.5.0",
     "nanoid": "^5.0.9",
     "papaparse": "^5.4.1",
-    "phone": "^3.1.57",
+    "phone": "^3.1.58",
     "qs": "^6.13.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
