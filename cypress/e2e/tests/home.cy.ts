@@ -17,26 +17,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { defineConfig } from 'cypress'
+describe('Validate authentication for home page', () => {
+  beforeEach(() => {
+    cy.login('user')
+  })
 
-export default defineConfig({
-  e2e: {
-    chromeWebSecurity: false,
-    experimentalRunAllSpecs: true,
-  },
-  env: {
-    baseUrl: 'http://localhost:3001',
-    backendUrl: 'https://portal-backend.example.org',
-    user: {
-      email: 'user@email.com',
-      password: '',
-    },
-    company: {
-      name: 'Company name to search',
-    },
-    keycloak: {
-      centralUrl: 'centralidp.example.org',
-      sharedUrl: 'sharedidp.example.org',
-    },
-  },
+  it('should visit home page after login', () => {
+    cy.visit(Cypress.env('baseUrl'))
+      .get('.copyright')
+      .should('have.text', 'Copyright © Catena-X Automotive Network')
+  })
 })
