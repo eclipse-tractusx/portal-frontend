@@ -321,7 +321,8 @@
           "manufacturingasaservice": "Produzieren als Dienst",
           "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
           "real-timecontrol": "Real Time Control",
-          "modularproduction": "Modular Production"
+          "modularproduction": "Modular Production",
+          "behaviortwin": "Verhaltenszwilling"
         },
         "noMatch": "Keine Treffer",
         "for": "zu Ihrem Suchausdruck",
@@ -406,19 +407,18 @@
     },
     "organization": {
       "unsubscribe": {
-        "title": "Geschäftsanwendung/Dienst abbestellen",
-        "descriptionNote": "Bitte beachten Sie: Die Abmeldung ist nicht rückgängig zu machen",
-        "description": "Alle möglicherweise verbundenen Objekte (in der folgenden Tabelle aufgeführt) werden ebenfalls deaktiviert",
+        "title": "App/Service Abonnement beenden",
         "table": {
-          "listOfConnectedObjects": "Liste der verbundenen Objekte:",
-          "app": "Bewerbungs-/Diensttitel:",
+          "listOfConnectedObjects": "App/Service Details:",
+          "app": "App/Service Titel:",
           "status": "Aktueller Status:",
-          "connector": "Verbinder:",
-          "techUser": "Technischer Benutzer:"
+          "connector": "Connector:",
+          "techUser": "Technischer User:"
         },
         "subscribed": "Gezeichnet",
-        "checkBoxLabel": "Ja, ich bin damit einverstanden, mich von dieser Anwendung/diesem Dienst abzumelden.",
-        "checkBoxLabelDescription": "Ich verstehe die Auswirkungen einer Abmeldung und würde den Vorgang dennoch gerne fortsetzen.",
+        "checkBoxLabel": "Ich bestätige, dass ich den Hinweis gelesen habe und das App/Service Abonnement beenden möchte.",
+        "checkBoxDescriptionAlert": "Hinweis:",
+        "checkBoxLabelDescription": "Dieser Schritt kann nicht rückgängig gemacht werden. Wenn Sie das Abo beenden, gelten weiterhin Ihre Vereinbarungen mit den Drittanbietern, einschließlich Kündigungsfristen.",
         "buttonText": "Abbestellen",
         "unsubscribeSuccess": "Das Abmelden des Abonnements ist erfolgreich",
         "unsubscribeError": "Die Abmeldung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut oder kommen Sie später noch einmal vorbei.",
@@ -1101,10 +1101,13 @@
         "addOverlay": {
           "service": "Technical User Role",
           "note": "Notiz: Die Auswahl sowohl interner als auch externer Benutzer für denselben Dienst ist nicht möglich.",
-          "internalRoles": "Interner technischer Benutzer",
-          "internalRolesDescription": "Interne technische Benutzer werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
-          "externalRoles": "Externer technischer Benutzer",
-          "externalRolesDescription": "Externe technische Benutzer werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar.",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
@@ -1345,7 +1348,9 @@
           "title": "Technisches Benutzerprofil konfigurieren",
           "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzerprofils fort",
           "internalUserRoles": "Internes technisches Benutzerprofil",
-          "internalUserRolesDescription": "Interne technische Benutzerprofile werden in der direkten Umgebung des Portals erstellt und können daher mehrere Rollen haben",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
           "externalUserRoles": "Externer technischer Benutzer",
           "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
           "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar."

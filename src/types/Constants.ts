@@ -232,6 +232,7 @@ export enum ROLES {
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
+  REVOKE_CREDENTIAL = 'revoke_credential',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
   VIEW_REGISTRATION = 'view_registration',
   READ_PARTNER_MEMBER = 'read_partner_member',
@@ -253,7 +254,7 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   'Consultancy Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
   // de
   'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
-  'Beratungs Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+  Beratungsservices: ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
 }
 
 export enum COMPANY_ROLES {
