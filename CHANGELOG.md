@@ -34,32 +34,32 @@
   - Add visibility icon to internal/external section [#1485](https://github.com/eclipse-tractusx/portal-frontend/pull/1485)
   - Align text and icon vertically and horizontally to the centre [#1489](https://github.com/eclipse-tractusx/portal-frontend/pull/1489)
   - Update tech user info component in app/service details page which is available from market place section [#1493](https://github.com/eclipse-tractusx/portal-frontend/pull/1493)
-  - Fixed validation of continue button to enable/disable while adding technical user profile. [#1513](https://github.com/eclipse-tractusx/portal-frontend/pull/1513)  
-- **App Details Overlay**  
+  - Fixed validation of continue button to enable/disable while adding technical user profile. [#1513](https://github.com/eclipse-tractusx/portal-frontend/pull/1513)
+- **App Details Overlay**
   - App agreement data api being called with empty id. If the prop value which is passed to the component is empty, user app info to get the id value. [#1490](https://github.com/eclipse-tractusx/portal-frontend/pull/1490)
 - **Partner Network**
   - do not allow to execute search feature for empty string [#1507](https://github.com/eclipse-tractusx/portal-frontend/pull/1507)
 - **Company Data**
   - add check for sharing state data to resolve empty page issue [#1511](https://github.com/eclipse-tractusx/portal-frontend/pull/1511)
 - **Service overview**:
-  - fixed service details page to display technical user setup in Service Overview. [#1508](https://github.com/eclipse-tractusx/portal-frontend/pull/1508)      
+  - fixed service details page to display technical user setup in Service Overview. [#1508](https://github.com/eclipse-tractusx/portal-frontend/pull/1508)
 - **Identity Provider Configuration**:
-  - fixed displaying of full name with tooltip on hover and updated validation for 'Display name' as per API response in IdP configuration. [#1502](https://github.com/eclipse-tractusx/portal-frontend/pull/1502)  
-- **Registration process**  
+  - fixed displaying of full name with tooltip on hover and updated validation for 'Display name' as per API response in IdP configuration. [#1502](https://github.com/eclipse-tractusx/portal-frontend/pull/1502)
+- **Registration process**
   - handle error case in company service init method to avoid blank screen display. display error boundary component instead [#1492](https://github.com/eclipse-tractusx/portal-frontend/pull/1492)
 - **App Release process**:
-  - fixed unexpected redirection to last page after uploading app roles. [#1515](https://github.com/eclipse-tractusx/portal-frontend/pull/1515)  
+  - fixed unexpected redirection to last page after uploading app roles. [#1515](https://github.com/eclipse-tractusx/portal-frontend/pull/1515)
 - **Company Wallet**
-  - enabled - Company, Business and IT - admin roles to revoke own company credentials [#1522](https://github.com/eclipse-tractusx/portal-frontend/pull/1522)  
+  - enabled - Company, Business and IT - admin roles to revoke own company credentials [#1522](https://github.com/eclipse-tractusx/portal-frontend/pull/1522)
 - **Company Subscriptions**:
-  - fixed company subscriptions filter search [#1523](https://github.com/eclipse-tractusx/portal-frontend/pull/1523)  
+  - fixed company subscriptions filter search [#1523](https://github.com/eclipse-tractusx/portal-frontend/pull/1523)
 - **User Management**
   - prevent admins from proceeding further without user [#1270](https://github.com/eclipse-tractusx/portal-frontend/pull/1270)
   - remove non portal roles from user list [#1392](https://github.com/eclipse-tractusx/portal-frontend/pull/1392)
 - **Service Marketplace**:
   - add providerUri in the provider details page [#1327](https://github.com/eclipse-tractusx/portal-frontend/issues/1267)
   - fixed service filtering for DE language [#1209](https://github.com/eclipse-tractusx/portal-frontend/pull/1209)
-  - Fixed filters when the language is set to german and also updated german translation for `Dataspace Services`  [#1531](https://github.com/eclipse-tractusx/portal-frontend/pull/1531)    
+  - Fixed filters when the language is set to german and also updated german translation for `Dataspace Services` [#1531](https://github.com/eclipse-tractusx/portal-frontend/pull/1531)
 - **Consent OSP**
   - add missing identifier field in the OSP consent form is the company details information [#1325](https://github.com/eclipse-tractusx/portal-frontend/pull/1325)
 - **Certificate Credentials**
@@ -69,8 +69,9 @@
 - **App Marketplace**
   - fixed updating of favorites in app marketplace [#1345](https://github.com/eclipse-tractusx/portal-frontend/pull/1345)
   - fixed my favorites truncated images in app marketplace [#1396](https://github.com/eclipse-tractusx/portal-frontend/pull/1396)
-  - Fixed translations for App Overview "Behavior Twin" Category view [#1527](https://github.com/eclipse-tractusx/portal-frontend/pull/1527)  
+  - Fixed translations for App Overview "Behavior Twin" Category view [#1527](https://github.com/eclipse-tractusx/portal-frontend/pull/1527)
 - **IdP Management**
+
   - fixed shared IdP to remove 'configure' option as its not viable [#1356](https://github.com/eclipse-tractusx/portal-frontend/pull/1356)
   - fixed IdP table status filter to sort by alphabetical order [#1443](https://github.com/eclipse-tractusx/portal-frontend/pull/1443)
 
