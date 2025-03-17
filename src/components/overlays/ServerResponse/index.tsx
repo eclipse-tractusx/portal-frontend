@@ -36,6 +36,7 @@ interface ServerResponseOverlayProps {
   children?: JSX.Element | JSX.Element[]
   handleCallback?: () => void
   iconComponent?: JSX.Element
+  closeButtonText?: string
 }
 
 export const ServerResponseOverlay = ({
@@ -45,6 +46,7 @@ export const ServerResponseOverlay = ({
   children,
   handleCallback,
   iconComponent,
+  closeButtonText,
 }: ServerResponseOverlayProps) => {
   const [open, setOpen] = useState<boolean>(dialogOpen)
 
@@ -53,7 +55,13 @@ export const ServerResponseOverlay = ({
       <Dialog open={open}>
         <DialogHeader
           title={title}
-          intro={intro}
+          intro={
+            intro && (
+              <Box sx={{ whiteSpace: 'pre-line', textAlign: 'center' }}>
+                {intro}
+              </Box>
+            )
+          }
           closeWithIcon={true}
           icon={true}
           iconComponent={iconComponent}
@@ -67,13 +75,14 @@ export const ServerResponseOverlay = ({
         </DialogContent>
         <DialogActions>
           <Button
+            sx={{ minWidth: '80px', height: '44px' }}
             variant="outlined"
             onClick={() => {
               setOpen(false)
               if (handleCallback) handleCallback()
             }}
           >
-            {t('global.actions.close')}
+            {closeButtonText ? t(closeButtonText) : t('global.actions.close')}
           </Button>
         </DialogActions>
       </Dialog>

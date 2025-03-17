@@ -26,6 +26,7 @@ $color-orange: #f58220;
 $link-color: #0088cc;
 $color-success: #6ba13c;
 $color-error: #b62100;
+$color-error-dark: #6d1400;
 
 body {
   padding: 0 !important;
@@ -3080,5 +3081,34 @@ d .notification-badge-text {
     justify-content: center;
     align-items: center;
     gap: 10px;
+  }
+}
+
+// wallet deactivate credential overlay
+.cx-deactivate-credential-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 100px;
+  gap: 10px;
+
+  .dialog-header-main {
+    padding: 0 !important;
+    font-size: 32px;
+    line-height: 110px;
+  }
+
+  .MuiDialogContent-root {
+    font-size: 18px;
+    padding: 0 !important;
+  }
+}
+
+.cx-deactivate-credential-button {
+  background-color: $color-error !important;
+
+  &:hover {
+    background-color: $color-error-dark !important;
   }
 }

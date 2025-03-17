@@ -2173,12 +2173,13 @@
       "version": "Version",
       "revokeHint": "Deactivate Credential",
       "confirmOverlay": {
-        "title": "Confirm Revoke",
-        "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
+        "title": "Deactivate Credential?",
+        "description": "Are you sure you want to deactivate this credential?This cannot be reversed.\nIf you continue, you'll need to request this credential again."
       },
       "successOverlay": {
-        "title": "Revoke Credential",
-        "description": "You credential revocation has been successfully processed. With the successful revocation the credential is no longer valid. Note once a credential is revoked, the action cannot be undone, and the credential will no longer be recognized as valid. If you want to request the credential again, please initiate a new credential request."
+        "ok": "Ok",
+        "title": "Credential Deactivated",
+        "description": "The credential has been deactivated and is no longer valid. \nTo renew, please request it again."
       },
       "errorOverlay": {
         "title": "Revoke Credential",
@@ -2527,6 +2528,7 @@
       "decline": "Decline",
       "confirm": "Confirm",
       "proceed": "Proceed",
+      "deactivate": "Deactivate",
       "more": "More",
       "collapse": "Collapse",
       "loadmore": "Load More",

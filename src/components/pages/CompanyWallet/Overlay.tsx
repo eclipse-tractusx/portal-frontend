@@ -27,6 +27,7 @@ import {
   CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
+import React from 'react'
 interface OverlayProps {
   title: string
   description: string
@@ -37,6 +38,7 @@ interface OverlayProps {
   children?: JSX.Element | JSX.Element[] | null
   showConfirmButton?: boolean
   className?: string
+  confirmButton?: JSX.Element | null
 }
 
 const Overlay = ({
@@ -49,8 +51,48 @@ const Overlay = ({
   children,
   showConfirmButton = true,
   className,
+  confirmButton,
 }: OverlayProps) => {
   const { t } = useTranslation()
+
+  const renderActionButton = (): JSX.Element => {
+    if (loading) {
+      return (
+        <Box
+          sx={{
+            width: '110px',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <CircleProgress
+            size={40}
+            step={1}
+            interval={0.1}
+            colorVariant={'primary'}
+            variant={'indeterminate'}
+            thickness={8}
+          />
+        </Box>
+      )
+    }
+
+    if (confirmButton) {
+      return confirmButton
+    }
+
+    return (
+      <Button
+        disabled={!showConfirmButton}
+        variant="contained"
+        onClick={(e) => {
+          handleConfirmClick(e)
+        }}
+      >
+        {t('global.actions.proceed')}
+      </Button>
+    )
+  }
 
   return (
     <Dialog
@@ -77,34 +119,7 @@ const Overlay = ({
         >
           {t('global.actions.cancel')}
         </Button>
-        {!loading ? (
-          <Button
-            disabled={!showConfirmButton}
-            variant="contained"
-            onClick={(e) => {
-              handleConfirmClick(e)
-            }}
-          >
-            {t('global.actions.proceed')}
-          </Button>
-        ) : (
-          <Box
-            sx={{
-              width: '110px',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <CircleProgress
-              size={40}
-              step={1}
-              interval={0.1}
-              colorVariant={'primary'}
-              variant={'indeterminate'}
-              thickness={8}
-            />
-          </Box>
-        )}
+        {renderActionButton()}
       </DialogActions>
     </Dialog>
   )

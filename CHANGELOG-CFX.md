@@ -45,6 +45,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Overlay implemented for requesting new credentials [CS-2967] (https://cofinity-x.atlassian.net/browse/CS-2967)
   - Wallet UI resdesigned [CS-2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
   - Version info added to credential cards [CS2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
+  - Implement new wallet credential deactivation work flow [CS-2966] (https://cofinity-x.atlassian.net/browse/CS-2966)
 
 ### Changes
 

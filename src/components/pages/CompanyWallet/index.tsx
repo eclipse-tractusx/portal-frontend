@@ -31,11 +31,12 @@ import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
 import { useEffect, useState } from 'react'
 import { groupBy } from 'lodash'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import Overlay from './Overlay'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function CompanyWallet(): JSX.Element {
@@ -136,13 +137,29 @@ export default function CompanyWallet(): JSX.Element {
             }}
             loading={loading}
             openDialog={credentialId !== ''}
+            className="cx-deactivate-credential-overlay"
+            confirmButton={
+              <Button
+                variant="contained"
+                className="cx-deactivate-credential-button"
+                onClick={() => {
+                  handleRevocation()
+                }}
+              >
+                {t('global.actions.deactivate')}
+              </Button>
+            }
           />
         )}
         {success && (
           <ServerResponseOverlay
             title={t('content.companyWallet.successOverlay.title')}
             intro={t('content.companyWallet.successOverlay.description')}
+            closeButtonText={t('content.companyWallet.successOverlay.ok')}
             dialogOpen={true}
+            iconComponent={
+              <CheckCircleIcon sx={{ fontSize: 60 }} color="success" />
+            }
             handleCallback={() => {
               // do nothing
             }}

@@ -2205,12 +2205,13 @@
       "others": "Sonstige",
       "revokeHint": "Deactivate Credential",
       "confirmOverlay": {
-        "title": "Confirm Revoke",
-        "description": "Do you really want to continue with the revoke credential? If yes, please click on confirm button"
+        "title": "Credential deaktivieren?",
+        "description": "Sind Sie sicher, dass Sie dieses Credential deaktivieren möchten? \nDieser Schritt kann nicht rückgängig gemacht werden. \nWenn Sie fortfahren, müssen Sie dieses Credential erneut beantragen."
       },
       "successOverlay": {
-        "title": "Revoke Credential",
-        "description": "Der Widerruf Ihrer Zugangsdaten wurde erfolgreich verarbeitet. Mit der erfolgreichen Sperrung verliert der Ausweis seine Gültigkeit. Beachten Sie, dass die Aktion nach dem Widerrufen eines Berechtigungsnachweises nicht mehr rückgängig gemacht werden kann und der Berechtigungsnachweis nicht mehr als gültig anerkannt wird. Wenn Sie die Zugangsdaten erneut anfordern möchten, starten Sie bitte eine neue Zugangsdatenanfrage."
+        "ok": "Ok",
+        "title": "Credential deaktivieren",
+        "description": "Das Credential wurde erfolgreich deaktiviert und ist nicht mehr gültig. \nBitte beantragen Sie ein neues Credential, um ein neues zu erhalten."
       },
       "errorOverlay": {
         "title": "Revoke Credential",
@@ -2554,6 +2555,7 @@
       "confirm": "Bestätigen",
       "proceed": "Fortfahren",
       "more": "Mehr",
+      "deactivate": "Deaktivieren",
       "collapse": "Einklappen",
       "loadmore": "Mehr laden",
       "details": "Details",
