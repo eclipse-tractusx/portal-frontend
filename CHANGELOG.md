@@ -113,6 +113,14 @@
   - updated axios dependency [#372](https://github.com/eclipse-tractusx/portal-frontend/pull/1536)
   - upgraded portal-shared-components to 3.7.6 [#1476](https://github.com/eclipse-tractusx/portal-frontend/pull/1476)
 
+### Known Knowns
+
+- Please refer to the [list of open bugs](https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- Feature Support and Development for auto-setup Process Worker: there is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
+- During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
+- **Note for Gaia-X Clearing House Tagus upgrade**
+  - If a company was onboarded with ELBE clearing house, the legal person self description document is not accepted when creating a connector with newer versions of the clearing house. Portal operators are advised to create new legal person and connector self description documents for all previously onboarded companies. The portal backend will activate connector without updated legal person self description document to allow for a transition phase. The connector will not have a document until reissuance for both company and connector is triggered by operators.
+
 ## 2.3.0
 
 ### Feature
