@@ -141,7 +141,7 @@ export const CompanyAddressList = ({
 
   const getStatus = (id: string) =>
     sharingStates?.filter((state) => id === state.externalId)[0]
-      .sharingStateType
+      ?.sharingStateType
 
   const onRowClick = (params: GridCellParams) => {
     const sharingStateInfo = sharingStates

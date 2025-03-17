@@ -1,6 +1,6 @@
 {
   "name": "@catena-x/portal-frontend",
-  "version": "v2.4.0-RC1",
+  "version": "v2.4.0-RC2",
   "description": "Catena-X Portal Frontend",
   "author": "Catena-X Contributors",
   "license": "Apache-2.0",
@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^3.7.5",
+    "@catena-x/portal-shared-components": "^3.7.6",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@hookform/error-message": "^2.0.1",
@@ -44,7 +44,7 @@
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.8",
     "autosuggest-highlight": "^3.3.4",
-    "axios": "^1.7.9",
+    "axios": "^1.8.3",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.13",
     "i18next": "^23.15.2",

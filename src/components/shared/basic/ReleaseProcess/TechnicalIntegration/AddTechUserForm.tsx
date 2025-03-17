@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   Radio,
+  Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
@@ -35,6 +36,8 @@ import {
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import { groupBy } from 'lodash'
 
 interface AddTechUserFormProps {
   handleClose: () => void
@@ -49,6 +52,7 @@ interface AddTechUserFormProps {
 
 enum RoleType {
   Internal = 'Internal',
+  InternalOnlyVisible = 'InternalOnlyVisible',
   External = 'External',
   NONE = 'NONE',
 }
@@ -64,11 +68,19 @@ export const AddTechUserForm = ({
   const internalUserRoles = roles?.filter(
     (role) => role.roleType === RoleType.Internal
   )
+  const grouped = groupBy(internalUserRoles, 'onlyAccessibleByProvider')
+  const internalUserRolesVisible = grouped.true
+  const internalUserRolesNotVisible = grouped.false
   const externalUserRoles = roles?.filter(
     (role) => role.roleType === RoleType.External
   )
   const [selectedUserRoles, setSelectedUserRoles] = useState<string[]>([])
   const [selectedRoleType, setSelectedRoleType] = useState<string>('')
+  const boxStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 
   useEffect(() => {
     if (userProfiles.length > 0 && !createNewTechUserProfile) {
@@ -84,30 +96,81 @@ export const AddTechUserForm = ({
     }
   }, [userProfiles])
 
-  const selectCheckboxRoles = (role: string, select: boolean) => {
+  const handleCheckboxRoles = (role: string, select: boolean) => {
+    const isRoleSelected = selectedUserRoles?.includes(role)
+    if (!isRoleSelected && select) {
+      setSelectedUserRoles([...selectedUserRoles, role])
+    } else if (isRoleSelected && !select) {
+      const oldUserRoles = [...selectedUserRoles]
+      oldUserRoles.splice(oldUserRoles.indexOf(role), 1)
+      setSelectedUserRoles([...oldUserRoles])
+    }
+  }
+
+  const selectCheckboxRoles = (
+    role: string,
+    select: boolean,
+    roleType?: string
+  ) => {
     if (
       selectedUserRoles &&
       selectedUserRoles[0] === externalUserRoles?.[0].roleId
     ) {
       setSelectedUserRoles([...[], role])
-    } else {
-      const isRoleSelected = selectedUserRoles?.includes(role)
-      if (!isRoleSelected && select) {
-        setSelectedUserRoles([...selectedUserRoles, role])
-      } else if (isRoleSelected && !select) {
-        const oldUserRoles = [...selectedUserRoles]
-        oldUserRoles.splice(oldUserRoles.indexOf(role), 1)
-        setSelectedUserRoles([...oldUserRoles])
-      }
+    } else if (roleType === 'internalRolesVisible') {
+      if (
+        selectedUserRoles.every((id) =>
+          internalUserRolesVisible.some((role) => role.roleId === id)
+        )
+      )
+        handleCheckboxRoles(role, select)
+      else setSelectedUserRoles([...[], role])
+    } else if (roleType === 'internalRolesNotVisible') {
+      if (
+        selectedUserRoles.every((id) =>
+          internalUserRolesNotVisible.some((role) => role.roleId === id)
+        )
+      )
+        handleCheckboxRoles(role, select)
+      else setSelectedUserRoles([...[], role])
     }
   }
 
-  const selectRoles = (role: string, select: boolean, type: string) => {
+  const selectRoles = (
+    role: string,
+    select: boolean,
+    type: string,
+    roleType?: string
+  ) => {
     if (type === 'checkbox') {
-      selectCheckboxRoles(role, select)
+      selectCheckboxRoles(role, select, roleType)
     } else if (type === 'radio') {
       setSelectedUserRoles([...[], role])
     }
+  }
+
+  const renderAccessibleByProvider = () => {
+    return (
+      <Tooltips
+        tooltipPlacement="right-start"
+        tooltipText={t(
+          'content.apprelease.technicalIntegration.form.userDetailsNotVisible'
+        )}
+        children={
+          <VisibilityOffIcon
+            sx={{
+              marginLeft: '-5px !important',
+              fontSize: '22px',
+              cursor: 'pointer',
+              color: '#adadad',
+              ':hover': {
+                color: '#000',
+              },
+            }}
+          />
+        }
+      />
+    )
   }
 
   return (
@@ -166,7 +229,7 @@ export const AddTechUserForm = ({
               >
                 {externalUserRoles?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles">
+                    <Box className="roles" sx={boxStyle}>
                       <Radio
                         label={role.roleName}
                         key={role.roleId}
@@ -180,7 +243,10 @@ export const AddTechUserForm = ({
                         name="radio-buttons"
                         value={selectedUserRoles}
                         size="small"
-                        disabled={selectedRoleType === RoleType.Internal}
+                        disabled={
+                          selectedRoleType === RoleType.Internal ||
+                          selectedRoleType === RoleType.InternalOnlyVisible
+                        }
                       />
                     </Box>
                     <Typography
@@ -188,7 +254,8 @@ export const AddTechUserForm = ({
                       sx={{
                         marginLeft: '30px',
                         color:
-                          selectedRoleType === RoleType.External
+                          selectedRoleType === RoleType.Internal ||
+                          selectedRoleType === RoleType.InternalOnlyVisible
                             ? 'rgba(0, 0, 0, 0.38)'
                             : 'initial',
                       }}
@@ -228,19 +295,109 @@ export const AddTechUserForm = ({
                   marginLeft: '30px',
                 }}
               >
-                {internalUserRoles?.map((role: ServiceAccountRole) => (
+                {internalUserRolesNotVisible?.map(
+                  (role: ServiceAccountRole) => (
+                    <Box key={role.roleId}>
+                      <Box className="roles" sx={boxStyle}>
+                        <Checkbox
+                          key={role.roleId}
+                          label={role.roleName}
+                          checked={
+                            selectedUserRoles.indexOf(role.roleId) !== -1
+                          }
+                          onChange={(e) => {
+                            selectRoles(
+                              role.roleId,
+                              e.target.checked,
+                              'checkbox',
+                              'internalRolesNotVisible'
+                            )
+                          }}
+                          size="medium"
+                          value={selectedUserRoles}
+                          disabled={
+                            selectedRoleType === RoleType.External ||
+                            selectedRoleType === RoleType.InternalOnlyVisible
+                          }
+                        />
+                      </Box>
+                      <Typography
+                        variant="body3"
+                        sx={{
+                          marginLeft: '30px',
+                          color:
+                            selectedRoleType === RoleType.External ||
+                            selectedRoleType === RoleType.InternalOnlyVisible
+                              ? 'rgba(0, 0, 0, 0.38)'
+                              : 'initial',
+                        }}
+                      >
+                        {role.roleDescription}
+                      </Typography>
+                    </Box>
+                  )
+                )}
+              </Box>
+            )}
+            <Box
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}
+            >
+              <Radio
+                label={t(
+                  'content.apprelease.technicalIntegration.form.internalUserRolesOnlyVisible'
+                )}
+                checked={selectedRoleType === RoleType.InternalOnlyVisible}
+                onChange={() => {
+                  setSelectedRoleType(RoleType.InternalOnlyVisible)
+                }}
+                name="radio-button"
+                value={selectedRoleType}
+                size="medium"
+              />
+              {renderAccessibleByProvider()}
+            </Box>
+            <Typography
+              variant="body3"
+              sx={{
+                marginLeft: '30px',
+                marginBottom: '10px',
+              }}
+            >
+              {t(
+                'content.apprelease.technicalIntegration.form.internalUserRolesDescriptionOnlyVisible'
+              )}
+            </Typography>
+            {selectedRoleType && selectedRoleType !== RoleType.NONE && (
+              <Box
+                sx={{
+                  marginLeft: '30px',
+                }}
+              >
+                {internalUserRolesVisible?.map((role: ServiceAccountRole) => (
                   <Box key={role.roleId}>
-                    <Box className="roles">
+                    <Box className="roles" sx={boxStyle}>
                       <Checkbox
                         key={role.roleId}
                         label={role.roleName}
                         checked={selectedUserRoles.indexOf(role.roleId) !== -1}
                         onChange={(e) => {
-                          selectRoles(role.roleId, e.target.checked, 'checkbox')
+                          selectRoles(
+                            role.roleId,
+                            e.target.checked,
+                            'checkbox',
+                            'internalRolesVisible'
+                          )
                         }}
                         size="medium"
                         value={selectedUserRoles}
-                        disabled={selectedRoleType === RoleType.External}
+                        disabled={
+                          selectedRoleType === RoleType.External ||
+                          selectedRoleType === RoleType.Internal
+                        }
                       />
                     </Box>
                     <Typography
@@ -248,7 +405,8 @@ export const AddTechUserForm = ({
                       sx={{
                         marginLeft: '30px',
                         color:
-                          selectedRoleType === RoleType.External
+                          selectedRoleType === RoleType.External ||
+                          selectedRoleType === RoleType.Internal
                             ? 'rgba(0, 0, 0, 0.38)'
                             : 'initial',
                       }}
@@ -282,7 +440,11 @@ export const AddTechUserForm = ({
             {t('global.actions.close')}
           </Button>
           <Button
-            disabled={!selectedRoleType}
+            disabled={
+              !selectedRoleType ||
+              (selectedRoleType !== RoleType.NONE &&
+                selectedUserRoles.length === 0)
+            }
             variant="contained"
             onClick={() => {
               handleConfirm(
