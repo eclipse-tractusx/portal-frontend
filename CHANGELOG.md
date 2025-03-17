@@ -8,6 +8,7 @@
   - updated the legal disclaimer text as well as copywriting and design as per UX requirements [#1498](https://github.com/eclipse-tractusx/portal-frontend/pull/1498)
 - **Technical User Management**
   - updated technical user management to reflect the latest changes regarding technical integration roles [#1495](https://github.com/eclipse-tractusx/portal-frontend/pull/1495)
+- **Technical Integration**
   - improved the technical user profile setup of apps/services https://github.com/eclipse-tractusx/portal-frontend/pull/1475
   - added a visibility icon to the technical user profile selection [#1467](https://github.com/eclipse-tractusx/portal-frontend/pull/1467)
 - **Service Release**:
