@@ -109,8 +109,10 @@
   - removed customised logic to check company role info in osp page and header component. use company role check in config file to allow user to navigate to osp page[#1390](https://github.com/eclipse-tractusx/portal-frontend/pull/1390)
 - **Cypress E2E Tests**
   - added cypress setup [#1357](https://github.com/eclipse-tractusx/portal-frontend/pull/1357)
-- **Dependencies**
+- **Dependencies**  
   - updated app dependencies [#1308](https://github.com/eclipse-tractusx/portal-frontend/pull/1308), [#1307](https://github.com/eclipse-tractusx/portal-frontend/pull/1307), [#1362](https://github.com/eclipse-tractusx/portal-frontend/pull/1362), [#1416](https://github.com/eclipse-tractusx/portal-frontend/pull/1416), [#1424](https://github.com/eclipse-tractusx/portal-frontend/pull/1424), [#1405](https://github.com/eclipse-tractusx/portal-frontend/pull/1405), [#1437](https://github.com/eclipse-tractusx/portal-frontend/pull/1437)
+  - updated axios dependency [#372](https://github.com/eclipse-tractusx/portal-frontend/pull/1536)  
+  - upgraded  portal-shared-components to 3.7.6 [#1476](https://github.com/eclipse-tractusx/portal-frontend/pull/1476)  
 
 ## 2.3.0
 
