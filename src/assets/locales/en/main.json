@@ -1126,8 +1126,8 @@
     "addUserRight": {
       "headline": "Assign app roles to your user(s)",
       "noRolesFound": "No user roles found",
-      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "selectUsersDescription": "Assign the appropriate application roles to your users to ensure they have the necessary permissions and access levels required for their tasks.",
+      "addRolesDescription": "Assign the appropriate application roles to your users to ensure they have the necessary permissions and access levels required for their tasks.",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",

@@ -34,7 +34,6 @@ import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 import { isSearchUserEmail } from 'types/Patterns'
-import { getClientId } from 'services/EnvironmentService'
 
 interface FetchHookArgsType {
   appId?: string
@@ -158,20 +157,14 @@ export const UserList = ({
                 }}
               >
                 {roles.length
-                  ? roles
-                      .filter(
-                        (role: RoleType | string) =>
-                          typeof role !== 'string' &&
-                          role.clientId === getClientId()
-                      )
-                      .map((role: RoleType) => (
-                        <StatusTag
-                          key={role.roleId}
-                          color="label"
-                          label={role.roleName}
-                          className="statusTag"
-                        />
-                      ))
+                  ? roles.map((role: RoleType | string) => (
+                      <StatusTag
+                        key={typeof role === 'string' ? role : role.roleId}
+                        color="label"
+                        label={typeof role === 'string' ? role : role.roleName}
+                        className="statusTag"
+                      />
+                    ))
                   : ''}
               </span>
             ),
