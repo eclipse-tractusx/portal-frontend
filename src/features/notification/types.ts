@@ -121,6 +121,7 @@ export interface NotificationContent {
   newUrl?: string
   Roles?: string[]
   UserEmail?: string
+  ServiceName?: string
 }
 
 export interface CXNotificationContent {

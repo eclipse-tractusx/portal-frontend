@@ -92,6 +92,7 @@ const NotificationContent = ({
   const newUrl = item.contentParsed?.newUrl
   const roles = item.contentParsed?.Roles
   const userEmail = item.contentParsed?.UserEmail
+  const serviceName = item.contentParsed?.ServiceName
 
   return (
     <>
@@ -112,6 +113,7 @@ const NotificationContent = ({
             newUrl,
             roles: roles?.join(', '),
             useremail: userEmail,
+            serviceName,
           }}
         >
           <NameLink
@@ -228,6 +230,8 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.SUBSCRIPTION_URL_UPDATE:
       return <NotificationContent item={item} />
     case NotificationType.APP_ROLE_ADDED:
+      return <NotificationContent item={item} />
+    case NotificationType.SERVICE_RELEASE_APPROVAL:
       return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>
