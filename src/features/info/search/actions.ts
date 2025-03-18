@@ -20,7 +20,7 @@
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
-import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
+import { apiSlice as AppsApi } from 'features/apps/marketplaceDeprecated/apiSlice'
 import { Api as UserApi } from 'features/admin/userDeprecated/api'
 import { Api as NewsApi } from 'features/info/news/api'
 import {
@@ -48,6 +48,7 @@ import {
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
+import { store } from 'features/store'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -116,9 +117,15 @@ const searchForExpression = async function (expr: string) {
       emptyPageResult,
       emptyOverlayResult,
       emptyActionResult,
-      AppsApi.getInstance()
-        .getActive()
-        .catch(() => emptyAppResult),
+      store
+        .dispatch(AppsApi.endpoints.getActive.initiate())
+        .unwrap()
+        .then((response: AppMarketplaceApp[]) => {
+          return response
+        })
+        .catch(() => {
+          return emptyAppResult
+        }),
       emptyPartnerResult,
       emptyNewsResult,
       UserApi.getInstance()
@@ -130,9 +137,15 @@ const searchForExpression = async function (expr: string) {
       I18nService.searchPages(expr),
       I18nService.searchOverlays(expr),
       I18nService.searchActions(expr),
-      AppsApi.getInstance()
-        .getActive()
-        .catch(() => emptyAppResult),
+      store
+        .dispatch(AppsApi.endpoints.getActive.initiate())
+        .unwrap()
+        .then((response: AppMarketplaceApp[]) => {
+          return response
+        })
+        .catch(() => {
+          return emptyAppResult
+        }),
       PartnerNetworkApi.getInstance()
         .getAllBusinessPartner({
           name: expr,
