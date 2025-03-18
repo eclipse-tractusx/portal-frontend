@@ -1126,8 +1126,8 @@
     "addUserRight": {
       "headline": "Assign app roles to your user(s)",
       "noRolesFound": "No user roles found",
-      "selectUsersDescription": "Assign the appropriate application roles to your users to ensure they have the necessary permissions and access levels required for their tasks.",
-      "addRolesDescription": "Assign the appropriate application roles to your users to ensure they have the necessary permissions and access levels required for their tasks.",
+      "selectUsersDescription": "Ordnen Sie Ihren Benutzern die entsprechenden Anwendungsrollen zu, um sicherzustellen, dass sie über die erforderlichen Berechtigungen und Zugriffsrechte für ihre Aufgaben verfügen.",
+      "addRolesDescription": "Ordnen Sie Ihren Benutzern die entsprechenden Anwendungsrollen zu, um sicherzustellen, dass sie über die erforderlichen Berechtigungen und Zugriffsrechte für ihre Aufgaben verfügen.",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",
