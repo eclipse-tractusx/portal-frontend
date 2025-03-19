@@ -510,6 +510,8 @@ const EdcConnector = () => {
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}
+              emptyDataMsg={t('global.table.emptyDataMsg')}
+              noSearchResultsMsg={t('global.table.noSearchResults')}
             />
           </div>
         </TabPanel>
@@ -523,10 +525,11 @@ const EdcConnector = () => {
               fetchHookRefresh={refresh}
               getRowId={(row: { [key: string]: string }) => row.id}
               columns={managedConnectorCols}
-              noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}
+              emptyDataMsg={t('global.table.emptyDataMsg')}
+              noSearchResultsMsg={t('global.table.noSearchResults')}
             />
           </div>
         </TabPanel>

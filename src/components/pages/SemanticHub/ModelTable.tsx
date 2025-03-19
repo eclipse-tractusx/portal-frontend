@@ -52,6 +52,8 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
     status: [DefaultStatus],
   })
+  const [noRowsMsg, setNoRowsMsg] = useState<string>('')
+  const [searchText, setSearchText] = useState<string>('')
   const rowCount = 10
   const filter = [
     {
@@ -89,6 +91,16 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   }, [dispatch, pageNumber])
 
   useEffect(() => {
+    if (models) {
+      if (!searchText && models.length === 0) {
+        setNoRowsMsg(t('global.table.emptyDataMsg'))
+      } else if (searchText && models.length === 0) {
+        setNoRowsMsg(t('global.table.noSearchResults'))
+      }
+    }
+  }, [models, searchText])
+
+  useEffect(() => {
     if (deleteModelId.length > 0) {
       setModels((prevModels) =>
         prevModels.filter((model) => model.urn !== deleteModelId)
@@ -118,6 +130,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
 
   const onSearch = (value: string) => {
     setModels([])
+    setSearchText(value)
     const filter: FilterParams = {
       page: 0,
       pageSize: rowCount,
@@ -167,6 +180,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       <Table
         autoFocus={false}
         rowsCount={modelList.totalItems}
+        searchExpr={searchText}
         hideFooter
         loading={loadingModelList}
         disableRowSelectionOnClick={true}
@@ -202,7 +216,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
             })
           )
         }
-        noRowsMsg={t('global.noData.heading')}
+        noRowsMsg={noRowsMsg}
       />
       <div className="load-more-button-container">
         {modelList.totalPages !== pageNumber && (

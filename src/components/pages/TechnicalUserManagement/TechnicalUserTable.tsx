@@ -208,6 +208,8 @@ export const TechnicalUserTable = () => {
             ),
           },
         ]}
+        emptyDataMsg={t('global.table.emptyDataMsg')}
+        noSearchResultsMsg={t('global.table.noSearchResults')}
       />
     </div>
   )
