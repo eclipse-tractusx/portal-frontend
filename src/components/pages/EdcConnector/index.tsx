@@ -504,6 +504,8 @@ const EdcConnector = () => {
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}
+              emptyDataMsg={t('global.table.emptyDataMsg')}
+              noSearchResultsMsg={t('global.table.noSearchResults')}
             />
           </div>
         </TabPanel>
@@ -520,6 +522,8 @@ const EdcConnector = () => {
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}
+              emptyDataMsg={t('global.table.emptyDataMsg')}
+              noSearchResultsMsg={t('global.table.noSearchResults')}
             />
           </div>
         </TabPanel>

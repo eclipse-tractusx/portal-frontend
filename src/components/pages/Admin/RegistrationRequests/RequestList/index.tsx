@@ -154,6 +154,8 @@ export const RequestList = ({
         )}${t('content.admin.registration-requests.introText2')}`}
         defaultFilter={group}
         filterViews={filterView}
+        emptyDataMsg={t('global.table.emptyDataMsg')}
+        noSearchResultsMsg={t('global.table.noSearchResults')}
       />
     </section>
   )

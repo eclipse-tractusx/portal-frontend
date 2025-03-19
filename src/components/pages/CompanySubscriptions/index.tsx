@@ -229,6 +229,8 @@ export default function CompanySubscriptions() {
         onClearSearch={() => {
           setSearchExpr('')
         }}
+        emptyDataMsg={t('global.table.emptyDataMsg')}
+        noSearchResultsMsg={t('global.table.noSearchResults')}
       />
     </div>
   )

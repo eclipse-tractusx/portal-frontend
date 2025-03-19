@@ -208,6 +208,8 @@ export const UserList = ({
           },
         ]}
         disableColumnMenu
+        emptyDataMsg={t('global.table.emptyDataMsg')}
+        noSearchResultsMsg={t('global.table.noSearchResults')}
       />
     </section>
   )
