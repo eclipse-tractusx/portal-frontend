@@ -93,6 +93,8 @@ export default function UserListContent() {
         },
       ]}
       checkboxSelection
+      emptyDataMsg={t('global.table.emptyDataMsg')}
+      noSearchResultsMsg={t('global.table.noSearchResults')}
     />
   )
 }
