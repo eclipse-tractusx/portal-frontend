@@ -119,6 +119,7 @@ export const Dropzone = ({
 
   const handleFileSizeValidator = (file: File) => {
     if (!maxFileSize) return null
+    const maxFileSizeInMB = ((maxFileSize * 1024) / CONVERT_TO_MB).toFixed(1)
     const formatFileSize = (bytes: number): string => {
       const sizeInMB = bytes / CONVERT_TO_MB
       return Number.isInteger(sizeInMB)
