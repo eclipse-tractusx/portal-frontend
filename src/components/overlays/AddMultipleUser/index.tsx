@@ -422,7 +422,7 @@ export default function AddMultipleUser() {
             <Dropzone
               acceptFormat={{ '.csv': [] }}
               maxFilesToUpload={1}
-              maxFileSize={1000}
+              maxFileSize={10000} // 10MB
               onChange={([file]) => {
                 file && onChangeFile(file)
               }}
