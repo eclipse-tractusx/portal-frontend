@@ -143,6 +143,36 @@ const ActivateSubscriptionOverlay = ({
   const tableData2: TableType = {
     head: [t('content.appSubscription.activation.technicalDetails'), ''],
     body: activationData ?? [],
+    edit:
+      activationResponse?.technicalUserInfo
+        ?.map((userData) => [
+          [
+            {
+              icon: false,
+            },
+            {
+              icon: false,
+            },
+          ],
+          [
+            {
+              icon: false,
+            },
+            {
+              icon: false,
+            },
+          ],
+          [
+            {
+              icon: false,
+            },
+            {
+              icon: false,
+              copyValue: userData?.technicalUserSecret,
+            },
+          ],
+        ])
+        .flat(1) ?? [],
   }
 
   return (
