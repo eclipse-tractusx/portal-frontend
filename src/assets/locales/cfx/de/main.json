@@ -2007,7 +2007,7 @@
       "expired": "Verfallen",
       "editUsecase": {
         "title": "Neuen Credential beantragen",
-        "description": "Cofinity-X genehmigt Ihren Antrag innerhalb von 48 Stunden, und der Credential wird zu Ihrer Wallet hinzugefügt. Sie können dann Daten mit anderen Dataspace-Teilnehmern austauschen.",
+        "description": "Sobald Sie die Rahmenvereinbarung akzeptieren und Ihre Anfrage einreichen, wird Ihr Credential direkt zu Ihrer Wallet hinzugefügt. Sie sind dann bereit, Daten mit anderen Teilnehmern im Datenraum auszutauschen.",
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Ich habe die <1>Rahmenvereinbarung</1> gelesen und akzeptiere sie.",
         "error": "Something went wrong!",
