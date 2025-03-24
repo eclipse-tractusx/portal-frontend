@@ -32,6 +32,8 @@ import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import { OVERLAYS } from 'types/Constants'
 import { useParams } from 'react-router-dom'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 export type UserDetail = {
   companyUserId: string
@@ -54,6 +56,7 @@ export interface UserCardProps {
 interface UserItemsTranslation {
   label: string
   value: string | string[]
+  hideSecret?: boolean
 }
 
 export interface UserItems {
@@ -70,6 +73,11 @@ export const UserDetailCard = ({
   const { userId } = useParams()
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
   const [copied, setCopied] = useState<boolean>(false)
+  const [hideSecret, setHideSecret] = useState<boolean>(
+    cardContentItems.clientSecret?.hideSecret !== undefined
+      ? cardContentItems.clientSecret.hideSecret
+      : true
+  )
 
   const copyText = (value: string | string[]) => {
     setCopied(true)
@@ -99,7 +107,9 @@ export const UserDetailCard = ({
                   <br />
                 </span>
               ))
-            : value?.value}
+            : param === 'clientSecret' && hideSecret
+              ? value?.value.toString().replace(/./g, '*')
+              : value?.value}
         </span>
       )}
       {userId && value?.label === 'BPN' && (
@@ -128,13 +138,40 @@ export const UserDetailCard = ({
       )}
       <span>
         {param === 'clientSecret' && (
-          <ContentCopyIcon
-            style={{ cursor: 'pointer' }}
-            sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
-            onClick={() => {
-              copyText(value?.value as string)
-            }}
-          />
+          <>
+            <ContentCopyIcon
+              style={{ cursor: 'pointer' }}
+              sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
+              onClick={() => {
+                copyText(value?.value as string)
+              }}
+            />
+            {hideSecret ? (
+              <VisibilityOffIcon
+                style={{ cursor: 'pointer' }}
+                sx={{
+                  marginLeft: '10px',
+                  color: '#cccccc',
+                  fontSize: '20px',
+                }}
+                onClick={() => {
+                  setHideSecret(!hideSecret)
+                }}
+              />
+            ) : (
+              <VisibilityIcon
+                style={{ cursor: 'pointer' }}
+                sx={{
+                  marginLeft: '10px',
+                  color: '#cccccc',
+                  fontSize: '20px',
+                }}
+                onClick={() => {
+                  setHideSecret(!hideSecret)
+                }}
+              />
+            )}
+          </>
         )}
       </span>
     </>
