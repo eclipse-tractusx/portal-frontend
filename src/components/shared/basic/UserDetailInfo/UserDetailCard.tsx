@@ -89,93 +89,110 @@ export const UserDetailCard = ({
   const renderValue = (
     value: UserItemsTranslation | undefined,
     param: string
-  ) => (
-    <>
-      <strong style={{ marginRight: '5px' }}>{value?.label}:</strong>
-      {value?.value && value?.value.length > 0 && (
-        <span
-          style={{
-            marginLeft: variant === 'wide' ? 'auto' : '',
-            display: 'inline-grid',
-            fontSize: '14px',
-          }}
-        >
-          {Array.isArray(value?.value)
-            ? value?.value.map((bpn, i) => (
-                <span key={i}>
-                  {bpn}
-                  <br />
-                </span>
-              ))
-            : param === 'clientSecret' && hideSecret
-              ? value?.value.toString().replace(/./g, '*')
-              : value?.value}
-        </span>
-      )}
-      {userId && value?.label === 'BPN' && (
-        <Box
-          sx={{
-            borderRadius: '50%',
-            width: '35px',
-            height: '35px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginLeft: '5px',
-            '&:hover': {
-              backgroundColor: 'rgba(176, 206, 235, 0.4)',
-            },
-          }}
-        >
-          <EditIcon
-            onClick={openEditOverlay}
-            sx={{
-              cursor: 'pointer',
-              color: '#0F71CB',
+  ) => {
+    const getLabelValue = (
+      value: UserItemsTranslation | undefined,
+      param: string,
+      hideSecret: boolean
+    ) => {
+      if (Array.isArray(value?.value)) {
+        return value.value.map((bpn, i) => (
+          <span key={i}>
+            {bpn}
+            <br />
+          </span>
+        ))
+      }
+
+      if (param === 'clientSecret' && hideSecret) {
+        return value?.value.toString().replace(/./g, '*')
+      }
+
+      return value?.value
+    }
+
+    return (
+      <>
+        <strong style={{ marginRight: '5px' }}>{value?.label}:</strong>
+        {value?.value && value?.value.length > 0 && (
+          <span
+            style={{
+              marginLeft: variant === 'wide' ? 'auto' : '',
+              display: 'inline-grid',
+              fontSize: '14px',
             }}
-          />
-        </Box>
-      )}
-      <span>
-        {param === 'clientSecret' && (
-          <>
-            <ContentCopyIcon
-              style={{ cursor: 'pointer' }}
-              sx={{ marginLeft: '10px', color: copied ? '#44aa44' : '#cccccc' }}
-              onClick={() => {
-                copyText(value?.value as string)
+          >
+            {getLabelValue(value, param, hideSecret)}
+          </span>
+        )}
+        {userId && value?.label === 'BPN' && (
+          <Box
+            sx={{
+              borderRadius: '50%',
+              width: '35px',
+              height: '35px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: '5px',
+              '&:hover': {
+                backgroundColor: 'rgba(176, 206, 235, 0.4)',
+              },
+            }}
+          >
+            <EditIcon
+              onClick={openEditOverlay}
+              sx={{
+                cursor: 'pointer',
+                color: '#0F71CB',
               }}
             />
-            {hideSecret ? (
-              <VisibilityOffIcon
-                style={{ cursor: 'pointer' }}
-                sx={{
-                  marginLeft: '10px',
-                  color: '#cccccc',
-                  fontSize: '20px',
-                }}
-                onClick={() => {
-                  setHideSecret(!hideSecret)
-                }}
-              />
-            ) : (
-              <VisibilityIcon
-                style={{ cursor: 'pointer' }}
-                sx={{
-                  marginLeft: '10px',
-                  color: '#cccccc',
-                  fontSize: '20px',
-                }}
-                onClick={() => {
-                  setHideSecret(!hideSecret)
-                }}
-              />
-            )}
-          </>
+          </Box>
         )}
-      </span>
-    </>
-  )
+        <span>
+          {param === 'clientSecret' && (
+            <>
+              <ContentCopyIcon
+                style={{ cursor: 'pointer' }}
+                sx={{
+                  marginLeft: '10px',
+                  color: copied ? '#44aa44' : '#cccccc',
+                }}
+                onClick={() => {
+                  copyText(value?.value as string)
+                }}
+              />
+              {hideSecret ? (
+                <VisibilityOffIcon
+                  style={{ cursor: 'pointer' }}
+                  sx={{
+                    marginLeft: '10px',
+                    color: '#cccccc',
+                    fontSize: '20px',
+                  }}
+                  onClick={() => {
+                    setHideSecret(!hideSecret)
+                  }}
+                />
+              ) : (
+                <VisibilityIcon
+                  style={{ cursor: 'pointer' }}
+                  sx={{
+                    marginLeft: '10px',
+                    color: '#cccccc',
+                    fontSize: '20px',
+                  }}
+                  onClick={() => {
+                    setHideSecret(!hideSecret)
+                  }}
+                />
+              )}
+            </>
+          )}
+        </span>
+      </>
+    )
+  }
 
   const renderContentSwitch = (
     param: string,
