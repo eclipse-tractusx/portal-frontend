@@ -24,13 +24,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="./public/images-cfx/Cofinity-X.png">
   <title>Cofinity-x Portal</title>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NVDP5QWZ');</script>
-    <!-- End Google Tag Manager -->    
+
+  <!-- Google Tag Manager -->
+  <script id="gtm-script">
+    const hostname = window.location.hostname;
+    let gtmEnv = hostname.includes('myportal') ? '' :
+      hostname.includes('beta') ? '&gtm_auth=VNEygPNlpFOoALQKofU9gQ&gtm_preview=env-20&gtm_cookies_win=x' :
+        hostname.includes('integration') ? '&gtm_auth=TOIu6VW-qpUpYwJEMRqJwA&gtm_preview=env-19&gtm_cookies_win=x' :
+          hostname.includes('test') ? '&gtm_auth=Mv1LeIvpAXeoHV6hn-yIvQ&gtm_preview=env-46&gtm_cookies_win=x' : '&gtm_auth=FwclXZEvVmnBV5cMDlrzHw&gtm_preview=env-5&gtm_cookies_win=x';
+    setTimeout(() => {
+      (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      const f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l !== 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl + gtmEnv;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NVDP5QWZ');
+    }, 300);
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->

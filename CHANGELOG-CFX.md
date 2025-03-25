@@ -4,6 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Fix GTM configuration**
+
+  - Fix GTM configuration for PROD [PM2-2672](https://cofinity-x.atlassian.net/browse/PM2-2672)
+  - fix consent popup to appear with a delay of 300ms
+
 - **Clickjacking Vulnerability**
   - Fix Clickjacking Vulnerability for iframe embedding [PM2-2416](https://cofinity-x.atlassian.net/browse/PM2-2416)
 - **User Management**
