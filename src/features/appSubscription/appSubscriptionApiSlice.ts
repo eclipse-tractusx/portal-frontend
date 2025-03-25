@@ -182,7 +182,7 @@ export const apiSlice = createApi({
       SubscriptionStoreRequest
     >({
       query: (data: SubscriptionStoreRequest) => ({
-        url: '/api/Apps/autoSetup',
+        url: '/api/Apps/start-autoSetup',
         method: 'POST',
         body: data,
       }),

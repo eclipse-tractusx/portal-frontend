@@ -159,6 +159,8 @@ export default function SubscriptionElements({
       success(t('content.appSubscription.success'))
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
+    } finally {
+      refetch()
     }
   }
 
