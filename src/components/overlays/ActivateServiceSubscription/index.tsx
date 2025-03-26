@@ -76,10 +76,10 @@ export default function ActivateserviceSubscription({
         requestId: subscriptionId,
         offerUrl: 'https://testonly.google.de|https://testonly.google.de/',
       }).unwrap()
-      success(t('content.appSubscription.success'))
+      success(t('serviceSubscription.success'))
     } catch (err) {
       console.log(err)
-      error(t('content.appSubscription.error'), '', err as object)
+      error(t('serviceSubscription.failure'), '', err as object)
     } finally {
       setLoading(false)
       handleOverlayClose()
