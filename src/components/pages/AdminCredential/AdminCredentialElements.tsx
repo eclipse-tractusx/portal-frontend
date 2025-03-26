@@ -60,7 +60,7 @@ interface FetchHookArgsType {
 }
 
 enum FilterType {
-  ALL = '',
+  ALL = 'ALL',
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',
   REVOKED = 'REVOKED',
@@ -106,7 +106,7 @@ export default function AdminCredentialElements() {
 
   useEffect(() => {
     setFetchHookArgs({
-      filterType: filterValueAPI,
+      filterType: filterValueAPI === 'ALL' ? '' : filterValueAPI,
       sortingType: sortOption,
       expr: searchExpr,
     })
