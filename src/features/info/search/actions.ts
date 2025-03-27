@@ -21,7 +21,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
-import { Api as UserApi } from 'features/admin/userDeprecated/api'
+import { apiSlice as UserApi } from 'features/admin/userDeprecated/apiSlice'
 import { Api as NewsApi } from 'features/info/news/api'
 import {
   actionToSearchItem,
@@ -48,6 +48,7 @@ import {
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
+import { store } from 'features/store'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -106,9 +107,15 @@ const searchForExpression = async function (expr: string) {
       emptyPartnerResult,
       emptyNewsResult,
       Patterns.MAIL.test(expr)
-        ? await UserApi.getInstance()
-            .getTenantUsers()
-            .catch(() => emptyUserResult)
+        ? await store
+            .dispatch(UserApi.endpoints.getTenantUsers.initiate())
+            .unwrap()
+            .then((response: PaginResult<TenantUser>) => {
+              return response
+            })
+            .catch(() => {
+              return emptyUserResult
+            })
         : emptyUserResult,
     ])
   } else if (Patterns.UUID.test(expr)) {
@@ -121,9 +128,15 @@ const searchForExpression = async function (expr: string) {
         .catch(() => emptyAppResult),
       emptyPartnerResult,
       emptyNewsResult,
-      UserApi.getInstance()
-        .getTenantUsers()
-        .catch(() => emptyUserResult),
+      store
+        .dispatch(UserApi.endpoints.getTenantUsers.initiate())
+        .unwrap()
+        .then((response: PaginResult<TenantUser>) => {
+          return response
+        })
+        .catch(() => {
+          return emptyUserResult
+        }),
     ])
   } else {
     return await Promise.all([
@@ -143,9 +156,15 @@ const searchForExpression = async function (expr: string) {
       NewsApi.getInstance()
         .getItems()
         .catch(() => emptyNewsResult),
-      UserApi.getInstance()
-        .getTenantUsers()
-        .catch(() => emptyUserResult),
+      store
+        .dispatch(UserApi.endpoints.getTenantUsers.initiate())
+        .unwrap()
+        .then((response: PaginResult<TenantUser>) => {
+          return response
+        })
+        .catch(() => {
+          return emptyUserResult
+        }),
     ])
   }
 }

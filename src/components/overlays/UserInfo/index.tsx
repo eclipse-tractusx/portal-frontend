@@ -19,11 +19,10 @@
  ********************************************************************************/
 
 import { DialogContent, DialogHeader } from '@catena-x/portal-shared-components'
-import { fetchAny } from 'features/admin/userOwn/actions'
+import { useFetchAnyQuery } from 'features/admin/userOwn/apiSlice'
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay'
 import type { AppDispatch } from 'features/store'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { OVERLAYS } from 'types/Constants'
@@ -31,11 +30,8 @@ import { OVERLAYS } from 'types/Constants'
 export default function UserInfo({ id }: { id: string }) {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
-  const userInfo = useSelector(UserdetailSelector)
-
-  useEffect(() => {
-    dispatch(fetchAny(id))
-  }, [dispatch, id])
+  const storedUserInfo = useSelector(UserdetailSelector)
+  const { data: userInfo } = useFetchAnyQuery(id)
 
   return (
     <>
@@ -48,7 +44,7 @@ export default function UserInfo({ id }: { id: string }) {
       />
 
       <DialogContent>
-        <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+        <pre>{JSON.stringify(userInfo ?? storedUserInfo, null, 2)}</pre>
       </DialogContent>
     </>
   )

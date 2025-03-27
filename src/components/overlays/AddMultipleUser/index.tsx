@@ -45,12 +45,14 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { OVERLAYS, PAGES } from 'types/Constants'
 import { show, closeOverlay } from 'features/control/overlay'
 import { Dropzone } from '../../shared/basic/Dropzone'
-import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
+import {
+  rolesToAddSelector,
+  setRolesToAdd,
+} from 'features/admin/userDeprecated/slice'
 import {
   type AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
-import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
 import {
   type MultipleUsersResponse,
   useAddMutipleUsersMutation,
