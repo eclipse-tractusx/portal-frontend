@@ -20,9 +20,9 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import type { CardItems } from '@catena-x/portal-shared-components'
-import type { RootState } from 'features/store'
+import { type RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
-import { fetchItems } from './actions'
+import { apiSlice } from './apiSlice'
 import { initialState, name } from './types'
 
 export const slice = createSlice({
@@ -30,30 +30,34 @@ export const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchItems.pending, (state) => ({
-      ...state,
-      items: [],
-      request: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(fetchItems.fulfilled, (state, { payload }) => ({
-      ...state,
-      items: payload || [],
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(fetchItems.rejected, (state, action) => ({
-      ...state,
-      items: [],
-      request: RequestState.ERROR,
-      error: action.error.message!,
-    }))
+    builder
+      .addMatcher(apiSlice.endpoints.getItems.matchPending, (state) => {
+        state.items = []
+        state.request = RequestState.SUBMIT
+        state.error = ''
+      })
+      .addMatcher(
+        apiSlice.endpoints.getItems.matchFulfilled,
+        (state, { payload }) => {
+          state.items = payload ?? []
+          state.request = RequestState.OK
+          state.error = ''
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getItems.matchRejected,
+        (state, { error }) => {
+          state.items = []
+          state.request = RequestState.ERROR
+          state.error = error.message ?? ''
+        }
+      )
   },
 })
 
 export const itemsSelector = (state: RootState): CardItems[] =>
   state.info.news.items
 
-const Slice = { slice }
+export const Slice = { slice }
 
 export default Slice

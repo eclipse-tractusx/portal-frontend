@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,17 +17,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Api } from './api'
-import { name } from './types'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import type { CardItems } from '@catena-x/portal-shared-components'
+import { getAssetBase } from 'services/EnvironmentService'
 
-const fetchItems = createAsyncThunk(`${name}/fetch`, async () => {
-  try {
-    return await Api.getInstance().getItems()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
-    throw Error(`${name}/fetch error`)
-  }
+export const apiSlice = createApi({
+  reducerPath: 'rtk/newsApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: getAssetBase(),
+  }),
+  endpoints: (builder) => ({
+    getItems: builder.query<CardItems[], void>({
+      query: () => '/api/news/latest.json',
+    }),
+  }),
 })
 
-export { fetchItems }
+export const { useGetItemsQuery } = apiSlice
