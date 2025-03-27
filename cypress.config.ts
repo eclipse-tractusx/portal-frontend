@@ -26,8 +26,8 @@ export default defineConfig({
     },
   },
   env: {
-    baseUrl: 'http://localhost:3000', // Your base URL for the app
-    backendUrl: 'https://portal-backend.int.catena-x.net', // Your backend URL
+    baseUrl: 'http://localhost:3001/', // Your base URL for the app
+    backendUrl: 'https://portal-backend.example.org/', // Your backend URL
     user: {
       email: '',
       password: '',
@@ -37,14 +37,14 @@ export default defineConfig({
       password: '',
     },
     company: {
-      name: '',
+      name: '', // Your company name for user
     },
     company1: {
       name: '', // Your company name for user1
     },
     keycloak: {
-      centralUrl: 'centralidp.int.catena-x.net', // Keycloak central URL
-      sharedUrl: 'sharedidp.int.catena-x.net', // Keycloak shared URL
+      centralUrl: 'http://centralidp.example.org/', // Keycloak central URL
+      sharedUrl: 'http://sharedidp.example.org/', // Keycloak shared URL
     },
   },
 })
