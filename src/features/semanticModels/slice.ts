@@ -20,113 +20,94 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
-import {
-  fetchSemanticModelById,
-  fetchSemanticModels,
-  postSemanticModel,
-  changeOpenApiUrl,
-  deleteSemanticModelById,
-} from './actions'
-import type {
-  ModelList,
-  SemanticModel,
-  SemanticModelsInitialState,
-} from './types'
+import { apiSlice } from './apiSlice'
+import type { SemanticModel } from './types'
 
-const defaultModels: ModelList = {
-  items: [],
-  totalItems: 0,
-  itemCount: 0,
-  currentPage: 0,
-  totalPages: 0,
-}
-
-const initialState: SemanticModelsInitialState = {
-  modelList: defaultModels,
-  loadingModelList: false,
-  model: null,
-  loadingModel: false,
-  uploadedModel: null,
+const initialState = {
+  model: null as SemanticModel | null,
+  uploadedModel: null as SemanticModel | null,
   uploading: false,
   uploadError: '',
+  loadingModel: false,
   openApiLink: '',
   openApiError: '',
   error: '',
-  deleteModelId: '',
-  deleteError: '',
 }
 
-const modelsSlice = createSlice({
+const semanticModelsSlice = createSlice({
   name: 'semanticModels',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchSemanticModels.pending, (state) => {
-      state.modelList = defaultModels
-      state.loadingModelList = true
+  reducers: {
+    resetError: (state) => {
       state.error = ''
-    })
-    builder.addCase(fetchSemanticModels.fulfilled, (state, { payload }) => {
-      state.modelList = payload as ModelList
-      state.loadingModelList = false
-      state.error = ''
-    })
-    builder.addCase(fetchSemanticModels.rejected, (state, action) => {
-      state.modelList = defaultModels
-      state.loadingModelList = false
-      state.error = action.error.message!
-    })
-    builder.addCase(fetchSemanticModelById.pending, (state) => {
-      state.model = null
-      state.loadingModel = true
-      state.error = ''
-    })
-    builder.addCase(fetchSemanticModelById.fulfilled, (state, { payload }) => {
-      state.model = payload as SemanticModel
-      state.loadingModel = false
-      state.error = ''
-    })
-    builder.addCase(fetchSemanticModelById.rejected, (state, action) => {
-      state.model = null
-      state.loadingModel = false
-      state.error = action.error.message!
-    })
-    builder.addCase(postSemanticModel.pending, (state) => {
-      state.uploading = true
-      state.uploadedModel = null
-      state.error = ''
-    })
-    builder.addCase(postSemanticModel.fulfilled, (state, { payload }) => {
-      state.uploading = false
-      state.uploadedModel = payload
-      state.error = ''
-    })
-    builder.addCase(postSemanticModel.rejected, (state, action) => {
-      state.uploading = false
-      state.uploadedModel = null
-      state.uploadError = action.error.message!
-    })
-    builder.addCase(changeOpenApiUrl.fulfilled, (state, action) => {
-      state.openApiLink = URL.createObjectURL(action.payload)
       state.openApiError = ''
-    })
-    builder.addCase(changeOpenApiUrl.rejected, (state, action) => {
-      state.openApiLink = ''
-      state.openApiError = action.error.message!
-    })
-    builder.addCase(deleteSemanticModelById.fulfilled, (state, { payload }) => {
-      state.deleteModelId = payload
-      state.deleteError = ''
-    })
-    builder.addCase(deleteSemanticModelById.rejected, (state, action) => {
-      state.deleteModelId = ''
-      state.deleteError = action.error.message!
-    })
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      apiSlice.endpoints.getModelById.matchPending,
+      (state) => {
+        state.loadingModel = true
+        state.error = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.getModelById.matchFulfilled,
+      (state, { payload }) => {
+        state.model = payload
+        state.loadingModel = false
+        state.error = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.getModelById.matchRejected,
+      (state, action) => {
+        state.loadingModel = false
+        state.error = action.error.message!
+      }
+    )
+
+    builder.addMatcher(
+      apiSlice.endpoints.changeOpenApiUrl.matchFulfilled,
+      (state, action) => {
+        state.openApiLink = URL.createObjectURL(action.payload)
+        state.openApiError = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.changeOpenApiUrl.matchRejected,
+      (state, action) => {
+        state.openApiLink = ''
+        state.openApiError = action.error.message!
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.postSemanticModel.matchPending,
+      (state) => {
+        state.uploading = true
+        state.uploadError = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.postSemanticModel.matchFulfilled,
+      (state, { payload }) => {
+        state.uploading = false
+        state.uploadedModel = payload
+        state.uploadError = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.postSemanticModel.matchRejected,
+      (state, { error }) => {
+        state.uploading = false
+        state.uploadError = error.message!
+      }
+    )
   },
 })
 
-export const semanticModelsSelector = (
-  state: RootState
-): SemanticModelsInitialState => state.semanticModels
+export const { resetError } = semanticModelsSlice.actions
 
-export default modelsSlice
+export const semanticModelsSelector = (state: RootState) => state.semanticModels
+
+export default semanticModelsSlice
