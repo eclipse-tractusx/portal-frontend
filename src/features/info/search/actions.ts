@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { PartnerNetworkApi } from '../../partnerNetwork/api'
+import { apiSlice as PartnerNetworkApiSlice } from '../../partnerNetwork/apiSlice'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
 import { Api as UserApi } from 'features/admin/userDeprecated/api'
 import { Api as NewsApi } from 'features/info/news/api'
@@ -48,6 +48,7 @@ import {
 } from 'services/AccessService'
 import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
+import { store } from 'features/store'
 
 const emptyAppResult: AppMarketplaceApp[] = []
 const emptyNewsResult: CardItems[] = []
@@ -88,11 +89,17 @@ const searchForExpression = async function (expr: string) {
       emptyActionResult,
       emptyAppResult,
       Patterns.BPN.test(expr)
-        ? getSinglePartnerResult(
-            await PartnerNetworkApi.getInstance().getBusinessPartnerByBpn(
-              expr.toUpperCase()
+        ? store
+            .dispatch(
+              PartnerNetworkApiSlice.endpoints.getBusinessPartnerByBpn.initiate(
+                expr.toUpperCase()
+              )
             )
-          )
+            .unwrap()
+            .then((response: BusinessPartner) =>
+              getSinglePartnerResult(response)
+            )
+            .catch(() => emptyPartnerResult)
         : emptyPartnerResult,
       emptyNewsResult,
       emptyUserResult,
@@ -133,12 +140,15 @@ const searchForExpression = async function (expr: string) {
       AppsApi.getInstance()
         .getActive()
         .catch(() => emptyAppResult),
-      PartnerNetworkApi.getInstance()
-        .getAllBusinessPartner({
-          name: expr,
-          page: 0,
-          size: 5,
-        })
+      store
+        .dispatch(
+          PartnerNetworkApiSlice.endpoints.getAllBusinessPartners.initiate({
+            name: expr,
+            page: 0,
+            size: 5,
+          })
+        )
+        .unwrap()
         .catch(() => emptyPartnerResult),
       NewsApi.getInstance()
         .getItems()
