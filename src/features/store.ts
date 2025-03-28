@@ -24,7 +24,6 @@ import admin from './admin'
 import apps from './apps'
 import control from './control'
 import info from './info'
-import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
 import images from './images/slice'
@@ -98,7 +97,6 @@ export const reducers = {
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
   companyRoles: updateCompanyRoleSlice.reducer,
-  connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
   languageSlice: languageSlice.reducer,
