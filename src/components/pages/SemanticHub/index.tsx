@@ -29,21 +29,19 @@ import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
 import ModelDetailDialog from './ModelDetailDialog'
 import ModelTable from './ModelTable'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchSemanticModelById } from 'features/semanticModels/actions'
+import { useDeleteModelByIdMutation } from 'features/semanticModels/apiSlice'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ModelImportDialog from './ModelImportDialog'
-import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { ROLES } from 'types/Constants'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAssetBase } from 'services/EnvironmentService'
-import type { AppDispatch } from 'features/store'
 import { userHasSemanticHubRole } from 'services/AccessService'
+import { useSelector } from 'react-redux'
+import { semanticModelsSelector } from 'features/semanticModels/slice'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const dispatch = useDispatch<AppDispatch>()
   const { modelId } = useParams()
   const [showModel, setShowModel] = useState<boolean>(false)
   const [importModel, setImportModel] = useState<boolean>(false)
@@ -51,15 +49,10 @@ export default function SemanticHub() {
   const [errorAlertMsg, setErrorAlertMsg] = useState<string>('')
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false)
   const [successAlertMsg, setSuccessAlertMsg] = useState<string>('')
-  const { deleteError, deleteModelId, uploadedModel, uploadError } =
-    useSelector(semanticModelsSelector)
 
-  useEffect(() => {
-    if (deleteError.length > 0) {
-      setErrorAlertMsg(deleteError)
-      setShowErrorAlert(true)
-    }
-  }, [deleteError])
+  const { uploadedModel, uploadError } = useSelector(semanticModelsSelector)
+  const [deleteModelById, { isSuccess: deleteSuccess, error: deleteError }] =
+    useDeleteModelByIdMutation()
 
   const resetMessages = () => {
     setShowErrorAlert(false)
@@ -70,8 +63,6 @@ export default function SemanticHub() {
     if (modelId) {
       resetMessages()
       setShowModel(true)
-      const encodedUrn = encodeURIComponent(modelId)
-      dispatch(fetchSemanticModelById(encodedUrn))
     }
   }, [modelId])
 
@@ -83,15 +74,31 @@ export default function SemanticHub() {
   }, [uploadError])
 
   useEffect(() => {
-    if (deleteModelId.length > 0) {
+    if (deleteError) {
+      if ('status' in deleteError && deleteError.status) {
+        const errorMessage =
+          deleteError.data && typeof deleteError.data === 'string'
+            ? deleteError.data
+            : 'An error occurred'
+        setErrorAlertMsg(errorMessage)
+        setShowErrorAlert(true)
+      } else if ('message' in deleteError && deleteError.message) {
+        setErrorAlertMsg(deleteError.message)
+        setShowErrorAlert(true)
+      }
+    }
+  }, [deleteError])
+
+  useEffect(() => {
+    if (deleteModelById.length > 0 && deleteSuccess) {
       setShowModel(false)
       setSuccessAlertMsg(t('content.semantichub.alerts.deleteSuccess'))
       setShowSuccessAlert(true)
     }
-  }, [deleteModelId])
+  }, [deleteSuccess, t])
 
   useEffect(() => {
-    if (uploadedModel !== null) {
+    if (uploadedModel) {
       setShowModel(false)
       setSuccessAlertMsg(t('content.semantichub.alerts.uploadSuccess'))
       setShowSuccessAlert(true)

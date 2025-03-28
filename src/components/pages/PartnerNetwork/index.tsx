@@ -156,6 +156,7 @@ const PartnerNetwork = () => {
               setBpn('')
               setExpr('')
               setPage(0)
+              return
             }
             if (expr !== '' && !validateSearchText(expr)) return
             setAllItems([])

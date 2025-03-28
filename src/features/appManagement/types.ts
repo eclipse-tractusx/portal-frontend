@@ -101,6 +101,7 @@ export interface UserRoleType {
   roleId: string
   roleName: string
   type: string
+  accessiblyByProviderOnly: boolean
 }
 
 export interface TechnicalUserProfiles {

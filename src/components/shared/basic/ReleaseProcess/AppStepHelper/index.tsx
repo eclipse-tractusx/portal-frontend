@@ -63,7 +63,13 @@ export function isStepCompleted(
         appRedirectStatus
       )
     case 4:
-      return data && data.length > 0 && appRedirectStatus
+      return (
+        data &&
+        data.length > 0 &&
+        fetchAppStatus?.technicalUserProfile &&
+        Object.keys(fetchAppStatus?.technicalUserProfile)?.length &&
+        appRedirectStatus
+      )
     case 5:
       return fetchAppStatus && appRedirectStatus
     default:

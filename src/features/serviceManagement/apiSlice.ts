@@ -160,6 +160,7 @@ export type technicalUserProfile = {
     roleId: string
     roleName: string
     type: string
+    accessiblyByProviderOnly: boolean
   }[]
 }
 

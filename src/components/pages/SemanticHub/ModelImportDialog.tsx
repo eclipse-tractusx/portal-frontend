@@ -31,9 +31,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { postSemanticModel } from 'features/semanticModels/actions'
+import { usePostSemanticModelMutation } from 'features/semanticModels/apiSlice'
 import { Status } from 'features/semanticModels/types'
 import {
   InputLabel,
@@ -43,7 +41,6 @@ import {
   Select,
   type SelectChangeEvent,
 } from '@mui/material'
-import type { AppDispatch } from 'features/store'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -51,15 +48,31 @@ interface ModelDetailDialogProps {
 }
 
 const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
-  const dispatch = useDispatch<AppDispatch>()
-  const { uploading, uploadedModel, error } = useSelector(
-    semanticModelsSelector
-  )
+  const [
+    postSemanticModel,
+    { data: uploadedModel, error: uploadError, isLoading: uploading },
+  ] = usePostSemanticModelMutation()
   const { t } = useTranslation()
   const [inputText, setInputText] = useState<string>('')
   const [inputStatus, setInputStatus] = useState<
     Status.Draft | Status.Released
   >(Status.Draft)
+
+  // Add an ESLint exception because of uncertainty about the exact structure of error data
+  // eslint-disable-next-line
+  const renderError = (error: any) => {
+    if (error && 'data' in error) {
+      if (error.data?.error?.message) {
+        return <Typography color="error">{error.data.error.message}</Typography>
+      } else if (error.status && error.data?.detail) {
+        return (
+          <Typography color="error">
+            {`${error.data?.title} - ${error.data?.detail}`}
+          </Typography>
+        )
+      }
+    }
+  }
 
   useEffect(() => {
     if (show) {
@@ -75,13 +88,11 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   }, [uploadedModel])
 
   const uploadModel = () => {
-    dispatch(
-      postSemanticModel({
-        model: inputText,
-        type: 'BAMM',
-        status: inputStatus,
-      })
-    )
+    postSemanticModel({
+      model: inputText,
+      type: 'BAMM',
+      status: inputStatus,
+    })
   }
 
   const onSelectChange = (e: SelectChangeEvent) => {
@@ -123,9 +134,7 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           maxRows={18}
           disabled={uploading}
         />
-        {typeof error === 'string' && (
-          <Typography color="error">{error}</Typography>
-        )}
+        {uploadError && renderError(uploadError)}
         {uploading && (
           <Box sx={{ textAlign: 'center', mt: 2 }}>
             <CircleProgress

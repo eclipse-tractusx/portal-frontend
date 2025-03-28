@@ -49,7 +49,7 @@
       "content": "New user roles have been added for the app <strong>{{app}}</strong> which you can now assign.\n\nNew Roles: {{roles}}"
     },
     "TECHNICAL_USER_CREATION": {
-      "title": "{{appName}} subscription created a new technical user",
+      "title": "{{offer}} subscription created a new technical user",
       "content": "This is a default text and will get enhanced later."
     },
     "SERVICE_RELEASE_REQUEST": {

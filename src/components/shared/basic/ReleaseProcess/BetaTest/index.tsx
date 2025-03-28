@@ -71,7 +71,6 @@ export default function BetaTest() {
       fetchAppStatus &&
       isStepCompleted(fetchAppStatus, 5, appRedirectStatus)
     ) {
-      dispatch(increment())
       hasDispatched.current = true
     }
   }, [fetchAppStatus, hasDispatched])

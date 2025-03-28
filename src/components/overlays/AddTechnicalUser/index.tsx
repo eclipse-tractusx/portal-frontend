@@ -77,7 +77,7 @@ export const AddTechnicalUser = () => {
 
   const defaultFormFieldValues = {
     TechnicalUserName: '',
-    TechnicalUserService: [''],
+    TechnicalUserService: [],
     TechnicalUserDescription: '',
   }
   const {

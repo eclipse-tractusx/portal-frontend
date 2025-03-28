@@ -19,23 +19,17 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import type {
-  BusinessPartner,
-  BusinessPartnerResponse,
-  PaginationData,
-  PartnerNetworkDataGrid,
-  PartnerNetworkInitialState,
-} from './types'
-import type { RootState } from 'features/store'
 import {
-  getOneBusinessPartner,
-  fetchBusinessPartners,
-  fetchMemberCompaniesData,
-} from './actions'
+  type PartnerNetworkInitialState,
+  type PartnerNetworkDataGrid,
+  type PaginationData,
+} from './types'
 import {
   mapSingleBusinessPartnerToDataGrid,
   mapBusinessPartnerToDataGrid,
 } from 'utils/dataMapper'
+import type { RootState } from 'features/store'
+import { apiSlice } from './apiSlice'
 
 const initialState: PartnerNetworkInitialState = {
   paginationData: {} as PaginationData,
@@ -58,72 +52,56 @@ const partnerNetworkSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getOneBusinessPartner.pending, (state) => {
-      state.paginationData = {} as PaginationData
-      state.mappedPartnerList = []
-      state.loading = true
-    })
-    builder.addCase(getOneBusinessPartner.fulfilled, (state, { payload }) => {
-      const bp = payload as BusinessPartner
-      const mappedList = [
-        mapSingleBusinessPartnerToDataGrid(bp),
-      ] as Array<PartnerNetworkDataGrid>
-      state.mappedPartnerList = mappedList
-      state.paginationData = {
-        totalElements: mappedList.length,
-        page: 1, // One business partner or null can be possible values here. Page is always default 1
-      } as PaginationData
-
-      state.loading = false
-    })
-    builder.addCase(getOneBusinessPartner.rejected, (state, action) => {
-      state.paginationData = {} as PaginationData
-      state.mappedPartnerList = []
-      state.loading = false
-      state.error = action.error.message!
-    })
-    builder.addCase(fetchBusinessPartners.pending, (state) => {
-      state.loading = true
-    })
-    builder.addCase(fetchBusinessPartners.fulfilled, (state, { payload }) => {
-      const payloadList = payload as BusinessPartnerResponse
-      try {
-        state.mappedPartnerList = [
-          ...state.mappedPartnerList,
-          ...mapBusinessPartnerToDataGrid(payloadList, state.membershipData),
-        ]
-        state.loading = false
-        state.paginationData = {
-          totalElements: payloadList.totalElements,
-          page: payloadList.page,
-        }
-      } catch (error: unknown) {
-        return {
-          ...state,
-          loading: false,
-          error: (error as Error).message,
-        } as PartnerNetworkInitialState
-      }
-    })
-    builder.addCase(fetchBusinessPartners.rejected, (state, action) => {
-      state.loading = false
-      state.error = action.error.message!
-    })
-    builder.addCase(fetchMemberCompaniesData.pending, (state) => {
-      state.membershipData = []
-      state.membershipError = ''
-    })
-    builder.addCase(
-      fetchMemberCompaniesData.fulfilled,
+    builder.addMatcher(
+      apiSlice.endpoints.getBusinessPartnerByBpn.matchFulfilled,
       (state, { payload }) => {
-        state.membershipData = payload as string[]
+        const mappedList = [
+          mapSingleBusinessPartnerToDataGrid(payload),
+        ] as Array<PartnerNetworkDataGrid>
+        state.mappedPartnerList = mappedList
+        state.paginationData = {
+          totalElements: mappedList.length,
+          page: 1,
+        }
+        state.loading = false
+      }
+    )
+
+    builder.addMatcher(
+      apiSlice.endpoints.getAllBusinessPartners.matchFulfilled,
+      (state, { payload }) => {
+        try {
+          state.mappedPartnerList = [
+            ...state.mappedPartnerList,
+            ...mapBusinessPartnerToDataGrid(payload, state.membershipData),
+          ]
+          state.loading = false
+          state.paginationData = {
+            totalElements: payload.totalElements,
+            page: payload.page,
+          }
+        } catch (error: unknown) {
+          state.loading = false
+          state.error = (error as Error).message
+        }
+      }
+    )
+
+    builder.addMatcher(
+      apiSlice.endpoints.getAllMemberCompanies.matchFulfilled,
+      (state, { payload }) => {
+        state.membershipData = payload
         state.membershipError = ''
       }
     )
-    builder.addCase(fetchMemberCompaniesData.rejected, (state, action) => {
-      state.membershipData = []
-      state.membershipError = action.error.message!
-    })
+
+    builder.addMatcher(
+      apiSlice.endpoints.getAllMemberCompanies.matchRejected,
+      (state, action) => {
+        state.membershipData = []
+        state.membershipError = action.error.message!
+      }
+    )
   },
 })
 
@@ -131,4 +109,7 @@ export const partnerNetworkSelector = (
   state: RootState
 ): PartnerNetworkInitialState => state.partnerNetwork
 
-export default partnerNetworkSlice
+export const { resetPartnerNetworkState, clearNotification } =
+  partnerNetworkSlice.actions
+
+export default partnerNetworkSlice.reducer

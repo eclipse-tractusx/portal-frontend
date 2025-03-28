@@ -73,6 +73,16 @@ export interface NewSemanticModel {
   status: Status
 }
 
+export interface ChangeOpenApiUrlInput {
+  id: string
+  url: string
+}
+
+export interface DeleteModelByIdInput {
+  id: string
+  modelName: string
+}
+
 export enum Status {
   Draft = 'DRAFT',
   Released = 'RELEASED',
