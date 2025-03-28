@@ -159,6 +159,8 @@ export default function SubscriptionElements({
       success(t('content.appSubscription.success'))
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
+    } finally {
+      refetch()
     }
   }
 
@@ -385,8 +387,6 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
-          companyName={subscriptionDetail.companyName}
-          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
           }}
