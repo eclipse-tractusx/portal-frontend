@@ -157,22 +157,35 @@ export const UserList = ({
                   scrollbarWidth: 'none',
                 }}
               >
-                {roles.length
-                  ? roles
-                      .filter(
-                        (role: RoleType | string) =>
-                          typeof role !== 'string' &&
-                          role.clientId === getClientId()
-                      )
-                      .map((role: RoleType) => (
+                {isDetail
+                  ? roles.length
+                    ? roles
+                        .filter(
+                          (role: RoleType | string) =>
+                            typeof role !== 'string' &&
+                            role.clientId === getClientId()
+                        )
+                        .map((role: RoleType) => (
+                          <StatusTag
+                            key={role.roleId}
+                            color="label"
+                            label={role.roleName}
+                            className="statusTag"
+                          />
+                        ))
+                    : ''
+                  : roles.length
+                    ? roles.map((role: RoleType | string) => (
                         <StatusTag
-                          key={role.roleId}
+                          key={typeof role === 'string' ? role : role.roleId}
                           color="label"
-                          label={role.roleName}
+                          label={
+                            typeof role === 'string' ? role : role.roleName
+                          }
                           className="statusTag"
                         />
                       ))
-                  : ''}
+                    : ''}
               </span>
             ),
           },
