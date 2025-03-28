@@ -26,18 +26,25 @@ export default defineConfig({
     },
   },
   env: {
-    baseUrl: 'http://localhost:3001',
-    backendUrl: 'https://portal-backend.example.org',
+    baseUrl: 'http://localhost:3001/', // Your base URL for the app
+    backendUrl: 'https://portal-backend.example.org/', // Your backend URL
     user: {
-      email: 'user@email.com',
+      email: '',
+      password: '',
+    },
+    user1: {
+      email: '',
       password: '',
     },
     company: {
-      name: 'Company name to search',
+      name: '', // Your company name for user
+    },
+    company1: {
+      name: '', // Your company name for user1
     },
     keycloak: {
-      centralUrl: 'centralidp.example.org',
-      sharedUrl: 'sharedidp.example.org',
+      centralUrl: 'http://centralidp.example.org/', // Keycloak central URL
+      sharedUrl: 'http://sharedidp.example.org/', // Keycloak shared URL
     },
   },
 })
