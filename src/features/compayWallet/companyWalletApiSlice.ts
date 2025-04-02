@@ -49,6 +49,7 @@ export interface WalletContent {
   expiryDate: string
   authority: string
   credentialDetailId: string
+  holder: string
   version?: string
 }
 

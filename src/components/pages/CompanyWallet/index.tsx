@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
 import './CompanyWallet.scss'
 import {
@@ -38,10 +38,14 @@ import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { COFINITY_BPNS } from 'types/cfx/Constants'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
   const { data, isSuccess, isError, refetch } = useFetchCompanyWalletQuery()
+  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
+  console.log('data', companyDetails)
   const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
   const [credentialId, setCredentialId] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
@@ -63,6 +67,10 @@ export default function CompanyWallet(): JSX.Element {
       ? t('content.companyWallet.TRACEABILITY_FRAMEWORK')
       : t('content.companyWallet.others')
   )
+
+  // get the company name if it uses cofinity
+  const isIssuerCofinity =
+    companyDetails && COFINITY_BPNS.includes(companyDetails.bpn)
 
   const handleRevocation = async () => {
     setLoading(true)
@@ -96,6 +104,7 @@ export default function CompanyWallet(): JSX.Element {
                 <WalletCard
                   isError={activeWallet.length === 0 || isError}
                   wallet={activeWallet[0]}
+                  isIssuerCofinity={isIssuerCofinity}
                 />
                 <div className="cx-divider"></div>
               </div>
@@ -109,6 +118,7 @@ export default function CompanyWallet(): JSX.Element {
                       setCredentialId(id)
                     }}
                     sections={groupedItems}
+                    isIssuerCofinity={isIssuerCofinity}
                   />
                 </div>
               </>
@@ -130,7 +140,11 @@ export default function CompanyWallet(): JSX.Element {
         {credentialId !== '' && (
           <Overlay
             title={t('content.companyWallet.confirmOverlay.title')}
-            description={t('content.companyWallet.confirmOverlay.description')}
+            description={
+              <Trans i18nKey="content.companyWallet.confirmOverlay.description">
+                <br />
+              </Trans>
+            }
             handleConfirmClick={handleRevocation}
             handleOverlayClose={() => {
               setCredentialId('')

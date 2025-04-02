@@ -159,3 +159,5 @@ export const PORTAL_INTEGRATION_ENVIRONMENT_URL =
 export const PORTAL_TEST_ENVIRONMENT_URL = 'https://portal.test.cofinity-x.com'
 export const PORTAL_DEVELOPMENT_ENVIRONMENT_URL =
   'https://portal.development.cofinity-x.com'
+
+export const COFINITY_BPNS = ['BPNL00000003CRHK', 'BPNLCOFINITYEZFA']

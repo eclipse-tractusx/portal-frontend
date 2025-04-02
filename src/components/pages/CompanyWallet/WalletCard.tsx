@@ -27,12 +27,16 @@ import useFormattedDate from 'hooks/useFormattedDate'
 export default function WalletCard({
   wallet,
   isError,
+  isIssuerCofinity,
 }: {
   readonly wallet: WalletContent
   readonly isError: boolean
+  readonly isIssuerCofinity?: boolean
 }): JSX.Element {
   const { t } = useTranslation()
   const { formatDate } = useFormattedDate()
+
+  console.log('data', wallet)
 
   const getMessge = () => {
     if (isError) {
@@ -92,12 +96,14 @@ export default function WalletCard({
                 {t(`content.companyWallet.${type.toLowerCase()}`)}
               </Typography>
             )}
-            {wallet?.expiryDate && (
-              <div className="cx-description-container">
+            <div className="cx-description-container">
+              {wallet?.authority && (
                 <Typography sx={typographyStyles.descriptionText}>
                   {t('content.companyWallet.issuer')}
-                  {wallet?.authority}
+                  {isIssuerCofinity ? 'Cofinity-X' : wallet?.authority}
                 </Typography>
+              )}
+              {wallet?.expiryDate && (
                 <Typography
                   sx={typographyStyles.descriptionText}
                   variant="body2"
@@ -105,8 +111,8 @@ export default function WalletCard({
                   {t('content.companyWallet.expiry')}
                   {formatDate(wallet?.expiryDate)}
                 </Typography>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>

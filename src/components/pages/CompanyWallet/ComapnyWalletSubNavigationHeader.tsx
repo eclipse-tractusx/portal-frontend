@@ -202,9 +202,11 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
       <Overlay
         loading={isLoading}
         title={t('content.companyWallet.subnavigation.button1')}
-        description={t(
-          'content.companyWallet.subnavigation.button1description'
-        )}
+        description={
+          <Trans i18nKey="content.companyWallet.subnavigation.button1description">
+            <br />
+          </Trans>
+        }
         handleConfirmClick={() => {
           if (selectedCredential) {
             dispatch(

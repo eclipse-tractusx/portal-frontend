@@ -2160,7 +2160,7 @@
       "subnavigation": {
         "title": "Wallet operations :",
         "button1": "Request new Credential",
-        "button1description": "To request a new credential, you must accept the framework agreement. Please review the terms carefully before proceeding.",
+        "button1description": "To request a new credential, you must accept the framework agreement. <0/>Please review the terms carefully before proceeding.",
         "button2": "Request new Company Credential",
         "button3": "Get more details of VCs (coming soon)",
         "button4": "Request new credential"
@@ -2175,7 +2175,7 @@
       "revokeHint": "Deactivate Credential",
       "confirmOverlay": {
         "title": "Deactivate Credential?",
-        "description": "Are you sure you want to deactivate this credential?This cannot be reversed.\nIf you continue, you'll need to request this credential again."
+        "description": "Are you sure you want to deactivate this credential?<0/>This cannot be reversed. <0/>If you continue, you'll need to request this credential again."
       },
       "successOverlay": {
         "ok": "Ok",
@@ -2185,6 +2185,11 @@
       "errorOverlay": {
         "title": "Revoke Credential",
         "description": "The revocation of the credential was unsuccessful. Please contact the administrator or try again later."
+      },
+      "status": {
+        "ACTIVE": "ACTIVE",
+        "INACTIVE": "INACTIVE",
+        "pending": "PENDING"
       }
     },
     "standardLibraryTable": {
@@ -2552,6 +2557,7 @@
       "noteDelete": "Note: The deletion will be permanently. It is not possible the reactive the {{ object }} again.",
       "submit": "Submit",
       "request": "Request",
+      "submitCredentialRequest": "Proceed",
       "saveSubmit": "Save & submit",
       "no": "No",
       "yes": "Yes",
@@ -2562,7 +2568,9 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Item successfully copied! Ready to paste.",
+      "copyInfoErrorMessage": "Error copying item. Please refresh and try again."
     },
     "state": {
       "enabled": "enabled",

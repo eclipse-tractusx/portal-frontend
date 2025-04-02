@@ -52,6 +52,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Version info added to credential cards [CS2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
   - Implement new wallet credential deactivation work flow [CS-2966] (https://cofinity-x.atlassian.net/browse/CS-2966)
   - fix the active styling for All toolbar filter button [CS-3157] (https://cofinity-x.atlassian.net/browse/CS-3157)
+  - displayed the holder instead of issuer on wallet card (CS-3030) [https://cofinity-x.atlassian.net/browse/CS-3030]
 
 ### Changes
 

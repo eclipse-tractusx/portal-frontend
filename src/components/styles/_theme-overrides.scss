@@ -2679,7 +2679,16 @@ d .notification-badge-text {
         color: #fff !important;
         fill: $color-success !important;
         margin: 0;
+        font-family: 'Karbon', Arial, Sans-serif, Serif;
       }
+    }
+  }
+
+  .cx-custom-link-wrapper {
+    font-weight: 500;
+
+    .cx-custom-link {
+      text-decoration: underline !important;
     }
   }
 
@@ -2707,6 +2716,7 @@ d .notification-badge-text {
       display: flex;
       gap: 2px;
       align-items: center;
+      color: #2484c6 !important;
 
       svg {
         font-size: 18px;
@@ -2722,6 +2732,16 @@ d .notification-badge-text {
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  .MuiDialogContent-root {
+    font-family:
+      'Karbon',
+      -apple-system,
+      'Helvetica Neue',
+      Arial,
+      sans-serif,
+      serif !important;
+  }
 }
 
 .cx-overlay-header {
@@ -2759,7 +2779,7 @@ d .notification-badge-text {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 54px;
+    gap: 20px;
 
     .grid-layout {
       grid-template-columns: repeat(2, minmax(302px, 1fr));
@@ -2866,7 +2886,7 @@ d .notification-badge-text {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 54px;
+    gap: 20px;
 
     .grid-layout {
       grid-template-columns: repeat(2, minmax(302px, 1fr));
@@ -2889,6 +2909,19 @@ d .notification-badge-text {
         font-weight: 600;
         font-size: 18px !important;
         width: 80%;
+      }
+
+      h4.cx-bpnl-text {
+        display: flex;
+        font-weight: 500 !important;
+        align-items: center;
+        gap: 4px;
+
+        .MuiSvgIcon-root {
+          width: 18px;
+          height: 18px;
+          fill: #a9a9a9;
+        }
       }
 
       &.cx-revoked-rule-card-container {
@@ -2997,6 +3030,19 @@ d .notification-badge-text {
             font-weight: 700;
             font-size: 18px !important;
           }
+
+          h4.cx-bpnl-text {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            font-weight: 500 !important;
+
+            .MuiSvgIcon-root {
+              width: 18px;
+              height: 18px;
+              fill: #a9a9a9;
+            }
+          }
         }
 
         .cx-revoked-rule-card-container {
@@ -3039,6 +3085,7 @@ d .notification-badge-text {
     justify-content: center;
     align-items: center;
     min-width: 80px;
+    font-weight: 600;
   }
 }
 
@@ -3062,7 +3109,7 @@ d .notification-badge-text {
 
   p {
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
   }
 }
 
@@ -3077,6 +3124,10 @@ d .notification-badge-text {
     justify-content: center;
     align-items: center;
     gap: 10px;
+  }
+
+  p {
+    font-weight: 600;
   }
 }
 

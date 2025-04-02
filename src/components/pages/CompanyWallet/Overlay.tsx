@@ -30,7 +30,7 @@ import { Box } from '@mui/material'
 import React from 'react'
 interface OverlayProps {
   title: string
-  description: string
+  description: string | JSX.Element
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler
   handleConfirmClick: React.MouseEventHandler

@@ -1998,16 +1998,16 @@
       "note": "Bitte beachten Sie: ",
       "noteDetail": "Der Widerruf der Use Case Teilnahme ist derzeit nicht aktiviert. Wenden Sie sich für Unterstützung bitte an den Plattformbesitzer.",
       "version": "Version: {{version}}",
-      "framework": "Framework",
+      "framework": "Rahmenbedingungen",
       "nodocument": "Kein Dokument vorhanden",
-      "expiry": "Expiry: {{expiry}}",
+      "expiry": "Ablaufdatum: {{expiry}}",
       "request": "Request",
       "viewCredentials": "Credentials anzeigen",
       "active": "Aktiv",
       "expired": "Verfallen",
       "editUsecase": {
         "title": "Neuen Credential beantragen",
-        "description": "Cofinity-X genehmigt Ihren Antrag innerhalb von 48 Stunden, und der Credential wird zu Ihrer Wallet hinzugefügt. Sie können dann Daten mit anderen Dataspace-Teilnehmern austauschen.",
+        "description": "Sobald Sie die Rahmenvereinbarung akzeptieren und Ihre Anfrage einreichen, <0/>wird Ihr Credential direkt zu Ihrer Wallet hinzugefügt. <0/>Sie sind dann bereit, Daten mit anderen Teilnehmern im Datenraum auszutauschen.",
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Ich habe die <1>Rahmenvereinbarung</1> gelesen und akzeptiere sie.",
         "error": "Something went wrong!",
@@ -2191,23 +2191,23 @@
       "membership": "CATENA-X MITGLIEDSCHAFT CREDENTIAL",
       "subnavigation": {
         "title": "Wallet-Operationen :",
-        "button1": "Neuen Credential beantragen",
-        "button1description": "Um einen neuen Credential zu beantragen, müssen Sie die Rahmenvereinbarung akzeptieren. Bitte prüfen Sie die Bedingungen sorgfältig, bevor Sie fortfahren.",
+        "button1": "Neues Credential beantragen",
+        "button1description": "Um einen neues Credential zu beantragen, müssen Sie die Rahmenvereinbarung akzeptieren. <0/>Bitte prüfen Sie die Bedingungen sorgfältig, bevor Sie fortfahren.",
         "button2": "Fordern Sie einen neuen Firmenausweis an",
         "button3": "Erfahren Sie mehr über VCs (in Kürze verfügbar)",
-        "button4": "Neue Berechtigung anfordern"
+        "button4": "Neues Credential beantragen"
       },
       "credentialType": {
         "DATA_EXCHANGE_GOVERNANCE_CREDENTIAL": "<strong>DataExchangeGovernance</strong><br/>DataExchangeGovernance Credentials werden verwendet, um die unternehmensübergreifende Kommunikation über Connectors und die Datenverhandlung zu ermöglichen."
       },
-      "expiry": "Ablauf: ",
+      "expiry": "Ablaudatum: ",
       "issuer": "Aussteller: ",
       "version": "Version",
       "others": "Sonstige",
       "revokeHint": "Deactivate Credential",
       "confirmOverlay": {
         "title": "Credential deaktivieren?",
-        "description": "Sind Sie sicher, dass Sie dieses Credential deaktivieren möchten? \nDieser Schritt kann nicht rückgängig gemacht werden. \nWenn Sie fortfahren, müssen Sie dieses Credential erneut beantragen."
+        "description": "Sind Sie sicher, dass Sie dieses Credential deaktivieren möchten? <0/>Dieser Schritt kann nicht rückgängig gemacht werden. <0/>Wenn Sie fortfahren, müssen Sie dieses Credential erneut beantragen."
       },
       "successOverlay": {
         "ok": "Ok",
@@ -2217,6 +2217,11 @@
       "errorOverlay": {
         "title": "Revoke Credential",
         "description": "Der Widerruf der Berechtigung war erfolglos. Bitte wenden Sie sich an den Administrator oder versuchen Sie es später erneut."
+      },
+      "status": {
+        "ACTIVE": "AKTIV",
+        "INACTIVE": "INACTIV",
+        "pending": "AUSSTEHEND"
       }
     },
     "standardLibraryTable": {
@@ -2578,6 +2583,7 @@
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
+      "submitCredentialRequest": "Beantragen",
       "request": "Beantragen",
       "saveSubmit": "Speichern & absenden",
       "no": "No",
@@ -2589,7 +2595,9 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Bearbeiten"
+      "edit": "Bearbeiten",
+      "copyInfoSuccessMessage": "Erfolgreich kopiert! Bereit zum Einfügen.",
+      "copyInfoErrorMessage": "Fehler beim Kopieren. Bitte aktualisieren und erneut versuchen."
     },
     "state": {
       "enabled": "aktiv",
