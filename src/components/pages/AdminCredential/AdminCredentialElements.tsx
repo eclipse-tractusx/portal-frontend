@@ -82,10 +82,12 @@ export default function AdminCredentialElements() {
   const dispatch = useDispatch()
 
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(FilterType.ALL)
+  const [group, setGroup] = useState<string>(FilterType.PENDING)
   const [sortOption, setSortOption] = useState<string>(SortType.BPNLASC)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterValueAPI, setFilterValueAPI] = useState<string>(FilterType.ALL)
+  const [filterValueAPI, setFilterValueAPI] = useState<string>(
+    FilterType.PENDING
+  )
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [approveDeclineLoading, setApproveDeclineLoading] = useState<string>()
   const [openRevokeOverlay, setOpenRevokeOverlay] = useState<boolean>(false)
@@ -159,6 +161,11 @@ export default function AdminCredentialElements() {
     {
       buttonText: t('content.adminCertificate.tabs.all'),
       buttonValue: FilterType.ALL,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: t('content.adminCertificate.tabs.pending'),
+      buttonValue: FilterType.PENDING,
       onButtonClick: setView,
     },
     {
