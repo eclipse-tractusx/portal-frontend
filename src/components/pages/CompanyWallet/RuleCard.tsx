@@ -26,24 +26,29 @@ import {
 } from 'features/compayWallet/companyWalletApiSlice'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
+import CopyAllIcon from '@mui/icons-material/CopyAll'
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined'
 import { getAssetBase } from 'services/EnvironmentService'
 import { userHasSsiCredentialRole } from 'services/AccessService'
 import { ROLES } from 'types/Constants'
 import useFormattedDate from 'hooks/useFormattedDate'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { error, success } from 'services/NotifyService'
 
 type Hash<T> = Record<string, T>
 
 export default function RuleCard({
   sections,
   handleRevoke,
+  isIssuerCofinity,
 }: {
   readonly sections: Hash<WalletContent[]>
   readonly handleRevoke: (id: string) => void
+  readonly isIssuerCofinity?: boolean
 }): JSX.Element {
   const { t } = useTranslation()
   const { formatDate } = useFormattedDate()
+  const [copied, setCopied] = useState<string>('')
 
   const keys = useMemo(() => Object.keys(sections), [sections])
 
@@ -56,7 +61,7 @@ export default function RuleCard({
     ) {
       return '#A6A6A6'
     } else {
-      return '#fdb913'
+      return 'rgba(253, 185, 19, 0.4)'
     }
   }
 
@@ -73,10 +78,11 @@ export default function RuleCard({
     }
   }
 
-  const getStatus = (status: string) =>
-    status === CredentialSubjectStatus.REVOKED
-      ? CredentialSubjectStatus.INACTIVE
-      : status
+  const getStatus = (status: string) => {
+    return status === CredentialSubjectStatus.REVOKED
+      ? t(`content.companyWallet.status.${CredentialSubjectStatus.INACTIVE}`)
+      : t(`content.companyWallet.status.${status}`)
+  }
 
   const canShowRevoke = (item: WalletContent) => {
     return (
@@ -152,6 +158,67 @@ export default function RuleCard({
                       <Typography className="text" variant="h4">
                         {item?.credentialType.split('_').join(' ')}
                       </Typography>
+                      {isIssuerCofinity && index == 0 && (
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-start',
+                            gap: '5px',
+                            width: '100%',
+                          }}
+                        >
+                          <Typography
+                            variant="h4"
+                            className="text cx-bpnl-text"
+                            sx={{
+                              color: '#0073E6',
+                              flexGrow: 1,
+                            }}
+                          >
+                            {item.authority}
+                            <Box
+                              sx={{
+                                color:
+                                  copied === item.holder
+                                    ? '#00cc00'
+                                    : '#eeeeee',
+                                cursor: 'pointer',
+                                width: '18px',
+                                ':hover': {
+                                  color:
+                                    copied === item.holder
+                                      ? '#00cc00'
+                                      : '#cccccc',
+                                },
+                              }}
+                              onClick={async () => {
+                                try {
+                                  const value = item.holder ?? ''
+                                  await navigator.clipboard.writeText(
+                                    value as string
+                                  )
+                                  setCopied(value as string)
+                                  success(
+                                    t('global.actions.copyInfoSuccessMessage')
+                                  )
+                                } catch (err) {
+                                  error(
+                                    t('global.actions.copyInfoErrorMessage')
+                                  )
+                                } finally {
+                                  setTimeout(() => {
+                                    setCopied('')
+                                  }, 1000)
+                                }
+                              }}
+                            >
+                              <CopyAllIcon />
+                            </Box>
+                          </Typography>
+                        </Box>
+                      )}
+
                       {item?.version && (
                         <Typography className="text" variant="body3">
                           {t('content.companyWallet.version')}: {item.version}
@@ -162,7 +229,7 @@ export default function RuleCard({
                       <div className="cx-flex-description-container">
                         <Typography className="text" variant="body3">
                           {t('content.companyWallet.issuer')}
-                          {item.authority}
+                          {isIssuerCofinity ? 'Cofinity-X' : item.authority}
                         </Typography>
                         <Typography className="text" variant="body3">
                           {t('content.companyWallet.expiry')}

@@ -92,9 +92,10 @@ export default function EditUseCase({
             title: i18next.t('content.usecaseParticipation.editUsecase.title', {
               usecaseName: credentialType,
             }),
-            intro: i18next.t(
-              'content.usecaseParticipation.editUsecase.description',
-              { usecaseName: credentialType }
+            intro: (
+              <Trans i18nKey="content.usecaseParticipation.editUsecase.description">
+                <br />
+              </Trans>
             ),
             closeWithIcon: true,
             onCloseWithIcon: () => dispatch(show(OVERLAYS.NONE, '')),
@@ -110,22 +111,27 @@ export default function EditUseCase({
                   setChecked(e.target.checked)
                 }}
               />
-              <label htmlFor="agreement-checkbox">
-                <Trans
-                  i18nKey="content.usecaseParticipation.editUsecase.checkboxLabel"
-                  components={{
-                    1: (
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: 'blue', textDecoration: 'underline' }}
-                      >
-                        {t('content.usecaseParticipation.editUsecase.linkText')}
-                      </a>
-                    ),
-                  }}
-                />
+              <label htmlFor="agreement-checkbox" style={{ fontWeight: '500' }}>
+                <span className="cx-custom-link-wrapper">
+                  <Trans
+                    i18nKey="content.usecaseParticipation.editUsecase.checkboxLabel"
+                    components={{
+                      1: (
+                        <a
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="cx-custom-link"
+                          style={{ color: '#2484c6' }}
+                        >
+                          {t(
+                            'content.usecaseParticipation.editUsecase.linkText'
+                          )}
+                        </a>
+                      ),
+                    }}
+                  />
+                </span>
               </label>
             </div>
           </div>
@@ -159,7 +165,7 @@ export default function EditUseCase({
             onClick={handleUpload}
             disabled={!checked}
           >
-            {t('global.actions.submit')}
+            {t('global.actions.submitCredentialRequest')}
           </Button>
         )}
       </DialogActions>
