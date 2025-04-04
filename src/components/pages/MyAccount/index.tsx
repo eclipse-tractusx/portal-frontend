@@ -98,7 +98,7 @@ export default function MyAccount() {
       )}
 
       {/* TODO: DEV only needs to be removed when going PROD */}
-      {environment !== 'PRODUCTION' && environment !== 'BETA' && (
+      {!['PRODUCTION', 'BETA', 'INTEGRATION'].includes(environment) && (
         <section>
           <Accordion sx={{ marginBottom: '20px', boxShadow: 'none' }}>
             <AccordionSummary
