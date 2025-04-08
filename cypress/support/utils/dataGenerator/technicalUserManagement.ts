@@ -5,7 +5,7 @@ export const getRandomItem = (array: string[]): string => {
   return array[randomIndex]
 }
 
-// Generate a secure randomm string using crypto
+// Generate a secure randommm string using crypto
 export const generateDynamicUsername = (role: string): string => {
   const rolePrefix = role.split(' ')[0] // Take the first word of the role as the prefix
 
