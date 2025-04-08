@@ -213,7 +213,7 @@ export default function SubscriptionElements({
           <>
             <Chip
               color="primary"
-              label={t('content.appSubscription.activateBtn')}
+              label={t('content.appSubscription.configureBtn')}
               type="plain"
               variant="filled"
               onClick={() => {
@@ -247,7 +247,8 @@ export default function SubscriptionElements({
           </>
         )
       } else if (
-        subscription.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+        subscription.processStepTypeId ===
+        ProcessStep.MANUAL_TRIGGER_ACTIVATE_SUBSCRIPTION
       ) {
         return (
           <>
@@ -261,7 +262,10 @@ export default function SubscriptionElements({
             <Tooltips
               color="dark"
               tooltipPlacement="top-start"
-              tooltipText={t('content.appSubscription.pending')}
+              tooltipText={
+                t('content.appSubscription.pending') +
+                subscription.processStepTypeId
+              }
             >
               <HistoryIcon className="statusIcon pending" />
             </Tooltips>
@@ -269,17 +273,19 @@ export default function SubscriptionElements({
         )
       } else {
         return (
-          <Tooltips
-            color="dark"
-            tooltipPlacement="top-start"
-            tooltipText={t('content.appSubscription.process')}
-          >
-            <img
-              src={`${getAssetBase()}/images/icons/process.svg`}
-              className="statusIcon"
-              alt="subscription process"
-            />
-          </Tooltips>
+          <>
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.process')}
+            >
+              <img
+                src={`${getAssetBase()}/images/icons/process.svg`}
+                className="statusIcon"
+                alt="subscription process"
+              />
+            </Tooltips>
+          </>
         )
       }
     } else {
@@ -389,6 +395,7 @@ export default function SubscriptionElements({
           title={subscriptionDetail.title}
           handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
+            refetch()
           }}
         />
       )}

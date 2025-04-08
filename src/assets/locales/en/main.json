@@ -1503,6 +1503,7 @@
       "allServices": "All Services",
       "viewDetails": "Display more details",
       "activateBtn": "Activate",
+      "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Success",
