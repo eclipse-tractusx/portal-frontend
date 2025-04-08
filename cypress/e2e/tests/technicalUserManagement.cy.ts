@@ -17,7 +17,7 @@ describe('Technical User Creation', () => {
 
   it('should create a technical user with dynamic role-based username', () => {
     cy.fixture('technicalUser').then((user) => {
-      // Start the technical user creation process
+      // Start technical user creation process
       technicalPage.clickCreateUserButton()
 
       // Select a random role and generate dynamic data based on the role
