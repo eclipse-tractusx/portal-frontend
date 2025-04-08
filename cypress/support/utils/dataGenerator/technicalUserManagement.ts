@@ -5,11 +5,11 @@ export const getRandomItem = (array: string[]): string => {
   return array[randomIndex]
 }
 
-// Generate a secure randommm string using crypto
+// Generate a secure random string using crypto
 export const generateDynamicUsername = (role: string): string => {
   const rolePrefix = role.split(' ')[0] // Take the first word of the role as the prefix
 
-  // Generate a random value securely using cryp
+  // Generate a random value securely using crypto
   const randomBytes = new Uint8Array(4) // 4 bytes for a 8-character string
   crypto.getRandomValues(randomBytes) // Secure random generation
 
@@ -22,7 +22,7 @@ export const generateDynamicUsername = (role: string): string => {
 }
 
 export const generateDynamicDescription = (template: string): string => {
-  // Generate secure random string using cryptto
+  // Generate secure random string using crypto
   const randomBytes = new Uint8Array(4) // 4 bytes for an 8-character string
   crypto.getRandomValues(randomBytes) // Secure random generation
 
