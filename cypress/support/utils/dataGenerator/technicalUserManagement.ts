@@ -9,7 +9,7 @@ export const getRandomItem = (array: string[]): string => {
 export const generateDynamicUsername = (role: string): string => {
   const rolePrefix = role.split(' ')[0] // Take the first word of the role as the prefix
 
-  // Generate a random value securely using crypto
+  // Generate a random value securely using cryp
   const randomBytes = new Uint8Array(4) // 4 bytes for a 8-character string
   crypto.getRandomValues(randomBytes) // Secure random generation
 
