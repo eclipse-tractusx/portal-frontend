@@ -22,7 +22,7 @@ export const generateDynamicUsername = (role: string): string => {
 }
 
 export const generateDynamicDescription = (template: string): string => {
-  // Generate secure random string using crypto
+  // Generate secure random string using cryptto
   const randomBytes = new Uint8Array(4) // 4 bytes for an 8-character string
   crypto.getRandomValues(randomBytes) // Secure random generation
 
