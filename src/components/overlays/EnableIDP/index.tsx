@@ -43,7 +43,7 @@ import { EnableIDPContent } from './EnableIDPContent'
 import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { success } from 'services/NotifyService'
-import { error } from 'services/LogService'
+import { error, type LogData } from 'services/LogService'
 
 export const EnableIDP = ({ id }: { id: string }) => {
   const { t } = useTranslation('idp')
@@ -99,10 +99,11 @@ export const EnableIDP = ({ id }: { id: string }) => {
         success(t('enable.success'))
       } catch (err) {
         setShowError(true)
+        error('Error occurred while updating IDP user:', err as LogData)
       }
       setLoading(false)
     } catch (err) {
-      error(err as string)
+      error('Error occurred while enabling IDP for the user', err as LogData)
     }
   }
 

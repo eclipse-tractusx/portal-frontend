@@ -53,7 +53,8 @@ const fetchPage = createAsyncThunk(
   async (page: number) => {
     try {
       return await Api.getInstance().getItems(page)
-    } catch (error: unknown) {
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${name}/fetchPage error`)
     }
   }
