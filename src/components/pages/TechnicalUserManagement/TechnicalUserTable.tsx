@@ -110,7 +110,7 @@ export const TechnicalUserTable = () => {
           '.MuiDataGrid-columnHeader, .MuiDataGrid-row .MuiDataGrid-cell[role="cell"]':
             {
               padding: '0 15px',
-              '&:first-child': {
+              '&:first-of-type': {
                 paddingLeft: '32px',
               },
               '&:last-child': {

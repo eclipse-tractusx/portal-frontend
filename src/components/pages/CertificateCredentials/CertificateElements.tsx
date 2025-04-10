@@ -17,28 +17,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
 import type { CertificateResponse } from 'features/certification/certificationApiSlice'
 import { CertificateCard } from 'components/shared/basic/CertificateCard'
-import './CertificateCredentials.scss'
+import './style.scss'
 
 export default function CertificateElements({
   data,
 }: Readonly<{
   data: CertificateResponse[]
 }>) {
-  const { t } = useTranslation()
-
-  if (data && data.length === 0) {
-    return (
-      <Typography variant="body1" className="noData">
-        {t('content.certificates.noData')}
-      </Typography>
-    )
-  }
-
   return (
     <Grid container spacing={2} className="certificate-section">
       {data?.map((item: CertificateResponse) =>

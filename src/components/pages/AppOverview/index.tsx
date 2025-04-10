@@ -49,12 +49,15 @@ import debounce from 'lodash.debounce'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { useLocation } from 'react-router-dom'
-import './AppOverview.scss'
+import './style.scss'
 import { AppOverviewList } from './AppOverviewList'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import { initialState } from 'features/appManagement/types'
 import { fetchImageWithToken } from 'services/ImageService'
-import { setCurrentActiveStep } from 'features/appManagement/slice'
+import {
+  setAppRedirectStatus,
+  setCurrentActiveStep,
+} from 'features/appManagement/slice'
 import { setAppId, setAppStatus } from 'features/appManagement/actions'
 import NoItems from '../NoItems'
 import { isValidAppOverviewSearch } from 'types/Patterns'
@@ -239,6 +242,12 @@ export default function AppOverview() {
       dispatch(show(OVERLAYS.APP_DETAILS_OVERLAY, item.id, item.name))
     }
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(setAppRedirectStatus(true))
+    }
+  }, [])
 
   return (
     <div className="appOverview-app">

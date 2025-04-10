@@ -45,7 +45,6 @@ import './style.scss'
 import type { store } from 'features/store'
 import { setSuccessType } from 'features/appSubscription/slice'
 import { Link } from 'react-router-dom'
-import { closeOverlay } from 'features/control/overlay'
 import { useFetchTechnicalUserProfilesQuery } from 'features/appManagement/apiSlice'
 import { type LogData } from 'services/LogService'
 import { error } from 'services/NotifyService'
@@ -171,7 +170,9 @@ const ActivateSubscriptionOverlay = ({
                   color="success"
                 />
               }
-              onCloseWithIcon={() => dispatch(closeOverlay())}
+              onCloseWithIcon={() => {
+                handleOverlayClose()
+              }}
             />
             <DialogContent>
               {loading ? (

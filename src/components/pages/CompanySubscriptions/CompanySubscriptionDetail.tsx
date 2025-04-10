@@ -26,7 +26,7 @@ import {
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
 import { PAGES } from 'types/Constants'
-import './CompanySubscriptions.scss'
+import './style.scss'
 import {
   useFetchServiceDetailsQuery,
   useFetchSubscriptionServiceQuery,
@@ -34,11 +34,11 @@ import {
 import CommonService from 'services/CommonService'
 import { useState, useEffect } from 'react'
 import { getApiBase } from 'services/EnvironmentService'
-import CompanySubscriptionTechnical from './components/CompanySubscriptionTechnical'
-import CompanySubscriptionHeader from './components/CompanySubscriptionHeader'
-import CompanySubscriptionContent from './components/CompanySubscriptionContent'
-import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacyContent'
-import CompanySubscriptionDocument from './components/CompanySubscriptionDocument'
+import CompanySubscriptionTechnical from './CompanySubscriptionTechnical'
+import CompanySubscriptionHeader from './CompanySubscriptionHeader'
+import CompanySubscriptionContent from './CompanySubscriptionContent'
+import CompanySubscriptionPrivacy from './CompanySubscriptionPrivacyContent'
+import CompanySubscriptionDocument from './CompanySubscriptionDocument'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
@@ -95,7 +95,9 @@ export default function CompanySubscriptionDetail() {
             backButtonLabel={t('global.actions.back')}
             backButtonVariant="text"
             onBackButtonClick={() => {
-              navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`)
+              navigate(`/${PAGES.COMPANY_SUBSCRIPTIONS}`, {
+                state: { activeTab: items.app ? 0 : 1 },
+              })
             }}
           />
         </Box>

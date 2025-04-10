@@ -20,7 +20,7 @@
 
 import type { CardDetailsProps } from '../StaticTypes'
 import { Typography } from '@catena-x/portal-shared-components'
-import '../StaticTemplate.scss'
+import '../style.scss'
 import { Trans } from 'react-i18next'
 
 export default function CardWithText({

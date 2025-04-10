@@ -198,7 +198,12 @@
   "field": {
     "display": {
       "name": "Display name",
-      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)"
+      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)",
+      "mandatoryMessage": "Display name field is mandatory",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "charactersRequired": " characters required",
+      "validCharactersIncludes": "Allowed characters: a-z, A-Z, 0-9, !?@&#\"()_-=/*.,;: (single spaces only, no double spacing)"
     },
     "alias": {
       "name": "Alias",
@@ -239,10 +244,6 @@
     },
     "copy": {
       "hint": "click to copy"
-    },
-    "name": {
-      "name": "Client ID",
-      "hint": "Enter the client ID provided by your IdP"
     },
     "company": { "name": "company", "hint": "company" },
     "extid": { "name": "extid", "hint": "extid" },
@@ -303,12 +304,6 @@
       "title": "Next Steps",
       "desc": "{Description of next steps}",
       "body1": "Registration of IDP {{id}} successful. Now do ..."
-    },
-    "consent": {
-      "title": "Consent",
-      "desc": "{Description of the Consent process}",
-      "error": "Error submitting consent",
-      "success": "Consent successful"
     }
   },
   "action": {
@@ -322,7 +317,6 @@
     "edit": "Edit",
     "configure": "Configure",
     "register": "Register Partner",
-    "consent": "Consent",
     "users": "Users",
     "signout": "Sign out",
     "confirm": "Confirm",

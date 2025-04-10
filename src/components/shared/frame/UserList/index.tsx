@@ -34,6 +34,7 @@ import './style.scss'
 import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 import { isSearchUserEmail } from 'types/Patterns'
+import { getClientId } from 'services/EnvironmentService'
 
 interface FetchHookArgsType {
   appId?: string
@@ -130,7 +131,7 @@ export const UserList = ({
           {
             field: 'name',
             headerName: t('global.field.name'),
-            flex: 3,
+            flex: 2,
             valueGetter: ({ row }: { row: TenantUser }) =>
               `${row.firstName} ${row.lastName}`,
           },
@@ -138,7 +139,7 @@ export const UserList = ({
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 3,
+            flex: 1.5,
             renderCell: ({ value: status }) => {
               return (
                 <StatusTag color="label" label={t(`global.field.${status}`)} />
@@ -148,25 +149,52 @@ export const UserList = ({
           {
             field: 'roles',
             headerName: t('global.field.role'),
-            flex: 4,
-            renderCell: ({ value: roles }) =>
-              roles.length
-                ? roles.map((role: RoleType | string) => (
-                    <StatusTag
-                      key={typeof role === 'string' ? role : role.roleId}
-                      color="label"
-                      label={typeof role === 'string' ? role : role.roleName}
-                      className="statusTag"
-                    />
-                  ))
-                : '',
+            flex: 5,
+            renderCell: ({ value: roles }) => (
+              <span
+                style={{
+                  overflowX: 'scroll',
+                  scrollbarWidth: 'none',
+                }}
+              >
+                {isDetail
+                  ? roles.length
+                    ? roles
+                        .filter(
+                          (role: RoleType | string) =>
+                            typeof role !== 'string' &&
+                            role.clientId === getClientId()
+                        )
+                        .map((role: RoleType) => (
+                          <StatusTag
+                            key={role.roleId}
+                            color="label"
+                            label={role.roleName}
+                            className="statusTag"
+                          />
+                        ))
+                    : ''
+                  : roles.length
+                    ? roles.map((role: RoleType | string) => (
+                        <StatusTag
+                          key={typeof role === 'string' ? role : role.roleId}
+                          color="label"
+                          label={
+                            typeof role === 'string' ? role : role.roleName
+                          }
+                          className="statusTag"
+                        />
+                      ))
+                    : ''}
+              </span>
+            ),
           },
           {
             field: 'details',
             headerName: isDetail
               ? t('global.field.details')
               : t('global.field.edit'),
-            flex: 2,
+            flex: 1.5,
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton
                 disabled={onDetailsClick === undefined}

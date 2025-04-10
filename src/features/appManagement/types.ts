@@ -93,7 +93,20 @@ export interface AppManagementState {
   searchInput: SearchInputState
   currentActiveStep: number
   appId: string
+  appRedirectStatus: boolean
   appStatusData: AppStatusDataState
+}
+
+export interface UserRoleType {
+  roleId: string
+  roleName: string
+  type: string
+  accessiblyByProviderOnly: boolean
+}
+
+export interface TechnicalUserProfiles {
+  technicalUserProfileId: string
+  userRoles: UserRoleType[]
 }
 
 export const initialState: AppManagementState = {
@@ -103,6 +116,7 @@ export const initialState: AppManagementState = {
   },
   currentActiveStep: 1,
   appId: '',
+  appRedirectStatus: true,
   appStatusData: {
     title: '',
     provider: '',

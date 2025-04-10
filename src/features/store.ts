@@ -24,8 +24,6 @@ import admin from './admin'
 import apps from './apps'
 import control from './control'
 import info from './info'
-import partnerNetworkSlice from './partnerNetwork/slice'
-import connectorSlice from './connector/slice'
 import notificationSliceDep from './notification/slice'
 import ErrorSlice from './error/slice'
 import images from './images/slice'
@@ -38,6 +36,7 @@ import appSubscriptionSlice from './appSubscription/slice'
 import adminBoardSlice from './adminBoard/slice'
 import modelsSlice from './semanticModels/slice'
 import updateCompanyRoleSlice from './companyRoles/slice'
+import partnerNetworkSlice from './partnerNetwork/slice'
 import { apiSlice as idpApiSlice } from './admin/idpApiSlice'
 import userAddSlice, { apiSlice as userSlice } from './admin/userApiSlice'
 import { apiSlice as serviceSlice } from './admin/serviceApiSlice'
@@ -55,10 +54,12 @@ import { apiSlice as adminClearingHouseSDApiSlice } from './adminClearingHouseSD
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as networkApiSlice } from './admin/networkApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
-import { apiSlice as partnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
+import { apiSlice as newPartnerNetworkApiSlice } from './newPartnerNetwork/partnerNetworkApiSlice'
+import { apiSlice as partnerNetworkApiSlice } from './partnerNetwork/apiSlice'
 import { apiSlice as partnerNetworkPortalApiSlice } from './newPartnerNetwork/partnerNetworkPortalApiSlice'
 import { apiSlice as connectorApiSlice } from './connector/connectorApiSlice'
 import { apiSlice as serviceManagementApiSlice } from './serviceManagement/apiSlice'
+import { apiSlice as newsApiSlice } from './info/news/apiSlice'
 import serviceSubscriptionSlice from './serviceSubscription/slice'
 import { apiSlice as serviceSubscriptionApiSlice } from './serviceSubscription/serviceSubscriptionApiSlice'
 import { apiSlice as serviceAdminBoardApiSlice } from './adminBoard/serviceAdminBoardApiSlice'
@@ -71,6 +72,7 @@ import { apiSlice as registrationApiSlice } from './registration/registrationApi
 import { apiSlice as companyCertificateApiSlice } from './companyCertification/companyCertificateApiSlice'
 import { apiSlice as staticContentApiSlice } from './staticContent/staticContentApiSlice'
 import { apiSlice as companyDataApiSlice } from './companyData/companyDataApiSlice'
+import { apiSlice as semanticApiSlice } from './semanticModels/apiSlice'
 import companyDataSlice from './companyData/slice'
 
 import languageSlice from './language/slice'
@@ -95,11 +97,10 @@ export const reducers = {
   userRole: userRoleSlice.reducer,
   semanticModels: modelsSlice.reducer,
   companyRoles: updateCompanyRoleSlice.reducer,
-  partnerNetwork: partnerNetworkSlice.reducer,
-  connector: connectorSlice.reducer,
   notification: notificationSliceDep.reducer,
   error: ErrorSlice.reducer,
   languageSlice: languageSlice.reducer,
+  partnerNetwork: partnerNetworkSlice,
   [idpApiSlice.reducerPath]: idpApiSlice.reducer,
   [userSlice.reducerPath]: userSlice.reducer,
   [serviceSlice.reducerPath]: serviceSlice.reducer,
@@ -116,11 +117,14 @@ export const reducers = {
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
   [networkApiSlice.reducerPath]: networkApiSlice.reducer,
   [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
+  [newPartnerNetworkApiSlice.reducerPath]: newPartnerNetworkApiSlice.reducer,
   [partnerNetworkApiSlice.reducerPath]: partnerNetworkApiSlice.reducer,
   [partnerNetworkPortalApiSlice.reducerPath]:
     partnerNetworkPortalApiSlice.reducer,
   [connectorApiSlice.reducerPath]: connectorApiSlice.reducer,
+  [semanticApiSlice.reducerPath]: semanticApiSlice.reducer,
   [serviceManagementApiSlice.reducerPath]: serviceManagementApiSlice.reducer,
+  [newsApiSlice.reducerPath]: newsApiSlice.reducer,
   [serviceSubscriptionApiSlice.reducerPath]:
     serviceSubscriptionApiSlice.reducer,
   [serviceAdminBoardApiSlice.reducerPath]: serviceAdminBoardApiSlice.reducer,
@@ -156,9 +160,12 @@ export const store = configureStore({
       .concat(networkApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)
       .concat(partnerNetworkApiSlice.middleware)
+      .concat(newPartnerNetworkApiSlice.middleware)
       .concat(partnerNetworkPortalApiSlice.middleware)
       .concat(connectorApiSlice.middleware)
+      .concat(semanticApiSlice.middleware)
       .concat(serviceManagementApiSlice.middleware)
+      .concat(newsApiSlice.middleware)
       .concat(serviceSubscriptionApiSlice.middleware)
       .concat(serviceAdminBoardApiSlice.middleware)
       .concat(companyRoleApiSlice.middleware)

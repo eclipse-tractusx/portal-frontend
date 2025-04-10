@@ -31,7 +31,7 @@ import {
   CircleProgress,
 } from '@catena-x/portal-shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   InputLabel,
   MenuItem,
@@ -43,17 +43,16 @@ import {
 import { useTranslation } from 'react-i18next'
 import DownloadLink from './DownloadLink'
 import { useEffect, useState } from 'react'
-import {
-  changeOpenApiUrl,
-  deleteSemanticModelById,
-} from 'features/semanticModels/actions'
+import { Status } from 'features/semanticModels/types'
+import { userHasSemanticHubRole } from 'services/AccessService'
 import { ROLES } from 'types/Constants'
+import {
+  useChangeOpenApiUrlMutation,
+  useDeleteModelByIdMutation,
+} from 'features/semanticModels/apiSlice'
 import { getSemanticApiBase } from 'services/EnvironmentService'
 import { info } from 'services/LogService'
 import { getHeaders } from 'services/RequestService'
-import { Status } from 'features/semanticModels/types'
-import type { AppDispatch } from 'features/store'
-import { userHasSemanticHubRole } from 'services/AccessService'
 
 interface ModelDetailDialogProps {
   show: boolean
@@ -66,7 +65,6 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const { model, loadingModel, openApiLink, error, openApiError } = useSelector(
     semanticModelsSelector
   )
-  const dispatch = useDispatch<AppDispatch>()
   const [diagram, setDiagram] = useState<string>('')
   const [diagramError, setDiagramError] = useState<string>('')
   const [openApiUrlInput, setOpenApiUrlInput] = useState<string>('')
@@ -79,6 +77,9 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
     { type: 'payload', fileFormat: 'payload.json' },
   ]
   const margin = { mr: -2, ml: -2 }
+
+  const [changeOpenApiUrl] = useChangeOpenApiUrlMutation()
+  const [deleteModelById] = useDeleteModelByIdMutation()
 
   useEffect(() => {
     setDiagram('')
@@ -127,16 +128,14 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
   const onOpenApiUrlChange = () => {
     if (model) {
       const encodedUrn = encodeURIComponent(model?.urn)
-      dispatch(changeOpenApiUrl({ id: encodedUrn, url: openApiUrlInput }))
+      changeOpenApiUrl({ id: encodedUrn, url: openApiUrlInput })
     }
   }
 
   const onDeleteConfirm = () => {
     setShowDeleteConfirm(false)
     if (model) {
-      dispatch(
-        deleteSemanticModelById({ id: model.urn, modelName: model.name })
-      )
+      deleteModelById({ id: model.urn, modelName: model.name })
     }
   }
 

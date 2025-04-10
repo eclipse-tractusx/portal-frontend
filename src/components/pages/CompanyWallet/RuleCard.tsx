@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Tooltips, Typography } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
+import './style.scss'
 import {
   CredentialSubjectStatus,
   CredentialType,
@@ -63,7 +63,7 @@ export default function RuleCard({
 
   const canShowRevoke = (item: WalletContent) => {
     return (
-      userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+      userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIAL) &&
       item.status === CredentialSubjectStatus.ACTIVE &&
       item?.credentialType !== CredentialType.MEMBERSHIP &&
       item.credentialType !== CredentialType.BUSINESS_PARTNER_NUMBER

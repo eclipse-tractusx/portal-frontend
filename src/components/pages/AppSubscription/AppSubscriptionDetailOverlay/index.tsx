@@ -40,7 +40,7 @@ import {
   useFetchSubscriptionDetailQuery,
   useUpdateTenantUrlMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
-import ReleaseStepper from 'components/shared/basic/ReleaseProcess/stepper'
+import ReleaseStepper from 'components/shared/basic/ReleaseProcess/Stepper'
 import { SubscriptionStatus } from 'features/apps/types'
 import { ROLES } from 'types/Constants'
 import { useState } from 'react'
@@ -109,7 +109,7 @@ const AppSubscriptionDetailOverlay = ({
 
   const getStatus = () => {
     if (
-      data?.processStepTypeId === ProcessStep.START_AUTOSETUP ||
+      data?.processStepTypeId === ProcessStep.AWAIT_START_AUTOSETUP ||
       data?.processStepTypeId === ProcessStep.TRIGGER_PROVIDER
     ) {
       return t('content.appSubscription.detailOverlay.subscriptionInitiated')

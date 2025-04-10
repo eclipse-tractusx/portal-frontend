@@ -25,7 +25,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
-import './Footer.scss'
+import './style.scss'
 import { PAGES } from 'types/Constants'
 import { currentActiveStep } from 'features/appManagement/slice'
 import { useSelector } from 'react-redux'

@@ -49,7 +49,7 @@ export const Patterns = {
   COMPANY_NAME:
     /^(?!.*\s$)([\p{L}\u0E00-\u0E7F\d\p{Sc}@%*+_\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/u,
   personName: personNamePattern,
-  name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
+  name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,. ']{0,40} ?)[^ –]{1,40}$/,
   zipcode: /^[A-Z0-9-]{1,8}$/,
   streetNumber: /^[0-9A-Za-z- ]{1,20}$/,
   regionName: /^[0-9A-Za-z- ]{2,20}$/,
@@ -92,6 +92,7 @@ export const Patterns = {
   idp: {
     clientId: /^[a-zA-Z0-9-_]{2,80}$/,
     clientSecret: /^.{1,200}$/,
+    displayName: /^(?!.*\s{2,})[a-zA-Z0-9!?@&#'"()_\-=/*.,;: ]*$/,
   },
   connectors: {
     NAME: /^[^-\s()'"#@.&](?!.*[%&?,';:!\s-]{2}).{1,19}$/,
@@ -213,5 +214,7 @@ export const isSearchUserEmail = (expr: string) =>
   Patterns.EMAIL_SEARCH.test(expr)
 export const isValidAppOverviewSearch = (expr: string) =>
   Patterns.appOverview.SEARCH.test(expr)
+export const isValidIDPName = (expr: string) =>
+  Patterns.idp.displayName.test(expr)
 
 export default Patterns

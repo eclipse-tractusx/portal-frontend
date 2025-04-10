@@ -35,7 +35,7 @@ import { NavLink } from 'react-router-dom'
 import { info } from 'services/LogService'
 import UserService from 'services/UserService'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import './Notifications.scss'
+import './style.scss'
 import { Tooltips, Typography } from '@catena-x/portal-shared-components'
 import LabelImportantIcon from '@mui/icons-material/LabelImportant'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -93,6 +93,7 @@ const NotificationContent = ({
   const newUrl = item.contentParsed?.newUrl
   const roles = item.contentParsed?.Roles
   const userEmail = item.contentParsed?.UserEmail
+  const serviceName = item.contentParsed?.ServiceName
 
   return (
     <>
@@ -113,6 +114,7 @@ const NotificationContent = ({
             newUrl,
             roles: roles?.join(', '),
             useremail: userEmail,
+            serviceName,
           }}
         >
           <NameLink
@@ -229,6 +231,8 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
     case NotificationType.SUBSCRIPTION_URL_UPDATE:
       return <NotificationContent item={item} />
     case NotificationType.APP_ROLE_ADDED:
+      return <NotificationContent item={item} />
+    case NotificationType.SERVICE_RELEASE_APPROVAL:
       return <NotificationContent item={item} />
     default:
       return <pre>{JSON.stringify(item, null, 2)}</pre>

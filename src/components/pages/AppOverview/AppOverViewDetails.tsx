@@ -29,6 +29,7 @@ import { useTranslation } from 'react-i18next'
 import {
   ConsentStatusEnum,
   useFetchAppRolesDataQuery,
+  useFetchTechnicalUserProfilesQuery,
   useSubmitappMutation,
 } from 'features/appManagement/apiSlice'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -54,6 +55,9 @@ export default function AppOverViewDetails({
   const [cardLanguage, setCardLanguage] = useState<string>('en')
   const { data } = useFetchAppRolesDataQuery(id ?? '')
   const [submitapp] = useSubmitappMutation()
+  const { data: technicalUserProfiles } = useFetchTechnicalUserProfilesQuery(
+    id ?? ''
+  )
 
   const defaultValues = useMemo(() => {
     return {
@@ -211,6 +215,7 @@ export default function AppOverViewDetails({
           stepperDescription={''}
           statusData={item}
           id={id}
+          techUserProfiles={technicalUserProfiles ?? []}
           fetchDocumentById={fetchDocumentById}
           submitData={submitapp}
           validateAndPublishItemText="content.apprelease.validateAndPublish"

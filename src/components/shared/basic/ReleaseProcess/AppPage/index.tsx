@@ -35,14 +35,16 @@ import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   appIdSelector,
+  appRedirectStatusSelector,
   appStatusDataSelector,
   decrement,
   increment,
+  setAppRedirectStatus,
 } from 'features/appManagement/slice'
 import {
   DocumentTypeId,
@@ -68,6 +70,11 @@ import {
 import { ButtonLabelTypes } from '..'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { phone } from 'phone'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
+import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
+import { isStepCompleted } from '../AppStepHelper'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -85,7 +92,9 @@ type FormDataType = {
 export default function AppPage() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
   const appId = useSelector(appIdSelector)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
 
   const [appPageNotification, setAppPageNotification] = useState(false)
   const [appPageSnackbar, setAppPageSnackbar] = useState<boolean>(false)
@@ -108,6 +117,7 @@ export default function AppPage() {
   const statusData = fetchAppStatus ?? appStatusData
   const [loading, setLoading] = useState<boolean>(false)
   const [saveApp] = useSaveAppMutation()
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
 
   const [deleteAppReleaseDocument, deleteResponse] =
     useDeleteAppReleaseDocumentMutation()
@@ -159,6 +169,17 @@ export default function AppPage() {
         setSelectedPrivacyPolicies(fetchAppStatus?.privacyPolicies)
     }
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 2, appRedirectStatus)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   const uploadAppContractValue = getValues().uploadAppContract
   const uploadDataPrerequisitsValue = getValues().uploadDataPrerequisits
@@ -405,6 +426,7 @@ export default function AppPage() {
 
   const onBackIconClick = () => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
+    dispatch(setAppRedirectStatus(false))
     dispatch(decrement())
   }
 
@@ -463,6 +485,28 @@ export default function AppPage() {
       return `${t(
         'content.apprelease.appReleaseForm.validCharactersIncludes'
       )} a-zA-ZÀ-ÿ0-9 !?@&#'"()[]_-+=<>/*.,;:% and should not start with @=<>*-+ #?%&_:;`
+    }
+  }
+
+  const handleDownload = async (documentName: string, documentId?: string) => {
+    const docId = Array.isArray(documentName) ? documentName[0].id : documentId!
+    const docName = Array.isArray(documentName)
+      ? documentName[0].name
+      : documentName
+
+    if (fetchDocumentById) {
+      try {
+        const response = await fetchDocumentById({
+          appId,
+          documentId: docId,
+        }).unwrap()
+
+        const { fileType, file } = extractFileData(response)
+
+        download(file, fileType, docName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
     }
   }
 
@@ -547,8 +591,9 @@ export default function AppPage() {
                     'image/jpeg': [],
                   }}
                   maxFilesToUpload={3}
-                  maxFileSize={819200}
+                  maxFileSize={ALLOWED_MAX_SIZE_DOCUMENT}
                   DropArea={renderDropArea}
+                  handleDownload={() => handleDownload(value)}
                   handleDelete={(documentId: string) => {
                     setDeleteSuccess(false)
                     documentId && deleteAppReleaseDocument(documentId)
@@ -598,6 +643,7 @@ export default function AppPage() {
                   maxFileSize: 819200,
                   size: 'small',
                 }}
+                handleDownload={handleDownload}
                 handleDelete={(documentId: string) => {
                   setDeleteSuccess(false)
                   documentId && deleteAppReleaseDocument(documentId)

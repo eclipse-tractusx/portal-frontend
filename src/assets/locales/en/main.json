@@ -21,7 +21,6 @@
     "technicalSetup": "Technical Integration",
     "connectorManagement": "Connector Management",
     "applicationRequests": "Application Requests",
-    "clearinghouseSelfDescription": "Clearinghouse Self-Description",
     "admin": "Administration",
     "developer": "Development",
     "invite": "Invite Business Partner",
@@ -322,7 +321,8 @@
           "manufacturingasaservice": "Manufacturing as a Service",
           "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
           "real-timecontrol": "Real Time Control",
-          "modularproduction": "Modular Production"
+          "modularproduction": "Modular Production",
+          "behaviortwin": "Behavior Twin"
         },
         "noMatch": "No Match",
         "for": "for your search term",
@@ -407,19 +407,18 @@
     },
     "organization": {
       "unsubscribe": {
-        "title": "Unsubscribe Business Application / Service",
-        "descriptionNote": "Please note: the unsubscription is not revertible",
-        "description": "all possibly connected objects (mentioned in below table) will get deactivated as well",
+        "title": "Unsubscribe Business Application/Service",
         "table": {
-          "listOfConnectedObjects": "List of connected objects:",
-          "app": "Application / Service title:",
+          "listOfConnectedObjects": "Application/Service Details:",
+          "app": "Application/Service Title:",
           "status": "Current Status:",
           "connector": "Connector:",
           "techUser": "Technical User:"
         },
         "subscribed": "Subscribed",
-        "checkBoxLabel": "Yes, I agree to unsubscribe from this application / service.",
-        "checkBoxLabelDescription": "I understand the implications of unsubscribing and would still like to continue the process.",
+        "checkBoxLabel": "I confirm I have read the notice and still wish to unsubscribe from this application/service.",
+        "checkBoxDescriptionAlert": "Please note:",
+        "checkBoxLabelDescription": "Unsubscribing cannot be undone. When you unsubscribe, your agreements with third-party providers, including notice periods, still apply.",
         "buttonText": "Unsubscribe",
         "unsubscribeSuccess": "Unsubscribe subscription is successful",
         "unsubscribeError": "Unsubscription could not be executed. Please try again or come back later.",
@@ -439,6 +438,9 @@
       },
       "deleteAccount": "Delete Account",
       "certificates": "Certificates/Documents"
+    },
+    "datamanagement": {
+      "message": "Contents of Data Management"
     },
     "companySubscriptions": {
       "headertitle": "App & Service Subscriptions",
@@ -479,7 +481,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
@@ -492,9 +493,6 @@
       "technicalUser": {
         "heading": "Technical Details"
       }
-    },
-    "datamanagement": {
-      "message": "Contents of Data Management"
     },
     "appOverview": {
       "headerTitle": "My Apps",
@@ -798,7 +796,7 @@
         "uniqueid": "Unique ID",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member",
+        "cxparticipant": "Active Participant",
         "address": "Address",
         "identifiers": "Identifiers"
       },
@@ -1102,16 +1100,21 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "note": "<strong>Note:</strong> Selection of both internal and external users for the same service is not possible.",
-          "internalRoles": "Internal Roles :",
-          "externalRoles": "External Roles :",
+          "note": "Note: Selection of both internal and external users for the same service is not possible.",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile. The technical users created from this profile will  be visible to the customer and provider!",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers",
+          "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
           "username": "Username*",
           "description": "Description*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
-          "roleMandatory": "Technical user Role is mandatory",
+          "roleMandatory": "Technical user role is mandatory",
           "error": {
             "select": "Please select a value.",
             "username": "Please enter username.",
@@ -1123,8 +1126,8 @@
     "addUserRight": {
       "headline": "Assign app roles to your user(s)",
       "noRolesFound": "No user roles found",
-      "selectUsersDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-      "addRolesDescription": "[abstract] Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "selectUsersDescription": "Assign the appropriate application roles to your users to ensure they have the necessary permissions and access levels required for their tasks.",
+      "addRolesDescription": "Assign the appropriate application roles to your users to ensure they have the necessary permissions and access levels required for their tasks.",
       "confirmSelectedUsers": "Confirm selected users",
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",
@@ -1193,7 +1196,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
@@ -1324,13 +1326,39 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select at least one technical user setup",
+        "technicalUserSetupMandatory": "Please select at least one technical userprofile setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Error while deleting technical user profile",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical userprofile needed to run the app/service)",
+        "userProfileDeleteSuccessMessage": "Technical userprofile deleted successfully",
+        "table": {
+          "addtechUserButton": "Add Technical Userprofile",
+          "title": "Technical Userprofile",
+          "name": "Technical user profile",
+          "type": "Type",
+          "role": "Roles",
+          "noRoles": "No technical userprofiles added",
+          "action": "Action"
+        },
+        "form": {
+          "title": "Configure Technical Userprofile",
+          "intro": "Select internal or external roles and continue to configure technical userprofile",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile. The technical users created from this profile will  be visible to the customer and provider!",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
+          "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers"
+        },
+        "deleteOverlay": {
+          "title": "Delete technical userprofile",
+          "description": "Are you sure you want to delete selected technical userprofile?"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1480,6 +1508,7 @@
       "success": "Success",
       "pending": "Subscription is Pending",
       "active": "Subscription is Active",
+      "inactive": "Subscription is Inactive",
       "process": "Subscription is in Progress",
       "tabs": {
         "request": "Request",
@@ -2013,6 +2042,7 @@
     "adminCertificate": {
       "headline": "Credential Request Overview",
       "search": "...search for Company Name",
+      "noDocumentAvailable": "No Document available",
       "tabs": {
         "all": "All",
         "pending": "Pending",
@@ -2372,7 +2402,8 @@
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
-      "copyInfoSuccessMessage": "Information copied successfully"
+      "copyInfoSuccessMessage": "Information copied successfully",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "enabled",

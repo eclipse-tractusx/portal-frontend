@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import type { AppStatusDataState } from './types'
+import type { AppStatusDataState, TechnicalUserProfiles } from './types'
 import i18next from 'i18next'
 
 export type useCasesItem = {
@@ -167,12 +167,14 @@ export type userRolesType = {
   roleDescription: string | null
 }
 
+export interface UpdateTechnicalUserProfileBody {
+  technicalUserProfileId: string | null
+  userRoleIds: string[]
+}
+
 export type updateTechnicalUserProfiles = {
   appId: string
-  body: {
-    technicalUserProfileId: string | null
-    userRoleIds: string[]
-  }[]
+  body: UpdateTechnicalUserProfileBody[]
 }
 
 export type technicalUserProfiles = {
@@ -306,7 +308,8 @@ export const apiSlice = createApi({
       invalidatesTags: [Tags.APP],
     }),
     fetchAppRolesData: builder.query<updateRolePayload[], string>({
-      query: (appId: string) => `/api/apps/AppReleaseProcess/${appId}/roles`,
+      query: (appId: string) =>
+        `/api/apps/AppReleaseProcess/${appId}/roles?languageShortName=${i18next.language}`,
     }),
     updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
       query: (data) => ({
@@ -345,7 +348,7 @@ export const apiSlice = createApi({
     fetchUserRoles: builder.query<userRolesType[], void>({
       query: () => 'api/administration/serviceaccount/user/roles',
     }),
-    fetchTechnicalUserProfiles: builder.query<technicalUserProfiles[], string>({
+    fetchTechnicalUserProfiles: builder.query<TechnicalUserProfiles[], string>({
       query: (appId) =>
         `/api/apps/appreleaseprocess/${appId}/technical-user-profiles`,
     }),

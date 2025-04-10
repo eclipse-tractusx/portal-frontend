@@ -43,7 +43,7 @@ import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetai
 import { ServerResponseOverlay } from '../ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import './TechnicalUserAddForm.scss'
+import './style.scss'
 import LogService from 'services/LogService'
 
 export const AddTechnicalUser = () => {
@@ -78,7 +78,7 @@ export const AddTechnicalUser = () => {
 
   const defaultFormFieldValues = {
     TechnicalUserName: '',
-    TechnicalUserService: [''],
+    TechnicalUserService: [],
     TechnicalUserDescription: '',
   }
   const {

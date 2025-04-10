@@ -40,7 +40,11 @@ import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
+import {
+  decrement,
+  increment,
+  setAppRedirectStatus,
+} from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   type DocumentData,
@@ -54,6 +58,7 @@ import { DocumentTypeText } from 'features/apps/types'
 import { download } from 'utils/downloadUtils'
 import {
   AppOverviewTypes,
+  type TechnicalUserProfiles,
   type AppStatusDataState,
   type UseCaseType,
 } from 'features/appManagement/types'
@@ -62,13 +67,15 @@ import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepDecrement,
   serviceReleaseStepIncrement,
+  setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
-import '../../../../pages/AppDetail/components/AppDetailPrivacy/AppDetailPrivacy.scss'
+import '../../../../pages/AppDetail/AppDetailPrivacy/style.scss'
 import 'components/styles/document.scss'
+import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
 import { type LogData } from 'services/LogService'
 import NotifyService from 'services/NotifyService'
 
@@ -113,6 +120,7 @@ interface CommonValidateAndPublishType {
     | AppOverviewTypes.APP_OVERVIEW_DETAILS
   serviceTypes?: string
   rolesData?: updateRolePayload[]
+  techUserProfiles: TechnicalUserProfiles[]
 }
 
 export default function CommonValidateAndPublish({
@@ -140,6 +148,7 @@ export default function CommonValidateAndPublish({
   serviceTypes,
   rolesData,
   helpUrl,
+  techUserProfiles,
 }: CommonValidateAndPublishType) {
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -160,8 +169,8 @@ export default function CommonValidateAndPublish({
         }).unwrap()
         const file = response.data
         setCardImage(URL.createObjectURL(file))
-      } catch (e) {
-        NotifyService.error('ERROR WHILE FETCHING IMAGE', '', e as LogData)
+      } catch (error) {
+        NotifyService.error('ERROR WHILE FETCHING IMAGE', '', error as LogData)
       }
     },
     [fetchDocumentById, id]
@@ -206,8 +215,18 @@ export default function CommonValidateAndPublish({
       const file = response.data
 
       download(file, fileType, documentName)
-    } catch (e) {
-      NotifyService.error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
+    } catch (error) {
+      NotifyService.error('ERROR WHILE FETCHING DOCUMENT', '', error as LogData)
+    }
+  }
+
+  const onBackIconClick = () => {
+    if (type === ReleaseProcessTypes.APP_RELEASE) {
+      dispatch(setAppRedirectStatus(false))
+      dispatch(decrement())
+    } else {
+      dispatch(setServiceRedirectStatus(false))
+      dispatch(serviceReleaseStepDecrement())
     }
   }
 
@@ -252,28 +271,6 @@ export default function CommonValidateAndPublish({
       default:
         return <Apartment className="policy-icon" />
     }
-  }
-
-  const getTechUserData = (data: string[] | null) => {
-    return data && data?.length > 0 ? (
-      data?.map((role: string) => (
-        <Grid spacing={2} container sx={{ margin: '0px' }} key={role}>
-          <Grid xs={12} className="tech-user-data" item>
-            <Typography variant="body2">* {role}</Typography>
-          </Grid>
-        </Grid>
-      ))
-    ) : (
-      <Grid container spacing={2} margin={'0px'}>
-        <Typography
-          variant="label3"
-          className="not-available"
-          style={{ width: '100%' }}
-        >
-          {t('global.errors.noTechnicalUserProfilesAvailable')}
-        </Typography>
-      </Grid>
-    )
   }
 
   const renderConformityDocuments = () => {
@@ -554,21 +551,21 @@ export default function CommonValidateAndPublish({
           </>
         )}
 
-        {statusData?.technicalUserProfile &&
-          Object.values(statusData?.technicalUserProfile) && (
-            <>
-              <Divider className="verify-validate-form-divider" />
-              <Typography variant="h4">
-                {t('content.adminboardDetail.technicalUserSetup.heading')}
-              </Typography>
-              <Typography variant="body2" className="form-field">
-                {t('content.adminboardDetail.technicalUserSetup.message')}
-              </Typography>
-              {getTechUserData(
-                Object.values(statusData?.technicalUserProfile)[0]
-              )}
-            </>
-          )}
+        {statusData?.technicalUserProfile && techUserProfiles && (
+          <>
+            <Divider className="verify-validate-form-divider" />
+            <Typography variant="h4">
+              {t('content.adminboardDetail.technicalUserSetup.heading')}
+            </Typography>
+            <Typography variant="body2" className="form-field">
+              {t('content.adminboardDetail.technicalUserSetup.message')}
+            </Typography>
+            <TechUserTable
+              userProfiles={techUserProfiles}
+              disableActions={true}
+            />
+          </>
+        )}
 
         <Divider className="verify-validate-form-divider" />
         <Typography variant="h4" sx={{ mb: 4 }}>
@@ -654,14 +651,7 @@ export default function CommonValidateAndPublish({
           >
             {helpText}
           </Button>
-          <IconButton
-            color="secondary"
-            onClick={() =>
-              type === ReleaseProcessTypes.APP_RELEASE
-                ? dispatch(decrement())
-                : dispatch(serviceReleaseStepDecrement())
-            }
-          >
+          <IconButton color="secondary" onClick={onBackIconClick}>
             <KeyboardArrowLeftIcon />
           </IconButton>
           {loading ? (

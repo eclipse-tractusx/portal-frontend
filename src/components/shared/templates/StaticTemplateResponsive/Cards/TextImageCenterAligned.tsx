@@ -21,7 +21,7 @@
 import type { ProviderProps } from '../StaticTypes'
 import RenderImage from './RenderImage'
 import TextCenterAligned from './TextCenterAligned'
-import '../StaticTemplate.scss'
+import '../style.scss'
 
 export default function TextImageCenterAligned({
   provider,

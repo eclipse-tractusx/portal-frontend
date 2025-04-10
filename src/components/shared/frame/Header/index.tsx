@@ -46,14 +46,11 @@ import {
 import { UserInfo } from '../UserInfo'
 import { Logo } from '../Logo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
-import './Header.scss'
+import './style.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
-import {
-  CompanyRoleEnum,
-  useFetchOwnCompanyDetailsQuery,
-} from 'features/admin/userApiSlice'
-import { PAGES } from 'types/Constants'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { COMPANY_ROLES } from 'types/Constants'
 
 export const Header = ({
   main,
@@ -78,31 +75,14 @@ export const Header = ({
   const [submittedOverlayOpen, setSubmittedOverlayOpen] =
     useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
-  const [pages, setPages] = useState<string[]>([])
 
   useEffect(() => {
     if (!(companyData && companyDetails)) return
     setSubmittedOverlayOpen(
-      !companyDetails?.companyRole.includes(CompanyRoleEnum.OPERATOR) &&
+      !companyDetails?.companyRole.includes(COMPANY_ROLES.OPERATOR) &&
         companyData?.applicationStatus === ApplicationStatus.SUBMITTED
     )
   }, [companyData, companyDetails])
-
-  useEffect(() => {
-    if (
-      companyDetails?.companyRole.includes(
-        CompanyRoleEnum.ONBOARDING_SERVICE_PROVIDER
-      )
-    ) {
-      setPages(user)
-    } else {
-      setPages(
-        user.filter(
-          (item) => item !== PAGES.ONBOARDING_SERVICE_PROVIDER_MANAGEMENT
-        )
-      )
-    }
-  }, [companyDetails?.companyRole])
 
   const addTitle = (items: Tree[] | undefined) =>
     items?.map(
@@ -216,7 +196,7 @@ export const Header = ({
             >
               {t('pages.help')}
             </Button>
-            <UserInfo pages={pages} />
+            <UserInfo pages={user} />
           </div>
         </MainNavigation>
       </header>

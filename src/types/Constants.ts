@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+
 export const PAGE_SIZE = 10
 
 export const INTERVAL_CHECK_NOTIFICATIONS = 60000
@@ -230,6 +232,7 @@ export enum ROLES {
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
+  REVOKE_CREDENTIAL = 'revoke_credential',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
   VIEW_REGISTRATION = 'view_registration',
   READ_PARTNER_MEMBER = 'read_partner_member',
@@ -243,3 +246,21 @@ export enum HINTS {
 }
 
 export const CONVERT_TO_MB = 1048576
+export const ALLOWED_MAX_SIZE_DOCUMENT = 5242880
+
+export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
+  // en
+  'Dataspace Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
+  'Consultancy Services': ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+  // de
+  'Datenraum Services': ServiceTypeIdsEnum.DATASPACE_SERVICES,
+  Beratungsservices: ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
+}
+
+export enum COMPANY_ROLES {
+  ACTIVE_PARTICIPANT = 'ACTIVE_PARTICIPANT',
+  APP_PROVIDER = 'APP_PROVIDER',
+  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+  OPERATOR = 'OPERATOR',
+  ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
+}

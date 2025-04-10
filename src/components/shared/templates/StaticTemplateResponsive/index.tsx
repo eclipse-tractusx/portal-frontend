@@ -28,7 +28,7 @@ import LinkButtonGrid from './Cards/LinkButtonGrid'
 import VideoTextSideBySide from './Cards/VideoTextSideBySide'
 import ImageTextCenterAligned from './Cards/ImageTextCenterAligned'
 import TextCenterAlignedBody2 from './Cards/TextCenterAlignedBody2'
-import './StaticTemplate.scss'
+import './style.scss'
 import FlexImages from './Cards/FlexImages'
 import GridImages from './Cards/GridImages'
 import { useState } from 'react'
@@ -270,14 +270,14 @@ export const StaticTemplateResponsive = ({
   window.addEventListener('scroll', checkScrollTop)
   return (
     <div>
-      {sectionInfo?.map((provider: ProviderProps) => {
+      {sectionInfo?.map((provider: ProviderProps, i: number) => {
         return (
           <div
             className="sectionContainer"
             style={{
               backgroundColor: provider.backgroundColor,
             }}
-            key={provider.id}
+            key={`${provider.id}-${i}`}
             id={`${provider.id}`}
           >
             <div className="sectionSubContainer">

@@ -44,6 +44,13 @@ import './style.scss'
 import { type LogData } from 'services/LogService'
 import { error } from 'services/NotifyService'
 
+enum uniqueIdTypeText {
+  COMMERCIAL_REG_NUMBER = 'Commercial Registration Number',
+  VAT_ID = 'VAT ID',
+  LEI_CODE = 'LEI CODE',
+  VIES = 'VIES',
+  EORI = 'EORI',
+}
 interface CompanyDetailsProps {
   applicationId: string
   loading: boolean
@@ -60,7 +67,7 @@ export const CompanyDetails = ({
   updateConsents,
 }: CompanyDetailsProps) => {
   const tm = useTranslation().t
-  const { t } = useTranslation('registration')
+  const { t, i18n } = useTranslation('registration')
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
@@ -215,9 +222,13 @@ export const CompanyDetails = ({
     )
   }
 
+  const checkUniqueIdType = (type: string): string =>
+    uniqueIdTypeText[type as keyof typeof uniqueIdTypeText] ??
+    uniqueIdTypeText.VAT_ID
   const tableData: TableType = {
     head: [t('osp.companyName'), companyDetails?.name ?? ''],
     body: [
+      [t('osp.legalName'), companyDetails?.shortName ?? ''],
       [
         t('osp.street'),
         `${companyDetails?.streetName ?? ''} ${companyDetails?.streetNumber ?? ''}`,
@@ -226,6 +237,10 @@ export const CompanyDetails = ({
       [t('osp.city'), companyDetails?.city ?? ''],
       [t('osp.region'), companyDetails?.region ?? ''],
       [t('osp.country'), companyDetails?.countryAlpha2Code ?? ''],
+      ...(companyDetails?.uniqueIds?.map((id) => [
+        checkUniqueIdType(id.type as string),
+        id.value,
+      ]) ?? []),
     ],
   }
 
@@ -278,7 +293,7 @@ export const CompanyDetails = ({
                     <Typography variant={isMobile ? 'body3' : 'body2'}>
                       {
                         role.descriptions[
-                          'en' as keyof typeof role.descriptions
+                          i18n.language as keyof typeof role.descriptions
                         ]
                       }
                     </Typography>

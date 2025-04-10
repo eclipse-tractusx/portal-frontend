@@ -156,12 +156,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     } else if (enabled && clientId) {
       status = `${ti('field.status4')}`
     }
-    return (
-      <StatusTag
-        color={statusColorMap[status as IdpAccountStatus]}
-        label={status}
-      />
-    )
+    return status
   }
 
   const renderMenu = (idp: IdentityProvider) => {
@@ -264,7 +259,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     return (
       <div className="action-menu">
         <DropdownMenu buttonText={ti('action.actions')}>
-          {menuItems.configure}
+          {idp.identityProviderTypeId !== IDPCategory.SHARED &&
+            menuItems.configure}
           {isManaged && idp.enabled && menuItems.register}
           {idp.oidc?.clientId && menuItems.enableToggle}
           {!isManaged && (idp.enabled ? menuItems.addUsers : menuItems.delete)}
@@ -386,6 +382,19 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     },
   }
 
+  const getDisplayName = (row: IdentityProvider) => {
+    if (row.displayName) return row.displayName
+    else
+      return (
+        <>
+          <ReportProblemIcon color="error" fontSize="small" />
+          <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+            {ti('field.error')}
+          </Typography>
+        </>
+      )
+  }
+
   return (
     <Table
       rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
@@ -407,16 +416,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
         {
           field: 'displayName',
           headerName: t('global.field.name'),
-          flex: 2,
-          renderCell: ({ row }: { row: IdentityProvider }) =>
-            row.displayName ?? (
-              <>
-                <ReportProblemIcon color="error" fontSize="small" />
-                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                  {ti('field.error')}
-                </Typography>
-              </>
-            ),
+          flex: 3,
+          valueGetter: ({ row }) => getDisplayName(row),
         },
         {
           field: 'alias',
@@ -450,8 +451,16 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'enabled',
           headerName: t('global.field.status'),
           flex: 2,
-          renderCell: ({ row }: { row: IdentityProvider }) =>
-            getStatus(row.enabled, row.oidc?.clientId),
+          valueGetter: ({ row }) => getStatus(row.enabled, row.oidc?.clientId),
+          renderCell: (params) => {
+            const status = params.value
+            return (
+              <StatusTag
+                color={statusColorMap[status as IdpAccountStatus]}
+                label={status}
+              />
+            )
+          },
         },
         {
           field: 'details',

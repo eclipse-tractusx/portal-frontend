@@ -25,7 +25,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -45,6 +45,7 @@ import {
   serviceIdSelector,
   serviceStatusDataSelector,
   serviceReleaseStepIncrement,
+  serviceRedirectStatusSelector,
 } from 'features/serviceManagement/slice'
 import {
   type CreateServiceStep1Item,
@@ -67,6 +68,9 @@ import { type LogData } from 'services/LogService'
 import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { PAGES } from 'types/Constants'
+import { download } from 'utils/downloadUtils'
+import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../OfferStepHelper'
 
 type FormDataType = {
   title: string
@@ -85,6 +89,7 @@ export default function OfferCard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
+  const redirectStatus = useSelector(serviceRedirectStatusSelector)
   const [serviceCardNotification, setServiceCardNotification] = useState(false)
   const [serviceCardSnackbar, setServiceCardSnackbar] = useState<boolean>(false)
   const serviceStatusData = useSelector(serviceStatusDataSelector)
@@ -108,6 +113,7 @@ export default function OfferCard() {
   const [imageData, setImageData] = useState({})
   const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
   const [updateServiceDocumentUpload] = useUpdateServiceDocumentUploadMutation()
+  const hasDispatched = useRef(false)
 
   useEffect(() => {
     setShowRetryOverlay(serviceId && isError ? true : false)
@@ -180,6 +186,22 @@ export default function OfferCard() {
     [fetchDocumentById, serviceId, setValue]
   )
 
+  const handleDownload = async (documentName: string, documentId: string) => {
+    if (fetchDocumentById)
+      try {
+        const response = await fetchDocumentById({
+          appId: serviceId,
+          documentId,
+        }).unwrap()
+
+        const { fileType, file } = extractFileData(response)
+
+        download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
+
   useEffect(() => {
     if (serviceStatusData?.documents?.SERVICE_LEADIMAGE?.[0].documentId) {
       fetchCardImage(
@@ -230,6 +252,17 @@ export default function OfferCard() {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
     reset(defaultValues)
   }, [dispatch, fetchServiceStatus, defaultValues, reset])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 1, redirectStatus)
+    ) {
+      dispatch(serviceReleaseStepIncrement())
+      hasDispatched.current = true
+    }
+  }, [fetchServiceStatus, hasDispatched])
 
   const handleSave = async (
     apiBody: CreateServiceStep1Item,
@@ -498,6 +531,7 @@ export default function OfferCard() {
               note={t('serviceReleaseForm.note')}
               requiredText={t('serviceReleaseForm.fileUploadIsMandatory')}
               isRequired={false}
+              handleDownload={handleDownload}
               handleDelete={(documentId: string) => {
                 setImageData({})
                 documentId && deleteDocument(documentId)

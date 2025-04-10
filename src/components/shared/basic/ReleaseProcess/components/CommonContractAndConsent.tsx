@@ -28,7 +28,11 @@ import {
   useState,
 } from 'react'
 import { useDispatch } from 'react-redux'
-import { decrement, increment } from 'features/appManagement/slice'
+import {
+  decrement,
+  increment,
+  setAppRedirectStatus,
+} from 'features/appManagement/slice'
 import {
   type AgreementStatusType,
   type AgreementType,
@@ -61,6 +65,7 @@ import {
 import {
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
+  setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
 import { ButtonLabelTypes } from '..'
 import { type LogData } from 'services/LogService'
@@ -405,8 +410,10 @@ export default function CommonContractAndConsent({
   const onBackIconClick = () => {
     if (fetchStatusData) dispatch(setAppStatus(fetchStatusData))
     if (type === ReleaseProcessTypes.APP_RELEASE) {
+      dispatch(setAppRedirectStatus(false))
       dispatch(decrement())
     } else {
+      dispatch(setServiceRedirectStatus(false))
       dispatch(serviceReleaseStepDecrement())
     }
   }

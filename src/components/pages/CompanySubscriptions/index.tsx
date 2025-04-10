@@ -46,6 +46,7 @@ import {
   useUnsubscribeServiceMutation,
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 
 interface FetchHookArgsType {
   statusId: string
@@ -55,6 +56,7 @@ interface FetchHookArgsType {
 export default function CompanySubscriptions() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const location = useLocation()
   const [refresh, setRefresh] = useState(0)
   const [searchExpr, setSearchExpr] = useState<string>('')
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
@@ -73,7 +75,9 @@ export default function CompanySubscriptions() {
   const [unsubscribeAppMutation] = useUnsubscribeAppMutation()
   const [unsubscribeServiceMutation] = useUnsubscribeServiceMutation()
   const [enableErrorMessage, setEnableErrorMessage] = useState<boolean>(false)
-  const [currentActive, setCurrentActive] = useState<number>(0)
+  const [currentActive, setCurrentActive] = useState<number>(
+    location.state?.activeTab ?? 0
+  )
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -222,6 +226,9 @@ export default function CompanySubscriptions() {
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.subscriptionId}
         columns={companySubscriptionsCols}
+        onClearSearch={() => {
+          setSearchExpr('')
+        }}
       />
     </div>
   )
