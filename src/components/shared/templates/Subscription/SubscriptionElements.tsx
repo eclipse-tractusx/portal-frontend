@@ -273,19 +273,17 @@ export default function SubscriptionElements({
         )
       } else {
         return (
-          <>
-            <Tooltips
-              color="dark"
-              tooltipPlacement="top-start"
-              tooltipText={t('content.appSubscription.process')}
-            >
-              <img
-                src={`${getAssetBase()}/images/icons/process.svg`}
-                className="statusIcon"
-                alt="subscription process"
-              />
-            </Tooltips>
-          </>
+          <Tooltips
+            color="dark"
+            tooltipPlacement="top-start"
+            tooltipText={t('content.appSubscription.process')}
+          >
+            <img
+              src={`${getAssetBase()}/images/icons/process.svg`}
+              className="statusIcon"
+              alt="subscription process"
+            />
+          </Tooltips>
         )
       }
     } else {
