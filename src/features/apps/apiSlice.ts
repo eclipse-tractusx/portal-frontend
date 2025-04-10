@@ -125,7 +125,7 @@ export const apiSlice = createApi({
         url: `/api/apps/${data.appId}/appDocuments/${data.documentId}`,
         responseHandler: async (response) => ({
           headers: response.headers,
-          data: response.ok ? await response.blob() : await response.json(),
+          data: await response.blob(),
         }),
       }),
     }),
