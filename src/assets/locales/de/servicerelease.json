@@ -206,7 +206,9 @@
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
     },
-    "offersHeading": "Services Offered"
+    "offersHeading": "Services Offered",
+    "success": "Subscription configuration successful",
+    "failure": "Error while configuring service subscription"
   },
   "adminBoard": {
     "headerTitle": "Service request management",
