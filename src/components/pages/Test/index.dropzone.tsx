@@ -23,6 +23,7 @@ import { Cards } from '@catena-x/portal-shared-components'
 import { appToCard } from 'features/apps/mapper'
 import { isString } from 'lodash'
 import { useState } from 'react'
+import { info } from 'services/LogService'
 import ItemProcessor from './ItemProcessor'
 
 export default function Test() {
@@ -45,10 +46,10 @@ export default function Test() {
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onabort = () => {
-          console.log('file reading was aborted')
+          info('file reading was aborted')
         }
         reader.onerror = () => {
-          console.log('file reading has failed')
+          info('file reading has failed')
         }
         reader.onload = () => {
           const str = reader.result
@@ -66,10 +67,10 @@ export default function Test() {
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onabort = () => {
-          console.log('file reading was aborted')
+          info('file reading was aborted')
         }
         reader.onerror = () => {
-          console.log('file reading has failed')
+          info('file reading has failed')
         }
         reader.onload = () => {
           const str = reader.result
@@ -89,7 +90,7 @@ export default function Test() {
           acceptFormat={{ 'application/json': [] }}
           maxFilesToUpload={20}
         />
-        <ItemProcessor items={items} process={console.log} autostart={true} />
+        <ItemProcessor items={items} process={info} autostart={true} />
       </section>
       <section>
         <Dropzone onChange={appPreview} />

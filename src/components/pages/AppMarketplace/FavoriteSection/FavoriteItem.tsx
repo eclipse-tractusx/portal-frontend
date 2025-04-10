@@ -27,6 +27,8 @@ import { useDispatch } from 'react-redux'
 import CommonService from 'services/CommonService'
 import type { AppDispatch } from 'features/store'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { error } from 'services/LogService'
+
 interface FavoriteItemProps {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
@@ -65,8 +67,8 @@ export default function FavoriteItem({
         documentId: id,
       }).unwrap()
       setCardImage(URL.createObjectURL(result.data))
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      error(e as string)
     }
   }
 

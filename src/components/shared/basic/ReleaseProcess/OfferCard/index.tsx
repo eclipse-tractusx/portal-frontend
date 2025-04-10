@@ -64,6 +64,7 @@ import {
 } from 'features/serviceManagement/actions'
 import { ButtonLabelTypes } from '..'
 import RetryOverlay from '../components/RetryOverlay'
+import { type LogData } from 'services/LogService'
 import { success, error } from 'services/NotifyService'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { PAGES } from 'types/Constants'
@@ -178,8 +179,8 @@ export default function OfferCard() {
           id: documentId,
           status: UploadStatus.UPLOAD_SUCCESS,
         })
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      } catch (e) {
+        error('ERROR WHILE FETCHING IMAGE', '', e as LogData)
       }
     },
     [fetchDocumentById, serviceId, setValue]

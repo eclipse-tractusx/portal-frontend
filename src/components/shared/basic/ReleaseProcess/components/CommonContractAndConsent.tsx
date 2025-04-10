@@ -68,6 +68,7 @@ import {
   setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
 import { ButtonLabelTypes } from '..'
+import { type LogData } from 'services/LogService'
 import { error, success } from 'services/NotifyService'
 
 type AgreementDataType = {
@@ -429,8 +430,8 @@ export default function CommonContractAndConsent({
         const file = response.data
 
         download(file, fileType, documentName)
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      } catch (e) {
+        error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
       }
   }
 
@@ -446,8 +447,8 @@ export default function CommonContractAndConsent({
         const file = response.data
 
         download(file, fileType, documentName)
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      } catch (e) {
+        error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
       }
   }
 

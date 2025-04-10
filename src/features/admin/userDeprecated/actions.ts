@@ -23,6 +23,7 @@ import type { GridRowId } from '@mui/x-data-grid'
 import { Api } from './api'
 import { type AddUser, name } from './types'
 import type { IHashMap } from 'types/MainTypes'
+import { error, type LogData } from 'services/LogService'
 
 const openAdd = createAction(`${name}/openAdd`)
 const closeAdd = createAction(`${name}/closeAdd`)
@@ -37,8 +38,8 @@ const addTenantUsers = createAsyncThunk(
   async (users: AddUser[]) => {
     try {
       return await Api.getInstance().addTenantUsers(users)
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${name}/add error`)
     }
   }
@@ -47,8 +48,8 @@ const addTenantUsers = createAsyncThunk(
 const fetchTenantUsers = createAsyncThunk(`${name}/fetch`, async () => {
   try {
     return await Api.getInstance().getTenantUsers()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/fetch error`)
   }
 })

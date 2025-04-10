@@ -34,6 +34,7 @@ import {
 import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
+import LogService from 'services/LogService'
 import { error, success } from 'services/NotifyService'
 import {
   type IdentityProvider,
@@ -65,8 +66,8 @@ const MenuItemOpenOverlay = ({
     try {
       e.stopPropagation()
       dispatch(show(overlay, id))
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      LogService.error(e as string)
     }
   }
 

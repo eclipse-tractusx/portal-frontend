@@ -66,6 +66,7 @@ import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
 import { error } from 'services/NotifyService'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import LogService from 'services/LogService'
 
 const HelpPageURL =
   '/documentation/?path=user%2F03.+User+Management%2F01.+User+Account%2F04.+Create+new+user+account+%28bulk%29.md'
@@ -168,10 +169,10 @@ export default function AddMultipleUser() {
       }
       // Add an ESLint exception until there is a solution
       // eslint-disable-next-line
-    } catch (error: any) {
+    } catch (e: any) {
       setLoading(false)
-      setIsError(error.data.errors.document[0])
-      console.log(error)
+      setIsError(e.data.errors.document[0])
+      LogService.error(e as string)
     }
   }
 

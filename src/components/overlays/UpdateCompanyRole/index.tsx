@@ -54,6 +54,8 @@ import {
 } from 'features/companyRoles/slice'
 import { useFetchFrameDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import uniq from 'lodash.uniq'
+import LogService, { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 export enum AgreementStatus {
   ACTIVE = 'ACTIVE',
@@ -139,8 +141,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
 
@@ -208,8 +210,8 @@ export default function UpdateCompanyRole({ roles }: { roles: string[] }) {
       await updateCompanyRoles(filterRoles).unwrap()
       dispatch(setCompanyRoleSuccess(true))
       close()
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      LogService.error(e as string)
       dispatch(setCompanyRoleError(true))
       close()
     }

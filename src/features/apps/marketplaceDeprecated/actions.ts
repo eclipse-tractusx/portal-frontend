@@ -21,12 +21,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { Api } from './api'
 import { name } from './types'
+import { error, type LogData } from 'services/LogService'
 
 const fetchActive = createAsyncThunk(`${name}/active/fetch`, async () => {
   try {
     return await Api.getInstance().getActive()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/active/fetch error`)
   }
 })
@@ -34,8 +35,8 @@ const fetchActive = createAsyncThunk(`${name}/active/fetch`, async () => {
 const fetchLatest = createAsyncThunk(`${name}/latest/fetch`, async () => {
   try {
     return await Api.getInstance().getLatest()
-  } catch (error: unknown) {
-    console.error('api call error:', error)
+  } catch (e: unknown) {
+    error('api call error:', e as LogData)
     throw Error(`${name}/latest/fetch error`)
   }
 })
@@ -45,8 +46,8 @@ const fetchSubscriptionStatus = createAsyncThunk(
   async () => {
     try {
       return await Api.getInstance().getSubscriptionStatus()
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${name}/subscribed/subscription-status error`)
     }
   }

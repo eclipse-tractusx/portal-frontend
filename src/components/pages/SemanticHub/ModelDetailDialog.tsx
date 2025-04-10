@@ -51,6 +51,7 @@ import {
   useDeleteModelByIdMutation,
 } from 'features/semanticModels/apiSlice'
 import { getSemanticApiBase } from 'services/EnvironmentService'
+import { info } from 'services/LogService'
 import { getHeaders } from 'services/RequestService'
 
 interface ModelDetailDialogProps {
@@ -111,7 +112,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
           }
         })
         .catch((err) => {
-          console.log(err)
+          info(err)
         })
       setShowDeleteBtn(
         userHasSemanticHubRole(ROLES.SEMANTICHUB_DELETE) &&
@@ -214,7 +215,7 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
               )}
               {diagramError.length > 0 && (
                 <Typography color="error">
-                  t('content.semantichub.detail.fileError')
+                  {t('content.semantichub.detail.fileError')}
                 </Typography>
               )}
               <Typography variant="h5" mb={2}>

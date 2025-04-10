@@ -28,6 +28,7 @@ import type { IHashMap } from 'types/MainTypes'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { getApiBase } from 'services/EnvironmentService'
+import { error } from 'services/LogService'
 import UserService from 'services/UserService'
 
 const EnableIDPForm = ({
@@ -102,7 +103,7 @@ export const EnableIDPContent = ({
         setUserId(data.userId)
       })
       .catch((e) => {
-        console.log(e)
+        error(e as string)
       })
   }, [identityProviderId, companyUserId])
 
