@@ -24,6 +24,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       login: (userType: string) => Chainable<void>
+      loginuser: (userType: string) => Chainable<void>
       snackbarAlert: (msg: string) => Chainable<void>
     }
   }
@@ -74,6 +75,50 @@ Cypress.Commands.add('login', (usertype) => {
     },
     { cacheAcrossSpecs: true }
   )
+})
+
+Cypress.Commands.add('loginuser', () => {
+  // Retrieve environment variables for user1 credentials and company name
+  const adminemail = Cypress.env('user1').email // Use user1's email
+  const adminpassword = Cypress.env('user1').password // Use user1's password
+  const cxcompanyName = Cypress.env('company1').name // Use company1's name
+
+  // Create a session for user login using Cypress.session to cache the session across tests
+  cy.session(
+    [adminemail],
+    () => {
+      // Visit the application's base URL
+      cy.visit(Cypress.env('baseUrl'))
+
+      // Perform login on Keycloak login page using Cypress.origin
+      cy.origin(
+        Cypress.env('keycloak').centralUrl,
+        { args: { cxcompanyName } },
+        ({ cxcompanyName }) => {
+          // Enter the company name and select it from the dropdown
+          cy.get('input[placeholder="Enter your company name"]').type(
+            cxcompanyName
+          )
+          cy.get('li')
+            .find('div')
+            .contains(cxcompanyName, { matchCase: false })
+            .click()
+        }
+      )
+
+      cy.origin(
+        Cypress.env('keycloak').sharedUrl,
+        { args: { adminemail, adminpassword } },
+        ({ adminemail, adminpassword }) => {
+          // Enter email and password, and click login
+          cy.get('#username').should('exist').type(adminemail)
+          cy.get('#password').type(adminpassword)
+          cy.get('#kc-login').click() // Submit the Keycloak login form
+        }
+      )
+    },
+    { cacheAcrossSpecs: true }
+  ) // Cache the session across specs
 })
 
 Cypress.Commands.add('snackbarAlert', (text) => {
