@@ -38,7 +38,11 @@ export default function CompanyInfo() {
           </Typography>
         </Box>
       </Box>
-      <Box className={'cx-company-data__details--right'}>
+      <Box
+        className={
+          'cx-company-data__details--right cx-company-data__details--info'
+        }
+      >
         <Typography variant="body1">{companyDetails?.shortName}</Typography>
         <Typography variant="body1">
           <CopyToClipboard text={companyDetails?.bpn} />
