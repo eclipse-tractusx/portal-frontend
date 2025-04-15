@@ -206,7 +206,9 @@
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
     },
-    "offersHeading": "Services Offered"
+    "offersHeading": "Services Offered",
+    "success": "Abonnement Konfiguration erfolgreich",
+    "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {
     "headerTitle": "Service request management",
