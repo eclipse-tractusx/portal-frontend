@@ -78,7 +78,6 @@ export default function ActivateserviceSubscription({
       }).unwrap()
       success(t('serviceSubscription.success'))
     } catch (err) {
-      console.log(err)
       error(t('serviceSubscription.failure'), '', err as object)
     } finally {
       setLoading(false)

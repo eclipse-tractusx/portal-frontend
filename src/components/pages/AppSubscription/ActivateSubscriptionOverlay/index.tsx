@@ -89,7 +89,6 @@ const ActivateSubscriptionOverlay = ({
       dispatch(setSuccessType(true))
       success(t('content.appSubscription.success'))
     } catch (err) {
-      console.log(err)
       dispatch(setSuccessType(false))
       error(t('content.appSubscription.error'), '', err as object)
     } finally {
