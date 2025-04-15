@@ -226,15 +226,14 @@ const setData = (
   if (payload?.meta) {
     if (payload.meta.page === 0) {
       return payload.content
-    } else {
-      const existing = new Map(
-        state.subscriptions.map((item) => [item.offerId, item])
-      )
-      payload.content.forEach((item) => {
-        existing.set(item.offerId, item)
-      })
-      return Array.from(existing.values())
     }
+    const existing = new Map(
+      state.subscriptions.map((item) => [item.offerId, item])
+    )
+    for (const item of payload.content) {
+      existing.set(item.offerId, item)
+    }
+    return Array.from(existing.values())
   } else {
     return []
   }
