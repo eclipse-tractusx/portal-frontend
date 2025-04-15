@@ -207,8 +207,8 @@
       "close": "Close"
     },
     "offersHeading": "Services Offered",
-    "success": "Subscription configuration successful",
-    "failure": "Error while configuring service subscription"
+    "success": "Abonnement Konfiguration erfolgreich",
+    "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {
     "headerTitle": "Service request management",
