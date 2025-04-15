@@ -55,6 +55,7 @@ import { OVERLAYS } from 'types/Constants'
 import UploadIcon from '@mui/icons-material/Upload'
 import dayjs from 'dayjs'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
+import { getBpnActualBpn } from './addressUtils'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -267,11 +268,6 @@ export const CompanyAddressList = ({
     return row.address.addressType === AddressType.SiteMainAddress
       ? t('content.companyData.table.bpnTypeSite')
       : t('content.companyData.table.bpnTypeAddress')
-  }
-  function getBpnActualBpn(row: CompanyDataType): string {
-    return row.address?.addressType === AddressType.SiteMainAddress
-      ? row.site?.siteBpn ?? '-'
-      : row.address.addressBpn ?? '-'
   }
   function getSiteActualName(row: CompanyDataType): string {
     return row.site?.name ?? row.address?.name ?? ''

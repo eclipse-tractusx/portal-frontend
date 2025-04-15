@@ -24,10 +24,31 @@ import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
 import useCountryList from './useCountryList'
+import {
+  AddressType,
+  type CompanyDataType,
+} from 'features/companyData/companyDataApiSlice'
+import { getBpnActualBpn } from './addressUtils'
+
 export default function AddressDetails() {
   const { t, i18n } = useTranslation()
   const companyAddressData = useSelector(companyDataSelector)
   const { countryListMap } = useCountryList(i18n)
+
+  function getBpnActualBpnText(companyAddressData: CompanyDataType): string {
+    switch (companyAddressData.address?.addressType) {
+      case AddressType.LegalAndSiteMainAddress:
+        return t('content.companyData.site.bpns.name')
+      case AddressType.SiteMainAddress:
+        return t('content.companyData.site.bpns.name')
+      case AddressType.LegalAddress:
+        return t('content.companyData.legalEntity.bpnl.name')
+      case AddressType.AdditionalAddress:
+        return t('content.companyData.address.bpna.name')
+      default:
+        return ''
+    }
+  }
   const addressData = [
     {
       key: t('content.companyData.site.form.site.name'),
@@ -65,11 +86,13 @@ export default function AddressDetails() {
           companyAddressData?.address?.physicalPostalAddress?.country || '',
     },
     {
-      key: t('content.companyData.address.bpna.name'),
+      key: companyAddressData?.address?.addressBpn
+        ? getBpnActualBpnText(companyAddressData)
+        : '',
       value: companyAddressData?.address?.addressBpn ? (
-        <CopyToClipboard text={companyAddressData?.address?.addressBpn} />
+        <CopyToClipboard text={getBpnActualBpn(companyAddressData)} />
       ) : (
-        '-'
+        ''
       ),
     },
   ]
@@ -82,7 +105,7 @@ export default function AddressDetails() {
           {t('content.companyData.companyInfo.addressTitle')}
         </Typography>
       </Box>
-      <Box className={'cx-company-data__details--listing'}>
+      <Box className={'cx-company-data__details--listing '}>
         {addressData.map((data) => (
           <Box className={'cx-company-data__details--item'} key={data.key}>
             <Box className={'cx-company-data__details--left'}>

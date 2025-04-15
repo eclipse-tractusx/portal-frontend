@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **BP Explorer**
+
+  - Fix BPNS issue for LegalAndSiteMainAddress [PM2-2615](https://cofinity-x.atlassian.net/browse/PM2-2615)
+
 - **Fix GTM configuration**
 
   - Fix GTM configuration for PROD [PM2-2672](https://cofinity-x.atlassian.net/browse/PM2-2672)

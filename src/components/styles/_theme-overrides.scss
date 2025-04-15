@@ -2460,6 +2460,11 @@ p.MuiTypography-root.MuiTypography-body3.description,
         top: auto;
       }
     }
+    &--info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   &__errors {

@@ -2297,6 +2297,11 @@
         "status": "Status",
         "details": "Details"
       },
+      "legalEntity": {
+        "bpnl": {
+          "name": "BPNL"
+        }
+      },
       "site": {
         "title": "Neuen Standort hinzufügen",
         "description": "Please enter your site information (e.g., plant, warehouse, office) below. Click 'Submit' to provide your data for the Golden Record validation process. After approval, a BPNS will be generated for access by other Catena-X participants. You can monitor the status and edit your data on the main page.",
