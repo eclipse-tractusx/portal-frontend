@@ -45,7 +45,9 @@ import { apiSlice as notificationSlice } from './notification/apiSlice'
 import userRoleSlice, {
   apiSlice as appRolesSlice,
 } from './admin/appuserApiSlice'
+import { apiSlice as appFavoritesSlice } from './apps/favorites/apiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
+import { apiSlice as appMarketplaceApiSlice } from './apps/marketplaceDeprecated/apiSlice'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
 import { apiSlice as serviceProviderApiSlice } from './serviceProvider/serviceProviderApiSlice'
@@ -108,7 +110,9 @@ export const reducers = {
   [serviceSlice.reducerPath]: serviceSlice.reducer,
   [notificationSlice.reducerPath]: notificationSlice.reducer,
   [appRolesSlice.reducerPath]: appRolesSlice.reducer,
+  [appFavoritesSlice.reducerPath]: appFavoritesSlice.reducer,
   [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
+  [appMarketplaceApiSlice.reducerPath]: appMarketplaceApiSlice.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
   [serviceProviderApiSlice.reducerPath]: serviceProviderApiSlice.reducer,
@@ -151,7 +155,9 @@ export const store = configureStore({
       .concat(serviceSlice.middleware)
       .concat(notificationSlice.middleware)
       .concat(appRolesSlice.middleware)
+      .concat(appFavoritesSlice.middleware)
       .concat(appMarketplaceSlice.middleware)
+      .concat(appMarketplaceApiSlice.middleware)
       .concat(appManagementSlice.middleware)
       .concat(serviceMarketplaceApiSlice.middleware)
       .concat(serviceProviderApiSlice.middleware)
