@@ -31,7 +31,7 @@ export type ServiceProviderAPIResponse = {
   id: string
   companyId: string
   url: string
-  autoSetupCallbackUrl: string
+  callbackUrl: string
   authUrl: string
   clientId: string
   clientSecret: string

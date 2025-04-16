@@ -147,7 +147,7 @@ export default function AddServiceProvider() {
               <ValidatingInput
                 name={'callbackUrl' as keyof ServiceRequest}
                 label={t('content.appSubscription.register.callbackUrl.name')}
-                value={data?.autoSetupCallbackUrl}
+                value={data?.callbackUrl}
                 hint={t('content.appSubscription.register.callbackUrl.hint')}
                 errorMessage={t(
                   'content.appSubscription.register.callbackUrl.error'
