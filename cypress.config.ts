@@ -21,9 +21,8 @@ import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    chromeWebSecurity: false,
+    experimentalRunAllSpecs: true,
   },
   env: {
     baseUrl: 'http://localhost:3001',

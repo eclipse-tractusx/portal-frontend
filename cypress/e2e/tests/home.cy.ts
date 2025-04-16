@@ -17,14 +17,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["es5", "dom"],
-    "types": ["cypress", "node"],
+describe('Validate authentication for home page', () => {
+  beforeEach(() => {
+    cy.login('user')
+  })
 
-    /* Linting */
-    "strict": true
-  },
-  "include": ["**/*.ts"]
-}
+  it('should visit home page after login', () => {
+    cy.visit(Cypress.env('baseUrl'))
+      .get('.copyright')
+      .should('have.text', 'Copyright © Catena-X Automotive Network')
+  })
+})
