@@ -48,7 +48,7 @@ const slice = createSlice({
         apiSlice.endpoints.getActive.matchFulfilled,
         (state, action) => {
           state.loading = false
-          state.items = action.payload || []
+          state.items = action.payload ?? []
         }
       )
       .addMatcher(
@@ -68,7 +68,7 @@ const slice = createSlice({
         apiSlice.endpoints.getLatest.matchFulfilled,
         (state, action) => {
           state.loading = false
-          state.latest = action.payload || []
+          state.latest = action.payload ?? []
         }
       )
       .addMatcher(
@@ -91,7 +91,7 @@ const slice = createSlice({
         apiSlice.endpoints.getSubscriptionStatus.matchFulfilled,
         (state, action) => {
           state.loading = false
-          state.subscribedApps = action.payload || []
+          state.subscribedApps = action.payload ?? []
         }
       )
       .addMatcher(

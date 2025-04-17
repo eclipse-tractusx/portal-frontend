@@ -34,7 +34,7 @@ const slice = createSlice({
     builder.addMatcher(
       apiSlice.endpoints.getItems.matchFulfilled,
       (state, { payload }) => {
-        state.items = payload || []
+        state.items = payload ?? []
         state.request = RequestState.OK
         state.error = ''
       }
