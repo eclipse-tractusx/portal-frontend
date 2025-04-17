@@ -92,6 +92,7 @@ export default function AddServiceProvider() {
       dispatch(setSuccessType(true))
       dispatch(closeOverlay())
     } catch (error) {
+      console.error(error)
       setSaveErrorMessage(true)
     }
   }
@@ -102,6 +103,7 @@ export default function AddServiceProvider() {
       dispatch(setSuccessType(true))
       dispatch(closeOverlay())
     } catch (error) {
+      console.error(error)
       setSaveErrorMessage(true)
     }
   }
