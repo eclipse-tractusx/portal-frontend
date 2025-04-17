@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
 import type { TenantUser } from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updates'
-import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
+import { setSelectedUserToAdd } from 'features/admin/userDeprecated/slice'
 import Patterns from 'types/Patterns'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
 
