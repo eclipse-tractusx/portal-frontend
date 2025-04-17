@@ -31,6 +31,10 @@ export type ServiceProviderAPIResponse = {
   id: string
   companyId: string
   url: string
+  callbackUrl: string
+  authUrl: string
+  clientId: string
+  clientSecret: string
 }
 
 export type AgreementRequest = {
@@ -49,7 +53,11 @@ export type SubscriptionServiceRequest = {
 }
 
 export type ServiceRequest = {
-  url: string | null
+  url: string
+  callbackUrl: string | null | undefined
+  authUrl: string
+  clientId: string
+  clientSecret: string
 }
 
 export const apiSlice = createApi({
@@ -66,8 +74,17 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    deleteServiceProvider: builder.mutation<void, void>({
+      query: () => ({
+        url: '/api/administration/subscriptionconfiguration/owncompany',
+        method: 'DELETE',
+      }),
+    }),
   }),
 })
 
-export const { useFetchServiceProviderQuery, useAddServiceProviderMutation } =
-  apiSlice
+export const {
+  useFetchServiceProviderQuery,
+  useAddServiceProviderMutation,
+  useDeleteServiceProviderMutation,
+} = apiSlice
