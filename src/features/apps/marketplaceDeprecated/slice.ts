@@ -18,85 +18,89 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { CardItems } from '@catena-x/portal-shared-components'
 import { createSlice } from '@reduxjs/toolkit'
+import { apiSlice } from './apiSlice'
 import type { RootState } from 'features/store'
-import { fetchActive, fetchLatest, fetchSubscriptionStatus } from './actions'
+import { appToCard } from '../mapper'
 import {
+  initialState,
   type AppMarketplaceApp,
   type AppMarketplaceState,
-  initialState,
-  name,
   type SubscribedApps,
 } from './types'
-import { appToCard } from '../mapper'
+import { type CardItems } from '@catena-x/portal-shared-components'
 
 enum Status {
   ACTIVE = 'ACTIVE',
 }
 
-export const slice = createSlice({
-  name,
+const slice = createSlice({
+  name: 'marketplace',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchActive.pending, (state) => ({
-      ...state,
-      items: [],
-      loading: true,
-      error: '',
-    }))
-    builder.addCase(fetchActive.fulfilled, (state, { payload }) => ({
-      ...state,
-      items: payload || [],
-      loading: false,
-      error: '',
-    }))
-    builder.addCase(fetchActive.rejected, (state, action) => ({
-      ...state,
-      items: [],
-      loading: false,
-      error: action.error.message!,
-    }))
-    builder.addCase(fetchLatest.pending, (state) => ({
-      ...state,
-      latest: [],
-      loading: true,
-      error: '',
-    }))
-    builder.addCase(fetchLatest.fulfilled, (state, { payload }) => ({
-      ...state,
-      latest: payload || [],
-      loading: false,
-      error: '',
-    }))
-    builder.addCase(fetchLatest.rejected, (state, action) => ({
-      ...state,
-      latest: [],
-      loading: false,
-      error: action.error.message!,
-    }))
-    builder.addCase(fetchSubscriptionStatus.pending, (state) => ({
-      ...state,
-      subscribedApps: [],
-      loading: true,
-      error: '',
-    }))
-    builder.addCase(
-      fetchSubscriptionStatus.fulfilled,
-      (state, { payload }) => ({
-        ...state,
-        subscribedApps: payload || [],
-        loading: false,
-        error: '',
+    builder
+      .addMatcher(apiSlice.endpoints.getActive.matchPending, (state) => {
+        state.loading = true
+        state.error = ''
       })
-    )
-    builder.addCase(fetchSubscriptionStatus.rejected, (state, action) => ({
-      ...state,
-      subscribedApps: [],
-      loading: false,
-      error: action.error.message!,
-    }))
+      .addMatcher(
+        apiSlice.endpoints.getActive.matchFulfilled,
+        (state, action) => {
+          state.loading = false
+          state.items = action.payload ?? []
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getActive.matchRejected,
+        (state, action) => {
+          state.loading = false
+          state.error = action.error.message!
+        }
+      )
+
+    builder
+      .addMatcher(apiSlice.endpoints.getLatest.matchPending, (state) => {
+        state.loading = true
+        state.error = ''
+      })
+      .addMatcher(
+        apiSlice.endpoints.getLatest.matchFulfilled,
+        (state, action) => {
+          state.loading = false
+          state.latest = action.payload ?? []
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getLatest.matchRejected,
+        (state, action) => {
+          state.loading = false
+          state.error = action.error.message!
+        }
+      )
+
+    builder
+      .addMatcher(
+        apiSlice.endpoints.getSubscriptionStatus.matchPending,
+        (state) => {
+          state.loading = true
+          state.error = ''
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getSubscriptionStatus.matchFulfilled,
+        (state, action) => {
+          state.loading = false
+          state.subscribedApps = action.payload ?? []
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getSubscriptionStatus.matchRejected,
+        (state, action) => {
+          state.loading = false
+          state.error = action.error.message!
+        }
+      )
   },
 })
 
@@ -113,22 +117,12 @@ export const subscribedStatusSelector = (state: RootState) =>
   state.apps.marketplace.subscribedApps
 
 export const subscribedAppsSelector = (state: RootState) => {
-  state.apps.marketplace.items
-    .filter((item: AppMarketplaceApp) => {
-      return state.apps.marketplace.subscribedApps.find(
-        (app: SubscribedApps) => {
-          return (
-            item.id === app.appId && app.appSubscriptionStatus === Status.ACTIVE
-          )
-        }
-      )
-    })
-    .forEach((result: AppMarketplaceApp) => {
-      console.log('result', appToCard(result))
-      return appToCard(result)
-    })
+  return state.apps.marketplace.items.filter((item: AppMarketplaceApp) => {
+    return state.apps.marketplace.subscribedApps.find(
+      (app: SubscribedApps) =>
+        item.id === app.appId && app.appSubscriptionStatus === Status.ACTIVE
+    )
+  })
 }
 
-const Slice = { slice }
-
-export default Slice
+export default slice.reducer

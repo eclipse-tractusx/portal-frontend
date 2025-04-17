@@ -303,7 +303,8 @@
       "favoriteSection": {
         "title": "Meine Favoriten",
         "myFavorite": "Meine Favoriten",
-        "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind."
+        "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind.",
+        "errorMsg": "Error! Something went wrong"
       },
       "appOverviewSection": {
         "title": "App Übersicht",
@@ -327,7 +328,8 @@
         "noMatch": "Keine Treffer",
         "for": "zu Ihrem Suchausdruck",
         "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
-        "loadFailed": "Laden fehlgeschlagen"
+        "loadFailed": "Laden fehlgeschlagen",
+        "errorMsg": "Error! Something went wrong"
       }
     },
     "semantichub": {
