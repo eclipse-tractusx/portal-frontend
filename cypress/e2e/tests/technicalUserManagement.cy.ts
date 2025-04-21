@@ -30,7 +30,6 @@ describe('Technical User Creation', () => {
     // Navigate to the technical user management page using the page object method
 
     cy.login('user')
-
     technicalPage.visit()
   })
 
