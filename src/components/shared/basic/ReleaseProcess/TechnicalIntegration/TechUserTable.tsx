@@ -65,7 +65,7 @@ export const TechUserTable = ({
           align: 'left',
           headerName: t('content.apprelease.technicalIntegration.table.name'),
           flex: 2,
-          valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
+          valueGetter: (_value_, row: TechnicalUserProfiles) =>
             t('content.apprelease.technicalIntegration.table.name') +
             ' ' +
             (findIndex(
@@ -83,7 +83,7 @@ export const TechUserTable = ({
           align: 'left',
           headerName: t('content.apprelease.technicalIntegration.table.type'),
           flex: 1,
-          valueGetter: ({ row }: { row: TechnicalUserProfiles }) =>
+          valueGetter: (_value_, row: TechnicalUserProfiles) =>
             row.userRoles[0]?.type,
         },
         {

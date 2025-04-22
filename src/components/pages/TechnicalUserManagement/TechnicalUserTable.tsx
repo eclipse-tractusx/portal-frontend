@@ -154,21 +154,21 @@ export const TechnicalUserTable = () => {
             field: 'usertype',
             headerName: t('global.field.userType'),
             flex: 1.2,
-            valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
+            valueGetter: (_value_, row: ServiceAccountListEntry) =>
               row.userType || '-',
           },
           {
             field: 'offer',
             headerName: t('global.field.offerLink'),
             flex: 1.25,
-            valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
+            valueGetter: (_value_, row: ServiceAccountListEntry) =>
               row.offer ? row.offer?.name : '',
           },
           {
             field: 'isOwner',
             headerName: t('global.field.owner'),
             flex: 1,
-            valueGetter: ({ row }: { row: ServiceAccountListEntry }) =>
+            valueGetter: (_value_, row: ServiceAccountListEntry) =>
               row.isOwner ? 'Yes' : 'No',
           },
           {

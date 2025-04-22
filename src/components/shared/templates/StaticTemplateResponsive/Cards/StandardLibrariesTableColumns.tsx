@@ -17,7 +17,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { GridColDef } from '@mui/x-data-grid'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
 import { IconButton } from '@catena-x/portal-shared-components'
 import {
@@ -38,9 +37,7 @@ const getItemTitle = (values: number[], uids: UidType[]) => {
   )
 }
 
-export const StandardLibrariesTableColumns = (
-  stdJson: StandardLibraryType
-): Array<GridColDef> => {
+export const StandardLibrariesTableColumns = (stdJson: StandardLibraryType) => {
   const { t } = useTranslation()
   return [
     {
@@ -48,7 +45,7 @@ export const StandardLibrariesTableColumns = (
       headerName: t('content.standardLibraryTable.capabilities'),
       flex: 1.5,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: StdRows }) =>
+      valueGetter: (_value_: StdRows, row: StdRows) =>
         row?.capabilities?.length > 0 && stdJson
           ? getItemTitle(row.capabilities, stdJson.capabilities)
           : '',
@@ -58,14 +55,14 @@ export const StandardLibrariesTableColumns = (
       headerName: t('content.standardLibraryTable.version'),
       flex: 1,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: StdRows }) => row.releaseOfDocument,
+      valueGetter: (_value_: StdRows, row: StdRows) => row.releaseOfDocument,
     },
     {
       field: 'Title',
       headerName: t('content.standardLibraryTable.title'),
       flex: 1.5,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: StdRows }) => row.title,
+      valueGetter: (_value_: StdRows, row: StdRows) => row.title,
     },
     {
       field: 'Download',
@@ -74,7 +71,7 @@ export const StandardLibrariesTableColumns = (
       disableColumnMenu: true,
       align: 'center',
       headerAlign: 'center',
-      valueGetter: ({ row }: { row: StdRows }) => row.title,
+      valueGetter: (_value_: StdRows, row: StdRows) => row.title,
       renderCell: ({ row }: { row: StdRows }) => (
         <IconButton color="secondary" size="small">
           <a

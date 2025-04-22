@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { IconButton, Typography } from '@catena-x/portal-shared-components'
-import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
 import _ from 'lodash'
@@ -188,7 +187,7 @@ export const RegistrationRequestsTableColumns = (
   t: typeof i18next.t,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void
-): Array<GridColDef> => {
+) => {
   return [
     {
       field: 'companyInfo',
@@ -253,7 +252,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: t('content.admin.registration-requests.columns.age'),
       flex: 1.1,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: ApplicationRequest }) => {
+      valueGetter: (_value_: ApplicationRequest, row: ApplicationRequest) => {
         const date1 = dayjs(row.dateCreated).format('YYYY-MM-DD')
         const date2 = dayjs()
         const days = date2.diff(date1, 'days')

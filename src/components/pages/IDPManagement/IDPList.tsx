@@ -416,7 +416,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'displayName',
           headerName: t('global.field.name'),
           flex: 3,
-          valueGetter: ({ row }) => getDisplayName(row),
+          valueGetter: (_value_, row) => getDisplayName(row),
         },
         {
           field: 'alias',
@@ -450,7 +450,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'enabled',
           headerName: t('global.field.status'),
           flex: 2,
-          valueGetter: ({ row }) => getStatus(row.enabled, row.oidc?.clientId),
+          valueGetter: (_value_, row) =>
+            getStatus(row.enabled, row.oidc?.clientId),
           renderCell: (params) => {
             const status = params.value
             return (

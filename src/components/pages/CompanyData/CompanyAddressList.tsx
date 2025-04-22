@@ -228,7 +228,7 @@ export const CompanyAddressList = ({
             align: 'left',
             headerName: t('content.companyData.table.site'),
             flex: 1.5,
-            valueGetter: ({ row }: { row: CompanyDataType }) =>
+            valueGetter: (_value_, row: CompanyDataType) =>
               row.site?.name ?? '',
           },
           {
@@ -237,7 +237,7 @@ export const CompanyAddressList = ({
             align: 'left',
             headerName: t('content.companyData.table.location'),
             flex: 2,
-            valueGetter: ({ row }: { row: CompanyDataType }) =>
+            valueGetter: (_value_, row: CompanyDataType) =>
               row.address
                 ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''} ${row.address.physicalPostalAddress.street?.houseNumber ?? ''} ${row.address.physicalPostalAddress.city ?? ''} ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.country ?? ''}`
                 : '',
@@ -248,7 +248,7 @@ export const CompanyAddressList = ({
             align: 'left',
             headerName: t('content.companyData.table.type'),
             flex: 1,
-            valueGetter: ({ row }: { row: CompanyDataType }) =>
+            valueGetter: (_value_, row: CompanyDataType) =>
               row.address.addressType === AddressType.SiteMainAddress
                 ? 'S'
                 : 'A',

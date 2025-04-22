@@ -18,7 +18,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
@@ -28,9 +27,7 @@ import { useDispatch } from 'react-redux'
 import type i18next from 'i18next'
 
 // Columns definitions of Partner Network page Data Grid
-export const PartnerNetworksTableColumns = (
-  t: typeof i18next.t
-): Array<GridColDef> => {
+export const PartnerNetworksTableColumns = (t: typeof i18next.t) => {
   const dispatch = useDispatch()
 
   return [
@@ -39,21 +36,23 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row?.legalName ?? '',
+      valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
+        row?.legalName ?? '',
     },
     {
       field: 'legalEntity.bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row?.bpnl ?? '',
+      valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
+        row?.bpnl ?? '',
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
       headerName: t('content.partnernetwork.columns.cxparticipant'),
       flex: 1.5,
       sortable: false,
-      renderCell: (params) =>
+      renderCell: (params: { row: BusinessPartner }) =>
         params?.row?.member ? (
           <img
             src="/cx-logo.svg"
@@ -71,7 +70,7 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) =>
+      valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
         row?.legalAddress?.physicalPostalAddress?.country?.name ??
         row?.legalAddress?.alternativePostalAddress?.country?.name ??
         '',
@@ -82,7 +81,7 @@ export const PartnerNetworksTableColumns = (
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',
-      renderCell: (params) =>
+      renderCell: (params: { row: BusinessPartner }) =>
         params?.row?.bpnl ? (
           <IconButton
             color="secondary"
