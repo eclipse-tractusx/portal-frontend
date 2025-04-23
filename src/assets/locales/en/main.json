@@ -671,6 +671,8 @@
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
+      "providedTableTitle": "Provided Connectors",
+      "noProvidedConnectorsMessage": "Currently there are no connector provided by your company to your customer.",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {

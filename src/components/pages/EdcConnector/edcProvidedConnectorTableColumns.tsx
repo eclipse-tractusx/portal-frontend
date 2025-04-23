@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 Mercedes-Benz Group AG and BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -21,13 +20,13 @@
 import type { GridColDef } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 
-export const ManagedConnectorTableColumns = (): Array<GridColDef> => {
+export const ProvidedConnectorTableColumns = (): Array<GridColDef> => {
   const { t } = useTranslation()
 
   return [
     {
-      field: 'providerCompanyName',
-      headerName: t('content.edcconnector.columns.hostCompanyName'),
+      field: 'hostCompanyName',
+      headerName: t('content.edcconnector.columns.providerCompanyName'),
       flex: 1,
       sortable: false,
       disableColumnMenu: true,
