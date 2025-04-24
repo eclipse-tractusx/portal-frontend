@@ -27,7 +27,7 @@ export const ManagedConnectorTableColumns = (): Array<GridColDef> => {
   return [
     {
       field: 'providerCompanyName',
-      headerName: t('content.edcconnector.columns.hostCompanyName'),
+      headerName: t('content.edcconnector.columns.providerCompanyName'),
       flex: 1,
       sortable: false,
       disableColumnMenu: true,

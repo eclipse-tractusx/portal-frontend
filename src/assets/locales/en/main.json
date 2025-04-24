@@ -601,7 +601,8 @@
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "The SD Document is not yet loaded. This could be due to the deactivation of the Sd Factory. This process will be retriggered as soon as possible by the CX Admin",
         "hostCompanyName": "Host",
-        "providerCompanyName": "Customer",
+        "customerCompanyName": "Customer",
+        "providerCompanyName": "Provider",
         "connectorUrl": "Connector URL"
       },
       "details": {
