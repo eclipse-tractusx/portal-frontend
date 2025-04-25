@@ -33,6 +33,7 @@ import type i18next from 'i18next'
 import { Progress } from 'components/shared/basic/Progress'
 import './style.scss'
 import { Box } from '@mui/material'
+import { type GridColDef } from '@mui/x-data-grid'
 
 interface StatusProgressProps {
   application: ApplicationRequest
@@ -187,7 +188,7 @@ export const RegistrationRequestsTableColumns = (
   t: typeof i18next.t,
   showConfirmOverlay?: (applicationId: string) => void,
   onConfirmationCancel?: (applicationId: string, name: string) => void
-) => {
+): Array<GridColDef> => {
   return [
     {
       field: 'companyInfo',

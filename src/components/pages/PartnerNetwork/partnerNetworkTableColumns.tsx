@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { type GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
@@ -27,7 +28,9 @@ import { useDispatch } from 'react-redux'
 import type i18next from 'i18next'
 
 // Columns definitions of Partner Network page Data Grid
-export const PartnerNetworksTableColumns = (t: typeof i18next.t) => {
+export const PartnerNetworksTableColumns = (
+  t: typeof i18next.t
+): Array<GridColDef> => {
   const dispatch = useDispatch()
 
   return [

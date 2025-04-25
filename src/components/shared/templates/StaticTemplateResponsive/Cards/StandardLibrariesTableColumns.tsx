@@ -17,6 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import { type GridColDef } from '@mui/x-data-grid'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
 import { IconButton } from '@catena-x/portal-shared-components'
 import {
@@ -37,7 +38,9 @@ const getItemTitle = (values: number[], uids: UidType[]) => {
   )
 }
 
-export const StandardLibrariesTableColumns = (stdJson: StandardLibraryType) => {
+export const StandardLibrariesTableColumns = (
+  stdJson: StandardLibraryType
+): Array<GridColDef> => {
   const { t } = useTranslation()
   return [
     {
