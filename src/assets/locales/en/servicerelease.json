@@ -207,7 +207,7 @@
       "close": "Close"
     },
     "offersHeading": "Services Offered",
-    "success": "Success",
+    "success": "Activation successful",
     "configuration": "Configuration successful",
     "failure": "Error while configuring service subscription"
   },
