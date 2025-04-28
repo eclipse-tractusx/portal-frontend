@@ -207,7 +207,8 @@
       "close": "Close"
     },
     "offersHeading": "Services Offered",
-    "success": "Subscription configuration successful",
+    "success": "Success",
+    "configuration": "Configuration successful",
     "failure": "Error while configuring service subscription"
   },
   "adminBoard": {

@@ -207,7 +207,8 @@
       "close": "Close"
     },
     "offersHeading": "Services Offered",
-    "success": "Erfolg",
+    "success": "Aktivierung erfolgreich",
+    "configuration": "Konfiguration erfolgreich",
     "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {

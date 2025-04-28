@@ -76,7 +76,7 @@ export default function ActivateserviceSubscription({
         requestId: subscriptionId,
         offerUrl: 'https://testonly.google.de|https://testonly.google.de/',
       }).unwrap()
-      success(t('serviceSubscription.success'))
+      success(t('serviceSubscription.configuration'))
     } catch (err) {
       error(t('serviceSubscription.failure'), '', err as object)
     } finally {
