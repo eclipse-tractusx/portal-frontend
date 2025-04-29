@@ -19,6 +19,7 @@
 
 import { type TextFieldProps } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
+//TODO: import TextFieldProps & Autocomplete from shared components
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
 import { SelectInput, SelectOptions } from '@catena-x/portal-shared-components'
@@ -103,7 +104,8 @@ export const SelectList = ({
         return (
           <SelectInput
             className="cx-select-list__input"
-            params={params}
+            // eslint-disable-next-line
+            params={params as any}
             label={label}
             placeholder={placeholder}
             variant={variant}

@@ -20,6 +20,7 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import type { TypographyProps } from '@mui/material'
+// TODO: import TypographyProps from shared components
 import { useTranslation } from 'react-i18next'
 
 interface ComponentProps extends TypographyProps {
@@ -37,7 +38,8 @@ export default function SubHeaderTitle({
   return (
     <Typography
       sx={{ fontFamily: 'LibreFranklin-Light' }}
-      variant={variant}
+      // eslint-disable-next-line
+      variant={variant as any}
       className="section-title"
     >
       {`${t(title, params ?? {})}`}
