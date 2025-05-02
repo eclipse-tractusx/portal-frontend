@@ -491,7 +491,13 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       searchDebounce={isManagementOSP ? 1000 : undefined}
       onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
       buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
-      sx={isManagementOSP ? style : undefined}
+      sx={{
+        '.MuiDataGrid-cell': {
+          display: 'flex',
+          alignItems: 'center',
+        },
+        ...(isManagementOSP ? style : {}),
+      }}
     />
   )
 }
