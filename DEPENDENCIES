@@ -232,7 +232,7 @@ npm/npmjs/-/for-each/0.3.3, MIT, approved, clearlydefined
 npm/npmjs/-/forever-agent/0.6.1, Apache-2.0, approved, clearlydefined
 npm/npmjs/-/form-data/4.0.1, MIT, approved, clearlydefined
 npm/npmjs/-/fs-extra/9.1.0, MIT, approved, clearlydefined
-npm/npmjs/-/fs.realpath/1.0.0, ISC, approved, clearlydefined
+npm/npmjs/-/fs.realpath/1.0.0, ISC AND MIT, approved, clearlydefined
 npm/npmjs/-/fsevents/2.3.3, MIT, approved, #15309
 npm/npmjs/-/function-bind/1.1.2, MIT, approved, #11063
 npm/npmjs/-/function.prototype.name/1.1.6, MIT, approved, #10255
@@ -653,7 +653,7 @@ npm/npmjs/-/tweetnacl/0.14.5, Unlicense, approved, #1035
 npm/npmjs/-/type-check/0.4.0, MIT, approved, clearlydefined
 npm/npmjs/-/type-detect/4.0.8, MIT, approved, clearlydefined
 npm/npmjs/-/type-fest/0.20.2, CC0-1.0 AND MIT, approved, clearlydefined
-npm/npmjs/-/type-fest/0.21.3, MIT OR (CC0-1.0 AND MIT), approved, clearlydefined
+npm/npmjs/-/type-fest/0.21.3, CC0-1.0 AND MIT, approved, clearlydefined
 npm/npmjs/-/typed-array-buffer/1.0.2, MIT, approved, #9658
 npm/npmjs/-/typed-array-buffer/1.0.3, MIT, approved, #9658
 npm/npmjs/-/typed-array-byte-length/1.0.1, MIT, approved, #9659
