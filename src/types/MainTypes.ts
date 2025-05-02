@@ -97,10 +97,17 @@ export type RestrictedItem = {
 }
 
 export type IPage = RestrictedItem & {
+  name?: string
+  role?: string
   element: JSX.Element
   isRoute?: boolean
   children?: string[]
   companyRole?: string
+}
+
+export type IOverlay = {
+  name: string
+  role?: string
 }
 
 export type IAction = RestrictedItem & {

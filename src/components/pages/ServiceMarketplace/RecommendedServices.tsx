@@ -20,15 +20,14 @@
 
 import {
   CardHorizontal,
-  CircleProgress,   LogoGrayData,
-
+  CircleProgress,
+  LogoGrayData,
 } from '@catena-x/portal-shared-components'
 import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './style.scss'
 import NoItems from '../NoItems'
-import { getAssetBase } from 'services/EnvironmentService'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'

@@ -26,7 +26,7 @@ import {
   CredentialType,
   useRevokeCredentialMutation,
 } from 'features/compayWallet/companyWalletApiSlice'
-import CompanyWalletSubNavigationHeader from './CompanyWalletSubNavigationHeader'
+import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
 import { useEffect, useState } from 'react'
@@ -111,7 +111,7 @@ export default function CompanyWallet(): JSX.Element {
             </div>
             {isSuccess && (
               <>
-                <CompanyWalletSubNavigationHeader />
+                <ComapnyWalletSubNavigationHeader />
                 <div className="container">
                   <RuleCard
                     handleRevoke={(id) => {

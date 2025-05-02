@@ -46,10 +46,7 @@ import { download } from 'utils/downloadUtils'
 import CheckListFullButtons from '../CheckList/CheckListFullButtons'
 import { getIntro, getTitle } from './CompanyDetailsHelper'
 import { useFetchNewRegistrationDocumentByIdMutation } from 'features/appManagement/apiSlice'
-import {
-  type RegistrationRequestDocs,
-  type UniqueIdType,
-} from 'features/admin/registration/types'
+import { type UniqueIdType } from 'features/admin/registration/types'
 import { StatusProgress } from '../RegistrationTableColumns'
 
 interface CompanyDetailOverlayProps {

@@ -20,7 +20,7 @@
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import { t } from 'i18next'
 import { MenuItem, type MenuItemProps } from './MenuItem'
-import '../../MobileMenu/MobileMenu.scss'
+import '../../frame/MobileMenu/style.scss'
 
 interface ProfileLinkProps {
   onSelect?: (title: string, children: MenuItemProps[]) => void

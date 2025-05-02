@@ -38,6 +38,7 @@ export default function CompanySubscriptionHeader({
 }: Readonly<{
   detail: AppDetails | ServiceDetailsResponse
   src: string
+  status?: string
 }>) {
   const { t } = useTranslation()
 

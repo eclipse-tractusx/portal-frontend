@@ -38,11 +38,7 @@ import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  decrement,
-  increment,
-  setAppRedirectStatus,
-} from 'features/appManagement/slice'
+import { decrement, increment } from 'features/appManagement/slice'
 import {
   ConsentStatusEnum,
   type DocumentData,
@@ -65,7 +61,6 @@ import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import {
   serviceReleaseStepDecrement,
   serviceReleaseStepIncrement,
-  setServiceRedirectStatus,
 } from 'features/serviceManagement/slice'
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
@@ -215,15 +210,15 @@ export default function CommonValidateAndPublish({
     }
   }
 
-  const onBackIconClick = () => {
-    if (type === ReleaseProcessTypes.APP_RELEASE) {
-      dispatch(setAppRedirectStatus(false))
-      dispatch(decrement())
-    } else {
-      dispatch(setServiceRedirectStatus(false))
-      dispatch(serviceReleaseStepDecrement())
-    }
-  }
+  // const onBackIconClick = () => {
+  //   if (type === ReleaseProcessTypes.APP_RELEASE) {
+  //     dispatch(setAppRedirectStatus(false))
+  //     dispatch(decrement())
+  //   } else {
+  //     dispatch(setServiceRedirectStatus(false))
+  //     dispatch(serviceReleaseStepDecrement())
+  //   }
+  // }
 
   const onValidatePublishSubmit = async () => {
     setLoading(true)

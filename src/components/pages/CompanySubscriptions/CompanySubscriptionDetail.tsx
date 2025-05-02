@@ -25,7 +25,7 @@ import {
   useFetchAppDetailsQuery,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
-import { PAGES, SEARCH_PARAMS, SEARCH_PARAMS } from 'types/cfx/Constants'
+import { PAGES, SEARCH_PARAMS } from 'types/cfx/Constants'
 import './style.scss'
 import {
   type ServiceDetailsResponse,
@@ -43,7 +43,6 @@ import CompanySubscriptionDocument from './CompanySubscriptionDocument'
 import MarketplaceDocuments from '../ServiceMarketplaceDetail/MarketplaceDocuments'
 import MarketplaceProvider from '../ServiceMarketplaceDetail/MarketplaceProvider'
 import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/MarketplaceTechnicalUserSetup'
-
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
@@ -122,7 +121,7 @@ export default function CompanySubscriptionDetail() {
           <CompanySubscriptionHeader
             detail={fetchData}
             src={getSrc()}
-            status={subscriberData.offerSubscriptionStatus}
+            status={subscriberData?.offerSubscriptionStatus}
           />
           <div className="subscription-container">
             <div className="details">

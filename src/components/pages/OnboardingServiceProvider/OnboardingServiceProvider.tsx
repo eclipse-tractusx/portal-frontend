@@ -210,7 +210,6 @@ const OnboardingServiceProvider = () => {
                 type={InputType.password}
                 validate={isIDPClientSecret}
                 onValid={checkValidData}
-                type={InputType.password}
               />
             </div>
             {showError && (
@@ -354,7 +353,7 @@ const OnboardingServiceProvider = () => {
               {t('content.onboardingServiceProvider.userList')}
             </Typography>
             <IDPList isManagementOSP={true} />
-          </Box>
+          </div>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
           <div className="connector-table-container">

@@ -249,13 +249,13 @@ const AddConnectorOverlay = ({
               newUserLoading={newUserLoading}
               newUserSuccess={newUserSuccess}
               {...{
-                  handleSubmit,
-                  control,
-                  errors,
-                  trigger,
-                  getValues,
-                  resetField,
-                }}
+                handleSubmit,
+                control,
+                errors,
+                trigger,
+                getValues,
+                resetField,
+              }}
             />
           ) : (
             showLoader()

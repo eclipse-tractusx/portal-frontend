@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import { Trans, useTranslation } from 'react-i18next'
 import InputLabel from '@mui/material/InputLabel'

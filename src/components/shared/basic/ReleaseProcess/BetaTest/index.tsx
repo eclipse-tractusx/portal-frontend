@@ -19,11 +19,15 @@
  ********************************************************************************/
 
 import {
-  BackButton,
   Button,
+  Chip,
+  IconButton,
   PageNotifications,
+  Typography,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import {
   appIdSelector,
@@ -34,9 +38,11 @@ import {
 } from 'features/appManagement/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef, useState } from 'react'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
+import { getAssetBase } from 'services/EnvironmentService'
 import { isStepCompleted } from '../AppStepHelper'
 
 export default function BetaTest() {
@@ -75,7 +81,46 @@ export default function BetaTest() {
         title={t('content.apprelease.betaTest.headerTitle')}
         description={t('content.apprelease.betaTest.headerDescription')}
       />
-
+      <form className="header-description">
+        <Typography variant="h4" mb={5}>
+          {t('content.apprelease.betaTest.betaTests')}
+        </Typography>
+        <Grid container sx={{ mt: 0 }}>
+          <Grid item md={3}>
+            <img
+              src={`${getAssetBase()}/images/content/teaser.png`}
+              alt="idp teaser"
+              height="164px"
+              width="164px"
+              style={{ borderRadius: '16px' }}
+            />
+          </Grid>
+          <Grid item md={8} marginLeft="20px">
+            <div style={{ display: 'flex' }}>
+              <Typography variant="h4">
+                {t('content.apprelease.betaTest.technicalIntegrationTest')}
+              </Typography>
+              <Chip
+                key={1}
+                label={'Available Soon'}
+                withIcon={false}
+                type="plain"
+                variant="filled"
+                color="label"
+                sx={{ ml: 5 }}
+              />
+            </div>
+            <Typography variant="body2" marginTop="16px">
+              {t(
+                'content.apprelease.betaTest.technicalIntegrationTestDescription'
+              )}
+            </Typography>
+            <a href="/" style={{ display: 'flex', marginTop: '28px' }}>
+              <ArrowForwardIcon fontSize="small" /> Open test overview
+            </a>
+          </Grid>
+        </Grid>
+      </form>
       <Box mb={2}>
         {betaTestNotification && (
           <Grid container xs={12} sx={{ mb: 2 }}>
@@ -96,14 +141,22 @@ export default function BetaTest() {
           </Grid>
         )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-
-        <BackButton
-          backButtonLabel={t('global.actions.back')}
-          backButtonVariant="outlined"
-          onBackButtonClick={() => {
-            dispatch(decrement())
-          }}
-        />
+        <Button
+          variant="outlined"
+          startIcon={<HelpOutlineIcon />}
+          sx={{ mr: 1 }}
+          onClick={() =>
+            window.open(
+              '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process',
+              '_blank'
+            )
+          }
+        >
+          {t('content.apprelease.footerButtons.help')}
+        </Button>
+        <IconButton onClick={onBackIconClick} color="secondary">
+          <KeyboardArrowLeftIcon />
+        </IconButton>
         <Button
           variant="contained"
           sx={{ float: 'right' }}

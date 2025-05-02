@@ -17,13 +17,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useTranslation } from 'react-i18next'
-import { Button } from '@catena-x/portal-shared-components'
+import { Trans, useTranslation } from 'react-i18next'
+import { Tooltips, Typography } from '@catena-x/portal-shared-components'
 import './style.scss'
-import EastIcon from '@mui/icons-material/East'
-import { useNavigate } from 'react-router'
+import Overlay from './Overlay'
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  useTheme,
+} from '@mui/material'
+import {
+  useFetchUsecaseQuery,
+  type VerifiedCredentialsData,
+} from 'features/usecase/usecaseApiSlice'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import LaunchIcon from '@mui/icons-material/Launch'
+import { show } from 'features/control/overlay'
+import { OVERLAYS } from 'types/Constants'
+import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined'
 
-export default function CompanyWalletSubNavigationHeader(): JSX.Element {
+interface SelectedCredentialData {
+  credential: VerifiedCredentialsData
+  credentialType: string
+}
+
+export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useTheme()

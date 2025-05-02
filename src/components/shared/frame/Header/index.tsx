@@ -46,14 +46,13 @@ import './style.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
-import { COMPANY_ROLES } from 'types/Constants'
+import { COMPANY_ROLES, ROLES } from 'types/Constants'
 import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
 import { setIsHeaderNote } from 'features/home/slice'
 import { companySelector } from 'features/companyAccess/slice'
 import UserService from 'services/UserService'
-import { ROLES } from 'types/Constants'
 
 export const Header = ({
   main,

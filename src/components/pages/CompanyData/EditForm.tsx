@@ -82,7 +82,7 @@ export default function EditForm({
     skip: !newForm,
   })
   const [input, setInput] = useState<CompanyDataType>(companyDataInitialData)
-  let inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
+  const inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
 
   if (companyInfo) {
     inputParams.externalId = `${companyInfo?.bpn}_${new Date().toISOString()}`

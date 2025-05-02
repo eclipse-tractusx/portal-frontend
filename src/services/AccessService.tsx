@@ -31,6 +31,7 @@ import {
   ALL_OVERLAYS,
   userMenuRegistration,
   userMenuCompany,
+  footerMenuFull,
 } from 'types/Config'
 import { OVERLAYS } from 'types/Constants'
 import { AddTechnicalUser } from 'components/overlays/AddTechnicalUser'
@@ -76,12 +77,14 @@ import {
   getClientIdSemantic,
   getClientIdSsiCredential,
 } from './EnvironmentService'
-import { mainMenuFullTree, userMenuFull, ALL_PAGES } from 'types/cfx/Config'
+import {
+  mainMenuFullTree,
+  userMenuFull,
+  ALL_PAGES,
+  userMenuWithChildren,
+} from 'types/cfx/Config'
 import { getCompanyRoles } from './CompanyService'
 import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
-import { intersectAccess } from 'utils/dataUtils'
-import type { KeycloakResourceAccess } from 'keycloak-js'
-import { getClientId } from './EnvironmentService'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }

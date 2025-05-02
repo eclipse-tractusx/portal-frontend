@@ -42,6 +42,7 @@ import {
   SortOption,
   CircleProgress,
   LoadMoreButton,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -97,6 +98,9 @@ export default function ServiceMarketplace() {
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
   const services = data?.content
+  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  // eslint-disable-next-line
+  const servicesError = error as any
 
   useEffect(() => {
     if (services)
@@ -228,13 +232,13 @@ export default function ServiceMarketplace() {
 
   return (
     <main className="serviceMarketplace">
-            <MainHeader
+      <MainHeader
         title={t('content.serviceMarketplace.title')}
         subTitle={t('content.serviceMarketplace.description')}
         headerHeight={250}
         subTitleWidth={750}
       />
-      
+
       {isFetching ? (
         <div style={{ textAlign: 'center' }}>
           <CircleProgress

@@ -18,21 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import NewsSection from './NewsSection'
-import BusinessApplicationsSection from './BusinessApplicationsSection'
-import StageSection from './StageSection'
-import AppStoreSection from './AppStoreSection'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './style.scss'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setLoggedUser } from 'features/user/slice'
+import type { IUser } from 'features/user/types'
 
-export default function Home() {
-  return (
-    <main className="home">
-      <StageSection />
-      <NewsSection />
-      <AppStoreSection />
-      <BusinessApplicationsSection />
-    </main>
-  )
+export function AuthProvider(props: {
+  children: JSX.Element
+  user: IUser
+}): JSX.Element {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(setLoggedUser(props.user))
+  }, [dispatch, props.user])
+  return <>{props.children}</>
 }

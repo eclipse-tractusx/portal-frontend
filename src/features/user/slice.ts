@@ -18,21 +18,31 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import NewsSection from './NewsSection'
-import BusinessApplicationsSection from './BusinessApplicationsSection'
-import StageSection from './StageSection'
-import AppStoreSection from './AppStoreSection'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './style.scss'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { RootState } from 'features/store'
+import type { IUser } from './types'
 
-export default function Home() {
-  return (
-    <main className="home">
-      <StageSection />
-      <NewsSection />
-      <AppStoreSection />
-      <BusinessApplicationsSection />
-    </main>
-  )
+const initialState: IUser = {
+  userName: '',
+  name: '',
+  email: '',
+  company: '',
+  tenant: '',
+  roles: [],
+  isAdmin: false,
 }
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    setLoggedUser: (_state: IUser, action: PayloadAction<IUser>) => {
+      return action.payload
+    },
+  },
+})
+
+export const { setLoggedUser } = userSlice.actions
+export const userSelector = (state: RootState): IUser => state.user
+
+export default userSlice.reducer

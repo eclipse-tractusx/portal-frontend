@@ -24,8 +24,8 @@ export enum PAGES {
   HOME = 'home',
   REGISTRATION = 'registration',
   APP_SUBSCRIPTION = 'appSubscription',
-  ADMINBOARD = 'adminboard',
-  ADMINBOARD_DETAIL = 'adminboardDetail',
+  APP_ADMIN_BOARD = 'adminboard',
+  ADMIN_BOARD_DETAIL = 'adminboardDetail',
   // MARKETPLACE = 'marketplace', // Removed (header menu)
   APP_MARKETPLACE = 'appMarketplace',
   SERVICE_MARKETPLACE = 'serviceMarketplace',
@@ -106,6 +106,7 @@ export enum PAGES {
   COMPANY_DATA = 'companyData',
   MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider', // Newly Added
   OSP_TECHNICAL_USER_MANAGEMENT = 'ospTechnicalUserManagement',
+  ADMINBOARD = 'ADMINBOARD',
 }
 
 export const FOOTERLINK = {
@@ -159,7 +160,5 @@ export const DROPZONE_ERROR_CODE = {
   FILE_INVALID_TYPE: 'file-invalid-type',
   TOO_MANY_FILES: 'too-many-files',
 }
-
-
 
 export const COFINITY_BPNS = ['BPNL00000003CRHK', 'BPNLCOFINITYEZFA']

@@ -28,8 +28,8 @@ import { itemsSelector } from 'features/apps/favorites/slice'
 import { useEffect, useMemo } from 'react'
 import { fetchItems } from 'features/apps/favorites/actions'
 import type { AppDispatch } from 'features/store'
-import FavoriteItem from 'components/pages/AppMarketplace/components/FavoriteSection/FavoriteItem'
 import { Carousel } from '../../Carousel'
+import FavoriteItem from 'components/pages/AppMarketplace/FavoriteSection/FavoriteItem'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()

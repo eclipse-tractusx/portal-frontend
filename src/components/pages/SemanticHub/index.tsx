@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageSnackbar, Button, Typography } from '@catena-x/portal-shared-components'
+import {
+  PageSnackbar,
+  Button,
+  Typography,
+} from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModelDetailDialog from './ModelDetailDialog'
@@ -27,7 +31,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchSemanticModelById } from 'features/semanticModels/actions'
 import ModelImportDialog from './ModelImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import Grid from '@mui/material/Grid'
@@ -127,14 +130,14 @@ export default function SemanticHub() {
           subTitleWidth={1000}
         />
         <section>
-        <PageInfo
+          <PageInfo
             description={t('content.semantichub.introText_1')}
             buttonLabel={t('content.semantichub.addModel')}
             buttonAction={() => {
               setImportModel(true)
             }}
           />
-         
+
           <Grid container justifyContent="space-between">
             <Grid item xs={5}>
               <Typography variant="body2" mb={2}>

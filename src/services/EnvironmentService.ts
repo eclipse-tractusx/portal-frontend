@@ -27,6 +27,9 @@ import {
 
 declare const ENV: Record<string, string>
 
+export const getRequireHttpsUrlPattern = () =>
+  ENV.REQUIRE_HTTPS_URL_PATTERN ?? 'true'
+
 export const isRequireHttpsUrlPattern = () =>
   ENV.REQUIRE_HTTPS_URL_PATTERN !== 'false'
 

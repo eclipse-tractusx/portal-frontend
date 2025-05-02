@@ -18,13 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { isRequireHttpsUrlPattern } from '../services/EnvironmentService'
+import { getRequireHttpsUrlPattern } from '../services/EnvironmentService'
+
+// check the REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to !== 'false' if not set
+const requireHttpsUrlPattern = getRequireHttpsUrlPattern() !== 'false'
 
 const DOMAIN =
   /([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])){1,10}/i
 const URLPATH = /(\/[a-z0-9-._~:/?#[\]@!$&'()*+,;=%]{0,500}){0,20}/
 // construct regex patterns for URL based on the REQUIRE_HTTPS_URL_PATTERN environment variable
-const urlProtocol = isRequireHttpsUrlPattern() ? 'https' : 'https?'
+const urlProtocol = requireHttpsUrlPattern ? 'https' : 'https?'
 const urlPattern = new RegExp(
   `^(${urlProtocol})://(${DOMAIN.source})(:\\d{1,5})?(${URLPATH.source})?$`,
   'i'
@@ -48,7 +51,7 @@ export const Patterns = {
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
-    /^(?!.*\s$)([\wÀ-ÿ£$€¥¢@%*+\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/,
+    /^(?!.*\s$)([\p{L}\u0E00-\u0E7F\d\p{Sc}@%*+_\-/\\,.:;=<>!?&^#'\x22()[\]]\s?){1,160}$/u,
   personName: personNamePattern,
   name: /^([A-Za-z\u00C0-\u017F-,.'](?!.*[-,.]{2})[A-Za-z\u00C0-\u017F-,.']{0,40} ?)[^ –]{1,40}$/,
   sitename: /^[^\s].{0,163}\S$/i,

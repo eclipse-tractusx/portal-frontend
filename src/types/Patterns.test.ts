@@ -32,6 +32,7 @@ import {
   isSearchUserEmail,
   isValidAppOverviewSearch,
   isValidIDPName,
+  isValidPhone,
 } from './Patterns'
 
 const TESTDATA = {

@@ -164,8 +164,8 @@ export default function Main() {
           <MainOverlay />
           <MainNotify />
           <MenuInfo
-            main={AccessService.mainMenuTree().concat(
-              AccessService.userMenuWithChild()
+            main={(AccessService.mainMenuTree() ?? []).concat(
+              AccessService.userMenuWithChild() ?? []
             )}
           />
         </>

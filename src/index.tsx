@@ -25,6 +25,7 @@ import { store } from 'features/store'
 import AccessService from 'services/AccessService'
 import I18nService from 'services/I18nService'
 import UserService from 'services/UserService'
+import { AuthProvider } from 'components/AuthProvider'
 import AuthorizingRouter from 'components/AuthorizingRouter'
 import {
   SharedThemeProvider,
@@ -41,18 +42,22 @@ import ClickjackingProtection from './utils/ClickjackingProtection'
 I18nService.init()
 AccessService.init()
 
-UserService.init(() => {
+UserService.initialize((user) => {
   CompanyService.init(
     () => {
       createRoot(document.getElementById('app')!).render(
         <StrictMode>
           <ClickjackingProtection />
-      <SharedCssBaseline />
+          <SharedCssBaseline />
           <Provider store={store}>
-          <SharedThemeProvider themeDesign={cofinityTheme}>
-              <CompanyProvider user={user}>
-                <AuthorizingRouter />
-              </CompanyProvider>
+            <SharedThemeProvider themeDesign={cofinityTheme}>
+              <ThemeProvider theme={cofinityTheme}>
+                <AuthProvider user={user}>
+                  <CompanyProvider user={user}>
+                    <AuthorizingRouter />
+                  </CompanyProvider>
+                </AuthProvider>
+              </ThemeProvider>
             </SharedThemeProvider>
           </Provider>
         </StrictMode>

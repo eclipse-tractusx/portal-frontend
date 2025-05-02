@@ -34,6 +34,7 @@ import PageInfo from 'components/shared/cfx/PageInfo'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { userHasPortalRole } from 'services/AccessService'
+import { initServicetNotifications } from 'types/MainTypes'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()

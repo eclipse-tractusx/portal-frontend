@@ -29,8 +29,6 @@ import { Box, Grid } from '@mui/material'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined'
 import { getAssetBase } from 'services/EnvironmentService'
-import { userHasSsiCredentialRole } from 'services/AccessService'
-import { ROLES } from 'types/Constants'
 import useFormattedDate from 'hooks/useFormattedDate'
 import { useMemo, useState } from 'react'
 import { error, success } from 'services/NotifyService'
@@ -86,7 +84,6 @@ export default function RuleCard({
 
   const canShowRevoke = (item: WalletContent) => {
     return (
-      userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIAL) &&
       item.status === CredentialSubjectStatus.ACTIVE &&
       item?.credentialType !== CredentialType.MEMBERSHIP &&
       item.credentialType !== CredentialType.BUSINESS_PARTNER_NUMBER

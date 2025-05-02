@@ -25,7 +25,7 @@ import {
   useTheme,
   Box,
 } from '@mui/material'
-import { type MenuType } from '../cfx/MobileMenu'
+import { type MenuType } from '.'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { useDispatch, useSelector } from 'react-redux'
 import { appearMenuSelector, setAppear } from 'features/control/appear'

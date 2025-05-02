@@ -195,7 +195,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Main Navigation**
 
-
   - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
 
 - **Technical User Management**
@@ -269,19 +268,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App Request**
 
   - Fixed UI issues in Registration Process pop up [PM2-833](https://cofinity-x.atlassian.net/browse/PM2-833)
-- **App Release Process**
 
+- **App Release Process**
 
   - fix: increase image upload size app release process [PM2-347](https://cofinity-x.atlassian.net/browse/PM2-347)
 
 - **Notifications**
 
-
   - Fixed notification rendering issues [PM2-369](https://cofinity-x.atlassian.net/browse/PM2-369)
   - Fixed notifications mark as read issue [PM2-1006](https://cofinity-x.atlassian.net/browse/PM2-1006)
 
 - **App & Service Subscription**
-
 
   - Fixed missing description in service subscription request detail page [PM2-1753](https://cofinity-x.atlassian.net/browse/PM2-1753)
   - Remove help links from app & service subscription detail [PM2-802](https://cofinity-x.atlassian.net/browse/PM2-802)
@@ -304,7 +301,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Fixed phone regex and error message for app registration [PM2-1855](https://cofinity-x.atlassian.net/browse/PM2-1855)
 
 - **Search Translation for App and Service Subsciption**
-
 
   - fixed DE translation for search input in App and Service Subsciption [#162](https://cofinity-x.atlassian.net/browse/PM2-162?atlOrigin=eyJpIjoiYmY5NWJmODQwYWViNGM5NGIwODRiYzgwNDkxYjkyMGYiLCJwIjoiaiJ9)
 
@@ -371,6 +367,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bugfixes
 
 - **Company Subscriptions**
+
   - fixed wrong hyperlink and role requirement for technical user details in company subscription details [#1220](https://github.com/eclipse-tractusx/portal-frontend/pull/1220)
 
 - **Technical User Management**
@@ -472,6 +469,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK fix: service details de description limitation [#1043](https://github.com/eclipse-tractusx/portal-frontend/pull/1043)
 
 - **App Subscription**
+
   - Fixed close icon button in Success App subscription screen [PM2-863](https://cofinity-x.atlassian.net/browse/PM2-863)
 
 - **App Release Process**
@@ -502,7 +500,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Make it consistent with app details wording [#PM2-1092](https://cofinity-x.atlassian.net/browse/PM2-1092)
   - Fixed Conformity document rendering issue in App Details [PM2-848](https://cofinity-x.atlassian.net/browse/PM2-848)
 - **Placeholder text for App and Service Subscription**
-
 
   - Replaced relevent text for search for app and service in company subscription [#191](https://cofinity-x.atlassian.net/browse/PM2-1535?atlOrigin=eyJpIjoiN2VhNzc5ZWE0YzE0NDIwZjliZjBmMDZkMTk3YWE5ZjgiLCJwIjoiaiJ9)
 

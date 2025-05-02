@@ -36,7 +36,6 @@ import { isSearchUserEmail } from 'types/Patterns'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { OverLappingStatusTag } from 'components/shared/cfx/OverLappingStatusTag'
-import { getClientId } from 'services/EnvironmentService'
 
 interface FetchHookArgsType {
   appId?: string
