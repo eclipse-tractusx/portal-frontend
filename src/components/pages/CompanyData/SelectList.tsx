@@ -19,7 +19,6 @@
 
 import { type TextFieldProps } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
-//TODO: import TextFieldProps & Autocomplete from shared components
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
 import { SelectInput, SelectOptions } from '@catena-x/portal-shared-components'
@@ -87,7 +86,7 @@ export const SelectList = ({
       disabled={disabled}
       // eslint-disable-next-line
       options={items.map((item: any) => item)}
-      getOptionLabel={(option) => option[keyTitle] || ''}
+      getOptionLabel={(option) => option[keyTitle] ?? ''}
       onChange={(_event, nextValue) => {
         handleChange(nextValue)
       }}

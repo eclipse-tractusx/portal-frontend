@@ -20,7 +20,6 @@
 
 import { Typography } from '@catena-x/portal-shared-components'
 import type { TypographyProps } from '@mui/material'
-// TODO: import TypographyProps from shared components
 import { useTranslation } from 'react-i18next'
 
 interface ComponentProps extends TypographyProps {

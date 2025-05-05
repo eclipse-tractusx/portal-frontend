@@ -183,7 +183,7 @@ export const CompanyAddressList = ({
   return (
     <>
       <Table
-        loading={isFetching || isOutputLoading || isInputLoading}
+        loading={isFetching ?? isOutputLoading ?? isInputLoading}
         hasMore={data && data.totalPages > page + 1}
         nextPage={() => {
           setPage((i) => i + 1)
