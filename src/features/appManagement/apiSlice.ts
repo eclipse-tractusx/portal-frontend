@@ -278,7 +278,7 @@ export const apiSlice = createApi({
     }),
     fetchAgreementData: builder.query<AgreementType[], void>({
       query: () =>
-        `api/apps/AppReleaseProcess/agreementData?languageShortName=${i18next.language}`,
+        `api/apps/appreleaseprocess/agreementData?languageShortName=${i18next.language}`,
     }),
     fetchConsentData: builder.query<ConsentType, string>({
       query: (appId: string) => `/api/apps/AppReleaseProcess/consent/${appId}`,
