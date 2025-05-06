@@ -303,7 +303,7 @@
       "favoriteSection": {
         "title": "Meine Favoriten",
         "myFavorite": "Meine Favoriten",
-        "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind.",
+        "noFavoriteDescription": "Ihre App-Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind.",
         "errorMsg": "Error! Something went wrong"
       },
       "appOverviewSection": {
