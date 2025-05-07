@@ -303,7 +303,8 @@
       "favoriteSection": {
         "title": "My Favorite Applications",
         "myFavorite": "My Favorites",
-        "noFavoriteDescription": "Your app favorites will show up in this section as soon as favorites selected."
+        "noFavoriteDescription": "Your app favorites will show up in this section as soon as favorites are selected.",
+        "errorMsg": "Error! Something went wrong"
       },
       "appOverviewSection": {
         "title": "App Overview",
@@ -327,7 +328,8 @@
         "noMatch": "No Match",
         "for": "for your search term",
         "dataLoadFailed": "Data Load Failed due to missing permission rights.",
-        "loadFailed": "Load Failed"
+        "loadFailed": "Load Failed",
+        "errorMsg": "Error! Something went wrong"
       }
     },
     "semantichub": {

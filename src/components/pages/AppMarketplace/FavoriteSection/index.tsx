@@ -23,24 +23,18 @@ import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import FavoriteItem from './FavoriteItem'
 import EmptyFavorites from './EmptyFavorites'
-import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
+import {
+  useFetchActiveAppsQuery,
+  useFetchFavoriteAppsQuery,
+} from 'features/apps/apiSlice'
 import { appToCard } from 'features/apps/mapper'
-import { useDispatch, useSelector } from 'react-redux'
-import { itemsSelector } from 'features/apps/favorites/slice'
-import { useEffect } from 'react'
-import { fetchItems } from 'features/apps/favorites/actions'
-import type { AppDispatch } from 'features/store'
 
 export default function FavoriteSection() {
   const { t } = useTranslation()
-  const dispatch = useDispatch<AppDispatch>()
-  const active = useFetchActiveAppsQuery().data ?? []
-  const favorites = useSelector(itemsSelector)
-  const favoriteSectionPosition = favorites.length === 0 ? 30 : 35
+  const { data: active = [] } = useFetchActiveAppsQuery()
+  const { data: favorites = [] } = useFetchFavoriteAppsQuery()
 
-  useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
+  const favoriteSectionPosition = favorites.length === 0 ? 30 : 35
 
   return (
     <Box

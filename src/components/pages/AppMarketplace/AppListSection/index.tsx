@@ -25,20 +25,23 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTheme } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import { addItem, removeItem } from 'features/apps/favorites/actions'
 import {
   useFetchActiveAppsQuery,
   useFetchFavoriteAppsQuery,
 } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
-import type { AppDispatch } from 'features/store'
 import { appsControlSelector } from 'features/apps/control'
 import { type AppMarketplaceApp } from 'features/apps/types'
 import { useEffect, useState } from 'react'
 import { cloneDeep } from 'lodash'
 import NoItems from 'components/pages/NoItems'
+import {
+  useAddItemMutation,
+  useRemoveItemMutation,
+} from 'features/apps/favorites/apiSlice'
+import { useSelector } from 'react-redux'
+import { error } from 'services/NotifyService'
 
 export const label = 'AppList'
 
@@ -48,33 +51,63 @@ export default function AppListSection() {
   const { id } = useParams()
   const location = useLocation()
 
-  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { data, error, isError, refetch } = useFetchActiveAppsQuery()
+  const {
+    data,
+    error: fetchError,
+    isError,
+    refetch,
+  } = useFetchActiveAppsQuery()
   const { data: favoriteItems, refetch: refetchFavoriteApps } =
     useFetchFavoriteAppsQuery()
+
   const control = useSelector(appsControlSelector)
   const [list, setList] = useState<AppMarketplaceApp[]>([])
   const [favList, setFavList] = useState<string[]>([])
 
-  // To-Do fix the type issue with status and data from FetchBaseQueryError
+  const [addItem] = useAddItemMutation()
+  const [removeItem] = useRemoveItemMutation()
+
+  // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
-  const activeAppsError = error as any
+  const activeAppsError = fetchError as any
 
   const checkIsFavorite = (appId: string) => favList?.includes(appId)
 
   const addOrRemoveFavorite = (event: React.MouseEvent, appId: string) => {
     const favs = cloneDeep(favList)
-    event?.stopPropagation()
+    event.stopPropagation()
+
     if (checkIsFavorite(appId)) {
-      dispatch(removeItem(appId))
-      const indexVal = favs?.indexOf(appId)
-      favs.splice(indexVal, 1)
-      arrangeDataList(list, favs)
+      removeItem(appId)
+        .unwrap()
+        .then(() => {
+          favs.splice(favs.indexOf(appId), 1)
+          arrangeDataList(list, favs)
+          refetchFavoriteApps()
+        })
+        .catch((err) => {
+          error(
+            t('content.appstore.appOverviewSection.errorMsg'),
+            '',
+            err as object
+          )
+        })
     } else {
-      dispatch(addItem(appId))
-      favs?.push(appId)
-      arrangeDataList(list, favs)
+      addItem(appId)
+        .unwrap()
+        .then(() => {
+          favs.push(appId)
+          arrangeDataList(list, favs)
+          refetchFavoriteApps()
+        })
+        .catch((err) => {
+          error(
+            t('content.appstore.appOverviewSection.errorMsg'),
+            '',
+            err as object
+          )
+        })
     }
   }
 
@@ -104,9 +137,7 @@ export default function AppListSection() {
         variant="indeterminate"
         colorVariant="primary"
         size={50}
-        sx={{
-          color: theme.palette.primary.main,
-        }}
+        sx={{ color: theme.palette.primary.main }}
       />
     </div>
   )

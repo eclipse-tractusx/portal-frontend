@@ -19,85 +19,89 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import type { RootState } from 'features/store'
-import { addItem, fetchItems, removeItem } from './actions'
+import { type RootState } from 'features/store'
 import { InitialListState, type ListState, RequestState } from 'types/MainTypes'
 import { name } from './types'
+import { apiSlice } from './apiSlice'
 
 const initialState: ListState<string> = { ...InitialListState }
 
-const pendingCase = (
-  state: ListState<string>,
-  action: { meta: { arg: string } }
-) => ({
-  ...state,
-  change: action.meta.arg || null,
-  request: RequestState.SUBMIT,
-  error: '',
-})
-
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
-const rejectedCase = (state: ListState<string>, action: any) => ({
-  ...state,
-  change: null,
-  request: RequestState.ERROR,
-  error: action.error.message as string,
-})
-
-export const slice = createSlice({
+const slice = createSlice({
   name,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    //fetch
-    builder.addCase(fetchItems.pending, (state) => ({
-      ...state,
-      items: [],
-      request: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(fetchItems.fulfilled, (state, { payload }) => ({
-      ...state,
-      items: payload || [],
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(fetchItems.rejected, (state, action) => ({
-      ...state,
-      items: [],
-      request: RequestState.ERROR,
-      error: action.error.message!,
-    }))
+    builder.addMatcher(
+      apiSlice.endpoints.getItems.matchFulfilled,
+      (state, { payload }) => {
+        state.items = payload ?? []
+        state.request = RequestState.OK
+        state.error = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.getItems.matchRejected,
+      (state, { error }) => {
+        state.items = []
+        state.request = RequestState.ERROR
+        state.error = error.message ?? ''
+      }
+    )
 
-    //add
-    builder.addCase(addItem.pending, pendingCase)
-    builder.addCase(addItem.fulfilled, (state) => ({
-      items: [...state.items, state.change!],
-      change: null,
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(addItem.rejected, rejectedCase)
+    builder.addMatcher(
+      apiSlice.endpoints.addItem.matchPending,
+      (state, { meta }) => {
+        state.change = meta.arg.originalArgs
+        state.request = RequestState.SUBMIT
+        state.error = ''
+      }
+    )
+    builder.addMatcher(apiSlice.endpoints.addItem.matchFulfilled, (state) => {
+      state.items.push(state.change ?? '')
+      state.change = null
+      state.request = RequestState.OK
+      state.error = ''
+    })
+    builder.addMatcher(
+      apiSlice.endpoints.addItem.matchRejected,
+      (state, { error }) => {
+        state.change = null
+        state.request = RequestState.ERROR
+        state.error = error.message ?? ''
+      }
+    )
 
-    //remove
-    builder.addCase(removeItem.pending, pendingCase)
-    builder.addCase(removeItem.fulfilled, (state) => ({
-      items: state.items.filter((a) => a !== state.change),
-      change: null,
-      request: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(removeItem.rejected, rejectedCase)
+    builder.addMatcher(
+      apiSlice.endpoints.removeItem.matchPending,
+      (state, { meta }) => {
+        state.change = meta.arg.originalArgs
+        state.request = RequestState.SUBMIT
+        state.error = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.removeItem.matchFulfilled,
+      (state) => {
+        state.items = state.items.filter((item) => item !== state.change)
+        state.change = null
+        state.request = RequestState.OK
+        state.error = ''
+      }
+    )
+    builder.addMatcher(
+      apiSlice.endpoints.removeItem.matchRejected,
+      (state, { error }) => {
+        state.change = null
+        state.request = RequestState.ERROR
+        state.error = error.message ?? ''
+      }
+    )
   },
 })
 
 export const stateSelector = (state: RootState): ListState<string> =>
   state.apps.favorites
-
 export const itemsSelector = (state: RootState): string[] =>
   state.apps.favorites.items
 
-const Slice = { slice }
-
-export default Slice
+export default slice
