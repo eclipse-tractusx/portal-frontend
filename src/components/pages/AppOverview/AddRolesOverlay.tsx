@@ -64,6 +64,8 @@ const AddRolesOverlay = ({
     uploadAppRoles: '',
   }
 
+  const validHeader = 'roles;description_en;description_de'
+
   const {
     control,
     trigger,
@@ -91,11 +93,8 @@ const AddRolesOverlay = ({
             ?.split('\n')
             .filter((item) => item !== '')
             .map((item) => item)
-
-          if (
-            CSVCells[0] === 'roles;description\r' ||
-            CSVCells[0] === 'roles;description'
-          ) {
+          const header = CSVCells[0]?.trim().toLowerCase()
+          if (header === validHeader) {
             const roleDescription = str
               ?.split('\n')
               .filter((item) => item !== '')
