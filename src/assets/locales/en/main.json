@@ -603,7 +603,8 @@
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "The SD Document is not yet loaded. This could be due to the deactivation of the Sd Factory. This process will be retriggered as soon as possible by the CX Admin",
         "hostCompanyName": "Host",
-        "providerCompanyName": "Customer",
+        "customerCompanyName": "Customer",
+        "providerCompanyName": "Provider",
         "connectorUrl": "Connector URL"
       },
       "details": {
@@ -673,6 +674,8 @@
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "Currently there are no onboarded connectors existing. New registered connectors will get added here as soon as available.",
+      "providedTableTitle": "Provided Connectors",
+      "noProvidedConnectorsMessage": "Currently there are no connector provided by your company to your customer.",
       "imagetext": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
       "addconnectorbutton": "Register Connector",
       "snackbar": {
