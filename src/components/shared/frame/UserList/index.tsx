@@ -132,7 +132,7 @@ export const UserList = ({
             field: 'name',
             headerName: t('global.field.name'),
             flex: 2,
-            valueGetter: ({ row }: { row: TenantUser }) =>
+            valueGetter: (_value_, row: TenantUser) =>
               `${row.firstName} ${row.lastName}`,
           },
           { field: 'email', headerName: t('global.field.email'), flex: 3 },
