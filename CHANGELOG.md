@@ -4,32 +4,32 @@
 
 ### Feature
 
-- **technical integration**
+- **Technical Integration**
   - added improvements in the technical user profile setup of app/service [#1472](https://github.com/eclipse-tractusx/portal-frontend/pull/1472)
-- **connector registration**:
+- **Connector Registration**:
   - added logic to show only available tech user [#1570](https://github.com/eclipse-tractusx/portal-backend/issues/1570)
   - added a new tab for provided connector [#1569](https://github.com/eclipse-tractusx/portal-backend/issues/1569)
 
 ### bugfixes
 
-- **company subscription**:
+- **Company Subscription**:
   - fixed back button on details page returns on wrong tab [#1532](https://github.com/eclipse-tractusx/portal-frontend/pull/1532)
-- **notifications**:
+- **Notifications**:
   - fixed notification to display as text and technical user creation title [#1535](https://github.com/eclipse-tractusx/portal-frontend/pull/1535)
-- **user management**:
+- **User Management**:
   - fixed app roles display and text to accurate description in user list table in app user management [#1546](https://github.com/eclipse-tractusx/portal-frontend/pull/1546)
-    **app/service release process**:
+- **App/Service Release Process**:
   - added missing translation for consent and terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
 
 ### technical support
 
-- **refactoring**
+- **Refactoring**
   - removed axios library use for connectors [#1506](https://github.com/eclipse-tractusx/portal-frontend/pull/1506)
   - removed axios library use and switched to RTK query for semantic hub [#1471](https://github.com/eclipse-tractusx/portal-frontend/pull/1471)
   - removed axios library use and switched to RTK query for partner network [#1500](https://github.com/eclipse-tractusx/portal-frontend/pull/1500)
   - removed axios library use and switched to RTK query for news section [#1505](https://github.com/eclipse-tractusx/portal-frontend/pull/1505)
   - removed axios library use and switched to RTK query for app marketplace [#1512](https://github.com/eclipse-tractusx/portal-frontend/pull/1512)
-- **dependencies**
+- **Dependencies**
   - updated app dependencies [#1539](https://github.com/eclipse-tractusx/portal-frontend/pull/1539), [#1571](https://github.com/eclipse-tractusx/portal-frontend/pull/1571), [#1562](https://github.com/eclipse-tractusx/portal-frontend/pull/1562), [#1582](https://github.com/eclipse-tractusx/portal-frontend/pull/1582), [#1451](https://github.com/eclipse-tractusx/portal-frontend/pull/1451),
   - upgraded portal-shared-components to 4.0.0 [#1567](https://github.com/eclipse-tractusx/portal-frontend/pull/1567)
   - upgraded portal-shared-components to 4.0.1. [#1585](https://github.com/eclipse-tractusx/portal-frontend/pull/1585)
