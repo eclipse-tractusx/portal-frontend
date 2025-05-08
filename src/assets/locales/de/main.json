@@ -1542,7 +1542,7 @@
           "error": "Geben Sie das gültige URL-Format ein"
         },
         "authUrl": {
-          "name": "Autorisierungs-URL",
+          "name": "Auth-URL",
           "hint": "Geben Sie die von Ihrem IdP bereitgestellte URL für das Authentifizierungstoken ein.",
           "error": "Geben Sie das gültige URL-Format ein"
         },
