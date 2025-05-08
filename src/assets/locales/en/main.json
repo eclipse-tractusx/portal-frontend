@@ -1524,21 +1524,21 @@
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
       "register": {
-        "heading": "Configuration Autosetup URL",
-        "message": "The company autosetup URL configuration feature allows operators to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. \n\n This auto setup callback URL configuration feature also enables operators to retrieve technical configuration elements and activate the subscription.",
+        "heading": "Configuration Auto Setup URL",
+        "message": "The company's auto setup URL configuration to set up a custom URL that will be used to automatically submit subscription requests to the service provider when app subscriptions are triggered on the marketplace. \n\n This auto setup callback URL configuration also enables the operator to retrieve technical configuration elements and activate the subscription.",
         "endpointConfigured": "Configured Provider Endpoint",
         "inputPlaceholder": "...enter your setup url",
-        "deleteAutoSetup": "Delete the existing configuration of Auto setup",
+        "deleteAutoSetup": "Delete the existing configuration of auto setup",
         "providerErrorMessage": "Something went wrong! Please try it later again.",
         "providerSuccessMessage": "Details updated successfully.",
         "autoSetupURL": {
           "name": "Auto setup URL",
-          "hint": "Enter the Auto setup valid URL to recieve the subscription details of user",
+          "hint": "Enter the auto setup valid URL to receive the subscription details of user",
           "error": "Enter the valid URL format"
         },
         "callbackUrl": {
           "name": "Auto setup callback URL",
-          "hint": "Enter the callback valid URL to recieve technical user details",
+          "hint": "Enter the auto setup callback valid URL to receive technical user details",
           "error": "Enter the valid URL format"
         },
         "authUrl": {
