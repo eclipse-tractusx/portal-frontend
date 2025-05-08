@@ -18,7 +18,7 @@
   - Fixed notification to display as text and Technical user creation title. [#1535](https://github.com/eclipse-tractusx/portal-frontend/pull/1535)
 - **User management**:
   - Fixed app roles display and text to accurate description in user list table in App user management. [#1546](https://github.com/eclipse-tractusx/portal-frontend/pull/1546)
- **App/Service Release Process**:
+    **App/Service Release Process**:
   - Missing translation for Consent and Terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
 
 ### Technical Support
@@ -30,10 +30,9 @@
   - Removed axios library use and switched to RTK Query for News Section. [#1505](https://github.com/eclipse-tractusx/portal-frontend/pull/1505)
   - Removed axios library use and switched to RTK Query for App Marketplace. [#1512](https://github.com/eclipse-tractusx/portal-frontend/pull/1512)
 - **Dependencies**
-  - Updated app dependencies [#1539](https://github.com/eclipse-tractusx/portal-frontend/pull/1539), [#1571](https://github.com/eclipse-tractusx/portal-frontend/pull/1571), [#1562](https://github.com/eclipse-tractusx/portal-frontend/pull/1562), [#1582](https://github.com/eclipse-tractusx/portal-frontend/pull/1582), [#1451](https://github.com/eclipse-tractusx/portal-frontend/pull/1451), 
+  - Updated app dependencies [#1539](https://github.com/eclipse-tractusx/portal-frontend/pull/1539), [#1571](https://github.com/eclipse-tractusx/portal-frontend/pull/1571), [#1562](https://github.com/eclipse-tractusx/portal-frontend/pull/1562), [#1582](https://github.com/eclipse-tractusx/portal-frontend/pull/1582), [#1451](https://github.com/eclipse-tractusx/portal-frontend/pull/1451),
   - Upgraded portal-shared-components to 4.0.0. [#1567](https://github.com/eclipse-tractusx/portal-frontend/pull/1567)
   - Upgraded portal-shared-components to 4.0.1. [#1585](https://github.com/eclipse-tractusx/portal-frontend/pull/1585)
-
 
 ## 2.4.0
 
