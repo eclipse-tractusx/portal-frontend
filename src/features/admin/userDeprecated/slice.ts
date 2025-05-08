@@ -20,10 +20,10 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import { type AdminUserState, name, initialState } from './types'
-import { addTenantUsers, fetchTenantUsers } from './actions'
-import type { RootState } from 'features/store'
 import { RequestState } from 'types/MainTypes'
+import { type RootState } from 'features/store'
 import type { TenantUser, AddUserIdp } from '../userApiSlice'
+import { apiSlice } from './apiSlice'
 
 export const slice = createSlice({
   name,
@@ -52,63 +52,71 @@ export const slice = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(addTenantUsers.pending, (state) => ({
-      ...state,
-      addRequest: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(addTenantUsers.fulfilled, (state) => ({
-      ...state,
-      addRequest: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(addTenantUsers.rejected, (state, action) => ({
-      ...state,
-      addRequest: RequestState.ERROR,
-      error: action.error.message!,
-    }))
-    builder.addCase(fetchTenantUsers.pending, (state) => ({
-      ...state,
-      tenantUsers: [],
-      getRequest: RequestState.SUBMIT,
-      error: '',
-    }))
-    builder.addCase(fetchTenantUsers.fulfilled, (state, { payload }) => ({
-      ...state,
-      tenantUsers: payload.content || [],
-      getRequest: RequestState.OK,
-      error: '',
-    }))
-    builder.addCase(fetchTenantUsers.rejected, (state, action) => ({
-      ...state,
-      tenantUsers: [],
-      getRequest: RequestState.ERROR,
-      error: action.error.message!,
-    }))
+    builder
+      .addMatcher(apiSlice.endpoints.addTenantUsers.matchPending, (state) => ({
+        ...state,
+        addRequest: RequestState.SUBMIT,
+        error: '',
+      }))
+      .addMatcher(
+        apiSlice.endpoints.addTenantUsers.matchFulfilled,
+        (state) => ({
+          ...state,
+          addRequest: RequestState.OK,
+          error: '',
+        })
+      )
+      .addMatcher(
+        apiSlice.endpoints.addTenantUsers.matchRejected,
+        (state, action) => ({
+          ...state,
+          addRequest: RequestState.ERROR,
+          error: action.error.message!,
+        })
+      )
+      .addMatcher(apiSlice.endpoints.getTenantUsers.matchPending, (state) => ({
+        ...state,
+        tenantUsers: [],
+        getRequest: RequestState.SUBMIT,
+        error: '',
+      }))
+      .addMatcher(
+        apiSlice.endpoints.getTenantUsers.matchFulfilled,
+        (state, { payload }) => ({
+          ...state,
+          tenantUsers: payload.content ?? [],
+          getRequest: RequestState.OK,
+          error: '',
+        })
+      )
+      .addMatcher(
+        apiSlice.endpoints.getTenantUsers.matchRejected,
+        (state, action) => ({
+          ...state,
+          tenantUsers: [],
+          getRequest: RequestState.ERROR,
+          error: action.error.message!,
+        })
+      )
   },
 })
 
+export const { setRolesToAdd, setSelectedUserToAdd, setUsersToAdd } =
+  slice.actions
 export const stateSelector = (state: RootState): AdminUserState =>
   state.admin.user
-
 export const addOpenSelector = (state: RootState): boolean =>
   state.admin.user.addOpen
-
 export const tenantUsersSelector = (state: RootState): TenantUser[] =>
   state.admin.user.tenantUsers
-
 export const usersToAddSelector = (state: RootState): AddUserIdp =>
   state.admin.user.usersToAdd
-
 export const rolesToAddSelector = (state: RootState): string[] =>
   state.admin.user.rolesToAdd
-
 export const selectedUserSelector = (state: RootState): string[] =>
   state.admin.user.selectedUser
-
 export const getRequestStateSelector = (state: RootState): RequestState =>
   state.admin.user.getRequest
-
 export const addRequestStateSelector = (state: RootState): RequestState =>
   state.admin.user.addRequest
 

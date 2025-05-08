@@ -40,7 +40,7 @@ import {
 import './style.scss'
 import { useReducer } from 'react'
 import { useDispatch } from 'react-redux'
-import { refreshApplicationRequest } from 'features/admin/registration/actions'
+import { refreshApplicationRequest } from 'features/admin/registration/slice'
 
 enum ActionKind {
   SET_RETRIGGER_LOADING = 'SET_RETRIGGER_LOADING',
@@ -396,9 +396,7 @@ export const ProgressVerificationButton = ({
                     }}
                     variant="caption3"
                   >
-                    {props.details
-                      ? props.details
-                      : t('content.checklistOverlay.nocomments')}
+                    {props.details ?? t('content.checklistOverlay.nocomments')}
                   </Typography>
                 </div>
                 <div

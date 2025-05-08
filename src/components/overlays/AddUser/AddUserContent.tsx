@@ -32,6 +32,8 @@ import { UserRoles } from './UserRoles'
 import {
   rolesToAddSelector,
   usersToAddSelector,
+  setRolesToAdd,
+  setUsersToAdd,
 } from 'features/admin/userDeprecated/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -43,10 +45,6 @@ import {
   useAddTenantUsersMutation,
   useAddUserIdpMutation,
 } from 'features/admin/userApiSlice'
-import {
-  setRolesToAdd,
-  setUsersToAdd,
-} from 'features/admin/userDeprecated/actions'
 import { type IdentityProvider, IDPCategory } from 'features/admin/idpApiSlice'
 import type { IHashMap } from 'types/MainTypes'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
@@ -131,6 +129,7 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
         : await addTenantUsers([addUser]).unwrap()
       setStatus(AddUserState.SUCCESS)
     } catch (err) {
+      console.error(err, 'ERROR WHILE FETCHING DOCUMENT')
       setStatus(AddUserState.ERROR)
     }
     setTimeout(() => {
