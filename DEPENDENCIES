@@ -764,7 +764,7 @@ npm/npmjs/@babel/traverse/7.26.5, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD
 npm/npmjs/@babel/types/7.25.6, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #16040
 npm/npmjs/@babel/types/7.26.5, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-2-Clause AND BSD-3-Clause, approved, #17734
 npm/npmjs/@bcoe/v8-coverage/0.2.3, ISC AND MIT, approved, clearlydefined
-npm/npmjs/@catena-x/portal-shared-components/4.0.0, Apache-2.0 AND MIT, approved, #20858
+npm/npmjs/@catena-x/portal-shared-components/4.0.1, Apache-2.0 AND MIT, approved, #20858
 npm/npmjs/@colors/colors/1.5.0, MIT, approved, clearlydefined
 npm/npmjs/@cspotcode/source-map-support/0.8.1, MIT, approved, clearlydefined
 npm/npmjs/@cypress/request/3.0.6, Apache-2.0, approved, clearlydefined
