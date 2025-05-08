@@ -53,6 +53,7 @@ import { apiSlice as serviceProviderApiSlice } from './serviceProvider/servicePr
 import { apiSlice as appSubscriptionApiSlice } from './appSubscription/appSubscriptionApiSlice'
 import { apiSlice as adminBoardApiSlice } from './adminBoard/adminBoardApiSlice'
 import { apiSlice as adminClearingHouseSDApiSlice } from './adminClearingHouseSD/adminClearingHouseSDApiSlice'
+import { apiSlice as adminRegistrationApiSlice } from './admin/registration/apiSlice'
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as networkApiSlice } from './admin/networkApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
@@ -118,6 +119,7 @@ export const reducers = {
   [adminBoardApiSlice.reducerPath]: adminBoardApiSlice.reducer,
   [adminClearingHouseSDApiSlice.reducerPath]:
     adminClearingHouseSDApiSlice.reducer,
+  [adminRegistrationApiSlice.reducerPath]: adminRegistrationApiSlice.reducer,
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
   [networkApiSlice.reducerPath]: networkApiSlice.reducer,
   [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
@@ -162,6 +164,7 @@ export const store = configureStore({
       .concat(appSubscriptionApiSlice.middleware)
       .concat(adminBoardApiSlice.middleware)
       .concat(adminClearingHouseSDApiSlice.middleware)
+      .concat(adminRegistrationApiSlice.middleware)
       .concat(inviteApiSlice.middleware)
       .concat(networkApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)

@@ -19,26 +19,10 @@
  ********************************************************************************/
 
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  type CompanyDetail,
-  type RegistrationRequestAPIResponse,
-  type RegistrationRequestDataGrid,
-  type AdminRegistrationState,
-  initialState,
-  name,
-  type InvitesDataGrid,
-} from './types'
-import {
-  fetchRegistrationRequests,
-  fetchCompanyDetail,
-  fetchPage,
-} from './actions'
+import { type CompanyDetail, initialState, name } from './types'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
-import { mapRegistrationRequestResponseToDataGrid } from 'utils/dataMapper'
+import { apiSlice } from './apiSlice'
 import type { RootState } from 'features/store'
-import type { PaginationData } from '../../connector/types'
-import uniq from 'lodash.uniq'
-import type { PaginResult } from '@catena-x/portal-shared-components'
 
 export const slice = createSlice({
   name,
@@ -50,88 +34,86 @@ export const slice = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchRegistrationRequests.pending, (state) => {
-      state.paginationData = {} as PaginationData
-      state.loading = true
-      state.error = ''
-    })
-    builder.addCase(
-      fetchRegistrationRequests.fulfilled,
-      (state, { payload }) => {
-        const payloadList = payload as unknown as RegistrationRequestAPIResponse
-
-        state.paginationData = {
-          totalElements: payloadList.meta.totalElements,
-          page: payloadList.meta.page,
-        } as PaginationData
-        if (payloadList.meta.page !== 0) {
-          state.registrationRequests = uniq(
-            state.registrationRequests.concat(
-              mapRegistrationRequestResponseToDataGrid(payloadList?.content) ||
-                []
-            )
-          )
-        } else {
-          state.registrationRequests = uniq(
-            mapRegistrationRequestResponseToDataGrid(payloadList?.content) || []
-          )
+    builder
+      .addMatcher(
+        apiSlice.endpoints.getRegistrationRequests.matchPending,
+        (state) => {
+          state.loading = true
+          state.error = ''
         }
-        state.loading = false
+      )
+      .addMatcher(
+        apiSlice.endpoints.getRegistrationRequests.matchFulfilled,
+        (state, { payload }) => {
+          state.registrationRequests = payload.content ?? []
+          state.paginationData = {
+            totalElements: payload.meta.totalElements,
+            page: payload.meta.page,
+          }
+          state.loading = false
+          state.error = ''
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getRegistrationRequests.matchRejected,
+        (state, { error }) => {
+          state.loading = false
+          state.error = error.message!
+        }
+      )
+
+      .addMatcher(apiSlice.endpoints.getCompanyDetail.matchPending, (state) => {
+        state.detailLoading = true
+        state.companyDetail = {} as CompanyDetail
         state.error = ''
-      }
-    )
-    builder.addCase(fetchRegistrationRequests.rejected, (state, action) => {
-      state.paginationData = {} as PaginationData
-      state.loading = false
-      state.error = action.error.message!
-    })
-    builder.addCase(fetchCompanyDetail.pending, (state) => {
-      state.detailLoading = true
-      state.companyDetail = {} as CompanyDetail
-      state.error = ''
-    })
-    builder.addCase(fetchCompanyDetail.fulfilled, (state, { payload }) => {
-      state.companyDetail = payload as CompanyDetail
-      state.detailLoading = false
-      state.error = ''
-    })
-    builder.addCase(fetchCompanyDetail.rejected, (state, action) => {
-      state.companyDetail = {} as CompanyDetail
-      state.detailLoading = false
-      state.error = action.error.message!
-    })
-    builder.addCase(fetchPage.pending, (state) => {
-      state.data = initialPaginResult
-      state.request = RequestState.SUBMIT
-      state.error = ''
-    })
-    builder.addCase(fetchPage.fulfilled, (state, { payload }) => {
-      state.data = payload
-      state.request = RequestState.OK
-      state.error = ''
-    })
-    builder.addCase(fetchPage.rejected, (state, action) => {
-      state.data = initialPaginResult
-      state.request = RequestState.ERROR
-      state.error = action.error.message!
-    })
+      })
+      .addMatcher(
+        apiSlice.endpoints.getCompanyDetail.matchFulfilled,
+        (state, { payload }) => {
+          state.companyDetail = payload
+          state.detailLoading = false
+          state.error = ''
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getCompanyDetail.matchRejected,
+        (state, { error }) => {
+          state.detailLoading = false
+          state.companyDetail = {} as CompanyDetail
+          state.error = error.message!
+        }
+      )
+
+      .addMatcher(apiSlice.endpoints.getItems.matchPending, (state) => {
+        state.data = initialPaginResult
+        state.request = RequestState.SUBMIT
+        state.error = ''
+      })
+      .addMatcher(
+        apiSlice.endpoints.getItems.matchFulfilled,
+        (state, { payload }) => {
+          state.data = payload
+          state.request = RequestState.OK
+          state.error = ''
+        }
+      )
+      .addMatcher(
+        apiSlice.endpoints.getItems.matchRejected,
+        (state, { error }) => {
+          state.data = initialPaginResult
+          state.request = RequestState.ERROR
+          state.error = error.message!
+        }
+      )
   },
 })
 
-export const adminRegistrationSelector = (
-  state: RootState
-): AdminRegistrationState => state.admin.registration
-
-export const registrationRequestsSelector = (
-  state: RootState
-): RegistrationRequestDataGrid[] =>
+export const { refreshApplicationRequest } = slice.actions
+export const adminRegistrationSelector = (state: RootState) =>
+  state.admin.registration
+export const registrationRequestsSelector = (state: RootState) =>
   state.admin.registration.registrationRequests
-
-export const itemsSelector = (state: RootState): PaginResult<InvitesDataGrid> =>
-  state.admin.registration.data
-
+export const itemsSelector = (state: RootState) => state.admin.registration.data
 export const refetch = (state: RootState) => state.admin.registration.refresh
 
-const Slice = { slice }
-
-export default Slice
+export default slice.reducer
