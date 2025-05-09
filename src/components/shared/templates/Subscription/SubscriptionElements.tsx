@@ -159,6 +159,8 @@ export default function SubscriptionElements({
       success(t('content.appSubscription.success'))
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
+    } finally {
+      refetch()
     }
   }
 
@@ -211,7 +213,7 @@ export default function SubscriptionElements({
           <>
             <Chip
               color="primary"
-              label={t('content.appSubscription.activateBtn')}
+              label={t('content.appSubscription.configureBtn')}
               type="plain"
               variant="filled"
               onClick={() => {
@@ -245,7 +247,8 @@ export default function SubscriptionElements({
           </>
         )
       } else if (
-        subscription.processStepTypeId === ProcessStep.ACTIVATE_SUBSCRIPTION
+        subscription.processStepTypeId ===
+        ProcessStep.MANUAL_TRIGGER_ACTIVATE_SUBSCRIPTION
       ) {
         return (
           <>
@@ -259,7 +262,10 @@ export default function SubscriptionElements({
             <Tooltips
               color="dark"
               tooltipPlacement="top-start"
-              tooltipText={t('content.appSubscription.pending')}
+              tooltipText={
+                t('content.appSubscription.pending') +
+                subscription.processStepTypeId
+              }
             >
               <HistoryIcon className="statusIcon pending" />
             </Tooltips>
@@ -385,10 +391,9 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
-          companyName={subscriptionDetail.companyName}
-          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
+            refetch()
           }}
         />
       )}

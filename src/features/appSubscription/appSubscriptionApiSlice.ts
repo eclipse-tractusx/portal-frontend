@@ -50,6 +50,7 @@ export enum ProcessStep {
   ACTIVATE_SUBSCRIPTION = 'ACTIVATE_SUBSCRIPTION',
   TRIGGER_PROVIDER_CALLBACK = 'TRIGGER_PROVIDER_CALLBACK',
   RETRIGGER_PROVIDER = 'RETRIGGER_PROVIDER',
+  MANUAL_TRIGGER_ACTIVATE_SUBSCRIPTION = 'MANUAL_TRIGGER_ACTIVATE_SUBSCRIPTION',
 }
 
 export type SubscriptionDetailResponse = {
@@ -182,7 +183,7 @@ export const apiSlice = createApi({
       SubscriptionStoreRequest
     >({
       query: (data: SubscriptionStoreRequest) => ({
-        url: '/api/Apps/autoSetup',
+        url: '/api/Apps/start-autoSetup',
         method: 'POST',
         body: data,
       }),
@@ -196,7 +197,7 @@ export const apiSlice = createApi({
     }),
     activateSubscription: builder.mutation<void, string>({
       query: (subscriptionId) => ({
-        url: `/subscription/${subscriptionId}/activate `,
+        url: `/api/apps/subscription/${subscriptionId}/activate `,
         method: 'PUT',
       }),
     }),

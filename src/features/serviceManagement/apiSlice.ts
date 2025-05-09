@@ -314,7 +314,7 @@ export const apiSlice = createApi({
       ActivateSubscriptionRequest
     >({
       query: (data) => ({
-        url: '/api/services/autoSetup',
+        url: '/api/services/start-autoSetup',
         method: 'POST',
         body: data,
       }),
