@@ -25,6 +25,7 @@ import type { ImageType } from '@catena-x/portal-shared-components'
 import { fetchImageWithToken } from './ImageService'
 import type { RoleDescData } from 'components/pages/RoleDetails'
 import type { RolesData } from 'features/companyRoles/companyRoleApiSlice'
+import { info } from './LogService'
 
 const getName = (app: AppMarketplaceApp) => app.name ?? ''
 const getDescription = (app: AppMarketplaceApp) =>
@@ -82,7 +83,7 @@ const getRoleDescription = (callback: (data: RoleDescData[]) => void) => {
       callback(data)
     })
     .catch((err) => {
-      console.log(err)
+      info('Fetching Role Description Failed', err)
     })
 }
 
@@ -95,8 +96,8 @@ const getCompanyRoleUpdateData = (callback: (data: RolesData) => void) => {
     .then((data) => {
       callback(data)
     })
-    .catch((error: unknown) => {
-      console.log('Fetching Company Roles Data Failed', error)
+    .catch((error) => {
+      info('Fetching Company Roles Data Failed', error)
     })
 }
 

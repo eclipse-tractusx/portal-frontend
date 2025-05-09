@@ -39,6 +39,8 @@ import {
 } from 'features/appManagement/types'
 import CommonValidateAndPublish from 'components/shared/basic/ReleaseProcess/components/CommonValidateAndPublish'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 export default function AppOverViewDetails({
   item,
@@ -104,8 +106,8 @@ export default function AppOverViewDetails({
         }).unwrap()
         const file = response.data
         setCardImage(URL.createObjectURL(file))
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+      } catch (e) {
+        error('ERROR WHILE FETCHING IMAGE', '', e as LogData)
       }
     },
     [fetchDocumentById, id]

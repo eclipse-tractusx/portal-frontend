@@ -42,6 +42,8 @@ import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 enum TableData {
   SUCCESS = 'SUCCESS',
@@ -87,8 +89,8 @@ export default function ServiceAdminBoardDetail() {
       const fileType = response.headers.get('content-type')
       const file = response.data
       download(file, fileType, item.documentName)
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    } catch (e) {
+      error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
     }
   }
 

@@ -44,6 +44,7 @@ import { ServerResponseOverlay } from '../ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import './style.scss'
+import LogService from 'services/LogService'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -68,7 +69,7 @@ export const AddTechnicalUser = () => {
       setError(false)
       dispatch(updateData(UPDATES.TECHUSER_LIST))
     } catch (err) {
-      console.log(err)
+      LogService.error(err as string)
       setLoading(false)
       setError(true)
     }

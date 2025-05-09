@@ -46,6 +46,7 @@ import {
   hasAccessAction,
   hasAccessOverlay,
 } from 'services/AccessService'
+import { error, type LogData } from 'services/LogService'
 import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
 import { store } from 'features/store'
@@ -245,8 +246,8 @@ const fetchSearch = createAsyncThunk(
           )
           .map((item: TenantUser) => userToSearchItem(item)),
       ].flat()
-    } catch (error: unknown) {
-      console.error('api call error:', error)
+    } catch (e: unknown) {
+      error('api call error:', e as LogData)
       throw Error(`${name}/fetch error`)
     }
   }

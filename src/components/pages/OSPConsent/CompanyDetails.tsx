@@ -41,6 +41,8 @@ import { getApiBase } from 'services/EnvironmentService'
 import UserService from 'services/UserService'
 import { download } from 'utils/downloadUtils'
 import './style.scss'
+import { type LogData } from 'services/LogService'
+import { error } from 'services/NotifyService'
 
 enum uniqueIdTypeText {
   COMMERCIAL_REG_NUMBER = 'Commercial Registration Number',
@@ -146,27 +148,24 @@ export const CompanyDetails = ({
 
   const handleDownloadClick = (documentId: string, documentName: string) => {
     if (!documentId) return
-    try {
-      fetch(
-        `${getApiBase()}/api/registration/registrationDocuments/${documentId}`,
-        {
-          method: 'GET',
-          headers: {
-            authorization: `Bearer ${UserService.getToken()}`,
-          },
-        }
-      )
-        .then(async (res) => {
-          const fileType = res.headers.get('content-type') ?? ''
-          const file = await res.blob()
-          download(file, fileType, documentName)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
-    }
+
+    fetch(
+      `${getApiBase()}/api/registration/registrationDocuments/${documentId}`,
+      {
+        method: 'GET',
+        headers: {
+          authorization: `Bearer ${UserService.getToken()}`,
+        },
+      }
+    )
+      .then(async (res) => {
+        const fileType = res.headers.get('content-type') ?? ''
+        const file = await res.blob()
+        download(file, fileType, documentName)
+      })
+      .catch((e) => {
+        error('ERROR WHILE FETCHING DOCUMENT', '', e as LogData)
+      })
   }
 
   const renderTermsText = (agreement: AgreementData) => {

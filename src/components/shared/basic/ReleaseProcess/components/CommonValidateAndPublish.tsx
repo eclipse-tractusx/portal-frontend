@@ -76,6 +76,7 @@ import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import '../../../../pages/AppDetail/AppDetailPrivacy/style.scss'
 import 'components/styles/document.scss'
 import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
+import LogService, { type LogData } from 'services/LogService'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -168,7 +169,7 @@ export default function CommonValidateAndPublish({
         const file = response.data
         setCardImage(URL.createObjectURL(file))
       } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
+        LogService.error('ERROR WHILE FETCHING IMAGE', error as LogData)
       }
     },
     [fetchDocumentById, id]
@@ -214,7 +215,7 @@ export default function CommonValidateAndPublish({
 
       download(file, fileType, documentName)
     } catch (error) {
-      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      LogService.error('ERROR WHILE FETCHING DOCUMENT', error as LogData)
     }
   }
 

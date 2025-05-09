@@ -41,6 +41,7 @@ import { useState } from 'react'
 import { useUpdateActiveAppMutation } from 'features/appManagement/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { error, success } from 'services/NotifyService'
+import { info } from 'services/LogService'
 
 interface AddRolesOverlayProps {
   openDialog: boolean
@@ -79,10 +80,10 @@ const AddRolesOverlay = ({
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onerror = () => {
-          console.log('file reading has failed')
+          info('file reading has failed')
         }
         reader.onabort = () => {
-          console.log('file reading was aborted')
+          info('file reading was aborted')
         }
         reader.onload = () => {
           const str = reader.result

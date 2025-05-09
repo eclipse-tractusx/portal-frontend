@@ -23,6 +23,7 @@ import BasicInput, { InputType } from 'components/shared/basic/Input/BasicInput'
 import { Button, Checkbox } from '@catena-x/portal-shared-components'
 import { useState } from 'react'
 import { isMail } from 'types/Patterns'
+import { info } from 'services/LogService'
 
 const TestValueBar = ({ onValue }: { onValue: (value: string) => void }) => {
   return (
@@ -87,7 +88,7 @@ const BasicFormTest = () => {
           error ? 'password length must be at least 8 characters' : undefined
         }
         onValue={(value?: string) => {
-          console.log(value)
+          info(value!)
         }}
       />
       <pre
@@ -152,7 +153,7 @@ const ValidatingFormTest = () => {
         }
         validate={(expr) => expr.length >= 8}
         onValid={(_name: string, value?: string) => {
-          console.log(value ?? '')
+          info(value ?? '')
         }}
         debounceTime={Number.parseInt(debounceTime)}
       />

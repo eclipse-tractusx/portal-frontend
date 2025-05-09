@@ -61,6 +61,7 @@ import {
   type TechnicalUserProfiles,
 } from 'features/appManagement/types'
 import { error, success } from 'services/NotifyService'
+import { info } from 'services/LogService'
 import { ButtonLabelTypes } from '..'
 import { TechUserTable } from './TechUserTable'
 import { AddTechUserForm } from './AddTechUserForm'
@@ -236,10 +237,10 @@ export default function TechnicalIntegration() {
       .forEach((file: File) => {
         const reader = new FileReader()
         reader.onabort = () => {
-          console.log('file reading was aborted')
+          info('file reading was aborted')
         }
         reader.onerror = () => {
-          console.log('file reading has failed')
+          info('file reading has failed')
         }
         reader.onload = () => {
           const str = reader.result

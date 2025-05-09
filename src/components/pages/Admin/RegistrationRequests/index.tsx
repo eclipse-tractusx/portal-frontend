@@ -38,6 +38,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import AddBpnOveraly from './ConfirmationOverlay/AddBpnOverlay'
 import ConfirmCancelOverlay from './ConfirmationOverlay/ConfirmCancelOverlay'
 import { useGetCompanyDetailQuery } from 'features/admin/registration/apiSlice'
+import { info } from 'services/LogService'
 
 enum TableField {
   DETAIL = 'detail',
@@ -109,7 +110,7 @@ export default function RegistrationRequests() {
       await approveRequest(selectedRequestId)
         .unwrap()
         .then((payload) => {
-          console.log('fulfilled', payload)
+          info('fulfilled', payload)
         })
         .catch((error) => {
           setShowErrorAlert(error.data.title)
@@ -121,7 +122,7 @@ export default function RegistrationRequests() {
       })
         .unwrap()
         .then((payload) => {
-          console.log('fulfilled', payload)
+          info('fulfilled', payload)
         })
         .catch((error) => {
           setShowErrorAlert(error.data.title)

@@ -33,6 +33,7 @@ import dayjs from 'dayjs'
 import { setSearchInput } from 'features/appManagement/actions'
 import { updateInviteSelector } from 'features/control/updates'
 import { isCompanyName } from 'types/Patterns'
+import { info } from 'services/LogService'
 
 interface FetchHookArgsType {
   expr: string
@@ -127,7 +128,7 @@ export const InviteList = ({
                 disabled={true}
                 color="secondary"
                 onClick={() => {
-                  console.log('on details click: Company Name', row.companyName)
+                  info('on details click: Company Name', row.companyName)
                 }}
               >
                 <ArrowForwardIcon />

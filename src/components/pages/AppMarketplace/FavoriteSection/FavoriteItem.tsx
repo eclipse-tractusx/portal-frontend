@@ -71,8 +71,8 @@ export default function FavoriteItem({
         documentId: id,
       }).unwrap()
       setCardImage(URL.createObjectURL(result.data))
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      error(e as string)
     }
   }
 
