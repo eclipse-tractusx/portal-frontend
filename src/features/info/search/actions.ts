@@ -20,9 +20,9 @@
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { apiSlice as PartnerNetworkApiSlice } from '../../partnerNetwork/apiSlice'
-import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
-import { Api as UserApi } from 'features/admin/userDeprecated/api'
+import { apiSlice as AppsApi } from 'features/apps/marketplaceDeprecated/apiSlice'
 import { apiSlice as NewsApi } from 'features/info/news/apiSlice'
+import { apiSlice as UserApi } from 'features/admin/userDeprecated/apiSlice'
 import {
   actionToSearchItem,
   appToSearchItem,
@@ -114,9 +114,15 @@ const searchForExpression = async function (expr: string) {
       emptyPartnerResult,
       emptyNewsResult,
       Patterns.MAIL.test(expr)
-        ? await UserApi.getInstance()
-            .getTenantUsers()
-            .catch(() => emptyUserResult)
+        ? await store
+            .dispatch(UserApi.endpoints.getTenantUsers.initiate())
+            .unwrap()
+            .then((response: PaginResult<TenantUser>) => {
+              return response
+            })
+            .catch(() => {
+              return emptyUserResult
+            })
         : emptyUserResult,
     ])
   } else if (Patterns.UUID.test(expr)) {
@@ -124,23 +130,41 @@ const searchForExpression = async function (expr: string) {
       emptyPageResult,
       emptyOverlayResult,
       emptyActionResult,
-      AppsApi.getInstance()
-        .getActive()
-        .catch(() => emptyAppResult),
+      store
+        .dispatch(AppsApi.endpoints.getActive.initiate())
+        .unwrap()
+        .then((response: AppMarketplaceApp[]) => {
+          return response
+        })
+        .catch(() => {
+          return emptyAppResult
+        }),
       emptyPartnerResult,
       emptyNewsResult,
-      UserApi.getInstance()
-        .getTenantUsers()
-        .catch(() => emptyUserResult),
+      store
+        .dispatch(UserApi.endpoints.getTenantUsers.initiate())
+        .unwrap()
+        .then((response: PaginResult<TenantUser>) => {
+          return response
+        })
+        .catch(() => {
+          return emptyUserResult
+        }),
     ])
   } else {
     return await Promise.all([
       I18nService.searchPages(expr),
       I18nService.searchOverlays(expr),
       I18nService.searchActions(expr),
-      AppsApi.getInstance()
-        .getActive()
-        .catch(() => emptyAppResult),
+      store
+        .dispatch(AppsApi.endpoints.getActive.initiate())
+        .unwrap()
+        .then((response: AppMarketplaceApp[]) => {
+          return response
+        })
+        .catch(() => {
+          return emptyAppResult
+        }),
       store
         .dispatch(
           PartnerNetworkApiSlice.endpoints.getAllBusinessPartners.initiate({
@@ -158,9 +182,15 @@ const searchForExpression = async function (expr: string) {
           return response
         })
         .catch(() => emptyNewsResult),
-      UserApi.getInstance()
-        .getTenantUsers()
-        .catch(() => emptyUserResult),
+      store
+        .dispatch(UserApi.endpoints.getTenantUsers.initiate())
+        .unwrap()
+        .then((response: PaginResult<TenantUser>) => {
+          return response
+        })
+        .catch(() => {
+          return emptyUserResult
+        }),
     ])
   }
 }

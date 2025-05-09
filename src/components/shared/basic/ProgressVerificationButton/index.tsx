@@ -394,9 +394,7 @@ export const ProgressVerificationButton = ({
                     }}
                     variant="caption3"
                   >
-                    {props.details
-                      ? props.details
-                      : t('content.checklistOverlay.nocomments')}
+                    {props.details ?? t('content.checklistOverlay.nocomments')}
                   </Typography>
                 </div>
                 <div

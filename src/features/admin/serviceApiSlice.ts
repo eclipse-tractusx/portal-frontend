@@ -66,6 +66,9 @@ export interface ServiceAccountListEntry {
   offer?: {
     name?: string
   }
+  connector?: {
+    name?: string
+  }
 }
 
 export interface ConnectedObject {

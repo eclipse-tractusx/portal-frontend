@@ -30,8 +30,10 @@ import {
   type AppRole,
   useFetchCoreoffersRolesQuery,
 } from 'features/admin/appuserApiSlice'
-import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
-import { setRolesToAdd } from 'features/admin/userDeprecated/actions'
+import {
+  rolesToAddSelector,
+  setRolesToAdd,
+} from 'features/admin/userDeprecated/slice'
 import { PAGES } from 'types/Constants'
 
 export const UserRoles = () => {

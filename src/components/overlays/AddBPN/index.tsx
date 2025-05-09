@@ -26,10 +26,10 @@ import {
   Input,
 } from '@catena-x/portal-shared-components'
 import {
-  deleteUserBpn,
-  fetchAny,
-  putBusinessPartnerNumber,
-} from 'features/admin/userOwn/actions'
+  useDeleteUserBpnMutation,
+  useFetchAnyQuery,
+  usePutBusinessPartnerNumberMutation,
+} from 'features/admin/userOwn/apiSlice'
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -51,10 +51,9 @@ export default function AddBPN({ id }: { id: string }) {
   const [inputBPN, setInputBPN] = useState('')
   const [bpnErrorMsg, setBpnErrorMessage] = useState('')
   const [hoverClass, setHoverClass] = useState<number>(-1)
-
-  useEffect(() => {
-    dispatch(fetchAny(id))
-  }, [dispatch, id])
+  const [deleteUserBpn] = useDeleteUserBpnMutation()
+  const [putBusinessPartnerNumber] = usePutBusinessPartnerNumberMutation()
+  useFetchAnyQuery(id)
 
   useEffect(() => {
     setBpnValues(userInfo.bpn)
@@ -73,18 +72,18 @@ export default function AddBPN({ id }: { id: string }) {
   const addBPN = async () => {
     try {
       if (!bpnErrorMsg) {
-        await dispatch(
-          putBusinessPartnerNumber({ companyUserId: id, inputBPN })
-        ).unwrap()
+        await putBusinessPartnerNumber({ companyUserId: id, inputBPN }).unwrap()
         setBpnValues([...bpnValues, inputBPN])
         setInputBPN('')
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+    }
   }
 
   const onDeleteBpnHandler = (deleteBpnId: string) => {
     const params = { companyUserId: stateSelectorInfo.id, bpn: deleteBpnId }
-    dispatch(deleteUserBpn(params))
+    deleteUserBpn(params).unwrap()
   }
 
   const onHoverEvent = (index: number) => {

@@ -417,7 +417,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'displayName',
           headerName: t('global.field.name'),
           flex: 3,
-          valueGetter: ({ row }) => getDisplayName(row),
+          valueGetter: (_value_, row) => getDisplayName(row),
         },
         {
           field: 'alias',
@@ -451,7 +451,8 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'enabled',
           headerName: t('global.field.status'),
           flex: 2,
-          valueGetter: ({ row }) => getStatus(row.enabled, row.oidc?.clientId),
+          valueGetter: (_value_, row) =>
+            getStatus(row.enabled, row.oidc?.clientId),
           renderCell: (params) => {
             const status = params.value
             return (
@@ -491,7 +492,13 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       searchDebounce={isManagementOSP ? 1000 : undefined}
       onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
       buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
-      sx={isManagementOSP ? style : undefined}
+      sx={{
+        '.MuiDataGrid-cell': {
+          display: 'flex',
+          alignItems: 'center',
+        },
+        ...(isManagementOSP ? style : {}),
+      }}
     />
   )
 }

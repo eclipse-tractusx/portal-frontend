@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
 import type { TenantUser } from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updates'
-import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
+import { setSelectedUserToAdd } from 'features/admin/userDeprecated/slice'
 import Patterns from 'types/Patterns'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
 
@@ -78,7 +78,7 @@ export default function UserListContent() {
           field: 'name',
           headerName: t('global.field.name'),
           flex: 4,
-          valueGetter: ({ row }: { row: TenantUser }) =>
+          valueGetter: (_value_, row: TenantUser) =>
             `${row.firstName} ${row.lastName}`,
         },
         { field: 'email', headerName: t('global.field.email'), flex: 5 },

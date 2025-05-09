@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,18 +17,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Api } from './api'
-import { name } from './types'
-import { error, type LogData } from 'services/LogService'
+import type { GridColDef } from '@mui/x-data-grid'
+import { useTranslation } from 'react-i18next'
 
-const fetch = createAsyncThunk(`${name}/fetch`, async (appId: string) => {
-  try {
-    return await Api.getInstance().getItem(appId)
-  } catch (e: unknown) {
-    error('api call error:', e as LogData)
-    throw Error(`${name}/fetch api call error`)
-  }
-})
+export const ProvidedConnectorTableColumns = (): Array<GridColDef> => {
+  const { t } = useTranslation()
 
-export { fetch }
+  return [
+    {
+      field: 'hostCompanyName',
+      headerName: t('content.edcconnector.columns.customerCompanyName'),
+      flex: 1,
+      sortable: false,
+      disableColumnMenu: true,
+    },
+  ]
+}

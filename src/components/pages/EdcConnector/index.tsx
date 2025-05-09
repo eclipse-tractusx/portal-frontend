@@ -49,6 +49,7 @@ import {
   type ConnectorResponseBody,
   useFetchManagedConnectorsQuery,
   type ConnectorDetailsType,
+  useFetchProvidedConnectorsQuery,
 } from 'features/connector/connectorApiSlice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -65,6 +66,7 @@ import ConnectorDetailsOverlay from './ConnectorDetailsOverlay'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
+import { ProvidedConnectorTableColumns } from './edcProvidedConnectorTableColumns'
 
 const EdcConnector = () => {
   const { t } = useTranslation()
@@ -148,10 +150,13 @@ const EdcConnector = () => {
   const rawColumns = ConnectorTableColumns(onDelete) // Common col values for own and managed connectors
   let ownConnectorCols = OwnConnectorTableColumns() // unique col values from own connectors
   let managedConnectorCols = ManagedConnectorTableColumns() // unique col values from managed connectors
+  let providedConnectorCols = ProvidedConnectorTableColumns() // unique col values from provided connectors
   ownConnectorCols.push(...rawColumns)
   ownConnectorCols = swap(ownConnectorCols, 2, 0) //swap position according to the design
   managedConnectorCols.push(...rawColumns)
   managedConnectorCols = swap(managedConnectorCols, 2, 0) //swap position according to the design
+  providedConnectorCols.push(...rawColumns)
+  providedConnectorCols = swap(providedConnectorCols, 2, 0) //swap position according to the design
 
   const closeAndResetModalState = () => {
     setAddConnectorOverlayCurrentStep(0)
@@ -467,15 +472,6 @@ const EdcConnector = () => {
           <Tab
             icon={getTabIcon(1)}
             iconPosition="start"
-            sx={{
-              width: '100%',
-              maxWidth: '550px',
-              '&.Mui-selected': {
-                borderBottom: '3px solid #0f71cb',
-              },
-              textTransform: 'none',
-              display: 'inline-flex',
-            }}
             label={t('content.edcconnector.tabletitle')}
             id={`simple-tab-${activeTab}`}
             aria-controls={`simple-tabpanel-${activeTab}`}
@@ -483,16 +479,14 @@ const EdcConnector = () => {
           <Tab
             icon={getTabIcon(2)}
             iconPosition="start"
-            sx={{
-              width: '100%',
-              maxWidth: '550px',
-              '&.Mui-selected': {
-                borderBottom: '3px solid #0f71cb',
-              },
-              textTransform: 'none',
-              display: 'inline-flex',
-            }}
             label={t('content.edcconnector.managedtabletitle')}
+            id={`simple-tab-${activeTab}`}
+            aria-controls={`simple-tabpanel-${activeTab}`}
+          />
+          <Tab
+            icon={getTabIcon(3)}
+            iconPosition="start"
+            label={t('content.edcconnector.providedTableTitle')}
             id={`simple-tab-${activeTab}`}
             aria-controls={`simple-tabpanel-${activeTab}`}
           />
@@ -524,6 +518,23 @@ const EdcConnector = () => {
               getRowId={(row: { [key: string]: string }) => row.id}
               columns={managedConnectorCols}
               noRowsMsg={t('content.edcconnector.noConnectorsMessage')}
+              onCellClick={(params: GridCellParams) => {
+                onTableCellClick(params)
+              }}
+            />
+          </div>
+        </TabPanel>
+        <TabPanel value={activeTab} index={2}>
+          <div className="connector-table-container">
+            <PageLoadingTable<ConnectorResponseBody, unknown>
+              toolbarVariant="premium"
+              title={t('content.edcconnector.providedTableTitle')}
+              loadLabel={t('global.actions.more')}
+              fetchHook={useFetchProvidedConnectorsQuery}
+              fetchHookRefresh={refresh}
+              getRowId={(row: { [key: string]: string }) => row.id}
+              columns={providedConnectorCols}
+              noRowsMsg={t('content.edcconnector.noProvidedConnectorsMessage')}
               onCellClick={(params: GridCellParams) => {
                 onTableCellClick(params)
               }}

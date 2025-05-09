@@ -44,13 +44,16 @@ import { apiSlice as notificationSlice } from './notification/apiSlice'
 import userRoleSlice, {
   apiSlice as appRolesSlice,
 } from './admin/appuserApiSlice'
+import { apiSlice as appFavoritesSlice } from './apps/favorites/apiSlice'
 import { apiSlice as appMarketplaceSlice } from './apps/apiSlice'
+import { apiSlice as appMarketplaceApiSlice } from './apps/marketplaceDeprecated/apiSlice'
 import { apiSlice as appManagementSlice } from './appManagement/apiSlice'
 import { apiSlice as serviceMarketplaceApiSlice } from './serviceMarketplace/serviceApiSlice'
 import { apiSlice as serviceProviderApiSlice } from './serviceProvider/serviceProviderApiSlice'
 import { apiSlice as appSubscriptionApiSlice } from './appSubscription/appSubscriptionApiSlice'
 import { apiSlice as adminBoardApiSlice } from './adminBoard/adminBoardApiSlice'
 import { apiSlice as adminClearingHouseSDApiSlice } from './adminClearingHouseSD/adminClearingHouseSDApiSlice'
+import { apiSlice as adminRegistrationApiSlice } from './admin/registration/apiSlice'
 import { apiSlice as inviteApiSlice } from './admin/inviteApiSlice'
 import { apiSlice as networkApiSlice } from './admin/networkApiSlice'
 import { apiSlice as applicationRequestApiSlice } from './admin/applicationRequestApiSlice'
@@ -106,7 +109,9 @@ export const reducers = {
   [serviceSlice.reducerPath]: serviceSlice.reducer,
   [notificationSlice.reducerPath]: notificationSlice.reducer,
   [appRolesSlice.reducerPath]: appRolesSlice.reducer,
+  [appFavoritesSlice.reducerPath]: appFavoritesSlice.reducer,
   [appMarketplaceSlice.reducerPath]: appMarketplaceSlice.reducer,
+  [appMarketplaceApiSlice.reducerPath]: appMarketplaceApiSlice.reducer,
   [appManagementSlice.reducerPath]: appManagementSlice.reducer,
   [serviceMarketplaceApiSlice.reducerPath]: serviceMarketplaceApiSlice.reducer,
   [serviceProviderApiSlice.reducerPath]: serviceProviderApiSlice.reducer,
@@ -114,6 +119,7 @@ export const reducers = {
   [adminBoardApiSlice.reducerPath]: adminBoardApiSlice.reducer,
   [adminClearingHouseSDApiSlice.reducerPath]:
     adminClearingHouseSDApiSlice.reducer,
+  [adminRegistrationApiSlice.reducerPath]: adminRegistrationApiSlice.reducer,
   [inviteApiSlice.reducerPath]: inviteApiSlice.reducer,
   [networkApiSlice.reducerPath]: networkApiSlice.reducer,
   [applicationRequestApiSlice.reducerPath]: applicationRequestApiSlice.reducer,
@@ -149,13 +155,16 @@ export const store = configureStore({
       .concat(serviceSlice.middleware)
       .concat(notificationSlice.middleware)
       .concat(appRolesSlice.middleware)
+      .concat(appFavoritesSlice.middleware)
       .concat(appMarketplaceSlice.middleware)
+      .concat(appMarketplaceApiSlice.middleware)
       .concat(appManagementSlice.middleware)
       .concat(serviceMarketplaceApiSlice.middleware)
       .concat(serviceProviderApiSlice.middleware)
       .concat(appSubscriptionApiSlice.middleware)
       .concat(adminBoardApiSlice.middleware)
       .concat(adminClearingHouseSDApiSlice.middleware)
+      .concat(adminRegistrationApiSlice.middleware)
       .concat(inviteApiSlice.middleware)
       .concat(networkApiSlice.middleware)
       .concat(applicationRequestApiSlice.middleware)

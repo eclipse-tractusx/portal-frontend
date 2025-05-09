@@ -64,3 +64,13 @@ export const initialState: AdminUserDetailState = {
   request: RequestState.NONE,
   error: '',
 }
+
+export interface PutBpnArgs {
+  companyUserId?: string
+  inputBPN: string
+}
+
+export interface DeleteBpnArgs {
+  companyUserId?: string
+  bpn: string
+}

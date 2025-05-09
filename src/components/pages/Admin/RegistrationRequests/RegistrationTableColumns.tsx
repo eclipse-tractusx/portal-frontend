@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import { IconButton, Typography } from '@catena-x/portal-shared-components'
-import type { GridColDef } from '@mui/x-data-grid'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
 import _ from 'lodash'
@@ -34,6 +33,7 @@ import type i18next from 'i18next'
 import { Progress } from 'components/shared/basic/Progress'
 import './style.scss'
 import { Box } from '@mui/material'
+import { type GridColDef } from '@mui/x-data-grid'
 
 interface StatusProgressProps {
   application: ApplicationRequest
@@ -253,7 +253,7 @@ export const RegistrationRequestsTableColumns = (
       headerName: t('content.admin.registration-requests.columns.age'),
       flex: 1.1,
       disableColumnMenu: true,
-      valueGetter: ({ row }: { row: ApplicationRequest }) => {
+      valueGetter: (_value_: ApplicationRequest, row: ApplicationRequest) => {
         const date1 = dayjs(row.dateCreated).format('YYYY-MM-DD')
         const date2 = dayjs()
         const days = date2.diff(date1, 'days')

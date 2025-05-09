@@ -272,11 +272,13 @@ export const apiSlice = createApi({
       invalidatesTags: [Tags.APP],
     }),
     fetchAppStatus: builder.query<AppStatusDataState, string>({
-      query: (appId) => `api/apps/appreleaseprocess/${appId}/appStatus`,
+      query: (appId) =>
+        `api/apps/appreleaseprocess/${appId}/appStatus?languageShortName=${i18next.language}`,
       providesTags: [Tags.APP],
     }),
     fetchAgreementData: builder.query<AgreementType[], void>({
-      query: () => 'api/apps/AppReleaseProcess/agreementData',
+      query: () =>
+        `api/apps/appreleaseprocess/agreementData?languageShortName=${i18next.language}`,
     }),
     fetchConsentData: builder.query<ConsentType, string>({
       query: (appId: string) => `/api/apps/AppReleaseProcess/consent/${appId}`,

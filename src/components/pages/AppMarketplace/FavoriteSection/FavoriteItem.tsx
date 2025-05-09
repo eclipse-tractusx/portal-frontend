@@ -22,13 +22,11 @@ import { Card } from '@catena-x/portal-shared-components'
 import uniqueId from 'lodash/uniqueId'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { removeItem } from 'features/apps/favorites/actions'
-import { useDispatch } from 'react-redux'
 import CommonService from 'services/CommonService'
-import type { AppDispatch } from 'features/store'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
-import { error } from 'services/LogService'
-
+import { useRemoveItemMutation } from 'features/apps/favorites/apiSlice'
+import { error } from 'services/NotifyService'
+import { t } from 'i18next'
 interface FavoriteItemProps {
   // Add an ESLint exception until there is a solution
   // eslint-disable-next-line
@@ -43,14 +41,20 @@ export default function FavoriteItem({
   cardClick,
 }: Readonly<FavoriteItemProps>) {
   const navigate = useNavigate()
-  const dispatch = useDispatch<AppDispatch>()
   const [cardImage, setCardImage] = useState('')
   const [addedToFavorite, setAddedToFavorite] = useState(false)
   const [fetchDocumentById] = useFetchDocumentByIdMutation()
+  const [removeItem] = useRemoveItemMutation()
 
   const handleSecondaryButtonClick = (id: string) => {
-    dispatch(removeItem(id))
-    setAddedToFavorite(!addedToFavorite)
+    removeItem(id)
+      .unwrap()
+      .then(() => {
+        setAddedToFavorite(!addedToFavorite)
+      })
+      .catch((err) => {
+        error(t('content.appstore.favoriteSection.errorMsg'), '', err as object)
+      })
   }
 
   useEffect(() => {

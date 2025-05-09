@@ -303,7 +303,8 @@
       "favoriteSection": {
         "title": "Meine Favoriten",
         "myFavorite": "Meine Favoriten",
-        "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind."
+        "noFavoriteDescription": "Ihre App-Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind.",
+        "errorMsg": "Fehler! Etwas ist schief gelaufen"
       },
       "appOverviewSection": {
         "title": "App Übersicht",
@@ -327,7 +328,8 @@
         "noMatch": "Keine Treffer",
         "for": "zu Ihrem Suchausdruck",
         "dataLoadFailed": "Das Laden der Daten ist aufgrund fehlender Berechtigungsrechte fehlgeschlagen.",
-        "loadFailed": "Laden fehlgeschlagen"
+        "loadFailed": "Laden fehlgeschlagen",
+        "errorMsg": "Fehler! Etwas ist schief gelaufen"
       }
     },
     "semantichub": {
@@ -576,7 +578,7 @@
       "headerTitle": "Update Contract Documents",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "successMsg": "Document uploaded successfully",
-      "errorMsg": "Error! Something went wrong",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen",
       "uploadNewDocument": "Upload new document",
       "uploadNewDocumentDescription": "Hinweis: Es ist nur eine Datei zum Hochladen zulässig",
       "documentDeleteSuccess": "Document deleted successfully",
@@ -601,7 +603,8 @@
         "sdDescription": "SD Registration",
         "sdRegistrationToolTip": "Das SD-Dokument ist noch nicht geladen. Dies könnte auf die Deaktivierung der SD-Fabrik zurückzuführen sein. Dieser Prozess wird so bald wie möglich vom CX-Administrator neu ausgelöst.",
         "hostCompanyName": "Host",
-        "providerCompanyName": "Customer",
+        "customerCompanyName": "Customer",
+        "providerCompanyName": "Provider",
         "connectorUrl": "Connector-URL"
       },
       "details": {
@@ -671,6 +674,8 @@
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
       "noConnectorsMessage": "Derzeit sind keine Konnektoren vorhanden. Neue Konnektoren werden hier hinzugefügt, sobald diese hinzugefügt wurden.",
+      "providedtabletitle": "Provided Connectors",
+      "noProvidedConnectorsMessage": "Derzeit stellt Ihr Unternehmen Ihrem Kunden keinen Konnektor zur Verfügung.",
       "imagetext": "Connectoren kombiniert die Vorteile von IDS-Konnektoren (sichere und standardisierte Kommunikation, Kontrolle der Datennutzung) mit der Interoperabilität.",
       "addconnectorbutton": "Connector registrieren",
       "snackbar": {
@@ -1412,7 +1417,7 @@
           "message": "Please try it again"
         },
         "dataSavedSuccessMessage": "Data saved successfully",
-        "errormessage": "Error! Something went wrong",
+        "errormessage": "Fehler! Etwas ist schief gelaufen",
         "fileSizeError": "Uploaded file is too big. Maximum 0.8MB is allowed",
         "shouldNotStartWith": "and should not start with"
       },
@@ -1585,7 +1590,7 @@
         "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
-        "tenantUrlErrorMsg": "Error! Something went wrong",
+        "tenantUrlErrorMsg": "Fehler! Etwas ist schief gelaufen",
         "externalServices": {
           "heading": "Details zum externen Dienst",
           "trustedIssuer": {
@@ -1619,7 +1624,7 @@
       "headerTitle": "App request management",
       "search": "search company name/app title",
       "noDataMessage": "No data available",
-      "errorMsg": "Error! Something went wrong",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen",
       "successMsg": "Successfully completed",
       "tabs": {
         "open": "Open",
