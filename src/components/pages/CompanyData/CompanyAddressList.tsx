@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Chip, IconButton, Table } from '@catena-x/portal-shared-components'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -60,6 +60,7 @@ export const CompanyAddressList = ({
   handleConfirm: () => void
 }) => {
   const { t } = useTranslation()
+  const [noRowsMsg, setNoRowsMsg] = useState<string>('')
   const [page, setPage] = useState<number>(0)
   const {
     data,
@@ -79,6 +80,8 @@ export const CompanyAddressList = ({
   const [details, setDetails] = useState<boolean>(false)
   const dispatch = useDispatch()
   const refetch = useSelector(companyRefetch)
+
+  const rows = useMemo(() => inputs.concat(outputs), [inputs, outputs])
 
   const getInputItems = async () => {
     const params = sharingStates
@@ -138,6 +141,12 @@ export const CompanyAddressList = ({
       )
     }
   }, [data])
+
+  useEffect(() => {
+    if (rows && rows.length === 0) {
+      setNoRowsMsg(t('global.table.emptyDataMsg'))
+    }
+  }, [rows])
 
   const getStatus = (id: string) =>
     sharingStates?.filter((state) => id === state.externalId)[0]
@@ -212,9 +221,7 @@ export const CompanyAddressList = ({
         columnHeadersBackgroundColor={'#FFFFFF'}
         searchDebounce={1000}
         noRowsMsg={
-          !isFetching && !isOutputLoading && !isInputLoading
-            ? t('content.companyData.table.noRowsMsg')
-            : ''
+          !isFetching && !isOutputLoading && !isInputLoading ? noRowsMsg : ''
         }
         title={t('content.companyData.table.title')}
         getRowId={(row: { [key: string]: string }) => row.createdAt}
