@@ -21,7 +21,7 @@
 - **App/Service Release Process**:
   - added missing translation for consent and terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
 
-### technical support
+### Technical Support
 
 - **Refactoring**
   - removed axios library use for connectors [#1506](https://github.com/eclipse-tractusx/portal-frontend/pull/1506)
