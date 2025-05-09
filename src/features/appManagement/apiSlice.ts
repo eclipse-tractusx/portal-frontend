@@ -239,14 +239,14 @@ export const apiSlice = createApi({
     }),
     addCreateApp: builder.mutation<void, CreateAppStep1Item>({
       query: (body: CreateAppStep1Item) => ({
-        url: '/api/apps/appreleaseprocess/createapp',
+        url: '/api/apps/appReleaseProcess/createApp',
         method: 'POST',
         body,
       }),
     }),
     submitapp: builder.mutation<void, string>({
       query: (appId) => ({
-        url: `/api/apps/appreleaseprocess/${appId}/submit`,
+        url: `/api/apps/appReleaseProcess/${appId}/submit`,
         method: 'PUT',
       }),
     }),
@@ -261,7 +261,7 @@ export const apiSlice = createApi({
         formData.append('document', data.body.file)
 
         const response = await fetchWithBaseQuery({
-          url: `/api/apps/AppReleaseProcess/updateappdoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
+          url: `/api/apps/appReleaseProcess/updateAppDoc/${data.appId}/documentType/${data.documentTypeId}/documents`,
           method: 'PUT',
           body: formData,
         })
@@ -273,56 +273,56 @@ export const apiSlice = createApi({
     }),
     fetchAppStatus: builder.query<AppStatusDataState, string>({
       query: (appId) =>
-        `api/apps/appreleaseprocess/${appId}/appStatus?languageShortName=${i18next.language}`,
+        `api/apps/appReleaseProcess/${appId}/appStatus?languageShortName=${i18next.language}`,
       providesTags: [Tags.APP],
     }),
     fetchAgreementData: builder.query<AgreementType[], void>({
       query: () =>
-        `api/apps/appreleaseprocess/agreementData?languageShortName=${i18next.language}`,
+        `api/apps/appReleaseProcess/agreementData?languageShortName=${i18next.language}`,
     }),
     fetchConsentData: builder.query<ConsentType, string>({
-      query: (appId: string) => `/api/apps/AppReleaseProcess/consent/${appId}`,
+      query: (appId: string) => `/api/apps/appReleaseProcess/consent/${appId}`,
     }),
     updateAgreementConsents: builder.mutation<void, UpdateAgreementConsentType>(
       {
         query: (data: UpdateAgreementConsentType) => ({
-          url: `/api/apps/AppReleaseProcess/consent/${data.appId}/agreementConsents`,
+          url: `/api/apps/appReleaseProcess/consent/${data.appId}/agreementConsents`,
           method: 'POST',
           body: data.body,
         }),
       }
     ),
     fetchSalesManagerData: builder.query<salesManagerType[], void>({
-      query: () => '/api/apps/AppReleaseProcess/ownCompany/salesManager',
+      query: () => '/api/apps/appReleaseProcess/ownCompany/salesManager',
     }),
     saveApp: builder.mutation<void, saveAppType>({
       query: (data) => ({
-        url: `/api/apps/AppReleaseProcess/${data.appId}`,
+        url: `/api/apps/appReleaseProcess/${data.appId}`,
         method: 'PUT',
         body: data.body,
       }),
     }),
     deleteAppReleaseDocument: builder.mutation<void, string>({
       query: (documentId) => ({
-        url: `/api/apps/appreleaseprocess/documents/${documentId}`,
+        url: `/api/apps/appReleaseProcess/documents/${documentId}`,
         method: 'DELETE',
       }),
       invalidatesTags: [Tags.APP],
     }),
     fetchAppRolesData: builder.query<updateRolePayload[], string>({
       query: (appId: string) =>
-        `/api/apps/AppReleaseProcess/${appId}/roles?languageShortName=${i18next.language}`,
+        `/api/apps/appReleaseProcess/${appId}/roles?languageShortName=${i18next.language}`,
     }),
     updateRoleData: builder.mutation<postRolesResponseType[], updateRoleType>({
       query: (data) => ({
-        url: `/api/apps/appreleaseprocess/${data.appId}/role`,
+        url: `/api/apps/appReleaseProcess/${data.appId}/role`,
         method: 'POST',
         body: data.body,
       }),
     }),
     deleteRoles: builder.mutation<void, deleteRoleType>({
       query: (data) => ({
-        url: `/api/apps/appreleaseprocess/${data.appId}/role/${data.roleId}`,
+        url: `/api/apps/appReleaseProcess/${data.appId}/role/${data.roleId}`,
         method: 'DELETE',
       }),
     }),
@@ -336,7 +336,7 @@ export const apiSlice = createApi({
       }),
     }),
     fetchPrivacyPolicies: builder.query<PrivacyPolicyType, void>({
-      query: () => '/api/apps/appreleaseprocess/privacyPolicies',
+      query: () => '/api/apps/appReleaseProcess/privacyPolicies',
     }),
     fetchFrameDocumentById: builder.mutation({
       query: (documentId) => ({
@@ -352,14 +352,14 @@ export const apiSlice = createApi({
     }),
     fetchTechnicalUserProfiles: builder.query<TechnicalUserProfiles[], string>({
       query: (appId) =>
-        `/api/apps/appreleaseprocess/${appId}/technical-user-profiles`,
+        `/api/apps/appReleaseProcess/${appId}/technical-user-profiles`,
     }),
     saveTechnicalUserProfiles: builder.mutation<
       void,
       updateTechnicalUserProfiles
     >({
       query: (data) => ({
-        url: `/api/apps/appreleaseprocess/${data.appId}/technical-user-profiles`,
+        url: `/api/apps/appReleaseProcess/${data.appId}/technical-user-profiles`,
         method: 'PUT',
         body: data.body,
       }),
@@ -375,7 +375,7 @@ export const apiSlice = createApi({
         formData.append('document', data.body.file)
 
         const response = await fetchWithBaseQuery({
-          url: `/api/apps/AppChange/${data.appId}/appLeadImage`,
+          url: `/api/apps/appChange/${data.appId}/appLeadImage`,
           method: 'POST',
           body: formData,
         })
@@ -386,35 +386,35 @@ export const apiSlice = createApi({
       invalidatesTags: [Tags.APP],
     }),
     fetchDescription: builder.query<descriptionTypes[], string>({
-      query: (appId) => `/api/apps/AppChange/${appId}/appupdate/description`,
+      query: (appId) => `/api/apps/appChange/${appId}/appupdate/description`,
     }),
     saveDescription: builder.mutation<void, saveDescriptionTypes>({
       query: (data) => ({
-        url: `/api/apps/AppChange/${data.appId}/appupdate/description`,
+        url: `/api/apps/appChange/${data.appId}/appupdate/description`,
         method: 'PUT',
         body: data.body,
       }),
     }),
     fetchAppRoles: builder.query<RolesTypes[], string>({
       query: (appId) =>
-        `/api/apps/AppChange/${appId}/roles?languageShortName=${i18next.language}`,
+        `/api/apps/appChange/${appId}/roles?languageShortName=${i18next.language}`,
     }),
     updateActiveApp: builder.mutation<
       postRolesResponseType[],
       UpdateRolesTypes
     >({
       query: (data) => ({
-        url: `/api/apps/AppChange/${data.appId}/role/activeapp`,
+        url: `/api/apps/appChange/${data.appId}/role/activeapp`,
         method: 'POST',
         body: data.body,
       }),
     }),
     fetchAppDocuments: builder.query<ChangeDocumentsTypes, string>({
-      query: (appId) => `api/apps/appchange/${appId}/documents`,
+      query: (appId) => `api/apps/appChange/${appId}/documents`,
     }),
     deleteAppChangeDocument: builder.mutation<void, DocumentRequestData>({
       query: (data) => ({
-        url: `/api/apps/AppChange/${data.appId}/document/${data.documentId}`,
+        url: `/api/apps/appChange/${data.appId}/document/${data.documentId}`,
         method: 'DELETE',
       }),
       invalidatesTags: [Tags.APP],
@@ -430,7 +430,7 @@ export const apiSlice = createApi({
         docFormData.append('document', data.body.file)
 
         const result = await fetchWithBaseQuery({
-          url: `api/apps/AppChange/${data.appId}/documentType/${data.documentTypeId}/documents`,
+          url: `api/apps/appChange/${data.appId}/documentType/${data.documentTypeId}/documents`,
           method: 'POST',
           body: docFormData,
         })
