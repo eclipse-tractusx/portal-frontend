@@ -30,6 +30,7 @@ import { updatePartnerSelector } from 'features/control/updates'
 import { setSelectedUserToAdd } from 'features/admin/userDeprecated/slice'
 import Patterns from 'types/Patterns'
 import { useFetchAppUsersSearchQuery } from 'features/admin/appuserApiSlice'
+import { PAGES } from 'types/Constants'
 
 interface FetchHookArgsType {
   appId: string | undefined
@@ -42,6 +43,10 @@ export default function UserListContent() {
   const dispatch = useDispatch()
 
   const { appId } = useParams()
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const [expr, setExpr] = useState<string>('')
   const [refresh, setRefresh] = useState<number>(0)
@@ -94,6 +99,7 @@ export default function UserListContent() {
         },
       ]}
       checkboxSelection
+      mappedTableSearchTranslation={mappedTableSearchTranslation}
     />
   )
 }

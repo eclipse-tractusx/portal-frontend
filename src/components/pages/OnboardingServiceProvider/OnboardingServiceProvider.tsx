@@ -50,6 +50,7 @@ import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { type IHashMap } from 'types/MainTypes'
 import { success } from 'services/NotifyService'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import { PAGES } from 'types/Constants'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
@@ -64,6 +65,10 @@ const OnboardingServiceProvider = () => {
   const [callbackData, setCallbackData] = useState<
     RegistartionStatusCallbackType | undefined
   >(undefined)
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const handleTabChange = (
     _e: SyntheticEvent<Element, Event>,
@@ -404,6 +409,7 @@ const OnboardingServiceProvider = () => {
                   sortable: false,
                 },
               ]}
+              mappedTableSearchTranslation={mappedTableSearchTranslation}
             />
           </div>
         </TabPanel>
