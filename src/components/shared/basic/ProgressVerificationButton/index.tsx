@@ -40,7 +40,7 @@ import {
 import './style.scss'
 import { useReducer } from 'react'
 import { useDispatch } from 'react-redux'
-import { refreshApplicationRequest } from 'features/admin/registration/actions'
+import { refreshApplicationRequest } from 'features/admin/registration/slice'
 import { info } from 'services/LogService'
 
 enum ActionKind {
