@@ -10,7 +10,7 @@
   - added logic to show only available tech user [#1570](https://github.com/eclipse-tractusx/portal-backend/issues/1570)
   - added a new tab for provided connector [#1569](https://github.com/eclipse-tractusx/portal-backend/issues/1569)
 
-### bugfixes
+### Bugfixes
 
 - **Company Subscription**:
   - fixed back button on details page returns on wrong tab [#1532](https://github.com/eclipse-tractusx/portal-frontend/pull/1532)
