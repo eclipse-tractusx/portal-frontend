@@ -9,6 +9,9 @@
 - **Connector Registration**:
   - added logic to show only available tech user [#1570](https://github.com/eclipse-tractusx/portal-backend/issues/1570)
   - added a new tab for provided connector [#1569](https://github.com/eclipse-tractusx/portal-backend/issues/1569)
+- **App Subscription Management**:
+  - added fields for auth in auto setup [#1457](https://github.com/eclipse-tractusx/portal-frontend/pull/1457)
+  - updated logic for autosetup-URL API for app subscription [#1554](https://github.com/eclipse-tractusx/portal-frontend/pull/1554)
 
 ### Bugfixes
 
@@ -33,6 +36,10 @@
   - updated app dependencies [#1539](https://github.com/eclipse-tractusx/portal-frontend/pull/1539), [#1571](https://github.com/eclipse-tractusx/portal-frontend/pull/1571), [#1562](https://github.com/eclipse-tractusx/portal-frontend/pull/1562), [#1582](https://github.com/eclipse-tractusx/portal-frontend/pull/1582), [#1451](https://github.com/eclipse-tractusx/portal-frontend/pull/1451),
   - upgraded portal-shared-components to 4.0.0 [#1567](https://github.com/eclipse-tractusx/portal-frontend/pull/1567)
   - upgraded portal-shared-components to 4.0.1. [#1585](https://github.com/eclipse-tractusx/portal-frontend/pull/1585)
+
+### Known Knowns
+
+- please refer to the list of [open bugs] (https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ## 2.4.0
 
