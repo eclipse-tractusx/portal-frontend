@@ -194,7 +194,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchServiceStatus: builder.query<ServiceStatusDataState, string>({
       query: (id) =>
-        `/api/services/servicerelease/${id}/serviceStatus?languageShortName=${i18next.language}`,
+        `/api/services/appReleaseProcess/${id}/serviceStatus?languageShortName=${i18next.language}`,
     }),
     createService: builder.mutation<void, createServiceType>({
       query: (data) => ({
@@ -211,24 +211,24 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceTypeIds: builder.query<ServiceTypeIdsType, void>({
-      query: () => '/api/services/servicerelease/serviceTypes',
+      query: () => '/api/services/serviceRelease/serviceTypes',
     }),
     updateServiceAgreementConsents: builder.mutation<
       void,
       UpdateAgreementConsentType
     >({
       query: (data: UpdateAgreementConsentType) => ({
-        url: `/api/services/servicerelease/consent/${data.appId}/agreementConsents`,
+        url: `/api/services/serviceRelease/consent/${data.appId}/agreementConsents`,
         method: 'POST',
         body: data.body,
       }),
     }),
     fetchServiceAgreementData: builder.query<AgreementType[], void>({
       query: () =>
-        `api/services/servicerelease/agreementData?languageShortName=${i18next.language}`,
+        `api/services/appReleaseProcess/agreementData?languageShortName=${i18next.language}`,
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
-      query: (id: string) => `/api/services/servicerelease/consent/${id}`,
+      query: (id: string) => `/api/services/serviceRelease/consent/${id}`,
     }),
     updateServiceDocumentUpload: builder.mutation({
       async queryFn(
@@ -285,7 +285,7 @@ export const apiSlice = createApi({
     }),
     deleteDocument: builder.mutation<void, string>({
       query: (documentId) => ({
-        url: `/api/services/servicerelease/documents/${documentId}`,
+        url: `/api/services/serviceRelease/documents/${documentId}`,
         method: 'DELETE',
       }),
     }),
@@ -297,14 +297,14 @@ export const apiSlice = createApi({
       string
     >({
       query: (serviceId) =>
-        `/api/services/servicerelease/${serviceId}/technical-user-profiles`,
+        `/api/services/serviceRelease/${serviceId}/technical-user-profiles`,
     }),
     saveServiceTechnicalUserProfiles: builder.mutation<
       void,
       updateTechnicalUserProfile
     >({
       query: (data) => ({
-        url: `/api/services/servicerelease/${data.serviceId}/technical-user-profiles`,
+        url: `/api/services/serviceRelease/${data.serviceId}/technical-user-profiles`,
         method: 'PUT',
         body: data.body,
       }),

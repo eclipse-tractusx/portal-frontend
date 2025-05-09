@@ -189,7 +189,7 @@ export const apiSlice = createApi({
     }),
     updateTenantUrl: builder.mutation<void, TenantUrlRequest>({
       query: (data) => ({
-        url: `/api/apps/appchange/${data.appId}/subscription/${data.subscriptionId}/tenantUrl`,
+        url: `/api/apps/appChange/${data.appId}/subscription/${data.subscriptionId}/tenantUrl`,
         method: 'PUT',
         body: data.body,
       }),
