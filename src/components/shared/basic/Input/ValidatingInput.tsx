@@ -100,7 +100,9 @@ const ValidatingInput = ({
         toggleHide,
         errorMessage,
       }}
-      {...(color === Colors.error ? { errorMessage: hint } : {})}
+      {...(color === Colors.error
+        ? { errorMessage: errorMessage ?? hint }
+        : {})}
       style={{
         ...style,
         borderBottom: `2px solid ${color}`,
