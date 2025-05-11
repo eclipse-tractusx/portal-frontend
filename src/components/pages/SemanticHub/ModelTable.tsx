@@ -27,7 +27,7 @@ import {
   type SemanticModel,
   DefaultStatus,
 } from 'features/semanticModels/types'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LoadMoreButton } from '../../shared/basic/LoadMoreButton'
 import { SemanticModelTableColumns } from './SemanticModelTableColumn'
@@ -152,6 +152,15 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         : t('global.errors.loadFailed')
   }
 
+  const getNoRowsMessage = useMemo(() => {
+    if (!models.length) {
+      return searchValue
+        ? t('shared.table.emptySearchTable')
+        : t('shared.table.emptyTable')
+    }
+    return ''
+  }, [models, searchValue, t])
+
   return (
     <section>
       <Table
@@ -184,13 +193,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         reload={() => {
           setPageNumber(0)
         }}
-        noRowsMsg={
-          !models.length
-            ? searchValue
-              ? t('shared.table.emptySearchTable')
-              : t('shared.table.emptyTable')
-            : ''
-        }
+        noRowsMsg={getNoRowsMessage}
       />
       <div className="load-more-button-container">
         {modelList?.totalPages !== pageNumber && (

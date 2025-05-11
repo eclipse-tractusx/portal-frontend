@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { MenuItem } from '@mui/material'
@@ -396,6 +396,15 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
 
   const rowItems = (isManagementOSP ? idpsManagedData : idpsData) ?? []
 
+  const getNoRowsMessage = useMemo(() => {
+    if (!rowItems.length) {
+      return searchExpr
+        ? t('shared.table.emptySearchTable')
+        : t('shared.table.emptyTable')
+    }
+    return ''
+  }, [rowItems, searchExpr, t])
+
   return (
     <Table
       rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
@@ -493,13 +502,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       searchDebounce={isManagementOSP ? 1000 : undefined}
       onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
       buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
-      noRowsMsg={
-        !rowItems.length
-          ? searchExpr
-            ? t('shared.table.emptySearchTable')
-            : t('shared.table.emptyTable')
-          : ''
-      }
+      noRowsMsg={getNoRowsMessage}
       sx={{
         '.MuiDataGrid-cell': {
           display: 'flex',
