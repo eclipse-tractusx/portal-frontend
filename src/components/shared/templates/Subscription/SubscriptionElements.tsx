@@ -391,6 +391,8 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
+          companyName={subscriptionDetail.companyName}
+          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
             refetch()
