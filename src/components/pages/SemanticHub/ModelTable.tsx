@@ -51,6 +51,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
     status: [DefaultStatus],
   })
+  const [noRowsMsg, setNoRowsMsg] = useState<string>('')
   const rowCount = 10
   const filter = [
     {
@@ -93,6 +94,16 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
   const [deleteModelById] = useDeleteModelByIdMutation()
 
   const { uploadedModel } = useSelector(semanticModelsSelector)
+
+  useEffect(() => {
+    if (models) {
+      if (!searchValue && models.length === 0) {
+        setNoRowsMsg(t('global.table.emptyDataMsg'))
+      } else if (searchValue && models.length === 0) {
+        setNoRowsMsg(t('global.table.noSearchResults'))
+      }
+    }
+  }, [models, searchValue])
 
   useEffect(() => {
     if (modelList) {
@@ -156,6 +167,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
     <section>
       <Table
         autoFocus={false}
+        searchExpr={searchValue}
         rowsCount={modelList?.totalItems}
         hideFooter
         loading={loadingModelList}
@@ -184,7 +196,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         reload={() => {
           setPageNumber(0)
         }}
-        noRowsMsg={t('global.noData.heading')}
+        noRowsMsg={noRowsMsg}
       />
       <div className="load-more-button-container">
         {modelList?.totalPages !== pageNumber && (
