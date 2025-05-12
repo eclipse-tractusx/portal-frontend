@@ -74,9 +74,7 @@ export const UserDetailCard = ({
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
   const [copied, setCopied] = useState<boolean>(false)
   const [hideSecret, setHideSecret] = useState<boolean>(
-    cardContentItems.clientSecret?.hideSecret !== undefined
-      ? cardContentItems.clientSecret.hideSecret
-      : true
+    cardContentItems.clientSecret?.hideSecret ?? true
   )
 
   const copyText = (value: string | string[]) => {
