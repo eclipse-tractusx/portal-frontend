@@ -24,7 +24,6 @@ import {
   Checkbox,
   IconButton,
   LanguageSwitch,
-  LogoGrayData,
   PageNotifications,
   StaticTable,
   Typography,
@@ -38,7 +37,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   decrement,
@@ -56,6 +55,8 @@ import CommonService from 'services/CommonService'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import { DocumentTypeText } from 'features/apps/types'
 import { download } from 'utils/downloadUtils'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 import {
   AppOverviewTypes,
   type TechnicalUserProfiles,
@@ -152,27 +153,10 @@ export default function CommonValidateAndPublish({
   const { t } = useTranslation()
   const [validatePublishNotification, setValidatePublishNotification] =
     useState(false)
-  const [cardImage, setCardImage] = useState('')
   const [multipleImages, setMultipleImages] = useState<ImageType[]>([])
   const [defaultValues, setDefaultValues] = useState<DefaultValueType>()
   const [loading, setLoading] = useState<boolean>(false)
   const [cardLanguage, setCardLanguage] = useState<string>('en')
-
-  const fetchImage = useCallback(
-    async (documentId: string) => {
-      try {
-        const response = await fetchDocumentById({
-          appId: id,
-          documentId,
-        }).unwrap()
-        const file = response.data
-        setCardImage(URL.createObjectURL(file))
-      } catch (error) {
-        console.error(error, 'ERROR WHILE FETCHING IMAGE')
-      }
-    },
-    [fetchDocumentById, id]
-  )
 
   const {
     handleSubmit,
@@ -184,12 +168,6 @@ export default function CommonValidateAndPublish({
   })
 
   useEffect(() => {
-    if (statusData?.documents?.APP_LEADIMAGE?.[0].documentId) {
-      fetchImage(statusData?.documents?.APP_LEADIMAGE[0].documentId)
-    }
-    if (statusData?.documents?.SERVICE_LEADIMAGE?.[0].documentId) {
-      fetchImage(statusData?.documents?.SERVICE_LEADIMAGE[0].documentId)
-    }
     if (statusData?.documents?.APP_IMAGE?.[0].documentId) {
       setMultipleImages(
         CommonService.imagesAndAppidToImageType(
@@ -200,7 +178,7 @@ export default function CommonValidateAndPublish({
     }
     setDefaultValues(values)
     reset(values)
-  }, [statusData, values, fetchImage, reset, id])
+  }, [statusData, values, reset, id])
 
   const handleDownloadFn = async (documentId: string, documentName: string) => {
     try {
@@ -318,8 +296,9 @@ export default function CommonValidateAndPublish({
             >
               <Card
                 image={{
-                  src: cardImage ?? LogoGrayData,
+                  src: `${getApiBase()}/api/apps/${id}/appDocuments/${statusData?.documents?.APP_LEADIMAGE?.[0].documentId}`,
                 }}
+                imageLoader={fetchImageWithToken}
                 title={statusData?.title ?? ''}
                 subtitle={statusData?.provider}
                 description={
@@ -365,9 +344,18 @@ export default function CommonValidateAndPublish({
           <CardHorizontal
             borderRadius={6}
             image={{
+              src: `${getApiBase()}/api/services/${id}/serviceDocuments/${statusData?.documents?.APP_LEADIMAGE?.[0].documentId}`,
               alt: 'Service Card',
-              src: cardImage ?? LogoGrayData,
+              style: {
+                flex: '0 0 33.333333%',
+                maxWidth: '33.333333%',
+                minHeight: '200px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              },
             }}
+            imageLoader={fetchImageWithToken}
             label={''}
             buttonText=""
             onBtnClick={() => {
