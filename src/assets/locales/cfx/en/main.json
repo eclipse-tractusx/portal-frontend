@@ -1552,7 +1552,12 @@
       "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
-      "success": "Success",
+      "success": "Activation successful",
+      "configuration": "Configuration successful",
+      "pending": "Subscription is Pending",
+      "active": "Subscription is Active",
+      "inactive": "Subscription is Inactive",
+      "process": "Subscription is in Progress",
       "lordMore": "Load More",
       "tabs": {
         "request": "Requests",

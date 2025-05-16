@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Apps & Service**
+
+  - CHERRY-PICK update to new auto setup url[1554](https://github.com/eclipse-tractusx/portal-frontend/pull/1554)
+
 - **BP Explorer**
 
   - Fix BPNS issue for LegalAndSiteMainAddress [PM2-2615](https://cofinity-x.atlassian.net/browse/PM2-2615)
@@ -57,7 +61,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Version info added to credential cards [CS2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
   - Implement new wallet credential deactivation work flow [CS-2966] (https://cofinity-x.atlassian.net/browse/CS-2966)
   - fix the active styling for All toolbar filter button [CS-3157] (https://cofinity-x.atlassian.net/browse/CS-3157)
-  - displayed the holder instead of issuer on wallet card (CS-3030) [https://cofinity-x.atlassian.net/browse/CS-3030]
+  - displayed the holder instead of issuer on wallet card (CS-3030) (🐞 CS-3292) [https://cofinity-x.atlassian.net/browse/CS-3030][https://cofinity-x.atlassian.net/browse/CS-3292]
 
 ### Changes
 
@@ -154,6 +158,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Service Release Process**
   - Fix borken image preview on step of verify & submit [PM2-2404](https://cofinity-x.atlassian.net/browse/PM2-2404)
+  - Missing translation for Consent and Terms step [PM2-1028](https://cofinity-x.atlassian.net/browse/PM2-1028)
 
 ## 2.2.0-cfx-5
 

@@ -1584,7 +1584,12 @@
       "configureBtn": "Konfigurieren",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
-      "success": "Success",
+      "success": "Aktivierung erfolgreich",
+      "configuration": "Konfiguration erfolgreich",
+      "pending": "Das Abonnement steht noch aus",
+      "active": "Das Abonnement ist aktiv",
+      "inactive": "Das Abonnement ist inaktiv",
+      "process": "Das Abonnement ist in Bearbeitung",
       "lordMore": "Mehr laden",
       "tabs": {
         "request": "Anfragen",

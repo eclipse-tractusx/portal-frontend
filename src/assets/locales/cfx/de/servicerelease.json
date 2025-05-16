@@ -220,7 +220,11 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Schließen"
-    }
+    },
+    "offersHeading": "Services Offered",
+    "success": "Aktivierung erfolgreich",
+    "configuration": "Konfiguration erfolgreich",
+    "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {
     "headerTitle": "Service Request Management",

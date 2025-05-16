@@ -201,7 +201,8 @@ export const apiSlice = createApi({
   tagTypes: [Tags.REFETCH_SERVICE],
   endpoints: (builder) => ({
     fetchServiceStatus: builder.query<ServiceStatusDataState, string>({
-      query: (id) => `/api/services/servicerelease/${id}/serviceStatus`,
+      query: (id) =>
+        `/api/services/servicerelease/${id}/serviceStatus?languageShortName=${i18next.language}`,
     }),
     createService: builder.mutation<void, createServiceType>({
       query: (data) => ({
@@ -231,7 +232,8 @@ export const apiSlice = createApi({
       }),
     }),
     fetchServiceAgreementData: builder.query<AgreementType[], void>({
-      query: () => 'api/services/servicerelease/agreementData',
+      query: () =>
+        `api/services/servicerelease/agreementData?languageShortName=${i18next.language}`,
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
       query: (id: string) => `/api/services/servicerelease/consent/${id}`,
@@ -321,7 +323,7 @@ export const apiSlice = createApi({
       ActivateSubscriptionRequest
     >({
       query: (data) => ({
-        url: '/api/services/autoSetup',
+        url: '/api/services/start-autoSetup',
         method: 'POST',
         body: data,
       }),

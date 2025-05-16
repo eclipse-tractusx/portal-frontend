@@ -38,14 +38,11 @@ import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 import { COFINITY_BPNS } from 'types/cfx/Constants'
 
 export default function CompanyWallet(): JSX.Element {
   const { t } = useTranslation()
   const { data, isSuccess, isError, refetch } = useFetchCompanyWalletQuery()
-  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
-  console.log('data', companyDetails)
   const [activeWallet, setActiveWallet] = useState<WalletContent[]>([])
   const [credentialId, setCredentialId] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
@@ -69,8 +66,7 @@ export default function CompanyWallet(): JSX.Element {
   )
 
   // get the company name if it uses cofinity
-  const isIssuerCofinity =
-    companyDetails && COFINITY_BPNS.includes(companyDetails.bpn)
+  const isIssuerCofinity = data && COFINITY_BPNS.includes(data[0]?.authority)
 
   const handleRevocation = async () => {
     setLoading(true)

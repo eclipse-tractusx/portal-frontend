@@ -159,6 +159,8 @@ export default function SubscriptionElements({
       success(t('content.appSubscription.success'))
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
+    } finally {
+      refetch()
     }
   }
 
@@ -211,7 +213,7 @@ export default function SubscriptionElements({
           <>
             <Chip
               color="primary"
-              label={t('content.appSubscription.activateBtn')}
+              label={t('content.appSubscription.configureBtn')}
               type="plain"
               variant="filled"
               onClick={() => {
@@ -246,7 +248,7 @@ export default function SubscriptionElements({
         )
       } else if (
         subscription.processStepTypeId ===
-        ProcessStep.TRIGGER_ACTIVATE_SUBSCRIPTION
+        ProcessStep.MANUAL_TRIGGER_ACTIVATE_SUBSCRIPTION
       ) {
         return (
           <>
@@ -386,10 +388,9 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
-          companyName={subscriptionDetail.companyName}
-          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
+            refetch()
           }}
         />
       )}
