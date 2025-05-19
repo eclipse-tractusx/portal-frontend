@@ -40,7 +40,7 @@
     "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.16.14",
     "@mui/material": "^5.16.14",
-    "@mui/x-data-grid": "^7.29.2",
+    "@mui/x-data-grid": "^7.29.3",
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.8",
     "autosuggest-highlight": "^3.3.4",
