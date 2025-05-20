@@ -20,7 +20,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import './AdminCredential.scss'
+import './style.scss'
 import {
   type CredentialData,
   type CredentialResponse,
@@ -29,9 +29,9 @@ import {
   useRevokeCredentialMutation,
   useFetchCredentialsSearchQuery,
   StatusEnum,
+  useFetchSsiDocumentByIdMutation,
 } from 'features/certification/certificationApiSlice'
 import { download } from 'utils/downloadUtils'
-import { useFetchNewDocumentByIdMutation } from 'features/appManagement/apiSlice'
 import { error, success } from 'services/NotifyService'
 import { uniqueId } from 'lodash'
 import { setSearchInput } from 'features/appManagement/actions'
@@ -47,9 +47,9 @@ import {
   StatusTag,
   Tooltips,
 } from '@catena-x/portal-shared-components'
-import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
+import { userHasSsiCredentialRole } from 'services/AccessService'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
@@ -82,19 +82,17 @@ export default function AdminCredentialElements() {
   const dispatch = useDispatch()
 
   const [refresh, setRefresh] = useState<number>(0)
-  const [group, setGroup] = useState<string>(FilterType.PENDING)
+  const [group, setGroup] = useState<string>(FilterType.ALL)
   const [sortOption, setSortOption] = useState<string>(SortType.BPNLASC)
   const [searchExpr, setSearchExpr] = useState<string>('')
-  const [filterValueAPI, setFilterValueAPI] = useState<string>(
-    FilterType.PENDING
-  )
+  const [filterValueAPI, setFilterValueAPI] = useState<string>(FilterType.ALL)
   const [fetchHookArgs, setFetchHookArgs] = useState<FetchHookArgsType>()
   const [approveDeclineLoading, setApproveDeclineLoading] = useState<string>()
   const [openRevokeOverlay, setOpenRevokeOverlay] = useState<boolean>(false)
   const [credentialData, setCredentialData] = useState<CredentialData>()
   const [revokeLoading, setRevokeLoading] = useState<boolean>(false)
 
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [getDocumentById] = useFetchSsiDocumentByIdMutation()
   const [approveCredential] = useApproveCredentialMutation()
   const [declineCredential] = useDeclineCredentialMutation()
   const [revokeCredential] = useRevokeCredentialMutation()
@@ -164,11 +162,6 @@ export default function AdminCredentialElements() {
       onButtonClick: setView,
     },
     {
-      buttonText: t('content.adminCertificate.tabs.pending'),
-      buttonValue: FilterType.PENDING,
-      onButtonClick: setView,
-    },
-    {
       buttonText: t('content.adminCertificate.tabs.active'),
       buttonValue: FilterType.ACTIVE,
       onButtonClick: setView,
@@ -225,7 +218,7 @@ export default function AdminCredentialElements() {
         </div>
       )
     } else if (
-      UserService.hasRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
+      userHasSsiCredentialRole(ROLES.REVOKE_CREDENTIALS_ISSUER) &&
       row.participantStatus === StatusEnum.ACTIVE
     ) {
       return (

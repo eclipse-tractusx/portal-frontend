@@ -12,7 +12,7 @@
   "requiredtitle": "Requirement Lorem ipsum",
   "requiredExplaination": "Erläuterung der Anforderung",
   "consultancyService": "Beratungsleistung",
-  "dataspaceService": "Tool/Service",
+  "dataspaceService": "Datenraum Services",
   "loadmore": "Mehr laden",
   "documentDeleteSuccess": "Document deleted successfully",
   "documentDeleteError": "Something went wrong.",
@@ -64,7 +64,9 @@
     "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
     "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
     "technicalUserProfileError": "Error while updating technical user profiles",
-    "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+    "technicalUserProfileDeleteError": "Fehler beim Löschen des technischen Benutzerprofils",
+    "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
+    "userProfileDeleteSuccessMessage": "Technisches Benutzerprofil erfolgreich gelöscht"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
@@ -90,6 +92,7 @@
     "maximum": "Maximum",
     "charactersAllowed": " characters allowed",
     "validCharactersIncludes": "Valid characters includes: ",
+    "spaceAloneNotAllowed": " and spaces alone are not allowed",
     "isMandatory": " is mandatory",
     "fileUploadIsMandatory": "File upload is mandatory",
     "error": {
@@ -120,6 +123,8 @@
     "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceOverview": {
+    "headerTitle": "Service Overview - Own managed service offers",
+    "inputPlaceholder": "Suchen Sie nach Services",
     "filter": {
       "all": "Alle",
       "active": "Aktiv",
@@ -127,8 +132,6 @@
       "wip": "In Arbeit",
       "inreview": "wird überprüft"
     },
-    "headerTitle": "Service Overview - Own managed service offers",
-    "inputPlaceholder": "Suchen Sie nach Services",
     "addbtn": "Registrieren Sie Ihre Services",
     "submenuNotAvailable": "Untermenü ist nicht verfügbar.",
     "sortOptions": {
@@ -202,7 +205,11 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
-    }
+    },
+    "offersHeading": "Services Offered",
+    "success": "Aktivierung erfolgreich",
+    "configuration": "Konfiguration erfolgreich",
+    "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {
     "headerTitle": "Service request management",

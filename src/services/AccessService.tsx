@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { IAction, IOverlay, IPage, Tree } from 'types/MainTypes'
-import UserService from './UserService'
+import type { IAction, IPage, RestrictedItem, Tree } from 'types/MainTypes'
 import { Route } from 'react-router-dom'
 import AppInfo from 'components/overlays/AppInfo'
 import AddBPN from 'components/overlays/AddBPN'
@@ -51,13 +50,13 @@ import { UpdateIDP } from 'components/overlays/UpdateIDP'
 import { EnableIDP } from 'components/overlays/EnableIDP'
 import { EnableIDPSuccess } from 'components/overlays/EnableIDP/EnableIDPSuccess'
 import { DisableIDP } from 'components/overlays/EnableIDP/DisableIDP'
-import { AddusersIDP } from 'components/overlays/AddusersIDP'
+import { AddUsersIDP } from 'components/overlays/AddUsersIDP'
 import AddServiceProvider from 'components/overlays/AddServiceProvider'
 import EditPortalRoles from 'components/overlays/EditPortalRoles'
 import ServiceDeclineAdminboard from 'components/overlays/DeclineAdminboard/ServiceDeclineAdminboard'
 import AppDeclineAdminboard from 'components/overlays/DeclineAdminboard/AppDeclineAdminboard'
 import UpdateCompanyRole from 'components/overlays/UpdateCompanyRole'
-import EditUsecase from 'components/overlays/EditUsecase'
+import EditUseCase from 'components/overlays/EditUseCase'
 import UpdateCertificate from 'components/overlays/UpdateCertificate'
 import AddMultipleUser from 'components/overlays/AddMultipleUser'
 import { OSPRegister } from 'components/overlays/OSPRegister'
@@ -66,33 +65,30 @@ import CompanyCertificateDetails from 'components/overlays/CompanyCertificateDet
 import DeleteCompanyCertificateConfirmationOverlay from 'components/overlays/CompanyCertificateDetails/DeleteCompanyCertificateConfirmationOverlay'
 import { DisableManagedIDP } from 'components/overlays/EnableIDP/DisableManagedIdp'
 import { DeleteManagedIDP } from 'components/overlays/IDPDelete/DeleteManagedIdp'
+import type { KeycloakResourceAccess } from 'keycloak-js'
+import { intersectAccess } from 'utils/dataUtils'
+import UserService from './UserService'
+import {
+  getClientId,
+  getClientIdBpdm,
+  getClientIdMiw,
+  getClientIdRegistration,
+  getClientIdSemantic,
+  getClientIdSsiCredential,
+} from './EnvironmentService'
 import {
   mainMenuFullTree,
   userMenuFull,
   ALL_PAGES,
-  footerMenuFull,
   userMenuWithChildren,
+  footerMenuFull,
 } from 'types/cfx/Config'
+import { getCompanyRoles } from './CompanyService'
 import CSVUploadOverlay from 'components/overlays/CSVUploadOverlay'
-import { intersectAccess } from 'utils/dataUtils'
-import type { KeycloakResourceAccess } from 'keycloak-js'
-import { getClientId } from './EnvironmentService'
 
 let pageMap: { [page: string]: IPage }
 let actionMap: { [action: string]: IAction }
-let overlayMap: { [overlay: string]: IOverlay }
-
-const checkAccess = (element: { name: string; role?: string }): boolean => {
-  if (!element) return false // page doesn't exist
-  const role = element.role
-  if (!role) return true // no permission required for this page
-  return UserService.hasRole(role) // check if user has the required permission
-}
-
-export const hasAccess = (page: string) => checkAccess(pageMap[page])
-
-export const hasAccessAction = (action: string) =>
-  checkAccess(actionMap[action])
+let overlayMap: { [overlay: string]: RestrictedItem }
 
 export const userHasAccess = (required: KeycloakResourceAccess): boolean =>
   Object.keys(intersectAccess(required, UserService.getAccess())).length > 0
@@ -103,18 +99,48 @@ export const userHasClientRole = (
 ): boolean =>
   userHasAccess({ [client]: { roles: Array.isArray(roles) ? roles : [roles] } })
 
+export const userHasPortalRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientId(), roles)
+
+export const companyHasRole = (role: string): boolean =>
+  getCompanyRoles().includes(role)
+
+export const userHasRegistrationRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdRegistration(), roles)
+
+export const userHasSemanticHubRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdSemantic(), roles)
+
+export const userHasBpdmRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientIdBpdm(), roles)
+
+export const userHasMiwRole = (roles: string | Array<string>): boolean =>
+  userHasClientRole(getClientIdMiw(), roles)
+
+export const userHasSsiCredentialRole = (
+  roles: string | Array<string>
+): boolean => userHasClientRole(getClientIdSsiCredential(), roles)
+
+const checkAccess = (element: RestrictedItem): boolean => {
+  if (!element) return false // item doesn't exist
+  if (!element.allowTo) return true // no permission required for this item
+  return element.allowTo() // check if permission is granted
+}
+
+export const hasAccess = (page: string) => checkAccess(pageMap[page])
+
+export const hasAccessAction = (action: string) =>
+  checkAccess(actionMap[action])
+
 export const hasAccessOverlay = (overlay: string) =>
   checkAccess(overlayMap[overlay])
 
 const accessToMenu = (menu: string[]) =>
   menu.filter((page: string) => hasAccess(page))
 
-export const userHasPortalRole = (roles: string | Array<string>): boolean =>
-  userHasClientRole(getClientId(), roles)
-
-// Add an ESLint exception until there is a solution
-// eslint-disable-next-line
-const accessToMenuTree = (menu: Tree[] | undefined): any =>
+const accessToMenuTree = (menu: Tree[] | undefined): Tree[] | undefined =>
   menu
     ?.filter((item: Tree) => item.children ?? hasAccess(item.name))
     .map((item: Tree) => ({
@@ -200,7 +226,7 @@ export const getOverlay = (overlay: OverlayState) => {
     case OVERLAYS.DISABLE_MANAGED_IDP:
       return <DisableManagedIDP id={overlay.id} />
     case OVERLAYS.ADDUSERS_IDP:
-      return <AddusersIDP id={overlay.id} />
+      return <AddUsersIDP id={overlay.id} />
     case OVERLAYS.DELETE_MANAGED_IDP:
       return <DeleteManagedIDP id={overlay.id} />
     case OVERLAYS.REGISTER_OSP:
@@ -231,7 +257,7 @@ export const getOverlay = (overlay: OverlayState) => {
       return <UpdateCompanyRole roles={overlay.roles ?? []} />
     case OVERLAYS.EDIT_USECASE:
       return (
-        <EditUsecase
+        <EditUseCase
           id={overlay.id}
           title={overlay.title ?? ''}
           link={overlay.link ?? ''}
@@ -274,7 +300,7 @@ function init() {
     {}
   )
   overlayMap = ALL_OVERLAYS.reduce(
-    (map: { [overlay: string]: IOverlay }, overlay: IOverlay) => {
+    (map: { [overlay: string]: RestrictedItem }, overlay: RestrictedItem) => {
       map[overlay.name] = overlay
       return map
     },
@@ -295,6 +321,7 @@ const AccessService = {
   userMenuReg,
   footerMenu,
   userMenuComp,
+  companyHasRole,
   userMenuWithChild,
 }
 

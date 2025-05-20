@@ -60,7 +60,7 @@ import {
   type IdentityProvider,
   IDPCategory,
 } from 'features/admin/idpApiSlice'
-import './AddMultipleUser.scss'
+import './style.scss'
 import Papa from 'papaparse'
 import { AddUserDeny } from '../AddUser/AddUserDeny'
 import { error } from 'services/NotifyService'

@@ -34,7 +34,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import './Notifications.scss'
+import './style.scss'
 import { Tooltips, Typography } from '@catena-x/portal-shared-components'
 import LabelImportantIcon from '@mui/icons-material/LabelImportant'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -205,7 +205,9 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
         <NotificationContent item={item} navlinks={[PAGES.APP_SUBSCRIPTION]} />
       )
     case NotificationType.APP_RELEASE_REQUEST:
-      return <NotificationContent item={item} navlinks={[PAGES.ADMINBOARD]} />
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.APP_ADMIN_BOARD]} />
+      )
     case NotificationType.APP_RELEASE_APPROVAL:
       return (
         <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />

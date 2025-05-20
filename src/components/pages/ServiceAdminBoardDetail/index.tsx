@@ -27,7 +27,7 @@ import {
   LogoGrayData,
 } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
-import '../AdminBoardDetail/AdminBoardDetail.scss'
+import '../AdminBoardDetail/style.scss'
 import {
   type ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
@@ -268,7 +268,7 @@ export default function ServiceAdminBoardDetail() {
 
           {serviceData.technicalUserProfile &&
             getTechUserData(
-              Object.values(serviceData?.technicalUserProfile)[0]
+              Object.values(serviceData.technicalUserProfile).flat() as string[]
             )}
 
           <div className="divider-height" />

@@ -41,7 +41,7 @@ import { updateData, UPDATES } from 'features/control/updates'
 import { UserDetailCard } from 'components/shared/basic/UserDetailInfo/UserDetailCard'
 import { ServerResponseOverlay } from '../ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import './TechnicalUserAddForm.scss'
+import './style.scss'
 
 export const AddTechnicalUser = () => {
   const { t } = useTranslation()
@@ -59,9 +59,8 @@ export const AddTechnicalUser = () => {
         name: formValues.TechnicalUserName,
         description: formValues.TechnicalUserDescription,
         authenticationType: ServiceAccountType.SECRET,
-        roleIds: [formValues.TechnicalUserService],
+        roleIds: formValues.TechnicalUserService,
       }).unwrap()
-      console.log(result)
       setResponse(result)
       setLoading(false)
       setError(false)
@@ -76,7 +75,7 @@ export const AddTechnicalUser = () => {
 
   const defaultFormFieldValues = {
     TechnicalUserName: '',
-    TechnicalUserService: 'none',
+    TechnicalUserService: [],
     TechnicalUserDescription: '',
   }
   const {

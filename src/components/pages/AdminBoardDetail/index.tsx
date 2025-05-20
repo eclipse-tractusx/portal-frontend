@@ -25,7 +25,7 @@ import { t } from 'i18next'
 import { useFetchBoardAppDetailsQuery } from 'features/adminBoard/adminBoardApiSlice'
 import BoardContentDetails from './BoardContentDetails'
 import { PAGES } from 'types/cfx/Constants'
-import './AdminBoardDetail.scss'
+import './style.scss'
 
 export default function AdminBoardDetail() {
   const navigate = useNavigate()
@@ -39,7 +39,7 @@ export default function AdminBoardDetail() {
           backButtonLabel={t('global.actions.back')}
           backButtonVariant="outlined"
           onBackButtonClick={() => {
-            navigate(`/${PAGES.ADMINBOARD}`)
+            navigate(`/${PAGES.APP_ADMIN_BOARD}`)
           }}
         />
       </Box>

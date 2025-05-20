@@ -23,7 +23,7 @@ import {
   Tooltips,
   Typography,
 } from '@catena-x/portal-shared-components'
-import './CompanyCertificate.scss'
+import './style.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box, ClickAwayListener } from '@mui/material'
 import { useState } from 'react'
@@ -32,13 +32,13 @@ import { useDispatch } from 'react-redux'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import dayjs from 'dayjs'
-import UserService from 'services/UserService'
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
 import { type JSX } from 'react/jsx-runtime'
+import { userHasPortalRole } from 'services/AccessService'
 
 enum CompanyCertificateStatus {
   INACTIVE = 'INACTIVE',
@@ -171,7 +171,7 @@ export default function CompanyCertificateCard({
           borderRadius: '74px',
         }}
         onClick={handleDelete}
-        disabled={!UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)}
+        disabled={!userHasPortalRole(ROLES.DELETE_CERTIFICATES)}
       >
         <DeleteOutlinedIcon
           style={{
@@ -202,7 +202,7 @@ export default function CompanyCertificateCard({
               <Typography variant="label3" onClick={handleView}>
                 {t('content.companyCertificate.view')}{' '}
               </Typography>
-              {UserService.hasRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE) &&
+              {userHasPortalRole(ROLES.DELETE_CERTIFICATES) &&
                 item.companyCertificateStatus ===
                   CompanyCertificateStatus.ACTIVE && (
                   <Typography variant="label3" onClick={handleDelete}>

@@ -142,7 +142,7 @@
       "inactive": "Inaktiv",
       "created": "Erstellt",
       "wip": "In Arbeit",
-      "inreview": "wird überprüft"
+      "inreview": "In Review"
     },
     "headerTitle": "Ihre Services",
     "headerDescription": "Registrieren Sie einen neuen Service und verwalten Sie Ihr aktuelles Service Angebot. In der Übersicht finden Sie sowohl bereits veröffentlichte Services als auch Angebote, die sich noch in der Erstellung befinden oder abgelehnt wurden.",
@@ -221,7 +221,11 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Schließen"
-    }
+    },
+    "offersHeading": "Services Offered",
+    "success": "Aktivierung erfolgreich",
+    "configuration": "Konfiguration erfolgreich",
+    "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {
     "headerTitle": "Service Request Management",

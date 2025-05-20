@@ -17,8 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Header } from '../../cfx/SlidingMainHeader/Header'
-import '../../cfx/SlidingMainHeader/SlidingMainHeader.scss'
+import { Header } from './Header'
+import './style.scss'
 import Slider from 'react-slick'
 import { Box } from '@mui/material'
 
@@ -28,6 +28,7 @@ export interface SlidingMainHeaderProps {
     subTitle: string
     imagePath: string
     buttonText: string
+    hasAccess?: boolean
     handleClick: () => void
   }[]
   autoplay?: boolean

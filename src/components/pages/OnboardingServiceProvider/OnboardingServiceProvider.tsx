@@ -34,7 +34,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box, Divider } from '@mui/material'
-import './OnboardingServiceProvider.scss'
+import './style.scss'
 import { IDPList } from '../IDPManagement/IDPList'
 import {
   type networkCompany,
@@ -44,10 +44,9 @@ import {
   useFetchRegistartionStatusCallbackQuery,
   useUpdateRegistartionStatusCallbackMutation,
 } from 'features/admin/idpApiSlice'
-import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
+import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { type IHashMap } from 'types/MainTypes'
 import { success } from 'services/NotifyService'
@@ -57,12 +56,12 @@ import { COLOR_PALETTE } from 'theme.override'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
+import { OVERLAYS } from 'types/Constants'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
-  const dispatch = useDispatch()
   const { data, refetch } = useFetchRegistartionStatusCallbackQuery()
   const [loading, setLoading] = useState(false)
   const [updateRegistartionStatusCallback] =
@@ -72,11 +71,9 @@ const OnboardingServiceProvider = () => {
   const [callbackData, setCallbackData] = useState<
     RegistartionStatusCallbackType | undefined
   >(undefined)
+  const dispatch = useDispatch()
 
-  const handleTabChange = (
-    _e: SyntheticEvent<Element, Event>,
-    value: number
-  ) => {
+  const handleTabChange = (_e: SyntheticEvent, value: number) => {
     setActiveTab(value)
   }
 
@@ -125,10 +122,7 @@ const OnboardingServiceProvider = () => {
     current[key] = value as OIDCSignatureAlgorithm
     setFormData(current)
     const formValid =
-      current.callbackUrl &&
-      current.clientId &&
-      current.clientSecret &&
-      current.authUrl
+      current.callbackUrl && current.clientId && current.clientSecret
     setCallbackData(
       formValid
         ? {
@@ -205,7 +199,7 @@ const OnboardingServiceProvider = () => {
                 onValid={checkValidData}
               />
             </div>
-            <div style={{ margin: '15px 0' }}>
+            <div style={{ margin: '12px 0' }}>
               <ValidatingInput
                 name="clientId"
                 label={t('content.onboardingServiceProvider.clientId.name')}
@@ -221,9 +215,9 @@ const OnboardingServiceProvider = () => {
                 label={t('content.onboardingServiceProvider.clientSecret.name')}
                 value={data?.clientSecret}
                 hint={t('content.onboardingServiceProvider.clientSecret.hint')}
+                type={InputType.password}
                 validate={isIDPClientSecret}
                 onValid={checkValidData}
-                type={InputType.password}
               />
             </div>
             {showError && (
@@ -363,9 +357,9 @@ const OnboardingServiceProvider = () => {
                 {t('content.onboardingServiceProvider.addIdentityProvider')}
               </Button>
             </Box>
-            <Typography variant="h5">
+            {/* <Typography variant="h5">
               {t('content.onboardingServiceProvider.userList')}
-            </Typography>
+            </Typography> */}
             <IDPList isManagementOSP={true} />
           </div>
         </TabPanel>

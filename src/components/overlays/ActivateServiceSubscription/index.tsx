@@ -24,20 +24,17 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-  StaticTable,
-  type TableType,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import './style.scss'
 import { Box } from '@mui/material'
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 import {
-  type ActivateSubscriptionResponse,
   useActivateSubscriptionMutation,
   useFetchServiceTechnicalUserProfilesQuery,
 } from 'features/serviceManagement/apiSlice'
+import { success, error } from 'services/NotifyService'
 
 export default function ActivateserviceSubscription({
   offerId,
@@ -54,9 +51,6 @@ export default function ActivateserviceSubscription({
 }) {
   const { t } = useTranslation('servicerelease')
   const [loading, setLoading] = useState(false)
-  const [activationResponse, setActivationResponse] = useState<boolean>(false)
-  const [techUserInfo, setTechuserInfo] =
-    useState<ActivateSubscriptionResponse>()
   const { data } = useFetchServiceTechnicalUserProfilesQuery(offerId, {
     refetchOnMountOrArgChange: true,
   })
@@ -73,64 +67,17 @@ export default function ActivateserviceSubscription({
   const handleConfrim = async () => {
     setLoading(true)
     try {
-      const result = await subscribe({
+      await subscribe({
         requestId: subscriptionId,
         offerUrl: 'https://testonly.google.de|https://testonly.google.de/',
       }).unwrap()
-      setActivationResponse(true)
-      setTechuserInfo(result)
+      success(t('serviceSubscription.configuration'))
+    } catch (err) {
+      error(t('serviceSubscription.failure'), '', err as object)
+    } finally {
       setLoading(false)
-    } catch (error) {
-      setLoading(false)
-      console.log(error)
+      handleOverlayClose()
     }
-  }
-
-  const tableData: TableType = {
-    head: [t('serviceSubscription.activation.tableheader'), ''],
-    body:
-      techUserInfo?.technicalUserInfo
-        ?.map((userData) => [
-          [
-            t('serviceSubscription.activation.userId'),
-            userData.technicalClientId ?? '',
-          ],
-          [
-            t('serviceSubscription.activation.sercret'),
-            userData.technicalUserSecret ?? '',
-          ],
-          [
-            t('serviceSubscription.activation.url'),
-            techUserInfo?.clientInfo?.clientUrl ?? 'N/A',
-          ],
-          [
-            t('serviceSubscription.activation.technicaluserType'),
-            userData.technicalUserPermissions.join(', ') ?? '',
-          ],
-        ])
-        .flat(1) ?? [],
-    edit:
-      techUserInfo?.technicalUserInfo
-        ?.map((userData) => [
-          [
-            {
-              icon: false,
-            },
-            {
-              icon: false,
-            },
-          ],
-          [
-            {
-              icon: false,
-            },
-            {
-              icon: false,
-              copyValue: userData.technicalUserSecret,
-            },
-          ],
-        ])
-        .flat(1) ?? [],
   }
 
   return (
@@ -142,156 +89,100 @@ export default function ActivateserviceSubscription({
         },
       }}
     >
-      {activationResponse && (
-        <div className="activation">
-          <DialogHeader
-            title={
-              <>
-                <CheckCircleOutlineOutlinedIcon color="success" />{' '}
-                {t('serviceSubscription.activation.title')}
-              </>
+      <DialogHeader
+        title={t('serviceSubscription.register.title')}
+        intro={t('serviceSubscription.register.subtitle') + companyName}
+        closeWithIcon={false}
+      />
+      <DialogContent>
+        <Box
+          sx={{
+            marginBottom: '40px',
+            paddingLeft: '10px',
+          }}
+        >
+          <Trans
+            i18nKey={
+              isTechUser
+                ? t('serviceSubscription.register.descriptionWithTechUser')
+                : t('serviceSubscription.register.description')
             }
-            intro={t('serviceSubscription.activation.subtitle') + companyName}
-          />
-          <DialogContent>
-            <Box
-              sx={{
-                marginBottom: '40px',
-                paddingLeft: '10px',
-              }}
-            >
-              <Trans
-                i18nKey={t(
-                  'serviceSubscription.activation.successDescriptionWithTechUser'
-                )}
-                values={{
-                  company: companyName,
+            values={{
+              company: companyName,
+            }}
+          >
+            <Typography variant="body2">
+              {isTechUser
+                ? t('serviceSubscription.register.descriptionWithTechUser')
+                : t('serviceSubscription.register.description')}
+            </Typography>
+          </Trans>
+          {isTechUser && (
+            <>
+              <Box
+                sx={{
+                  marginTop: '30px',
                 }}
               >
-                <Typography variant="body2">
-                  {isTechUser
-                    ? t(
-                        'serviceSubscription.activation.successDescriptionWithTechUser'
-                      )
-                    : t('serviceSubscription.activation.successDescription')}
+                <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+                  {t('serviceSubscription.register.technicalUserDetails')}
                 </Typography>
-              </Trans>
-            </Box>
-            {techUserInfo?.technicalUserInfo &&
-            techUserInfo?.technicalUserInfo?.length > 0 ? (
-              <StaticTable data={tableData} horizontal={false} />
-            ) : null}
-          </DialogContent>
-          <DialogActions>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                handleOverlayClose()
-              }}
-            >
-              {t('serviceSubscription.activation.close')}
-            </Button>
-          </DialogActions>
-        </div>
-      )}
-      {!activationResponse && (
-        <>
-          <DialogHeader
-            title={t('serviceSubscription.register.title')}
-            intro={t('serviceSubscription.register.subtitle') + companyName}
-            closeWithIcon={false}
-          />
-          <DialogContent>
-            <Box
-              sx={{
-                marginBottom: '40px',
-                paddingLeft: '10px',
-              }}
-            >
-              <Trans
-                i18nKey={
-                  isTechUser
-                    ? t('serviceSubscription.register.descriptionWithTechUser')
-                    : t('serviceSubscription.register.description')
-                }
-                values={{
-                  company: companyName,
-                }}
-              >
-                <Typography variant="body2">
-                  {isTechUser
-                    ? t('serviceSubscription.register.descriptionWithTechUser')
-                    : t('serviceSubscription.register.description')}
-                </Typography>
-              </Trans>
-              {isTechUser && (
-                <>
-                  <Box
-                    sx={{
-                      marginTop: '30px',
-                    }}
-                  >
-                    <Typography variant="h4" sx={{ marginBottom: '20px' }}>
-                      {t('serviceSubscription.register.technicalUserDetails')}
-                    </Typography>
 
-                    <Typography variant="body2">
-                      {t('serviceSubscription.register.sectionDescription')}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      marginTop: '30px',
-                    }}
-                  >
-                    <Typography variant="h4" sx={{ marginBottom: '20px' }}>
-                      {t('serviceSubscription.register.sectionHeader')}
-                    </Typography>
-                    {techUserProfiles && techUserProfiles?.length > 0 ? (
-                      <Typography variant="body2">
-                        {techUserProfiles.join(', ')}
-                      </Typography>
-                    ) : (
-                      <Typography variant="body2">
-                        {t('serviceSubscription.register.loading')}
-                      </Typography>
-                    )}
-                  </Box>
-                </>
-              )}
-            </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                handleOverlayClose()
-              }}
-            >
-              {t('serviceSubscription.register.close')}
-            </Button>
-            {loading ? (
-              <LoadingButton
-                color="primary"
-                helperText=""
-                helperTextColor="success"
-                label=""
-                loadIndicator="Loading ..."
-                loading
-                size="medium"
-                onButtonClick={() => {
-                  // do nothing
+                <Typography variant="body2">
+                  {t('serviceSubscription.register.sectionDescription')}
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  marginTop: '30px',
                 }}
-                sx={{ marginLeft: '10px' }}
-              />
-            ) : (
-              <Button variant="contained" onClick={() => handleConfrim()}>
-                {t('serviceSubscription.register.confirm')}
-              </Button>
-            )}
-          </DialogActions>
-        </>
-      )}
+              >
+                <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+                  {t('serviceSubscription.register.sectionHeader')}
+                </Typography>
+                {techUserProfiles && techUserProfiles?.length > 0 ? (
+                  <Typography variant="body2">
+                    {techUserProfiles.join(', ')}
+                  </Typography>
+                ) : (
+                  <Typography variant="body2">
+                    {t('serviceSubscription.register.loading')}
+                  </Typography>
+                )}
+              </Box>
+            </>
+          )}
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            handleOverlayClose()
+          }}
+        >
+          {t('serviceSubscription.register.close')}
+        </Button>
+        {loading ? (
+          <LoadingButton
+            color="primary"
+            helperText=""
+            helperTextColor="success"
+            label=""
+            loadIndicator="Loading ..."
+            loading
+            size="medium"
+            onButtonClick={() => {
+              // do nothing
+            }}
+            sx={{ marginLeft: '10px' }}
+          />
+        ) : (
+          <Button variant="contained" onClick={() => handleConfrim()}>
+            {t('serviceSubscription.register.confirm')}
+          </Button>
+        )}
+      </DialogActions>
     </Dialog>
   )
 }

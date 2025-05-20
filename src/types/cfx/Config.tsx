@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import Redirect from 'components/actions/Redirect'
-import RegistrationRequests from 'components/pages/Admin/components/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
 import AppMarketplace from 'components/pages/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
@@ -45,20 +44,16 @@ import Terms from 'components/pages/Terms'
 import UserManagement from 'components/pages/UserManagement'
 import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
-import { ROLES } from '../Constants'
+import { COMPANY_ROLES, ROLES } from '../Constants'
 import type { IPage } from '../MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
-import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/components'
 import UseCase from 'components/pages/UseCase'
 import Deactivate from 'components/pages/AppOverview/Deactivate'
 import AdminBoard from 'components/pages/AdminBoard'
 import AdminBoardDetail from 'components/pages/AdminBoardDetail'
 import ServiceReleaseProcess from 'components/pages/ServiceReleaseProcess'
-import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/components'
 import RoleDetails from 'components/pages/RoleDetails'
-import ServiceOverview from 'components/pages/ServiceReleaseProcess/components/ServiceListOverview'
-import ServiceDetails from 'components/pages/ServiceReleaseProcess/components/ServiceDetails'
 import ServiceSubscription from 'components/pages/ServiceSubscription'
 import ServiceAdminBoard from 'components/pages/ServiceAdminBoard'
 import ServiceAdminBoardDetail from 'components/pages/ServiceAdminBoardDetail'
@@ -71,7 +66,6 @@ import ChangeDescription from 'components/pages/AppOverview/ChangeDescription'
 // import DataSpace from 'components/pages/DataSpace'
 // import AdminCredential from 'components/pages/AdminCredential'
 import AddRoles from 'components/pages/AppOverview/AddRoles'
-import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/components/ServiceDeactivate'
 import ChangeDocuments from 'components/pages/AppOverview/ChangeDocuments'
 import CompanyWallet from 'components/pages/CompanyWallet'
 import { OSPConsent } from 'components/pages/OSPConsent'
@@ -80,6 +74,21 @@ import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/Com
 import { COMPANY_ROLE, MENUS, PAGES } from './Constants'
 import AdminCredential from 'components/pages/AdminCredential'
 import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
+import {
+  companyHasRole,
+  userHasPortalRole,
+  userHasRegistrationRole,
+  userHasSemanticHubRole,
+  userHasSsiCredentialRole,
+} from 'services/AccessService'
+import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
+import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/AppReleaseProcessForm'
+import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceDeactivate'
+import ServiceDetails from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceDetails'
+import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/ServiceReleaseProcessForm'
+import ServiceListOverview from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceListOverview'
+import AppOverviewNew from 'components/pages/AppOverviewNew'
+import CompanyData from 'components/pages/CompanyData'
 
 /**
  * ALL_PAGES
@@ -93,7 +102,11 @@ import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvide
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
-  { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
+  {
+    name: PAGES.REGISTRATION,
+    allowTo: () => userHasRegistrationRole(ROLES.VIEW_REGISTRATION),
+    element: <Redirect path="registration" />,
+  },
   {
     name: PAGES.HELP,
     element: <Redirect path="documentation" tab={'documentation'} />,
@@ -102,19 +115,25 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.DOCUMENTATION,
     element: <Redirect path="documentation" tab={'documentation'} />,
   },
+  // Removed on purpose
+  // {
+  //   name: PAGES.MARKETPLACE,
+  //   allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
+  //   element: <AppMarketplace />,
+  // },
   {
     name: PAGES.APP_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
     element: <AppMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE,
-    role: ROLES.APPSTORE_VIEW_SERVICES,
+    allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW_SERVICES),
     element: <ServiceMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE_DETAIL,
-    role: ROLES.APPSTORE_VIEW_SERVICES,
+    allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW_SERVICES),
     isRoute: true,
     element: (
       <Route
@@ -129,7 +148,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_DETAIL,
-    role: ROLES.APPSTORE_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
     isRoute: true,
     element: (
       <Route
@@ -142,9 +161,15 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  // Removed on purpose
+  //  {
+  //   name: PAGES.DATA_MANAGEMENT,
+  //   allowTo: () => userHasSemanticHubRole(ROLES.SEMANTICHUB_VIEW),
+  //   element: <SemanticHub />,
+  // },
   {
     name: PAGES.SEMANTICHUB,
-    role: ROLES.SEMANTICHUB_VIEW,
+    allowTo: () => userHasSemanticHubRole(ROLES.SEMANTICHUB_VIEW),
     isRoute: true,
     element: (
       <Route
@@ -157,85 +182,101 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  // Removed on purpose
+  //  {
+  //   name: PAGES.CONNECTOR,
+  //   allowTo: () => userHasPortalRole(ROLES.CONNECTOR_SETUP),
+  //   element: <Connector />,
+  // },
   {
     name: PAGES.ACCOUNT,
-    role: ROLES.MY_ACCOUNT,
+    allowTo: () => userHasPortalRole(ROLES.MY_ACCOUNT),
     element: <MyAccount />,
   },
   {
     name: PAGES.NOTIFICATIONS,
-    role: ROLES.NOTIFICATION_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.NOTIFICATION_VIEW),
     element: <NotificationCenter />,
   },
   {
     name: PAGES.ORGANIZATION,
-    role: ROLES.PARTNER_NETWORK_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.MY_ORGANIZATION_VIEW),
     element: <Organization />,
   },
   {
     name: PAGES.PARTNER_NETWORK,
-    role: ROLES.PARTNER_NETWORK_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.PARTNER_NETWORK_VIEW),
     element: <PartnerNetwork />,
   },
   {
     name: PAGES.APP_MANAGEMENT,
-    role: ROLES.APPMANAGEMENT_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.APPMANAGEMENT_VIEW),
     element: <AppOverview />,
   },
-  {
-    name: PAGES.APP_OVERVIEW,
-    role: ROLES.APPOVERVIEW_VIEW,
-    element: <AppOverview />,
-  },
-  // TODO:
   // {
-  //   name: PAGES.APP_OVERVIEW_NEW,
-  //   role: ROLES.APPOVERVIEW_VIEW,
-  //   element: <AppOverviewNew />,
+  //   name: PAGES.SERVICE_MANAGEMENT,
+  //   allowTo: () => userHasPortalRole(ROLES.SERVICEMANAGEMENT_VIEW),
+  //   element: <ServiceOverview />,
   // },
   {
+    name: PAGES.APP_OVERVIEW,
+    allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
+    element: <AppOverview />,
+  },
+  {
+    name: PAGES.APP_OVERVIEW_NEW,
+    allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
+    element: <AppOverviewNew />,
+  },
+  {
     name: PAGES.SERVICE_OVERVIEW,
-    role: ROLES.SERVICEOVERVIEW_VIEW,
-    element: <ServiceOverview />,
+    allowTo: () => userHasPortalRole(ROLES.SERVICEOVERVIEW_VIEW),
+    element: <ServiceListOverview />,
   },
   {
     name: PAGES.APP_RELEASE_PROCESS,
-    role: ROLES.APPOVERVIEW_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: <AppReleaseProcess />,
   },
   {
     name: PAGES.SERVICE_RELEASE_PROCESS,
-    role: ROLES.VIEW_SERVICE_RELEASE,
+    allowTo: () => userHasPortalRole(ROLES.VIEW_SERVICE_RELEASE),
     element: <ServiceReleaseProcess />,
   },
   {
     name: PAGES.APP_SUBSCRIPTION,
-    role: ROLES.APP_MANAGEMENT,
+    allowTo: () => userHasPortalRole(ROLES.APP_MANAGEMENT),
     element: <AppSubscription />,
   },
   {
     name: PAGES.SERVICE_SUBSCRIPTION,
-    role: ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT,
+    allowTo: () => userHasPortalRole(ROLES.SERVICE_SUBSCRIPTION_MANAGEMENT),
     element: <ServiceSubscription />,
   },
   {
-    name: PAGES.ADMINBOARD,
-    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    name: PAGES.APP_ADMIN_BOARD,
+    allowTo: () =>
+      userHasPortalRole([ROLES.APPROVE_APP_RELEASE, ROLES.DECLINE_APP_RELEASE]),
     element: <AdminBoard />,
   },
   {
     name: PAGES.SERVICE_ADMIN_BOARD,
-    role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
+    allowTo: () =>
+      userHasPortalRole([
+        ROLES.APPROVE_SERVICE_RELEASE,
+        ROLES.DECLINE_SERVICE_RELEASE,
+      ]),
     element: <ServiceAdminBoard />,
   },
   {
-    name: PAGES.ADMINBOARD_DETAIL,
-    role: ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE,
+    name: PAGES.APP_ADMIN_BOARD_DETAIL,
+    allowTo: () =>
+      userHasPortalRole([ROLES.APPROVE_APP_RELEASE, ROLES.DECLINE_APP_RELEASE]),
     isRoute: true,
     element: (
       <Route
-        key={PAGES.ADMINBOARD_DETAIL}
-        path={PAGES.ADMINBOARD_DETAIL}
+        key={PAGES.APP_ADMIN_BOARD_DETAIL}
+        path={PAGES.APP_ADMIN_BOARD_DETAIL}
         element={<AdminBoardDetail />}
       >
         <Route index element={null} />
@@ -245,7 +286,11 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.SERVICE_ADMIN_BOARD_DETAIL,
-    role: ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE,
+    allowTo: () =>
+      userHasPortalRole([
+        ROLES.APPROVE_SERVICE_RELEASE,
+        ROLES.DECLINE_SERVICE_RELEASE,
+      ]),
     isRoute: true,
     element: (
       <Route
@@ -261,7 +306,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.APP_RELEASE_PROCESS_FORM,
     isRoute: true,
-    role: ROLES.APPOVERVIEW_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: (
       <Route
         key={`${PAGES.APP_RELEASE_PROCESS}/form`}
@@ -273,7 +318,7 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICE_RELEASE_PROCESS_FORM,
     isRoute: true,
-    role: ROLES.VIEW_SERVICE_RELEASE,
+    allowTo: () => userHasPortalRole(ROLES.VIEW_SERVICE_RELEASE),
     element: (
       <Route
         key={`${PAGES.SERVICE_RELEASE_PROCESS}/form`}
@@ -284,12 +329,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.USER_MANAGEMENT,
-    role: ROLES.USERMANAGEMENT_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.USERMANAGEMENT_VIEW),
     element: <UserManagement />,
   },
   {
     name: PAGES.USER_DETAILS,
-    role: ROLES.VIEW_USER_ACCOUNT,
+    allowTo: () => userHasPortalRole(ROLES.VIEW_USER_ACCOUNT),
     isRoute: true,
     element: (
       <Route
@@ -303,12 +348,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.TECH_USER_MANAGEMENT,
-    role: ROLES.TECH_USER_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_VIEW),
     element: <TechnicalUserManagement />,
   },
   {
     name: PAGES.TECH_USER_DETAILS,
-    role: ROLES.TECH_USER_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_VIEW),
     isRoute: true,
     element: (
       <Route
@@ -322,7 +367,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.APP_USER_MANAGEMENT,
-    role: ROLES.USERMANAGEMENT_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.USERMANAGEMENT_VIEW),
     isRoute: true,
     element: (
       <Route
@@ -336,19 +381,24 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.IDP_MANAGEMENT,
-    role: ROLES.IDP_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.IDP_VIEW),
     element: <IDPManagement />,
   },
   {
     name: PAGES.INVITE,
-    role: ROLES.INVITE_NEW_PARTNER,
+    allowTo: () => userHasPortalRole(ROLES.INVITE_NEW_PARTNER),
     element: <InviteBusinessPartner />,
   },
   {
     name: PAGES.APPLICATION_REQUESTS,
-    role: ROLES.SUBMITTED_APPLICATION,
+    allowTo: () => userHasPortalRole(ROLES.SUBMITTED_APPLICATION),
     element: <RegistrationRequests />,
   },
+  // {
+  //   name: PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
+  //   allowTo: () => userHasPortalRole(ROLES.APPROVE_NEW_PARTNER),
+  //   element: <AdminclearinghouseSD />,
+  // },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
@@ -356,9 +406,22 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
-    role: ROLES.CONNECTORS_VIEW, // TODO: p: TECHNICAL_SETUP_VIEW
+    allowTo: () => userHasPortalRole(ROLES.CONNECTORS_VIEW),
     element: <EdcConnector />,
   },
+  // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
+  {
+    name: PAGES.TECHNICAL_SETUP,
+    allowTo: () => userHasPortalRole(ROLES.CONNECTORS_VIEW),
+    element: <Redirect path={PAGES.CONNECTOR_MANAGEMENT} />,
+  },
+  // { name: PAGES.INTRODUCTION, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_APP_PROVIDER, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_CONFORMITY_BODY, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_OSP_BODY, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
+  // { name: PAGES.USE_CASE_TRACABILITY, element: <UseCase /> },
   { name: PAGES.LOGOUT, element: <Logout /> },
   { name: PAGES.USE_CASE, element: <UseCase /> },
   {
@@ -458,7 +521,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.SERVICE_DETAIL,
-    role: ROLES.SERVICEOVERVIEW_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.SERVICEOVERVIEW_VIEW),
     isRoute: true,
     element: (
       <Route
@@ -470,19 +533,40 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-  // { // For now we are removing this page
+  // Removed on purpose
+  // {
   //   name: PAGES.COMPANY_ROLE,
-  //   role: ROLES.UPDATE_COMPANY_ROLE,
+  //   allowTo: () => userHasPortalRole(ROLES.UPDATE_COMPANY_ROLE),
   //   element: <CompanyRoleUpdate />,
   // },
+  // Removed on purpose
+  // {
+  //   name: PAGES.USECASE_PARTICIPATION,
+  //   allowTo: () => userHasPortalRole(ROLES.REQUEST_SSICREDENTIAL),
+  //   element: <UseCaseParticipation />,
+  // },
+  // Removed on purpose
+  // {
+  //   name: PAGES.CERTIFICATE_CREDENTIAL,
+  //   allowTo: () => userHasPortalRole(ROLES.REQUEST_SSICREDENTIAL),
+  //   element: <CertificateCredentials />,
+  // },
+  // Removed on purpose
+  // { name: PAGES.DATA_SPACE, element: <DataSpace /> },
   {
     name: PAGES.ADMIN_CREDENTIAL,
-    role: ROLES.DECISION_SSICREDENTIAL,
+    allowTo: () => userHasSsiCredentialRole(ROLES.DECISION_SSICREDENTIAL),
     element: <AdminCredential />,
   },
+  // Removed on purpose
+  // {
+  //   name: PAGES.COMPANY_CERTIFICATE,
+  //   allowTo: () => userHasPortalRole(ROLES.COMPANY_CERTIFICATE_VIEW),
+  //   element: <CompanyCertificates />,
+  // },
   {
     name: PAGES.COMPANY_WALLET,
-    role: ROLES.CREDENTIAL_REQUESTS,
+    allowTo: () => userHasSsiCredentialRole(ROLES.CREDENTIAL_REQUESTS),
     element: <CompanyWallet />,
   },
   {
@@ -491,12 +575,12 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.COMPANY_SUBSCRIPTIONS,
-    role: ROLES.VIEW_SUBSCRIPTION,
+    allowTo: () => userHasPortalRole(ROLES.VIEW_SUBSCRIPTION),
     element: <CompanySubscriptions />,
   },
   {
     name: PAGES.COMPANY_SUBSCRIPTIONS_DETAIL,
-    role: ROLES.VIEW_SUBSCRIPTION,
+    allowTo: () => userHasPortalRole(ROLES.VIEW_SUBSCRIPTION),
     isRoute: true,
     element: (
       <Route
@@ -508,20 +592,21 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-  // {
-  //   name: PAGES.COMPANY_DATA,
-  //   role: ROLES.MY_ORGANIZATION_VIEW,
-  //   element: <CompanyData />,
-  // },
+  {
+    name: PAGES.COMPANY_DATA,
+    allowTo: () => userHasPortalRole(ROLES.MY_ORGANIZATION_VIEW),
+    element: <CompanyData />,
+  },
   {
     name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
-    role: ROLES.CONFIGURE_PARTNER_REGISTRATION,
-    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
+    allowTo: () =>
+      userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION) &&
+      companyHasRole(COMPANY_ROLES.ONBOARDING_SERVICE_PROVIDER),
     element: <OnboardingServiceProvider />,
   },
   {
     name: PAGES.OSP_TECHNICAL_USER_MANAGEMENT,
-    role: ROLES.TECH_USER_VIEW,
+    allowTo: () => userHasPortalRole(ROLES.TECH_USER_VIEW),
     element: <TechnicalUserManagement />,
   },
 ]
@@ -537,7 +622,7 @@ export const mainMenuFullTree = [
     name: MENUS.DATASPACE_PARTICIPATION, // Use case
     children: [
       { name: PAGES.PARTNER_NETWORK },
-      { name: PAGES.USECASE_PARTICIPATION },
+      // { name: PAGES.USECASE_PARTICIPATION }, // Removed on purpose
     ],
   },
   {
@@ -612,7 +697,7 @@ export const userMenuWithChildren = [
       { name: PAGES.INVITE },
       { name: PAGES.APPLICATION_REQUESTS },
       { name: PAGES.ADMIN_CREDENTIAL },
-      { name: PAGES.ADMINBOARD }, // Admin Board -> App Marketplace
+      { name: PAGES.APP_ADMIN_BOARD }, // Admin Board -> App Marketplace
       { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
     ],
   },

@@ -26,7 +26,7 @@ import {
   ApplicationStatus,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
-import './RegistrationStatus.scss'
+import './style.scss'
 import Stepper from 'components/shared/generic/Stepper'
 
 export default function RegistrationStatus() {

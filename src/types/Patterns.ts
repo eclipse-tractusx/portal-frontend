@@ -220,10 +220,10 @@ export const isPostalCode = (expr: string) =>
   Patterns.companyData.POSTAL_CODE.test(expr)
 export const isSearchUserEmail = (expr: string) =>
   Patterns.EMAIL_SEARCH.test(expr)
+export const isValidAppOverviewSearch = (expr: string) =>
+  Patterns.appOverview.SEARCH.test(expr)
 export const isValidIDPName = (expr: string) =>
   Patterns.idp.displayName.test(expr)
 export const isValidPhone = (expr: string) => Patterns.PHONE.test(expr)
-export const isValidAppOverviewSearch = (expr: string) =>
-  Patterns.appOverview.SEARCH.test(expr)
 
 export default Patterns

@@ -40,6 +40,8 @@ export interface ServiceAccountRole {
   roleId: string
   roleDescription: string
   roleName: string
+  roleType: string
+  onlyAccessibleByProvider: boolean
 }
 
 export interface ServiceAccountCreate {
@@ -61,6 +63,7 @@ export interface ServiceAccountListEntry {
   name: string
   status: ServiceAccountStatus
   isOwner?: boolean
+  userType: string
   offer?: {
     name?: string
   }
@@ -78,6 +81,9 @@ export interface ServiceAccountDetail extends ServiceAccountListEntry {
   roles: ServiceAccountRole[]
   connector: ConnectedObject
   offer: ConnectedObject
+  companyServiceAccountTypeId: companyServiceAccountType
+  usertype: string
+  authenticationServiceUrl: string
 }
 
 export type AppRoleCreate = {
@@ -101,6 +107,11 @@ export enum ServiceAccountStatusFilter {
   OWNED = 'OWNED',
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
+}
+
+export enum companyServiceAccountType {
+  MANAGED = 'MANAGED',
+  OWNED = 'OWN',
 }
 export interface PaginFetchArgsExtended extends PaginFetchArgs {
   size?: number
@@ -126,12 +137,6 @@ export const apiSlice = createApi({
         url: `/api/administration/serviceaccount/owncompany/serviceaccounts/${id}`,
         method: 'DELETE',
       }),
-      // Add an ESLint exception until there is a solution
-      // eslint-disable-next-line
-      transformErrorResponse: (error: any) =>
-        error?.errors?.[
-          'Org.Eclipse.TractusX.Portal.Backend.Administration.Service'
-        ]?.[0] ?? i18next.t('error.deleteTechUserNotificationErrorDescription'),
     }),
     fetchServiceAccountList: builder.query<
       PaginResult<ServiceAccountListEntry>,

@@ -27,15 +27,24 @@ import {
 
 declare const ENV: Record<string, string>
 
-// get the value of REQUIRE_HTTPS_URL_PATTERN environment variable, defaulting to 'true' if not set
 export const getRequireHttpsUrlPattern = () =>
   ENV.REQUIRE_HTTPS_URL_PATTERN ?? 'true'
+
+export const isRequireHttpsUrlPattern = () =>
+  ENV.REQUIRE_HTTPS_URL_PATTERN !== 'false'
+
+export const isClearinghouseConnectDisabled = () =>
+  ENV.CLEARINGHOUSE_CONNECT_DISABLED === 'true'
 
 export const getRealm = () => ENV.REALM ?? ''
 
 export const getClientId = () => ENV.CLIENT_ID ?? ''
 
+export const getClientIdRegistration = () => ENV.CLIENT_ID_REGISTRATION ?? ''
+
 export const getClientIdSemantic = () => ENV.CLIENT_ID_SEMANTIC ?? ''
+
+export const getClientIdBpdm = () => ENV.CLIENT_ID_BPDM ?? ''
 
 export const getClientIdMiw = () => ENV.CLIENT_ID_MIW ?? ''
 
@@ -77,10 +86,13 @@ export const getEnvironment = () => {
 }
 
 const EnvironmentService = {
-  getRequireHttpsUrlPattern,
+  isRequireHttpsUrlPattern,
+  isClearinghouseConnectDisabled,
   getRealm,
   getClientId,
+  getClientIdRegistration,
   getClientIdSemantic,
+  getClientIdBpdm,
   getClientIdMiw,
   getClientIdSsiCredential,
   getCentralIdp,

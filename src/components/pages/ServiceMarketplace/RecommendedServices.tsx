@@ -26,7 +26,7 @@ import {
 import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './ServiceMarketplace.scss'
+import './style.scss'
 import NoItems from '../NoItems'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'

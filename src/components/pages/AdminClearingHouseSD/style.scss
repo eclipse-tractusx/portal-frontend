@@ -1,0 +1,151 @@
+/********************************************************************************
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
+
+.admin-container {
+  padding: 50px 15px;
+
+  .loading-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+    margin: 34px auto 64px;
+    width: 70%;
+  }
+
+  .company-list-container {
+    height: 350px;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .legal-person-list {
+    padding-left: 25px;
+  }
+
+  .section {
+    margin-bottom: 20px;
+
+    ul {
+      margin-top: 24px;
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+
+    .connectors-list {
+      margin-top: 24px;
+      height: 350px;
+      max-width: 100%;
+      overflow: auto;
+      padding: 0;
+      list-style-type: none;
+      padding-left: 25px;
+
+      .connector {
+        display: flex;
+        gap: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        align-items: center;
+
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex: 1;
+        }
+
+        .name {
+          flex: 1;
+        }
+
+        .companyName {
+          flex: 2;
+        }
+      }
+    }
+
+    .btn-container {
+      display: flex;
+      margin-top: 20px;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+  }
+
+  .status-section {
+    margin-bottom: 25px;
+
+    .status-title {
+      background-color: #edf0f4;
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      display: flex;
+    }
+
+    .status {
+      padding-left: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-label {
+      font-weight: bold;
+    }
+
+    .switch-container {
+      background-color: #ffffff;
+    }
+  }
+
+  .list-container {
+    border: 1px solid rgb(220, 220, 220);
+    overflow: hidden;
+    border-radius: 24px;
+  }
+
+  .list-title {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+  }
+
+  .no-data-msg {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+}

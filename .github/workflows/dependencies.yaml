@@ -22,8 +22,16 @@ name: Check Dependencies
 on:
   push:
     branches: [main]
+    paths:
+      - yarn.lock
+      - DEPENDENCIES
+      - .github/workflows/dependencies.yaml
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - yarn.lock
+      - DEPENDENCIES
+      - .github/workflows/dependencies.yaml
   workflow_dispatch:
 
 jobs:
@@ -32,13 +40,13 @@ jobs:
 
     steps:
       - name: Set up JDK 17
-        uses: actions/setup-java@6a0805fcefea3d4657a47ac4c165951e33482018 # v4.2.2
+        uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
         with:
           distribution: 'temurin'
           java-version: '17'
 
       - name: Checkout repository
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Generate Dependencies file
         run: java -jar ./scripts/download/org.eclipse.dash.licenses-1.1.1.jar yarn.lock -project automotive.tractusx -summary DEPENDENCIES || true
@@ -65,7 +73,7 @@ jobs:
         if: steps.dependencies-changed.outputs.changed == 'true'
 
       - name: Upload DEPENDENCIES file
-        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4.3.6
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
           path: DEPENDENCIES
         if: steps.dependencies-changed.outputs.changed == 'true'

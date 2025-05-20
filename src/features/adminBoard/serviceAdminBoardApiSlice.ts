@@ -79,7 +79,6 @@ export interface ServiceDetailsType {
   }[]
   documents: { [key: string]: Array<DocumentData> }
   providerUri: string
-  leadPictureId: string
   contactEmail: string
   contactNumber: null
   technicalUserProfile?: {

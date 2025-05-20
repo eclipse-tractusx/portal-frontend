@@ -29,7 +29,7 @@ import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Controller, useForm } from 'react-hook-form'
 import Patterns from 'types/Patterns'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -38,6 +38,7 @@ import {
   useFetchServiceStatusQuery,
   useSaveServiceMutation,
   useUpdateServiceDocumentUploadMutation,
+  useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
 import { Dropzone, type DropzoneFile } from 'components/shared/basic/Dropzone'
 import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
@@ -46,6 +47,8 @@ import {
   serviceIdSelector,
   serviceReleaseStepIncrement,
   serviceReleaseStepDecrement,
+  setServiceRedirectStatus,
+  serviceRedirectStatusSelector,
 } from 'features/serviceManagement/slice'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
 import ConnectorFormInputFieldShortAndLongDescription from '../components/ConnectorFormInputFieldShortAndLongDescription'
@@ -54,6 +57,11 @@ import type { LanguageStatusType } from 'features/appManagement/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { ButtonLabelTypes } from '..'
 import { success, error } from 'services/NotifyService'
+import { download } from 'utils/downloadUtils'
+import { type FileState } from 'features/serviceManagement/types'
+import { ALLOWED_MAX_SIZE_DOCUMENT } from 'types/Constants'
+import { extractFileData } from 'utils/fileUtils'
+import { isStepCompleted } from '../OfferStepHelper'
 
 type FormDataType = {
   longDescriptionEN: string
@@ -73,6 +81,8 @@ export default function OfferPage({
   const [appPageSnackbar, setServicePageSnackbar] = useState<boolean>(false)
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
+  const redirectStatus = useSelector(serviceRedirectStatusSelector)
+  const hasDispatched = useRef(false)
   const longDescriptionMaxLength = 2000
   const { data: fetchServiceStatus, refetch } = useFetchServiceStatusQuery(
     serviceId ?? ' ',
@@ -84,6 +94,7 @@ export default function OfferPage({
   const [updateDocumentUpload] = useUpdateServiceDocumentUploadMutation()
   const [loading, setLoading] = useState<boolean>(false)
   const [deleteDocument, deleteResponse] = useDeleteDocumentMutation()
+  const [fetchDocumentById] = useFetchDocumentMutation()
 
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
@@ -96,6 +107,7 @@ export default function OfferPage({
 
   const onBackIconClick = () => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
+    dispatch(setServiceRedirectStatus(false))
     dispatch(serviceReleaseStepDecrement())
   }
 
@@ -267,6 +279,35 @@ export default function OfferPage({
     setLoading(false)
   }
 
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 2, redirectStatus)
+    ) {
+      dispatch(serviceReleaseStepIncrement())
+      hasDispatched.current = true
+    }
+  }, [fetchServiceStatus, hasDispatched])
+
+  const handleDownload = async (value: FileState[]) => {
+    const documentId = value[0].id
+    const documentName = value[0].name
+    if (fetchDocumentById)
+      try {
+        const response = await fetchDocumentById({
+          appId: serviceId,
+          documentId,
+        }).unwrap()
+
+        const { fileType, file } = extractFileData(response)
+
+        download(file, fileType, documentName)
+      } catch (error) {
+        console.error(error, 'ERROR WHILE FETCHING DOCUMENT')
+      }
+  }
+
   return (
     <div className="app-page">
       <ReleaseStepHeader
@@ -317,7 +358,8 @@ export default function OfferPage({
                     )}`,
                     pattern: `${t(
                       'serviceReleaseForm.validCharactersIncludes'
-                    )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'}`,
+                    )} ${'a-zA-ZÀ-ÿ0-9 !?@&#\'"()[]_-+=<>/*.,;:'} 
+                    ${t('serviceReleaseForm.spaceAloneNotAllowed')}`,
                   }}
                   maxLength={longDescriptionMaxLength}
                 />
@@ -346,7 +388,8 @@ export default function OfferPage({
                     'application/pdf': ['.pdf'],
                   }}
                   maxFilesToUpload={1}
-                  maxFileSize={819200}
+                  maxFileSize={ALLOWED_MAX_SIZE_DOCUMENT}
+                  handleDownload={() => handleDownload(value)}
                   handleDelete={(documentId: string) => {
                     documentId && deleteDocument(documentId)
                   }}

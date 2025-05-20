@@ -51,6 +51,7 @@ export default function CSVUploadOverlay(): JSX.Element {
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const [errorResponse, setErrorResponse] = useState<string[]>([])
+  const [errorStatus, setErrorStatus] = useState<number>(0)
 
   const renderDropArea = (props: DropAreaProps): JSX.Element => {
     return <DropArea {...props} size="small" />
@@ -76,6 +77,7 @@ export default function CSVUploadOverlay(): JSX.Element {
       // eslint-disable-next-line
     } catch (err: any) {
       setLoading(false)
+      setErrorStatus(err?.status)
       setErrorResponse(err?.data?.error ?? [])
       setError(true)
     }
@@ -161,22 +163,30 @@ export default function CSVUploadOverlay(): JSX.Element {
                 textAlign: 'center',
               }}
             >
-              {errorResponse?.length > 0 ? (
+              {errorStatus !== 500 ? (
                 <>
-                  {errorResponse.map((text, i) => (
-                    <Typography
-                      sx={{ marginBottom: '10px', display: 'block' }}
-                      id={text + i}
-                      variant="label1"
-                      className="title"
-                    >
-                      {text}
+                  {errorResponse?.length > 0 ? (
+                    <>
+                      {errorResponse.map((text, i) => (
+                        <Typography
+                          sx={{ marginBottom: '10px', display: 'block' }}
+                          id={text + i}
+                          variant="label1"
+                          className="title"
+                        >
+                          {text}
+                        </Typography>
+                      ))}
+                    </>
+                  ) : (
+                    <Typography variant="label1" className="title">
+                      {t('content.companyData.upload.emptyError')}
                     </Typography>
-                  ))}
+                  )}
                 </>
               ) : (
                 <Typography variant="label1" className="title">
-                  {t('content.companyData.upload.emptyError')}
+                  {errorResponse}
                 </Typography>
               )}
             </div>
@@ -193,7 +203,7 @@ export default function CSVUploadOverlay(): JSX.Element {
                 variant="outlined"
                 startIcon={<WarningAmberOutlinedIcon />}
                 sx={{ marginRight: '8px' }}
-                disabled={errorResponse.length === 0}
+                disabled={errorResponse.length === 0 || errorStatus === 500}
               >
                 {t('content.companyData.upload.copy')}
               </Button>

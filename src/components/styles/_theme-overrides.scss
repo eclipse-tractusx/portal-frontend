@@ -656,88 +656,88 @@ section {
   }
 }
 
-// header style type 1
-.partner-network-page-container,
-.organization-main-page-container,
-.useCaseParticipation,
-.companyRoleUpdate,
-.user-details,
-.app-release-process-form,
-main,
-.my-account {
-  .css-1ookt9p,
-  .css-sbh4ys {
-    background: none;
-  }
+// // header style type 1
+// .partner-network-page-container,
+// .organization-main-page-container,
+// .useCaseParticipation,
+// .companyRoleUpdate,
+// .user-details,
+// .app-release-process-form,
+// main,
+// .my-account {
+//   .css-1ookt9p,
+//   .css-sbh4ys {
+//     background: none;
+//   }
 
-  > .MuiBox-root:not(
-      .app-back,
-      .connector-page-container > .MuiBox-root,
-      .service-back,
-      .service-marketplace-content,
-      .policy-main,
-      .customHeight,
-      .overview-section,
-      .company-certificate-section,
-      .css-8q3uco,
-      .mainWrapper
-    ) {
-    @extend .global-background;
+//   > .MuiBox-root:not(
+//       .app-back,
+//       .connector-page-container > .MuiBox-root,
+//       .service-back,
+//       .service-marketplace-content,
+//       .policy-main,
+//       .customHeight,
+//       .overview-section,
+//       .company-certificate-section,
+//       .css-8q3uco,
+//       .mainWrapper
+//     ) {
+//     @extend .global-background;
 
-    svg {
-      display: none;
-    }
-  }
-}
+//     svg {
+//       display: none;
+//     }
+//   }
+// }
 
-// header style type 2
-.appoverview-app,
-.appoverview-main,
-.app-user-management,
-.invite-main-container,
-.adminBoard {
-  > .MuiBox-root {
-    > .MuiBox-root {
-      background-color: transparent !important;
-    }
+// // header style type 2
+// .appoverview-app,
+// .appoverview-main,
+// .app-user-management,
+// .invite-main-container,
+// .adminBoard {
+//   > .MuiBox-root {
+//     > .MuiBox-root {
+//       background-color: transparent !important;
+//     }
 
-    display: block;
-    @extend .global-background;
+//     display: block;
+//     @extend .global-background;
 
-    > svg {
-      display: none;
-    }
-  }
-}
+//     > svg {
+//       display: none;
+//     }
+//   }
+// }
 
-// header style type 3
-.appSubscription {
-  .subDescription {
-    a,
-    > span {
-      color: $color-primary;
-    }
-  }
-}
+// // header style type 3
+// .appSubscription {
+//   .subDescription {
+//     a,
+//     > span {
+//       color: $color-primary;
+//     }
+//   }
+// }
 
-// header style type 4
-.sortingMain {
-  .sortSection {
-    * {
-      color: $color-secondary !important;
-      background-color: #f6f6f6 !important;
+// // header style type 4
+// .sortingMain {
+//   .sortSection {
+//     * {
+//       color: $color-secondary !important;
+//       background-color: #f6f6f6 !important;
 
-      &:hover {
-        background-color: #f6f6f6 !important;
+//       &:hover {
+//         background-color: #f6f6f6 !important;
 
-        .MuiSvgIcon-root {
-          color: $color-primary;
-          fill: $color-primary;
-        }
-      }
-    }
-  }
-}
+//         .MuiSvgIcon-root {
+//           color: $color-primary;
+//           fill: $color-primary;
+//         }
+//       }
+//     }
+//   }
+// }
 
 // UserManagement
 .UserManagement {
@@ -1426,6 +1426,10 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
 .MuiDialog-root .MuiPaper-root {
   border-radius: 32px !important;
+
+  div {
+    margin-bottom: 0px !important;
+  }
 }
 
 .card {
@@ -2572,7 +2576,12 @@ p.MuiTypography-root.MuiTypography-body3.description,
     }
   }
 }
-
+.MuiDialog-root .MuiPaper-root div.cx-company-data__details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 20px 0 !important;
+}
 .cx-line-break {
   display: block;
 }
@@ -2665,6 +2674,15 @@ d .notification-badge-text {
     background-color: #4d4d4d1a;
     border: transparent;
     box-shadow: none;
+  }
+  .cx-table {
+    .MuiDataGrid-root {
+      > .MuiBox-root {
+        > .MuiBox-root {
+          padding: 0;
+        }
+      }
+    }
   }
 }
 

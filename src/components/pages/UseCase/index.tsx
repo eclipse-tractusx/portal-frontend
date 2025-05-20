@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './UseCase.scss'
+import './style.scss'
 import StageSection from 'components/shared/templates/StageSection'
 import { StageSubNavigation } from 'components/shared/templates/StageSubNavigation'
 import { useEffect, useState } from 'react'

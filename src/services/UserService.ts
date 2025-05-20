@@ -19,20 +19,20 @@
  ********************************************************************************/
 
 import Keycloak, { type KeycloakResourceAccess } from 'keycloak-js'
-import type { IUser } from 'features/user/types'
-import { ROLES } from 'types/Constants'
 import {
   getCentralIdp,
   getClientId,
   getClientIdMiw,
-  getClientIdSsiCredential,
   getClientIdSemantic,
+  getClientIdSsiCredential,
   getMiwBase,
   getRealm,
 } from './EnvironmentService'
 import { type LogData, error, info } from './LogService'
+import { ROLES } from 'types/Constants'
 import { store } from 'features/store'
 import { setLoggedUser } from 'features/user/slice'
+import { type IUser } from 'features/user/types'
 
 const keycloakConfig: Keycloak.KeycloakConfig = {
   url: getCentralIdp(),
@@ -57,24 +57,18 @@ const keycloakConfigSsiCredential: Keycloak.KeycloakConfig = {
   realm: getRealm(),
   clientId: getClientIdSsiCredential(),
 }
-
-// Add an ESLint exception until there is a solution
-
 const KC = new Keycloak(keycloakConfig)
 
 const update = () => {
-  //info(`${getUsername()} updating token`)
   KC.updateToken(600)
     .then((refreshed: boolean) => {
       info(`${getUsername()} token refreshed ${refreshed}`)
-      store.dispatch(setLoggedUser(getLoggedUser()))
     })
     .catch(() => {
       error(`${getUsername()} token refresh failed`)
     })
 }
-
-const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
+const initialize = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
   KC.init({
     onLoad: 'login-required',
     pkceMethod: 'S256',
@@ -84,6 +78,23 @@ const init = (onAuthenticatedCallback: (loggedUser: IUser) => void) => {
         info(`${getUsername()} authenticated`)
         onAuthenticatedCallback(getLoggedUser())
         store.dispatch(setLoggedUser(getLoggedUser()))
+      } else {
+        error(`${getUsername()} authentication failed`)
+      }
+    })
+    .catch((err: LogData | undefined) => {
+      error('Keycloak initialization failed', err)
+    })
+}
+const init = (onAuthenticatedCallback: () => void) => {
+  KC.init({
+    onLoad: 'login-required',
+    pkceMethod: 'S256',
+  })
+    .then((authenticated: boolean) => {
+      if (authenticated) {
+        info(`${getUsername()} authenticated`)
+        onAuthenticatedCallback()
       } else {
         error(`${getUsername()} authentication failed`)
       }
@@ -110,11 +121,7 @@ const getUsername = () => KC.tokenParsed?.preferred_username
 
 const getName = () => KC.tokenParsed?.name
 
-const getEmail = () => KC.tokenParsed?.email
-
 const getCompany = () => KC.tokenParsed?.organisation
-
-const getTenant = () => KC.tokenParsed?.tenant
 
 const getAccess = (): KeycloakResourceAccess =>
   KC.tokenParsed?.resource_access ?? {}
@@ -137,6 +144,8 @@ const hasRole = (role: string) => getRoles()?.includes(role)
 const isAdmin = (): boolean => hasRole(ROLES.CX_ADMIN) ?? false
 
 const isLoggedIn = () => !!KC.token
+const getEmail = () => KC.tokenParsed?.email
+const getTenant = () => KC.tokenParsed?.tenant
 
 const getLoggedUser = (): IUser => ({
   userName: getUsername(),
@@ -164,6 +173,7 @@ const UserService = {
   getRoles,
   hasRole,
   init,
+  initialize,
   isAdmin,
   isLoggedIn,
 }

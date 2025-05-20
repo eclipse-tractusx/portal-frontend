@@ -82,11 +82,6 @@ export type AdminData = {
   email: string
 }
 
-export enum CompanyRoleEnum {
-  APP_PROVIDER = 'APP_PROVIDER',
-  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
-}
-
 export interface CompanyDetails {
   bpn: string
   city: string

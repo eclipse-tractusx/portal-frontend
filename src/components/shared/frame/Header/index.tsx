@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Trans, useTranslation } from 'react-i18next'
@@ -42,25 +42,26 @@ import {
 } from 'features/control/appear'
 import { UserInfo } from '../UserInfo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
-import './Header.scss'
+import './style.scss'
 import RegistrationReviewContent from './RegistrationReviewOverlay/RegistrationReviewContent'
 import RegistrationDeclinedOverlay from './RegistrationDeclinedOverlay'
+import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
+import { COMPANY_ROLES, ROLES } from 'types/Constants'
 import { MainNavigation } from 'components/shared/generic'
 import { ImageReferences } from 'types/ImageReferences'
 import { HELP_LINK } from 'types/cfx/Constants'
 import { setIsHeaderNote } from 'features/home/slice'
 import { companySelector } from 'features/companyAccess/slice'
 import UserService from 'services/UserService'
-import { ROLES } from 'types/Constants'
 
 export const Header = ({
   main,
   user,
   userMenuWithChildren,
 }: {
-  main: Tree[]
+  main: Tree[] | undefined
   user: string[]
-  userMenuWithChildren?: Tree[]
+  userMenuWithChildren?: Tree[] | undefined
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -75,11 +76,18 @@ export const Header = ({
 
   const { data } = useFetchApplicationsQuery()
   const companyData = data?.[0]
-
-  const [submittedOverlayOpen, setSubmittedOverlayOpen] = useState(
-    companyData?.applicationStatus === ApplicationStatus.SUBMITTED
-  )
+  const { data: companyDetails } = useFetchOwnCompanyDetailsQuery('')
+  const [submittedOverlayOpen, setSubmittedOverlayOpen] =
+    useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
+
+  useEffect(() => {
+    if (!companyData) return
+    setSubmittedOverlayOpen(
+      !companyDetails?.companyRole.includes(COMPANY_ROLES.OPERATOR) &&
+        companyData?.applicationStatus === ApplicationStatus.SUBMITTED
+    )
+  }, [companyData])
 
   const companyRoles = useSelector(companySelector)
 

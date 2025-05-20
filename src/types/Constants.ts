@@ -28,11 +28,9 @@ export enum PAGES {
   ROOT = '',
   HOME = 'home',
   REGISTRATION = 'registration',
-  SWAGGER = 'swagger',
-  STORYBOOK = 'storybook',
   APP_SUBSCRIPTION = 'appSubscription',
-  ADMINBOARD = 'adminboard',
-  ADMINBOARD_DETAIL = 'adminboardDetail',
+  APP_ADMIN_BOARD = 'appAdminBoard',
+  APP_ADMIN_BOARD_DETAIL = 'appAdminBoardDetail',
   MARKETPLACE = 'marketplace',
   APP_MARKETPLACE = 'appMarketplace',
   SERVICE_MARKETPLACE = 'serviceMarketplace',
@@ -53,6 +51,7 @@ export enum PAGES {
   TECH_USER_DETAILS = 'techUserDetails',
   IDP_MANAGEMENT = 'idpManagement',
   APPLICATION_REQUESTS = 'applicationRequests',
+  CLEARINGHOUSE_SELF_DESCRIPTION = 'clearinghouseSelfDescription',
   APP_USER_MANAGEMENT = 'appUserManagement',
   INVITE = 'invite',
   ADMINISTRATION = 'admin',
@@ -102,7 +101,6 @@ export enum PAGES {
   CERTIFICATE_CREDENTIAL = 'certificateCredential',
   DATA_SPACE = 'dataSpace',
   ADMIN_CREDENTIAL = 'adminCredential',
-  ONBOARDING_SERVICE_PROVIDER = 'onboardingServiceProvider',
   COMPANY_CERTIFICATE = 'companyCertificate',
   COMPANY_WALLET = 'companyWallet',
   DECLINE = 'decline',
@@ -110,7 +108,7 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS = 'companySubscriptions',
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   COMPANY_DATA = 'companyData',
-  MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider',
+  ONBOARDING_SERVICE_PROVIDER_MANAGEMENT = 'onboardingServiceProviderManagement',
 }
 
 export enum OVERLAYS {
@@ -233,7 +231,11 @@ export enum ROLES {
   DELETE_CERTIFICATES = 'delete_certificates',
   MY_ACCOUNT = 'view_own_user_account',
   CREDENTIAL_REQUESTS = 'view_credential_requests',
+  REVOKE_CREDENTIAL = 'revoke_credential',
   REVOKE_CREDENTIALS_ISSUER = 'revoke_credentials_issuer',
+  VIEW_REGISTRATION = 'view_registration',
+  READ_PARTNER_MEMBER = 'read_partner_member',
+  APPROVE_NEW_PARTNER = 'approve_new_partner',
   CONFIGURE_PARTNER_REGISTRATION = 'configure_partner_registration',
   UNSUBSCRIBE_APPS = 'unsubscribe_apps',
   VIEW_CLIENT_ROLES = 'view_client_roles',
@@ -244,16 +246,8 @@ export enum HINTS {
   NEW = 'new',
 }
 
-export const leadPictureBasePath = 'api/administration/documents'
-
-export const REVIEW_STAGE_ORDERS = [
-  'REGISTRATION_VERIFICATION',
-  'BUSINESS_PARTNER_NUMBER',
-  'IDENTITY_WALLET',
-  'CLEARING_HOUSE',
-  'SELF_DESCRIPTION_LP',
-  'APPLICATION_ACTIVATION',
-]
+export const CONVERT_TO_MB = 1048576
+export const ALLOWED_MAX_SIZE_DOCUMENT = 819200 // update to 5242880 only when the max size is updated in the backend
 
 export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   // en
@@ -264,5 +258,19 @@ export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   Beratungsservices: ServiceTypeIdsEnum.CONSULTANCY_SERVICES,
 }
 
-export const CONVERT_TO_MB = 1048576
-export const ALLOWED_IMG_SIZE_MB = 1048576
+export enum COMPANY_ROLES {
+  ACTIVE_PARTICIPANT = 'ACTIVE_PARTICIPANT',
+  APP_PROVIDER = 'APP_PROVIDER',
+  SERVICE_PROVIDER = 'SERVICE_PROVIDER',
+  OPERATOR = 'OPERATOR',
+  ONBOARDING_SERVICE_PROVIDER = 'ONBOARDING_SERVICE_PROVIDER',
+}
+
+export const REVIEW_STAGE_ORDERS = [
+  'REGISTRATION_VERIFICATION',
+  'BUSINESS_PARTNER_NUMBER',
+  'IDENTITY_WALLET',
+  'CLEARING_HOUSE',
+  'SELF_DESCRIPTION_LP',
+  'APPLICATION_ACTIVATION',
+]

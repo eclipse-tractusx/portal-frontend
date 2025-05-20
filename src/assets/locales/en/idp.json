@@ -246,10 +246,6 @@
     "copy": {
       "hint": "click to copy"
     },
-    "name": {
-      "name": "Client ID",
-      "hint": "Enter the client ID provided by your IdP"
-    },
     "company": { "name": "company", "hint": "company" },
     "extid": { "name": "extid", "hint": "extid" },
     "bpn": { "name": "bpn", "hint": "bpn" },
@@ -281,8 +277,6 @@
     "status4": "active"
   },
   "osp": {
-    "title": "Onboarding Serviceprovider",
-    "desc": "{Description of the Onboarding Serviceprovider process}",
     "steps": {
       "one": {
         "text": "done",
@@ -311,12 +305,6 @@
       "title": "Next Steps",
       "desc": "{Description of next steps}",
       "body1": "Registration of IDP {{id}} successful. Now do ..."
-    },
-    "consent": {
-      "title": "Consent",
-      "desc": "{Description of the Consent process}",
-      "error": "Error submitting consent",
-      "success": "Consent successful"
     }
   },
   "action": {
@@ -330,7 +318,6 @@
     "edit": "Edit",
     "configure": "Configure",
     "register": "Register Partner",
-    "consent": "Consent",
     "users": "Users",
     "signout": "Sign out",
     "confirm": "Confirm",

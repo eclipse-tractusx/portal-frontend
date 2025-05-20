@@ -29,8 +29,8 @@ import {
   CircleProgress,
   Typography,
 } from '@catena-x/portal-shared-components'
-import ConnectorTypeSelection from './components/ConnectorTypeSelection'
-import ConnectorInsertForm from './components/ConnectorInsertForm'
+import ConnectorTypeSelection from './ConnectorTypeSelection'
+import ConnectorInsertForm from './ConnectorInsertForm'
 import { useForm } from 'react-hook-form'
 import {
   type ConnectorType,
@@ -115,8 +115,9 @@ const AddConnectorOverlay = ({
     handleSubmit,
     getValues,
     control,
+    resetField,
     trigger,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     defaultValues: formFields,
@@ -126,8 +127,10 @@ const AddConnectorOverlay = ({
   const [selected, setSelected] = useState<ConnectorType>({})
 
   useEffect(() => {
-    if (openDialog) reset(formFields)
-  }, [openDialog, reset])
+    if (openDialog || connectorStep === 0) {
+      reset(formFields)
+    }
+  }, [openDialog, reset, connectorStep])
 
   useEffect(() => {
     if (serviceAccounts && serviceAccounts?.meta?.totalPages > page) {
@@ -245,7 +248,14 @@ const AddConnectorOverlay = ({
               setNewTechnicalUSer={setNewTechnicalUSer}
               newUserLoading={newUserLoading}
               newUserSuccess={newUserSuccess}
-              {...{ handleSubmit, control, errors, trigger }}
+              {...{
+                handleSubmit,
+                control,
+                errors,
+                trigger,
+                getValues,
+                resetField,
+              }}
             />
           ) : (
             showLoader()
@@ -255,12 +265,9 @@ const AddConnectorOverlay = ({
           <Button
             variant="outlined"
             onClick={() => {
-              if (connectorStep === 1) {
-                onStepChange()
-              } else {
-                setSelected({})
-                handleOverlayClose()
-              }
+              if (connectorStep === 1) onStepChange()
+              else handleOverlayClose()
+              setSelected({})
             }}
           >
             {connectorStep === 0
@@ -270,7 +277,7 @@ const AddConnectorOverlay = ({
           {!loading && (
             <Button
               variant="contained"
-              disabled={selected?.id ? false : true}
+              disabled={!(selected?.id && isValid)}
               onClick={() => {
                 connectorStep === 0 && selected?.id
                   ? handleConfirmClick(selected)

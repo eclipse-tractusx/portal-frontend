@@ -36,7 +36,7 @@ import {
   useActivateSubscriptionMutation,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import NoItems from 'components/pages/NoItems'
-import './Subscription.scss'
+import './style.scss'
 import AppSubscriptionDetailOverlay from 'components/pages/AppSubscription/AppSubscriptionDetailOverlay'
 import ActivateSubscriptionOverlay from 'components/pages/AppSubscription/ActivateSubscriptionOverlay'
 import { useState, useReducer } from 'react'
@@ -134,11 +134,13 @@ export default function SubscriptionElements({
   type,
   refetch,
   isSuccess,
+  subscriptionHeading,
 }: {
   subscriptions?: SubscriptionContent[]
   type: string
   refetch: () => void
   isSuccess: boolean
+  subscriptionHeading: string
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -157,6 +159,8 @@ export default function SubscriptionElements({
       success(t('content.appSubscription.success'))
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
+    } finally {
+      refetch()
     }
   }
 
@@ -178,11 +182,33 @@ export default function SubscriptionElements({
     subscription: CompanySubscriptionData
   ) => {
     if (subscription.offerSubscriptionStatus === SubscriptionStatus.ACTIVE) {
-      return <AddTaskIcon className="statusIcon active" />
+      return (
+        <Tooltips
+          color="dark"
+          tooltipPlacement="top-start"
+          tooltipText={t('content.appSubscription.active')}
+        >
+          <AddTaskIcon className="statusIcon active" />
+        </Tooltips>
+      )
+    } else if (
+      subscription.offerSubscriptionStatus === SubscriptionStatus.INACTIVE
+    ) {
+      return (
+        <Tooltips
+          color="dark"
+          tooltipPlacement="top-start"
+          tooltipText={t('content.appSubscription.inactive')}
+        >
+          <HistoryIcon className="statusIcon inactive" />
+        </Tooltips>
+      )
     } else if (
       subscription.offerSubscriptionStatus === SubscriptionStatus.PENDING
     ) {
-      if (subscription.processStepTypeId === ProcessStep.START_AUTOSETUP) {
+      if (
+        subscription.processStepTypeId === ProcessStep.AWAIT_START_AUTOSETUP
+      ) {
         return (
           <>
             <Chip
@@ -211,12 +237,18 @@ export default function SubscriptionElements({
                     })
               }}
             />
-            <HistoryIcon className="statusIcon pending" />
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.pending')}
+            >
+              <HistoryIcon className="statusIcon pending" />
+            </Tooltips>
           </>
         )
       } else if (
         subscription.processStepTypeId ===
-        ProcessStep.TRIGGER_ACTIVATE_SUBSCRIPTION
+        ProcessStep.MANUAL_TRIGGER_ACTIVATE_SUBSCRIPTION
       ) {
         return (
           <>
@@ -227,16 +259,28 @@ export default function SubscriptionElements({
               variant="filled"
               onClick={() => handleActivate(subscription.subscriptionId)}
             />
-            <HistoryIcon className="statusIcon pending" />
+            <Tooltips
+              color="dark"
+              tooltipPlacement="top-start"
+              tooltipText={t('content.appSubscription.pending')}
+            >
+              <HistoryIcon className="statusIcon pending" />
+            </Tooltips>
           </>
         )
       } else {
         return (
-          <img
-            src={`${getAssetBase()}/images/icons/process.svg`}
-            className="statusIcon"
-            alt="subscription process"
-          />
+          <Tooltips
+            color="dark"
+            tooltipPlacement="top-start"
+            tooltipText={t('content.appSubscription.process')}
+          >
+            <img
+              src={`${getAssetBase()}/images/icons/process.svg`}
+              className="statusIcon"
+              alt="subscription process"
+            />
+          </Tooltips>
         )
       }
     } else {
@@ -251,12 +295,14 @@ export default function SubscriptionElements({
   return (
     <div className="recommended-main">
       {subscriptions?.length ? (
-        <ul className="subscription-list">
-          {subscriptions.map((subscriptionData) => {
-            return subscriptionData.companySubscriptionStatuses.map(
-              (subscription) =>
-                subscription.offerSubscriptionStatus !==
-                  SubscriptionStatus.INACTIVE && (
+        <>
+          <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+            {subscriptionHeading}
+          </Typography>
+          <ul className="subscription-list">
+            {subscriptions.map((subscriptionData) => {
+              return subscriptionData.companySubscriptionStatuses.map(
+                (subscription) => (
                   <li
                     key={subscription.subscriptionId}
                     className="subscription-list-item"
@@ -294,9 +340,10 @@ export default function SubscriptionElements({
                     </div>
                   </li>
                 )
-            )
-          })}
-        </ul>
+              )
+            })}
+          </ul>
+        </>
       ) : (
         <div className="loading-progress">
           <CircleProgress
@@ -341,10 +388,9 @@ export default function SubscriptionElements({
           appId={subscriptionDetail.appId}
           subscriptionId={subscriptionDetail.subscriptionId}
           title={subscriptionDetail.title}
-          companyName={subscriptionDetail.companyName}
-          bpnNumber={subscriptionDetail.bpnNumber}
           handleOverlayClose={() => {
             setSubscriptionDetail(SubscriptionInitialData)
+            refetch()
           }}
         />
       )}

@@ -30,9 +30,9 @@ import {
   isClientID,
   isPersonName,
   isSearchUserEmail,
-  isValidPhone,
-  isValidIDPName,
   isValidAppOverviewSearch,
+  isValidIDPName,
+  isValidPhone,
 } from './Patterns'
 
 const TESTDATA = {
@@ -75,15 +75,20 @@ const TESTDATA = {
   IDP: {
     valid: [
       'Tractusx',
-      'Tract Usx',
+      '0000001234',
+      'Tract Usx123@!',
       'BPN lannn',
-      'Foo Bar',
-      'Foo@Bar',
-      'Foo!()Bar',
-      'Foo!() Bar',
-      'xyz',
+      'Foo Bar@!',
     ],
-    invalid: ['Foo  Bar', 'Bar  ', '  ', 'ab'],
+    invalid: [
+      'Foo  Bar  ',
+      'Foo   Bar',
+      '  FooBar',
+      '   ',
+      'FooBar%',
+      'FooBar$',
+      '0000001234$%',
+    ],
   },
   MAIL: {
     valid: [
@@ -402,20 +407,20 @@ describe('Input Pattern Tests', () => {
       expect(isValidPhone(expr)).toBe(false)
     })
   })
-  it('validate idp displayName', () => {
-    TESTDATA.IDP.valid.forEach((expr) => {
-      expect(isValidIDPName(expr)).toBe(true)
-    })
-    TESTDATA.IDP.invalid.forEach((expr) => {
-      expect(isValidIDPName(expr)).toBe(false)
-    })
-  })
   it('validate appoverview search', () => {
     TESTDATA.appOverview.valid.forEach((expr) => {
       expect(isValidAppOverviewSearch(expr)).toBe(true)
     })
     TESTDATA.appOverview.invalid.forEach((expr) => {
       expect(isValidAppOverviewSearch(expr)).toBe(false)
+    })
+  })
+  it('validate idp displayName', () => {
+    TESTDATA.IDP.valid.forEach((expr) => {
+      expect(isValidIDPName(expr)).toBe(true)
+    })
+    TESTDATA.IDP.invalid.forEach((expr) => {
+      expect(isValidIDPName(expr)).toBe(false)
     })
   })
 })

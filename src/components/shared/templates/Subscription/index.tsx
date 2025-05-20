@@ -39,7 +39,7 @@ import type {
   SubscriptionRequestBody,
 } from 'features/appSubscription/appSubscriptionApiSlice'
 import { currentProviderSuccessType } from 'features/serviceProvider/slice'
-import './Subscription.scss'
+import './style.scss'
 import SubscriptionElements from './SubscriptionElements'
 import type { SubscriptionRequestType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import type { RootState } from 'features/store'
@@ -227,9 +227,16 @@ const setData = (
   }
 ) => {
   if (payload?.meta) {
-    return payload.meta.page === 0
-      ? payload.content
-      : state.subscriptions.concat(payload.content)
+    if (payload.meta.page === 0) {
+      return payload.content
+    }
+    const existing = new Map(
+      state.subscriptions.map((item) => [item.offerId, item])
+    )
+    for (const item of payload.content) {
+      existing.set(item.offerId, item)
+    }
+    return Array.from(existing.values())
   } else {
     return []
   }
@@ -262,6 +269,8 @@ interface SubscriptionType {
   currentSuccessType: (state: RootState) => boolean
   loadMoreButtonText?: string
   type?: string
+  activeAppHeading?: string
+  subscriptionHeading?: string
   headlineDescription?: string
 }
 
@@ -280,6 +289,8 @@ export default function Subscription({
   currentSuccessType,
   loadMoreButtonText = 'Load More',
   type = SubscriptionTypes.APP_SUBSCRIPTION,
+  activeAppHeading = 'Apps Offered',
+  subscriptionHeading = 'Subscriptions',
   headlineDescription,
 }: SubscriptionType) {
   const dispatch = useDispatch()
@@ -308,15 +319,6 @@ export default function Subscription({
     appFiltersData = data?.content
   }
 
-  useEffect(() => {
-    if (appFiltersData?.length) {
-      setState({
-        type: ActionKind.SET_APP_FILTERS,
-        payload: appFiltersData,
-      })
-    }
-  }, [appFiltersData, type])
-
   const {
     data,
     refetch,
@@ -334,6 +336,15 @@ export default function Subscription({
       })
     }
   }, [data])
+
+  useEffect(() => {
+    if (appFiltersData?.length) {
+      setState({
+        type: ActionKind.SET_APP_FILTERS,
+        payload: appFiltersData,
+      })
+    }
+  }, [appFiltersData, type])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     let status = ''
@@ -485,7 +496,22 @@ export default function Subscription({
           {!doNotShowAutoSetup && (
             <div className="subDescription">
               {readMore && (
-                <Typography className="readMore" variant="label3">
+                <Typography
+                  className="readMore"
+                  variant="label3"
+                  sx={{
+                    cursor: 'pointer',
+                    color: '#0088CC',
+                    marginTop: '30px',
+                  }}
+                  onClick={() =>
+                    window.open(
+                      '/documentation/?path=user%2F04.+App%28s%29%2F05.+App+Subscription%2F03.+Subscription+Overview+%28App+Provider%29.md',
+                      '_blank',
+                      'noopener'
+                    )
+                  }
+                >
                   {readMore}
                 </Typography>
               )}
@@ -538,24 +564,27 @@ export default function Subscription({
               </div>
             </SearchAndSortSection>
             {appFilters && appFilters.length > 0 && (
-              <div className="appFilterSection">
-                {appFilters.map((app: AppFiltersResponse) => {
-                  return (
-                    <Typography
-                      className={`appName ${
-                        activeAppFilter === app.id ? 'activeFilter' : ''
-                      }`}
-                      variant="body3"
-                      onClick={() => {
-                        handleActiveAppFilter(app.id)
-                      }}
-                      key={app.id}
-                    >
-                      {app.name}
-                    </Typography>
-                  )
-                })}
-              </div>
+              <>
+                <Typography variant="h4">{activeAppHeading}</Typography>
+                <div className="appFilterSection">
+                  {appFilters.map((app: AppFiltersResponse) => {
+                    return (
+                      <Typography
+                        className={`appName ${
+                          activeAppFilter === app.id ? 'activeFilter' : ''
+                        }`}
+                        variant="body3"
+                        onClick={() => {
+                          handleActiveAppFilter(app.id)
+                        }}
+                        key={app.id}
+                      >
+                        {app.name}
+                      </Typography>
+                    )
+                  })}
+                </div>
+              </>
             )}
             {isFetching ? (
               <div className="loading-progress">
@@ -574,6 +603,7 @@ export default function Subscription({
                 type={type}
                 refetch={refetch}
                 isSuccess={apiSuccess}
+                subscriptionHeading={subscriptionHeading}
               />
             )}
           </div>

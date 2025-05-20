@@ -32,7 +32,7 @@ runs:
       run: |
         sed -i "s|development.cofinity-x.com|${{ inputs.environment-subdomain }}.cofinity-x.com|g" index.html
     - name: Cypress
-      uses: cypress-io/github-action@57b70560982e6a11d23d4b8bec7f8a487cdbb71b # v6.7.8
+      uses: cypress-io/github-action@0ee1130f05f69098ab5c560bd198fecf5a14d75b # v6.9.0
       with:
         config-file: ${{ inputs.config-file }}
         start: 'yarn start'

@@ -17,21 +17,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  LogoGrayData,
-  Typography,
-  BackButton,
-} from '@catena-x/portal-shared-components'
+import { BackButton, LogoGrayData } from '@catena-x/portal-shared-components'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Box, Typography } from '@mui/material'
 import {
   useFetchAppDetailsQuery,
   useFetchSubscriptionAppQuery,
 } from 'features/apps/apiSlice'
-import { Box } from '@mui/material'
 import { PAGES, SEARCH_PARAMS } from 'types/cfx/Constants'
-import { getApiBase } from 'services/EnvironmentService'
-import './CompanySubscriptions.scss'
+import './style.scss'
 import {
   type ServiceDetailsResponse,
   useFetchServiceDetailsQuery,
@@ -39,17 +34,19 @@ import {
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import CommonService from 'services/CommonService'
 import { useState, useEffect } from 'react'
-import CompanySubscriptionTechnical from './components/CompanySubscriptionTechnical'
+import { getApiBase } from 'services/EnvironmentService'
+import CompanySubscriptionTechnical from './CompanySubscriptionTechnical'
+import CompanySubscriptionContent from './CompanySubscriptionContent'
+import CompanySubscriptionPrivacy from './CompanySubscriptionPrivacyContent'
+import CompanySubscriptionDocument from './CompanySubscriptionDocument'
+import MarketplaceDocuments from '../ServiceMarketplaceDetail/MarketplaceDocuments'
+import MarketplaceProvider from '../ServiceMarketplaceDetail/MarketplaceProvider'
+import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/MarketplaceTechnicalUserSetup'
 import CompanySubscriptionHeader from './cfx/CompanySubscriptionHeader'
-import CompanySubscriptionContent from './components/CompanySubscriptionContent'
-import CompanySubscriptionPrivacy from './components/CompanySubscriptionPrivacyContent'
-import CompanySubscriptionDocument from './components/CompanySubscriptionDocument'
-import MarketplaceDocuments from '../ServiceMarketplaceDetail/components/MarketplaceDocuments'
-import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/components/MarketplaceTechnicalUserSetup'
-import MarketplaceProvider from '../ServiceMarketplaceDetail/components/MarketplaceProvider'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()
+  // const { state: items } = useLocation()
   const [searchParams] = useSearchParams()
 
   const items = {
@@ -124,7 +121,7 @@ export default function CompanySubscriptionDetail() {
           <CompanySubscriptionHeader
             detail={fetchData}
             src={getSrc()}
-            status={subscriberData.offerSubscriptionStatus}
+            status={subscriberData?.offerSubscriptionStatus}
           />
           <div className="subscription-container">
             <div className="details">

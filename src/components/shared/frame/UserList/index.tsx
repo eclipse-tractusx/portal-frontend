@@ -35,7 +35,6 @@ import { appManagementSelector } from 'features/appManagement/slice'
 import { isSearchUserEmail } from 'types/Patterns'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
-import { getClientId } from 'services/EnvironmentService'
 import { OverLappingStatusTag } from 'components/shared/cfx/OverLappingStatusTag'
 
 interface FetchHookArgsType {
@@ -128,7 +127,7 @@ export const UserList = ({
           {
             field: 'name',
             headerName: t('global.field.name'),
-            flex: 3,
+            flex: 2,
             valueGetter: ({ row }: { row: TenantUser }) =>
               `${row.firstName} ${row.lastName}`,
           },
@@ -136,7 +135,7 @@ export const UserList = ({
           {
             field: 'status',
             headerName: t('global.field.status'),
-            flex: 3,
+            flex: 1.5,
             renderCell: ({ value: status }) => {
               return (
                 <StatusTag
@@ -150,26 +149,16 @@ export const UserList = ({
             field: 'roles',
             headerName: t('global.field.role'),
             flex: 4,
-            renderCell: ({ value: roles }) => {
-              if (
-                Array.isArray(roles) &&
-                roles.some((role) => role.hasOwnProperty('clientId'))
-              ) {
-                const filteredRoles = roles.filter(
-                  (role) =>
-                    typeof role !== 'string' && role.clientId === getClientId()
-                )
-                return <OverLappingStatusTag roles={filteredRoles} />
-              }
-              return <OverLappingStatusTag roles={roles} />
-            },
+            renderCell: ({ value: roles }) => (
+              <OverLappingStatusTag roles={roles} />
+            ),
           },
           {
             field: 'details',
             headerName: isDetail
               ? t('global.field.details')
               : t('global.field.edit'),
-            flex: 2,
+            flex: 1.5,
             renderCell: ({ row }: { row: TenantUser }) => (
               <IconButton
                 disabled={onDetailsClick === undefined}

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import './AdminCredential.scss'
+import './style.scss'
 import AdminCredentialElements from './AdminCredentialElements'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 

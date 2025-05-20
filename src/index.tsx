@@ -31,6 +31,9 @@ import {
   SharedThemeProvider,
   SharedCssBaseline,
 } from '@catena-x/portal-shared-components'
+import CompanyService from 'services/CompanyService'
+import ErrorBoundary from 'components/pages/ErrorBoundary'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { cofinityTheme } from 'theme.override'
 import { ThemeProvider } from '@mui/material'
 import { CompanyProvider } from 'components/CompanyProvider'
@@ -39,22 +42,42 @@ import ClickjackingProtection from './utils/ClickjackingProtection'
 I18nService.init()
 AccessService.init()
 
-UserService.init((user) => {
-  createRoot(document.getElementById('app')!).render(
-    <StrictMode>
-      <ClickjackingProtection />
-      <SharedCssBaseline />
-      <Provider store={store}>
-        <SharedThemeProvider themeDesign={cofinityTheme}>
-          <ThemeProvider theme={cofinityTheme}>
-            <AuthProvider user={user}>
-              <CompanyProvider user={user}>
-                <AuthorizingRouter />
-              </CompanyProvider>
-            </AuthProvider>
-          </ThemeProvider>
-        </SharedThemeProvider>
-      </Provider>
-    </StrictMode>
+UserService.initialize((user) => {
+  CompanyService.init(
+    () => {
+      createRoot(document.getElementById('app')!).render(
+        <StrictMode>
+          <ClickjackingProtection />
+          <SharedCssBaseline />
+          <Provider store={store}>
+            <SharedThemeProvider themeDesign={cofinityTheme}>
+              <ThemeProvider theme={cofinityTheme}>
+                <AuthProvider user={user}>
+                  <CompanyProvider user={user}>
+                    <AuthorizingRouter />
+                  </CompanyProvider>
+                </AuthProvider>
+              </ThemeProvider>
+            </SharedThemeProvider>
+          </Provider>
+        </StrictMode>
+      )
+    },
+    () => {
+      createRoot(document.getElementById('app')!).render(
+        <StrictMode>
+          <SharedCssBaseline />
+          <Provider store={store}>
+            <SharedThemeProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="*" element={<ErrorBoundary />} />
+                </Routes>
+              </BrowserRouter>
+            </SharedThemeProvider>
+          </Provider>
+        </StrictMode>
+      )
+    }
   )
 })

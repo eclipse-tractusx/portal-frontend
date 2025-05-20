@@ -24,7 +24,7 @@ import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { show } from 'features/control/overlay'
 import {
   notificationSelector,
-  resetNotification,
+  setNotification,
 } from 'features/notification/slice'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
@@ -34,6 +34,7 @@ import PageInfo from 'components/shared/cfx/PageInfo'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { userHasPortalRole } from 'services/AccessService'
+import { initServicetNotifications } from 'types/MainTypes'
 
 export default function TechnicalUserManagement() {
   const { t } = useTranslation()
@@ -44,7 +45,7 @@ export default function TechnicalUserManagement() {
   const dispatch = useDispatch()
 
   const handleCloseNotification = () => {
-    dispatch(resetNotification())
+    dispatch(setNotification(initServicetNotifications))
   }
 
   useEffect(() => {
@@ -72,7 +73,7 @@ export default function TechnicalUserManagement() {
           />
         )}
         <div className="cx-content-technical__container">
-          {notification.title && notification.description && (
+          {notification?.title && notification.description && (
             <div className="cx-content-technical__notifications">
               <PageNotifications
                 open={notification.open}

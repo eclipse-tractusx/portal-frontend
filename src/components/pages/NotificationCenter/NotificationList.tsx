@@ -32,7 +32,7 @@ import {
   TAG,
   useGetNotificationsQuery,
 } from 'features/notification/apiSlice'
-import './Notifications.scss'
+import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { notificationFetchSelector, setMeta } from 'features/notification/slice'
 import NotificationPager from './NotificationPager'

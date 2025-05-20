@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { type AppDetails, SubscriptionStatus } from 'features/apps/types'
 import { fetchImageWithToken } from 'services/ImageService'
 import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
-import './CompanySubscriptionHeader.scss'
+import './style.scss'
 import { useSearchParams } from 'react-router-dom'
 import { SEARCH_PARAMS } from 'types/cfx/Constants'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
@@ -110,7 +110,7 @@ export default function CompanySubscriptionHeader({
   }
 
   return (
-    <Box className="company-subscriptions-header">
+    <Box className="company-subscription-header">
       <div className="lead-image">
         <Image
           src={src ?? LogoGrayData}

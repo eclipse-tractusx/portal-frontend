@@ -20,7 +20,7 @@
 import { Typography } from '@catena-x/portal-shared-components'
 import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
 import { useTranslation } from 'react-i18next'
-import './CompanyWallet.scss'
+import './style.scss'
 import classNames from 'classnames'
 import useFormattedDate from 'hooks/useFormattedDate'
 

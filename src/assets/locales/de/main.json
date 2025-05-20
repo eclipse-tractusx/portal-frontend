@@ -11,8 +11,8 @@
     "appdetails": "App Details",
     "dataManagement": "Datenmanagement",
     "semantichub": "Semantische Modelle",
-    "connector": "Konnektor",
     "partnerNetwork": "Partner Network",
+    "connector": "Konnektor",
     "account": "Mein CX Account",
     "organization": "Meine Company",
     "notifications": "Benachrichtigungen",
@@ -31,7 +31,6 @@
     "privacy": "Privatsphäre",
     "terms": "Nutzungsbedingungen",
     "cookiePolicy": "Cookies",
-    "3rdpartylicenses": "Drittanbieterlizenzen",
     "logout": "Abmelden",
     "notFound": "Seite nicht gefunden",
     "appManagement": "App Management",
@@ -39,7 +38,8 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "adminboard": "App Request Management",
+    "appAdminBoard": "App Request Management",
     "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicalUserManagement": "Technische Benutzer Verwaltung",
@@ -70,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "onboardingServiceProviderManagement": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Neuen Geschäftspartner einladen",
@@ -322,7 +322,8 @@
           "manufacturingasaservice": "Produzieren als Dienst",
           "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
           "real-timecontrol": "Real Time Control",
-          "modularproduction": "Modular Production"
+          "modularproduction": "Modular Production",
+          "behaviortwin": "Verhaltenszwilling"
         },
         "noMatch": "Keine Treffer",
         "for": "zu Ihrem Suchausdruck",
@@ -459,12 +460,12 @@
         "action": "Aktion"
       },
       "filter": {
-        "requested": "angefordert",
+        "pending": "ausstehend",
         "active": "aktiv",
         "inactive": "inaktiv",
         "showAll": "Alles anzeigen"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
     "companySubscriptionsDetail": {
       "language": "Verfügbare App Sprachen",
@@ -623,7 +624,7 @@
         "configureYourConnectorDetails": "Konfigurieren Sie die Connector-Details",
         "learnMore": "Learn More",
         "noDocumentAvailable": "Kein Dokument verfügbar",
-        "selfDescriptionDocument": "Selbstbeschreibungsdokument",
+        "selfDescriptionDocument": "Eigenerklärungsdokument",
         "deleteConnector": "Connector löschen",
         "urlUpdatedSuccessfully": "URL erfolgreich aktualisiert",
         "note": "Bitte beachten Sie:",
@@ -662,6 +663,11 @@
       "helpText": "Get some help",
       "helpTextNew": "Details Connector Configuration",
       "headertitle": "Connector Registration",
+      "desc": "The connector combines the benefits of IDS connectors (secure and standardized communication, data usage control) with the interoperability. To register your connector inside the network and create your connector self-description, please register your connector below.",
+      "subDesc1": "Connector Configuration Details",
+      "subDesc2": "https://bpnl00000003crhk-catena-x.authentication.eu10.hana.ondemand.com/oauth/token",
+      "subDesc3": "https://dis-integration-service-prod.eu10.dim.cloud.sap/api/v2.0.0/iatp/catena-x-portal",
+      "subDesc4": "Did:web:xxxxxxxxx",
       "subheadertitle": "Connector",
       "tabletitle": "Owned Connectors",
       "managedtabletitle": "Managed Connectors",
@@ -675,13 +681,13 @@
       "deletemodal": {
         "title": "EDC-Connector Löschen",
         "description": "Möchten Sie den ausgewählten Connector wirklich löschen? Die Löschung kann nicht rückgängig gemacht werden.",
-        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Selbstbeschreibungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist. Der technische Benutzer kann gelöscht werden, wenn Sie das Kontrollkästchen unten aktivieren. Andernfalls wird nur die Zuordnung zwischen Connector und technischem Benutzer gelöscht.",
-        "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
+        "techUserdescription": "Möchten Sie den Connector wirklich löschen? Mit der Löschung wird der Connector automatisch vom Endpunkt „Connector Discovery“ gelöscht und das Eigenerklärungsdokument auf inaktiv gesetzt.\n Bitte beachten Sie, dass mit dem Connector ein technischer Benutzer verbunden ist. Der technische Benutzer kann gelöscht werden, wenn Sie das Kontrollkästchen unten aktivieren. Andernfalls wird nur die Zuordnung zwischen Connector und technischem Benutzer gelöscht.",
+        "techUserCheckBoxLabel": "Ja, ich möchte den Connector löschen, wodurch automatisch auch der erwähnte technische Benutzer gelöscht wird.",
         "techDetails": {
           "title": "Technical Details",
           "name": "Name",
           "clientId": "Client ID",
-          "Description": "Description"
+          "description": "Description"
         }
       },
       "modal": {
@@ -713,10 +719,10 @@
           },
           "url": {
             "label": "Connector-Katalog-Endpunkt*",
-            "placeholder": "Connector URL",
+            "placeholder": "Example: https://connector.control.plane/api/v1/dsp",
             "mandatoryError": "Die Connector-URL ist obligatorisch.",
             "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "tooltipMsg": "Base URL of the Catalog Service endpoint of a DSP Connector, e.g., https://connector.control.plane/{catalogPath}."
           },
           "bpn": {
             "label": "Connector Owner*",
@@ -791,7 +797,7 @@
         "uniqueid": "Eindeutige ID",
         "zipcode": "PLZ",
         "city": "PLZ/Stadt",
-        "cxparticipant": "CX Member",
+        "cxparticipant": "Aktiver Teilnehmer",
         "address": "Anschrift",
         "identifiers": "Identifiers"
       },
@@ -800,11 +806,11 @@
         "others": "Andere"
       },
       "message": "Inhalte vom Partner Netzwerk",
+      "searchbuttonlabel": "Suche",
       "searchfielddefaulttext": "Suchen Sie nach Firmennamen oder BPN",
       "searchfielderrormessage": "ungültige Daten",
       "membershipnotificationtitle": "Das Mitgliedschafts-Flag kann nicht abgerufen werden.",
       "membershipnotificationdescription": "Bitte beachten Sie, dass die Mitgliedsinformationen möglicherweise falsch sind.",
-      "searchbuttonlabel": "Suche",
       "overlay": {
         "title": "Details zu Geschäftspartnerdaten",
         "companydatatitle": "Firmen Data",
@@ -952,7 +958,12 @@
           "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
-          "permission": "Berechtigungen"
+          "permission": "Berechtigungen",
+          "companyServiceAccountTypeID": "Firmenservicekontotyp",
+          "authenticationType": "Authentifizierungstyp",
+          "userType": "Benutzertyp",
+          "serviceEndpoint": "Dienstendpunkt",
+          "missingInfoHint": "Diese Informationen stehen älteren Benutzern möglicherweise nicht zur Verfügung. Erstellen Sie den Benutzer neu, um die vollständigen Details zu erhalten."
         },
         "status": {
           "ACTIVE": "AKTIV",
@@ -1018,10 +1029,10 @@
     "idpmanagement": {
       "addIdpHeadline": "Identity Provider Konfiguration",
       "addIdpSubheadline": "Configure your idp connection. Retrieve the metadata config file from your local idp and upload the same in the input field below. Additionally the client_id and secret are needed. <br> Follow the",
-      "idpHelp": "help",
-      "updateIdpSubheadline2": "to find a number of examples of local idp's such as Azure, Keycloak, etc.",
       "updateIdpHeadline": "Update Identity Provider",
       "updateIdpSubheadline": "Choose the required settings for your IDP",
+      "idpHelp": "help",
+      "updateIdpSubheadline2": "to find a number of examples of local idp's such as Azure, Keycloak, etc.",
       "enableIdpHeadline": "Activierung Identity Provider {{ idp }}",
       "enableIdpSubheadline": "This will open another option for people from your company to sign.",
       "enableIdpSuccessHeadline": "Der Identity Provider wurde erfolgrecih aktiviert.",
@@ -1043,7 +1054,6 @@
       "secret": "Secret",
       "signatureAlgorithm": "Signatur Algorithmus",
       "clientAuthMethod": "Authentisierungsart",
-      "mappers": "Mapper",
       "tokenUrl": "Token-URL",
       "idpTypeSelection": "Auswahl des IdP-Typs",
       "companyName": "Name der Firma",
@@ -1059,6 +1069,19 @@
       "client_secret_invalid_error": "Bitte geben Sie ein gültiges Client-Secret ein",
       "metadata_url_required_error": "Metadaten-URL ist erforderlich",
       "metadata_url_invalid_error": "Bitte geben Sie eine gültige Metadaten-URL ein"
+    },
+    "clearinghouseSelfDescription": {
+      "heading": "Status der Eigenerklärung",
+      "description": "Diese Seite bietet einen Überblick über den aktuellen Stand der Eigenerklärungen für Administratoren.",
+      "reprocess": "Nachverarbeiten",
+      "selfDescriptionFactoryInterface": "Self-Description Factory Schnittstelle",
+      "legalPerson": "Juristische Person",
+      "legalPersonDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung einer juristischen Person",
+      "connectors": "Connectors",
+      "connectorsDesc": "Übersicht über Unternehmen mit fehlender Eigenerklärung der Konnektoren",
+      "errorMsg": "Fehler! Etwas ist schief gelaufen",
+      "noDataMsg": "Keine Datensätze gefunden.",
+      "statusMsg": "Der Status der Self-Description Factory Schnittstelle kann nur durch Konfiguration (siehe Installationsanleitung) geändert werden"
     },
     "addUser": {
       "headline": "Erstelle einen neuen User",
@@ -1078,15 +1101,24 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "note": "Notiz: Die Auswahl sowohl interner als auch externer Benutzer für denselben Dienst ist nicht möglich.",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar.",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
           "username": "Username*",
           "description": "Beschreibung*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "roleMandatory": "Die Rolle des technischen Benutzers ist obligatorisch",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
+            "username": "Bitte geben Sie den Benutzernamen ein.",
             "description": "Bitte geben Sie eine Beschreibung ein."
           }
         }
@@ -1101,43 +1133,6 @@
       "confirmSelectedRoles": "Confirm selected roles",
       "selectRoles": "Select Roles:",
       "roleDescriptions": "Role Descriptions"
-    },
-    "help": {
-      "message": "Fügen Sie hier Inhalte hinzu"
-    },
-    "contact": {
-      "message": "Fügen Sie hier Inhalte hinzu"
-    },
-    "imprint": {
-      "directors": "Vertretungsberechtigter Vorstand",
-      "ceo": "Vorstandsvorsitzender",
-      "deputyCeo": "Stellvertretender Vorstandsvorsitzender",
-      "treasurer": "Schatzmeister",
-      "address": "Anschrift",
-      "contact&support": "Kontakt & Support",
-      "contact&supportDesc": "Auf unserer Supportseite finden Sie Antworten zu vielen Fragen. Sollte Ihre Frage nicht beantwortet werden, verwenden Sie bitte unsere Kontaktformular. Alternativ können Sie uns auch per E-Mail an info@catena-x.net kontaktieren.",
-      "privacy": "Datenschutz",
-      "privacyDesc": "Für Fragen zum Thema Datenschutz und der Information, welche Daten von Ihnen erhoben werden, finden Sie alle Details unter folgendem Link:"
-    },
-    "privacy": {
-      "message": "Fügen Sie hier Inhalte hinzu",
-      "notSupportedMessage": "Currently not yet supported"
-    },
-    "terms": {
-      "message": "Fügen Sie hier Inhalte hinzu"
-    },
-    "cookiepolicy": {
-      "description1": "A cookie is a small piece of data (text file) that a website - when visited by a user - asks your browser to store on your device in order to remember information about you, such as your language preference or login information.",
-      "description2": "More specially, we use cookies for the following purposes:",
-      "description2_first": "Assisting you in navigation;",
-      "description2_second": "Assisting in login;",
-      "description2_third": "Remember your preferences and settings;",
-      "description2_fourth": "Detect the size of your screen;",
-      "description2_fifth": "Showing you personlised products / services;",
-      "description3": "Below is a detailed list of the cookies we use on our Website.",
-      "description3_first": "Strictly Necessary Cookies",
-      "description3_second": "Functional Cookies",
-      "description3_third": "Targetting Cookies"
     },
     "account": {
       "userAccount": "Benutzer Konto",
@@ -1170,10 +1165,10 @@
       "message": "Wir melden Sie nun ab... Wir freuen uns Sie bald wieder hier zu sehen!"
     },
     "notfound": {
+      "message": "Der Inhalt wurde nicht gefunden. Dies kann verschiedene Ursachen haben - entweder",
       "title": "Etwas ist schief gelaufen.",
       "description": "Sie haben keinen Zugriff auf diese Seite oder die Seite existiert nicht. Bitte wenden Sie sich an Ihren Administrator.",
       "button": "Startseite",
-      "message": "Der Inhalt wurde nicht gefunden. Dies kann verschiedene Ursachen haben - entweder",
       "reason": {
         "nopermission": "Sie haben keine Berechtigung diesen Inhalt zu sehen oder",
         "notexisting": "die Seite existiert im Catena-X Portal nicht oder",
@@ -1224,7 +1219,12 @@
         "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerberechtigung an, die dem technischen Benutzer, der im Rahmen der App-/Dienstaktivierung erstellt wurde, automatisch zugewiesen wird."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert."
+      "subscribedTooltip": "Die App ist bereits von Ihrem Unternehmen abonniert.",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -1330,10 +1330,36 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Fehler beim Löschen des technischen Benutzerprofils",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)"
+        "noneOption": "Nicht notwendig (für die Integration ist kein technisches Benutzerprofil notwendig)",
+        "userProfileDeleteSuccessMessage": "Technisches Benutzerprofil erfolgreich gelöscht",
+        "table": {
+          "addtechUserButton": "Technisches Benutzerprofil hinzufügen",
+          "title": "Technisches Benutzerprofil",
+          "name": "Technisches Benutzerprofil",
+          "type": "Type",
+          "role": "Roles",
+          "noRoles": "Keine technischen Benutzerprofile hinzugefügt",
+          "action": "Action"
+        },
+        "form": {
+          "title": "Technisches Benutzerprofil konfigurieren",
+          "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzerprofils fort",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar."
+        },
+        "deleteOverlay": {
+          "title": "Technisches Benutzerprofil löschen",
+          "description": "Sind Sie sicher, dass Sie das ausgewählte technische Benutzerprofil löschen möchten?"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1477,11 +1503,16 @@
       "recommendations": "Recommendations",
       "allServices": "All Services",
       "viewDetails": "Display more details",
-      "activateBtn": "Activate",
-      "configureBtn": "Configure",
+      "activateBtn": "Aktivieren",
+      "configureBtn": "Konfigurieren",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
-      "success": "Success",
+      "success": "Aktivierung erfolgreich",
+      "configuration": "Konfiguration erfolgreich",
+      "pending": "Das Abonnement steht noch aus",
+      "active": "Das Abonnement ist aktiv",
+      "inactive": "Das Abonnement ist inaktiv",
+      "process": "Das Abonnement ist in Bearbeitung",
       "tabs": {
         "request": "Request",
         "active": "Active",
@@ -1591,6 +1622,8 @@
       "headerTitle": "App request management",
       "search": "search company name/app title",
       "noDataMessage": "No data available",
+      "errorMsg": "Error! Something went wrong",
+      "successMsg": "Successfully completed",
       "tabs": {
         "open": "Open",
         "all": "All"
@@ -1599,8 +1632,6 @@
         "newFirst": "Newest First",
         "AppTitle": "App Title (A-Z)"
       },
-      "errorMsg": "Error! Something went wrong",
-      "successMsg": "Successfully completed",
       "declineModal": {
         "title": "Reject App Release Request {appName}",
         "subheading": "Are you sure you want to reject the app release request ?",
@@ -1834,7 +1865,7 @@
         },
         "SKIPPED": {
           "title": "Von Ihrer Seite sind keine Maßnahmen erforderlich",
-          "description": "Die Erstellung der Selbstbeschreibung wurde absichtlich übersprungen. Dieser Prozess wird vom CX-Operator so bald wie möglich wieder ausgelöst."
+          "description": "Die Erstellung der Eigenerklärung wurde absichtlich übersprungen. Dieser Prozess wird vom CX-Operator so bald wie möglich wieder ausgelöst."
         }
       }
     },
@@ -2001,9 +2032,9 @@
       "uploadCertificate": "Upload Certificate",
       "noData": "Currently there are no certificates for the company. You can start uploading a certificate by clicking the 'Upload Certificate' button above.",
       "validtill": "Valid Till",
+      "morelink": ">> More",
       "view": "View",
       "delete": "Delete",
-      "morelink": ">> More",
       "tooltips": {
         "pending": "Certificate is Pending",
         "active": "Certificate is Active",
@@ -2202,6 +2233,11 @@
             "hint": "City",
             "error": "Please enter valid City"
           },
+          "countryCode": {
+            "name": "Country Code",
+            "hint": "Country Code",
+            "error": "Please enter valid Country Code"
+          },
           "countryIdentifier": {
             "name": "Country Identifier",
             "hint": "Country Identifier",
@@ -2256,7 +2292,9 @@
       "clientSecret": {
         "name": "Client-Geheimnis",
         "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
-      }
+      },
+      "ospIdentityProvider": "OSP-Identitätsanbieter (IDPs)",
+      "search": "Geben Sie einen Namen oder Alias ​​ein, um zu suchen"
     }
   },
   "navigation": {
@@ -2316,6 +2354,8 @@
       "INACTIVE": "Inaktiv",
       "DELETED": "DELETED",
       "name": "Name",
+      "userid": "User ID",
+      "username": "User Name",
       "details": "Details",
       "edit": "Edit",
       "userName": "Benutzername",
@@ -2333,7 +2373,9 @@
       "alias": "Alias",
       "authMethod": "Auth Method",
       "progress": "Progress",
-      "action": "Action"
+      "action": "Action",
+      "ownership": "Ownership",
+      "userType": "Usertype"
     },
     "actions": {
       "cancel": "Abbrechen",
@@ -2350,7 +2392,6 @@
       "pleaseSelect": "Bitte auswählen",
       "reload": "Seite neuladen",
       "homepage": "Startseite",
-      "deleteTitle": "Löschen von {{ object }} {{ name }}",
       "confirmDelete": "Sind Sie sicher, dass Sie den {{ object }} {{ name }} löschen möchten?",
       "noteDelete": "Anmerkung: das Löschen ist dauerhaft. Es ist nicht möglich den {{ object }} wieder zu aktivieren.",
       "submit": "Einreichen",
@@ -2363,7 +2404,9 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Information erfolgreich kopiert",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "aktiv",

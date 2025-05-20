@@ -91,8 +91,13 @@ export const initialPaginMeta: PaginMeta = {
 
 export const initialPaginResult = { meta: { ...initialPaginMeta }, content: [] }
 
-export type IPage = {
+export type RestrictedItem = {
   name: string
+  allowTo?: () => boolean
+}
+
+export type IPage = RestrictedItem & {
+  name?: string
   role?: string
   element: JSX.Element
   isRoute?: boolean
@@ -105,9 +110,7 @@ export type IOverlay = {
   role?: string
 }
 
-export type IAction = {
-  name: string
-  role?: string
+export type IAction = RestrictedItem & {
   element: JSX.Element
   value?: string
 }

@@ -24,8 +24,7 @@ import {
   UserAvatar,
   Typography,
 } from '@catena-x/portal-shared-components'
-import type { RootState } from 'features/store'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -38,13 +37,12 @@ import { useFetchOwnUserDetailsQuery } from 'features/admin/userApiSlice'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
 import { success } from 'services/NotifyService'
+import UserService from 'services/UserService'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { getEnvironment } from 'services/EnvironmentService'
 
 export default function MyAccount() {
   const { t } = useTranslation()
-  const parsedToken = useSelector((state: RootState) => state.user.parsedToken)
-  const token = useSelector((state: RootState) => state.user.token)
   const { data } = useFetchOwnUserDetailsQuery()
   const dispatch = useDispatch()
   const environment = getEnvironment()
@@ -68,7 +66,7 @@ export default function MyAccount() {
           <Button
             color="secondary"
             onClick={async () => {
-              await navigator.clipboard.writeText(token ?? '')
+              await navigator.clipboard.writeText(UserService.getToken() ?? '')
               success(t('content.account.copy_to_clipboard_success'))
             }}
             size="small"
@@ -92,7 +90,12 @@ export default function MyAccount() {
           </Box>
         </Box>
       </section>
-      {data && <UserDetailInfo user={data} parsedToken={parsedToken} />}
+      {data && (
+        <UserDetailInfo
+          user={data}
+          parsedToken={UserService.getParsedToken()}
+        />
+      )}
 
       {/* TODO: DEV only needs to be removed when going PROD */}
       {!['PRODUCTION', 'BETA', 'INTEGRATION'].includes(environment) && (
@@ -106,7 +109,7 @@ export default function MyAccount() {
               <Typography>{t('content.account.token')}</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ marginBottom: '20px' }}>
-              <pre>{JSON.stringify(parsedToken, null, 2)}</pre>
+              <pre>{JSON.stringify(UserService.getParsedToken(), null, 2)}</pre>
             </AccordionDetails>
           </Accordion>
         </section>

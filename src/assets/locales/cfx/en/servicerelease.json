@@ -145,7 +145,7 @@
       "inactive": "Inactive",
       "created": "Created",
       "wip": "WIP",
-      "inreview": "Inreview"
+      "inreview": "In Review"
     },
     "addbtn": "Register new service",
     "submenuNotAvailable": "Sub-Menu is not available.",
@@ -221,7 +221,11 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
-    }
+    },
+    "offersHeading": "Services Offered",
+    "success": "Activation successful",
+    "configuration": "Configuration successful",
+    "failure": "Error while configuring service subscription"
   },
   "adminBoard": {
     "headerTitle": "Service Request Management",

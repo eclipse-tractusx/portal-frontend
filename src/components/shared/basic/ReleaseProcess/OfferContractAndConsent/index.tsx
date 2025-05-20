@@ -19,9 +19,13 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { serviceIdSelector } from 'features/serviceManagement/slice'
+import {
+  serviceRedirectStatusSelector,
+  serviceIdSelector,
+  serviceReleaseStepIncrement,
+} from 'features/serviceManagement/slice'
 import {
   useUpdateServiceAgreementConsentsMutation,
   useFetchServiceStatusQuery,
@@ -29,18 +33,19 @@ import {
   useFetchServiceConsentDataQuery,
   useUpdateServiceDocumentUploadMutation,
   ReleaseProcessTypes,
+  useFetchDocumentMutation,
 } from 'features/serviceManagement/apiSlice'
 import { setServiceStatus } from 'features/serviceManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
-import {
-  useFetchFrameDocumentByIdMutation,
-  useFetchNewDocumentByIdMutation,
-} from 'features/appManagement/apiSlice'
+import { useFetchFrameDocumentByIdMutation } from 'features/appManagement/apiSlice'
+import { isStepCompleted } from '../OfferStepHelper'
 
 export default function OfferContractAndConsent() {
   const { t } = useTranslation('servicerelease')
   const dispatch = useDispatch()
   const serviceId = useSelector(serviceIdSelector)
+  const redirectStatus = useSelector(serviceRedirectStatusSelector)
+  const hasDispatched = useRef(false)
   const fetchAgreementData = useFetchServiceAgreementDataQuery().data
   const fetchConsentData = useFetchServiceConsentDataQuery(serviceId ?? '').data
   const [updateAgreementConsents] = useUpdateServiceAgreementConsentsMutation()
@@ -52,11 +57,22 @@ export default function OfferContractAndConsent() {
     }
   )
   const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [fetchDocumentById] = useFetchDocumentMutation()
 
   useEffect(() => {
     if (fetchServiceStatus) dispatch(setServiceStatus(fetchServiceStatus))
   }, [dispatch, fetchServiceStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchServiceStatus &&
+      isStepCompleted(fetchServiceStatus, 3, redirectStatus)
+    ) {
+      dispatch(serviceReleaseStepIncrement())
+      hasDispatched.current = true
+    }
+  }, [fetchServiceStatus, hasDispatched])
 
   return (
     <div className="contract-consent">
@@ -81,7 +97,7 @@ export default function OfferContractAndConsent() {
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchServiceStatus ?? undefined}
-        getDocumentById={getDocumentById}
+        getDocumentById={fetchDocumentById}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={
           '/documentation/?path=user%2F05.+Service%28s%29%2F02.+Service+Release+Process%2F03.+Terms%26Conditions.md'

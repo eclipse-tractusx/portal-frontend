@@ -27,7 +27,7 @@ import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import './ServiceMarketplace.scss'
+import './style.scss'
 import { useCallback } from 'react'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 

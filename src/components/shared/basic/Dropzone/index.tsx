@@ -32,8 +32,8 @@ import {
 import { type FunctionComponent, useCallback, useState } from 'react'
 import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { DROPZONE_ERROR_CODE } from 'types/cfx/Constants'
 import { CONVERT_TO_MB } from 'types/Constants'
+import { DROPZONE_ERROR_CODE } from 'types/cfx/Constants'
 
 export type DropzoneFile = File & Partial<UploadFile>
 
@@ -119,11 +119,18 @@ export const Dropzone = ({
 
   const handleFileSizeValidator = (file: File) => {
     if (!maxFileSize) return null
-    const maxFileSizeInMB = ((maxFileSize * 1024) / CONVERT_TO_MB).toFixed(1)
+    // const maxFileSizeInMB = ((maxFileSize * 1024) / CONVERT_TO_MB).toFixed(1)
+    const formatFileSize = (bytes: number): string => {
+      const sizeInMB = bytes / CONVERT_TO_MB
+      return Number.isInteger(sizeInMB)
+        ? sizeInMB.toString()
+        : sizeInMB.toFixed(1)
+    }
+
     return file.size > maxFileSize
       ? {
           code: 'size-too-large',
-          message: `${t('shared.dropzone.error.fileTooLarge')} ${maxFileSizeInMB} MB`,
+          message: `${t('shared.dropzone.error.fileTooLarge')} ${formatFileSize(maxFileSize)} MB`,
         }
       : null
   }
@@ -171,7 +178,7 @@ export const Dropzone = ({
     !isDragActive && errorObj && fileTypeError && errorText
       ? errorText
       : isMaxFileError
-        ? maxErrorText ?? errorObj?.message
+        ? (maxErrorText ?? errorObj?.message)
         : errorObj?.message
 
   const uploadFiles: UploadFile[] = currentFiles.map((file) => ({

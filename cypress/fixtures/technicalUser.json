@@ -3,12 +3,15 @@
     "Registration External",
     "Semantic Model Management",
     "BPDM Pool Consumer",
-    "Identity Wallet Management",
+    "BPDM Pool Admin",
     "Dataspace Discovery",
     "Offer Management",
     "BPDM Sharing Output Consumer",
     "BPDM Sharing Input Consumer",
-    "CX Membership Info"
+    "CX Membership Info",
+    "Registration Internal",
+    "DIM Middle Layer",
+    "BDRS Management"
   ],
   "description": "This is test description for technical user - {randomString}"
 }

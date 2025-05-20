@@ -39,7 +39,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import type i18next from 'i18next'
 import { Box } from '@mui/material'
-import './CompanySubscriptions.scss'
+import './style.scss'
 import UserService from 'services/UserService'
 import { ROLES } from 'types/Constants'
 

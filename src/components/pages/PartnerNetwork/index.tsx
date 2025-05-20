@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import 'components/pages/PartnerNetwork/PartnerNetwork.scss'
+import './style.scss'
 import { useTranslation } from 'react-i18next'
 import {
   useFetchBusinessPartnersMutation,
@@ -36,7 +36,7 @@ import {
   isContentPresent,
   addCountryAttribute,
   addMemberAttribute,
-} from './components/PartnerList/helper'
+} from './PartnerList/Helper'
 import { type BusinessPartnerAddressResponse } from 'features/partnerNetwork/types'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 
@@ -154,6 +154,7 @@ const PartnerNetwork = () => {
               setBpn('')
               setExpr('')
               setPage(0)
+              return
             }
             if (expr !== '' && !validateSearchText(expr)) return
             setAllItems([])

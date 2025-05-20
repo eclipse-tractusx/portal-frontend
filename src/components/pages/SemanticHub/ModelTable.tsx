@@ -215,7 +215,13 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
         error={errorObj}
         reload={() =>
           dispatch(
-            fetchSemanticModels({ filter: { page: 0, pageSize: rowCount } })
+            fetchSemanticModels({
+              filter: {
+                page: 0,
+                pageSize: rowCount,
+                status: selectedFilter.status[0],
+              },
+            })
           )
         }
         noRowsMsg={t('global.noData.heading')}

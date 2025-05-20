@@ -257,9 +257,11 @@ export const AddIdp = () => {
             activeStep={1}
           />
         </div>
-        <Trans>
-          <Typography variant="label3">{t('add.desc')}</Typography>
-        </Trans>
+        <div className="cx-overlay__short-heading">
+          <Trans>
+            <Typography variant="label3">{t('add.desc')}</Typography>
+          </Trans>
+        </div>
         <CommonConnectorFormInputField
           {...{
             control,
@@ -279,7 +281,7 @@ export const AddIdp = () => {
           }
           rules={{
             required: `${t('field.display.mandatoryMessage')}`,
-            minLength: `${t('field.display.minimum')} 3 ${t(
+            minLength: `${t('field.display.minimum')} 2 ${t(
               'field.display.charactersRequired'
             )}`,
             pattern: `${t('field.display.validCharactersIncludes')}`,

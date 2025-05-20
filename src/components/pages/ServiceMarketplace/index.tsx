@@ -34,15 +34,15 @@ import dayjs from 'dayjs'
 import isToday from 'dayjs/plugin/isToday'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import './ServiceMarketplace.scss'
+import './style.scss'
 import {
   SearchInput,
   Typography,
   ViewSelector,
   SortOption,
   CircleProgress,
-  ErrorBar,
   LoadMoreButton,
+  ErrorBar,
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
@@ -55,8 +55,8 @@ import {
 } from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
 import { SORTING_TYPE } from 'features/serviceManagement/types'
-import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { serviceTypeMapping } from 'types/Constants'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -280,52 +280,61 @@ export default function ServiceMarketplace() {
         </div>
       ) : (
         <>
-          <div className="mainContainer">
-            <div className="mainRow">
-              <Typography className="newServicesTitle" variant="h2">
-                {t('content.serviceMarketplace.newServices')}
-              </Typography>
-              <div>
-                <div className="cx-search-grid">
-                  <div className="searchContainer">
-                    <SearchInput
-                      placeholder={t('notification.search')}
-                      value={searchExpr}
-                      autoFocus={false}
-                      onChange={doFilter}
-                    />
-                  </div>
-                  <div className="filterSection" onMouseLeave={setModalFalse}>
-                    <ViewSelector activeView={selected} views={filterButtons} />
-                    <SortImage onClick={setModalTrue} selected={showModal} />
-                    <div className="sortSection">
-                      <SortOption
-                        show={showModal}
-                        selectedOption={sortOption}
-                        setSortOption={setSortOptionFn}
-                        sortOptions={sortOptions}
+          {' '}
+          <div className="bg-white">
+            <div className="mainContainer">
+              <div className="mainRow">
+                <Typography className="newServicesTitle" variant="h2">
+                  {t('content.serviceMarketplace.newServices')}
+                </Typography>
+                <Typography className="recommendationsTitle" variant="body1">
+                  {t('content.serviceMarketplace.recommendations')}
+                </Typography>
+                <div>
+                  <div className="cx-search-grid">
+                    <div className="searchContainer">
+                      <SearchInput
+                        placeholder={t('notification.search')}
+                        value={searchExpr}
+                        autoFocus={false}
+                        onChange={doFilter}
                       />
                     </div>
+                    <div className="filterSection" onMouseLeave={setModalFalse}>
+                      <ViewSelector
+                        activeView={selected}
+                        views={filterButtons}
+                      />
+                      <SortImage onClick={setModalTrue} selected={showModal} />
+                      <div className="sortSection">
+                        <SortOption
+                          show={showModal}
+                          selectedOption={sortOption}
+                          setSortOption={setSortOptionFn}
+                          sortOptions={sortOptions}
+                        />
+                      </div>
+                    </div>
                   </div>
+                  {!isError ? (
+                    renderServices()
+                  ) : (
+                    <ErrorBar
+                      errorText={
+                        servicesError?.data?.status >= 400 &&
+                        servicesError?.data?.status < 500
+                          ? t('content.serviceMarketplace.dataLoadFailed')
+                          : t('content.serviceMarketplace.loadFailed')
+                      }
+                      showButton={
+                        servicesError.code >= 500 &&
+                        servicesError?.data?.status < 600
+                      }
+                      buttonText={t('error.tryAgain')}
+                      handleButton={refetch}
+                    />
+                  )}
                 </div>
-                {!isError ? (
-                  renderServices()
-                ) : (
-                  <ErrorBar
-                    errorText={
-                      servicesError?.data?.status >= 400 &&
-                      servicesError?.data?.status < 500
-                        ? t('content.serviceMarketplace.dataLoadFailed')
-                        : t('content.serviceMarketplace.loadFailed')
-                    }
-                    showButton={
-                      servicesError.code >= 500 &&
-                      servicesError?.data?.status < 600
-                    }
-                    buttonText={t('error.tryAgain')}
-                    handleButton={refetch}
-                  />
-                )}
               </div>
             </div>
           </div>

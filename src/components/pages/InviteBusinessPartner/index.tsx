@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import './InviteBusinessPartner.scss'
+import './style.scss'
 import {
   Button,
   Dialog,
@@ -37,7 +37,7 @@ import {
   useFetchInviteSearchQuery,
   useSendInviteMutation,
 } from 'features/admin/inviteApiSlice'
-import { InviteList } from './components/InviteList'
+import { InviteList } from './InviteList'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export enum ProcessingType {

@@ -39,6 +39,7 @@
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscriptions",
     "adminboard": "App Request Management",
+    "appAdminBoard": "App Request Management",
     "appUserManagement": "App User Management",
     "userdetails": "User Details",
     "technicalUserManagement": "Technical User Management",
@@ -477,6 +478,7 @@
       },
       "filter": {
         "requested": "Requested",
+        "pending": "Pending",
         "active": "Active",
         "inactive": "Inactive",
         "showAll": "Show All"
@@ -1007,7 +1009,11 @@
           "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
-          "permission": "Permission"
+          "permission": "Permission",
+          "companyServiceAccountTypeID": "Company Service Account Type",
+          "authenticationType": "Authentication Type",
+          "userType": "User Type",
+          "serviceEndpoint": "Service Endpoint"
         },
         "status": {
           "ACTIVE": "ACTIVE",
@@ -1145,6 +1151,15 @@
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "roleMandatory": "Technical user role is mandatory",
+          "note": "Note: Selection of both internal and external users for the same service is not possible.",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile. The technical users created from this profile will  be visible to the customer and provider!",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers",
+          "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
           "error": {
             "select": "Please select a value.",
             "description": "Please enter a description.",
@@ -1251,6 +1266,15 @@
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
         "NONE": "None"
+      },
+      "document": {
+        "heading": "Documents",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "defaultValues": {
+        "conformityDocumentsDescription": "",
+        "documentsDescription": ""
       },
       "howtouse": {
         "heading": "Documents",
@@ -1362,7 +1386,7 @@
         "documentDeleteSuccess": "Document deleted successfully"
       },
       "technicalIntegration": {
-        "headerTitle": "Technical Integration & User Roles",
+        "headerTitle": "Technical Integration",
         "headerDescription": "Integrate your app with the Catena-X dataspace. For the integration you need to upload the application supported roles as well as the necessary technical user profile which is needed to run your application inside the network. Please note: in this step you are only setting the frame of the authentication - no users are going to get created. Upload all app roles by using the available upload template (csv) file added attached.",
         "step1Header": "1. User Role Upload",
         "step1HeaderDescription": "Upload your application roles which can get assigned to user identities to be able to access the application.",
@@ -1393,11 +1417,37 @@
         "technicalUserSetupMandatory": "Please select at least one technical user setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Error while deleting technical user profile",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "none (no technical user needed to run the app/service)",
-        "noRolesLoaded": "Currently no roles loaded for app ({{appName}})"
+        "noRolesLoaded": "Currently no roles loaded for app ({{appName}})",
+        "userProfileDeleteSuccessMessage": "Technical userprofile deleted successfully",
+        "table": {
+          "addtechUserButton": "Add Technical Userprofile",
+          "title": "Technical Userprofile",
+          "name": "Technical user profile",
+          "type": "Type",
+          "role": "Roles",
+          "noRoles": "No technical userprofiles added",
+          "action": "Action"
+        },
+        "form": {
+          "title": "Configure Technical Userprofile",
+          "intro": "Select internal or external roles and continue to configure technical userprofile",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile. The technical users created from this profile will  be visible to the customer and provider!",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
+          "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers"
+        },
+        "deleteOverlay": {
+          "title": "Delete technical userprofile",
+          "description": "Are you sure you want to delete selected technical userprofile?"
+        }
       },
       "betaTest": {
         "headerTitle": "Beta Test",
@@ -1442,7 +1492,7 @@
         "noItemsSelected": "No Items Selected",
         "note": "Note:",
         "OnlyOneFileAllowed": "Only one file for upload allowed",
-        "max3Images": "Max. 3 Images are supported",
+        "max3Images": "Max. 3 images are supported",
         "minimum": "Minimum",
         "charactersRequired": " characters required",
         "maximum": "Maximum",
@@ -1553,8 +1603,13 @@
       "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
-      "success": "Success",
-      "lordMore": "Load More",
+      "success": "Activation successful",
+      "configuration": "Configuration successful",
+      "pending": "Subscription is Pending",
+      "active": "Subscription is Active",
+      "inactive": "Subscription is Inactive",
+      "process": "Subscription is in Progress",
+      "loadMore": "Load More",
       "tabs": {
         "request": "Requests",
         "active": "Active",
@@ -1975,7 +2030,7 @@
       "expired": "Expired",
       "editUsecase": {
         "title": "Request new credential",
-        "description": "Cofinity-X approves your request within 48 hours and the credential will be added to your wallet. You can then exchange data with other dataspace participants.",
+        "description": "Once you accept the framework and submit your request, your credential will be added to your wallet seamlessly. You're then ready to exchange data with fellow dataspace participants.",
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "I have read and accept the <1>framework agreement</1>.",
         "linkText": "framework agreement",
@@ -2189,7 +2244,7 @@
       "status": {
         "ACTIVE": "ACTIVE",
         "INACTIVE": "INACTIVE",
-        "pending": "PENDING"
+        "PENDING": "PENDING"
       }
     },
     "standardLibraryTable": {
@@ -2263,6 +2318,11 @@
         "type": "BPN Type",
         "status": "Status",
         "details": "Details"
+      },
+      "legalEntity": {
+        "bpnl": {
+          "name": "BPNL"
+        }
       },
       "site": {
         "title": "Add new site",
@@ -2433,7 +2493,7 @@
       "callbackUrlError": "Failed configuring OSP callback",
       "callbackUrl": {
         "name": "Callback URL",
-        "hint": "Status callback URL is mandatory"
+        "hint": "Enter the callback URL from your IDP that ends with '/.well-known/openid-configuration'"
       },
       "authUrl": {
         "name": "Auth URL",
@@ -2446,7 +2506,9 @@
       "clientSecret": {
         "name": "Client Secret",
         "hint": "Enter the client secret provided by your IdP"
-      }
+      },
+      "ospIdentityProvider": "OSP-Identitätsanbieter (IDPs)",
+      "search": "Geben Sie einen Namen oder Alias ​​ein, um zu suchen"
     }
   },
   "navigation": {
@@ -2534,7 +2596,9 @@
       "alias": "Alias",
       "authMethod": "Auth Method",
       "progress": "Progress",
-      "action": "Action"
+      "action": "Action",
+      "ownership": "Ownership",
+      "userType": "Usertype"
     },
     "actions": {
       "cancel": "Cancel",
@@ -2570,7 +2634,8 @@
       "unsubscribe": "Unsubscribe",
       "edit": "Edit",
       "copyInfoSuccessMessage": "Item successfully copied! Ready to paste.",
-      "copyInfoErrorMessage": "Error copying item. Please refresh and try again."
+      "copyInfoErrorMessage": "Error copying item. Please refresh and try again.",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "enabled",

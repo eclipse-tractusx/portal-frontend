@@ -64,7 +64,9 @@
     "headerDescription": "Setup the technical profile of a technical user/service account of needed permissions to be able to run the application inside the dataspace. Select minimum one permission, the selected permission(s) will be stored as service technical user profile and used to create technical users for subscription activations.",
     "technicalUserSetupMandatory": "Please select at least one technical user permission for the service tech user profile",
     "technicalUserProfileError": "Error while updating technical user profiles",
-    "noneOption": "none (no technical user needed to run the app/service)"
+    "technicalUserProfileDeleteError": "Error while deleting technical user profile",
+    "noneOption": "none (no technical user needed to run the app/service)",
+    "userProfileDeleteSuccessMessage": "Technical userprofile deleted successfully"
   },
   "step4": {
     "headerTitle": "Validate & Publish",
@@ -90,6 +92,7 @@
     "maximum": "Maximum",
     "charactersAllowed": " characters allowed",
     "validCharactersIncludes": "Valid characters includes: ",
+    "spaceAloneNotAllowed": " and spaces alone are not allowed",
     "isMandatory": " is mandatory",
     "fileUploadIsMandatory": "File upload is mandatory",
     "error": {
@@ -126,6 +129,7 @@
       "all": "All",
       "active": "Active",
       "inactive": "Inactive",
+      "created": "Created",
       "wip": "WIP",
       "inreview": "Inreview"
     },
@@ -202,7 +206,11 @@
       "url": "URL:",
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
-    }
+    },
+    "offersHeading": "Services Offered",
+    "success": "Activation successful",
+    "configuration": "Configuration successful",
+    "failure": "Error while configuring service subscription"
   },
   "adminBoard": {
     "headerTitle": "Service request management",

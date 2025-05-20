@@ -24,8 +24,8 @@ export enum PAGES {
   HOME = 'home',
   REGISTRATION = 'registration',
   APP_SUBSCRIPTION = 'appSubscription',
-  ADMINBOARD = 'adminboard',
-  ADMINBOARD_DETAIL = 'adminboardDetail',
+  APP_ADMIN_BOARD = 'appAdminBoard',
+  APP_ADMIN_BOARD_DETAIL = 'appAdminBoardDetail', // To check what it does
   // MARKETPLACE = 'marketplace', // Removed (header menu)
   APP_MARKETPLACE = 'appMarketplace',
   SERVICE_MARKETPLACE = 'serviceMarketplace',
@@ -63,7 +63,7 @@ export enum PAGES {
   ERROR = 'error', // Removed
   APP_MANAGEMENT = 'appManagement',
   APP_OVERVIEW = 'appOverview',
-  // APP_OVERVIEW_NEW = 'appoverviewNew', // TODO: New appOverview added
+  APP_OVERVIEW_NEW = 'appoverviewNew', // TODO: New appOverview added
   DEACTIVATE = 'deactivate',
   CHANGE_IMAGE = 'changeImage',
   CHANGE_DESCRIPTION = 'changeDescription',
@@ -80,7 +80,7 @@ export enum PAGES {
   // INTRODUCTION_OSP_BODY = 'companyRolesOnboardingServiceProvider', // Removed
   USE_CASE = 'useCase',
   // USE_CASE_TRACABILITY = 'useCaseTraceablity', // Removed
-  SERVICE_MANAGEMENT = 'serviceManagement', // TODO
+  SERVICE_MANAGEMENT = 'serviceManagement',
   SERVICE_OVERVIEW = 'serviceOverview',
   SERVICE_DEACTIVATE = 'serviceDeactivate',
   SERVICE_RELEASE_PROCESS = 'serviceReleaseProcess',
@@ -91,7 +91,7 @@ export enum PAGES {
   ROLE_DETAILS = 'roleDetails',
   SERVICE_DETAIL = 'serviceDetail',
   // COMPANY_ROLE = 'companyRole', // Currently we are removing this page.
-  USECASE_PARTICIPATION = 'useCaseParticipation',
+  // USECASE_PARTICIPATION = 'useCaseParticipation',  // Removed on purpose
   ABOUTPAGE = 'about',
   // CERTIFICATE_CREDENTIAL = 'certificateCredential', // ?
   // DATA_SPACE = 'dataSpace', // Removed
@@ -106,8 +106,10 @@ export enum PAGES {
   COMPANY_DATA = 'companyData',
   MANAGEMENT_ONBOARDING_SERVICE_PROVIDER = 'ManagementOnboardingServiceProvider', // Newly Added
   OSP_TECHNICAL_USER_MANAGEMENT = 'ospTechnicalUserManagement',
+  ONBOARDING_SERVICE_PROVIDER_MANAGEMENT = 'onboardingServiceProviderManagement',
+  CLEARINGHOUSE_SELF_DESCRIPTION = 'clearinghouseSelfDescription',
+  TECHNICAL_SETUP = 'technicalSetup',
 }
-
 export const FOOTERLINK = {
   url: 'https://www.cofinity-x.com/',
 }
@@ -128,11 +130,6 @@ export const COMPANY_ROLE = {
   APP_PROVIDER: 'APP_PROVIDER',
   SERVICE_PROVIDER: 'SERVICE_PROVIDER',
   ONBOARDING_SERVICE_PROVIDER: 'ONBOARDING_SERVICE_PROVIDER',
-}
-
-export const DROPZONE_ERROR_CODE = {
-  FILE_INVALID_TYPE: 'file-invalid-type',
-  TOO_MANY_FILES: 'too-many-files',
 }
 
 export const SEARCH_PARAMS = {
@@ -159,5 +156,10 @@ export const PORTAL_INTEGRATION_ENVIRONMENT_URL =
 export const PORTAL_TEST_ENVIRONMENT_URL = 'https://portal.test.cofinity-x.com'
 export const PORTAL_DEVELOPMENT_ENVIRONMENT_URL =
   'https://portal.development.cofinity-x.com'
+
+export const DROPZONE_ERROR_CODE = {
+  FILE_INVALID_TYPE: 'file-invalid-type',
+  TOO_MANY_FILES: 'too-many-files',
+}
 
 export const COFINITY_BPNS = ['BPNL00000003CRHK', 'BPNLCOFINITYEZFA']

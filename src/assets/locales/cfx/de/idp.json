@@ -202,12 +202,7 @@
   "field": {
     "display": {
       "name": "Anzeigename",
-      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)",
-      "mandatoryMessage": "Display name ist obligatorisch",
-      "minimum": "Mindestens",
-      "maximum": "Maximal",
-      "charactersRequired": " Zeichen erforderlich",
-      "validCharactersIncludes": "Erlaubte Zeichen: a-z, A-Z, 0-9, !?@&#\"()_-=/*.,;: (einfache Leerzeichen, keine doppelten Leerzeichen)"
+      "hint": "The name how this IdP is shown in the Central IdP selection (usually your company name)"
     },
     "alias": {
       "name": "Alias",

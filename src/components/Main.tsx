@@ -30,7 +30,7 @@ import { show } from 'features/control/overlay'
 import { type OVERLAYS } from 'types/Constants'
 import MainNotify from './MainNotify'
 import MainSearchOverlay from './shared/frame/SearchOverlay'
-import { MenuInfo } from './pages/Home/components/MenuInfo'
+import { MenuInfo } from './pages/Home/MenuInfo'
 import {
   ApplicationStatus,
   ApplicationType,
@@ -164,8 +164,8 @@ export default function Main() {
           <MainOverlay />
           <MainNotify />
           <MenuInfo
-            main={AccessService.mainMenuTree().concat(
-              AccessService.userMenuWithChild()
+            main={(AccessService.mainMenuTree() ?? []).concat(
+              AccessService.userMenuWithChild() ?? []
             )}
           />
         </>

@@ -28,7 +28,7 @@ import {
 import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import './AppOverviewConfirm.scss'
+import './style.scss'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from 'types/cfx/Constants'
 import { setApplicationId } from 'features/appManagement/slice'

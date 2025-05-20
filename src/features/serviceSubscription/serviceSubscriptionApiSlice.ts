@@ -174,7 +174,7 @@ export const apiSlice = createApi({
       },
     }),
     fetchServiceFilters: builder.query<ServiceFiltersResponse[], void>({
-      query: () => '/api/services/provided',
+      query: () => '/api/services/provided?statusId=Active',
     }),
     fetchServiceSubDetail: builder.query<
       SubscriptionDetailResponse,

@@ -56,6 +56,7 @@ export default function ServiceSubscription() {
       }}
       doNotShowAutoSetup={true}
       type={SubscriptionTypes.SERVICE_SUBSCRIPTION}
+      activeAppHeading={t('serviceSubscription.offersHeading')}
     />
   )
 }

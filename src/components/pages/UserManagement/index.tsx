@@ -38,7 +38,7 @@ import {
   IconButton,
   Typography,
 } from '@catena-x/portal-shared-components'
-import './UserManagement.scss'
+import './style.scss'
 import { useTranslation } from 'react-i18next'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 

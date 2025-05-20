@@ -64,7 +64,7 @@
     padding: 10px;
   }
 
-  tr:first-child td {
+  tr:first-of-type td {
     border: none;
   }
 }

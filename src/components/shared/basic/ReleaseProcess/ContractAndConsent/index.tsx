@@ -19,25 +19,32 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { appIdSelector } from 'features/appManagement/slice'
+import {
+  appIdSelector,
+  appRedirectStatusSelector,
+  increment,
+} from 'features/appManagement/slice'
 import {
   useFetchAgreementDataQuery,
   useFetchConsentDataQuery,
   useUpdateAgreementConsentsMutation,
   useFetchAppStatusQuery,
   useUpdateDocumentUploadMutation,
-  useFetchNewDocumentByIdMutation,
   useFetchFrameDocumentByIdMutation,
 } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import CommonContractAndConsent from '../components/CommonContractAndConsent'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
+import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
+import { isStepCompleted } from '../AppStepHelper'
 
 export default function ContractAndConsent() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const hasDispatched = useRef(false)
+  const appRedirectStatus = useSelector(appRedirectStatusSelector)
   const appId = useSelector(appIdSelector)
   const fetchAgreementData = useFetchAgreementDataQuery().data
   const fetchConsentData = useFetchConsentDataQuery(appId ?? '', {
@@ -48,12 +55,23 @@ export default function ContractAndConsent() {
   const { data: fetchAppStatus } = useFetchAppStatusQuery(appId ?? '', {
     refetchOnMountOrArgChange: true,
   })
-  const [getDocumentById] = useFetchNewDocumentByIdMutation()
+  const [fetchDocumentById] = useFetchDocumentByIdMutation()
   const [fetchFrameDocumentById] = useFetchFrameDocumentByIdMutation()
 
   useEffect(() => {
     if (fetchAppStatus) dispatch(setAppStatus(fetchAppStatus))
   }, [dispatch, fetchAppStatus])
+
+  useEffect(() => {
+    if (hasDispatched.current) return
+    if (
+      fetchAppStatus &&
+      isStepCompleted(fetchAppStatus, 3, appRedirectStatus)
+    ) {
+      dispatch(increment())
+      hasDispatched.current = true
+    }
+  }, [fetchAppStatus, hasDispatched])
 
   return (
     <div className="contract-consent">
@@ -92,7 +110,7 @@ export default function ContractAndConsent() {
         updateAgreementConsents={updateAgreementConsents}
         updateDocumentUpload={updateDocumentUpload}
         fetchStatusData={fetchAppStatus ?? undefined}
-        getDocumentById={getDocumentById}
+        getDocumentById={fetchDocumentById}
         fetchFrameDocumentById={fetchFrameDocumentById}
         helpUrl={
           '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process%2F03.+Terms%26Conditions.md'

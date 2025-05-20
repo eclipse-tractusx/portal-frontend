@@ -18,26 +18,20 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, type Dispatch, type SetStateAction } from 'react'
+import { type Dispatch, type SetStateAction, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import { Typography } from '@catena-x/portal-shared-components'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { error, success } from 'services/NotifyService'
-import { useTranslation } from 'react-i18next'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-
-type DataValue = string | number | JSX.Element | string[]
-
-export interface ValueItem {
-  key?: DataValue
-  value: DataValue
-  copy?: boolean
-  showHideButton?: boolean
-  masked?: boolean
-}
+import {
+  type ValueItem,
+  type DataValue,
+} from 'components/pages/TechnicalUserDetails/TechnicalUserDetailsContent'
 
 interface KeyValueViewProps {
   cols: number
@@ -50,7 +44,7 @@ interface KeyValueViewProps {
 const renderValue = (value: DataValue, masked: boolean = false) => {
   const maskedText =
     masked && typeof value === 'string' ? '*'.repeat(value.length) : value
-  return (
+  return typeof maskedText === 'string' ? (
     <Typography
       sx={{
         fontSize: '14px',
@@ -61,6 +55,8 @@ const renderValue = (value: DataValue, masked: boolean = false) => {
     >
       {maskedText}
     </Typography>
+  ) : (
+    <>{maskedText}</>
   )
 }
 

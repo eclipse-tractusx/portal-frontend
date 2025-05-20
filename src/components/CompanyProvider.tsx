@@ -1,8 +1,8 @@
-import type { IUser } from 'features/user/types'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setCompanyRoles } from 'features/companyAccess/slice'
 import { getApiBase } from 'services/EnvironmentService'
+import { type IUser } from 'features/user/types'
 
 export function CompanyProvider(props: {
   children: JSX.Element

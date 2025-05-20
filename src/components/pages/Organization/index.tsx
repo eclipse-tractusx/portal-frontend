@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import './Organization.scss'
+import './style.scss'
 import MyCompanyInfoComponent from './MyCompanyInfoComponent'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import CompanyData from '../CompanyData'

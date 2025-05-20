@@ -32,7 +32,7 @@ import {
   ErrorBar,
 } from '@catena-x/portal-shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
-import './EdcConnector.scss'
+import './style.scss'
 import { Box } from '@mui/material'
 
 interface ConfigurationDetailsOverlayProps {

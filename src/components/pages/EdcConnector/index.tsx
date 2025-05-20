@@ -20,7 +20,7 @@
 
 import { type SyntheticEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ConnectorTableColumns } from 'components/pages/EdcConnector/edcConnectorTableColumns'
+import { ConnectorTableColumns } from 'components/pages/EdcConnector/EdcConnectorTableColumns'
 import type { GridCellParams, GridColDef } from '@mui/x-data-grid'
 import UserService from 'services/UserService'
 import {
@@ -34,7 +34,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
-import './EdcConnector.scss'
+import './style.scss'
 import type { ConnectorContentAPIResponse } from 'features/connector/types'
 import DeleteConfirmationOverlay from './DeleteConfirmationOverlay/DeleteConfirmationOverlay'
 import {
@@ -54,8 +54,8 @@ import {
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
-import { ManagedConnectorTableColumns } from './edcManagedConnectorTableColumns'
-import { OwnConnectorTableColumns } from './edcOwnConnectorTableColumns'
+import { ManagedConnectorTableColumns } from './EdcManagedConnectorTableColumns'
+import { OwnConnectorTableColumns } from './EdcOwnConnectorTableColumns'
 import ConfigurationDetailsOverlay from './ConfigurationDetailsOverlay'
 import {
   ServiceAccountType,
@@ -366,9 +366,13 @@ const EdcConnector = () => {
       <ConnectorDetailsOverlay
         openDialog={openDetailsOverlay}
         handleOverlayClose={() => {
+          setOverlayData(undefined)
           setOpenDetailsOverlay(false)
         }}
         overlayData={overlayData}
+        updateTableConnectorURL={(data: boolean) => {
+          data && setRefresh(Date.now())
+        }}
       />
       {deleteConnectorConfirmModalOpen && (
         <DeleteConfirmationOverlay

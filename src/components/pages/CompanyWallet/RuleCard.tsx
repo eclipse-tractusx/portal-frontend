@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Tooltips, Typography } from '@catena-x/portal-shared-components'
-import './CompanyWallet.scss'
+import './style.scss'
 import {
   CredentialSubjectStatus,
   CredentialType,
@@ -155,66 +155,68 @@ export default function RuleCard({
                       <Typography className="text" variant="h4">
                         {item?.credentialType.split('_').join(' ')}
                       </Typography>
-                      {isIssuerCofinity && index == 0 && (
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-start',
-                            gap: '5px',
-                            width: '100%',
-                          }}
-                        >
-                          <Typography
-                            variant="h4"
-                            className="text cx-bpnl-text"
+                      {isIssuerCofinity &&
+                        item.credentialType ===
+                          CredentialType.BUSINESS_PARTNER_NUMBER && (
+                          <Box
                             sx={{
-                              color: '#0073E6',
-                              flexGrow: 1,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'flex-start',
+                              gap: '5px',
+                              width: '100%',
                             }}
                           >
-                            {item.authority}
-                            <Box
+                            <Typography
+                              variant="h4"
+                              className="text cx-bpnl-text"
                               sx={{
-                                color:
-                                  copied === item.holder
-                                    ? '#00cc00'
-                                    : '#eeeeee',
-                                cursor: 'pointer',
-                                width: '18px',
-                                ':hover': {
+                                color: '#0073E6',
+                                flexGrow: 1,
+                              }}
+                            >
+                              {item.holder}
+                              <Box
+                                sx={{
                                   color:
                                     copied === item.holder
                                       ? '#00cc00'
-                                      : '#cccccc',
-                                },
-                              }}
-                              onClick={async () => {
-                                try {
-                                  const value = item.holder ?? ''
-                                  await navigator.clipboard.writeText(
-                                    value as string
-                                  )
-                                  setCopied(value as string)
-                                  success(
-                                    t('global.actions.copyInfoSuccessMessage')
-                                  )
-                                } catch (err) {
-                                  error(
-                                    t('global.actions.copyInfoErrorMessage')
-                                  )
-                                } finally {
-                                  setTimeout(() => {
-                                    setCopied('')
-                                  }, 1000)
-                                }
-                              }}
-                            >
-                              <CopyAllIcon />
-                            </Box>
-                          </Typography>
-                        </Box>
-                      )}
+                                      : '#eeeeee',
+                                  cursor: 'pointer',
+                                  width: '18px',
+                                  ':hover': {
+                                    color:
+                                      copied === item.holder
+                                        ? '#00cc00'
+                                        : '#cccccc',
+                                  },
+                                }}
+                                onClick={async () => {
+                                  try {
+                                    const value = item.holder ?? ''
+                                    await navigator.clipboard.writeText(
+                                      value as string
+                                    )
+                                    setCopied(value as string)
+                                    success(
+                                      t('global.actions.copyInfoSuccessMessage')
+                                    )
+                                  } catch (err) {
+                                    error(
+                                      t('global.actions.copyInfoErrorMessage')
+                                    )
+                                  } finally {
+                                    setTimeout(() => {
+                                      setCopied('')
+                                    }, 1000)
+                                  }
+                                }}
+                              >
+                                <CopyAllIcon />
+                              </Box>
+                            </Typography>
+                          </Box>
+                        )}
 
                       {item?.version && (
                         <Typography className="text" variant="body3">
@@ -226,7 +228,7 @@ export default function RuleCard({
                       <div className="cx-flex-description-container">
                         <Typography className="text" variant="body3">
                           {t('content.companyWallet.issuer')}
-                          {isIssuerCofinity ? 'Cofinity-X' : item.authority}
+                          {isIssuerCofinity ? 'Cofinity-X' : item.holder}
                         </Typography>
                         <Typography className="text" variant="body3">
                           {t('content.companyWallet.expiry')}

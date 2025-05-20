@@ -20,7 +20,7 @@
 import LogoutIcon from '@mui/icons-material/Logout'
 import { t } from 'i18next'
 import { MenuItem, type MenuItemProps } from './MenuItem'
-import '../../MobileMenu/MobileMenu.scss'
+import '../../frame/MobileMenu/style.scss'
 import { useNavigate } from 'react-router-dom'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>

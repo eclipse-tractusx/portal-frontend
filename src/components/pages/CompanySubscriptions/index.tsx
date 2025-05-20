@@ -39,13 +39,12 @@ import {
   type SubscribedActiveApps,
 } from 'features/apps/types'
 import { CompanySubscriptionsTableColumns } from './CompanySubscriptionsTableColumns'
-import { MainHeader } from 'components/shared/cfx/MainHeader'
 import {
   useFetchCompanyServiceSubscriptionsQuery,
   useUnsubscribeServiceMutation,
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
-import { COLOR_PALETTE } from 'theme.override'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 
@@ -91,12 +90,13 @@ export default function CompanySubscriptions() {
     _e: SyntheticEvent<Element, Event>,
     value: number
   ) => {
+    setRefresh(0)
     setCurrentActive(value)
   }
 
   const filterView = [
     {
-      buttonText: t('content.companySubscriptions.filter.requested'),
+      buttonText: t('content.companySubscriptions.filter.pending'),
       buttonValue: CompanySubscriptionFilterType.PENDING,
       onButtonClick: setView,
     },
@@ -118,10 +118,12 @@ export default function CompanySubscriptions() {
   ]
 
   useEffect(() => {
-    setFetchHookArgs({
-      statusId: filterStatus,
-      expr: searchExpr,
-    })
+    if (refresh !== 0) {
+      setFetchHookArgs({
+        statusId: filterStatus,
+        expr: searchExpr,
+      })
+    }
   }, [filterStatus, searchExpr])
 
   const callSuccess = () => {
@@ -166,10 +168,9 @@ export default function CompanySubscriptions() {
       <Typography
         variant="label3"
         sx={{
-          background:
-            currentActive + 1 === num ? COLOR_PALETTE.PRIMARY : 'white',
-          color: currentActive + 1 === num ? 'white' : COLOR_PALETTE.PRIMARY,
-          outline: `2px solid ${COLOR_PALETTE.PRIMARY}`,
+          background: currentActive + 1 === num ? '#0f71cb' : 'white',
+          color: currentActive + 1 === num ? 'white' : '#0f71cb',
+          outline: '2px solid #0f71cb',
           flex: '0',
           marginRight: '20px',
           borderRadius: '50%',
@@ -224,12 +225,15 @@ export default function CompanySubscriptions() {
         fetchHookRefresh={refresh}
         getRowId={(row: { [key: string]: string }) => row.subscriptionId}
         columns={companySubscriptionsCols}
+        onClearSearch={() => {
+          setSearchExpr('')
+        }}
       />
     </div>
   )
 
   return (
-    <div>
+    <main className="page-main-container">
       <MainHeader
         title={t('content.companySubscriptions.title')}
         subTitle={t('content.companySubscriptions.description')}
@@ -253,12 +257,18 @@ export default function CompanySubscriptions() {
           activeTab={currentActive}
         />
       )}
+      <Typography
+        className="subTitle"
+        variant="h2"
+        sx={{ pb: 3, marginTop: '35px' }}
+      >
+        {t('content.companySubscriptions.headertitle')}
+      </Typography>
       <Box>
-        {/* <Box > */}
         <Tabs
           value={currentActive}
           onChange={handleTabChange}
-          sx={{ margin: '0 18% 20px' }}
+          sx={{ margin: '0 auto 20px', maxWidth: '1110px', width: '100%' }}
         >
           <Tab
             iconPosition="start"
@@ -272,7 +282,7 @@ export default function CompanySubscriptions() {
               width: '100%',
               maxWidth: '550px',
               '&.Mui-selected': {
-                borderBottom: `3px solid ${COLOR_PALETTE.PRIMARY}`,
+                borderBottom: '3px solid #0f71cb',
               },
             }}
           />
@@ -286,13 +296,13 @@ export default function CompanySubscriptions() {
               textTransform: 'none',
               display: 'inline-flex',
               width: '100%',
+              maxWidth: '550px',
               '&.Mui-selected': {
-                borderBottom: `3px solid ${COLOR_PALETTE.PRIMARY}`,
+                borderBottom: '3px solid #0f71cb',
               },
             }}
           />
         </Tabs>
-        {/* </Box> */}
         <TabPanel value={currentActive} index={0}>
           {renderTable(useFetchSubscribedActiveAppsStatusQuery)}
         </TabPanel>
@@ -300,6 +310,6 @@ export default function CompanySubscriptions() {
           {renderTable(useFetchCompanyServiceSubscriptionsQuery)}
         </TabPanel>
       </Box>
-    </div>
+    </main>
   )
 }

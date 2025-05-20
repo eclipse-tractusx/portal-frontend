@@ -30,7 +30,7 @@ import {
   CircleProgress,
   type StatusVariants,
 } from '@catena-x/portal-shared-components'
-import './AdminBoard.scss'
+import './style.scss'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
 import type {
@@ -40,6 +40,7 @@ import type {
 import type { AppRequestBody } from 'features/adminBoard/adminBoardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import SortImage from 'components/shared/frame/SortImage'
+import { PAGES } from 'types/Constants'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
 import { ProvidedServiceStatusEnumText } from 'features/serviceManagement/apiSlice'
@@ -240,7 +241,7 @@ export default function CommonAdminBoard({
   fetchQuery,
   loadMoreButtonText = 'Load More',
   isDynamicSearchEnabled = false,
-  type = 'adminboarddetail',
+  type = PAGES.APP_ADMIN_BOARD_DETAIL,
   successApproveMsg,
   errorApproveMsg,
   successDeclineMsg,
@@ -304,7 +305,6 @@ export default function CommonAdminBoard({
 
   const resetAppCards = useCallback(
     (value: string, type: string) => {
-      setState({ type: ActionKind.SET_APPS_AND_APP_CARDS, payload: [] })
       setState({
         type: ActionKind.SET_REQUEST_BODY,
         payload: {
@@ -491,16 +491,19 @@ export default function CommonAdminBoard({
               refetch={refetch}
             />
           )}
-          {!isFetching && data?.meta && data?.meta?.totalPages > page + 1 && (
-            <div
-              style={{
-                textAlign: 'center',
-                marginTop: '30px',
-              }}
-            >
-              <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
-            </div>
-          )}
+          {!isFetching &&
+            appCards?.length > 0 &&
+            data?.meta &&
+            data?.meta?.totalPages > page + 1 && (
+              <div
+                style={{
+                  textAlign: 'center',
+                  marginTop: '30px',
+                }}
+              >
+                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+              </div>
+            )}
         </div>
         <div style={{ height: '66px' }}></div>
       </div>

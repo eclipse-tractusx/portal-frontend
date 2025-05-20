@@ -4,9 +4,30 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **UseCase Participation**
+
+  - Removed "Use case participation" page under the "Data space participation" [PM2-2936](https://cofinity-x.atlassian.net/browse/PM2-2936)
+
+- **App Release Process**
+
+  - CHERRY-PICK remove typo in csv and adjust csv reading logic [1584](https://github.com/eclipse-tractusx/portal-frontend/pull/1584)
+
+- **App Service Marketplace**
+
+  - Reverted display of technical user profiles to remove bug introduced by usptream [PM2-2868](https://cofinity-x.atlassian.net/browse/PM2-2868)
+
+- **Registration Status**
+
+  - Fix display of onboarding steps overlay to admin users
+
+- **Apps & Service**
+
+  - CHERRY-PICK update to new auto setup url[1554](https://github.com/eclipse-tractusx/portal-frontend/pull/1554)
+
 - **BP Explorer**
 
   - Fix BPNS issue for LegalAndSiteMainAddress [PM2-2615](https://cofinity-x.atlassian.net/browse/PM2-2615)
+  - Refactor Code with State-Ready API [PM2-2937](https://cofinity-x.atlassian.net/browse/PM2-2937)
 
 - **Fix GTM configuration**
 
@@ -57,7 +78,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Version info added to credential cards [CS2850] (https://cofinity-x.atlassian.net/browse/CS-2850)
   - Implement new wallet credential deactivation work flow [CS-2966] (https://cofinity-x.atlassian.net/browse/CS-2966)
   - fix the active styling for All toolbar filter button [CS-3157] (https://cofinity-x.atlassian.net/browse/CS-3157)
-  - displayed the holder instead of issuer on wallet card (CS-3030) [https://cofinity-x.atlassian.net/browse/CS-3030]
+  - displayed the holder instead of issuer on wallet card (CS-3030) (🐞 CS-3292) [https://cofinity-x.atlassian.net/browse/CS-3030][https://cofinity-x.atlassian.net/browse/CS-3292]
+
+- **Technical User Management**
+  - translations updated for add technical user form (CRQ-40) [https://cofinity-x.atlassian.net/browse/CRQ-40]
+  - Remove the pending column filter from the credential request page [CS-3034] (https://cofinity-x.atlassian.net/browse/CS-3034)
+  - disable delete button for technical user with pending status (CS-3537) [https://cofinity-x.atlassian.net/browse/CS-3537]
 
 ### Changes
 
@@ -136,6 +162,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
   - Masking client secret [PM2-113](https://cofinity-x.atlassian.net/browse/PM2-113)
   - Updated masking logic and added error handling [CS-2498] (https://cofinity-x.atlassian.net/browse/CS-2498)
+  - Handeling notification better to avoid undefined error [CRQ-60] (https://cofinity-x.atlassian.net/browse/CRQ-60)
 
 - **Business Partner Explorer**
 
@@ -154,6 +181,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **Service Release Process**
   - Fix borken image preview on step of verify & submit [PM2-2404](https://cofinity-x.atlassian.net/browse/PM2-2404)
+  - Missing translation for Consent and Terms step [PM2-1028](https://cofinity-x.atlassian.net/browse/PM2-1028)
 
 ## 2.2.0-cfx-5
 
@@ -197,8 +225,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
 
-- **IDP Display Name**
-  - IDP Display Name and error messages limit [PM2-2091](https://cofinity-x.atlassian.net/browse/PM2-2091)
+- **Technical User Management**
+
+  - Fix the translation for pending status on credential card [CS-3539] (https://cofinity-x.atlassian.net/browse/CS-3539)
+
+- **Technical User Management**
+  - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
+  - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
 
 ## 2.2.0-cfx-4
 
@@ -212,19 +245,14 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Fixed managed/own IDP generic error message, logic and translations [PM2-1760](https://cofinity-x.atlassian.net/browse/PM2-1760)
 
-- **IDP Creation**
-
-  - display error message for invalid input of displayName [#435](https://cofinity-x.atlassian.net/browse/PM2-435)
-
 - **Credential Request Overview**
 
   - Temporarily hide search field [PM2-1586](https://cofinity-x.atlassian.net/browse/PM2-1586)
-  - disabled the document download icon for unavailable documents [CS-2775] (https://cofinity-x.atlassian.net/browse/CS-2775)
 
 - **App Overview**
+
   - Fix lead image preview issue in apps overview [#1365](https://cofinity-x.atlassian.net/browse/PM2-1365)
-- **Numeric and Special Characters for Search in AppOverview**
-  - updated the regex for search validation[#345] (https://cofinity-x.atlassian.net/browse/PM2-345)
+
 - **CX-Operator**
   - Change Override instead of Overwrite [PM2-1064](https://cofinity-x.atlassian.net/browse/PM2-1064)
 
@@ -330,11 +358,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Edit URL error message persists in connector configuration [#307](https://github.com/Cofinity-X/portal-frontend/pull/307)
 
 - **App Marketplace Management**
+
   - Fixed document upload and delete success message on DE [PM2-1823](https://cofinity-x.atlassian.net/browse/PM2-1823)
+
 - **Partner Network**
+
   - Fixed incorrect post api object keys and structure for company search [PM2-1841](https://cofinity-x.atlassian.net/browse/PM2-1841)
+
 - **Service Marketplace**
-  - fixed service filtering for DE language [#1469](https://cofinity-x.atlassian.net/browse/PM2-1469)
+
 - **Service Release | Overview Inreview filter**:
 
   - Introduced filter of in-review in service overview page [#411](https://cofinity-x.atlassian.net/browse/PM2-411)
@@ -457,16 +489,9 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Service marketplace: button alignment and search [PM2-1391](https://cofinity-x.atlassian.net/browse/PM2-1391)
   - OSP consent from UI update [PM2-1093](https://cofinity-x.atlassian.net/browse/PM2-1093)
 
-- **OSP Management**
-
-  - CHERRY-PICK fixed hardcoded OSP callback url [#1201](https://github.com/eclipse-tractusx/portal-frontend/pull/1201)
-
 - **OSP Consent form**
 
   - Display invited company name in OSP consent form (Previously hard coded with 'BMW') [#1083](https://github.com/eclipse-tractusx/portal-frontend/pull/1083)
-  - CHERRY-PICK Fixed missing street number in form [#1084](https://github.com/eclipse-tractusx/portal-frontend/pull/1084)
-  - CHERRY-PICK fix(OSP): Consent form 400 submission error [#1102](https://github.com/eclipse-tractusx/portal-frontend/pull/1102)
-  - CHERRY-PICK Filter out roles not defined by OSP [#1114](https://github.com/eclipse-tractusx/portal-frontend/pull/1114)
   - Update translation files osp consent form [PM2-1093](https://cofinity-x.atlassian.net/browse/PM2-1093)
   - Update logic for multiple unique identifiers [PM2-1419](https://cofinity-x.atlassian.net/browse/PM2-1419)
 
@@ -531,6 +556,26 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App & Service Subscription**
 - Fixed service subscription detail issue as per service detail [PM2-1669](https://cofinity-x.atlassian.net/browse/PM2-1669)
 
+- **Your Services**
+
+  - Add new services title make it center [PM2-1459](https://cofinity-x.atlassian.net/browse/PM2-1459)
+
+- **Service Release**
+
+  - regex and error message updated to allow more characters [#416](https://github.com/eclipse-tractusx/portal-frontend/pull/416)
+  - regex updated to allow line breaks for long and short description [#1462](https://github.com/eclipse-tractusx/portal-frontend/pull/1462)
+
+- **Service Request Management**
+
+  - Back button make it outlined in Service Request Management [PM2-1143](https://cofinity-x.atlassian.net/browse/PM2-1143)
+
+- **Partner Network**
+
+  - Modify partner network api to call backend api for firewall workaround [PM2-1612](https://cofinity-x.atlassian.net/browse/PM2-1612)
+
+- **App & Service Subscription**
+- Fixed service subscription detail issue as per service detail [PM2-1669](https://cofinity-x.atlassian.net/browse/PM2-1669)
+
 ### Change
 
 - **Release Process apps/services**
@@ -545,7 +590,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Service Marketplace details page missing translations service detail page and UX updates. [PM2-1460](https://cofinity-x.atlassian.net/browse/PM2-1460)
   - Fixed filter sort dropdown menu in Service Marketplace. [PM2-1543](https://cofinity-x.atlassian.net/browse/PM2-1453)
-  - Fixed service marketplace to display all active available services[#853](https://cofinity-x.atlassian.net/browse/PM2-853)
 
 - **Dataspace Participation**
 
@@ -569,9 +613,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Activate OSP management page [PM2-1399s](https://cofinity-x.atlassian.net/browse/PM2-1399)
 
-- **Connector Management**
-  - CHERRY PICK Fixed Managed connector detail overlay issue [#1142](https://github.com/eclipse-tractusx/portal-frontend/pull/1142)
-
 ## 2.0.0-cfx-2
 
 ### Bug Fixes
@@ -585,7 +626,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Service Marketplace**
   - CHERRY-PICK fix(service detail): add missing header image implementation [#992](fix(service detail): add missing header image implementation #992)
 - **Search UI Adjustment in Your Service**
-  - Adjusted spaces around the searchbar in Your Service [#222]https://github.com/Cofinity-X/portal-frontend/pull/222
+  - Adjusted spaces around the searchbar in Your Service [#222]https://github.com/Cofinity-X/portal-frontend/pull/222)
 
 ### Change
 

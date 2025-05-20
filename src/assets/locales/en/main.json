@@ -38,7 +38,8 @@
     "deactivate": "Deactivate",
     "appReleaseProcess": "App Release Process",
     "appSubscription": "App Subscription MGT",
-    "adminboard": "Admin Board",
+    "adminboard": "App-Release Anfragen",
+    "appAdminBoard": "Admin Board",
     "appUserManagement": "App User Management",
     "userdetails": "User Details",
     "technicalUserManagement": "Technical User Management",
@@ -69,7 +70,7 @@
     "mycompany": "My Company",
     "mynotifications": "My Notifications",
     "companyData": "Company Data",
-    "ManagementOnboardingServiceProvider": "Onboarding Service Provider"
+    "onboardingServiceProviderManagement": "Onboarding Service Provider"
   },
   "overlays": {
     "invite": "Invite new Business Partner",
@@ -321,7 +322,8 @@
           "manufacturingasaservice": "Manufacturing as a Service",
           "sustainability&co2-footprint": "Sustainability & CO2 Footprint",
           "real-timecontrol": "Real Time Control",
-          "modularproduction": "Modular Production"
+          "modularproduction": "Modular Production",
+          "behaviortwin": "Behavior Twin"
         },
         "noMatch": "No Match",
         "for": "for your search term",
@@ -438,6 +440,9 @@
       "deleteAccount": "Delete Account",
       "certificates": "Certificates/Documents"
     },
+    "datamanagement": {
+      "message": "Contents of Data Management"
+    },
     "companySubscriptions": {
       "headertitle": "App & Service Subscriptions",
       "tableTitle": "Subscribed Apps",
@@ -455,14 +460,40 @@
         "action": "Action"
       },
       "filter": {
-        "requested": "requested",
+        "pending": "pending",
         "active": "active",
+        "inactive": "inactive",
         "showAll": "show all"
       },
-      "searchName": "..search by company name here"
+      "searchName": "..search by title here"
     },
-    "datamanagement": {
-      "message": "Contents of Data Management"
+    "companySubscriptionsDetail": {
+      "language": "Language",
+      "description": "Description",
+      "subscribed": "Subscribed",
+      "requested": "Requested",
+      "declined": "Declined",
+      "howtouse": {
+        "heading": "Documents",
+        "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "privacy": {
+        "heading": "Privacy Policy",
+        "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
+        "notSupportedMessage": "Currently not yet supported",
+        "COMPANY_DATA": "Company Data",
+        "USER_DATA": "User Data",
+        "LOCATION": "Location",
+        "BROWSER_HISTORY": "Browser History",
+        "NONE": "None"
+      },
+      "table": {
+        "connector": "Connector",
+        "technicalUser": "Technical User"
+      },
+      "technicalUser": {
+        "heading": "Technical Details"
+      }
     },
     "appOverview": {
       "headerTitle": "My Apps",
@@ -651,7 +682,7 @@
         "title": "Delete Connector",
         "description": "Do you really want to delete the registered connector? Please note that the deletion is not reversable.",
         "techUserdescription": "Do you really want to delete the connector? With the deletion the connector will be automatically deleted from the „connector discovery“ endpoint as well as the self-description document will be set to inactive.\n\n Please note, the connector has a technical user connected - the technical user can be deleted if you select the checkbox below otherwise only the mapping between connector and technical user will be deleted.",
-        "techUserCheckBoxLabel": "Yes, I want to deactivate the connector which will automatically also delete the mentioned technical user.",
+        "techUserCheckBoxLabel": "Yes, I want to delete the connector which will automatically also delete the mentioned technical user.",
         "techDetails": {
           "title": "Technical Details",
           "name": "Name",
@@ -688,10 +719,10 @@
           },
           "url": {
             "label": "Connector Catalogue Endpoint*",
-            "placeholder": "Connector URL",
+            "placeholder": "Example: https://connector.control.plane/api/v1/dsp",
             "mandatoryError": "Connector URL is mandatory.",
             "patternError": "Enter a valid url - eg: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "tooltipMsg": "Base URL of the Catalog Service endpoint of a DSP Connector, e.g., https://connector.control.plane/{catalogPath}."
           },
           "bpn": {
             "label": "Connector Owner*",
@@ -766,7 +797,7 @@
         "uniqueid": "Unique ID",
         "zipcode": "Zip Code",
         "city": "PLZ/City",
-        "cxparticipant": "CX Member",
+        "cxparticipant": "Active Participant",
         "address": "Address",
         "identifiers": "Identifiers"
       },
@@ -927,7 +958,12 @@
           "userDetails": "Technical User Details",
           "description": "Description",
           "spoc": "SPOC",
-          "permission": "Permission"
+          "permission": "Permission",
+          "companyServiceAccountTypeID": "Company Service Account Type",
+          "authenticationType": "Authentication Type",
+          "userType": "User Type",
+          "serviceEndpoint": "Service Endpoint",
+          "missingInfoHint": "This information may not be available to older users. Recreate the user to get the complete details."
         },
         "status": {
           "ACTIVE": "ACTIVE",
@@ -1034,6 +1070,19 @@
       "metadata_url_required_error": "Metadata url is required",
       "metadata_url_invalid_error": "Please enter valid metadata url"
     },
+    "clearinghouseSelfDescription": {
+      "heading": "Self-Description Document Status",
+      "description": "This page provides an overview of the current status of self-descriptions for administrators.",
+      "reprocess": "Reprocess",
+      "selfDescriptionFactoryInterface": "Self-Description Factory Interface",
+      "legalPerson": "Legal Person",
+      "legalPersonDesc": "Overview of companies with missing legal person self-description",
+      "connectors": "Connectors",
+      "connectorsDesc": "Overview of companies with missing connector self-description",
+      "errorMsg": "Error! Something went wrong",
+      "noDataMsg": "No records found.",
+      "statusMsg": "The status of the self-description factory interface can only be changed by configuration (see installation manual)"
+    },
     "addUser": {
       "headline": "Add User Account",
       "subheadline": "Add a new user account by adding the user first and last name as well as the email address. Below the input fields select the respective user roles which the user should have. One role is minimum needed to enable the user to access the network.",
@@ -1052,16 +1101,25 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
-          "serviceSubHeading": "Select one of the following service roles:",
+          "note": "Note: Selection of both internal and external users for the same service is not possible.",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile. The technical users created from this profile will  be visible to the customer and provider!",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers",
+          "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
           "username": "Username*",
           "description": "Description*",
           "spocHeadline": "Single Point of Contact (SPoC)",
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "roleMandatory": "Technical user role is mandatory",
           "error": {
             "select": "Please select a value.",
-            "description": "Please enter a description."
+            "username": "Please enter username.",
+            "description": "Please enter description."
           }
         }
       }
@@ -1139,7 +1197,6 @@
         "message": "The Privacy Policy states which data the business applications collects, handles and processes. The details below explicitly show which company / user information are getting collected/stored.",
         "notSupportedMessage": "Currently not yet supported",
         "COMPANY_DATA": "Company Data",
-        "COMPANY_DATA_ICON": "ApartmentIcon",
         "USER_DATA": "User Data",
         "LOCATION": "Location",
         "BROWSER_HISTORY": "Browser History",
@@ -1162,7 +1219,12 @@
         "message": "The technical user profile defined below displays the user permission which the technical user created as part of the app/service activation gets automatically assigned."
       },
       "pendingTooltip": "Application subscription is pending. The app provider is informed",
-      "subscribedTooltip": "The app is already subscribed by your company"
+      "subscribedTooltip": "The app is already subscribed by your company",
+      "document": {
+        "noDocumentsAvailable": "No documents available",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
     },
     "apprelease": {
       "headerTitle": "App Release Process",
@@ -1265,13 +1327,39 @@
         "getHelp": "Get Help",
         "deleteOverlayContent": "Deletion will not be reversable, do you still want to delete?",
         "roleUploadIsMandatory": "Role upload is mandatory",
-        "technicalUserSetupMandatory": "Please select at least one technical user setup",
+        "technicalUserSetupMandatory": "Please select at least one technical userprofile setup",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Error while deleting technical user profile",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Encoding(select supported encoding)",
         "encodingPlaceholder": "Select supported encoding",
-        "noneOption": "none (no technical user needed to run the app/service)"
+        "noneOption": "none (no technical userprofile needed to run the app/service)",
+        "userProfileDeleteSuccessMessage": "Technical userprofile deleted successfully",
+        "table": {
+          "addtechUserButton": "Add Technical Userprofile",
+          "title": "Technical Userprofile",
+          "name": "Technical user profile",
+          "type": "Type",
+          "role": "Roles",
+          "noRoles": "No technical userprofiles added",
+          "action": "Action"
+        },
+        "form": {
+          "title": "Configure Technical Userprofile",
+          "intro": "Select internal or external roles and continue to configure technical userprofile",
+          "internalUserRoles": "Internal technical userprofile",
+          "internalUserRolesDescription": "This selection includes all roles that can be added to a technical user profile. The technical users created from this profile will  be visible to the customer and provider!",
+          "internalUserRolesOnlyVisible": "Internal technical userprofile (visible only to providers)",
+          "internalUserRolesDescriptionOnlyVisible": "Internal technical userprofile are created in the direct environment of the portal therefore can have multiple roles",
+          "externalUserRoles": "External technical userprofile",
+          "externalUserRolesDescription": "External technical userprofile are created in external environment therefore can only have one role",
+          "userDetailsNotVisible": "Technical user details won't be visible to the subscribing customers"
+        },
+        "deleteOverlay": {
+          "title": "Delete technical userprofile",
+          "description": "Are you sure you want to delete selected technical userprofile?"
+        }
       },
       "betaTest": {
         "headerTitle": "CX Test Runs",
@@ -1419,7 +1507,12 @@
       "configureBtn": "Configure",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
-      "success": "Success",
+      "success": "Activation successful",
+      "configuration": "Configuration successful",
+      "pending": "Subscription is Pending",
+      "active": "Subscription is Active",
+      "inactive": "Subscription is Inactive",
+      "process": "Subscription is in Progress",
       "tabs": {
         "request": "Request",
         "active": "Active",
@@ -2199,7 +2292,9 @@
       "clientSecret": {
         "name": "Client Secret",
         "hint": "Enter the client secret provided by your IdP"
-      }
+      },
+      "ospIdentityProvider": "OSP Identity Provider(IDPs)",
+      "search": "Enter name or alias to search"
     }
   },
   "navigation": {
@@ -2278,7 +2373,9 @@
       "alias": "Alias",
       "authMethod": "Auth Method",
       "progress": "Progress",
-      "action": "Action"
+      "action": "Action",
+      "ownership": "Ownership",
+      "userType": "Usertype"
     },
     "actions": {
       "cancel": "Cancel",
@@ -2307,7 +2404,9 @@
       "exit": "exit",
       "loading": "Loading...",
       "unsubscribe": "Unsubscribe",
-      "edit": "Edit"
+      "edit": "Edit",
+      "copyInfoSuccessMessage": "Information copied successfully",
+      "continue": "Continue"
     },
     "state": {
       "enabled": "enabled",

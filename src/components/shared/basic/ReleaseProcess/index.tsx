@@ -24,7 +24,7 @@ import {
   ProcessList,
 } from '@catena-x/portal-shared-components'
 import { Box } from '@mui/material'
-import './ReleaseProcess.scss'
+import './style.scss'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 type RequerementStepType = {
