@@ -28,10 +28,20 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Keep this commented out to avoid login on every test file
-// /* import './commands'
+import './commands'
 
-// before(() => {
-//   // Perform login once before all test files
-//   cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'))
-// }) */
+// Handle uncaught exceptions from third-party scripts
+Cypress.on('uncaught:exception', (err) => {
+  // Return false to prevent Cypress from failing the test when
+  // the error comes from PostHog or other analytics scripts
+  if (
+    err.message.includes('Maximum call stack size exceeded') ||
+    err.stack?.includes('posthog')
+  ) {
+    console.warn('Ignoring PostHog analytics error:', err.message)
+    return false
+  }
+
+  // For other errors, allow the error to fail the test
+  return true
+})

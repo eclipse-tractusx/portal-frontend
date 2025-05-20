@@ -73,15 +73,11 @@ export default function RecommendedServices({
               <CardHorizontal
                 borderRadius={6}
                 image={{
-                  src: service?.leadPictureUri
-                    ? `${service.id}`
+                  src: service?.leadPictureId
+                    ? `${service.leadPictureId}`
                     : `${LogoGrayData}`,
                   alt: 'App Card',
                 }}
-                // image={{
-                //   alt: 'App Card',
-                //   src: `${getAssetBase()}/images/content/ServiceMarketplace.png`,
-                // }}
                 label={service.provider}
                 buttonText="Details"
                 onBtnClick={() => {

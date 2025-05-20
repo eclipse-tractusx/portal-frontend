@@ -129,6 +129,7 @@
       "all": "All",
       "active": "Active",
       "inactive": "Inactive",
+      "created": "Created",
       "wip": "WIP",
       "inreview": "Inreview"
     },

@@ -37,14 +37,11 @@ import { OVERLAYS } from 'types/Constants'
 import { error, success } from 'services/NotifyService'
 import {
   type IdentityProvider,
-  IdpAccountStatus,
   useEnableIDPMutation,
   useFetchIDPListQuery,
   useRemoveIDPMutation,
   IDPCategory,
 } from 'features/admin/idpApiSlice'
-
-type StatusTagColor = 'pending' | 'confirmed' | 'declined' | undefined
 
 const MenuItemOpenOverlay = ({
   overlay,
@@ -95,7 +92,6 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     .sort((a: IdentityProvider, b: IdentityProvider) =>
       (a?.displayName ?? '').localeCompare(b.displayName ?? '')
     )
-  const [searchExpr, setSearchExpr] = useState<string>('')
   const [removeIDP] = useRemoveIDPMutation()
   const [enableIDP] = useEnableIDPMutation()
   const managedIdpsData = idpsData?.filter(
@@ -137,13 +133,6 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       error(ti('disable.error'), '', err as object)
       setDisableLoading(false)
     }
-  }
-
-  const statusColorMap: Record<IdpAccountStatus, StatusTagColor> = {
-    [IdpAccountStatus.ACTIVE]: 'confirmed',
-    [IdpAccountStatus.DISABLED]: 'declined',
-    [IdpAccountStatus.OPEN]: 'pending',
-    [IdpAccountStatus.IDP_CREATED]: 'pending',
   }
 
   const getStatus = (enabled: boolean, clientId: string | undefined) => {
@@ -359,16 +348,6 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
     )
   }
 
-  const onSearch = (value: string) => {
-    if (value) {
-      const searchFilter = managedIdpsData?.filter(
-        (i) => i.alias === value || i.displayName === value
-      )
-      setIdpsManagedData(searchFilter)
-      setSearchExpr(value)
-    } else setIdpsManagedData(managedIdpsData)
-  }
-
   const style = {
     '.MuiDataGrid-columnHeadersInner': {
       fontSize: '16px',
@@ -395,102 +374,92 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   }
 
   return (
-    <Table
-      rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
-      hideFooter
-      loading={isFetching}
-      disableRowSelectionOnClick={true}
-      disableColumnFilter={true}
-      disableColumnMenu={true}
-      disableColumnSelector={true}
-      disableDensitySelector={true}
-      columnHeadersBackgroundColor={'#ffffff'}
-      title={
-        isManagementOSP
-          ? t('content.onboardingServiceProvider.ospIdentityProvider')
-          : ''
-      }
-      toolbarVariant={isManagementOSP ? undefined : 'ultimate'}
-      columns={[
-        {
-          field: 'displayName',
-          headerName: t('global.field.name'),
-          flex: 3,
-          valueGetter: ({ row }) => getDisplayName(row),
-        },
-        {
-          field: 'alias',
-          headerName: t('global.field.alias'),
-          flex: 1.5,
-          renderCell: ({ row }: { row: IdentityProvider }) =>
-            row.alias ?? (
-              <>
-                <ReportProblemIcon color="error" fontSize="small" />
-                <Typography variant="body2" sx={{ marginLeft: '5px' }}>
-                  {ti('field.error')}
-                </Typography>
-              </>
-            ),
-        },
-        {
-          field: 'identityProviderTypeId',
-          headerName: t('global.field.authMethod'),
-          flex: 2,
-        },
-        {
-          field: 'progress',
-          headerName: t('global.field.progress'),
-          flex: 2,
-          sortable: false,
-          renderCell: ({ row }: { row: IdentityProvider }) => (
-            <IDPStateProgress idp={row} />
-          ),
-        },
-        {
-          field: 'enabled',
-          headerName: t('global.field.status'),
-          flex: 2,
-          valueGetter: ({ row }) => getStatus(row.enabled, row.oidc?.clientId),
-          renderCell: (params) => {
-            const status = params.value
-            return (
-              <StatusTag
-                color={statusColorMap[status as IdpAccountStatus]}
-                label={status}
-              />
-            )
+    <div className="idp-management-table">
+      <Table
+        rowsCount={isManagementOSP ? idpsManagedData?.length : idpsData?.length}
+        pageSizeOptions={[10, 25, 50, 100]}
+        initialState={{
+          pagination: { paginationModel: { pageSize: 10 } },
+        }}
+        hideFooterPagination={
+          idpsData ? (idpsData.length > 10 ? false : true) : true
+        }
+        loading={isFetching}
+        disableRowSelectionOnClick={true}
+        disableColumnFilter={true}
+        disableColumnMenu={true}
+        disableColumnSelector={true}
+        disableDensitySelector={true}
+        columnHeadersBackgroundColor={'#ffffff'}
+        title=""
+        toolbarVariant="ultimate"
+        columns={[
+          {
+            field: 'displayName',
+            headerName: t('global.field.name'),
+            flex: 3,
+            valueGetter: ({ row }) => getDisplayName(row),
           },
-        },
-        {
-          field: 'details',
-          headerName: t('global.field.action'),
-          flex: 2,
-          sortable: false,
-          renderCell: ({ row }: { row: IdentityProvider }) =>
-            isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
-        },
-      ]}
-      rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
-      getRowId={(row: { [key: string]: string }) => row.identityProviderId}
-      hasBorder={false}
-      searchPlaceholder={
-        isManagementOSP
-          ? t('content.onboardingServiceProvider.search')
-          : undefined
-      }
-      searchExpr={isManagementOSP ? searchExpr : undefined}
-      onSearch={
-        isManagementOSP
-          ? (expr: string) => {
-              isManagementOSP && onSearch(expr)
-              setSearchExpr(expr)
-            }
-          : undefined
-      }
-      searchDebounce={isManagementOSP ? 1000 : undefined}
-      onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
-      buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
-      sx={isManagementOSP ? style : undefined}
-    />
+          {
+            field: 'alias',
+            headerName: t('global.field.alias'),
+            flex: 1.5,
+            renderCell: ({ row }: { row: IdentityProvider }) =>
+              row.alias ?? (
+                <>
+                  <ReportProblemIcon color="error" fontSize="small" />
+                  <Typography variant="body2" sx={{ marginLeft: '5px' }}>
+                    {ti('field.error')}
+                  </Typography>
+                </>
+              ),
+          },
+          {
+            field: 'identityProviderTypeId',
+            headerName: t('global.field.authMethod'),
+            flex: 2,
+          },
+          {
+            field: 'progress',
+            headerName: t('global.field.progress'),
+            flex: 2,
+            sortable: false,
+            renderCell: ({ row }: { row: IdentityProvider }) => (
+              <IDPStateProgress idp={row} />
+            ),
+          },
+          {
+            field: 'enabled',
+            headerName: t('global.field.status'),
+            flex: 2,
+            valueGetter: ({ row }) =>
+              getStatus(row.enabled, row.oidc?.clientId),
+            renderCell: (params) => {
+              const status = params.value
+              return <StatusTag color="label" label={status} />
+            },
+          },
+          {
+            field: 'details',
+            headerName: t('global.field.action'),
+            flex: 2,
+            sortable: false,
+            renderCell: ({ row }: { row: IdentityProvider }) =>
+              isManagementOSP ? renderManagementOSPMenu(row) : renderMenu(row),
+          },
+        ]}
+        rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
+        getRowId={(row: { [key: string]: string }) => row.identityProviderId}
+        hasBorder={false}
+        searchPlaceholder={
+          isManagementOSP
+            ? t('content.onboardingServiceProvider.search')
+            : undefined
+        }
+        onButtonClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
+        buttonLabel={t('content.onboardingServiceProvider.addIdentityProvider')}
+        sx={isManagementOSP ? style : undefined}
+      />
+    </div>
   )
 }

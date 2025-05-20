@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-.company-subscriptions-header {
+.company-subscription-header {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -51,4 +51,9 @@
       }
     }
   }
+}
+.company-subscription-detail .company-subscription-back {
+  padding: 48px 256px 48px 160px !important;
+  height: 140px;
+  transform: none;
 }

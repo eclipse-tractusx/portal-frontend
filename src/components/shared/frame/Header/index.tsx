@@ -82,12 +82,12 @@ export const Header = ({
   const [headerNote, setHeaderNote] = useState(false)
 
   useEffect(() => {
-    if (!(companyData && companyDetails)) return
+    if (!companyData) return
     setSubmittedOverlayOpen(
       !companyDetails?.companyRole.includes(COMPANY_ROLES.OPERATOR) &&
         companyData?.applicationStatus === ApplicationStatus.SUBMITTED
     )
-  }, [companyData, companyDetails])
+  }, [companyData])
 
   const companyRoles = useSelector(companySelector)
 

@@ -36,6 +36,7 @@ import {
   useUpdateCompanySiteAndAddressMutation,
   type CompanyDataFieldsType,
   type SharingStateType,
+  useUpdateCompanyStatusToReadyMutation,
   dataType,
 } from 'features/companyData/companyDataApiSlice'
 import { useSelector } from 'react-redux'
@@ -71,6 +72,7 @@ export default function EditForm({
   const [loading, setLoading] = useState<boolean>(false)
   const [isValid, setIsValid] = useState<boolean>(false)
   const [updateData] = useUpdateCompanySiteAndAddressMutation()
+  const [updateReadyState] = useUpdateCompanyStatusToReadyMutation()
   const companyData = useSelector(companyDataSelector)
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
@@ -82,7 +84,7 @@ export default function EditForm({
     skip: !newForm,
   })
   const [input, setInput] = useState<CompanyDataType>(companyDataInitialData)
-  const inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
+  let inputParams = cloneDeep(newForm ? companyDataInitialData : companyData)
 
   if (companyInfo) {
     inputParams.externalId = `${companyInfo?.bpn}_${new Date().toISOString()}`
@@ -128,9 +130,11 @@ export default function EditForm({
     }
   }
 
-  const handleCreation = async () => {
+  const updateStateToReady = async (response: CompanyDataType[]) => {
     try {
-      await updateData([input])
+      await updateReadyState({
+        externalIds: [response[0].externalId],
+      })
         .unwrap()
         .then(() => {
           setSuccess(true)
@@ -144,6 +148,20 @@ export default function EditForm({
   const isDataUnchanged = useMemo(() => {
     return isEqual(input, inputParams)
   }, [input, inputParams])
+
+  const handleCreation = async () => {
+    try {
+      await updateData([input])
+        .unwrap()
+        .then((response) => {
+          inputParams = cloneDeep(input)
+          updateStateToReady(response)
+        })
+    } catch (e) {
+      setError(true)
+      setLoading(false)
+    }
+  }
 
   const getTitle = () =>
     isAddress

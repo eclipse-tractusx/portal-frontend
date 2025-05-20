@@ -69,7 +69,6 @@ import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
 import { isStepCompleted } from '../OfferStepHelper'
-import { PAGES } from 'types/cfx/Constants'
 
 type FormDataType = {
   title: string
@@ -553,7 +552,7 @@ export default function OfferCard() {
           setServiceCardSnackbar(false)
         }}
         onBackIconClick={() => {
-          navigate(`/${PAGES.SERVICE_MANAGEMENT}`)
+          navigate(-1)
         }}
         // Add an ESLint exception until there is a solution
         // eslint-disable-next-line

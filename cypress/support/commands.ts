@@ -79,3 +79,5 @@ Cypress.Commands.add('snackbarAlert', (text) => {
     })
     .should('not.exist')
 })
+
+export {}

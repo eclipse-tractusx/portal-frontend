@@ -53,12 +53,8 @@ export default function AppReleaseProcessForm() {
       step: 4,
     },
     {
-      headline: t('content.apprelease.stepper.betaTest'),
-      step: 5,
-    },
-    {
       headline: t('content.apprelease.stepper.validateAndPublish'),
-      step: 6,
+      step: 5,
     },
   ]
 
@@ -69,7 +65,7 @@ export default function AppReleaseProcessForm() {
         onAppsOverviewClick()
       }}
       stepsList={stepsList}
-      numberOfSteps={6}
+      numberOfSteps={5}
       pageHeaderTitle={t('content.apprelease.headerTitle')}
       headerTitle={t('content.apprelease.submit.headerTitle')}
       headerDescription={t('content.apprelease.submit.headerDescription')}

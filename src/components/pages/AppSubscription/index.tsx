@@ -51,7 +51,7 @@ export default function AppSubscription() {
         active: t('content.appSubscription.tabs.active'),
         showAll: t('content.appSubscription.tabs.showAll'),
       }}
-      loadMoreButtonText={t('content.appSubscription.lordMore')}
+      loadMoreButtonText={t('content.appSubscription.loadMore')}
     />
   )
 }

@@ -44,10 +44,9 @@ import {
   useFetchRegistartionStatusCallbackQuery,
   useUpdateRegistartionStatusCallbackMutation,
 } from 'features/admin/idpApiSlice'
-import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
+import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
 import { isIDPClientID, isIDPClientSecret, isURL } from 'types/Patterns'
 import { type IHashMap } from 'types/MainTypes'
 import { success } from 'services/NotifyService'
@@ -57,12 +56,12 @@ import { COLOR_PALETTE } from 'theme.override'
 import { TableVariants } from 'components/shared/cfx/PageLoadingTable/helpers'
 import { PageLoadingTable } from 'components/shared/cfx/PageLoadingTable'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
+import { OVERLAYS } from 'types/Constants'
 
 const OnboardingServiceProvider = () => {
   const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<number>(0)
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false)
-  const dispatch = useDispatch()
   const { data, refetch } = useFetchRegistartionStatusCallbackQuery()
   const [loading, setLoading] = useState(false)
   const [updateRegistartionStatusCallback] =
@@ -72,11 +71,9 @@ const OnboardingServiceProvider = () => {
   const [callbackData, setCallbackData] = useState<
     RegistartionStatusCallbackType | undefined
   >(undefined)
+  const dispatch = useDispatch()
 
-  const handleTabChange = (
-    _e: SyntheticEvent<Element, Event>,
-    value: number
-  ) => {
+  const handleTabChange = (_e: SyntheticEvent, value: number) => {
     setActiveTab(value)
   }
 
@@ -187,6 +184,17 @@ const OnboardingServiceProvider = () => {
                 value={data?.callbackUrl}
                 validate={(expr) => isURL(expr)}
                 hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
+                debounceTime={0}
+                onValid={checkValidData}
+              />
+            </div>
+            <div style={{ marginTop: '34px' }}>
+              <ValidatingInput
+                name="authUrl"
+                label={t('content.onboardingServiceProvider.authUrl.name')}
+                value={data?.authUrl}
+                validate={(expr) => isURL(expr)}
+                hint={t('content.onboardingServiceProvider.authUrl.hint')}
                 debounceTime={0}
                 onValid={checkValidData}
               />
@@ -349,9 +357,9 @@ const OnboardingServiceProvider = () => {
                 {t('content.onboardingServiceProvider.addIdentityProvider')}
               </Button>
             </Box>
-            <Typography variant="h5">
+            {/* <Typography variant="h5">
               {t('content.onboardingServiceProvider.userList')}
-            </Typography>
+            </Typography> */}
             <IDPList isManagementOSP={true} />
           </div>
         </TabPanel>

@@ -19,15 +19,13 @@
  ********************************************************************************/
 
 import {
+  BackButton,
   Button,
   Chip,
-  IconButton,
   PageNotifications,
   Typography,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { Divider, Box, Grid } from '@mui/material'
 import {
   appIdSelector,
@@ -38,7 +36,6 @@ import {
 } from 'features/appManagement/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef, useState } from 'react'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useFetchAppStatusQuery } from 'features/appManagement/apiSlice'
 import { setAppStatus } from 'features/appManagement/actions'
 import ReleaseStepHeader from '../components/ReleaseStepHeader'
@@ -115,9 +112,9 @@ export default function BetaTest() {
                 'content.apprelease.betaTest.technicalIntegrationTestDescription'
               )}
             </Typography>
-            <a href="/" style={{ display: 'flex', marginTop: '28px' }}>
+            {/* <a href="/" style={{ display: 'flex', marginTop: '28px' }}>
               <ArrowForwardIcon fontSize="small" /> Open test overview
-            </a>
+            </a> */}
           </Grid>
         </Grid>
       </form>
@@ -141,29 +138,24 @@ export default function BetaTest() {
           </Grid>
         )}
         <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-        <Button
-          variant="outlined"
-          startIcon={<HelpOutlineIcon />}
-          sx={{ mr: 1 }}
-          onClick={() =>
-            window.open(
-              '/documentation/?path=user%2F04.+App%28s%29%2F02.+App+Release+Process',
-              '_blank'
-            )
-          }
-        >
-          {t('content.apprelease.footerButtons.help')}
-        </Button>
-        <IconButton onClick={onBackIconClick} color="secondary">
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-        <Button
-          variant="contained"
-          sx={{ float: 'right' }}
-          onClick={() => dispatch(increment())}
-        >
-          {t('content.apprelease.footerButtons.proceed')}
-        </Button>
+        <BackButton
+          backButtonLabel={t('global.actions.back')}
+          backButtonVariant="outlined"
+          onBackButtonClick={() => {
+            onBackIconClick?.()
+          }}
+        />
+
+        <>
+          <Button
+            variant="outlined"
+            name="send"
+            sx={{ float: 'right', mr: 1 }}
+            onClick={() => dispatch(increment())}
+          >
+            {t('content.apprelease.footerButtons.proceed')}
+          </Button>
+        </>
       </Box>
     </>
   )

@@ -155,11 +155,6 @@ export default function ServiceListOverview() {
       onButtonClick: setView,
     },
     {
-      buttonText: t('serviceOverview.filter.inreview'),
-      buttonValue: StatusIdEnum.InReview,
-      onButtonClick: setView,
-    },
-    {
       buttonText: t('serviceOverview.filter.wip'),
       buttonValue: StatusIdEnum.WIP,
       onButtonClick: setView,

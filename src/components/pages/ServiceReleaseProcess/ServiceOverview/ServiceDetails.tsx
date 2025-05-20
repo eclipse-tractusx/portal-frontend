@@ -19,7 +19,6 @@
  ********************************************************************************/
 
 import {
-  PageHeader,
   Typography,
   CardHorizontal,
   StaticTable,
@@ -41,6 +40,7 @@ import { download } from 'utils/downloadUtils'
 import { type DocumentData } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { TechUserTable } from 'components/shared/basic/ReleaseProcess/TechnicalIntegration/TechUserTable'
+import { MainHeader } from 'components/shared/cfx/MainHeader'
 
 export default function ServiceDetails() {
   const { t } = useTranslation('servicerelease')
@@ -101,14 +101,12 @@ export default function ServiceDetails() {
   }, [fetchServiceStatus])
 
   return (
-    <main>
-      <div>
-        <PageHeader
-          title={t('servicedetails.headerTitle')}
-          topPage={true}
-          headerHeight={200}
-        />
-      </div>
+    <main className="page-main-container">
+      <MainHeader
+        title={t('servicedetails.headerTitle')}
+        headerHeight={250}
+        subTitleWidth={750}
+      />
       {fetchServiceStatus && (
         <>
           <div className="serviceDetail-main">

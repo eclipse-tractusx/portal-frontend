@@ -33,13 +33,15 @@
   padding: 0px 180px;
   margin: 0px;
   padding-top: 250px;
-  text-align: center;
+  text-align: left;
+  max-width: 70%;
 }
 
 .headerTitle h2,
 .headerTitle h3 {
-  text-align: center;
+  text-align: left;
   width: 100%;
+  font-size: 32px !important;
 }
 
 .stage-home .slick-slider,
@@ -79,13 +81,13 @@
 }
 
 .headerTitle h1 {
-  padding-bottom: 34px;
-  font-size: 56px;
+  padding-bottom: 24px;
+  font-size: 58px;
 }
 
 .headerImage button {
   margin: 30px 10px 0 0;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 //web layout

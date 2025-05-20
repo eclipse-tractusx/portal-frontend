@@ -213,6 +213,10 @@ export default function TechnicalUserDetailsContent({
         size="small"
         variant="outlined"
         startIcon={<HighlightOffIcon />}
+        disabled={
+          newData.status === ServiceAccountStatus.PENDING ||
+          newData.status === ServiceAccountStatus.PENDING_DELETION
+        }
         onClick={() =>
           dispatch(show(OVERLAYS.DELETE_TECH_USER, newData.serviceAccountId))
         }

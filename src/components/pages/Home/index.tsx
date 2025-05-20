@@ -18,19 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import NewsSection from './NewsSection'
 import BusinessApplicationsSection from './BusinessApplicationsSection'
 import StageSection from './StageSection'
-import AppStoreSection from './AppStoreSection'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './style.scss'
+import AppStoreSection from 'components/shared/cfx/AppStoreSection'
 
 export default function Home() {
   return (
     <main className="home">
       <StageSection />
-      <NewsSection />
+      {/* <NewsSection /> */}
       <AppStoreSection />
       <BusinessApplicationsSection />
     </main>

@@ -46,18 +46,17 @@ import {
 } from '@catena-x/portal-shared-components'
 import {
   type ServiceRequest,
-  type ServiceRequestAPIResponse,
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
-import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
+import {
+  ServiceTypeIdsEnum,
+  useFetchDocumentMutation,
+} from 'features/serviceManagement/apiSlice'
 import NoItems from '../NoItems'
 import { SORTING_TYPE } from 'features/serviceManagement/types'
 import { serviceTypeMapping } from 'types/Constants'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
-// import SearchAndSortSection from 'components/shared/cfx/SearchAndSortSection'
-
-// TODO: Code missing
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
@@ -94,26 +93,56 @@ export default function ServiceMarketplace() {
     serviceType: serviceTypeId,
     sortingType,
   })
+  const [fetchDocument] = useFetchDocumentMutation()
 
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
   const services = data?.content
+
   // To-Do fix the type issue with status and data from FetchBaseQueryError
   // eslint-disable-next-line
   const servicesError = error as any
 
-  useEffect(() => {
-    if (services)
-      setCardServices(
-        data?.meta.page === 0
-          ? setDataInfo(data)
-          : (serviceRequets: ServiceRequest[]) =>
-              serviceRequets.concat(setDataInfo(data))
-      )
-  }, [data])
+  const getImage = useCallback(
+    async (service: ServiceRequest) => {
+      try {
+        const response = await fetchDocument({
+          appId: service.id,
+          documentId: service.leadPictureId,
+        }).unwrap()
+        const file = response.data
+        return URL.createObjectURL(file)
+      } catch (error) {
+        console.error('Error fetching image:', error)
+        return null
+      }
+    },
+    [fetchDocument]
+  )
 
-  const setDataInfo = (data: ServiceRequestAPIResponse) =>
-    data.content.map((item) => ({ ...item }))
+  const loadServicesWithImages = useCallback(async () => {
+    if (services && services.length > 0) {
+      const serviceWithImages = await Promise.all(
+        services.map(async (service) => {
+          const img = await getImage(service)
+          return { ...service, leadPictureId: img ?? '' }
+        })
+      )
+
+      setCardServices((prevServices: ServiceRequest[]) => {
+        const newServices =
+          data?.meta.page === 0
+            ? serviceWithImages
+            : [...prevServices, ...serviceWithImages]
+
+        return newServices
+      })
+    }
+  }, [services, data?.meta.page, getImage])
+
+  useEffect(() => {
+    loadServicesWithImages()
+  }, [services, data?.meta.page, getImage])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -238,7 +267,6 @@ export default function ServiceMarketplace() {
         headerHeight={250}
         subTitleWidth={750}
       />
-
       {isFetching ? (
         <div style={{ textAlign: 'center' }}>
           <CircleProgress
@@ -252,53 +280,61 @@ export default function ServiceMarketplace() {
         </div>
       ) : (
         <>
-          <div className="mainContainer">
-            <div className="mainRow">
-              <Typography className="newServicesTitle" variant="h2">
-                {t('content.serviceMarketplace.newServices')}
-              </Typography>
-              <Typography className="recommendationsTitle" variant="body1">
-                {t('content.serviceMarketplace.recommendations')}
-              </Typography>
-              <div>
-                <div className="searchContainer">
-                  <SearchInput
-                    placeholder={t('notification.search')}
-                    value={searchExpr}
-                    autoFocus={false}
-                    onChange={doFilter}
-                  />
-                </div>
-                <div className="filterSection" onMouseLeave={setModalFalse}>
-                  <ViewSelector activeView={selected} views={filterButtons} />
-                  <SortImage onClick={setModalTrue} selected={showModal} />
-                  <div className="sortSection">
-                    <SortOption
-                      show={showModal}
-                      selectedOption={sortOption}
-                      setSortOption={setSortOptionFn}
-                      sortOptions={sortOptions}
-                    />
+          {' '}
+          <div className="bg-white">
+            <div className="mainContainer">
+              <div className="mainRow">
+                <Typography className="newServicesTitle" variant="h2">
+                  {t('content.serviceMarketplace.newServices')}
+                </Typography>
+                <Typography className="recommendationsTitle" variant="body1">
+                  {t('content.serviceMarketplace.recommendations')}
+                </Typography>
+                <div>
+                  <div className="cx-search-grid">
+                    <div className="searchContainer">
+                      <SearchInput
+                        placeholder={t('notification.search')}
+                        value={searchExpr}
+                        autoFocus={false}
+                        onChange={doFilter}
+                      />
+                    </div>
+                    <div className="filterSection" onMouseLeave={setModalFalse}>
+                      <ViewSelector
+                        activeView={selected}
+                        views={filterButtons}
+                      />
+                      <SortImage onClick={setModalTrue} selected={showModal} />
+                      <div className="sortSection">
+                        <SortOption
+                          show={showModal}
+                          selectedOption={sortOption}
+                          setSortOption={setSortOptionFn}
+                          sortOptions={sortOptions}
+                        />
+                      </div>
+                    </div>
                   </div>
+                  {!isError ? (
+                    renderServices()
+                  ) : (
+                    <ErrorBar
+                      errorText={
+                        servicesError?.data?.status >= 400 &&
+                        servicesError?.data?.status < 500
+                          ? t('content.serviceMarketplace.dataLoadFailed')
+                          : t('content.serviceMarketplace.loadFailed')
+                      }
+                      showButton={
+                        servicesError.code >= 500 &&
+                        servicesError?.data?.status < 600
+                      }
+                      buttonText={t('error.tryAgain')}
+                      handleButton={refetch}
+                    />
+                  )}
                 </div>
-                {!isError ? (
-                  renderServices()
-                ) : (
-                  <ErrorBar
-                    errorText={
-                      servicesError?.data?.status >= 400 &&
-                      servicesError?.data?.status < 500
-                        ? t('content.serviceMarketplace.dataLoadFailed')
-                        : t('content.serviceMarketplace.loadFailed')
-                    }
-                    showButton={
-                      servicesError.code >= 500 &&
-                      servicesError?.data?.status < 600
-                    }
-                    buttonText={t('error.tryAgain')}
-                    handleButton={refetch}
-                  />
-                )}
               </div>
             </div>
           </div>
@@ -312,42 +348,6 @@ export default function ServiceMarketplace() {
           <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
         )}
       </div>
-
-      <div className="mainContainer">
-        <div className="mainRow">
-          <Typography className="newServicesTitle" variant="h2">
-            {t('content.serviceMarketplace.newServices')}
-          </Typography>
-          <div>
-            <div className="cx-search-grid">
-              <div className="searchContainer">
-                <SearchInput
-                  placeholder={t('notification.search')}
-                  value={searchExpr}
-                  autoFocus={false}
-                  onChange={doFilter}
-                />
-              </div>
-              <div className="filterSection" onMouseLeave={setModalFalse}>
-                <ViewSelector activeView={selected} views={filterButtons} />
-                <SortImage onClick={setModalTrue} selected={showModal} />
-                <div className="sortSection">
-                  <SortOption
-                    show={showModal}
-                    selectedOption={sortOption}
-                    setSortOption={setSortOptionFn}
-                    sortOptions={sortOptions}
-                  />
-                </div>
-              </div>
-            </div>
-            {renderServices()}
-          </div>
-        </div>
-      </div>
-      {cardServices && cardServices.length > 2 && (
-        <ServicesElements services={cardServices.slice(indexToSplit)} />
-      )}
     </main>
   )
 }

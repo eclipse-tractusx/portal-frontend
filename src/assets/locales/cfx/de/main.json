@@ -481,7 +481,9 @@
       },
       "filter": {
         "requested": "Angefordert",
+        "pending": "Ausstehend",
         "active": "Aktiv",
+        "inactive": "Inaktiv",
         "showAll": "Alle Anzeigen"
       },
       "app": {
@@ -996,13 +998,18 @@
         "tableHeader": "Technischen Benutzerlist",
         "detailsHeader": "Technischer Benutzer: USER_NAME",
         "detailsPage": {
-          "connectedObjects": "Verbundene Objekte",
+          "connectedObjects": "Connected Objects",
           "connectorLink": "Connector Link",
           "offerLink": "Offer Link",
-          "userDetails": "Technischer User Details",
+          "userDetails": "Technischer Benutzer Details",
           "description": "Beschreibung",
           "spoc": "SPOC",
-          "permission": "Berechtigungen"
+          "permission": "Berechtigungen",
+          "companyServiceAccountTypeID": "Firmenservicekontotyp",
+          "authenticationType": "Authentifizierungstyp",
+          "userType": "Benutzertyp",
+          "serviceEndpoint": "Dienstendpunkt",
+          "missingInfoHint": "Diese Informationen stehen älteren Benutzern möglicherweise nicht zur Verfügung. Erstellen Sie den Benutzer neu, um die vollständigen Details zu erhalten."
         },
         "status": {
           "ACTIVE": "AKTIV",
@@ -1133,6 +1140,7 @@
       "technicalUser": {
         "addOverlay": {
           "service": "Technical User Role",
+          "note": "Notiz: Die Auswahl sowohl interner als auch externer Benutzer für denselben Dienst ist nicht möglich.",
           "serviceSubHeading": "Wählen Sie eine der folgenden Rollen aus:",
           "username": "Username*",
           "description": "Beschreibung*",
@@ -1140,6 +1148,14 @@
           "org": "Organization name",
           "email": "E-Mail Address",
           "name": "Username",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "userDetailsNotVisible": "Technische Benutzerdaten sind für die abonnierenden Kunden nicht sichtbar.",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
+          "roleMandatory": "Die Rolle des technischen Benutzers ist obligatorisch",
           "error": {
             "select": "Bitte wählen Sie einen Wert.",
             "description": "Bitte geben Sie eine Beschreibung ein.",
@@ -1283,6 +1299,15 @@
         "BROWSER_HISTORY": "Browser-Verlauf",
         "NONE": "Keine"
       },
+      "document": {
+        "heading": "Documents",
+        "conformityDocument": "Conformity Document",
+        "conformityDocumentsDescription": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
+      },
+      "defaultValues": {
+        "conformityDocumentsDescription": "",
+        "documentsDescription": ""
+      },
       "howtouse": {
         "heading": "Dokumente",
         "message": "Die Nutzungsbedingungen regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Nutzungsbedingungen, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
@@ -1424,11 +1449,37 @@
         "technicalUserSetupMandatory": "Bitte wählen Sie mindestens ein technisches Benutzer-Setup aus",
         "roleDeleteSuccessMessage": "Role deleted successfully",
         "technicalUserProfileError": "Error while updating technical user profiles",
+        "technicalUserProfileDeleteError": "Fehler beim Löschen des technischen Benutzerprofils",
         "roleUpdateError": "Error while updating roles",
         "encoding": "Kodierung (Auswahl der unterstützten Kodierung)",
         "encodingPlaceholder": "Select supported encoding",
         "noneOption": "Nicht notwendig (für die Integration ist kein technischer User notwendig)",
-        "noRolesLoaded": "Derzeit keine Rollen für die App geladen ({{appName}})"
+        "noRolesLoaded": "Derzeit keine Rollen für die App geladen ({{appName}})",
+        "userProfileDeleteSuccessMessage": "Technisches Benutzerprofil erfolgreich gelöscht",
+        "table": {
+          "addtechUserButton": "Technischer User hinzufügen",
+          "title": "Technischer Userprofil",
+          "name": "Technischer Userprofil",
+          "type": "Typ",
+          "role": "Rollen",
+          "noRoles": "Keine technischen Userprofile hinzugefügt",
+          "action": "Aktion"
+        },
+        "form": {
+          "title": "Technisches Benutzerprofil konfigurieren",
+          "intro": "Wählen Sie interne oder externe Rollen aus und fahren Sie mit der Konfiguration des technischen Benutzerprofils fort",
+          "internalUserRoles": "Internes technisches Benutzerprofil",
+          "internalUserRolesDescription": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind sowohl für den Kunden als auch für den Anbieter sichtbar!",
+          "internalUserRolesOnlyVisible": "Internes technisches Benutzerprofil(Nur für Anbieter sichtbar)",
+          "internalUserRolesDescriptionOnlyVisible": "Diese Auswahl umfasst alle Rollen, die zu einem technischen Benutzerprofil hinzugefügt werden können. Diese Benutzerrollen haben eine eingeschränkte Sichtbarkeit. Die technischen Benutzer, die aus diesem Profil erstellt werden, sind nur für den Anbieter sichtbar!",
+          "externalUserRoles": "Externer technischer Benutzer",
+          "externalUserRolesDescription": "Externe technische Benutzerprofile werden in einer externen Umgebung erstellt und können daher nur eine Rolle haben",
+          "userDetailsNotVisible": "Die technischen Benutzerdetails werden den Abonnenten nicht angezeigt"
+        },
+        "deleteOverlay": {
+          "title": "Technisches Benutzerprofil löschen",
+          "description": "Sind Sie sicher, dass Sie das ausgewählte technische Benutzerprofil löschen möchten?"
+        }
       },
       "betaTest": {
         "headerTitle": "Beta Test",
@@ -1590,7 +1641,7 @@
       "active": "Das Abonnement ist aktiv",
       "inactive": "Das Abonnement ist inaktiv",
       "process": "Das Abonnement ist in Bearbeitung",
-      "lordMore": "Mehr laden",
+      "loadMore": "Mehr laden",
       "tabs": {
         "request": "Anfragen",
         "active": "Aktiv",
@@ -2225,7 +2276,7 @@
       "status": {
         "ACTIVE": "AKTIV",
         "INACTIVE": "INACTIV",
-        "pending": "AUSSTEHEND"
+        "PENDING": "AUSSTEHEND"
       }
     },
     "standardLibraryTable": {
@@ -2478,6 +2529,10 @@
         "name": "Rückruf-URL",
         "hint": "Geben Sie die Rückruf-URL Ihres IDP ein, die mit „/.well-known/openid-configuration“ endet'"
       },
+      "authUrl": {
+        "name": "Auth URL",
+        "hint": "Statusrückruf URL ist verpflichtend"
+      },
       "clientId": {
         "name": "Kunden-ID",
         "hint": "Geben Sie die von Ihrem IdP bereitgestellte Client-ID ein"
@@ -2485,7 +2540,9 @@
       "clientSecret": {
         "name": "Client-Geheimnis",
         "hint": "Geben Sie das von Ihrem IdP bereitgestellte Client-Geheimnis ein"
-      }
+      },
+      "ospIdentityProvider": "OSP Identity Provider(IDPs)",
+      "search": "Enter name or alias to search"
     }
   },
   "navigation": {
@@ -2522,7 +2579,10 @@
       "placeholder": "",
       "uploadError": "Not Uploaded",
       "uploadSuccess": "Hochgeladen",
-      "uploadProgess": "% von % Dateien hochgeladen"
+      "uploadProgess": "% von % Dateien hochgeladen",
+      "error": {
+        "fileTooLarge": "Datei ist größer als"
+      }
     },
     "userRoles": {
       "title": "Zugewiesene Portal Rollen",
@@ -2562,7 +2622,9 @@
       "alias": "Alias",
       "authMethod": "Auth Methode",
       "progress": "Fortschritt",
-      "action": "Aktion"
+      "action": "Aktion",
+      "ownership": "Ownership",
+      "userType": "User Typ"
     },
     "actions": {
       "cancel": "Abbrechen",
@@ -2599,7 +2661,8 @@
       "unsubscribe": "Unsubscribe",
       "edit": "Bearbeiten",
       "copyInfoSuccessMessage": "Erfolgreich kopiert! Bereit zum Einfügen.",
-      "copyInfoErrorMessage": "Fehler beim Kopieren. Bitte aktualisieren und erneut versuchen."
+      "copyInfoErrorMessage": "Fehler beim Kopieren. Bitte aktualisieren und erneut versuchen.",
+      "continue": "Weitermachen"
     },
     "state": {
       "enabled": "aktiv",

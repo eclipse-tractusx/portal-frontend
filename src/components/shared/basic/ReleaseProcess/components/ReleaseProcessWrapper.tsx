@@ -32,7 +32,6 @@ import AppMarketCard from '../AppMarketCard'
 import AppPage from '../AppPage'
 import ContractAndConsent from '../ContractAndConsent'
 import TechnicalIntegration from '../TechnicalIntegration'
-import BetaTest from '../BetaTest'
 import ValidateAndPublish from '../ValidateAndPublish'
 import OfferCard from '../OfferCard'
 import { currentActiveStep } from 'features/appManagement/slice'
@@ -84,8 +83,7 @@ export default function ReleaseProcessWrapper({
     else if (activeStep === 2) return <AppPage />
     else if (activeStep === 3) return <ContractAndConsent />
     else if (activeStep === 4) return <TechnicalIntegration />
-    else if (activeStep === 5) return <BetaTest />
-    else if (activeStep === 6)
+    else if (activeStep === 5)
       return <ValidateAndPublish showSubmitPage={setShowSubmitPage} />
   }, [activeStep])
 

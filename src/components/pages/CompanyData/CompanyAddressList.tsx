@@ -50,9 +50,6 @@ import {
 } from 'features/companyData/slice'
 import { statusColorMap } from 'utils/dataMapper'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import { show } from 'features/control/overlay'
-import { OVERLAYS } from 'types/Constants'
-import UploadIcon from '@mui/icons-material/Upload'
 import dayjs from 'dayjs'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
 import { getBpnActualBpn } from './addressUtils'
@@ -445,11 +442,6 @@ export const CompanyAddressList = ({
               handleSecondButtonClick()
             },
             icon: <AddCircleOutlineIcon />,
-          },
-          {
-            title: t('content.companyData.csvUploadBtn'),
-            click: () => dispatch(show(OVERLAYS.CSV_UPLOAD_OVERLAY)),
-            icon: <UploadIcon />,
           },
         ]}
         hideFooter={false}

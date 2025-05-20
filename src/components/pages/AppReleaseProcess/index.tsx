@@ -58,16 +58,11 @@ export default function AppReleaseProcess() {
       step: 4,
     },
     {
-      description: t('content.apprelease.stepperDescription.betaTest'),
-      headline: t('content.apprelease.stepperHeadline.betaTest'),
-      step: 5,
-    },
-    {
       description: t(
         'content.apprelease.stepperDescription.validateAndPublish'
       ),
       headline: t('content.apprelease.stepperHeadline.validateAndPublish'),
-      step: 6,
+      step: 5,
     },
   ]
 
@@ -113,7 +108,7 @@ export default function AppReleaseProcess() {
       startCreatingButton={t('content.apprelease.startCreatingButton')}
       marketplaceHeading={t('content.apprelease.marketplaceHeading')}
       requirements={requirements}
-      elementNumbers={6}
+      elementNumbers={5}
       registerButton={t('content.apprelease.registerButton')}
     />
   )

@@ -450,7 +450,7 @@ export default function TechnicalIntegration() {
       fetchAppStatus &&
       isStepCompleted(fetchAppStatus, 4, appRedirectStatus, data)
     ) {
-      dispatch(increment())
+      // dispatch(increment())
       hasDispatched.current = true
     }
   }, [fetchAppStatus, data, hasDispatched])
@@ -769,15 +769,17 @@ export default function TechnicalIntegration() {
             }}
           />
         )}
-        {fetchUserRoles && showAddTechUser && fetchTechnicalUserProfiles && (
+        {fetchUserRoles && showAddTechUser && (
           <AddTechUserForm
             userProfiles={
-              selectedTechUser
-                ? selectedTechUser.userRoles
-                : (fetchTechnicalUserProfiles[0]?.userRoles ?? [])
+              createNewTechUserProfile
+                ? []
+                : (selectedTechUser?.userRoles ?? [])
             }
             handleClose={() => {
               setShowAddTechUser(false)
+              setSelectedTechUser(null)
+              setCreateNewTechUserProfile(false)
             }}
             handleConfirm={handletechUserProfiles}
             createNewTechUserProfile={createNewTechUserProfile}

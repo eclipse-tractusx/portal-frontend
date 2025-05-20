@@ -30,7 +30,6 @@ import type { RootState } from 'features/store'
 export default function StageSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-
   const isHeaderNote = useSelector((state: RootState) => state.home.headerNote)
 
   return (
@@ -46,7 +45,7 @@ export default function StageSection() {
               if (isHeaderNote) return null
               navigate(t('content.home.stage.slider1.navigation'))
             },
-            hasAccess: userHasPortalRole(ROLES.APPMANAGEMENT_VIEW),
+            hasAccess: userHasPortalRole(ROLES.USERMANAGEMENT_VIEW),
           },
           {
             title: t('content.home.stage.slider2.title'),

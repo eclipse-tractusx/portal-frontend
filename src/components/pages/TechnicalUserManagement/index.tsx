@@ -73,7 +73,7 @@ export default function TechnicalUserManagement() {
           />
         )}
         <div className="cx-content-technical__container">
-          {notification.title && notification.description && (
+          {notification?.title && notification.description && (
             <div className="cx-content-technical__notifications">
               <PageNotifications
                 open={notification.open}

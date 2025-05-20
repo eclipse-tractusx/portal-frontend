@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  PageSnackbar,
-  Button,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { PageSnackbar } from '@catena-x/portal-shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModelDetailDialog from './ModelDetailDialog'
@@ -31,16 +27,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchSemanticModelById } from 'features/semanticModels/actions'
 import ModelImportDialog from './ModelImportDialog'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
-import { ROLES } from 'types/Constants'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import Grid from '@mui/material/Grid'
-
 import { useNavigate, useParams } from 'react-router-dom'
 import type { AppDispatch } from 'features/store'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import PageInfo from 'components/shared/cfx/PageInfo'
-import { userHasSemanticHubRole } from 'services/AccessService'
-import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SemanticHub() {
   const { t } = useTranslation()
@@ -137,40 +127,6 @@ export default function SemanticHub() {
               setImportModel(true)
             }}
           />
-
-          <Grid container justifyContent="space-between">
-            <Grid item xs={5}>
-              <Typography variant="body2" mb={2}>
-                {t('content.semantichub.introText_0')}
-              </Typography>
-              <Typography variant="body2" mb={4}>
-                {t('content.semantichub.introText_1')}
-              </Typography>
-              {userHasSemanticHubRole(ROLES.SEMANTICHUB_ADD) && (
-                <Button
-                  onClick={() => {
-                    setImportModel(true)
-                  }}
-                  startIcon={<AddCircleOutlineIcon fontSize="large" />}
-                >
-                  {t('content.semantichub.addModel')}
-                </Button>
-              )}
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                style={{
-                  marginTop: '-50%',
-                  border: '16px solid white',
-                  display: 'block',
-                  position: 'relative',
-                }}
-                src={`${getAssetBase()}/images/content/teaser.png`}
-                width="100%"
-                alt={'alt tag info'}
-              />
-            </Grid>
-          </Grid>
         </section>
         <ModelTable onModelSelect={onModelSelect} />
       </main>

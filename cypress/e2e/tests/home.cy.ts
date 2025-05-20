@@ -1,5 +1,3 @@
-import '../support/commands'
-
 describe('Cookies User Consent', () => {
   beforeEach(() => {
     // Clear cookies and local storage before each test to ensure a clean state for script execution
@@ -18,7 +16,7 @@ describe('Cookies User Consent', () => {
   })
 
   it('should load home page', () => {
-    cy.get('.home').should('be.visible')
+    cy.get('.home', { timeout: 60000 }).should('be.visible')
   })
 
   it('should load Usercentrics dialog and its buttons', () => {

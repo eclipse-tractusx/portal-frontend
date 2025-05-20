@@ -67,13 +67,6 @@ export const Header = ({
             {title && (
               <Typography variant={titleTextVariant}>{title}</Typography>
             )}
-            <div
-              style={{
-                borderBottom: '3px solid',
-                margin: '-10px auto 30px auto',
-                width: '50px',
-              }}
-            ></div>
             {subTitle && (
               <Typography
                 className="subtitle"

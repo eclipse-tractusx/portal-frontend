@@ -247,7 +247,7 @@ export enum HINTS {
 }
 
 export const CONVERT_TO_MB = 1048576
-export const ALLOWED_MAX_SIZE_DOCUMENT = 5242880
+export const ALLOWED_MAX_SIZE_DOCUMENT = 819200 // update to 5242880 only when the max size is updated in the backend
 
 export const serviceTypeMapping: Record<string, ServiceTypeIdsEnum> = {
   // en

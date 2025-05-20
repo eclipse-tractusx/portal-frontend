@@ -36,13 +36,13 @@ import CommonService from 'services/CommonService'
 import { useState, useEffect } from 'react'
 import { getApiBase } from 'services/EnvironmentService'
 import CompanySubscriptionTechnical from './CompanySubscriptionTechnical'
-import CompanySubscriptionHeader from './CompanySubscriptionHeader'
 import CompanySubscriptionContent from './CompanySubscriptionContent'
 import CompanySubscriptionPrivacy from './CompanySubscriptionPrivacyContent'
 import CompanySubscriptionDocument from './CompanySubscriptionDocument'
 import MarketplaceDocuments from '../ServiceMarketplaceDetail/MarketplaceDocuments'
 import MarketplaceProvider from '../ServiceMarketplaceDetail/MarketplaceProvider'
 import MarketplaceTechnicalUserSetup from '../ServiceMarketplaceDetail/MarketplaceTechnicalUserSetup'
+import CompanySubscriptionHeader from './cfx/CompanySubscriptionHeader'
 
 export default function CompanySubscriptionDetail() {
   const navigate = useNavigate()

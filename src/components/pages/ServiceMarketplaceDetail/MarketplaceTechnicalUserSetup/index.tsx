@@ -20,9 +20,8 @@
 
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@catena-x/portal-shared-components'
+import { Grid } from '@mui/material'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
-import { useFetchServiceTechnicalUserProfilesQuery } from 'features/serviceManagement/apiSlice'
-import { TechUserTable } from 'components/shared/basic/ReleaseProcess/TechnicalIntegration/TechUserTable'
 
 export default function MarketplaceTechnicalUserSetup({
   item,
@@ -30,8 +29,28 @@ export default function MarketplaceTechnicalUserSetup({
   item: ServiceRequest
 }>) {
   const { t } = useTranslation('')
-  const { data: technicalUserProfiles } =
-    useFetchServiceTechnicalUserProfilesQuery(item.id ?? '')
+
+  const getTechUserInfo = (data: string[] | null) => {
+    return data && data?.length > 0 ? (
+      data?.map((item: string) => (
+        <Grid container spacing={2} sx={{ margin: '0px' }} key={item}>
+          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+            <Typography variant="label3">* {item}</Typography>
+          </Grid>
+        </Grid>
+      ))
+    ) : (
+      <Grid spacing={2} margin={'0px'} container>
+        <Typography
+          sx={{ textAlign: 'center', width: '100%' }}
+          variant="label3"
+        >
+          {t('global.errors.noTechnicalUserProfilesAvailable')}
+        </Typography>
+      </Grid>
+    )
+  }
+
   return (
     <>
       <Typography variant="h3">
@@ -40,10 +59,10 @@ export default function MarketplaceTechnicalUserSetup({
       <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.appdetail.technicalUserSetup.message')}
       </Typography>
-      <TechUserTable
-        userProfiles={technicalUserProfiles ?? []}
-        disableActions={true}
-      />
+      {item.technicalUserProfile &&
+        getTechUserInfo(
+          Object.values(item?.technicalUserProfile).flat() as string[]
+        )}
     </>
   )
 }

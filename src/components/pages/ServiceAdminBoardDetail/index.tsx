@@ -23,10 +23,11 @@ import {
   Button,
   StaticTable,
   Typography,
+  Image,
+  LogoGrayData,
 } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../AdminBoardDetail/style.scss'
-import { getAssetBase } from 'services/EnvironmentService'
 import {
   type ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
@@ -50,6 +51,7 @@ enum TableData {
 }
 
 export default function ServiceAdminBoardDetail() {
+  const [leadImg, setLeadImg] = useState<string>('')
   const { t } = useTranslation('servicerelease')
   const navigate = useNavigate()
   const { appId } = useParams()
@@ -64,6 +66,25 @@ export default function ServiceAdminBoardDetail() {
       setServiceData(data)
     }
   }, [isFetching, data])
+
+  useEffect(() => {
+    if (serviceData?.documents?.SERVICE_LEADIMAGE?.[0].documentId) {
+      setLeadingImg()
+    } else setLeadImg(LogoGrayData)
+  }, [serviceData])
+
+  const setLeadingImg = async () => {
+    try {
+      const response = await fetchDocument({
+        appId,
+        documentId: serviceData?.documents?.SERVICE_LEADIMAGE?.[0].documentId,
+      }).unwrap()
+      const file = response.data
+      setLeadImg(URL.createObjectURL(file))
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const getTypes = useCallback(() => {
     const newArr: string[] = []
@@ -131,10 +152,7 @@ export default function ServiceAdminBoardDetail() {
         <Box className="service-content">
           <div className="service-board-header">
             <div className="lead-image">
-              <img
-                src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
-                alt={serviceData.title}
-              />
+              <Image src={leadImg} alt={serviceData.title} />
             </div>
             <Box className="service-app-content">
               <Typography variant="h5" sx={{ pb: '6px', color: '#888888' }}>
@@ -250,7 +268,7 @@ export default function ServiceAdminBoardDetail() {
 
           {serviceData.technicalUserProfile &&
             getTechUserData(
-              Object.values(serviceData?.technicalUserProfile)[0]
+              Object.values(serviceData.technicalUserProfile).flat() as string[]
             )}
 
           <div className="divider-height" />

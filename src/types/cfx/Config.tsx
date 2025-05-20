@@ -44,7 +44,7 @@ import Terms from 'components/pages/Terms'
 import UserManagement from 'components/pages/UserManagement'
 import UserDetails from 'components/pages/UserDetail'
 import { Route } from 'react-router-dom'
-import { ROLES } from '../Constants'
+import { COMPANY_ROLES, ROLES } from '../Constants'
 import type { IPage } from '../MainTypes'
 import AppUserManagement from 'components/pages/AppUserManagement'
 import IDPManagement from 'components/pages/IDPManagement'
@@ -74,13 +74,21 @@ import CompanySubscriptionDetail from 'components/pages/CompanySubscriptions/Com
 import { COMPANY_ROLE, MENUS, PAGES } from './Constants'
 import AdminCredential from 'components/pages/AdminCredential'
 import OnboardingServiceProvider from 'components/pages/OnboardingServiceProvider/OnboardingServiceProvider'
-import { userHasPortalRole } from 'services/AccessService'
+import {
+  companyHasRole,
+  userHasPortalRole,
+  userHasRegistrationRole,
+  userHasSemanticHubRole,
+  userHasSsiCredentialRole,
+} from 'services/AccessService'
 import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
 import AppReleaseProcessForm from 'components/pages/AppReleaseProcess/AppReleaseProcessForm'
 import ServiceDeactivate from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceDeactivate'
 import ServiceDetails from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceDetails'
 import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/ServiceReleaseProcessForm'
 import ServiceListOverview from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceListOverview'
+import AppOverviewNew from 'components/pages/AppOverviewNew'
+import CompanyData from 'components/pages/CompanyData'
 
 /**
  * ALL_PAGES
@@ -94,7 +102,11 @@ import ServiceListOverview from 'components/pages/ServiceReleaseProcess/ServiceO
 export const ALL_PAGES: IPage[] = [
   { name: PAGES.ROOT, element: <Home /> },
   { name: PAGES.HOME, element: <Home /> },
-  { name: PAGES.REGISTRATION, element: <Redirect path="registration" /> },
+  {
+    name: PAGES.REGISTRATION,
+    allowTo: () => userHasRegistrationRole(ROLES.VIEW_REGISTRATION),
+    element: <Redirect path="registration" />,
+  },
   {
     name: PAGES.HELP,
     element: <Redirect path="documentation" tab={'documentation'} />,
@@ -103,6 +115,12 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.DOCUMENTATION,
     element: <Redirect path="documentation" tab={'documentation'} />,
   },
+  // Removed on purpose
+  // {
+  //   name: PAGES.MARKETPLACE,
+  //   allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
+  //   element: <AppMarketplace />,
+  // },
   {
     name: PAGES.APP_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
@@ -143,9 +161,15 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  // Removed on purpose
+  //  {
+  //   name: PAGES.DATA_MANAGEMENT,
+  //   allowTo: () => userHasSemanticHubRole(ROLES.SEMANTICHUB_VIEW),
+  //   element: <SemanticHub />,
+  // },
   {
     name: PAGES.SEMANTICHUB,
-    allowTo: () => userHasPortalRole(ROLES.SEMANTICHUB_VIEW),
+    allowTo: () => userHasSemanticHubRole(ROLES.SEMANTICHUB_VIEW),
     isRoute: true,
     element: (
       <Route
@@ -158,6 +182,12 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
+  // Removed on purpose
+  //  {
+  //   name: PAGES.CONNECTOR,
+  //   allowTo: () => userHasPortalRole(ROLES.CONNECTOR_SETUP),
+  //   element: <Connector />,
+  // },
   {
     name: PAGES.ACCOUNT,
     allowTo: () => userHasPortalRole(ROLES.MY_ACCOUNT),
@@ -170,7 +200,7 @@ export const ALL_PAGES: IPage[] = [
   },
   {
     name: PAGES.ORGANIZATION,
-    allowTo: () => userHasPortalRole(ROLES.PARTNER_NETWORK_VIEW),
+    allowTo: () => userHasPortalRole(ROLES.MY_ORGANIZATION_VIEW),
     element: <Organization />,
   },
   {
@@ -183,17 +213,21 @@ export const ALL_PAGES: IPage[] = [
     allowTo: () => userHasPortalRole(ROLES.APPMANAGEMENT_VIEW),
     element: <AppOverview />,
   },
+  // {
+  //   name: PAGES.SERVICE_MANAGEMENT,
+  //   allowTo: () => userHasPortalRole(ROLES.SERVICEMANAGEMENT_VIEW),
+  //   element: <ServiceOverview />,
+  // },
   {
     name: PAGES.APP_OVERVIEW,
     allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
     element: <AppOverview />,
   },
-  // TODO:
-  // {
-  //   name: PAGES.APP_OVERVIEW_NEW,
-  //   allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
-  //   element: <AppOverviewNew />,
-  // },
+  {
+    name: PAGES.APP_OVERVIEW_NEW,
+    allowTo: () => userHasPortalRole(ROLES.APPOVERVIEW_VIEW),
+    element: <AppOverviewNew />,
+  },
   {
     name: PAGES.SERVICE_OVERVIEW,
     allowTo: () => userHasPortalRole(ROLES.SERVICEOVERVIEW_VIEW),
@@ -220,28 +254,29 @@ export const ALL_PAGES: IPage[] = [
     element: <ServiceSubscription />,
   },
   {
-    name: PAGES.ADMINBOARD,
+    name: PAGES.APP_ADMIN_BOARD,
     allowTo: () =>
-      userHasPortalRole(ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE),
+      userHasPortalRole([ROLES.APPROVE_APP_RELEASE, ROLES.DECLINE_APP_RELEASE]),
     element: <AdminBoard />,
   },
   {
     name: PAGES.SERVICE_ADMIN_BOARD,
     allowTo: () =>
-      userHasPortalRole(
-        ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE
-      ),
+      userHasPortalRole([
+        ROLES.APPROVE_SERVICE_RELEASE,
+        ROLES.DECLINE_SERVICE_RELEASE,
+      ]),
     element: <ServiceAdminBoard />,
   },
   {
-    name: PAGES.ADMIN_BOARD_DETAIL,
+    name: PAGES.APP_ADMIN_BOARD_DETAIL,
     allowTo: () =>
-      userHasPortalRole(ROLES.APPROVE_APP_RELEASE || ROLES.DECLINE_APP_RELEASE),
+      userHasPortalRole([ROLES.APPROVE_APP_RELEASE, ROLES.DECLINE_APP_RELEASE]),
     isRoute: true,
     element: (
       <Route
-        key={PAGES.ADMIN_BOARD_DETAIL}
-        path={PAGES.ADMIN_BOARD_DETAIL}
+        key={PAGES.APP_ADMIN_BOARD_DETAIL}
+        path={PAGES.APP_ADMIN_BOARD_DETAIL}
         element={<AdminBoardDetail />}
       >
         <Route index element={null} />
@@ -252,9 +287,10 @@ export const ALL_PAGES: IPage[] = [
   {
     name: PAGES.SERVICE_ADMIN_BOARD_DETAIL,
     allowTo: () =>
-      userHasPortalRole(
-        ROLES.APPROVE_SERVICE_RELEASE || ROLES.DECLINE_SERVICE_RELEASE
-      ),
+      userHasPortalRole([
+        ROLES.APPROVE_SERVICE_RELEASE,
+        ROLES.DECLINE_SERVICE_RELEASE,
+      ]),
     isRoute: true,
     element: (
       <Route
@@ -358,6 +394,11 @@ export const ALL_PAGES: IPage[] = [
     allowTo: () => userHasPortalRole(ROLES.SUBMITTED_APPLICATION),
     element: <RegistrationRequests />,
   },
+  // {
+  //   name: PAGES.CLEARINGHOUSE_SELF_DESCRIPTION,
+  //   allowTo: () => userHasPortalRole(ROLES.APPROVE_NEW_PARTNER),
+  //   element: <AdminclearinghouseSD />,
+  // },
   { name: PAGES.CONTACT, element: <Contact /> },
   { name: PAGES.IMPRINT, element: <Imprint /> },
   { name: PAGES.PRIVACY, element: <Privacy /> },
@@ -365,9 +406,22 @@ export const ALL_PAGES: IPage[] = [
   { name: PAGES.ABOUTPAGE, element: <AboutPage /> },
   {
     name: PAGES.CONNECTOR_MANAGEMENT,
-    allowTo: () => userHasPortalRole(ROLES.CONNECTORS_VIEW), // TODO: p: TECHNICAL_SETUP_VIEW
+    allowTo: () => userHasPortalRole(ROLES.CONNECTORS_VIEW),
     element: <EdcConnector />,
   },
+  // The below code which refers to "technicalsetup" page should get removed again with 24.12 since we expect that all users which are using bookmarks have switched to the new page.
+  {
+    name: PAGES.TECHNICAL_SETUP,
+    allowTo: () => userHasPortalRole(ROLES.CONNECTORS_VIEW),
+    element: <Redirect path={PAGES.CONNECTOR_MANAGEMENT} />,
+  },
+  // { name: PAGES.INTRODUCTION, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_APP_PROVIDER, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_CONFORMITY_BODY, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_OSP_BODY, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_PARTICIPANT, element: <CompanyRoles /> },
+  // { name: PAGES.INTRODUCTION_SERVICE_PROVIDER, element: <CompanyRoles /> },
+  // { name: PAGES.USE_CASE_TRACABILITY, element: <UseCase /> },
   { name: PAGES.LOGOUT, element: <Logout /> },
   { name: PAGES.USE_CASE, element: <UseCase /> },
   {
@@ -479,19 +533,40 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-  // { // For now we are removing this page
+  // Removed on purpose
+  // {
   //   name: PAGES.COMPANY_ROLE,
   //   allowTo: () => userHasPortalRole(ROLES.UPDATE_COMPANY_ROLE),
   //   element: <CompanyRoleUpdate />,
   // },
+  // Removed on purpose
+  // {
+  //   name: PAGES.USECASE_PARTICIPATION,
+  //   allowTo: () => userHasPortalRole(ROLES.REQUEST_SSICREDENTIAL),
+  //   element: <UseCaseParticipation />,
+  // },
+  // Removed on purpose
+  // {
+  //   name: PAGES.CERTIFICATE_CREDENTIAL,
+  //   allowTo: () => userHasPortalRole(ROLES.REQUEST_SSICREDENTIAL),
+  //   element: <CertificateCredentials />,
+  // },
+  // Removed on purpose
+  // { name: PAGES.DATA_SPACE, element: <DataSpace /> },
   {
     name: PAGES.ADMIN_CREDENTIAL,
-    allowTo: () => userHasPortalRole(ROLES.DECISION_SSICREDENTIAL),
+    allowTo: () => userHasSsiCredentialRole(ROLES.DECISION_SSICREDENTIAL),
     element: <AdminCredential />,
   },
+  // Removed on purpose
+  // {
+  //   name: PAGES.COMPANY_CERTIFICATE,
+  //   allowTo: () => userHasPortalRole(ROLES.COMPANY_CERTIFICATE_VIEW),
+  //   element: <CompanyCertificates />,
+  // },
   {
     name: PAGES.COMPANY_WALLET,
-    allowTo: () => userHasPortalRole(ROLES.CREDENTIAL_REQUESTS),
+    allowTo: () => userHasSsiCredentialRole(ROLES.CREDENTIAL_REQUESTS),
     element: <CompanyWallet />,
   },
   {
@@ -517,15 +592,16 @@ export const ALL_PAGES: IPage[] = [
       </Route>
     ),
   },
-  // {
-  //   name: PAGES.COMPANY_DATA,
-  //   allowTo: () => userHasPortalRole(ROLES.MY_ORGANIZATION_VIEW),
-  //   element: <CompanyData />,
-  // },
+  {
+    name: PAGES.COMPANY_DATA,
+    allowTo: () => userHasPortalRole(ROLES.MY_ORGANIZATION_VIEW),
+    element: <CompanyData />,
+  },
   {
     name: PAGES.MANAGEMENT_ONBOARDING_SERVICE_PROVIDER,
-    allowTo: () => userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION),
-    companyRole: COMPANY_ROLE.ONBOARDING_SERVICE_PROVIDER,
+    allowTo: () =>
+      userHasPortalRole(ROLES.CONFIGURE_PARTNER_REGISTRATION) &&
+      companyHasRole(COMPANY_ROLES.ONBOARDING_SERVICE_PROVIDER),
     element: <OnboardingServiceProvider />,
   },
   {
@@ -546,7 +622,7 @@ export const mainMenuFullTree = [
     name: MENUS.DATASPACE_PARTICIPATION, // Use case
     children: [
       { name: PAGES.PARTNER_NETWORK },
-      { name: PAGES.USECASE_PARTICIPATION },
+      // { name: PAGES.USECASE_PARTICIPATION }, // Removed on purpose
     ],
   },
   {
@@ -621,7 +697,7 @@ export const userMenuWithChildren = [
       { name: PAGES.INVITE },
       { name: PAGES.APPLICATION_REQUESTS },
       { name: PAGES.ADMIN_CREDENTIAL },
-      { name: PAGES.ADMINBOARD }, // Admin Board -> App Marketplace
+      { name: PAGES.APP_ADMIN_BOARD }, // Admin Board -> App Marketplace
       { name: PAGES.SERVICE_ADMIN_BOARD }, // Admin Board -> Service Marketplace
     ],
   },

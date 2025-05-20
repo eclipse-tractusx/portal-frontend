@@ -4,6 +4,22 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **UseCase Participation**
+
+  - Removed "Use case participation" page under the "Data space participation" [PM2-2936](https://cofinity-x.atlassian.net/browse/PM2-2936)
+
+- **App Release Process**
+
+  - CHERRY-PICK remove typo in csv and adjust csv reading logic [1584](https://github.com/eclipse-tractusx/portal-frontend/pull/1584)
+
+- **App Service Marketplace**
+
+  - Reverted display of technical user profiles to remove bug introduced by usptream [PM2-2868](https://cofinity-x.atlassian.net/browse/PM2-2868)
+
+- **Registration Status**
+
+  - Fix display of onboarding steps overlay to admin users
+
 - **Apps & Service**
 
   - CHERRY-PICK update to new auto setup url[1554](https://github.com/eclipse-tractusx/portal-frontend/pull/1554)
@@ -11,6 +27,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **BP Explorer**
 
   - Fix BPNS issue for LegalAndSiteMainAddress [PM2-2615](https://cofinity-x.atlassian.net/browse/PM2-2615)
+  - Refactor Code with State-Ready API [PM2-2937](https://cofinity-x.atlassian.net/browse/PM2-2937)
 
 - **Fix GTM configuration**
 
@@ -62,6 +79,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Implement new wallet credential deactivation work flow [CS-2966] (https://cofinity-x.atlassian.net/browse/CS-2966)
   - fix the active styling for All toolbar filter button [CS-3157] (https://cofinity-x.atlassian.net/browse/CS-3157)
   - displayed the holder instead of issuer on wallet card (CS-3030) (🐞 CS-3292) [https://cofinity-x.atlassian.net/browse/CS-3030][https://cofinity-x.atlassian.net/browse/CS-3292]
+
+- **Technical User Management**
+  - translations updated for add technical user form (CRQ-40) [https://cofinity-x.atlassian.net/browse/CRQ-40]
+  - Remove the pending column filter from the credential request page [CS-3034] (https://cofinity-x.atlassian.net/browse/CS-3034)
+  - disable delete button for technical user with pending status (CS-3537) [https://cofinity-x.atlassian.net/browse/CS-3537]
 
 ### Changes
 
@@ -140,6 +162,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Make status tag color conditional [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)
   - Masking client secret [PM2-113](https://cofinity-x.atlassian.net/browse/PM2-113)
   - Updated masking logic and added error handling [CS-2498] (https://cofinity-x.atlassian.net/browse/CS-2498)
+  - Handeling notification better to avoid undefined error [CRQ-60] (https://cofinity-x.atlassian.net/browse/CRQ-60)
 
 - **Business Partner Explorer**
 
@@ -201,6 +224,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Main Navigation**
 
   - Fixed onboarding wording issue on German [PM2-1648](https://cofinity-x.atlassian.net/browse/PM2-1648)
+
+- **Technical User Management**
+
+  - Fix the translation for pending status on credential card [CS-3539] (https://cofinity-x.atlassian.net/browse/CS-3539)
 
 - **Technical User Management**
   - Hide create technical user btn & description for unauthorised users [PM2-1866](https://cofinity-x.atlassian.net/browse/PM2-1866)

@@ -141,7 +141,8 @@
       "active": "Aktiv",
       "inactive": "Inaktiv",
       "created": "Erstellt",
-      "wip": "In Arbeit"
+      "wip": "In Arbeit",
+      "inreview": "In Review"
     },
     "headerTitle": "Ihre Services",
     "headerDescription": "Registrieren Sie einen neuen Service und verwalten Sie Ihr aktuelles Service Angebot. In der Übersicht finden Sie sowohl bereits veröffentlichte Services als auch Angebote, die sich noch in der Erstellung befinden oder abgelehnt wurden.",

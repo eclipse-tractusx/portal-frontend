@@ -23,6 +23,19 @@ export default defineConfig({
   e2e: {
     experimentalModifyObstructiveThirdPartyCode: true,
     chromeWebSecurity: false,
+    experimentalRunAllSpecs: true,
+    setupNodeEvents(on, config) {
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.name === 'chrome' || browser.name === 'chromium') {
+          // Force English language in Chrome until HTML headers are updated
+          launchOptions.args.push('--lang=en-US')
+          launchOptions.args.push('--accept-lang=en-US')
+        }
+        return launchOptions
+      })
+    },
+    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/e2e.ts',
   },
   // Input below only env values that need to be the same across all machines, otherwise use cypress.env.json on your local machine
   env: {
@@ -33,7 +46,7 @@ export default defineConfig({
       sharedUrl: 'https://sharedidp.development.cofinity-x.com/auth',
     },
     companyName: 'Cofinity-X GmbH',
-    userEmail: '',
-    userPassword: '',
+    // Add userEmail and userPassword env variables to your local cypress.env.json for tests to run properly.
+    // See Readme for more explanation
   },
 })

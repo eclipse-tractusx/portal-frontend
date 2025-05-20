@@ -19,12 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import {
-  Cards,
-  Button,
-  Typography,
-  type CardItems,
-} from '@catena-x/portal-shared-components'
+import { Cards, Button, Typography } from '@catena-x/portal-shared-components'
 import { useNavigate } from 'react-router-dom'
 import './style.scss'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
@@ -56,9 +51,6 @@ export default function AppStoreSection() {
           expandOnHover={false}
           filledBackground={true}
           imageLoader={fetchImageWithToken}
-          onCardClick={(item: CardItems) => {
-            navigate(`/appdetail/${item.id}`)
-          }}
         />
       )}
       <Button
