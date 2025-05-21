@@ -2,7 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
-## Unreleased
+## Hotfixes
+
+- **Technical User**
+
+  - Hide technical user profiles only visible to providers and fixed copywriting [PM-2943](https://cofinity-x.atlassian.net/browse/PM2-2943)
+
+## IO 1.0
 
 - **UseCase Participation**
 

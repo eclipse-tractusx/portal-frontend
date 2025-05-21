@@ -25,18 +25,12 @@ import { type Control, Controller, type FieldErrors } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import {
-  Checkbox,
-  Radio,
-  Typography,
-  Tooltips,
-} from '@catena-x/portal-shared-components'
+import { Checkbox, Radio, Typography } from '@catena-x/portal-shared-components'
 import {
   type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,
 } from 'features/admin/serviceApiSlice'
 import { groupBy } from 'lodash'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { ErrorType } from 'features/appManagement/types'
 
 export type DefaultFormFieldValuesType = {
@@ -346,109 +340,7 @@ const TechnicalUserAddFormSelect = ({
                   ))}
                 </Box>
               )}
-              <Box
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  alignItems: 'center',
-                }}
-              >
-                <Radio
-                  label={t(
-                    'content.addUser.technicalUser.addOverlay.internalUserRolesOnlyVisible'
-                  )}
-                  checked={selectedRoleType === RoleType.InternalOnlyVisible}
-                  onChange={() => {
-                    setSelectedRoleType(RoleType.InternalOnlyVisible)
-                  }}
-                  name="radio-button"
-                  value={selectedRoleType}
-                  size="medium"
-                />
-                <Tooltips
-                  tooltipPlacement="right-start"
-                  tooltipText={t(
-                    'content.addUser.technicalUser.addOverlay.userDetailsNotVisible'
-                  )}
-                  children={
-                    <VisibilityOffIcon
-                      sx={{
-                        ml: '-5px !important',
-                        fontSize: '22px',
-                        cursor: 'pointer',
-                        color: '#adadad',
-                        ':hover': {
-                          color: '#000',
-                        },
-                      }}
-                    />
-                  }
-                />
-              </Box>
-              <Typography
-                variant="body3"
-                sx={{
-                  ml: '30px',
-                  mb: '10px',
-                }}
-              >
-                {t(
-                  'content.addUser.technicalUser.addOverlay.internalUserRolesDescriptionOnlyVisible'
-                )}
-              </Typography>
-              {selectedRoleType && selectedRoleType !== RoleType.NONE && (
-                <Box
-                  sx={{
-                    ml: '30px',
-                  }}
-                >
-                  {internalRolesVisible?.map((role: ServiceAccountRole) => (
-                    <Box key={role.roleId}>
-                      <Box sx={boxStyle} className="roles">
-                        <Checkbox
-                          label={role.roleName}
-                          key={role.roleId}
-                          checked={selectedRoles.indexOf(role.roleId) !== -1}
-                          size="medium"
-                          value={selectedRoles}
-                          disabled={
-                            selectedRoleType === RoleType.External ||
-                            selectedRoleType === RoleType.Internal
-                          }
-                          onChange={(e) => {
-                            trigger(name)
-                            onChange(
-                              selectCheckboxOnChange(
-                                role.roleId,
-                                e.target.checked
-                              )
-                            )
-                            selectRoles(
-                              role.roleId,
-                              e.target.checked,
-                              'checkbox',
-                              'internalRolesVisible'
-                            )
-                          }}
-                        />
-                      </Box>
-                      <Typography
-                        sx={{
-                          color:
-                            selectedRoleType === RoleType.External ||
-                            selectedRoleType === RoleType.Internal
-                              ? 'rgba(0, 0, 0, 0.38)'
-                              : 'initial',
-                          ml: '30px',
-                        }}
-                        variant="body3"
-                      >
-                        {role.roleDescription}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Box>
-              )}
+              {/* Technical Users Only Visible section is hidden until the feature is clarified with upstream */}
             </Box>
           </Box>
         )}
