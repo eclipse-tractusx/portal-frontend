@@ -94,6 +94,7 @@ export default function ServiceMarketplace() {
     sortingType,
   })
   const [fetchDocument] = useFetchDocumentMutation()
+  const [fullServicesList, setFullServicesList] = useState<ServiceRequest[]>([])
 
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
@@ -129,14 +130,13 @@ export default function ServiceMarketplace() {
         })
       )
 
-      setCardServices((prevServices: ServiceRequest[]) => {
-        const newServices =
-          data?.meta.page === 0
-            ? serviceWithImages
-            : [...prevServices, ...serviceWithImages]
+      const newServices =
+        data?.meta.page === 0
+          ? serviceWithImages
+          : [...fullServicesList, ...serviceWithImages]
 
-        return newServices
-      })
+      setCardServices(newServices)
+      setFullServicesList(newServices)
     }
   }, [services, data?.meta.page, getImage])
 
@@ -190,19 +190,20 @@ export default function ServiceMarketplace() {
   const debouncedFilter = useMemo(
     () =>
       debounce((expr: string) => {
-        services &&
-          setCardServices(
-            expr
-              ? services?.filter(
-                  (card: ServiceRequest) =>
-                    card.title.toLowerCase().includes(expr.toLowerCase()) ||
-                    card.provider.toLowerCase().includes(expr.toLowerCase()) ||
-                    card?.description.toLowerCase().includes(expr.toLowerCase())
-                )
-              : services
-          )
+        if (!expr) {
+          setCardServices(fullServicesList)
+          return
+        }
+
+        const filtered = fullServicesList.filter(
+          (card: ServiceRequest) =>
+            card.title.toLowerCase().includes(expr.toLowerCase()) ||
+            card.provider.toLowerCase().includes(expr.toLowerCase()) ||
+            card?.description?.toLowerCase().includes(expr.toLowerCase())
+        )
+        setCardServices(filtered)
       }, 300),
-    [services]
+    [fullServicesList]
   )
 
   const doFilter = useCallback(
