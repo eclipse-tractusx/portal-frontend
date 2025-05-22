@@ -2,16 +2,23 @@
   "roles": [
     "Registration External",
     "Semantic Model Management",
-    "BPDM Pool Consumer",
-    "BPDM Pool Admin",
     "Dataspace Discovery",
     "Offer Management",
-    "BPDM Sharing Output Consumer",
+    "BPDM Pool Admin",
     "BPDM Sharing Input Consumer",
+    "BPDM Pool Sharing Consumer",
     "CX Membership Info",
+    "BPDM Sharing Admin",
     "Registration Internal",
     "DIM Middle Layer",
-    "BDRS Management"
+    "BDRS Management",
+    "Orchestrator",
+    "BPDM Orchestrator Processor Clean",
+    "BPDM Orchestrator Processor CleanAndSync",
+    "BPDM Orchestrator Task Creator",
+    "BPDM Orchestrator Admin",
+    "BPDM Orchestrator Processor PoolSync",
+    "BPDM Value Added Services"
   ],
   "description": "This is test description for technical user - {randomString}"
 }
