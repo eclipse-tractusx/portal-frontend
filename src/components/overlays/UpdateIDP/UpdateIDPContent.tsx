@@ -43,7 +43,7 @@ const isWellknownMetadata = (expr: string) =>
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
   form.displayName = idp.displayName ?? ''
-  form.metadataUrl = ''
+  form.metadataUrl = idp.oidc?.metadataUrl ?? ''
   form.clientId = idp.oidc?.clientId ?? ''
   form.secret = ''
   form.clientAuthMethod =
