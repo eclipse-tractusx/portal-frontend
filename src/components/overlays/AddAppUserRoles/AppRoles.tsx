@@ -32,9 +32,9 @@ export const AppRoles = () => {
   const dispatch = useDispatch()
   const { appId } = useParams()
   const { data } = useFetchAppRolesQuery(appId ?? '')
+  const roles = useSelector((state: RootState) => state.admin.user.rolesToAdd)
 
   const selectRole = (roleName: string, select: boolean) => {
-    const roles = useSelector((state: RootState) => state.admin.user.rolesToAdd)
     const isSelected = roles.includes(roleName)
     if (!isSelected && select) {
       dispatch(setRolesToAdd([...roles, roleName]))
