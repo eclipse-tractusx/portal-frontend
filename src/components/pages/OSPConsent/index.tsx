@@ -27,7 +27,6 @@ import {
   useUpdateAgreementConsentsMutation,
   CONSENT_STATUS,
   ApplicationStatus,
-  ApplicationType,
   type SubmitData,
 } from 'features/registration/registrationApiSlice'
 import './style.scss'
@@ -59,8 +58,8 @@ export const OSPConsent = () => {
   const applicationId = applicationData?.[0].applicationId
 
   if (
-    applicationData?.[0].applicationStatus === ApplicationStatus.SUBMITTED &&
-    applicationData?.[0].applicationType === ApplicationType.INTERNAL
+    applicationData?.[0].applicationStatus === ApplicationStatus.SUBMITTED ||
+    applicationData?.[0].applicationStatus === ApplicationStatus.CONFIRMED
   ) {
     navigate('/')
   }
