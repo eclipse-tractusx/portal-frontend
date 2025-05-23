@@ -43,7 +43,7 @@ const isWellknownMetadata = (expr: string) =>
 const idpToForm = (idp: IdentityProvider) => {
   const form: IHashMap<string> = {}
   form.displayName = idp.displayName ?? ''
-  form.metadataUrl = ''
+  form.metadataUrl = idp.oidc?.metadataUrl ?? ''
   form.clientId = idp.oidc?.clientId ?? ''
   form.secret = ''
   form.clientAuthMethod =
@@ -101,6 +101,7 @@ const UpdateIDPForm = ({
           hint={t('field.metadata.hint')}
           debounceTime={0}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <div style={{ margin: '12px 0' }}>
@@ -111,6 +112,7 @@ const UpdateIDPForm = ({
           hint={t('field.clientId.hint')}
           validate={isIDPClientID}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <div style={{ margin: '12px 0 30px' }}>
@@ -120,6 +122,7 @@ const UpdateIDPForm = ({
           hint={t('field.clientSecret.hint')}
           validate={isIDPClientSecret}
           onValid={onChange}
+          onInvalid={onChange}
         />
       </div>
       <Typography variant="label2">{t('edit.metaDataHeading')}</Typography>
