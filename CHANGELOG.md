@@ -23,6 +23,8 @@
   - fixed app roles display and text to accurate description in user list table in app user management [#1546](https://github.com/eclipse-tractusx/portal-frontend/pull/1546)
 - **App/Service Release Process**:
   - added missing translation for consent and terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
+- **Connector Registration**:
+  - Fetch updated technical user list for new connector [1612](https://github.com/eclipse-tractusx/portal-frontend/pull/1612)
 
 ### Technical Support
 
