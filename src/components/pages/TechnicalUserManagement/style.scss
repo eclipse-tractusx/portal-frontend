@@ -18,6 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+// Table to span full available width
+main {
+  section {
+    max-width: 100%;
+    margin: 0 50px;
+  }
+}
+
 // Content technical user
 .content-technical-user {
   display: flex;
