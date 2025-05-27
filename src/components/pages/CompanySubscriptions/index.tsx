@@ -200,12 +200,13 @@ export default function CompanySubscriptions() {
       <PageLoadingTable<SubscribedActiveApps, FetchHookArgsType>
         sx={{
           '.MuiDataGrid-cell': {
-            alignContent: 'center !important',
+            display: 'flex',
+            alignItems: 'center',
           },
         }}
         autoFocus={false}
         searchExpr={searchExpr}
-        alignCell="start"
+        alignCell="flex-start"
         defaultFilter={group}
         filterViews={filterView}
         toolbarVariant={'searchAndFilter'}
