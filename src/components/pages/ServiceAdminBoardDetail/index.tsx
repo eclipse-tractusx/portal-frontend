@@ -254,7 +254,7 @@ export default function ServiceAdminBoardDetail() {
 
           {serviceData.technicalUserProfile &&
             getTechUserData(
-              Object.values(serviceData?.technicalUserProfile)[0]
+              Object.values(serviceData.technicalUserProfile).flat() as string[]
             )}
 
           <div className="divider-height" />
