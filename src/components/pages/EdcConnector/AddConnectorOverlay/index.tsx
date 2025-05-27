@@ -101,7 +101,8 @@ const AddConnectorOverlay = ({
   const { data } = useFetchOfferSubscriptionsQuery()
   const { data: ownCompanyDetails } = useFetchOwnCompanyDetailsQuery('')
   const [page, setPage] = useState<number>(0)
-  const { data: serviceAccounts } = useFetchServiceAccountUsersQuery(page)
+  const { data: serviceAccounts, refetch } =
+    useFetchServiceAccountUsersQuery(page)
   const [newTechnicalUSer, setNewTechnicalUSer] = useState(false)
   const [allAccounts, setAllAccounts] = useState<ServiceAccountListEntry[]>([])
 
@@ -119,6 +120,17 @@ const AddConnectorOverlay = ({
   })
 
   const [selected, setSelected] = useState<ConnectorType>({})
+
+  useEffect(() => {
+    if (openDialog) {
+      setPage(0)
+      setAllAccounts([])
+    }
+  }, [openDialog, connectorStep])
+
+  useEffect(() => {
+    refetch()
+  }, [page, refetch])
 
   useEffect(() => {
     if (openDialog || connectorStep === 0) {
