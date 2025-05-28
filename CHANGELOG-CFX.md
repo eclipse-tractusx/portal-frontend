@@ -10,6 +10,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## IO 1.0
 
+- **PostHog analytics**
+
+  -Remove Cofinity-X users from PostHog analytics [PM2-2780](https://cofinity-x.atlassian.net/browse/PM2-2780)
+
 - **UseCase Participation**
 
   - Removed "Use case participation" page under the "Data space participation" [PM2-2936](https://cofinity-x.atlassian.net/browse/PM2-2936)

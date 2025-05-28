@@ -38,6 +38,7 @@ import { cofinityTheme } from 'theme.override'
 import { ThemeProvider } from '@mui/material'
 import { CompanyProvider } from 'components/CompanyProvider'
 import ClickjackingProtection from './utils/ClickjackingProtection'
+import { identifyCofinityUser } from './utils/posthog'
 
 I18nService.init()
 AccessService.init()
@@ -45,6 +46,16 @@ AccessService.init()
 UserService.initialize((user) => {
   CompanyService.init(
     () => {
+      try {
+        if (UserService.getEmail()) {
+          identifyCofinityUser(UserService.getEmail())
+        }
+      } catch (error) {
+        console.error(
+          'Error during Cofinity-X internal user identification:',
+          error
+        )
+      }
       createRoot(document.getElementById('app')!).render(
         <StrictMode>
           <ClickjackingProtection />
