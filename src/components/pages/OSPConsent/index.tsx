@@ -28,6 +28,7 @@ import {
   CONSENT_STATUS,
   ApplicationStatus,
   type SubmitData,
+  ApplicationType,
 } from 'features/registration/registrationApiSlice'
 import './style.scss'
 import { SuccessRegistration } from './SuccessRegistration'
@@ -58,6 +59,7 @@ export const OSPConsent = () => {
   const applicationId = applicationData?.[0].applicationId
 
   if (
+    applicationData?.[0].applicationType === ApplicationType.INTERNAL ||
     applicationData?.[0].applicationStatus === ApplicationStatus.SUBMITTED ||
     applicationData?.[0].applicationStatus === ApplicationStatus.CONFIRMED
   ) {
