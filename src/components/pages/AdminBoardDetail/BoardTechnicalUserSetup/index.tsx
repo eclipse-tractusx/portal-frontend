@@ -57,7 +57,9 @@ export default function BoardTechnicalUserSetup({
         {t('content.adminboardDetail.technicalUserSetup.message')}
       </Typography>
       {item.technicalUserProfile &&
-        getTechnicalUserData(Object.values(item?.technicalUserProfile)[0])}
+        getTechnicalUserData(
+          Object.values(item?.technicalUserProfile).flat() as string[]
+        )}
     </>
   )
 }
