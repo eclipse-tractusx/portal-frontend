@@ -14,7 +14,7 @@ export const getFontFamily = (name: string): string =>
   [
     `"${name}"`,
     '-apple-system',
-    '"Karbon"',
+    '"Switzer"',
     'Helvetica Neue',
     'Arial',
     'sans-serif',
@@ -22,10 +22,10 @@ export const getFontFamily = (name: string): string =>
   ].join(',')
 
 export enum FONT_PALETTE {
-  PRIMARY = '"Karbon", Arial, Sans-serif, Serif',
-  SECONDARY = '"Karbon", Arial, Sans-serif, Serif',
-  PRIMARY_SEMI_BOLD = '"Karbon", Arial, Sans-serif, Serif',
-  PRIMARY_LIGHT = '"Karbon", Arial, Sans-serif, Serif',
+  PRIMARY = '"Switzer", Arial, Sans-serif, Serif',
+  SECONDARY = '"Switzer", Arial, Sans-serif, Serif',
+  PRIMARY_SEMI_BOLD = '"Switzer", Arial, Sans-serif, Serif',
+  PRIMARY_LIGHT = '"Switzer", Arial, Sans-serif, Serif',
 }
 export enum COLOR_PALETTE {
   WHITE = '#ffffff',
@@ -283,65 +283,66 @@ export const typographyDefinitions = {
   htmlFontSize: 16,
   allVariants: {
     color: TEXT_PALETTE.PRIMARY,
+    overflow: 'visible !important',
   },
   h1: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 58,
     lineHeight: '110%',
     letterSpacing: 0,
   },
   h2: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 40,
     lineHeight: '110%',
     letterSpacing: 0,
   },
   h3: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600, // Conflict
     fontSize: 36,
     lineHeight: '110%',
     letterSpacing: 0,
   },
   h4: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600, // Conflict
     fontSize: 32,
     lineHeight: '110%',
     letterSpacing: 0,
   },
   h5: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 24,
     lineHeight: '110%',
     letterSpacing: 0,
   },
   h6: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 16,
     lineHeight: '110%',
     letterSpacing: 0,
   },
   body1: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 400,
     fontSize: 20,
     lineHeight: '140%',
     letterSpacing: 0,
   },
   body2: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 400,
     fontSize: 18,
     lineHeight: '140%',
     letterSpacing: 0,
   },
   body3: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 400,
     fontSize: 16,
     lineHeight: '140%',
@@ -349,35 +350,35 @@ export const typographyDefinitions = {
   },
 
   label1: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 20,
     lineHeight: '100%',
     letterSpacing: 0,
   },
   label2: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 16,
     lineHeight: '100%',
     letterSpacing: 0,
   },
   label3: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 600,
     fontSize: 14,
     lineHeight: '100%',
     letterSpacing: 0,
   },
   label4: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 500,
     fontSize: 14, // changed from 12 to 14 to match styles
     lineHeight: '100%',
     letterSpacing: 0,
   },
   label5: {
-    fontFamily: getFontFamily('Karbon'),
+    fontFamily: getFontFamily('Switzer'),
     fontWeight: 500,
     fontSize: 12,
     lineHeight: '100%',

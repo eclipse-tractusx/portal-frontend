@@ -63,7 +63,7 @@ export default function Main() {
       link.id = cssId
       link.rel = 'stylesheet'
       link.type = 'text/css'
-      link.href = `${getAssetBase()}/fonts-cfx/karbon/stylesheet.css`
+      link.href = `${getAssetBase()}/fonts-cfx/switzer/stylesheet.css`
       link.media = 'all'
       head.appendChild(link)
     }

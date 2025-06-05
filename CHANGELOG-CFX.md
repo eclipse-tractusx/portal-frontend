@@ -34,6 +34,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - CHERRY-PICK update to new auto setup url[1554](https://github.com/eclipse-tractusx/portal-frontend/pull/1554)
 
+- **Switch to Switzer Font**
+
+  - Switch to Switzer font [PM2-2525](https://cofinity-x.atlassian.net/browse/PM2-2525)
+
 - **BP Explorer**
 
   - Fix BPNS issue for LegalAndSiteMainAddress [PM2-2615](https://cofinity-x.atlassian.net/browse/PM2-2615)

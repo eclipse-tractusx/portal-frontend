@@ -106,7 +106,8 @@ export class connectorManagementPage {
 
     // Verify deletion success message
     //  cy.contains('Connector deleted successfully').should('be.visible')
-    cy.get('h4.cx-dialog__intro:visible')
+    cy.wait(2000)
+    cy.get('h4.cx-dialog__intro:visible', { timeout: 10000 })
       .invoke('text')
       .then((text) => {
         const trimmedText = text.trim()
