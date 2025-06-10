@@ -55,11 +55,13 @@ enum FilterType {
   REQUEST = 'request',
   ACTIVE = 'active',
   SHOWALL = 'showAll',
+  INACTIVE = 'inactive',
 }
 
 enum StatusIdType {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 enum SortType {
@@ -260,6 +262,7 @@ interface SubscriptionType {
   tabLabels: {
     request: string
     active: string
+    inactive: string
     showAll: string
   }
   doNotShowAutoSetup?: boolean
@@ -348,6 +351,8 @@ export default function Subscription({
       status = StatusIdType.PENDING
     } else if (e.currentTarget.value === FilterType.ACTIVE) {
       status = StatusIdType.ACTIVE
+    } else if (e.currentTarget.value === FilterType.INACTIVE) {
+      status = StatusIdType.INACTIVE
     }
     setState({
       type: ActionKind.SET_SORTING_TYPE,
