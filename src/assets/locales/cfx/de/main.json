@@ -1633,23 +1633,26 @@
       "viewDetails": "Display more details",
       "activateBtn": "Aktivieren",
       "configureBtn": "Konfigurieren",
+      "declineBtn": "Ablehnen",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Aktivierung erfolgreich",
       "configuration": "Konfiguration erfolgreich",
-      "pending": "Das Abonnement steht noch aus",
-      "active": "Das Abonnement ist aktiv",
-      "inactive": "Das Abonnement ist inaktiv",
-      "process": "Das Abonnement ist in Bearbeitung",
+      "pending": "Abo ausstehend",
+      "active": "Abo aktiv",
+      "inactive": "Abo abbestellt",
+      "process": "Abo in Bearbeitung",
       "loadMore": "Mehr laden",
       "tabs": {
         "request": "Anfragen",
         "active": "Aktiv",
+        "inactive": "Abbestellt",
         "showAll": "Alle"
       },
       "sortOptions": {
-        "customer": "By Customer A-Z",
-        "offer": "By Offer"
+        "customer": "Kunde A–Z",
+        "offer": "Angebot A-Z",
+        "apps": "Apps A–Z"
       },
       "document": {
         "heading": "Relevant Documents",
@@ -1688,6 +1691,14 @@
         "technicalClientId": "Technischer User Kunden ID",
         "technicalSecret": "Technischer User Secret",
         "technicalPermission": "Technischer User Genehmigung"
+      },
+      "decline": {
+        "heading": "App Abonnement ablehnen?",
+        "intro": "Für {{appName}}",
+        "description": "{{companyName}} erhält eine E-Mail-Benachrichtigung mit der Option, die App erneut zu abonnieren.",
+        "success": "App Abonnement abgelehnt",
+        "cancelBtn": "Abbrechen",
+        "declineBtn": "Ablehnen"
       },
       "detailOverlay": {
         "title": "Anbieter Ansicht",
@@ -2309,7 +2320,6 @@
       "statusInfo": {
         "title": "Standort Informationen Status"
       },
-
       "status": {
         "success": "Bestätigt",
         "processing": "Bearbeitung",

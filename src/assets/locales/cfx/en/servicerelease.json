@@ -184,11 +184,13 @@
     "tabs": {
       "request": "Requests",
       "active": "Active",
+      "inactive": "Unsubscribed",
       "showAll": "All"
     },
     "sortOptions": {
-      "customer": "By Customer A-Z",
-      "offer": "By Offer"
+      "customer": "Customer A–Z",
+      "offer": "Offer",
+      "apps": "Apps A–Z"
     },
     "document": {
       "heading": "Relevant Documents",

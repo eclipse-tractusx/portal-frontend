@@ -43,10 +43,12 @@ import { useState, useReducer } from 'react'
 import { SubscriptionStatus } from 'features/apps/types'
 import ActivateServiceSubscription from 'components/overlays/ActivateServiceSubscription'
 import { SubscriptionTypes } from '.'
-import { getAssetBase } from 'services/EnvironmentService'
-import AddTaskIcon from '@mui/icons-material/AddTask'
+import AddTaskIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 import HistoryIcon from '@mui/icons-material/History'
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
+import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithChangesOutlined'
 import { error, success } from 'services/NotifyService'
+import DeclineSubscriptionOverlay from 'components/pages/AppSubscription/DeclineSubscriptionOverlay'
 
 type ViewDetail = {
   appId: string
@@ -150,6 +152,8 @@ export default function SubscriptionElements({
   const [viewDetails, setViewDetails] = useState<ViewDetail>(ViewDetailData)
   const [subscriptionDetail, setSubscriptionDetail] =
     useState<SubscriptionDataType>(SubscriptionInitialData)
+  const [subscriptionDecline, setSubscriptionDecline] =
+    useState<SubscriptionDataType>(SubscriptionInitialData)
 
   const [activateSubscription] = useActivateSubscriptionMutation()
 
@@ -176,7 +180,6 @@ export default function SubscriptionElements({
       />
     )
   }
-
   const renderStatus = (
     subscriptionData: SubscriptionContent,
     subscription: CompanySubscriptionData
@@ -200,7 +203,7 @@ export default function SubscriptionElements({
           tooltipPlacement="top-start"
           tooltipText={t('content.appSubscription.inactive')}
         >
-          <HistoryIcon className="statusIcon inactive" />
+          <CancelOutlinedIcon className="statusIcon inactive" />
         </Tooltips>
       )
     } else if (
@@ -212,6 +215,23 @@ export default function SubscriptionElements({
         return (
           <>
             <Chip
+              className="cx-chip-decline"
+              color="primary"
+              label={t('content.appSubscription.declineBtn')}
+              type="plain"
+              variant="filled"
+              onClick={() => {
+                setSubscriptionDecline({
+                  appId: subscriptionData.offerId,
+                  subscriptionId: subscription.subscriptionId,
+                  title: subscriptionData.offerName,
+                  companyName: subscription.companyName,
+                  bpnNumber: subscription.bpnNumber,
+                })
+              }}
+            />
+            <Chip
+              className="cx-chip-configure"
               color="primary"
               label={t('content.appSubscription.configureBtn')}
               type="plain"
@@ -275,11 +295,7 @@ export default function SubscriptionElements({
             tooltipPlacement="top-start"
             tooltipText={t('content.appSubscription.process')}
           >
-            <img
-              src={`${getAssetBase()}/images/icons/process.svg`}
-              className="statusIcon"
-              alt="subscription process"
-            />
+            <PublishedWithChangesOutlinedIcon className="statusIcon process" />
           </Tooltips>
         )
       }
@@ -313,6 +329,10 @@ export default function SubscriptionElements({
                     <Typography variant="body3" className="secondSection">
                       {subscriptionData.offerName}
                     </Typography>
+
+                    <div className="forthSection">
+                      {renderStatus(subscriptionData, subscription)}
+                    </div>
                     <div
                       className="viewDetails"
                       onClick={() => {
@@ -334,9 +354,6 @@ export default function SubscriptionElements({
                           <ArrowForwardIcon />
                         </Tooltips>
                       </IconButton>
-                    </div>
-                    <div className="forthSection">
-                      {renderStatus(subscriptionData, subscription)}
                     </div>
                   </li>
                 )
@@ -392,6 +409,21 @@ export default function SubscriptionElements({
             setSubscriptionDetail(SubscriptionInitialData)
             refetch()
           }}
+        />
+      )}
+      {subscriptionDecline.appId && (
+        <DeclineSubscriptionOverlay
+          openDialog={subscriptionDecline.appId ? true : false}
+          appId={subscriptionDecline.appId}
+          subscriptionId={subscriptionDecline.subscriptionId}
+          title={subscriptionDecline.companyName}
+          handleOverlayClose={() => {
+            setSubscriptionDecline(SubscriptionInitialData)
+            refetch()
+          }}
+          refetch={refetch}
+          appName={subscriptionDecline.title}
+          subscriptionType={type ?? SubscriptionTypes.APP_SUBSCRIPTION}
         />
       )}
     </div>

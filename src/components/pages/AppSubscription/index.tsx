@@ -44,12 +44,13 @@ export default function AppSubscription() {
       searchPlaceHoder={t('content.appSubscription.search')}
       sortOptionLabels={{
         customer: t('content.appSubscription.sortOptions.customer'),
-        offer: t('content.appSubscription.sortOptions.offer'),
+        offer: t('content.appSubscription.sortOptions.apps'),
       }}
       tabLabels={{
         request: t('content.appSubscription.tabs.request'),
         active: t('content.appSubscription.tabs.active'),
         showAll: t('content.appSubscription.tabs.showAll'),
+        inactive: t('content.appSubscription.tabs.inactive'),
       }}
       loadMoreButtonText={t('content.appSubscription.loadMore')}
     />

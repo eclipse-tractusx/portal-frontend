@@ -58,11 +58,13 @@ enum FilterType {
   REQUEST = 'request',
   ACTIVE = 'active',
   SHOWALL = 'showAll',
+  INACTIVE = 'inactive',
 }
 
 enum StatusIdType {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 enum SortType {
@@ -263,6 +265,7 @@ interface SubscriptionType {
   tabLabels: {
     request: string
     active: string
+    inactive: string
     showAll: string
   }
   doNotShowAutoSetup?: boolean
@@ -352,6 +355,8 @@ export default function Subscription({
       status = StatusIdType.PENDING
     } else if (e.currentTarget.value === FilterType.ACTIVE) {
       status = StatusIdType.ACTIVE
+    } else if (e.currentTarget.value === FilterType.INACTIVE) {
+      status = StatusIdType.INACTIVE
     }
     setState({
       type: ActionKind.SET_SORTING_TYPE,
@@ -444,6 +449,11 @@ export default function Subscription({
     {
       buttonText: tabLabels.active,
       buttonValue: FilterType.ACTIVE,
+      onButtonClick: setView,
+    },
+    {
+      buttonText: tabLabels.inactive,
+      buttonValue: FilterType.INACTIVE,
       onButtonClick: setView,
     },
   ]
@@ -553,7 +563,7 @@ export default function Subscription({
                   }}
                   selected={showModal}
                 />
-                <div className="sortSection">
+                <div className="sortSection cx-sort-section-box">
                   <SortOption
                     show={showModal}
                     selectedOption={sortOption}
