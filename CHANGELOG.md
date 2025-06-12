@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.5.0-RC1
+## 2.5.0
 
 ### Feature
 
@@ -17,12 +17,26 @@
 
 - **Company Subscription**:
   - fixed back button on details page returns on wrong tab [#1532](https://github.com/eclipse-tractusx/portal-frontend/pull/1532)
+  - center aligned row cells with multi-browser friendly logic [1611](https://github.com/eclipse-tractusx/portal-frontend/pull/1611)
 - **Notifications**:
   - fixed notification to display as text and technical user creation title [#1535](https://github.com/eclipse-tractusx/portal-frontend/pull/1535)
 - **User Management**:
   - fixed app roles display and text to accurate description in user list table in app user management [#1546](https://github.com/eclipse-tractusx/portal-frontend/pull/1546)
 - **App/Service Release Process**:
   - added missing translation for consent and terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
+  - fixed user roles CSV template and read logic [#1584](https://github.com/eclipse-tractusx/portal-frontend/pull/1584)
+- **App & Service Admin Detail**
+  - added missing user technical profiles on admin detail board [1615](https://github.com/eclipse-tractusx/portal-frontend/pull/1615)
+- **User Management | App Access Management**:
+  - updated logic for persist user selection on navigating back from role selection [#1603](https://github.com/eclipse-tractusx/portal-frontend/pull/1603)
+- **Connector Registration**:
+  - updated technical user list for new connector fetch request [1612](https://github.com/eclipse-tractusx/portal-frontend/pull/1612)
+- **Technical User**:
+  - updated CSS for technical user table to span to full available width [1602](https://github.com/eclipse-tractusx/portal-frontend/pull/1602)
+- **IDP Management**
+  - fixed disabled save metadata button [1604](https://github.com/eclipse-tractusx/portal-frontend/pull/1604)
+- **Service Marketplace**
+  - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
 
 ### Technical Support
 
@@ -39,7 +53,12 @@
 
 ### Known Knowns
 
-- please refer to the list of [open bugs] (https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- Please refer to the [list of open bugs](https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- Auto-setup feature for App Subscriptions: validation by ValidatingInput component is triggered on opening pop up. [#1589](https://github.com/eclipse-tractusx/portal-frontend/issues/1589)
+- **Note for Gaia-X Clearing House Tagus upgrade**
+  - If a company was onboarded with ELBE clearing house, the legal person self description document is not accepted when creating a connector with newer versions of the clearing house. Portal operators are advised to create new legal person and connector self description documents for all previously onboarded companies. The portal backend will activate connector without updated legal person self description document to allow for a transition phase. The connector will not have a document until reissuance for both company and connector is triggered by operators.
+- Feature Support and Development for auto-setup Process Worker: there is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
+- During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
 
 ## 2.4.0
 

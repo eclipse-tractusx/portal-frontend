@@ -22,10 +22,10 @@ import {
   Button,
   StaticTable,
   Typography,
+  Image,
 } from '@catena-x/portal-shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../AdminBoardDetail/style.scss'
-import { getAssetBase } from 'services/EnvironmentService'
 import {
   type ServiceDetailsType,
   useFetchBoardServiceDetailsQuery,
@@ -42,6 +42,8 @@ import { Grid, Box, Divider } from '@mui/material'
 import { download } from 'utils/downloadUtils'
 import { DocumentTypeText } from 'features/apps/types'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
+import { fetchImageWithToken } from 'services/ImageService'
+import { getApiBase } from 'services/EnvironmentService'
 
 enum TableData {
   SUCCESS = 'SUCCESS',
@@ -132,9 +134,10 @@ export default function ServiceAdminBoardDetail() {
         <Box className="service-content">
           <div className="service-board-header">
             <div className="lead-image">
-              <img
-                src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
+              <Image
+                src={`${getApiBase()}/api/services/${appId}/serviceDocuments/${serviceData?.documents?.SERVICE_LEADIMAGE?.[0].documentId}`}
                 alt={serviceData.title}
+                loader={fetchImageWithToken}
               />
             </div>
             <Box className="service-app-content">
@@ -251,7 +254,7 @@ export default function ServiceAdminBoardDetail() {
 
           {serviceData.technicalUserProfile &&
             getTechUserData(
-              Object.values(serviceData?.technicalUserProfile)[0]
+              Object.values(serviceData.technicalUserProfile).flat() as string[]
             )}
 
           <div className="divider-height" />

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useDispatch } from 'react-redux'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography, Image } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
@@ -27,10 +27,11 @@ import { show } from 'features/control/overlay'
 import { OVERLAYS, ROLES } from 'types/Constants'
 import './style.scss'
 import { setSuccessType } from 'features/serviceMarketplace/slice'
-import { getAssetBase } from 'services/EnvironmentService'
 import { Box } from '@mui/material'
 import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import { userHasPortalRole } from 'services/AccessService'
+import { getApiBase } from 'services/EnvironmentService'
+import { fetchImageWithToken } from 'services/ImageService'
 
 export default function MarketplaceHeader({
   item,
@@ -88,9 +89,10 @@ export default function MarketplaceHeader({
   return (
     <div className="service-marketplace-header">
       <div className="lead-image">
-        <img
-          src={`${getAssetBase()}/images/content/ServiceMarketplace.png`}
+        <Image
+          src={`${getApiBase()}/api/services/${serviceId}/serviceDocuments/${item?.leadPictureId}`}
           alt={item.title}
+          loader={fetchImageWithToken}
         />
       </div>
       <Box className="marketplace-app-content">
