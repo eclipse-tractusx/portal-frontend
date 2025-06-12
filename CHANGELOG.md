@@ -25,16 +25,16 @@
 - **App/Service Release Process**:
   - added missing translation for consent and terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
   - fixed user roles CSV template and read logic [#1584](https://github.com/eclipse-tractusx/portal-frontend/pull/1584)
-- **App & Service admin detail board**
+- **App & Service Admin Detail**
   - added missing user technical profiles on admin detail board [1615](https://github.com/eclipse-tractusx/portal-frontend/pull/1615)
 - **User Management | App Access Management**:
   - updated logic for persist user selection on navigating back from role selection [#1603](https://github.com/eclipse-tractusx/portal-frontend/pull/1603)
 - **Connector Registration**:
   - updated technical user list for new connector fetch request [1612](https://github.com/eclipse-tractusx/portal-frontend/pull/1612)
 - **Technical User**:
-  - updated CSS for Technical User table to span to full available width [1602](https://github.com/eclipse-tractusx/portal-frontend/pull/1602)
-- **IDP management**
-  - fixed disabled Save Metadata button [1604](https://github.com/eclipse-tractusx/portal-frontend/pull/1604)
+  - updated CSS for technical user table to span to full available width [1602](https://github.com/eclipse-tractusx/portal-frontend/pull/1602)
+- **IDP Management**
+  - fixed disabled save metadata button [1604](https://github.com/eclipse-tractusx/portal-frontend/pull/1604)
 - **Service Marketplace**
   - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
 
