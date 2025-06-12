@@ -58,7 +58,7 @@
 - During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
 - **Note for Gaia-X Clearing House Tagus upgrade**
   - If a company was onboarded with ELBE clearing house, the legal person self description document is not accepted when creating a connector with newer versions of the clearing house. Portal operators are advised to create new legal person and connector self description documents for all previously onboarded companies. The portal backend will activate connector without updated legal person self description document to allow for a transition phase. The connector will not have a document until reissuance for both company and connector is triggered by operators.
-- validation by ValidatingInput component is triggered on opening pop up [#1589](https://github.com/eclipse-tractusx/portal-frontend/issues/1589)
+- Auto-setup feature for App Subscriptions: validation by ValidatingInput component is triggered on opening pop up. [#1589](https://github.com/eclipse-tractusx/portal-frontend/issues/1589)
 - updating connector URL for connector with missing SD Document is not working. [#1346](https://github.com/eclipse-tractusx/portal-backend/issues/1346)
 
 ## 2.4.0
