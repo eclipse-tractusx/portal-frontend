@@ -54,11 +54,11 @@
 ### Known Knowns
 
 - Please refer to the [list of open bugs](https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
-- Feature Support and Development for auto-setup Process Worker: there is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
-- During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
+- Auto-setup feature for App Subscriptions: validation by ValidatingInput component is triggered on opening pop up. [#1589](https://github.com/eclipse-tractusx/portal-frontend/issues/1589)
 - **Note for Gaia-X Clearing House Tagus upgrade**
   - If a company was onboarded with ELBE clearing house, the legal person self description document is not accepted when creating a connector with newer versions of the clearing house. Portal operators are advised to create new legal person and connector self description documents for all previously onboarded companies. The portal backend will activate connector without updated legal person self description document to allow for a transition phase. The connector will not have a document until reissuance for both company and connector is triggered by operators.
-- Auto-setup feature for App Subscriptions: validation by ValidatingInput component is triggered on opening pop up. [#1589](https://github.com/eclipse-tractusx/portal-frontend/issues/1589)
+- Feature Support and Development for auto-setup Process Worker: there is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
+- During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
 
 ## 2.4.0
 
