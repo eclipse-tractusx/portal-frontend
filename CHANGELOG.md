@@ -17,24 +17,24 @@
 
 - **Company Subscription**:
   - fixed back button on details page returns on wrong tab [#1532](https://github.com/eclipse-tractusx/portal-frontend/pull/1532)
-  - Center align row cells with multi-browser friendly logic [1611](https://github.com/eclipse-tractusx/portal-frontend/pull/1611)
+  - center aligned row cells with multi-browser friendly logic [1611](https://github.com/eclipse-tractusx/portal-frontend/pull/1611)
 - **Notifications**:
   - fixed notification to display as text and technical user creation title [#1535](https://github.com/eclipse-tractusx/portal-frontend/pull/1535)
 - **User Management**:
   - fixed app roles display and text to accurate description in user list table in app user management [#1546](https://github.com/eclipse-tractusx/portal-frontend/pull/1546)
 - **App/Service Release Process**:
   - added missing translation for consent and terms step [#1557](https://github.com/eclipse-tractusx/portal-frontend/pull/1557)
-  - Fix user roles CSV template and read logic [#1584](https://github.com/eclipse-tractusx/portal-frontend/pull/1584)
+  - fixed user roles CSV template and read logic [#1584](https://github.com/eclipse-tractusx/portal-frontend/pull/1584)
 - **App & Service admin detail board**
-  - Add missing user technical profiles on admin detail board [1615](https://github.com/eclipse-tractusx/portal-frontend/pull/1615)
+  - added missing user technical profiles on admin detail board [1615](https://github.com/eclipse-tractusx/portal-frontend/pull/1615)
 - **User Management | App Access Management**:
-  - persist user selection on navigating back from role selection [#1603](https://github.com/eclipse-tractusx/portal-frontend/pull/1603)
+  - updated logic for persist user selection on navigating back from role selection [#1603](https://github.com/eclipse-tractusx/portal-frontend/pull/1603)
 - **Connector Registration**:
-  - Fetch updated technical user list for new connector [1612](https://github.com/eclipse-tractusx/portal-frontend/pull/1612)
+  - updated technical user list for new connector fetch request [1612](https://github.com/eclipse-tractusx/portal-frontend/pull/1612)
 - **Technical User**:
-  - Make Technical User table to span to full available width [1602](https://github.com/eclipse-tractusx/portal-frontend/pull/1602)
+  - updated CSS for Technical User table to span to full available width [1602](https://github.com/eclipse-tractusx/portal-frontend/pull/1602)
 - **IDP management**
-  - Fix disabled Save Metadata button [1604](https://github.com/eclipse-tractusx/portal-frontend/pull/1604)
+  - fixed disabled Save Metadata button [1604](https://github.com/eclipse-tractusx/portal-frontend/pull/1604)
 - **Service Marketplace**
   - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
 
