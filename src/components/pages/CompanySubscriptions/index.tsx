@@ -47,6 +47,7 @@ import {
 } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { Box } from '@mui/material'
 import { useLocation } from 'react-router-dom'
+import { PAGES } from 'types/Constants'
 
 interface FetchHookArgsType {
   statusId: string
@@ -78,6 +79,11 @@ export default function CompanySubscriptions() {
   const [currentActive, setCurrentActive] = useState<number>(
     location.state?.activeTab ?? 0
   )
+
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -230,6 +236,7 @@ export default function CompanySubscriptions() {
         onClearSearch={() => {
           setSearchExpr('')
         }}
+        mappedTableSearchTranslation={mappedTableSearchTranslation}
       />
     </div>
   )
