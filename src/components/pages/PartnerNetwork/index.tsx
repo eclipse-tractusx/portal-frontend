@@ -47,6 +47,7 @@ const PartnerNetwork = () => {
   const { t } = useTranslation()
   const [expr, setExpr] = useState<string>('')
   const [bpn, setBpn] = useState<string>('')
+  const [noRowsMsg, setNoRowsMsg] = useState<string>('')
   const searchInputData = useSelector(updatePartnerSelector)
   const columns = PartnerNetworksTableColumns(t)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
@@ -88,6 +89,16 @@ const PartnerNetwork = () => {
     setLoading(true)
     if (data && data.length > 0) fetchAllMembers()
   }, [data, fetchArgs])
+
+  useEffect(() => {
+    if (allItems) {
+      if (!(expr || bpn) && allItems.length === 0) {
+        setNoRowsMsg(t('global.table.emptyDataMsg'))
+      } else if ((expr || bpn) && allItems.length === 0) {
+        setNoRowsMsg(t('global.table.noSearchResults'))
+      }
+    }
+  }, [allItems, expr, bpn])
 
   const setCountryAttributes = (payload: PaginResult<BusinessPartner>) => {
     let finalObj = JSON.parse(JSON.stringify(payload?.content))
@@ -171,7 +182,7 @@ const PartnerNetwork = () => {
           loading={loading}
           rows={allItems}
           rowsCount={allItems?.length}
-          noRowsMsg={t('content.companyData.table.noRowsMsg')}
+          noRowsMsg={noRowsMsg}
           nextPage={() => {
             setPage(page + 1)
           }}

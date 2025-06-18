@@ -436,6 +436,8 @@ export default function AdminCredentialElements() {
             setSortOption(value)
           }}
           disableColumnSelector={true}
+          emptyDataMsg={t('global.table.emptyDataMsg')}
+          noSearchResultsMsg={t('global.table.noSearchResults')}
         />
       </div>
     </>
