@@ -84,6 +84,10 @@ describe('Connector Creation & deletion', () => {
 
   it('should delete the most recently created connector', () => {
     connectorPage.visit()
+    cy.get('#usercentrics-cmp-ui', { timeout: 60000 })
+      .shadow()
+      .find('#accept')
+      .click()
     connectorPage.deleteMostRecentConnector()
   })
 })

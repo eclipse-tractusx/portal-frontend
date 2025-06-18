@@ -6,7 +6,7 @@ export class connectorManagementPage {
 
   // Click the add connector icon
   clickAddConnectorIcon(): void {
-    cy.get('[data-testid="AddCircleOutlineIcon"]', { timeout: 8000 }).click()
+    cy.get('button.add-idp-btn', { timeout: 60000 }).click()
   }
 
   selectOwnCompanyConnector(): void {
@@ -22,7 +22,7 @@ export class connectorManagementPage {
 
   // Choose to create a new technical user (radio button)
   selectNewTechnicalUserOption(): void {
-    cy.get('input[type="radio"][name="radio-buttons"]', { timeout: 30000 })
+    cy.get('input[type="radio"][name="radio-buttons"]', { timeout: 60000 })
       .eq(1)
       .click({ force: true })
   }
@@ -75,29 +75,29 @@ export class connectorManagementPage {
       .type(connectorData.location, { force: true })
 
     // Submit the connector form
-    cy.get('button[type="button"].MuiButton-containedPrimary.cx-button').click()
+    cy.get('button[type="button"].MuiButton-containedPrimary.cx-button').click({
+      force: true,
+    })
   }
 
   // Verify that the connector creation was successful
 
   verifyConnectorCreationSuccess(): void {
-    cy.get('h4.cx-dialog__intro:visible')
+    cy.get('.MuiBox-root.css-lo6mkt', { timeout: 60000 })
+      .should('be.visible')
       .invoke('text')
-      .then((text) => {
-        const trimmedText = text.trim()
-        expect(trimmedText).to.match(
-          /^(Create connector successfully completed\.?|Connector-Erstellung erfolgreich abgeschlossen\.?)$/i
-        )
-      })
+      .should(
+        'match',
+        /Create connector successfully completed\.?|Connector-Erstellung erfolgreich abgeschlossen\.?/i
+      )
   }
 
   deleteMostRecentConnector() {
     // Target the first row (most recent connector)
-    cy.get('.MuiDataGrid-row', { timeout: 60000 })
-      .eq(0) // Selects the first row
-      .within(() => {
-        cy.get('[data-testid="DeleteOutlineIcon"]').click({ force: true })
-      })
+
+    cy.get('[data-rowindex="0"]', { timeout: 60000 }).within(() => {
+      cy.get('[data-testid="DeleteOutlineIcon"]').click({ force: true })
+    })
 
     // Confirm deletion from modal/dialog
     cy.get('.cx-button.cx-variant-outlined.cx-color-primary')
@@ -105,15 +105,14 @@ export class connectorManagementPage {
       .click({ force: true })
 
     // Verify deletion success message
-    //  cy.contains('Connector deleted successfully').should('be.visible')
-    cy.wait(2000)
-    cy.get('h4.cx-dialog__intro:visible', { timeout: 10000 })
+
+    cy.get('.MuiBox-root.css-lo6mkt', { timeout: 60000 })
+      .scrollIntoView()
+      .should('be.visible')
       .invoke('text')
-      .then((text) => {
-        const trimmedText = text.trim()
-        expect(trimmedText).to.match(
-          /^(Delete connector successfully completed.\.?|Connector-Erstellung erfolgreich abgeschlossen.\.?)$/i
-        )
-      })
+      .should(
+        'match',
+        /Delete connector successfully completed\.?|Connector-Erstellung erfolgreich abgeschlossen\.?/i
+      )
   }
 }

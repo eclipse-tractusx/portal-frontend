@@ -37,6 +37,7 @@
     "@catena-x/portal-shared-components": "^3.7.6",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
+    "@faker-js/faker": "^9.8.0",
     "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.16.14",
     "@mui/material": "^5.16.14",

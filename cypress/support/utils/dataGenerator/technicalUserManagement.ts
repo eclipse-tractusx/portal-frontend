@@ -1,15 +1,15 @@
+import { faker } from '@faker-js/faker'
+
 export const getRandomItem = (array: string[]): string => {
-  return array[Math.floor(Math.random() * array.length)] // Randomly select an item from the array
+  return faker.helpers.arrayElement(array)
 }
 
 export const generateDynamicUsername = (role: string): string => {
-  const rolePrefix = role.split(' ')[0] // Take the first word of the role as the prefix
-  return `${rolePrefix}_User_${Math.random().toString(36).substring(2, 6)}` // Generate a dynamic username with a random string
+  const rolePrefix = role.split(' ')[0]
+  return `${rolePrefix}_User_${faker.string.alphanumeric(4)}`
 }
 
 export const generateDynamicDescription = (template: string): string => {
-  return template.replace(
-    '{randomString}',
-    Math.random().toString(36).substring(2, 8)
-  ) // Replace placeholder with random string
+  const randomString = faker.string.alphanumeric(6)
+  return template.replace('{randomString}', randomString)
 }

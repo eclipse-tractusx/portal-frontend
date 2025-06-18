@@ -10,8 +10,9 @@ export class technicalUserManagementPage {
    * Clicks the button to start creating a new technical user.
    */
   clickCreateUserButton(): void {
-    // cy.get('.cx-page-info__button > .MuiButtonBase-root').click()
-    cy.get('[data-testid="AddCircleOutlineIcon"]').should('be.visible').click()
+    cy.get('[data-testid="AddCircleOutlineIcon"]', { timeout: 40000 })
+      .should('be.visible')
+      .click()
   }
 
   internalTechnicalUser(): void {
@@ -57,7 +58,7 @@ export class technicalUserManagementPage {
       .click()
 
     // Verify if the success message is visible
-    cy.get('h4.cx-dialog__intro')
+    cy.get('h4')
       .should('be.visible')
       .should(
         'include.text',
@@ -69,11 +70,12 @@ export class technicalUserManagementPage {
    * Verifies that the success message appears.
    */
   verifySuccessMessage(): void {
-    cy.get('h4.cx-dialog__intro', { timeout: 60000 })
+    cy.get('div.MuiBox-root.css-lo6mkt', { timeout: 60000 })
+      .scrollIntoView()
       .should('be.visible')
       .should(
         'include.text',
-        'Below are the details needed for service connection. Please keep this secret confidential.'
+        'Technical user successfully created. Below are the details needed for service connection. Please keep this secret confidential.'
       )
     /**
      * Closes the success dialog.

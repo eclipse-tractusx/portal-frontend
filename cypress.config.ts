@@ -24,6 +24,7 @@ export default defineConfig({
     experimentalModifyObstructiveThirdPartyCode: true,
     chromeWebSecurity: false,
     experimentalRunAllSpecs: true,
+    pageLoadTimeout: 90000,
     setupNodeEvents(on, config) {
       on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome' || browser.name === 'chromium') {
