@@ -270,7 +270,10 @@ any) => {
   useEffect(() => {
     if (fetchServiceAccountUsers)
       setServiceAccountUsers(
-        fetchServiceAccountUsers?.filter((item: { name: string }) => item.name)
+        fetchServiceAccountUsers?.filter(
+          (item: { name: string; offer: unknown; connector: unknown }) =>
+            item.offer == null && item.connector == null && item.name
+        )
       )
   }, [fetchServiceAccountUsers])
 

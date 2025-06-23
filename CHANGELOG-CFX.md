@@ -2,6 +2,12 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Cofinity-X Portal Frontend.
 
+## Unreleased
+
+- **Connector Registration**
+
+  - CHERRY-PICK only show available tech user [1570](https://github.com/eclipse-tractusx/portal-frontend/pull/1570)
+
 ## Hotfixes
 
 - **Technical User**
