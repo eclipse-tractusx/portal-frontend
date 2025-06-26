@@ -103,9 +103,19 @@ export type DocumentRequestData = {
   documentId: string
 }
 
+export enum SubscriptionTags {
+  Service = 'Service',
+  Subscription = 'Subscription',
+  Agreement = 'Agreement',
+}
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/service',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: [
+    SubscriptionTags.Service,
+    SubscriptionTags.Subscription,
+    SubscriptionTags.Agreement,
+  ],
   endpoints: (builder) => ({
     fetchServices: builder.query<ServiceRequestAPIResponse, ServiceBody>({
       query: (body) => {
@@ -117,6 +127,16 @@ export const apiSlice = createApi({
           }&${body.sortingType && sortingType}`,
         }
       },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.content.map(({ id }) => ({
+                type: SubscriptionTags.Service as const,
+                id,
+              })),
+              SubscriptionTags.Service,
+            ]
+          : [SubscriptionTags.Service],
     }),
     fetchService: builder.query<ServiceRequest, string>({
       query: (serviceId) =>
@@ -128,6 +148,29 @@ export const apiSlice = createApi({
         method: 'POST',
         body: data.body,
       }),
+      invalidatesTags: (_result, _error, { serviceId }) => [
+        { type: SubscriptionTags.Service, id: serviceId },
+        SubscriptionTags.Subscription,
+      ],
+      async onQueryStarted({ serviceId }, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled
+          dispatch(
+            apiSlice.util.updateQueryData(
+              'fetchService',
+              serviceId,
+              (draft) => {
+                draft.offerSubscriptionDetailData.push({
+                  offerSubscriptionId: serviceId,
+                  offerSubscriptionStatus: 'PENDING',
+                })
+              }
+            )
+          )
+        } catch (error) {
+          console.error('Failed to add subscription:', error)
+        }
+      },
     }),
     fetchSubscription: builder.query<SubscriptionRequest, string>({
       query: (subscriptionId) => `/api/services/subscription/${subscriptionId}`,

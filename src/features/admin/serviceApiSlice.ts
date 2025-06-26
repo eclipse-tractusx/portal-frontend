@@ -207,12 +207,6 @@ export const apiSlice = createApi({
       query: ({ page, pageSize }) =>
         `/api/administration/serviceaccount/owncompany/serviceaccounts?page=${page}&size=${pageSize ? pageSize : PAGE_SIZE}&filterForInactive=false&userStatus=ACTIVE`,
     }),
-    declineServiceSubscription: builder.mutation<void, string>({
-      query: (subscriptionId) => ({
-        url: `/api/services/subscription/${subscriptionId}/decline`,
-        method: 'PUT',
-      }),
-    }),
   }),
 })
 
@@ -224,5 +218,4 @@ export const {
   useFetchServiceAccountRolesQuery,
   useResetCredentialMutation,
   useFetchServiceAccountUsersQuery,
-  useDeclineServiceSubscriptionMutation,
 } = apiSlice

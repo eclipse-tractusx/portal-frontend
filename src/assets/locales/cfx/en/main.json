@@ -1584,6 +1584,10 @@
         "clientSercret": "Client Secret"
       }
     },
+    "appServiceSubscription": {
+      "appsOffered": "Apps Offered",
+      "subscriptions": "Subscriptions"
+    },
     "appSubscription": {
       "headline": "App Subscription",
       "headlineDescription": "Manage and oversee customer subscriptions to your published apps on the marketplace.",
@@ -1610,6 +1614,8 @@
       "active": "Subscription active",
       "inactive": "Inactive",
       "process": "Subscription in progress",
+      "offersHeading": "Apps Offered",
+      "appSubscriptionHeading": "Subscriptions",
       "loadMore": "Load More",
       "tabs": {
         "request": "Requests",

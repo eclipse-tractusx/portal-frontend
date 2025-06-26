@@ -225,6 +225,8 @@
       "close": "Close"
     },
     "offersHeading": "Services Offered",
+    "serviceSubscriptionHeading": "Subscriptions",
+    "loadMore": "Load More",
     "success": "Activation successful",
     "configuration": "Configuration successful",
     "failure": "Error while configuring service subscription"
