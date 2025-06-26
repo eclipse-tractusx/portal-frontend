@@ -34,14 +34,14 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^3.7.6",
+    "@catena-x/portal-shared-components": "^4.0.1",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@faker-js/faker": "^9.8.0",
     "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.16.14",
     "@mui/material": "^5.16.14",
-    "@mui/x-data-grid": "^6.19.11",
+    "@mui/x-data-grid": "^7.27.2",
     "@react-hook/cache": "^1.1.1",
     "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.2.8",
@@ -130,6 +130,7 @@
     "publish:docker": "IMAGE=$npm_package_config_image && docker tag $IMAGE:latest $IMAGE:$npm_package_version && docker push $IMAGE:$npm_package_version && docker push $IMAGE:latest",
     "build:legal-notice": "bash scripts/legal-notice.sh",
     "build:copy-legal-info": "cp LICENSE NOTICE.md DEPENDENCIES SECURITY.md public/",
-    "cy": "cypress open"
+    "cy": "cypress open",
+    "cy:run": "cypress run"
   }
 }

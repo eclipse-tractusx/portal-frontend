@@ -25,7 +25,7 @@ import {
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import { Table, type PaginResult } from '@catena-x/portal-shared-components'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
@@ -45,7 +45,8 @@ const PartnerNetwork = () => {
   const [expr, setExpr] = useState<string>('')
   const [bpn, setBpn] = useState<string>('')
   const searchInputData = useSelector(updatePartnerSelector)
-  const columns = PartnerNetworksTableColumns(t)
+  const dispatch = useDispatch()
+  const columns = PartnerNetworksTableColumns(t, dispatch)
   const [mutationRequest] = useFetchBusinessPartnerAddressMutation()
   const { data } = useFetchMemberCompaniesQuery()
   const [fetchMembers] = useFetchBusinessPartnersMutation()
@@ -186,6 +187,8 @@ const PartnerNetwork = () => {
             columnMenuSortAsc: t('global.table.columnMenuSortAsc'),
             columnMenuSortDesc: t('global.table.columnMenuSortDesc'),
 
+            // @ts-expect-error TODO: fix this
+            // https://cofinity-x.atlassian.net/browse/PM2-3062
             columnsPanelTextFieldLabel: t(
               'global.table.columnsPanelTextFieldLabel'
             ),

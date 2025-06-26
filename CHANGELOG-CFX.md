@@ -5,17 +5,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ## Unreleased
 
 - **OSP Registration form**
-
   - Redirect companies already fully onboarded back to portal home page [PM2-2956](https://cofinity-x.atlassian.net/browse/PM2-2956)
-
+- **Package updates**
+  - Upgrade shared components to 4.0.0 and implement breaking changes [PM2-2781](https://cofinity-x.atlassian.net/browse/PM2-2781)
 - **Connector Registration**
-
   - CHERRY-PICK only show available tech user [1570](https://github.com/eclipse-tractusx/portal-frontend/pull/1570)
 
 ## Hotfixes
 
 - **Technical User**
-
   - Hide technical user profiles only visible to providers and fixed copywriting [PM-2943](https://cofinity-x.atlassian.net/browse/PM2-2943)
 
 ## IO 1.0
@@ -415,7 +413,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Bugfixes
 
 - **Application Requests**
-
   - Updated the logic to display documents uploaded while registration [PM2-1759](https://cofinity-x.atlassian.net/browse/PM2-1759)
 
 ## 2.2.0-cfx-3-hotfix1
@@ -464,7 +461,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - CHERRY-PICK Fixed "None" selection issue in Technical Integration [#1161](https://github.com/eclipse-tractusx/portal-frontend/issues/1161)
 
 - **User Management**
-
   - CHERRY-PICK Fixed special characters in user management email filters [#1128](https://github.com/eclipse-tractusx/portal-frontend/issues/1128)
 
 ### Change
@@ -475,7 +471,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ## 2.2.0-cfx-1
 
 - **App subscription**
-
   - CHERRY-PICK add external service details in subscription management overlay [#1028](https://github.com/eclipse-tractusx/portal-frontend/pull/1028)
 
 ### Bug Fixes
@@ -634,7 +629,6 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Restrict non OSP companies and unauthorised users [PM2-1487](https://cofinity-x.atlassian.net/browse/PM2-1487)
 
 - **OSP Management**
-
   - Activate OSP management page [PM2-1399s](https://cofinity-x.atlassian.net/browse/PM2-1399)
 
 ## 2.0.0-cfx-2

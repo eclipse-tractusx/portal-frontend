@@ -25,7 +25,7 @@ import { useEffect, useState } from 'react'
 import '../../frame/MobileMenu/style.scss'
 import { t } from 'i18next'
 import { useNavigate } from 'react-router-dom'
-import { useTheme } from '@mui/material'
+import { theme } from '@catena-x/portal-shared-components'
 
 interface NotificationBadgeType {
   notificationCount: number
@@ -44,7 +44,6 @@ export const NotificationLink = ({
   ...props
 }: NotificationLinkProps): JSX.Element => {
   const navigate = useNavigate()
-  const theme = useTheme()
 
   const { data } = useGetNotificationMetaQuery(null, {
     pollingInterval: INTERVAL_CHECK_NOTIFICATIONS,

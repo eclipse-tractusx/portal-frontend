@@ -377,18 +377,6 @@ section {
       background-color: $color-gray;
     }
   }
-
-  .cx-card__horizontal {
-    .cx-image {
-      flex: 0 0 33.333333%;
-      max-width: 33.333333%;
-      min-height: 200px;
-      object-fit: cover;
-      background-size: cover;
-      background-position: center;
-      background-size: cover;
-    }
-  }
 }
 
 // drop file
@@ -1953,14 +1941,10 @@ p.MuiTypography-root.MuiTypography-body3.description,
   margin: 40px 0;
 }
 
-.cx-search-input {
-  &__text-field {
-    .MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl {
-      border-radius: 25px;
-      height: 52px;
-      min-width: 350px;
-    }
-  }
+.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl {
+  border-radius: 25px;
+  height: 52px;
+  min-width: 350px;
 }
 
 // marketplace subscriptions detail page

@@ -88,7 +88,7 @@ export const SelectList = ({
       disabled={disabled}
       // eslint-disable-next-line
       options={items.map((item: any) => item)}
-      getOptionLabel={(option) => option[keyTitle] || ''}
+      getOptionLabel={(option) => option[keyTitle] ?? ''}
       onChange={(_event, nextValue) => {
         handleChange(nextValue)
       }}
@@ -105,7 +105,8 @@ export const SelectList = ({
         return (
           <SelectInput
             className="cx-select-list__input"
-            params={params}
+            // eslint-disable-next-line
+            params={params as any}
             label={label}
             placeholder={placeholder}
             variant={variant}

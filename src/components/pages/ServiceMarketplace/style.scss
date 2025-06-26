@@ -34,6 +34,16 @@
       display: inline-block;
       width: 100%;
     }
+
+    img {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      min-height: 200px;
+      object-fit: cover;
+      background-size: cover;
+      background-position: center;
+      background-size: cover;
+    }
   }
 
   .newServicesTitle {

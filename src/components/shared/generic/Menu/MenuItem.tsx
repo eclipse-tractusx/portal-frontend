@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import { ArrowForward } from '@mui/icons-material'
-import { type BoxProps, Divider, Link, ListItem, useTheme } from '@mui/material'
+import { type BoxProps, Divider, Link, ListItem } from '@mui/material'
 import { useState } from 'react'
 import { type MenuType, type NotificationBadgeType } from '.'
 // TODO: Here i have to import theme from Catena-x.
 // This should come from our override file. (finalTheme)
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography, theme } from '@catena-x/portal-shared-components'
 import classNames from 'classnames'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
@@ -62,7 +62,6 @@ export const MenuItem = ({
   ...props
 }: MenuItemProps) => {
   const [open, setOpen] = useState(false)
-  const theme = useTheme()
   const notificationColor = notificationInfo?.isNotificationAlert
     ? theme.palette.danger.dangerBadge
     : theme.palette.brand.brand02
