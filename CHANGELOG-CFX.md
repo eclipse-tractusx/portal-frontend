@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **OSP Registration form**
+
+  - Redirect companies already fully onboarded back to portal home page [PM2-2956](https://cofinity-x.atlassian.net/browse/PM2-2956)
+
 - **Connector Registration**
 
   - CHERRY-PICK only show available tech user [1570](https://github.com/eclipse-tractusx/portal-frontend/pull/1570)

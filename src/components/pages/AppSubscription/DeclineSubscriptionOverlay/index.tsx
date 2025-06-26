@@ -29,7 +29,7 @@ import {
 } from '@catena-x/portal-shared-components'
 import { useTranslation, Trans } from 'react-i18next'
 import { useDeclineAppSubscriptionMutation } from 'features/appSubscription/appSubscriptionApiSlice'
-import { useDeclineServiceSubscriptionMutation } from 'features/admin/serviceApiSlice'
+import { useDeclineServiceSubscriptionMutation } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 import { useState } from 'react'
 import './style.scss'
 import { success, error } from 'services/NotifyService'
@@ -44,6 +44,7 @@ interface DeclineSubscriptionProps {
   subscriptionType: string
   handleOverlayClose: () => void
   refetch?: () => void
+  declineSubscriptionAction: (subscriptionId: string) => void
 }
 
 const DeclineSubscriptionOverlay = ({
@@ -51,9 +52,9 @@ const DeclineSubscriptionOverlay = ({
   subscriptionId,
   title,
   appName,
-  subscriptionType,
+  subscriptionType = SubscriptionTypes.APP_SUBSCRIPTION,
   handleOverlayClose,
-  refetch,
+  declineSubscriptionAction,
 }: DeclineSubscriptionProps) => {
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
@@ -69,8 +70,8 @@ const DeclineSubscriptionOverlay = ({
       } else {
         await declineServiceSubscription(subscriptionId).unwrap()
       }
+      declineSubscriptionAction(subscriptionId)
       success(t('content.appSubscription.decline.success'))
-      if (refetch) refetch() // Call refetch after success
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
     } finally {
@@ -78,7 +79,6 @@ const DeclineSubscriptionOverlay = ({
       handleOverlayClose()
     }
   }
-
   return (
     <Dialog
       open={openDialog}

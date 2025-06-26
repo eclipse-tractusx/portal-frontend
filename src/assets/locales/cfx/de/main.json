@@ -1616,6 +1616,10 @@
         "clientSercret": "Client Secret"
       }
     },
+    "appServiceSubscription": {
+      "appsOffered": "Angebotene Apps",
+      "subscriptions": "Abos"
+    },
     "appSubscription": {
       "headline": "App Abonnements",
       "headlineDescription": "Verwalten und überprüfen Sie Kundenabonnements für Ihre veröffentlichten Apps auf dem Marktplatz.",
@@ -1630,7 +1634,7 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
-      "viewDetails": "Display more details",
+      "viewDetails": "Details anzeigen",
       "activateBtn": "Aktivieren",
       "configureBtn": "Konfigurieren",
       "declineBtn": "Ablehnen",
@@ -1642,6 +1646,8 @@
       "active": "Abo aktiv",
       "inactive": "Abo abbestellt",
       "process": "Abo in Bearbeitung",
+      "offersHeading": "Angebotene Apps",
+      "appSubscriptionHeading": "Abos",
       "loadMore": "Mehr laden",
       "tabs": {
         "request": "Anfragen",

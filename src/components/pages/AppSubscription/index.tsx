@@ -52,6 +52,8 @@ export default function AppSubscription() {
         showAll: t('content.appSubscription.tabs.showAll'),
         inactive: t('content.appSubscription.tabs.inactive'),
       }}
+      activeAppHeading={t('content.appSubscription.offersHeading')}
+      subscriptionHeading={t('content.appSubscription.appSubscriptionHeading')}
       loadMoreButtonText={t('content.appSubscription.loadMore')}
     />
   )

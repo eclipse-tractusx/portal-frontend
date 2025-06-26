@@ -26,16 +26,20 @@ import {
   useFetchAgreementConsentsQuery,
   useUpdateAgreementConsentsMutation,
   CONSENT_STATUS,
+  ApplicationStatus,
+  ApplicationType,
   type SubmitData,
 } from 'features/registration/registrationApiSlice'
 import './style.scss'
 import { SuccessRegistration } from './SuccessRegistration'
 import { ErrorRegistration } from './ErrorRegistration'
 import { CompanyDetails } from './CompanyDetails'
+import { useNavigate } from 'react-router-dom'
 
 export const OSPConsent = () => {
   const { t } = useTranslation('registration')
   const theme = useTheme()
+  const navigate = useNavigate()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     defaultMatches: true,
   })
@@ -53,6 +57,14 @@ export const OSPConsent = () => {
 
   const { data: applicationData, refetch } = useFetchApplicationsQuery()
   const applicationId = applicationData?.[0].applicationId
+
+  if (
+    applicationData?.[0].applicationType === ApplicationType.INTERNAL ||
+    applicationData?.[0].applicationStatus === ApplicationStatus.SUBMITTED ||
+    applicationData?.[0].applicationStatus === ApplicationStatus.CONFIRMED
+  ) {
+    navigate('/')
+  }
 
   const { data: consentData } = useFetchAgreementConsentsQuery(
     applicationId ?? ''
