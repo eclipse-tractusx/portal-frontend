@@ -137,12 +137,14 @@ export default function SubscriptionElements({
   refetch,
   isSuccess,
   subscriptionHeading,
+  declineSubscription,
 }: {
   subscriptions?: SubscriptionContent[]
   type: string
   refetch: () => void
   isSuccess: boolean
   subscriptionHeading: string
+  declineSubscription: (subscriptionId: string) => void
 }) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -277,7 +279,9 @@ export default function SubscriptionElements({
               label={t('content.appSubscription.activateBtn')}
               type="plain"
               variant="filled"
-              onClick={() => handleActivate(subscription.subscriptionId)}
+              onClick={() => {
+                handleActivate(subscription.subscriptionId)
+              }}
             />
             <Tooltips
               color="dark"
@@ -422,11 +426,11 @@ export default function SubscriptionElements({
           title={subscriptionDecline.companyName}
           handleOverlayClose={() => {
             setSubscriptionDecline(SubscriptionInitialData)
-            refetch()
           }}
           refetch={refetch}
           appName={subscriptionDecline.title}
           subscriptionType={type ?? SubscriptionTypes.APP_SUBSCRIPTION}
+          declineSubscriptionAction={declineSubscription}
         />
       )}
     </div>
