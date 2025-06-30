@@ -1671,7 +1671,7 @@
         "heading": "Decline {{subscriptionType}} subscription?",
         "intro": "For {{appName}}",
         "description": "{{companyName}} receives an e-mail notification with the option to re-subscribe again.",
-        "success": "App subscription declined",
+        "success": "{{subscriptionType}} subscription declined",
         "cancelBtn": "Cancel",
         "declineBtn": "Decline"
       },
