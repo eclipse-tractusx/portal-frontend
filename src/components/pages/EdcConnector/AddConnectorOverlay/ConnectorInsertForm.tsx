@@ -257,6 +257,7 @@ const ConnectorInsertForm = ({
   selectedService,
   subscriptions,
   fetchServiceAccountUsers,
+  setIsExistingTechUser,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -335,6 +336,7 @@ any) => {
                 )}
                 onChange={(event) => {
                   setSelectedValue(event.target.value)
+                  setIsExistingTechUser(true)
                   resetField('TechnicalUserName', {
                     defaultValue: '',
                   })
@@ -390,6 +392,7 @@ any) => {
                 }
                 value={t('content.edcconnector.modal.createNewTechnicalUser')}
                 onChange={(event) => {
+                  setIsExistingTechUser(false)
                   setSelectedValue(event.target.value)
                 }}
                 size="small"

@@ -125,6 +125,7 @@ const AddConnectorOverlay = ({
   })
 
   const [selected, setSelected] = useState<ConnectorType>({})
+  const [isExistingTechUser, setIsExistingTechUser] = useState<boolean>(false)
 
   useEffect(() => {
     if (openDialog || connectorStep === 0) {
@@ -248,6 +249,7 @@ const AddConnectorOverlay = ({
               setNewTechnicalUSer={setNewTechnicalUSer}
               newUserLoading={newUserLoading}
               newUserSuccess={newUserSuccess}
+              setIsExistingTechUser={setIsExistingTechUser}
               {...{
                 handleSubmit,
                 control,
@@ -277,7 +279,12 @@ const AddConnectorOverlay = ({
           {!loading && (
             <Button
               variant="contained"
-              disabled={!(selected?.id && isValid)}
+              disabled={
+                !(selected?.id && isValid) ||
+                (connectorStep === 1 &&
+                  !isExistingTechUser &&
+                  selected.type === ConnectType.COMPANY_CONNECTOR)
+              }
               onClick={() => {
                 connectorStep === 0 && selected?.id
                   ? handleConfirmClick(selected)
