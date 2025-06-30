@@ -1613,6 +1613,7 @@
       "pending": "Subscription pending",
       "active": "Subscription active",
       "inactive": "Inactive",
+      "unsubscribed": "Unsubscribed",
       "process": "Subscription in progress",
       "offersHeading": "Apps Offered",
       "appSubscriptionHeading": "Subscriptions",
@@ -1667,7 +1668,7 @@
         "technicalPermission": "Technical User Permission"
       },
       "decline": {
-        "heading": "Decline app subscription?",
+        "heading": "Decline {{subscriptionType}} subscription?",
         "intro": "For {{appName}}",
         "description": "{{companyName}} receives an e-mail notification with the option to re-subscribe again.",
         "success": "App subscription declined",

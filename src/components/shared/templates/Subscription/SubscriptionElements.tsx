@@ -203,9 +203,9 @@ export default function SubscriptionElements({
         <Tooltips
           color="dark"
           tooltipPlacement="top-start"
-          tooltipText={t('content.appSubscription.inactive')}
+          tooltipText={t('content.appSubscription.unsubscribed')}
         >
-          <CancelOutlinedIcon className="statusIcon inactive" />
+          <CancelOutlinedIcon className="statusIcon inactive unsubscribed" />
         </Tooltips>
       )
     } else if (
