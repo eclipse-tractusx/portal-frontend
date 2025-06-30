@@ -34,6 +34,7 @@ import { useState } from 'react'
 import './style.scss'
 import { success, error } from 'services/NotifyService'
 import { SubscriptionTypes } from 'components/shared/templates/Subscription'
+import { capitalize } from 'components/shared/cfx/generic'
 
 interface DeclineSubscriptionProps {
   openDialog: boolean
@@ -52,7 +53,7 @@ const DeclineSubscriptionOverlay = ({
   subscriptionId,
   title,
   appName,
-  subscriptionType = SubscriptionTypes.APP_SUBSCRIPTION,
+  subscriptionType,
   handleOverlayClose,
   declineSubscriptionAction,
 }: DeclineSubscriptionProps) => {
@@ -90,7 +91,10 @@ const DeclineSubscriptionOverlay = ({
       }}
     >
       <DialogHeader
-        title={t('content.appSubscription.decline.heading')}
+        title={t('content.appSubscription.decline.heading').replace(
+          '{{subscriptionType}}',
+          capitalize(subscriptionType)
+        )}
         intro={t('content.appSubscription.decline.intro').replace(
           '{{appName}}',
           appName
