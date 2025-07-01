@@ -18,8 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
-import type { TypographyProps } from '@mui/material'
+import { Typography, type TypographyProps } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 interface ComponentProps extends TypographyProps {

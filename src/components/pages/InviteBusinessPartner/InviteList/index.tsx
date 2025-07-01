@@ -102,14 +102,14 @@ export const InviteList = ({
             headerName: t('content.invite.columns.firstAndLastName'),
             flex: 1.5,
             sortable: false,
-            valueGetter: ({ row }: { row: CompanyInvite }) =>
+            valueGetter: (_value_, row: CompanyInvite) =>
               `${row.firstName || ''} ${row.lastName || ''}`,
           },
           {
             field: 'dateCreated',
             headerName: t('content.invite.columns.date'),
             flex: 1,
-            valueGetter: ({ row }: { row: CompanyInvite }) =>
+            valueGetter: (_value_, row: CompanyInvite) =>
               dayjs(row.dateCreated).format('YYYY-MM-DD'),
             sortable: false,
           },

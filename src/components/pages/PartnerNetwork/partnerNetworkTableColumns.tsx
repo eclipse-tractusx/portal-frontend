@@ -18,42 +18,44 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { GridColDef } from '@mui/x-data-grid'
+import { type GridColDef, type GridRenderCellParams } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { OVERLAYS } from 'types/Constants'
 import { show } from 'features/control/overlay'
-import { useDispatch } from 'react-redux'
+import type { Dispatch } from 'react'
+import type { Action } from '@reduxjs/toolkit'
 import type i18next from 'i18next'
 
 // Columns definitions of Partner Network page Data Grid
 export const PartnerNetworksTableColumns = (
-  t: typeof i18next.t
+  t: typeof i18next.t,
+  dispatch: Dispatch<Action>
 ): Array<GridColDef> => {
-  const dispatch = useDispatch()
-
   return [
     {
-      field: 'legalEntity.names',
+      field: 'legalName',
       headerName: t('content.partnernetwork.columns.name'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row?.legalName ?? '',
+      valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
+        row?.legalName ?? '',
     },
     {
-      field: 'legalEntity.bpn',
+      field: 'bpn',
       headerName: t('content.partnernetwork.columns.bpn'),
       flex: 2,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) => row?.bpn ?? '',
+      valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
+        row?.bpn ?? '',
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet
       headerName: t('content.partnernetwork.columns.cxparticipant'),
       flex: 1.5,
       sortable: false,
-      renderCell: (params) =>
+      renderCell: (params: { row: BusinessPartner }) =>
         params?.row?.member ? (
           <img
             src="/cx-logo.svg"
@@ -71,7 +73,7 @@ export const PartnerNetworksTableColumns = (
       headerName: t('content.partnernetwork.columns.country'),
       flex: 1.5,
       sortable: false,
-      valueGetter: ({ row }: { row: BusinessPartner }) =>
+      valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
         row?.legalEntityAddress?.physicalPostalAddress?.country?.name ??
         row?.legalEntityAddress?.alternativePostalAddress?.country?.name ??
         '',
@@ -82,13 +84,15 @@ export const PartnerNetworksTableColumns = (
       headerAlign: 'center',
       flex: 0.8,
       align: 'center',
-      renderCell: (params) =>
+      renderCell: (params: GridRenderCellParams<BusinessPartner>) =>
         params?.row?.bpn ? (
           <IconButton
             color="secondary"
             size="small"
             style={{ alignSelf: 'center' }}
-            onClick={() => dispatch(show(OVERLAYS.PARTNER, params.row.bpn))}
+            onClick={() => {
+              dispatch(show(OVERLAYS.PARTNER, params.row.bpn))
+            }}
           >
             <ArrowForwardIcon />
           </IconButton>

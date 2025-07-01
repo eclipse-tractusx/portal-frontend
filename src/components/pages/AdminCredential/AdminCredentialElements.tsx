@@ -428,7 +428,7 @@ export default function AdminCredentialElements() {
           filterViews={filterButtons}
           defaultSortOption={sortOption}
           sortOptions={sortOptions}
-          onSortClick={(value) => {
+          onSortClick={(value: string) => {
             setSortOption(value)
           }}
           disableColumnSelector={true}

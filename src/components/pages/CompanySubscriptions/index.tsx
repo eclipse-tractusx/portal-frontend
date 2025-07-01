@@ -199,11 +199,13 @@ export default function CompanySubscriptions() {
         sx={{
           '.MuiDataGrid-cell': {
             alignContent: 'center !important',
+            display: 'flex',
+            alignItems: 'center',
           },
         }}
         autoFocus={false}
         searchExpr={searchExpr}
-        alignCell="start"
+        alignCell="flex-start"
         defaultFilter={group}
         filterViews={filterView}
         toolbarVariant={'searchAndFilter'}

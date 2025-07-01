@@ -20,12 +20,14 @@
 
 import { useState } from 'react'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { Box, List, ListItem, useTheme } from '@mui/material'
 import {
+  theme,
   StatusTag,
   IconButton,
   Typography,
 } from '@catena-x/portal-shared-components'
+import { Box, List, ListItem } from '@mui/material'
+
 import { useDispatch } from 'react-redux'
 import { show } from 'features/control/overlay'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
@@ -70,7 +72,6 @@ export const UserDetailCard = ({
   variant,
 }: UserCardProps) => {
   const dispatch = useDispatch()
-  const theme = useTheme()
   const { userId } = useParams()
   const openEditOverlay = () => dispatch(show(OVERLAYS.ADD_BPN, userId))
   const [copied, setCopied] = useState<boolean>(false)

@@ -296,8 +296,7 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.site'),
       flex: 1.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) =>
-        getSiteActualName(row),
+      valueGetter: (_value_, row: CompanyDataType) => getSiteActualName(row),
     },
     {
       field: 'address',
@@ -305,7 +304,7 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.location'),
       flex: 2.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) =>
+      valueGetter: (_value_, row: CompanyDataType) =>
         row.address
           ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''}${row.address.physicalPostalAddress.street?.houseNumber ? ' ' + row.address.physicalPostalAddress.street?.houseNumber : ''}, ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.city ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
           : '',
@@ -316,7 +315,7 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.bpn'),
       flex: 1.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) =>
+      valueGetter: (_value_, row: CompanyDataType) =>
         getBpnActualBpn(row) ?? '',
       sortable: true,
       renderCell: ({ row }: { row: CompanyDataType }) =>
@@ -332,7 +331,7 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.type'),
       flex: 1.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) => getBpnTypeLabel(row),
+      valueGetter: (_value_, row: CompanyDataType) => getBpnTypeLabel(row),
     },
     {
       field: 'processDate',
@@ -340,7 +339,7 @@ export const CompanyAddressList = ({
       align: 'left',
       headerName: t('content.companyData.table.processDate'),
       flex: 1.5,
-      valueGetter: ({ row }: { row: CompanyDataType }) =>
+      valueGetter: (_value_, row: CompanyDataType) =>
         dayjs(row.createdAt).format('YYYY-MM-DD | HH:mm:ss'),
     },
     {
@@ -348,7 +347,7 @@ export const CompanyAddressList = ({
       headerName: t('content.companyData.table.status'),
       align: 'left',
       flex: 2,
-      valueGetter: ({ row }: { row: CompanyDataType }) =>
+      valueGetter: (_value_, row: CompanyDataType) =>
         statusColorMap[getStatus(row.externalId) as SharingStateStatusType],
       sortable: true,
       hideSortIcons: true,

@@ -81,7 +81,7 @@ export default function UserListContent() {
           field: 'name',
           headerName: t('global.field.name'),
           flex: 3,
-          valueGetter: ({ row }: { row: TenantUser }) =>
+          valueGetter: (_, row: TenantUser) =>
             `${row.firstName} ${row.lastName}`,
         },
         { field: 'email', headerName: t('global.field.email'), flex: 5 },
