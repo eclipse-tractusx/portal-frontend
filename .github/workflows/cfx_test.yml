@@ -31,7 +31,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
 
       - name: Prettier Checks
         run: yarn pretty:check
@@ -65,7 +65,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
 
       - uses: ./.github/actions/cypress
         with:

@@ -72,7 +72,12 @@ const DeclineSubscriptionOverlay = ({
         await declineServiceSubscription(subscriptionId).unwrap()
       }
       declineSubscriptionAction(subscriptionId)
-      success(t('content.appSubscription.decline.success'))
+      success(
+        t('content.appSubscription.decline.success').replace(
+          '{{subscriptionType}}',
+          capitalize(subscriptionType)
+        )
+      )
     } catch (err) {
       error(t('content.appSubscription.error'), '', err as object)
     } finally {

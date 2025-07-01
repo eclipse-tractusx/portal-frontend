@@ -11,7 +11,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Package updates**
   - Upgrade shared components to 4.0.0 and implement breaking changes [PM2-2781](https://cofinity-x.atlassian.net/browse/PM2-2781)
 - **Connector Registration**
+
   - CHERRY-PICK only show available tech user [1570](https://github.com/eclipse-tractusx/portal-frontend/pull/1570)
+
+- **IDP**
+  - IDP update overlay button remain disbale for validation error [PM2-3090](https://cofinity-x.atlassian.net/browse/PM2-3090)
 
 ## Hotfixes
 

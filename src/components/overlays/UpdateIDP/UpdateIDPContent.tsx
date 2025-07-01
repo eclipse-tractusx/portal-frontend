@@ -98,9 +98,9 @@ const UpdateIDPForm = ({
           name="metadataUrl"
           label={t('field.metadata.name')}
           value={idp.oidc?.metadataUrl}
-          validate={(expr) => isWellknownMetadata(expr)}
+          validate={isWellknownMetadata}
           hint={t('field.metadata.hint')}
-          debounceTime={0}
+          debounceTime={300}
           onValid={onChange}
           onInvalid={onChange}
         />
@@ -119,6 +119,7 @@ const UpdateIDPForm = ({
       <div style={{ margin: '12px 0 30px' }}>
         <ValidatingInput
           name="secret"
+          value={idp.oidc?.secret}
           label={t('field.clientSecret.name')}
           hint={t('field.clientSecret.hint')}
           validate={isIDPClientSecret}

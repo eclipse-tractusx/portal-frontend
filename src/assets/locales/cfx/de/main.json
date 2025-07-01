@@ -1703,7 +1703,7 @@
         "heading": "{{subscriptionType}} Abonnement ablehnen?",
         "intro": "Für {{appName}}",
         "description": "{{companyName}} erhält eine E-Mail-Benachrichtigung mit der Option, die App erneut zu abonnieren.",
-        "success": "App Abonnement abgelehnt",
+        "success": "{{subscriptionType}} Abonnement abgelehnt",
         "cancelBtn": "Abbrechen",
         "declineBtn": "Ablehnen"
       },
