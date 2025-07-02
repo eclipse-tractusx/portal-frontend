@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { type WalletContent } from 'features/compayWallet/companyWalletApiSlice'
 import { useTranslation } from 'react-i18next'
 import './style.scss'

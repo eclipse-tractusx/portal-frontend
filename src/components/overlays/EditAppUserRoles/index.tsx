@@ -24,7 +24,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   setUserRoleResp,
   SuccessErrorType,

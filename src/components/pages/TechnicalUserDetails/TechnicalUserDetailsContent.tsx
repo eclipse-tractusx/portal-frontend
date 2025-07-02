@@ -23,7 +23,7 @@ import {
   CircleProgress,
   StatusTag,
   Tooltips,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'

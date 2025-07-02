@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import './style.scss'
 
 export default function BoardSecurityInfo() {

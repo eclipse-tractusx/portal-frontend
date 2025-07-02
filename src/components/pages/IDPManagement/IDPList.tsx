@@ -30,7 +30,7 @@ import {
   StatusTag,
   Table,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
@@ -42,6 +42,7 @@ import {
   useRemoveIDPMutation,
   IDPCategory,
 } from 'features/admin/idpApiSlice'
+import { type GridRenderCellParams } from '@mui/x-data-grid'
 
 const MenuItemOpenOverlay = ({
   overlay,
@@ -431,9 +432,9 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           field: 'enabled',
           headerName: t('global.field.status'),
           flex: 2,
-          valueGetter: (_value_, row) =>
+          valueGetter: (_value_: unknown, row: IdentityProvider) =>
             getStatus(row?.enabled, row?.oidc?.clientId),
-          renderCell: (params) => {
+          renderCell: (params: GridRenderCellParams) => {
             const status = params.value
             return <StatusTag color="label" label={status} />
           },

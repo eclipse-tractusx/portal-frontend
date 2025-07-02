@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, IconButton, Table } from '@catena-x/portal-shared-components'
+import { Chip, IconButton, Table } from '@cofinity-x/shared-components'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'

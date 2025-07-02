@@ -25,7 +25,7 @@ import {
   Button,
   CircleProgress,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { FormFields } from './FormFields'

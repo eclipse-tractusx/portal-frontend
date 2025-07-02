@@ -29,7 +29,7 @@ import {
   CircleProgress,
   Checkbox,
   StaticTable,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import Box from '@mui/material/Box'
 
 interface DeleteConfirmationOverlayProps {

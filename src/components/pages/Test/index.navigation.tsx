@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Logo, MainNavigation } from '@catena-x/portal-shared-components'
+import { Logo, MainNavigation } from '@cofinity-x/shared-components'
 import { useNavigate } from 'react-router-dom'
 
 function NavigationTest() {

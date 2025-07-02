@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+@use 'src/components/styles/_colors' as colors;
 
 .dataSpace {
   width: 100%;

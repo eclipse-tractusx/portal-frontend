@@ -29,7 +29,7 @@ import {
   Button,
   DialogActions,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
 import {

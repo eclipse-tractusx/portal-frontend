@@ -31,8 +31,7 @@ const DetailGridRow = ({
   return (
     <>
       <Grid
-        item
-        xs={5}
+        size={{ xs: 5 }}
         style={{
           borderBottom: `1px solid ${palette.grey['200']}`,
           marginTop: 0,
@@ -42,8 +41,7 @@ const DetailGridRow = ({
         <span>{variableName}</span>
       </Grid>
       <Grid
-        item
-        xs={7}
+        size={{ xs: 7 }}
         style={{
           borderBottom: `1px solid ${palette.grey['200']}`,
           marginTop: 0,

@@ -19,10 +19,7 @@
  ********************************************************************************/
 
 import { useSelector } from 'react-redux'
-import {
-  PageSnackbar,
-  PageSnackbarStack,
-} from '@catena-x/portal-shared-components'
+import { PageSnackbar, PageSnackbarStack } from '@cofinity-x/shared-components'
 import { notifySelector } from 'features/control/notify'
 
 export default function MainNotify() {

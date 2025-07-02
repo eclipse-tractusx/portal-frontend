@@ -28,7 +28,7 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'

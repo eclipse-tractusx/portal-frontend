@@ -26,7 +26,7 @@ import {
   DialogHeader,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation, Trans } from 'react-i18next'
 import { useDeclineAppSubscriptionMutation } from 'features/appSubscription/appSubscriptionApiSlice'
 import { useDeclineServiceSubscriptionMutation } from 'features/serviceSubscription/serviceSubscriptionApiSlice'

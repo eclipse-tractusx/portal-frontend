@@ -29,7 +29,7 @@ import {
   Stepper,
   Tooltips,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { useState } from 'react'

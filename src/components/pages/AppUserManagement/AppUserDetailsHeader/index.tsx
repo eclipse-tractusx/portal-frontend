@@ -19,10 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import {
-  Typography,
-  PageNotifications,
-} from '@catena-x/portal-shared-components'
+import { Typography, PageNotifications } from '@cofinity-x/shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import type { AppRole } from 'features/admin/appuserApiSlice'
 import './style.scss'

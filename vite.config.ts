@@ -21,14 +21,19 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import svgr from 'vite-plugin-svgr'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr(), tsconfigPaths()],
-  optimizeDeps: { exclude: ['fsevents'] },
+  optimizeDeps: {
+    exclude: ['fsevents'],
+  },
   build: {
     outDir: 'build',
+    cssMinify: true,
     rollupOptions: {
+      external: ['@emotion/react'],
       output: {
         assetFileNames: (assetInfo) => {
           let extType = assetInfo?.name?.split('.').at(1)
@@ -41,5 +46,34 @@ export default defineConfig({
         entryFileNames: 'static/js/[name]-[hash].js',
       },
     },
+  },
+  resolve: {
+    conditions: [
+      'module',
+      'browser',
+      process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    ],
+    alias: {
+      src: path.resolve(__dirname, './src'),
+      '@cofinity-x/shared-components': path.resolve(
+        __dirname,
+        'node_modules/@cofinity-x/shared-components'
+      ),
+    },
+  },
+  json: {
+    stringify: true,
+    namedExports: true,
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+        additionalData: '@use "sass:math"; @use "sass:color";',
+      },
+    },
+  },
+  server: {
+    hmr: true,
   },
 })

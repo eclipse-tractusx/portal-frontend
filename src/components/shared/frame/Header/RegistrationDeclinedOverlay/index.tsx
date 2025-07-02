@@ -25,7 +25,7 @@ import {
   DialogActions,
   Typography,
   Button,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import { exec } from 'features/control/overlay'
 import { ACTIONS } from 'types/Constants'

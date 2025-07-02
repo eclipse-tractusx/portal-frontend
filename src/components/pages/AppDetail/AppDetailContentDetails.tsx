@@ -24,7 +24,7 @@ import {
   Navigation,
   ImageGallery,
   BackButton,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './AppDetailHeader'
 import AppDetailPrivacy from './AppDetailPrivacy'

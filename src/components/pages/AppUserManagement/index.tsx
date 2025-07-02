@@ -33,7 +33,7 @@ import {
   IconButton,
   PageHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   currentUserRoleResp,
   setUserRoleResp,

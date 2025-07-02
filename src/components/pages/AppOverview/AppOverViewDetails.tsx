@@ -23,7 +23,7 @@ import {
   LanguageSwitch,
   Typography,
   LogoGrayData,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import {
@@ -121,7 +121,7 @@ export default function AppOverViewDetails({
     <>
       {item && (
         <Grid container spacing={2} sx={{ mt: 0 }}>
-          <Grid item>
+          <Grid>
             <Card
               image={{
                 src: cardImage || LogoGrayData, // To-Do : Update this with actual data when new api is available

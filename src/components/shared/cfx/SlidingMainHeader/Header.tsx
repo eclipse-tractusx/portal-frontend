@@ -19,7 +19,7 @@
 
 import { Box } from '@mui/material'
 import './SlidingMainHeader.scss'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography } from '@cofinity-x/shared-components'
 
 export interface HeaderProps {
   title?: string

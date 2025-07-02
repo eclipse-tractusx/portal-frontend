@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { StatusTag } from '@catena-x/portal-shared-components'
+import { StatusTag } from '@cofinity-x/shared-components'
 import type { GridRowId } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import uniqueId from 'lodash/uniqueId'
@@ -81,7 +81,7 @@ export default function UserListContent() {
           field: 'name',
           headerName: t('global.field.name'),
           flex: 3,
-          valueGetter: (_, row: TenantUser) =>
+          valueGetter: (_value: unknown, row: TenantUser) =>
             `${row.firstName} ${row.lastName}`,
         },
         { field: 'email', headerName: t('global.field.email'), flex: 5 },

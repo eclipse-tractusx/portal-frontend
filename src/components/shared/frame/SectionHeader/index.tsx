@@ -19,7 +19,7 @@
 
 import { Box } from '@mui/material'
 import './style.scss'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 

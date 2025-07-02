@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { MainHeader } from '@catena-x/portal-shared-components'
+import { MainHeader } from '@cofinity-x/shared-components'
 import { getAssetBase } from 'services/EnvironmentService'
 import { useMediaQuery, useTheme } from '@mui/material'
 

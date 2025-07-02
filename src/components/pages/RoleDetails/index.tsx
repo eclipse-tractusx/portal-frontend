@@ -27,7 +27,7 @@ import {
   Tab,
   TabPanel,
   Image,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { uniqueId } from 'lodash'
@@ -119,16 +119,14 @@ export default function RoleDetails() {
                   {data.title}
                 </Typography>
                 <Grid container spacing={2} sx={{ margin: '0px 0 40px' }}>
-                  <>
-                    {data.subTitles.map((subTitle: string, index: number) => (
-                      <Grid item xs={6} key={uniqueId(subTitle)}>
-                        <Typography variant="h5">{subTitle}</Typography>
-                        <Typography variant="caption3">
-                          {data.descriptions[index]}
-                        </Typography>
-                      </Grid>
-                    ))}
-                  </>
+                  {data.subTitles.map((subTitle: string, index: number) => (
+                    <Grid size={{ xs: 6 }} key={uniqueId(subTitle)}>
+                      <Typography variant="h5">{subTitle}</Typography>
+                      <Typography variant="caption3">
+                        {data.descriptions[index]}
+                      </Typography>
+                    </Grid>
+                  ))}
                 </Grid>
               </div>
             ))}

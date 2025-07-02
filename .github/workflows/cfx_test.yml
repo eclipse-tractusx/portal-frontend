@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      packages: read
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -27,8 +28,11 @@ jobs:
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://npm.pkg.github.com/
           cache: 'yarn'
+          scope: '@cofinity-x'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: yarn --frozen-lockfile
@@ -47,6 +51,11 @@ jobs:
 
   run-cypress-tests:
     runs-on: [self-hosted]
+    permissions:
+      contents: read
+      packages: read
+      id-token: write
+
     # Cypress Docker image from https://hub.docker.com/r/cypress
     # with browsers pre-installed
     container:
@@ -63,6 +72,10 @@ jobs:
         with:
           node-version: 20
           cache: 'yarn'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@cofinity-x'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: yarn --frozen-lockfile

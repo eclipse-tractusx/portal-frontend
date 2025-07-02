@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
+@use 'src/components/styles/_colors' as colors;
 
 .app-store {
   width: 100%;
@@ -37,7 +37,7 @@
   }
 
   .overview-section {
-    background-color: color('white');
+    background-color: colors.color('white');
 
     &-content {
       padding-left: 20px;

@@ -31,7 +31,7 @@ import {
   Tabs,
   Tab,
   TabPanel,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
 import './style.scss'

@@ -24,7 +24,7 @@ import {
   UserAvatar,
   UserMenu,
   type NotificationBadgeType,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'

@@ -21,7 +21,7 @@
 import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
 import type { AppMarketplaceApp, AppMarketplaceCard } from 'features/apps/types'
-import type { ImageType } from '@catena-x/portal-shared-components'
+import type { ImageType } from '@cofinity-x/shared-components'
 import { fetchImageWithToken } from './ImageService'
 import type { RoleDescData } from 'components/pages/RoleDetails'
 import type { RolesData } from 'features/companyRoles/companyRoleApiSlice'

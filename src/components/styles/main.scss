@@ -18,16 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'breakpoints';
-@import 'colors';
-@import 'images';
-@import 'stage';
+@use 'sass:meta';
+@use 'breakpoints' as breakpoints;
+@use 'colors' as colors;
+@use 'images' as images;
+@use 'stage' as stage;
 
 body {
   min-height: 100vh;
   font-family: 'LibreFranklin', 'Libre Franklin', 'Franklin Gothic Medium',
     'Arial Narrow', Arial, sans-serif !important;
-  color: color(text-primary) !important;
+  color: colors.color(text-primary) !important;
   font-weight: 300 !important;
   max-width: 1800px;
   margin: auto !important;
@@ -56,15 +57,15 @@ section {
 }
 
 a {
-  color: color(primary);
+  color: colors.color(primary);
   &:hover {
-    color: color(primary-hover);
+    color: colors.color(primary-hover);
   }
   &:active {
-    color: color(text-primary);
+    color: colors.color(text-primary);
   }
   &:disabled {
-    color: color(disabled);
+    color: colors.color(disabled);
   }
 }
 
@@ -91,5 +92,5 @@ a {
 }
 
 // CofinityX Edits +
-@import 'theme-overrides';
+@include meta.load-css('theme-overrides');
 // CofinityX Edits -

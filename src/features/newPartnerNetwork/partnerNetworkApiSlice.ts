@@ -20,10 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import type {
-  PaginResult,
-  PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+import type { PaginResult, PaginFetchArgs } from '@cofinity-x/shared-components'
 import type { BusinessPartner } from './types'
 import { isBPN } from 'types/Patterns'
 

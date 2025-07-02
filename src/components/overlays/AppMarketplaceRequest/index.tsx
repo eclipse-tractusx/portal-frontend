@@ -26,7 +26,7 @@ import {
   Checkbox,
   OrderStatusButton,
   paletteDefinitions,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'

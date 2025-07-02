@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Typography,
-  Button,
-  ProcessList,
-} from '@catena-x/portal-shared-components'
+import { Typography, Button, ProcessList } from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import './style.scss'
 import { MainHeader } from 'components/shared/cfx/MainHeader'

@@ -26,7 +26,7 @@ import {
   CircleProgress,
   ToggleSwitch,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   type ComapnyDataType,
   useFetchCompanyDataQuery,

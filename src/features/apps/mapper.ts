@@ -22,7 +22,7 @@ import {
   type CardItems,
   type ImageType,
   LogoGrayData,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   ProvidedServiceStatusEnumText,
   type ProvidedServiceStatusEnum,

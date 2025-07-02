@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { Grid } from '@mui/material'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 
@@ -34,7 +34,7 @@ export default function MarketplaceTechnicalUserSetup({
     return data && data?.length > 0 ? (
       data?.map((item: string) => (
         <Grid container spacing={2} sx={{ margin: '0px' }} key={item}>
-          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+          <Grid sx={{ p: '10px 22px !important' }} size={{ xs: 12 }}>
             <Typography variant="label3">* {item}</Typography>
           </Grid>
         </Grid>

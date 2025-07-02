@@ -33,7 +33,7 @@ import {
   Textarea,
   Typography,
   type DropAreaProps,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useCallback, useEffect, useMemo, useState } from 'react'

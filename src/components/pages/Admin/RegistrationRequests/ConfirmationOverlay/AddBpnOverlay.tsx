@@ -29,7 +29,7 @@ import {
   Typography,
   Input,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { isBPN } from 'types/Patterns'
 interface AddBpnOveralyProps {
   openDialog?: boolean

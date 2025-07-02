@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { BackButton, LogoGrayData } from '@catena-x/portal-shared-components'
+import { BackButton, LogoGrayData } from '@cofinity-x/shared-components'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'

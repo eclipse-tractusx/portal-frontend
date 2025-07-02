@@ -22,13 +22,14 @@ import type { MenuItemProps } from './MenuItem'
 import { useGetNotificationMetaQuery } from 'features/notification/apiSlice'
 import { INTERVAL_CHECK_NOTIFICATIONS } from 'types/Constants'
 import { useEffect, useState } from 'react'
-import { theme } from '@catena-x/portal-shared-components'
+import { theme } from '@cofinity-x/shared-components'
 import { Link as LinkRouter } from 'react-router-dom'
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
 import { t } from 'i18next'
 import { WraperLink } from './WraperLink'
+import { type paletteDefinitions } from 'theme.override'
 
 interface NotificationBadgeType {
   notificationCount: number
@@ -72,8 +73,8 @@ export const NotificationLink = ({
   }, [data])
 
   const notificationColor = notificationInfo?.isNotificationAlert
-    ? theme.palette.danger.dangerBadge
-    : theme.palette.brand.brand02
+    ? (theme.palette as unknown as typeof paletteDefinitions).brand.brand02
+    : (theme.palette as unknown as typeof paletteDefinitions).danger.dangerBadge
 
   return (
     <WraperLink

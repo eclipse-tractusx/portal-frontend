@@ -18,21 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/system'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
 import type { SearchItem } from 'features/info/search/types'
 import { SearchResultItem } from '../SearchResultItem'
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { useState } from 'react'
 import './style.scss'
 
 const SearchResultList = styled(List)<{ component?: React.ElementType }>({
-  '& .MuiListItemButton-root': {
-    paddingLeft: 12,
-    paddingRight: 12,
-  },
+  '& .MuiListItemButton-root': { paddingLeft: 12, paddingRight: 12 },
 })
 
 export const SearchResultGroup = ({

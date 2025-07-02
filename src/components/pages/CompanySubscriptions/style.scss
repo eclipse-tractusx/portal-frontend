@@ -17,24 +17,24 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_breakpoints';
-@import 'src/components/styles/_colors';
+@use 'src/components/styles/_breakpoints' as breakpoints;
+@use 'src/components/styles/_colors' as colors;
 
 .company-subscription-detail {
   min-width: 1440px;
   background: #f9f9f9;
 
-  @include media-breakpoint-up(xs) {
+  @include breakpoints.media-breakpoint-up(xs) {
     min-width: fit-content;
   }
 
   .company-subscription-back {
     padding: 48px 256px 48px 160px;
     height: 140px;
-    @include media-breakpoint-up(md) {
+    @include breakpoints.media-breakpoint-up(md) {
       padding: 70px 0 30px;
     }
-    @include media-breakpoint-up(lg) {
+    @include breakpoints.media-breakpoint-up(lg) {
       transform: translateX(-75px);
     }
   }
@@ -43,13 +43,13 @@
 
     margin: 0 auto;
 
-    @include media-breakpoint-up(xs) {
+    @include breakpoints.media-breakpoint-up(xs) {
       max-width: 300px;
     }
-    @include media-breakpoint-up(md) {
+    @include breakpoints.media-breakpoint-up(md) {
       max-width: 620px;
     }
-    @include media-breakpoint-up(lg) {
+    @include breakpoints.media-breakpoint-up(lg) {
       max-width: 970px;
     }
 
@@ -66,7 +66,7 @@
       width: 90%;
       margin: 0 auto 55px;
 
-      @include media-breakpoint-up(md) {
+      @include breakpoints.media-breakpoint-up(md) {
         width: 100%;
         margin-bottom: 55px;
         flex-direction: row;
@@ -88,7 +88,7 @@
         gap: 10px;
 
         h5 {
-          color: color('text-tertiary');
+          color: colors.color('text-tertiary');
         }
       }
     }
@@ -98,10 +98,10 @@
       margin-left: auto;
       margin-right: auto;
 
-      @include media-breakpoint-up(md) {
+      @include breakpoints.media-breakpoint-up(md) {
         max-width: calc(100% - 64px);
       }
-      @include media-breakpoint-up(lg) {
+      @include breakpoints.media-breakpoint-up(lg) {
         max-width: 100%;
       }
     }

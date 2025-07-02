@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  IconButton,
-  Tooltips,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { IconButton, Tooltips, Typography } from '@cofinity-x/shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import dayjs from 'dayjs'
 import _ from 'lodash'
@@ -129,7 +125,7 @@ export const StatusProgress = ({
           <Typography
             variant="body3"
             className="cancelBtn"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => {
               e.stopPropagation()
               onConfirmationCancel?.(
                 application.applicationId,

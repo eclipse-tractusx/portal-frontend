@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AboutCard, PageHeader } from '@catena-x/portal-shared-components'
+import { AboutCard, PageHeader } from '@cofinity-x/shared-components'
 import legalJson from '../../../assets/notice/legal-notice.json'
 import { useTranslation } from 'react-i18next'
 

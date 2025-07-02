@@ -51,6 +51,6 @@
 // Image wrapper for specific ratio
 @mixin image-ratio-wrapper($width, $height) {
   overflow: hidden;
-  padding-bottom: percentage($height / $width);
+  padding-bottom: math.percentage($height / $width);
   position: relative;
 }

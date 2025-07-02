@@ -31,7 +31,12 @@ ARG https_proxy=$https_proxy
 ARG no_proxy=$no_proxy
 COPY . /app
 WORKDIR /app
-RUN yarn
+
+RUN npm config set registry https://registry.npmjs.org/
+RUN --mount=type=secret,id=PACKAGES_ACCESS_TOKEN,env=PACKAGES_ACCESS_TOKEN \
+    npm config set '//npm.pkg.github.com/:_authToken' "$PACKAGES_ACCESS_TOKEN"
+
+RUN yarn --frozen-lockfile
 RUN yarn build
 
 # Step 2

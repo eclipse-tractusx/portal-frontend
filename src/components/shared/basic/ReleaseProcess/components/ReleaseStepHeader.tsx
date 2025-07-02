@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { Grid } from '@mui/material'
 
 export default function ReleaseStepHeader({
@@ -34,7 +34,7 @@ export default function ReleaseStepHeader({
         {title}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
+        <Grid size={{ md: 11 }} sx={{ mr: 'auto', ml: 'auto', mb: 11 }}>
           <Typography variant="body2" align="center">
             {description}
           </Typography>

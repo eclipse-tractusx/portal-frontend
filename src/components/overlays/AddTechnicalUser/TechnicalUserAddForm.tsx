@@ -25,7 +25,7 @@ import { type Control, Controller, type FieldErrors } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import { Checkbox, Radio, Typography } from '@catena-x/portal-shared-components'
+import { Checkbox, Radio, Typography } from '@cofinity-x/shared-components'
 import {
   type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,

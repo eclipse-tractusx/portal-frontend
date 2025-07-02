@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { CardItems } from '@catena-x/portal-shared-components'
+import type { CardItems } from '@cofinity-x/shared-components'
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from 'features/store'
 import { fetchActive, fetchLatest, fetchSubscriptionStatus } from './actions'

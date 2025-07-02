@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { GridColDef } from '@mui/x-data-grid'
+import { type GridColDef } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 
 export const ProvidedConnectorTableColumns = (): Array<GridColDef> => {

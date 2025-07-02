@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Checkbox, Alert } from '@catena-x/portal-shared-components'
+import { Checkbox, Alert } from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'

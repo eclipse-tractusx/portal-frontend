@@ -18,10 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  IconButton,
-  type PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+import { IconButton, type PaginFetchArgs } from '@cofinity-x/shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { CompanyInvite } from 'features/admin/inviteApiSlice'

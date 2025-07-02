@@ -25,7 +25,7 @@ import {
   StatusTag,
   IconButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box, List, ListItem } from '@mui/material'
 
 import { useDispatch } from 'react-redux'
@@ -35,6 +35,7 @@ import { OVERLAYS } from 'types/Constants'
 import { useParams } from 'react-router-dom'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { useTranslation } from 'react-i18next'
+import { type paletteDefinitions } from 'theme.override'
 
 export type UserDetail = {
   companyUserId: string
@@ -118,17 +119,12 @@ export const UserDetailCard = ({
             alignItems: 'center',
             justifyContent: 'center',
             marginLeft: '5px',
-            '&:hover': {
-              backgroundColor: 'rgba(176, 206, 235, 0.4)',
-            },
+            '&:hover': { backgroundColor: 'rgba(176, 206, 235, 0.4)' },
           }}
         >
           <EditIcon
             onClick={openEditOverlay}
-            sx={{
-              cursor: 'pointer',
-              color: '#0F71CB',
-            }}
+            sx={{ cursor: 'pointer', color: '#0F71CB' }}
           />
         </Box>
       )}
@@ -195,7 +191,10 @@ export const UserDetailCard = ({
         <Box
           sx={{
             alignItems: 'center',
-            backgroundColor: theme.palette.background.background09,
+            backgroundColor: (
+              theme.palette as unknown as typeof paletteDefinitions
+            ).background.background09,
+
             display: 'flex',
             paddingBottom: '10px',
             paddingLeft: '20px',

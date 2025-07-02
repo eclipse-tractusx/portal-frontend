@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { OVERLAYS, ROLES } from 'types/Constants'
-import { PageNotifications } from '@catena-x/portal-shared-components'
+import { PageNotifications } from '@cofinity-x/shared-components'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
 import { show } from 'features/control/overlay'
 import {

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@cofinity-x/shared-components'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
 import { type DocumentMapper } from '../applicationRequestApiSlice'
 

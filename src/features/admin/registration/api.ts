@@ -25,7 +25,7 @@ import { getHeaders } from 'services/RequestService'
 import { PAGE_SIZE } from 'types/Constants'
 import type { SearchParams } from '../../connector/types'
 import qs from 'qs'
-import type { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@cofinity-x/shared-components'
 
 export class Api extends HttpClient {
   private static classInstance?: Api

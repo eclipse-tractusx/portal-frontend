@@ -43,7 +43,7 @@ import {
   CircleProgress,
   LoadMoreButton,
   ErrorBar,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   type ServiceRequest,
   useFetchServicesQuery,

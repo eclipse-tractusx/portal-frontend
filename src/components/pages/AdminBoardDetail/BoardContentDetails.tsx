@@ -20,11 +20,7 @@
 
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import {
-  Button,
-  ImageGallery,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { Button, ImageGallery, Typography } from '@cofinity-x/shared-components'
 import BoardHeader from './BoardHeader'
 import BoardDocuments from './BoardDocuments'
 import BoardProvider from './BoardProvider'

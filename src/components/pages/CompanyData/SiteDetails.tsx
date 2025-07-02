@@ -19,7 +19,7 @@
 
 import { Box, Divider } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography } from '@cofinity-x/shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'

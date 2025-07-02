@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { type CardItems, Cards } from '@catena-x/portal-shared-components'
+import { type CardItems, Cards } from '@cofinity-x/shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PAGES } from 'types/cfx/Constants'

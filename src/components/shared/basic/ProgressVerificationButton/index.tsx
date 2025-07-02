@@ -26,7 +26,7 @@ import {
   Input,
   StatusTag,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   EndUrlMap,
   ProgressStatus,

@@ -20,7 +20,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiBaseQuery } from 'utils/rtkUtil'
-import type { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@cofinity-x/shared-components'
 import { PAGE_SIZE } from 'types/Constants'
 import { type PaginFetchArgsExtended } from './serviceApiSlice'
 

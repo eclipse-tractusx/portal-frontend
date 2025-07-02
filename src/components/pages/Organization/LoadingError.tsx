@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CircleProgress } from '@catena-x/portal-shared-components'
+import { CircleProgress } from '@cofinity-x/shared-components'
 import { useTheme } from '@mui/material'
 export default function LoadingError({
   isLoading,

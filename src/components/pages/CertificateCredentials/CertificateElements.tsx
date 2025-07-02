@@ -32,10 +32,7 @@ export default function CertificateElements({
       {data?.map((item: CertificateResponse) =>
         item.ssiDetailData?.map((certificate) => (
           <Grid
-            item
-            xs={12}
-            sm={6}
-            md={6}
+            size={{ xs: 12, sm: 6, md: 6 }}
             className="certificate-card"
             key={item.credentialType}
           >

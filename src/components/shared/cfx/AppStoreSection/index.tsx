@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Cards, Button, Typography } from '@catena-x/portal-shared-components'
+import { Cards, Button, Typography } from '@cofinity-x/shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'

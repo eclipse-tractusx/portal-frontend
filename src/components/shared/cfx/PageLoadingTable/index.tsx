@@ -23,7 +23,7 @@ import {
   LoadMoreButton,
   Table,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import { type GridPaginationModel } from '@mui/x-data-grid'
 

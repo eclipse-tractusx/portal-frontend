@@ -19,11 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import {
-  Button,
-  UserAvatar,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { Button, UserAvatar, Typography } from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'

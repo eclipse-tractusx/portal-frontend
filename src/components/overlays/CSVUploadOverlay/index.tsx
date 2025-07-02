@@ -29,7 +29,7 @@ import {
   type DropAreaProps,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useUploadCSVMutation } from 'features/companyData/companyDataApiSlice'
 import { Dropzone } from 'components/shared/basic/Dropzone'
 import { useDispatch } from 'react-redux'

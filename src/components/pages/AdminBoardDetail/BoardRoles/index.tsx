@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { Grid } from '@mui/material'
 import { uniqueId } from 'lodash'
 import type { AppDetails } from 'features/apps/types'
@@ -38,8 +38,7 @@ export default function BoardRoles({ item }: Readonly<{ item: AppDetails }>) {
         <Grid container spacing={2} sx={{ margin: '0px' }}>
           {item.roles?.map((role) => (
             <Grid
-              item
-              xs={6}
+              size={{ xs: 6 }}
               key={uniqueId(role)}
               sx={{ p: '20px !important', pb: '0 !important' }}
             >

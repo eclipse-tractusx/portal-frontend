@@ -34,7 +34,7 @@ import {
   UploadStatus,
   DialogActions,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box, useTheme } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { adminRegistrationSelector } from 'features/admin/registration/slice'

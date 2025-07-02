@@ -25,7 +25,7 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import React from 'react'
 interface OverlayProps {

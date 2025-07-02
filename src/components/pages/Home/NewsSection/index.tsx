@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Cards } from '@catena-x/portal-shared-components'
+import { Cards } from '@cofinity-x/shared-components'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from 'features/info/news/actions'

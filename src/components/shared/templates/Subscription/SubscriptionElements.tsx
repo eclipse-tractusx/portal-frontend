@@ -28,7 +28,7 @@ import {
   Chip,
   ErrorBar,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   type CompanySubscriptionData,
   ProcessStep,
@@ -50,15 +50,9 @@ import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithC
 import { error, success } from 'services/NotifyService'
 import DeclineSubscriptionOverlay from 'components/pages/AppSubscription/DeclineSubscriptionOverlay'
 
-type ViewDetail = {
-  appId: string
-  subscriptionId: string
-}
+type ViewDetail = { appId: string; subscriptionId: string }
 
-const ViewDetailData = {
-  appId: '',
-  subscriptionId: '',
-}
+const ViewDetailData = { appId: '', subscriptionId: '' }
 
 type SubscriptionDataType = {
   appId: string
@@ -217,7 +211,6 @@ export default function SubscriptionElements({
         return (
           <>
             <Chip
-              className="cx-chip-decline"
               color="primary"
               label={t('content.appSubscription.declineBtn')}
               type="plain"
@@ -371,9 +364,7 @@ export default function SubscriptionElements({
             variant="indeterminate"
             colorVariant="primary"
             size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
+            sx={{ color: theme.palette.primary.main }}
           />
         </div>
       )}
@@ -384,10 +375,7 @@ export default function SubscriptionElements({
           isTechUser={isTechUser}
           companyName={companyName}
           handleOverlayClose={() => {
-            setState({
-              type: ActionKind.SET_OVERLAY,
-              payload: false,
-            })
+            setState({ type: ActionKind.SET_OVERLAY, payload: false })
             refetch()
           }}
         />

@@ -46,7 +46,7 @@ import {
   LoadingButton,
   StatusTag,
   Tooltips,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 import { userHasSsiCredentialRole } from 'services/AccessService'

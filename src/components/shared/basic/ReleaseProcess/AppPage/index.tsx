@@ -29,7 +29,7 @@ import {
   DropArea,
   type DropAreaProps,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel, Grid, Box } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -720,9 +720,9 @@ export default function AppPage() {
         </Typography>
 
         {privacyPolicies ? (
-          <Grid container item spacing={2}>
+          <Grid container spacing={2}>
             {privacyPolicies?.map((item: string) => (
-              <Grid item md={6} key={item} className="privacyPolicies">
+              <Grid size={{ md: 6 }} key={item} className="privacyPolicies">
                 <Checkbox
                   label={getLabel(item)}
                   checked={selectedPrivacyPolicies.indexOf(item) !== -1}
@@ -733,7 +733,7 @@ export default function AppPage() {
                 />
               </Grid>
             ))}
-            <Grid item md={6} className="privacyPolicies">
+            <Grid size={{ md: 6 }} className="privacyPolicies">
               <Radio
                 label={getLabel(
                   // eslint-disable-next-line

@@ -21,7 +21,7 @@ import {
   Dialog,
   DialogHeader,
   DialogContent,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box, Divider } from '@mui/material'
 import { useState } from 'react'
 import StatusInformation from './StatusInformation'

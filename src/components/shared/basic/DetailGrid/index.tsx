@@ -29,10 +29,8 @@ interface DetailGridProps {
 export const DetailGrid = ({ topic, content, link }: DetailGridProps) => {
   return (
     <Grid container sx={{ mb: 2, typography: 'body3' }}>
-      <Grid item xs={6}>
-        {topic}
-      </Grid>
-      <Grid item xs={6} sx={{ overflowWrap: 'anywhere' }}>
+      <Grid size={{ xs: 6 }}>{topic}</Grid>
+      <Grid size={{ xs: 6 }} sx={{ overflowWrap: 'anywhere' }}>
         {link ? <Link to={link}>{content}</Link> : content}
       </Grid>
     </Grid>

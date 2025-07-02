@@ -20,7 +20,7 @@
 
 import { getApiBase } from 'services/EnvironmentService'
 import { getHeaders } from 'services/RequestService'
-import type { PaginResult } from '@catena-x/portal-shared-components'
+import type { PaginResult } from '@cofinity-x/shared-components'
 import { HttpClient } from 'utils/httpClient'
 import type { TenantUser } from '../userApiSlice'
 import type { AddUser } from './types'

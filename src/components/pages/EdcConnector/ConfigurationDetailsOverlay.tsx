@@ -30,7 +30,7 @@ import {
   Typography,
   CircleProgress,
   ErrorBar,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './style.scss'
 import { Box } from '@mui/material'

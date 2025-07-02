@@ -1,14 +1,6 @@
-import {
-  type Theme,
-  createTheme,
-  type ThemeOptions,
-} from '@mui/material/styles'
+import { type Theme, createTheme, type ThemeOptions } from '@mui/material'
 import { deepmerge } from '@mui/utils'
-import { theme } from '@catena-x/portal-shared-components'
-import createPalette, { type Palette } from '@mui/material/styles/createPalette'
-import createTypography, {
-  type Typography,
-} from '@mui/material/styles/createTypography'
+import { theme } from '@cofinity-x/shared-components'
 
 export const getFontFamily = (name: string): string =>
   [
@@ -243,7 +235,6 @@ export const paletteDefinitions = {
     yellow: '#f5f9ee',
   },
 }
-export const palette = createPalette(paletteDefinitions as unknown as Palette)
 
 export const registrationStatusColors = {
   inProgress: {
@@ -425,14 +416,10 @@ export const typographyDefinitions = {
     lineHeight: 24 / 16,
   },
 }
-export const typography = createTypography(
-  palette as unknown as Palette,
-  typographyDefinitions as unknown as Typography
-)
 
 export const customTheme = {
-  palette,
-  typography,
+  palette: paletteDefinitions,
+  typography: typographyDefinitions,
   components: {
     body: {
       styleOverrides: {

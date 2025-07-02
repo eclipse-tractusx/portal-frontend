@@ -29,7 +29,7 @@ import {
   ErrorBar,
   LoadMoreButton,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTheme, Box } from '@mui/material'
 import {
   appCardStatus,

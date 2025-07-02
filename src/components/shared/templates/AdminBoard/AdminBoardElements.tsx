@@ -23,7 +23,7 @@ import {
   CircleProgress,
   ErrorBar,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme } from '@mui/material'
 import { show } from 'features/control/overlay'

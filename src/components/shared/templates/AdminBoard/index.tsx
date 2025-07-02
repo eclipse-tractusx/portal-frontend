@@ -29,7 +29,7 @@ import {
   LoadMoreButton,
   CircleProgress,
   type StatusVariants,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import './style.scss'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'

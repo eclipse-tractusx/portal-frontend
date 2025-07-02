@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from '@catena-x/portal-shared-components'
+import { Button } from '@cofinity-x/shared-components'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 

@@ -22,7 +22,7 @@ import {
   IconButton,
   type UploadFileStatus,
   UploadStatus,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
@@ -393,7 +393,7 @@ export default function OfferCard() {
         description={t('step1.headerDescription')}
       />
       <Grid container spacing={2}>
-        <Grid item md={8} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
+        <Grid size={{ md: 8 }} sx={{ mt: 0, mr: 'auto', mb: 0, ml: 'auto' }}>
           <form>
             <CommonConnectorFormInputField
               {...{

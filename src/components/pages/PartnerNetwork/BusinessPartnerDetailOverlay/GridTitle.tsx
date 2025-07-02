@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Grid, useTheme } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 
 const GridTitle = ({ title }: { title: string }) => {
   const theme = useTheme()
@@ -27,8 +27,7 @@ const GridTitle = ({ title }: { title: string }) => {
 
   return (
     <Grid
-      xs={12}
-      item
+      size={{ xs: 12 }}
       style={{
         backgroundColor: theme.palette.grey['100'],
         padding: spacing(2),

@@ -35,7 +35,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { InputType } from 'components/shared/basic/Input/BasicInput'
 
 const isWellknownMetadata = (expr: string) =>

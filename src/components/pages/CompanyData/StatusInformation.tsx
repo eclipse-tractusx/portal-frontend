@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from '@catena-x/portal-shared-components'
+import { Chip, Typography } from '@cofinity-x/shared-components'
 import { Box, List, ListItem } from '@mui/material'
 import { statusSelector } from 'features/companyData/slice'
 import { useTranslation } from 'react-i18next'

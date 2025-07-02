@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
+import { IconButton, Typography } from '@cofinity-x/shared-components'
 import type { ProviderProps } from '../StaticTypes'
 import '../style.scss'
 import RenderImage from './RenderImage'

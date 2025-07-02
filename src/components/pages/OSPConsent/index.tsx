@@ -20,7 +20,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery, useTheme } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import {
   useFetchApplicationsQuery,
   useFetchAgreementConsentsQuery,

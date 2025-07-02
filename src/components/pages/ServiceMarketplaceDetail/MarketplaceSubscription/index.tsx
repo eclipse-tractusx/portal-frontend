@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Chip, Typography } from '@catena-x/portal-shared-components'
+import { Chip, Typography } from '@cofinity-x/shared-components'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './style.scss'
 import { OfferSubscriptionStatus } from 'features/serviceSubscription/serviceSubscriptionApiSlice'

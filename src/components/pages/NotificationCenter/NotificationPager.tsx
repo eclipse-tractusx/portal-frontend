@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { CircleProgress } from '@catena-x/portal-shared-components'
+import { CircleProgress } from '@cofinity-x/shared-components'
 import {
   metaSelector,
   notificationFetchSelector,

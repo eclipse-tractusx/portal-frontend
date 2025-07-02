@@ -37,7 +37,7 @@ import {
   DialogContent,
   IconButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import './style.scss'
 import { useTranslation } from 'react-i18next'
 import { MainHeader } from 'components/shared/cfx/MainHeader'

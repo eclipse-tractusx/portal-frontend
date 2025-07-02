@@ -22,7 +22,7 @@ import Box from '@mui/material/Box'
 import {
   LoadMoreButton as LoadMoreButtonShared,
   type LoadMoreButtonProps as LoadMoreButtonSharedProps,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 
 import { useTranslation } from 'react-i18next'
 

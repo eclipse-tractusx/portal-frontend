@@ -38,11 +38,7 @@ import {
 } from 'types/Patterns'
 import { useTranslation } from 'react-i18next'
 import ValidatingInput from 'components/shared/basic/Input/ValidatingInput'
-import {
-  Checkbox,
-  SelectList,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { Checkbox, SelectList, Typography } from '@cofinity-x/shared-components'
 import {
   type PartnerRegistration,
   type CompanyRoleAgreementData,

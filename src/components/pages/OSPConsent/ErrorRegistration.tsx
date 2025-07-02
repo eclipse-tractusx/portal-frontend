@@ -23,7 +23,7 @@ import {
   Button,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 
 interface ErrorRegProps {
   loading: boolean

@@ -1,4 +1,4 @@
-import { StatusTag, Tooltips } from '@catena-x/portal-shared-components'
+import { StatusTag, Tooltips } from '@cofinity-x/shared-components'
 import { useOverlappingContent } from 'hooks/useOverlappingContent'
 import { useMemo } from 'react'
 

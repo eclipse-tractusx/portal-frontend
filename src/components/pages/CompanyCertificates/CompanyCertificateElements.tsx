@@ -30,10 +30,7 @@ export default function CompanyCertificateElements({
     <Grid container spacing={2} className="company-certificate-section">
       {data?.map((item: ComapnyCertificateData, index) => (
         <Grid
-          item
-          xs={12}
-          sm={6}
-          md={6}
+          size={{ xs: 12, sm: 6, md: 6 }}
           className="company-certificate-card"
           key={item.companyCertificateType + index}
         >

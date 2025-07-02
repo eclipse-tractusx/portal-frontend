@@ -24,7 +24,7 @@ import {
   Button,
   Typography,
   Checkbox,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

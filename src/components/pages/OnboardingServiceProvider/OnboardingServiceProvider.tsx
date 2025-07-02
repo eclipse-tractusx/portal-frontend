@@ -31,7 +31,7 @@ import {
   DialogContent,
   Dialog,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box, Divider } from '@mui/material'
 import './style.scss'

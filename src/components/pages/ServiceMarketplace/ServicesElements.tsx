@@ -22,7 +22,7 @@ import {
   CardHorizontal,
   LogoGrayData,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -74,10 +74,7 @@ export default function ServicesElements({
               <Grid container spacing={2} className="services-section">
                 {services.map((service: ServiceRequest) => (
                   <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    md={6}
+                    size={{ xs: 12, sm: 6, md: 6 }}
                     key={service.id}
                     className="services-card"
                   >

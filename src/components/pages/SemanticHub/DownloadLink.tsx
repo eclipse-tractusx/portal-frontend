@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import DownloadIcon from '@mui/icons-material/Download'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography } from '@cofinity-x/shared-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getSemanticApiBase } from 'services/EnvironmentService'

@@ -24,8 +24,9 @@ import { useState } from 'react'
 import { type MenuType, type NotificationBadgeType } from '.'
 // TODO: Here i have to import theme from Catena-x.
 // This should come from our override file. (finalTheme)
-import { Typography, theme } from '@catena-x/portal-shared-components'
+import { Typography, theme } from '@cofinity-x/shared-components'
 import classNames from 'classnames'
+import { type paletteDefinitions } from 'theme.override'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>
 
@@ -62,9 +63,10 @@ export const MenuItem = ({
   ...props
 }: MenuItemProps) => {
   const [open, setOpen] = useState(false)
+
   const notificationColor = notificationInfo?.isNotificationAlert
-    ? theme.palette.danger.dangerBadge
-    : theme.palette.brand.brand02
+    ? (theme.palette as unknown as typeof paletteDefinitions).danger.dangerBadge
+    : (theme.palette as unknown as typeof paletteDefinitions).brand.brand02
 
   const onMouseEnter = () => {
     setOpen(true)
@@ -107,21 +109,12 @@ export const MenuItem = ({
           ':hover': !isHeader
             ? {
                 backgroundColor: 'selected.hover',
-                '.MuiSvgIcon-root': {
-                  color: 'primary.main',
-                },
+                '.MuiSvgIcon-root': { color: 'primary.main' },
               }
             : {},
-          '&.active': {
-            color: 'primary.main',
-          },
+          '&.active': { color: 'primary.main' },
 
-          ...(isHeader
-            ? {
-                typography: 'h6',
-                textTransform: 'uppercase',
-              }
-            : {}),
+          ...(isHeader ? { typography: 'h6', textTransform: 'uppercase' } : {}),
         }}
         {...props}
       >

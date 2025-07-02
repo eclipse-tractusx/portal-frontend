@@ -27,7 +27,7 @@ import {
   Input,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation, Trans } from 'react-i18next'
 import { isKeycloakURL } from 'types/Patterns'
 import { useAddUserSubscribtionMutation } from 'features/appSubscription/appSubscriptionApiSlice'

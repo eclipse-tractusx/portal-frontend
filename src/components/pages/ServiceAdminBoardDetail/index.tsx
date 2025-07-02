@@ -25,7 +25,7 @@ import {
   Typography,
   Image,
   LogoGrayData,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import '../AdminBoardDetail/style.scss'
 import {
@@ -118,7 +118,7 @@ export default function ServiceAdminBoardDetail() {
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
         <Grid container spacing={2} key={role} sx={{ margin: '0px' }}>
-          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+          <Grid sx={{ p: '10px 22px !important' }} size={{ xs: 12 }}>
             <Typography variant="label3">* {role}</Typography>
           </Grid>
         </Grid>

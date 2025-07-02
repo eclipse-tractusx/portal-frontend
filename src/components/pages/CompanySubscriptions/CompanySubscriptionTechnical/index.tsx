@@ -19,7 +19,7 @@
 
 import { Box, Link } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { StaticTable, Typography } from '@catena-x/portal-shared-components'
+import { StaticTable, Typography } from '@cofinity-x/shared-components'
 import { type FetchSubscriptionResponseType } from 'features/apps/types'
 import { PAGES, ROLES } from 'types/Constants'
 import { userHasPortalRole } from 'services/AccessService'

@@ -20,7 +20,7 @@
 
 import { useState, useEffect } from 'react'
 
-import { IconButton, StatusTag } from '@catena-x/portal-shared-components'
+import { IconButton, StatusTag } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useSelector } from 'react-redux'

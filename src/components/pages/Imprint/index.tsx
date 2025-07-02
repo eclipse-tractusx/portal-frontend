@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageHeader, Typography } from '@catena-x/portal-shared-components'
+import { PageHeader, Typography } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {

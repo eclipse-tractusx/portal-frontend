@@ -20,7 +20,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Checkbox } from '@catena-x/portal-shared-components'
+import { Typography, Checkbox } from '@cofinity-x/shared-components'
 import { Box, Grid } from '@mui/material'
 import { type CompanyDetails } from 'features/admin/userApiSlice'
 import { ConnectType } from 'features/connector/connectorApiSlice'
@@ -78,8 +78,7 @@ const ConnectorTypeSelection = ({
             return (
               <Grid
                 key={checkBox.id}
-                xs={12}
-                item
+                size={{ xs: 12 }}
                 className={
                   checkBoxSelector.length === index + 1 ? '' : 'dotted-gradient'
                 }

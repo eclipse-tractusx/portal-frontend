@@ -24,7 +24,7 @@ import {
   Chip,
   PageNotifications,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, Grid } from '@mui/material'
 import {
@@ -83,7 +83,7 @@ export default function BetaTest() {
           {t('content.apprelease.betaTest.betaTests')}
         </Typography>
         <Grid container sx={{ mt: 0 }}>
-          <Grid item md={3}>
+          <Grid size={{ md: 3 }}>
             <img
               src={`${getAssetBase()}/images/content/teaser.png`}
               alt="idp teaser"
@@ -92,7 +92,7 @@ export default function BetaTest() {
               style={{ borderRadius: '16px' }}
             />
           </Grid>
-          <Grid item md={8} marginLeft="20px">
+          <Grid size={{ md: 8 }} sx={{ marginLeft: '20px' }}>
             <div style={{ display: 'flex' }}>
               <Typography variant="h4">
                 {t('content.apprelease.betaTest.technicalIntegrationTest')}
@@ -120,9 +120,9 @@ export default function BetaTest() {
       </form>
       <Box mb={2}>
         {betaTestNotification && (
-          <Grid container xs={12} sx={{ mb: 2 }}>
-            <Grid xs={6}></Grid>
-            <Grid xs={6}>
+          <Grid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
+            <Grid size={{ xs: 6 }}></Grid>
+            <Grid size={{ xs: 6 }}>
               <PageNotifications
                 title={t('content.apprelease.appReleaseForm.error.title')}
                 description={t(

@@ -24,7 +24,7 @@ import {
   IconButton,
   PageNotifications,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { Divider, Box, Grid } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
@@ -73,9 +73,9 @@ export default function SnackbarNotificationWithButtons({
   return (
     <Box mb={2}>
       {pageNotification && (
-        <Grid container xs={12} sx={{ mb: 2 }}>
-          <Grid xs={6}></Grid>
-          <Grid xs={6}>
+        <Grid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
+          <Grid size={{ xs: 6 }}></Grid>
+          <Grid size={{ xs: 6 }}>
             <PageNotifications
               title={pageNotificationsObject?.title}
               description={pageNotificationsObject?.description}

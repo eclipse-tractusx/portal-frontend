@@ -28,7 +28,7 @@ import {
   SortOption,
   Button,
   Tooltips,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './style.scss'
 import { OVERLAYS } from 'types/Constants'

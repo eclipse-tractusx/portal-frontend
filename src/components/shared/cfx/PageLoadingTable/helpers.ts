@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { type TableProps } from '@catena-x/portal-shared-components'
+import { type TableProps } from '@cofinity-x/shared-components'
 
 export interface PageDataProps {
   page?: number

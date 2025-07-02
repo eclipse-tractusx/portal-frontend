@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
+import { IconButton, Typography } from '@cofinity-x/shared-components'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { useTranslation } from 'react-i18next'
 import { Stack, Link } from '@mui/material'

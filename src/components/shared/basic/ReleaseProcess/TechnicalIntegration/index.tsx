@@ -25,7 +25,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
@@ -472,7 +472,7 @@ export default function TechnicalIntegration() {
         {t('content.apprelease.technicalIntegration.headerTitle')}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 4 }}>
+        <Grid size={{ md: 11 }} sx={{ mr: 'auto', ml: 'auto', mb: 4 }}>
           <Typography variant="body2" align="center">
             {t('content.apprelease.technicalIntegration.headerDescription')}
           </Typography>
@@ -490,7 +490,10 @@ export default function TechnicalIntegration() {
           {t('content.apprelease.technicalIntegration.step1HeaderDescription')}
         </Typography>
 
-        <Grid item xs={12} sx={{ mr: 2, mt: 4, mb: 5, textAlign: 'center' }}>
+        <Grid
+          size={{ xs: 12 }}
+          sx={{ mr: 2, mt: 4, mb: 5, textAlign: 'center' }}
+        >
           <a
             href="../../template_app_role_upload.csv"
             download
@@ -564,8 +567,8 @@ export default function TechnicalIntegration() {
               <Typography variant="h4" textAlign="center">
                 {t('content.apprelease.technicalIntegration.rolesPreview')}
               </Typography>
-              <Grid item container xs={12}>
-                <Grid item md={6} xs={12} sx={{ pl: 2, pr: 2, pb: 2 }}>
+              <Grid container columns={{ xs: 12, md: 12 }}>
+                <Grid size={{ md: 6, xs: 12 }} sx={{ pl: 2, pr: 2, pb: 2 }}>
                   <SelectList
                     sx={{ mb: 2 }}
                     defaultValue={unicodeSelectItems[0]}
@@ -586,12 +589,10 @@ export default function TechnicalIntegration() {
                 </Grid>
               </Grid>
             </Box>
-            <Grid item mb={5} container xs={12}>
+            <Grid mb={5} container columns={{ xs: 12, md: 12 }}>
               {rolesPreviews?.map((role: string, index) => (
                 <Grid
-                  item
-                  md={6}
-                  xs={12}
+                  size={{ md: 6, xs: 12 }}
                   key={role}
                   sx={{
                     pl: !isMobile && index % 2 === 0 ? 0 : 1,
@@ -676,12 +677,10 @@ export default function TechnicalIntegration() {
                   'content.apprelease.technicalIntegration.successfullyUploadedAppRoles'
                 )}
               </Typography>
-              <Grid item container xs={12}>
+              <Grid container columns={{ xs: 12, md: 12 }}>
                 {data?.map((role: updateRolePayload, index) => (
                   <Grid
-                    item
-                    md={6}
-                    xs={12}
+                    size={{ md: 6, xs: 12 }}
                     key={role.role}
                     sx={{
                       pl: !isMobile && index % 2 === 0 ? 0 : 1,

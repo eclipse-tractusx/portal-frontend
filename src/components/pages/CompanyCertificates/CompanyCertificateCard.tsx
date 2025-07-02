@@ -18,11 +18,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import {
-  IconButton,
-  Tooltips,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { IconButton, Tooltips, Typography } from '@cofinity-x/shared-components'
 import './style.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box, ClickAwayListener } from '@mui/material'

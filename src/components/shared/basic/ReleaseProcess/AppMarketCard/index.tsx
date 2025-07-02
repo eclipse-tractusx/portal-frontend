@@ -28,7 +28,7 @@ import {
   type UploadFileStatus,
   UploadStatus,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useMemo, useRef } from 'react'
@@ -504,7 +504,7 @@ export default function AppMarketCard() {
       />
       <Grid container spacing={2}>
         {pageScrolled ? (
-          <Grid item md={3} className={'app-release-card'}>
+          <Grid size={{ md: 3 }} className={'app-release-card'}>
             <Card
               image={{
                 src: cardImage,
@@ -524,7 +524,7 @@ export default function AppMarketCard() {
             />
           </Grid>
         ) : (
-          <Grid item md={7} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
+          <Grid size={{ md: 7 }} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
               label={cardAppProvider ?? ''}
               title={cardAppTitle}
@@ -540,8 +540,7 @@ export default function AppMarketCard() {
         )}
 
         <Grid
-          item
-          md={8}
+          size={{ md: 8 }}
           sx={{ mt: 0, mr: 'auto', mb: 0, ml: pageScrolled ? 0 : 'auto' }}
         >
           <form>

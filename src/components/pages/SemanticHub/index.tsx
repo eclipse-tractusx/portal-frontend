@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageSnackbar } from '@catena-x/portal-shared-components'
+import { PageSnackbar } from '@cofinity-x/shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModelDetailDialog from './ModelDetailDialog'

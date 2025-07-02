@@ -20,7 +20,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useMediaQuery, useTheme } from '@mui/material'
 import { Trans, useTranslation } from 'react-i18next'
-import { Button, Typography } from '@catena-x/portal-shared-components'
+import { Button, Typography } from '@cofinity-x/shared-components'
 import RegistrationStatusList from 'components/shared/frame/Header/RegistrationReviewOverlay/RegistrationReviewContent/RegistrationStatusList'
 import { type ApplicationResponse } from 'features/registration/registrationApiSlice'
 

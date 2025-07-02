@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
@@ -79,7 +79,7 @@ export default function BoardHeader({ item }: Readonly<AppDetailHeaderProps>) {
         <Typography variant="h2" sx={{ mb: 1.5, mt: 1.5 }}>
           {item.title}
         </Typography>
-        <Grid md={8}>
+        <Grid size={{ md: 8 }}>
           {[CardDetails.LANGUAGE, CardDetails.USECASE, CardDetails.PRICE].map(
             (field) => (
               <div style={{ display: 'flex', marginBottom: '5px' }} key={field}>

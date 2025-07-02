@@ -19,10 +19,7 @@
  ********************************************************************************/
 
 import { useEffect, useState } from 'react'
-import {
-  Navigation,
-  ScrollToTopButton,
-} from '@catena-x/portal-shared-components'
+import { Navigation, ScrollToTopButton } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
 import './style.scss'

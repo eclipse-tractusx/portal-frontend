@@ -19,7 +19,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery, useTheme } from '@mui/material'
-import { Typography, StatusTag } from '@catena-x/portal-shared-components'
+import { Typography, StatusTag } from '@cofinity-x/shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'

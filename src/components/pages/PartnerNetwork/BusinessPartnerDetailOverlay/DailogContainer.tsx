@@ -22,7 +22,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box, Grid } from '@mui/material'
 
 interface DailogContainerProps {

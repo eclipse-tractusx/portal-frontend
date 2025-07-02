@@ -18,11 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import {
-  Button,
-  MainHeader,
-  Typography,
-} from '@catena-x/portal-shared-components'
+import { Button, MainHeader, Typography } from '@cofinity-x/shared-components'
 import { useCallback, useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import ReleaseStepper, {

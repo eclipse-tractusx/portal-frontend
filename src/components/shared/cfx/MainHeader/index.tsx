@@ -20,7 +20,7 @@
 
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { MainHeaderTitle } from './MainHeaderTitle'
-import { BackButton } from '@catena-x/portal-shared-components'
+import { BackButton } from '@cofinity-x/shared-components'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 

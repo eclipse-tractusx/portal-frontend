@@ -24,7 +24,7 @@ import {
   DialogContent,
   DialogHeader,
   Input,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   deleteUserBpn,
   fetchAny,

@@ -25,7 +25,8 @@ import { useEffect, useState } from 'react'
 import '../../frame/MobileMenu/style.scss'
 import { t } from 'i18next'
 import { useNavigate } from 'react-router-dom'
-import { theme } from '@catena-x/portal-shared-components'
+import { theme } from '@cofinity-x/shared-components'
+import { type paletteDefinitions } from 'theme.override'
 
 interface NotificationBadgeType {
   notificationCount: number
@@ -73,29 +74,19 @@ export const NotificationLink = ({
   }, [data])
 
   const notificationColor = notificationInfo?.isNotificationAlert
-    ? theme.palette.danger.dangerBadge
-    : theme.palette.brand.brand02
+    ? (theme.palette as unknown as typeof paletteDefinitions).danger.dangerBadge
+    : (theme.palette as unknown as typeof paletteDefinitions).brand.brand02
 
   return (
     <MenuItem
       {...props}
       title={t('pages.mynotifications')}
-      notificationInfo={{
-        ...notificationInfo,
-        notificationColor,
-      }}
+      notificationInfo={{ ...notificationInfo, notificationColor }}
       isSeparate={true}
       onClick={() => {
         if (props.to) navigate(props.to)
       }}
-      icon={
-        <NotificationsNoneIcon
-          sx={{
-            height: 18,
-            width: 18,
-          }}
-        />
-      }
+      icon={<NotificationsNoneIcon sx={{ height: 18, width: 18 }} />}
     />
   )
 }

@@ -33,7 +33,7 @@ import {
   ImageGallery,
   type ImageType,
   BackButton,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Grid, Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
@@ -312,10 +312,9 @@ export default function CommonValidateAndPublish({
         {type === ReleaseProcessTypes.APP_RELEASE && (
           <Grid container sx={{ mt: 0 }}>
             <Grid
-              item
               className={'verify-app-release-card'}
               sx={{ ml: 0, mr: 0 }}
-              md={4}
+              size={{ md: 4 }}
             >
               <Card
                 image={{
@@ -347,7 +346,10 @@ export default function CommonValidateAndPublish({
               </div>
             </Grid>
 
-            <Grid item sx={{ paddingLeft: '71px', marginTop: '22%' }} md={8}>
+            <Grid
+              sx={{ paddingLeft: '71px', marginTop: '22%' }}
+              size={{ md: 8 }}
+            >
               {['language', 'useCase', 'price'].map((item) => (
                 <div
                   style={{ display: 'flex', marginBottom: '5px' }}
@@ -534,7 +536,7 @@ export default function CommonValidateAndPublish({
             {rolesData.length > 0 ? (
               <Grid container spacing={2} sx={{ margin: '0px' }}>
                 {rolesData?.map((role) => (
-                  <Grid item xs={6} key={role.role} className="roles-data">
+                  <Grid size={{ xs: 6 }} key={role.role} className="roles-data">
                     <Typography variant="label2">{role.role}</Typography>
                     <Typography variant="body3">
                       {role.descriptions?.[0].description}
@@ -626,9 +628,9 @@ export default function CommonValidateAndPublish({
       {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
         <Box mb={2}>
           {validatePublishNotification && (
-            <Grid container xs={12} sx={{ mb: 2 }}>
-              <Grid xs={6}></Grid>
-              <Grid xs={6}>
+            <Grid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
+              <Grid size={{ xs: 6 }}></Grid>
+              <Grid size={{ xs: 6 }}>
                 <PageNotifications
                   title={error.title}
                   description={error.message}

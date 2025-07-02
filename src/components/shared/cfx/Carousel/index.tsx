@@ -28,8 +28,7 @@ import { Box, useTheme } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { IconButton } from '@catena-x/portal-shared-components'
-import { type CarouselNavArrows } from '@catena-x/portal-shared-components/dist/components/basic/Carousel/CarouselBox'
+import { IconButton } from '@cofinity-x/shared-components'
 
 export interface CarouselProps {
   children?: React.ReactNode
@@ -46,7 +45,15 @@ export interface CarouselProps {
   position?: string
 }
 
-function NavArrows(props: Readonly<CarouselNavArrows>) {
+function NavArrows(
+  props: Readonly<{
+    className?: string
+    style?: React.CSSProperties
+    onClick?: React.MouseEventHandler
+    show: boolean
+    isNext: boolean
+  }>
+) {
   const { className, style, onClick } = props
   return (
     <div className={className} style={{ ...style }}>

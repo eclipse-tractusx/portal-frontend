@@ -19,12 +19,12 @@
  ********************************************************************************/
 
 import Box from '@mui/material/Box'
-import { Typography, Button } from '@catena-x/portal-shared-components'
+import { Typography, Button, Chip } from '@cofinity-x/shared-components'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'
 import PendingActionsIcon from '@mui/icons-material/PendingActions'
-import MuiChip, { type ChipProps } from '@mui/material/Chip'
+import { type ChipProps } from '@mui/material'
 import {
   progressMapper,
   ProgressStatus,
@@ -185,7 +185,7 @@ export default function CheckList({
           <Box>
             {checkListButtons.map((button: ProgressButtonsType) => {
               return (
-                <MuiChip
+                <Chip
                   key={button.typeId}
                   onClick={() => {
                     if (onButtonClick) {

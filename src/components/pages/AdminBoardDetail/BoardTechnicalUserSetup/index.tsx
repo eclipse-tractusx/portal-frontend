@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { Grid } from '@mui/material'
 import type { AppDetails } from 'features/apps/types'
 
@@ -34,7 +34,7 @@ export default function BoardTechnicalUserSetup({
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
         <Grid container spacing={2} sx={{ margin: '0px' }} key={role}>
-          <Grid item xs={12} className="tech-user-data">
+          <Grid size={{ xs: 12 }} className="tech-user-data">
             <Typography variant="body2">* {role}</Typography>
           </Grid>
         </Grid>

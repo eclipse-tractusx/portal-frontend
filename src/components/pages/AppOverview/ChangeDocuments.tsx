@@ -29,7 +29,7 @@ import {
   DropArea,
   type DropAreaProps,
   Tooltips,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box, Divider } from '@mui/material'

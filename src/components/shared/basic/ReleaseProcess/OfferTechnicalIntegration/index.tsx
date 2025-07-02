@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import SnackbarNotificationWithButtons from '../components/cfx/SnackbarNotificationWithButtons'
 import { Grid } from '@mui/material'
@@ -246,7 +246,7 @@ export default function OfferTechnicalIntegration() {
         {t('technicalIntegration.headerTitle')}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item md={11} sx={{ mr: 'auto', ml: 'auto', mb: 4 }}>
+        <Grid size={{ md: 11 }} sx={{ mr: 'auto', ml: 'auto', mb: 4 }}>
           <Typography variant="body2" align="center">
             {t('technicalIntegration.headerDescription')}
           </Typography>

@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   type TableType,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import './style.scss'
 
 export default function BoardConnectedData() {

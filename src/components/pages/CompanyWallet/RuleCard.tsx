@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Tooltips, Typography } from '@catena-x/portal-shared-components'
+import { Tooltips, Typography } from '@cofinity-x/shared-components'
 import './style.scss'
 import {
   CredentialSubjectStatus,
@@ -109,10 +109,7 @@ export default function RuleCard({
           <Grid container spacing={0} className="grid-layout">
             {sections[key]?.map((item: WalletContent, index) => (
               <Grid
-                item
-                xs={4}
-                sm={4}
-                md={4}
+                size={{ xs: 4, sm: 4, md: 4 }}
                 className="main-rule-card-container"
                 key={item.expiryDate ?? index}
               >

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { type PaginResult } from '@catena-x/portal-shared-components'
+import { type PaginResult } from '@cofinity-x/shared-components'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { type PaginFetchArgsExtended } from 'features/admin/serviceApiSlice'
 import { type PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'

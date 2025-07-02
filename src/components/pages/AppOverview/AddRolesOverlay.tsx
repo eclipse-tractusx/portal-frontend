@@ -29,7 +29,7 @@ import {
   StaticTable,
   type TableType,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box, Grid } from '@mui/material'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import { Controller, useForm } from 'react-hook-form'
@@ -185,8 +185,7 @@ const AddRolesOverlay = ({
           }}
         >
           <Grid
-            item
-            xs={12}
+            size={{ xs: 12 }}
             sx={{ mr: 2, mt: '5px', mb: 5, textAlign: 'center' }}
           >
             <a

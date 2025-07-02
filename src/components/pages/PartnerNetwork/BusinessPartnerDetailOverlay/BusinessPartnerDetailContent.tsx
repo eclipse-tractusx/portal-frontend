@@ -20,7 +20,7 @@
 
 import { Box, Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import type {
   BpdmTypeUUIDKeyPair,
   BusinessPartner,
@@ -132,7 +132,7 @@ const BusinessPartnerDetailContent = ({
                 companyCertificateType: string
               }) => {
                 return (
-                  <Grid item xs={6} key={certificate.documentId}>
+                  <Grid size={{ xs: 6 }} key={certificate.documentId}>
                     <Box
                       key={certificate.documentId}
                       onClick={() => {

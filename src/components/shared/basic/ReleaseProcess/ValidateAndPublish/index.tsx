@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { LogoGrayData } from '@catena-x/portal-shared-components'
+import { LogoGrayData } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

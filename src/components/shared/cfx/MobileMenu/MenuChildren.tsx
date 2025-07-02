@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box, Divider, Link, useTheme } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { MenuItem, type MenuItemProps } from './MenuItem'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>

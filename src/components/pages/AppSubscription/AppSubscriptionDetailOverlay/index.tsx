@@ -33,7 +33,7 @@ import {
   type TableCellType,
   Tooltips,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   ProcessStep,
   type TechnicalUserData,

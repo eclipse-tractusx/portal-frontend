@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ViewSelector } from '@catena-x/portal-shared-components'
+import { ViewSelector } from '@cofinity-x/shared-components'
 import { Stack } from '@mui/material'
 import DebouncedSearchInput from 'components/shared/basic/Input/DebouncedSearchInput'
 import {

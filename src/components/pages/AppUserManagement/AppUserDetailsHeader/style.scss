@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import '../../../styles/colors';
+@use '../../../styles/colors' as colors;
 
 .app-user-details-header-subtitle {
   text-align: center !important;
@@ -39,7 +39,7 @@
 
 .app-user-details-header-role {
   width: 350px;
-  border: 1px solid color(primary);
+  border: 1px solid colors.color(primary);
   border-radius: 8px;
   margin: 15px;
   padding: 30px 0px 30px 30px;

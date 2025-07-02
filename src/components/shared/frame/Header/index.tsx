@@ -29,7 +29,7 @@ import {
   Button,
   CustomAccordion,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import {
   ApplicationStatus,

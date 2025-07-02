@@ -22,7 +22,7 @@ import {
   Typography,
   Button,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box, Divider } from '@mui/material'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import MuiDialogTitle from '@mui/material/DialogTitle'

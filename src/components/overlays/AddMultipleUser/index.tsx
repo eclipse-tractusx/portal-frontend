@@ -38,7 +38,7 @@ import {
   CircleProgress,
   PageSnackbar,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { OVERLAYS } from 'types/Constants'

@@ -25,7 +25,7 @@ import {
   DialogHeader,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import './style.scss'

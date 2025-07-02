@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box, Link, useTheme } from '@mui/material'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import type { MenuItemProps } from './MenuItem'
 

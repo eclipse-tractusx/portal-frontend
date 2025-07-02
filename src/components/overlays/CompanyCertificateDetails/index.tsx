@@ -25,7 +25,7 @@ import {
   DialogActions,
   DialogContent,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { closeOverlay, show } from 'features/control/overlay'
 import './style.scss'
 import {

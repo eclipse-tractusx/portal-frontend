@@ -1,4 +1,4 @@
-import { StatusTag, Typography } from '@catena-x/portal-shared-components'
+import { StatusTag, Typography } from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'

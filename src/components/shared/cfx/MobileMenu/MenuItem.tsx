@@ -31,7 +31,7 @@ import { type MenuType } from '.'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import { useDispatch, useSelector } from 'react-redux'
 import { appearMenuSelector, setAppear } from 'features/control/appear'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { type NotificationBadgeType } from '../../generic/Menu/index'
 
 type LinkItem = Partial<Record<'href' | 'to', string>>

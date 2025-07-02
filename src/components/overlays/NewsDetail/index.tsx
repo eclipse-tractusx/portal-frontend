@@ -22,7 +22,7 @@ import {
   Cards,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { show } from 'features/control/overlay'
 import { fetchItems } from 'features/info/news/actions'
 import { itemsSelector } from 'features/info/news/slice'

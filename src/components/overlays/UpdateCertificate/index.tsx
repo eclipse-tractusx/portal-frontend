@@ -33,7 +33,7 @@ import {
   SelectList,
   Tooltips,
   Dialog,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
@@ -146,7 +146,7 @@ export default function UpdateCertificate() {
                   {t('content.certificates.successCertificate.fileUpload')}
                 </Typography>
                 <Chip
-                  color="success"
+                  color="confirmed"
                   variant="filled"
                   label={t('content.certificates.successCertificate.completed')}
                   size="small"

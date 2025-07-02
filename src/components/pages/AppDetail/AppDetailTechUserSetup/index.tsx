@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import type { AppDetails } from 'features/apps/types'
 import { Grid } from '@mui/material'
 import '../style.scss'
@@ -33,7 +33,7 @@ export default function AppDetailTechUserSetup({
     return data && data?.length > 0 ? (
       data?.map((role: string) => (
         <Grid spacing={2} sx={{ margin: '0px' }} key={role} container>
-          <Grid item sx={{ p: '10px 22px !important' }} xs={12}>
+          <Grid sx={{ p: '10px 22px !important' }} size={{ xs: 12 }}>
             <Typography variant="label3">* {role}</Typography>
           </Grid>
         </Grid>

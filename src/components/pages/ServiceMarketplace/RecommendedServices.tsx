@@ -22,7 +22,7 @@ import {
   CardHorizontal,
   CircleProgress,
   LogoGrayData,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { Grid, useTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'

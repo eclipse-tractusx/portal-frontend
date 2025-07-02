@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { LanguageSwitch, Button } from '@catena-x/portal-shared-components'
+import { LanguageSwitch, Button } from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import i18next, { changeLanguage, t } from 'i18next'
 import I18nService from 'services/I18nService'

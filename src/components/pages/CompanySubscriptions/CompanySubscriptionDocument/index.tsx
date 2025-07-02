@@ -20,7 +20,7 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { type AppDetails, type Documents } from 'features/apps/types'

@@ -23,7 +23,7 @@ import {
   ViewSelector,
   SortOption,
   Button,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import SortImage from 'components/shared/frame/SortImage'
 import './style.scss'
 import { ROLES } from 'types/Constants'

@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { Tooltips, Typography } from '@catena-x/portal-shared-components'
+import { Tooltips, Typography } from '@cofinity-x/shared-components'
 import './style.scss'
 import Overlay from './Overlay'
 import {

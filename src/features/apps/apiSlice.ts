@@ -18,10 +18,7 @@
  ********************************************************************************/
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {
-  LogoGrayData,
-  type PaginResult,
-} from '@catena-x/portal-shared-components'
+import { LogoGrayData, type PaginResult } from '@cofinity-x/shared-components'
 import i18next from 'i18next'
 import { getApiBase } from 'services/EnvironmentService'
 import { apiBaseQuery } from 'utils/rtkUtil'

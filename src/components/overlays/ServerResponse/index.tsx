@@ -26,7 +26,7 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import { t } from 'i18next'
 
 interface ServerResponseOverlayProps {

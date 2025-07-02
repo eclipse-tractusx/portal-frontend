@@ -99,7 +99,7 @@ const UpdateForm = ({
   return (
     <>
       <Grid container spacing={2} sx={{ marginTop: '0' }}>
-        <Grid item xs={12} md={12}>
+        <Grid size={{ xs: 12, md: 12 }}>
           <div className="cx-form-field">
             <ValidatingInput
               name="siteName"
@@ -121,7 +121,7 @@ const UpdateForm = ({
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <div className="cx-form-field">
             <ValidatingInput
               name="street"
@@ -143,7 +143,7 @@ const UpdateForm = ({
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <div className="cx-form-field">
             <ValidatingInput
               name="houseNumber"
@@ -165,7 +165,7 @@ const UpdateForm = ({
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <div className="cx-form-field">
             <ValidatingInput
               name="postalCode"
@@ -187,7 +187,7 @@ const UpdateForm = ({
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <div className="cx-form-field">
             <ValidatingInput
               name="city"
@@ -209,7 +209,7 @@ const UpdateForm = ({
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <div className="cx-form-field cx-form-field__select">
             <SelectList
               popperHeight={165}
@@ -234,7 +234,7 @@ const UpdateForm = ({
 
       {isAddress && (
         <>
-          <Grid item xs={12} md={12}>
+          <Grid size={{ xs: 12, md: 12 }}>
             <div
               className="cx-form-field"
               style={{
@@ -262,7 +262,7 @@ const UpdateForm = ({
               />
             </div>
           </Grid>
-          <Grid item xs={12} md={12}>
+          <Grid size={{ xs: 12, md: 12 }}>
             <div className="cx-form-field">
               <ValidatingInput
                 name="identifierNumber"

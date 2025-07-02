@@ -20,7 +20,7 @@
 
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Card } from '@catena-x/portal-shared-components'
+import { Typography, Card } from '@cofinity-x/shared-components'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'

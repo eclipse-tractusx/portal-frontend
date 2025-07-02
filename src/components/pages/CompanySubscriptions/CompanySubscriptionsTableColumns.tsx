@@ -23,8 +23,8 @@ import {
   IconButton,
   Button,
   Typography,
-} from '@catena-x/portal-shared-components'
-import type { GridColDef } from '@mui/x-data-grid'
+} from '@cofinity-x/shared-components'
+import { type GridColDef } from '@mui/x-data-grid'
 import {
   type SubscribedActiveApps,
   SubscriptionStatus,

@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-@import 'src/components/styles/_colors';
-@import 'src/components/styles/images';
+@use 'src/components/styles/_colors' as colors;
+@use 'src/components/styles/_images' as images;
 
 .page-main-container {
   margin: 0;
@@ -27,7 +27,7 @@
   width: 100%;
 
   a {
-    color: color('text-quinary');
+    color: colors.color('text-quinary');
     font-weight: 400;
   }
 }
@@ -81,8 +81,8 @@
     display: flex;
 
     svg {
-      color: color('text-quinary');
-      fill: color('text-quinary');
+      color: colors.color('text-quinary');
+      fill: colors.color('text-quinary');
     }
 
     a {

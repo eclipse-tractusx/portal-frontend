@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Typography, IconButton } from '@catena-x/portal-shared-components'
+import { Typography, IconButton } from '@cofinity-x/shared-components'
 import type { ProviderProps } from '../StaticTypes'
 import '../style.scss'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'

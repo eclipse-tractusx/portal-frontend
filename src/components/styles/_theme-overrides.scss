@@ -1688,12 +1688,12 @@ p.MuiTypography-root.MuiTypography-body3.description,
     justify-content: flex-start;
     height: 250px !important;
 
+    background-position: 100% 60px;
+    background-size: contain;
+
     @media (max-width: 767px) {
       height: 350px !important;
     }
-
-    background-position: 100% 60px;
-    background-size: contain;
 
     &__title {
       position: static;

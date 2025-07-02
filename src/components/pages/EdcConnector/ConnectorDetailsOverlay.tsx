@@ -29,7 +29,7 @@ import {
   CircleProgress,
   LoadingButton,
   IconButton,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   type ConnectorDetailsType,
   useUpdateConnectorUrlMutation,
@@ -335,7 +335,7 @@ const ConnectorDetailsOverlay = ({
                   </Button>
                 </Box>
                 <Grid container spacing={2}>
-                  <Grid xs={12} item>
+                  <Grid size={{ xs: 12 }}>
                     <Input
                       label={
                         <Typography variant="body2">
@@ -347,7 +347,7 @@ const ConnectorDetailsOverlay = ({
                       sx={{ mb: 2 }}
                     />
                   </Grid>
-                  <Grid xs={11} item>
+                  <Grid size={{ xs: 11 }}>
                     <Input
                       label={
                         <Typography variant="body2">
@@ -371,7 +371,7 @@ const ConnectorDetailsOverlay = ({
                       {urlErrorMsg}
                     </Typography>
                   </Grid>
-                  <Grid xs={1} item>
+                  <Grid size={{ xs: 1 }}>
                     <IconButton
                       size="small"
                       sx={{
@@ -462,7 +462,7 @@ const ConnectorDetailsOverlay = ({
                       sx={{ mt: 0, alignContent: 'left' }}
                       key={item.key}
                     >
-                      <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
+                      <Grid sx={{ ml: 0, mr: 0 }} size={{ xs: 3 }}>
                         <Typography variant="body2" sx={{ textAlign: 'left' }}>
                           {item.key}
                         </Typography>
@@ -470,14 +470,17 @@ const ConnectorDetailsOverlay = ({
 
                       {item.key ===
                       t('content.edcconnector.details.SdRegistration') ? (
-                        <Grid item sx={{ ml: 0, mr: 0, float: 'left' }} xs={1}>
+                        <Grid
+                          sx={{ ml: 0, mr: 0, float: 'left' }}
+                          size={{ xs: 1 }}
+                        >
                           <Checkbox
                             checked={item.value !== null}
                             disabled={item.value === null}
                           />
                         </Grid>
                       ) : (
-                        <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
+                        <Grid sx={{ ml: 0, mr: 0 }} size={{ xs: 8 }}>
                           <Typography
                             variant="body2"
                             sx={{ textAlign: 'left' }}
@@ -490,12 +493,12 @@ const ConnectorDetailsOverlay = ({
                   )
                 })}
                 <Grid container sx={{ mt: 0, alignContent: 'left' }}>
-                  <Grid item sx={{ ml: 0, mr: 0 }} xs={3}>
+                  <Grid sx={{ ml: 0, mr: 0 }} size={{ xs: 3 }}>
                     <Typography variant="body2" sx={{ textAlign: 'left' }}>
                       {t('content.edcconnector.details.SdDocument')}
                     </Typography>
                   </Grid>
-                  <Grid item sx={{ ml: 0, mr: 0 }} xs={8}>
+                  <Grid sx={{ ml: 0, mr: 0 }} size={{ xs: 8 }}>
                     <Typography variant="body2" sx={{ textAlign: 'left' }}>
                       {fetchConnectorDetails?.selfDescriptionDocumentId ===
                       null ? (

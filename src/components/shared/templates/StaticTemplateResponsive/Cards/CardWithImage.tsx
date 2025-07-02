@@ -21,7 +21,7 @@
 import CardWithText from './CardWithText'
 import type { CardDetailsProps } from '../StaticTypes'
 import { Box } from '@mui/material'
-import { Image } from '@catena-x/portal-shared-components'
+import { Image } from '@cofinity-x/shared-components'
 import '../style.scss'
 
 export default function CardWithImage({

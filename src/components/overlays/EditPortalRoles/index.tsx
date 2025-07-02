@@ -25,7 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   type AppRole,
   type PortalRoleRequest,

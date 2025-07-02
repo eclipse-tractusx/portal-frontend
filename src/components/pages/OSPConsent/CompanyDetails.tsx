@@ -28,7 +28,7 @@ import {
   Button,
   Checkbox,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import {
   useFetchCompanyDetailsWithAddressQuery,
   useFetchAgreementDataQuery,

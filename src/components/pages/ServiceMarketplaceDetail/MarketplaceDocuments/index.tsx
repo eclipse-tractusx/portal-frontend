@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { download } from 'utils/downloadUtils'
 import 'components/styles/document.scss'

@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   type TableType,
-} from '@catena-x/portal-shared-components'
+} from '@cofinity-x/shared-components'
 import type { AppDetails } from 'features/apps/types'
 import './style.scss'
 import { Box } from '@mui/material'
