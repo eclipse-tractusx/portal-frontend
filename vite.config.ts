@@ -33,7 +33,6 @@ export default defineConfig({
     outDir: 'build',
     cssMinify: true,
     rollupOptions: {
-      external: ['@emotion/react'],
       output: {
         assetFileNames: (assetInfo) => {
           let extType = assetInfo?.name?.split('.').at(1)
