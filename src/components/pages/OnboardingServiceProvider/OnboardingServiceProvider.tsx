@@ -172,6 +172,7 @@ const OnboardingServiceProvider = () => {
                   hint={t('content.onboardingServiceProvider.callbackUrl.hint')}
                   debounceTime={0}
                   onValid={checkValidData}
+                  skipInitialValidation={true}
                 />
               </div>
               <div style={{ marginTop: '34px' }}>
@@ -183,6 +184,7 @@ const OnboardingServiceProvider = () => {
                   hint={t('content.onboardingServiceProvider.authUrl.hint')}
                   debounceTime={0}
                   onValid={checkValidData}
+                  skipInitialValidation={true}
                 />
               </div>
               <div style={{ margin: '15px 0' }}>
@@ -193,6 +195,7 @@ const OnboardingServiceProvider = () => {
                   hint={t('content.onboardingServiceProvider.clientId.hint')}
                   validate={isIDPClientID}
                   onValid={checkValidData}
+                  skipInitialValidation={true}
                 />
               </div>
               <div style={{ margin: '12px 0 30px' }}>
@@ -207,6 +210,7 @@ const OnboardingServiceProvider = () => {
                   )}
                   validate={isIDPClientSecret}
                   onValid={checkValidData}
+                  skipInitialValidation={true}
                 />
               </div>
               {showError && (
