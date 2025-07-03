@@ -194,6 +194,7 @@ export default function AddRoles() {
               rows={appRolesData}
               getRowId={(row) => uniqueId(row.urn)}
               hasBorder={false}
+              noRowsMsg={t('shared.table.emptyTable')}
             />
           </Box>
         </div>
