@@ -72,7 +72,7 @@ jobs:
           echo versions equal - building release ${{ env.REF_NAME }}
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
 
       - name: Linter Checks
         run: yarn lint
