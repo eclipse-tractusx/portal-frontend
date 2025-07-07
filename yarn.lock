@@ -1189,10 +1189,10 @@
     prop-types "^15.8.1"
     react-is "^19.1.0"
 
-"@mui/x-data-grid@^7.27.2", "@mui/x-data-grid@^7.29.2":
-  version "7.29.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.29.2.tgz#16c4eeb4ed4a0c4046183e7a19c919213765d5f7"
-  integrity sha512-Z9/j2hgUkbgckPGUnl7CcFOuqSU7A7eCHGGu+43MJass9UUfKXLqVbOeemqBAIozP+51DaXiYZNpliWZj/Sjjg==
+"@mui/x-data-grid@^7.27.2", "@mui/x-data-grid@^7.29.8":
+  version "7.29.8"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.29.8.tgz#ea3776c02c6aa44ce6b18aef2924270a9a4d7e66"
+  integrity sha512-m4Dp1Vig8gFiBlcEOWimUku182cEw5YrAyXS3PfTSdbxa/20bFw7a8mlHdxO9ChHQRMf6TqbisdRm23CDIIdog==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0 || ^7.0.0"
@@ -5954,10 +5954,10 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
 
-phone@^3.1.59:
-  version "3.1.59"
-  resolved "https://registry.yarnpkg.com/phone/-/phone-3.1.59.tgz#73d8e6a98ac90707c7b576867986073c9a6f28c3"
-  integrity sha512-CUv22jw0Zgrb/h7v3sEd262zJXS/66h7zyCCRIynx+2FswAJuuFsXsJkIxMUT4UcosKxDx1bJwdZeGnDELLsCw==
+phone@^3.1.62:
+  version "3.1.62"
+  resolved "https://registry.yarnpkg.com/phone/-/phone-3.1.62.tgz#ace53c7a2ef3cb7bc954094d2946181a513422d8"
+  integrity sha512-mxUdq2nULKg6ukgVr4GSF9/sQiAa6e3AJy2HNE3UJA+lqdEF+Cko2RhKHhZRHtFaLKuBLPptitIwjv0uHG+vhw==
 
 picocolors@^1.0.0:
   version "1.1.0"
