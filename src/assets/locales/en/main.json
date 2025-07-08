@@ -1518,7 +1518,7 @@
       "configuration": "Configuration successful",
     "pending": "Subscription pending",
       "active": "Subscription active",
-      "inactive": "Inactive",
+      "inactive": "Inactive", "unsubscribed": "Unsubscribed",
       "process": "Subscription in progress",
       "tabs": {
         "request": "Request",
@@ -1591,7 +1591,7 @@
         "technicalSecret": "Technical User Secret",
         "technicalPermission": "Technical User Permission"
       }, "decline": {
-        "heading": "Decline app subscription?",
+      "heading": "Decline {{subscriptionType}} subscription?",
         "intro": "For {{appName}}",
         "description": "{{companyName}} receives an e-mail notification with the option to re-subscribe again.",
         "success": "App subscription declined",
@@ -2024,7 +2024,7 @@
       "description": "Efficiently manage and organize your company certificates with ease. This page provides a user-friendly interface to view, add, edit, and delete company certificates. Stay on top of your certificate management process and ensure compliance effortlessly.",
       "tabs": {
         "inactive": "Inactive",
-        "active": " Active",
+        "active": " Active","unsubscribed": "Unsubscribed",
         "all": "All certificates"
       },
       "sort": {

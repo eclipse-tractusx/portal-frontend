@@ -1518,7 +1518,7 @@
       "configuration": "Konfiguration erfolgreich",
        "pending": "Abo ausstehend",
       "active": "Abo aktiv",
-      "inactive": "Abo abbestellt",
+      "inactive": "Abo abbestellt","unsubscribed": "Abo abbestellt",
       "process": "Abo in Bearbeitung", "offersHeading": "Angebotene Apps",
       "appSubscriptionHeading": "Abos",
       "tabs": {
@@ -1593,7 +1593,7 @@
         "technicalSecret": "Technical User Secret",
         "technicalPermission": "Technical User Permission"
       },"decline": {
-        "heading": "App Abonnement ablehnen?",
+        "heading": "{{subscriptionType}} Abonnement ablehnen?",
         "intro": "Für {{appName}}",
         "description": "{{companyName}} erhält eine E-Mail-Benachrichtigung mit der Option, die App erneut zu abonnieren.",
         "success": "App Abonnement abgelehnt",
