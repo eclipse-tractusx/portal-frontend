@@ -2031,6 +2031,7 @@
       "description": "Verwalten und organisieren Sie Ihre Unternehmenszertifikate einfach und effizient. Diese Seite bietet eine benutzerfreundliche Oberfläche zum Anzeigen, Hinzufügen, Bearbeiten und Löschen von Unternehmenszertifikaten. Behalten Sie den Überblick über Ihren Zertifikatsverwaltungsprozess und stellen Sie mühelos die Einhaltung sicher.",
       "tabs": {
         "inactive": "Inactive",
+        "unsubscribed": "Abo abbestellt",
         "active": " Active",
         "all": "All certificates"
       },

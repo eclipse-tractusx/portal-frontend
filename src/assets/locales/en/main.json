@@ -1523,6 +1523,8 @@
       "inactive": "Inactive",
       "unsubscribed": "Unsubscribed",
       "process": "Subscription in progress",
+      "offersHeading": "Apps Offered",
+      "appSubscriptionHeading": "Subscriptions",
       "tabs": {
         "request": "Request",
         "active": "Active",
