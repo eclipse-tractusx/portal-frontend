@@ -1492,6 +1492,9 @@
         "authType": "Auth Type",
         "clientSercret": "Client Secret"
       }
+    }, "appServiceSubscription": {
+      "appsOffered": "Apps Offered",
+      "subscriptions": "Subscriptions"
     },
     "appSubscription": {
       "headline": "App Subscription",
@@ -1508,15 +1511,15 @@
       "allServices": "All Services",
       "viewDetails": "Display more details",
       "activateBtn": "Activate",
-      "configureBtn": "Configure",
+      "configureBtn": "Configure","declineBtn": "Decline",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Activation successful",
       "configuration": "Configuration successful",
-      "pending": "Subscription is Pending",
-      "active": "Subscription is Active",
-      "inactive": "Subscription is Inactive",
-      "process": "Subscription is in Progress",
+    "pending": "Subscription pending",
+      "active": "Subscription active",
+      "inactive": "Inactive",
+      "process": "Subscription in progress",
       "tabs": {
         "request": "Request",
         "active": "Active",
@@ -1587,6 +1590,13 @@
         "technicalClientId": "Technical User Client ID",
         "technicalSecret": "Technical User Secret",
         "technicalPermission": "Technical User Permission"
+      }, "decline": {
+        "heading": "Decline app subscription?",
+        "intro": "For {{appName}}",
+        "description": "{{companyName}} receives an e-mail notification with the option to re-subscribe again.",
+        "success": "App subscription declined",
+        "cancelBtn": "Cancel",
+        "declineBtn": "Decline"
       },
       "detailOverlay": {
         "title": "Provider View",
