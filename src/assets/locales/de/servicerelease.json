@@ -166,13 +166,13 @@
     "activateBtn": "Activate",
     "pleaseEnterValidURL": "Please enter a valid URL",
     "tabs": {
-       "request": "Anfragen",
+      "request": "Anfragen",
       "active": "Aktiv",
       "inactive": "Abbestellt",
       "showAll": "Alle"
     },
     "sortOptions": {
-     "customer": "Kunde A–Z",
+      "customer": "Kunde A–Z",
       "offer": "Angebot A-Z",
       "apps": "Apps A–Z"
     },

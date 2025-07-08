@@ -167,13 +167,14 @@
     "pleaseEnterValidURL": "Please enter a valid URL",
     "tabs": {
       "request": "Request",
-      "active": "Active",        "inactive": "Unsubscribed",
+      "active": "Active",
+      "inactive": "Unsubscribed",
       "showAll": "Show All"
     },
     "sortOptions": {
-    "customer": "Customer A–Z",
-        "offer": "Offer",
-        "apps": "Apps A–Z"
+      "customer": "Customer A–Z",
+      "offer": "Offer",
+      "apps": "Apps A–Z"
     },
     "document": {
       "heading": "Relevant Documents",
@@ -207,9 +208,10 @@
       "technicaluserType": "Assigned Permissions:",
       "close": "Close"
     },
-          "offersHeading": "Services Offered",
+    "offersHeading": "Services Offered",
     "serviceSubscriptionHeading": "Subscriptions",
-    "loadMore": "Load More", "success": "Activation successful",
+    "loadMore": "Load More",
+    "success": "Activation successful",
     "configuration": "Configuration successful",
     "failure": "Error while configuring service subscription"
   },

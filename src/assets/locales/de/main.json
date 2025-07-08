@@ -1492,7 +1492,8 @@
         "authType": "Auth Type",
         "clientSercret": "Client Secret"
       }
-    },"appServiceSubscription": {
+    },
+    "appServiceSubscription": {
       "appsOffered": "Angebotene Apps",
       "subscriptions": "Abos"
     },
@@ -1516,17 +1517,20 @@
       "error": "Error",
       "success": "Aktivierung erfolgreich",
       "configuration": "Konfiguration erfolgreich",
-       "pending": "Abo ausstehend",
+      "pending": "Abo ausstehend",
       "active": "Abo aktiv",
-      "inactive": "Abo abbestellt","unsubscribed": "Abo abbestellt",
-      "process": "Abo in Bearbeitung", "offersHeading": "Angebotene Apps",
+      "inactive": "Abo abbestellt",
+      "unsubscribed": "Abo abbestellt",
+      "process": "Abo in Bearbeitung",
+      "offersHeading": "Angebotene Apps",
       "appSubscriptionHeading": "Abos",
       "tabs": {
         "request": "Request",
-        "active": "Active","inactive": "Abbestellt",
+        "active": "Active",
+        "inactive": "Abbestellt",
         "showAll": "Show All"
       },
-     "sortOptions": {
+      "sortOptions": {
         "customer": "Kunde A–Z",
         "offer": "Angebot A-Z",
         "apps": "Apps A–Z"
@@ -1592,11 +1596,12 @@
         "technicalClientId": "Technical User Client ID",
         "technicalSecret": "Technical User Secret",
         "technicalPermission": "Technical User Permission"
-      },"decline": {
+      },
+      "decline": {
         "heading": "{{subscriptionType}} Abonnement ablehnen?",
         "intro": "Für {{appName}}",
         "description": "{{companyName}} erhält eine E-Mail-Benachrichtigung mit der Option, die App erneut zu abonnieren.",
-        "success": "App Abonnement abgelehnt",
+        "success": "{{subscriptionType}} Abonnement abgelehnt",
         "cancelBtn": "Abbrechen",
         "declineBtn": "Ablehnen"
       },
