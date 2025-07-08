@@ -37,8 +37,6 @@
   - fixed disabled save metadata button [1604](https://github.com/eclipse-tractusx/portal-frontend/pull/1604)
 - **Service Marketplace**
   - replaced hardcoded images in service marketplace and detail [#1195](https://github.com/eclipse-tractusx/portal-frontend/issues/1195)
-- **App Access Management**
-  - user remains checked on navigating back from role selection [#1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
 
 ### Technical Support
 
