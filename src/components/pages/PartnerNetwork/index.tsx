@@ -30,7 +30,7 @@ import {
   type PaginResult,
 } from '@catena-x/portal-shared-components'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
 import { PartnerNetworksTableColumns } from 'components/pages/PartnerNetwork/partnerNetworkTableColumns'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
@@ -134,6 +134,15 @@ const PartnerNetwork = () => {
     fetchAndApply([bpn])
   }, [bpn])
 
+  const getNoRowsMessage = useMemo(() => {
+    if (!allItems.length) {
+      return expr || bpn
+        ? t('shared.table.emptySearchTable')
+        : t('shared.table.emptyTable')
+    }
+    return ''
+  }, [allItems, expr, bpn, t])
+
   return (
     <main className="partner-network-page-container">
       <PageHeader
@@ -171,7 +180,6 @@ const PartnerNetwork = () => {
           loading={loading}
           rows={allItems}
           rowsCount={allItems?.length}
-          noRowsMsg={t('content.companyData.table.noRowsMsg')}
           nextPage={() => {
             setPage(page + 1)
           }}
@@ -180,6 +188,7 @@ const PartnerNetwork = () => {
             memberData.meta.page < memberData.meta.totalPages - 1
           }
           hideFooterPagination={true}
+          noRowsMsg={getNoRowsMessage}
         />
       </section>
     </main>
