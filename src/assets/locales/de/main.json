@@ -1524,6 +1524,7 @@
       "process": "Abo in Bearbeitung",
       "offersHeading": "Angebotene Apps",
       "appSubscriptionHeading": "Abos",
+      "loadMore": "Mehr laden",
       "tabs": {
         "request": "Request",
         "active": "Active",

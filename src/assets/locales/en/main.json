@@ -1525,6 +1525,7 @@
       "process": "Subscription in progress",
       "offersHeading": "Apps Offered",
       "appSubscriptionHeading": "Subscriptions",
+      "loadMore": "Load more",
       "tabs": {
         "request": "Request",
         "active": "Active",
