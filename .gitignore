@@ -23,3 +23,6 @@ public/SECURITY.md
 cypress/screenshots
 cypress/videos
 cypress/downloads
+
+# Add coverage reports
+coverage
