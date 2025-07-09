@@ -256,6 +256,7 @@ export default function AdminCredentialElements() {
       field: 'bpnl',
       headerName: t('content.adminCertificate.table.companyInfo'),
       flex: 2.5,
+      className: 'ph-mask-text',
     },
     {
       field: 'useCase',

@@ -399,13 +399,18 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
           headerName: t('global.field.name'),
           flex: 3,
           valueGetter: (_value_, row) => getDisplayName(row),
+          renderCell: ({ row }: { row: IdentityProvider }) => (
+            <span className="ph-mask-text">{row.displayName}</span>
+          ),
         },
         {
           field: 'alias',
           headerName: t('global.field.alias'),
           flex: 1.5,
           renderCell: ({ row }: { row: IdentityProvider }) =>
-            row.alias ?? (
+            row.alias ? (
+              <span className="ph-mask-text">{row.alias}</span>
+            ) : (
               <>
                 <ReportProblemIcon color="error" fontSize="small" />
                 <Typography variant="body2" sx={{ marginLeft: '5px' }}>

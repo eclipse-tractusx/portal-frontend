@@ -163,6 +163,7 @@ export default function RuleCard({
                               gap: '5px',
                               width: '100%',
                             }}
+                            className="ph-mask-text"
                           >
                             <Typography
                               variant="h4"

@@ -297,6 +297,11 @@ export const CompanyAddressList = ({
       headerName: t('content.companyData.table.site'),
       flex: 1.5,
       valueGetter: (_value_, row: CompanyDataType) => getSiteActualName(row),
+      renderCell: ({ row }: { row: CompanyDataType }) => (
+        <Box className="ph-mask-text" sx={{ display: 'grid' }}>
+          {getSiteActualName(row)}
+        </Box>
+      ),
     },
     {
       field: 'address',
@@ -308,6 +313,13 @@ export const CompanyAddressList = ({
         row.address
           ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''}${row.address.physicalPostalAddress.street?.houseNumber ? ' ' + row.address.physicalPostalAddress.street?.houseNumber : ''}, ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.city ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
           : '',
+      renderCell: ({ row }: { row: CompanyDataType }) => (
+        <Box className="ph-mask-text" sx={{ display: 'grid' }}>
+          {row.address
+            ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''}${row.address.physicalPostalAddress.street?.houseNumber ? ' ' + row.address.physicalPostalAddress.street?.houseNumber : ''}, ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.city ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
+            : ''}
+        </Box>
+      ),
     },
     {
       field: 'bpn',
@@ -320,9 +332,13 @@ export const CompanyAddressList = ({
       sortable: true,
       renderCell: ({ row }: { row: CompanyDataType }) =>
         getBpnActualBpn(row) !== '-' ? (
-          <CopyToClipboard text={getBpnActualBpn(row)} />
+          <Box className="ph-mask-text" sx={{ display: 'grid' }}>
+            <CopyToClipboard text={getBpnActualBpn(row)} />
+          </Box>
         ) : (
-          '-'
+          <Box className="ph-mask-text" sx={{ display: 'grid' }}>
+            -
+          </Box>
         ),
     },
     {

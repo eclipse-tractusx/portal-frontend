@@ -80,21 +80,22 @@ export default function BusinessApplicationsSection() {
         <Typography variant="h2" className="section-title">
           {t('content.home.businessApplicationsSection.title')}
         </Typography>
-
         <Carousel gapToDots={5}>
           {(data ?? placeholder).map(appToCard).map((item) => (
-            <Card
-              {...item}
-              key={uniqueId(item.title)}
-              buttonText="Details"
-              imageSize="small"
-              imageShape="round"
-              variant="minimal"
-              expandOnHover={false}
-              filledBackground={true}
-              onClick={item.onClick}
-              imageLoader={fetchImageWithToken}
-            />
+            <Box className="ph-no-capture">
+              <Card
+                {...item}
+                key={uniqueId(item.title)}
+                buttonText="Details"
+                imageSize="small"
+                imageShape="round"
+                variant="minimal"
+                expandOnHover={false}
+                filledBackground={true}
+                onClick={item.onClick}
+                imageLoader={fetchImageWithToken}
+              />
+            </Box>
           ))}
           {data &&
             data.length < 4 &&

@@ -52,7 +52,7 @@ export const UserInfo = ({ pages }: { pages: string[] }) => {
   }
 
   return (
-    <div className="UserInfo">
+    <div className="UserInfo ph-mask-text">
       <div ref={avatar}>
         <UserAvatar onClick={openMenu} />
       </div>

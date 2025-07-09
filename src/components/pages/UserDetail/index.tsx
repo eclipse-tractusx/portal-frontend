@@ -89,7 +89,11 @@ export default function UserDetail() {
               display="block"
               sx={{ paddingBottom: '10px' }}
             >
-              {data && `${data.firstName} ${data.lastName}, ${data.email}`}
+              {data && (
+                <span className="ph-mask-text">
+                  {`${data.firstName} ${data.lastName}, ${data.email}`}
+                </span>
+              )}
             </Typography>
             <Button
               color="secondary"

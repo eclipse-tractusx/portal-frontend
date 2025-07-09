@@ -112,17 +112,22 @@ export const CompanySubscriptionsTableColumns = (
       filterable: false,
       disableColumnMenu: true,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-        <Image
-          src={getSource(row)}
-          loader={fetchImageWithToken}
-          style={{
-            objectFit: 'cover',
-            width: 30,
-            height: 30,
-            borderRadius: '50%',
-            marginRight: '5px',
-          }}
-        />
+        <Box
+          className="ph-no-capture"
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          <Image
+            src={getSource(row)}
+            loader={fetchImageWithToken}
+            style={{
+              objectFit: 'cover',
+              width: 30,
+              height: 30,
+              borderRadius: '50%',
+              marginRight: '5px',
+            }}
+          />
+        </Box>
       ),
     },
     {
@@ -130,7 +135,7 @@ export const CompanySubscriptionsTableColumns = (
       headerName: t('content.companySubscriptions.table.appTitle'),
       flex: 3,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-        <Box sx={{ display: 'grid' }}>
+        <Box sx={{ display: 'grid' }} className="ph-mask-text">
           <Typography variant="body3">{row.name}</Typography>
           <Typography variant="body3">{row.provider}</Typography>
         </Box>

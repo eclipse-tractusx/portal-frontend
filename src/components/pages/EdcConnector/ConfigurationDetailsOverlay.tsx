@@ -183,7 +183,9 @@ const ConfigurationDetailsOverlay = ({
           ) : (
             <>
               {!isError ? (
-                <StaticTable data={tableData} horizontal={true} />
+                <Box className="ph-mask-text">
+                  <StaticTable data={tableData} horizontal={true} />
+                </Box>
               ) : (
                 <ErrorBar
                   errorText={

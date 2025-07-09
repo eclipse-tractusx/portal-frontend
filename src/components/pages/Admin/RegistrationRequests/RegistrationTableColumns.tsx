@@ -207,7 +207,11 @@ export const RegistrationRequestsTableColumns = (
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <Tooltips
           tooltipText={row.companyName}
-          children={<p style={tooltipStyles}>{row.companyName}</p>}
+          children={
+            <p style={tooltipStyles} className="ph-mask-text">
+              {row.companyName}
+            </p>
+          }
         />
       ),
     },
@@ -220,7 +224,11 @@ export const RegistrationRequestsTableColumns = (
       renderCell: ({ row }: { row: ApplicationRequest }) => (
         <Tooltips
           tooltipText={row.email}
-          children={<p style={tooltipStyles}>{row.email}</p>}
+          children={
+            <p style={tooltipStyles} className="ph-mask-text">
+              {row.email}
+            </p>
+          }
         />
       ),
     },
@@ -236,6 +244,7 @@ export const RegistrationRequestsTableColumns = (
             style={{
               marginRight: '30px',
             }}
+            className="ph-mask-text"
           >
             {row.bpn}
           </Box>
@@ -274,7 +283,11 @@ export const RegistrationRequestsTableColumns = (
         return (
           <Tooltips
             tooltipText={createdDate}
-            children={<p style={tooltipStyles}>{createdDate}</p>}
+            children={
+              <p style={tooltipStyles} className="ph-mask-text">
+                {createdDate}
+              </p>
+            }
           />
         )
       },

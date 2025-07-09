@@ -542,6 +542,7 @@ export const AddUsersIDP = ({ id }: { id: string }) => {
               {t('users.step1Intro')}
             </Typography>
             <Textarea
+              className="ph-mask-text"
               style={{
                 ...{
                   marginTop: '12px',

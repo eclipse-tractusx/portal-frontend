@@ -40,7 +40,7 @@ export default function CompanyInfo() {
       </Box>
       <Box
         className={
-          'cx-company-data__details--right cx-company-data__details--info'
+          'cx-company-data__details--right cx-company-data__details--info ph-mask-text'
         }
       >
         <Typography variant="body1">{companyDetails?.shortName}</Typography>

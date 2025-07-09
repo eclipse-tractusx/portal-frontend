@@ -94,7 +94,10 @@ export const UserList = ({
   }, [fetchHookArgs?.userRoleResponse, fetchHookArgs?.addUserResponse])
 
   return (
-    <section id="identity-management-id" className="user-management-section">
+    <section
+      id="identity-management-id"
+      className="user-management-section ph-mask-text"
+    >
       <SubHeaderTitle title={t(sectionTitle)} variant="h3" />
       <PageLoadingTable<TenantUser, FetchHookArgsType>
         tableVariant={TableVariants.SERVER_SIDE}
@@ -130,8 +133,18 @@ export const UserList = ({
             flex: 2,
             valueGetter: (_value_, row: TenantUser) =>
               `${row.firstName} ${row.lastName}`,
+            renderCell: ({ value: name }) => (
+              <span className="ph-mask-text">{name}</span>
+            ),
           },
-          { field: 'email', headerName: t('global.field.email'), flex: 3 },
+          {
+            field: 'email',
+            headerName: t('global.field.email'),
+            flex: 3,
+            renderCell: ({ value: email }) => (
+              <span className="ph-mask-text">{email}</span>
+            ),
+          },
           {
             field: 'status',
             headerName: t('global.field.status'),

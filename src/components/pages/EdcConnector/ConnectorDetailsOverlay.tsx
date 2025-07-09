@@ -480,7 +480,11 @@ const ConnectorDetailsOverlay = ({
                           />
                         </Grid>
                       ) : (
-                        <Grid sx={{ ml: 0, mr: 0 }} size={{ xs: 8 }}>
+                        <Grid
+                          sx={{ ml: 0, mr: 0 }}
+                          size={{ xs: 8 }}
+                          className="ph-mask-text"
+                        >
                           <Typography
                             variant="body2"
                             sx={{ textAlign: 'left' }}

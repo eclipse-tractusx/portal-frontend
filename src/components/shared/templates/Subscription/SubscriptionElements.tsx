@@ -320,14 +320,20 @@ export default function SubscriptionElements({
                     key={subscription.subscriptionId}
                     className="subscription-list-item"
                   >
-                    <Typography variant="body3" className="firstSection">
+                    <Typography
+                      variant="body3"
+                      className="firstSection ph-mask-text"
+                    >
                       {subscription.companyName}
                     </Typography>
-                    <Typography variant="body3" className="secondSection">
+                    <Typography
+                      variant="body3"
+                      className="secondSection ph-mask-text"
+                    >
                       {subscriptionData.offerName}
                     </Typography>
 
-                    <div className="forthSection">
+                    <div className="forthSection ph-mask-text">
                       {renderStatus(subscriptionData, subscription)}
                     </div>
                     <div

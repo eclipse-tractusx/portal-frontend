@@ -202,7 +202,7 @@ const CompanyDetailOverlay = ({
                   documentSize?: number
                 }) => (
                   <Box key={contract.documentId}>
-                    <div className={'doc-item'}>
+                    <div className="doc-item ph-mask-text">
                       <DropPreviewFile
                         uploadFile={{
                           name: contract?.documentType,
@@ -383,7 +383,10 @@ const CompanyDetailOverlay = ({
                       {detail.key}
                     </Typography>
                     <div></div>
-                    <Typography variant="label2" className="detail-text">
+                    <Typography
+                      variant="label2"
+                      className="detail-text ph-mask-text"
+                    >
                       {detail.value}
                     </Typography>
                   </div>

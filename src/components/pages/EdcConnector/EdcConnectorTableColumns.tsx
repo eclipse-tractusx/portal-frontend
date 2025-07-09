@@ -46,6 +46,9 @@ export const ConnectorTableColumns = (
       flex: 1,
       disableColumnMenu: true,
       sortable: false,
+      renderCell: (params) => {
+        return <span className="ph-mask-text">{params.value}</span>
+      },
     },
     {
       field: 'type',
@@ -114,6 +117,9 @@ export const ConnectorTableColumns = (
       disableColumnMenu: true,
       align: 'left',
       headerAlign: 'center',
+      renderCell: (params) => {
+        return <span className="ph-mask-text">{params.value}</span>
+      },
     },
     {
       field: 'details',

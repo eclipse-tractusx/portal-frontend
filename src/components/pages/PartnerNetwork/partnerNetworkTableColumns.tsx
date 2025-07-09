@@ -41,6 +41,9 @@ export const PartnerNetworksTableColumns = (
       sortable: false,
       valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
         row?.legalName ?? '',
+      renderCell: ({ row }: { row: BusinessPartner }) => (
+        <span className="ph-mask-text">{row?.legalName}</span>
+      ),
     },
     {
       field: 'bpn',
@@ -49,6 +52,9 @@ export const PartnerNetworksTableColumns = (
       sortable: false,
       valueGetter: (_value_: BusinessPartner, row: BusinessPartner) =>
         row?.bpn ?? '',
+      renderCell: ({ row }: { row: BusinessPartner }) => (
+        <span className="ph-mask-text">{row?.bpn}</span>
+      ),
     },
     {
       field: 'cxmember', // Temporary field, doesnt exists yet

@@ -93,6 +93,9 @@ export const InviteList = ({
             headerName: t('content.invite.columns.companyName'),
             flex: 1.5,
             sortable: false,
+            renderCell: ({ row }: { row: CompanyInvite }) => (
+              <span className="ph-mask-text">{row.companyName}</span>
+            ),
           },
           {
             field: 'firstAndLastName',
@@ -101,6 +104,11 @@ export const InviteList = ({
             sortable: false,
             valueGetter: (_value_, row: CompanyInvite) =>
               `${row.firstName || ''} ${row.lastName || ''}`,
+            renderCell: ({ row }: { row: CompanyInvite }) => (
+              <span className="ph-mask-text">
+                {row.firstName || ''} {row.lastName || ''}
+              </span>
+            ),
           },
           {
             field: 'dateCreated',

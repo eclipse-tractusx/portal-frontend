@@ -84,7 +84,7 @@ export default function SiteDetails({
             <Box className={'cx-company-data__details--left'}>
               <Typography variant="body1">{item.attr}</Typography>
             </Box>
-            <Box className={'cx-company-data__details--right'}>
+            <Box className={'cx-company-data__details--right ph-mask-text'}>
               <Typography variant="body1">{item.val}</Typography>
             </Box>
           </Box>

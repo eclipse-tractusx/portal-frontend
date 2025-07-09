@@ -31,6 +31,9 @@ export const OwnConnectorTableColumns = (): Array<GridColDef> => {
       flex: 1,
       sortable: false,
       disableColumnMenu: true,
+      renderCell: (params) => {
+        return <span className="ph-mask-text">{params.value}</span>
+      },
     },
   ]
 }

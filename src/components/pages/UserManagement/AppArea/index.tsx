@@ -48,22 +48,24 @@ export const AppArea = () => {
         {cards && cards.length > 0
           ? cards?.map((item: ActiveSubscriptionItem) => {
               return (
-                <Card
-                  {...item}
-                  title={item.name ?? ''}
-                  subtitle={item.provider}
-                  key={item.offerId}
-                  buttonText="Details"
-                  imageSize="small"
-                  imageShape="round"
-                  imageLoader={fetchImageWithToken}
-                  variant="minimal"
-                  expandOnHover={false}
-                  filledBackground={true}
-                  onClick={() => {
-                    navigate(`/appUserManagement/${item.offerId}`)
-                  }}
-                />
+                <div className="ph-mask-text">
+                  <Card
+                    {...item}
+                    title={item.name ?? ''}
+                    subtitle={item.provider}
+                    key={item.offerId}
+                    buttonText="Details"
+                    imageSize="small"
+                    imageShape="round"
+                    imageLoader={fetchImageWithToken}
+                    variant="minimal"
+                    expandOnHover={false}
+                    filledBackground={true}
+                    onClick={() => {
+                      navigate(`/appUserManagement/${item.offerId}`)
+                    }}
+                  />
+                </div>
               )
             })
           : Array.from(Array(2), (_item, i) => (

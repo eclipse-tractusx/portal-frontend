@@ -105,13 +105,13 @@ export default function AddressDetails() {
           {t('content.companyData.companyInfo.addressTitle')}
         </Typography>
       </Box>
-      <Box className={'cx-company-data__details--listing '}>
+      <Box className={'cx-company-data__details--listing'}>
         {addressData.map((data) => (
           <Box className={'cx-company-data__details--item'} key={data.key}>
             <Box className={'cx-company-data__details--left'}>
               <Typography variant="body1">{data?.key}</Typography>
             </Box>
-            <Box className={'cx-company-data__details--right'}>
+            <Box className={'cx-company-data__details--right ph-mask-text'}>
               <Typography variant="body1">{data?.value}</Typography>
             </Box>
           </Box>

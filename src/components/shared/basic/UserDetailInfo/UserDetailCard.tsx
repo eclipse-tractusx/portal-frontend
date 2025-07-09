@@ -99,14 +99,16 @@ export const UserDetailCard = ({
             fontSize: '14px',
           }}
         >
-          {Array.isArray(value?.value)
-            ? value?.value.map((bpn, i) => (
-                <span key={i}>
-                  {bpn}
-                  <br />
-                </span>
-              ))
-            : value?.value}
+          {Array.isArray(value?.value) ? (
+            value?.value.map((bpn, i) => (
+              <span key={i} className="ph-mask-text">
+                {bpn}
+                <br />
+              </span>
+            ))
+          ) : (
+            <span className="ph-mask-text">{value?.value}</span>
+          )}
         </span>
       )}
       {userId && value?.label === 'BPN' && (
@@ -224,7 +226,7 @@ export const UserDetailCard = ({
                         fontSize: '14px',
                       }}
                     >
-                      {item}
+                      <span className="ph-mask-text">{item}</span>
                     </ListItem>
                   )
                 })}

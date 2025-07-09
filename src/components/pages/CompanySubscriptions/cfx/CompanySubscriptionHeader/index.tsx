@@ -111,14 +111,14 @@ export default function CompanySubscriptionHeader({
 
   return (
     <Box className="company-subscription-header">
-      <div className="lead-image">
+      <div className="lead-image ph-no-capture">
         <Image
           src={src ?? LogoGrayData}
           alt={detail.title}
           loader={fetchImageWithToken}
         />
       </div>
-      <Box className="content">
+      <Box className="content ph-mask-text">
         <Typography variant="caption2" sx={{ pb: '6px' }}>
           {detail.provider}
         </Typography>

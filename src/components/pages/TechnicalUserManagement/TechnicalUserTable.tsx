@@ -144,11 +144,17 @@ export const TechnicalUserTable = () => {
             field: 'name',
             headerName: t('global.field.userName'),
             flex: 1.8,
+            renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
+              <span className="ph-mask-text">{row.name}</span>
+            ),
           },
           {
             field: 'clientId',
             headerName: t('global.field.clientId'),
             flex: 1.15,
+            renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
+              <span className="ph-mask-text">{row.clientId}</span>
+            ),
           },
           {
             field: 'serviceAccountType',
@@ -168,6 +174,9 @@ export const TechnicalUserTable = () => {
             flex: 1.25,
             valueGetter: (_value_, row: ServiceAccountListEntry) =>
               row.offer ? row.offer?.name : '',
+            renderCell: ({ row }: { row: ServiceAccountListEntry }) => (
+              <span className="ph-mask-text">{row.offer?.name}</span>
+            ),
           },
           {
             field: 'isOwner',

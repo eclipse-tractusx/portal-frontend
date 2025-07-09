@@ -89,7 +89,7 @@ export const MobileMenu = ({
               variant="label1"
               sx={{ color: 'text.secondary', display: 'block' }}
             >
-              {UserService.getName()}
+              <span className="ph-mask-text">{UserService.getName()}</span>
             </Typography>
             <Typography variant="label2" sx={{ fontWeight: 500 }}>
               {UserService.getCompany()}

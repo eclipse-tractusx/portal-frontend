@@ -89,7 +89,7 @@ export const UserInfo = ({
   }, [data])
 
   return (
-    <Box className="UserInfo">
+    <Box className="UserInfo ph-mask-text">
       <div ref={avatar}>
         <UserAvatar
           onClick={openCloseMenu}

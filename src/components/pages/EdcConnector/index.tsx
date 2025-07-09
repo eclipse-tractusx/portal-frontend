@@ -420,7 +420,7 @@ const EdcConnector = () => {
               margin: 'auto',
             }}
           >
-            <Box sx={{ textAlign: 'center' }}>
+            <Box sx={{ textAlign: 'center' }} className="ph-mask-text">
               <Typography variant="body3">
                 {t('content.edcconnector.subDesc1')}
               </Typography>

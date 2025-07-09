@@ -43,6 +43,7 @@ export const AppPermissions = ({ user }: { user: TenantUserDetails }) => {
         onKeyUp={() => {
           // do nothing
         }}
+        className="ph-mask-text"
       >
         {data ? data.title : id}
         <span style={{ marginLeft: '20px', color: '#cccccc' }}>

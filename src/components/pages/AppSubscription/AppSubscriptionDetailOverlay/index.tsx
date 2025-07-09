@@ -440,13 +440,13 @@ const AppSubscriptionDetailOverlay = ({
             </div>
           ) : (
             <div>
-              <div style={{ marginTop: '30px' }}>
+              <div style={{ marginTop: '30px' }} className="ph-mask-text">
                 <StaticTable data={subscriptionDetails} />
               </div>
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: '20px' }} className="ph-mask-text">
                 <VerticalTableNew data={technicalDetails} />
               </div>
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: '20px' }} className="ph-mask-text">
                 <VerticalTableNew data={externalServicesDetails} />
               </div>
             </div>

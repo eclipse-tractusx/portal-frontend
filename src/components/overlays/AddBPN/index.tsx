@@ -103,7 +103,7 @@ export default function AddBPN({ id }: { id: string }) {
 
       <DialogContent>
         <div className="manageBPN">
-          <ul className="bpnListing">
+          <ul className="bpnListing ph-mask-text">
             {bpnValues?.map((bpn: string, i: number) => {
               return (
                 <li key={i}>

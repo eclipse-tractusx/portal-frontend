@@ -4,12 +4,22 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **PostHog normal session recording**
+
+  - Mask registration verification fields to enable PostHog normal session recording [PM2-2967](https://cofinity-x.atlassian.net/browse/PM2-2967)
+
 - **Connector Registration**
+
   - prevent company connector creation without technical user [PM2-2320](https://cofinity-x.atlassian.net/browse/PM2-2320)
+
 - **OSP Registration form**
+
   - Redirect companies already fully onboarded back to portal home page [PM2-2956](https://cofinity-x.atlassian.net/browse/PM2-2956)
+
 - **Package updates**
+
   - Upgrade shared components to 4.0.0 and implement breaking changes [PM2-2781](https://cofinity-x.atlassian.net/browse/PM2-2781)
+
 - **Connector Registration**
 
   - CHERRY-PICK only show available tech user [1570](https://github.com/eclipse-tractusx/portal-frontend/pull/1570)

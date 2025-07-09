@@ -33,7 +33,7 @@ export default function CertificateElements({
         item.ssiDetailData?.map((certificate) => (
           <Grid
             size={{ xs: 12, sm: 6, md: 6 }}
-            className="certificate-card"
+            className="certificate-card ph-mask-text"
             key={item.credentialType}
           >
             <CertificateCard

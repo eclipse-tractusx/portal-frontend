@@ -375,11 +375,14 @@ export default function NotificationItem({
               }}
             >
               {' '}
-              {t(`item.${item.typeId}.title`, {
-                app: item.contentParsed?.AppName ?? item.contentParsed?.appName,
-                offer: item.contentParsed?.OfferName,
-                credentialType: item.contentParsed?.type,
-              })}
+              <span className="ph-mask-text">
+                {t(`item.${item.typeId}.title`, {
+                  app:
+                    item.contentParsed?.AppName ?? item.contentParsed?.appName,
+                  offer: item.contentParsed?.OfferName,
+                  credentialType: item.contentParsed?.type,
+                })}
+              </span>
             </Typography>
             {open && (
               <div className="content">

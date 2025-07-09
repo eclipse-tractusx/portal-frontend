@@ -48,7 +48,7 @@ export default function UserInfo({ id }: { id: string }) {
       />
 
       <DialogContent>
-        <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+        <pre className="ph-mask-text">{JSON.stringify(userInfo, null, 2)}</pre>
       </DialogContent>
     </>
   )

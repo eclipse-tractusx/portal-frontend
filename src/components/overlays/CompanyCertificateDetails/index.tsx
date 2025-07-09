@@ -191,7 +191,7 @@ export default function CompanyCertificateDetails({
         <DialogContent>
           <Box className="box-container">
             <Box className="header-container">
-              <Box className="flex-container">
+              <Box className="flex-container ph-mask-text">
                 <Typography variant="label3">
                   {t('content.companyCertificate.details.type')} :{' '}
                   {selected.companyCertificateType}
@@ -240,6 +240,7 @@ export default function CompanyCertificateDetails({
                 src={pdf}
                 width="100%"
                 height="500px"
+                className="ph-no-capture"
               />
             ) : (
               showLoader()

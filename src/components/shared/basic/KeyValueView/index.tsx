@@ -211,7 +211,7 @@ export const KeyValueView = ({
                   {item.key}
                 </Typography>
               )}
-              {renderValueItem(item)}
+              <span className="ph-mask-text">{renderValueItem(item)}</span>
             </Box>
           ))
         ) : (
@@ -221,7 +221,7 @@ export const KeyValueView = ({
               padding: '18px 24px',
             }}
           >
-            {renderValueItem(items)}
+            <span className="ph-mask-text">{renderValueItem(items)}</span>
           </Box>
         )}
       </Box>

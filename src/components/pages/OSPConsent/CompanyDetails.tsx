@@ -231,7 +231,11 @@ export const CompanyDetails = ({
       <Typography variant="body2" className="company-message">
         {t('osp.companyMessage')}
       </Typography>
-      {companyDetails && <StaticTable data={tableData} horizontal={false} />}
+      {companyDetails && (
+        <div className="ph-mask-text">
+          <StaticTable data={tableData} horizontal={false} />
+        </div>
+      )}
       <div className="rolesSection">
         <Typography
           variant={isMobile ? 'h4' : 'h3'}
