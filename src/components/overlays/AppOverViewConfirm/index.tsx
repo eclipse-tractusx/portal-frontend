@@ -47,7 +47,7 @@ export default function AppOverViewConfirm({
   dispatch(setApplicationId(id))
 
   return (
-    <div className="small-confirm">
+    <div className="small-confirm" data-testid="app-overview-confirm-overlay">
       <DialogHeader
         {...{
           title: title
@@ -81,6 +81,7 @@ export default function AppOverViewConfirm({
 
       <DialogActions>
         <Button
+          data-testid="app-overview-cancel-button"
           sx={{
             minWidth: '100px',
           }}
@@ -90,6 +91,7 @@ export default function AppOverViewConfirm({
           {`${t('global.actions.no')}`}
         </Button>
         <Button
+          data-testid="app-overview-confirm-button"
           sx={{
             mr: '2',
             minWidth: '100px',

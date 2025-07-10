@@ -23,6 +23,7 @@ import Stepper from 'components/shared/generic/Stepper'
 export interface StepType {
   headline: string
   step: number
+  dataTestId?: string
 }
 
 export default function ReleaseStepper({

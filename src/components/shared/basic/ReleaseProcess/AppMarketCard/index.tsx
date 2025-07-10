@@ -550,6 +550,7 @@ export default function AppMarketCard() {
                 trigger,
                 errors,
               }}
+              dataTestId="release-process-title-input"
               name="title"
               pattern={Patterns.appMarketCard.appTitle}
               label={
@@ -584,6 +585,7 @@ export default function AppMarketCard() {
                 trigger,
                 errors,
               }}
+              dataTestId="release-process-provider-input"
               name="provider"
               maxLength={30}
               minLength={3}
@@ -626,6 +628,7 @@ export default function AppMarketCard() {
                         errors,
                         item,
                       }}
+                      dataTestId={`release-process-${item}-input`}
                       label={
                         <>
                           {t(`content.apprelease.appMarketCard.${item}`)}
@@ -681,6 +684,7 @@ export default function AppMarketCard() {
                   trigger,
                   errors,
                   name: 'useCaseCategory',
+                  dataTestId: 'release-process-use-case-input',
                   label: (
                     <>
                       {t('content.apprelease.appMarketCard.useCaseCategory')}
@@ -724,6 +728,7 @@ export default function AppMarketCard() {
                   trigger,
                   errors,
                   name: 'appLanguage',
+                  dataTestId: 'release-process-app-language-input',
                   label: (
                     <>
                       {t('content.apprelease.appMarketCard.appLanguage')}
@@ -778,6 +783,7 @@ export default function AppMarketCard() {
                 {t('content.apprelease.appMarketCard.salesManagerDescription')}
               </Typography>
               <SelectList
+                dataTestId="release-process-sales-manager-input"
                 defaultValue={defaultSalesManagerValue}
                 items={salesManagerListData}
                 label={''}
@@ -798,6 +804,7 @@ export default function AppMarketCard() {
                 errors,
               }}
               name="price"
+              dataTestId="release-process-price-input"
               pattern={Patterns.appMarketCard.pricingInformation}
               maxLength={15}
               minLength={1}
@@ -833,6 +840,7 @@ export default function AppMarketCard() {
                 trigger,
                 errors,
               }}
+              dataTestId="release-process-lead-image-input"
               label={
                 <>
                   {t('content.apprelease.appMarketCard.appLeadImageUpload')}
@@ -891,6 +899,7 @@ export default function AppMarketCard() {
         }
       />
       <PageSnackbar
+        data-testid="release-process-success-snackbar"
         autoClose
         description={t(
           'content.apprelease.contractAndConsent.documentDeleteSuccess'

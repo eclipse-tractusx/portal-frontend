@@ -81,6 +81,7 @@ export type FormAddType = {
     | 'TechnicalUserDescription'
   rules: Object
   limit?: number
+  dataTestId?: string
 }
 
 enum RoleType {
@@ -201,6 +202,7 @@ const TechnicalUserAddFormSelect = ({
             </Trans>
             <Box>
               <Radio
+                data-testid="technical-user-external-role-radio"
                 label={t(
                   'content.addUser.technicalUser.addOverlay.externalUserRoles'
                 )}
@@ -227,6 +229,7 @@ const TechnicalUserAddFormSelect = ({
                     <Box key={role.roleId}>
                       <Box className="roles" sx={boxStyle}>
                         <Radio
+                          data-testid={`technical-user-external-role-option-${role.roleId}`}
                           label={role.roleName}
                           key={role.roleId}
                           checked={
@@ -265,6 +268,7 @@ const TechnicalUserAddFormSelect = ({
                 </Box>
               )}
               <Radio
+                data-testid="technical-user-internal-role-radio"
                 label={t(
                   'content.addUser.technicalUser.addOverlay.internalUserRoles'
                 )}
@@ -297,6 +301,7 @@ const TechnicalUserAddFormSelect = ({
                     <Box key={role.roleId}>
                       <Box className="roles" sx={boxStyle}>
                         <Checkbox
+                          data-testid={`technical-user-internal-role-option-${role.roleId}`}
                           key={role.roleId}
                           label={role.roleName}
                           checked={selectedRoles.indexOf(role.roleId) !== -1}
@@ -367,6 +372,7 @@ const TechnicalUserAddFormTextfield = ({
   name,
   rules,
   limit = 80,
+  dataTestId,
 }: FormAddType) => {
   return (
     <Controller
@@ -379,6 +385,7 @@ const TechnicalUserAddFormTextfield = ({
             <Typography variant="label3">{label}</Typography>
           </InputLabel>
           <TextField
+            data-testid={dataTestId}
             error={!!errors[name as keyof Object]}
             fullWidth
             helperText={
@@ -449,6 +456,7 @@ export const TechnicalUserAddForm = ({
         <div className="form-input">
           <TechnicalUserAddFormTextfield
             {...{
+              dataTestId: 'technical-user-username-input',
               control,
               errors,
               trigger,
@@ -469,6 +477,7 @@ export const TechnicalUserAddForm = ({
         <div className="form-input">
           <TechnicalUserAddFormTextfield
             {...{
+              dataTestId: 'technical-user-description-input',
               control,
               errors,
               trigger,

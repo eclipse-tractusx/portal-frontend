@@ -38,6 +38,7 @@ import { DROPZONE_ERROR_CODE } from 'types/cfx/Constants'
 export type DropzoneFile = File & Partial<UploadFile>
 
 export interface DropzoneProps {
+  dataTestId?: string
   onChange: (
     allFiles: DropzoneFile[],
     addedFiles: DropzoneFile[] | undefined,
@@ -62,6 +63,7 @@ export interface DropzoneProps {
 }
 
 export const Dropzone = ({
+  dataTestId,
   onChange,
   files,
   acceptFormat,
@@ -190,7 +192,7 @@ export const Dropzone = ({
   }))
 
   return (
-    <div>
+    <div data-testid={dataTestId}>
       <div {...getRootProps()}>
         <DropAreaComponent
           disabled={isDisabled}

@@ -460,6 +460,7 @@ export default function CommonContractAndConsent({
                 <Grid size={{ md: 1 }}>
                   <ConnectorFormInputField
                     {...{
+                      dataTestId: `release-process-${item.agreementId}-input`,
                       control,
                       trigger,
                       errors,
@@ -481,6 +482,7 @@ export default function CommonContractAndConsent({
                   {item.documentId ? (
                     <>
                       <a
+                        data-testid={`release-process-${item.agreementId}-link`}
                         className={item.documentId ? 'agreement-span' : ''}
                         href={getTncLink(type)}
                         target="_blank"
@@ -502,6 +504,7 @@ export default function CommonContractAndConsent({
                   )}
 
                   <ErrorMessage
+                    data-testid={`release-process-${item.agreementId}-error`}
                     errors={errors}
                     name={item.agreementId}
                     render={({ message }) => (
@@ -516,6 +519,7 @@ export default function CommonContractAndConsent({
           ))}
         <ConnectorFormInputFieldImage
           {...{
+            dataTestId: 'release-process-upload-image-conformity-input',
             control,
             trigger,
             errors,

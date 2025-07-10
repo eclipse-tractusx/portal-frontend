@@ -87,6 +87,7 @@ const DeclineSubscriptionOverlay = ({
   }
   return (
     <Dialog
+      dataTestId="decline-subscription-dialog"
       open={openDialog}
       sx={{
         '.MuiDialog-paper': {
@@ -121,6 +122,7 @@ const DeclineSubscriptionOverlay = ({
       </DialogContent>
       <DialogActions>
         <Button
+          data-testid="decline-subscription-cancel-button"
           variant="outlined"
           onClick={() => {
             handleOverlayClose()
@@ -144,6 +146,7 @@ const DeclineSubscriptionOverlay = ({
           />
         ) : (
           <Button
+            data-testid="decline-subscription-button"
             className="cx-decline-btn"
             variant="contained"
             onClick={() => handleDecline(subscriptionId)}

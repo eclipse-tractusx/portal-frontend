@@ -321,6 +321,7 @@ export default function OfferPage({
               <div key={longDesc}>
                 <ConnectorFormInputFieldShortAndLongDescription
                   {...{
+                    dataTestId: `service-release-process-${longDesc}-input`,
                     control,
                     trigger,
                     errors,
@@ -378,6 +379,7 @@ export default function OfferPage({
             render={({ field: { onChange: reactHookFormOnChange, value } }) => {
               return (
                 <Dropzone
+                  dataTestId="release-process-upload-image-input"
                   files={value}
                   onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
@@ -397,7 +399,12 @@ export default function OfferPage({
               )
             }}
           />
-          <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+          <Typography
+            data-testid="release-process-upload-image-note"
+            variant="body2"
+            mt={3}
+            sx={{ fontWeight: 'bold' }}
+          >
             {t('serviceReleaseForm.note')}
           </Typography>
           <Typography variant="body2" mb={3}>
@@ -410,6 +417,7 @@ export default function OfferPage({
         <div className="form-field">
           <ProviderConnectorField
             {...{
+              dataTestId: 'release-process-provider-home-page-input',
               control,
               trigger,
               errors,
@@ -424,6 +432,7 @@ export default function OfferPage({
         <div className="form-field">
           <ProviderConnectorField
             {...{
+              dataTestId: 'release-process-provider-contact-email-input',
               control,
               trigger,
               errors,

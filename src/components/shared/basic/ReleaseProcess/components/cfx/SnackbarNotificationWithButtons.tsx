@@ -88,6 +88,7 @@ export default function SnackbarNotificationWithButtons({
         </Grid>
       )}
       <PageSnackbar
+        data-testid="release-process-snackbar"
         open={pageSnackbar ?? false}
         onCloseNotification={() => {
           setPageSnackbar?.(false)
@@ -98,6 +99,7 @@ export default function SnackbarNotificationWithButtons({
       />
       <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
       <BackButton
+        dataTestId="release-process-back-button"
         backButtonLabel={t('global.actions.back')}
         backButtonVariant="outlined"
         onBackButtonClick={() => {
@@ -122,6 +124,7 @@ export default function SnackbarNotificationWithButtons({
       ) : (
         <>
           <Button
+            data-testid="release-process-save-and-proceed-button"
             sx={{ float: 'right' }}
             disabled={!isValid}
             variant="contained"
@@ -132,6 +135,7 @@ export default function SnackbarNotificationWithButtons({
             {t('content.apprelease.footerButtons.saveAndProceed')}
           </Button>
           <Button
+            data-testid="release-process-save-button"
             variant="outlined"
             name="send"
             sx={{ float: 'right', mr: 1 }}

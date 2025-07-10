@@ -79,18 +79,22 @@ export const TechnicalUserTable = () => {
       buttonText: t('content.usermanagement.technicalUser.tabs.active'),
       buttonValue: ServiceAccountStatusFilter.ACTIVE,
       onButtonClick: setView,
+      'data-testid': 'technical-user-table-active-btn',
     },
     {
+      'data-testid': 'technical-user-table-inactive-btn',
       buttonText: t('content.usermanagement.technicalUser.tabs.inactive'),
       buttonValue: ServiceAccountStatusFilter.INACTIVE,
       onButtonClick: setView,
     },
     {
+      'data-testid': 'technical-user-table-managed-btn',
       buttonText: t('content.usermanagement.technicalUser.tabs.managed'),
       buttonValue: ServiceAccountStatusFilter.MANAGED,
       onButtonClick: setView,
     },
     {
+      'data-testid': 'technical-user-table-owned-btn',
       buttonText: t('content.usermanagement.technicalUser.tabs.owned'),
       buttonValue: ServiceAccountStatusFilter.OWNED,
       onButtonClick: setView,
@@ -106,6 +110,7 @@ export const TechnicalUserTable = () => {
   return (
     <div style={{ paddingTop: '30px' }}>
       <PageLoadingTable<ServiceAccountListEntry, FetchHookArgsType>
+        data-testid="technical-user-table"
         tableVariant={TableVariants.SERVER_SIDE}
         autoFocus={false}
         searchExpr={expr}

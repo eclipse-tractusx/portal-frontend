@@ -88,6 +88,7 @@ export const ReleaseProcess = ({
           </Typography>
           <div>
             <Button
+              data-testid="release-process-create-button"
               key="create"
               color="primary"
               size="small"
@@ -99,6 +100,7 @@ export const ReleaseProcess = ({
               {registerButton}
             </Button>
             <Button
+              data-testid="view-all-apps-button"
               key="overview"
               color="secondary"
               size="small"
@@ -131,6 +133,7 @@ export const ReleaseProcess = ({
             </div>
             <Box textAlign="center">
               <Button
+                data-testid="release-process-create-button"
                 color="primary"
                 size="small"
                 className="create-btn"

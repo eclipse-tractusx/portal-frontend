@@ -278,6 +278,7 @@ const AddConnectorOverlay = ({
           </Button>
           {!loading && (
             <Button
+              data-testid="connector-confirm-button"
               variant="contained"
               disabled={
                 !(selected?.id && isValid) ||

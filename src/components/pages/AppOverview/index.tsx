@@ -205,21 +205,25 @@ export default function AppOverview() {
 
   const categoryViews = [
     {
+      dataTestId: 'app-overview-all-button',
       buttonText: t('content.appOverview.filter.all'),
       buttonValue: '',
       onButtonClick: setView,
     },
     {
+      dataTestId: 'app-overview-active-button',
       buttonText: t('content.appOverview.filter.active'),
       buttonValue: 'active',
       onButtonClick: setView,
     },
     {
+      dataTestId: 'app-overview-inactive-button',
       buttonText: t('content.appOverview.filter.inactive'),
       buttonValue: 'inactive',
       onButtonClick: setView,
     },
     {
+      dataTestId: 'app-overview-wip-button',
       buttonText: t('content.appOverview.filter.wip'),
       buttonValue: 'wip',
       onButtonClick: setView,
@@ -269,6 +273,7 @@ export default function AppOverview() {
 
             <div className="desc-card">
               <Cards
+                dataTestId="app-overview-recently-changed-apps"
                 items={recentlyChangedApps}
                 columns={4}
                 buttonText="Details"
@@ -292,6 +297,7 @@ export default function AppOverview() {
         <div className="app-detail">
           <SearchAndSortSection>
             <SearchInput
+              dataTestId="app-overview-search-input"
               margin={'normal'}
               value={searchExpr}
               onChange={(e) => {
@@ -338,7 +344,11 @@ export default function AppOverview() {
           )}
           <div className="load-more-btn">
             {data?.meta && data?.meta?.totalPages > page + 1 && (
-              <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
+              <LoadMoreButton
+                dataTestId={'load-more-button'}
+                onClick={nextPage}
+                label={t('loadmore')}
+              />
             )}
           </div>
         </div>

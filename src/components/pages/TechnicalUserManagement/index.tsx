@@ -57,6 +57,7 @@ export default function TechnicalUserManagement() {
   return (
     <main>
       <MainHeader
+        data-testid="technical-user-management-header"
         title={t('content.usermanagement.technicalUser.descriptionHeader')}
         subTitle={t('content.usermanagement.technicalUser.descriptionText')}
         headerHeight={250}
@@ -76,6 +77,7 @@ export default function TechnicalUserManagement() {
           {notification?.title && notification.description && (
             <div className="cx-content-technical__notifications">
               <PageNotifications
+                data-testid="page-notifications"
                 open={notification.open}
                 severity={notification.severity}
                 title={t(notification.title)}

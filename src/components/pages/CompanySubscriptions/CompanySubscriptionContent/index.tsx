@@ -47,6 +47,7 @@ export default function CompanySubscriptionContent({
       <Box className="company-subscription-content-section" id="image-gallery">
         {detail?.images && (
           <ImageGallery
+            dataTestId="company-subscription-image-gallery"
             gallery={CommonService.imagesAndAppidToImageType(
               detail.images,
               detail.id

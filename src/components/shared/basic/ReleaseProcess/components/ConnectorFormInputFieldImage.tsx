@@ -41,6 +41,7 @@ export default function ConnectorFormInputFieldImage({
   handleDelete,
   isRequired = true,
   size,
+  dataTestId,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
@@ -54,6 +55,7 @@ any) {
           trigger,
           errors,
           name,
+          dataTestId,
           type: 'dropzone',
           acceptFormat,
           maxFilesToUpload: 1,
@@ -70,21 +72,38 @@ any) {
         }}
       />
       {errors?.uploadImage?.leadPictureUri?.type === ErrorType.REQUIRED && (
-        <Typography variant="body2" className="file-error-msg">
+        <Typography
+          data-testid="release-process-required-text-lead-image"
+          variant="body2"
+          className="file-error-msg"
+        >
           {requiredText}
         </Typography>
       )}
 
       {errors?.uploadImageConformity?.type === ErrorType.REQUIRED && (
-        <Typography variant="body2" className="file-error-msg">
+        <Typography
+          data-testid="release-process-required-image-conformity"
+          variant="body2"
+          className="file-error-msg"
+        >
           {requiredText}
         </Typography>
       )}
 
-      <Typography variant="body2" mt={3} sx={{ fontWeight: 'bold' }}>
+      <Typography
+        data-testid="release-process-note"
+        variant="body2"
+        mt={3}
+        sx={{ fontWeight: 'bold' }}
+      >
         {note}
       </Typography>
-      <Typography variant="body2" mb={3}>
+      <Typography
+        data-testid="release-process-note-description"
+        variant="body2"
+        mb={3}
+      >
         {noteDescription}
       </Typography>
     </div>

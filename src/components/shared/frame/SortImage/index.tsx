@@ -35,6 +35,7 @@ export default function SortImage({ onClick, selected }: SortIconProps) {
       }}
     >
       <Sort
+        data-testid="sort-icon"
         onClick={onClick}
         sx={{
           fontSize: 35,

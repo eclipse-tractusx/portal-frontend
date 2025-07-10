@@ -51,7 +51,11 @@ export default function AppDetailPrivacy({
   }
 
   return (
-    <div className="appdetail-privacy" id="privacy-policy">
+    <div
+      data-testid="app-detail-privacy-policy-container"
+      className="appdetail-privacy"
+      id="privacy-policy"
+    >
       <div className="divider-height" />
       <div className="privacy-content">
         <Typography variant="h3">{t('heading')}</Typography>

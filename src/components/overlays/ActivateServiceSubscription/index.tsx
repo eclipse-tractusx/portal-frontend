@@ -82,6 +82,7 @@ export default function ActivateserviceSubscription({
 
   return (
     <Dialog
+      dataTestId="activate-service-subscription-dialog"
       open={true}
       sx={{
         '.MuiDialog-paper': {

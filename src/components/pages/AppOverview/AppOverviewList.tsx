@@ -49,26 +49,32 @@ export const AppOverviewList = ({
 
   const activeSubmenuOptions = [
     {
+      dataTestId: 'app-overview-deactivate-button',
       label: t('content.appOverview.sortOptions.deactivate'),
       value: AppSubMenuItems.DEACTIVATE,
     },
     {
+      dataTestId: 'app-overview-change-image-button',
       label: t('content.appOverview.sortOptions.changeImage'),
       value: AppSubMenuItems.CHANGE_IMAGE,
     },
     {
+      dataTestId: 'app-overview-change-description-button',
       label: t('content.appOverview.sortOptions.changeDescription'),
       value: AppSubMenuItems.CHANGE_DESCRIPTION,
     },
     {
+      dataTestId: 'app-overview-add-roles-button',
       label: t('content.appOverview.sortOptions.addRoles'),
       value: AppSubMenuItems.ADD_ROLES,
     },
     {
+      dataTestId: 'app-overview-change-documents-button',
       label: t('content.appOverview.sortOptions.changeDocuments'),
       value: AppSubMenuItems.CHANGE_DOCUMENTS,
     },
     {
+      dataTestId: 'app-overview-view-details-button',
       label: t('content.appOverview.sortOptions.viewDetails'),
       value: AppSubMenuItems.VIEW_DETAILS,
     },
@@ -76,16 +82,19 @@ export const AppOverviewList = ({
 
   const inactiveSubmenuOptions = [
     {
+      dataTestId: 'app-overview-activate-button',
       label: t('content.appOverview.sortOptions.activate'),
       value: AppSubMenuItems.ACTIVATE,
       disabled: true,
     },
     {
+      dataTestId: 'app-overview-delete-button',
       label: t('content.appOverview.sortOptions.delete'),
       value: AppSubMenuItems.DELETE,
       disabled: true,
     },
     {
+      dataTestId: 'app-overview-view-inactive-app-details-button',
       label: t('content.appOverview.sortOptions.viewDetails'),
       value: AppSubMenuItems.VIEW_INACTIVE_APP_DETAILS,
     },

@@ -51,7 +51,10 @@ export default function AppDetailTechUserSetup({
   }
 
   return (
-    <div id="technical-user-setup">
+    <div
+      data-testid="app-detail-technical-user-setup-container"
+      id="technical-user-setup"
+    >
       <div className="divider-height" />
       <Typography variant="h3">
         {t('content.appdetail.technicalUserSetup.heading')}

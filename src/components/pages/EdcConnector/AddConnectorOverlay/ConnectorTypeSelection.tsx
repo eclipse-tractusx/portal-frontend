@@ -84,6 +84,7 @@ const ConnectorTypeSelection = ({
                 }
               >
                 <Checkbox
+                  data-testid={`connector-type-selection-${checkBox.title}`}
                   disabled={checkBox.disable}
                   label={checkBox.title}
                   checked={checkBox.id === selectedCheckBox.id}

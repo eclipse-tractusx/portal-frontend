@@ -174,7 +174,11 @@ export const AddTechnicalUser = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={handleDispatch}>
+            <Button
+              data-testid="technical-user-cancel-button"
+              variant="outlined"
+              onClick={handleDispatch}
+            >
               {t('global.actions.cancel')}
             </Button>
             {loading ? (
@@ -195,6 +199,7 @@ export const AddTechnicalUser = () => {
               </span>
             ) : (
               <Button
+                data-testid="technical-user-confirm-button"
                 variant="contained"
                 onClick={onFormSubmit}
                 disabled={formHasErrors()}

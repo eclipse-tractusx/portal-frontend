@@ -462,10 +462,12 @@ export default function Subscription({
 
   const sortOptions = [
     {
+      dataTestId: 'subscription-sort-option-customer',
       label: sortOptionLabels.customer,
       value: SortType.CUSTOMER,
     },
     {
+      dataTestId: 'subscription-sort-option-offer',
       label: sortOptionLabels.offer,
       value: SortType.OFFER,
     },
@@ -473,21 +475,25 @@ export default function Subscription({
 
   const filterButtons = [
     {
+      dataTestId: 'service-subscription-filter-show-all',
       buttonText: tabLabels.showAll,
       buttonValue: FilterType.SHOWALL,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-subscription-filter-request',
       buttonText: tabLabels.request,
       buttonValue: FilterType.REQUEST,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-subscription-filter-active',
       buttonText: tabLabels.active,
       buttonValue: FilterType.ACTIVE,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-subscription-filter-inactive',
       buttonText: tabLabels.inactive,
       buttonValue: FilterType.INACTIVE,
       onButtonClick: setView,
@@ -562,6 +568,7 @@ export default function Subscription({
                 </Typography>
               )}
               <Button
+                data-testid="register-auto-setup-url-button"
                 key="create"
                 color="primary"
                 size="small"
@@ -577,6 +584,7 @@ export default function Subscription({
             <SearchAndSortSection>
               <div className="searchContainer">
                 <SearchInput
+                  dataTestId="subscription-search-input"
                   placeholder={searchPlaceHoder}
                   value={searchExpr}
                   autoFocus={false}
@@ -599,7 +607,10 @@ export default function Subscription({
                   }}
                   selected={showModal}
                 />
-                <div className="sortSection cx-sort-section-box">
+                <div
+                  className="sortSection cx-sort-section-box"
+                  data-testid="subscription-sort-section"
+                >
                   <SortOption
                     show={showModal}
                     selectedOption={sortOption}
@@ -612,10 +623,14 @@ export default function Subscription({
             {appFilters && appFilters.length > 0 && (
               <>
                 <Typography variant="h4">{activeAppHeading}</Typography>
-                <div className="appFilterSection">
+                <div
+                  className="appFilterSection"
+                  data-testid="subscription-filter-section"
+                >
                   {appFilters.map((app: AppFiltersResponse) => {
                     return (
                       <Typography
+                        data-testid={`app-filter-${app.id}`}
                         className={`appName ${
                           activeAppFilter === app.id ? 'activeFilter' : ''
                         }`}
@@ -664,13 +679,18 @@ export default function Subscription({
                   marginTop: '30px',
                 }}
               >
-                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+                <LoadMoreButton
+                  dataTestId="subscription-load-more-button"
+                  onClick={nextPage}
+                  label={loadMoreButtonText}
+                />
               </div>
             )}
         </div>
       </div>
       {
         <PageSnackbar
+          dataTestId="subscription-success-snackbar"
           open={serviceProviderSuccess}
           onCloseNotification={() => {
             setState({

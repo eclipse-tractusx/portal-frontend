@@ -32,6 +32,7 @@ export default function CommonConnectorFormInputField({
   minLength = 5,
   maxTextLength,
   onChangeDispatch,
+  dataTestId,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
@@ -39,6 +40,7 @@ any) {
     <div className="form-field">
       <ConnectorFormInputField
         {...{
+          dataTestId,
           control,
           trigger,
           errors,

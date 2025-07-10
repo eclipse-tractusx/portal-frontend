@@ -16,6 +16,7 @@ function a11yProps(index: number) {
 interface Step {
   headline: string
   step: number
+  dataTestId?: string
 }
 
 interface StepperProps {
@@ -37,7 +38,11 @@ export default function Stepper({
       <Box>
         <Tabs id="tabs-container" aria-label="basic tabs example">
           {list.map((step) => (
-            <Box className="steppers" key={step.step}>
+            <Box
+              className="steppers"
+              key={step.step}
+              data-testid={step.dataTestId}
+            >
               <Box className="stepper-container">
                 <Box
                   className={

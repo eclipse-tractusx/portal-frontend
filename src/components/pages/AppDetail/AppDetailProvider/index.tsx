@@ -45,7 +45,7 @@ export default function AppDetailProvider({
   }
 
   return (
-    <div id="provider-info">
+    <div data-testid="app-detail-provider-info-container" id="provider-info">
       <div className="divider-height" />
       <Typography variant="h3">{t('heading')}</Typography>
       <Typography variant="body2" sx={{ mb: 3 }}>

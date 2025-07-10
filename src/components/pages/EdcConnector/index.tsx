@@ -451,6 +451,7 @@ const EdcConnector = () => {
 
           <div>
             <Button
+              data-testid="connector-register-button"
               size="small"
               startIcon={<AddCircleOutlineIcon />}
               onClick={() => {

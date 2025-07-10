@@ -55,7 +55,7 @@ export default function AppDetailDocuments({
     }
   }
   return (
-    <div id="documents">
+    <div data-testid="app-detail-documents-container" id="documents">
       <div className="margin-h-40">
         <Typography variant="h3">
           {t('content.appdetail.document.conformityDocument')}

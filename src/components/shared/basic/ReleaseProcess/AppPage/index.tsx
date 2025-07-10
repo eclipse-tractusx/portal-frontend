@@ -520,6 +520,7 @@ export default function AppPage() {
           {['longDescriptionEN', 'longDescriptionDE'].map((item: string) => (
             <div key={item}>
               <ConnectorFormInputFieldShortAndLongDescription
+                dataTestId={`release-process-${item}-input`}
                 {...{
                   control,
                   trigger,
@@ -579,6 +580,7 @@ export default function AppPage() {
             render={({ field: { onChange: reactHookFormOnChange, value } }) => {
               return (
                 <Dropzone
+                  dataTestId="release-process-images-input"
                   files={value}
                   onChange={(files, addedFiles) => {
                     reactHookFormOnChange(files)
@@ -632,6 +634,7 @@ export default function AppPage() {
                 {t(`content.apprelease.appPage.${item}`)}
               </InputLabel>
               <ConnectorFormInputField
+                dataTestId={`release-process-${item}-input`}
                 {...{
                   control,
                   trigger,
@@ -662,6 +665,7 @@ export default function AppPage() {
         </InputLabel>
         <div className="form-field">
           <ProviderConnectorField
+            dataTestId="release-process-provider-home-page-input"
             {...{
               control,
               trigger,
@@ -678,6 +682,7 @@ export default function AppPage() {
 
         <div className="form-field">
           <ProviderConnectorField
+            dataTestId="release-process-provider-contact-email-input"
             {...{
               control,
               trigger,
@@ -691,6 +696,7 @@ export default function AppPage() {
         </div>
         <div className="form-field">
           <ProviderConnectorField
+            dataTestId="release-process-provider-phone-contact-input"
             {...{
               control,
               trigger,
@@ -724,6 +730,7 @@ export default function AppPage() {
             {privacyPolicies?.map((item: string) => (
               <Grid size={{ md: 6 }} key={item} className="privacyPolicies">
                 <Checkbox
+                  dataTestId={`release-process-${item}-input`}
                   label={getLabel(item)}
                   checked={selectedPrivacyPolicies.indexOf(item) !== -1}
                   onChange={(e) => {
@@ -735,6 +742,7 @@ export default function AppPage() {
             ))}
             <Grid size={{ md: 6 }} className="privacyPolicies">
               <Radio
+                dataTestId="release-process-privacy-policy-radio-input"
                 label={getLabel(
                   // eslint-disable-next-line
                   getPrivacyPolicies &&
@@ -758,7 +766,11 @@ export default function AppPage() {
           </Grid>
         ) : (
           <Box sx={{ marginY: 2 }}>
-            <Alert width={'100%'} severity="error">
+            <Alert
+              dataTestId="release-process-privacy-info-error"
+              width={'100%'}
+              severity="error"
+            >
               <span>{t('content.apprelease.appPage.privacyInfoError')}</span>
             </Alert>
           </Box>

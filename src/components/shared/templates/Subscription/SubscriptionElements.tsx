@@ -187,7 +187,10 @@ export default function SubscriptionElements({
           tooltipPlacement="top-start"
           tooltipText={t('content.appSubscription.active')}
         >
-          <AddTaskIcon className="statusIcon active" />
+          <AddTaskIcon
+            data-testid="active-icon"
+            className="statusIcon active"
+          />
         </Tooltips>
       )
     } else if (
@@ -199,7 +202,10 @@ export default function SubscriptionElements({
           tooltipPlacement="top-start"
           tooltipText={t('content.appSubscription.unsubscribed')}
         >
-          <CancelOutlinedIcon className="statusIcon inactive unsubscribed" />
+          <CancelOutlinedIcon
+            data-testid="inactive-unsubscribed-icon"
+            className="statusIcon inactive unsubscribed"
+          />
         </Tooltips>
       )
     } else if (
@@ -211,6 +217,7 @@ export default function SubscriptionElements({
         return (
           <>
             <Chip
+              dataTestId="decline-chip"
               color="primary"
               label={t('content.appSubscription.declineBtn')}
               type="plain"
@@ -226,6 +233,7 @@ export default function SubscriptionElements({
               }}
             />
             <Chip
+              dataTestId="configure-chip"
               className="cx-chip-configure"
               color="primary"
               label={t('content.appSubscription.configureBtn')}
@@ -268,6 +276,7 @@ export default function SubscriptionElements({
         return (
           <>
             <Chip
+              dataTestId="activate-chip"
               color="primary"
               label={t('content.appSubscription.activateBtn')}
               type="plain"
@@ -292,7 +301,10 @@ export default function SubscriptionElements({
             tooltipPlacement="top-start"
             tooltipText={t('content.appSubscription.process')}
           >
-            <PublishedWithChangesOutlinedIcon className="statusIcon process" />
+            <PublishedWithChangesOutlinedIcon
+              data-testid="process-icon"
+              className="statusIcon process"
+            />
           </Tooltips>
         )
       }
@@ -306,7 +318,7 @@ export default function SubscriptionElements({
   }
 
   return (
-    <div className="recommended-main">
+    <div className="recommended-main" data-testid="subscription-elements">
       {subscriptions?.length ? (
         <>
           <Typography variant="h4" sx={{ marginBottom: '20px' }}>
@@ -317,6 +329,7 @@ export default function SubscriptionElements({
               return subscriptionData.companySubscriptionStatuses.map(
                 (subscription) => (
                   <li
+                    data-testid={`subscription-list-item-${subscription.subscriptionId}`}
                     key={subscription.subscriptionId}
                     className="subscription-list-item"
                   >
@@ -348,7 +361,11 @@ export default function SubscriptionElements({
                         // do nothing
                       }}
                     >
-                      <IconButton color="secondary" size="small">
+                      <IconButton
+                        dataTestId="view-details-icon"
+                        color="secondary"
+                        size="small"
+                      >
                         <Tooltips
                           color="dark"
                           tooltipPlacement="top-start"

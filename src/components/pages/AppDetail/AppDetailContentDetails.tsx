@@ -125,6 +125,7 @@ export default function AppDetailContentDetails({
           <div id="image-gallery">
             <div className="divider-height" />
             <ImageGallery
+              dataTestId="app-detail-image-gallery"
               gallery={CommonService.imagesAndAppidToImageType(
                 item.images,
                 item.id

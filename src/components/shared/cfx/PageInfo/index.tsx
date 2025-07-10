@@ -40,17 +40,26 @@ export default function PageInfo({
         <div className="cx-page-info__container">
           {title && (
             <div className="cx-page-info__title">
-              <SubHeaderTitle title={title} variant="h3" />
+              <SubHeaderTitle
+                data-testid="page-info-title"
+                title={title}
+                variant="h3"
+              />
             </div>
           )}
           {description && (
             <div className="cx-page-info__subtitle">
-              <SubHeaderTitle title={description} variant="body1" />
+              <SubHeaderTitle
+                data-testid="page-info-description"
+                title={description}
+                variant="body1"
+              />
             </div>
           )}
           {buttonLabel && buttonAction && (
             <div className="cx-page-info__button">
               <Button
+                data-testid="technical-user-add-button"
                 size="small"
                 startIcon={<AddCircleOutlineIcon />}
                 onClick={buttonAction}

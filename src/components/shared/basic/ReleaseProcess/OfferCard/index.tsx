@@ -401,6 +401,7 @@ export default function OfferCard() {
                 trigger,
                 errors,
               }}
+              dataTestId="release-process-service-name-input"
               name="title"
               pattern={Patterns.offerCard.serviceName}
               label={
@@ -427,6 +428,7 @@ export default function OfferCard() {
             <div className="form-field">
               <ConnectorFormInputField
                 {...{
+                  dataTestId: 'release-process-service-type-input',
                   control,
                   trigger,
                   errors,
@@ -469,6 +471,7 @@ export default function OfferCard() {
                   <div key={desc}>
                     <ConnectorFormInputFieldShortAndLongDescription
                       {...{
+                        dataTestId: `release-process-${desc}-input`,
                         control,
                         trigger,
                         errors,
@@ -517,6 +520,7 @@ export default function OfferCard() {
 
             <ConnectorFormInputFieldImage
               {...{
+                dataTestId: 'release-process-service-lead-image-input',
                 control,
                 trigger,
                 errors,

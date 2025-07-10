@@ -500,6 +500,7 @@ export default function TechnicalIntegration() {
             style={{ textDecoration: 'none' }}
           >
             <Button
+              data-testid="release-process-template-button"
               variant="outlined"
               endIcon={<FileDownloadOutlinedIcon />}
               size="small"
@@ -514,6 +515,7 @@ export default function TechnicalIntegration() {
           control={control}
           render={({ field: { onChange: reactHookFormOnChange } }) => (
             <Dropzone
+              dataTestId="release-process-upload-roles-input"
               onChange={(files, _addedFiles, deletedFiles) => {
                 if (deletedFiles?.length) {
                   setRolesPreviews([])
@@ -543,12 +545,20 @@ export default function TechnicalIntegration() {
           )}
         />
         {errors?.uploadAppRoles?.type === ErrorType.REQUIRED && (
-          <Typography variant="body2" className="file-error-msg">
+          <Typography
+            data-testid="release-process-upload-roles-error"
+            variant="body2"
+            className="file-error-msg"
+          >
             {t('content.apprelease.appReleaseForm.fileUploadIsMandatory')}
           </Typography>
         )}
         {uploadCSVError && (
-          <Typography variant="body2" className="file-error-msg">
+          <Typography
+            data-testid="incorrect-csv-file-format-error"
+            variant="body2"
+            className="file-error-msg"
+          >
             {t(
               'content.apprelease.technicalIntegration.incorrectCSVFileFormat'
             )}
@@ -556,6 +566,7 @@ export default function TechnicalIntegration() {
         )}
         {rolesPreviews?.length > 0 && (
           <Box
+            data-testid="release-process-upload-roles-preview-box"
             sx={{ pl: 2, pr: 2, pb: 5, pt: 3, mt: 4 }}
             style={{
               background: '#FFFFFF',
@@ -563,13 +574,18 @@ export default function TechnicalIntegration() {
               borderRadius: '24px',
             }}
           >
-            <Box>
-              <Typography variant="h4" textAlign="center">
+            <Box data-testid="release-process-upload-roles-preview-box-header">
+              <Typography
+                data-testid="release-process-upload-roles-preview-box-header-title"
+                variant="h4"
+                textAlign="center"
+              >
                 {t('content.apprelease.technicalIntegration.rolesPreview')}
               </Typography>
               <Grid container columns={{ xs: 12, md: 12 }}>
                 <Grid size={{ md: 6, xs: 12 }} sx={{ pl: 2, pr: 2, pb: 2 }}>
                   <SelectList
+                    dataTestId="release-process-upload-roles-preview-box-header-select-list"
                     sx={{ mb: 2 }}
                     defaultValue={unicodeSelectItems[0]}
                     value={selectedEncoding}
@@ -600,6 +616,7 @@ export default function TechnicalIntegration() {
                   }}
                 >
                   <CustomAccordion
+                    data-testid={`release-process-upload-roles-preview-box-accordion-${index}`}
                     items={[
                       {
                         expanded: false,
@@ -607,6 +624,7 @@ export default function TechnicalIntegration() {
                         title: '',
                         titleElement: (
                           <Chip
+                            data-testid={`release-process-upload-chip-${index}`}
                             key={role}
                             label={role}
                             withIcon={false}
@@ -648,6 +666,7 @@ export default function TechnicalIntegration() {
 
             {rolesPreviews?.length > 0 && (
               <LoadingButton
+                dataTestId="release-process-upload-button"
                 loading={isLoading}
                 variant="contained"
                 onButtonClick={postRoles}
@@ -726,7 +745,13 @@ export default function TechnicalIntegration() {
             </>
           ) : (
             <Box className="no-roles-box">
-              <Typography variant="h4" mb={4} mt={4} textAlign={'center'}>
+              <Typography
+                data-testid={'release-process-no-roles-loaded'}
+                variant="h4"
+                mb={4}
+                mt={4}
+                textAlign={'center'}
+              >
                 {t(
                   'content.apprelease.technicalIntegration.noRolesLoaded'
                 ).replace('{{appName}}', fetchAppStatus?.title ?? '')}
@@ -736,7 +761,11 @@ export default function TechnicalIntegration() {
         </Box>
 
         {enableErrorMessage && (
-          <Typography variant="body2" className="file-error-msg">
+          <Typography
+            data-testid="release-process-role-upload-is-mandatory-error"
+            variant="body2"
+            className="file-error-msg"
+          >
             {t('content.apprelease.technicalIntegration.roleUploadIsMandatory')}
           </Typography>
         )}

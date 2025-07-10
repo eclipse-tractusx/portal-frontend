@@ -406,10 +406,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cofinity-x/shared-components@^0.0.3":
-  version "0.0.3"
-  resolved "https://npm.pkg.github.com/download/@cofinity-x/shared-components/0.0.3/62bc64b503bbb7194a4d89f28c28586e2ae9abe1#62bc64b503bbb7194a4d89f28c28586e2ae9abe1"
-  integrity sha512-w/yaVoyfzDZhkqZ6ult+fYRJPfYbkeal3eYi9EuVwjlK9ifelYdXFlxc/ru35NlAs687QyOJpb7Gzb5xiBf9BQ==
+"@cofinity-x/shared-components@^@0.1.1":
+  version "0.1.1"
+  resolved "https://npm.pkg.github.com/download/@cofinity-x/shared-components/0.1.1/de8075ad47b4abbfffc8e5ef76797c389e2e7440#de8075ad47b4abbfffc8e5ef76797c389e2e7440"
+  integrity sha512-6QTCM7le608RtN2yYitAh2tjmma1jY0MRz/AeIkbm3+vMHe5U4b1iECy1whAp+VTILGG/xp4sxQwgpmtU1RLTg==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     "@emotion/react" "^11.14.0"
@@ -430,6 +430,7 @@
     react-dom "^18.2.0"
     react-i18next "^14.1.0"
     react-player "^2.15.1"
+    react-router-dom "^7.6.2"
     react-slick "^0.30.3"
     slick-carousel "^1.8.1"
 
@@ -3262,6 +3263,11 @@ convert-source-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
+
+cookie@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-1.0.2.tgz#27360701532116bd3f1f9416929d176afe1e4610"
+  integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -6763,12 +6769,27 @@ react-router-dom@^6.26.1:
     "@remix-run/router" "1.23.0"
     react-router "6.30.1"
 
+react-router-dom@^7.6.2:
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-7.6.3.tgz#45686e71bb958cf80dd93ca3abf4111feb4edd35"
+  integrity sha512-DiWJm9qdUAmiJrVWaeJdu4TKu13+iB/8IEi0EW/XgaHCjW/vWGrwzup0GVvaMteuZjKnh5bEvJP/K0MDnzawHw==
+  dependencies:
+    react-router "7.6.3"
+
 react-router@6.30.1:
   version "6.30.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.30.1.tgz#ecb3b883c9ba6dbf5d319ddbc996747f4ab9f4c3"
   integrity sha512-X1m21aEmxGXqENEPG3T6u0Th7g0aS4ZmoNynhbs+Cn+q+QGTLt+d5IQ2bHAXKzKcxGJjxACpVbnYQSCRcfxHlQ==
   dependencies:
     "@remix-run/router" "1.23.0"
+
+react-router@7.6.3:
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.6.3.tgz#7a4ea5b479b66d2c49a8f000812b2319b4d0a6da"
+  integrity sha512-zf45LZp5skDC6I3jDLXQUu0u26jtuP4lEGbc7BbdyxenBN1vJSTA18czM2D+h5qyMBuMrD+9uB+mU37HIoKGRA==
+  dependencies:
+    cookie "^1.0.1"
+    set-cookie-parser "^2.6.0"
 
 react-slick@^0.30.3:
   version "0.30.3"
@@ -7096,6 +7117,11 @@ semver@~7.5.4:
   integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
   dependencies:
     lru-cache "^6.0.0"
+
+set-cookie-parser@^2.6.0:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.7.1.tgz#3016f150072202dfbe90fadee053573cc89d2943"
+  integrity sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==
 
 set-function-length@^1.2.2:
   version "1.2.2"

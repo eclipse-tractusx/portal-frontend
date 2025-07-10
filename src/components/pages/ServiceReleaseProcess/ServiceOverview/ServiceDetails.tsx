@@ -112,6 +112,7 @@ export default function ServiceDetails() {
           <div className="serviceDetail-main">
             <div className="imageCard">
               <CardHorizontal
+                dataTestId="service-release-process-card"
                 borderRadius={6}
                 image={{
                   alt: 'Service Card',
@@ -134,9 +135,13 @@ export default function ServiceDetails() {
               {t('step4.appDetails')}
             </Typography>
             {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
-              <div key={item}>
+              <div
+                data-testid={`service-release-process-long-description-${item}`}
+                key={item}
+              >
                 {item === 'longDescriptionEN' ? (
                   <Typography
+                    data-testid="service-release-process-long-description-en-text"
                     sx={{
                       marginBottom: '40px',
                     }}
@@ -156,6 +161,7 @@ export default function ServiceDetails() {
                   </Typography>
                 ) : (
                   <Typography
+                    data-testid="service-release-process-long-description-de-text"
                     sx={{
                       marginBottom: '40px',
                     }}
@@ -177,7 +183,10 @@ export default function ServiceDetails() {
               </div>
             ))}
             <Divider className="verify-validate-form-divider" />
-            <div className="margin-h-40">
+            <div
+              data-testid="service-release-process-conformity-document"
+              className="margin-h-40"
+            >
               <Typography variant="h4" sx={{ mb: 4 }}>
                 {t('step4.conformityDocument')}
               </Typography>
@@ -210,7 +219,10 @@ export default function ServiceDetails() {
             </div>
             <Divider className="verify-validate-form-divider" />
 
-            <div className="margin-h-40">
+            <div
+              data-testid="service-release-process-documents-container"
+              className="margin-h-40"
+            >
               <Typography variant="h4" sx={{ mb: 4 }}>
                 {t('step4.documents')}
               </Typography>
@@ -260,7 +272,10 @@ export default function ServiceDetails() {
             </div>
 
             <Divider className="verify-validate-form-divider" />
-            <div className="margin-h-40">
+            <div
+              data-testid="service-release-process-technical-user-setup-container"
+              className="margin-h-40"
+            >
               <Typography variant="h4">
                 {t('adminboardDetail.technicalUserSetup.heading')}
               </Typography>
@@ -274,7 +289,10 @@ export default function ServiceDetails() {
             </div>
 
             <Divider className="verify-validate-form-divider" />
-            <div className="margin-h-40">
+            <div
+              data-testid="service-release-process-provider-information-container"
+              className="margin-h-40"
+            >
               <Typography variant="h4" sx={{ mb: 4 }}>
                 {t('step4.providerInformation')}
               </Typography>

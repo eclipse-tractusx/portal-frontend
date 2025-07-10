@@ -36,6 +36,7 @@ export default function ConnectorFormInputFieldShortAndLongDescription({
   minLength = 10,
   maxLength = 255,
   maxTextLength,
+  dataTestId,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) {
@@ -47,6 +48,7 @@ any) {
           trigger,
           errors,
           name: item,
+          dataTestId,
           label,
           type: 'input',
           textarea: true,

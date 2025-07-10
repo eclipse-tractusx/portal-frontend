@@ -65,6 +65,7 @@ export const ConnectorFormInput = ({
   maxLength,
   pattern,
   disable = false,
+  dataTestId,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -102,15 +103,11 @@ any) => {
               }}
               tooltipPlacement="top-start"
               tooltipText={tooltipMsg}
-              children={
-                <span>
-                  <HelpOutlineIcon
-                    sx={{ color: '#B6B6B6' }}
-                    fontSize={'small'}
-                  />
-                </span>
-              }
-            />
+            >
+              <span>
+                <HelpOutlineIcon sx={{ color: '#B6B6B6' }} fontSize={'small'} />
+              </span>
+            </Tooltips>
           </div>
           <Controller
             name={name}
@@ -137,6 +134,7 @@ any) => {
           render={({ field: { onChange, value } }) => {
             return (
               <Input
+                data-testid={dataTestId}
                 tooltipMessage={tooltipMsg}
                 sx={{
                   paddingTop: '10px',
@@ -204,20 +202,20 @@ any) => {
               }}
               tooltipPlacement="top-start"
               tooltipText={tooltipMsg}
-              children={
-                <span>
-                  <HelpOutlineIcon
-                    sx={{ color: '#B6B6B6', marginTop: '-2px' }}
-                    fontSize={'small'}
-                  />
-                </span>
-              }
-            />
+            >
+              <span>
+                <HelpOutlineIcon
+                  sx={{ color: '#B6B6B6', marginTop: '-2px' }}
+                  fontSize={'small'}
+                />
+              </span>
+            </Tooltips>
           </div>
           <Controller
             render={({ field: { onChange } }) => {
               return (
                 <SelectList
+                  data-testid="select-existing-technical-user"
                   error={!!errors[name]}
                   helperText={helperText}
                   defaultValue={defaultSelectValue}
@@ -321,6 +319,7 @@ any) => {
 
             <Box>
               <Radio
+                data-testid="connector-existing-user-radio"
                 name="radio-buttons"
                 label={t(
                   'content.edcconnector.modal.connectAlreadyExistingTechnicalUser'
@@ -384,6 +383,7 @@ any) => {
             )}
             <Box sx={{ mt: 2 }}>
               <Radio
+                data-testid="connector-new-user-radio"
                 name="radio-buttons"
                 label={t('content.edcconnector.modal.createNewTechnicalUser')}
                 checked={
@@ -410,6 +410,7 @@ any) => {
                   )}
                 </Typography>
                 <Button
+                  data-testid="technical-user-add-button"
                   size="small"
                   sx={{ backgroundColor: '#4D4D4D' }}
                   onClick={() => {
@@ -443,6 +444,7 @@ any) => {
         )}
         <ConnectorFormInput
           {...{
+            dataTestId: 'connector-name-input',
             control,
             trigger,
             errors,
@@ -474,6 +476,7 @@ any) => {
         />
         <ConnectorFormInput
           {...{
+            dataTestId: 'connector-endpoint-input',
             control,
             trigger,
             errors,
@@ -499,6 +502,7 @@ any) => {
         />
         <ConnectorFormInput
           {...{
+            dataTestId: 'connector-location-input',
             control,
             trigger,
             errors,

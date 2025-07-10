@@ -62,6 +62,7 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
           ))}
         </div>
         <ImageGallery
+          dataTestId="admin-board-image-gallery"
           gallery={CommonService.imagesAndAppidToImageType(
             item.images,
             item.id

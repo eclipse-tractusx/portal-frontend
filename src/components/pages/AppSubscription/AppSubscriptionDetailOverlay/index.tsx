@@ -94,14 +94,17 @@ const AppSubscriptionDetailOverlay = ({
     {
       headline: t('content.appSubscription.detailOverlay.stepLists.firstStep'),
       step: 1,
+      dataTestId: 'stepper-first-step',
     },
     {
       headline: t('content.appSubscription.detailOverlay.stepLists.secondStep'),
       step: 2,
+      dataTestId: 'stepper-second-step',
     },
     {
       headline: t('content.appSubscription.detailOverlay.stepLists.thirdStep'),
       step: 3,
+      dataTestId: 'stepper-third-step',
     },
   ]
 
@@ -404,6 +407,7 @@ const AppSubscriptionDetailOverlay = ({
   return (
     <div>
       <Dialog
+        dataTestId="app-subscription-detail-overlay"
         open={openDialog}
         sx={{
           '.MuiDialog-paper': {
@@ -441,13 +445,22 @@ const AppSubscriptionDetailOverlay = ({
           ) : (
             <div>
               <div style={{ marginTop: '30px' }} className="ph-mask-text">
-                <StaticTable data={subscriptionDetails} />
+                <StaticTable
+                  dataTestId="app-subscription-details-table"
+                  data={subscriptionDetails}
+                />
               </div>
               <div style={{ marginTop: '20px' }} className="ph-mask-text">
-                <VerticalTableNew data={technicalDetails} />
+                <VerticalTableNew
+                  dataTestId="app-subscription-technical-details-table"
+                  data={technicalDetails}
+                />
               </div>
               <div style={{ marginTop: '20px' }} className="ph-mask-text">
-                <VerticalTableNew data={externalServicesDetails} />
+                <VerticalTableNew
+                  dataTestId="app-subscription-external-services-table"
+                  data={externalServicesDetails}
+                />
               </div>
             </div>
           )}

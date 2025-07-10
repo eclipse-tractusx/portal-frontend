@@ -135,26 +135,31 @@ export default function ServiceListOverview() {
 
   const statusFilterViews = [
     {
+      dataTestId: 'service-overview-filter-all',
       buttonText: t('serviceOverview.filter.all'),
       buttonValue: StatusIdEnum.All,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-overview-filter-active',
       buttonText: t('serviceOverview.filter.active'),
       buttonValue: StatusIdEnum.Active,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-overview-filter-inactive',
       buttonText: t('serviceOverview.filter.inactive'),
       buttonValue: StatusIdEnum.Inactive,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-overview-filter-inreview',
       buttonText: t('serviceOverview.filter.inreview'),
       buttonValue: StatusIdEnum.InReview,
       onButtonClick: setView,
     },
     {
+      dataTestId: 'service-overview-filter-wip',
       buttonText: t('serviceOverview.filter.wip'),
       buttonValue: StatusIdEnum.WIP,
       onButtonClick: setView,
@@ -220,6 +225,7 @@ export default function ServiceListOverview() {
           <SearchAndSortSection>
             <Box sx={{ textAlign: 'center', marginTop: '30px' }}>
               <SearchInput
+                dataTestId="service-overview-search-input"
                 sx={{ minWidth: '544px' }}
                 margin={'normal'}
                 value={searchExpr}
@@ -263,6 +269,7 @@ export default function ServiceListOverview() {
               (items && items.length > 0 ? (
                 <div className="desc-card">
                   <Cards
+                    dataTestId="service-overview-cards"
                     items={items}
                     columns={4}
                     buttonText="Details"

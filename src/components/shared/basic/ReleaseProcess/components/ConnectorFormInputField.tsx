@@ -55,6 +55,7 @@ export const ConnectorFormInputField = ({
   errorText,
   maxTextLength,
   onChangeDispatch,
+  dataTestId,
 }: // Add an ESLint exception until there is a solution
 // eslint-disable-next-line
 any) => {
@@ -74,6 +75,7 @@ any) => {
         if (type === 'input') {
           return (
             <Input
+              dataTestId={dataTestId}
               label={label}
               placeholder={placeholder}
               error={!!errors[name]}
@@ -100,6 +102,7 @@ any) => {
         } else if (type === 'dropzone') {
           return (
             <Dropzone
+              dataTestId={dataTestId}
               files={value?.name ? [value] : undefined}
               onChange={([file]) => {
                 trigger(name)
@@ -119,6 +122,7 @@ any) => {
           return (
             <>
               <Checkbox
+                dataTestId={dataTestId}
                 key={name}
                 label={label}
                 defaultChecked={defaultValues}
@@ -136,6 +140,7 @@ any) => {
           return (
             <MultiSelectList
               label={label}
+              dataTestId={dataTestId}
               placeholder={placeholder}
               error={!!errors[name]}
               helperText={errors?.[name]?.message}

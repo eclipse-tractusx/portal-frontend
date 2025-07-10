@@ -92,6 +92,7 @@ const ActivateSubscriptionOverlay = ({
 
   return (
     <Dialog
+      dataTestId="activate-subscription-dialog"
       open={openDialog}
       sx={{
         '.MuiDialog-paper': {
@@ -142,6 +143,7 @@ const ActivateSubscriptionOverlay = ({
             {t('content.appSubscription.activation.addTentalURLDescription')}
           </Typography>
           <Input
+            dataTestId="tentant-url-input"
             name="tentant_url"
             label={
               <Typography variant="label3">
@@ -183,6 +185,7 @@ const ActivateSubscriptionOverlay = ({
       </DialogContent>
       <DialogActions>
         <Button
+          data-testid="overlay-close-button"
           variant="outlined"
           onClick={() => {
             handleOverlayClose()
@@ -192,6 +195,7 @@ const ActivateSubscriptionOverlay = ({
         </Button>
         {loading ? (
           <LoadingButton
+            dataTestId="activate-subscription-loading-button"
             color="primary"
             helperText=""
             helperTextColor="success"
@@ -206,6 +210,7 @@ const ActivateSubscriptionOverlay = ({
           />
         ) : (
           <Button
+            data-testid="activate-subscription-button"
             variant="contained"
             disabled={!inputURL || URLErrorMsg !== ''}
             onClick={addTentantURL}

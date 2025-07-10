@@ -317,6 +317,7 @@ export default function CommonValidateAndPublish({
               size={{ md: 4 }}
             >
               <Card
+                dataTestId="release-process-app-release-card"
                 image={{
                   src: cardImage ?? LogoGrayData,
                 }}
@@ -337,6 +338,7 @@ export default function CommonValidateAndPublish({
               />
               <div className="language-switch">
                 <LanguageSwitch
+                  dataTestId="release-process-language-switch"
                   current={cardLanguage}
                   languages={[{ key: 'de' }, { key: 'en' }]}
                   onChange={(lang) => {
@@ -355,7 +357,10 @@ export default function CommonValidateAndPublish({
                   style={{ display: 'flex', marginBottom: '5px' }}
                   key={item}
                 >
-                  <Typography variant="body2">
+                  <Typography
+                    data-testid={`release-process-${item}-text`}
+                    variant="body2"
+                  >
                     <b>{t(`${validateAndPublishItemText}.${item}`)}</b>
                     {getAppData(item)}
                   </Typography>
@@ -366,6 +371,7 @@ export default function CommonValidateAndPublish({
         )}
         {type === ReleaseProcessTypes.SERVICE_RELEASE && (
           <CardHorizontal
+            dataTestId="release-process-service-card"
             borderRadius={6}
             image={{
               alt: 'Service Card',
@@ -383,13 +389,18 @@ export default function CommonValidateAndPublish({
           />
         )}
         <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
+        <Typography
+          data-testid="release-process-details-text"
+          variant="h4"
+          sx={{ mb: 4 }}
+        >
           {detailsText}
         </Typography>
         {['longDescriptionEN', 'longDescriptionDE'].map((item) => (
           <div key={item}>
             {item === 'longDescriptionEN' ? (
               <Typography
+                data-testid="release-process-long-description-en-text"
                 variant="body2"
                 className="form-field"
                 style={{ whiteSpace: 'pre-line' }}
@@ -406,6 +417,7 @@ export default function CommonValidateAndPublish({
               </Typography>
             ) : (
               <Typography
+                data-testid="release-process-long-description-de-text"
                 variant="body2"
                 className="form-field"
                 style={{ whiteSpace: 'pre-line' }}
@@ -423,12 +435,18 @@ export default function CommonValidateAndPublish({
             )}
           </div>
         ))}
-        {multipleImages && <ImageGallery gallery={multipleImages} />}
+        {multipleImages && (
+          <ImageGallery
+            dataTestId="release-process-image-gallery"
+            gallery={multipleImages}
+          />
+        )}
 
         <Divider className="verify-validate-form-divider" />
         {statusData?.privacyPolicies && (
           <>
             <div
+              data-testid="release-process-privacy-policy-container"
               className="appdetail-privacy"
               style={{ marginBottom: '0px', paddingTop: '0px' }}
             >
@@ -464,7 +482,7 @@ export default function CommonValidateAndPublish({
         )}
 
         {conformityDocument && (
-          <>
+          <div data-testid="release-process-conformity-document">
             <Typography variant="h4">{conformityDocument}</Typography>
             {defaultValues?.conformityDocumentsDescription && (
               <Typography variant="body2" className="form-field">
@@ -479,12 +497,16 @@ export default function CommonValidateAndPublish({
               </Typography>
             )}
             <Divider className="verify-validate-form-divider" />
-          </>
+          </div>
         )}
 
         <Typography variant="h4">{documentsTitle}</Typography>
         {defaultValues?.documentsDescription && (
-          <Typography variant="body2" className="form-field">
+          <Typography
+            data-testid="release-process-documents-description"
+            variant="body2"
+            className="form-field"
+          >
             {defaultValues.documentsDescription}
           </Typography>
         )}
@@ -502,7 +524,11 @@ export default function CommonValidateAndPublish({
               (item === DocumentTypeId.ADDITIONAL_DETAILS ||
                 item === DocumentTypeId.APP_CONTRACT ||
                 item === DocumentTypeId.APP_TECHNICAL_INFORMATION) && (
-                <li key={item} className="document-list doc-list">
+                <li
+                  data-testid={`release-process-document-${item}`}
+                  key={item}
+                  className="document-list doc-list"
+                >
                   <ArticleOutlinedIcon sx={{ color: '#9c9c9c' }} />
                   <button
                     className="document-button-link"
@@ -519,13 +545,17 @@ export default function CommonValidateAndPublish({
               )
           )
         ) : (
-          <Typography variant="caption2" className="not-available">
+          <Typography
+            data-testid="release-process-no-documents-available"
+            variant="caption2"
+            className="not-available"
+          >
             {t('global.errors.noDocumentsAvailable')}
           </Typography>
         )}
 
         {rolesData && (
-          <>
+          <div data-testid="release-process-roles-container">
             <Divider className="verify-validate-form-divider" />
             <Typography variant="h4">
               {t('content.adminboardDetail.roles.heading')}
@@ -549,11 +579,11 @@ export default function CommonValidateAndPublish({
                 {t('global.errors.noRolesAvailable')}
               </Typography>
             )}
-          </>
+          </div>
         )}
 
         {statusData?.technicalUserProfile && techUserProfiles && (
-          <>
+          <div data-testid="release-process-technical-user-container">
             <Divider className="verify-validate-form-divider" />
             <Typography variant="h4">
               {t('content.adminboardDetail.technicalUserSetup.heading')}
@@ -565,11 +595,15 @@ export default function CommonValidateAndPublish({
               userProfiles={techUserProfiles}
               disableActions={true}
             />
-          </>
+          </div>
         )}
 
         <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
+        <Typography
+          data-testid="release-process-provider-information"
+          variant="h4"
+          sx={{ mb: 4 }}
+        >
           {providerInformation}
         </Typography>
         {defaultValues && (
@@ -579,10 +613,17 @@ export default function CommonValidateAndPublish({
           />
         )}
         <Divider className="verify-validate-form-divider" />
-        <Typography variant="h4" sx={{ mb: 4 }}>
+        <Typography
+          data-testid="release-process-consent-title"
+          variant="h4"
+          sx={{ mb: 4 }}
+        >
           {consentTitle}
         </Typography>
-        <div className="form-field">
+        <div
+          data-testid="release-process-consent-container"
+          className="form-field"
+        >
           {statusData?.agreements
             ?.filter((item) => item.id !== DATA_SOVEREIGNTY_ID)
             .map((item: { name: string; consentStatus: ConsentStatusEnum }) => (
@@ -598,7 +639,7 @@ export default function CommonValidateAndPublish({
         </div>
 
         {cxTestRunsTitle && (
-          <>
+          <div data-testid="release-process-cx-test-runs-container">
             <Divider className="verify-validate-form-divider" />
             <Typography variant="h4" sx={{ mb: 4 }}>
               {cxTestRunsTitle}
@@ -621,12 +662,12 @@ export default function CommonValidateAndPublish({
                 )}
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
 
       {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
-        <Box mb={2}>
+        <Box data-testid="release-process-validate-publish-container" mb={2}>
           {validatePublishNotification && (
             <Grid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
               <Grid size={{ xs: 6 }}></Grid>
