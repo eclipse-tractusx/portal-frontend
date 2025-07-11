@@ -46,16 +46,19 @@ export default function ServiceSubscription() {
       searchPlaceHoder={t('serviceSubscription.search')}
       sortOptionLabels={{
         customer: t('serviceSubscription.sortOptions.customer'),
-        offer: t('serviceSubscription.sortOptions.offer'),
+        offer: t('serviceSubscription.sortOptions.apps'),
       }}
       tabLabels={{
         request: t('serviceSubscription.tabs.request'),
         active: t('serviceSubscription.tabs.active'),
         showAll: t('serviceSubscription.tabs.showAll'),
+        inactive: t('serviceSubscription.tabs.inactive'),
       }}
       doNotShowAutoSetup={true}
       type={SubscriptionTypes.SERVICE_SUBSCRIPTION}
       activeAppHeading={t('serviceSubscription.offersHeading')}
+      subscriptionHeading={t('serviceSubscription.serviceSubscriptionHeading')}
+      loadMoreButtonText={t('serviceSubscription.loadMore')}
     />
   )
 }

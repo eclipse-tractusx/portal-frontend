@@ -55,11 +55,13 @@ enum FilterType {
   REQUEST = 'request',
   ACTIVE = 'active',
   SHOWALL = 'showAll',
+  INACTIVE = 'inactive',
 }
 
 enum StatusIdType {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 enum SortType {
@@ -95,6 +97,7 @@ enum ActionKind {
   SET_APP_FILTERS = 'SET_APP_FILTERS',
   SET_ACTIVE_APP_FILTER = 'SET_ACTIVE_APP_FILTER',
   SET_COMPANY_NAME = 'SET_COMPANY_NAME',
+  DECLINE_SUBSCRIPTION = 'DECLINE_SUBSCRIPTION',
 }
 
 type State = {
@@ -177,6 +180,8 @@ function reducer(state: State, { type, payload }: Action) {
         offerId: payload.offerId,
         fetchArgs: payload.fetchArgs,
         sortingType: payload.sortingType,
+        subscriptions: [],
+        cardSubscriptions: [],
       }
     case ActionKind.SET_PAGE_SORTING_TYPE_FETCH_ARGS:
       return {
@@ -206,6 +211,28 @@ function reducer(state: State, { type, payload }: Action) {
       return {
         ...state,
         activeAppFilter: payload,
+      }
+    case ActionKind.DECLINE_SUBSCRIPTION:
+      return {
+        ...state,
+        subscriptions: state.subscriptions
+          .map((content) => ({
+            ...content,
+            companySubscriptionStatuses:
+              content.companySubscriptionStatuses.filter(
+                (sub) => sub.subscriptionId !== payload
+              ),
+          }))
+          .filter((content) => content.companySubscriptionStatuses.length > 0),
+        cardSubscriptions: state.cardSubscriptions
+          .map((content) => ({
+            ...content,
+            companySubscriptionStatuses:
+              content.companySubscriptionStatuses.filter(
+                (sub) => sub.subscriptionId !== payload
+              ),
+          }))
+          .filter((content) => content.companySubscriptionStatuses.length > 0),
       }
     default:
       return state
@@ -260,6 +287,7 @@ interface SubscriptionType {
   tabLabels: {
     request: string
     active: string
+    inactive: string
     showAll: string
   }
   doNotShowAutoSetup?: boolean
@@ -324,6 +352,17 @@ export default function Subscription({
   const isSuccess = useSelector(currentProviderSuccessType)
   const success: boolean = useSelector(currentSuccessType)
 
+  const declineSubscriptionCallback = useCallback(
+    (subscriptionId: string) => {
+      setState({
+        type: ActionKind.DECLINE_SUBSCRIPTION,
+        payload: subscriptionId,
+      })
+      refetch() // Force immediate refetch after decline
+    },
+    [refetch]
+  )
+
   useEffect(() => {
     if (data?.content) {
       setState({
@@ -348,6 +387,8 @@ export default function Subscription({
       status = StatusIdType.PENDING
     } else if (e.currentTarget.value === FilterType.ACTIVE) {
       status = StatusIdType.ACTIVE
+    } else if (e.currentTarget.value === FilterType.INACTIVE) {
+      status = StatusIdType.INACTIVE
     }
     setState({
       type: ActionKind.SET_SORTING_TYPE,
@@ -593,6 +634,7 @@ export default function Subscription({
                 refetch={refetch}
                 isSuccess={apiSuccess}
                 subscriptionHeading={subscriptionHeading}
+                declineSubscription={declineSubscriptionCallback} // Add this
               />
             )}
           </div>

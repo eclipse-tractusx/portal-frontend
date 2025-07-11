@@ -224,6 +224,12 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    declineServiceSubscription: builder.mutation<void, string>({
+      query: (subscriptionId) => ({
+        url: `/api/services/subscription/${subscriptionId}/decline`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -235,4 +241,5 @@ export const {
   useFetchServiceDetailsQuery,
   useFetchCompanyServiceSubscriptionsQuery,
   useUnsubscribeServiceMutation,
+  useDeclineServiceSubscriptionMutation,
 } = apiSlice

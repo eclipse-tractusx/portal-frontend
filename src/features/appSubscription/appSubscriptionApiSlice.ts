@@ -188,6 +188,7 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+
     updateTenantUrl: builder.mutation<void, TenantUrlRequest>({
       query: (data) => ({
         url: `/api/apps/appChange/${data.appId}/subscription/${data.subscriptionId}/tenantUrl`,
@@ -201,6 +202,12 @@ export const apiSlice = createApi({
         method: 'PUT',
       }),
     }),
+    declineAppSubscription: builder.mutation<void, string>({
+      query: (subscriptionId) => ({
+        url: `/api/apps/subscription/${subscriptionId}/decline`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
@@ -211,4 +218,5 @@ export const {
   useAddUserSubscribtionMutation,
   useUpdateTenantUrlMutation,
   useActivateSubscriptionMutation,
+  useDeclineAppSubscriptionMutation,
 } = apiSlice

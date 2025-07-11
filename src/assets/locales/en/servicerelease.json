@@ -168,11 +168,13 @@
     "tabs": {
       "request": "Request",
       "active": "Active",
+      "inactive": "Unsubscribed",
       "showAll": "Show All"
     },
     "sortOptions": {
-      "customer": "By Customer A-Z",
-      "offer": "By Offer"
+      "customer": "Customer A–Z",
+      "offer": "Offer",
+      "apps": "Apps A–Z"
     },
     "document": {
       "heading": "Relevant Documents",
@@ -207,6 +209,8 @@
       "close": "Close"
     },
     "offersHeading": "Services Offered",
+    "serviceSubscriptionHeading": "Subscriptions",
+    "loadMore": "Load More",
     "success": "Activation successful",
     "configuration": "Configuration successful",
     "failure": "Error while configuring service subscription"

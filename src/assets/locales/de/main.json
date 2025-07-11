@@ -1493,6 +1493,10 @@
         "clientSercret": "Client Secret"
       }
     },
+    "appServiceSubscription": {
+      "appsOffered": "Angebotene Apps",
+      "subscriptions": "Abos"
+    },
     "appSubscription": {
       "headline": "App Subscription",
       "subHeading": "Manage customer subscriptons",
@@ -1506,25 +1510,31 @@
       "newServices": "New Services",
       "recommendations": "Recommendations",
       "allServices": "All Services",
-      "viewDetails": "Display more details",
+      "viewDetails": "Details anzeigen",
       "activateBtn": "Aktivieren",
       "configureBtn": "Konfigurieren",
       "pleaseEnterValidURL": "Please enter a valid URL",
       "error": "Error",
       "success": "Aktivierung erfolgreich",
       "configuration": "Konfiguration erfolgreich",
-      "pending": "Das Abonnement steht noch aus",
-      "active": "Das Abonnement ist aktiv",
-      "inactive": "Das Abonnement ist inaktiv",
-      "process": "Das Abonnement ist in Bearbeitung",
+      "pending": "Abo ausstehend",
+      "active": "Abo aktiv",
+      "inactive": "Abo abbestellt",
+      "unsubscribed": "Abo abbestellt",
+      "process": "Abo in Bearbeitung",
+      "offersHeading": "Angebotene Apps",
+      "appSubscriptionHeading": "Abos",
+      "loadMore": "Mehr laden",
       "tabs": {
         "request": "Request",
         "active": "Active",
+        "inactive": "Abbestellt",
         "showAll": "Show All"
       },
       "sortOptions": {
-        "customer": "By Customer A-Z",
-        "offer": "By Offer"
+        "customer": "Kunde A–Z",
+        "offer": "Angebot A-Z",
+        "apps": "Apps A–Z"
       },
       "document": {
         "heading": "Relevant Documents",
@@ -1587,6 +1597,14 @@
         "technicalClientId": "Technical User Client ID",
         "technicalSecret": "Technical User Secret",
         "technicalPermission": "Technical User Permission"
+      },
+      "decline": {
+        "heading": "{{subscriptionType}} Abonnement ablehnen?",
+        "intro": "Für {{appName}}",
+        "description": "{{companyName}} erhält eine E-Mail-Benachrichtigung mit der Option, die App erneut zu abonnieren.",
+        "success": "{{subscriptionType}} Abonnement abgelehnt",
+        "cancelBtn": "Abbrechen",
+        "declineBtn": "Ablehnen"
       },
       "detailOverlay": {
         "title": "Provider View",
@@ -2014,6 +2032,7 @@
       "description": "Verwalten und organisieren Sie Ihre Unternehmenszertifikate einfach und effizient. Diese Seite bietet eine benutzerfreundliche Oberfläche zum Anzeigen, Hinzufügen, Bearbeiten und Löschen von Unternehmenszertifikaten. Behalten Sie den Überblick über Ihren Zertifikatsverwaltungsprozess und stellen Sie mühelos die Einhaltung sicher.",
       "tabs": {
         "inactive": "Inactive",
+        "unsubscribed": "Abo abbestellt",
         "active": " Active",
         "all": "All certificates"
       },
