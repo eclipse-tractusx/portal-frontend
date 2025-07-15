@@ -2053,6 +2053,7 @@
         "checkboxLabel": "I have read and accept the <1>framework agreement</1>.",
         "linkText": "framework agreement",
         "error": "Something went wrong!",
+        "CredentialAlreadyExistsError": "Credential already exists and is active",
         "success": "Usecase document upload has been done successfully."
       }
     },

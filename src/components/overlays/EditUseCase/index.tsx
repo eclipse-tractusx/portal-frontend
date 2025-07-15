@@ -21,6 +21,7 @@ import { useState, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useDispatch } from 'react-redux'
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import {
   Button,
   Checkbox,
@@ -36,6 +37,26 @@ import type { store } from 'features/store'
 import './style.scss'
 import { useAddUsecaseMutation } from 'features/usecase/usecaseApiSlice'
 import { generateDummyPdf } from 'utils/cfxPdfGenerator'
+
+interface PortalBackendError {
+  type: string
+  title: string
+  status: number
+  errors: {
+    'Org.Eclipse.TractusX.Portal.Backend.Framework.HttpClientExtensions': string[]
+  }
+  errorId: string
+  details: unknown[]
+}
+
+const isFetchBaseQueryError = (
+  error: unknown
+): error is FetchBaseQueryError & { data: PortalBackendError } =>
+  typeof error === 'object' &&
+  error !== null &&
+  'status' in error &&
+  'data' in error &&
+  typeof (error as { data: unknown }).data === 'object'
 
 export default function EditUseCase({
   id: verifiedCredentialTypeId,
@@ -70,7 +91,24 @@ export default function EditUseCase({
       }
     } catch (err) {
       setLoading(false)
-      error(t('content.usecaseParticipation.editUsecase.error'), '', '')
+
+      const isCredentialAlreadyExists =
+        isFetchBaseQueryError(err) &&
+        err.data.errors[
+          'Org.Eclipse.TractusX.Portal.Backend.Framework.HttpClientExtensions'
+        ]?.some((msg) => /409\s*Conflict/i.test(msg))
+
+      if (isCredentialAlreadyExists) {
+        error(
+          t(
+            'content.usecaseParticipation.editUsecase.CredentialAlreadyExistsError'
+          ),
+          '',
+          ''
+        )
+      } else {
+        error(t('content.usecaseParticipation.editUsecase.error'), '', '')
+      }
     }
   }
 

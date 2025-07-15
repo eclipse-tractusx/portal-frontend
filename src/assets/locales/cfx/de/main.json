@@ -2084,6 +2084,7 @@
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Ich habe die <1>Rahmenvereinbarung</1> gelesen und akzeptiere sie.",
         "error": "Something went wrong!",
+        "CredentialAlreadyExistsError": "Credential existiert bereits und ist aktiv",
         "success": "Usecase document upload has been done successfully.",
         "linkText": "Rahmenvereinbarung"
       }

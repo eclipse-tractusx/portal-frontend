@@ -1930,6 +1930,7 @@
         "fileSizeError": "Please upload only pdf file upto 2 MB.",
         "checkboxLabel": "Yes, I confirm that I have uploaded the signed use case frameagreement",
         "error": "Something went wrong!",
+        "CredentialAlreadyExistsError": "Credential already exists and is active",
         "success": "Usecase document upload has been done successfully."
       }
     },
