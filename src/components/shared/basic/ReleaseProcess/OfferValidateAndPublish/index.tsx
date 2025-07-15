@@ -55,10 +55,11 @@ export default function OfferValidateAndPublish({
       conformityDocumentsDescription: t('step4.conformityDocumentsDescription'),
       documentsDescription: t('defaultValues.documentsDescription'),
       providerTableData: {
-        head: ['Homepage', 'E-Mail'],
+        head: [t('step4.website'), t('step4.email'), t('step4.phone')],
         body: [
           [fetchServiceStatus?.providerUri],
           [fetchServiceStatus?.contactEmail],
+          [fetchServiceStatus?.contactNumber],
         ],
       },
     }

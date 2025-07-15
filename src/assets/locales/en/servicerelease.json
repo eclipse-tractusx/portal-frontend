@@ -50,8 +50,10 @@
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
     "providerContactEmail": "Customer Contact E-Mail",
+    "providerContactPhone": "Customer Contact Phone",
     "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
-    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
+    "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
+    "pleaseEnterValidContact": "Please enter a valid contact number in one of the following formats: '+xx xxxxxxxxxx' or '+xxxxxxxxxx'. Note: Avoid double spaces or special characters."
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
@@ -78,7 +80,10 @@
     "longDescriptionTitleEN": "[Long Description - EN] ",
     "longDescriptionTitleDE": "[Long Description - DE] ",
     "conformityDocument": "Conformity Document",
-    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "conformityDocumentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "website": "Provider HomePage",
+    "email": "E-Mail",
+    "phone": "Phone"
   },
   "serviceReleaseForm": {
     "headerTitle": "Create service",
@@ -263,7 +268,8 @@
       "heading": "Provider Information",
       "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
       "homepage": "Homepage",
-      "email": "E-Mail"
+      "email": "E-Mail",
+      "phone": "Phone"
     },
     "technicalUserSetup": {
       "heading": "Technical User Setup",
