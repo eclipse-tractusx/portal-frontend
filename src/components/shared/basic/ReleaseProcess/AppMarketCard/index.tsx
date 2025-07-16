@@ -610,11 +610,11 @@ export default function AppMarketCard() {
                 )} A-Za-z0-9.:_- @&`,
                 maxLength: `${t(
                   'content.apprelease.appReleaseForm.maximum'
-                )} 30 ${t(
+                )} 100 ${t(
                   'content.apprelease.appReleaseForm.charactersAllowed'
                 )}`,
               }}
-              maxTextLength={30}
+              maxTextLength={100}
             />
 
             <div className="form-field">

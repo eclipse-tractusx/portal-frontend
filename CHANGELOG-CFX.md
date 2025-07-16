@@ -26,6 +26,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **IDP**
   - IDP update overlay button remain disbale for validation error [PM2-3090](https://cofinity-x.atlassian.net/browse/PM2-3090)
+- **Release Process**
+  - App provider name with increased string limit [PM2-3080](https://cofinity-x.atlassian.net/browse/PM2-3080)
 
 ## Hotfixes
 
