@@ -155,7 +155,7 @@ npm/npmjs/-/ejs/3.1.10, Apache-2.0, approved, #1373
 npm/npmjs/-/electron-to-chromium/1.5.80, ISC, approved, #16451
 npm/npmjs/-/emittery/0.13.1, MIT, approved, clearlydefined
 npm/npmjs/-/emoji-regex/8.0.0, MIT, approved, clearlydefined
-npm/npmjs/-/end-of-stream/1.4.4, MIT, approved, clearlydefined
+npm/npmjs/-/end-of-stream/1.4.4, MIT, approved, #21942
 npm/npmjs/-/enquire.js/2.1.6, MIT, approved, clearlydefined
 npm/npmjs/-/enquirer/2.4.1, MIT AND (ISC AND MIT), approved, #10900
 npm/npmjs/-/entities/4.5.0, BSD-2-Clause, approved, #7910
@@ -496,7 +496,7 @@ npm/npmjs/-/path-parse/1.0.7, MIT, approved, clearlydefined
 npm/npmjs/-/path-type/4.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/pend/1.2.0, MIT, approved, clearlydefined
 npm/npmjs/-/performance-now/2.1.0, MIT, approved, clearlydefined
-npm/npmjs/-/phone/3.1.59, MIT, approved, #10500
+npm/npmjs/-/phone/3.1.62, MIT, approved, #10500
 npm/npmjs/-/picocolors/1.1.0, ISC, approved, clearlydefined
 npm/npmjs/-/picocolors/1.1.1, ISC, approved, clearlydefined
 npm/npmjs/-/picomatch/2.3.1, MIT, approved, clearlydefined
@@ -515,7 +515,7 @@ npm/npmjs/-/prompts/2.4.2, MIT, approved, clearlydefined
 npm/npmjs/-/prop-types/15.8.1, MIT, approved, clearlydefined
 npm/npmjs/-/proxy-from-env/1.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/psl/1.9.0, MIT AND CC0-1.0, approved, #3080
-npm/npmjs/-/pump/3.0.2, MIT, approved, clearlydefined
+npm/npmjs/-/pump/3.0.2, MIT, approved, #21946
 npm/npmjs/-/punycode/2.3.1, MIT, approved, #6373
 npm/npmjs/-/pure-rand/6.1.0, MIT, approved, clearlydefined
 npm/npmjs/-/qs/6.13.0, BSD-3-Clause, approved, #17735
@@ -532,7 +532,7 @@ npm/npmjs/-/react-is/17.0.2, MIT, approved, clearlydefined
 npm/npmjs/-/react-is/18.3.1, MIT, approved, clearlydefined
 npm/npmjs/-/react-is/19.0.0, MIT AND CC-BY-SA-4.0, approved, #18545
 npm/npmjs/-/react-is/19.1.0, MIT, approved, #20637
-npm/npmjs/-/react-player/2.16.0, MIT, approved, #14388
+npm/npmjs/-/react-player/2.16.1, MIT, approved, #14388
 npm/npmjs/-/react-redux/9.1.2, MIT AND (BSD-2-Clause AND ISC AND MIT) AND BSD-3-Clause, approved, #13913
 npm/npmjs/-/react-refresh/0.14.2, MIT, approved, clearlydefined
 npm/npmjs/-/react-router-dom/6.26.2, MIT, approved, #15860
@@ -853,7 +853,7 @@ npm/npmjs/@mui/types/7.2.17, MIT, approved, #16017
 npm/npmjs/@mui/types/7.4.1, MIT, approved, #20538
 npm/npmjs/@mui/utils/5.16.14, MIT, approved, #15716
 npm/npmjs/@mui/utils/7.0.2, MIT, approved, #20544
-npm/npmjs/@mui/x-data-grid/7.29.2, MIT AND ISC, approved, #20860
+npm/npmjs/@mui/x-data-grid/7.29.8, MIT AND ISC, approved, #20860
 npm/npmjs/@mui/x-date-pickers/7.29.0, MIT, approved, #20859
 npm/npmjs/@mui/x-internals/7.29.0, MIT, approved, #20861
 npm/npmjs/@nodelib/fs.scandir/2.1.5, MIT, approved, clearlydefined
