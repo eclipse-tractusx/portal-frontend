@@ -450,7 +450,7 @@ export default function TechnicalIntegration() {
       fetchAppStatus &&
       isStepCompleted(fetchAppStatus, 4, appRedirectStatus, data)
     ) {
-      // dispatch(increment())
+      dispatch(increment())
       hasDispatched.current = true
     }
   }, [fetchAppStatus, data, hasDispatched])

@@ -55,8 +55,11 @@ export function isStepCompleted(
         fetchAppStatus?.agreements &&
         fetchAppStatus.agreements[0]?.consentStatus ===
           ConsentStatusEnum.ACTIVE &&
-        fetchAppStatus.agreements[1]?.consentStatus ===
-          ConsentStatusEnum.ACTIVE &&
+        /* TODO: need to fix array destructuring when BE ticket is fixed
+         https://cofinity-x.atlassian.net/browse/PM2-3185 */
+
+        // fetchAppStatus.agreements[1]?.consentStatus ===
+        //   ConsentStatusEnum.ACTIVE &&
         fetchAppStatus.agreements[2]?.consentStatus ===
           ConsentStatusEnum.ACTIVE &&
         fetchAppStatus.documents?.CONFORMITY_APPROVAL_BUSINESS_APPS?.length &&
