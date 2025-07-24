@@ -81,7 +81,6 @@ import { isStepCompleted } from '../AppStepHelper'
 
 type FormDataType = {
   title: string
-  provider: string
   shortDescriptionEN: string
   shortDescriptionDE: string
   useCaseCategory: string[] | useCasesItem[] | UseCaseType[]
@@ -161,7 +160,6 @@ export default function AppMarketCard() {
   const defaultValues = useMemo(() => {
     return {
       title: appStatusData?.title,
-      provider: appStatusData?.provider,
       price: appStatusData?.price,
       useCaseCategory: appStatusData?.useCase,
       appLanguage: appStatusData?.supportedLanguageCodes,
@@ -312,9 +310,6 @@ export default function AppMarketCard() {
   const cardAppTitle =
     getValues().title ??
     t('content.apprelease.appMarketCard.defaultCardAppTitle')
-  const cardAppProvider =
-    getValues().provider ??
-    t('content.apprelease.appMarketCard.defaultCardAppProvider')
   const cardDescription =
     getValues().shortDescriptionEN ??
     t('content.apprelease.appMarketCard.defaultCardShortDescriptionEN')
@@ -329,7 +324,6 @@ export default function AppMarketCard() {
   const onSubmit = async (data: FormDataType, buttonLabel: string) => {
     const validateFields = await trigger([
       'title',
-      'provider',
       'shortDescriptionEN',
       'shortDescriptionDE',
       'useCaseCategory',
@@ -379,7 +373,7 @@ export default function AppMarketCard() {
     setLoading(true)
     const saveData = {
       title: data.title,
-      provider: data.provider,
+      provider: '', // TODO: remove it - not needed anymore but api expect this to be present [https://cofinity-x.atlassian.net/browse/PM2-3187]
       salesManagerId,
       useCaseIds: data.useCaseCategory.some((value) => {
         return typeof value == 'object'
@@ -511,7 +505,6 @@ export default function AppMarketCard() {
                 alt: cardImageAlt,
               }}
               title={cardAppTitle}
-              subtitle={cardAppProvider}
               description={cardDescription}
               imageSize="normal"
               imageShape="square"
@@ -526,7 +519,7 @@ export default function AppMarketCard() {
         ) : (
           <Grid size={{ md: 7 }} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
             <CardHorizontal
-              label={cardAppProvider ?? ''}
+              label={''}
               title={cardAppTitle}
               image={{
                 alt: cardImageAlt,
@@ -578,43 +571,6 @@ export default function AppMarketCard() {
                 )}`,
               }}
               maxTextLength={40}
-            />
-            <CommonConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-              }}
-              dataTestId="release-process-provider-input"
-              name="provider"
-              maxLength={30}
-              minLength={3}
-              pattern={Patterns.COMPANY_NAME}
-              label={
-                <>
-                  {t('content.apprelease.appMarketCard.appProvider')}
-                  <span style={{ color: 'red' }}> *</span>
-                </>
-              }
-              rules={{
-                required: `${t(
-                  'content.apprelease.appMarketCard.appProvider'
-                )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                minLength: `${t(
-                  'content.apprelease.appReleaseForm.minimum'
-                )} 3 ${t(
-                  'content.apprelease.appReleaseForm.charactersRequired'
-                )}`,
-                pattern: `${t(
-                  'content.apprelease.appReleaseForm.validCharactersIncludes'
-                )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t(
-                  'content.apprelease.appReleaseForm.maximum'
-                )} 100 ${t(
-                  'content.apprelease.appReleaseForm.charactersAllowed'
-                )}`,
-              }}
-              maxTextLength={100}
             />
 
             <div className="form-field">

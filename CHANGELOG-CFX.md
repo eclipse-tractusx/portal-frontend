@@ -31,6 +31,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - App registration process save&continue state doesn't persist coreectly for stepper [3167](https://cofinity-x.atlassian.net/browse/PM2-3167)
 - **App Access Management**
   - CHERRY-PICK display selected user on naviagte back from role selection [1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
+  - Remove app provider field from App release process [PM2-2747](https://cofinity-x.atlassian.net/browse/PM2-2747)
 - **Request Management**
   - Service approval/decline request toast message [PM2-3086](https://cofinity-x.atlassian.net/browse/PM2-3086)
 
