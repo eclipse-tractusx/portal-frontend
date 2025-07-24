@@ -29,6 +29,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **Release Process**
   - App provider name with increased string limit [PM2-3080](https://cofinity-x.atlassian.net/browse/PM2-3080)
   - App registration process save&continue state doesn't persist coreectly for stepper [3167](https://cofinity-x.atlassian.net/browse/PM2-3167)
+- **App Access Management**
+  - CHERRY-PICK display selected user on naviagte back from role selection [1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
 
 ## Hotfixes
 

@@ -117,36 +117,40 @@ export default function AddAppUserRoles() {
         <div style={{ width: '40%', margin: '0 auto 40px' }}>
           <Stepper list={AddStepsList} showSteps={2} activeStep={activeStep} />
         </div>
-        {activeStep === 1 && (
-          <Box sx={{ margin: '50px 110px' }}>
-            <Typography variant="label3">
-              {t('content.addUserRight.selectUsersDescription')}
-            </Typography>
-            <Box sx={{ mt: '46px' }}>
-              <UserListContent />
-            </Box>
+        <Box
+          sx={{
+            margin: '50px 110px',
+            display: activeStep === 1 ? 'block' : 'none',
+          }}
+        >
+          <Typography variant="label3">
+            {t('content.addUserRight.selectUsersDescription')}
+          </Typography>
+          <Box sx={{ mt: '46px' }}>
+            <UserListContent />
           </Box>
-        )}
-        {activeStep === 2 && (
-          <Box sx={{ margin: '50px 110px' }}>
-            <Typography variant="label3">
-              {t('content.addUserRight.addRolesDescription')}
+        </Box>
+        <Box
+          sx={{
+            margin: '50px 110px',
+            display: activeStep === 2 ? 'block' : 'none',
+          }}
+        >
+          <Typography variant="label3">
+            {t('content.addUserRight.addRolesDescription')}
+          </Typography>
+          <Box sx={{ mt: '46px' }}>
+            <Typography variant="label1">
+              {t('content.addUserRight.selectRoles')}
             </Typography>
-            <Box sx={{ mt: '46px' }}>
-              <Typography variant="label1">
-                {t('content.addUserRight.selectRoles')}
-              </Typography>
-            </Box>
-            <Box sx={{ mb: '30px' }}>
-              <Typography variant="body2">
-                <a href="">{`> ${t(
-                  'content.addUserRight.roleDescriptions'
-                )}`}</a>
-              </Typography>
-            </Box>
-            <AppRoles />
           </Box>
-        )}
+          <Box sx={{ mb: '30px' }}>
+            <Typography variant="body2">
+              <a href="#user-role-descriptions">{`> ${t('content.addUserRight.roleDescriptions')}`}</a>
+            </Typography>
+          </Box>
+          <AppRoles />
+        </Box>
       </DialogContent>
 
       <DialogActions>

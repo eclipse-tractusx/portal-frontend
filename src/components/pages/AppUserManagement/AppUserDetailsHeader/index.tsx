@@ -38,7 +38,7 @@ export default function AppUserDetailsHeader({
   const { t } = useTranslation()
 
   return (
-    <section className="app-user-details-header">
+    <section id="user-role-descriptions" className="app-user-details-header">
       <div className="app-user-details-header-title">
         <SubHeaderTitle
           title={'content.usermanagement.appUserDetails.header.title'}
