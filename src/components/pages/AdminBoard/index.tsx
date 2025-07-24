@@ -38,10 +38,10 @@ export default function AdminBoard() {
         AppTitle: t('content.adminBoard.sortOptions.AppTitle'),
       }}
       fetchQuery={useFetchAppReleaseAppsQuery}
-      successApproveMsg={t('content.adminBoard.successMsg')}
-      errorApproveMsg={t('content.adminBoard.errorMsg')}
-      successDeclineMsg={t('content.adminBoard.successMsg')}
-      errorDeclineMsg={t('content.adminBoard.errorMsg')}
+      successApproveMsg={t('content.adminBoard.successApproveMsg')}
+      errorApproveMsg={t('content.adminBoard.errorApproveMsg')}
+      successDeclineMsg={t('content.adminBoard.successDeclineMsg')}
+      errorDeclineMsg={t('content.adminBoard.errorDeclineMsg')}
     />
   )
 }

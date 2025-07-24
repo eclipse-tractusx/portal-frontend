@@ -20,12 +20,10 @@
 
 import {
   CardDecision,
-  CircleProgress,
   ErrorBar,
   PageSnackbar,
 } from '@cofinity-x/shared-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTheme } from '@mui/material'
 import { show } from 'features/control/overlay'
 import './style.scss'
 import {
@@ -75,25 +73,11 @@ export default function AdminBoardElements({
 }>) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const theme = useTheme()
   const [approveRequest] = useApproveRequestMutation()
   const [approveServiceRequest] = useApproveServiceRequestMutation()
   const isDecisionSuccess = useSelector(currentSuccessType)
   const isDecisionError = useSelector(currentErrorType)
   const currentAction = useSelector(currentActionType)
-
-  if (apps && apps.length === 0 && isSuccess) {
-    return <NoItems />
-  } else if (!isSuccess) {
-    return (
-      <ErrorBar
-        errorText={t('error.errorBar')}
-        handleButton={refetch}
-        buttonText={t('error.tryAgain')}
-        showButton={true}
-      />
-    )
-  }
 
   const handleApprove = async (appId: string) => {
     dispatch(setActionType(AdminActionType.APPROVE))
@@ -129,6 +113,17 @@ export default function AdminBoardElements({
     }
   }
 
+  if (!isSuccess) {
+    return (
+      <ErrorBar
+        errorText={t('error.errorBar')}
+        handleButton={refetch}
+        buttonText={t('error.tryAgain')}
+        showButton={true}
+      />
+    )
+  }
+
   return (
     <div className="admin-board-elements-main">
       <PageSnackbar
@@ -141,7 +136,8 @@ export default function AdminBoardElements({
         showIcon={true}
         autoClose={true}
       />
-      {apps?.length ? (
+      {apps && apps.length === 0 && <NoItems />}
+      {apps && apps.length > 0 && (
         <CardDecision
           items={apps}
           onDelete={(appId: string) => {
@@ -155,17 +151,6 @@ export default function AdminBoardElements({
           onApprove={(appId: string) => handleApprove(appId)}
           onClick={onClick}
         />
-      ) : (
-        <div className="loading-progress">
-          <CircleProgress
-            variant="indeterminate"
-            colorVariant="primary"
-            size={50}
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-          />
-        </div>
       )}
     </div>
   )

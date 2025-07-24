@@ -40,6 +40,7 @@
     "appReleaseProcess": "App-Release Prozess",
     "appSubscription": "App Abonnements",
     "adminboard": "App-Release Anfragen",
+    "appAdminBoard": "App-Release Anfragen",
     "appUserManagement": "App Benutzer Verwaltung",
     "userdetails": "Benutzer Details",
     "technicalUserManagement": "Technischer User Management",
@@ -63,7 +64,7 @@
     "certificateCredential": "Config - Certificates",
     "about": "About",
     "dataSpace": "Data Space",
-    "adminCredential": "Credential Requests",
+    "adminCredential": "Zertifikat Anfragen",
     "companyCertificate": "Company Certificates",
     "companyWallet": "Firmen-Wallet",
     "companySubscriptions": "App & Service Abonnements",
@@ -1767,57 +1768,59 @@
       }
     },
     "adminBoard": {
-      "headerTitle": "App Request Management",
-      "headerDescription": "All the requested applications will be managed from this page.",
-      "search": "Search by app title...",
-      "noDataMessage": "No data available",
+      "headerTitle": "App-Release Anfragen",
+      "headerDescription": "Alle App-Release Anfragen werden von dieser Seite verwaltet.",
+      "search": "Suche nach App Titel...",
+      "noDataMessage": "Keine Daten verfügbar",
+      "successApproveMsg": "App wurde aktiviert",
+      "errorApproveMsg": "App-Aktivierung fehlgeschlagen.",
+      "successDeclineMsg": "App wurde declined & provider informiert",
+      "errorDeclineMsg": "Ablehnung der App-Aktivierung fehlgeschlagen.",
       "tabs": {
-        "open": "Open",
-        "all": "All"
+        "open": "Offen",
+        "all": "Alle"
       },
       "sortOptions": {
-        "newFirst": "Newest First",
-        "AppTitle": "App Title (A-Z)"
+        "newFirst": "Neueste zuerst",
+        "AppTitle": "App Titel (A-Z)"
       },
-      "errorMsg": "Error! Something went wrong",
-      "successMsg": "Successfully completed",
       "declineModal": {
-        "title": "Reject App Release Request {appName}",
-        "subheading": "Are you sure you want to reject the app release request ?",
-        "declineReason": "The rejection will",
-        "declineReason1Label": "Create a notification & email message to inform the app provider/manager about the rejection",
-        "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
-        "declineReason3Label": "The app will get set back to the status “in progress“",
-        "inputLabel": "Cancellation Message",
-        "confirm": "Confirm",
-        "close": "Close"
+        "title": "App Aktivierungs Anfrage ablehnen {appName}",
+        "subheading": "Sind Sie sicher, dass Sie die App Aktivierungs Anfrage ablehnen möchten?",
+        "declineReason": "Die Ablehnung wird",
+        "declineReason1Label": "Eine Benachrichtigung und E-Mail-Nachricht an den App-Anbieter/Manager über die Ablehnung erstellen",
+        "declineReason2Label": "Eine individuelle Nachricht mit zusätzlichen Details kann durch Hinzufügen der Details in das Eingabefeld unten geteilt werden",
+        "declineReason3Label": "Die App wird auf den Status „in Bearbeitung“ zurückgesetzt",
+        "inputLabel": "Stornierungsnachricht",
+        "confirm": "Bestätigen",
+        "close": "Schließen"
       }
     },
     "adminboardDetail": {
       "useCase": "Use Case",
-      "language": "Language",
-      "price": "Price",
+      "language": "Sprache",
+      "price": "Preis",
       "longDescriptionTitleEN": "Detaillierte App Beschreibung (en)",
       "longDescriptionTitleDE": "Detaillierte App Beschreibung (de)",
-      "backToBoard": "Back to Admin Board",
+      "backToBoard": "Zurück zur Admin Board",
       "connectedData": {
-        "heading": "Connected Data",
-        "message": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts into your mouth.",
-        "message2": "When using the app, the following data may be collected but NOT linked to your identity:",
-        "linked": "Linked to your Identity",
-        "notLinked": "Linked NOT to your Identity"
+        "heading": "Verknüpfte Daten",
+        "message": "Wenn Sie die App verwenden, können die folgenden Daten gesammelt werden, aber NICHT mit Ihrer Identität verknüpft werden:",
+        "message2": "Wenn Sie die App verwenden, können die folgenden Daten gesammelt werden, aber NICHT mit Ihrer Identität verknüpft werden:",
+        "linked": "Mit Ihrer Identität verknüpft",
+        "notLinked": "Mit Ihrer Identität nicht verknüpft"
       },
       "securityInfo": {
-        "heading": "Data Security Information",
+        "heading": "Datensicherheitsinformationen",
         "message": ""
       },
       "ConformityDocument": {
-        "heading": "Conformity Document",
+        "heading": "Konformitätsdokument",
         "message": ""
       },
       "Documents": {
-        "heading": "Documents",
-        "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them."
+        "heading": "Dokumente",
+        "message": "In der folgenden Sektion werden zusätzliche Dokumente/Informationen vom App-Anbieter geteilt. Klicken Sie auf den Dokumentennamen, um sie herunterzuladen."
       },
       "roles": {
         "heading": "App Rollen",
@@ -1830,12 +1833,12 @@
         "roleDescription": "The role description is expected to get displayed here in future."
       },
       "providerInformation": {
-        "heading": "Provider Information",
-        "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
-        "appProvider": "App Provider",
+        "heading": "Anbieter Informationen",
+        "message": "Wenn Sie Fragen haben, wollen Sie sich in Verbindung setzen oder auf die Website des Anbieters zugreifen, finden Sie alle notwendigen Informationen unten.",
+        "appProvider": "App Anbieter",
         "website": "Website",
-        "email": "Email",
-        "phone": "Phone"
+        "email": "E-Mail",
+        "phone": "Telefon"
       }
     },
     "checklistOverlay": {

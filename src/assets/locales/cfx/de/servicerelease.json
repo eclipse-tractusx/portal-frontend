@@ -232,66 +232,66 @@
     "failure": "Fehler bei der Konfiguration des Service Abonnements"
   },
   "adminBoard": {
-    "headerTitle": "Service Request Management",
-    "headerDescription": "All the requested services will be managed from this page.",
-    "search": "Search by title...",
-    "noDataMessage": "No data available",
+    "headerTitle": "Service-Release Anfragen",
+    "headerDescription": "Alle Service-Release Anfragen werden von dieser Seite verwaltet.",
+    "search": "Suche nach Service Titel...",
+    "noDataMessage": "Keine Daten verfügbar",
     "successApproveMsg": "Service wurde aktiviert",
     "errorApproveMsg": "Service-Aktivierung fehlgeschlagen.",
     "successDeclineMsg": "Service wurde declined & provider informiert",
     "errorDeclineMsg": "Ablehnung der Service-Aktivierung fehlgeschlagen.",
     "tabs": {
-      "open": "Open",
-      "all": "All"
+      "open": "Offen",
+      "all": "Alle"
     },
     "sortOptions": {
-      "newFirst": "Newest First",
-      "AppTitle": "Service Title (A-Z)"
+      "newFirst": "Neueste zuerst",
+      "AppTitle": "Service Titel (A-Z)"
     },
     "declineModal": {
-      "title": "Reject Service Release Request {appName}",
-      "subheading": "Are you sure you want to reject the service release request ?",
-      "declineReason": "The rejection will",
-      "declineReason1Label": "Create a notification & email message to inform the service provider/manager about the rejection",
-      "declineReason2Label": "An individual message with additional details can get shared by adding the details into the input field below",
-      "declineReason3Label": "The service will get set back to the status “in progress“",
-      "inputLabel": "Cancellation Message",
-      "confirm": "Confirm",
-      "close": "Close"
+      "title": "Service Anfrage ablehnen {appName}",
+      "subheading": "Sind Sie sicher, dass Sie die Service Anfrage ablehnen möchten?",
+      "declineReason": "Die Ablehnung wird",
+      "declineReason1Label": "Eine Benachrichtigung und E-Mail-Nachricht an den Service-Anbieter/Manager über die Ablehnung erstellen",
+      "declineReason2Label": "Eine individuelle Nachricht mit zusätzlichen Details kann durch Hinzufügen der Details in das Eingabefeld unten geteilt werden",
+      "declineReason3Label": "Der Service wird auf den Status „in Bearbeitung“ zurückgesetzt",
+      "inputLabel": "Stornierungsnachricht",
+      "confirm": "Bestätigen",
+      "close": "Schließen"
     }
   },
   "adminboardDetail": {
     "action": {
-      "back": "Back"
+      "back": "Zurück"
     },
-    "longDescriptionTitleEN": "Description - English",
-    "longDescriptionTitleDE": "Description - German",
-    "backToBoard": "Back to Admin Board",
+    "longDescriptionTitleEN": "Detaillierte Service Beschreibung (en)",
+    "longDescriptionTitleDE": "Detaillierte Service Beschreibung (de)",
+    "backToBoard": "Zurück zur Admin Board",
     "noDocumentsAvailable": "Keine Dokumente verfügbar",
     "ConformityDocument": {
-      "heading": "Conformity Document",
+      "heading": "Konformitätsdokument",
       "message": ""
     },
     "documents": {
-      "heading": "Documents",
-      "message": "In the following section additional documents/information are shared by the app provider. Click on the document name to download them. "
+      "heading": "Dokumente",
+      "message": "In der folgenden Sektion werden zusätzliche Dokumente/Informationen vom Service-Anbieter geteilt. Klicken Sie auf den Dokumentennamen, um sie herunterzuladen."
     },
     "provider": {
-      "heading": "Provider Information",
-      "message": "If you have any question, want to get in contact or visit the provider website, you can find all necessary information below.",
+      "heading": "Anbieter Informationen",
+      "message": "Wenn Sie Fragen haben, wollen Sie sich in Verbindung setzen oder auf die Website des Anbieters zugreifen, finden Sie alle notwendigen Informationen unten.",
       "homepage": "Homepage",
       "email": "E-Mail"
     },
     "technicalUserSetup": {
       "heading": "Technische Integration",
       "message": "Das unten definierte technische Benutzerprofil zeigt die Benutzerrechte, die dem bei der Aktivierung des Services angelegten technischen User automatisch zugewiesen werden.",
-      "roleDescription": "The role description is expected to get displayed here in future.",
-      "noTechnicalUserProfilesAvailable": "No technical user profiles available"
+      "roleDescription": "Die Rolle wird in Zukunft hier angezeigt.",
+      "noTechnicalUserProfilesAvailable": "Keine technischen Benutzerprofile verfügbar"
     }
   },
   "retryOverlay": {
-    "title": "Something went wrong",
-    "description": "The data could not get loaded, please try it again or go back to the previous page."
+    "title": "Etwas ist schief gelaufen",
+    "description": "Die Daten konnten nicht geladen werden. Bitte versuchen Sie es erneut oder gehen Sie zurück zur vorherigen Seite."
   },
   "error": {
     "tryAgain": "Versuchen Sie es erneut",

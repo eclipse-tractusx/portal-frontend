@@ -1740,7 +1740,10 @@
       "search": "Search by company name / app title",
       "noDataMessage": "No data available",
       "errorMsg": "Error! Something went wrong",
-      "successMsg": "Successfully completed",
+      "successApproveMsg": "App was activated",
+      "errorApproveMsg": "App activation failed.",
+      "successDeclineMsg": "App was declined & provider informed",
+      "errorDeclineMsg": "App activation decline failed.",
       "tabs": {
         "open": "Open",
         "all": "All"

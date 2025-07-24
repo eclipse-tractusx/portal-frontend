@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **CX-Operator pages improvements**
+
+  - Fix copywriting issues on App Release Management page [PM2-3087](https://cofinity-x.atlassian.net/browse/PM2-3087)
+
 - **PostHog normal session recording**
 
   - Mask registration verification fields to enable PostHog normal session recording [PM2-2967](https://cofinity-x.atlassian.net/browse/PM2-2967)
