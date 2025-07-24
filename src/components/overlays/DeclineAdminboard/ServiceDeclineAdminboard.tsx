@@ -24,7 +24,12 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
-import { setErrorType, setSuccessType } from 'features/adminBoard/slice'
+import {
+  setErrorType,
+  setSuccessType,
+  setActionType,
+  AdminActionType,
+} from 'features/adminBoard/slice'
 import DeclineAdminBoard from '.'
 import {
   useDeclineServiceRequestMutation,
@@ -39,6 +44,7 @@ export default function ServiceDeclineAdminboard({ id }: { id: string }) {
   const [declineServiceRequest] = useDeclineServiceRequestMutation()
 
   const onConfirm = async (msg: string) => {
+    dispatch(setActionType(AdminActionType.DECLINE))
     await declineServiceRequest({
       appId: id,
       message: msg,

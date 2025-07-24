@@ -23,14 +23,22 @@ import type { RootState } from 'features/store'
 
 const name = 'admin/adminBoard'
 
+export enum AdminActionType {
+  NONE = 'none',
+  APPROVE = 'approve',
+  DECLINE = 'decline',
+}
+
 export interface AdminBoardState {
   isSuccess: boolean
   isError: boolean
+  lastActionType: AdminActionType
 }
 
 export const initialState: AdminBoardState = {
   isSuccess: false,
   isError: false,
+  lastActionType: AdminActionType.NONE,
 }
 
 const slice = createSlice({
@@ -43,6 +51,14 @@ const slice = createSlice({
     setErrorType: (state, action) => {
       state.isError = action.payload
     },
+    setActionType: (state, action) => {
+      state.lastActionType = action.payload
+    },
+    resetState: (state) => {
+      state.isSuccess = false
+      state.isError = false
+      state.lastActionType = AdminActionType.NONE
+    },
   },
 })
 
@@ -52,5 +68,9 @@ export const currentSuccessType = (state: RootState): boolean =>
 export const currentErrorType = (state: RootState): boolean =>
   state.adminBoard.isError
 
-export const { setSuccessType, setErrorType } = slice.actions
+export const currentActionType = (state: RootState): AdminActionType =>
+  state.adminBoard.lastActionType
+
+export const { setSuccessType, setErrorType, setActionType, resetState } =
+  slice.actions
 export default slice

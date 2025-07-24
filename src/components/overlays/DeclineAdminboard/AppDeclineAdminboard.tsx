@@ -26,7 +26,12 @@ import { closeOverlay } from 'features/control/overlay'
 import './style.scss'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { useDeclineRequestMutation } from 'features/adminBoard/adminBoardApiSlice'
-import { setErrorType, setSuccessType } from 'features/adminBoard/slice'
+import {
+  setErrorType,
+  setSuccessType,
+  setActionType,
+  AdminActionType,
+} from 'features/adminBoard/slice'
 import DeclineAdminBoard from '.'
 
 export default function AppDeclineAdminboard({ id }: { id: string }) {
@@ -42,6 +47,7 @@ export default function AppDeclineAdminboard({ id }: { id: string }) {
   }, [dispatch])
 
   const handleConfirm = async (msg: string) => {
+    dispatch(setActionType(AdminActionType.DECLINE))
     await declineRequest({
       appId: id,
       message: msg,

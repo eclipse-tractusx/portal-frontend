@@ -36,8 +36,12 @@ import { OVERLAYS } from 'types/Constants'
 import {
   currentErrorType,
   currentSuccessType,
+  currentActionType,
   setErrorType,
   setSuccessType,
+  setActionType,
+  resetState,
+  AdminActionType,
 } from 'features/adminBoard/slice'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
 import NoItems from 'components/pages/NoItems'
@@ -45,7 +49,6 @@ import {
   type ServiceContent,
   useApproveServiceRequestMutation,
 } from 'features/adminBoard/serviceAdminBoardApiSlice'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PAGES } from 'types/cfx/Constants'
 
@@ -77,7 +80,7 @@ export default function AdminBoardElements({
   const [approveServiceRequest] = useApproveServiceRequestMutation()
   const isDecisionSuccess = useSelector(currentSuccessType)
   const isDecisionError = useSelector(currentErrorType)
-  const [actionApprove, setActionApprove] = useState<boolean>(false)
+  const currentAction = useSelector(currentActionType)
 
   if (apps && apps.length === 0 && isSuccess) {
     return <NoItems />
@@ -93,7 +96,7 @@ export default function AdminBoardElements({
   }
 
   const handleApprove = async (appId: string) => {
-    setActionApprove(true)
+    dispatch(setActionType(AdminActionType.APPROVE))
     if (type === PAGES.SERVICE_ADMIN_BOARD_DETAIL) {
       await approveServiceRequest(appId)
         .unwrap()
@@ -112,15 +115,17 @@ export default function AdminBoardElements({
   }
 
   const onAlertClose = () => {
-    dispatch(setSuccessType(false))
-    dispatch(setErrorType(false))
+    dispatch(resetState())
   }
 
   const getDescription = () => {
-    if (actionApprove) {
-      return isDecisionSuccess ? successApproveMsg : errorApproveMsg
-    } else {
-      return isDecisionSuccess ? successDeclineMsg : errorDeclineMsg
+    switch (currentAction) {
+      case AdminActionType.APPROVE:
+        return isDecisionSuccess ? successApproveMsg : errorApproveMsg
+      case AdminActionType.DECLINE:
+        return isDecisionSuccess ? successDeclineMsg : errorDeclineMsg
+      default:
+        return ''
     }
   }
 
@@ -140,7 +145,7 @@ export default function AdminBoardElements({
         <CardDecision
           items={apps}
           onDelete={(appId: string) => {
-            setActionApprove(false)
+            dispatch(setActionType(AdminActionType.DECLINE))
             if (type === PAGES.SERVICE_ADMIN_BOARD_DETAIL) {
               dispatch(show(OVERLAYS.SERVICE_DECLINE_ADMINBOARD, appId))
             } else {
