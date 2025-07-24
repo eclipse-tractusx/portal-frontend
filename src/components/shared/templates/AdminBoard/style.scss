@@ -98,7 +98,11 @@
   .admin-board-elements-main {
     margin-bottom: 22px;
     h5 {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .MuiChip-label {
+      font-size: 16px;
     }
   }
 }
