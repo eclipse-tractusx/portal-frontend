@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Notifications**
+
+  - Fix app/service decline messages [PM2-3149](https://cofinity-x.atlassian.net/browse/PM2-3149)
+
 - **CX-Operator pages improvements**
 
   - Fix copywriting issues on App Release Management page [PM2-3087](https://cofinity-x.atlassian.net/browse/PM2-3087)

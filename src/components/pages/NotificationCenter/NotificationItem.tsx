@@ -178,6 +178,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return (
         <NotificationContent item={item} navlinks={[PAGES.USER_MANAGEMENT]} />
       )
+    case NotificationType.APP_SUBSCRIPTION_DECLINE:
+      return (
+        <NotificationContent item={item} navlinks={[PAGES.APP_MARKETPLACE]} />
+      )
     case NotificationType.WELCOME:
       return <NotificationContent item={item} navlinks={[PAGES.HOME]} />
     case NotificationType.WELCOME_APP_MARKETPLACE:
@@ -233,6 +237,13 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
         <NotificationContent
           item={item}
           navlinks={[PAGES.SERVICE_SUBSCRIPTION]}
+        />
+      )
+    case NotificationType.SERVICE_SUBSCRIPTION_DECLINE:
+      return (
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.SERVICE_MARKETPLACE]}
         />
       )
     case NotificationType.SERVICE_RELEASE_APPROVAL:

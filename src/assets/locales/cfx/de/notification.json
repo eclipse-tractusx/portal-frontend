@@ -28,6 +28,10 @@
       "title": "Glückwunsch! - {{offer}} wurde aktiviert",
       "content": " Herzlichen Glückwunsch! Ihr Zugang zu Ihrer abonnierten App <strong>{{offer}}</strong> wurde aktiviert. Sie können nun mit der Nutzung der App beginnen. Bevor Sie direkt auf die App zugreifen, gehen Sie bitte in das Benutzer Management und weisen Sie den jeweiligen Benutzern App-Rollen zu. Nur Benutzer mit einer zugewiesenen Rolle können auf die Anwendung zugreifen."
     },
+    "APP_SUBSCRIPTION_DECLINE": {
+      "title": "Ihre Abonnement Anfrage für {{app}} wurde abgelehnt",
+      "content": "Leider hat der Anbieter Ihre Abonnement Anfrage für die App <strong>{{app}}</strong> abgelehnt. Sie können erneut versuchen, sich zu abonnieren, oder besuchen Sie die App Detailseite, um Kontaktinformationen des Anbieters zu erhalten."
+    },
     "CONNECTOR_REGISTERED": {
       "title": "Connector erfolgreich registriert ",
       "content": "Der Connector {{connector}} wurde erfolgreich erstellt und Sie können nun Benutzer zuweisen."
@@ -71,6 +75,10 @@
     "SERVICE_ACTIVATION": {
       "title": "Service Anfrage aktiviert.",
       "content": "Ihr Abonnement für den Service {{offer}} ist nun aktiv."
+    },
+    "SERVICE_SUBSCRIPTION_DECLINE": {
+      "title": "Ihre Abonnement Anfrage für {{app}} wurde abgelehnt",
+      "content": "Leider hat der Anbieter Ihre Abonnement Anfrage für den Service <strong>{{app}}</strong> abgelehnt. Sie können erneut versuchen, sich zu abonnieren, oder besuchen Sie die Service Detailseite, um Kontaktinformationen des Anbieters zu erhalten."
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",

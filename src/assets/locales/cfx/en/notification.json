@@ -28,6 +28,10 @@
       "title": "Congratulations! - {{offer}} is activated",
       "content": "Congratulations! Your access to your subscribed app <strong>{{offer}}</strong> has been activated. You are now ready to start using the app. Before accessing the app directly; please got to the user management and assign app roles to the respective users. Only users with an assigned role can access the application."
     },
+    "APP_SUBSCRIPTION_DECLINE": {
+      "title": "Your subscription request to {{app}} has been rejected",
+      "content": "Unfortunately, the provider has declined your subscription request to the app <strong>{{app}}</strong>. You can try subscribing again or visit the app detail page to access the provider contact information."
+    },
     "CONNECTOR_REGISTERED": {
       "title": "Connector registered successfully",
       "content": "The connector {{connector}} was successfully created and you can assign users now."
@@ -71,6 +75,10 @@
     "SERVICE_ACTIVATION": {
       "title": "Service request activated",
       "content": "Your subscription for service offer {{offer}} is now active"
+    },
+    "SERVICE_SUBSCRIPTION_DECLINE": {
+      "title": "Your subscription request to {{app}} has been rejected",
+      "content": "Unfortunately, the provider has declined your subscription request to the service <strong>{{app}}</strong>. You can try subscribing again or visit the service detail page to access the provider contact information."
     },
     "ROLE_UPDATE_CORE_OFFER": {
       "title": "Assigned User Roles Updated - Portal",
