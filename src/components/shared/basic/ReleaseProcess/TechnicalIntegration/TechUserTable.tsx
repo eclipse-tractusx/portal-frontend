@@ -114,7 +114,7 @@ export const TechUserTable = ({
                   .map((role) => role.roleName)
                   .join(', ')}
                 children={
-                  <span>
+                  <span className="ph-mask-text">
                     {remainingCount > 0
                       ? displayedRoles + ' +' + remainingCount
                       : displayedRoles}

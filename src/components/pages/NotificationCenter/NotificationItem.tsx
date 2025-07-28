@@ -66,7 +66,11 @@ const NameLink = ({
   }) => string
 }) => {
   const { data } = fetchHook(id)
-  return <NavLink to={`/${path}/${id}`}>{data ? renderName(data) : id}</NavLink>
+  return (
+    <NavLink to={`/${path}/${id}`} className="ph-mask-text">
+      {data ? renderName(data) : id}
+    </NavLink>
+  )
 }
 
 const NotificationContent = ({
@@ -148,7 +152,7 @@ const NotificationContent = ({
           />
         </Trans>
       </div>
-      {message && <div className="message">{message}</div>}
+      {message && <div className="message ph-mask-text">{message}</div>}
       {(appId ?? userId ?? navlinks) && (
         <div className="links">
           {navlinks?.map((nav) => (
@@ -396,7 +400,7 @@ export default function NotificationItem({
               </span>
             </Typography>
             {open && (
-              <div className="content">
+              <div className="content ph-mask-text">
                 <NotificationConfig item={item} />
               </div>
             )}

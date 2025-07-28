@@ -62,10 +62,12 @@ export default function AppDetailTechUserSetup({
       <Typography variant="body2" sx={{ mb: 3 }}>
         {t('content.appdetail.technicalUserSetup.message')}
       </Typography>
-      {item.technicalUserProfile &&
-        getAppDetailTechUserData(
-          Object.values(item?.technicalUserProfile).flat() as string[]
-        )}
+      <span className="ph-mask-text">
+        {item.technicalUserProfile &&
+          getAppDetailTechUserData(
+            Object.values(item?.technicalUserProfile).flat() as string[]
+          )}
+      </span>
     </div>
   )
 }

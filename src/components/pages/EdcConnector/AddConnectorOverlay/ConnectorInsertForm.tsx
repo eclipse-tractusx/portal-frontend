@@ -214,23 +214,26 @@ any) => {
           <Controller
             render={({ field: { onChange } }) => {
               return (
-                <SelectList
-                  data-testid="select-existing-technical-user"
-                  error={!!errors[name]}
-                  helperText={helperText}
-                  defaultValue={defaultSelectValue}
-                  items={items}
-                  label={''}
-                  placeholder={placeholder}
-                  onChangeItem={(e) => {
-                    onChange(
-                      name === ConnectorFormFields.ConnectorTechnicalUser
-                        ? e.serviceAccountId
-                        : e.subscriptionId
-                    )
-                  }}
-                  keyTitle={keyTitle}
-                />
+                <div className="ph-mask-text">
+                  <SelectList
+                    data-testid="select-existing-technical-user"
+                    error={!!errors[name]}
+                    helperText={helperText}
+                    defaultValue={defaultSelectValue}
+                    items={items}
+                    label={''}
+                    placeholder={placeholder}
+                    onChangeItem={(e) => {
+                      onChange(
+                        name === ConnectorFormFields.ConnectorTechnicalUser
+                          ? e.serviceAccountId
+                          : e.subscriptionId
+                      )
+                    }}
+                    keyTitle={keyTitle}
+                    hideFromPosthog={true}
+                  />
+                </div>
               )
             }}
             name={name}

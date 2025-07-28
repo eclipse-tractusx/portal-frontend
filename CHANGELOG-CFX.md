@@ -14,7 +14,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 - **PostHog normal session recording**
 
-  - Mask registration verification fields to enable PostHog normal session recording [PM2-2967](https://cofinity-x.atlassian.net/browse/PM2-2967)
+  - Mask all sensitive fields to enable PostHog normal session recording [PM2-2967](https://cofinity-x.atlassian.net/browse/PM2-2967)
+  - Fix additional masking of fields to enable PostHog normal session recording [PM2-3184](https://cofinity-x.atlassian.net/browse/PM2-3184)
 
 - **Connector Registration**
 

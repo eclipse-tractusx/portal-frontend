@@ -83,8 +83,18 @@ export default function UserListContent() {
           width: 300,
           valueGetter: (_value: unknown, row: TenantUser) =>
             `${row.firstName} ${row.lastName}`,
+          renderCell: ({ value: name }) => (
+            <span className="ph-mask-text">{name}</span>
+          ),
         },
-        { field: 'email', headerName: t('global.field.email'), width: 300 },
+        {
+          field: 'email',
+          headerName: t('global.field.email'),
+          width: 300,
+          renderCell: ({ value: email }) => (
+            <span className="ph-mask-text">{email}</span>
+          ),
+        },
         {
           field: 'status',
           headerName: t('global.field.status'),

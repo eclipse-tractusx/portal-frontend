@@ -58,6 +58,7 @@ export type PaginationData = {
 }
 
 export type CredentialData = {
+  bpnl: string
   credentialDetailId: string
   companyId: string
   credentialType: string

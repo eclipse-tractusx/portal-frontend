@@ -345,10 +345,15 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.27.1"
 
-"@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.20.13", "@babel/runtime@^7.23.2", "@babel/runtime@^7.23.9", "@babel/runtime@^7.25.7", "@babel/runtime@^7.27.1", "@babel/runtime@^7.27.6", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.20.13", "@babel/runtime@^7.23.2", "@babel/runtime@^7.23.9", "@babel/runtime@^7.25.7", "@babel/runtime@^7.27.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.27.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.27.6.tgz#ec4070a04d76bae8ddbb10770ba55714a417b7c6"
   integrity sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==
+
+"@babel/runtime@^7.27.6":
+  version "7.28.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.28.2.tgz#2ae5a9d51cc583bd1f5673b3bb70d6d819682473"
+  integrity sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==
 
 "@babel/template@^7.27.2", "@babel/template@^7.3.3":
   version "7.27.2"
@@ -406,16 +411,16 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cofinity-x/shared-components@^@0.1.1":
-  version "0.1.1"
-  resolved "https://npm.pkg.github.com/download/@cofinity-x/shared-components/0.1.1/de8075ad47b4abbfffc8e5ef76797c389e2e7440#de8075ad47b4abbfffc8e5ef76797c389e2e7440"
-  integrity sha512-6QTCM7le608RtN2yYitAh2tjmma1jY0MRz/AeIkbm3+vMHe5U4b1iECy1whAp+VTILGG/xp4sxQwgpmtU1RLTg==
+"@cofinity-x/shared-components@^0.1.3":
+  version "0.1.3"
+  resolved "https://npm.pkg.github.com/download/@cofinity-x/shared-components/0.1.3/111a98772ffe35cca5db6f684c8d567bad7949fb#111a98772ffe35cca5db6f684c8d567bad7949fb"
+  integrity sha512-qoo5K/FE0B7Qgd/8F+/k6tyHLMMHwl0/mfbYMefHOvfLB1WKR616eZGZb+yG50R4HvLRc5MEdr1slu3Q7HyKeg==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     "@emotion/react" "^11.14.0"
     "@emotion/styled" "^11.14.0"
     "@mui/icons-material" "7.1.2"
-    "@mui/lab" "7.0.0-beta.13"
+    "@mui/lab" "7.0.0-beta.14"
     "@mui/material" "7.1.2"
     "@mui/system" "^7.2.0"
     "@mui/x-data-grid" "^7.27.2"
@@ -429,8 +434,8 @@
     react "^18.2.0"
     react-dom "^18.2.0"
     react-i18next "^14.1.0"
-    react-player "^2.15.1"
-    react-router-dom "^7.6.2"
+    react-player "^2.16.1"
+    react-router-dom "^7.6.3"
     react-slick "^0.30.3"
     slick-carousel "^1.8.1"
 
@@ -1086,10 +1091,10 @@
   dependencies:
     "@babel/runtime" "^7.27.1"
 
-"@mui/lab@7.0.0-beta.13":
-  version "7.0.0-beta.13"
-  resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-7.0.0-beta.13.tgz#537991d4ea85052ab4f63bb00439e3587a501c8c"
-  integrity sha512-wLSeePenug3+/kek4cFMIF3QZVC2fHt2Z3O3HwOFvakgErmT39WltYsNpWNojCnXUqcIExUp9xNW0Wk+tJShgA==
+"@mui/lab@7.0.0-beta.14":
+  version "7.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-7.0.0-beta.14.tgz#9a62359d3438ea8598d4fe1ad865e168bb857c5e"
+  integrity sha512-pn+ZvylDcBKQOo17oa/PhtIA/UFQFq8RvpN+r/jHrztz/CjMDju2CWBne0txvQ5JIS8uTIGp2/IsTa7II1g5wg==
   dependencies:
     "@babel/runtime" "^7.27.1"
     "@mui/system" "^7.1.1"
@@ -6741,6 +6746,17 @@ react-player@^2.15.1:
     prop-types "^15.7.2"
     react-fast-compare "^3.0.1"
 
+react-player@^2.16.1:
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/react-player/-/react-player-2.16.1.tgz#f157600bd04a641d9a2c53685235d34dcfabac6b"
+  integrity sha512-mxP6CqjSWjidtyDoMOSHVPdhX0pY16aSvw5fVr44EMaT7X5Xz46uQ4b/YBm1v2x+3hHkB9PmjEEkmbHb9PXQ4w==
+  dependencies:
+    deepmerge "^4.0.0"
+    load-script "^1.0.0"
+    memoize-one "^5.1.1"
+    prop-types "^15.7.2"
+    react-fast-compare "^3.0.1"
+
 react-redux@^9.1.2:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-9.2.0.tgz#96c3ab23fb9a3af2cb4654be4b51c989e32366f5"
@@ -6769,12 +6785,12 @@ react-router-dom@^6.26.1:
     "@remix-run/router" "1.23.0"
     react-router "6.30.1"
 
-react-router-dom@^7.6.2:
-  version "7.6.3"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-7.6.3.tgz#45686e71bb958cf80dd93ca3abf4111feb4edd35"
-  integrity sha512-DiWJm9qdUAmiJrVWaeJdu4TKu13+iB/8IEi0EW/XgaHCjW/vWGrwzup0GVvaMteuZjKnh5bEvJP/K0MDnzawHw==
+react-router-dom@^7.6.3:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-7.7.1.tgz#456d1053dda5e1c1328a2b6b2359f6a1c47072fc"
+  integrity sha512-bavdk2BA5r3MYalGKZ01u8PGuDBloQmzpBZVhDLrOOv1N943Wq6dcM9GhB3x8b7AbqPMEezauv4PeGkAJfy7FQ==
   dependencies:
-    react-router "7.6.3"
+    react-router "7.7.1"
 
 react-router@6.30.1:
   version "6.30.1"
@@ -6783,10 +6799,10 @@ react-router@6.30.1:
   dependencies:
     "@remix-run/router" "1.23.0"
 
-react-router@7.6.3:
-  version "7.6.3"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.6.3.tgz#7a4ea5b479b66d2c49a8f000812b2319b4d0a6da"
-  integrity sha512-zf45LZp5skDC6I3jDLXQUu0u26jtuP4lEGbc7BbdyxenBN1vJSTA18czM2D+h5qyMBuMrD+9uB+mU37HIoKGRA==
+react-router@7.7.1:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.7.1.tgz#c12ebbad162da655951dd79325f205f7238d609e"
+  integrity sha512-jVKHXoWRIsD/qS6lvGveckwb862EekvapdHJN/cGmzw40KnJH5gg53ujOJ4qX6EKIK9LSBfFed/xiQ5yeXNrUA==
   dependencies:
     cookie "^1.0.1"
     set-cookie-parser "^2.6.0"

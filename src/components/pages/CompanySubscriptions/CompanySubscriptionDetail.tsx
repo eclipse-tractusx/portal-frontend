@@ -130,9 +130,11 @@ export default function CompanySubscriptionDetail() {
                   <CompanySubscriptionContent detail={fetchData} />
                   <CompanySubscriptionDocument detail={fetchData} />
                   <CompanySubscriptionPrivacy detail={fetchData} />
-                  {subscriberData.technicalUserData?.length > 0 && (
-                    <CompanySubscriptionTechnical detail={subscriberData} />
-                  )}
+                  <span className="ph-mask-text">
+                    {subscriberData.technicalUserData?.length > 0 && (
+                      <CompanySubscriptionTechnical detail={subscriberData} />
+                    )}
+                  </span>
                 </>
               ) : (
                 <>
