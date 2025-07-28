@@ -79,7 +79,7 @@ jobs:
           done
           echo "main_tag=$main_tag" >> $GITHUB_OUTPUT
       - name: Get token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         id: get_workflow_token
         with:
           app-id: ${{ secrets.PORTAL_WORKFLOW_TRIGGER_GH_APP_ID }}
