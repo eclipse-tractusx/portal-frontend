@@ -47,7 +47,7 @@
     "@reduxjs/toolkit": "^2.2.8",
     "@vitejs/plugin-react": "^4.6.0",
     "autosuggest-highlight": "^3.3.4",
-    "axios": "^1.8.3",
+    "axios": "^1.11.0",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.13",
     "i18next": "^23.15.2",
