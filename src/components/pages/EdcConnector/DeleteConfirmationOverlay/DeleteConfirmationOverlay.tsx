@@ -142,7 +142,7 @@ const DeleteConfirmationOverlay = ({
                 handleConfirmClick(checkBoxSelected)
               }}
             >
-              {t('content.edcconnector.details.delete')}
+              {t('content.edcconnector.deletemodal.buttonConfirm')}
             </Button>
           )}
           {loading && (

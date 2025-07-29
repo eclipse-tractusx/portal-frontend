@@ -721,16 +721,17 @@
         "errormessage": "Error! Something went wrong"
       },
       "deletemodal": {
-        "title": "Delete Connector",
-        "description": "Are you sure you want to delete the registered connector? This action cannot be undone.",
-        "techUserdescription": "Are you sure you want to delete the connector? It will be removed from the 'connector discovery' endpoint and the self-description document will be set to inactive. The associated technical user will also be immediately deactivated.",
-        "techUserCheckBoxLabel": "Yes, I want to deactivate the connector, which will also delete the technical user.",
+        "title": "Deactivate connector",
+        "description": "The connector will be removed from the 'Connector Discovery' endpoint, and the self-description document will be set to 'inactive'. You will still be able to manually re-register the connector.",
+        "techUserdescription": "The connector will be removed from the 'Connector Discovery' endpoint, and the self-description document will be set to 'inactive'. The associated technical user will also be deactivated immediately. You will still be able to manually re-register the connector.",
+        "techUserCheckBoxLabel": "Yes, I want to deactivate both the connector and the associated technical user.",
         "techDetails": {
           "title": "Technical Details",
           "name": "Name",
           "clientId": "Client ID",
           "description": "Description"
-        }
+        },
+        "buttonConfirm": "Deactivate"
       },
       "modal": {
         "title": "Register connector",

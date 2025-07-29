@@ -717,16 +717,17 @@
         "errormessage": "Fehler! Etwas ist schief gelaufen. Der Konnektor wurde nicht angelegt."
       },
       "deletemodal": {
-        "title": "Connector löschen",
-        "description": "Sind Sie sicher, dass Sie den registrierten Connector löschen wollen? Diese Löschung kann nicht rückgängig gemacht werden.",
-        "techUserdescription": "Sind Sie sicher, dass Sie den Connector löschen wollen? Er vom Endpunkt „Connector Discovery“ entfernt und das Selbstbeschreibungs-Dokument wird auf inaktiv gesetzt. Der zugehörige technische User wird ebenfalls deaktiviert.",
-        "techUserCheckBoxLabel": "Ja, ich möchte den Connector deaktivieren, wodurch auch der technische User gelöscht wird.",
+        "title": "Connector deaktivieren",
+        "description": "Der Connector wird aus dem Endpunkt „Connector Discovery” entfernt und das Self-Description Dokument wird auf „inaktiv” gesetzt. Sie können den Connector weiterhin manuell neu registrieren.",
+        "techUserdescription": "Der Connector wird aus dem Endpunkt „Connector Discovery” entfernt und das Self-Description Dokument wird auf „inaktiv” gesetzt. Der zugehörige technische User wird ebenfalls sofort deaktiviert. Sie können den Connector weiterhin manuell neu registrieren.",
+        "techUserCheckBoxLabel": "Ja, ich möchte sowohl den Connector als auch den zugehörigen technischen User deaktivieren.",
         "techDetails": {
           "title": "Technical Details",
           "name": "Name",
           "clientId": "Client ID",
           "Description": "Description"
-        }
+        },
+        "buttonConfirm": "Deaktivieren"
       },
       "modal": {
         "title": "Connector registrieren",
