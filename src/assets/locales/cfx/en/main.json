@@ -2049,6 +2049,7 @@
       "viewCredentials": "View crededentials",
       "active": "Active",
       "expired": "Expired",
+      "valid": "Valid",
       "editUsecase": {
         "title": "Request new credential",
         "description": "Once you accept the framework and submit your request, your credential will be added to your wallet seamlessly. You're then ready to exchange data with fellow dataspace participants.",

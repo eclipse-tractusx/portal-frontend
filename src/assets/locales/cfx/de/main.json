@@ -2080,7 +2080,8 @@
       "request": "Request",
       "viewCredentials": "Credentials anzeigen",
       "active": "Aktiv",
-      "expired": "Verfallen",
+      "expired": "Abgefallen",
+      "valid": "Gültig",
       "editUsecase": {
         "title": "Neuen Credential beantragen",
         "description": "Sobald Sie die Rahmenvereinbarung akzeptieren und Ihre Anfrage einreichen, <0/>wird Ihr Credential direkt zu Ihrer Wallet hinzugefügt. <0/>Sie sind dann bereit, Daten mit anderen Teilnehmern im Datenraum auszutauschen.",

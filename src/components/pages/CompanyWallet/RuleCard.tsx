@@ -17,7 +17,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Tooltips, Typography } from '@cofinity-x/shared-components'
+import {
+  Tooltips,
+  Typography,
+  ViewSelector,
+} from '@cofinity-x/shared-components'
 import './style.scss'
 import {
   CredentialSubjectStatus,
@@ -32,11 +36,13 @@ import { getAssetBase } from 'services/EnvironmentService'
 import useFormattedDate from 'hooks/useFormattedDate'
 import { useMemo, useState } from 'react'
 import { error, success } from 'services/NotifyService'
+import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
+import { groupBy } from 'lodash'
 
 type Hash<T> = Record<string, T>
 
 export default function RuleCard({
-  sections,
+  sections: walletData,
   handleRevoke,
   isIssuerCofinity,
 }: {
@@ -47,8 +53,52 @@ export default function RuleCard({
   const { t } = useTranslation()
   const { formatDate } = useFormattedDate()
   const [copied, setCopied] = useState<string>('')
+  const [filterStatus, setFilterStatus] = useState('Active')
 
-  const keys = useMemo(() => Object.keys(sections), [sections])
+  const filteredWalletData = useMemo(() => {
+    if (!walletData) return
+
+    const now = new Date().getTime()
+    const allItems = Object.values(walletData).flat()
+
+    return allItems.filter((item) => {
+      const expiryTime = new Date(item.expiryDate).getTime()
+      if (filterStatus === 'Active') {
+        return expiryTime >= now
+      } else if (filterStatus === 'Expired') {
+        return expiryTime < now
+      }
+      return true
+    })
+  }, [walletData, filterStatus])
+
+  const groupedItems = useMemo(() => {
+    if (!filteredWalletData) return {}
+    return groupBy(filteredWalletData, (item) =>
+      item.credentialType === CredentialType.TRACEABILITY_FRAMEWORK
+        ? t('content.companyWallet.TRACEABILITY_FRAMEWORK')
+        : t('content.companyWallet.others')
+    )
+  }, [filteredWalletData, t])
+
+  const keys = useMemo(() => Object.keys(groupedItems), [groupedItems])
+
+  const filterOptions = [
+    {
+      buttonText: t('content.usecaseParticipation.valid'),
+      buttonValue: 'Active',
+      onButtonClick: () => {
+        if (filterStatus !== 'Active') setFilterStatus('Active')
+      },
+    },
+    {
+      buttonText: t('content.usecaseParticipation.expired'),
+      buttonValue: 'Expired',
+      onButtonClick: () => {
+        if (filterStatus !== 'Expired') setFilterStatus('Expired')
+      },
+    },
+  ]
 
   const getBgColor = (item: WalletContent) => {
     if (item?.status === CredentialSubjectStatus.ACTIVE) {
@@ -92,7 +142,7 @@ export default function RuleCard({
 
   return (
     <>
-      {keys.map((key) => (
+      {keys.map((key, index) => (
         <div key={key} className="rulecard">
           <Typography
             sx={{
@@ -106,16 +156,31 @@ export default function RuleCard({
           >
             {key.split('_').join(' ')}
           </Typography>
+          {index === 0 && (
+            <div className="cx-wallet-subnavigation-header">
+              <ViewSelector
+                activeView={filterStatus}
+                align=""
+                views={filterOptions}
+              />
+              <ComapnyWalletSubNavigationHeader />
+            </div>
+          )}
           <Grid container spacing={0} className="grid-layout">
-            {sections[key]?.map((item: WalletContent, index) => (
+            {groupedItems[key]?.map((item: WalletContent, index) => (
               <Grid
                 size={{ xs: 4, sm: 4, md: 4 }}
                 className="main-rule-card-container"
-                key={item.expiryDate ?? index}
+                key={
+                  item.credentialDetailId ?? `${item.credentialType}-${index}`
+                }
               >
                 <Box className="gradient-container">
                   <Box
-                    key={item.expiryDate ?? index}
+                    key={
+                      item.credentialDetailId ??
+                      `${item.credentialType}-${index}`
+                    }
                     className={`rule-card-container ${
                       item?.status === CredentialSubjectStatus.INACTIVE ||
                       item?.status === CredentialSubjectStatus.REVOKED
