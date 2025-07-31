@@ -388,14 +388,14 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@catena-x/portal-shared-components@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-4.0.2.tgz#b2ad1e11c0a2a4fa5d40a8c6b29e88e3b7ff9df1"
-  integrity sha512-J2Rv/WudW3Nq3zHderZ0opnlQHmV/K801QEyZxL3+vaxx+Qq8XmPCoc+hotDigdgBZF1kQMaxYqWlNG7EM/pSg==
+"@catena-x/portal-shared-components@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@catena-x/portal-shared-components/-/portal-shared-components-4.0.1.tgz#e581ab04b60bd1dd86c4e93ff792ef4302614804"
+  integrity sha512-WtSdtrisbEJUfQEiK7Qs71cNPfz9MAEe7YCGkiRHHLGU3zXE+S9oiP+493cEyPlxhPUuvzSKUrQHsXbKqgYzIw==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     "@emotion/react" "^11.14.0"
-    "@emotion/styled" "^11.14.1"
+    "@emotion/styled" "^11.14.0"
     "@mui/icons-material" "^7.0.0"
     "@mui/material" "^7.0.0"
     "@mui/system" "^7.0.0"
@@ -569,7 +569,7 @@
     "@emotion/use-insertion-effect-with-fallbacks" "^1.1.0"
     "@emotion/utils" "^1.4.2"
 
-"@emotion/styled@^11.14.1":
+"@emotion/styled@^11.14.0":
   version "11.14.1"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.14.1.tgz#8c34bed2948e83e1980370305614c20955aacd1c"
   integrity sha512-qEEJt42DuToa3gurlH4Qqc1kVpNq8wO8cJtDzU46TjlzWjDlsVyevtYCRijVq3SrHsROS+gVQ8Fnea108GnKzw==
