@@ -1,6 +1,6 @@
 import { type Theme, createTheme, type ThemeOptions } from '@mui/material'
 import { deepmerge } from '@mui/utils'
-import { theme } from '@cofinity-x/shared-components'
+import { theme, cfxTheme } from '@cofinity-x/shared-components'
 
 export const getFontFamily = (name: string): string =>
   [
@@ -1153,6 +1153,8 @@ export const customTheme = {
     },
   },
 }
+
+// Create a combined theme that includes both the base theme, CFX theme, and your custom overrides
 export const cofinityTheme = createTheme(
-  deepmerge(theme as Theme, customTheme as ThemeOptions)
+  deepmerge(deepmerge(theme, cfxTheme as Theme), customTheme as ThemeOptions)
 )

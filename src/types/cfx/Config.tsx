@@ -20,7 +20,6 @@
 
 import Redirect from 'components/actions/Redirect'
 import AppDetail from 'components/pages/AppDetail'
-import AppMarketplace from 'components/pages/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
 import AppReleaseProcess from 'components/pages/AppReleaseProcess'
 import Contact from 'components/pages/Contact'
@@ -89,6 +88,7 @@ import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/Se
 import ServiceListOverview from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceListOverview'
 import AppOverviewNew from 'components/pages/AppOverviewNew'
 import CompanyData from 'components/pages/CompanyData'
+import CfxAppMarketplace from 'components/pages/CFX/AppMarketplace'
 
 /**
  * ALL_PAGES
@@ -122,9 +122,9 @@ export const ALL_PAGES: IPage[] = [
   //   element: <AppMarketplace />,
   // },
   {
-    name: PAGES.APP_MARKETPLACE,
+    name: PAGES.CFX_APP_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
-    element: <AppMarketplace />,
+    element: <CfxAppMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE,
@@ -628,7 +628,7 @@ export const mainMenuFullTree = [
   {
     name: MENUS.MARKETPLACE,
     children: [
-      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.CFX_APP_MARKETPLACE },
       { name: PAGES.SERVICE_MARKETPLACE },
       { name: PAGES.COMPANY_SUBSCRIPTIONS }, // Company Subscription
     ],

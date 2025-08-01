@@ -23,7 +23,7 @@ import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
 import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
-import AppMarketplace from 'components/pages/AppMarketplace'
+import CfxAppMarketplace from 'components/pages/CFX/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
 import AppOverviewNew from 'components/pages/AppOverviewNew'
 import AppReleaseProcess from 'components/pages/AppReleaseProcess'
@@ -129,14 +129,9 @@ export const ALL_PAGES: IPage[] = [
     element: <Redirect path="documentation" tab={'documentation'} />,
   },
   {
-    name: PAGES.MARKETPLACE,
+    name: PAGES.CFX_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
-    element: <AppMarketplace />,
-  },
-  {
-    name: PAGES.APP_MARKETPLACE,
-    allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
-    element: <AppMarketplace />,
+    element: <CfxAppMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE,
@@ -791,7 +786,7 @@ export const mainMenuFullTree = [
   {
     name: PAGES.MARKETPLACE,
     children: [
-      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.CFX_APP_MARKETPLACE },
       { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
     ],
   },

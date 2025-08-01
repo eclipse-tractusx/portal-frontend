@@ -6,7 +6,7 @@
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
-    "appMarketplace": "App Marketplace",
+    "cfxAppMarketplace": "App Marketplace",
     "serviceMarketplace": "Service Marketplace",
     "appdetails": "App Details",
     "dataManagement": "Data Management",
@@ -268,7 +268,7 @@
           "title": "App Marketplace",
           "subtitle": "Your one-stop shop for interoperable, ready-to-use business applications. Discover Catena-X certified data exchange solutions for key industry use cases.",
           "buttonName": "Explore Applications",
-          "navigation": "/appMarketplace"
+          "navigation": "/cfxAppMarketplace"
         },
         "slider3": {
           "title": "Service Marketplace",

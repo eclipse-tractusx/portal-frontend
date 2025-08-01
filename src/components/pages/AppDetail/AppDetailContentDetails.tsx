@@ -94,7 +94,7 @@ export default function AppDetailContentDetails({
                 backButtonVariant="outlined"
                 onBackButtonClick={() => {
                   nav === 'marketplace'
-                    ? navigate(`/${PAGES.APP_MARKETPLACE}`)
+                    ? navigate(`/${PAGES.CFX_APP_MARKETPLACE}`)
                     : navigate(`/${PAGES.APP_OVERVIEW}`)
                 }}
               />

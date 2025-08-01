@@ -28,6 +28,7 @@ export enum PAGES {
   APP_ADMIN_BOARD_DETAIL = 'appAdminBoardDetail', // To check what it does
   // MARKETPLACE = 'marketplace', // Removed (header menu)
   APP_MARKETPLACE = 'appMarketplace',
+  CFX_APP_MARKETPLACE = 'cfxAppMarketplace',
   SERVICE_MARKETPLACE = 'serviceMarketplace',
   SERVICE_MARKETPLACE_DETAIL = 'serviceMarketplaceDetail',
   APP_DETAIL = 'appdetail',

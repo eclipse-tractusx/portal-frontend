@@ -30,7 +30,6 @@ import AuthorizingRouter from 'components/AuthorizingRouter'
 import {
   SharedThemeProvider,
   SharedCssBaseline,
-  CfxThemeProvider,
 } from '@cofinity-x/shared-components'
 import CompanyService from 'services/CompanyService'
 import ErrorBoundary from 'components/pages/ErrorBoundary'
@@ -62,17 +61,15 @@ UserService.initialize((user) => {
           <ClickjackingProtection />
           <SharedCssBaseline />
           <Provider store={store}>
-            <CfxThemeProvider>
-              <SharedThemeProvider themeDesign={cofinityTheme}>
-                <ThemeProvider theme={cofinityTheme}>
-                  <AuthProvider user={user}>
-                    <CompanyProvider user={user}>
-                      <AuthorizingRouter />
-                    </CompanyProvider>
-                  </AuthProvider>
-                </ThemeProvider>
-              </SharedThemeProvider>
-            </CfxThemeProvider>
+            <SharedThemeProvider themeDesign={cofinityTheme}>
+              <ThemeProvider theme={cofinityTheme}>
+                <AuthProvider user={user}>
+                  <CompanyProvider user={user}>
+                    <AuthorizingRouter />
+                  </CompanyProvider>
+                </AuthProvider>
+              </ThemeProvider>
+            </SharedThemeProvider>
           </Provider>
         </StrictMode>
       )
@@ -82,15 +79,13 @@ UserService.initialize((user) => {
         <StrictMode>
           <SharedCssBaseline />
           <Provider store={store}>
-            <CfxThemeProvider>
-              <SharedThemeProvider>
-                <BrowserRouter>
-                  <Routes>
-                    <Route path="*" element={<ErrorBoundary />} />
-                  </Routes>
-                </BrowserRouter>
-              </SharedThemeProvider>
-            </CfxThemeProvider>
+            <SharedThemeProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="*" element={<ErrorBoundary />} />
+                </Routes>
+              </BrowserRouter>
+            </SharedThemeProvider>
           </Provider>
         </StrictMode>
       )

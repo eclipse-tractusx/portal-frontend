@@ -190,7 +190,10 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return <NotificationContent item={item} navlinks={[PAGES.HOME]} />
     case NotificationType.WELCOME_APP_MARKETPLACE:
       return (
-        <NotificationContent item={item} navlinks={[PAGES.APP_MARKETPLACE]} />
+        <NotificationContent
+          item={item}
+          navlinks={[PAGES.CFX_APP_MARKETPLACE]}
+        />
       )
     case NotificationType.WELCOME_CONNECTOR_REGISTRATION:
       return (

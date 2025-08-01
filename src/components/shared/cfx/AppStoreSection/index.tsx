@@ -68,10 +68,10 @@ export default function AppStoreSection() {
             size="small"
             disabled={isHeaderNote}
             onClick={() => {
-              navigate('/appMarketplace')
+              navigate('/cfxAppMarketplace')
             }}
           >
-            {t('pages.appMarketplace')}
+            {t('pages.cfxAppMarketplace')}
           </Button>
         </div>
         <div>

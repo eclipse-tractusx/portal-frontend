@@ -56,10 +56,10 @@ export default function AppStoreSection() {
       <Button
         sx={{ margin: '100px auto 60px', display: 'block' }}
         onClick={() => {
-          navigate('/appMarketplace')
+          navigate('/cfxAppMarketplace')
         }}
       >
-        {t('pages.appMarketplace')}
+        {t('pages.cfxAppMarketplace')}
       </Button>
     </section>
   )
