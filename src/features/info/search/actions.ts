@@ -21,7 +21,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { PartnerNetworkApi } from '../../partnerNetwork/api'
 import { Api as AppsApi } from 'features/apps/marketplaceDeprecated/api'
-import { Api as UserApi } from 'features/admin/userDeprecated/api'
 import { Api as NewsApi } from 'features/info/news/api'
 import {
   actionToSearchItem,
@@ -30,23 +29,20 @@ import {
   newsToSearchItem,
   overlayToSearchItem,
   pageToSearchItem,
-  userToSearchItem,
 } from './mapper'
 import { name, type SearchItem } from './types'
-import type { CardItems, PaginResult } from '@cofinity-x/shared-components'
+import type { CardItems } from '@cofinity-x/shared-components'
 import { isUUID, Patterns } from 'types/Patterns'
 import type {
   BusinessPartner,
   BusinessPartnerResponse,
 } from 'features/partnerNetwork/types'
-import type { TenantUser } from 'features/admin/userApiSlice'
 import I18nService from 'services/I18nService'
 import {
   hasAccess,
   hasAccessAction,
   hasAccessOverlay,
 } from 'services/AccessService'
-import { initialPaginResult } from 'types/MainTypes'
 import type { AppMarketplaceApp } from 'features/apps/types'
 
 const emptyAppResult: AppMarketplaceApp[] = []
@@ -54,7 +50,6 @@ const emptyNewsResult: CardItems[] = []
 const emptyPageResult: string[] = []
 const emptyOverlayResult: string[] = []
 const emptyActionResult: string[] = []
-const emptyUserResult: PaginResult<TenantUser> = initialPaginResult
 const emptyPartnerResult: BusinessPartnerResponse = {
   totalElements: 0,
   totalPages: 0,
@@ -79,7 +74,6 @@ const searchForExpression = async function (expr: string) {
       emptyAppResult,
       emptyPartnerResult,
       emptyNewsResult,
-      emptyUserResult,
     ])
   } else if (Patterns.prefix.BPN.test(expr)) {
     return await Promise.all([
@@ -95,7 +89,6 @@ const searchForExpression = async function (expr: string) {
           )
         : emptyPartnerResult,
       emptyNewsResult,
-      emptyUserResult,
     ])
   } else if (Patterns.prefix.MAIL.test(expr)) {
     return await Promise.all([
@@ -105,11 +98,6 @@ const searchForExpression = async function (expr: string) {
       emptyAppResult,
       emptyPartnerResult,
       emptyNewsResult,
-      Patterns.MAIL.test(expr)
-        ? await UserApi.getInstance()
-            .getTenantUsers()
-            .catch(() => emptyUserResult)
-        : emptyUserResult,
     ])
   } else if (Patterns.UUID.test(expr)) {
     return await Promise.all([
@@ -121,9 +109,6 @@ const searchForExpression = async function (expr: string) {
         .catch(() => emptyAppResult),
       emptyPartnerResult,
       emptyNewsResult,
-      UserApi.getInstance()
-        .getTenantUsers()
-        .catch(() => emptyUserResult),
     ])
   } else {
     return await Promise.all([
@@ -143,9 +128,6 @@ const searchForExpression = async function (expr: string) {
       NewsApi.getInstance()
         .getItems()
         .catch(() => emptyNewsResult),
-      UserApi.getInstance()
-        .getTenantUsers()
-        .catch(() => emptyUserResult),
     ])
   }
 }
@@ -159,7 +141,7 @@ const fetchSearch = createAsyncThunk(
     const searchExpr = new RegExp(trexpr, 'i')
     const uuid = isUUID(trexpr)
     try {
-      const [pages, overlays, actions, apps, partners, news, users] =
+      const [pages, overlays, actions, apps, partners, news] =
         await searchForExpression(trexpr)
       return [
         pages
@@ -190,16 +172,6 @@ const fetchSearch = createAsyncThunk(
               (item.description && searchExpr.exec(item.description))
           )
           .map((item: CardItems) => newsToSearchItem(item)),
-        users.content
-          .filter((item: TenantUser) =>
-            uuid
-              ? (searchExpr.exec(item.userEntityId) ??
-                searchExpr.exec(item.companyUserId))
-              : (searchExpr.exec(item.firstName) ??
-                searchExpr.exec(item.lastName) ??
-                searchExpr.exec(item.email))
-          )
-          .map((item: TenantUser) => userToSearchItem(item)),
       ].flat()
     } catch (error: unknown) {
       console.error('api call error:', error)

@@ -21,7 +21,6 @@
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
 import BusinessIcon from '@mui/icons-material/Business'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
@@ -48,8 +47,6 @@ export const getCategoryOverlay = (category: SearchCategory): OVERLAYS => {
       return OVERLAYS.APP
     case SearchCategory.PARTNER:
       return OVERLAYS.PARTNER
-    case SearchCategory.USER:
-      return OVERLAYS.USER
     case SearchCategory.NEWS:
       return OVERLAYS.NEWS
     default:
@@ -92,8 +89,6 @@ const getIcon = (category: string) => {
       return <SettingsIcon sx={style} />
     case SearchCategory.PARTNER:
       return <BusinessIcon sx={style} />
-    case SearchCategory.USER:
-      return <AccountCircleIcon sx={style} />
     case SearchCategory.NEWS:
       return <NewspaperIcon sx={style} />
     default:
