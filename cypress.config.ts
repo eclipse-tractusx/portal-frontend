@@ -25,6 +25,8 @@ export default defineConfig({
     chromeWebSecurity: false,
     experimentalRunAllSpecs: true,
     pageLoadTimeout: 90000,
+    viewportWidth: 1920,
+    viewportHeight: 1080,
     setupNodeEvents(on, config) {
       on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome' || browser.name === 'chromium') {

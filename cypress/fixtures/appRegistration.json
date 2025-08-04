@@ -1,0 +1,37 @@
+{
+  "useCases": [
+    "Behavior Twin",
+    "Traceability",
+    "Sustainability & CO2-Footprint",
+    "Manufacturing as a Service",
+    "Real-Time Control",
+    "Modular Production",
+    "Circular Economy",
+    "Demand and Capacity Management",
+    "Business Partner Management",
+    "Quality Management"
+  ],
+
+  "appLanguages": ["cn", "de", "en", "es", "fr", "jp", "pt", "ru"],
+  "providerHomePage": "https://www.cofinity-x.com/",
+  "customerContactEmail": "test@test.com",
+  "customerContactNumber": "+491000000000",
+
+  "privacyOptions": [
+    "Company Data",
+    "User Data",
+    "Location",
+    "Browser History"
+  ],
+  "validPageHeadings": [
+    "App Page Details",
+    "App Detailseite",
+    "Agreements & Consent",
+    "Vereinbarungen und Einverständnis",
+    "Technical Integration",
+    "Vereinbarungen und Einverständnis",
+    "Technische Integration & Benutzerrollen",
+    "Validate & Submit",
+    "Validieren & Einreichen"
+  ]
+}
