@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^4.0.1",
+    "@catena-x/portal-shared-components": "^4.0.2",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@hookform/error-message": "^2.0.1",
