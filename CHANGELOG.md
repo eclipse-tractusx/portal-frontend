@@ -23,12 +23,6 @@
 - **Dependencies**
   - updated app dependencies [#1626](https://github.com/eclipse-tractusx/portal-frontend/pull/1626), [#1631](https://github.com/eclipse-tractusx/portal-frontend/pull/1631), [#1633](https://github.com/eclipse-tractusx/portal-frontend/pull/1633)
 
-### Known Knowns
-
-- Please refer to the [list of open bugs](https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
-- Feature Support and Development for auto-setup Process Worker: there is no frontend support for the extended auto-setup process worker, specifically in terms of error handling and status transparency.
-- During end-to-end testing, some minor issues and in regards to system internal notifications as well as the UI were detected.
-
 ## 2.5.0
 
 ### Feature
