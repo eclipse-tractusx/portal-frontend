@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.6.0-RC1
+
+### Feature
+
+- **App/Service Subscription**
+  - added functionality to decline the apps/services subscription requests [#1629](https://github.com/eclipse-tractusx/portal-frontend/pull/1629)
+
+### Bugfixes
+
+- **App/Service Release**
+  - standardized naming conventions in endpoints in app/service release endpoints [#1588](https://github.com/eclipse-tractusx/portal-frontend/pull/1588)
+- **OSP Registration form**:
+  - Redirect companies already fully onboarded back to portal home page [#1608](https://github.com/eclipse-tractusx/portal-backend/issues/1608)
+- **App Access Management**
+  - fixed logic for user remains checked on navigating back from role selection [#1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
+
+### Technical Support
+
+- **Dependencies**
+  - updated app dependencies [#1626](https://github.com/eclipse-tractusx/portal-frontend/pull/1626), [#1631](https://github.com/eclipse-tractusx/portal-frontend/pull/1631), [#1633](https://github.com/eclipse-tractusx/portal-frontend/pull/1633)
+
 ## 2.5.0
 
 ### Feature
