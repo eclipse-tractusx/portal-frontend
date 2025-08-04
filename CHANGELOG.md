@@ -13,8 +13,6 @@
   - standardized naming conventions in endpoints in app/service release endpoints [#1588](https://github.com/eclipse-tractusx/portal-frontend/pull/1588)
 - **OSP Registration form**:
   - Redirect companies already fully onboarded back to portal home page [#1608](https://github.com/eclipse-tractusx/portal-backend/issues/1608)
-- **Yarn Package Manager**:
-  - added logic to fail installation if package changes were not applied [#1628](https://github.com/eclipse-tractusx/portal-frontend/pull/1628)
 - **App Access Management**
   - fixed logic for user remains checked on navigating back from role selection [#1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
 
