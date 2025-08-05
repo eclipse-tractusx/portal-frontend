@@ -213,7 +213,7 @@ export const CompanyAddressList = ({
         searchDebounce={1000}
         noRowsMsg={
           !isFetching && !isOutputLoading && !isInputLoading
-            ? t('content.companyData.table.noRowsMsg')
+            ? t('shared.table.emptyTable')
             : ''
         }
         title={t('content.companyData.table.title')}

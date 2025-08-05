@@ -35,6 +35,7 @@ import { setSearchInput } from 'features/appManagement/actions'
 import { appManagementSelector } from 'features/appManagement/slice'
 import { isSearchUserEmail } from 'types/Patterns'
 import { getClientId } from 'services/EnvironmentService'
+import { PAGES } from 'types/Constants'
 
 interface FetchHookArgsType {
   appId?: string
@@ -87,6 +88,10 @@ export const UserList = ({
   const dispatch = useDispatch()
   const [refresh, setRefresh] = useState<number>(0)
   const searchInputData = useSelector(appManagementSelector)
+  const mappedTableSearchTranslation = {
+    [PAGES.NO_SEARCH_TABLE_DATA]: t('shared.table.emptySearchTable'),
+    [PAGES.NO_TABLE_DATA]: t('shared.table.emptyTable'),
+  }
 
   const validateSearchText = (expr: string) => {
     const validateExpr = isSearchUserEmail(expr)
@@ -209,6 +214,7 @@ export const UserList = ({
           },
         ]}
         disableColumnMenu
+        mappedTableSearchTranslation={mappedTableSearchTranslation}
       />
     </section>
   )
