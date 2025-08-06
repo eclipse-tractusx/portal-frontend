@@ -144,6 +144,7 @@ export default function AddServiceProvider() {
                   setInvalidFields((prev) => new Set(prev).add(name))
                 }}
                 validate={(expr) => isURL(expr)}
+                skipInitialValidation={true}
               />
 
               <ValidatingInput
@@ -159,6 +160,7 @@ export default function AddServiceProvider() {
                 onInvalid={(name, _) => {
                   setInvalidFields((prev) => new Set(prev).add(name))
                 }}
+                skipInitialValidation={true}
               />
               <ValidatingInput
                 name={'authUrl' as keyof ServiceRequest}
@@ -173,6 +175,7 @@ export default function AddServiceProvider() {
                 onInvalid={(name, _) => {
                   setInvalidFields((prev) => new Set(prev).add(name))
                 }}
+                skipInitialValidation={true}
               />
               <ValidatingInput
                 name={'clientId' as keyof ServiceRequest}
@@ -187,6 +190,7 @@ export default function AddServiceProvider() {
                 onInvalid={(name, _) => {
                   setInvalidFields((prev) => new Set(prev).add(name))
                 }}
+                skipInitialValidation={true}
               />
               <ValidatingInput
                 name={'clientSecret' as keyof ServiceRequest}
@@ -202,6 +206,7 @@ export default function AddServiceProvider() {
                 onInvalid={(name, _) => {
                   setInvalidFields((prev) => new Set(prev).add(name))
                 }}
+                skipInitialValidation={true}
               />
             </>
           ) : (
