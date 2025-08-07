@@ -57,6 +57,7 @@ jobs:
         run: yarn build
 
   run-cypress-tests:
+    if: github.actor != 'dependabot[bot]'
     runs-on: [self-hosted]
     permissions:
       contents: read
