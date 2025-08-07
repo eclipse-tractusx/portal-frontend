@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import './SlidingMainHeader.scss'
+import './style.scss'
 import { Button, Typography } from '@cofinity-x/shared-components'
 
 export interface HeaderProps {
@@ -31,6 +31,7 @@ export interface HeaderProps {
   subTitleTextVariant?: 'h1' | 'h2' | 'h3'
   buttonText?: string
   handleClick: () => void
+  hasAccess?: boolean
 }
 
 export const Header = ({
@@ -43,6 +44,7 @@ export const Header = ({
   subTitleTextVariant = 'h2',
   buttonText,
   handleClick,
+  hasAccess,
 }: HeaderProps) => {
   return (
     <Box
@@ -83,6 +85,7 @@ export const Header = ({
                 onClick={() => {
                   handleClick()
                 }}
+                disabled={!(hasAccess ?? true)}
               >
                 {buttonText}
               </Button>

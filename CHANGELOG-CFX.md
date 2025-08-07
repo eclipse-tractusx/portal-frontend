@@ -4,6 +4,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Homepage improvements**
+
+  - Add new marketplace cards to New Apps and Accessible Apps section [PM2-2968](https://cofinity-x.atlassian.net/browse/PM2-2968)
+  - Improve responsiveness of Homepage slider [PM2-2968](https://cofinity-x.atlassian.net/browse/PM2-2968)
+
 - **Notifications**
 
   - Fix app/service decline messages [PM2-3149](https://cofinity-x.atlassian.net/browse/PM2-3149)

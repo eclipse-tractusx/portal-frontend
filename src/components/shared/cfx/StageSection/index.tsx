@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { getAssetBase } from 'services/EnvironmentService'
-import { SlidingMainHeader } from 'components/shared/frame/SlidingMainHeader/SlidingMainHeader'
+import { SlidingMainHeader } from './SlidingMainHeader/SlidingMainHeader'
 import { useNavigate } from 'react-router-dom'
 import { userHasPortalRole } from 'services/AccessService'
 import { ROLES } from 'types/Constants'

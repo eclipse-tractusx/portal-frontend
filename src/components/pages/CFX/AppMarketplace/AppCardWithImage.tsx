@@ -11,10 +11,14 @@ import { useCfxTheme } from 'hooks/useCfxTheme'
 
 interface AppCardWithImageProps {
   item: AppMarketplaceCard
+  fullWidth?: boolean
 }
 type SubscriptionStatus = 'active' | 'pending' | 'inactive' | undefined
 
-export const AppCardWithImage = ({ item }: AppCardWithImageProps) => {
+export const AppCardWithImage = ({
+  item,
+  fullWidth = true,
+}: AppCardWithImageProps) => {
   const navigate = useNavigate()
   const [imageUrl, setImageUrl] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -60,7 +64,7 @@ export const AppCardWithImage = ({ item }: AppCardWithImageProps) => {
       companyName={item.provider}
       applicationName={item.name ?? ''}
       image={imageUrl}
-      fullWidth={true}
+      fullWidth={fullWidth}
       loading={isLoading}
       status={
         item.subscriptionStatus?.toLocaleLowerCase() as SubscriptionStatus
