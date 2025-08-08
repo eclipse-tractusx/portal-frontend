@@ -24,8 +24,6 @@ export const AppCardWithImage = ({
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const cfxTheme = useCfxTheme()
 
-  console.log('home item', item)
-
   const StyledCfxCardMarketplace = CfxStyled(CfxCardMarketplace)(() => ({
     '& .MuiTypography-h6': {
       // To prevent global overridden (legacy) styles of h6

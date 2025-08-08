@@ -35,6 +35,8 @@ export const SearchResult = ({
     (a: [string, SearchItem[]], b: [string, SearchItem[]]) =>
       a[0].localeCompare(b[0])
   )
+
+  console.log('groupList', groupList)
   return (
     <Box sx={{ display: 'flex' }}>
       <Box className="search-group" sx={{ borderRadius: 4 }}>
